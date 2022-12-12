@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotvideoError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCIotvideoErrorType {
         enum Code: String {
             case dbOperationError = "InternalError.DBOperationError"
             case other = "InternalError"
@@ -30,8 +30,6 @@ extension TCIotvideoError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -53,37 +51,16 @@ extension TCIotvideoError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCIotvideoError.InternalError: Equatable {
-    public static func == (lhs: TCIotvideoError.InternalError, rhs: TCIotvideoError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotvideoError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotvideoError.InternalError {
-    /// - Returns: ``TCIotvideoError`` that holds the same error and context.
-    public func toIotvideoError() -> TCIotvideoError {
-        guard let code = TCIotvideoError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotvideoError() -> TCIotvideoError {
+            let code: TCIotvideoError.Code
+            switch self.error {
+            case .dbOperationError: 
+                code = .internalError_DBOperationError
+            case .other: 
+                code = .internalError
+            }
+            return TCIotvideoError(code, context: self.context)
         }
-        return TCIotvideoError(code, context: self.context)
-    }
-}
-
-extension TCIotvideoError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

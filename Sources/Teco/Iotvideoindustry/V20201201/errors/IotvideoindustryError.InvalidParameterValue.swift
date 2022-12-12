@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotvideoindustryError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCIotvideoindustryErrorType {
         enum Code: String {
             case balanceNotEnough = "InvalidParameterValue.BalanceNotEnough"
             case deviceDataMapError = "InvalidParameterValue.DeviceDataMapError"
@@ -51,8 +51,6 @@ extension TCIotvideoindustryError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -180,37 +178,58 @@ extension TCIotvideoindustryError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCIotvideoindustryError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCIotvideoindustryError.InvalidParameterValue, rhs: TCIotvideoindustryError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotvideoindustryError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotvideoindustryError.InvalidParameterValue {
-    /// - Returns: ``TCIotvideoindustryError`` that holds the same error and context.
-    public func toIotvideoindustryError() -> TCIotvideoindustryError {
-        guard let code = TCIotvideoindustryError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotvideoindustryError() -> TCIotvideoindustryError {
+            let code: TCIotvideoindustryError.Code
+            switch self.error {
+            case .balanceNotEnough: 
+                code = .invalidParameterValue_BalanceNotEnough
+            case .deviceDataMapError: 
+                code = .invalidParameterValue_DeviceDataMapError
+            case .deviceId: 
+                code = .invalidParameterValue_DeviceId
+            case .deviceInfoNotExist: 
+                code = .invalidParameterValue_DeviceInfoNotExist
+            case .deviceOffline: 
+                code = .invalidParameterValue_DeviceOffline
+            case .deviceOnline: 
+                code = .invalidParameterValue_DeviceOnline
+            case .deviceTypeNotSupport: 
+                code = .invalidParameterValue_DeviceTypeNotSupport
+            case .domainId: 
+                code = .invalidParameterValue_DomainId
+            case .expireTime: 
+                code = .invalidParameterValue_ExpireTime
+            case .groupDomainidExtraInformation: 
+                code = .invalidParameterValue_GroupDomainidExtraInformation
+            case .groupDomainidNotUpdate: 
+                code = .invalidParameterValue_GroupDomainidNotUpdate
+            case .groupParmsError: 
+                code = .invalidParameterValue_GroupParmsError
+            case .recordNotExist: 
+                code = .invalidParameterValue_RecordNotExist
+            case .recordPlanBeyondLimit: 
+                code = .invalidParameterValue_RecordPlanBeyondLimit
+            case .ruleLimit: 
+                code = .invalidParameterValue_RuleLimit
+            case .ruleNotExist: 
+                code = .invalidParameterValue_RuleNotExist
+            case .streamId: 
+                code = .invalidParameterValue_StreamId
+            case .streamInfoNotExist: 
+                code = .invalidParameterValue_StreamInfoNotExist
+            case .templateBeyondLimit: 
+                code = .invalidParameterValue_TemplateBeyondLimit
+            case .templateSpecEmpty: 
+                code = .invalidParameterValue_TemplateSpecEmpty
+            case .timeSpecNotSupport: 
+                code = .invalidParameterValue_TimeSpecNotSupport
+            case .typeNotSupport: 
+                code = .invalidParameterValue_TypeNotSupport
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCIotvideoindustryError(code, context: self.context)
         }
-        return TCIotvideoindustryError(code, context: self.context)
-    }
-}
-
-extension TCIotvideoindustryError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

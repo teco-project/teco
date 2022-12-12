@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCRkpError {
-    public struct AuthFailure: TCErrorType {
+    public struct AuthFailure: TCRkpErrorType {
         enum Code: String {
             case capSigError = "AuthFailure.CapSigError"
             case expired = "AuthFailure.Expired"
@@ -30,8 +30,6 @@ extension TCRkpError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCRkpError {
         public static var expired: AuthFailure {
             AuthFailure(.expired)
         }
-    }
-}
-
-extension TCRkpError.AuthFailure: Equatable {
-    public static func == (lhs: TCRkpError.AuthFailure, rhs: TCRkpError.AuthFailure) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCRkpError.AuthFailure: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCRkpError.AuthFailure {
-    /// - Returns: ``TCRkpError`` that holds the same error and context.
-    public func toRkpError() -> TCRkpError {
-        guard let code = TCRkpError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asRkpError() -> TCRkpError {
+            let code: TCRkpError.Code
+            switch self.error {
+            case .capSigError: 
+                code = .authFailure_CapSigError
+            case .expired: 
+                code = .authFailure_Expired
+            }
+            return TCRkpError(code, context: self.context)
         }
-        return TCRkpError(code, context: self.context)
-    }
-}
-
-extension TCRkpError.AuthFailure {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

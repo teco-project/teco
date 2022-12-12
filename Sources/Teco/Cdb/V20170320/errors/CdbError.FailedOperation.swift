@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCdbError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCCdbErrorType {
         enum Code: String {
             case asyncTaskStatusError = "FailedOperation.AsyncTaskStatusError"
             case auditConfigNotExist = "FailedOperation.AuditConfigNotExist"
@@ -54,8 +54,6 @@ extension TCCdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -202,37 +200,64 @@ extension TCCdbError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCCdbError.FailedOperation: Equatable {
-    public static func == (lhs: TCCdbError.FailedOperation, rhs: TCCdbError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCdbError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCdbError.FailedOperation {
-    /// - Returns: ``TCCdbError`` that holds the same error and context.
-    public func toCdbError() -> TCCdbError {
-        guard let code = TCCdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCdbError() -> TCCdbError {
+            let code: TCCdbError.Code
+            switch self.error {
+            case .asyncTaskStatusError: 
+                code = .failedOperation_AsyncTaskStatusError
+            case .auditConfigNotExist: 
+                code = .failedOperation_AuditConfigNotExist
+            case .cdbInstanceLockFailError: 
+                code = .failedOperation_CdbInstanceLockFailError
+            case .createAccountError: 
+                code = .failedOperation_CreateAccountError
+            case .createAuditFailError: 
+                code = .failedOperation_CreateAuditFailError
+            case .createAuditLogFileError: 
+                code = .failedOperation_CreateAuditLogFileError
+            case .createRoVipError: 
+                code = .failedOperation_CreateRoVipError
+            case .dbOperationActionError: 
+                code = .failedOperation_DBOperationActionError
+            case .deleteAuditFailError: 
+                code = .failedOperation_DeleteAuditFailError
+            case .describeProxyGroupError: 
+                code = .failedOperation_DescribeProxyGroupError
+            case .getPrivilegeError: 
+                code = .failedOperation_GetPrivilegeError
+            case .instanceQueryError: 
+                code = .failedOperation_InstanceQueryError
+            case .jsonMarshalError: 
+                code = .failedOperation_JsonMarshalError
+            case .jsonUnmarshalError: 
+                code = .failedOperation_JsonUnmarshalError
+            case .notDelayRo: 
+                code = .failedOperation_NotDelayRo
+            case .privilegeDataIllegal: 
+                code = .failedOperation_PrivilegeDataIllegal
+            case .proxyGroupStatusError: 
+                code = .failedOperation_ProxyGroupStatusError
+            case .queryLogError: 
+                code = .failedOperation_QueryLogError
+            case .repeatCreateProxyError: 
+                code = .failedOperation_RepeatCreateProxyError
+            case .responseValueError: 
+                code = .failedOperation_ResponseValueError
+            case .startFlowError: 
+                code = .failedOperation_StartFlowError
+            case .statusConflict: 
+                code = .failedOperation_StatusConflict
+            case .submitAsyncTaskError: 
+                code = .failedOperation_SubmitAsyncTaskError
+            case .timeoutError: 
+                code = .failedOperation_TimeoutError
+            case .typeInConflict: 
+                code = .failedOperation_TypeInConflict
+            case .other: 
+                code = .failedOperation
+            }
+            return TCCdbError(code, context: self.context)
         }
-        return TCCdbError(code, context: self.context)
-    }
-}
-
-extension TCCdbError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

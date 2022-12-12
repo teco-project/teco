@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCLighthouseError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCLighthouseErrorType {
         enum Code: String {
             case blueprintIdNotFound = "ResourceNotFound.BlueprintIdNotFound"
             case blueprintNotFound = "ResourceNotFound.BlueprintNotFound"
@@ -42,8 +42,6 @@ extension TCLighthouseError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -125,37 +123,40 @@ extension TCLighthouseError {
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-    }
-}
-
-extension TCLighthouseError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCLighthouseError.ResourceNotFound, rhs: TCLighthouseError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCLighthouseError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCLighthouseError.ResourceNotFound {
-    /// - Returns: ``TCLighthouseError`` that holds the same error and context.
-    public func toLighthouseError() -> TCLighthouseError {
-        guard let code = TCLighthouseError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asLighthouseError() -> TCLighthouseError {
+            let code: TCLighthouseError.Code
+            switch self.error {
+            case .blueprintIdNotFound: 
+                code = .resourceNotFound_BlueprintIdNotFound
+            case .blueprintNotFound: 
+                code = .resourceNotFound_BlueprintNotFound
+            case .diskIdNotFound: 
+                code = .resourceNotFound_DiskIdNotFound
+            case .diskNotFound: 
+                code = .resourceNotFound_DiskNotFound
+            case .firewallNotFound: 
+                code = .resourceNotFound_FirewallNotFound
+            case .firewallRulesNotFound: 
+                code = .resourceNotFound_FirewallRulesNotFound
+            case .instanceDataDiskNotFound: 
+                code = .resourceNotFound_InstanceDataDiskNotFound
+            case .instanceIdNotFound: 
+                code = .resourceNotFound_InstanceIdNotFound
+            case .instanceNotFound: 
+                code = .resourceNotFound_InstanceNotFound
+            case .keyIdNotFound: 
+                code = .resourceNotFound_KeyIdNotFound
+            case .privateBlueprintNotFound: 
+                code = .resourceNotFound_PrivateBlueprintNotFound
+            case .snapshotIdNotFound: 
+                code = .resourceNotFound_SnapshotIdNotFound
+            case .snapshotNotFound: 
+                code = .resourceNotFound_SnapshotNotFound
+            case .other: 
+                code = .resourceNotFound
+            }
+            return TCLighthouseError(code, context: self.context)
         }
-        return TCLighthouseError(code, context: self.context)
-    }
-}
-
-extension TCLighthouseError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDcdbError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCDcdbErrorType {
         enum Code: String {
             case accountAlreadyExists = "InvalidParameterValue.AccountAlreadyExists"
             case badSyncMode = "InvalidParameterValue.BadSyncMode"
@@ -42,8 +42,6 @@ extension TCDcdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -124,37 +122,40 @@ extension TCDcdbError {
         public static var syncModeNotAllowed: InvalidParameterValue {
             InvalidParameterValue(.syncModeNotAllowed)
         }
-    }
-}
-
-extension TCDcdbError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCDcdbError.InvalidParameterValue, rhs: TCDcdbError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDcdbError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDcdbError.InvalidParameterValue {
-    /// - Returns: ``TCDcdbError`` that holds the same error and context.
-    public func toDcdbError() -> TCDcdbError {
-        guard let code = TCDcdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDcdbError() -> TCDcdbError {
+            let code: TCDcdbError.Code
+            switch self.error {
+            case .accountAlreadyExists: 
+                code = .invalidParameterValue_AccountAlreadyExists
+            case .badSyncMode: 
+                code = .invalidParameterValue_BadSyncMode
+            case .badUserRight: 
+                code = .invalidParameterValue_BadUserRight
+            case .badUserType: 
+                code = .invalidParameterValue_BadUserType
+            case .illegalExclusterID: 
+                code = .invalidParameterValue_IllegalExclusterID
+            case .illegalInitParam: 
+                code = .invalidParameterValue_IllegalInitParam
+            case .illegalQuantity: 
+                code = .invalidParameterValue_IllegalQuantity
+            case .illegalRightParam: 
+                code = .invalidParameterValue_IllegalRightParam
+            case .illegalZone: 
+                code = .invalidParameterValue_IllegalZone
+            case .invalidParameterValueError: 
+                code = .invalidParameterValue_InvalidParameterValueError
+            case .shardNotExist: 
+                code = .invalidParameterValue_ShardNotExist
+            case .specIdIllegal: 
+                code = .invalidParameterValue_SpecIdIllegal
+            case .superUserForbidden: 
+                code = .invalidParameterValue_SuperUserForbidden
+            case .syncModeNotAllowed: 
+                code = .invalidParameterValue_SyncModeNotAllowed
+            }
+            return TCDcdbError(code, context: self.context)
         }
-        return TCDcdbError(code, context: self.context)
-    }
-}
-
-extension TCDcdbError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

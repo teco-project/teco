@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCScfError {
-    public struct ResourceInUse: TCErrorType {
+    public struct ResourceInUse: TCScfErrorType {
         enum Code: String {
             case alias = "ResourceInUse.Alias"
             case cdn = "ResourceInUse.Cdn"
@@ -39,8 +39,6 @@ extension TCScfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -108,37 +106,34 @@ extension TCScfError {
         public static var other: ResourceInUse {
             ResourceInUse(.other)
         }
-    }
-}
-
-extension TCScfError.ResourceInUse: Equatable {
-    public static func == (lhs: TCScfError.ResourceInUse, rhs: TCScfError.ResourceInUse) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCScfError.ResourceInUse: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCScfError.ResourceInUse {
-    /// - Returns: ``TCScfError`` that holds the same error and context.
-    public func toScfError() -> TCScfError {
-        guard let code = TCScfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asScfError() -> TCScfError {
+            let code: TCScfError.Code
+            switch self.error {
+            case .alias: 
+                code = .resourceInUse_Alias
+            case .cdn: 
+                code = .resourceInUse_Cdn
+            case .cmq: 
+                code = .resourceInUse_Cmq
+            case .cos: 
+                code = .resourceInUse_Cos
+            case .function: 
+                code = .resourceInUse_Function
+            case .functionName: 
+                code = .resourceInUse_FunctionName
+            case .layerVersion: 
+                code = .resourceInUse_LayerVersion
+            case .namespace: 
+                code = .resourceInUse_Namespace
+            case .trigger: 
+                code = .resourceInUse_Trigger
+            case .triggerName: 
+                code = .resourceInUse_TriggerName
+            case .other: 
+                code = .resourceInUse
+            }
+            return TCScfError(code, context: self.context)
         }
-        return TCScfError(code, context: self.context)
-    }
-}
-
-extension TCScfError.ResourceInUse {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

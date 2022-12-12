@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTseError {
-    public struct MissingParameter: TCErrorType {
+    public struct MissingParameter: TCTseErrorType {
         enum Code: String {
             case createError = "MissingParameter.CreateError"
             case updateError = "MissingParameter.UpdateError"
@@ -30,8 +30,6 @@ extension TCTseError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCTseError {
         public static var updateError: MissingParameter {
             MissingParameter(.updateError)
         }
-    }
-}
-
-extension TCTseError.MissingParameter: Equatable {
-    public static func == (lhs: TCTseError.MissingParameter, rhs: TCTseError.MissingParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTseError.MissingParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTseError.MissingParameter {
-    /// - Returns: ``TCTseError`` that holds the same error and context.
-    public func toTseError() -> TCTseError {
-        guard let code = TCTseError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTseError() -> TCTseError {
+            let code: TCTseError.Code
+            switch self.error {
+            case .createError: 
+                code = .missingParameter_CreateError
+            case .updateError: 
+                code = .missingParameter_UpdateError
+            }
+            return TCTseError(code, context: self.context)
         }
-        return TCTseError(code, context: self.context)
-    }
-}
-
-extension TCTseError.MissingParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

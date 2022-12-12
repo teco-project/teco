@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIvldError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCIvldErrorType {
         enum Code: String {
             case aiTemplateNotExist = "FailedOperation.AiTemplateNotExist"
             case categoryExist = "FailedOperation.CategoryExist"
@@ -60,8 +60,6 @@ extension TCIvldError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -296,37 +294,76 @@ extension TCIvldError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCIvldError.FailedOperation: Equatable {
-    public static func == (lhs: TCIvldError.FailedOperation, rhs: TCIvldError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIvldError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIvldError.FailedOperation {
-    /// - Returns: ``TCIvldError`` that holds the same error and context.
-    public func toIvldError() -> TCIvldError {
-        guard let code = TCIvldError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIvldError() -> TCIvldError {
+            let code: TCIvldError.Code
+            switch self.error {
+            case .aiTemplateNotExist: 
+                code = .failedOperation_AiTemplateNotExist
+            case .categoryExist: 
+                code = .failedOperation_CategoryExist
+            case .categoryLevelChanged: 
+                code = .failedOperation_CategoryLevelChanged
+            case .categoryReferred: 
+                code = .failedOperation_CategoryReferred
+            case .customGroupAlreadyExist: 
+                code = .failedOperation_CustomGroupAlreadyExist
+            case .dbConnectionError: 
+                code = .failedOperation_DBConnectionError
+            case .downloadFailed: 
+                code = .failedOperation_DownloadFailed
+            case .featureAlgoFailed: 
+                code = .failedOperation_FeatureAlgoFailed
+            case .getCAMTokenFailed: 
+                code = .failedOperation_GetCAMTokenFailed
+            case .getTaskListFailed: 
+                code = .failedOperation_GetTaskListFailed
+            case .getVideoMetadataFailed: 
+                code = .failedOperation_GetVideoMetadataFailed
+            case .imageNumExceeded: 
+                code = .failedOperation_ImageNumExceeded
+            case .md5Mismatch: 
+                code = .failedOperation_MD5Mismatch
+            case .mediaAlreadyExist: 
+                code = .failedOperation_MediaAlreadyExist
+            case .mediaExpired: 
+                code = .failedOperation_MediaExpired
+            case .mediaInUse: 
+                code = .failedOperation_MediaInUse
+            case .mediaNotReady: 
+                code = .failedOperation_MediaNotReady
+            case .multipleFacesInImage: 
+                code = .failedOperation_MultipleFacesInImage
+            case .noFaceInImage: 
+                code = .failedOperation_NoFaceInImage
+            case .openChargeFailed: 
+                code = .failedOperation_OpenChargeFailed
+            case .personDuplicated: 
+                code = .failedOperation_PersonDuplicated
+            case .personNotMatched: 
+                code = .failedOperation_PersonNotMatched
+            case .personNumExceeded: 
+                code = .failedOperation_PersonNumExceeded
+            case .qualityAlgoFailed: 
+                code = .failedOperation_QualityAlgoFailed
+            case .qualityTooLow: 
+                code = .failedOperation_QualityTooLow
+            case .snapshotDeserializeFailed: 
+                code = .failedOperation_SnapshotDeserializeFailed
+            case .stopFlowFailed: 
+                code = .failedOperation_StopFlowFailed
+            case .taskAlreadyExist: 
+                code = .failedOperation_TaskAlreadyExist
+            case .taskNotFinished: 
+                code = .failedOperation_TaskNotFinished
+            case .transcodeFailed: 
+                code = .failedOperation_TranscodeFailed
+            case .uploadFailed: 
+                code = .failedOperation_UploadFailed
+            case .other: 
+                code = .failedOperation
+            }
+            return TCIvldError(code, context: self.context)
         }
-        return TCIvldError(code, context: self.context)
-    }
-}
-
-extension TCIvldError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSqlserverError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCSqlserverErrorType {
         enum Code: String {
             case cosError = "FailedOperation.CosError"
             case cosPropertiesError = "FailedOperation.CosPropertiesError"
@@ -39,8 +39,6 @@ extension TCSqlserverError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -108,37 +106,34 @@ extension TCSqlserverError {
         public static var vpcError: FailedOperation {
             FailedOperation(.vpcError)
         }
-    }
-}
-
-extension TCSqlserverError.FailedOperation: Equatable {
-    public static func == (lhs: TCSqlserverError.FailedOperation, rhs: TCSqlserverError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSqlserverError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSqlserverError.FailedOperation {
-    /// - Returns: ``TCSqlserverError`` that holds the same error and context.
-    public func toSqlserverError() -> TCSqlserverError {
-        guard let code = TCSqlserverError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSqlserverError() -> TCSqlserverError {
+            let code: TCSqlserverError.Code
+            switch self.error {
+            case .cosError: 
+                code = .failedOperation_CosError
+            case .cosPropertiesError: 
+                code = .failedOperation_CosPropertiesError
+            case .createOrderFailed: 
+                code = .failedOperation_CreateOrderFailed
+            case .dbError: 
+                code = .failedOperation_DBError
+            case .gcsError: 
+                code = .failedOperation_GcsError
+            case .getVpcFailed: 
+                code = .failedOperation_GetVpcFailed
+            case .migrationLockError: 
+                code = .failedOperation_MigrationLockError
+            case .queryOrderFailed: 
+                code = .failedOperation_QueryOrderFailed
+            case .queryPriceFailed: 
+                code = .failedOperation_QueryPriceFailed
+            case .securityGroupOperationError: 
+                code = .failedOperation_SecurityGroupOperationError
+            case .vpcError: 
+                code = .failedOperation_VPCError
+            }
+            return TCSqlserverError(code, context: self.context)
         }
-        return TCSqlserverError(code, context: self.context)
-    }
-}
-
-extension TCSqlserverError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

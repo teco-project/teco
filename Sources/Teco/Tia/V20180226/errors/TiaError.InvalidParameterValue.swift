@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTiaError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCTiaErrorType {
         enum Code: String {
             case code = "InvalidParameterValue.Code"
             case description = "InvalidParameterValue.Description"
@@ -37,8 +37,6 @@ extension TCTiaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -96,37 +94,30 @@ extension TCTiaError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCTiaError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCTiaError.InvalidParameterValue, rhs: TCTiaError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTiaError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTiaError.InvalidParameterValue {
-    /// - Returns: ``TCTiaError`` that holds the same error and context.
-    public func toTiaError() -> TCTiaError {
-        guard let code = TCTiaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTiaError() -> TCTiaError {
+            let code: TCTiaError.Code
+            switch self.error {
+            case .code: 
+                code = .invalidParameterValue_Code
+            case .description: 
+                code = .invalidParameterValue_Description
+            case .environment: 
+                code = .invalidParameterValue_Environment
+            case .functionName: 
+                code = .invalidParameterValue_FunctionName
+            case .handler: 
+                code = .invalidParameterValue_Handler
+            case .order: 
+                code = .invalidParameterValue_Order
+            case .orderby: 
+                code = .invalidParameterValue_Orderby
+            case .runtime: 
+                code = .invalidParameterValue_Runtime
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCTiaError(code, context: self.context)
         }
-        return TCTiaError(code, context: self.context)
-    }
-}
-
-extension TCTiaError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

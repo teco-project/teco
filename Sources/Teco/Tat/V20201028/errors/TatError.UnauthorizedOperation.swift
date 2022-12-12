@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTatError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCTatErrorType {
         enum Code: String {
             case camAuthFailed = "UnauthorizedOperation.CamAuthFailed"
             case invalidToken = "UnauthorizedOperation.InvalidToken"
@@ -32,8 +32,6 @@ extension TCTatError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCTatError {
         public static var mfaNotFound: UnauthorizedOperation {
             UnauthorizedOperation(.mfaNotFound)
         }
-    }
-}
-
-extension TCTatError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCTatError.UnauthorizedOperation, rhs: TCTatError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTatError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTatError.UnauthorizedOperation {
-    /// - Returns: ``TCTatError`` that holds the same error and context.
-    public func toTatError() -> TCTatError {
-        guard let code = TCTatError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTatError() -> TCTatError {
+            let code: TCTatError.Code
+            switch self.error {
+            case .camAuthFailed: 
+                code = .unauthorizedOperation_CamAuthFailed
+            case .invalidToken: 
+                code = .unauthorizedOperation_InvalidToken
+            case .mfaExpired: 
+                code = .unauthorizedOperation_MFAExpired
+            case .mfaNotFound: 
+                code = .unauthorizedOperation_MFANotFound
+            }
+            return TCTatError(code, context: self.context)
         }
-        return TCTatError(code, context: self.context)
-    }
-}
-
-extension TCTatError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

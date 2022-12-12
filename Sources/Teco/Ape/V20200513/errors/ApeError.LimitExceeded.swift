@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCApeError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCApeErrorType {
         enum Code: String {
             case orderExpiredError = "LimitExceeded.OrderExpiredError"
             case orderLimitError = "LimitExceeded.OrderLimitError"
@@ -31,8 +31,6 @@ extension TCApeError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCApeError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCApeError.LimitExceeded: Equatable {
-    public static func == (lhs: TCApeError.LimitExceeded, rhs: TCApeError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCApeError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCApeError.LimitExceeded {
-    /// - Returns: ``TCApeError`` that holds the same error and context.
-    public func toApeError() -> TCApeError {
-        guard let code = TCApeError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asApeError() -> TCApeError {
+            let code: TCApeError.Code
+            switch self.error {
+            case .orderExpiredError: 
+                code = .limitExceeded_OrderExpiredError
+            case .orderLimitError: 
+                code = .limitExceeded_OrderLimitError
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCApeError(code, context: self.context)
         }
-        return TCApeError(code, context: self.context)
-    }
-}
-
-extension TCApeError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

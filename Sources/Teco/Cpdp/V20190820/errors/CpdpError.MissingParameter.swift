@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCpdpError {
-    public struct MissingParameter: TCErrorType {
+    public struct MissingParameter: TCCpdpErrorType {
         enum Code: String {
             case action = "MissingParameter.Action"
             case appId = "MissingParameter.AppId"
@@ -31,8 +31,6 @@ extension TCCpdpError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCCpdpError {
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-    }
-}
-
-extension TCCpdpError.MissingParameter: Equatable {
-    public static func == (lhs: TCCpdpError.MissingParameter, rhs: TCCpdpError.MissingParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCpdpError.MissingParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCpdpError.MissingParameter {
-    /// - Returns: ``TCCpdpError`` that holds the same error and context.
-    public func toCpdpError() -> TCCpdpError {
-        guard let code = TCCpdpError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCpdpError() -> TCCpdpError {
+            let code: TCCpdpError.Code
+            switch self.error {
+            case .action: 
+                code = .missingParameter_Action
+            case .appId: 
+                code = .missingParameter_AppId
+            case .other: 
+                code = .missingParameter_
+            }
+            return TCCpdpError(code, context: self.context)
         }
-        return TCCpdpError(code, context: self.context)
-    }
-}
-
-extension TCCpdpError.MissingParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

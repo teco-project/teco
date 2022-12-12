@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCGaapError {
-    public struct AuthFailure: TCErrorType {
+    public struct AuthFailure: TCGaapErrorType {
         enum Code: String {
             case notEnterpriseAuthorization = "AuthFailure.NotEnterpriseAuthorization"
             case unauthorizedOperation = "AuthFailure.UnauthorizedOperation"
@@ -31,8 +31,6 @@ extension TCGaapError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCGaapError {
         public static var other: AuthFailure {
             AuthFailure(.other)
         }
-    }
-}
-
-extension TCGaapError.AuthFailure: Equatable {
-    public static func == (lhs: TCGaapError.AuthFailure, rhs: TCGaapError.AuthFailure) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCGaapError.AuthFailure: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCGaapError.AuthFailure {
-    /// - Returns: ``TCGaapError`` that holds the same error and context.
-    public func toGaapError() -> TCGaapError {
-        guard let code = TCGaapError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asGaapError() -> TCGaapError {
+            let code: TCGaapError.Code
+            switch self.error {
+            case .notEnterpriseAuthorization: 
+                code = .authFailure_NotEnterpriseAuthorization
+            case .unauthorizedOperation: 
+                code = .authFailure_UnauthorizedOperation
+            case .other: 
+                code = .authFailure
+            }
+            return TCGaapError(code, context: self.context)
         }
-        return TCGaapError(code, context: self.context)
-    }
-}
-
-extension TCGaapError.AuthFailure {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

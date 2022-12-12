@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTeoError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCTeoErrorType {
         enum Code: String {
             case camUnauthorized = "UnauthorizedOperation.CamUnauthorized"
             case domainEmpty = "UnauthorizedOperation.DomainEmpty"
@@ -33,8 +33,6 @@ extension TCTeoError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,22 @@ extension TCTeoError {
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-    }
-}
-
-extension TCTeoError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCTeoError.UnauthorizedOperation, rhs: TCTeoError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTeoError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTeoError.UnauthorizedOperation {
-    /// - Returns: ``TCTeoError`` that holds the same error and context.
-    public func toTeoError() -> TCTeoError {
-        guard let code = TCTeoError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTeoError() -> TCTeoError {
+            let code: TCTeoError.Code
+            switch self.error {
+            case .camUnauthorized: 
+                code = .unauthorizedOperation_CamUnauthorized
+            case .domainEmpty: 
+                code = .unauthorizedOperation_DomainEmpty
+            case .noPermission: 
+                code = .unauthorizedOperation_NoPermission
+            case .unknown: 
+                code = .unauthorizedOperation_Unknown
+            case .other: 
+                code = .unauthorizedOperation
+            }
+            return TCTeoError(code, context: self.context)
         }
-        return TCTeoError(code, context: self.context)
-    }
-}
-
-extension TCTeoError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

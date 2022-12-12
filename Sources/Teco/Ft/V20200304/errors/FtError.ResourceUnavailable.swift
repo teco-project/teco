@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCFtError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCFtErrorType {
         enum Code: String {
             case delivering = "ResourceUnavailable.Delivering"
             case freeze = "ResourceUnavailable.Freeze"
@@ -38,8 +38,6 @@ extension TCFtError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -102,37 +100,32 @@ extension TCFtError {
         public static var unknownStatus: ResourceUnavailable {
             ResourceUnavailable(.unknownStatus)
         }
-    }
-}
-
-extension TCFtError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCFtError.ResourceUnavailable, rhs: TCFtError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCFtError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCFtError.ResourceUnavailable {
-    /// - Returns: ``TCFtError`` that holds the same error and context.
-    public func toFtError() -> TCFtError {
-        guard let code = TCFtError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asFtError() -> TCFtError {
+            let code: TCFtError.Code
+            switch self.error {
+            case .delivering: 
+                code = .resourceUnavailable_Delivering
+            case .freeze: 
+                code = .resourceUnavailable_Freeze
+            case .getAuthInfoError: 
+                code = .resourceUnavailable_GetAuthInfoError
+            case .inArrears: 
+                code = .resourceUnavailable_InArrears
+            case .lowBalance: 
+                code = .resourceUnavailable_LowBalance
+            case .notExist: 
+                code = .resourceUnavailable_NotExist
+            case .notReady: 
+                code = .resourceUnavailable_NotReady
+            case .recover: 
+                code = .resourceUnavailable_Recover
+            case .stopUsing: 
+                code = .resourceUnavailable_StopUsing
+            case .unknownStatus: 
+                code = .resourceUnavailable_UnknownStatus
+            }
+            return TCFtError(code, context: self.context)
         }
-        return TCFtError(code, context: self.context)
-    }
-}
-
-extension TCFtError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTtsError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCTtsErrorType {
         enum Code: String {
             case accountArrears = "UnsupportedOperation.AccountArrears"
             case authorizationExpired = "UnsupportedOperation.AuthorizationExpired"
@@ -41,8 +41,6 @@ extension TCTtsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -120,37 +118,38 @@ extension TCTtsError {
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-    }
-}
-
-extension TCTtsError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCTtsError.UnsupportedOperation, rhs: TCTtsError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTtsError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTtsError.UnsupportedOperation {
-    /// - Returns: ``TCTtsError`` that holds the same error and context.
-    public func toTtsError() -> TCTtsError {
-        guard let code = TCTtsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTtsError() -> TCTtsError {
+            let code: TCTtsError.Code
+            switch self.error {
+            case .accountArrears: 
+                code = .unsupportedOperation_AccountArrears
+            case .authorizationExpired: 
+                code = .unsupportedOperation_AuthorizationExpired
+            case .authorizationFailed: 
+                code = .unsupportedOperation_AuthorizationFailed
+            case .forbiddenUse: 
+                code = .unsupportedOperation_ForbiddenUse
+            case .noBanlance: 
+                code = .unsupportedOperation_NoBanlance
+            case .noFreeAccount: 
+                code = .unsupportedOperation_NoFreeAccount
+            case .pkgExhausted: 
+                code = .unsupportedOperation_PkgExhausted
+            case .serverAlreadyOpen: 
+                code = .unsupportedOperation_ServerAlreadyOpen
+            case .serverDestoryed: 
+                code = .unsupportedOperation_ServerDestoryed
+            case .serverNotOpen: 
+                code = .unsupportedOperation_ServerNotOpen
+            case .serverStopped: 
+                code = .unsupportedOperation_ServerStopped
+            case .textTooLong: 
+                code = .unsupportedOperation_TextTooLong
+            case .other: 
+                code = .unsupportedOperation
+            }
+            return TCTtsError(code, context: self.context)
         }
-        return TCTtsError(code, context: self.context)
-    }
-}
-
-extension TCTtsError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

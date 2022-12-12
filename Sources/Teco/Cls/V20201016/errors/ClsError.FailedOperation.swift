@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCClsError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCClsErrorType {
         enum Code: String {
             case bindedAlarm = "FailedOperation.BindedAlarm"
             case getlogReachLimit = "FailedOperation.GetlogReachLimit"
@@ -49,8 +49,6 @@ extension TCClsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -180,37 +178,54 @@ extension TCClsError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCClsError.FailedOperation: Equatable {
-    public static func == (lhs: TCClsError.FailedOperation, rhs: TCClsError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCClsError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCClsError.FailedOperation {
-    /// - Returns: ``TCClsError`` that holds the same error and context.
-    public func toClsError() -> TCClsError {
-        guard let code = TCClsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asClsError() -> TCClsError {
+            let code: TCClsError.Code
+            switch self.error {
+            case .bindedAlarm: 
+                code = .failedOperation_BindedAlarm
+            case .getlogReachLimit: 
+                code = .failedOperation_GetlogReachLimit
+            case .inValidIndexRuleForSearchLow: 
+                code = .failedOperation_InValidIndexRuleForSearchLow
+            case .invalidAlarm: 
+                code = .failedOperation_InvalidAlarm
+            case .invalidContext: 
+                code = .failedOperation_InvalidContext
+            case .invalidPeriod: 
+                code = .failedOperation_InvalidPeriod
+            case .logsetConflict: 
+                code = .failedOperation_LogsetConflict
+            case .logsetNotEmpty: 
+                code = .failedOperation_LogsetNotEmpty
+            case .missingContent: 
+                code = .failedOperation_MissingContent
+            case .periodModifyForbidden: 
+                code = .failedOperation_PeriodModifyForbidden
+            case .queryError: 
+                code = .failedOperation_QueryError
+            case .readQpsLimit: 
+                code = .failedOperation_ReadQpsLimit
+            case .searchTimeout: 
+                code = .failedOperation_SearchTimeout
+            case .shipperTaskNotToRetry: 
+                code = .failedOperation_ShipperTaskNotToRetry
+            case .syntaxError: 
+                code = .failedOperation_SyntaxError
+            case .tagQpsLimit: 
+                code = .failedOperation_TagQpsLimit
+            case .topicClosed: 
+                code = .failedOperation_TopicClosed
+            case .topicIsolated: 
+                code = .failedOperation_TopicIsolated
+            case .writeQpsLimit: 
+                code = .failedOperation_WriteQpsLimit
+            case .writeTrafficLimit: 
+                code = .failedOperation_WriteTrafficLimit
+            case .other: 
+                code = .failedOperation
+            }
+            return TCClsError(code, context: self.context)
         }
-        return TCClsError(code, context: self.context)
-    }
-}
-
-extension TCClsError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

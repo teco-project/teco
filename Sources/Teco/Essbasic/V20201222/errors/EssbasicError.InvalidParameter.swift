@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEssbasicError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCEssbasicErrorType {
         enum Code: String {
             case bizApproverAlreadyExists = "InvalidParameter.BizApproverAlreadyExists"
             case invalidVerifyResult = "InvalidParameter.InvalidVerifyResult"
@@ -32,8 +32,6 @@ extension TCEssbasicError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,20 @@ extension TCEssbasicError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCEssbasicError.InvalidParameter: Equatable {
-    public static func == (lhs: TCEssbasicError.InvalidParameter, rhs: TCEssbasicError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEssbasicError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEssbasicError.InvalidParameter {
-    /// - Returns: ``TCEssbasicError`` that holds the same error and context.
-    public func toEssbasicError() -> TCEssbasicError {
-        guard let code = TCEssbasicError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEssbasicError() -> TCEssbasicError {
+            let code: TCEssbasicError.Code
+            switch self.error {
+            case .bizApproverAlreadyExists: 
+                code = .invalidParameter_BizApproverAlreadyExists
+            case .invalidVerifyResult: 
+                code = .invalidParameter_InvalidVerifyResult
+            case .status: 
+                code = .invalidParameter_Status
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCEssbasicError(code, context: self.context)
         }
-        return TCEssbasicError(code, context: self.context)
-    }
-}
-
-extension TCEssbasicError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

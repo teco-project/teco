@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCFmuError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCFmuErrorType {
         enum Code: String {
             case eyeEnlargingIllegal = "InvalidParameterValue.EyeEnlargingIllegal"
             case faceLiftingIllegal = "InvalidParameterValue.FaceLiftingIllegal"
@@ -46,8 +46,6 @@ extension TCFmuError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -150,37 +148,48 @@ extension TCFmuError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCFmuError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCFmuError.InvalidParameterValue, rhs: TCFmuError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCFmuError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCFmuError.InvalidParameterValue {
-    /// - Returns: ``TCFmuError`` that holds the same error and context.
-    public func toFmuError() -> TCFmuError {
-        guard let code = TCFmuError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asFmuError() -> TCFmuError {
+            let code: TCFmuError.Code
+            switch self.error {
+            case .eyeEnlargingIllegal: 
+                code = .invalidParameterValue_EyeEnlargingIllegal
+            case .faceLiftingIllegal: 
+                code = .invalidParameterValue_FaceLiftingIllegal
+            case .faceRectInvalid: 
+                code = .invalidParameterValue_FaceRectInvalid
+            case .faceRectInvalidFirst: 
+                code = .invalidParameterValue_FaceRectInvalidFirst
+            case .faceRectInvalidSecond: 
+                code = .invalidParameterValue_FaceRectInvalidSecond
+            case .faceRectInvalidThrid: 
+                code = .invalidParameterValue_FaceRectInvalidThrid
+            case .imageEmpty: 
+                code = .invalidParameterValue_ImageEmpty
+            case .imageInvalid: 
+                code = .invalidParameterValue_ImageInvalid
+            case .imageSizeExceed: 
+                code = .invalidParameterValue_ImageSizeExceed
+            case .lutImageInvalid: 
+                code = .invalidParameterValue_LutImageInvalid
+            case .lutImageSizeInvalid: 
+                code = .invalidParameterValue_LutImageSizeInvalid
+            case .modelIdNotFound: 
+                code = .invalidParameterValue_ModelIdNotFound
+            case .noFaceInPhoto: 
+                code = .invalidParameterValue_NoFaceInPhoto
+            case .parameterValueError: 
+                code = .invalidParameterValue_ParameterValueError
+            case .smoothingIllegal: 
+                code = .invalidParameterValue_SmoothingIllegal
+            case .urlIllegal: 
+                code = .invalidParameterValue_UrlIllegal
+            case .whiteningIllegal: 
+                code = .invalidParameterValue_WhiteningIllegal
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCFmuError(code, context: self.context)
         }
-        return TCFmuError(code, context: self.context)
-    }
-}
-
-extension TCFmuError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

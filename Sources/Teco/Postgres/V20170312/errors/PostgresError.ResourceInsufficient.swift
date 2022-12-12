@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCPostgresError {
-    public struct ResourceInsufficient: TCErrorType {
+    public struct ResourceInsufficient: TCPostgresErrorType {
         enum Code: String {
             case resourceNotEnough = "ResourceInsufficient.ResourceNotEnough"
         }
@@ -29,8 +29,6 @@ extension TCPostgresError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCPostgresError {
         public static var resourceNotEnough: ResourceInsufficient {
             ResourceInsufficient(.resourceNotEnough)
         }
-    }
-}
-
-extension TCPostgresError.ResourceInsufficient: Equatable {
-    public static func == (lhs: TCPostgresError.ResourceInsufficient, rhs: TCPostgresError.ResourceInsufficient) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCPostgresError.ResourceInsufficient: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCPostgresError.ResourceInsufficient {
-    /// - Returns: ``TCPostgresError`` that holds the same error and context.
-    public func toPostgresError() -> TCPostgresError {
-        guard let code = TCPostgresError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asPostgresError() -> TCPostgresError {
+            let code: TCPostgresError.Code
+            switch self.error {
+            case .resourceNotEnough: 
+                code = .resourceInsufficient_ResourceNotEnough
+            }
+            return TCPostgresError(code, context: self.context)
         }
-        return TCPostgresError(code, context: self.context)
-    }
-}
-
-extension TCPostgresError.ResourceInsufficient {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

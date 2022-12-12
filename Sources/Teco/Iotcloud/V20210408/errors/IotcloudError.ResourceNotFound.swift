@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotcloudError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCIotcloudErrorType {
         enum Code: String {
             case caCertNotExist = "ResourceNotFound.CACertNotExist"
             case createMultiDeviceTaskNotExist = "ResourceNotFound.CreateMultiDeviceTaskNotExist"
@@ -45,8 +45,6 @@ extension TCIotcloudError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -144,37 +142,46 @@ extension TCIotcloudError {
         public static var topicRuleNotExist: ResourceNotFound {
             ResourceNotFound(.topicRuleNotExist)
         }
-    }
-}
-
-extension TCIotcloudError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCIotcloudError.ResourceNotFound, rhs: TCIotcloudError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotcloudError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotcloudError.ResourceNotFound {
-    /// - Returns: ``TCIotcloudError`` that holds the same error and context.
-    public func toIotcloudError() -> TCIotcloudError {
-        guard let code = TCIotcloudError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotcloudError() -> TCIotcloudError {
+            let code: TCIotcloudError.Code
+            switch self.error {
+            case .caCertNotExist: 
+                code = .resourceNotFound_CACertNotExist
+            case .createMultiDeviceTaskNotExist: 
+                code = .resourceNotFound_CreateMultiDeviceTaskNotExist
+            case .deviceFirmwareTaskNotExist: 
+                code = .resourceNotFound_DeviceFirmwareTaskNotExist
+            case .deviceHasNoFirmware: 
+                code = .resourceNotFound_DeviceHasNoFirmware
+            case .deviceNotExist: 
+                code = .resourceNotFound_DeviceNotExist
+            case .deviceResourceNotExist: 
+                code = .resourceNotFound_DeviceResourceNotExist
+            case .deviceShadowNotExist: 
+                code = .resourceNotFound_DeviceShadowNotExist
+            case .firmwareNotExist: 
+                code = .resourceNotFound_FirmwareNotExist
+            case .firmwareTaskNotExist: 
+                code = .resourceNotFound_FirmwareTaskNotExist
+            case .productNotExist: 
+                code = .resourceNotFound_ProductNotExist
+            case .productOrDeviceNotExist: 
+                code = .resourceNotFound_ProductOrDeviceNotExist
+            case .productResourceNotExist: 
+                code = .resourceNotFound_ProductResourceNotExist
+            case .resourceFileNotExist: 
+                code = .resourceNotFound_ResourceFileNotExist
+            case .taskNotExist: 
+                code = .resourceNotFound_TaskNotExist
+            case .thingModelNotExist: 
+                code = .resourceNotFound_ThingModelNotExist
+            case .topicPolicyNotExist: 
+                code = .resourceNotFound_TopicPolicyNotExist
+            case .topicRuleNotExist: 
+                code = .resourceNotFound_TopicRuleNotExist
+            }
+            return TCIotcloudError(code, context: self.context)
         }
-        return TCIotcloudError(code, context: self.context)
-    }
-}
-
-extension TCIotcloudError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

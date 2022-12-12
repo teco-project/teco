@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCOrganizationError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCOrganizationErrorType {
         enum Code: String {
             case authInfoEmpty = "FailedOperation.AuthInfoEmpty"
             case authNotEnterprise = "FailedOperation.AuthNotEnterprise"
@@ -60,8 +60,6 @@ extension TCOrganizationError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -234,37 +232,76 @@ extension TCOrganizationError {
         public static var subAccountNotExist: FailedOperation {
             FailedOperation(.subAccountNotExist)
         }
-    }
-}
-
-extension TCOrganizationError.FailedOperation: Equatable {
-    public static func == (lhs: TCOrganizationError.FailedOperation, rhs: TCOrganizationError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCOrganizationError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCOrganizationError.FailedOperation {
-    /// - Returns: ``TCOrganizationError`` that holds the same error and context.
-    public func toOrganizationError() -> TCOrganizationError {
-        guard let code = TCOrganizationError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asOrganizationError() -> TCOrganizationError {
+            let code: TCOrganizationError.Code
+            switch self.error {
+            case .authInfoEmpty: 
+                code = .failedOperation_AuthInfoEmpty
+            case .authNotEnterprise: 
+                code = .failedOperation_AuthNotEnterprise
+            case .createAccount: 
+                code = .failedOperation_CreateAccount
+            case .createMemberAuthOverLimit: 
+                code = .failedOperation_CreateMemberAuthOverLimit
+            case .createPolicy: 
+                code = .failedOperation_CreatePolicy
+            case .createRecordAlreadySuccess: 
+                code = .failedOperation_CreateRecordAlreadySuccess
+            case .createRecordNotExist: 
+                code = .failedOperation_CreateRecordNotExist
+            case .createRole: 
+                code = .failedOperation_CreateRole
+            case .disableQuitSelfCreatedOrganization: 
+                code = .failedOperation_DisableQuitSelfCreatedOrganization
+            case .getAuthInfo: 
+                code = .failedOperation_GetAuthInfo
+            case .memberExistDelegatePayerNotAllowDelete: 
+                code = .failedOperation_MemberExistDelegatePayerNotAllowDelete
+            case .memberIsDelegatePayerNotAllowDelete: 
+                code = .failedOperation_MemberIsDelegatePayerNotAllowDelete
+            case .memberNameUsed: 
+                code = .failedOperation_MemberNameUsed
+            case .memberPolicyNameExist: 
+                code = .failedOperation_MemberPolicyNameExist
+            case .memberShareResource: 
+                code = .failedOperation_MemberShareResource
+            case .nodeNotEmpty: 
+                code = .failedOperation_NodeNotEmpty
+            case .operateBillingPermissionErr: 
+                code = .failedOperation_OperateBillingPermissionErr
+            case .operatePolicy: 
+                code = .failedOperation_OperatePolicy
+            case .organizationAuthManageNotAllowDelete: 
+                code = .failedOperation_OrganizationAuthManageNotAllowDelete
+            case .organizationMemberNameUsed: 
+                code = .failedOperation_OrganizationMemberNameUsed
+            case .organizationNodeDeleteOverLimit: 
+                code = .failedOperation_OrganizationNodeDeleteOverLimit
+            case .organizationNodeNameUsed: 
+                code = .failedOperation_OrganizationNodeNameUsed
+            case .organizationNodeNotEmpty: 
+                code = .failedOperation_OrganizationNodeNotEmpty
+            case .organizationNodeNotExist: 
+                code = .failedOperation_OrganizationNodeNotExist
+            case .organizationPermissionIllegal: 
+                code = .failedOperation_OrganizationPermissionIllegal
+            case .organizationPolicyIllegal: 
+                code = .failedOperation_OrganizationPolicyIllegal
+            case .payUinIllegal: 
+                code = .failedOperation_PayUinIllegal
+            case .quitShareUintError: 
+                code = .failedOperation_QuitShareUintError
+            case .shareResourceMemberInUse: 
+                code = .failedOperation_ShareResourceMemberInUse
+            case .someUinsNotInOrganization: 
+                code = .failedOperation_SomeUinsNotInOrganization
+            case .subAccountIdentityExist: 
+                code = .failedOperation_SubAccountIdentityExist
+            case .subAccountNotExist: 
+                code = .failedOperation_SubAccountNotExist
+            }
+            return TCOrganizationError(code, context: self.context)
         }
-        return TCOrganizationError(code, context: self.context)
-    }
-}
-
-extension TCOrganizationError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

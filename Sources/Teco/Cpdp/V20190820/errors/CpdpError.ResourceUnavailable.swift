@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCpdpError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCCpdpErrorType {
         enum Code: String {
             case midasBalance = "ResourceUnavailable.MidasBalance"
             case midasDay = "ResourceUnavailable.MidasDay"
@@ -35,8 +35,6 @@ extension TCCpdpError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -95,37 +93,26 @@ extension TCCpdpError {
         public static var midasWallet: ResourceUnavailable {
             ResourceUnavailable(.midasWallet)
         }
-    }
-}
-
-extension TCCpdpError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCCpdpError.ResourceUnavailable, rhs: TCCpdpError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCpdpError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCpdpError.ResourceUnavailable {
-    /// - Returns: ``TCCpdpError`` that holds the same error and context.
-    public func toCpdpError() -> TCCpdpError {
-        guard let code = TCCpdpError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCpdpError() -> TCCpdpError {
+            let code: TCCpdpError.Code
+            switch self.error {
+            case .midasBalance: 
+                code = .resourceUnavailable_MidasBalance
+            case .midasDay: 
+                code = .resourceUnavailable_MidasDay
+            case .midasFrozenAmount: 
+                code = .resourceUnavailable_MidasFrozenAmount
+            case .midasMerchantBalance: 
+                code = .resourceUnavailable_MidasMerchantBalance
+            case .midasOrder: 
+                code = .resourceUnavailable_MidasOrder
+            case .midasUserBalance: 
+                code = .resourceUnavailable_MidasUserBalance
+            case .midasWallet: 
+                code = .resourceUnavailable_MidasWallet
+            }
+            return TCCpdpError(code, context: self.context)
         }
-        return TCCpdpError(code, context: self.context)
-    }
-}
-
-extension TCCpdpError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

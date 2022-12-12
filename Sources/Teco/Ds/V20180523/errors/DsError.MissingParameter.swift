@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDsError {
-    public struct MissingParameter: TCErrorType {
+    public struct MissingParameter: TCDsErrorType {
         enum Code: String {
             case contractFileNameError = "MissingParameter.ContractFileNameError"
             case contractFilePathError = "MissingParameter.ContractFilePathError"
@@ -36,8 +36,6 @@ extension TCDsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -90,37 +88,28 @@ extension TCDsError {
         public static var signerNullError: MissingParameter {
             MissingParameter(.signerNullError)
         }
-    }
-}
-
-extension TCDsError.MissingParameter: Equatable {
-    public static func == (lhs: TCDsError.MissingParameter, rhs: TCDsError.MissingParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDsError.MissingParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDsError.MissingParameter {
-    /// - Returns: ``TCDsError`` that holds the same error and context.
-    public func toDsError() -> TCDsError {
-        guard let code = TCDsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDsError() -> TCDsError {
+            let code: TCDsError.Code
+            switch self.error {
+            case .contractFileNameError: 
+                code = .missingParameter_ContractFileNameError
+            case .contractFilePathError: 
+                code = .missingParameter_ContractFilePathError
+            case .imageMeasurementNullError: 
+                code = .missingParameter_ImageMeasurementNullError
+            case .keywordNullError: 
+                code = .missingParameter_KeywordNullError
+            case .locationNullError: 
+                code = .missingParameter_LocationNullError
+            case .moError: 
+                code = .missingParameter_MOError
+            case .offsetCoordNullError: 
+                code = .missingParameter_OffsetCoordNullError
+            case .signerNullError: 
+                code = .missingParameter_SignerNullError
+            }
+            return TCDsError(code, context: self.context)
         }
-        return TCDsError(code, context: self.context)
-    }
-}
-
-extension TCDsError.MissingParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

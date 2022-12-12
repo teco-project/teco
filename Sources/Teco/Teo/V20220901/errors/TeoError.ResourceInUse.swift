@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTeoError {
-    public struct ResourceInUse: TCErrorType {
+    public struct ResourceInUse: TCTeoErrorType {
         enum Code: String {
             case aliasDomain = "ResourceInUse.AliasDomain"
             case cname = "ResourceInUse.Cname"
@@ -43,8 +43,6 @@ extension TCTeoError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -119,37 +117,42 @@ extension TCTeoError {
         public static var other: ResourceInUse {
             ResourceInUse(.other)
         }
-    }
-}
-
-extension TCTeoError.ResourceInUse: Equatable {
-    public static func == (lhs: TCTeoError.ResourceInUse, rhs: TCTeoError.ResourceInUse) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTeoError.ResourceInUse: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTeoError.ResourceInUse {
-    /// - Returns: ``TCTeoError`` that holds the same error and context.
-    public func toTeoError() -> TCTeoError {
-        guard let code = TCTeoError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTeoError() -> TCTeoError {
+            let code: TCTeoError.Code
+            switch self.error {
+            case .aliasDomain: 
+                code = .resourceInUse_AliasDomain
+            case .cname: 
+                code = .resourceInUse_Cname
+            case .dns: 
+                code = .resourceInUse_Dns
+            case .duplicateName: 
+                code = .resourceInUse_DuplicateName
+            case .genericHost: 
+                code = .resourceInUse_GenericHost
+            case .host: 
+                code = .resourceInUse_Host
+            case .ns: 
+                code = .resourceInUse_NS
+            case .others: 
+                code = .resourceInUse_Others
+            case .othersAliasDomain: 
+                code = .resourceInUse_OthersAliasDomain
+            case .othersCname: 
+                code = .resourceInUse_OthersCname
+            case .othersHost: 
+                code = .resourceInUse_OthersHost
+            case .othersNS: 
+                code = .resourceInUse_OthersNS
+            case .selfAndOthersCname: 
+                code = .resourceInUse_SelfAndOthersCname
+            case .zone: 
+                code = .resourceInUse_Zone
+            case .other: 
+                code = .resourceInUse
+            }
+            return TCTeoError(code, context: self.context)
         }
-        return TCTeoError(code, context: self.context)
-    }
-}
-
-extension TCTeoError.ResourceInUse {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

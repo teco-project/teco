@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBmvpcError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCBmvpcErrorType {
         enum Code: String {
             case customerGatewayNotExist = "ResourceNotFound.CustomerGatewayNotExist"
             case notAvaible = "ResourceNotFound.NotAvaible"
@@ -35,8 +35,6 @@ extension TCBmvpcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -84,37 +82,26 @@ extension TCBmvpcError {
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-    }
-}
-
-extension TCBmvpcError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCBmvpcError.ResourceNotFound, rhs: TCBmvpcError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBmvpcError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBmvpcError.ResourceNotFound {
-    /// - Returns: ``TCBmvpcError`` that holds the same error and context.
-    public func toBmvpcError() -> TCBmvpcError {
-        guard let code = TCBmvpcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBmvpcError() -> TCBmvpcError {
+            let code: TCBmvpcError.Code
+            switch self.error {
+            case .customerGatewayNotExist: 
+                code = .resourceNotFound_CustomerGatewayNotExist
+            case .notAvaible: 
+                code = .resourceNotFound_NotAvaible
+            case .vpcNotExist: 
+                code = .resourceNotFound_VpcNotExist
+            case .vpcPeerNotExist: 
+                code = .resourceNotFound_VpcPeerNotExist
+            case .vpnConnNotExist: 
+                code = .resourceNotFound_VpnConnNotExist
+            case .vpnGwNotExist: 
+                code = .resourceNotFound_VpnGwNotExist
+            case .other: 
+                code = .resourceNotFound
+            }
+            return TCBmvpcError(code, context: self.context)
         }
-        return TCBmvpcError(code, context: self.context)
-    }
-}
-
-extension TCBmvpcError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

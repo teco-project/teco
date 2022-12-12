@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMrsError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCMrsErrorType {
         enum Code: String {
             case autoFitDirection = "InvalidParameter.AutoFitDirection"
             case imageInfoList = "InvalidParameter.ImageInfoList"
@@ -36,8 +36,6 @@ extension TCMrsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -90,37 +88,28 @@ extension TCMrsError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCMrsError.InvalidParameter: Equatable {
-    public static func == (lhs: TCMrsError.InvalidParameter, rhs: TCMrsError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMrsError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMrsError.InvalidParameter {
-    /// - Returns: ``TCMrsError`` that holds the same error and context.
-    public func toMrsError() -> TCMrsError {
-        guard let code = TCMrsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMrsError() -> TCMrsError {
+            let code: TCMrsError.Code
+            switch self.error {
+            case .autoFitDirection: 
+                code = .invalidParameter_AutoFitDirection
+            case .imageInfoList: 
+                code = .invalidParameter_ImageInfoList
+            case .imageOriginalSize: 
+                code = .invalidParameter_ImageOriginalSize
+            case .invalidAction: 
+                code = .invalidParameter_InvalidAction
+            case .ocrEngineType: 
+                code = .invalidParameter_OcrEngineType
+            case .rotateTheAngle: 
+                code = .invalidParameter_RotateTheAngle
+            case .text: 
+                code = .invalidParameter_Text
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCMrsError(code, context: self.context)
         }
-        return TCMrsError(code, context: self.context)
-    }
-}
-
-extension TCMrsError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

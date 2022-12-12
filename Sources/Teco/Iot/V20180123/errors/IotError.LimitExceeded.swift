@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCIotErrorType {
         enum Code: String {
             case iotBatchTooMany = "LimitExceeded.IotBatchTooMany"
             case iotDeviceOpTooOften = "LimitExceeded.IotDeviceOpTooOften"
@@ -36,8 +36,6 @@ extension TCIotError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -90,37 +88,28 @@ extension TCIotError {
         public static var iotUserTooManyProducts: LimitExceeded {
             LimitExceeded(.iotUserTooManyProducts)
         }
-    }
-}
-
-extension TCIotError.LimitExceeded: Equatable {
-    public static func == (lhs: TCIotError.LimitExceeded, rhs: TCIotError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotError.LimitExceeded {
-    /// - Returns: ``TCIotError`` that holds the same error and context.
-    public func toIotError() -> TCIotError {
-        guard let code = TCIotError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotError() -> TCIotError {
+            let code: TCIotError.Code
+            switch self.error {
+            case .iotBatchTooMany: 
+                code = .limitExceeded_IotBatchTooMany
+            case .iotDeviceOpTooOften: 
+                code = .limitExceeded_IotDeviceOpTooOften
+            case .iotProductOpTooOften: 
+                code = .limitExceeded_IotProductOpTooOften
+            case .iotProductTooManyTopics: 
+                code = .limitExceeded_IotProductTooManyTopics
+            case .iotRuleOpTooMany: 
+                code = .limitExceeded_IotRuleOpTooMany
+            case .iotRuleOpTooOften: 
+                code = .limitExceeded_IotRuleOpTooOften
+            case .iotTopicOpTooOften: 
+                code = .limitExceeded_IotTopicOpTooOften
+            case .iotUserTooManyProducts: 
+                code = .limitExceeded_IotUserTooManyProducts
+            }
+            return TCIotError(code, context: self.context)
         }
-        return TCIotError(code, context: self.context)
-    }
-}
-
-extension TCIotError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAsrError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCAsrErrorType {
         enum Code: String {
             case errorDownFile = "FailedOperation.ErrorDownFile"
             case errorRecognize = "FailedOperation.ErrorRecognize"
@@ -35,8 +35,6 @@ extension TCAsrError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -84,37 +82,26 @@ extension TCAsrError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCAsrError.FailedOperation: Equatable {
-    public static func == (lhs: TCAsrError.FailedOperation, rhs: TCAsrError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAsrError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAsrError.FailedOperation {
-    /// - Returns: ``TCAsrError`` that holds the same error and context.
-    public func toAsrError() -> TCAsrError {
-        guard let code = TCAsrError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAsrError() -> TCAsrError {
+            let code: TCAsrError.Code
+            switch self.error {
+            case .errorDownFile: 
+                code = .failedOperation_ErrorDownFile
+            case .errorRecognize: 
+                code = .failedOperation_ErrorRecognize
+            case .noSuchTask: 
+                code = .failedOperation_NoSuchTask
+            case .serviceIsolate: 
+                code = .failedOperation_ServiceIsolate
+            case .userHasNoFreeAmount: 
+                code = .failedOperation_UserHasNoFreeAmount
+            case .userNotRegistered: 
+                code = .failedOperation_UserNotRegistered
+            case .other: 
+                code = .failedOperation
+            }
+            return TCAsrError(code, context: self.context)
         }
-        return TCAsrError(code, context: self.context)
-    }
-}
-
-extension TCAsrError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDnspodError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCDnspodErrorType {
         enum Code: String {
             case aaaaCountLimit = "LimitExceeded.AAAACountLimit"
             case atNsRecordLimit = "LimitExceeded.AtNsRecordLimit"
@@ -43,8 +43,6 @@ extension TCDnspodError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -132,37 +130,42 @@ extension TCDnspodError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCDnspodError.LimitExceeded: Equatable {
-    public static func == (lhs: TCDnspodError.LimitExceeded, rhs: TCDnspodError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDnspodError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDnspodError.LimitExceeded {
-    /// - Returns: ``TCDnspodError`` that holds the same error and context.
-    public func toDnspodError() -> TCDnspodError {
-        guard let code = TCDnspodError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDnspodError() -> TCDnspodError {
+            let code: TCDnspodError.Code
+            switch self.error {
+            case .aaaaCountLimit: 
+                code = .limitExceeded_AAAACountLimit
+            case .atNsRecordLimit: 
+                code = .limitExceeded_AtNsRecordLimit
+            case .domainAliasCountExceeded: 
+                code = .limitExceeded_DomainAliasCountExceeded
+            case .domainAliasNumberLimit: 
+                code = .limitExceeded_DomainAliasNumberLimit
+            case .failedLoginLimitExceeded: 
+                code = .limitExceeded_FailedLoginLimitExceeded
+            case .groupNumberLimit: 
+                code = .limitExceeded_GroupNumberLimit
+            case .hiddenUrlExceeded: 
+                code = .limitExceeded_HiddenUrlExceeded
+            case .nsCountLimit: 
+                code = .limitExceeded_NsCountLimit
+            case .recordTtlLimit: 
+                code = .limitExceeded_RecordTtlLimit
+            case .srvCountLimit: 
+                code = .limitExceeded_SrvCountLimit
+            case .subdomainLevelLimit: 
+                code = .limitExceeded_SubdomainLevelLimit
+            case .subdomainRollLimit: 
+                code = .limitExceeded_SubdomainRollLimit
+            case .subdomainWcardLimit: 
+                code = .limitExceeded_SubdomainWcardLimit
+            case .urlCountLimit: 
+                code = .limitExceeded_UrlCountLimit
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCDnspodError(code, context: self.context)
         }
-        return TCDnspodError(code, context: self.context)
-    }
-}
-
-extension TCDnspodError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

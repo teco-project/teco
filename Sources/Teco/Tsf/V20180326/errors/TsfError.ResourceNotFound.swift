@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTsfError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCTsfErrorType {
         enum Code: String {
             case applicationNotExist = "ResourceNotFound.ApplicationNotExist"
             case applicationProjectNotMatch = "ResourceNotFound.ApplicationProjectNotMatch"
@@ -50,8 +50,6 @@ extension TCTsfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -176,37 +174,56 @@ extension TCTsfError {
         public static var tkeClusterNotExists: ResourceNotFound {
             ResourceNotFound(.tkeClusterNotExists)
         }
-    }
-}
-
-extension TCTsfError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCTsfError.ResourceNotFound, rhs: TCTsfError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTsfError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTsfError.ResourceNotFound {
-    /// - Returns: ``TCTsfError`` that holds the same error and context.
-    public func toTsfError() -> TCTsfError {
-        guard let code = TCTsfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTsfError() -> TCTsfError {
+            let code: TCTsfError.Code
+            switch self.error {
+            case .applicationNotExist: 
+                code = .resourceNotFound_ApplicationNotExist
+            case .applicationProjectNotMatch: 
+                code = .resourceNotFound_ApplicationProjectNotMatch
+            case .clusterNotExist: 
+                code = .resourceNotFound_ClusterNotExist
+            case .clusterVpcNotExist: 
+                code = .resourceNotFound_ClusterVpcNotExist
+            case .containergroupClusterNotfound: 
+                code = .resourceNotFound_ContainergroupClusterNotfound
+            case .containergroupGroupNamespaceClusterNotFound: 
+                code = .resourceNotFound_ContainergroupGroupNamespaceClusterNotFound
+            case .containergroupGroupNotFound: 
+                code = .resourceNotFound_ContainergroupGroupNotFound
+            case .cvmcaeMasterResourceNotFound: 
+                code = .resourceNotFound_CvmcaeMasterResourceNotFound
+            case .errNoRepo: 
+                code = .resourceNotFound_ErrNoRepo
+            case .errNoUser: 
+                code = .resourceNotFound_ErrNoUser
+            case .groupApplicationNotExist: 
+                code = .resourceNotFound_GroupApplicationNotExist
+            case .groupNamespaceNotExist: 
+                code = .resourceNotFound_GroupNamespaceNotExist
+            case .groupNotExist: 
+                code = .resourceNotFound_GroupNotExist
+            case .instanceNotExist: 
+                code = .resourceNotFound_InstanceNotExist
+            case .interfaceNotFound: 
+                code = .resourceNotFound_InterfaceNotFound
+            case .licenseServerNotFound: 
+                code = .resourceNotFound_LicenseServerNotFound
+            case .microserviceOffline: 
+                code = .resourceNotFound_MicroserviceOffline
+            case .namespaceNotExist: 
+                code = .resourceNotFound_NamespaceNotExist
+            case .objectNoExist: 
+                code = .resourceNotFound_ObjectNoExist
+            case .serviceNotExist: 
+                code = .resourceNotFound_ServiceNotExist
+            case .taskNotFound: 
+                code = .resourceNotFound_TaskNotFound
+            case .tkeClusterNotExists: 
+                code = .resourceNotFound_TkeClusterNotExists
+            }
+            return TCTsfError(code, context: self.context)
         }
-        return TCTsfError(code, context: self.context)
-    }
-}
-
-extension TCTsfError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

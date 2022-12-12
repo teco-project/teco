@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCloudauditError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCCloudauditErrorType {
         enum Code: String {
             case aliasAlreadyExists = "InvalidParameterValue.AliasAlreadyExists"
             case attributeKey = "InvalidParameterValue.attributeKey"
@@ -43,8 +43,6 @@ extension TCCloudauditError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -132,37 +130,42 @@ extension TCCloudauditError {
         public static var time: InvalidParameterValue {
             InvalidParameterValue(.time)
         }
-    }
-}
-
-extension TCCloudauditError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCCloudauditError.InvalidParameterValue, rhs: TCCloudauditError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCloudauditError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCloudauditError.InvalidParameterValue {
-    /// - Returns: ``TCCloudauditError`` that holds the same error and context.
-    public func toCloudauditError() -> TCCloudauditError {
-        guard let code = TCCloudauditError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCloudauditError() -> TCCloudauditError {
+            let code: TCCloudauditError.Code
+            switch self.error {
+            case .aliasAlreadyExists: 
+                code = .invalidParameterValue_AliasAlreadyExists
+            case .attributeKey: 
+                code = .invalidParameterValue_attributeKey
+            case .auditNameError: 
+                code = .invalidParameterValue_AuditNameError
+            case .cmqRegionError: 
+                code = .invalidParameterValue_CmqRegionError
+            case .cosNameError: 
+                code = .invalidParameterValue_CosNameError
+            case .cosRegionError: 
+                code = .invalidParameterValue_CosRegionError
+            case .isCreateNewBucketError: 
+                code = .invalidParameterValue_IsCreateNewBucketError
+            case .isCreateNewQueueError: 
+                code = .invalidParameterValue_IsCreateNewQueueError
+            case .isEnableCmqNotifyError: 
+                code = .invalidParameterValue_IsEnableCmqNotifyError
+            case .kmsRegionError: 
+                code = .invalidParameterValue_KmsRegionError
+            case .logFilePrefixError: 
+                code = .invalidParameterValue_LogFilePrefixError
+            case .maxResult: 
+                code = .invalidParameterValue_MaxResult
+            case .queueNameError: 
+                code = .invalidParameterValue_QueueNameError
+            case .readWriteAttributeError: 
+                code = .invalidParameterValue_ReadWriteAttributeError
+            case .time: 
+                code = .invalidParameterValue_Time
+            }
+            return TCCloudauditError(code, context: self.context)
         }
-        return TCCloudauditError(code, context: self.context)
-    }
-}
-
-extension TCCloudauditError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

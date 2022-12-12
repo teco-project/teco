@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBdaError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCBdaErrorType {
         enum Code: String {
             case invalidParameter = "InvalidParameter.InvalidParameter"
         }
@@ -29,8 +29,6 @@ extension TCBdaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCBdaError {
         public static var invalidParameter: InvalidParameter {
             InvalidParameter(.invalidParameter)
         }
-    }
-}
-
-extension TCBdaError.InvalidParameter: Equatable {
-    public static func == (lhs: TCBdaError.InvalidParameter, rhs: TCBdaError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBdaError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBdaError.InvalidParameter {
-    /// - Returns: ``TCBdaError`` that holds the same error and context.
-    public func toBdaError() -> TCBdaError {
-        guard let code = TCBdaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBdaError() -> TCBdaError {
+            let code: TCBdaError.Code
+            switch self.error {
+            case .invalidParameter: 
+                code = .invalidParameter_InvalidParameter
+            }
+            return TCBdaError(code, context: self.context)
         }
-        return TCBdaError(code, context: self.context)
-    }
-}
-
-extension TCBdaError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

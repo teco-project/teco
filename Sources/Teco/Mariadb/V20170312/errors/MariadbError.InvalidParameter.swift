@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMariadbError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCMariadbErrorType {
         enum Code: String {
             case actionNotFound = "InvalidParameter.ActionNotFound"
             case characterError = "InvalidParameter.CharacterError"
@@ -50,8 +50,6 @@ extension TCMariadbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -174,37 +172,56 @@ extension TCMariadbError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCMariadbError.InvalidParameter: Equatable {
-    public static func == (lhs: TCMariadbError.InvalidParameter, rhs: TCMariadbError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMariadbError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMariadbError.InvalidParameter {
-    /// - Returns: ``TCMariadbError`` that holds the same error and context.
-    public func toMariadbError() -> TCMariadbError {
-        guard let code = TCMariadbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMariadbError() -> TCMariadbError {
+            let code: TCMariadbError.Code
+            switch self.error {
+            case .actionNotFound: 
+                code = .invalidParameter_ActionNotFound
+            case .characterError: 
+                code = .invalidParameter_CharacterError
+            case .checkParamNotPass: 
+                code = .invalidParameter_CheckParamNotPass
+            case .dealNameNotGiven: 
+                code = .invalidParameter_DealNameNotGiven
+            case .flowNotFound: 
+                code = .invalidParameter_FlowNotFound
+            case .genericParameterError: 
+                code = .invalidParameter_GenericParameterError
+            case .illegalParameterError: 
+                code = .invalidParameter_IllegalParameterError
+            case .illegalTime: 
+                code = .invalidParameter_IllegalTime
+            case .instanceNotFound: 
+                code = .invalidParameter_InstanceNotFound
+            case .notSupportedPayMode: 
+                code = .invalidParameter_NotSupportedPayMode
+            case .permissionDenied: 
+                code = .invalidParameter_PermissionDenied
+            case .sgCheckFail: 
+                code = .invalidParameter_SGCheckFail
+            case .shardResourceIdNotFound: 
+                code = .invalidParameter_ShardResourceIdNotFound
+            case .specNotFound: 
+                code = .invalidParameter_SpecNotFound
+            case .subnetNotFound: 
+                code = .invalidParameter_SubnetNotFound
+            case .subnetUnavailable: 
+                code = .invalidParameter_SubnetUnavailable
+            case .vipNotInSubnet: 
+                code = .invalidParameter_VipNotInSubnet
+            case .vipUsed: 
+                code = .invalidParameter_VipUsed
+            case .vpcNotFound: 
+                code = .invalidParameter_VpcNotFound
+            case .vportUsed: 
+                code = .invalidParameter_VportUsed
+            case .zoneIdIllegal: 
+                code = .invalidParameter_ZoneIdIllegal
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCMariadbError(code, context: self.context)
         }
-        return TCMariadbError(code, context: self.context)
-    }
-}
-
-extension TCMariadbError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCImsError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCImsErrorType {
         enum Code: String {
             case imageDownloadError = "ResourceUnavailable.ImageDownloadError"
             case invalidImageContent = "ResourceUnavailable.InvalidImageContent"
@@ -31,8 +31,6 @@ extension TCImsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCImsError {
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-    }
-}
-
-extension TCImsError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCImsError.ResourceUnavailable, rhs: TCImsError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCImsError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCImsError.ResourceUnavailable {
-    /// - Returns: ``TCImsError`` that holds the same error and context.
-    public func toImsError() -> TCImsError {
-        guard let code = TCImsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asImsError() -> TCImsError {
+            let code: TCImsError.Code
+            switch self.error {
+            case .imageDownloadError: 
+                code = .resourceUnavailable_ImageDownloadError
+            case .invalidImageContent: 
+                code = .resourceUnavailable_InvalidImageContent
+            case .other: 
+                code = .resourceUnavailable
+            }
+            return TCImsError(code, context: self.context)
         }
-        return TCImsError(code, context: self.context)
-    }
-}
-
-extension TCImsError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

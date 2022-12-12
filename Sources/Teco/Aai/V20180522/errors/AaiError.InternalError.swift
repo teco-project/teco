@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAaiError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCAaiErrorType {
         enum Code: String {
             case errorConfigure = "InternalError.ErrorConfigure"
             case errorCreateLog = "InternalError.ErrorCreateLog"
@@ -41,8 +41,6 @@ extension TCAaiError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -120,37 +118,38 @@ extension TCAaiError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCAaiError.InternalError: Equatable {
-    public static func == (lhs: TCAaiError.InternalError, rhs: TCAaiError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAaiError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAaiError.InternalError {
-    /// - Returns: ``TCAaiError`` that holds the same error and context.
-    public func toAaiError() -> TCAaiError {
-        guard let code = TCAaiError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAaiError() -> TCAaiError {
+            let code: TCAaiError.Code
+            switch self.error {
+            case .errorConfigure: 
+                code = .internalError_ErrorConfigure
+            case .errorCreateLog: 
+                code = .internalError_ErrorCreateLog
+            case .errorDownFile: 
+                code = .internalError_ErrorDownFile
+            case .errorFailNewprequest: 
+                code = .internalError_ErrorFailNewprequest
+            case .errorFailWritetodb: 
+                code = .internalError_ErrorFailWritetodb
+            case .errorFileCannotopen: 
+                code = .internalError_ErrorFileCannotopen
+            case .errorGetRoute: 
+                code = .internalError_ErrorGetRoute
+            case .errorMakeLogpath: 
+                code = .internalError_ErrorMakeLogpath
+            case .errorRecognize: 
+                code = .internalError_ErrorRecognize
+            case .errorTranslate: 
+                code = .internalError_ErrorTranslate
+            case .exceedMaxLimit: 
+                code = .internalError_ExceedMaxLimit
+            case .textConvertFailed: 
+                code = .internalError_TextConvertFailed
+            case .other: 
+                code = .internalError
+            }
+            return TCAaiError(code, context: self.context)
         }
-        return TCAaiError(code, context: self.context)
-    }
-}
-
-extension TCAaiError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

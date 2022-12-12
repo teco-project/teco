@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTiiaError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCTiiaErrorType {
         enum Code: String {
             case balanceInsufficient = "FailedOperation.BalanceInsufficient"
             case downLoadError = "FailedOperation.DownLoadError"
@@ -59,8 +59,6 @@ extension TCTiiaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -227,37 +225,74 @@ extension TCTiiaError {
         public static var unknown: FailedOperation {
             FailedOperation(.unknown)
         }
-    }
-}
-
-extension TCTiiaError.FailedOperation: Equatable {
-    public static func == (lhs: TCTiiaError.FailedOperation, rhs: TCTiiaError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTiiaError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTiiaError.FailedOperation {
-    /// - Returns: ``TCTiiaError`` that holds the same error and context.
-    public func toTiiaError() -> TCTiiaError {
-        guard let code = TCTiiaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTiiaError() -> TCTiiaError {
+            let code: TCTiiaError.Code
+            switch self.error {
+            case .balanceInsufficient: 
+                code = .failedOperation_BalanceInsufficient
+            case .downLoadError: 
+                code = .failedOperation_DownLoadError
+            case .downloadError: 
+                code = .failedOperation_DownloadError
+            case .emptyImageError: 
+                code = .failedOperation_EmptyImageError
+            case .imageDecodeFailed: 
+                code = .failedOperation_ImageDecodeFailed
+            case .imageDeleteFailed: 
+                code = .failedOperation_ImageDeleteFailed
+            case .imageDownloadError: 
+                code = .failedOperation_ImageDownloadError
+            case .imageEntityCountExceed: 
+                code = .failedOperation_ImageEntityCountExceed
+            case .imageGroupEmpty: 
+                code = .failedOperation_ImageGroupEmpty
+            case .imageNotFoundInfo: 
+                code = .failedOperation_ImageNotFoundInfo
+            case .imageNotSupported: 
+                code = .failedOperation_ImageNotSupported
+            case .imageNumExceed: 
+                code = .failedOperation_ImageNumExceed
+            case .imageResolutionExceed: 
+                code = .failedOperation_ImageResolutionExceed
+            case .imageSearchInvalid: 
+                code = .failedOperation_ImageSearchInvalid
+            case .imageSizeExceed: 
+                code = .failedOperation_ImageSizeExceed
+            case .imageUnQualified: 
+                code = .failedOperation_ImageUnQualified
+            case .imageUrlInvalid: 
+                code = .failedOperation_ImageUrlInvalid
+            case .innerError: 
+                code = .failedOperation_InnerError
+            case .invokeChargeError: 
+                code = .failedOperation_InvokeChargeError
+            case .noBodyInPhoto: 
+                code = .failedOperation_NoBodyInPhoto
+            case .noObjectDetected: 
+                code = .failedOperation_NoObjectDetected
+            case .parameterEmpty: 
+                code = .failedOperation_ParameterEmpty
+            case .recognizeFailded: 
+                code = .failedOperation_RecognizeFailded
+            case .requestError: 
+                code = .failedOperation_RequestError
+            case .requestTimeout: 
+                code = .failedOperation_RequestTimeout
+            case .rpcFail: 
+                code = .failedOperation_RpcFail
+            case .serverError: 
+                code = .failedOperation_ServerError
+            case .tooLargeFileError: 
+                code = .failedOperation_TooLargeFileError
+            case .unKnowError: 
+                code = .failedOperation_UnKnowError
+            case .unOpenError: 
+                code = .failedOperation_UnOpenError
+            case .unknown: 
+                code = .failedOperation_Unknown
+            }
+            return TCTiiaError(code, context: self.context)
         }
-        return TCTiiaError(code, context: self.context)
-    }
-}
-
-extension TCTiiaError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotvideoindustryError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCIotvideoindustryErrorType {
         enum Code: String {
             case bindExist = "UnsupportedOperation.BindExist"
             case deviceBindExist = "UnsupportedOperation.DeviceBindExist"
@@ -51,8 +51,6 @@ extension TCIotvideoindustryError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -180,37 +178,58 @@ extension TCIotvideoindustryError {
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-    }
-}
-
-extension TCIotvideoindustryError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCIotvideoindustryError.UnsupportedOperation, rhs: TCIotvideoindustryError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotvideoindustryError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotvideoindustryError.UnsupportedOperation {
-    /// - Returns: ``TCIotvideoindustryError`` that holds the same error and context.
-    public func toIotvideoindustryError() -> TCIotvideoindustryError {
-        guard let code = TCIotvideoindustryError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotvideoindustryError() -> TCIotvideoindustryError {
+            let code: TCIotvideoindustryError.Code
+            switch self.error {
+            case .bindExist: 
+                code = .unsupportedOperation_BindExist
+            case .deviceBindExist: 
+                code = .unsupportedOperation_DeviceBindExist
+            case .deviceCanNotDo: 
+                code = .unsupportedOperation_DeviceCanNotDo
+            case .deviceDupKeyExist: 
+                code = .unsupportedOperation_DeviceDupKeyExist
+            case .deviceMissMatch: 
+                code = .unsupportedOperation_DeviceMissMatch
+            case .deviceNotFound: 
+                code = .unsupportedOperation_DeviceNotFound
+            case .deviceSipCommandFail: 
+                code = .unsupportedOperation_DeviceSipCommandFail
+            case .domainGroup: 
+                code = .unsupportedOperation_DomainGroup
+            case .groupExist: 
+                code = .unsupportedOperation_GroupExist
+            case .groupLayerIsMax: 
+                code = .unsupportedOperation_GroupLayerIsMax
+            case .groupParentidNotExist: 
+                code = .unsupportedOperation_GroupParentidNotExist
+            case .liveChannelBindExist: 
+                code = .unsupportedOperation_LiveChannelBindExist
+            case .noPermission: 
+                code = .unsupportedOperation_NoPermission
+            case .planExistUnderTemplate: 
+                code = .unsupportedOperation_PlanExistUnderTemplate
+            case .recordPlanExist: 
+                code = .unsupportedOperation_RecordPlanExist
+            case .ruleDupKeyExist: 
+                code = .unsupportedOperation_RuleDupKeyExist
+            case .sceneExist: 
+                code = .unsupportedOperation_SceneExist
+            case .subGroupIsMax: 
+                code = .unsupportedOperation_SubGroupIsMax
+            case .subgrpExist: 
+                code = .unsupportedOperation_SubgrpExist
+            case .templateExist: 
+                code = .unsupportedOperation_TemplateExist
+            case .templatePreset: 
+                code = .unsupportedOperation_TemplatePreset
+            case .userIsIsolate: 
+                code = .unsupportedOperation_UserIsIsolate
+            case .other: 
+                code = .unsupportedOperation
+            }
+            return TCIotvideoindustryError(code, context: self.context)
         }
-        return TCIotvideoindustryError(code, context: self.context)
-    }
-}
-
-extension TCIotvideoindustryError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMemcachedError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCMemcachedErrorType {
         enum Code: String {
             case invalidParameter = "InvalidParameter.InvalidParameter"
         }
@@ -29,8 +29,6 @@ extension TCMemcachedError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCMemcachedError {
         public static var invalidParameter: InvalidParameter {
             InvalidParameter(.invalidParameter)
         }
-    }
-}
-
-extension TCMemcachedError.InvalidParameter: Equatable {
-    public static func == (lhs: TCMemcachedError.InvalidParameter, rhs: TCMemcachedError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMemcachedError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMemcachedError.InvalidParameter {
-    /// - Returns: ``TCMemcachedError`` that holds the same error and context.
-    public func toMemcachedError() -> TCMemcachedError {
-        guard let code = TCMemcachedError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMemcachedError() -> TCMemcachedError {
+            let code: TCMemcachedError.Code
+            switch self.error {
+            case .invalidParameter: 
+                code = .invalidParameter_InvalidParameter
+            }
+            return TCMemcachedError(code, context: self.context)
         }
-        return TCMemcachedError(code, context: self.context)
-    }
-}
-
-extension TCMemcachedError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

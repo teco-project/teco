@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCPrivatednsError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCPrivatednsErrorType {
         enum Code: String {
             case illegalTTLValue = "InvalidParameterValue.IllegalTTLValue"
             case reservedDomain = "InvalidParameterValue.ReservedDomain"
@@ -31,8 +31,6 @@ extension TCPrivatednsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCPrivatednsError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCPrivatednsError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCPrivatednsError.InvalidParameterValue, rhs: TCPrivatednsError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCPrivatednsError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCPrivatednsError.InvalidParameterValue {
-    /// - Returns: ``TCPrivatednsError`` that holds the same error and context.
-    public func toPrivatednsError() -> TCPrivatednsError {
-        guard let code = TCPrivatednsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asPrivatednsError() -> TCPrivatednsError {
+            let code: TCPrivatednsError.Code
+            switch self.error {
+            case .illegalTTLValue: 
+                code = .invalidParameterValue_IllegalTTLValue
+            case .reservedDomain: 
+                code = .invalidParameterValue_ReservedDomain
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCPrivatednsError(code, context: self.context)
         }
-        return TCPrivatednsError(code, context: self.context)
-    }
-}
-
-extension TCPrivatednsError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

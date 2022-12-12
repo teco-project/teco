@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCPostgresError {
-    public struct OperationDenied: TCErrorType {
+    public struct OperationDenied: TCPostgresErrorType {
         enum Code: String {
             case camDeniedError = "OperationDenied.CamDeniedError"
             case dtsInstanceStatusError = "OperationDenied.DTSInstanceStatusError"
@@ -45,8 +45,6 @@ extension TCPostgresError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -143,37 +141,46 @@ extension TCPostgresError {
         public static var vpcDeniedError: OperationDenied {
             OperationDenied(.vpcDeniedError)
         }
-    }
-}
-
-extension TCPostgresError.OperationDenied: Equatable {
-    public static func == (lhs: TCPostgresError.OperationDenied, rhs: TCPostgresError.OperationDenied) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCPostgresError.OperationDenied: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCPostgresError.OperationDenied {
-    /// - Returns: ``TCPostgresError`` that holds the same error and context.
-    public func toPostgresError() -> TCPostgresError {
-        guard let code = TCPostgresError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asPostgresError() -> TCPostgresError {
+            let code: TCPostgresError.Code
+            switch self.error {
+            case .camDeniedError: 
+                code = .operationDenied_CamDeniedError
+            case .dtsInstanceStatusError: 
+                code = .operationDenied_DTSInstanceStatusError
+            case .instanceAccessDeniedError: 
+                code = .operationDenied_InstanceAccessDeniedError
+            case .instanceIpv6NotSupportedError: 
+                code = .operationDenied_InstanceIpv6NotSupportedError
+            case .instanceStatusDeniedError: 
+                code = .operationDenied_InstanceStatusDeniedError
+            case .instanceStatusLimitError: 
+                code = .operationDenied_InstanceStatusLimitError
+            case .instanceStatusLimitOpError: 
+                code = .operationDenied_InstanceStatusLimitOpError
+            case .notSupportZoneError: 
+                code = .operationDenied_NotSupportZoneError
+            case .payModeError: 
+                code = .operationDenied_PayModeError
+            case .postPaidPayModeError: 
+                code = .operationDenied_PostPaidPayModeError
+            case .roGroupStatusError: 
+                code = .operationDenied_ROGroupStatusError
+            case .roInstanceCountExeedError: 
+                code = .operationDenied_RoInstanceCountExeedError
+            case .roInstanceIpv6NotSupportedError: 
+                code = .operationDenied_ROInstanceIpv6NotSupportedError
+            case .roInstanceStatusLimitOpError: 
+                code = .operationDenied_ROInstanceStatusLimitOpError
+            case .userNotAuthenticatedError: 
+                code = .operationDenied_UserNotAuthenticatedError
+            case .versionNotSupportError: 
+                code = .operationDenied_VersionNotSupportError
+            case .vpcDeniedError: 
+                code = .operationDenied_VpcDeniedError
+            }
+            return TCPostgresError(code, context: self.context)
         }
-        return TCPostgresError(code, context: self.context)
-    }
-}
-
-extension TCPostgresError.OperationDenied {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

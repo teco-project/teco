@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCynosdbError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCCynosdbErrorType {
         enum Code: String {
             case clusterNotFoundError = "ResourceNotFound.ClusterNotFoundError"
             case instanceNotFoundError = "ResourceNotFound.InstanceNotFoundError"
@@ -31,8 +31,6 @@ extension TCCynosdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCCynosdbError {
         public static var resourceError: ResourceNotFound {
             ResourceNotFound(.resourceError)
         }
-    }
-}
-
-extension TCCynosdbError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCCynosdbError.ResourceNotFound, rhs: TCCynosdbError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCynosdbError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCynosdbError.ResourceNotFound {
-    /// - Returns: ``TCCynosdbError`` that holds the same error and context.
-    public func toCynosdbError() -> TCCynosdbError {
-        guard let code = TCCynosdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCynosdbError() -> TCCynosdbError {
+            let code: TCCynosdbError.Code
+            switch self.error {
+            case .clusterNotFoundError: 
+                code = .resourceNotFound_ClusterNotFoundError
+            case .instanceNotFoundError: 
+                code = .resourceNotFound_InstanceNotFoundError
+            case .resourceError: 
+                code = .resourceNotFound_ResourceError
+            }
+            return TCCynosdbError(code, context: self.context)
         }
-        return TCCynosdbError(code, context: self.context)
-    }
-}
-
-extension TCCynosdbError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

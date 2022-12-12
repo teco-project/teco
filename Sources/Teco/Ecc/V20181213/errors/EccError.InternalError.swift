@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEccError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCEccErrorType {
         enum Code: String {
             case correctError = "InternalError.CorrectError"
             case dataFormatAbnormalError = "InternalError.DataFormatAbnormalError"
@@ -39,8 +39,6 @@ extension TCEccError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -110,37 +108,34 @@ extension TCEccError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCEccError.InternalError: Equatable {
-    public static func == (lhs: TCEccError.InternalError, rhs: TCEccError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEccError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEccError.InternalError {
-    /// - Returns: ``TCEccError`` that holds the same error and context.
-    public func toEccError() -> TCEccError {
-        guard let code = TCEccError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEccError() -> TCEccError {
+            let code: TCEccError.Code
+            switch self.error {
+            case .correctError: 
+                code = .internalError_CorrectError
+            case .dataFormatAbnormalError: 
+                code = .internalError_DataFormatAbnormalError
+            case .databaseServerInternalError: 
+                code = .internalError_DatabaseServerInternalError
+            case .ocrError: 
+                code = .internalError_OcrError
+            case .ocrServerInternError: 
+                code = .internalError_OcrServerInternError
+            case .otherError: 
+                code = .internalError_OtherError
+            case .overLoadError: 
+                code = .internalError_OverLoadError
+            case .recognizeError: 
+                code = .internalError_RecognizeError
+            case .serverConnectDownloadError: 
+                code = .internalError_ServerConnectDownloadError
+            case .splitError: 
+                code = .internalError_SplitError
+            case .other: 
+                code = .internalError
+            }
+            return TCEccError(code, context: self.context)
         }
-        return TCEccError(code, context: self.context)
-    }
-}
-
-extension TCEccError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

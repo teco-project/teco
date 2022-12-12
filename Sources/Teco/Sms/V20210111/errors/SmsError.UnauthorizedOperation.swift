@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSmsError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCSmsErrorType {
         enum Code: String {
             case individualUserMarketingSmsPermissionDeny = "UnauthorizedOperation.IndividualUserMarketingSmsPermissionDeny"
             case requestIpNotInWhitelist = "UnauthorizedOperation.RequestIpNotInWhitelist"
@@ -34,8 +34,6 @@ extension TCSmsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -80,37 +78,24 @@ extension TCSmsError {
         public static var smsSdkAppIdVerifyFail: UnauthorizedOperation {
             UnauthorizedOperation(.smsSdkAppIdVerifyFail)
         }
-    }
-}
-
-extension TCSmsError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCSmsError.UnauthorizedOperation, rhs: TCSmsError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSmsError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSmsError.UnauthorizedOperation {
-    /// - Returns: ``TCSmsError`` that holds the same error and context.
-    public func toSmsError() -> TCSmsError {
-        guard let code = TCSmsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSmsError() -> TCSmsError {
+            let code: TCSmsError.Code
+            switch self.error {
+            case .individualUserMarketingSmsPermissionDeny: 
+                code = .unauthorizedOperation_IndividualUserMarketingSmsPermissionDeny
+            case .requestIpNotInWhitelist: 
+                code = .unauthorizedOperation_RequestIpNotInWhitelist
+            case .requestPermissionDeny: 
+                code = .unauthorizedOperation_RequestPermissionDeny
+            case .sdkAppIdIsDisabled: 
+                code = .unauthorizedOperation_SdkAppIdIsDisabled
+            case .serivceSuspendDueToArrears: 
+                code = .unauthorizedOperation_SerivceSuspendDueToArrears
+            case .smsSdkAppIdVerifyFail: 
+                code = .unauthorizedOperation_SmsSdkAppIdVerifyFail
+            }
+            return TCSmsError(code, context: self.context)
         }
-        return TCSmsError(code, context: self.context)
-    }
-}
-
-extension TCSmsError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

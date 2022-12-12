@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCLiveError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCLiveErrorType {
         enum Code: String {
             case argsNotMatch = "InternalError.ArgsNotMatch"
             case callOtherSvrError = "InternalError.CallOtherSvrError"
@@ -80,8 +80,6 @@ extension TCLiveError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -354,37 +352,116 @@ extension TCLiveError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCLiveError.InternalError: Equatable {
-    public static func == (lhs: TCLiveError.InternalError, rhs: TCLiveError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCLiveError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCLiveError.InternalError {
-    /// - Returns: ``TCLiveError`` that holds the same error and context.
-    public func toLiveError() -> TCLiveError {
-        guard let code = TCLiveError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asLiveError() -> TCLiveError {
+            let code: TCLiveError.Code
+            switch self.error {
+            case .argsNotMatch: 
+                code = .internalError_ArgsNotMatch
+            case .callOtherSvrError: 
+                code = .internalError_CallOtherSvrError
+            case .chineseCharacterDetected: 
+                code = .internalError_ChineseCharacterDetected
+            case .confInUsed: 
+                code = .internalError_ConfInUsed
+            case .confNotFound: 
+                code = .internalError_ConfNotFound
+            case .confOutLimit: 
+                code = .internalError_ConfOutLimit
+            case .configNotExist: 
+                code = .internalError_ConfigNotExist
+            case .connectDbError: 
+                code = .internalError_ConnectDbError
+            case .crtDateInUsing: 
+                code = .internalError_CrtDateInUsing
+            case .crtDateNotFound: 
+                code = .internalError_CrtDateNotFound
+            case .crtDateNotLegal: 
+                code = .internalError_CrtDateNotLegal
+            case .crtDateOverdue: 
+                code = .internalError_CrtDateOverdue
+            case .crtDomainNotFound: 
+                code = .internalError_CrtDomainNotFound
+            case .crtKeyNotMatch: 
+                code = .internalError_CrtKeyNotMatch
+            case .dbError: 
+                code = .internalError_DBError
+            case .domainAlreadyExist: 
+                code = .internalError_DomainAlreadyExist
+            case .domainFormatError: 
+                code = .internalError_DomainFormatError
+            case .domainGslbFail: 
+                code = .internalError_DomainGslbFail
+            case .domainIsFamous: 
+                code = .internalError_DomainIsFamous
+            case .domainIsLimited: 
+                code = .internalError_DomainIsLimited
+            case .domainNoRecord: 
+                code = .internalError_DomainNoRecord
+            case .domainNotExist: 
+                code = .internalError_DomainNotExist
+            case .domainTooLong: 
+                code = .internalError_DomainTooLong
+            case .getBizidError: 
+                code = .internalError_GetBizidError
+            case .getConfigError: 
+                code = .internalError_GetConfigError
+            case .getStreamInfoError: 
+                code = .internalError_GetStreamInfoError
+            case .getUpstreamInfoError: 
+                code = .internalError_GetUpstreamInfoError
+            case .getWatermarkError: 
+                code = .internalError_GetWatermarkError
+            case .hasNotLivingStream: 
+                code = .internalError_HasNotLivingStream
+            case .invalidInput: 
+                code = .internalError_InvalidInput
+            case .invalidRequest: 
+                code = .internalError_InvalidRequest
+            case .invalidUser: 
+                code = .internalError_InvalidUser
+            case .jiFeiOtherError: 
+                code = .internalError_JiFeiOtherError
+            case .networkError: 
+                code = .internalError_NetworkError
+            case .notFound: 
+                code = .internalError_NotFound
+            case .notPermmitOperat: 
+                code = .internalError_NotPermmitOperat
+            case .playDomainNoRecord: 
+                code = .internalError_PlayDomainNoRecord
+            case .processorAlreadyExist: 
+                code = .internalError_ProcessorAlreadyExist
+            case .pushDomainNoRecord: 
+                code = .internalError_PushDomainNoRecord
+            case .queryProIspPlayInfoError: 
+                code = .internalError_QueryProIspPlayInfoError
+            case .queryUploadInfoFailed: 
+                code = .internalError_QueryUploadInfoFailed
+            case .ruleAlreadyExist: 
+                code = .internalError_RuleAlreadyExist
+            case .ruleInUsing: 
+                code = .internalError_RuleInUsing
+            case .ruleNotFound: 
+                code = .internalError_RuleNotFound
+            case .ruleOutLimit: 
+                code = .internalError_RuleOutLimit
+            case .streamStatusError: 
+                code = .internalError_StreamStatusError
+            case .systemError: 
+                code = .internalError_SystemError
+            case .updateDataError: 
+                code = .internalError_UpdateDataError
+            case .watermarkAddError: 
+                code = .internalError_WatermarkAddError
+            case .watermarkEditError: 
+                code = .internalError_WatermarkEditError
+            case .watermarkNotExist: 
+                code = .internalError_WatermarkNotExist
+            case .other: 
+                code = .internalError
+            }
+            return TCLiveError(code, context: self.context)
         }
-        return TCLiveError(code, context: self.context)
-    }
-}
-
-extension TCLiveError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

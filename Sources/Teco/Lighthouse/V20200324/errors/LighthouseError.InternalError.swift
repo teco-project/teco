@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCLighthouseError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCLighthouseErrorType {
         enum Code: String {
             case describeDisksReturnableError = "InternalError.DescribeDisksReturnableError"
             case describeInstanceStatus = "InternalError.DescribeInstanceStatus"
@@ -43,8 +43,6 @@ extension TCLighthouseError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -136,37 +134,42 @@ extension TCLighthouseError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCLighthouseError.InternalError: Equatable {
-    public static func == (lhs: TCLighthouseError.InternalError, rhs: TCLighthouseError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCLighthouseError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCLighthouseError.InternalError {
-    /// - Returns: ``TCLighthouseError`` that holds the same error and context.
-    public func toLighthouseError() -> TCLighthouseError {
-        guard let code = TCLighthouseError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asLighthouseError() -> TCLighthouseError {
+            let code: TCLighthouseError.Code
+            switch self.error {
+            case .describeDisksReturnableError: 
+                code = .internalError_DescribeDisksReturnableError
+            case .describeInstanceStatus: 
+                code = .internalError_DescribeInstanceStatus
+            case .describeInstancesModification: 
+                code = .internalError_DescribeInstancesModification
+            case .describeInstancesModificationError: 
+                code = .internalError_DescribeInstancesModificationError
+            case .describeInstancesReturnableError: 
+                code = .internalError_DescribeInstancesReturnableError
+            case .describeInstancesTrafficPackagesFailed: 
+                code = .internalError_DescribeInstancesTrafficPackagesFailed
+            case .describeResourcesReturnableError: 
+                code = .internalError_DescribeResourcesReturnableError
+            case .getSnapshotAllocQuotaLockError: 
+                code = .internalError_GetSnapshotAllocQuotaLockError
+            case .invalidActionNotFound: 
+                code = .internalError_InvalidActionNotFound
+            case .invalidBundlePrice: 
+                code = .internalError_InvalidBundlePrice
+            case .invalidCommandNotFound: 
+                code = .internalError_InvalidCommandNotFound
+            case .requestError: 
+                code = .internalError_RequestError
+            case .tradeCallBillingGatewayFailed: 
+                code = .internalError_TradeCallBillingGatewayFailed
+            case .tradeGetPriceFailed: 
+                code = .internalError_TradeGetPriceFailed
+            case .other: 
+                code = .internalError
+            }
+            return TCLighthouseError(code, context: self.context)
         }
-        return TCLighthouseError(code, context: self.context)
-    }
-}
-
-extension TCLighthouseError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

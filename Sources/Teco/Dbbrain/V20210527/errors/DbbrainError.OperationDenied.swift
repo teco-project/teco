@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDbbrainError {
-    public struct OperationDenied: TCErrorType {
+    public struct OperationDenied: TCDbbrainErrorType {
         enum Code: String {
             case userHasNoStrategy = "OperationDenied.UserHasNoStrategy"
             case other = "OperationDenied"
@@ -30,8 +30,6 @@ extension TCDbbrainError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -56,37 +54,16 @@ extension TCDbbrainError {
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-    }
-}
-
-extension TCDbbrainError.OperationDenied: Equatable {
-    public static func == (lhs: TCDbbrainError.OperationDenied, rhs: TCDbbrainError.OperationDenied) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDbbrainError.OperationDenied: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDbbrainError.OperationDenied {
-    /// - Returns: ``TCDbbrainError`` that holds the same error and context.
-    public func toDbbrainError() -> TCDbbrainError {
-        guard let code = TCDbbrainError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDbbrainError() -> TCDbbrainError {
+            let code: TCDbbrainError.Code
+            switch self.error {
+            case .userHasNoStrategy: 
+                code = .operationDenied_UserHasNoStrategy
+            case .other: 
+                code = .operationDenied
+            }
+            return TCDbbrainError(code, context: self.context)
         }
-        return TCDbbrainError(code, context: self.context)
-    }
-}
-
-extension TCDbbrainError.OperationDenied {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

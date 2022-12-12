@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCRedisError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCRedisErrorType {
         enum Code: String {
             case actionNotFound = "InvalidParameter.ActionNotFound"
             case emptyParam = "InvalidParameter.EmptyParam"
@@ -38,8 +38,6 @@ extension TCRedisError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -102,37 +100,32 @@ extension TCRedisError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCRedisError.InvalidParameter: Equatable {
-    public static func == (lhs: TCRedisError.InvalidParameter, rhs: TCRedisError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCRedisError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCRedisError.InvalidParameter {
-    /// - Returns: ``TCRedisError`` that holds the same error and context.
-    public func toRedisError() -> TCRedisError {
-        guard let code = TCRedisError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asRedisError() -> TCRedisError {
+            let code: TCRedisError.Code
+            switch self.error {
+            case .actionNotFound: 
+                code = .invalidParameter_ActionNotFound
+            case .emptyParam: 
+                code = .invalidParameter_EmptyParam
+            case .illegalParameterError: 
+                code = .invalidParameter_IllegalParameterError
+            case .instanceSGOverLimitError: 
+                code = .invalidParameter_InstanceSGOverLimitError
+            case .invalidParameter: 
+                code = .invalidParameter_InvalidParameter
+            case .notSupported: 
+                code = .invalidParameter_NotSupported
+            case .onlyVPCOnSpecZoneId: 
+                code = .invalidParameter_OnlyVPCOnSpecZoneId
+            case .period: 
+                code = .invalidParameter_Period
+            case .permissionDenied: 
+                code = .invalidParameter_PermissionDenied
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCRedisError(code, context: self.context)
         }
-        return TCRedisError(code, context: self.context)
-    }
-}
-
-extension TCRedisError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

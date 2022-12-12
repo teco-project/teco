@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTioneError {
-    public struct AuthFailure: TCErrorType {
+    public struct AuthFailure: TCTioneErrorType {
         enum Code: String {
             case camException = "AuthFailure.CamException"
             case noPermission = "AuthFailure.NoPermission"
@@ -32,8 +32,6 @@ extension TCTioneError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -68,37 +66,20 @@ extension TCTioneError {
         public static var other: AuthFailure {
             AuthFailure(.other)
         }
-    }
-}
-
-extension TCTioneError.AuthFailure: Equatable {
-    public static func == (lhs: TCTioneError.AuthFailure, rhs: TCTioneError.AuthFailure) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTioneError.AuthFailure: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTioneError.AuthFailure {
-    /// - Returns: ``TCTioneError`` that holds the same error and context.
-    public func toTioneError() -> TCTioneError {
-        guard let code = TCTioneError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTioneError() -> TCTioneError {
+            let code: TCTioneError.Code
+            switch self.error {
+            case .camException: 
+                code = .authFailure_CamException
+            case .noPermission: 
+                code = .authFailure_NoPermission
+            case .unauthorizedOperation: 
+                code = .authFailure_UnauthorizedOperation
+            case .other: 
+                code = .authFailure
+            }
+            return TCTioneError(code, context: self.context)
         }
-        return TCTioneError(code, context: self.context)
-    }
-}
-
-extension TCTioneError.AuthFailure {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCGsError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCGsErrorType {
         enum Code: String {
             case lockTimeout = "FailedOperation.LockTimeout"
             case processTimeout = "FailedOperation.ProcessTimeout"
@@ -34,8 +34,6 @@ extension TCGsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -78,37 +76,24 @@ extension TCGsError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCGsError.FailedOperation: Equatable {
-    public static func == (lhs: TCGsError.FailedOperation, rhs: TCGsError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCGsError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCGsError.FailedOperation {
-    /// - Returns: ``TCGsError`` that holds the same error and context.
-    public func toGsError() -> TCGsError {
-        guard let code = TCGsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asGsError() -> TCGsError {
+            let code: TCGsError.Code
+            switch self.error {
+            case .lockTimeout: 
+                code = .failedOperation_LockTimeout
+            case .processTimeout: 
+                code = .failedOperation_ProcessTimeout
+            case .slowDown: 
+                code = .failedOperation_SlowDown
+            case .timeout: 
+                code = .failedOperation_Timeout
+            case .tooFrequently: 
+                code = .failedOperation_TooFrequently
+            case .other: 
+                code = .failedOperation
+            }
+            return TCGsError(code, context: self.context)
         }
-        return TCGsError(code, context: self.context)
-    }
-}
-
-extension TCGsError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

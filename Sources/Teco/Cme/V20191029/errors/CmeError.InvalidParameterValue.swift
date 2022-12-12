@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCmeError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCCmeErrorType {
         enum Code: String {
             case aspectRatio = "InvalidParameterValue.AspectRatio"
             case aspectRatioSet = "InvalidParameterValue.AspectRatioSet"
@@ -78,8 +78,6 @@ extension TCCmeError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -351,37 +349,112 @@ extension TCCmeError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCCmeError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCCmeError.InvalidParameterValue, rhs: TCCmeError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCmeError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCmeError.InvalidParameterValue {
-    /// - Returns: ``TCCmeError`` that holds the same error and context.
-    public func toCmeError() -> TCCmeError {
-        guard let code = TCCmeError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCmeError() -> TCCmeError {
+            let code: TCCmeError.Code
+            switch self.error {
+            case .aspectRatio: 
+                code = .invalidParameterValue_AspectRatio
+            case .aspectRatioSet: 
+                code = .invalidParameterValue_AspectRatioSet
+            case .category: 
+                code = .invalidParameterValue_Category
+            case .categorySet: 
+                code = .invalidParameterValue_CategorySet
+            case .classExist: 
+                code = .invalidParameterValue_ClassExist
+            case .classNotEmpty: 
+                code = .invalidParameterValue_ClassNotEmpty
+            case .classNotExist: 
+                code = .invalidParameterValue_ClassNotExist
+            case .classPath: 
+                code = .invalidParameterValue_ClassPath
+            case .dataNotFoundInDB: 
+                code = .invalidParameterValue_DataNotFoundInDB
+            case .definition: 
+                code = .invalidParameterValue_Definition
+            case .dstClassPathNotExist: 
+                code = .invalidParameterValue_DstClassPathNotExist
+            case .exportDestination: 
+                code = .invalidParameterValue_ExportDestination
+            case .extInfoInvalid: 
+                code = .invalidParameterValue_ExtInfoInvalid
+            case .externalMediaInfoNotExist: 
+                code = .invalidParameterValue_ExternalMediaInfoNotExist
+            case .input: 
+                code = .invalidParameterValue_Input
+            case .limit: 
+                code = .invalidParameterValue_Limit
+            case .materialId: 
+                code = .invalidParameterValue_MaterialId
+            case .mediaReplacementInfo: 
+                code = .invalidParameterValue_MediaReplacementInfo
+            case .memberIds: 
+                code = .invalidParameterValue_MemberIds
+            case .memberNotExist: 
+                code = .invalidParameterValue_MemberNotExist
+            case .name: 
+                code = .invalidParameterValue_Name
+            case .nameLenLimt: 
+                code = .invalidParameterValue_NameLenLimt
+            case .notTeamMemberError: 
+                code = .invalidParameterValue_NotTeamMemberError
+            case .offset: 
+                code = .invalidParameterValue_Offset
+            case .`operator`: 
+                code = .invalidParameterValue_Operator
+            case .ownerId: 
+                code = .invalidParameterValue_OwnerId
+            case .ownerRemark: 
+                code = .invalidParameterValue_OwnerRemark
+            case .ownerType: 
+                code = .invalidParameterValue_OwnerType
+            case .platform: 
+                code = .invalidParameterValue_Platform
+            case .preProcessDefinition: 
+                code = .invalidParameterValue_PreProcessDefinition
+            case .projectId: 
+                code = .invalidParameterValue_ProjectId
+            case .replacementType: 
+                code = .invalidParameterValue_ReplacementType
+            case .role: 
+                code = .invalidParameterValue_Role
+            case .sortOrder: 
+                code = .invalidParameterValue_SortOrder
+            case .streamConnect: 
+                code = .invalidParameterValue_StreamConnect
+            case .streamConnectInputInvalid: 
+                code = .invalidParameterValue_StreamConnectInputInvalid
+            case .streamConnectOutputInvalid: 
+                code = .invalidParameterValue_StreamConnectOutputInvalid
+            case .streamInput: 
+                code = .invalidParameterValue_StreamInput
+            case .switcherProjectInput: 
+                code = .invalidParameterValue_SwitcherProjectInput
+            case .taskId: 
+                code = .invalidParameterValue_TaskId
+            case .teamId: 
+                code = .invalidParameterValue_TeamId
+            case .teamNotExist: 
+                code = .invalidParameterValue_TeamNotExist
+            case .thirdyPartyPublishChannelId: 
+                code = .invalidParameterValue_ThirdyPartyPublishChannelId
+            case .trackData: 
+                code = .invalidParameterValue_TrackData
+            case .trackItem: 
+                code = .invalidParameterValue_TrackItem
+            case .videoEditTemplateIdNotExist: 
+                code = .invalidParameterValue_VideoEditTemplateIdNotExist
+            case .vodFileId: 
+                code = .invalidParameterValue_VodFileId
+            case .vodFileNotExist: 
+                code = .invalidParameterValue_VodFileNotExist
+            case .vodSubAppid: 
+                code = .invalidParameterValue_VodSubAppid
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCCmeError(code, context: self.context)
         }
-        return TCCmeError(code, context: self.context)
-    }
-}
-
-extension TCCmeError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

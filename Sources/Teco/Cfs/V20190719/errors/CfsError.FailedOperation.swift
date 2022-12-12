@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCfsError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCCfsErrorType {
         enum Code: String {
             case bindResourcePkgFailed = "FailedOperation.BindResourcePkgFailed"
             case clientTokenInUse = "FailedOperation.ClientTokenInUse"
@@ -36,8 +36,6 @@ extension TCCfsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -90,37 +88,28 @@ extension TCCfsError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCCfsError.FailedOperation: Equatable {
-    public static func == (lhs: TCCfsError.FailedOperation, rhs: TCCfsError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCfsError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCfsError.FailedOperation {
-    /// - Returns: ``TCCfsError`` that holds the same error and context.
-    public func toCfsError() -> TCCfsError {
-        guard let code = TCCfsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCfsError() -> TCCfsError {
+            let code: TCCfsError.Code
+            switch self.error {
+            case .bindResourcePkgFailed: 
+                code = .failedOperation_BindResourcePkgFailed
+            case .clientTokenInUse: 
+                code = .failedOperation_ClientTokenInUse
+            case .mountTargetExists: 
+                code = .failedOperation_MountTargetExists
+            case .pgroupInUse: 
+                code = .failedOperation_PgroupInUse
+            case .pgroupIsUpdating: 
+                code = .failedOperation_PgroupIsUpdating
+            case .pgroupLinkCfsv10: 
+                code = .failedOperation_PgroupLinkCfsv10
+            case .untagResourceFailed: 
+                code = .failedOperation_UntagResourceFailed
+            case .other: 
+                code = .failedOperation
+            }
+            return TCCfsError(code, context: self.context)
         }
-        return TCCfsError(code, context: self.context)
-    }
-}
-
-extension TCCfsError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMariadbError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCMariadbErrorType {
         enum Code: String {
             case addInstanceInfoFailed = "FailedOperation.AddInstanceInfoFailed"
             case applyVipFailed = "FailedOperation.ApplyVipFailed"
@@ -59,8 +59,6 @@ extension TCMariadbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -223,37 +221,74 @@ extension TCMariadbError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCMariadbError.FailedOperation: Equatable {
-    public static func == (lhs: TCMariadbError.FailedOperation, rhs: TCMariadbError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMariadbError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMariadbError.FailedOperation {
-    /// - Returns: ``TCMariadbError`` that holds the same error and context.
-    public func toMariadbError() -> TCMariadbError {
-        guard let code = TCMariadbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMariadbError() -> TCMariadbError {
+            let code: TCMariadbError.Code
+            switch self.error {
+            case .addInstanceInfoFailed: 
+                code = .failedOperation_AddInstanceInfoFailed
+            case .applyVipFailed: 
+                code = .failedOperation_ApplyVipFailed
+            case .associateSecurityGroupsFailed: 
+                code = .failedOperation_AssociateSecurityGroupsFailed
+            case .authNoStrategy: 
+                code = .failedOperation_AuthNoStrategy
+            case .clearInstanceInfoFailed: 
+                code = .failedOperation_ClearInstanceInfoFailed
+            case .copyRightError: 
+                code = .failedOperation_CopyRightError
+            case .createFlowFailed: 
+                code = .failedOperation_CreateFlowFailed
+            case .createOrderFailed: 
+                code = .failedOperation_CreateOrderFailed
+            case .createUserFailed: 
+                code = .failedOperation_CreateUserFailed
+            case .deleteUserFailed: 
+                code = .failedOperation_DeleteUserFailed
+            case .disassociateSecurityGroupsFailed: 
+                code = .failedOperation_DisassociateSecurityGroupsFailed
+            case .getSecurityGroupDetailFailed: 
+                code = .failedOperation_GetSecurityGroupDetailFailed
+            case .instanceCanNotReturn: 
+                code = .failedOperation_InstanceCanNotReturn
+            case .instanceReturnFailed: 
+                code = .failedOperation_InstanceReturnFailed
+            case .modifyRightFailed: 
+                code = .failedOperation_ModifyRightFailed
+            case .ossIsolateInstanceFailed: 
+                code = .failedOperation_OssIsolateInstanceFailed
+            case .ossOperationFailed: 
+                code = .failedOperation_OssOperationFailed
+            case .payFailed: 
+                code = .failedOperation_PayFailed
+            case .resetPasswordFailed: 
+                code = .failedOperation_ResetPasswordFailed
+            case .setRuleLocationFailed: 
+                code = .failedOperation_SetRuleLocationFailed
+            case .setSvcLocationFailed: 
+                code = .failedOperation_SetSvcLocationFailed
+            case .sgChangeVip: 
+                code = .failedOperation_SGChangeVip
+            case .tagDryRunError: 
+                code = .failedOperation_TagDryRunError
+            case .tagQuotaExceedLimit: 
+                code = .failedOperation_TagQuotaExceedLimit
+            case .updateInstanceInfoFailed: 
+                code = .failedOperation_UpdateInstanceInfoFailed
+            case .userNotAuthed: 
+                code = .failedOperation_UserNotAuthed
+            case .vipNotChange: 
+                code = .failedOperation_VipNotChange
+            case .vpcAddServiceFailed: 
+                code = .failedOperation_VpcAddServiceFailed
+            case .vpcUpdateRouteFailed: 
+                code = .failedOperation_VpcUpdateRouteFailed
+            case .wanStatusAbnormal: 
+                code = .failedOperation_WanStatusAbnormal
+            case .other: 
+                code = .failedOperation
+            }
+            return TCMariadbError(code, context: self.context)
         }
-        return TCMariadbError(code, context: self.context)
-    }
-}
-
-extension TCMariadbError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

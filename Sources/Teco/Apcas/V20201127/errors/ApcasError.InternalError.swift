@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCApcasError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCApcasErrorType {
         enum Code: String {
             case internalInvokeFailure = "InternalError.InternalInvokeFailure"
             case other = "InternalError"
@@ -30,8 +30,6 @@ extension TCApcasError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCApcasError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCApcasError.InternalError: Equatable {
-    public static func == (lhs: TCApcasError.InternalError, rhs: TCApcasError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCApcasError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCApcasError.InternalError {
-    /// - Returns: ``TCApcasError`` that holds the same error and context.
-    public func toApcasError() -> TCApcasError {
-        guard let code = TCApcasError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asApcasError() -> TCApcasError {
+            let code: TCApcasError.Code
+            switch self.error {
+            case .internalInvokeFailure: 
+                code = .internalError_InternalInvokeFailure
+            case .other: 
+                code = .internalError
+            }
+            return TCApcasError(code, context: self.context)
         }
-        return TCApcasError(code, context: self.context)
-    }
-}
-
-extension TCApcasError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

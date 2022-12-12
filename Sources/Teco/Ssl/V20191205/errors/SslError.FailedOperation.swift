@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSslError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCSslErrorType {
         enum Code: String {
             case authError = "FailedOperation.AuthError"
             case camAuthorizedFail = "FailedOperation.CAMAuthorizedFail"
@@ -65,8 +65,6 @@ extension TCSslError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -267,37 +265,86 @@ extension TCSslError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCSslError.FailedOperation: Equatable {
-    public static func == (lhs: TCSslError.FailedOperation, rhs: TCSslError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSslError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSslError.FailedOperation {
-    /// - Returns: ``TCSslError`` that holds the same error and context.
-    public func toSslError() -> TCSslError {
-        guard let code = TCSslError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSslError() -> TCSslError {
+            let code: TCSslError.Code
+            switch self.error {
+            case .authError: 
+                code = .failedOperation_AuthError
+            case .camAuthorizedFail: 
+                code = .failedOperation_CAMAuthorizedFail
+            case .cancelOrderFailed: 
+                code = .failedOperation_CancelOrderFailed
+            case .cannotBeDeletedIssued: 
+                code = .failedOperation_CannotBeDeletedIssued
+            case .cannotBeDeletedWithinHour: 
+                code = .failedOperation_CannotBeDeletedWithinHour
+            case .cannotGetOrder: 
+                code = .failedOperation_CannotGetOrder
+            case .certificateExists: 
+                code = .failedOperation_CertificateExists
+            case .certificateHasRenewed: 
+                code = .failedOperation_CertificateHasRenewed
+            case .certificateHostingTypeNumberLimit: 
+                code = .failedOperation_CertificateHostingTypeNumberLimit
+            case .certificateInvalid: 
+                code = .failedOperation_CertificateInvalid
+            case .certificateMismatch: 
+                code = .failedOperation_CertificateMismatch
+            case .certificateNotFound: 
+                code = .failedOperation_CertificateNotFound
+            case .confirmLetterTooLarge: 
+                code = .failedOperation_ConfirmLetterTooLarge
+            case .confirmLetterTooSmall: 
+                code = .failedOperation_ConfirmLetterTooSmall
+            case .deleteResourceFailed: 
+                code = .failedOperation_DeleteResourceFailed
+            case .exceedsFreeLimit: 
+                code = .failedOperation_ExceedsFreeLimit
+            case .fileTooLarge: 
+                code = .failedOperation_FileTooLarge
+            case .fileTooSmall: 
+                code = .failedOperation_FileTooSmall
+            case .illegalManagerStatus: 
+                code = .failedOperation_IllegalManagerStatus
+            case .invalidCertificateSource: 
+                code = .failedOperation_InvalidCertificateSource
+            case .invalidCertificateStatusCode: 
+                code = .failedOperation_InvalidCertificateStatusCode
+            case .invalidConfirmLetterFormat: 
+                code = .failedOperation_InvalidConfirmLetterFormat
+            case .invalidConfirmLetterFormatWosign: 
+                code = .failedOperation_InvalidConfirmLetterFormatWosign
+            case .invalidFileType: 
+                code = .failedOperation_InvalidFileType
+            case .invalidParam: 
+                code = .failedOperation_InvalidParam
+            case .mainDomainCertificateCountLimit: 
+                code = .failedOperation_MainDomainCertificateCountLimit
+            case .networkError: 
+                code = .failedOperation_NetworkError
+            case .noProjectPermission: 
+                code = .failedOperation_NoProjectPermission
+            case .noRealNameAuth: 
+                code = .failedOperation_NoRealNameAuth
+            case .orderAlreadyReplaced: 
+                code = .failedOperation_OrderAlreadyReplaced
+            case .orderReplaceFailed: 
+                code = .failedOperation_OrderReplaceFailed
+            case .packageCountLimit: 
+                code = .failedOperation_PackageCountLimit
+            case .packageExpired: 
+                code = .failedOperation_PackageExpired
+            case .revokeFailed: 
+                code = .failedOperation_RevokeFailed
+            case .revokeResourceFailed: 
+                code = .failedOperation_RevokeResourceFailed
+            case .roleNotFoundAuthorization: 
+                code = .failedOperation_RoleNotFoundAuthorization
+            case .other: 
+                code = .failedOperation
+            }
+            return TCSslError(code, context: self.context)
         }
-        return TCSslError(code, context: self.context)
-    }
-}
-
-extension TCSslError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

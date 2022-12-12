@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBatchError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCBatchErrorType {
         enum Code: String {
             case computeEnvQuota = "LimitExceeded.ComputeEnvQuota"
             case cpuQuota = "LimitExceeded.CpuQuota"
@@ -32,8 +32,6 @@ extension TCBatchError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCBatchError {
         public static var taskTemplateQuota: LimitExceeded {
             LimitExceeded(.taskTemplateQuota)
         }
-    }
-}
-
-extension TCBatchError.LimitExceeded: Equatable {
-    public static func == (lhs: TCBatchError.LimitExceeded, rhs: TCBatchError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBatchError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBatchError.LimitExceeded {
-    /// - Returns: ``TCBatchError`` that holds the same error and context.
-    public func toBatchError() -> TCBatchError {
-        guard let code = TCBatchError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBatchError() -> TCBatchError {
+            let code: TCBatchError.Code
+            switch self.error {
+            case .computeEnvQuota: 
+                code = .limitExceeded_ComputeEnvQuota
+            case .cpuQuota: 
+                code = .limitExceeded_CpuQuota
+            case .jobQuota: 
+                code = .limitExceeded_JobQuota
+            case .taskTemplateQuota: 
+                code = .limitExceeded_TaskTemplateQuota
+            }
+            return TCBatchError(code, context: self.context)
         }
-        return TCBatchError(code, context: self.context)
-    }
-}
-
-extension TCBatchError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

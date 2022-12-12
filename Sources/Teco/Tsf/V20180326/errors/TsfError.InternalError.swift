@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTsfError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCTsfErrorType {
         enum Code: String {
             case applicationMasterFeignError = "InternalError.ApplicationMasterFeignError"
             case applicationMasterNuknownError = "InternalError.ApplicationMasterNuknownError"
@@ -71,8 +71,6 @@ extension TCTsfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -300,37 +298,98 @@ extension TCTsfError {
         public static var unhandledException: InternalError {
             InternalError(.unhandledException)
         }
-    }
-}
-
-extension TCTsfError.InternalError: Equatable {
-    public static func == (lhs: TCTsfError.InternalError, rhs: TCTsfError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTsfError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTsfError.InternalError {
-    /// - Returns: ``TCTsfError`` that holds the same error and context.
-    public func toTsfError() -> TCTsfError {
-        guard let code = TCTsfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTsfError() -> TCTsfError {
+            let code: TCTsfError.Code
+            switch self.error {
+            case .applicationMasterFeignError: 
+                code = .internalError_ApplicationMasterFeignError
+            case .applicationMasterNuknownError: 
+                code = .internalError_ApplicationMasterNuknownError
+            case .applicationRepoDeletePkg: 
+                code = .internalError_ApplicationRepoDeletePkg
+            case .applicationScalableInitError: 
+                code = .internalError_ApplicationScalableInitError
+            case .camRoleRequestError: 
+                code = .internalError_CamRoleRequestError
+            case .canNotConnConsulServer: 
+                code = .internalError_CanNotConnConsulServer
+            case .cloudApiProxyError: 
+                code = .internalError_CloudApiProxyError
+            case .clusterCommonError: 
+                code = .internalError_ClusterCommonError
+            case .clusterMasterFeignError: 
+                code = .internalError_ClusterMasterFeignError
+            case .clusterNotExistOrPrivilegeError: 
+                code = .internalError_ClusterNotExistOrPrivilegeError
+            case .consulServerError: 
+                code = .internalError_ConsulServerError
+            case .containergroupKuberneteApiInvokeError: 
+                code = .internalError_ContainergroupKuberneteApiInvokeError
+            case .containergroupKuberneteConnectError: 
+                code = .internalError_ContainergroupKuberneteConnectError
+            case .containergroupKuberneteDeploymentNotfound: 
+                code = .internalError_ContainergroupKuberneteDeploymentNotfound
+            case .containergroupSqlFailed: 
+                code = .internalError_ContainergroupSqlFailed
+            case .cpClusterUnavailable: 
+                code = .internalError_CpClusterUnavailable
+            case .cvmCaeMasterDispatchError: 
+                code = .internalError_CvmCaeMasterDispatchError
+            case .cvmCaeMasterInternalError: 
+                code = .internalError_CvmCaeMasterInternalError
+            case .cvmCaeMasterNonAlive: 
+                code = .internalError_CvmCaeMasterNonAlive
+            case .gatewayCommonError: 
+                code = .internalError_GatewayCommonError
+            case .gatewayConsistencyError: 
+                code = .internalError_GatewayConsistencyError
+            case .gatewayConsulError: 
+                code = .internalError_GatewayConsulError
+            case .gatewayDbError: 
+                code = .internalError_GatewayDbError
+            case .groupCommonError: 
+                code = .internalError_GroupCommonError
+            case .groupMasterNuknownError: 
+                code = .internalError_GroupMasterNuknownError
+            case .imagerepoTcrBindError: 
+                code = .internalError_ImagerepoTcrBindError
+            case .instanceCommonError: 
+                code = .internalError_InstanceCommonError
+            case .kubernetesApiCreateNamespacesError: 
+                code = .internalError_KubernetesApiCreateNamespacesError
+            case .kubernetesApiCreateSecretError: 
+                code = .internalError_KubernetesApiCreateSecretError
+            case .kubernetesCallError: 
+                code = .internalError_KubernetesCallError
+            case .remoteServiceCallError: 
+                code = .internalError_RemoteServiceCallError
+            case .runtimeError: 
+                code = .internalError_RuntimeError
+            case .sqlTooManyInItem: 
+                code = .internalError_SqlTooManyInItem
+            case .taskInternalError: 
+                code = .internalError_TaskInternalError
+            case .tkeApiFailedOperation: 
+                code = .internalError_TkeApiFailedOperation
+            case .tsfApmBusiLogCfgAppRelationMasterError: 
+                code = .internalError_TsfApmBusiLogCfgAppRelationMasterError
+            case .tsfApmCallTsfMsFailed: 
+                code = .internalError_TsfApmCallTsfMsFailed
+            case .tsfApmCommonError: 
+                code = .internalError_TsfApmCommonError
+            case .tsfApmEsResponseStatusException: 
+                code = .internalError_TsfApmEsResponseStatusException
+            case .tsfApmInternalError: 
+                code = .internalError_TsfApmInternalError
+            case .tsfMonitorDateParseFailed: 
+                code = .internalError_TsfMonitorDateParseFailed
+            case .tsfMonitorInternalError: 
+                code = .internalError_TsfMonitorInternalError
+            case .unhandledException: 
+                code = .internalError_UnhandledException
+            }
+            return TCTsfError(code, context: self.context)
         }
-        return TCTsfError(code, context: self.context)
-    }
-}
-
-extension TCTsfError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

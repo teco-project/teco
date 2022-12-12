@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCChdfsError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCChdfsErrorType {
         enum Code: String {
             case accessGroupNotExists = "ResourceNotFound.AccessGroupNotExists"
             case accessRuleNotExists = "ResourceNotFound.AccessRuleNotExists"
@@ -34,8 +34,6 @@ extension TCChdfsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -78,37 +76,24 @@ extension TCChdfsError {
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-    }
-}
-
-extension TCChdfsError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCChdfsError.ResourceNotFound, rhs: TCChdfsError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCChdfsError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCChdfsError.ResourceNotFound {
-    /// - Returns: ``TCChdfsError`` that holds the same error and context.
-    public func toChdfsError() -> TCChdfsError {
-        guard let code = TCChdfsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asChdfsError() -> TCChdfsError {
+            let code: TCChdfsError.Code
+            switch self.error {
+            case .accessGroupNotExists: 
+                code = .resourceNotFound_AccessGroupNotExists
+            case .accessRuleNotExists: 
+                code = .resourceNotFound_AccessRuleNotExists
+            case .fileSystemNotExists: 
+                code = .resourceNotFound_FileSystemNotExists
+            case .mountPointNotExists: 
+                code = .resourceNotFound_MountPointNotExists
+            case .vpcNotExists: 
+                code = .resourceNotFound_VpcNotExists
+            case .other: 
+                code = .resourceNotFound
+            }
+            return TCChdfsError(code, context: self.context)
         }
-        return TCChdfsError(code, context: self.context)
-    }
-}
-
-extension TCChdfsError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

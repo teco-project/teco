@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBaError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCBaErrorType {
         enum Code: String {
             case resourceNotFound = "InternalError.ResourceNotFound"
             case other = "InternalError"
@@ -30,8 +30,6 @@ extension TCBaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCBaError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCBaError.InternalError: Equatable {
-    public static func == (lhs: TCBaError.InternalError, rhs: TCBaError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBaError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBaError.InternalError {
-    /// - Returns: ``TCBaError`` that holds the same error and context.
-    public func toBaError() -> TCBaError {
-        guard let code = TCBaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBaError() -> TCBaError {
+            let code: TCBaError.Code
+            switch self.error {
+            case .resourceNotFound: 
+                code = .internalError_ResourceNotFound
+            case .other: 
+                code = .internalError
+            }
+            return TCBaError(code, context: self.context)
         }
-        return TCBaError(code, context: self.context)
-    }
-}
-
-extension TCBaError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

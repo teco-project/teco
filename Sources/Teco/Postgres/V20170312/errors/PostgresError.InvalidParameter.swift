@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCPostgresError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCPostgresErrorType {
         enum Code: String {
             case instanceNameExist = "InvalidParameter.InstanceNameExist"
             case parameterCheckError = "InvalidParameter.ParameterCheckError"
@@ -33,8 +33,6 @@ extension TCPostgresError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,22 @@ extension TCPostgresError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCPostgresError.InvalidParameter: Equatable {
-    public static func == (lhs: TCPostgresError.InvalidParameter, rhs: TCPostgresError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCPostgresError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCPostgresError.InvalidParameter {
-    /// - Returns: ``TCPostgresError`` that holds the same error and context.
-    public func toPostgresError() -> TCPostgresError {
-        guard let code = TCPostgresError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asPostgresError() -> TCPostgresError {
+            let code: TCPostgresError.Code
+            switch self.error {
+            case .instanceNameExist: 
+                code = .invalidParameter_InstanceNameExist
+            case .parameterCheckError: 
+                code = .invalidParameter_ParameterCheckError
+            case .tradeAccessDeniedError: 
+                code = .invalidParameter_TradeAccessDeniedError
+            case .vpcNotFoundError: 
+                code = .invalidParameter_VpcNotFoundError
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCPostgresError(code, context: self.context)
         }
-        return TCPostgresError(code, context: self.context)
-    }
-}
-
-extension TCPostgresError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

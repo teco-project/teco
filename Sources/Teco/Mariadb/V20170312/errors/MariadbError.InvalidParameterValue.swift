@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMariadbError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCMariadbErrorType {
         enum Code: String {
             case accountAlreadyExists = "InvalidParameterValue.AccountAlreadyExists"
             case badSyncMode = "InvalidParameterValue.BadSyncMode"
@@ -45,8 +45,6 @@ extension TCMariadbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -143,37 +141,46 @@ extension TCMariadbError {
         public static var syncModeNotAllowed: InvalidParameterValue {
             InvalidParameterValue(.syncModeNotAllowed)
         }
-    }
-}
-
-extension TCMariadbError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCMariadbError.InvalidParameterValue, rhs: TCMariadbError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMariadbError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMariadbError.InvalidParameterValue {
-    /// - Returns: ``TCMariadbError`` that holds the same error and context.
-    public func toMariadbError() -> TCMariadbError {
-        guard let code = TCMariadbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMariadbError() -> TCMariadbError {
+            let code: TCMariadbError.Code
+            switch self.error {
+            case .accountAlreadyExists: 
+                code = .invalidParameterValue_AccountAlreadyExists
+            case .badSyncMode: 
+                code = .invalidParameterValue_BadSyncMode
+            case .badUserRight: 
+                code = .invalidParameterValue_BadUserRight
+            case .badUserType: 
+                code = .invalidParameterValue_BadUserType
+            case .illegalCount: 
+                code = .invalidParameterValue_IllegalCount
+            case .illegalExclusterID: 
+                code = .invalidParameterValue_IllegalExclusterID
+            case .illegalInitParam: 
+                code = .invalidParameterValue_IllegalInitParam
+            case .illegalInstanceId: 
+                code = .invalidParameterValue_IllegalInstanceId
+            case .illegalLogSaveDays: 
+                code = .invalidParameterValue_IllegalLogSaveDays
+            case .illegalQuantity: 
+                code = .invalidParameterValue_IllegalQuantity
+            case .illegalRightParam: 
+                code = .invalidParameterValue_IllegalRightParam
+            case .illegalZone: 
+                code = .invalidParameterValue_IllegalZone
+            case .instanceNameIllegal: 
+                code = .invalidParameterValue_InstanceNameIllegal
+            case .invalidParameterValueError: 
+                code = .invalidParameterValue_InvalidParameterValueError
+            case .specIdIllegal: 
+                code = .invalidParameterValue_SpecIdIllegal
+            case .superUserForbidden: 
+                code = .invalidParameterValue_SuperUserForbidden
+            case .syncModeNotAllowed: 
+                code = .invalidParameterValue_SyncModeNotAllowed
+            }
+            return TCMariadbError(code, context: self.context)
         }
-        return TCMariadbError(code, context: self.context)
-    }
-}
-
-extension TCMariadbError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

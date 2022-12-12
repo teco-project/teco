@@ -20,23 +20,25 @@
 ///
 /// 针对汽车精准获客服务控制台，提供人群特征洞察统计以及购车意向预测统计的控制台展示接口，包括1.总统计数据 2. 根据时间区间获取调用曲线 3.调用明细
 public struct Apcas: TCService {
-    /// Client used for communication with Tencent Cloud
+    /// Client used to communicate with Tencent Cloud.
     public let client: TCClient
     
-    /// Service configuration
+    /// Service context details.
     public let config: TCServiceConfig
     
-    /// Initialize the ``Apcas`` client
+    /// Initialize the ``Apcas`` client.
     ///
     /// - Parameters:
-    ///    - client: ``TCClient`` used to process requests
-    ///    - region: The service region you want to operate on
-    ///    - endpoint: Custom Endpoint URL preference
-    ///    - timeout: Timeout value for HTTP requests
+    ///    - client: ``TCClient`` used to perform actions.
+    ///    - region: Region of the service you want to operate on.
+    ///    - language: Preferred language for API response.
+    ///    - endpoint: Custom endpoint URL for API request.
+    ///    - timeout: Timeout value for HTTP requests.
     public init (
     client: TCClient, 
     region: TCRegion? = nil, 
-    endpoint: TCServiceConfig.EndpointPreference = .global, 
+    language: TCServiceConfig.Language? = nil, 
+    endpoint: TCServiceConfig.Endpoint = .global, 
     timeout: TimeAmount? = nil, 
     byteBufferAllocator: ByteBufferAllocator = ByteBufferAllocator()
     ) {
@@ -45,6 +47,7 @@ public struct Apcas: TCService {
         region: region, 
         service: "apcas", 
         apiVersion: "2020-11-27", 
+        language: language, 
         endpoint: endpoint, 
         errorType: TCApcasError.self, 
         timeout: timeout, 
@@ -54,10 +57,10 @@ public struct Apcas: TCService {
 }
 
 extension Apcas {
-    /// Initializer required by ``with(region:language:timeout:byteBufferAllocator:)``.
+    /// Initializer required by ``with(region:language:endpoint:timeout:byteBufferAllocator:)``.
     ///
     /// You are not able to use this initializer directly as there are no public initializers for ``TCServiceConfig/Patch``.
-    /// Please use ``with(region:language:timeout:byteBufferAllocator:)`` instead.
+    /// Please use ``with(region:language:endpoint:timeout:byteBufferAllocator:)`` instead.
     public init (from service: Self, patch: TCServiceConfig.Patch) {
         self.client = service.client
         self.config = service.config.with(patch: patch)

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCVpcError {
-    public struct InvalidPrivateIpAddress: TCErrorType {
+    public struct InvalidPrivateIpAddress: TCVpcErrorType {
         enum Code: String {
             case alreadyBindEip = "InvalidPrivateIpAddress.AlreadyBindEip"
         }
@@ -29,8 +29,6 @@ extension TCVpcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCVpcError {
         public static var alreadyBindEip: InvalidPrivateIpAddress {
             InvalidPrivateIpAddress(.alreadyBindEip)
         }
-    }
-}
-
-extension TCVpcError.InvalidPrivateIpAddress: Equatable {
-    public static func == (lhs: TCVpcError.InvalidPrivateIpAddress, rhs: TCVpcError.InvalidPrivateIpAddress) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCVpcError.InvalidPrivateIpAddress: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCVpcError.InvalidPrivateIpAddress {
-    /// - Returns: ``TCVpcError`` that holds the same error and context.
-    public func toVpcError() -> TCVpcError {
-        guard let code = TCVpcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asVpcError() -> TCVpcError {
+            let code: TCVpcError.Code
+            switch self.error {
+            case .alreadyBindEip: 
+                code = .invalidPrivateIpAddress_AlreadyBindEip
+            }
+            return TCVpcError(code, context: self.context)
         }
-        return TCVpcError(code, context: self.context)
-    }
-}
-
-extension TCVpcError.InvalidPrivateIpAddress {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

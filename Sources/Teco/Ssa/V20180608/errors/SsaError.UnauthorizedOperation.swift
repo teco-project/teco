@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSsaError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCSsaErrorType {
         enum Code: String {
             case subAccountUnauthorized = "UnauthorizedOperation.SubAccountUnauthorized"
             case other = "UnauthorizedOperation"
@@ -30,8 +30,6 @@ extension TCSsaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCSsaError {
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-    }
-}
-
-extension TCSsaError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCSsaError.UnauthorizedOperation, rhs: TCSsaError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSsaError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSsaError.UnauthorizedOperation {
-    /// - Returns: ``TCSsaError`` that holds the same error and context.
-    public func toSsaError() -> TCSsaError {
-        guard let code = TCSsaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSsaError() -> TCSsaError {
+            let code: TCSsaError.Code
+            switch self.error {
+            case .subAccountUnauthorized: 
+                code = .unauthorizedOperation_SubAccountUnauthorized
+            case .other: 
+                code = .unauthorizedOperation
+            }
+            return TCSsaError(code, context: self.context)
         }
-        return TCSsaError(code, context: self.context)
-    }
-}
-
-extension TCSsaError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

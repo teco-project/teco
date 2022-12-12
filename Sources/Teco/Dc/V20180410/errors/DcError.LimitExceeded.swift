@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDcError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCDcErrorType {
         enum Code: String {
             case directConnectLimitExceeded = "LimitExceeded.DirectConnectLimitExceeded"
             case directConnectTunnelLimitExceeded = "LimitExceeded.DirectConnectTunnelLimitExceeded"
@@ -31,8 +31,6 @@ extension TCDcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCDcError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCDcError.LimitExceeded: Equatable {
-    public static func == (lhs: TCDcError.LimitExceeded, rhs: TCDcError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDcError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDcError.LimitExceeded {
-    /// - Returns: ``TCDcError`` that holds the same error and context.
-    public func toDcError() -> TCDcError {
-        guard let code = TCDcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDcError() -> TCDcError {
+            let code: TCDcError.Code
+            switch self.error {
+            case .directConnectLimitExceeded: 
+                code = .limitExceeded_DirectConnectLimitExceeded
+            case .directConnectTunnelLimitExceeded: 
+                code = .limitExceeded_DirectConnectTunnelLimitExceeded
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCDcError(code, context: self.context)
         }
-        return TCDcError(code, context: self.context)
-    }
-}
-
-extension TCDcError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

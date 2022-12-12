@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCPrivatednsError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCPrivatednsErrorType {
         enum Code: String {
             case bindZoneVpcFailed = "FailedOperation.BindZoneVpcFailed"
             case createRecordFailed = "FailedOperation.CreateRecordFailed"
@@ -38,8 +38,6 @@ extension TCPrivatednsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -102,37 +100,32 @@ extension TCPrivatednsError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCPrivatednsError.FailedOperation: Equatable {
-    public static func == (lhs: TCPrivatednsError.FailedOperation, rhs: TCPrivatednsError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCPrivatednsError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCPrivatednsError.FailedOperation {
-    /// - Returns: ``TCPrivatednsError`` that holds the same error and context.
-    public func toPrivatednsError() -> TCPrivatednsError {
-        guard let code = TCPrivatednsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asPrivatednsError() -> TCPrivatednsError {
+            let code: TCPrivatednsError.Code
+            switch self.error {
+            case .bindZoneVpcFailed: 
+                code = .failedOperation_BindZoneVpcFailed
+            case .createRecordFailed: 
+                code = .failedOperation_CreateRecordFailed
+            case .createZoneFailed: 
+                code = .failedOperation_CreateZoneFailed
+            case .dataError: 
+                code = .failedOperation_DataError
+            case .deleteLastBindVpcRecordFailed: 
+                code = .failedOperation_DeleteLastBindVpcRecordFailed
+            case .deleteRecordFailed: 
+                code = .failedOperation_DeleteRecordFailed
+            case .deleteZoneFailed: 
+                code = .failedOperation_DeleteZoneFailed
+            case .modifyRecordFailed: 
+                code = .failedOperation_ModifyRecordFailed
+            case .modifyZoneFailed: 
+                code = .failedOperation_ModifyZoneFailed
+            case .other: 
+                code = .failedOperation
+            }
+            return TCPrivatednsError(code, context: self.context)
         }
-        return TCPrivatednsError(code, context: self.context)
-    }
-}
-
-extension TCPrivatednsError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

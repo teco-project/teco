@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCVodError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCVodErrorType {
         enum Code: String {
             case masterPlaylist = "ResourceUnavailable.MasterPlaylist"
             case other = "ResourceUnavailable"
@@ -30,8 +30,6 @@ extension TCVodError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCVodError {
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-    }
-}
-
-extension TCVodError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCVodError.ResourceUnavailable, rhs: TCVodError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCVodError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCVodError.ResourceUnavailable {
-    /// - Returns: ``TCVodError`` that holds the same error and context.
-    public func toVodError() -> TCVodError {
-        guard let code = TCVodError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asVodError() -> TCVodError {
+            let code: TCVodError.Code
+            switch self.error {
+            case .masterPlaylist: 
+                code = .resourceUnavailable_MasterPlaylist
+            case .other: 
+                code = .resourceUnavailable
+            }
+            return TCVodError(code, context: self.context)
         }
-        return TCVodError(code, context: self.context)
-    }
-}
-
-extension TCVodError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

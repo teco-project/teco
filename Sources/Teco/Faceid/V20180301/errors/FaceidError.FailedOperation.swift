@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCFaceidError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCFaceidErrorType {
         enum Code: String {
             case actionCloseEye = "FailedOperation.ActionCloseEye"
             case actionFaceClose = "FailedOperation.ActionFaceClose"
@@ -94,8 +94,6 @@ extension TCFaceidError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -438,37 +436,144 @@ extension TCFaceidError {
         public static var verificationFail: FailedOperation {
             FailedOperation(.verificationFail)
         }
-    }
-}
-
-extension TCFaceidError.FailedOperation: Equatable {
-    public static func == (lhs: TCFaceidError.FailedOperation, rhs: TCFaceidError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCFaceidError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCFaceidError.FailedOperation {
-    /// - Returns: ``TCFaceidError`` that holds the same error and context.
-    public func toFaceidError() -> TCFaceidError {
-        guard let code = TCFaceidError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asFaceidError() -> TCFaceidError {
+            let code: TCFaceidError.Code
+            switch self.error {
+            case .actionCloseEye: 
+                code = .failedOperation_ActionCloseEye
+            case .actionFaceClose: 
+                code = .failedOperation_ActionFaceClose
+            case .actionFaceFar: 
+                code = .failedOperation_ActionFaceFar
+            case .actionFaceLeft: 
+                code = .failedOperation_ActionFaceLeft
+            case .actionFaceRight: 
+                code = .failedOperation_ActionFaceRight
+            case .actionFirstAction: 
+                code = .failedOperation_ActionFirstAction
+            case .actionLightDark: 
+                code = .failedOperation_ActionLightDark
+            case .actionLightStrong: 
+                code = .failedOperation_ActionLightStrong
+            case .actionNodetectFace: 
+                code = .failedOperation_ActionNodetectFace
+            case .actionOpenMouth: 
+                code = .failedOperation_ActionOpenMouth
+            case .compareFail: 
+                code = .failedOperation_CompareFail
+            case .compareLowSimilarity: 
+                code = .failedOperation_CompareLowSimilarity
+            case .compareSystemError: 
+                code = .failedOperation_CompareSystemError
+            case .dbError: 
+                code = .failedOperation_DbError
+            case .decryptSystemError: 
+                code = .failedOperation_DecryptSystemError
+            case .downLoadError: 
+                code = .failedOperation_DownLoadError
+            case .downLoadTimeoutError: 
+                code = .failedOperation_DownLoadTimeoutError
+            case .emptyImageError: 
+                code = .failedOperation_EmptyImageError
+            case .encryptSystemError: 
+                code = .failedOperation_EncryptSystemError
+            case .fileSaveError: 
+                code = .failedOperation_FileSaveError
+            case .idFormatError: 
+                code = .failedOperation_IdFormatError
+            case .idNameMisMatch: 
+                code = .failedOperation_IdNameMisMatch
+            case .idNoExistSystem: 
+                code = .failedOperation_IdNoExistSystem
+            case .idPhotoNoExist: 
+                code = .failedOperation_IdPhotoNoExist
+            case .idPhotoPoorQuality: 
+                code = .failedOperation_IdPhotoPoorQuality
+            case .idPhotoSystemNoanswer: 
+                code = .failedOperation_IdPhotoSystemNoanswer
+            case .imageBlur: 
+                code = .failedOperation_ImageBlur
+            case .imageDecodeFailed: 
+                code = .failedOperation_ImageDecodeFailed
+            case .imageNoIdCard: 
+                code = .failedOperation_ImageNoIdCard
+            case .imageSizeTooLarge: 
+                code = .failedOperation_ImageSizeTooLarge
+            case .lifePhotoDetectFaces: 
+                code = .failedOperation_LifePhotoDetectFaces
+            case .lifePhotoDetectFake: 
+                code = .failedOperation_LifePhotoDetectFake
+            case .lifePhotoDetectNoFaces: 
+                code = .failedOperation_LifePhotoDetectNoFaces
+            case .lifePhotoPoorQuality: 
+                code = .failedOperation_LifePhotoPoorQuality
+            case .lifePhotoSizeError: 
+                code = .failedOperation_LifePhotoSizeError
+            case .lipFaceIncomplete: 
+                code = .failedOperation_LipFaceIncomplete
+            case .lipMoveSmall: 
+                code = .failedOperation_LipMoveSmall
+            case .lipNetFailed: 
+                code = .failedOperation_LipNetFailed
+            case .lipSizeError: 
+                code = .failedOperation_LipSizeError
+            case .lipVideoInvalid: 
+                code = .failedOperation_LipVideoInvalid
+            case .lipVideoQuaility: 
+                code = .failedOperation_LipVideoQuaility
+            case .lipVoiceDetect: 
+                code = .failedOperation_LipVoiceDetect
+            case .lipVoiceLow: 
+                code = .failedOperation_LipVoiceLow
+            case .lipVoiceRecognize: 
+                code = .failedOperation_LipVoiceRecognize
+            case .livessBestFrameError: 
+                code = .failedOperation_LivessBestFrameError
+            case .livessDetectFail: 
+                code = .failedOperation_LivessDetectFail
+            case .livessDetectFake: 
+                code = .failedOperation_LivessDetectFake
+            case .livessSystemError: 
+                code = .failedOperation_LivessSystemError
+            case .livessUnknownError: 
+                code = .failedOperation_LivessUnknownError
+            case .nameFormatError: 
+                code = .failedOperation_NameFormatError
+            case .ocrFailed: 
+                code = .failedOperation_OcrFailed
+            case .requestLimitExceeded: 
+                code = .failedOperation_RequestLimitExceeded
+            case .silentDetectFail: 
+                code = .failedOperation_SilentDetectFail
+            case .silentEyeLiveFail: 
+                code = .failedOperation_SilentEyeLiveFail
+            case .silentFaceDetectFail: 
+                code = .failedOperation_SilentFaceDetectFail
+            case .silentFaceQualityFail: 
+                code = .failedOperation_SilentFaceQualityFail
+            case .silentFaceWithMaskFail: 
+                code = .failedOperation_SilentFaceWithMaskFail
+            case .silentMouthLiveFail: 
+                code = .failedOperation_SilentMouthLiveFail
+            case .silentMultiFaceFail: 
+                code = .failedOperation_SilentMultiFaceFail
+            case .silentPictureLiveFail: 
+                code = .failedOperation_SilentPictureLiveFail
+            case .silentThreshold: 
+                code = .failedOperation_SilentThreshold
+            case .silentTooShort: 
+                code = .failedOperation_SilentTooShort
+            case .stsUnAuthErrError: 
+                code = .failedOperation_StsUnAuthErrError
+            case .unKnown: 
+                code = .failedOperation_UnKnown
+            case .unregisteredEid: 
+                code = .failedOperation_UnregisteredEid
+            case .verificationFail: 
+                code = .failedOperation_VerificationFail
+            }
+            return TCFaceidError(code, context: self.context)
         }
-        return TCFaceidError(code, context: self.context)
-    }
-}
-
-extension TCFaceidError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

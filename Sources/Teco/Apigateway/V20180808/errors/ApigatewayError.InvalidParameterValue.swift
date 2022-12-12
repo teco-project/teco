@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCApigatewayError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCApigatewayErrorType {
         enum Code: String {
             case duplicatePluginConfig = "InvalidParameterValue.DuplicatePluginConfig"
             case illegalProxyIp = "InvalidParameterValue.IllegalProxyIp"
@@ -73,8 +73,6 @@ extension TCApigatewayError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -322,37 +320,102 @@ extension TCApigatewayError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCApigatewayError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCApigatewayError.InvalidParameterValue, rhs: TCApigatewayError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCApigatewayError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCApigatewayError.InvalidParameterValue {
-    /// - Returns: ``TCApigatewayError`` that holds the same error and context.
-    public func toApigatewayError() -> TCApigatewayError {
-        guard let code = TCApigatewayError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asApigatewayError() -> TCApigatewayError {
+            let code: TCApigatewayError.Code
+            switch self.error {
+            case .duplicatePluginConfig: 
+                code = .invalidParameterValue_DuplicatePluginConfig
+            case .illegalProxyIp: 
+                code = .invalidParameterValue_IllegalProxyIp
+            case .invalidAccessKeyIds: 
+                code = .invalidParameterValue_InvalidAccessKeyIds
+            case .invalidApiBusinessType: 
+                code = .invalidParameterValue_InvalidApiBusinessType
+            case .invalidApiIds: 
+                code = .invalidParameterValue_InvalidApiIds
+            case .invalidApiRequestConfig: 
+                code = .invalidParameterValue_InvalidApiRequestConfig
+            case .invalidApiType: 
+                code = .invalidParameterValue_InvalidApiType
+            case .invalidBackendPath: 
+                code = .invalidParameterValue_InvalidBackendPath
+            case .invalidClb: 
+                code = .invalidParameterValue_InvalidClb
+            case .invalidCondition: 
+                code = .invalidParameterValue_InvalidCondition
+            case .invalidConstantParameters: 
+                code = .invalidParameterValue_InvalidConstantParameters
+            case .invalidEnv: 
+                code = .invalidParameterValue_InvalidEnv
+            case .invalidEnvStatus: 
+                code = .invalidParameterValue_InvalidEnvStatus
+            case .invalidFilterNotSupportedName: 
+                code = .invalidParameterValue_InvalidFilterNotSupportedName
+            case .invalidGenLanguage: 
+                code = .invalidParameterValue_InvalidGenLanguage
+            case .invalidIPAddress: 
+                code = .invalidParameterValue_InvalidIPAddress
+            case .invalidMaxRequestNum: 
+                code = .invalidParameterValue_InvalidMaxRequestNum
+            case .invalidMethod: 
+                code = .invalidParameterValue_InvalidMethod
+            case .invalidPluginConfig: 
+                code = .invalidParameterValue_InvalidPluginConfig
+            case .invalidPort: 
+                code = .invalidParameterValue_InvalidPort
+            case .invalidProcotol: 
+                code = .invalidParameterValue_InvalidProcotol
+            case .invalidPublicKey: 
+                code = .invalidParameterValue_InvalidPublicKey
+            case .invalidRegion: 
+                code = .invalidParameterValue_InvalidRegion
+            case .invalidRequestParameters: 
+                code = .invalidParameterValue_InvalidRequestParameters
+            case .invalidScfConfig: 
+                code = .invalidParameterValue_InvalidScfConfig
+            case .invalidServiceConfig: 
+                code = .invalidParameterValue_InvalidServiceConfig
+            case .invalidServiceMockReturnMessage: 
+                code = .invalidParameterValue_InvalidServiceMockReturnMessage
+            case .invalidServiceParam: 
+                code = .invalidParameterValue_InvalidServiceParam
+            case .invalidServiceParameters: 
+                code = .invalidParameterValue_InvalidServiceParameters
+            case .invalidServiceType: 
+                code = .invalidParameterValue_InvalidServiceType
+            case .invalidTagValues: 
+                code = .invalidParameterValue_InvalidTagValues
+            case .invalidTsfConfig: 
+                code = .invalidParameterValue_InvalidTsfConfig
+            case .invalidUpstream: 
+                code = .invalidParameterValue_InvalidUpstream
+            case .invalidUrl: 
+                code = .invalidParameterValue_InvalidUrl
+            case .invalidVpcConfig: 
+                code = .invalidParameterValue_InvalidVpcConfig
+            case .invalidWSMethod: 
+                code = .invalidParameterValue_InvalidWSMethod
+            case .lengthExceeded: 
+                code = .invalidParameterValue_LengthExceeded
+            case .limitExceeded: 
+                code = .invalidParameterValue_LimitExceeded
+            case .notInOptions: 
+                code = .invalidParameterValue_NotInOptions
+            case .nothingModifyForOauth: 
+                code = .invalidParameterValue_NothingModifyForOauth
+            case .parameterNotMatch: 
+                code = .invalidParameterValue_ParameterNotMatch
+            case .parameterValueLimitExceeded: 
+                code = .invalidParameterValue_ParameterValueLimitExceeded
+            case .rangeExceeded: 
+                code = .invalidParameterValue_RangeExceeded
+            case .unsupportedParameter: 
+                code = .invalidParameterValue_UnsupportedParameter
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCApigatewayError(code, context: self.context)
         }
-        return TCApigatewayError(code, context: self.context)
-    }
-}
-
-extension TCApigatewayError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

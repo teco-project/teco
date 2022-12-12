@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCVmsError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCVmsErrorType {
         enum Code: String {
             case accessUpstreamTimeout = "InternalError.AccessUpstreamTimeout"
             case requestTimeException = "InternalError.RequestTimeException"
@@ -34,8 +34,6 @@ extension TCVmsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -78,37 +76,24 @@ extension TCVmsError {
         public static var upstreamError: InternalError {
             InternalError(.upstreamError)
         }
-    }
-}
-
-extension TCVmsError.InternalError: Equatable {
-    public static func == (lhs: TCVmsError.InternalError, rhs: TCVmsError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCVmsError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCVmsError.InternalError {
-    /// - Returns: ``TCVmsError`` that holds the same error and context.
-    public func toVmsError() -> TCVmsError {
-        guard let code = TCVmsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asVmsError() -> TCVmsError {
+            let code: TCVmsError.Code
+            switch self.error {
+            case .accessUpstreamTimeout: 
+                code = .internalError_AccessUpstreamTimeout
+            case .requestTimeException: 
+                code = .internalError_RequestTimeException
+            case .restApiInterfaceNotExist: 
+                code = .internalError_RestApiInterfaceNotExist
+            case .sigVerificationFail: 
+                code = .internalError_SigVerificationFail
+            case .ssoSendRecvFail: 
+                code = .internalError_SsoSendRecvFail
+            case .upstreamError: 
+                code = .internalError_UpstreamError
+            }
+            return TCVmsError(code, context: self.context)
         }
-        return TCVmsError(code, context: self.context)
-    }
-}
-
-extension TCVmsError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

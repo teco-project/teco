@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCRedisError {
-    public struct ResourceInUse: TCErrorType {
+    public struct ResourceInUse: TCRedisErrorType {
         enum Code: String {
             case instanceBeenLocked = "ResourceInUse.InstanceBeenLocked"
         }
@@ -29,8 +29,6 @@ extension TCRedisError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCRedisError {
         public static var instanceBeenLocked: ResourceInUse {
             ResourceInUse(.instanceBeenLocked)
         }
-    }
-}
-
-extension TCRedisError.ResourceInUse: Equatable {
-    public static func == (lhs: TCRedisError.ResourceInUse, rhs: TCRedisError.ResourceInUse) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCRedisError.ResourceInUse: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCRedisError.ResourceInUse {
-    /// - Returns: ``TCRedisError`` that holds the same error and context.
-    public func toRedisError() -> TCRedisError {
-        guard let code = TCRedisError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asRedisError() -> TCRedisError {
+            let code: TCRedisError.Code
+            switch self.error {
+            case .instanceBeenLocked: 
+                code = .resourceInUse_InstanceBeenLocked
+            }
+            return TCRedisError(code, context: self.context)
         }
-        return TCRedisError(code, context: self.context)
-    }
-}
-
-extension TCRedisError.ResourceInUse {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

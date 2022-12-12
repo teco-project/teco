@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTatError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCTatErrorType {
         enum Code: String {
             case agentUnsupportedCommandType = "InvalidParameterValue.AgentUnsupportedCommandType"
             case commandContentInvalid = "InvalidParameterValue.CommandContentInvalid"
@@ -60,8 +60,6 @@ extension TCTatError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -239,37 +237,76 @@ extension TCTatError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCTatError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCTatError.InvalidParameterValue, rhs: TCTatError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTatError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTatError.InvalidParameterValue {
-    /// - Returns: ``TCTatError`` that holds the same error and context.
-    public func toTatError() -> TCTatError {
-        guard let code = TCTatError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTatError() -> TCTatError {
+            let code: TCTatError.Code
+            switch self.error {
+            case .agentUnsupportedCommandType: 
+                code = .invalidParameterValue_AgentUnsupportedCommandType
+            case .commandContentInvalid: 
+                code = .invalidParameterValue_CommandContentInvalid
+            case .commandNameDuplicated: 
+                code = .invalidParameterValue_CommandNameDuplicated
+            case .inconsistentInstance: 
+                code = .invalidParameterValue_InconsistentInstance
+            case .instanceIsNotRelatedToInvocation: 
+                code = .invalidParameterValue_InstanceIsNotRelatedToInvocation
+            case .invalidCommandId: 
+                code = .invalidParameterValue_InvalidCommandId
+            case .invalidCommandName: 
+                code = .invalidParameterValue_InvalidCommandName
+            case .invalidContent: 
+                code = .invalidParameterValue_InvalidContent
+            case .invalidCronExpression: 
+                code = .invalidParameterValue_InvalidCronExpression
+            case .invalidFilter: 
+                code = .invalidParameterValue_InvalidFilter
+            case .invalidInstanceId: 
+                code = .invalidParameterValue_InvalidInstanceId
+            case .invalidInvocationId: 
+                code = .invalidParameterValue_InvalidInvocationId
+            case .invalidInvocationTaskId: 
+                code = .invalidParameterValue_InvalidInvocationTaskId
+            case .invalidInvokerId: 
+                code = .invalidParameterValue_InvalidInvokerId
+            case .invalidOutputCOSBucketUrl: 
+                code = .invalidParameterValue_InvalidOutputCOSBucketUrl
+            case .invalidOutputCOSKeyPrefix: 
+                code = .invalidParameterValue_InvalidOutputCOSKeyPrefix
+            case .invalidUsername: 
+                code = .invalidParameterValue_InvalidUsername
+            case .invalidWorkingDirectory: 
+                code = .invalidParameterValue_InvalidWorkingDirectory
+            case .lackOfParameterInfo: 
+                code = .invalidParameterValue_LackOfParameterInfo
+            case .lackOfParameters: 
+                code = .invalidParameterValue_LackOfParameters
+            case .limitExceeded: 
+                code = .invalidParameterValue_LimitExceeded
+            case .parameterDisabled: 
+                code = .invalidParameterValue_ParameterDisabled
+            case .parameterInvalidJsonFormat: 
+                code = .invalidParameterValue_ParameterInvalidJsonFormat
+            case .parameterKeyContainsInvalidChar: 
+                code = .invalidParameterValue_ParameterKeyContainsInvalidChar
+            case .parameterKeyDuplicated: 
+                code = .invalidParameterValue_ParameterKeyDuplicated
+            case .parameterKeyLenExceeded: 
+                code = .invalidParameterValue_ParameterKeyLenExceeded
+            case .parameterNumberExceeded: 
+                code = .invalidParameterValue_ParameterNumberExceeded
+            case .parameterValueNotString: 
+                code = .invalidParameterValue_ParameterValueNotString
+            case .range: 
+                code = .invalidParameterValue_Range
+            case .supportParametersOnlyIfEnableParameter: 
+                code = .invalidParameterValue_SupportParametersOnlyIfEnableParameter
+            case .tooLong: 
+                code = .invalidParameterValue_TooLong
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCTatError(code, context: self.context)
         }
-        return TCTatError(code, context: self.context)
-    }
-}
-
-extension TCTatError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

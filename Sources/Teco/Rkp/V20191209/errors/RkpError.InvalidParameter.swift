@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCRkpError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCRkpErrorType {
         enum Code: String {
             case devTokenInvalid = "InvalidParameter.DevTokenInvalid"
             case paramError = "InvalidParameter.ParamError"
@@ -35,8 +35,6 @@ extension TCRkpError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -84,37 +82,26 @@ extension TCRkpError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCRkpError.InvalidParameter: Equatable {
-    public static func == (lhs: TCRkpError.InvalidParameter, rhs: TCRkpError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCRkpError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCRkpError.InvalidParameter {
-    /// - Returns: ``TCRkpError`` that holds the same error and context.
-    public func toRkpError() -> TCRkpError {
-        guard let code = TCRkpError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asRkpError() -> TCRkpError {
+            let code: TCRkpError.Code
+            switch self.error {
+            case .devTokenInvalid: 
+                code = .invalidParameter_DevTokenInvalid
+            case .paramError: 
+                code = .invalidParameter_ParamError
+            case .parameterError: 
+                code = .invalidParameter_ParameterError
+            case .tokenInvalid: 
+                code = .invalidParameter_TokenInvalid
+            case .urlError: 
+                code = .invalidParameter_UrlError
+            case .versionError: 
+                code = .invalidParameter_VersionError
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCRkpError(code, context: self.context)
         }
-        return TCRkpError(code, context: self.context)
-    }
-}
-
-extension TCRkpError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

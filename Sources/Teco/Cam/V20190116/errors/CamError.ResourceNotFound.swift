@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCamError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCCamErrorType {
         enum Code: String {
             case groupNotExist = "ResourceNotFound.GroupNotExist"
             case identityNotExist = "ResourceNotFound.IdentityNotExist"
@@ -34,8 +34,6 @@ extension TCCamError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -78,37 +76,24 @@ extension TCCamError {
         public static var userNotExist: ResourceNotFound {
             ResourceNotFound(.userNotExist)
         }
-    }
-}
-
-extension TCCamError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCCamError.ResourceNotFound, rhs: TCCamError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCamError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCamError.ResourceNotFound {
-    /// - Returns: ``TCCamError`` that holds the same error and context.
-    public func toCamError() -> TCCamError {
-        guard let code = TCCamError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCamError() -> TCCamError {
+            let code: TCCamError.Code
+            switch self.error {
+            case .groupNotExist: 
+                code = .resourceNotFound_GroupNotExist
+            case .identityNotExist: 
+                code = .resourceNotFound_IdentityNotExist
+            case .notFound: 
+                code = .resourceNotFound_NotFound
+            case .policyIdNotFound: 
+                code = .resourceNotFound_PolicyIdNotFound
+            case .secretNotExist: 
+                code = .resourceNotFound_SecretNotExist
+            case .userNotExist: 
+                code = .resourceNotFound_UserNotExist
+            }
+            return TCCamError(code, context: self.context)
         }
-        return TCCamError(code, context: self.context)
-    }
-}
-
-extension TCCamError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEmrError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCEmrErrorType {
         enum Code: String {
             case cdbInfoNotFound = "ResourceNotFound.CDBInfoNotFound"
             case clusterNotFound = "ResourceNotFound.ClusterNotFound"
@@ -36,8 +36,6 @@ extension TCEmrError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -106,37 +104,28 @@ extension TCEmrError {
         public static var tkePreconditionNotFound: ResourceNotFound {
             ResourceNotFound(.tkePreconditionNotFound)
         }
-    }
-}
-
-extension TCEmrError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCEmrError.ResourceNotFound, rhs: TCEmrError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEmrError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEmrError.ResourceNotFound {
-    /// - Returns: ``TCEmrError`` that holds the same error and context.
-    public func toEmrError() -> TCEmrError {
-        guard let code = TCEmrError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEmrError() -> TCEmrError {
+            let code: TCEmrError.Code
+            switch self.error {
+            case .cdbInfoNotFound: 
+                code = .resourceNotFound_CDBInfoNotFound
+            case .clusterNotFound: 
+                code = .resourceNotFound_ClusterNotFound
+            case .hardwareInfoNotFound: 
+                code = .resourceNotFound_HardwareInfoNotFound
+            case .instanceNotFound: 
+                code = .resourceNotFound_InstanceNotFound
+            case .resourceNotFound: 
+                code = .resourceNotFound_ResourceNotFound
+            case .subnetNotFound: 
+                code = .resourceNotFound_SubnetNotFound
+            case .tagsNotFound: 
+                code = .resourceNotFound_TagsNotFound
+            case .tkePreconditionNotFound: 
+                code = .resourceNotFound_TKEPreconditionNotFound
+            }
+            return TCEmrError(code, context: self.context)
         }
-        return TCEmrError(code, context: self.context)
-    }
-}
-
-extension TCEmrError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAsError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCAsErrorType {
         enum Code: String {
             case autoScalingGroupNotFound = "ResourceNotFound.AutoScalingGroupNotFound"
             case autoScalingNotificationNotFound = "ResourceNotFound.AutoScalingNotificationNotFound"
@@ -46,8 +46,6 @@ extension TCAsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -150,37 +148,48 @@ extension TCAsError {
         public static var tdmqcmqTopicNotFound: ResourceNotFound {
             ResourceNotFound(.tdmqcmqTopicNotFound)
         }
-    }
-}
-
-extension TCAsError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCAsError.ResourceNotFound, rhs: TCAsError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAsError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAsError.ResourceNotFound {
-    /// - Returns: ``TCAsError`` that holds the same error and context.
-    public func toAsError() -> TCAsError {
-        guard let code = TCAsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAsError() -> TCAsError {
+            let code: TCAsError.Code
+            switch self.error {
+            case .autoScalingGroupNotFound: 
+                code = .resourceNotFound_AutoScalingGroupNotFound
+            case .autoScalingNotificationNotFound: 
+                code = .resourceNotFound_AutoScalingNotificationNotFound
+            case .bandwidthPackageIdNotFound: 
+                code = .resourceNotFound_BandwidthPackageIdNotFound
+            case .cmqQueueNotFound: 
+                code = .resourceNotFound_CmqQueueNotFound
+            case .commandNotFound: 
+                code = .resourceNotFound_CommandNotFound
+            case .instancesNotFound: 
+                code = .resourceNotFound_InstancesNotFound
+            case .instancesNotInAutoScalingGroup: 
+                code = .resourceNotFound_InstancesNotInAutoScalingGroup
+            case .launchConfigurationIdNotFound: 
+                code = .resourceNotFound_LaunchConfigurationIdNotFound
+            case .lifecycleHookInstanceNotFound: 
+                code = .resourceNotFound_LifecycleHookInstanceNotFound
+            case .lifecycleHookNotFound: 
+                code = .resourceNotFound_LifecycleHookNotFound
+            case .listenerNotFound: 
+                code = .resourceNotFound_ListenerNotFound
+            case .loadBalancerNotFound: 
+                code = .resourceNotFound_LoadBalancerNotFound
+            case .loadBalancerNotInAutoScalingGroup: 
+                code = .resourceNotFound_LoadBalancerNotInAutoScalingGroup
+            case .locationNotFound: 
+                code = .resourceNotFound_LocationNotFound
+            case .scalingPolicyNotFound: 
+                code = .resourceNotFound_ScalingPolicyNotFound
+            case .scheduledActionNotFound: 
+                code = .resourceNotFound_ScheduledActionNotFound
+            case .tdmqcmqQueueNotFound: 
+                code = .resourceNotFound_TDMQCMQQueueNotFound
+            case .tdmqcmqTopicNotFound: 
+                code = .resourceNotFound_TDMQCMQTopicNotFound
+            }
+            return TCAsError(code, context: self.context)
         }
-        return TCAsError(code, context: self.context)
-    }
-}
-
-extension TCAsError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTbaasError {
-    public struct OperationDenied: TCErrorType {
+    public struct OperationDenied: TCTbaasErrorType {
         enum Code: String {
             case notOwner = "OperationDenied.NotOwner"
         }
@@ -29,8 +29,6 @@ extension TCTbaasError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCTbaasError {
         public static var notOwner: OperationDenied {
             OperationDenied(.notOwner)
         }
-    }
-}
-
-extension TCTbaasError.OperationDenied: Equatable {
-    public static func == (lhs: TCTbaasError.OperationDenied, rhs: TCTbaasError.OperationDenied) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTbaasError.OperationDenied: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTbaasError.OperationDenied {
-    /// - Returns: ``TCTbaasError`` that holds the same error and context.
-    public func toTbaasError() -> TCTbaasError {
-        guard let code = TCTbaasError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTbaasError() -> TCTbaasError {
+            let code: TCTbaasError.Code
+            switch self.error {
+            case .notOwner: 
+                code = .operationDenied_NotOwner
+            }
+            return TCTbaasError(code, context: self.context)
         }
-        return TCTbaasError(code, context: self.context)
-    }
-}
-
-extension TCTbaasError.OperationDenied {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

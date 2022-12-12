@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTkeError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCTkeErrorType {
         enum Code: String {
             case asCommonError = "InvalidParameter.AsCommonError"
             case cidrConflictWithOtherCluster = "InvalidParameter.CidrConflictWithOtherCluster"
@@ -47,8 +47,6 @@ extension TCTkeError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -160,37 +158,50 @@ extension TCTkeError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCTkeError.InvalidParameter: Equatable {
-    public static func == (lhs: TCTkeError.InvalidParameter, rhs: TCTkeError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTkeError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTkeError.InvalidParameter {
-    /// - Returns: ``TCTkeError`` that holds the same error and context.
-    public func toTkeError() -> TCTkeError {
-        guard let code = TCTkeError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTkeError() -> TCTkeError {
+            let code: TCTkeError.Code
+            switch self.error {
+            case .asCommonError: 
+                code = .invalidParameter_AsCommonError
+            case .cidrConflictWithOtherCluster: 
+                code = .invalidParameter_CidrConflictWithOtherCluster
+            case .cidrConflictWithOtherRoute: 
+                code = .invalidParameter_CidrConflictWithOtherRoute
+            case .cidrConflictWithVpcCidr: 
+                code = .invalidParameter_CidrConflictWithVpcCidr
+            case .cidrConflictWithVpcGlobalRoute: 
+                code = .invalidParameter_CidrConflictWithVpcGlobalRoute
+            case .cidrInvali: 
+                code = .invalidParameter_CidrInvali
+            case .cidrInvalid: 
+                code = .invalidParameter_CidrInvalid
+            case .cidrMaskSizeOutOfRange: 
+                code = .invalidParameter_CIDRMaskSizeOutOfRange
+            case .cidrOutOfRouteTable: 
+                code = .invalidParameter_CidrOutOfRouteTable
+            case .clusterNotFound: 
+                code = .invalidParameter_ClusterNotFound
+            case .gatewayAlreadyAssociatedCidr: 
+                code = .invalidParameter_GatewayAlreadyAssociatedCidr
+            case .invalidPrivateNetworkCIDR: 
+                code = .invalidParameter_InvalidPrivateNetworkCIDR
+            case .osNotSupport: 
+                code = .invalidParameter_OsNotSupport
+            case .param: 
+                code = .invalidParameter_Param
+            case .promClusterNotFound: 
+                code = .invalidParameter_PromClusterNotFound
+            case .promInstanceNotFound: 
+                code = .invalidParameter_PromInstanceNotFound
+            case .resourceNotFound: 
+                code = .invalidParameter_ResourceNotFound
+            case .routeTableNotEmpty: 
+                code = .invalidParameter_RouteTableNotEmpty
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCTkeError(code, context: self.context)
         }
-        return TCTkeError(code, context: self.context)
-    }
-}
-
-extension TCTkeError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBdaError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCBdaErrorType {
         enum Code: String {
             case audioDecodeFailed = "FailedOperation.AudioDecodeFailed"
             case audioEncodeFailed = "FailedOperation.AudioEncodeFailed"
@@ -65,8 +65,6 @@ extension TCBdaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -263,37 +261,86 @@ extension TCBdaError {
         public static var videoDecodeFailed: FailedOperation {
             FailedOperation(.videoDecodeFailed)
         }
-    }
-}
-
-extension TCBdaError.FailedOperation: Equatable {
-    public static func == (lhs: TCBdaError.FailedOperation, rhs: TCBdaError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBdaError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBdaError.FailedOperation {
-    /// - Returns: ``TCBdaError`` that holds the same error and context.
-    public func toBdaError() -> TCBdaError {
-        guard let code = TCBdaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBdaError() -> TCBdaError {
+            let code: TCBdaError.Code
+            switch self.error {
+            case .audioDecodeFailed: 
+                code = .failedOperation_AudioDecodeFailed
+            case .audioEncodeFailed: 
+                code = .failedOperation_AudioEncodeFailed
+            case .bodyFeatureFail: 
+                code = .failedOperation_BodyFeatureFail
+            case .bodyJointsFail: 
+                code = .failedOperation_BodyJointsFail
+            case .bodyQualityNotQualified: 
+                code = .failedOperation_BodyQualityNotQualified
+            case .bodyRectIllegal: 
+                code = .failedOperation_BodyRectIllegal
+            case .bodyRectNumIllegal: 
+                code = .failedOperation_BodyRectNumIllegal
+            case .createTraceFailed: 
+                code = .failedOperation_CreateTraceFailed
+            case .downloadError: 
+                code = .failedOperation_DownloadError
+            case .groupEmpty: 
+                code = .failedOperation_GroupEmpty
+            case .imageBodyDetectFailed: 
+                code = .failedOperation_ImageBodyDetectFailed
+            case .imageDecodeFailed: 
+                code = .failedOperation_ImageDecodeFailed
+            case .imageDownloadError: 
+                code = .failedOperation_ImageDownloadError
+            case .imageFacedetectFailed: 
+                code = .failedOperation_ImageFacedetectFailed
+            case .imageNotForeground: 
+                code = .failedOperation_ImageNotForeground
+            case .imageNotSupported: 
+                code = .failedOperation_ImageNotSupported
+            case .imageResolutionExceed: 
+                code = .failedOperation_ImageResolutionExceed
+            case .imageResolutionInsufficient: 
+                code = .failedOperation_ImageResolutionInsufficient
+            case .imageSizeExceed: 
+                code = .failedOperation_ImageSizeExceed
+            case .innerError: 
+                code = .failedOperation_InnerError
+            case .jobConflict: 
+                code = .failedOperation_JobConflict
+            case .jobQueueFull: 
+                code = .failedOperation_JobQueueFull
+            case .noBodyInPhoto: 
+                code = .failedOperation_NoBodyInPhoto
+            case .profileNumExceed: 
+                code = .failedOperation_ProfileNumExceed
+            case .requestEntityTooLarge: 
+                code = .failedOperation_RequestEntityTooLarge
+            case .requestLimitExceeded: 
+                code = .failedOperation_RequestLimitExceeded
+            case .requestTimeout: 
+                code = .failedOperation_RequestTimeout
+            case .rpcFail: 
+                code = .failedOperation_RpcFail
+            case .segmentFailed: 
+                code = .failedOperation_SegmentFailed
+            case .serverError: 
+                code = .failedOperation_ServerError
+            case .taskLimitExceeded: 
+                code = .failedOperation_TaskLimitExceeded
+            case .taskNotExist: 
+                code = .failedOperation_TaskNotExist
+            case .terminateTaskFailed: 
+                code = .failedOperation_TerminateTaskFailed
+            case .tooLargeFileError: 
+                code = .failedOperation_TooLargeFileError
+            case .unKnowError: 
+                code = .failedOperation_UnKnowError
+            case .unknown: 
+                code = .failedOperation_Unknown
+            case .videoDecodeFailed: 
+                code = .failedOperation_VideoDecodeFailed
+            }
+            return TCBdaError(code, context: self.context)
         }
-        return TCBdaError(code, context: self.context)
-    }
-}
-
-extension TCBdaError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

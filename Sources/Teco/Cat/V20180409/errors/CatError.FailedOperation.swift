@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCatError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCCatErrorType {
         enum Code: String {
             case dbQueryFailed = "FailedOperation.DbQueryFailed"
             case dbRecordCreateFailed = "FailedOperation.DbRecordCreateFailed"
@@ -47,8 +47,6 @@ extension TCCatError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -159,37 +157,50 @@ extension TCCatError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCCatError.FailedOperation: Equatable {
-    public static func == (lhs: TCCatError.FailedOperation, rhs: TCCatError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCatError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCatError.FailedOperation {
-    /// - Returns: ``TCCatError`` that holds the same error and context.
-    public func toCatError() -> TCCatError {
-        guard let code = TCCatError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCatError() -> TCCatError {
+            let code: TCCatError.Code
+            switch self.error {
+            case .dbQueryFailed: 
+                code = .failedOperation_DbQueryFailed
+            case .dbRecordCreateFailed: 
+                code = .failedOperation_DbRecordCreateFailed
+            case .dbRecordUpdateFailed: 
+                code = .failedOperation_DbRecordUpdateFailed
+            case .errPrePaidResourceExpire: 
+                code = .failedOperation_ErrPrePaidResourceExpire
+            case .esQueryError: 
+                code = .failedOperation_ESQueryError
+            case .noValidNodes: 
+                code = .failedOperation_NoValidNodes
+            case .orderOutOfCredit: 
+                code = .failedOperation_OrderOutOfCredit
+            case .preResourceIDFailed: 
+                code = .failedOperation_PreResourceIDFailed
+            case .resourceNotFound: 
+                code = .failedOperation_ResourceNotFound
+            case .sendRequest: 
+                code = .failedOperation_SendRequest
+            case .tagRequiredVerifyFailed: 
+                code = .failedOperation_TagRequiredVerifyFailed
+            case .taskNotRunning: 
+                code = .failedOperation_TaskNotRunning
+            case .taskNotSuspended: 
+                code = .failedOperation_TaskNotSuspended
+            case .taskOperationNotAllow: 
+                code = .failedOperation_TaskOperationNotAllow
+            case .taskTypeNotSame: 
+                code = .failedOperation_TaskTypeNotSame
+            case .trialTaskExceed: 
+                code = .failedOperation_TrialTaskExceed
+            case .unmarshalResponse: 
+                code = .failedOperation_UnmarshalResponse
+            case .userNoQcloudTAGFullAccess: 
+                code = .failedOperation_UserNoQcloudTAGFullAccess
+            case .other: 
+                code = .failedOperation
+            }
+            return TCCatError(code, context: self.context)
         }
-        return TCCatError(code, context: self.context)
-    }
-}
-
-extension TCCatError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

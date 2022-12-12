@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotexplorerError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCIotexplorerErrorType {
         enum Code: String {
             case actionNil = "InvalidParameterValue.ActionNil"
             case actionNilOrNotExist = "InvalidParameterValue.ActionNilOrNotExist"
@@ -85,8 +85,6 @@ extension TCIotexplorerError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -383,37 +381,126 @@ extension TCIotexplorerError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCIotexplorerError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCIotexplorerError.InvalidParameterValue, rhs: TCIotexplorerError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotexplorerError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotexplorerError.InvalidParameterValue {
-    /// - Returns: ``TCIotexplorerError`` that holds the same error and context.
-    public func toIotexplorerError() -> TCIotexplorerError {
-        guard let code = TCIotexplorerError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotexplorerError() -> TCIotexplorerError {
+            let code: TCIotexplorerError.Code
+            switch self.error {
+            case .actionNil: 
+                code = .invalidParameterValue_ActionNil
+            case .actionNilOrNotExist: 
+                code = .invalidParameterValue_ActionNilOrNotExist
+            case .appDescriptionTooLong: 
+                code = .invalidParameterValue_AppDescriptionTooLong
+            case .appExists: 
+                code = .invalidParameterValue_AppExists
+            case .appNameTooLong: 
+                code = .invalidParameterValue_AppNameTooLong
+            case .appNoPermission: 
+                code = .invalidParameterValue_AppNoPermission
+            case .appNotExists: 
+                code = .invalidParameterValue_AppNotExists
+            case .checkForwardURLFail: 
+                code = .invalidParameterValue_CheckForwardURLFail
+            case .deviceAlreadyExist: 
+                code = .invalidParameterValue_DeviceAlreadyExist
+            case .deviceHasNotBindGateway: 
+                code = .invalidParameterValue_DeviceHasNotBindGateway
+            case .deviceIsNotGateway: 
+                code = .invalidParameterValue_DeviceIsNotGateway
+            case .deviceNameInvalid: 
+                code = .invalidParameterValue_DeviceNameInvalid
+            case .deviceNotExist: 
+                code = .invalidParameterValue_DeviceNotExist
+            case .errLLSyncBroadcastDeviceNameLengthExceed: 
+                code = .invalidParameterValue_ErrLLSyncBroadcastDeviceNameLengthExceed
+            case .errorTaskNotExist: 
+                code = .invalidParameterValue_ErrorTaskNotExist
+            case .failActionHasSameDevice: 
+                code = .invalidParameterValue_FailActionHasSameDevice
+            case .firmwareAlreadyExist: 
+                code = .invalidParameterValue_FirmwareAlreadyExist
+            case .forwardRedirectDenied: 
+                code = .invalidParameterValue_ForwardRedirectDenied
+            case .invalidSQL: 
+                code = .invalidParameterValue_InvalidSQL
+            case .loRaFreqParmsError: 
+                code = .invalidParameterValue_LoRaFreqParmsError
+            case .modelDefineDontMatchTemplate: 
+                code = .invalidParameterValue_ModelDefineDontMatchTemplate
+            case .modelDefineDupID: 
+                code = .invalidParameterValue_ModelDefineDupID
+            case .modelDefineErrorModel: 
+                code = .invalidParameterValue_ModelDefineErrorModel
+            case .modelDefineErrorType: 
+                code = .invalidParameterValue_ModelDefineErrorType
+            case .modelDefineEventParamsDupID: 
+                code = .invalidParameterValue_ModelDefineEventParamsDupID
+            case .modelDefineEventParamsExceedLimit: 
+                code = .invalidParameterValue_ModelDefineEventParamsExceedLimit
+            case .modelDefineEventPropError: 
+                code = .invalidParameterValue_ModelDefineEventPropError
+            case .modelDefineEventPropNameError: 
+                code = .invalidParameterValue_ModelDefineEventPropNameError
+            case .modelDefineInvalid: 
+                code = .invalidParameterValue_ModelDefineInvalid
+            case .modelDefineNil: 
+                code = .invalidParameterValue_ModelDefineNil
+            case .modelDefinePropBoolMappingError: 
+                code = .invalidParameterValue_ModelDefinePropBoolMappingError
+            case .modelDefinePropEnumMappingError: 
+                code = .invalidParameterValue_ModelDefinePropEnumMappingError
+            case .modelDefinePropRangeError: 
+                code = .invalidParameterValue_ModelDefinePropRangeError
+            case .modelDefinePropRangeOverflow: 
+                code = .invalidParameterValue_ModelDefinePropRangeOverflow
+            case .modelPropertyNotExist: 
+                code = .invalidParameterValue_ModelPropertyNotExist
+            case .msgContentInvalid: 
+                code = .invalidParameterValue_MsgContentInvalid
+            case .msgLevelInvalid: 
+                code = .invalidParameterValue_MsgLevelInvalid
+            case .msgTitleInvalid: 
+                code = .invalidParameterValue_MsgTitleInvalid
+            case .msgTypeInvalid: 
+                code = .invalidParameterValue_MsgTypeInvalid
+            case .operationDenied: 
+                code = .invalidParameterValue_OperationDenied
+            case .payloadOverLimit: 
+                code = .invalidParameterValue_PayloadOverLimit
+            case .productAlreadyExist: 
+                code = .invalidParameterValue_ProductAlreadyExist
+            case .productIDInvalid: 
+                code = .invalidParameterValue_ProductIDInvalid
+            case .productIsNotGateway: 
+                code = .invalidParameterValue_ProductIsNotGateway
+            case .productParmsError: 
+                code = .invalidParameterValue_ProductParmsError
+            case .projectParmsError: 
+                code = .invalidParameterValue_ProjectParmsError
+            case .republishTopicFormatError: 
+                code = .invalidParameterValue_RepublishTopicFormatError
+            case .ruleNumberBeyondLimit: 
+                code = .invalidParameterValue_RuleNumberBeyondLimit
+            case .selectKeyFromBinaryPayload: 
+                code = .invalidParameterValue_SelectKeyFromBinaryPayload
+            case .startTimeLaterEndTime: 
+                code = .invalidParameterValue_StartTimeLaterEndTime
+            case .topicPolicyAlreadyExist: 
+                code = .invalidParameterValue_TopicPolicyAlreadyExist
+            case .topicRuleAlreadyExist: 
+                code = .invalidParameterValue_TopicRuleAlreadyExist
+            case .topicRuleSqlNotEdited: 
+                code = .invalidParameterValue_TopicRuleSqlNotEdited
+            case .updateTopicRuleDBFail: 
+                code = .invalidParameterValue_UpdateTopicRuleDBFail
+            case .userIDInvalid: 
+                code = .invalidParameterValue_UserIDInvalid
+            case .vpnParmsError: 
+                code = .invalidParameterValue_VPNParmsError
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCIotexplorerError(code, context: self.context)
         }
-        return TCIotexplorerError(code, context: self.context)
-    }
-}
-
-extension TCIotexplorerError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

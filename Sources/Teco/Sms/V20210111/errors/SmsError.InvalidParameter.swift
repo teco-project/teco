@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSmsError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCSmsErrorType {
         enum Code: String {
             case appidAndBizId = "InvalidParameter.AppidAndBizId"
             case dirtyWordFound = "InvalidParameter.DirtyWordFound"
@@ -32,8 +32,6 @@ extension TCSmsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCSmsError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCSmsError.InvalidParameter: Equatable {
-    public static func == (lhs: TCSmsError.InvalidParameter, rhs: TCSmsError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSmsError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSmsError.InvalidParameter {
-    /// - Returns: ``TCSmsError`` that holds the same error and context.
-    public func toSmsError() -> TCSmsError {
-        guard let code = TCSmsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSmsError() -> TCSmsError {
+            let code: TCSmsError.Code
+            switch self.error {
+            case .appidAndBizId: 
+                code = .invalidParameter_AppidAndBizId
+            case .dirtyWordFound: 
+                code = .invalidParameter_DirtyWordFound
+            case .invalidParameters: 
+                code = .invalidParameter_InvalidParameters
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCSmsError(code, context: self.context)
         }
-        return TCSmsError(code, context: self.context)
-    }
-}
-
-extension TCSmsError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

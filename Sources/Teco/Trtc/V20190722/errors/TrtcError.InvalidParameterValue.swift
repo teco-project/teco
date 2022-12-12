@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTrtcError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCTrtcErrorType {
         enum Code: String {
             case roomId = "InvalidParameterValue.RoomId"
         }
@@ -29,8 +29,6 @@ extension TCTrtcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCTrtcError {
         public static var roomId: InvalidParameterValue {
             InvalidParameterValue(.roomId)
         }
-    }
-}
-
-extension TCTrtcError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCTrtcError.InvalidParameterValue, rhs: TCTrtcError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTrtcError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTrtcError.InvalidParameterValue {
-    /// - Returns: ``TCTrtcError`` that holds the same error and context.
-    public func toTrtcError() -> TCTrtcError {
-        guard let code = TCTrtcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTrtcError() -> TCTrtcError {
+            let code: TCTrtcError.Code
+            switch self.error {
+            case .roomId: 
+                code = .invalidParameterValue_RoomId
+            }
+            return TCTrtcError(code, context: self.context)
         }
-        return TCTrtcError(code, context: self.context)
-    }
-}
-
-extension TCTrtcError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

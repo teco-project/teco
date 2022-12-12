@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTmtError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCTmtErrorType {
         enum Code: String {
             case duplicatedSessionIdAndSeq = "InvalidParameter.DuplicatedSessionIdAndSeq"
             case missingParameter = "InvalidParameter.MissingParameter"
@@ -32,8 +32,6 @@ extension TCTmtError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCTmtError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCTmtError.InvalidParameter: Equatable {
-    public static func == (lhs: TCTmtError.InvalidParameter, rhs: TCTmtError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTmtError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTmtError.InvalidParameter {
-    /// - Returns: ``TCTmtError`` that holds the same error and context.
-    public func toTmtError() -> TCTmtError {
-        guard let code = TCTmtError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTmtError() -> TCTmtError {
+            let code: TCTmtError.Code
+            switch self.error {
+            case .duplicatedSessionIdAndSeq: 
+                code = .invalidParameter_DuplicatedSessionIdAndSeq
+            case .missingParameter: 
+                code = .invalidParameter_MissingParameter
+            case .seqIntervalTooLarge: 
+                code = .invalidParameter_SeqIntervalTooLarge
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCTmtError(code, context: self.context)
         }
-        return TCTmtError(code, context: self.context)
-    }
-}
-
-extension TCTmtError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

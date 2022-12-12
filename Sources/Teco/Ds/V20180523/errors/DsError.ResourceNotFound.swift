@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDsError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCDsErrorType {
         enum Code: String {
             case accountNotFound = "ResourceNotFound.AccountNotFound"
             case contractNotFound = "ResourceNotFound.ContractNotFound"
@@ -35,8 +35,6 @@ extension TCDsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -84,37 +82,26 @@ extension TCDsError {
         public static var taskNotFound: ResourceNotFound {
             ResourceNotFound(.taskNotFound)
         }
-    }
-}
-
-extension TCDsError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCDsError.ResourceNotFound, rhs: TCDsError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDsError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDsError.ResourceNotFound {
-    /// - Returns: ``TCDsError`` that holds the same error and context.
-    public func toDsError() -> TCDsError {
-        guard let code = TCDsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDsError() -> TCDsError {
+            let code: TCDsError.Code
+            switch self.error {
+            case .accountNotFound: 
+                code = .resourceNotFound_AccountNotFound
+            case .contractNotFound: 
+                code = .resourceNotFound_ContractNotFound
+            case .contractProjectCodeNotFound: 
+                code = .resourceNotFound_ContractProjectCodeNotFound
+            case .initiatorNotFoundError: 
+                code = .resourceNotFound_InitiatorNotFoundError
+            case .sealNotFound: 
+                code = .resourceNotFound_SealNotFound
+            case .subplatIdNotFound: 
+                code = .resourceNotFound_SubplatIdNotFound
+            case .taskNotFound: 
+                code = .resourceNotFound_TaskNotFound
+            }
+            return TCDsError(code, context: self.context)
         }
-        return TCDsError(code, context: self.context)
-    }
-}
-
-extension TCDsError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

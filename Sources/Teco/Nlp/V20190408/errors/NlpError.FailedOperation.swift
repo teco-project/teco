@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCNlpError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCNlpErrorType {
         enum Code: String {
             case illegalTextError = "FailedOperation.IllegalTextError"
             case requestTimeout = "FailedOperation.RequestTimeout"
@@ -35,8 +35,6 @@ extension TCNlpError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -82,37 +80,26 @@ extension TCNlpError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCNlpError.FailedOperation: Equatable {
-    public static func == (lhs: TCNlpError.FailedOperation, rhs: TCNlpError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCNlpError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCNlpError.FailedOperation {
-    /// - Returns: ``TCNlpError`` that holds the same error and context.
-    public func toNlpError() -> TCNlpError {
-        guard let code = TCNlpError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asNlpError() -> TCNlpError {
+            let code: TCNlpError.Code
+            switch self.error {
+            case .illegalTextError: 
+                code = .failedOperation_IllegalTextError
+            case .requestTimeout: 
+                code = .failedOperation_RequestTimeout
+            case .rpcFail: 
+                code = .failedOperation_RpcFail
+            case .textEmbeddingFailed: 
+                code = .failedOperation_TextEmbeddingFailed
+            case .unknown: 
+                code = .failedOperation_Unknown
+            case .wordNotFound: 
+                code = .failedOperation_WordNotFound
+            case .other: 
+                code = .failedOperation
+            }
+            return TCNlpError(code, context: self.context)
         }
-        return TCNlpError(code, context: self.context)
-    }
-}
-
-extension TCNlpError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

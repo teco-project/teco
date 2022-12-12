@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCloudauditError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCCloudauditErrorType {
         enum Code: String {
             case createBucketFail = "FailedOperation.CreateBucketFail"
             case other = "FailedOperation"
@@ -30,8 +30,6 @@ extension TCCloudauditError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCCloudauditError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCCloudauditError.FailedOperation: Equatable {
-    public static func == (lhs: TCCloudauditError.FailedOperation, rhs: TCCloudauditError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCloudauditError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCloudauditError.FailedOperation {
-    /// - Returns: ``TCCloudauditError`` that holds the same error and context.
-    public func toCloudauditError() -> TCCloudauditError {
-        guard let code = TCCloudauditError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCloudauditError() -> TCCloudauditError {
+            let code: TCCloudauditError.Code
+            switch self.error {
+            case .createBucketFail: 
+                code = .failedOperation_CreateBucketFail
+            case .other: 
+                code = .failedOperation
+            }
+            return TCCloudauditError(code, context: self.context)
         }
-        return TCCloudauditError(code, context: self.context)
-    }
-}
-
-extension TCCloudauditError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

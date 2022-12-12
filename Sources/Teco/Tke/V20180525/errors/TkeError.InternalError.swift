@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTkeError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCTkeErrorType {
         enum Code: String {
             case accountCommon = "InternalError.AccountCommon"
             case accountUserNotAuthenticated = "InternalError.AccountUserNotAuthenticated"
@@ -97,8 +97,6 @@ extension TCTkeError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -462,37 +460,150 @@ extension TCTkeError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCTkeError.InternalError: Equatable {
-    public static func == (lhs: TCTkeError.InternalError, rhs: TCTkeError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTkeError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTkeError.InternalError {
-    /// - Returns: ``TCTkeError`` that holds the same error and context.
-    public func toTkeError() -> TCTkeError {
-        guard let code = TCTkeError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTkeError() -> TCTkeError {
+            let code: TCTkeError.Code
+            switch self.error {
+            case .accountCommon: 
+                code = .internalError_AccountCommon
+            case .accountUserNotAuthenticated: 
+                code = .internalError_AccountUserNotAuthenticated
+            case .asCommon: 
+                code = .internalError_AsCommon
+            case .camNoAuth: 
+                code = .internalError_CamNoAuth
+            case .cidrConflictWithOtherCluster: 
+                code = .internalError_CidrConflictWithOtherCluster
+            case .cidrConflictWithOtherRoute: 
+                code = .internalError_CidrConflictWithOtherRoute
+            case .cidrConflictWithVpcCidr: 
+                code = .internalError_CidrConflictWithVpcCidr
+            case .cidrConflictWithVpcGlobalRoute: 
+                code = .internalError_CidrConflictWithVpcGlobalRoute
+            case .cidrInvali: 
+                code = .internalError_CidrInvali
+            case .cidrMaskSizeOutOfRange: 
+                code = .internalError_CidrMaskSizeOutOfRange
+            case .cidrOutOfRouteTable: 
+                code = .internalError_CidrOutOfRouteTable
+            case .clusterNotFound: 
+                code = .internalError_ClusterNotFound
+            case .clusterState: 
+                code = .internalError_ClusterState
+            case .clusterUpgradeNodeVersion: 
+                code = .internalError_ClusterUpgradeNodeVersion
+            case .cmdTimeout: 
+                code = .internalError_CmdTimeout
+            case .componentClientHttp: 
+                code = .internalError_ComponentClientHttp
+            case .componentClinetHttp: 
+                code = .internalError_ComponentClinetHttp
+            case .containerNotFound: 
+                code = .internalError_ContainerNotFound
+            case .createMasterFailed: 
+                code = .internalError_CreateMasterFailed
+            case .cvmCommon: 
+                code = .internalError_CvmCommon
+            case .cvmNotFound: 
+                code = .internalError_CvmNotFound
+            case .cvmNumberNotMatch: 
+                code = .internalError_CvmNumberNotMatch
+            case .cvmStatus: 
+                code = .internalError_CvmStatus
+            case .db: 
+                code = .internalError_Db
+            case .dbAffectivedRows: 
+                code = .internalError_DbAffectivedRows
+            case .dbRecordNotFound: 
+                code = .internalError_DbRecordNotFound
+            case .dfwGetUSGCount: 
+                code = .internalError_DfwGetUSGCount
+            case .dfwGetUSGQuota: 
+                code = .internalError_DfwGetUSGQuota
+            case .emptyClusterNotSupport: 
+                code = .internalError_EmptyClusterNotSupport
+            case .gatewayAlreadyAssociatedCidr: 
+                code = .internalError_GatewayAlreadyAssociatedCidr
+            case .imageIdNotFound: 
+                code = .internalError_ImageIdNotFound
+            case .initMasterFailed: 
+                code = .internalError_InitMasterFailed
+            case .invalidPrivateNetworkCidr: 
+                code = .internalError_InvalidPrivateNetworkCidr
+            case .kubeClientConnection: 
+                code = .internalError_KubeClientConnection
+            case .kubeClientCreate: 
+                code = .internalError_KubeClientCreate
+            case .kubeCommon: 
+                code = .internalError_KubeCommon
+            case .kubernetesClientBuildError: 
+                code = .internalError_KubernetesClientBuildError
+            case .kubernetesCreateOperationError: 
+                code = .internalError_KubernetesCreateOperationError
+            case .kubernetesDeleteOperationError: 
+                code = .internalError_KubernetesDeleteOperationError
+            case .kubernetesGetOperationError: 
+                code = .internalError_KubernetesGetOperationError
+            case .kubernetesInternal: 
+                code = .internalError_KubernetesInternal
+            case .kubernetesPatchOperationError: 
+                code = .internalError_KubernetesPatchOperationError
+            case .lbCommon: 
+                code = .internalError_LbCommon
+            case .osNotSupport: 
+                code = .internalError_OsNotSupport
+            case .param: 
+                code = .internalError_Param
+            case .podNotFound: 
+                code = .internalError_PodNotFound
+            case .publicClusterOpNotSupport: 
+                code = .internalError_PublicClusterOpNotSupport
+            case .quotaMaxClsLimit: 
+                code = .internalError_QuotaMaxClsLimit
+            case .quotaMaxNodLimit: 
+                code = .internalError_QuotaMaxNodLimit
+            case .quotaMaxRtLimit: 
+                code = .internalError_QuotaMaxRtLimit
+            case .quotaUSGLimit: 
+                code = .internalError_QuotaUSGLimit
+            case .resourceExistAlready: 
+                code = .internalError_ResourceExistAlready
+            case .routeTableNotEmpty: 
+                code = .internalError_RouteTableNotEmpty
+            case .routeTableNotFound: 
+                code = .internalError_RouteTableNotFound
+            case .taskAlreadyRunning: 
+                code = .internalError_TaskAlreadyRunning
+            case .taskCreateFailed: 
+                code = .internalError_TaskCreateFailed
+            case .taskLifeStateError: 
+                code = .internalError_TaskLifeStateError
+            case .taskNotFound: 
+                code = .internalError_TaskNotFound
+            case .tradeCommon: 
+                code = .internalError_TradeCommon
+            case .tradeInsufficientBalance: 
+                code = .internalError_TradeInsufficientBalance
+            case .unexceptedInternal: 
+                code = .internalError_UnexceptedInternal
+            case .unexpectedInternal: 
+                code = .internalError_UnexpectedInternal
+            case .vpcCommon: 
+                code = .internalError_VpcCommon
+            case .vpcPeerNotFound: 
+                code = .internalError_VpcPeerNotFound
+            case .vpcRecodrNotFound: 
+                code = .internalError_VpcRecodrNotFound
+            case .vpcUnexpectedError: 
+                code = .internalError_VPCUnexpectedError
+            case .vstationError: 
+                code = .internalError_VstationError
+            case .whitelistUnexpectedError: 
+                code = .internalError_WhitelistUnexpectedError
+            case .other: 
+                code = .internalError
+            }
+            return TCTkeError(code, context: self.context)
         }
-        return TCTkeError(code, context: self.context)
-    }
-}
-
-extension TCTkeError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

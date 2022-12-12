@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCOceanusError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCOceanusErrorType {
         enum Code: String {
             case clusterId = "InvalidParameterValue.ClusterId"
             case clusterIds = "InvalidParameterValue.ClusterIds"
@@ -44,8 +44,6 @@ extension TCOceanusError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -138,37 +136,44 @@ extension TCOceanusError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCOceanusError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCOceanusError.InvalidParameterValue, rhs: TCOceanusError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCOceanusError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCOceanusError.InvalidParameterValue {
-    /// - Returns: ``TCOceanusError`` that holds the same error and context.
-    public func toOceanusError() -> TCOceanusError {
-        guard let code = TCOceanusError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asOceanusError() -> TCOceanusError {
+            let code: TCOceanusError.Code
+            switch self.error {
+            case .clusterId: 
+                code = .invalidParameterValue_ClusterId
+            case .clusterIds: 
+                code = .invalidParameterValue_ClusterIds
+            case .cuMem: 
+                code = .invalidParameterValue_CuMem
+            case .invalidStartMode: 
+                code = .invalidParameterValue_InvalidStartMode
+            case .jobIdValueError: 
+                code = .invalidParameterValue_JobIdValueError
+            case .jobName: 
+                code = .invalidParameterValue_JobName
+            case .jobNameExisted: 
+                code = .invalidParameterValue_JobNameExisted
+            case .jobTypeCombineWithClusterType: 
+                code = .invalidParameterValue_JobTypeCombineWithClusterType
+            case .jobTypeCombineWithEntrypointClass: 
+                code = .invalidParameterValue_JobTypeCombineWithEntrypointClass
+            case .orderType: 
+                code = .invalidParameterValue_OrderType
+            case .resourceIdsNotFound: 
+                code = .invalidParameterValue_ResourceIdsNotFound
+            case .runJobDescriptionsCount: 
+                code = .invalidParameterValue_RunJobDescriptionsCount
+            case .runType: 
+                code = .invalidParameterValue_RunType
+            case .unSupportedComposite: 
+                code = .invalidParameterValue_UnSupportedComposite
+            case .unknownStopType: 
+                code = .invalidParameterValue_UnknownStopType
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCOceanusError(code, context: self.context)
         }
-        return TCOceanusError(code, context: self.context)
-    }
-}
-
-extension TCOceanusError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

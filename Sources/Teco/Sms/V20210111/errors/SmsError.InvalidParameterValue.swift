@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSmsError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCSmsErrorType {
         enum Code: String {
             case beginTimeVerifyFail = "InvalidParameterValue.BeginTimeVerifyFail"
             case contentLengthLimit = "InvalidParameterValue.ContentLengthLimit"
@@ -48,8 +48,6 @@ extension TCSmsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -164,37 +162,52 @@ extension TCSmsError {
         public static var templateWithDirtyWords: InvalidParameterValue {
             InvalidParameterValue(.templateWithDirtyWords)
         }
-    }
-}
-
-extension TCSmsError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCSmsError.InvalidParameterValue, rhs: TCSmsError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSmsError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSmsError.InvalidParameterValue {
-    /// - Returns: ``TCSmsError`` that holds the same error and context.
-    public func toSmsError() -> TCSmsError {
-        guard let code = TCSmsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSmsError() -> TCSmsError {
+            let code: TCSmsError.Code
+            switch self.error {
+            case .beginTimeVerifyFail: 
+                code = .invalidParameterValue_BeginTimeVerifyFail
+            case .contentLengthLimit: 
+                code = .invalidParameterValue_ContentLengthLimit
+            case .endTimeVerifyFail: 
+                code = .invalidParameterValue_EndTimeVerifyFail
+            case .imageInvalid: 
+                code = .invalidParameterValue_ImageInvalid
+            case .incorrectPhoneNumber: 
+                code = .invalidParameterValue_IncorrectPhoneNumber
+            case .invalidDocumentType: 
+                code = .invalidParameterValue_InvalidDocumentType
+            case .invalidInternational: 
+                code = .invalidParameterValue_InvalidInternational
+            case .invalidSignPurpose: 
+                code = .invalidParameterValue_InvalidSignPurpose
+            case .invalidStartTime: 
+                code = .invalidParameterValue_InvalidStartTime
+            case .invalidTemplateFormat: 
+                code = .invalidParameterValue_InvalidTemplateFormat
+            case .invalidUsedMethod: 
+                code = .invalidParameterValue_InvalidUsedMethod
+            case .limitVerifyFail: 
+                code = .invalidParameterValue_LimitVerifyFail
+            case .offsetVerifyFail: 
+                code = .invalidParameterValue_OffsetVerifyFail
+            case .prohibitedUseUrlInTemplateParameter: 
+                code = .invalidParameterValue_ProhibitedUseUrlInTemplateParameter
+            case .sdkAppIdNotExist: 
+                code = .invalidParameterValue_SdkAppIdNotExist
+            case .signAlreadyPassedCheck: 
+                code = .invalidParameterValue_SignAlreadyPassedCheck
+            case .signExistAndUnapproved: 
+                code = .invalidParameterValue_SignExistAndUnapproved
+            case .templateParameterFormatError: 
+                code = .invalidParameterValue_TemplateParameterFormatError
+            case .templateParameterLengthLimit: 
+                code = .invalidParameterValue_TemplateParameterLengthLimit
+            case .templateWithDirtyWords: 
+                code = .invalidParameterValue_TemplateWithDirtyWords
+            }
+            return TCSmsError(code, context: self.context)
         }
-        return TCSmsError(code, context: self.context)
-    }
-}
-
-extension TCSmsError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCScfError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCScfErrorType {
         enum Code: String {
             case aliasBind = "UnsupportedOperation.AliasBind"
             case asyncRunEnable = "UnsupportedOperation.AsyncRunEnable"
@@ -39,8 +39,6 @@ extension TCScfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -108,37 +106,34 @@ extension TCScfError {
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-    }
-}
-
-extension TCScfError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCScfError.UnsupportedOperation, rhs: TCScfError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCScfError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCScfError.UnsupportedOperation {
-    /// - Returns: ``TCScfError`` that holds the same error and context.
-    public func toScfError() -> TCScfError {
-        guard let code = TCScfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asScfError() -> TCScfError {
+            let code: TCScfError.Code
+            switch self.error {
+            case .aliasBind: 
+                code = .unsupportedOperation_AliasBind
+            case .asyncRunEnable: 
+                code = .unsupportedOperation_AsyncRunEnable
+            case .cdn: 
+                code = .unsupportedOperation_Cdn
+            case .cos: 
+                code = .unsupportedOperation_Cos
+            case .eipFixed: 
+                code = .unsupportedOperation_EipFixed
+            case .notSupportRegion: 
+                code = .unsupportedOperation_NotSupportRegion
+            case .region: 
+                code = .unsupportedOperation_Region
+            case .trigger: 
+                code = .unsupportedOperation_Trigger
+            case .updateFunctionEventInvokeConfig: 
+                code = .unsupportedOperation_UpdateFunctionEventInvokeConfig
+            case .vpcConfig: 
+                code = .unsupportedOperation_VpcConfig
+            case .other: 
+                code = .unsupportedOperation
+            }
+            return TCScfError(code, context: self.context)
         }
-        return TCScfError(code, context: self.context)
-    }
-}
-
-extension TCScfError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

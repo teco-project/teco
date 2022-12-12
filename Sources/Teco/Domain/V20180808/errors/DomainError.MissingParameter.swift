@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDomainError {
-    public struct MissingParameter: TCErrorType {
+    public struct MissingParameter: TCDomainErrorType {
         enum Code: String {
             case domainIsEmpty = "MissingParameter.DomainIsEmpty"
             case repDataIsNone = "MissingParameter.RepDataIsNone"
@@ -33,8 +33,6 @@ extension TCDomainError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,22 @@ extension TCDomainError {
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-    }
-}
-
-extension TCDomainError.MissingParameter: Equatable {
-    public static func == (lhs: TCDomainError.MissingParameter, rhs: TCDomainError.MissingParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDomainError.MissingParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDomainError.MissingParameter {
-    /// - Returns: ``TCDomainError`` that holds the same error and context.
-    public func toDomainError() -> TCDomainError {
-        guard let code = TCDomainError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDomainError() -> TCDomainError {
+            let code: TCDomainError.Code
+            switch self.error {
+            case .domainIsEmpty: 
+                code = .missingParameter_DomainIsEmpty
+            case .repDataIsNone: 
+                code = .missingParameter_RepDataIsNone
+            case .templateIdIsEmpty: 
+                code = .missingParameter_TemplateIdIsEmpty
+            case .templateIdIsExist: 
+                code = .missingParameter_TemplateIdIsExist
+            case .other: 
+                code = .missingParameter
+            }
+            return TCDomainError(code, context: self.context)
         }
-        return TCDomainError(code, context: self.context)
-    }
-}
-
-extension TCDomainError.MissingParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

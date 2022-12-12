@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBmvpcError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCBmvpcErrorType {
         enum Code: String {
             case customerGatewayAddrExist = "UnsupportedOperation.CustomerGatewayAddrExist"
             case customerGatewayAddrInvalid = "UnsupportedOperation.CustomerGatewayAddrInvalid"
@@ -39,8 +39,6 @@ extension TCBmvpcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -108,37 +106,34 @@ extension TCBmvpcError {
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-    }
-}
-
-extension TCBmvpcError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCBmvpcError.UnsupportedOperation, rhs: TCBmvpcError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBmvpcError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBmvpcError.UnsupportedOperation {
-    /// - Returns: ``TCBmvpcError`` that holds the same error and context.
-    public func toBmvpcError() -> TCBmvpcError {
-        guard let code = TCBmvpcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBmvpcError() -> TCBmvpcError {
+            let code: TCBmvpcError.Code
+            switch self.error {
+            case .customerGatewayAddrExist: 
+                code = .unsupportedOperation_CustomerGatewayAddrExist
+            case .customerGatewayAddrInvalid: 
+                code = .unsupportedOperation_CustomerGatewayAddrInvalid
+            case .invalidVpcPeerState: 
+                code = .unsupportedOperation_InvalidVpcPeerState
+            case .invalidVpnConnState: 
+                code = .unsupportedOperation_InvalidVpnConnState
+            case .spdAclCidrInvalid: 
+                code = .unsupportedOperation_SpdAclCidrInvalid
+            case .spdSnetNotInCidr: 
+                code = .unsupportedOperation_SpdSnetNotInCidr
+            case .vpcCidrConfict: 
+                code = .unsupportedOperation_VpcCidrConfict
+            case .vpcPeerExist: 
+                code = .unsupportedOperation_VpcPeerExist
+            case .vpnConnExist: 
+                code = .unsupportedOperation_VpnConnExist
+            case .vpnConnInUse: 
+                code = .unsupportedOperation_VpnConnInUse
+            case .other: 
+                code = .unsupportedOperation
+            }
+            return TCBmvpcError(code, context: self.context)
         }
-        return TCBmvpcError(code, context: self.context)
-    }
-}
-
-extension TCBmvpcError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

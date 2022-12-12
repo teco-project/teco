@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCOceanusError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCOceanusErrorType {
         enum Code: String {
             case beUseBySomeJobConfig = "ResourceUnavailable.BeUseBySomeJobConfig"
             case checkResourceLocExists = "ResourceUnavailable.CheckResourceLocExists"
@@ -41,8 +41,6 @@ extension TCOceanusError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -120,37 +118,38 @@ extension TCOceanusError {
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-    }
-}
-
-extension TCOceanusError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCOceanusError.ResourceUnavailable, rhs: TCOceanusError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCOceanusError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCOceanusError.ResourceUnavailable {
-    /// - Returns: ``TCOceanusError`` that holds the same error and context.
-    public func toOceanusError() -> TCOceanusError {
-        guard let code = TCOceanusError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asOceanusError() -> TCOceanusError {
+            let code: TCOceanusError.Code
+            switch self.error {
+            case .beUseBySomeJobConfig: 
+                code = .resourceUnavailable_BeUseBySomeJobConfig
+            case .checkResourceLocExists: 
+                code = .resourceUnavailable_CheckResourceLocExists
+            case .cluster: 
+                code = .resourceUnavailable_Cluster
+            case .clusterGroupStatus: 
+                code = .resourceUnavailable_ClusterGroupStatus
+            case .failedToBescribeResources: 
+                code = .resourceUnavailable_FailedToBescribeResources
+            case .getJobPublishedJobConfig: 
+                code = .resourceUnavailable_GetJobPublishedJobConfig
+            case .jobResourceConfigNotReady: 
+                code = .resourceUnavailable_JobResourceConfigNotReady
+            case .noRunningJobInstancesFoundForJobId: 
+                code = .resourceUnavailable_NoRunningJobInstancesFoundForJobId
+            case .notAllowedToBeDeleted: 
+                code = .resourceUnavailable_NotAllowedToBeDeleted
+            case .notAllowedToBeStopOrPause: 
+                code = .resourceUnavailable_NotAllowedToBeStopOrPause
+            case .reqCuMem: 
+                code = .resourceUnavailable_ReqCuMem
+            case .resourceLocNotExists: 
+                code = .resourceUnavailable_ResourceLocNotExists
+            case .other: 
+                code = .resourceUnavailable
+            }
+            return TCOceanusError(code, context: self.context)
         }
-        return TCOceanusError(code, context: self.context)
-    }
-}
-
-extension TCOceanusError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEmrError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCEmrErrorType {
         enum Code: String {
             case resourceSpecNotDefaultSpec = "ResourceUnavailable.ResourceSpecNotDefaultSpec"
         }
@@ -29,8 +29,6 @@ extension TCEmrError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -50,37 +48,14 @@ extension TCEmrError {
         public static var resourceSpecNotDefaultSpec: ResourceUnavailable {
             ResourceUnavailable(.resourceSpecNotDefaultSpec)
         }
-    }
-}
-
-extension TCEmrError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCEmrError.ResourceUnavailable, rhs: TCEmrError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEmrError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEmrError.ResourceUnavailable {
-    /// - Returns: ``TCEmrError`` that holds the same error and context.
-    public func toEmrError() -> TCEmrError {
-        guard let code = TCEmrError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEmrError() -> TCEmrError {
+            let code: TCEmrError.Code
+            switch self.error {
+            case .resourceSpecNotDefaultSpec: 
+                code = .resourceUnavailable_ResourceSpecNotDefaultSpec
+            }
+            return TCEmrError(code, context: self.context)
         }
-        return TCEmrError(code, context: self.context)
-    }
-}
-
-extension TCEmrError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

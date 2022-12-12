@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBatchError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCBatchErrorType {
         enum Code: String {
             case computeNodeIdMalformed = "InvalidParameter.ComputeNodeIdMalformed"
             case cvmParameters = "InvalidParameter.CvmParameters"
@@ -47,8 +47,6 @@ extension TCBatchError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -156,37 +154,50 @@ extension TCBatchError {
         public static var taskTemplateNameTooLong: InvalidParameter {
             InvalidParameter(.taskTemplateNameTooLong)
         }
-    }
-}
-
-extension TCBatchError.InvalidParameter: Equatable {
-    public static func == (lhs: TCBatchError.InvalidParameter, rhs: TCBatchError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBatchError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBatchError.InvalidParameter {
-    /// - Returns: ``TCBatchError`` that holds the same error and context.
-    public func toBatchError() -> TCBatchError {
-        guard let code = TCBatchError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBatchError() -> TCBatchError {
+            let code: TCBatchError.Code
+            switch self.error {
+            case .computeNodeIdMalformed: 
+                code = .invalidParameter_ComputeNodeIdMalformed
+            case .cvmParameters: 
+                code = .invalidParameter_CvmParameters
+            case .envDescriptionTooLong: 
+                code = .invalidParameter_EnvDescriptionTooLong
+            case .envIdMalformed: 
+                code = .invalidParameter_EnvIdMalformed
+            case .envNameTooLong: 
+                code = .invalidParameter_EnvNameTooLong
+            case .imageIdMalformed: 
+                code = .invalidParameter_ImageIdMalformed
+            case .invalidParameterCombination: 
+                code = .invalidParameter_InvalidParameterCombination
+            case .jobDescriptionTooLong: 
+                code = .invalidParameter_JobDescriptionTooLong
+            case .jobIdMalformed: 
+                code = .invalidParameter_JobIdMalformed
+            case .jobNameTooLong: 
+                code = .invalidParameter_JobNameTooLong
+            case .notificationEventNameDuplicate: 
+                code = .invalidParameter_NotificationEventNameDuplicate
+            case .notificationTopicName: 
+                code = .invalidParameter_NotificationTopicName
+            case .notificationTopicNameTooLong: 
+                code = .invalidParameter_NotificationTopicNameTooLong
+            case .taskName: 
+                code = .invalidParameter_TaskName
+            case .taskNameTooLong: 
+                code = .invalidParameter_TaskNameTooLong
+            case .taskTemplateDescriptionTooLong: 
+                code = .invalidParameter_TaskTemplateDescriptionTooLong
+            case .taskTemplateIdMalformed: 
+                code = .invalidParameter_TaskTemplateIdMalformed
+            case .taskTemplateName: 
+                code = .invalidParameter_TaskTemplateName
+            case .taskTemplateNameTooLong: 
+                code = .invalidParameter_TaskTemplateNameTooLong
+            }
+            return TCBatchError(code, context: self.context)
         }
-        return TCBatchError(code, context: self.context)
-    }
-}
-
-extension TCBatchError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

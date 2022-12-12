@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBillingError {
-    public struct AuthFailure: TCErrorType {
+    public struct AuthFailure: TCBillingErrorType {
         enum Code: String {
             case unauthorizedOperation = "AuthFailure.UnauthorizedOperation"
             case other = "AuthFailure"
@@ -30,8 +30,6 @@ extension TCBillingError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCBillingError {
         public static var other: AuthFailure {
             AuthFailure(.other)
         }
-    }
-}
-
-extension TCBillingError.AuthFailure: Equatable {
-    public static func == (lhs: TCBillingError.AuthFailure, rhs: TCBillingError.AuthFailure) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBillingError.AuthFailure: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBillingError.AuthFailure {
-    /// - Returns: ``TCBillingError`` that holds the same error and context.
-    public func toBillingError() -> TCBillingError {
-        guard let code = TCBillingError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBillingError() -> TCBillingError {
+            let code: TCBillingError.Code
+            switch self.error {
+            case .unauthorizedOperation: 
+                code = .authFailure_UnauthorizedOperation
+            case .other: 
+                code = .authFailure
+            }
+            return TCBillingError(code, context: self.context)
         }
-        return TCBillingError(code, context: self.context)
-    }
-}
-
-extension TCBillingError.AuthFailure {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

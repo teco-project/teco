@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotexplorerError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCIotexplorerErrorType {
         enum Code: String {
             case applicationExceedLimit = "LimitExceeded.ApplicationExceedLimit"
             case batchProductionExceedLimit = "LimitExceeded.BatchProductionExceedLimit"
@@ -41,8 +41,6 @@ extension TCIotexplorerError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -120,37 +118,38 @@ extension TCIotexplorerError {
         public static var topicPolicyExceedLimit: LimitExceeded {
             LimitExceeded(.topicPolicyExceedLimit)
         }
-    }
-}
-
-extension TCIotexplorerError.LimitExceeded: Equatable {
-    public static func == (lhs: TCIotexplorerError.LimitExceeded, rhs: TCIotexplorerError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotexplorerError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotexplorerError.LimitExceeded {
-    /// - Returns: ``TCIotexplorerError`` that holds the same error and context.
-    public func toIotexplorerError() -> TCIotexplorerError {
-        guard let code = TCIotexplorerError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotexplorerError() -> TCIotexplorerError {
+            let code: TCIotexplorerError.Code
+            switch self.error {
+            case .applicationExceedLimit: 
+                code = .limitExceeded_ApplicationExceedLimit
+            case .batchProductionExceedLimit: 
+                code = .limitExceeded_BatchProductionExceedLimit
+            case .batchProductionNull: 
+                code = .limitExceeded_BatchProductionNull
+            case .bindProductsExceedLimit: 
+                code = .limitExceeded_BindProductsExceedLimit
+            case .deviceExceedLimit: 
+                code = .limitExceeded_DeviceExceedLimit
+            case .firmwareExceedLimit: 
+                code = .limitExceeded_FirmwareExceedLimit
+            case .messageSaved: 
+                code = .limitExceeded_MessageSaved
+            case .productExceedLimit: 
+                code = .limitExceeded_ProductExceedLimit
+            case .projectExceedLimit: 
+                code = .limitExceeded_ProjectExceedLimit
+            case .studioLoRaFreqExceedLimit: 
+                code = .limitExceeded_StudioLoRaFreqExceedLimit
+            case .studioProductExceedLimit: 
+                code = .limitExceeded_StudioProductExceedLimit
+            case .thingModelExceedLimit: 
+                code = .limitExceeded_ThingModelExceedLimit
+            case .topicPolicyExceedLimit: 
+                code = .limitExceeded_TopicPolicyExceedLimit
+            }
+            return TCIotexplorerError(code, context: self.context)
         }
-        return TCIotexplorerError(code, context: self.context)
-    }
-}
-
-extension TCIotexplorerError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

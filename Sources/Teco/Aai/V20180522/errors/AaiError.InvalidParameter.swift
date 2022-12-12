@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAaiError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCAaiErrorType {
         enum Code: String {
             case errorChatText = "InvalidParameter.ErrorChatText"
             case errorChatUser = "InvalidParameter.ErrorChatUser"
@@ -35,8 +35,6 @@ extension TCAaiError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -84,37 +82,26 @@ extension TCAaiError {
         public static var invalidText: InvalidParameter {
             InvalidParameter(.invalidText)
         }
-    }
-}
-
-extension TCAaiError.InvalidParameter: Equatable {
-    public static func == (lhs: TCAaiError.InvalidParameter, rhs: TCAaiError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAaiError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAaiError.InvalidParameter {
-    /// - Returns: ``TCAaiError`` that holds the same error and context.
-    public func toAaiError() -> TCAaiError {
-        guard let code = TCAaiError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAaiError() -> TCAaiError {
+            let code: TCAaiError.Code
+            switch self.error {
+            case .errorChatText: 
+                code = .invalidParameter_ErrorChatText
+            case .errorChatUser: 
+                code = .invalidParameter_ErrorChatUser
+            case .errorContentlength: 
+                code = .invalidParameter_ErrorContentlength
+            case .errorNoBodydata: 
+                code = .invalidParameter_ErrorNoBodydata
+            case .errorParamsMissing: 
+                code = .invalidParameter_ErrorParamsMissing
+            case .errorParsequest: 
+                code = .invalidParameter_ErrorParsequest
+            case .invalidText: 
+                code = .invalidParameter_InvalidText
+            }
+            return TCAaiError(code, context: self.context)
         }
-        return TCAaiError(code, context: self.context)
-    }
-}
-
-extension TCAaiError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

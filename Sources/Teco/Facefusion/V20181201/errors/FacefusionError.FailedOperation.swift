@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCFacefusionError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCFacefusionErrorType {
         enum Code: String {
             case activityStatusInvalid = "FailedOperation.ActivityStatusInvalid"
             case faceBorderCheckFailed = "FailedOperation.FaceBorderCheckFailed"
@@ -67,8 +67,6 @@ extension TCFacefusionError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -276,37 +274,90 @@ extension TCFacefusionError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCFacefusionError.FailedOperation: Equatable {
-    public static func == (lhs: TCFacefusionError.FailedOperation, rhs: TCFacefusionError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCFacefusionError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCFacefusionError.FailedOperation {
-    /// - Returns: ``TCFacefusionError`` that holds the same error and context.
-    public func toFacefusionError() -> TCFacefusionError {
-        guard let code = TCFacefusionError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asFacefusionError() -> TCFacefusionError {
+            let code: TCFacefusionError.Code
+            switch self.error {
+            case .activityStatusInvalid: 
+                code = .failedOperation_ActivityStatusInvalid
+            case .faceBorderCheckFailed: 
+                code = .failedOperation_FaceBorderCheckFailed
+            case .faceDetectFailed: 
+                code = .failedOperation_FaceDetectFailed
+            case .faceExceedBorder: 
+                code = .failedOperation_FaceExceedBorder
+            case .faceFeatureFailed: 
+                code = .failedOperation_FaceFeatureFailed
+            case .faceFusionError: 
+                code = .failedOperation_FaceFusionError
+            case .facePoseFailed: 
+                code = .failedOperation_FacePoseFailed
+            case .faceRectInvalid: 
+                code = .failedOperation_FaceRectInvalid
+            case .faceShapeInvalid: 
+                code = .failedOperation_FaceShapeInvalid
+            case .faceSizeTooSmall: 
+                code = .failedOperation_FaceSizeTooSmall
+            case .fuseBackendServerFault: 
+                code = .failedOperation_FuseBackendServerFault
+            case .fuseDetectNoFace: 
+                code = .failedOperation_FuseDetectNoFace
+            case .fuseFreqCtrl: 
+                code = .failedOperation_FuseFreqCtrl
+            case .fuseImageError: 
+                code = .failedOperation_FuseImageError
+            case .fuseInnerError: 
+                code = .failedOperation_FuseInnerError
+            case .fuseMaterialNotAuth: 
+                code = .failedOperation_FuseMaterialNotAuth
+            case .fuseMaterialNotExist: 
+                code = .failedOperation_FuseMaterialNotExist
+            case .fuseSavePhotoFail: 
+                code = .failedOperation_FuseSavePhotoFail
+            case .imageDecodeFailed: 
+                code = .failedOperation_ImageDecodeFailed
+            case .imageDownloadError: 
+                code = .failedOperation_ImageDownloadError
+            case .imagePixelExceed: 
+                code = .failedOperation_ImagePixelExceed
+            case .imageResolutionExceed: 
+                code = .failedOperation_ImageResolutionExceed
+            case .imageResolutionTooSmall: 
+                code = .failedOperation_ImageResolutionTooSmall
+            case .imageSizeExceed: 
+                code = .failedOperation_ImageSizeExceed
+            case .imageSizeExceedFiveHundredKB: 
+                code = .failedOperation_ImageSizeExceedFiveHundredKB
+            case .imageSizeInvalid: 
+                code = .failedOperation_ImageSizeInvalid
+            case .imageUploadFailed: 
+                code = .failedOperation_ImageUploadFailed
+            case .innerError: 
+                code = .failedOperation_InnerError
+            case .materialValueExceed: 
+                code = .failedOperation_MaterialValueExceed
+            case .noFaceDetected: 
+                code = .failedOperation_NoFaceDetected
+            case .parameterValueError: 
+                code = .failedOperation_ParameterValueError
+            case .projectNotAuth: 
+                code = .failedOperation_ProjectNotAuth
+            case .requestEntityTooLarge: 
+                code = .failedOperation_RequestEntityTooLarge
+            case .requestTimeout: 
+                code = .failedOperation_RequestTimeout
+            case .rpcFail: 
+                code = .failedOperation_RpcFail
+            case .serverError: 
+                code = .failedOperation_ServerError
+            case .templateFaceIDNotExist: 
+                code = .failedOperation_TemplateFaceIDNotExist
+            case .unknown: 
+                code = .failedOperation_Unknown
+            case .other: 
+                code = .failedOperation
+            }
+            return TCFacefusionError(code, context: self.context)
         }
-        return TCFacefusionError(code, context: self.context)
-    }
-}
-
-extension TCFacefusionError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

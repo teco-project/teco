@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTdmqError {
-    public struct ResourceInUse: TCErrorType {
+    public struct ResourceInUse: TCTdmqErrorType {
         enum Code: String {
             case cluster = "ResourceInUse.Cluster"
             case environmentRole = "ResourceInUse.EnvironmentRole"
@@ -36,8 +36,6 @@ extension TCTdmqError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -90,37 +88,28 @@ extension TCTdmqError {
         public static var other: ResourceInUse {
             ResourceInUse(.other)
         }
-    }
-}
-
-extension TCTdmqError.ResourceInUse: Equatable {
-    public static func == (lhs: TCTdmqError.ResourceInUse, rhs: TCTdmqError.ResourceInUse) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTdmqError.ResourceInUse: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTdmqError.ResourceInUse {
-    /// - Returns: ``TCTdmqError`` that holds the same error and context.
-    public func toTdmqError() -> TCTdmqError {
-        guard let code = TCTdmqError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTdmqError() -> TCTdmqError {
+            let code: TCTdmqError.Code
+            switch self.error {
+            case .cluster: 
+                code = .resourceInUse_Cluster
+            case .environmentRole: 
+                code = .resourceInUse_EnvironmentRole
+            case .namespace: 
+                code = .resourceInUse_Namespace
+            case .queue: 
+                code = .resourceInUse_Queue
+            case .role: 
+                code = .resourceInUse_Role
+            case .subscription: 
+                code = .resourceInUse_Subscription
+            case .topic: 
+                code = .resourceInUse_Topic
+            case .other: 
+                code = .resourceInUse
+            }
+            return TCTdmqError(code, context: self.context)
         }
-        return TCTdmqError(code, context: self.context)
-    }
-}
-
-extension TCTdmqError.ResourceInUse {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

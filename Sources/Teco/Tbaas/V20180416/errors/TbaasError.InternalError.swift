@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTbaasError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCTbaasErrorType {
         enum Code: String {
             case dbError = "InternalError.DBError"
             case failPreform = "InternalError.FailPreform"
@@ -41,8 +41,6 @@ extension TCTbaasError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -120,37 +118,38 @@ extension TCTbaasError {
         public static var unknownError: InternalError {
             InternalError(.unknownError)
         }
-    }
-}
-
-extension TCTbaasError.InternalError: Equatable {
-    public static func == (lhs: TCTbaasError.InternalError, rhs: TCTbaasError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTbaasError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTbaasError.InternalError {
-    /// - Returns: ``TCTbaasError`` that holds the same error and context.
-    public func toTbaasError() -> TCTbaasError {
-        guard let code = TCTbaasError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTbaasError() -> TCTbaasError {
+            let code: TCTbaasError.Code
+            switch self.error {
+            case .dbError: 
+                code = .internalError_DBError
+            case .failPreform: 
+                code = .internalError_FailPreform
+            case .failUrl: 
+                code = .internalError_FailUrl
+            case .flaskException: 
+                code = .internalError_FlaskException
+            case .invalidContractParam: 
+                code = .internalError_InvalidContractParam
+            case .methodTypeNotSupport: 
+                code = .internalError_MethodTypeNotSupport
+            case .noDefineError: 
+                code = .internalError_NoDefineError
+            case .serverError: 
+                code = .internalError_ServerError
+            case .serverException: 
+                code = .internalError_ServerException
+            case .serviceError: 
+                code = .internalError_ServiceError
+            case .servicePanic: 
+                code = .internalError_ServicePanic
+            case .transactionService: 
+                code = .internalError_TransactionService
+            case .unknownError: 
+                code = .internalError_UnknownError
+            }
+            return TCTbaasError(code, context: self.context)
         }
-        return TCTbaasError(code, context: self.context)
-    }
-}
-
-extension TCTbaasError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

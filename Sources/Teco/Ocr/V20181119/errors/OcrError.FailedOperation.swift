@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCOcrError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCOcrErrorType {
         enum Code: String {
             case arrearsError = "FailedOperation.ArrearsError"
             case countLimitError = "FailedOperation.CountLimitError"
@@ -53,8 +53,6 @@ extension TCOcrError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -193,37 +191,62 @@ extension TCOcrError {
         public static var unOpenError: FailedOperation {
             FailedOperation(.unOpenError)
         }
-    }
-}
-
-extension TCOcrError.FailedOperation: Equatable {
-    public static func == (lhs: TCOcrError.FailedOperation, rhs: TCOcrError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCOcrError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCOcrError.FailedOperation {
-    /// - Returns: ``TCOcrError`` that holds the same error and context.
-    public func toOcrError() -> TCOcrError {
-        guard let code = TCOcrError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asOcrError() -> TCOcrError {
+            let code: TCOcrError.Code
+            switch self.error {
+            case .arrearsError: 
+                code = .failedOperation_ArrearsError
+            case .countLimitError: 
+                code = .failedOperation_CountLimitError
+            case .dataSourceQueryFailed: 
+                code = .failedOperation_DataSourceQueryFailed
+            case .detectFailed: 
+                code = .failedOperation_DetectFailed
+            case .downLoadError: 
+                code = .failedOperation_DownLoadError
+            case .emptyImageError: 
+                code = .failedOperation_EmptyImageError
+            case .engineRecognizeTimeout: 
+                code = .failedOperation_EngineRecognizeTimeout
+            case .idCardInfoIllegal: 
+                code = .failedOperation_IdCardInfoIllegal
+            case .imageBlur: 
+                code = .failedOperation_ImageBlur
+            case .imageDecodeFailed: 
+                code = .failedOperation_ImageDecodeFailed
+            case .imageNoBusinessCard: 
+                code = .failedOperation_ImageNoBusinessCard
+            case .imageNoIdCard: 
+                code = .failedOperation_ImageNoIdCard
+            case .imageNoText: 
+                code = .failedOperation_ImageNoText
+            case .imageSizeTooLarge: 
+                code = .failedOperation_ImageSizeTooLarge
+            case .invoiceMismatch: 
+                code = .failedOperation_InvoiceMismatch
+            case .languageNotSupport: 
+                code = .failedOperation_LanguageNotSupport
+            case .multiCardError: 
+                code = .failedOperation_MultiCardError
+            case .noBizLicense: 
+                code = .failedOperation_NoBizLicense
+            case .noHKIDCard: 
+                code = .failedOperation_NoHKIDCard
+            case .noMASIDCard: 
+                code = .failedOperation_NoMASIDCard
+            case .noPassport: 
+                code = .failedOperation_NoPassport
+            case .ocrFailed: 
+                code = .failedOperation_OcrFailed
+            case .queryNoRecord: 
+                code = .failedOperation_QueryNoRecord
+            case .unKnowError: 
+                code = .failedOperation_UnKnowError
+            case .unOpenError: 
+                code = .failedOperation_UnOpenError
+            }
+            return TCOcrError(code, context: self.context)
         }
-        return TCOcrError(code, context: self.context)
-    }
-}
-
-extension TCOcrError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

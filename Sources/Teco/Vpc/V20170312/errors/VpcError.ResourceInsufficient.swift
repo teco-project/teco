@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCVpcError {
-    public struct ResourceInsufficient: TCErrorType {
+    public struct ResourceInsufficient: TCVpcErrorType {
         enum Code: String {
             case cidrBlock = "ResourceInsufficient.CidrBlock"
             case subnet = "ResourceInsufficient.Subnet"
@@ -31,8 +31,6 @@ extension TCVpcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -59,37 +57,18 @@ extension TCVpcError {
         public static var other: ResourceInsufficient {
             ResourceInsufficient(.other)
         }
-    }
-}
-
-extension TCVpcError.ResourceInsufficient: Equatable {
-    public static func == (lhs: TCVpcError.ResourceInsufficient, rhs: TCVpcError.ResourceInsufficient) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCVpcError.ResourceInsufficient: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCVpcError.ResourceInsufficient {
-    /// - Returns: ``TCVpcError`` that holds the same error and context.
-    public func toVpcError() -> TCVpcError {
-        guard let code = TCVpcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asVpcError() -> TCVpcError {
+            let code: TCVpcError.Code
+            switch self.error {
+            case .cidrBlock: 
+                code = .resourceInsufficient_CidrBlock
+            case .subnet: 
+                code = .resourceInsufficient_Subnet
+            case .other: 
+                code = .resourceInsufficient
+            }
+            return TCVpcError(code, context: self.context)
         }
-        return TCVpcError(code, context: self.context)
-    }
-}
-
-extension TCVpcError.ResourceInsufficient {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

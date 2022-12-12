@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEmrError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCEmrErrorType {
         enum Code: String {
             case displayStrategyNotMatch = "InvalidParameter.DisplayStrategyNotMatch"
             case haLessMasterCount = "InvalidParameter.HALessMasterCount"
@@ -97,8 +97,6 @@ extension TCEmrError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -589,37 +587,150 @@ extension TCEmrError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCEmrError.InvalidParameter: Equatable {
-    public static func == (lhs: TCEmrError.InvalidParameter, rhs: TCEmrError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEmrError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEmrError.InvalidParameter {
-    /// - Returns: ``TCEmrError`` that holds the same error and context.
-    public func toEmrError() -> TCEmrError {
-        guard let code = TCEmrError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEmrError() -> TCEmrError {
+            let code: TCEmrError.Code
+            switch self.error {
+            case .displayStrategyNotMatch: 
+                code = .invalidParameter_DisplayStrategyNotMatch
+            case .haLessMasterCount: 
+                code = .invalidParameter_HALessMasterCount
+            case .incorrectCommonCount: 
+                code = .invalidParameter_IncorrectCommonCount
+            case .incorrectMasterCount: 
+                code = .invalidParameter_IncorrectMasterCount
+            case .invalidAppId: 
+                code = .invalidParameter_InvalidAppId
+            case .invalidAutoRenew: 
+                code = .invalidParameter_InvalidAutoRenew
+            case .invalidBootstrapAction: 
+                code = .invalidParameter_InvalidBootstrapAction
+            case .invalidClickHouseCluster: 
+                code = .invalidParameter_InvalidClickHouseCluster
+            case .invalidClientToken: 
+                code = .invalidParameter_InvalidClientToken
+            case .invalidClusterId: 
+                code = .invalidParameter_InvalidClusterId
+            case .invalidCommonDiskType: 
+                code = .invalidParameter_InvalidCommonDiskType
+            case .invalidComponent: 
+                code = .invalidParameter_InvalidComponent
+            case .invalidCoreCount: 
+                code = .invalidParameter_InvalidCoreCount
+            case .invalidCosFileURI: 
+                code = .invalidParameter_InvalidCosFileURI
+            case .invalidCount: 
+                code = .invalidParameter_InvalidCount
+            case .invalidCountNum: 
+                code = .invalidParameter_InvalidCountNum
+            case .invalidCustomizedPodParam: 
+                code = .invalidParameter_InvalidCustomizedPodParam
+            case .invalidDiskSize: 
+                code = .invalidParameter_InvalidDiskSize
+            case .invalidEksInstance: 
+                code = .invalidParameter_InvalidEksInstance
+            case .invalidExtendField: 
+                code = .invalidParameter_InvalidExtendField
+            case .invalidFailurePolicy: 
+                code = .invalidParameter_InvalidFailurePolicy
+            case .invalidInstance: 
+                code = .invalidParameter_InvalidInstance
+            case .invalidInstanceName: 
+                code = .invalidParameter_InvalidInstanceName
+            case .invalidInstancePolicy: 
+                code = .invalidParameter_InvalidInstancePolicy
+            case .invalidInstanceType: 
+                code = .invalidParameter_InvalidInstanceType
+            case .invalidJobFlow: 
+                code = .invalidParameter_InvalidJobFlow
+            case .invalidJobType: 
+                code = .invalidParameter_InvalidJobType
+            case .invalidLoginSetting: 
+                code = .invalidParameter_InvalidLoginSetting
+            case .invalidMasterDiskType: 
+                code = .invalidParameter_InvalidMasterDiskType
+            case .invalidMetaDataJdbcUrl: 
+                code = .invalidParameter_InvalidMetaDataJdbcUrl
+            case .invalidMetaType: 
+                code = .invalidParameter_InvalidMetaType
+            case .invalidModifySpec: 
+                code = .invalidParameter_InvalidModifySpec
+            case .invalidNodeType: 
+                code = .invalidParameter_InvalidNodeType
+            case .invalidPassword: 
+                code = .invalidParameter_InvalidPassword
+            case .invalidPaymode: 
+                code = .invalidParameter_InvalidPaymode
+            case .invalidPreExecutedFile: 
+                code = .invalidParameter_InvalidPreExecutedFile
+            case .invalidProduct: 
+                code = .invalidParameter_InvalidProduct
+            case .invalidProductId: 
+                code = .invalidParameter_InvalidProductId
+            case .invalidProjectId: 
+                code = .invalidParameter_InvalidProjectId
+            case .invalidResourceIds: 
+                code = .invalidParameter_InvalidResourceIds
+            case .invalidResourceSpec: 
+                code = .invalidParameter_InvalidResourceSpec
+            case .invalidSecuritySupport: 
+                code = .invalidParameter_InvalidSecuritySupport
+            case .invalidSercurityGrpupId: 
+                code = .invalidParameter_InvalidSercurityGrpupId
+            case .invalidServiceName: 
+                code = .invalidParameter_InvalidServiceName
+            case .invalidServiceNodeInfo: 
+                code = .invalidParameter_InvalidServiceNodeInfo
+            case .invalidSoftDeployInfo: 
+                code = .invalidParameter_InvalidSoftDeployInfo
+            case .invalidSoftInfo: 
+                code = .invalidParameter_InvalidSoftInfo
+            case .invalidSoftWare: 
+                code = .invalidParameter_InvalidSoftWare
+            case .invalidSoftWareName: 
+                code = .invalidParameter_InvalidSoftWareName
+            case .invalidSoftWareVersion: 
+                code = .invalidParameter_InvalidSoftWareVersion
+            case .invalidSubnetId: 
+                code = .invalidParameter_InvalidSubnetId
+            case .invalidSupportHA: 
+                code = .invalidParameter_InvalidSupportHA
+            case .invalidTagsGroup: 
+                code = .invalidParameter_InvalidTagsGroup
+            case .invalidTaskCount: 
+                code = .invalidParameter_InvalidTaskCount
+            case .invalidTimeSpan: 
+                code = .invalidParameter_InvalidTimeSpan
+            case .invalidTimeUnit: 
+                code = .invalidParameter_InvalidTimeUnit
+            case .invalidTkeInstance: 
+                code = .invalidParameter_InvalidTkeInstance
+            case .invalidUnifyMeta: 
+                code = .invalidParameter_InvalidUnifyMeta
+            case .invalidVpcId: 
+                code = .invalidParameter_InvalidVpcId
+            case .invalidZone: 
+                code = .invalidParameter_InvalidZone
+            case .notContainMustSelectSoftware: 
+                code = .invalidParameter_NotContainMustSelectSoftware
+            case .orderFieldNotMatch: 
+                code = .invalidParameter_OrderFieldNotMatch
+            case .payModeResourceNotMatch: 
+                code = .invalidParameter_PayModeResourceNotMatch
+            case .projectResourceNotMatch: 
+                code = .invalidParameter_ProjectResourceNotMatch
+            case .softwareNotInProduct: 
+                code = .invalidParameter_SoftwareNotInProduct
+            case .ungrantedPolicy: 
+                code = .invalidParameter_UngrantedPolicy
+            case .ungrantedRole: 
+                code = .invalidParameter_UngrantedRole
+            case .zoneResourceNotMatch: 
+                code = .invalidParameter_ZoneResourceNotMatch
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCEmrError(code, context: self.context)
         }
-        return TCEmrError(code, context: self.context)
-    }
-}
-
-extension TCEmrError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

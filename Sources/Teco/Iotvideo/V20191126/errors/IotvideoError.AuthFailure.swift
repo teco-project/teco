@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotvideoError {
-    public struct AuthFailure: TCErrorType {
+    public struct AuthFailure: TCIotvideoErrorType {
         enum Code: String {
             case signatureFailure = "AuthFailure.SignatureFailure"
             case tokenFailure = "AuthFailure.TokenFailure"
@@ -31,8 +31,6 @@ extension TCIotvideoError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCIotvideoError {
         public static var other: AuthFailure {
             AuthFailure(.other)
         }
-    }
-}
-
-extension TCIotvideoError.AuthFailure: Equatable {
-    public static func == (lhs: TCIotvideoError.AuthFailure, rhs: TCIotvideoError.AuthFailure) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotvideoError.AuthFailure: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotvideoError.AuthFailure {
-    /// - Returns: ``TCIotvideoError`` that holds the same error and context.
-    public func toIotvideoError() -> TCIotvideoError {
-        guard let code = TCIotvideoError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotvideoError() -> TCIotvideoError {
+            let code: TCIotvideoError.Code
+            switch self.error {
+            case .signatureFailure: 
+                code = .authFailure_SignatureFailure
+            case .tokenFailure: 
+                code = .authFailure_TokenFailure
+            case .other: 
+                code = .authFailure
+            }
+            return TCIotvideoError(code, context: self.context)
         }
-        return TCIotvideoError(code, context: self.context)
-    }
-}
-
-extension TCIotvideoError.AuthFailure {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

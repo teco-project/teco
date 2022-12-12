@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCRedisError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCRedisErrorType {
         enum Code: String {
             case accountBalanceNotEnough = "ResourceUnavailable.AccountBalanceNotEnough"
             case backupLockedError = "ResourceUnavailable.BackupLockedError"
@@ -49,8 +49,6 @@ extension TCRedisError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -167,37 +165,54 @@ extension TCRedisError {
         public static var securityGroupNotSupported: ResourceUnavailable {
             ResourceUnavailable(.securityGroupNotSupported)
         }
-    }
-}
-
-extension TCRedisError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCRedisError.ResourceUnavailable, rhs: TCRedisError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCRedisError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCRedisError.ResourceUnavailable {
-    /// - Returns: ``TCRedisError`` that holds the same error and context.
-    public func toRedisError() -> TCRedisError {
-        guard let code = TCRedisError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asRedisError() -> TCRedisError {
+            let code: TCRedisError.Code
+            switch self.error {
+            case .accountBalanceNotEnough: 
+                code = .resourceUnavailable_AccountBalanceNotEnough
+            case .backupLockedError: 
+                code = .resourceUnavailable_BackupLockedError
+            case .backupStatusAbnormal: 
+                code = .resourceUnavailable_BackupStatusAbnormal
+            case .backupStatusInvalid: 
+                code = .resourceUnavailable_BackupStatusInvalid
+            case .callOssError: 
+                code = .resourceUnavailable_CallOssError
+            case .getSecurityError: 
+                code = .resourceUnavailable_GetSecurityError
+            case .instanceConfError: 
+                code = .resourceUnavailable_InstanceConfError
+            case .instanceDeleted: 
+                code = .resourceUnavailable_InstanceDeleted
+            case .instanceIsolated: 
+                code = .resourceUnavailable_InstanceIsolated
+            case .instanceLockedError: 
+                code = .resourceUnavailable_InstanceLockedError
+            case .instanceNoDeal: 
+                code = .resourceUnavailable_InstanceNoDeal
+            case .instanceNotSupportOperation: 
+                code = .resourceUnavailable_InstanceNotSupportOperation
+            case .instanceStateError: 
+                code = .resourceUnavailable_InstanceStateError
+            case .instanceStatusAbnormal: 
+                code = .resourceUnavailable_InstanceStatusAbnormal
+            case .instanceStatusError: 
+                code = .resourceUnavailable_InstanceStatusError
+            case .instanceUnLockedError: 
+                code = .resourceUnavailable_InstanceUnLockedError
+            case .noEnoughVipInVPC: 
+                code = .resourceUnavailable_NoEnoughVipInVPC
+            case .noRedisService: 
+                code = .resourceUnavailable_NoRedisService
+            case .noTypeIdRedisService: 
+                code = .resourceUnavailable_NoTypeIdRedisService
+            case .saleOut: 
+                code = .resourceUnavailable_SaleOut
+            case .securityGroupNotSupported: 
+                code = .resourceUnavailable_SecurityGroupNotSupported
+            }
+            return TCRedisError(code, context: self.context)
         }
-        return TCRedisError(code, context: self.context)
-    }
-}
-
-extension TCRedisError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

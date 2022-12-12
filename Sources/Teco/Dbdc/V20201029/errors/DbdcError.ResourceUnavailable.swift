@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDbdcError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCDbdcErrorType {
         enum Code: String {
             case resourceStatusAbnormalError = "ResourceUnavailable.ResourceStatusAbnormalError"
         }
@@ -29,8 +29,6 @@ extension TCDbdcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCDbdcError {
         public static var resourceStatusAbnormalError: ResourceUnavailable {
             ResourceUnavailable(.resourceStatusAbnormalError)
         }
-    }
-}
-
-extension TCDbdcError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCDbdcError.ResourceUnavailable, rhs: TCDbdcError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDbdcError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDbdcError.ResourceUnavailable {
-    /// - Returns: ``TCDbdcError`` that holds the same error and context.
-    public func toDbdcError() -> TCDbdcError {
-        guard let code = TCDbdcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDbdcError() -> TCDbdcError {
+            let code: TCDbdcError.Code
+            switch self.error {
+            case .resourceStatusAbnormalError: 
+                code = .resourceUnavailable_ResourceStatusAbnormalError
+            }
+            return TCDbdcError(code, context: self.context)
         }
-        return TCDbdcError(code, context: self.context)
-    }
-}
-
-extension TCDbdcError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

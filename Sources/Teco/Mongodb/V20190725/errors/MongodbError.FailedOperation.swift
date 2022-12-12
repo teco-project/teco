@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMongodbError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCMongodbErrorType {
         enum Code: String {
             case kernelResponseTimeout = "FailedOperation.KernelResponseTimeout"
             case other = "FailedOperation"
@@ -30,8 +30,6 @@ extension TCMongodbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCMongodbError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCMongodbError.FailedOperation: Equatable {
-    public static func == (lhs: TCMongodbError.FailedOperation, rhs: TCMongodbError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMongodbError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMongodbError.FailedOperation {
-    /// - Returns: ``TCMongodbError`` that holds the same error and context.
-    public func toMongodbError() -> TCMongodbError {
-        guard let code = TCMongodbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMongodbError() -> TCMongodbError {
+            let code: TCMongodbError.Code
+            switch self.error {
+            case .kernelResponseTimeout: 
+                code = .failedOperation_KernelResponseTimeout
+            case .other: 
+                code = .failedOperation
+            }
+            return TCMongodbError(code, context: self.context)
         }
-        return TCMongodbError(code, context: self.context)
-    }
-}
-
-extension TCMongodbError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

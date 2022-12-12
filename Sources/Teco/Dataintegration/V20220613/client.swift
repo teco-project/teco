@@ -20,23 +20,25 @@
 ///
 /// 文档包含数据上报、数据任务的创建、暂停、重启等。
 public struct Dataintegration: TCService {
-    /// Client used for communication with Tencent Cloud
+    /// Client used to communicate with Tencent Cloud.
     public let client: TCClient
     
-    /// Service configuration
+    /// Service context details.
     public let config: TCServiceConfig
     
-    /// Initialize the ``Dataintegration`` client
+    /// Initialize the ``Dataintegration`` client.
     ///
     /// - Parameters:
-    ///    - client: ``TCClient`` used to process requests
-    ///    - region: The service region you want to operate on
-    ///    - endpoint: Custom Endpoint URL preference
-    ///    - timeout: Timeout value for HTTP requests
+    ///    - client: ``TCClient`` used to perform actions.
+    ///    - region: Region of the service you want to operate on.
+    ///    - language: Preferred language for API response.
+    ///    - endpoint: Custom endpoint URL for API request.
+    ///    - timeout: Timeout value for HTTP requests.
     public init (
     client: TCClient, 
     region: TCRegion? = nil, 
-    endpoint: TCServiceConfig.EndpointPreference = .global, 
+    language: TCServiceConfig.Language? = nil, 
+    endpoint: TCServiceConfig.Endpoint = .global, 
     timeout: TimeAmount? = nil, 
     byteBufferAllocator: ByteBufferAllocator = ByteBufferAllocator()
     ) {
@@ -45,7 +47,9 @@ public struct Dataintegration: TCService {
         region: region, 
         service: "dataintegration", 
         apiVersion: "2022-06-13", 
+        language: language, 
         endpoint: endpoint, 
+        errorType: nil, 
         timeout: timeout, 
         byteBufferAllocator: byteBufferAllocator
         )
@@ -53,10 +57,10 @@ public struct Dataintegration: TCService {
 }
 
 extension Dataintegration {
-    /// Initializer required by ``with(region:language:timeout:byteBufferAllocator:)``.
+    /// Initializer required by ``with(region:language:endpoint:timeout:byteBufferAllocator:)``.
     ///
     /// You are not able to use this initializer directly as there are no public initializers for ``TCServiceConfig/Patch``.
-    /// Please use ``with(region:language:timeout:byteBufferAllocator:)`` instead.
+    /// Please use ``with(region:language:endpoint:timeout:byteBufferAllocator:)`` instead.
     public init (from service: Self, patch: TCServiceConfig.Patch) {
         self.client = service.client
         self.config = service.config.with(patch: patch)

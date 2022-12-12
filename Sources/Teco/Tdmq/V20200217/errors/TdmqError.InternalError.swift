@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTdmqError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCTdmqErrorType {
         enum Code: String {
             case brokerService = "InternalError.BrokerService"
             case getAttributesFailed = "InternalError.GetAttributesFailed"
@@ -34,8 +34,6 @@ extension TCTdmqError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -78,37 +76,24 @@ extension TCTdmqError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCTdmqError.InternalError: Equatable {
-    public static func == (lhs: TCTdmqError.InternalError, rhs: TCTdmqError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTdmqError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTdmqError.InternalError {
-    /// - Returns: ``TCTdmqError`` that holds the same error and context.
-    public func toTdmqError() -> TCTdmqError {
-        guard let code = TCTdmqError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTdmqError() -> TCTdmqError {
+            let code: TCTdmqError.Code
+            switch self.error {
+            case .brokerService: 
+                code = .internalError_BrokerService
+            case .getAttributesFailed: 
+                code = .internalError_GetAttributesFailed
+            case .illegalMessage: 
+                code = .internalError_IllegalMessage
+            case .retry: 
+                code = .internalError_Retry
+            case .systemError: 
+                code = .internalError_SystemError
+            case .other: 
+                code = .internalError
+            }
+            return TCTdmqError(code, context: self.context)
         }
-        return TCTdmqError(code, context: self.context)
-    }
-}
-
-extension TCTdmqError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

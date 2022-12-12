@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEssbasicError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCEssbasicErrorType {
         enum Code: String {
             case application = "ResourceNotFound.Application"
             case applicationAuth = "ResourceNotFound.ApplicationAuth"
@@ -42,8 +42,6 @@ extension TCEssbasicError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -125,37 +123,40 @@ extension TCEssbasicError {
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-    }
-}
-
-extension TCEssbasicError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCEssbasicError.ResourceNotFound, rhs: TCEssbasicError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEssbasicError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEssbasicError.ResourceNotFound {
-    /// - Returns: ``TCEssbasicError`` that holds the same error and context.
-    public func toEssbasicError() -> TCEssbasicError {
-        guard let code = TCEssbasicError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEssbasicError() -> TCEssbasicError {
+            let code: TCEssbasicError.Code
+            switch self.error {
+            case .application: 
+                code = .resourceNotFound_Application
+            case .applicationAuth: 
+                code = .resourceNotFound_ApplicationAuth
+            case .applicationId: 
+                code = .resourceNotFound_ApplicationId
+            case .file: 
+                code = .resourceNotFound_File
+            case .flow: 
+                code = .resourceNotFound_Flow
+            case .flowApprovers: 
+                code = .resourceNotFound_FlowApprovers
+            case .organization: 
+                code = .resourceNotFound_Organization
+            case .resource: 
+                code = .resourceNotFound_Resource
+            case .seal: 
+                code = .resourceNotFound_Seal
+            case .teamWorkOrganization: 
+                code = .resourceNotFound_TeamWorkOrganization
+            case .template: 
+                code = .resourceNotFound_Template
+            case .user: 
+                code = .resourceNotFound_User
+            case .verifyUser: 
+                code = .resourceNotFound_VerifyUser
+            case .other: 
+                code = .resourceNotFound
+            }
+            return TCEssbasicError(code, context: self.context)
         }
-        return TCEssbasicError(code, context: self.context)
-    }
-}
-
-extension TCEssbasicError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

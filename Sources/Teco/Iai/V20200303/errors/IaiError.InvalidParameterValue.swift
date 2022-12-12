@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIaiError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCIaiErrorType {
         enum Code: String {
             case accountFaceNumExceed = "InvalidParameterValue.AccountFaceNumExceed"
             case deleteFaceNumExceed = "InvalidParameterValue.DeleteFaceNumExceed"
@@ -75,8 +75,6 @@ extension TCIaiError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -324,37 +322,106 @@ extension TCIaiError {
         public static var urlIllegal: InvalidParameterValue {
             InvalidParameterValue(.urlIllegal)
         }
-    }
-}
-
-extension TCIaiError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCIaiError.InvalidParameterValue, rhs: TCIaiError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIaiError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIaiError.InvalidParameterValue {
-    /// - Returns: ``TCIaiError`` that holds the same error and context.
-    public func toIaiError() -> TCIaiError {
-        guard let code = TCIaiError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIaiError() -> TCIaiError {
+            let code: TCIaiError.Code
+            switch self.error {
+            case .accountFaceNumExceed: 
+                code = .invalidParameterValue_AccountFaceNumExceed
+            case .deleteFaceNumExceed: 
+                code = .invalidParameterValue_DeleteFaceNumExceed
+            case .faceMatchThresholdIllegal: 
+                code = .invalidParameterValue_FaceMatchThresholdIllegal
+            case .faceModelVersionIllegal: 
+                code = .invalidParameterValue_FaceModelVersionIllegal
+            case .groupExDescriptionsExceed: 
+                code = .invalidParameterValue_GroupExDescriptionsExceed
+            case .groupExDescriptionsNameIdentical: 
+                code = .invalidParameterValue_GroupExDescriptionsNameIdentical
+            case .groupExDescriptionsNameIllegal: 
+                code = .invalidParameterValue_GroupExDescriptionsNameIllegal
+            case .groupExDescriptionsNameTooLong: 
+                code = .invalidParameterValue_GroupExDescriptionsNameTooLong
+            case .groupFaceNumExceed: 
+                code = .invalidParameterValue_GroupFaceNumExceed
+            case .groupIdAlreadyExist: 
+                code = .invalidParameterValue_GroupIdAlreadyExist
+            case .groupIdIllegal: 
+                code = .invalidParameterValue_GroupIdIllegal
+            case .groupIdNotExist: 
+                code = .invalidParameterValue_GroupIdNotExist
+            case .groupIdNotExists: 
+                code = .invalidParameterValue_GroupIdNotExists
+            case .groupIdTooLong: 
+                code = .invalidParameterValue_GroupIdTooLong
+            case .groupIdsExceed: 
+                code = .invalidParameterValue_GroupIdsExceed
+            case .groupNameAlreadyExist: 
+                code = .invalidParameterValue_GroupNameAlreadyExist
+            case .groupNameIllegal: 
+                code = .invalidParameterValue_GroupNameIllegal
+            case .groupNameTooLong: 
+                code = .invalidParameterValue_GroupNameTooLong
+            case .groupNumExceed: 
+                code = .invalidParameterValue_GroupNumExceed
+            case .groupNumPerPersonExceed: 
+                code = .invalidParameterValue_GroupNumPerPersonExceed
+            case .groupTagIllegal: 
+                code = .invalidParameterValue_GroupTagIllegal
+            case .groupTagTooLong: 
+                code = .invalidParameterValue_GroupTagTooLong
+            case .imageEmpty: 
+                code = .invalidParameterValue_ImageEmpty
+            case .imageEmptyError: 
+                code = .invalidParameterValue_ImageEmptyError
+            case .limitExceed: 
+                code = .invalidParameterValue_LimitExceed
+            case .noFaceInGroups: 
+                code = .invalidParameterValue_NoFaceInGroups
+            case .noFaceInPhoto: 
+                code = .invalidParameterValue_NoFaceInPhoto
+            case .offsetExceed: 
+                code = .invalidParameterValue_OffsetExceed
+            case .personExDescriptionInfosExceed: 
+                code = .invalidParameterValue_PersonExDescriptionInfosExceed
+            case .personExDescriptionsNameIdentical: 
+                code = .invalidParameterValue_PersonExDescriptionsNameIdentical
+            case .personExDescriptionsNameIllegal: 
+                code = .invalidParameterValue_PersonExDescriptionsNameIllegal
+            case .personExDescriptionsNameTooLong: 
+                code = .invalidParameterValue_PersonExDescriptionsNameTooLong
+            case .personExistInGroup: 
+                code = .invalidParameterValue_PersonExistInGroup
+            case .personFaceNumExceed: 
+                code = .invalidParameterValue_PersonFaceNumExceed
+            case .personGenderIllegal: 
+                code = .invalidParameterValue_PersonGenderIllegal
+            case .personIdAlreadyExist: 
+                code = .invalidParameterValue_PersonIdAlreadyExist
+            case .personIdIllegal: 
+                code = .invalidParameterValue_PersonIdIllegal
+            case .personIdNotExist: 
+                code = .invalidParameterValue_PersonIdNotExist
+            case .personIdTooLong: 
+                code = .invalidParameterValue_PersonIdTooLong
+            case .personNameIllegal: 
+                code = .invalidParameterValue_PersonNameIllegal
+            case .personNameTooLong: 
+                code = .invalidParameterValue_PersonNameTooLong
+            case .qualityControlIllegal: 
+                code = .invalidParameterValue_QualityControlIllegal
+            case .searchPersonsExceed: 
+                code = .invalidParameterValue_SearchPersonsExceed
+            case .uniquePersonControlIllegal: 
+                code = .invalidParameterValue_UniquePersonControlIllegal
+            case .unsupportedGroupFaceModelVersion: 
+                code = .invalidParameterValue_UnsupportedGroupFaceModelVersion
+            case .uploadFaceNumExceed: 
+                code = .invalidParameterValue_UploadFaceNumExceed
+            case .urlIllegal: 
+                code = .invalidParameterValue_UrlIllegal
+            }
+            return TCIaiError(code, context: self.context)
         }
-        return TCIaiError(code, context: self.context)
-    }
-}
-
-extension TCIaiError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

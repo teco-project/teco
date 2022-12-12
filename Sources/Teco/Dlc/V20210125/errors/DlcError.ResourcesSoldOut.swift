@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDlcError {
-    public struct ResourcesSoldOut: TCErrorType {
+    public struct ResourcesSoldOut: TCDlcErrorType {
         enum Code: String {
             case unauthorizedGrantPolicy = "ResourcesSoldOut.UnauthorizedGrantPolicy"
             case unauthorizedOperation = "ResourcesSoldOut.UnauthorizedOperation"
@@ -32,8 +32,6 @@ extension TCDlcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCDlcError {
         public static var other: ResourcesSoldOut {
             ResourcesSoldOut(.other)
         }
-    }
-}
-
-extension TCDlcError.ResourcesSoldOut: Equatable {
-    public static func == (lhs: TCDlcError.ResourcesSoldOut, rhs: TCDlcError.ResourcesSoldOut) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDlcError.ResourcesSoldOut: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDlcError.ResourcesSoldOut {
-    /// - Returns: ``TCDlcError`` that holds the same error and context.
-    public func toDlcError() -> TCDlcError {
-        guard let code = TCDlcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDlcError() -> TCDlcError {
+            let code: TCDlcError.Code
+            switch self.error {
+            case .unauthorizedGrantPolicy: 
+                code = .resourcesSoldOut_UnauthorizedGrantPolicy
+            case .unauthorizedOperation: 
+                code = .resourcesSoldOut_UnauthorizedOperation
+            case .unauthorizedRevokePolicy: 
+                code = .resourcesSoldOut_UnauthorizedRevokePolicy
+            case .other: 
+                code = .resourcesSoldOut
+            }
+            return TCDlcError(code, context: self.context)
         }
-        return TCDlcError(code, context: self.context)
-    }
-}
-
-extension TCDlcError.ResourcesSoldOut {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBizliveError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCBizliveErrorType {
         enum Code: String {
             case clientNotExist = "ResourceNotFound.ClientNotExist"
         }
@@ -29,8 +29,6 @@ extension TCBizliveError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCBizliveError {
         public static var clientNotExist: ResourceNotFound {
             ResourceNotFound(.clientNotExist)
         }
-    }
-}
-
-extension TCBizliveError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCBizliveError.ResourceNotFound, rhs: TCBizliveError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBizliveError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBizliveError.ResourceNotFound {
-    /// - Returns: ``TCBizliveError`` that holds the same error and context.
-    public func toBizliveError() -> TCBizliveError {
-        guard let code = TCBizliveError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBizliveError() -> TCBizliveError {
+            let code: TCBizliveError.Code
+            switch self.error {
+            case .clientNotExist: 
+                code = .resourceNotFound_ClientNotExist
+            }
+            return TCBizliveError(code, context: self.context)
         }
-        return TCBizliveError(code, context: self.context)
-    }
-}
-
-extension TCBizliveError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

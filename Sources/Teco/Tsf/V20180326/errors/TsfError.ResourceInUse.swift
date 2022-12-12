@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTsfError {
-    public struct ResourceInUse: TCErrorType {
+    public struct ResourceInUse: TCTsfErrorType {
         enum Code: String {
             case applicationCannotDelete = "ResourceInUse.ApplicationCannotDelete"
             case cvmcaeMasterCannotDelete = "ResourceInUse.CvmcaeMasterCannotDelete"
@@ -37,8 +37,6 @@ extension TCTsfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -96,37 +94,30 @@ extension TCTsfError {
         public static var ratelimitRuleExistError: ResourceInUse {
             ResourceInUse(.ratelimitRuleExistError)
         }
-    }
-}
-
-extension TCTsfError.ResourceInUse: Equatable {
-    public static func == (lhs: TCTsfError.ResourceInUse, rhs: TCTsfError.ResourceInUse) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTsfError.ResourceInUse: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTsfError.ResourceInUse {
-    /// - Returns: ``TCTsfError`` that holds the same error and context.
-    public func toTsfError() -> TCTsfError {
-        guard let code = TCTsfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTsfError() -> TCTsfError {
+            let code: TCTsfError.Code
+            switch self.error {
+            case .applicationCannotDelete: 
+                code = .resourceInUse_ApplicationCannotDelete
+            case .cvmcaeMasterCannotDelete: 
+                code = .resourceInUse_CvmcaeMasterCannotDelete
+            case .defaultNamepsaceCannotBeDeleted: 
+                code = .resourceInUse_DefaultNamepsaceCannotBeDeleted
+            case .groupCannotDelete: 
+                code = .resourceInUse_GroupCannotDelete
+            case .groupInOperation: 
+                code = .resourceInUse_GroupInOperation
+            case .instanceHasBeenUsed: 
+                code = .resourceInUse_InstanceHasBeenUsed
+            case .namespaceCannotDelete: 
+                code = .resourceInUse_NamespaceCannotDelete
+            case .objectExist: 
+                code = .resourceInUse_ObjectExist
+            case .ratelimitRuleExistError: 
+                code = .resourceInUse_RatelimitRuleExistError
+            }
+            return TCTsfError(code, context: self.context)
         }
-        return TCTsfError(code, context: self.context)
-    }
-}
-
-extension TCTsfError.ResourceInUse {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

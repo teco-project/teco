@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEiamError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCEiamErrorType {
         enum Code: String {
             case attributeValueValidError = "InvalidParameter.AttributeValueValidError"
             case orgCodeIllegal = "InvalidParameter.OrgCodeIllegal"
@@ -37,8 +37,6 @@ extension TCEiamError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -96,37 +94,30 @@ extension TCEiamError {
         public static var userNameIsNull: InvalidParameter {
             InvalidParameter(.userNameIsNull)
         }
-    }
-}
-
-extension TCEiamError.InvalidParameter: Equatable {
-    public static func == (lhs: TCEiamError.InvalidParameter, rhs: TCEiamError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEiamError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEiamError.InvalidParameter {
-    /// - Returns: ``TCEiamError`` that holds the same error and context.
-    public func toEiamError() -> TCEiamError {
-        guard let code = TCEiamError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEiamError() -> TCEiamError {
+            let code: TCEiamError.Code
+            switch self.error {
+            case .attributeValueValidError: 
+                code = .invalidParameter_AttributeValueValidError
+            case .orgCodeIllegal: 
+                code = .invalidParameter_OrgCodeIllegal
+            case .parameterIllegal: 
+                code = .invalidParameter_ParameterIllegal
+            case .parameterlllegal: 
+                code = .invalidParameter_Parameterlllegal
+            case .searchCriteriaIllegal: 
+                code = .invalidParameter_SearchCriteriaIllegal
+            case .timeFormatIllegal: 
+                code = .invalidParameter_TimeFormatIllegal
+            case .userExpirationTimeIllegal: 
+                code = .invalidParameter_UserExpirationTimeIllegal
+            case .userIDIsNull: 
+                code = .invalidParameter_UserIDIsNull
+            case .userNameIsNull: 
+                code = .invalidParameter_UserNameIsNull
+            }
+            return TCEiamError(code, context: self.context)
         }
-        return TCEiamError(code, context: self.context)
-    }
-}
-
-extension TCEiamError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

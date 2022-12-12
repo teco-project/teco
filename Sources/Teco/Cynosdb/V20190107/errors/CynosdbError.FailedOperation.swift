@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCynosdbError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCCynosdbErrorType {
         enum Code: String {
             case batchGetInstanceError = "FailedOperation.BatchGetInstanceError"
             case camCheckResourceError = "FailedOperation.CamCheckResourceError"
@@ -40,8 +40,6 @@ extension TCCynosdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -114,37 +112,36 @@ extension TCCynosdbError {
         public static var tradeCreateOrderError: FailedOperation {
             FailedOperation(.tradeCreateOrderError)
         }
-    }
-}
-
-extension TCCynosdbError.FailedOperation: Equatable {
-    public static func == (lhs: TCCynosdbError.FailedOperation, rhs: TCCynosdbError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCynosdbError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCynosdbError.FailedOperation {
-    /// - Returns: ``TCCynosdbError`` that holds the same error and context.
-    public func toCynosdbError() -> TCCynosdbError {
-        guard let code = TCCynosdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCynosdbError() -> TCCynosdbError {
+            let code: TCCynosdbError.Code
+            switch self.error {
+            case .batchGetInstanceError: 
+                code = .failedOperation_BatchGetInstanceError
+            case .camCheckResourceError: 
+                code = .failedOperation_CamCheckResourceError
+            case .camSigAndAuthError: 
+                code = .failedOperation_CamSigAndAuthError
+            case .createOrder: 
+                code = .failedOperation_CreateOrder
+            case .databaseAccessError: 
+                code = .failedOperation_DatabaseAccessError
+            case .flowCreateError: 
+                code = .failedOperation_FlowCreateError
+            case .flowNotFoundError: 
+                code = .failedOperation_FlowNotFoundError
+            case .getBackupStrategyError: 
+                code = .failedOperation_GetBackupStrategyError
+            case .insufficientBalance: 
+                code = .failedOperation_InsufficientBalance
+            case .operationFailedError: 
+                code = .failedOperation_OperationFailedError
+            case .querySpecBySpecCodeError: 
+                code = .failedOperation_QuerySpecBySpecCodeError
+            case .tradeCreateOrderError: 
+                code = .failedOperation_TradeCreateOrderError
+            }
+            return TCCynosdbError(code, context: self.context)
         }
-        return TCCynosdbError(code, context: self.context)
-    }
-}
-
-extension TCCynosdbError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

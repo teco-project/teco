@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCScfError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCScfErrorType {
         enum Code: String {
             case alias = "LimitExceeded.Alias"
             case cdn = "LimitExceeded.Cdn"
@@ -54,8 +54,6 @@ extension TCScfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -197,37 +195,64 @@ extension TCScfError {
         public static var userTotalConcurrencyMemory: LimitExceeded {
             LimitExceeded(.userTotalConcurrencyMemory)
         }
-    }
-}
-
-extension TCScfError.LimitExceeded: Equatable {
-    public static func == (lhs: TCScfError.LimitExceeded, rhs: TCScfError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCScfError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCScfError.LimitExceeded {
-    /// - Returns: ``TCScfError`` that holds the same error and context.
-    public func toScfError() -> TCScfError {
-        guard let code = TCScfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asScfError() -> TCScfError {
+            let code: TCScfError.Code
+            switch self.error {
+            case .alias: 
+                code = .limitExceeded_Alias
+            case .cdn: 
+                code = .limitExceeded_Cdn
+            case .containerImageAccelerateQuota: 
+                code = .limitExceeded_ContainerImageAccelerateQuota
+            case .eip: 
+                code = .limitExceeded_Eip
+            case .function: 
+                code = .limitExceeded_Function
+            case .functionOnTopic: 
+                code = .limitExceeded_FunctionOnTopic
+            case .functionProvisionedConcurrencyMemory: 
+                code = .limitExceeded_FunctionProvisionedConcurrencyMemory
+            case .functionReservedConcurrencyMemory: 
+                code = .limitExceeded_FunctionReservedConcurrencyMemory
+            case .functionTotalProvisionedConcurrencyMemory: 
+                code = .limitExceeded_FunctionTotalProvisionedConcurrencyMemory
+            case .functionTotalProvisionedConcurrencyNum: 
+                code = .limitExceeded_FunctionTotalProvisionedConcurrencyNum
+            case .initTimeout: 
+                code = .limitExceeded_InitTimeout
+            case .layerVersions: 
+                code = .limitExceeded_LayerVersions
+            case .layers: 
+                code = .limitExceeded_Layers
+            case .maxCapacity: 
+                code = .limitExceeded_MaxCapacity
+            case .memory: 
+                code = .limitExceeded_Memory
+            case .msgTTL: 
+                code = .limitExceeded_MsgTTL
+            case .namespace: 
+                code = .limitExceeded_Namespace
+            case .offset: 
+                code = .limitExceeded_Offset
+            case .provisionTriggerAction: 
+                code = .limitExceeded_ProvisionTriggerAction
+            case .provisionTriggerInterval: 
+                code = .limitExceeded_ProvisionTriggerInterval
+            case .quota: 
+                code = .limitExceeded_Quota
+            case .retryNum: 
+                code = .limitExceeded_RetryNum
+            case .timeout: 
+                code = .limitExceeded_Timeout
+            case .totalConcurrencyMemory: 
+                code = .limitExceeded_TotalConcurrencyMemory
+            case .trigger: 
+                code = .limitExceeded_Trigger
+            case .userTotalConcurrencyMemory: 
+                code = .limitExceeded_UserTotalConcurrencyMemory
+            }
+            return TCScfError(code, context: self.context)
         }
-        return TCScfError(code, context: self.context)
-    }
-}
-
-extension TCScfError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

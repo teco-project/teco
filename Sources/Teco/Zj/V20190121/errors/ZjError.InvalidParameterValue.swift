@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCZjError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCZjErrorType {
         enum Code: String {
             case invalidInstance = "InvalidParameterValue.InvalidInstance"
             case invalidMmsContents = "InvalidParameterValue.InvalidMmsContents"
@@ -32,8 +32,6 @@ extension TCZjError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -65,37 +63,20 @@ extension TCZjError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCZjError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCZjError.InvalidParameterValue, rhs: TCZjError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCZjError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCZjError.InvalidParameterValue {
-    /// - Returns: ``TCZjError`` that holds the same error and context.
-    public func toZjError() -> TCZjError {
-        guard let code = TCZjError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asZjError() -> TCZjError {
+            let code: TCZjError.Code
+            switch self.error {
+            case .invalidInstance: 
+                code = .invalidParameterValue_InvalidInstance
+            case .invalidMmsContents: 
+                code = .invalidParameterValue_InvalidMmsContents
+            case .invalidSign: 
+                code = .invalidParameterValue_InvalidSign
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCZjError(code, context: self.context)
         }
-        return TCZjError(code, context: self.context)
-    }
-}
-
-extension TCZjError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

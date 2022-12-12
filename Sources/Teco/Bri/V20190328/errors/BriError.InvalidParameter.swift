@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBriError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCBriErrorType {
         enum Code: String {
             case certMd5 = "InvalidParameter.CertMd5"
             case fileMd5 = "InvalidParameter.FileMd5"
@@ -41,8 +41,6 @@ extension TCBriError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -120,37 +118,38 @@ extension TCBriError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCBriError.InvalidParameter: Equatable {
-    public static func == (lhs: TCBriError.InvalidParameter, rhs: TCBriError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBriError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBriError.InvalidParameter {
-    /// - Returns: ``TCBriError`` that holds the same error and context.
-    public func toBriError() -> TCBriError {
-        guard let code = TCBriError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBriError() -> TCBriError {
+            let code: TCBriError.Code
+            switch self.error {
+            case .certMd5: 
+                code = .invalidParameter_CertMd5
+            case .fileMd5: 
+                code = .invalidParameter_FileMd5
+            case .fileSize: 
+                code = .invalidParameter_FileSize
+            case .imei: 
+                code = .invalidParameter_Imei
+            case .invalidAction: 
+                code = .invalidParameter_InvalidAction
+            case .ip: 
+                code = .invalidParameter_Ip
+            case .packageName: 
+                code = .invalidParameter_PackageName
+            case .phoneNumber: 
+                code = .invalidParameter_PhoneNumber
+            case .qq: 
+                code = .invalidParameter_QQ
+            case .service: 
+                code = .invalidParameter_Service
+            case .url: 
+                code = .invalidParameter_Url
+            case .wechat: 
+                code = .invalidParameter_Wechat
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCBriError(code, context: self.context)
         }
-        return TCBriError(code, context: self.context)
-    }
-}
-
-extension TCBriError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

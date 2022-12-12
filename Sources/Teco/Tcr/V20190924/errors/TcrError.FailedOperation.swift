@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTcrError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCTcrErrorType {
         enum Code: String {
             case dependenceError = "FailedOperation.DependenceError"
             case errorGetDBDataError = "FailedOperation.ErrorGetDBDataError"
@@ -41,8 +41,6 @@ extension TCTcrError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -120,37 +118,38 @@ extension TCTcrError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCTcrError.FailedOperation: Equatable {
-    public static func == (lhs: TCTcrError.FailedOperation, rhs: TCTcrError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTcrError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTcrError.FailedOperation {
-    /// - Returns: ``TCTcrError`` that holds the same error and context.
-    public func toTcrError() -> TCTcrError {
-        guard let code = TCTcrError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTcrError() -> TCTcrError {
+            let code: TCTcrError.Code
+            switch self.error {
+            case .dependenceError: 
+                code = .failedOperation_DependenceError
+            case .errorGetDBDataError: 
+                code = .failedOperation_ErrorGetDBDataError
+            case .errorTcrInvalidMediaType: 
+                code = .failedOperation_ErrorTcrInvalidMediaType
+            case .errorTcrResourceConflict: 
+                code = .failedOperation_ErrorTcrResourceConflict
+            case .errorTcrUnauthorized: 
+                code = .failedOperation_ErrorTcrUnauthorized
+            case .getDBDataError: 
+                code = .failedOperation_GetDBDataError
+            case .getSecurityPolicyFail: 
+                code = .failedOperation_GetSecurityPolicyFail
+            case .getTcrClient: 
+                code = .failedOperation_GetTcrClient
+            case .operationCancel: 
+                code = .failedOperation_OperationCancel
+            case .tradeFailed: 
+                code = .failedOperation_TradeFailed
+            case .validateRegistryNameFail: 
+                code = .failedOperation_ValidateRegistryNameFail
+            case .validateSupportedRegionFail: 
+                code = .failedOperation_ValidateSupportedRegionFail
+            case .other: 
+                code = .failedOperation
+            }
+            return TCTcrError(code, context: self.context)
         }
-        return TCTcrError(code, context: self.context)
-    }
-}
-
-extension TCTcrError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

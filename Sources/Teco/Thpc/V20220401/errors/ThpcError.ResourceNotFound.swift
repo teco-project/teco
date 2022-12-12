@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCThpcError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCThpcErrorType {
         enum Code: String {
             case autoScalingGroupId = "ResourceNotFound.AutoScalingGroupId"
             case clusterId = "ResourceNotFound.ClusterId"
@@ -33,8 +33,6 @@ extension TCThpcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -71,37 +69,22 @@ extension TCThpcError {
         public static var nodeId: ResourceNotFound {
             ResourceNotFound(.nodeId)
         }
-    }
-}
-
-extension TCThpcError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCThpcError.ResourceNotFound, rhs: TCThpcError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCThpcError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCThpcError.ResourceNotFound {
-    /// - Returns: ``TCThpcError`` that holds the same error and context.
-    public func toThpcError() -> TCThpcError {
-        guard let code = TCThpcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asThpcError() -> TCThpcError {
+            let code: TCThpcError.Code
+            switch self.error {
+            case .autoScalingGroupId: 
+                code = .resourceNotFound_AutoScalingGroupId
+            case .clusterId: 
+                code = .resourceNotFound_ClusterId
+            case .imageId: 
+                code = .resourceNotFound_ImageId
+            case .launchConfigurationId: 
+                code = .resourceNotFound_LaunchConfigurationId
+            case .nodeId: 
+                code = .resourceNotFound_NodeId
+            }
+            return TCThpcError(code, context: self.context)
         }
-        return TCThpcError(code, context: self.context)
-    }
-}
-
-extension TCThpcError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

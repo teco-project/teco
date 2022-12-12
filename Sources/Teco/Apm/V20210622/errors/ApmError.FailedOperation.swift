@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCApmError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCApmErrorType {
         enum Code: String {
             case accessTagFail = "FailedOperation.AccessTagFail"
             case appIdNotMatchInstanceInfo = "FailedOperation.AppIdNotMatchInstanceInfo"
@@ -41,8 +41,6 @@ extension TCApmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -113,37 +111,38 @@ extension TCApmError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCApmError.FailedOperation: Equatable {
-    public static func == (lhs: TCApmError.FailedOperation, rhs: TCApmError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCApmError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCApmError.FailedOperation {
-    /// - Returns: ``TCApmError`` that holds the same error and context.
-    public func toApmError() -> TCApmError {
-        guard let code = TCApmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asApmError() -> TCApmError {
+            let code: TCApmError.Code
+            switch self.error {
+            case .accessTagFail: 
+                code = .failedOperation_AccessTagFail
+            case .appIdNotMatchInstanceInfo: 
+                code = .failedOperation_AppIdNotMatchInstanceInfo
+            case .demoInstanceNotAllowModified: 
+                code = .failedOperation_DemoInstanceNotAllowModified
+            case .instanceIdIsEmpty: 
+                code = .failedOperation_InstanceIdIsEmpty
+            case .instanceNotFound: 
+                code = .failedOperation_InstanceNotFound
+            case .invalidInstanceID: 
+                code = .failedOperation_InvalidInstanceID
+            case .metricFiltersLackParams: 
+                code = .failedOperation_MetricFiltersLackParams
+            case .notInnerVPC: 
+                code = .failedOperation_NotInnerVPC
+            case .queryTimeIntervalIsNotSupported: 
+                code = .failedOperation_QueryTimeIntervalIsNotSupported
+            case .regionNotSupport: 
+                code = .failedOperation_RegionNotSupport
+            case .sendRequest: 
+                code = .failedOperation_SendRequest
+            case .viewNameNotExistOrIllegal: 
+                code = .failedOperation_ViewNameNotExistOrIllegal
+            case .other: 
+                code = .failedOperation
+            }
+            return TCApmError(code, context: self.context)
         }
-        return TCApmError(code, context: self.context)
-    }
-}
-
-extension TCApmError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

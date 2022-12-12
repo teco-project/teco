@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMariadbError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCMariadbErrorType {
         enum Code: String {
             case accountDoesNotExist = "ResourceNotFound.AccountDoesNotExist"
             case instanceNotFound = "ResourceNotFound.InstanceNotFound"
@@ -33,8 +33,6 @@ extension TCMariadbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,22 @@ extension TCMariadbError {
         public static var syncTaskDeleted: ResourceNotFound {
             ResourceNotFound(.syncTaskDeleted)
         }
-    }
-}
-
-extension TCMariadbError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCMariadbError.ResourceNotFound, rhs: TCMariadbError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMariadbError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMariadbError.ResourceNotFound {
-    /// - Returns: ``TCMariadbError`` that holds the same error and context.
-    public func toMariadbError() -> TCMariadbError {
-        guard let code = TCMariadbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMariadbError() -> TCMariadbError {
+            let code: TCMariadbError.Code
+            switch self.error {
+            case .accountDoesNotExist: 
+                code = .resourceNotFound_AccountDoesNotExist
+            case .instanceNotFound: 
+                code = .resourceNotFound_InstanceNotFound
+            case .noInstanceFound: 
+                code = .resourceNotFound_NoInstanceFound
+            case .productConfigNotExistedError: 
+                code = .resourceNotFound_ProductConfigNotExistedError
+            case .syncTaskDeleted: 
+                code = .resourceNotFound_SyncTaskDeleted
+            }
+            return TCMariadbError(code, context: self.context)
         }
-        return TCMariadbError(code, context: self.context)
-    }
-}
-
-extension TCMariadbError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

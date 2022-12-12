@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTdmqError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCTdmqErrorType {
         enum Code: String {
             case brokerCluster = "ResourceNotFound.BrokerCluster"
             case cluster = "ResourceNotFound.Cluster"
@@ -37,8 +37,6 @@ extension TCTdmqError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -102,37 +100,30 @@ extension TCTdmqError {
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-    }
-}
-
-extension TCTdmqError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCTdmqError.ResourceNotFound, rhs: TCTdmqError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTdmqError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTdmqError.ResourceNotFound {
-    /// - Returns: ``TCTdmqError`` that holds the same error and context.
-    public func toTdmqError() -> TCTdmqError {
-        guard let code = TCTdmqError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTdmqError() -> TCTdmqError {
+            let code: TCTdmqError.Code
+            switch self.error {
+            case .brokerCluster: 
+                code = .resourceNotFound_BrokerCluster
+            case .cluster: 
+                code = .resourceNotFound_Cluster
+            case .environment: 
+                code = .resourceNotFound_Environment
+            case .environmentRole: 
+                code = .resourceNotFound_EnvironmentRole
+            case .namespace: 
+                code = .resourceNotFound_Namespace
+            case .role: 
+                code = .resourceNotFound_Role
+            case .subscription: 
+                code = .resourceNotFound_Subscription
+            case .topic: 
+                code = .resourceNotFound_Topic
+            case .other: 
+                code = .resourceNotFound
+            }
+            return TCTdmqError(code, context: self.context)
         }
-        return TCTdmqError(code, context: self.context)
-    }
-}
-
-extension TCTdmqError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

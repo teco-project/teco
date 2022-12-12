@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCloudauditError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCCloudauditErrorType {
         enum Code: String {
             case cmqError = "InternalError.CmqError"
             case createAuditError = "InternalError.CreateAuditError"
@@ -42,8 +42,6 @@ extension TCCloudauditError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -126,37 +124,40 @@ extension TCCloudauditError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCCloudauditError.InternalError: Equatable {
-    public static func == (lhs: TCCloudauditError.InternalError, rhs: TCCloudauditError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCloudauditError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCloudauditError.InternalError {
-    /// - Returns: ``TCCloudauditError`` that holds the same error and context.
-    public func toCloudauditError() -> TCCloudauditError {
-        guard let code = TCCloudauditError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCloudauditError() -> TCCloudauditError {
+            let code: TCCloudauditError.Code
+            switch self.error {
+            case .cmqError: 
+                code = .internalError_CmqError
+            case .createAuditError: 
+                code = .internalError_CreateAuditError
+            case .deleteAuditError: 
+                code = .internalError_DeleteAuditError
+            case .describeAuditError: 
+                code = .internalError_DescribeAuditError
+            case .inquireAuditCreditError: 
+                code = .internalError_InquireAuditCreditError
+            case .listAuditsError: 
+                code = .internalError_ListAuditsError
+            case .listCmqEnableRegionError: 
+                code = .internalError_ListCmqEnableRegionError
+            case .listCosEnableRegionError: 
+                code = .internalError_ListCosEnableRegionError
+            case .listKeyAliasByRegionError: 
+                code = .internalError_ListKeyAliasByRegionError
+            case .searchError: 
+                code = .internalError_SearchError
+            case .startLoggingError: 
+                code = .internalError_StartLoggingError
+            case .stopLoggingError: 
+                code = .internalError_StopLoggingError
+            case .updateAuditError: 
+                code = .internalError_UpdateAuditError
+            case .other: 
+                code = .internalError
+            }
+            return TCCloudauditError(code, context: self.context)
         }
-        return TCCloudauditError(code, context: self.context)
-    }
-}
-
-extension TCCloudauditError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

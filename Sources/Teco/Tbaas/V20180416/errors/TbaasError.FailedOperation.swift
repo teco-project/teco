@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTbaasError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCTbaasErrorType {
         enum Code: String {
             case baaSStopServing = "FailedOperation.BaaSStopServing"
             case bcosService = "FailedOperation.BcosService"
@@ -97,8 +97,6 @@ extension TCTbaasError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -458,37 +456,150 @@ extension TCTbaasError {
         public static var userNoJoinDemoCluster: FailedOperation {
             FailedOperation(.userNoJoinDemoCluster)
         }
-    }
-}
-
-extension TCTbaasError.FailedOperation: Equatable {
-    public static func == (lhs: TCTbaasError.FailedOperation, rhs: TCTbaasError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTbaasError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTbaasError.FailedOperation {
-    /// - Returns: ``TCTbaasError`` that holds the same error and context.
-    public func toTbaasError() -> TCTbaasError {
-        guard let code = TCTbaasError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTbaasError() -> TCTbaasError {
+            let code: TCTbaasError.Code
+            switch self.error {
+            case .baaSStopServing: 
+                code = .failedOperation_BaaSStopServing
+            case .bcosService: 
+                code = .failedOperation_BcosService
+            case .caCheckCsr: 
+                code = .failedOperation_CaCheckCsr
+            case .caDbOption: 
+                code = .failedOperation_CaDbOption
+            case .caExsit: 
+                code = .failedOperation_CaExsit
+            case .caGenkey: 
+                code = .failedOperation_CaGenkey
+            case .caInit: 
+                code = .failedOperation_CaInit
+            case .caInputParam: 
+                code = .failedOperation_CaInputParam
+            case .caNoExist: 
+                code = .failedOperation_CaNoExist
+            case .caRevoke: 
+                code = .failedOperation_CaRevoke
+            case .caRootNonExist: 
+                code = .failedOperation_CaRootNonExist
+            case .caService: 
+                code = .failedOperation_CaService
+            case .caSignCert: 
+                code = .failedOperation_CaSignCert
+            case .caYunApiApplyCert: 
+                code = .failedOperation_CaYunApiApplyCert
+            case .caYunApiCommon: 
+                code = .failedOperation_CaYunApiCommon
+            case .chainCodeChannel: 
+                code = .failedOperation_ChainCodeChannel
+            case .chainCodeExist: 
+                code = .failedOperation_ChainCodeExist
+            case .chainCodeInit: 
+                code = .failedOperation_ChainCodeInit
+            case .chainCodeInstall: 
+                code = .failedOperation_ChainCodeInstall
+            case .compileDeployedContract: 
+                code = .failedOperation_CompileDeployedContract
+            case .compileDeployingContract: 
+                code = .failedOperation_CompileDeployingContract
+            case .contractEditedByOtherAgency: 
+                code = .failedOperation_ContractEditedByOtherAgency
+            case .databaseException: 
+                code = .failedOperation_DatabaseException
+            case .deleteDeployedContract: 
+                code = .failedOperation_DeleteDeployedContract
+            case .deleteDeployingContract: 
+                code = .failedOperation_DeleteDeployingContract
+            case .deployContractNotCompile: 
+                code = .failedOperation_DeployContractNotCompile
+            case .fabricBlockDetail: 
+                code = .failedOperation_FabricBlockDetail
+            case .fabricBlockQuery: 
+                code = .failedOperation_FabricBlockQuery
+            case .fabricCommit: 
+                code = .failedOperation_FabricCommit
+            case .fabricEventHub: 
+                code = .failedOperation_FabricEventHub
+            case .fabricManage: 
+                code = .failedOperation_FabricManage
+            case .fabricProposal: 
+                code = .failedOperation_FabricProposal
+            case .fabricRequestParams: 
+                code = .failedOperation_FabricRequestParams
+            case .fabricRequstParams: 
+                code = .failedOperation_FabricRequstParams
+            case .fabricTransactionDetail: 
+                code = .failedOperation_FabricTransactionDetail
+            case .fabricTransactionQuery: 
+                code = .failedOperation_FabricTransactionQuery
+            case .fabricTxIdQuery: 
+                code = .failedOperation_FabricTxIdQuery
+            case .fabricTxInvoke: 
+                code = .failedOperation_FabricTxInvoke
+            case .fabricTxQuery: 
+                code = .failedOperation_FabricTxQuery
+            case .fabricTxQueryNone: 
+                code = .failedOperation_FabricTxQueryNone
+            case .frontRequestFail: 
+                code = .failedOperation_FrontRequestFail
+            case .groupIllegal: 
+                code = .failedOperation_GroupIllegal
+            case .invalidChaincode: 
+                code = .failedOperation_InvalidChaincode
+            case .invalidChannel: 
+                code = .failedOperation_InvalidChannel
+            case .invalidCluster: 
+                code = .failedOperation_InvalidCluster
+            case .invalidGroup: 
+                code = .failedOperation_InvalidGroup
+            case .invalidGroupPk: 
+                code = .failedOperation_InvalidGroupPk
+            case .invalidKeyUser: 
+                code = .failedOperation_InvalidKeyUser
+            case .invalidOperation: 
+                code = .failedOperation_InvalidOperation
+            case .invalidPeer: 
+                code = .failedOperation_InvalidPeer
+            case .invalidResource: 
+                code = .failedOperation_InvalidResource
+            case .manageService: 
+                code = .failedOperation_ManageService
+            case .newContract: 
+                code = .failedOperation_NewContract
+            case .noChainCodeChannel: 
+                code = .failedOperation_NoChainCodeChannel
+            case .noChainCodeGroup: 
+                code = .failedOperation_NoChainCodeGroup
+            case .noChainCodePeer: 
+                code = .failedOperation_NoChainCodePeer
+            case .noChannelGroup: 
+                code = .failedOperation_NoChannelGroup
+            case .noChannelPeer: 
+                code = .failedOperation_NoChannelPeer
+            case .noObject: 
+                code = .failedOperation_NoObject
+            case .noPeer: 
+                code = .failedOperation_NoPeer
+            case .notDeployedContract: 
+                code = .failedOperation_NotDeployedContract
+            case .serviceFailed: 
+                code = .failedOperation_ServiceFailed
+            case .statusNoMatch: 
+                code = .failedOperation_StatusNoMatch
+            case .timeOutUrl: 
+                code = .failedOperation_TimeOutUrl
+            case .transactionTimeout: 
+                code = .failedOperation_TransactionTimeout
+            case .updateDeployedContract: 
+                code = .failedOperation_UpdateDeployedContract
+            case .userAuthType: 
+                code = .failedOperation_UserAuthType
+            case .userInBlackList: 
+                code = .failedOperation_UserInBlackList
+            case .userNoJoinDemoCluster: 
+                code = .failedOperation_UserNoJoinDemoCluster
+            }
+            return TCTbaasError(code, context: self.context)
         }
-        return TCTbaasError(code, context: self.context)
-    }
-}
-
-extension TCTbaasError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBmError {
-    public struct ResourceInsufficient: TCErrorType {
+    public struct ResourceInsufficient: TCBmErrorType {
         enum Code: String {
             case deviceInsufficient = "ResourceInsufficient.DeviceInsufficient"
             case other = "ResourceInsufficient"
@@ -30,8 +30,6 @@ extension TCBmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCBmError {
         public static var other: ResourceInsufficient {
             ResourceInsufficient(.other)
         }
-    }
-}
-
-extension TCBmError.ResourceInsufficient: Equatable {
-    public static func == (lhs: TCBmError.ResourceInsufficient, rhs: TCBmError.ResourceInsufficient) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBmError.ResourceInsufficient: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBmError.ResourceInsufficient {
-    /// - Returns: ``TCBmError`` that holds the same error and context.
-    public func toBmError() -> TCBmError {
-        guard let code = TCBmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBmError() -> TCBmError {
+            let code: TCBmError.Code
+            switch self.error {
+            case .deviceInsufficient: 
+                code = .resourceInsufficient_DeviceInsufficient
+            case .other: 
+                code = .resourceInsufficient
+            }
+            return TCBmError(code, context: self.context)
         }
-        return TCBmError(code, context: self.context)
-    }
-}
-
-extension TCBmError.ResourceInsufficient {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

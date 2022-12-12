@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTiwError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCTiwErrorType {
         enum Code: String {
             case bodyParameterTypeUnmatched = "InvalidParameter.BodyParameterTypeUnmatched"
             case callbackAddressFormatError = "InvalidParameter.CallbackAddressFormatError"
@@ -38,8 +38,6 @@ extension TCTiwError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -102,37 +100,32 @@ extension TCTiwError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCTiwError.InvalidParameter: Equatable {
-    public static func == (lhs: TCTiwError.InvalidParameter, rhs: TCTiwError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTiwError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTiwError.InvalidParameter {
-    /// - Returns: ``TCTiwError`` that holds the same error and context.
-    public func toTiwError() -> TCTiwError {
-        guard let code = TCTiwError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTiwError() -> TCTiwError {
+            let code: TCTiwError.Code
+            switch self.error {
+            case .bodyParameterTypeUnmatched: 
+                code = .invalidParameter_BodyParameterTypeUnmatched
+            case .callbackAddressFormatError: 
+                code = .invalidParameter_CallbackAddressFormatError
+            case .fileFormatUnsupported: 
+                code = .invalidParameter_FileFormatUnsupported
+            case .invalidExtra: 
+                code = .invalidParameter_InvalidExtra
+            case .recordParameter: 
+                code = .invalidParameter_RecordParameter
+            case .sdkAppIdNotFound: 
+                code = .invalidParameter_SdkAppIdNotFound
+            case .taskNotFound: 
+                code = .invalidParameter_TaskNotFound
+            case .transcodeParameter: 
+                code = .invalidParameter_TranscodeParameter
+            case .urlFormatError: 
+                code = .invalidParameter_UrlFormatError
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCTiwError(code, context: self.context)
         }
-        return TCTiwError(code, context: self.context)
-    }
-}
-
-extension TCTiwError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

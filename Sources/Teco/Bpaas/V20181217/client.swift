@@ -21,23 +21,25 @@
 /// 欢迎使用 商业流程服务 API 3.0 版本。全新的 API 接口文档更加规范和全面，统一的参数风格和公共错误码，统一的 SDK/CLI 版本与 API 文档严格一致，给您带来简单快捷的使用体验。支持全地域就近接入让您更快连接腾讯云产品。更多腾讯云 API 3.0 使用介绍请查看：快速入门
 /// 欢迎使用 商业流程服务（BPaaS）。本文档提供的 API 供您使用请求调用的方式来操作管理腾讯云账户下的 BPaaS 审批流。请确保在使用这些接口前，已充分了解本产品。
 public struct Bpaas: TCService {
-    /// Client used for communication with Tencent Cloud
+    /// Client used to communicate with Tencent Cloud.
     public let client: TCClient
     
-    /// Service configuration
+    /// Service context details.
     public let config: TCServiceConfig
     
-    /// Initialize the ``Bpaas`` client
+    /// Initialize the ``Bpaas`` client.
     ///
     /// - Parameters:
-    ///    - client: ``TCClient`` used to process requests
-    ///    - region: The service region you want to operate on
-    ///    - endpoint: Custom Endpoint URL preference
-    ///    - timeout: Timeout value for HTTP requests
+    ///    - client: ``TCClient`` used to perform actions.
+    ///    - region: Region of the service you want to operate on.
+    ///    - language: Preferred language for API response.
+    ///    - endpoint: Custom endpoint URL for API request.
+    ///    - timeout: Timeout value for HTTP requests.
     public init (
     client: TCClient, 
     region: TCRegion? = nil, 
-    endpoint: TCServiceConfig.EndpointPreference = .global, 
+    language: TCServiceConfig.Language? = nil, 
+    endpoint: TCServiceConfig.Endpoint = .global, 
     timeout: TimeAmount? = nil, 
     byteBufferAllocator: ByteBufferAllocator = ByteBufferAllocator()
     ) {
@@ -46,6 +48,7 @@ public struct Bpaas: TCService {
         region: region, 
         service: "bpaas", 
         apiVersion: "2018-12-17", 
+        language: language, 
         endpoint: endpoint, 
         errorType: TCBpaasError.self, 
         timeout: timeout, 
@@ -55,10 +58,10 @@ public struct Bpaas: TCService {
 }
 
 extension Bpaas {
-    /// Initializer required by ``with(region:language:timeout:byteBufferAllocator:)``.
+    /// Initializer required by ``with(region:language:endpoint:timeout:byteBufferAllocator:)``.
     ///
     /// You are not able to use this initializer directly as there are no public initializers for ``TCServiceConfig/Patch``.
-    /// Please use ``with(region:language:timeout:byteBufferAllocator:)`` instead.
+    /// Please use ``with(region:language:endpoint:timeout:byteBufferAllocator:)`` instead.
     public init (from service: Self, patch: TCServiceConfig.Patch) {
         self.client = service.client
         self.config = service.config.with(patch: patch)

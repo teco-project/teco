@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEssbasicError {
-    public struct OperationDenied: TCErrorType {
+    public struct OperationDenied: TCEssbasicErrorType {
         enum Code: String {
             case bannedApplication = "OperationDenied.BannedApplication"
             case noApiAuth = "OperationDenied.NoApiAuth"
@@ -38,8 +38,6 @@ extension TCEssbasicError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -120,37 +118,32 @@ extension TCEssbasicError {
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-    }
-}
-
-extension TCEssbasicError.OperationDenied: Equatable {
-    public static func == (lhs: TCEssbasicError.OperationDenied, rhs: TCEssbasicError.OperationDenied) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEssbasicError.OperationDenied: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEssbasicError.OperationDenied {
-    /// - Returns: ``TCEssbasicError`` that holds the same error and context.
-    public func toEssbasicError() -> TCEssbasicError {
-        guard let code = TCEssbasicError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEssbasicError() -> TCEssbasicError {
+            let code: TCEssbasicError.Code
+            switch self.error {
+            case .bannedApplication: 
+                code = .operationDenied_BannedApplication
+            case .noApiAuth: 
+                code = .operationDenied_NoApiAuth
+            case .noExtraVerify: 
+                code = .operationDenied_NoExtraVerify
+            case .noIdentityVerify: 
+                code = .operationDenied_NoIdentityVerify
+            case .noPaymentVerify: 
+                code = .operationDenied_NoPaymentVerify
+            case .noSession: 
+                code = .operationDenied_NoSession
+            case .noVerify: 
+                code = .operationDenied_NoVerify
+            case .notOwnerUin: 
+                code = .operationDenied_NotOwnerUin
+            case .userNotInOrganization: 
+                code = .operationDenied_UserNotInOrganization
+            case .other: 
+                code = .operationDenied
+            }
+            return TCEssbasicError(code, context: self.context)
         }
-        return TCEssbasicError(code, context: self.context)
-    }
-}
-
-extension TCEssbasicError.OperationDenied {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

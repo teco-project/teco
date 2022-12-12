@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTioneError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCTioneErrorType {
         enum Code: String {
             case tgwInvalidInterface = "InvalidParameter.TgwInvalidInterface"
             case tgwInvalidRequestBody = "InvalidParameter.TgwInvalidRequestBody"
@@ -32,8 +32,6 @@ extension TCTioneError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -70,37 +68,20 @@ extension TCTioneError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCTioneError.InvalidParameter: Equatable {
-    public static func == (lhs: TCTioneError.InvalidParameter, rhs: TCTioneError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTioneError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTioneError.InvalidParameter {
-    /// - Returns: ``TCTioneError`` that holds the same error and context.
-    public func toTioneError() -> TCTioneError {
-        guard let code = TCTioneError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTioneError() -> TCTioneError {
+            let code: TCTioneError.Code
+            switch self.error {
+            case .tgwInvalidInterface: 
+                code = .invalidParameter_TgwInvalidInterface
+            case .tgwInvalidRequestBody: 
+                code = .invalidParameter_TgwInvalidRequestBody
+            case .validateError: 
+                code = .invalidParameter_ValidateError
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCTioneError(code, context: self.context)
         }
-        return TCTioneError(code, context: self.context)
-    }
-}
-
-extension TCTioneError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

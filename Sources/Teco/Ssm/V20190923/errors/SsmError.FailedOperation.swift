@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSsmError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCSsmErrorType {
         enum Code: String {
             case accessKmsError = "FailedOperation.AccessKmsError"
             case rotationForbidden = "FailedOperation.RotationForbidden"
@@ -31,8 +31,6 @@ extension TCSsmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCSsmError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCSsmError.FailedOperation: Equatable {
-    public static func == (lhs: TCSsmError.FailedOperation, rhs: TCSsmError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSsmError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSsmError.FailedOperation {
-    /// - Returns: ``TCSsmError`` that holds the same error and context.
-    public func toSsmError() -> TCSsmError {
-        guard let code = TCSsmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSsmError() -> TCSsmError {
+            let code: TCSsmError.Code
+            switch self.error {
+            case .accessKmsError: 
+                code = .failedOperation_AccessKmsError
+            case .rotationForbidden: 
+                code = .failedOperation_RotationForbidden
+            case .other: 
+                code = .failedOperation
+            }
+            return TCSsmError(code, context: self.context)
         }
-        return TCSsmError(code, context: self.context)
-    }
-}
-
-extension TCSsmError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

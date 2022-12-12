@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMpsError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCMpsErrorType {
         enum Code: String {
             case cosBucketNameInvalid = "ResourceNotFound.CosBucketNameInvalid"
             case cosBucketNotExist = "ResourceNotFound.CosBucketNotExist"
@@ -34,8 +34,6 @@ extension TCMpsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -78,37 +76,24 @@ extension TCMpsError {
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-    }
-}
-
-extension TCMpsError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCMpsError.ResourceNotFound, rhs: TCMpsError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMpsError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMpsError.ResourceNotFound {
-    /// - Returns: ``TCMpsError`` that holds the same error and context.
-    public func toMpsError() -> TCMpsError {
-        guard let code = TCMpsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMpsError() -> TCMpsError {
+            let code: TCMpsError.Code
+            switch self.error {
+            case .cosBucketNameInvalid: 
+                code = .resourceNotFound_CosBucketNameInvalid
+            case .cosBucketNotExist: 
+                code = .resourceNotFound_CosBucketNotExist
+            case .person: 
+                code = .resourceNotFound_Person
+            case .templateNotExist: 
+                code = .resourceNotFound_TemplateNotExist
+            case .word: 
+                code = .resourceNotFound_Word
+            case .other: 
+                code = .resourceNotFound
+            }
+            return TCMpsError(code, context: self.context)
         }
-        return TCMpsError(code, context: self.context)
-    }
-}
-
-extension TCMpsError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

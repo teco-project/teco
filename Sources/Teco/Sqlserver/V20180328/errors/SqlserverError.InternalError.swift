@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSqlserverError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCSqlserverErrorType {
         enum Code: String {
             case camAuthFailed = "InternalError.CamAuthFailed"
             case cosError = "InternalError.CosError"
@@ -39,8 +39,6 @@ extension TCSqlserverError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -108,37 +106,34 @@ extension TCSqlserverError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCSqlserverError.InternalError: Equatable {
-    public static func == (lhs: TCSqlserverError.InternalError, rhs: TCSqlserverError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSqlserverError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSqlserverError.InternalError {
-    /// - Returns: ``TCSqlserverError`` that holds the same error and context.
-    public func toSqlserverError() -> TCSqlserverError {
-        guard let code = TCSqlserverError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSqlserverError() -> TCSqlserverError {
+            let code: TCSqlserverError.Code
+            switch self.error {
+            case .camAuthFailed: 
+                code = .internalError_CamAuthFailed
+            case .cosError: 
+                code = .internalError_CosError
+            case .createFlowFailed: 
+                code = .internalError_CreateFlowFailed
+            case .dbConnectError: 
+                code = .internalError_DBConnectError
+            case .dbError: 
+                code = .internalError_DBError
+            case .gcsError: 
+                code = .internalError_GcsError
+            case .stsError: 
+                code = .internalError_StsError
+            case .systemError: 
+                code = .internalError_SystemError
+            case .unknownError: 
+                code = .internalError_UnknownError
+            case .vpcError: 
+                code = .internalError_VPCError
+            case .other: 
+                code = .internalError
+            }
+            return TCSqlserverError(code, context: self.context)
         }
-        return TCSqlserverError(code, context: self.context)
-    }
-}
-
-extension TCSqlserverError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

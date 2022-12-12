@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAsError {
-    public struct ResourceInUse: TCErrorType {
+    public struct ResourceInUse: TCAsErrorType {
         enum Code: String {
             case activityInProgress = "ResourceInUse.ActivityInProgress"
             case autoScalingGroupNotActive = "ResourceInUse.AutoScalingGroupNotActive"
@@ -32,8 +32,6 @@ extension TCAsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCAsError {
         public static var launchConfigurationIdInUse: ResourceInUse {
             ResourceInUse(.launchConfigurationIdInUse)
         }
-    }
-}
-
-extension TCAsError.ResourceInUse: Equatable {
-    public static func == (lhs: TCAsError.ResourceInUse, rhs: TCAsError.ResourceInUse) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAsError.ResourceInUse: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAsError.ResourceInUse {
-    /// - Returns: ``TCAsError`` that holds the same error and context.
-    public func toAsError() -> TCAsError {
-        guard let code = TCAsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAsError() -> TCAsError {
+            let code: TCAsError.Code
+            switch self.error {
+            case .activityInProgress: 
+                code = .resourceInUse_ActivityInProgress
+            case .autoScalingGroupNotActive: 
+                code = .resourceInUse_AutoScalingGroupNotActive
+            case .instanceInGroup: 
+                code = .resourceInUse_InstanceInGroup
+            case .launchConfigurationIdInUse: 
+                code = .resourceInUse_LaunchConfigurationIdInUse
+            }
+            return TCAsError(code, context: self.context)
         }
-        return TCAsError(code, context: self.context)
-    }
-}
-
-extension TCAsError.ResourceInUse {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

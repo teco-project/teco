@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSmhError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCSmhErrorType {
         enum Code: String {
             case bucketNameInvalid = "InvalidParameterValue.BucketNameInvalid"
             case bucketNameNotBelongYou = "InvalidParameterValue.BucketNameNotBelongYou"
@@ -39,8 +39,6 @@ extension TCSmhError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -107,37 +105,34 @@ extension TCSmhError {
         public static var phoneNumber: InvalidParameterValue {
             InvalidParameterValue(.phoneNumber)
         }
-    }
-}
-
-extension TCSmhError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCSmhError.InvalidParameterValue, rhs: TCSmhError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSmhError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSmhError.InvalidParameterValue {
-    /// - Returns: ``TCSmhError`` that holds the same error and context.
-    public func toSmhError() -> TCSmhError {
-        guard let code = TCSmhError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSmhError() -> TCSmhError {
+            let code: TCSmhError.Code
+            switch self.error {
+            case .bucketNameInvalid: 
+                code = .invalidParameterValue_BucketNameInvalid
+            case .bucketNameNotBelongYou: 
+                code = .invalidParameterValue_BucketNameNotBelongYou
+            case .bucketNotFound: 
+                code = .invalidParameterValue_BucketNotFound
+            case .bucketRegionInvalid: 
+                code = .invalidParameterValue_BucketRegionInvalid
+            case .cosStorageClass: 
+                code = .invalidParameterValue_CosStorageClass
+            case .cosStorageClassIntelligentTiering: 
+                code = .invalidParameterValue_CosStorageClassIntelligentTiering
+            case .countryCode: 
+                code = .invalidParameterValue_CountryCode
+            case .limitExceeded: 
+                code = .invalidParameterValue_LimitExceeded
+            case .notModified: 
+                code = .invalidParameterValue_NotModified
+            case .notSuperAdmin: 
+                code = .invalidParameterValue_NotSuperAdmin
+            case .phoneNumber: 
+                code = .invalidParameterValue_PhoneNumber
+            }
+            return TCSmhError(code, context: self.context)
         }
-        return TCSmhError(code, context: self.context)
-    }
-}
-
-extension TCSmhError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

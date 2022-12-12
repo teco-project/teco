@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCPrivatednsError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCPrivatednsErrorType {
         enum Code: String {
             case accountNotBound = "UnsupportedOperation.AccountNotBound"
             case existBoundVpc = "UnsupportedOperation.ExistBoundVpc"
@@ -33,8 +33,6 @@ extension TCPrivatednsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -80,37 +78,22 @@ extension TCPrivatednsError {
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-    }
-}
-
-extension TCPrivatednsError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCPrivatednsError.UnsupportedOperation, rhs: TCPrivatednsError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCPrivatednsError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCPrivatednsError.UnsupportedOperation {
-    /// - Returns: ``TCPrivatednsError`` that holds the same error and context.
-    public func toPrivatednsError() -> TCPrivatednsError {
-        guard let code = TCPrivatednsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asPrivatednsError() -> TCPrivatednsError {
+            let code: TCPrivatednsError.Code
+            switch self.error {
+            case .accountNotBound: 
+                code = .unsupportedOperation_AccountNotBound
+            case .existBoundVpc: 
+                code = .unsupportedOperation_ExistBoundVpc
+            case .frequencyLimit: 
+                code = .unsupportedOperation_FrequencyLimit
+            case .notSupportDnsForward: 
+                code = .unsupportedOperation_NotSupportDnsForward
+            case .other: 
+                code = .unsupportedOperation
+            }
+            return TCPrivatednsError(code, context: self.context)
         }
-        return TCPrivatednsError(code, context: self.context)
-    }
-}
-
-extension TCPrivatednsError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSslError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCSslErrorType {
         enum Code: String {
             case rateLimitExceeded = "LimitExceeded.RateLimitExceeded"
         }
@@ -29,8 +29,6 @@ extension TCSslError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCSslError {
         public static var rateLimitExceeded: LimitExceeded {
             LimitExceeded(.rateLimitExceeded)
         }
-    }
-}
-
-extension TCSslError.LimitExceeded: Equatable {
-    public static func == (lhs: TCSslError.LimitExceeded, rhs: TCSslError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSslError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSslError.LimitExceeded {
-    /// - Returns: ``TCSslError`` that holds the same error and context.
-    public func toSslError() -> TCSslError {
-        guard let code = TCSslError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSslError() -> TCSslError {
+            let code: TCSslError.Code
+            switch self.error {
+            case .rateLimitExceeded: 
+                code = .limitExceeded_RateLimitExceeded
+            }
+            return TCSslError(code, context: self.context)
         }
-        return TCSslError(code, context: self.context)
-    }
-}
-
-extension TCSslError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

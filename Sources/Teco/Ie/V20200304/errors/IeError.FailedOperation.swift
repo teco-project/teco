@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIeError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCIeErrorType {
         enum Code: String {
             case cosStorageError = "FailedOperation.CosStorageError"
             case editError = "FailedOperation.EditError"
@@ -42,8 +42,6 @@ extension TCIeError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -125,37 +123,40 @@ extension TCIeError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCIeError.FailedOperation: Equatable {
-    public static func == (lhs: TCIeError.FailedOperation, rhs: TCIeError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIeError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIeError.FailedOperation {
-    /// - Returns: ``TCIeError`` that holds the same error and context.
-    public func toIeError() -> TCIeError {
-        guard let code = TCIeError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIeError() -> TCIeError {
+            let code: TCIeError.Code
+            switch self.error {
+            case .cosStorageError: 
+                code = .failedOperation_CosStorageError
+            case .editError: 
+                code = .failedOperation_EditError
+            case .encodeFormatError: 
+                code = .failedOperation_EncodeFormatError
+            case .runningTaskExceed: 
+                code = .failedOperation_RunningTaskExceed
+            case .segmentError: 
+                code = .failedOperation_SegmentError
+            case .serverBusy: 
+                code = .failedOperation_ServerBusy
+            case .serverError: 
+                code = .failedOperation_ServerError
+            case .taskResubmit: 
+                code = .failedOperation_TaskResubmit
+            case .transcodeError: 
+                code = .failedOperation_TranscodeError
+            case .unknowError: 
+                code = .failedOperation_UnknowError
+            case .videoDownloadError: 
+                code = .failedOperation_VideoDownloadError
+            case .videoParseError: 
+                code = .failedOperation_VideoParseError
+            case .videoSizeExceed: 
+                code = .failedOperation_VideoSizeExceed
+            case .other: 
+                code = .failedOperation
+            }
+            return TCIeError(code, context: self.context)
         }
-        return TCIeError(code, context: self.context)
-    }
-}
-
-extension TCIeError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

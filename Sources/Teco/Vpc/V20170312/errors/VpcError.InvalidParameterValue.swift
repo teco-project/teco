@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCVpcError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCVpcErrorType {
         enum Code: String {
             case addressAttacked = "InvalidParameterValue.AddressAttacked"
             case addressIdMalformed = "InvalidParameterValue.AddressIdMalformed"
@@ -120,8 +120,6 @@ extension TCVpcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -587,37 +585,196 @@ extension TCVpcError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCVpcError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCVpcError.InvalidParameterValue, rhs: TCVpcError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCVpcError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCVpcError.InvalidParameterValue {
-    /// - Returns: ``TCVpcError`` that holds the same error and context.
-    public func toVpcError() -> TCVpcError {
-        guard let code = TCVpcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asVpcError() -> TCVpcError {
+            let code: TCVpcError.Code
+            switch self.error {
+            case .addressAttacked: 
+                code = .invalidParameterValue_AddressAttacked
+            case .addressIdMalformed: 
+                code = .invalidParameterValue_AddressIdMalformed
+            case .addressInternetChargeTypeConflict: 
+                code = .invalidParameterValue_AddressInternetChargeTypeConflict
+            case .addressIpNotAvailable: 
+                code = .invalidParameterValue_AddressIpNotAvailable
+            case .addressIpNotFound: 
+                code = .invalidParameterValue_AddressIpNotFound
+            case .addressIpNotInVpc: 
+                code = .invalidParameterValue_AddressIpNotInVpc
+            case .addressIpNotPublic: 
+                code = .invalidParameterValue_AddressIpNotPublic
+            case .addressNotApplicable: 
+                code = .invalidParameterValue_AddressNotApplicable
+            case .addressNotCalcIP: 
+                code = .invalidParameterValue_AddressNotCalcIP
+            case .addressNotEIP: 
+                code = .invalidParameterValue_AddressNotEIP
+            case .addressNotFound: 
+                code = .invalidParameterValue_AddressNotFound
+            case .addressPublished: 
+                code = .invalidParameterValue_AddressPublished
+            case .bandwidthOutOfRange: 
+                code = .invalidParameterValue_BandwidthOutOfRange
+            case .bandwidthPackageIdMalformed: 
+                code = .invalidParameterValue_BandwidthPackageIdMalformed
+            case .bandwidthPackageInUse: 
+                code = .invalidParameterValue_BandwidthPackageInUse
+            case .bandwidthPackageNotFound: 
+                code = .invalidParameterValue_BandwidthPackageNotFound
+            case .bandwidthTooSmall: 
+                code = .invalidParameterValue_BandwidthTooSmall
+            case .ccnAttachBmvpcLimitExceeded: 
+                code = .invalidParameterValue_CcnAttachBmvpcLimitExceeded
+            case .cidrNotInPeerVpc: 
+                code = .invalidParameterValue_CidrNotInPeerVpc
+            case .cidrNotInSslVpnVpc: 
+                code = .invalidParameterValue_CidrNotInSslVpnVpc
+            case .combination: 
+                code = .invalidParameterValue_Combination
+            case .duplicate: 
+                code = .invalidParameterValue_Duplicate
+            case .duplicatePara: 
+                code = .invalidParameterValue_DuplicatePara
+            case .eipBrandWidthOutInvalid: 
+                code = .invalidParameterValue_EIPBrandWidthOutInvalid
+            case .empty: 
+                code = .invalidParameterValue_Empty
+            case .iPv6RuleNotChange: 
+                code = .invalidParameterValue_IPv6RuleNotChange
+            case .inconsistentInstanceInternetChargeType: 
+                code = .invalidParameterValue_InconsistentInstanceInternetChargeType
+            case .instanceDoesNotSupportAnycast: 
+                code = .invalidParameterValue_InstanceDoesNotSupportAnycast
+            case .instanceHasNoWanIP: 
+                code = .invalidParameterValue_InstanceHasNoWanIP
+            case .instanceHasWanIP: 
+                code = .invalidParameterValue_InstanceHasWanIP
+            case .instanceIdMalformed: 
+                code = .invalidParameterValue_InstanceIdMalformed
+            case .instanceNoCalcIP: 
+                code = .invalidParameterValue_InstanceNoCalcIP
+            case .instanceNoWanIP: 
+                code = .invalidParameterValue_InstanceNoWanIP
+            case .instanceNormalPublicIpBlocked: 
+                code = .invalidParameterValue_InstanceNormalPublicIpBlocked
+            case .instanceNotMatchAssociateEni: 
+                code = .invalidParameterValue_InstanceNotMatchAssociateEni
+            case .internetChargeTypeNotChanged: 
+                code = .invalidParameterValue_InternetChargeTypeNotChanged
+            case .invalidBandwidthPackageChargeType: 
+                code = .invalidParameterValue_InvalidBandwidthPackageChargeType
+            case .invalidBusiness: 
+                code = .invalidParameterValue_InvalidBusiness
+            case .invalidDedicatedClusterId: 
+                code = .invalidParameterValue_InvalidDedicatedClusterId
+            case .invalidInstanceInternetChargeType: 
+                code = .invalidParameterValue_InvalidInstanceInternetChargeType
+            case .invalidInstanceState: 
+                code = .invalidParameterValue_InvalidInstanceState
+            case .invalidIpv6: 
+                code = .invalidParameterValue_InvalidIpv6
+            case .invalidTag: 
+                code = .invalidParameterValue_InvalidTag
+            case .lbAlreadyBindEip: 
+                code = .invalidParameterValue_LBAlreadyBindEip
+            case .limitExceeded: 
+                code = .invalidParameterValue_LimitExceeded
+            case .malformed: 
+                code = .invalidParameterValue_Malformed
+            case .missingAssociateEntity: 
+                code = .invalidParameterValue_MissingAssociateEntity
+            case .mixedAddressIpSetType: 
+                code = .invalidParameterValue_MixedAddressIpSetType
+            case .natGatewayDnatRuleExisted: 
+                code = .invalidParameterValue_NatGatewayDnatRuleExisted
+            case .natGatewayDnatRuleNotExists: 
+                code = .invalidParameterValue_NatGatewayDnatRuleNotExists
+            case .natGatewayDnatRulePipNeedVm: 
+                code = .invalidParameterValue_NatGatewayDnatRulePipNeedVm
+            case .natGatewaySnatRuleNotExists: 
+                code = .invalidParameterValue_NatGatewaySnatRuleNotExists
+            case .natSnatRuleExists: 
+                code = .invalidParameterValue_NatSnatRuleExists
+            case .netDetectInVpc: 
+                code = .invalidParameterValue_NetDetectInVpc
+            case .netDetectNotFoundIp: 
+                code = .invalidParameterValue_NetDetectNotFoundIp
+            case .netDetectSameIp: 
+                code = .invalidParameterValue_NetDetectSameIp
+            case .networkInterfaceIdMalformed: 
+                code = .invalidParameterValue_NetworkInterfaceIdMalformed
+            case .networkInterfaceNotFound: 
+                code = .invalidParameterValue_NetworkInterfaceNotFound
+            case .onlySupportedForMasterNetworkCard: 
+                code = .invalidParameterValue_OnlySupportedForMasterNetworkCard
+            case .range: 
+                code = .invalidParameterValue_Range
+            case .reserved: 
+                code = .invalidParameterValue_Reserved
+            case .resourceAlreadyExisted: 
+                code = .invalidParameterValue_ResourceAlreadyExisted
+            case .resourceExpired: 
+                code = .invalidParameterValue_ResourceExpired
+            case .resourceIdMalformed: 
+                code = .invalidParameterValue_ResourceIdMalformed
+            case .resourceNotExisted: 
+                code = .invalidParameterValue_ResourceNotExisted
+            case .resourceNotFound: 
+                code = .invalidParameterValue_ResourceNotFound
+            case .resourceNotSupport: 
+                code = .invalidParameterValue_ResourceNotSupport
+            case .subnetConflict: 
+                code = .invalidParameterValue_SubnetConflict
+            case .subnetOverlap: 
+                code = .invalidParameterValue_SubnetOverlap
+            case .subnetOverlapAssistCidr: 
+                code = .invalidParameterValue_SubnetOverlapAssistCidr
+            case .subnetRange: 
+                code = .invalidParameterValue_SubnetRange
+            case .tagDuplicateKey: 
+                code = .invalidParameterValue_TagDuplicateKey
+            case .tagDuplicateResourceType: 
+                code = .invalidParameterValue_TagDuplicateResourceType
+            case .tagInvalidKey: 
+                code = .invalidParameterValue_TagInvalidKey
+            case .tagInvalidKeyLen: 
+                code = .invalidParameterValue_TagInvalidKeyLen
+            case .tagInvalidVal: 
+                code = .invalidParameterValue_TagInvalidVal
+            case .tagKeyNotExists: 
+                code = .invalidParameterValue_TagKeyNotExists
+            case .tagNotAllocatedQuota: 
+                code = .invalidParameterValue_TagNotAllocatedQuota
+            case .tagNotExisted: 
+                code = .invalidParameterValue_TagNotExisted
+            case .tagNotSupportTag: 
+                code = .invalidParameterValue_TagNotSupportTag
+            case .tagResourceFormatError: 
+                code = .invalidParameterValue_TagResourceFormatError
+            case .tagTimestampExceeded: 
+                code = .invalidParameterValue_TagTimestampExceeded
+            case .tagValNotExists: 
+                code = .invalidParameterValue_TagValNotExists
+            case .tooLong: 
+                code = .invalidParameterValue_TooLong
+            case .trafficPackageIdMalformed: 
+                code = .invalidParameterValue_TrafficPackageIdMalformed
+            case .unavailableZone: 
+                code = .invalidParameterValue_UnavailableZone
+            case .vpcCidrConflict: 
+                code = .invalidParameterValue_VpcCidrConflict
+            case .vpgTypeNotMatch: 
+                code = .invalidParameterValue_VpgTypeNotMatch
+            case .vpnConnCidrConflict: 
+                code = .invalidParameterValue_VpnConnCidrConflict
+            case .vpnConnHealthCheckIpConflict: 
+                code = .invalidParameterValue_VpnConnHealthCheckIpConflict
+            case .zoneConflict: 
+                code = .invalidParameterValue_ZoneConflict
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCVpcError(code, context: self.context)
         }
-        return TCVpcError(code, context: self.context)
-    }
-}
-
-extension TCVpcError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

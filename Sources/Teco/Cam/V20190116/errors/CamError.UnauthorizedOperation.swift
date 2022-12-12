@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCamError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCCamErrorType {
         enum Code: String {
             case deleteApiKey = "UnauthorizedOperation.DeleteApiKey"
             case other = "UnauthorizedOperation"
@@ -30,8 +30,6 @@ extension TCCamError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCCamError {
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-    }
-}
-
-extension TCCamError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCCamError.UnauthorizedOperation, rhs: TCCamError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCamError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCamError.UnauthorizedOperation {
-    /// - Returns: ``TCCamError`` that holds the same error and context.
-    public func toCamError() -> TCCamError {
-        guard let code = TCCamError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCamError() -> TCCamError {
+            let code: TCCamError.Code
+            switch self.error {
+            case .deleteApiKey: 
+                code = .unauthorizedOperation_DeleteApiKey
+            case .other: 
+                code = .unauthorizedOperation
+            }
+            return TCCamError(code, context: self.context)
         }
-        return TCCamError(code, context: self.context)
-    }
-}
-
-extension TCCamError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

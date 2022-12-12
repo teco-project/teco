@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCVpcError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCVpcErrorType {
         enum Code: String {
             case actionNotFound = "UnsupportedOperation.ActionNotFound"
             case addressIpInArrear = "UnsupportedOperation.AddressIpInArrear"
@@ -136,8 +136,6 @@ extension TCVpcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -677,37 +675,228 @@ extension TCVpcError {
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-    }
-}
-
-extension TCVpcError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCVpcError.UnsupportedOperation, rhs: TCVpcError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCVpcError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCVpcError.UnsupportedOperation {
-    /// - Returns: ``TCVpcError`` that holds the same error and context.
-    public func toVpcError() -> TCVpcError {
-        guard let code = TCVpcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asVpcError() -> TCVpcError {
+            let code: TCVpcError.Code
+            switch self.error {
+            case .actionNotFound: 
+                code = .unsupportedOperation_ActionNotFound
+            case .addressIpInArrear: 
+                code = .unsupportedOperation_AddressIpInArrear
+            case .addressIpInternetChargeTypeNotPermit: 
+                code = .unsupportedOperation_AddressIpInternetChargeTypeNotPermit
+            case .addressIpNotSupportInstance: 
+                code = .unsupportedOperation_AddressIpNotSupportInstance
+            case .addressIpStatusNotPermit: 
+                code = .unsupportedOperation_AddressIpStatusNotPermit
+            case .addressStatusNotPermit: 
+                code = .unsupportedOperation_AddressStatusNotPermit
+            case .appIdMismatch: 
+                code = .unsupportedOperation_AppIdMismatch
+            case .appIdNotFound: 
+                code = .unsupportedOperation_AppIdNotFound
+            case .attachmentAlreadyExists: 
+                code = .unsupportedOperation_AttachmentAlreadyExists
+            case .attachmentNotFound: 
+                code = .unsupportedOperation_AttachmentNotFound
+            case .bandwidthNotExpired: 
+                code = .unsupportedOperation_BandwidthNotExpired
+            case .bandwidthPackageIdNotSupported: 
+                code = .unsupportedOperation_BandwidthPackageIdNotSupported
+            case .bindEIP: 
+                code = .unsupportedOperation_BindEIP
+            case .ccnAttached: 
+                code = .unsupportedOperation_CcnAttached
+            case .ccnHasFlowLog: 
+                code = .unsupportedOperation_CcnHasFlowLog
+            case .ccnInstanceAccountNotApprovedByUnicom: 
+                code = .unsupportedOperation_CcnInstanceAccountNotApprovedByUnicom
+            case .ccnNotAttached: 
+                code = .unsupportedOperation_CcnNotAttached
+            case .ccnOrdinaryAccountRefuseAttach: 
+                code = .unsupportedOperation_CcnOrdinaryAccountRefuseAttach
+            case .ccnRouteTableNotExist: 
+                code = .unsupportedOperation_CcnRouteTableNotExist
+            case .cdcSubnetNotSupportUnLocalGateway: 
+                code = .unsupportedOperation_CdcSubnetNotSupportUnLocalGateway
+            case .cidrUnSupportedClassicLink: 
+                code = .unsupportedOperation_CIDRUnSupportedClassicLink
+            case .classicInstanceIdAlreadyExists: 
+                code = .unsupportedOperation_ClassicInstanceIdAlreadyExists
+            case .clbPolicyLimit: 
+                code = .unsupportedOperation_ClbPolicyLimit
+            case .conflictWithDockerRoute: 
+                code = .unsupportedOperation_ConflictWithDockerRoute
+            case .currentAccountIsNotUnicomAccount: 
+                code = .unsupportedOperation_CurrentAccountIsNotUnicomAccount
+            case .currentQueryRegionIsNotCrossBorder: 
+                code = .unsupportedOperation_CurrentQueryRegionIsNotCrossBorder
+            case .dcGatewayNatRuleExists: 
+                code = .unsupportedOperation_DCGatewayNatRuleExists
+            case .dcGatewaysNotFoundInVpc: 
+                code = .unsupportedOperation_DcGatewaysNotFoundInVpc
+            case .delDefaultRoute: 
+                code = .unsupportedOperation_DelDefaultRoute
+            case .delRouteWithSubnet: 
+                code = .unsupportedOperation_DelRouteWithSubnet
+            case .directConnectGatewayIsUpdatingCommunity: 
+                code = .unsupportedOperation_DirectConnectGatewayIsUpdatingCommunity
+            case .disabledNotifyCcn: 
+                code = .unsupportedOperation_DisabledNotifyCcn
+            case .duplicatePolicy: 
+                code = .unsupportedOperation_DuplicatePolicy
+            case .ecmp: 
+                code = .unsupportedOperation_Ecmp
+            case .ecmpWithCcnRoute: 
+                code = .unsupportedOperation_EcmpWithCcnRoute
+            case .ecmpWithUserRoute: 
+                code = .unsupportedOperation_EcmpWithUserRoute
+            case .endPointService: 
+                code = .unsupportedOperation_EndPointService
+            case .flowLogsNotSupportKoInstanceEni: 
+                code = .unsupportedOperation_FlowLogsNotSupportKoInstanceEni
+            case .flowLogsNotSupportNullInstanceEni: 
+                code = .unsupportedOperation_FlowLogsNotSupportNullInstanceEni
+            case .incorrectAddressResourceType: 
+                code = .unsupportedOperation_IncorrectAddressResourceType
+            case .instanceAndRtbNotMatch: 
+                code = .unsupportedOperation_InstanceAndRtbNotMatch
+            case .instanceMismatch: 
+                code = .unsupportedOperation_InstanceMismatch
+            case .instanceOrdinaryAccountRefuseAttach: 
+                code = .unsupportedOperation_InstanceOrdinaryAccountRefuseAttach
+            case .instanceStateNotSupported: 
+                code = .unsupportedOperation_InstanceStateNotSupported
+            case .insufficientFunds: 
+                code = .unsupportedOperation_InsufficientFunds
+            case .invalidAction: 
+                code = .unsupportedOperation_InvalidAction
+            case .invalidAddressInternetChargeType: 
+                code = .unsupportedOperation_InvalidAddressInternetChargeType
+            case .invalidAddressState: 
+                code = .unsupportedOperation_InvalidAddressState
+            case .invalidInstanceState: 
+                code = .unsupportedOperation_InvalidInstanceState
+            case .invalidResourceInternetChargeType: 
+                code = .unsupportedOperation_InvalidResourceInternetChargeType
+            case .invalidResourceProtocol: 
+                code = .unsupportedOperation_InvalidResourceProtocol
+            case .invalidState: 
+                code = .unsupportedOperation_InvalidState
+            case .invalidStatusNotifyCcn: 
+                code = .unsupportedOperation_InvalidStatusNotifyCcn
+            case .isNotFinanceAccount: 
+                code = .unsupportedOperation_IsNotFinanceAccount
+            case .ispNotSupported: 
+                code = .unsupportedOperation_IspNotSupported
+            case .localGatewayAlreadyExists: 
+                code = .unsupportedOperation_LocalGatewayAlreadyExists
+            case .modifyAddressAttribute: 
+                code = .unsupportedOperation_ModifyAddressAttribute
+            case .mutexOperationTaskRunning: 
+                code = .unsupportedOperation_MutexOperationTaskRunning
+            case .natGatewayEipNotExists: 
+                code = .unsupportedOperation_NatGatewayEipNotExists
+            case .natGatewayRulePipExists: 
+                code = .unsupportedOperation_NatGatewayRulePipExists
+            case .natGatewaySnatPipNeedVm: 
+                code = .unsupportedOperation_NatGatewaySnatPipNeedVm
+            case .natGatewayTypeNotSupportSNAT: 
+                code = .unsupportedOperation_NatGatewayTypeNotSupportSNAT
+            case .natNotSupported: 
+                code = .unsupportedOperation_NatNotSupported
+            case .normalSubnetNotSupportLocalGateway: 
+                code = .unsupportedOperation_NormalSubnetNotSupportLocalGateway
+            case .notLockedInstanceOperation: 
+                code = .unsupportedOperation_NotLockedInstanceOperation
+            case .notPendingCcnInstance: 
+                code = .unsupportedOperation_NotPendingCcnInstance
+            case .notPostpaidCcnOperation: 
+                code = .unsupportedOperation_NotPostpaidCcnOperation
+            case .notSupportAttachEdgeAndCrossBorderInstance: 
+                code = .unsupportedOperation_NotSupportAttachEdgeAndCrossBorderInstance
+            case .notSupportDeleteDefaultRouteTable: 
+                code = .unsupportedOperation_NotSupportDeleteDefaultRouteTable
+            case .notSupportedUpdateCcnRoutePublish: 
+                code = .unsupportedOperation_NotSupportedUpdateCcnRoutePublish
+            case .notifyCcn: 
+                code = .unsupportedOperation_NotifyCcn
+            case .offlineChargeType: 
+                code = .unsupportedOperation_OfflineChargeType
+            case .onlySupportProfessionKafka: 
+                code = .unsupportedOperation_OnlySupportProfessionKafka
+            case .prepaidCcnOnlySupportInterRegionLimit: 
+                code = .unsupportedOperation_PrepaidCcnOnlySupportInterRegionLimit
+            case .primaryIp: 
+                code = .unsupportedOperation_PrimaryIp
+            case .publicIpAddressDisassociate: 
+                code = .unsupportedOperation_PublicIpAddressDisassociate
+            case .publicIpAddressIsNotBGPIp: 
+                code = .unsupportedOperation_PublicIpAddressIsNotBGPIp
+            case .publicIpAddressIsNotExisted: 
+                code = .unsupportedOperation_PublicIpAddressIsNotExisted
+            case .publicIpAddressNotBilledByTraffic: 
+                code = .unsupportedOperation_PublicIpAddressNotBilledByTraffic
+            case .purchaseLimit: 
+                code = .unsupportedOperation_PurchaseLimit
+            case .recordExists: 
+                code = .unsupportedOperation_RecordExists
+            case .recordNotExists: 
+                code = .unsupportedOperation_RecordNotExists
+            case .resourceMismatch: 
+                code = .unsupportedOperation_ResourceMismatch
+            case .roleNotFound: 
+                code = .unsupportedOperation_RoleNotFound
+            case .routeTableHasSubnetRule: 
+                code = .unsupportedOperation_RouteTableHasSubnetRule
+            case .snatSubnet: 
+                code = .unsupportedOperation_SnatSubnet
+            case .specialEndPointService: 
+                code = .unsupportedOperation_SpecialEndPointService
+            case .sslVpnClientIdNotFound: 
+                code = .unsupportedOperation_SslVpnClientIdNotFound
+            case .subEniNotSupportTrunking: 
+                code = .unsupportedOperation_SubEniNotSupportTrunking
+            case .systemRoute: 
+                code = .unsupportedOperation_SystemRoute
+            case .tagAllocate: 
+                code = .unsupportedOperation_TagAllocate
+            case .tagFree: 
+                code = .unsupportedOperation_TagFree
+            case .tagNotPermit: 
+                code = .unsupportedOperation_TagNotPermit
+            case .tagSystemReservedTagKey: 
+                code = .unsupportedOperation_TagSystemReservedTagKey
+            case .uinNotFound: 
+                code = .unsupportedOperation_UinNotFound
+            case .unableCrossBorder: 
+                code = .unsupportedOperation_UnableCrossBorder
+            case .unableCrossFinance: 
+                code = .unsupportedOperation_UnableCrossFinance
+            case .unassignCidrBlock: 
+                code = .unsupportedOperation_UnassignCidrBlock
+            case .unbindEIP: 
+                code = .unsupportedOperation_UnbindEIP
+            case .unpaidOrderAlreadyExists: 
+                code = .unsupportedOperation_UnpaidOrderAlreadyExists
+            case .unsupportedBindLocalZoneEIP: 
+                code = .unsupportedOperation_UnsupportedBindLocalZoneEIP
+            case .unsupportedInstanceFamily: 
+                code = .unsupportedOperation_UnsupportedInstanceFamily
+            case .unsupportedRegion: 
+                code = .unsupportedOperation_UnsupportedRegion
+            case .userAndCcnChargeTypeNotMatch: 
+                code = .unsupportedOperation_UserAndCcnChargeTypeNotMatch
+            case .versionMismatch: 
+                code = .unsupportedOperation_VersionMismatch
+            case .vpcMismatch: 
+                code = .unsupportedOperation_VpcMismatch
+            case .zoneMismatch: 
+                code = .unsupportedOperation_ZoneMismatch
+            case .other: 
+                code = .unsupportedOperation
+            }
+            return TCVpcError(code, context: self.context)
         }
-        return TCVpcError(code, context: self.context)
-    }
-}
-
-extension TCVpcError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

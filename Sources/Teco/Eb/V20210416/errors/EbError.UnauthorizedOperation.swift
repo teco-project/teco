@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEbError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCEbErrorType {
         enum Code: String {
             case cam = "UnauthorizedOperation.CAM"
         }
@@ -29,8 +29,6 @@ extension TCEbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCEbError {
         public static var cam: UnauthorizedOperation {
             UnauthorizedOperation(.cam)
         }
-    }
-}
-
-extension TCEbError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCEbError.UnauthorizedOperation, rhs: TCEbError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEbError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEbError.UnauthorizedOperation {
-    /// - Returns: ``TCEbError`` that holds the same error and context.
-    public func toEbError() -> TCEbError {
-        guard let code = TCEbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEbError() -> TCEbError {
+            let code: TCEbError.Code
+            switch self.error {
+            case .cam: 
+                code = .unauthorizedOperation_CAM
+            }
+            return TCEbError(code, context: self.context)
         }
-        return TCEbError(code, context: self.context)
-    }
-}
-
-extension TCEbError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

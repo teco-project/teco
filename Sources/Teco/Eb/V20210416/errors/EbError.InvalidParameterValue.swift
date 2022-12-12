@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEbError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCEbErrorType {
         enum Code: String {
             case ampParams = "InvalidParameterValue.AMPParams"
             case batchEventCount = "InvalidParameterValue.BatchEventCount"
@@ -69,8 +69,6 @@ extension TCEbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -285,37 +283,94 @@ extension TCEbError {
         public static var type: InvalidParameterValue {
             InvalidParameterValue(.type)
         }
-    }
-}
-
-extension TCEbError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCEbError.InvalidParameterValue, rhs: TCEbError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEbError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEbError.InvalidParameterValue {
-    /// - Returns: ``TCEbError`` that holds the same error and context.
-    public func toEbError() -> TCEbError {
-        guard let code = TCEbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEbError() -> TCEbError {
+            let code: TCEbError.Code
+            switch self.error {
+            case .ampParams: 
+                code = .invalidParameterValue_AMPParams
+            case .batchEventCount: 
+                code = .invalidParameterValue_BatchEventCount
+            case .batchTimeout: 
+                code = .invalidParameterValue_BatchTimeout
+            case .cKafkaTargetParams: 
+                code = .invalidParameterValue_CKafkaTargetParams
+            case .callbackType: 
+                code = .invalidParameterValue_CallbackType
+            case .callbackWeComURL: 
+                code = .invalidParameterValue_CallbackWeComURL
+            case .connectionDescription: 
+                code = .invalidParameterValue_ConnectionDescription
+            case .connectionId: 
+                code = .invalidParameterValue_ConnectionId
+            case .connectionName: 
+                code = .invalidParameterValue_ConnectionName
+            case .deadLetterConfig: 
+                code = .invalidParameterValue_DeadLetterConfig
+            case .description: 
+                code = .invalidParameterValue_Description
+            case .dtsParams: 
+                code = .invalidParameterValue_DTSParams
+            case .elasticSearchTargetParams: 
+                code = .invalidParameterValue_ElasticSearchTargetParams
+            case .eventBusId: 
+                code = .invalidParameterValue_EventBusId
+            case .eventBusName: 
+                code = .invalidParameterValue_EventBusName
+            case .eventPattern: 
+                code = .invalidParameterValue_EventPattern
+            case .eventTraceConfig: 
+                code = .invalidParameterValue_EventTraceConfig
+            case .filters: 
+                code = .invalidParameterValue_Filters
+            case .invalidApiRequestConfig: 
+                code = .invalidParameterValue_InvalidApiRequestConfig
+            case .invalidEvent: 
+                code = .invalidParameterValue_InvalidEvent
+            case .invalidEventBus: 
+                code = .invalidParameterValue_InvalidEventBus
+            case .invalidFilterRule: 
+                code = .invalidParameterValue_InvalidFilterRule
+            case .invalidPattern: 
+                code = .invalidParameterValue_InvalidPattern
+            case .limit: 
+                code = .invalidParameterValue_Limit
+            case .linkMode: 
+                code = .invalidParameterValue_LinkMode
+            case .noticeReceiverChannel: 
+                code = .invalidParameterValue_NoticeReceiverChannel
+            case .noticeReceiverTimeWindow: 
+                code = .invalidParameterValue_NoticeReceiverTimeWindow
+            case .noticeReceiverUserIds: 
+                code = .invalidParameterValue_NoticeReceiverUserIds
+            case .noticeReceiverUserType: 
+                code = .invalidParameterValue_NoticeReceiverUserType
+            case .offset: 
+                code = .invalidParameterValue_Offset
+            case .order: 
+                code = .invalidParameterValue_Order
+            case .orderBy: 
+                code = .invalidParameterValue_OrderBy
+            case .qualifier: 
+                code = .invalidParameterValue_Qualifier
+            case .ruleId: 
+                code = .invalidParameterValue_RuleId
+            case .ruleName: 
+                code = .invalidParameterValue_RuleName
+            case .tags: 
+                code = .invalidParameterValue_Tags
+            case .targetDescription: 
+                code = .invalidParameterValue_TargetDescription
+            case .targetId: 
+                code = .invalidParameterValue_TargetId
+            case .transformationID: 
+                code = .invalidParameterValue_TransformationID
+            case .transformations: 
+                code = .invalidParameterValue_Transformations
+            case .type: 
+                code = .invalidParameterValue_Type
+            }
+            return TCEbError(code, context: self.context)
         }
-        return TCEbError(code, context: self.context)
-    }
-}
-
-extension TCEbError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

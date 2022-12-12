@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMonitorError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCMonitorErrorType {
         enum Code: String {
             case dashboardNameExists = "InvalidParameterValue.DashboardNameExists"
             case versionMismatch = "InvalidParameterValue.VersionMismatch"
@@ -31,8 +31,6 @@ extension TCMonitorError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCMonitorError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCMonitorError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCMonitorError.InvalidParameterValue, rhs: TCMonitorError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMonitorError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMonitorError.InvalidParameterValue {
-    /// - Returns: ``TCMonitorError`` that holds the same error and context.
-    public func toMonitorError() -> TCMonitorError {
-        guard let code = TCMonitorError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMonitorError() -> TCMonitorError {
+            let code: TCMonitorError.Code
+            switch self.error {
+            case .dashboardNameExists: 
+                code = .invalidParameterValue_DashboardNameExists
+            case .versionMismatch: 
+                code = .invalidParameterValue_VersionMismatch
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCMonitorError(code, context: self.context)
         }
-        return TCMonitorError(code, context: self.context)
-    }
-}
-
-extension TCMonitorError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCwpError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCCwpErrorType {
         enum Code: String {
             case areaQuota = "LimitExceeded.AreaQuota"
             case other = "LimitExceeded"
@@ -30,8 +30,6 @@ extension TCCwpError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCCwpError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCCwpError.LimitExceeded: Equatable {
-    public static func == (lhs: TCCwpError.LimitExceeded, rhs: TCCwpError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCwpError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCwpError.LimitExceeded {
-    /// - Returns: ``TCCwpError`` that holds the same error and context.
-    public func toCwpError() -> TCCwpError {
-        guard let code = TCCwpError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCwpError() -> TCCwpError {
+            let code: TCCwpError.Code
+            switch self.error {
+            case .areaQuota: 
+                code = .limitExceeded_AreaQuota
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCCwpError(code, context: self.context)
         }
-        return TCCwpError(code, context: self.context)
-    }
-}
-
-extension TCCwpError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTeoError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCTeoErrorType {
         enum Code: String {
             case conflictRecord = "InvalidParameterValue.ConflictRecord"
             case conflictWithDNSSEC = "InvalidParameterValue.ConflictWithDNSSEC"
@@ -39,8 +39,6 @@ extension TCTeoError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -108,37 +106,34 @@ extension TCTeoError {
         public static var recordNotAllowed: InvalidParameterValue {
             InvalidParameterValue(.recordNotAllowed)
         }
-    }
-}
-
-extension TCTeoError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCTeoError.InvalidParameterValue, rhs: TCTeoError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTeoError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTeoError.InvalidParameterValue {
-    /// - Returns: ``TCTeoError`` that holds the same error and context.
-    public func toTeoError() -> TCTeoError {
-        guard let code = TCTeoError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTeoError() -> TCTeoError {
+            let code: TCTeoError.Code
+            switch self.error {
+            case .conflictRecord: 
+                code = .invalidParameterValue_ConflictRecord
+            case .conflictWithDNSSEC: 
+                code = .invalidParameterValue_ConflictWithDNSSEC
+            case .conflictWithLBRecord: 
+                code = .invalidParameterValue_ConflictWithLBRecord
+            case .conflictWithNSRecord: 
+                code = .invalidParameterValue_ConflictWithNSRecord
+            case .invalidDNSContent: 
+                code = .invalidParameterValue_InvalidDNSContent
+            case .invalidDNSName: 
+                code = .invalidParameterValue_InvalidDNSName
+            case .invalidProxyName: 
+                code = .invalidParameterValue_InvalidProxyName
+            case .invalidProxyOrigin: 
+                code = .invalidParameterValue_InvalidProxyOrigin
+            case .invalidSRVName: 
+                code = .invalidParameterValue_InvalidSRVName
+            case .recordAlreadyExists: 
+                code = .invalidParameterValue_RecordAlreadyExists
+            case .recordNotAllowed: 
+                code = .invalidParameterValue_RecordNotAllowed
+            }
+            return TCTeoError(code, context: self.context)
         }
-        return TCTeoError(code, context: self.context)
-    }
-}
-
-extension TCTeoError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

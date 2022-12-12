@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMpsError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCMpsErrorType {
         enum Code: String {
             case endTime = "InvalidParameter.EndTime"
             case exceededQuantityLimit = "InvalidParameter.ExceededQuantityLimit"
@@ -49,8 +49,6 @@ extension TCMpsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -148,37 +146,54 @@ extension TCMpsError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCMpsError.InvalidParameter: Equatable {
-    public static func == (lhs: TCMpsError.InvalidParameter, rhs: TCMpsError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMpsError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMpsError.InvalidParameter {
-    /// - Returns: ``TCMpsError`` that holds the same error and context.
-    public func toMpsError() -> TCMpsError {
-        guard let code = TCMpsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMpsError() -> TCMpsError {
+            let code: TCMpsError.Code
+            switch self.error {
+            case .endTime: 
+                code = .invalidParameter_EndTime
+            case .exceededQuantityLimit: 
+                code = .invalidParameter_ExceededQuantityLimit
+            case .id: 
+                code = .invalidParameter_Id
+            case .input: 
+                code = .invalidParameter_Input
+            case .inputOutputId: 
+                code = .invalidParameter_InputOutputId
+            case .maxBandwidth: 
+                code = .invalidParameter_MaxBandwidth
+            case .name: 
+                code = .invalidParameter_Name
+            case .notFound: 
+                code = .invalidParameter_NotFound
+            case .output: 
+                code = .invalidParameter_Output
+            case .outputGroups: 
+                code = .invalidParameter_OutputGroups
+            case .outputId: 
+                code = .invalidParameter_OutputId
+            case .pageNum: 
+                code = .invalidParameter_PageNum
+            case .pageSize: 
+                code = .invalidParameter_PageSize
+            case .period: 
+                code = .invalidParameter_Period
+            case .pipeline: 
+                code = .invalidParameter_Pipeline
+            case .`protocol`: 
+                code = .invalidParameter_Protocol
+            case .sortType: 
+                code = .invalidParameter_SortType
+            case .startTime: 
+                code = .invalidParameter_StartTime
+            case .state: 
+                code = .invalidParameter_State
+            case .type: 
+                code = .invalidParameter_Type
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCMpsError(code, context: self.context)
         }
-        return TCMpsError(code, context: self.context)
-    }
-}
-
-extension TCMpsError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

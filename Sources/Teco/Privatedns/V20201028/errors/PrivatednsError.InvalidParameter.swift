@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCPrivatednsError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCPrivatednsErrorType {
         enum Code: String {
             case accountExist = "InvalidParameter.AccountExist"
             case illegalCidr = "InvalidParameter.IllegalCidr"
@@ -54,8 +54,6 @@ extension TCPrivatednsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -204,37 +202,64 @@ extension TCPrivatednsError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCPrivatednsError.InvalidParameter: Equatable {
-    public static func == (lhs: TCPrivatednsError.InvalidParameter, rhs: TCPrivatednsError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCPrivatednsError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCPrivatednsError.InvalidParameter {
-    /// - Returns: ``TCPrivatednsError`` that holds the same error and context.
-    public func toPrivatednsError() -> TCPrivatednsError {
-        guard let code = TCPrivatednsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asPrivatednsError() -> TCPrivatednsError {
+            let code: TCPrivatednsError.Code
+            switch self.error {
+            case .accountExist: 
+                code = .invalidParameter_AccountExist
+            case .illegalCidr: 
+                code = .invalidParameter_IllegalCidr
+            case .illegalDomain: 
+                code = .invalidParameter_IllegalDomain
+            case .illegalDomainTld: 
+                code = .invalidParameter_IllegalDomainTld
+            case .illegalPTRRecord: 
+                code = .invalidParameter_IllegalPTRRecord
+            case .illegalRecord: 
+                code = .invalidParameter_IllegalRecord
+            case .illegalRecordValue: 
+                code = .invalidParameter_IllegalRecordValue
+            case .illegalVpcInfo: 
+                code = .invalidParameter_IllegalVpcInfo
+            case .invalidMX: 
+                code = .invalidParameter_InvalidMX
+            case .recordAAAACountExceed: 
+                code = .invalidParameter_RecordAAAACountExceed
+            case .recordACountExceed: 
+                code = .invalidParameter_RecordACountExceed
+            case .recordCNAMECountExceed: 
+                code = .invalidParameter_RecordCNAMECountExceed
+            case .recordConflict: 
+                code = .invalidParameter_RecordConflict
+            case .recordCountExceed: 
+                code = .invalidParameter_RecordCountExceed
+            case .recordExist: 
+                code = .invalidParameter_RecordExist
+            case .recordLevelExceed: 
+                code = .invalidParameter_RecordLevelExceed
+            case .recordMXCountExceed: 
+                code = .invalidParameter_RecordMXCountExceed
+            case .recordNotExist: 
+                code = .invalidParameter_RecordNotExist
+            case .recordRolllimitCountExceed: 
+                code = .invalidParameter_RecordRolllimitCountExceed
+            case .recordTXTCountExceed: 
+                code = .invalidParameter_RecordTXTCountExceed
+            case .recordUnsupportWeight: 
+                code = .invalidParameter_RecordUnsupportWeight
+            case .vpcBinded: 
+                code = .invalidParameter_VpcBinded
+            case .vpcBindedMainDomain: 
+                code = .invalidParameter_VpcBindedMainDomain
+            case .vpcPtrZoneBindExceed: 
+                code = .invalidParameter_VpcPtrZoneBindExceed
+            case .zoneNotExists: 
+                code = .invalidParameter_ZoneNotExists
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCPrivatednsError(code, context: self.context)
         }
-        return TCPrivatednsError(code, context: self.context)
-    }
-}
-
-extension TCPrivatednsError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

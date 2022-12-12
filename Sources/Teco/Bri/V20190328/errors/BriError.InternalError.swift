@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBriError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCBriErrorType {
         enum Code: String {
             case timeout = "InternalError.Timeout"
             case other = "InternalError"
@@ -30,8 +30,6 @@ extension TCBriError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCBriError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCBriError.InternalError: Equatable {
-    public static func == (lhs: TCBriError.InternalError, rhs: TCBriError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBriError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBriError.InternalError {
-    /// - Returns: ``TCBriError`` that holds the same error and context.
-    public func toBriError() -> TCBriError {
-        guard let code = TCBriError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBriError() -> TCBriError {
+            let code: TCBriError.Code
+            switch self.error {
+            case .timeout: 
+                code = .internalError_Timeout
+            case .other: 
+                code = .internalError
+            }
+            return TCBriError(code, context: self.context)
         }
-        return TCBriError(code, context: self.context)
-    }
-}
-
-extension TCBriError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEiamError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCEiamErrorType {
         enum Code: String {
             case accountAlreadyExistedInAccountGroup = "FailedOperation.AccountAlreadyExistedInAccountGroup"
             case accountGroupNameAlreadyExists = "FailedOperation.AccountGroupNameAlreadyExists"
@@ -81,8 +81,6 @@ extension TCEiamError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -360,37 +358,118 @@ extension TCEiamError {
         public static var userPhoneAlreadyExists: FailedOperation {
             FailedOperation(.userPhoneAlreadyExists)
         }
-    }
-}
-
-extension TCEiamError.FailedOperation: Equatable {
-    public static func == (lhs: TCEiamError.FailedOperation, rhs: TCEiamError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEiamError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEiamError.FailedOperation {
-    /// - Returns: ``TCEiamError`` that holds the same error and context.
-    public func toEiamError() -> TCEiamError {
-        guard let code = TCEiamError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEiamError() -> TCEiamError {
+            let code: TCEiamError.Code
+            switch self.error {
+            case .accountAlreadyExistedInAccountGroup: 
+                code = .failedOperation_AccountAlreadyExistedInAccountGroup
+            case .accountGroupNameAlreadyExists: 
+                code = .failedOperation_AccountGroupNameAlreadyExists
+            case .accountGroupNotExist: 
+                code = .failedOperation_AccountGroupNotExist
+            case .accountNameAlreadyExists: 
+                code = .failedOperation_AccountNameAlreadyExists
+            case .accountNotExist: 
+                code = .failedOperation_AccountNotExist
+            case .accountNotExisted: 
+                code = .failedOperation_AccountNotExisted
+            case .appDisplayNameAlreadyExists: 
+                code = .failedOperation_AppDisplayNameAlreadyExists
+            case .appNotExist: 
+                code = .failedOperation_AppNotExist
+            case .childOrgNodeNameAlreadyExists: 
+                code = .failedOperation_ChildOrgNodeNameAlreadyExists
+            case .childOrgNodeWithUsersCanNotBeDeleted: 
+                code = .failedOperation_ChildOrgNodeWithUsersCanNotBeDeleted
+            case .createOrgNodeError: 
+                code = .failedOperation_CreateOrgNodeError
+            case .createUserFailure: 
+                code = .failedOperation_CreateUserFailure
+            case .createUserGroupError: 
+                code = .failedOperation_CreateUserGroupError
+            case .customizeParentOrgNodeIdAlreadyExists: 
+                code = .failedOperation_CustomizeParentOrgNodeIdAlreadyExists
+            case .customizedOrgNodeIdCanNotBeEmpty: 
+                code = .failedOperation_CustomizedOrgNodeIdCanNotBeEmpty
+            case .defaultOrgNodeCanNotBeDeleted: 
+                code = .failedOperation_DefaultOrgNodeCanNotBeDeleted
+            case .deleteOrgNodeError: 
+                code = .failedOperation_DeleteOrgNodeError
+            case .deleteUserError: 
+                code = .failedOperation_DeleteUserError
+            case .deleteUserExistsAdministrator: 
+                code = .failedOperation_DeleteUserExistsAdministrator
+            case .deleteUserGroupError: 
+                code = .failedOperation_DeleteUserGroupError
+            case .describeOrgNodeError: 
+                code = .failedOperation_DescribeOrgNodeError
+            case .describeOrgNodeRootError: 
+                code = .failedOperation_DescribeOrgNodeRootError
+            case .expectFieldsNotFound: 
+                code = .failedOperation_ExpectFieldsNotFound
+            case .groupIdNotFound: 
+                code = .failedOperation_GroupIdNotFound
+            case .idToCodeError: 
+                code = .failedOperation_IdToCodeError
+            case .limitQuotaNotEnough: 
+                code = .failedOperation_LimitQuotaNotEnough
+            case .listUserGroupsOfUserError: 
+                code = .failedOperation_ListUserGroupsOfUserError
+            case .listUsersInOrgNodeError: 
+                code = .failedOperation_ListUsersInOrgNodeError
+            case .listUsersInUserGroupError: 
+                code = .failedOperation_ListUsersInUserGroupError
+            case .mainOrgNodeNotExist: 
+                code = .failedOperation_MainOrgNodeNotExist
+            case .operationError: 
+                code = .failedOperation_OperationError
+            case .operationFailure: 
+                code = .failedOperation_OperationFailure
+            case .orgNodeIdNotExist: 
+                code = .failedOperation_OrgNodeIdNotExist
+            case .orgNodeNotExist: 
+                code = .failedOperation_OrgNodeNotExist
+            case .orgNodeRootCanNotBeDeleted: 
+                code = .failedOperation_OrgNodeRootCanNotBeDeleted
+            case .orgNodeSettingError: 
+                code = .failedOperation_OrgNodeSettingError
+            case .orgNodeWithUsersCanNotBeDeleted: 
+                code = .failedOperation_OrgNodeWithUsersCanNotBeDeleted
+            case .parentOrgNodeIdNotFound: 
+                code = .failedOperation_ParentOrgNodeIdNotFound
+            case .personNotFound: 
+                code = .failedOperation_PersonNotFound
+            case .removeUsersFromUserGroupError: 
+                code = .failedOperation_RemoveUsersFromUserGroupError
+            case .secondaryOrgNodeDuplicates: 
+                code = .failedOperation_SecondaryOrgNodeDuplicates
+            case .updateLDAPUserOrgExceedsRange: 
+                code = .failedOperation_UpdateLDAPUserOrgExceedsRange
+            case .updateLDAPUserOrgNotInSameCrop: 
+                code = .failedOperation_UpdateLDAPUserOrgNotInSameCrop
+            case .updateUserExceedsRange: 
+                code = .failedOperation_UpdateUserExceedsRange
+            case .updateWeComUserOrgExceedsRange: 
+                code = .failedOperation_UpdateWeComUserOrgExceedsRange
+            case .updateWeComUserOrgNotInSameCrop: 
+                code = .failedOperation_UpdateWeComUserOrgNotInSameCrop
+            case .userAuthListError: 
+                code = .failedOperation_UserAuthListError
+            case .userEmailAlreadyExists: 
+                code = .failedOperation_UserEmailAlreadyExists
+            case .userGroupNotExist: 
+                code = .failedOperation_UserGroupNotExist
+            case .userNameAlreadyExists: 
+                code = .failedOperation_UserNameAlreadyExists
+            case .userNotExistInUserGroup: 
+                code = .failedOperation_UserNotExistInUserGroup
+            case .userNotFound: 
+                code = .failedOperation_UserNotFound
+            case .userPhoneAlreadyExists: 
+                code = .failedOperation_UserPhoneAlreadyExists
+            }
+            return TCEiamError(code, context: self.context)
         }
-        return TCEiamError(code, context: self.context)
-    }
-}
-
-extension TCEiamError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

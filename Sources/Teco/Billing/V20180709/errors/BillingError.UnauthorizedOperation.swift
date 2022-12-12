@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBillingError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCBillingErrorType {
         enum Code: String {
             case camNoAuth = "UnauthorizedOperation.CamNoAuth"
             case certificationNeedUpgrade = "UnauthorizedOperation.CertificationNeedUpgrade"
@@ -31,8 +31,6 @@ extension TCBillingError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCBillingError {
         public static var notCertification: UnauthorizedOperation {
             UnauthorizedOperation(.notCertification)
         }
-    }
-}
-
-extension TCBillingError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCBillingError.UnauthorizedOperation, rhs: TCBillingError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBillingError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBillingError.UnauthorizedOperation {
-    /// - Returns: ``TCBillingError`` that holds the same error and context.
-    public func toBillingError() -> TCBillingError {
-        guard let code = TCBillingError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBillingError() -> TCBillingError {
+            let code: TCBillingError.Code
+            switch self.error {
+            case .camNoAuth: 
+                code = .unauthorizedOperation_CamNoAuth
+            case .certificationNeedUpgrade: 
+                code = .unauthorizedOperation_CertificationNeedUpgrade
+            case .notCertification: 
+                code = .unauthorizedOperation_NotCertification
+            }
+            return TCBillingError(code, context: self.context)
         }
-        return TCBillingError(code, context: self.context)
-    }
-}
-
-extension TCBillingError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCZjError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCZjErrorType {
         enum Code: String {
             case expiredLicense = "UnauthorizedOperation.ExpiredLicense"
             case invalidLicense = "UnauthorizedOperation.InvalidLicense"
@@ -32,8 +32,6 @@ extension TCZjError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCZjError {
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-    }
-}
-
-extension TCZjError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCZjError.UnauthorizedOperation, rhs: TCZjError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCZjError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCZjError.UnauthorizedOperation {
-    /// - Returns: ``TCZjError`` that holds the same error and context.
-    public func toZjError() -> TCZjError {
-        guard let code = TCZjError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asZjError() -> TCZjError {
+            let code: TCZjError.Code
+            switch self.error {
+            case .expiredLicense: 
+                code = .unauthorizedOperation_ExpiredLicense
+            case .invalidLicense: 
+                code = .unauthorizedOperation_InvalidLicense
+            case .roleFailure: 
+                code = .unauthorizedOperation_RoleFailure
+            case .other: 
+                code = .unauthorizedOperation
+            }
+            return TCZjError(code, context: self.context)
         }
-        return TCZjError(code, context: self.context)
-    }
-}
-
-extension TCZjError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

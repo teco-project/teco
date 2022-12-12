@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCvmError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCCvmErrorType {
         enum Code: String {
             case bandwidthPackageIdNotSupported = "UnsupportedOperation.BandwidthPackageIdNotSupported"
             case edgeZoneNotSupportCloudDisk = "UnsupportedOperation.EdgeZoneNotSupportCloudDisk"
@@ -101,8 +101,6 @@ extension TCCvmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -534,37 +532,158 @@ extension TCCvmError {
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-    }
-}
-
-extension TCCvmError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCCvmError.UnsupportedOperation, rhs: TCCvmError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCvmError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCvmError.UnsupportedOperation {
-    /// - Returns: ``TCCvmError`` that holds the same error and context.
-    public func toCvmError() -> TCCvmError {
-        guard let code = TCCvmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCvmError() -> TCCvmError {
+            let code: TCCvmError.Code
+            switch self.error {
+            case .bandwidthPackageIdNotSupported: 
+                code = .unsupportedOperation_BandwidthPackageIdNotSupported
+            case .edgeZoneNotSupportCloudDisk: 
+                code = .unsupportedOperation_EdgeZoneNotSupportCloudDisk
+            case .elasticNetworkInterface: 
+                code = .unsupportedOperation_ElasticNetworkInterface
+            case .encryptedImagesNotSupported: 
+                code = .unsupportedOperation_EncryptedImagesNotSupported
+            case .heterogeneousChangeInstanceFamily: 
+                code = .unsupportedOperation_HeterogeneousChangeInstanceFamily
+            case .iPv6NotSupportVpcMigrate: 
+                code = .unsupportedOperation_IPv6NotSupportVpcMigrate
+            case .imageTooLargeExportUnsupported: 
+                code = .unsupportedOperation_ImageTooLargeExportUnsupported
+            case .instanceChargeType: 
+                code = .unsupportedOperation_InstanceChargeType
+            case .instanceMixedPricingModel: 
+                code = .unsupportedOperation_InstanceMixedPricingModel
+            case .instanceMixedZoneType: 
+                code = .unsupportedOperation_InstanceMixedZoneType
+            case .instanceOsWindows: 
+                code = .unsupportedOperation_InstanceOsWindows
+            case .instanceStateBanning: 
+                code = .unsupportedOperation_InstanceStateBanning
+            case .instanceStateCorrupted: 
+                code = .unsupportedOperation_InstanceStateCorrupted
+            case .instanceStateEnterRescueMode: 
+                code = .unsupportedOperation_InstanceStateEnterRescueMode
+            case .instanceStateEnterServiceLiveMigrate: 
+                code = .unsupportedOperation_InstanceStateEnterServiceLiveMigrate
+            case .instanceStateExitRescueMode: 
+                code = .unsupportedOperation_InstanceStateExitRescueMode
+            case .instanceStateExitServiceLiveMigrate: 
+                code = .unsupportedOperation_InstanceStateExitServiceLiveMigrate
+            case .instanceStateFreezing: 
+                code = .unsupportedOperation_InstanceStateFreezing
+            case .instanceStateIsolating: 
+                code = .unsupportedOperation_InstanceStateIsolating
+            case .instanceStateLaunchFailed: 
+                code = .unsupportedOperation_InstanceStateLaunchFailed
+            case .instanceStatePending: 
+                code = .unsupportedOperation_InstanceStatePending
+            case .instanceStateRebooting: 
+                code = .unsupportedOperation_InstanceStateRebooting
+            case .instanceStateRescueMode: 
+                code = .unsupportedOperation_InstanceStateRescueMode
+            case .instanceStateRunning: 
+                code = .unsupportedOperation_InstanceStateRunning
+            case .instanceStateServiceLiveMigrate: 
+                code = .unsupportedOperation_InstanceStateServiceLiveMigrate
+            case .instanceStateShutdown: 
+                code = .unsupportedOperation_InstanceStateShutdown
+            case .instanceStateStarting: 
+                code = .unsupportedOperation_InstanceStateStarting
+            case .instanceStateStopped: 
+                code = .unsupportedOperation_InstanceStateStopped
+            case .instanceStateStopping: 
+                code = .unsupportedOperation_InstanceStateStopping
+            case .instanceStateTerminated: 
+                code = .unsupportedOperation_InstanceStateTerminated
+            case .instanceStateTerminating: 
+                code = .unsupportedOperation_InstanceStateTerminating
+            case .instancesProtected: 
+                code = .unsupportedOperation_InstancesProtected
+            case .insufficientClusterQuota: 
+                code = .unsupportedOperation_InsufficientClusterQuota
+            case .invalidDataDisk: 
+                code = .unsupportedOperation_InvalidDataDisk
+            case .invalidDisk: 
+                code = .unsupportedOperation_InvalidDisk
+            case .invalidImageLicenseTypeForReset: 
+                code = .unsupportedOperation_InvalidImageLicenseTypeForReset
+            case .invalidInstanceNotSupportedProtectedInstance: 
+                code = .unsupportedOperation_InvalidInstanceNotSupportedProtectedInstance
+            case .invalidPermissionNonInternationalAccount: 
+                code = .unsupportedOperation_InvalidPermissionNonInternationalAccount
+            case .invalidRegionDiskEncrypt: 
+                code = .unsupportedOperation_InvalidRegionDiskEncrypt
+            case .invalidZone: 
+                code = .unsupportedOperation_InvalidZone
+            case .keyPairUnsupportedWindows: 
+                code = .unsupportedOperation_KeyPairUnsupportedWindows
+            case .localDataDiskChangeInstanceFamily: 
+                code = .unsupportedOperation_LocalDataDiskChangeInstanceFamily
+            case .localDiskMigratingToCloudDisk: 
+                code = .unsupportedOperation_LocalDiskMigratingToCloudDisk
+            case .marketImageExportUnsupported: 
+                code = .unsupportedOperation_MarketImageExportUnsupported
+            case .modifyEncryptionNotSupported: 
+                code = .unsupportedOperation_ModifyEncryptionNotSupported
+            case .modifyVPCWithCLB: 
+                code = .unsupportedOperation_ModifyVPCWithCLB
+            case .noInstanceTypeSupportSpot: 
+                code = .unsupportedOperation_NoInstanceTypeSupportSpot
+            case .noVpcNetwork: 
+                code = .unsupportedOperation_NoVpcNetwork
+            case .notFpgaInstance: 
+                code = .unsupportedOperation_NotFpgaInstance
+            case .notSupportImportInstancesActionTimer: 
+                code = .unsupportedOperation_NotSupportImportInstancesActionTimer
+            case .notSupportInstanceImage: 
+                code = .unsupportedOperation_NotSupportInstanceImage
+            case .onlyForPrepaidAccount: 
+                code = .unsupportedOperation_OnlyForPrepaidAccount
+            case .originalInstanceTypeInvalid: 
+                code = .unsupportedOperation_OriginalInstanceTypeInvalid
+            case .publicImageExportUnsupported: 
+                code = .unsupportedOperation_PublicImageExportUnsupported
+            case .rawLocalDiskInsReinstalltoQcow2: 
+                code = .unsupportedOperation_RawLocalDiskInsReinstalltoQcow2
+            case .redHatInstanceTerminateUnsupported: 
+                code = .unsupportedOperation_RedHatInstanceTerminateUnsupported
+            case .redHatInstanceUnsupported: 
+                code = .unsupportedOperation_RedHatInstanceUnsupported
+            case .region: 
+                code = .unsupportedOperation_Region
+            case .reservedInstanceInvisibleForUser: 
+                code = .unsupportedOperation_ReservedInstanceInvisibleForUser
+            case .reservedInstanceOutofQuata: 
+                code = .unsupportedOperation_ReservedInstanceOutofQuata
+            case .sharedImageExportUnsupported: 
+                code = .unsupportedOperation_SharedImageExportUnsupported
+            case .specialInstanceType: 
+                code = .unsupportedOperation_SpecialInstanceType
+            case .spotUnsupportedRegion: 
+                code = .unsupportedOperation_SpotUnsupportedRegion
+            case .stoppedModeStopCharging: 
+                code = .unsupportedOperation_StoppedModeStopCharging
+            case .stoppedModeStopChargingSameFamily: 
+                code = .unsupportedOperation_StoppedModeStopChargingSameFamily
+            case .underwritingInstanceTypeOnlySupportAutoRenew: 
+                code = .unsupportedOperation_UnderwritingInstanceTypeOnlySupportAutoRenew
+            case .unsupportedChangeInstanceFamily: 
+                code = .unsupportedOperation_UnsupportedChangeInstanceFamily
+            case .unsupportedChangeInstanceFamilyToARM: 
+                code = .unsupportedOperation_UnsupportedChangeInstanceFamilyToARM
+            case .unsupportedChangeInstanceToThisInstanceFamily: 
+                code = .unsupportedOperation_UnsupportedChangeInstanceToThisInstanceFamily
+            case .unsupportedInternationalUser: 
+                code = .unsupportedOperation_UnsupportedInternationalUser
+            case .userLimitOperationExceedQuota: 
+                code = .unsupportedOperation_UserLimitOperationExceedQuota
+            case .windowsImageExportUnsupported: 
+                code = .unsupportedOperation_WindowsImageExportUnsupported
+            case .other: 
+                code = .unsupportedOperation
+            }
+            return TCCvmError(code, context: self.context)
         }
-        return TCCvmError(code, context: self.context)
-    }
-}
-
-extension TCCvmError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

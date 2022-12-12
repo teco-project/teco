@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEcdnError {
-    public struct ResourceInUse: TCErrorType {
+    public struct ResourceInUse: TCEcdnErrorType {
         enum Code: String {
             case ecdnDomainExists = "ResourceInUse.EcdnDomainExists"
             case ecdnOpInProgress = "ResourceInUse.EcdnOpInProgress"
@@ -30,8 +30,6 @@ extension TCEcdnError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCEcdnError {
         public static var ecdnOpInProgress: ResourceInUse {
             ResourceInUse(.ecdnOpInProgress)
         }
-    }
-}
-
-extension TCEcdnError.ResourceInUse: Equatable {
-    public static func == (lhs: TCEcdnError.ResourceInUse, rhs: TCEcdnError.ResourceInUse) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEcdnError.ResourceInUse: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEcdnError.ResourceInUse {
-    /// - Returns: ``TCEcdnError`` that holds the same error and context.
-    public func toEcdnError() -> TCEcdnError {
-        guard let code = TCEcdnError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEcdnError() -> TCEcdnError {
+            let code: TCEcdnError.Code
+            switch self.error {
+            case .ecdnDomainExists: 
+                code = .resourceInUse_EcdnDomainExists
+            case .ecdnOpInProgress: 
+                code = .resourceInUse_EcdnOpInProgress
+            }
+            return TCEcdnError(code, context: self.context)
         }
-        return TCEcdnError(code, context: self.context)
-    }
-}
-
-extension TCEcdnError.ResourceInUse {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

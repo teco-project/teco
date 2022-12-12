@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTcrError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCTcrErrorType {
         enum Code: String {
             case errNSMisMatch = "InvalidParameter.ErrNSMisMatch"
             case errNamespaceExist = "InvalidParameter.ErrNamespaceExist"
@@ -44,8 +44,6 @@ extension TCTcrError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -139,37 +137,44 @@ extension TCTcrError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCTcrError.InvalidParameter: Equatable {
-    public static func == (lhs: TCTcrError.InvalidParameter, rhs: TCTcrError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTcrError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTcrError.InvalidParameter {
-    /// - Returns: ``TCTcrError`` that holds the same error and context.
-    public func toTcrError() -> TCTcrError {
-        guard let code = TCTcrError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTcrError() -> TCTcrError {
+            let code: TCTcrError.Code
+            switch self.error {
+            case .errNSMisMatch: 
+                code = .invalidParameter_ErrNSMisMatch
+            case .errNamespaceExist: 
+                code = .invalidParameter_ErrNamespaceExist
+            case .errNamespaceReserved: 
+                code = .invalidParameter_ErrNamespaceReserved
+            case .errRepoExist: 
+                code = .invalidParameter_ErrRepoExist
+            case .errTooLarge: 
+                code = .invalidParameter_ErrTooLarge
+            case .errTriggerExist: 
+                code = .invalidParameter_ErrTriggerExist
+            case .errUserExist: 
+                code = .invalidParameter_ErrUserExist
+            case .errorNameExists: 
+                code = .invalidParameter_ErrorNameExists
+            case .errorNameIllegal: 
+                code = .invalidParameter_ErrorNameIllegal
+            case .errorNameReserved: 
+                code = .invalidParameter_ErrorNameReserved
+            case .errorRegistryName: 
+                code = .invalidParameter_ErrorRegistryName
+            case .errorTagOverLimit: 
+                code = .invalidParameter_ErrorTagOverLimit
+            case .errorTcrInvalidParameter: 
+                code = .invalidParameter_ErrorTcrInvalidParameter
+            case .replicationExists: 
+                code = .invalidParameter_ReplicationExists
+            case .unsupportedRegion: 
+                code = .invalidParameter_UnsupportedRegion
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCTcrError(code, context: self.context)
         }
-        return TCTcrError(code, context: self.context)
-    }
-}
-
-extension TCTcrError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

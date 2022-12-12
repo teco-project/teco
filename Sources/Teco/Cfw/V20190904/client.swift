@@ -20,23 +20,25 @@
 ///
 /// 防火墙开放API接口可实现自动化创建、修改、删除访问控制规则；查询、开启或关闭互联网边界防火墙开关等
 public struct Cfw: TCService {
-    /// Client used for communication with Tencent Cloud
+    /// Client used to communicate with Tencent Cloud.
     public let client: TCClient
     
-    /// Service configuration
+    /// Service context details.
     public let config: TCServiceConfig
     
-    /// Initialize the ``Cfw`` client
+    /// Initialize the ``Cfw`` client.
     ///
     /// - Parameters:
-    ///    - client: ``TCClient`` used to process requests
-    ///    - region: The service region you want to operate on
-    ///    - endpoint: Custom Endpoint URL preference
-    ///    - timeout: Timeout value for HTTP requests
+    ///    - client: ``TCClient`` used to perform actions.
+    ///    - region: Region of the service you want to operate on.
+    ///    - language: Preferred language for API response.
+    ///    - endpoint: Custom endpoint URL for API request.
+    ///    - timeout: Timeout value for HTTP requests.
     public init (
     client: TCClient, 
     region: TCRegion? = nil, 
-    endpoint: TCServiceConfig.EndpointPreference = .global, 
+    language: TCServiceConfig.Language? = nil, 
+    endpoint: TCServiceConfig.Endpoint = .global, 
     timeout: TimeAmount? = nil, 
     byteBufferAllocator: ByteBufferAllocator = ByteBufferAllocator()
     ) {
@@ -45,6 +47,7 @@ public struct Cfw: TCService {
         region: region, 
         service: "cfw", 
         apiVersion: "2019-09-04", 
+        language: language, 
         endpoint: endpoint, 
         errorType: TCCfwError.self, 
         timeout: timeout, 
@@ -54,10 +57,10 @@ public struct Cfw: TCService {
 }
 
 extension Cfw {
-    /// Initializer required by ``with(region:language:timeout:byteBufferAllocator:)``.
+    /// Initializer required by ``with(region:language:endpoint:timeout:byteBufferAllocator:)``.
     ///
     /// You are not able to use this initializer directly as there are no public initializers for ``TCServiceConfig/Patch``.
-    /// Please use ``with(region:language:timeout:byteBufferAllocator:)`` instead.
+    /// Please use ``with(region:language:endpoint:timeout:byteBufferAllocator:)`` instead.
     public init (from service: Self, patch: TCServiceConfig.Patch) {
         self.client = service.client
         self.config = service.config.with(patch: patch)

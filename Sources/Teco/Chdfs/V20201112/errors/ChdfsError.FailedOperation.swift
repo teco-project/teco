@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCChdfsError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCChdfsErrorType {
         enum Code: String {
             case accessGroupBound = "FailedOperation.AccessGroupBound"
             case fileSystemNotEmpty = "FailedOperation.FileSystemNotEmpty"
@@ -32,8 +32,6 @@ extension TCChdfsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -70,37 +68,20 @@ extension TCChdfsError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCChdfsError.FailedOperation: Equatable {
-    public static func == (lhs: TCChdfsError.FailedOperation, rhs: TCChdfsError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCChdfsError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCChdfsError.FailedOperation {
-    /// - Returns: ``TCChdfsError`` that holds the same error and context.
-    public func toChdfsError() -> TCChdfsError {
-        guard let code = TCChdfsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asChdfsError() -> TCChdfsError {
+            let code: TCChdfsError.Code
+            switch self.error {
+            case .accessGroupBound: 
+                code = .failedOperation_AccessGroupBound
+            case .fileSystemNotEmpty: 
+                code = .failedOperation_FileSystemNotEmpty
+            case .quotaLessThanCurrentUsed: 
+                code = .failedOperation_QuotaLessThanCurrentUsed
+            case .other: 
+                code = .failedOperation
+            }
+            return TCChdfsError(code, context: self.context)
         }
-        return TCChdfsError(code, context: self.context)
-    }
-}
-
-extension TCChdfsError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

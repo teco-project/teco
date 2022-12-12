@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEssbasicError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCEssbasicErrorType {
         enum Code: String {
             case api = "InternalError.Api"
             case db = "InternalError.Db"
@@ -43,8 +43,6 @@ extension TCEssbasicError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -157,37 +155,42 @@ extension TCEssbasicError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCEssbasicError.InternalError: Equatable {
-    public static func == (lhs: TCEssbasicError.InternalError, rhs: TCEssbasicError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEssbasicError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEssbasicError.InternalError {
-    /// - Returns: ``TCEssbasicError`` that holds the same error and context.
-    public func toEssbasicError() -> TCEssbasicError {
-        guard let code = TCEssbasicError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEssbasicError() -> TCEssbasicError {
+            let code: TCEssbasicError.Code
+            switch self.error {
+            case .api: 
+                code = .internalError_Api
+            case .db: 
+                code = .internalError_Db
+            case .dbConnection: 
+                code = .internalError_DbConnection
+            case .dbInsert: 
+                code = .internalError_DbInsert
+            case .dbRead: 
+                code = .internalError_DbRead
+            case .dbUpdate: 
+                code = .internalError_DbUpdate
+            case .decryption: 
+                code = .internalError_Decryption
+            case .dependsApi: 
+                code = .internalError_DependsApi
+            case .encryption: 
+                code = .internalError_Encryption
+            case .generateId: 
+                code = .internalError_GenerateId
+            case .sealUpload: 
+                code = .internalError_SealUpload
+            case .serialize: 
+                code = .internalError_Serialize
+            case .system: 
+                code = .internalError_System
+            case .thirdParty: 
+                code = .internalError_ThirdParty
+            case .other: 
+                code = .internalError
+            }
+            return TCEssbasicError(code, context: self.context)
         }
-        return TCEssbasicError(code, context: self.context)
-    }
-}
-
-extension TCEssbasicError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

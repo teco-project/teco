@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCStsError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCStsErrorType {
         enum Code: String {
             case dbError = "InternalError.DbError"
             case encryptError = "InternalError.EncryptError"
@@ -37,8 +37,6 @@ extension TCStsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -96,37 +94,30 @@ extension TCStsError {
         public static var unknownError: InternalError {
             InternalError(.unknownError)
         }
-    }
-}
-
-extension TCStsError.InternalError: Equatable {
-    public static func == (lhs: TCStsError.InternalError, rhs: TCStsError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCStsError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCStsError.InternalError {
-    /// - Returns: ``TCStsError`` that holds the same error and context.
-    public func toStsError() -> TCStsError {
-        guard let code = TCStsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asStsError() -> TCStsError {
+            let code: TCStsError.Code
+            switch self.error {
+            case .dbError: 
+                code = .internalError_DbError
+            case .encryptError: 
+                code = .internalError_EncryptError
+            case .getAppIdError: 
+                code = .internalError_GetAppIdError
+            case .getRoleError: 
+                code = .internalError_GetRoleError
+            case .getSeedTokenError: 
+                code = .internalError_GetSeedTokenError
+            case .illegalRole: 
+                code = .internalError_IllegalRole
+            case .pbSerializeError: 
+                code = .internalError_PbSerializeError
+            case .systemError: 
+                code = .internalError_SystemError
+            case .unknownError: 
+                code = .internalError_UnknownError
+            }
+            return TCStsError(code, context: self.context)
         }
-        return TCStsError(code, context: self.context)
-    }
-}
-
-extension TCStsError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

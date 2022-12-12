@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCScfError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCScfErrorType {
         enum Code: String {
             case insufficientBalance = "ResourceUnavailable.InsufficientBalance"
             case namespace = "ResourceUnavailable.Namespace"
@@ -30,8 +30,6 @@ extension TCScfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCScfError {
         public static var namespace: ResourceUnavailable {
             ResourceUnavailable(.namespace)
         }
-    }
-}
-
-extension TCScfError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCScfError.ResourceUnavailable, rhs: TCScfError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCScfError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCScfError.ResourceUnavailable {
-    /// - Returns: ``TCScfError`` that holds the same error and context.
-    public func toScfError() -> TCScfError {
-        guard let code = TCScfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asScfError() -> TCScfError {
+            let code: TCScfError.Code
+            switch self.error {
+            case .insufficientBalance: 
+                code = .resourceUnavailable_InsufficientBalance
+            case .namespace: 
+                code = .resourceUnavailable_Namespace
+            }
+            return TCScfError(code, context: self.context)
         }
-        return TCScfError(code, context: self.context)
-    }
-}
-
-extension TCScfError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

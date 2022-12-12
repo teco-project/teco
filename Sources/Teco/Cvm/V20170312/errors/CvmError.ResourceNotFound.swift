@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCvmError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCCvmErrorType {
         enum Code: String {
             case hpcCluster = "ResourceNotFound.HpcCluster"
             case invalidPlacementSet = "ResourceNotFound.InvalidPlacementSet"
@@ -33,8 +33,6 @@ extension TCCvmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -71,37 +69,22 @@ extension TCCvmError {
         public static var noDefaultCbsWithReason: ResourceNotFound {
             ResourceNotFound(.noDefaultCbsWithReason)
         }
-    }
-}
-
-extension TCCvmError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCCvmError.ResourceNotFound, rhs: TCCvmError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCvmError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCvmError.ResourceNotFound {
-    /// - Returns: ``TCCvmError`` that holds the same error and context.
-    public func toCvmError() -> TCCvmError {
-        guard let code = TCCvmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCvmError() -> TCCvmError {
+            let code: TCCvmError.Code
+            switch self.error {
+            case .hpcCluster: 
+                code = .resourceNotFound_HpcCluster
+            case .invalidPlacementSet: 
+                code = .resourceNotFound_InvalidPlacementSet
+            case .invalidZoneInstanceType: 
+                code = .resourceNotFound_InvalidZoneInstanceType
+            case .noDefaultCbs: 
+                code = .resourceNotFound_NoDefaultCbs
+            case .noDefaultCbsWithReason: 
+                code = .resourceNotFound_NoDefaultCbsWithReason
+            }
+            return TCCvmError(code, context: self.context)
         }
-        return TCCvmError(code, context: self.context)
-    }
-}
-
-extension TCCvmError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

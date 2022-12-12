@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDomainError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCDomainErrorType {
         enum Code: String {
             case certificateCodeIsInvalid = "InvalidParameter.CertificateCodeIsInvalid"
             case certificateImageIsInvalid = "InvalidParameter.CertificateImageIsInvalid"
@@ -56,8 +56,6 @@ extension TCDomainError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -214,37 +212,68 @@ extension TCDomainError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCDomainError.InvalidParameter: Equatable {
-    public static func == (lhs: TCDomainError.InvalidParameter, rhs: TCDomainError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDomainError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDomainError.InvalidParameter {
-    /// - Returns: ``TCDomainError`` that holds the same error and context.
-    public func toDomainError() -> TCDomainError {
-        guard let code = TCDomainError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDomainError() -> TCDomainError {
+            let code: TCDomainError.Code
+            switch self.error {
+            case .certificateCodeIsInvalid: 
+                code = .invalidParameter_CertificateCodeIsInvalid
+            case .certificateImageIsInvalid: 
+                code = .invalidParameter_CertificateImageIsInvalid
+            case .codeTypeIsInvalid: 
+                code = .invalidParameter_CodeTypeIsInvalid
+            case .customDnsNotAllowed: 
+                code = .invalidParameter_CustomDnsNotAllowed
+            case .domainNameIsInvalid: 
+                code = .invalidParameter_DomainNameIsInvalid
+            case .duplicateDomainExists: 
+                code = .invalidParameter_DuplicateDomainExists
+            case .emailIsInvalid: 
+                code = .invalidParameter_EmailIsInvalid
+            case .emailIsUnverified: 
+                code = .invalidParameter_EmailIsUnverified
+            case .imageExtInvalid: 
+                code = .invalidParameter_ImageExtInvalid
+            case .imageFileIsInvalid: 
+                code = .invalidParameter_ImageFileIsInvalid
+            case .imageFormatIsInvalid: 
+                code = .invalidParameter_ImageFormatIsInvalid
+            case .imageSizeBelow: 
+                code = .invalidParameter_ImageSizeBelow
+            case .imageSizeExceed: 
+                code = .invalidParameter_ImageSizeExceed
+            case .imageSizeLimit: 
+                code = .invalidParameter_ImageSizeLimit
+            case .nameIsInvalid: 
+                code = .invalidParameter_NameIsInvalid
+            case .nameIsKeyword: 
+                code = .invalidParameter_NameIsKeyword
+            case .orgIsInvalid: 
+                code = .invalidParameter_OrgIsInvalid
+            case .orgIsKeyword: 
+                code = .invalidParameter_OrgIsKeyword
+            case .packageResourceIdInvalid: 
+                code = .invalidParameter_PackageResourceIdInvalid
+            case .repTypeIsInvalid: 
+                code = .invalidParameter_RepTypeIsInvalid
+            case .streetIsInvalid: 
+                code = .invalidParameter_StreetIsInvalid
+            case .telephoneIsInvalid: 
+                code = .invalidParameter_TelephoneIsInvalid
+            case .telephoneIsUnverified: 
+                code = .invalidParameter_TelephoneIsUnverified
+            case .upTo4000: 
+                code = .invalidParameter_UpTo4000
+            case .userTypeIsInvalid: 
+                code = .invalidParameter_UserTypeIsInvalid
+            case .verifyCodeIsInvalid: 
+                code = .invalidParameter_VerifyCodeIsInvalid
+            case .zipCodeIsInvalid: 
+                code = .invalidParameter_ZipCodeIsInvalid
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCDomainError(code, context: self.context)
         }
-        return TCDomainError(code, context: self.context)
-    }
-}
-
-extension TCDomainError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

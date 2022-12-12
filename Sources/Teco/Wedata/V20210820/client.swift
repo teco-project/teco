@@ -22,23 +22,25 @@
 /// 数据开发治理平台 WeData（以下简称 WeData） 是腾讯云推出的一站式数据开发治理平台，融合了包含数据集成 DataInLong、数据开发 DataStudio 的全链路 DataOps 数据开发能力，以及数据地图、数据质量、数据安全等一系列数据开发与治理能力，帮助企业在数据构建和应用的过程中实现降本增效，数据价值最大化。
 /// WeData将自身基础的能力以API的方式对外开放，方便企业进行定制开发或企业内部系统进行对接打通，详情请参考API概览。
 public struct Wedata: TCService {
-    /// Client used for communication with Tencent Cloud
+    /// Client used to communicate with Tencent Cloud.
     public let client: TCClient
     
-    /// Service configuration
+    /// Service context details.
     public let config: TCServiceConfig
     
-    /// Initialize the ``Wedata`` client
+    /// Initialize the ``Wedata`` client.
     ///
     /// - Parameters:
-    ///    - client: ``TCClient`` used to process requests
-    ///    - region: The service region you want to operate on
-    ///    - endpoint: Custom Endpoint URL preference
-    ///    - timeout: Timeout value for HTTP requests
+    ///    - client: ``TCClient`` used to perform actions.
+    ///    - region: Region of the service you want to operate on.
+    ///    - language: Preferred language for API response.
+    ///    - endpoint: Custom endpoint URL for API request.
+    ///    - timeout: Timeout value for HTTP requests.
     public init (
     client: TCClient, 
     region: TCRegion? = nil, 
-    endpoint: TCServiceConfig.EndpointPreference = .global, 
+    language: TCServiceConfig.Language? = nil, 
+    endpoint: TCServiceConfig.Endpoint = .global, 
     timeout: TimeAmount? = nil, 
     byteBufferAllocator: ByteBufferAllocator = ByteBufferAllocator()
     ) {
@@ -47,6 +49,7 @@ public struct Wedata: TCService {
         region: region, 
         service: "wedata", 
         apiVersion: "2021-08-20", 
+        language: language, 
         endpoint: endpoint, 
         errorType: TCWedataError.self, 
         timeout: timeout, 
@@ -56,10 +59,10 @@ public struct Wedata: TCService {
 }
 
 extension Wedata {
-    /// Initializer required by ``with(region:language:timeout:byteBufferAllocator:)``.
+    /// Initializer required by ``with(region:language:endpoint:timeout:byteBufferAllocator:)``.
     ///
     /// You are not able to use this initializer directly as there are no public initializers for ``TCServiceConfig/Patch``.
-    /// Please use ``with(region:language:timeout:byteBufferAllocator:)`` instead.
+    /// Please use ``with(region:language:endpoint:timeout:byteBufferAllocator:)`` instead.
     public init (from service: Self, patch: TCServiceConfig.Patch) {
         self.client = service.client
         self.config = service.config.with(patch: patch)

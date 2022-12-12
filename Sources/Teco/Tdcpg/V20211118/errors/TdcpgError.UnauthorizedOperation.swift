@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTdcpgError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCTdcpgErrorType {
         enum Code: String {
             case permissionDenied = "UnauthorizedOperation.PermissionDenied"
             case other = "UnauthorizedOperation"
@@ -30,8 +30,6 @@ extension TCTdcpgError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCTdcpgError {
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-    }
-}
-
-extension TCTdcpgError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCTdcpgError.UnauthorizedOperation, rhs: TCTdcpgError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTdcpgError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTdcpgError.UnauthorizedOperation {
-    /// - Returns: ``TCTdcpgError`` that holds the same error and context.
-    public func toTdcpgError() -> TCTdcpgError {
-        guard let code = TCTdcpgError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTdcpgError() -> TCTdcpgError {
+            let code: TCTdcpgError.Code
+            switch self.error {
+            case .permissionDenied: 
+                code = .unauthorizedOperation_PermissionDenied
+            case .other: 
+                code = .unauthorizedOperation
+            }
+            return TCTdcpgError(code, context: self.context)
         }
-        return TCTdcpgError(code, context: self.context)
-    }
-}
-
-extension TCTdcpgError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

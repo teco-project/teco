@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTcrError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCTcrErrorType {
         enum Code: String {
             case createPrivateZone = "InternalError.CreatePrivateZone"
             case createPrivateZoneRecord = "InternalError.CreatePrivateZoneRecord"
@@ -48,8 +48,6 @@ extension TCTcrError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -162,37 +160,52 @@ extension TCTcrError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCTcrError.InternalError: Equatable {
-    public static func == (lhs: TCTcrError.InternalError, rhs: TCTcrError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTcrError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTcrError.InternalError {
-    /// - Returns: ``TCTcrError`` that holds the same error and context.
-    public func toTcrError() -> TCTcrError {
-        guard let code = TCTcrError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTcrError() -> TCTcrError {
+            let code: TCTcrError.Code
+            switch self.error {
+            case .createPrivateZone: 
+                code = .internalError_CreatePrivateZone
+            case .createPrivateZoneRecord: 
+                code = .internalError_CreatePrivateZoneRecord
+            case .dbError: 
+                code = .internalError_DbError
+            case .deletePrivateZoneRecord: 
+                code = .internalError_DeletePrivateZoneRecord
+            case .describeInternalEndpointDnsStatus: 
+                code = .internalError_DescribeInternalEndpointDnsStatus
+            case .describePrivateZoneList: 
+                code = .internalError_DescribePrivateZoneList
+            case .describePrivateZoneRecordList: 
+                code = .internalError_DescribePrivateZoneRecordList
+            case .describePrivateZoneServiceList: 
+                code = .internalError_DescribePrivateZoneServiceList
+            case .errConflict: 
+                code = .internalError_ErrConflict
+            case .errNotExist: 
+                code = .internalError_ErrNotExist
+            case .errUnauthorized: 
+                code = .internalError_ErrUnauthorized
+            case .errorConflict: 
+                code = .internalError_ErrorConflict
+            case .errorOverLimit: 
+                code = .internalError_ErrorOverLimit
+            case .errorTcrInternal: 
+                code = .internalError_ErrorTcrInternal
+            case .errorTcrInvalidMediaType: 
+                code = .internalError_ErrorTcrInvalidMediaType
+            case .errorTcrResourceConflict: 
+                code = .internalError_ErrorTcrResourceConflict
+            case .errorTcrUnauthorized: 
+                code = .internalError_ErrorTcrUnauthorized
+            case .modifyPrivateZoneVpc: 
+                code = .internalError_ModifyPrivateZoneVpc
+            case .unknown: 
+                code = .internalError_Unknown
+            case .other: 
+                code = .internalError
+            }
+            return TCTcrError(code, context: self.context)
         }
-        return TCTcrError(code, context: self.context)
-    }
-}
-
-extension TCTcrError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

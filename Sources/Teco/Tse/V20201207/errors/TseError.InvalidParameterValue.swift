@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTseError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCTseErrorType {
         enum Code: String {
             case action = "InvalidParameterValue.Action"
             case badRequestFormat = "InvalidParameterValue.BadRequestFormat"
@@ -35,8 +35,6 @@ extension TCTseError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -84,37 +82,26 @@ extension TCTseError {
         public static var updateError: InvalidParameterValue {
             InvalidParameterValue(.updateError)
         }
-    }
-}
-
-extension TCTseError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCTseError.InvalidParameterValue, rhs: TCTseError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTseError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTseError.InvalidParameterValue {
-    /// - Returns: ``TCTseError`` that holds the same error and context.
-    public func toTseError() -> TCTseError {
-        guard let code = TCTseError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTseError() -> TCTseError {
+            let code: TCTseError.Code
+            switch self.error {
+            case .action: 
+                code = .invalidParameterValue_Action
+            case .badRequestFormat: 
+                code = .invalidParameterValue_BadRequestFormat
+            case .createError: 
+                code = .invalidParameterValue_CreateError
+            case .invalidParameterValue: 
+                code = .invalidParameterValue_InvalidParameterValue
+            case .operationFailed: 
+                code = .invalidParameterValue_OperationFailed
+            case .queryError: 
+                code = .invalidParameterValue_QueryError
+            case .updateError: 
+                code = .invalidParameterValue_UpdateError
+            }
+            return TCTseError(code, context: self.context)
         }
-        return TCTseError(code, context: self.context)
-    }
-}
-
-extension TCTseError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

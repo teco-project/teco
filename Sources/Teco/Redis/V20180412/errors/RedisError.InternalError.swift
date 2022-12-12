@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCRedisError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCRedisErrorType {
         enum Code: String {
             case camAuthOssResponseReturnCodeError = "InternalError.CamAuthOssResponseReturnCodeError"
             case dbOperationFailed = "InternalError.DbOperationFailed"
@@ -36,8 +36,6 @@ extension TCRedisError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -90,37 +88,28 @@ extension TCRedisError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCRedisError.InternalError: Equatable {
-    public static func == (lhs: TCRedisError.InternalError, rhs: TCRedisError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCRedisError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCRedisError.InternalError {
-    /// - Returns: ``TCRedisError`` that holds the same error and context.
-    public func toRedisError() -> TCRedisError {
-        guard let code = TCRedisError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asRedisError() -> TCRedisError {
+            let code: TCRedisError.Code
+            switch self.error {
+            case .camAuthOssResponseReturnCodeError: 
+                code = .internalError_CamAuthOssResponseReturnCodeError
+            case .dbOperationFailed: 
+                code = .internalError_DbOperationFailed
+            case .execHttpRequestError: 
+                code = .internalError_ExecHttpRequestError
+            case .instanceOperatePermissionError: 
+                code = .internalError_InstanceOperatePermissionError
+            case .internalError: 
+                code = .internalError_InternalError
+            case .listInstancesError: 
+                code = .internalError_ListInstancesError
+            case .netWorkErr: 
+                code = .internalError_NetWorkErr
+            case .other: 
+                code = .internalError
+            }
+            return TCRedisError(code, context: self.context)
         }
-        return TCRedisError(code, context: self.context)
-    }
-}
-
-extension TCRedisError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

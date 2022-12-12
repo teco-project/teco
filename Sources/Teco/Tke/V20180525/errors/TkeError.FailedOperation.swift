@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTkeError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCTkeErrorType {
         enum Code: String {
             case accountCommon = "FailedOperation.AccountCommon"
             case accountUserNotAuthenticated = "FailedOperation.AccountUserNotAuthenticated"
@@ -85,8 +85,6 @@ extension TCTkeError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -439,37 +437,126 @@ extension TCTkeError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCTkeError.FailedOperation: Equatable {
-    public static func == (lhs: TCTkeError.FailedOperation, rhs: TCTkeError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTkeError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTkeError.FailedOperation {
-    /// - Returns: ``TCTkeError`` that holds the same error and context.
-    public func toTkeError() -> TCTkeError {
-        guard let code = TCTkeError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTkeError() -> TCTkeError {
+            let code: TCTkeError.Code
+            switch self.error {
+            case .accountCommon: 
+                code = .failedOperation_AccountCommon
+            case .accountUserNotAuthenticated: 
+                code = .failedOperation_AccountUserNotAuthenticated
+            case .asCommon: 
+                code = .failedOperation_AsCommon
+            case .camNoAuth: 
+                code = .failedOperation_CamNoAuth
+            case .clusterForbiddenToDelete: 
+                code = .failedOperation_ClusterForbiddenToDelete
+            case .clusterNotFound: 
+                code = .failedOperation_ClusterNotFound
+            case .clusterState: 
+                code = .failedOperation_ClusterState
+            case .clusterUpgradeNodeVersion: 
+                code = .failedOperation_ClusterUpgradeNodeVersion
+            case .componentClientCommon: 
+                code = .failedOperation_ComponentClientCommon
+            case .componentClientHttp: 
+                code = .failedOperation_ComponentClientHttp
+            case .componentClientUnpack: 
+                code = .failedOperation_ComponentClientUnpack
+            case .componentClinetHttp: 
+                code = .failedOperation_ComponentClinetHttp
+            case .createClsClient: 
+                code = .failedOperation_CreateClsClient
+            case .createClsConfig: 
+                code = .failedOperation_CreateClsConfig
+            case .createClsIndex: 
+                code = .failedOperation_CreateClsIndex
+            case .createClsLogSet: 
+                code = .failedOperation_CreateClsLogSet
+            case .createClsMachineGroup: 
+                code = .failedOperation_CreateClsMachineGroup
+            case .createClsTopic: 
+                code = .failedOperation_CreateClsTopic
+            case .cvmCommon: 
+                code = .failedOperation_CvmCommon
+            case .cvmNumberNotMatch: 
+                code = .failedOperation_CvmNumberNotMatch
+            case .cvmUnexpectedError: 
+                code = .failedOperation_CVMUnexpectedError
+            case .cvmVpcidNotMatch: 
+                code = .failedOperation_CvmVpcidNotMatch
+            case .db: 
+                code = .failedOperation_Db
+            case .dbRecordNotFound: 
+                code = .failedOperation_DbRecordNotFound
+            case .dfwGetUSGQuota: 
+                code = .failedOperation_DfwGetUSGQuota
+            case .disableVPCCNIFailed: 
+                code = .failedOperation_DisableVPCCNIFailed
+            case .enableVPCCNIFailed: 
+                code = .failedOperation_EnableVPCCNIFailed
+            case .getClsConfig: 
+                code = .failedOperation_GetClsConfig
+            case .getClsLogSet: 
+                code = .failedOperation_GetClsLogSet
+            case .getClsMachineGroup: 
+                code = .failedOperation_GetClsMachineGroup
+            case .kubeClientConf: 
+                code = .failedOperation_KubeClientConf
+            case .kubeClientConnection: 
+                code = .failedOperation_KubeClientConnection
+            case .kubeCommon: 
+                code = .failedOperation_KubeCommon
+            case .kubernetesClientBuildError: 
+                code = .failedOperation_KubernetesClientBuildError
+            case .kubernetesCreateOperationError: 
+                code = .failedOperation_KubernetesCreateOperationError
+            case .kubernetesDeleteOperationError: 
+                code = .failedOperation_KubernetesDeleteOperationError
+            case .kubernetesGetOperationError: 
+                code = .failedOperation_KubernetesGetOperationError
+            case .kubernetesInternal: 
+                code = .failedOperation_KubernetesInternal
+            case .kubernetesPatchOperationError: 
+                code = .failedOperation_KubernetesPatchOperationError
+            case .lbCommon: 
+                code = .failedOperation_LbCommon
+            case .modifyClsIndex: 
+                code = .failedOperation_ModifyClsIndex
+            case .networkScaleError: 
+                code = .failedOperation_NetworkScaleError
+            case .osNotSupport: 
+                code = .failedOperation_OsNotSupport
+            case .param: 
+                code = .failedOperation_Param
+            case .quotaMaxClsLimit: 
+                code = .failedOperation_QuotaMaxClsLimit
+            case .quotaMaxNodLimit: 
+                code = .failedOperation_QuotaMaxNodLimit
+            case .quotaUSGLimit: 
+                code = .failedOperation_QuotaUSGLimit
+            case .rbacForbidden: 
+                code = .failedOperation_RBACForbidden
+            case .recordNotFound: 
+                code = .failedOperation_RecordNotFound
+            case .taskAlreadyRunning: 
+                code = .failedOperation_TaskAlreadyRunning
+            case .tradeCommon: 
+                code = .failedOperation_TradeCommon
+            case .unexpectedError: 
+                code = .failedOperation_UnexpectedError
+            case .vpcCommon: 
+                code = .failedOperation_VpcCommon
+            case .vpcRecodrNotFound: 
+                code = .failedOperation_VpcRecodrNotFound
+            case .vpcUnexpectedError: 
+                code = .failedOperation_VPCUnexpectedError
+            case .whitelistUnexpectedError: 
+                code = .failedOperation_WhitelistUnexpectedError
+            case .other: 
+                code = .failedOperation
+            }
+            return TCTkeError(code, context: self.context)
         }
-        return TCTkeError(code, context: self.context)
-    }
-}
-
-extension TCTkeError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

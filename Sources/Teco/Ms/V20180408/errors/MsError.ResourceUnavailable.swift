@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMsError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCMsErrorType {
         enum Code: String {
             case notBind = "ResourceUnavailable.NotBind"
             case notFound = "ResourceUnavailable.NotFound"
@@ -31,8 +31,6 @@ extension TCMsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCMsError {
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-    }
-}
-
-extension TCMsError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCMsError.ResourceUnavailable, rhs: TCMsError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMsError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMsError.ResourceUnavailable {
-    /// - Returns: ``TCMsError`` that holds the same error and context.
-    public func toMsError() -> TCMsError {
-        guard let code = TCMsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMsError() -> TCMsError {
+            let code: TCMsError.Code
+            switch self.error {
+            case .notBind: 
+                code = .resourceUnavailable_NotBind
+            case .notFound: 
+                code = .resourceUnavailable_NotFound
+            case .other: 
+                code = .resourceUnavailable
+            }
+            return TCMsError(code, context: self.context)
         }
-        return TCMsError(code, context: self.context)
-    }
-}
-
-extension TCMsError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

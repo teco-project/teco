@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCfsError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCCfsErrorType {
         enum Code: String {
             case createFsFailed = "InternalError.CreateFsFailed"
             case getAccountStatusFailed = "InternalError.GetAccountStatusFailed"
@@ -31,8 +31,6 @@ extension TCCfsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCCfsError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCCfsError.InternalError: Equatable {
-    public static func == (lhs: TCCfsError.InternalError, rhs: TCCfsError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCfsError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCfsError.InternalError {
-    /// - Returns: ``TCCfsError`` that holds the same error and context.
-    public func toCfsError() -> TCCfsError {
-        guard let code = TCCfsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCfsError() -> TCCfsError {
+            let code: TCCfsError.Code
+            switch self.error {
+            case .createFsFailed: 
+                code = .internalError_CreateFsFailed
+            case .getAccountStatusFailed: 
+                code = .internalError_GetAccountStatusFailed
+            case .other: 
+                code = .internalError
+            }
+            return TCCfsError(code, context: self.context)
         }
-        return TCCfsError(code, context: self.context)
-    }
-}
-
-extension TCCfsError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

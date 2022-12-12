@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCynosdbError {
-    public struct OperationDenied: TCErrorType {
+    public struct OperationDenied: TCCynosdbErrorType {
         enum Code: String {
             case clusterOpNotAllowedError = "OperationDenied.ClusterOpNotAllowedError"
             case clusterStatusDeniedError = "OperationDenied.ClusterStatusDeniedError"
@@ -37,8 +37,6 @@ extension TCCynosdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -96,37 +94,30 @@ extension TCCynosdbError {
         public static var versionNotSupportError: OperationDenied {
             OperationDenied(.versionNotSupportError)
         }
-    }
-}
-
-extension TCCynosdbError.OperationDenied: Equatable {
-    public static func == (lhs: TCCynosdbError.OperationDenied, rhs: TCCynosdbError.OperationDenied) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCynosdbError.OperationDenied: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCynosdbError.OperationDenied {
-    /// - Returns: ``TCCynosdbError`` that holds the same error and context.
-    public func toCynosdbError() -> TCCynosdbError {
-        guard let code = TCCynosdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCynosdbError() -> TCCynosdbError {
+            let code: TCCynosdbError.Code
+            switch self.error {
+            case .clusterOpNotAllowedError: 
+                code = .operationDenied_ClusterOpNotAllowedError
+            case .clusterStatusDeniedError: 
+                code = .operationDenied_ClusterStatusDeniedError
+            case .instanceStatusDeniedError: 
+                code = .operationDenied_InstanceStatusDeniedError
+            case .insufficientBalanceError: 
+                code = .operationDenied_InsufficientBalanceError
+            case .serverlessClusterStatusDenied: 
+                code = .operationDenied_ServerlessClusterStatusDenied
+            case .serverlessInstanceStatusDenied: 
+                code = .operationDenied_ServerlessInstanceStatusDenied
+            case .taskConflictError: 
+                code = .operationDenied_TaskConflictError
+            case .userNotAuthenticatedError: 
+                code = .operationDenied_UserNotAuthenticatedError
+            case .versionNotSupportError: 
+                code = .operationDenied_VersionNotSupportError
+            }
+            return TCCynosdbError(code, context: self.context)
         }
-        return TCCynosdbError(code, context: self.context)
-    }
-}
-
-extension TCCynosdbError.OperationDenied {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

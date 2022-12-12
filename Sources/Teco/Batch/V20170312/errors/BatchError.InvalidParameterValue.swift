@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBatchError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCBatchErrorType {
         enum Code: String {
             case computeEnv = "InvalidParameterValue.ComputeEnv"
             case dependenceNotFoundTaskName = "InvalidParameterValue.DependenceNotFoundTaskName"
@@ -51,8 +51,6 @@ extension TCBatchError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -180,37 +178,58 @@ extension TCBatchError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCBatchError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCBatchError.InvalidParameterValue, rhs: TCBatchError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBatchError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBatchError.InvalidParameterValue {
-    /// - Returns: ``TCBatchError`` that holds the same error and context.
-    public func toBatchError() -> TCBatchError {
-        guard let code = TCBatchError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBatchError() -> TCBatchError {
+            let code: TCBatchError.Code
+            switch self.error {
+            case .computeEnv: 
+                code = .invalidParameterValue_ComputeEnv
+            case .dependenceNotFoundTaskName: 
+                code = .invalidParameterValue_DependenceNotFoundTaskName
+            case .dependenceUnfeasible: 
+                code = .invalidParameterValue_DependenceUnfeasible
+            case .instanceIdDuplicated: 
+                code = .invalidParameterValue_InstanceIdDuplicated
+            case .instanceType: 
+                code = .invalidParameterValue_InstanceType
+            case .instanceTypeDuplicate: 
+                code = .invalidParameterValue_InstanceTypeDuplicate
+            case .instanceTypesEmpty: 
+                code = .invalidParameterValue_InstanceTypesEmpty
+            case .invalidDataTypeAny: 
+                code = .invalidParameterValue_InvalidDataTypeAny
+            case .invalidFilter: 
+                code = .invalidParameterValue_InvalidFilter
+            case .invalidZoneMismatchRegion: 
+                code = .invalidParameterValue_InvalidZoneMismatchRegion
+            case .limitExceeded: 
+                code = .invalidParameterValue_LimitExceeded
+            case .localPath: 
+                code = .invalidParameterValue_LocalPath
+            case .maxRetryCount: 
+                code = .invalidParameterValue_MaxRetryCount
+            case .negative: 
+                code = .invalidParameterValue_Negative
+            case .notFloat: 
+                code = .invalidParameterValue_NotFloat
+            case .osTypeId: 
+                code = .invalidParameterValue_OsTypeId
+            case .regionNotSupportCpm: 
+                code = .invalidParameterValue_RegionNotSupportCpm
+            case .remoteStoragePath: 
+                code = .invalidParameterValue_RemoteStoragePath
+            case .remoteStorageSchemeType: 
+                code = .invalidParameterValue_RemoteStorageSchemeType
+            case .resourceType: 
+                code = .invalidParameterValue_ResourceType
+            case .unavailableZone: 
+                code = .invalidParameterValue_UnavailableZone
+            case .unsupportedBatchInstanceChargeType: 
+                code = .invalidParameterValue_UnsupportedBatchInstanceChargeType
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCBatchError(code, context: self.context)
         }
-        return TCBatchError(code, context: self.context)
-    }
-}
-
-extension TCBatchError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

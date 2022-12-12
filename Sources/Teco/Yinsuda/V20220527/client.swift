@@ -20,23 +20,25 @@
 ///
 /// 音速达直播音乐版权引擎服务基于是基于腾讯音乐娱乐集团（TME）海量线上直播音乐版权资源，结合腾讯云存储、内容加速分发等基础能力，搭配演唱评分、声音美化等智能音乐功能，为解决直播语聊场景中的正版音乐应用设计的 PaaS 产品。您可以前往API概览了解详情。
 public struct Yinsuda: TCService {
-    /// Client used for communication with Tencent Cloud
+    /// Client used to communicate with Tencent Cloud.
     public let client: TCClient
     
-    /// Service configuration
+    /// Service context details.
     public let config: TCServiceConfig
     
-    /// Initialize the ``Yinsuda`` client
+    /// Initialize the ``Yinsuda`` client.
     ///
     /// - Parameters:
-    ///    - client: ``TCClient`` used to process requests
-    ///    - region: The service region you want to operate on
-    ///    - endpoint: Custom Endpoint URL preference
-    ///    - timeout: Timeout value for HTTP requests
+    ///    - client: ``TCClient`` used to perform actions.
+    ///    - region: Region of the service you want to operate on.
+    ///    - language: Preferred language for API response.
+    ///    - endpoint: Custom endpoint URL for API request.
+    ///    - timeout: Timeout value for HTTP requests.
     public init (
     client: TCClient, 
     region: TCRegion? = nil, 
-    endpoint: TCServiceConfig.EndpointPreference = .global, 
+    language: TCServiceConfig.Language? = nil, 
+    endpoint: TCServiceConfig.Endpoint = .global, 
     timeout: TimeAmount? = nil, 
     byteBufferAllocator: ByteBufferAllocator = ByteBufferAllocator()
     ) {
@@ -45,6 +47,7 @@ public struct Yinsuda: TCService {
         region: region, 
         service: "yinsuda", 
         apiVersion: "2022-05-27", 
+        language: language, 
         endpoint: endpoint, 
         errorType: TCYinsudaError.self, 
         timeout: timeout, 
@@ -54,10 +57,10 @@ public struct Yinsuda: TCService {
 }
 
 extension Yinsuda {
-    /// Initializer required by ``with(region:language:timeout:byteBufferAllocator:)``.
+    /// Initializer required by ``with(region:language:endpoint:timeout:byteBufferAllocator:)``.
     ///
     /// You are not able to use this initializer directly as there are no public initializers for ``TCServiceConfig/Patch``.
-    /// Please use ``with(region:language:timeout:byteBufferAllocator:)`` instead.
+    /// Please use ``with(region:language:endpoint:timeout:byteBufferAllocator:)`` instead.
     public init (from service: Self, patch: TCServiceConfig.Patch) {
         self.client = service.client
         self.config = service.config.with(patch: patch)

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEcmError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCEcmErrorType {
         enum Code: String {
             case attached = "ResourceUnavailable.Attached"
             case expire = "ResourceUnavailable.Expire"
@@ -35,8 +35,6 @@ extension TCEcmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -84,37 +82,26 @@ extension TCEcmError {
         public static var typeError: ResourceUnavailable {
             ResourceUnavailable(.typeError)
         }
-    }
-}
-
-extension TCEcmError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCEcmError.ResourceUnavailable, rhs: TCEcmError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEcmError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEcmError.ResourceUnavailable {
-    /// - Returns: ``TCEcmError`` that holds the same error and context.
-    public func toEcmError() -> TCEcmError {
-        guard let code = TCEcmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEcmError() -> TCEcmError {
+            let code: TCEcmError.Code
+            switch self.error {
+            case .attached: 
+                code = .resourceUnavailable_Attached
+            case .expire: 
+                code = .resourceUnavailable_Expire
+            case .instanceNotRunning: 
+                code = .resourceUnavailable_InstanceNotRunning
+            case .notPortable: 
+                code = .resourceUnavailable_NotPortable
+            case .notSupported: 
+                code = .resourceUnavailable_NotSupported
+            case .repeatRefund: 
+                code = .resourceUnavailable_RepeatRefund
+            case .typeError: 
+                code = .resourceUnavailable_TypeError
+            }
+            return TCEcmError(code, context: self.context)
         }
-        return TCEcmError(code, context: self.context)
-    }
-}
-
-extension TCEcmError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

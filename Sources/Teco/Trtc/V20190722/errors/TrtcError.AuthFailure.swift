@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTrtcError {
-    public struct AuthFailure: TCErrorType {
+    public struct AuthFailure: TCTrtcErrorType {
         enum Code: String {
             case unRealNameAuthenticated = "AuthFailure.UnRealNameAuthenticated"
             case unauthorizedOperation = "AuthFailure.UnauthorizedOperation"
@@ -32,8 +32,6 @@ extension TCTrtcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCTrtcError {
         public static var other: AuthFailure {
             AuthFailure(.other)
         }
-    }
-}
-
-extension TCTrtcError.AuthFailure: Equatable {
-    public static func == (lhs: TCTrtcError.AuthFailure, rhs: TCTrtcError.AuthFailure) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTrtcError.AuthFailure: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTrtcError.AuthFailure {
-    /// - Returns: ``TCTrtcError`` that holds the same error and context.
-    public func toTrtcError() -> TCTrtcError {
-        guard let code = TCTrtcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTrtcError() -> TCTrtcError {
+            let code: TCTrtcError.Code
+            switch self.error {
+            case .unRealNameAuthenticated: 
+                code = .authFailure_UnRealNameAuthenticated
+            case .unauthorizedOperation: 
+                code = .authFailure_UnauthorizedOperation
+            case .unsupportedOperation: 
+                code = .authFailure_UnsupportedOperation
+            case .other: 
+                code = .authFailure
+            }
+            return TCTrtcError(code, context: self.context)
         }
-        return TCTrtcError(code, context: self.context)
-    }
-}
-
-extension TCTrtcError.AuthFailure {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

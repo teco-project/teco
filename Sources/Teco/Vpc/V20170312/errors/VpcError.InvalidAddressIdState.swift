@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCVpcError {
-    public struct InvalidAddressIdState: TCErrorType {
+    public struct InvalidAddressIdState: TCVpcErrorType {
         enum Code: String {
             case inArrears = "InvalidAddressIdState.InArrears"
         }
@@ -29,8 +29,6 @@ extension TCVpcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCVpcError {
         public static var inArrears: InvalidAddressIdState {
             InvalidAddressIdState(.inArrears)
         }
-    }
-}
-
-extension TCVpcError.InvalidAddressIdState: Equatable {
-    public static func == (lhs: TCVpcError.InvalidAddressIdState, rhs: TCVpcError.InvalidAddressIdState) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCVpcError.InvalidAddressIdState: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCVpcError.InvalidAddressIdState {
-    /// - Returns: ``TCVpcError`` that holds the same error and context.
-    public func toVpcError() -> TCVpcError {
-        guard let code = TCVpcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asVpcError() -> TCVpcError {
+            let code: TCVpcError.Code
+            switch self.error {
+            case .inArrears: 
+                code = .invalidAddressIdState_InArrears
+            }
+            return TCVpcError(code, context: self.context)
         }
-        return TCVpcError(code, context: self.context)
-    }
-}
-
-extension TCVpcError.InvalidAddressIdState {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

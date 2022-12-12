@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCdnError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCCdnErrorType {
         enum Code: String {
             case cdnHostBelongsToOthersInMainland = "ResourceUnavailable.CdnHostBelongsToOthersInMainland"
             case cdnHostBelongsToOthersInOverseas = "ResourceUnavailable.CdnHostBelongsToOthersInOverseas"
@@ -41,8 +41,6 @@ extension TCCdnError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -124,37 +122,38 @@ extension TCCdnError {
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-    }
-}
-
-extension TCCdnError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCCdnError.ResourceUnavailable, rhs: TCCdnError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCdnError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCdnError.ResourceUnavailable {
-    /// - Returns: ``TCCdnError`` that holds the same error and context.
-    public func toCdnError() -> TCCdnError {
-        guard let code = TCCdnError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCdnError() -> TCCdnError {
+            let code: TCCdnError.Code
+            switch self.error {
+            case .cdnHostBelongsToOthersInMainland: 
+                code = .resourceUnavailable_CdnHostBelongsToOthersInMainland
+            case .cdnHostBelongsToOthersInOverseas: 
+                code = .resourceUnavailable_CdnHostBelongsToOthersInOverseas
+            case .cdnHostExistsInDsa: 
+                code = .resourceUnavailable_CdnHostExistsInDsa
+            case .cdnHostExistsInTcb: 
+                code = .resourceUnavailable_CdnHostExistsInTcb
+            case .cdnHostIsLocked: 
+                code = .resourceUnavailable_CdnHostIsLocked
+            case .cdnHostIsMalicious: 
+                code = .resourceUnavailable_CdnHostIsMalicious
+            case .cdnHostIsNotOffline: 
+                code = .resourceUnavailable_CdnHostIsNotOffline
+            case .cdnHostIsNotOnline: 
+                code = .resourceUnavailable_CdnHostIsNotOnline
+            case .cdnHostNoIcp: 
+                code = .resourceUnavailable_CdnHostNoIcp
+            case .hostExistInVod: 
+                code = .resourceUnavailable_HostExistInVod
+            case .scdnUserNoPackage: 
+                code = .resourceUnavailable_ScdnUserNoPackage
+            case .scdnUserSuspend: 
+                code = .resourceUnavailable_ScdnUserSuspend
+            case .other: 
+                code = .resourceUnavailable
+            }
+            return TCCdnError(code, context: self.context)
         }
-        return TCCdnError(code, context: self.context)
-    }
-}
-
-extension TCCdnError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

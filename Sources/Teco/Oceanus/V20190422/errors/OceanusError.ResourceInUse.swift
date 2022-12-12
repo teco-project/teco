@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCOceanusError {
-    public struct ResourceInUse: TCErrorType {
+    public struct ResourceInUse: TCOceanusErrorType {
         enum Code: String {
             case instanceInProcess = "ResourceInUse.InstanceInProcess"
             case resourceNameAlreadyExists = "ResourceInUse.ResourceNameAlreadyExists"
@@ -31,8 +31,6 @@ extension TCOceanusError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCOceanusError {
         public static var other: ResourceInUse {
             ResourceInUse(.other)
         }
-    }
-}
-
-extension TCOceanusError.ResourceInUse: Equatable {
-    public static func == (lhs: TCOceanusError.ResourceInUse, rhs: TCOceanusError.ResourceInUse) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCOceanusError.ResourceInUse: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCOceanusError.ResourceInUse {
-    /// - Returns: ``TCOceanusError`` that holds the same error and context.
-    public func toOceanusError() -> TCOceanusError {
-        guard let code = TCOceanusError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asOceanusError() -> TCOceanusError {
+            let code: TCOceanusError.Code
+            switch self.error {
+            case .instanceInProcess: 
+                code = .resourceInUse_InstanceInProcess
+            case .resourceNameAlreadyExists: 
+                code = .resourceInUse_ResourceNameAlreadyExists
+            case .other: 
+                code = .resourceInUse
+            }
+            return TCOceanusError(code, context: self.context)
         }
-        return TCOceanusError(code, context: self.context)
-    }
-}
-
-extension TCOceanusError.ResourceInUse {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

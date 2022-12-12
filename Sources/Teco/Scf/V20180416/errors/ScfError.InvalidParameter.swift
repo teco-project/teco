@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCScfError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCScfErrorType {
         enum Code: String {
             case cls = "InvalidParameter.Cls"
             case functionName = "InvalidParameter.FunctionName"
@@ -35,8 +35,6 @@ extension TCScfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -84,37 +82,26 @@ extension TCScfError {
         public static var routingConfig: InvalidParameter {
             InvalidParameter(.routingConfig)
         }
-    }
-}
-
-extension TCScfError.InvalidParameter: Equatable {
-    public static func == (lhs: TCScfError.InvalidParameter, rhs: TCScfError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCScfError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCScfError.InvalidParameter {
-    /// - Returns: ``TCScfError`` that holds the same error and context.
-    public func toScfError() -> TCScfError {
-        guard let code = TCScfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asScfError() -> TCScfError {
+            let code: TCScfError.Code
+            switch self.error {
+            case .cls: 
+                code = .invalidParameter_Cls
+            case .functionName: 
+                code = .invalidParameter_FunctionName
+            case .paramError: 
+                code = .invalidParameter_ParamError
+            case .payload: 
+                code = .invalidParameter_Payload
+            case .requestTooLarge: 
+                code = .invalidParameter_RequestTooLarge
+            case .roleCheck: 
+                code = .invalidParameter_RoleCheck
+            case .routingConfig: 
+                code = .invalidParameter_RoutingConfig
+            }
+            return TCScfError(code, context: self.context)
         }
-        return TCScfError(code, context: self.context)
-    }
-}
-
-extension TCScfError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

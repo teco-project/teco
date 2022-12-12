@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCLighthouseError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCLighthouseErrorType {
         enum Code: String {
             case attachDataDiskQuotaLimitExceeded = "LimitExceeded.AttachDataDiskQuotaLimitExceeded"
             case firewallRulesLimitExceeded = "LimitExceeded.FirewallRulesLimitExceeded"
@@ -35,8 +35,6 @@ extension TCLighthouseError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -84,37 +82,26 @@ extension TCLighthouseError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCLighthouseError.LimitExceeded: Equatable {
-    public static func == (lhs: TCLighthouseError.LimitExceeded, rhs: TCLighthouseError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCLighthouseError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCLighthouseError.LimitExceeded {
-    /// - Returns: ``TCLighthouseError`` that holds the same error and context.
-    public func toLighthouseError() -> TCLighthouseError {
-        guard let code = TCLighthouseError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asLighthouseError() -> TCLighthouseError {
+            let code: TCLighthouseError.Code
+            switch self.error {
+            case .attachDataDiskQuotaLimitExceeded: 
+                code = .limitExceeded_AttachDataDiskQuotaLimitExceeded
+            case .firewallRulesLimitExceeded: 
+                code = .limitExceeded_FirewallRulesLimitExceeded
+            case .instanceQuotaLimitExceeded: 
+                code = .limitExceeded_InstanceQuotaLimitExceeded
+            case .isolateResourcesLimitExceeded: 
+                code = .limitExceeded_IsolateResourcesLimitExceeded
+            case .keyPairLimitExceeded: 
+                code = .limitExceeded_KeyPairLimitExceeded
+            case .snapshotQuotaLimitExceeded: 
+                code = .limitExceeded_SnapshotQuotaLimitExceeded
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCLighthouseError(code, context: self.context)
         }
-        return TCLighthouseError(code, context: self.context)
-    }
-}
-
-extension TCLighthouseError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

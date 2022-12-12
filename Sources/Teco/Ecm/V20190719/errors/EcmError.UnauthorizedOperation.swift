@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEcmError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCEcmErrorType {
         enum Code: String {
             case forbiddenOperation = "UnauthorizedOperation.ForbiddenOperation"
             case mfaExpired = "UnauthorizedOperation.MFAExpired"
@@ -34,8 +34,6 @@ extension TCEcmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -78,37 +76,24 @@ extension TCEcmError {
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-    }
-}
-
-extension TCEcmError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCEcmError.UnauthorizedOperation, rhs: TCEcmError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEcmError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEcmError.UnauthorizedOperation {
-    /// - Returns: ``TCEcmError`` that holds the same error and context.
-    public func toEcmError() -> TCEcmError {
-        guard let code = TCEcmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEcmError() -> TCEcmError {
+            let code: TCEcmError.Code
+            switch self.error {
+            case .forbiddenOperation: 
+                code = .unauthorizedOperation_ForbiddenOperation
+            case .mfaExpired: 
+                code = .unauthorizedOperation_MFAExpired
+            case .notCertification: 
+                code = .unauthorizedOperation_NotCertification
+            case .notHavePaymentRight: 
+                code = .unauthorizedOperation_NotHavePaymentRight
+            case .windowsImage: 
+                code = .unauthorizedOperation_WindowsImage
+            case .other: 
+                code = .unauthorizedOperation
+            }
+            return TCEcmError(code, context: self.context)
         }
-        return TCEcmError(code, context: self.context)
-    }
-}
-
-extension TCEcmError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

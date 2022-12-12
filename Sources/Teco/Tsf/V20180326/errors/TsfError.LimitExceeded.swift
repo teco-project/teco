@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTsfError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCTsfErrorType {
         enum Code: String {
             case errNamespaceMaxLimit = "LimitExceeded.ErrNamespaceMaxLimit"
             case errRepoMaxLimit = "LimitExceeded.ErrRepoMaxLimit"
@@ -31,8 +31,6 @@ extension TCTsfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCTsfError {
         public static var tkeClusterNumberExceedLimit: LimitExceeded {
             LimitExceeded(.tkeClusterNumberExceedLimit)
         }
-    }
-}
-
-extension TCTsfError.LimitExceeded: Equatable {
-    public static func == (lhs: TCTsfError.LimitExceeded, rhs: TCTsfError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTsfError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTsfError.LimitExceeded {
-    /// - Returns: ``TCTsfError`` that holds the same error and context.
-    public func toTsfError() -> TCTsfError {
-        guard let code = TCTsfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTsfError() -> TCTsfError {
+            let code: TCTsfError.Code
+            switch self.error {
+            case .errNamespaceMaxLimit: 
+                code = .limitExceeded_ErrNamespaceMaxLimit
+            case .errRepoMaxLimit: 
+                code = .limitExceeded_ErrRepoMaxLimit
+            case .tkeClusterNumberExceedLimit: 
+                code = .limitExceeded_TkeClusterNumberExceedLimit
+            }
+            return TCTsfError(code, context: self.context)
         }
-        return TCTsfError(code, context: self.context)
-    }
-}
-
-extension TCTsfError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

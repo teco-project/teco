@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEccError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCEccErrorType {
         enum Code: String {
             case cannotFindUser = "ResourceNotFound.CannotFindUser"
             case serverNameNotExistInLicenseError = "ResourceNotFound.ServerNameNotExistInLicenseError"
@@ -30,8 +30,6 @@ extension TCEccError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCEccError {
         public static var serverNameNotExistInLicenseError: ResourceNotFound {
             ResourceNotFound(.serverNameNotExistInLicenseError)
         }
-    }
-}
-
-extension TCEccError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCEccError.ResourceNotFound, rhs: TCEccError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEccError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEccError.ResourceNotFound {
-    /// - Returns: ``TCEccError`` that holds the same error and context.
-    public func toEccError() -> TCEccError {
-        guard let code = TCEccError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEccError() -> TCEccError {
+            let code: TCEccError.Code
+            switch self.error {
+            case .cannotFindUser: 
+                code = .resourceNotFound_CannotFindUser
+            case .serverNameNotExistInLicenseError: 
+                code = .resourceNotFound_ServerNameNotExistInLicenseError
+            }
+            return TCEccError(code, context: self.context)
         }
-        return TCEccError(code, context: self.context)
-    }
-}
-
-extension TCEccError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

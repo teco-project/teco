@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMnaError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCMnaErrorType {
         enum Code: String {
             case controlRequestError = "InternalError.ControlRequestError"
             case duplicateDataKey = "InternalError.DuplicateDataKey"
@@ -35,8 +35,6 @@ extension TCMnaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -78,37 +76,26 @@ extension TCMnaError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCMnaError.InternalError: Equatable {
-    public static func == (lhs: TCMnaError.InternalError, rhs: TCMnaError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMnaError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMnaError.InternalError {
-    /// - Returns: ``TCMnaError`` that holds the same error and context.
-    public func toMnaError() -> TCMnaError {
-        guard let code = TCMnaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMnaError() -> TCMnaError {
+            let code: TCMnaError.Code
+            switch self.error {
+            case .controlRequestError: 
+                code = .internalError_ControlRequestError
+            case .duplicateDataKey: 
+                code = .internalError_DuplicateDataKey
+            case .duplicateDeviceName: 
+                code = .internalError_DuplicateDeviceName
+            case .fileIOError: 
+                code = .internalError_FileIOError
+            case .networkInfoRequestError: 
+                code = .internalError_NetworkInfoRequestError
+            case .undefinedEncryptedKey: 
+                code = .internalError_UndefinedEncryptedKey
+            case .other: 
+                code = .internalError
+            }
+            return TCMnaError(code, context: self.context)
         }
-        return TCMnaError(code, context: self.context)
-    }
-}
-
-extension TCMnaError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

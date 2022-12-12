@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCRedisError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCRedisErrorType {
         enum Code: String {
             case addInstanceInfoFailed = "FailedOperation.AddInstanceInfoFailed"
             case associateSecurityGroupsFailed = "FailedOperation.AssociateSecurityGroupsFailed"
@@ -44,8 +44,6 @@ extension TCRedisError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -138,37 +136,44 @@ extension TCRedisError {
         public static var updateSecurityGroupsFailed: FailedOperation {
             FailedOperation(.updateSecurityGroupsFailed)
         }
-    }
-}
-
-extension TCRedisError.FailedOperation: Equatable {
-    public static func == (lhs: TCRedisError.FailedOperation, rhs: TCRedisError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCRedisError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCRedisError.FailedOperation {
-    /// - Returns: ``TCRedisError`` that holds the same error and context.
-    public func toRedisError() -> TCRedisError {
-        guard let code = TCRedisError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asRedisError() -> TCRedisError {
+            let code: TCRedisError.Code
+            switch self.error {
+            case .addInstanceInfoFailed: 
+                code = .failedOperation_AddInstanceInfoFailed
+            case .associateSecurityGroupsFailed: 
+                code = .failedOperation_AssociateSecurityGroupsFailed
+            case .clearInstanceInfoFailed: 
+                code = .failedOperation_ClearInstanceInfoFailed
+            case .commitFlowError: 
+                code = .failedOperation_CommitFlowError
+            case .disassociateSecurityGroupsFailed: 
+                code = .failedOperation_DisassociateSecurityGroupsFailed
+            case .dtsStatusAbnormal: 
+                code = .failedOperation_DtsStatusAbnormal
+            case .flowNotExists: 
+                code = .failedOperation_FlowNotExists
+            case .getSecurityGroupDetailFailed: 
+                code = .failedOperation_GetSecurityGroupDetailFailed
+            case .payFailed: 
+                code = .failedOperation_PayFailed
+            case .redoFlowFailed: 
+                code = .failedOperation_RedoFlowFailed
+            case .setRuleLocationFailed: 
+                code = .failedOperation_SetRuleLocationFailed
+            case .systemError: 
+                code = .failedOperation_SystemError
+            case .unSupportError: 
+                code = .failedOperation_UnSupportError
+            case .unknown: 
+                code = .failedOperation_Unknown
+            case .updateInstanceInfoFailed: 
+                code = .failedOperation_UpdateInstanceInfoFailed
+            case .updateSecurityGroupsFailed: 
+                code = .failedOperation_UpdateSecurityGroupsFailed
+            }
+            return TCRedisError(code, context: self.context)
         }
-        return TCRedisError(code, context: self.context)
-    }
-}
-
-extension TCRedisError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSmsError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCSmsErrorType {
         enum Code: String {
             case jsonParseFail = "InternalError.JsonParseFail"
             case otherError = "InternalError.OtherError"
@@ -38,8 +38,6 @@ extension TCSmsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -102,37 +100,32 @@ extension TCSmsError {
         public static var unknownError: InternalError {
             InternalError(.unknownError)
         }
-    }
-}
-
-extension TCSmsError.InternalError: Equatable {
-    public static func == (lhs: TCSmsError.InternalError, rhs: TCSmsError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSmsError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSmsError.InternalError {
-    /// - Returns: ``TCSmsError`` that holds the same error and context.
-    public func toSmsError() -> TCSmsError {
-        guard let code = TCSmsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSmsError() -> TCSmsError {
+            let code: TCSmsError.Code
+            switch self.error {
+            case .jsonParseFail: 
+                code = .internalError_JsonParseFail
+            case .otherError: 
+                code = .internalError_OtherError
+            case .parseBackendResponseFail: 
+                code = .internalError_ParseBackendResponseFail
+            case .requestTimeException: 
+                code = .internalError_RequestTimeException
+            case .restApiInterfaceNotExist: 
+                code = .internalError_RestApiInterfaceNotExist
+            case .sendAndRecvFail: 
+                code = .internalError_SendAndRecvFail
+            case .sigFieldMissing: 
+                code = .internalError_SigFieldMissing
+            case .sigVerificationFail: 
+                code = .internalError_SigVerificationFail
+            case .timeout: 
+                code = .internalError_Timeout
+            case .unknownError: 
+                code = .internalError_UnknownError
+            }
+            return TCSmsError(code, context: self.context)
         }
-        return TCSmsError(code, context: self.context)
-    }
-}
-
-extension TCSmsError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

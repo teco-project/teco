@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotvideoindustryError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCIotvideoindustryErrorType {
         enum Code: String {
             case gbProtocolExecException = "ResourceUnavailable.GBProtocolExecException"
             case streamInfoException = "ResourceUnavailable.StreamInfoException"
@@ -31,8 +31,6 @@ extension TCIotvideoindustryError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCIotvideoindustryError {
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-    }
-}
-
-extension TCIotvideoindustryError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCIotvideoindustryError.ResourceUnavailable, rhs: TCIotvideoindustryError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotvideoindustryError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotvideoindustryError.ResourceUnavailable {
-    /// - Returns: ``TCIotvideoindustryError`` that holds the same error and context.
-    public func toIotvideoindustryError() -> TCIotvideoindustryError {
-        guard let code = TCIotvideoindustryError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotvideoindustryError() -> TCIotvideoindustryError {
+            let code: TCIotvideoindustryError.Code
+            switch self.error {
+            case .gbProtocolExecException: 
+                code = .resourceUnavailable_GBProtocolExecException
+            case .streamInfoException: 
+                code = .resourceUnavailable_StreamInfoException
+            case .other: 
+                code = .resourceUnavailable
+            }
+            return TCIotvideoindustryError(code, context: self.context)
         }
-        return TCIotvideoindustryError(code, context: self.context)
-    }
-}
-
-extension TCIotvideoindustryError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

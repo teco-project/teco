@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCvmError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCCvmErrorType {
         enum Code: String {
             case associateUSGLimitExceeded = "LimitExceeded.AssociateUSGLimitExceeded"
             case cvmsVifsPerSecGroupLimitExceeded = "LimitExceeded.CvmsVifsPerSecGroupLimitExceeded"
@@ -48,8 +48,6 @@ extension TCCvmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -177,37 +175,52 @@ extension TCCvmError {
         public static var vpcSubnetNum: LimitExceeded {
             LimitExceeded(.vpcSubnetNum)
         }
-    }
-}
-
-extension TCCvmError.LimitExceeded: Equatable {
-    public static func == (lhs: TCCvmError.LimitExceeded, rhs: TCCvmError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCvmError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCvmError.LimitExceeded {
-    /// - Returns: ``TCCvmError`` that holds the same error and context.
-    public func toCvmError() -> TCCvmError {
-        guard let code = TCCvmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCvmError() -> TCCvmError {
+            let code: TCCvmError.Code
+            switch self.error {
+            case .associateUSGLimitExceeded: 
+                code = .limitExceeded_AssociateUSGLimitExceeded
+            case .cvmsVifsPerSecGroupLimitExceeded: 
+                code = .limitExceeded_CvmsVifsPerSecGroupLimitExceeded
+            case .disasterRecoverGroup: 
+                code = .limitExceeded_DisasterRecoverGroup
+            case .eipNumLimit: 
+                code = .limitExceeded_EipNumLimit
+            case .eniNumLimit: 
+                code = .limitExceeded_EniNumLimit
+            case .exportImageTaskLimitExceeded: 
+                code = .limitExceeded_ExportImageTaskLimitExceeded
+            case .hpcClusterQuota: 
+                code = .limitExceeded_HpcClusterQuota
+            case .iPv6AddressNum: 
+                code = .limitExceeded_IPv6AddressNum
+            case .instanceEniNumLimit: 
+                code = .limitExceeded_InstanceEniNumLimit
+            case .instanceQuota: 
+                code = .limitExceeded_InstanceQuota
+            case .instanceTypeBandwidth: 
+                code = .limitExceeded_InstanceTypeBandwidth
+            case .launchTemplateQuota: 
+                code = .limitExceeded_LaunchTemplateQuota
+            case .launchTemplateVersionQuota: 
+                code = .limitExceeded_LaunchTemplateVersionQuota
+            case .prepayQuota: 
+                code = .limitExceeded_PrepayQuota
+            case .singleUSGQuota: 
+                code = .limitExceeded_SingleUSGQuota
+            case .spotQuota: 
+                code = .limitExceeded_SpotQuota
+            case .tagResourceQuota: 
+                code = .limitExceeded_TagResourceQuota
+            case .userReturnQuota: 
+                code = .limitExceeded_UserReturnQuota
+            case .userSpotQuota: 
+                code = .limitExceeded_UserSpotQuota
+            case .vpcSubnetNum: 
+                code = .limitExceeded_VpcSubnetNum
+            }
+            return TCCvmError(code, context: self.context)
         }
-        return TCCvmError(code, context: self.context)
-    }
-}
-
-extension TCCvmError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

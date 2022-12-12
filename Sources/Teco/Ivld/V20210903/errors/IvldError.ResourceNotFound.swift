@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIvldError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCIvldErrorType {
         enum Code: String {
             case customCategoryNotFound = "ResourceNotFound.CustomCategoryNotFound"
             case customGroupNotFound = "ResourceNotFound.CustomGroupNotFound"
@@ -33,8 +33,6 @@ extension TCIvldError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -82,37 +80,22 @@ extension TCIvldError {
         public static var taskNotFound: ResourceNotFound {
             ResourceNotFound(.taskNotFound)
         }
-    }
-}
-
-extension TCIvldError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCIvldError.ResourceNotFound, rhs: TCIvldError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIvldError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIvldError.ResourceNotFound {
-    /// - Returns: ``TCIvldError`` that holds the same error and context.
-    public func toIvldError() -> TCIvldError {
-        guard let code = TCIvldError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIvldError() -> TCIvldError {
+            let code: TCIvldError.Code
+            switch self.error {
+            case .customCategoryNotFound: 
+                code = .resourceNotFound_CustomCategoryNotFound
+            case .customGroupNotFound: 
+                code = .resourceNotFound_CustomGroupNotFound
+            case .mediaNotFound: 
+                code = .resourceNotFound_MediaNotFound
+            case .recordNotFound: 
+                code = .resourceNotFound_RecordNotFound
+            case .taskNotFound: 
+                code = .resourceNotFound_TaskNotFound
+            }
+            return TCIvldError(code, context: self.context)
         }
-        return TCIvldError(code, context: self.context)
-    }
-}
-
-extension TCIvldError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDnspodError {
-    public struct AuthFailure: TCErrorType {
+    public struct AuthFailure: TCDnspodErrorType {
         enum Code: String {
             case unauthorizedOperation = "AuthFailure.UnauthorizedOperation"
             case other = "AuthFailure"
@@ -30,8 +30,6 @@ extension TCDnspodError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCDnspodError {
         public static var other: AuthFailure {
             AuthFailure(.other)
         }
-    }
-}
-
-extension TCDnspodError.AuthFailure: Equatable {
-    public static func == (lhs: TCDnspodError.AuthFailure, rhs: TCDnspodError.AuthFailure) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDnspodError.AuthFailure: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDnspodError.AuthFailure {
-    /// - Returns: ``TCDnspodError`` that holds the same error and context.
-    public func toDnspodError() -> TCDnspodError {
-        guard let code = TCDnspodError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDnspodError() -> TCDnspodError {
+            let code: TCDnspodError.Code
+            switch self.error {
+            case .unauthorizedOperation: 
+                code = .authFailure_UnauthorizedOperation
+            case .other: 
+                code = .authFailure
+            }
+            return TCDnspodError(code, context: self.context)
         }
-        return TCDnspodError(code, context: self.context)
-    }
-}
-
-extension TCDnspodError.AuthFailure {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

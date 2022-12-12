@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCClsError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCClsErrorType {
         enum Code: String {
             case agentVersionNotExist = "ResourceNotFound.AgentVersionNotExist"
             case alarmNotExist = "ResourceNotFound.AlarmNotExist"
@@ -41,8 +41,6 @@ extension TCClsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -124,37 +122,38 @@ extension TCClsError {
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-    }
-}
-
-extension TCClsError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCClsError.ResourceNotFound, rhs: TCClsError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCClsError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCClsError.ResourceNotFound {
-    /// - Returns: ``TCClsError`` that holds the same error and context.
-    public func toClsError() -> TCClsError {
-        guard let code = TCClsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asClsError() -> TCClsError {
+            let code: TCClsError.Code
+            switch self.error {
+            case .agentVersionNotExist: 
+                code = .resourceNotFound_AgentVersionNotExist
+            case .alarmNotExist: 
+                code = .resourceNotFound_AlarmNotExist
+            case .alarmNoticeNotExist: 
+                code = .resourceNotFound_AlarmNoticeNotExist
+            case .configNotExist: 
+                code = .resourceNotFound_ConfigNotExist
+            case .exportNotExist: 
+                code = .resourceNotFound_ExportNotExist
+            case .indexNotExist: 
+                code = .resourceNotFound_IndexNotExist
+            case .logsetNotExist: 
+                code = .resourceNotFound_LogsetNotExist
+            case .machineGroupNotExist: 
+                code = .resourceNotFound_MachineGroupNotExist
+            case .partitionNotExist: 
+                code = .resourceNotFound_PartitionNotExist
+            case .shipperNotExist: 
+                code = .resourceNotFound_ShipperNotExist
+            case .shipperTaskNotExist: 
+                code = .resourceNotFound_ShipperTaskNotExist
+            case .topicNotExist: 
+                code = .resourceNotFound_TopicNotExist
+            case .other: 
+                code = .resourceNotFound
+            }
+            return TCClsError(code, context: self.context)
         }
-        return TCClsError(code, context: self.context)
-    }
-}
-
-extension TCClsError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

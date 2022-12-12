@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCRceError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCRceErrorType {
         enum Code: String {
             case backendLogicError = "InternalError.BackendLogicError"
             case connectDBTimeout = "InternalError.ConnectDBTimeout"
@@ -32,8 +32,6 @@ extension TCRceError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCRceError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCRceError.InternalError: Equatable {
-    public static func == (lhs: TCRceError.InternalError, rhs: TCRceError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCRceError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCRceError.InternalError {
-    /// - Returns: ``TCRceError`` that holds the same error and context.
-    public func toRceError() -> TCRceError {
-        guard let code = TCRceError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asRceError() -> TCRceError {
+            let code: TCRceError.Code
+            switch self.error {
+            case .backendLogicError: 
+                code = .internalError_BackendLogicError
+            case .connectDBTimeout: 
+                code = .internalError_ConnectDBTimeout
+            case .signBackendError: 
+                code = .internalError_SignBackendError
+            case .other: 
+                code = .internalError
+            }
+            return TCRceError(code, context: self.context)
         }
-        return TCRceError(code, context: self.context)
-    }
-}
-
-extension TCRceError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

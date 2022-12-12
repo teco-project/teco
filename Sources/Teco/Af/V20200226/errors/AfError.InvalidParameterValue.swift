@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAfError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCAfErrorType {
         enum Code: String {
             case badBody = "InvalidParameterValue.BadBody"
             case bodyTooLarge = "InvalidParameterValue.BodyTooLarge"
@@ -40,8 +40,6 @@ extension TCAfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -114,37 +112,36 @@ extension TCAfError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCAfError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCAfError.InvalidParameterValue, rhs: TCAfError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAfError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAfError.InvalidParameterValue {
-    /// - Returns: ``TCAfError`` that holds the same error and context.
-    public func toAfError() -> TCAfError {
-        guard let code = TCAfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAfError() -> TCAfError {
+            let code: TCAfError.Code
+            switch self.error {
+            case .badBody: 
+                code = .invalidParameterValue_BadBody
+            case .bodyTooLarge: 
+                code = .invalidParameterValue_BodyTooLarge
+            case .capMisMatch: 
+                code = .invalidParameterValue_CapMisMatch
+            case .httpMethodError: 
+                code = .invalidParameterValue_HttpMethodError
+            case .invalidBusinessId: 
+                code = .invalidParameterValue_InvalidBusinessId
+            case .invalidDate: 
+                code = .invalidParameterValue_InvalidDate
+            case .invalidLimit: 
+                code = .invalidParameterValue_InvalidLimit
+            case .invalidNum: 
+                code = .invalidParameterValue_InvalidNum
+            case .invalidSrvId: 
+                code = .invalidParameterValue_InvalidSrvId
+            case .invalidSrvName: 
+                code = .invalidParameterValue_InvalidSrvName
+            case .invalidStride: 
+                code = .invalidParameterValue_InvalidStride
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCAfError(code, context: self.context)
         }
-        return TCAfError(code, context: self.context)
-    }
-}
-
-extension TCAfError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

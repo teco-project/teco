@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCccError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCCccErrorType {
         enum Code: String {
             case accountNotExist = "InvalidParameterValue.AccountNotExist"
             case instanceNotExist = "InvalidParameterValue.InstanceNotExist"
@@ -35,8 +35,6 @@ extension TCCccError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -84,37 +82,26 @@ extension TCCccError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCCccError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCCccError.InvalidParameterValue, rhs: TCCccError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCccError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCccError.InvalidParameterValue {
-    /// - Returns: ``TCCccError`` that holds the same error and context.
-    public func toCccError() -> TCCccError {
-        guard let code = TCCccError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCccError() -> TCCccError {
+            let code: TCCccError.Code
+            switch self.error {
+            case .accountNotExist: 
+                code = .invalidParameterValue_AccountNotExist
+            case .instanceNotExist: 
+                code = .invalidParameterValue_InstanceNotExist
+            case .phoneNumIsBoundOtherAccount: 
+                code = .invalidParameterValue_PhoneNumIsBoundOtherAccount
+            case .recordNotExist: 
+                code = .invalidParameterValue_RecordNotExist
+            case .skillGroupError: 
+                code = .invalidParameterValue_SkillGroupError
+            case .skillGroupExist: 
+                code = .invalidParameterValue_SkillGroupExist
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCCccError(code, context: self.context)
         }
-        return TCCccError(code, context: self.context)
-    }
-}
-
-extension TCCccError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

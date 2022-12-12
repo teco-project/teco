@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTemError {
-    public struct ResourceInUse: TCErrorType {
+    public struct ResourceInUse: TCTemErrorType {
         enum Code: String {
             case environmentAlreadyLocked = "ResourceInUse.EnvironmentAlreadyLocked"
             case resourceAlreadyLocked = "ResourceInUse.ResourceAlreadyLocked"
@@ -32,8 +32,6 @@ extension TCTemError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -64,37 +62,20 @@ extension TCTemError {
         public static var serviceDeploying: ResourceInUse {
             ResourceInUse(.serviceDeploying)
         }
-    }
-}
-
-extension TCTemError.ResourceInUse: Equatable {
-    public static func == (lhs: TCTemError.ResourceInUse, rhs: TCTemError.ResourceInUse) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTemError.ResourceInUse: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTemError.ResourceInUse {
-    /// - Returns: ``TCTemError`` that holds the same error and context.
-    public func toTemError() -> TCTemError {
-        guard let code = TCTemError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTemError() -> TCTemError {
+            let code: TCTemError.Code
+            switch self.error {
+            case .environmentAlreadyLocked: 
+                code = .resourceInUse_EnvironmentAlreadyLocked
+            case .resourceAlreadyLocked: 
+                code = .resourceInUse_ResourceAlreadyLocked
+            case .resourceAlreadyUsed: 
+                code = .resourceInUse_ResourceAlreadyUsed
+            case .serviceDeploying: 
+                code = .resourceInUse_ServiceDeploying
+            }
+            return TCTemError(code, context: self.context)
         }
-        return TCTemError(code, context: self.context)
-    }
-}
-
-extension TCTemError.ResourceInUse {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

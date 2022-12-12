@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCdcError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCCdcErrorType {
         enum Code: String {
             case nonCustomerAppIdNotSupport = "UnsupportedOperation.NonCustomerAppIdNotSupport"
         }
@@ -29,8 +29,6 @@ extension TCCdcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -50,37 +48,14 @@ extension TCCdcError {
         public static var nonCustomerAppIdNotSupport: UnsupportedOperation {
             UnsupportedOperation(.nonCustomerAppIdNotSupport)
         }
-    }
-}
-
-extension TCCdcError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCCdcError.UnsupportedOperation, rhs: TCCdcError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCdcError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCdcError.UnsupportedOperation {
-    /// - Returns: ``TCCdcError`` that holds the same error and context.
-    public func toCdcError() -> TCCdcError {
-        guard let code = TCCdcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCdcError() -> TCCdcError {
+            let code: TCCdcError.Code
+            switch self.error {
+            case .nonCustomerAppIdNotSupport: 
+                code = .unsupportedOperation_NonCustomerAppIdNotSupport
+            }
+            return TCCdcError(code, context: self.context)
         }
-        return TCCdcError(code, context: self.context)
-    }
-}
-
-extension TCCdcError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCbsError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCCbsErrorType {
         enum Code: String {
             case diskConfigNotSupported = "InvalidParameter.DiskConfigNotSupported"
             case diskSizeNotMatch = "InvalidParameter.DiskSizeNotMatch"
@@ -33,8 +33,6 @@ extension TCCbsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,22 @@ extension TCCbsError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCCbsError.InvalidParameter: Equatable {
-    public static func == (lhs: TCCbsError.InvalidParameter, rhs: TCCbsError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCbsError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCbsError.InvalidParameter {
-    /// - Returns: ``TCCbsError`` that holds the same error and context.
-    public func toCbsError() -> TCCbsError {
-        guard let code = TCCbsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCbsError() -> TCCbsError {
+            let code: TCCbsError.Code
+            switch self.error {
+            case .diskConfigNotSupported: 
+                code = .invalidParameter_DiskConfigNotSupported
+            case .diskSizeNotMatch: 
+                code = .invalidParameter_DiskSizeNotMatch
+            case .projectIdNotExist: 
+                code = .invalidParameter_ProjectIdNotExist
+            case .shouldConvertSnapshotToImage: 
+                code = .invalidParameter_ShouldConvertSnapshotToImage
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCCbsError(code, context: self.context)
         }
-        return TCCbsError(code, context: self.context)
-    }
-}
-
-extension TCCbsError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

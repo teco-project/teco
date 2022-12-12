@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDtsError {
-    public struct UnknownParameter: TCErrorType {
+    public struct UnknownParameter: TCDtsErrorType {
         enum Code: String {
             case unknownParameterError = "UnknownParameter.UnknownParameterError"
             case other = "UnknownParameter"
@@ -30,8 +30,6 @@ extension TCDtsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -53,37 +51,16 @@ extension TCDtsError {
         public static var other: UnknownParameter {
             UnknownParameter(.other)
         }
-    }
-}
-
-extension TCDtsError.UnknownParameter: Equatable {
-    public static func == (lhs: TCDtsError.UnknownParameter, rhs: TCDtsError.UnknownParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDtsError.UnknownParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDtsError.UnknownParameter {
-    /// - Returns: ``TCDtsError`` that holds the same error and context.
-    public func toDtsError() -> TCDtsError {
-        guard let code = TCDtsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDtsError() -> TCDtsError {
+            let code: TCDtsError.Code
+            switch self.error {
+            case .unknownParameterError: 
+                code = .unknownParameter_UnknownParameterError
+            case .other: 
+                code = .unknownParameter
+            }
+            return TCDtsError(code, context: self.context)
         }
-        return TCDtsError(code, context: self.context)
-    }
-}
-
-extension TCDtsError.UnknownParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

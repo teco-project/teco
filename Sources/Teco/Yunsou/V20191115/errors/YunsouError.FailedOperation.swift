@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCYunsouError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCYunsouErrorType {
         enum Code: String {
             case accountInfo = "FailedOperation.AccountInfo"
             case appInfo = "FailedOperation.AppInfo"
@@ -32,8 +32,6 @@ extension TCYunsouError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCYunsouError {
         public static var uploadDataApiFail: FailedOperation {
             FailedOperation(.uploadDataApiFail)
         }
-    }
-}
-
-extension TCYunsouError.FailedOperation: Equatable {
-    public static func == (lhs: TCYunsouError.FailedOperation, rhs: TCYunsouError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCYunsouError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCYunsouError.FailedOperation {
-    /// - Returns: ``TCYunsouError`` that holds the same error and context.
-    public func toYunsouError() -> TCYunsouError {
-        guard let code = TCYunsouError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asYunsouError() -> TCYunsouError {
+            let code: TCYunsouError.Code
+            switch self.error {
+            case .accountInfo: 
+                code = .failedOperation_AccountInfo
+            case .appInfo: 
+                code = .failedOperation_AppInfo
+            case .search: 
+                code = .failedOperation_Search
+            case .uploadDataApiFail: 
+                code = .failedOperation_UploadDataApiFail
+            }
+            return TCYunsouError(code, context: self.context)
         }
-        return TCYunsouError(code, context: self.context)
-    }
-}
-
-extension TCYunsouError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

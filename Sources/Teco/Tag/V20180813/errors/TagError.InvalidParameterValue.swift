@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTagError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCTagErrorType {
         enum Code: String {
             case deleteTagsParamError = "InvalidParameterValue.DeleteTagsParamError"
             case offsetInvalid = "InvalidParameterValue.OffsetInvalid"
@@ -46,8 +46,6 @@ extension TCTagError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -150,37 +148,48 @@ extension TCTagError {
         public static var uinInvalid: InvalidParameterValue {
             InvalidParameterValue(.uinInvalid)
         }
-    }
-}
-
-extension TCTagError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCTagError.InvalidParameterValue, rhs: TCTagError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTagError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTagError.InvalidParameterValue {
-    /// - Returns: ``TCTagError`` that holds the same error and context.
-    public func toTagError() -> TCTagError {
-        guard let code = TCTagError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTagError() -> TCTagError {
+            let code: TCTagError.Code
+            switch self.error {
+            case .deleteTagsParamError: 
+                code = .invalidParameterValue_DeleteTagsParamError
+            case .offsetInvalid: 
+                code = .invalidParameterValue_OffsetInvalid
+            case .regionInvalid: 
+                code = .invalidParameterValue_RegionInvalid
+            case .reservedTagKey: 
+                code = .invalidParameterValue_ReservedTagKey
+            case .resourceDescriptionError: 
+                code = .invalidParameterValue_ResourceDescriptionError
+            case .resourceIdInvalid: 
+                code = .invalidParameterValue_ResourceIdInvalid
+            case .resourcePrefixInvalid: 
+                code = .invalidParameterValue_ResourcePrefixInvalid
+            case .serviceTypeInvalid: 
+                code = .invalidParameterValue_ServiceTypeInvalid
+            case .tagFilters: 
+                code = .invalidParameterValue_TagFilters
+            case .tagFiltersLengthExceeded: 
+                code = .invalidParameterValue_TagFiltersLengthExceeded
+            case .tagKeyCharacterIllegal: 
+                code = .invalidParameterValue_TagKeyCharacterIllegal
+            case .tagKeyDuplicate: 
+                code = .invalidParameterValue_TagKeyDuplicate
+            case .tagKeyEmpty: 
+                code = .invalidParameterValue_TagKeyEmpty
+            case .tagKeyLengthExceeded: 
+                code = .invalidParameterValue_TagKeyLengthExceeded
+            case .tagValueCharacterIllegal: 
+                code = .invalidParameterValue_TagValueCharacterIllegal
+            case .tagValueEmpty: 
+                code = .invalidParameterValue_TagValueEmpty
+            case .tagValueLengthExceeded: 
+                code = .invalidParameterValue_TagValueLengthExceeded
+            case .uinInvalid: 
+                code = .invalidParameterValue_UinInvalid
+            }
+            return TCTagError(code, context: self.context)
         }
-        return TCTagError(code, context: self.context)
-    }
-}
-
-extension TCTagError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

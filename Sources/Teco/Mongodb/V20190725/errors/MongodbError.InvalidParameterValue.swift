@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMongodbError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCMongodbErrorType {
         enum Code: String {
             case backupFileNotFound = "InvalidParameterValue.BackupFileNotFound"
             case checkAppIdFailed = "InvalidParameterValue.CheckAppIdFailed"
@@ -70,8 +70,6 @@ extension TCMongodbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -294,37 +292,96 @@ extension TCMongodbError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCMongodbError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCMongodbError.InvalidParameterValue, rhs: TCMongodbError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMongodbError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMongodbError.InvalidParameterValue {
-    /// - Returns: ``TCMongodbError`` that holds the same error and context.
-    public func toMongodbError() -> TCMongodbError {
-        guard let code = TCMongodbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMongodbError() -> TCMongodbError {
+            let code: TCMongodbError.Code
+            switch self.error {
+            case .backupFileNotFound: 
+                code = .invalidParameterValue_BackupFileNotFound
+            case .checkAppIdFailed: 
+                code = .invalidParameterValue_CheckAppIdFailed
+            case .clusterTypeError: 
+                code = .invalidParameterValue_ClusterTypeError
+            case .illegalInstanceName: 
+                code = .invalidParameterValue_IllegalInstanceName
+            case .illegalInstanceStatus: 
+                code = .invalidParameterValue_IllegalInstanceStatus
+            case .illegalStatusToOffline: 
+                code = .invalidParameterValue_IllegalStatusToOffline
+            case .instanceHasBeenDeleted: 
+                code = .invalidParameterValue_InstanceHasBeenDeleted
+            case .instanceHasBeenIsolated: 
+                code = .invalidParameterValue_InstanceHasBeenIsolated
+            case .invalidTradeOperation: 
+                code = .invalidParameterValue_InvalidTradeOperation
+            case .lockFailed: 
+                code = .invalidParameterValue_LockFailed
+            case .machineTypeError: 
+                code = .invalidParameterValue_MachineTypeError
+            case .modifyModeError: 
+                code = .invalidParameterValue_ModifyModeError
+            case .mongoVersionError: 
+                code = .invalidParameterValue_MongoVersionError
+            case .mongoVersionNotSupportQueryClient: 
+                code = .invalidParameterValue_MongoVersionNotSupportQueryClient
+            case .nodeNotFoundInReplica: 
+                code = .invalidParameterValue_NodeNotFoundInReplica
+            case .notFoundInstance: 
+                code = .invalidParameterValue_NotFoundInstance
+            case .oplogSizeOutOfRange: 
+                code = .invalidParameterValue_OplogSizeOutOfRange
+            case .passwordRuleFailed: 
+                code = .invalidParameterValue_PasswordRuleFailed
+            case .postPaidInstanceBeyondLimit: 
+                code = .invalidParameterValue_PostPaidInstanceBeyondLimit
+            case .prePaidInstanceUnableToIsolate: 
+                code = .invalidParameterValue_PrePaidInstanceUnableToIsolate
+            case .projectNotFound: 
+                code = .invalidParameterValue_ProjectNotFound
+            case .proxyNotSupportQueryClient: 
+                code = .invalidParameterValue_ProxyNotSupportQueryClient
+            case .queryOutOfRange: 
+                code = .invalidParameterValue_QueryOutOfRange
+            case .queryTimeOutOfRange: 
+                code = .invalidParameterValue_QueryTimeOutOfRange
+            case .queryTimeRangeBeyondLimit: 
+                code = .invalidParameterValue_QueryTimeRangeBeyondLimit
+            case .regionError: 
+                code = .invalidParameterValue_RegionError
+            case .regionNotSupportOperation: 
+                code = .invalidParameterValue_RegionNotSupportOperation
+            case .regionNotSupportQueryClient: 
+                code = .invalidParameterValue_RegionNotSupportQueryClient
+            case .replicaNotFound: 
+                code = .invalidParameterValue_ReplicaNotFound
+            case .replicaSetNumError: 
+                code = .invalidParameterValue_ReplicaSetNumError
+            case .secondaryNumError: 
+                code = .invalidParameterValue_SecondaryNumError
+            case .setDiskLessThanUsed: 
+                code = .invalidParameterValue_SetDiskLessThanUsed
+            case .slowMSBelowLimit: 
+                code = .invalidParameterValue_SlowMSBelowLimit
+            case .specNotOnSale: 
+                code = .invalidParameterValue_SpecNotOnSale
+            case .startTimeNotBeforeThanEndTime: 
+                code = .invalidParameterValue_StartTimeNotBeforeThanEndTime
+            case .statusAbnormal: 
+                code = .invalidParameterValue_StatusAbnormal
+            case .tagNotFound: 
+                code = .invalidParameterValue_TagNotFound
+            case .userNotFound: 
+                code = .invalidParameterValue_UserNotFound
+            case .vpcIdOrSubnetIdNotFound: 
+                code = .invalidParameterValue_VpcIdOrSubnetIdNotFound
+            case .zoneClosed: 
+                code = .invalidParameterValue_ZoneClosed
+            case .zoneError: 
+                code = .invalidParameterValue_ZoneError
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCMongodbError(code, context: self.context)
         }
-        return TCMongodbError(code, context: self.context)
-    }
-}
-
-extension TCMongodbError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCGsError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCGsErrorType {
         enum Code: String {
             case jsonParseError = "InvalidParameter.JsonParseError"
         }
@@ -29,8 +29,6 @@ extension TCGsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCGsError {
         public static var jsonParseError: InvalidParameter {
             InvalidParameter(.jsonParseError)
         }
-    }
-}
-
-extension TCGsError.InvalidParameter: Equatable {
-    public static func == (lhs: TCGsError.InvalidParameter, rhs: TCGsError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCGsError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCGsError.InvalidParameter {
-    /// - Returns: ``TCGsError`` that holds the same error and context.
-    public func toGsError() -> TCGsError {
-        guard let code = TCGsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asGsError() -> TCGsError {
+            let code: TCGsError.Code
+            switch self.error {
+            case .jsonParseError: 
+                code = .invalidParameter_JsonParseError
+            }
+            return TCGsError(code, context: self.context)
         }
-        return TCGsError(code, context: self.context)
-    }
-}
-
-extension TCGsError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMpsError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCMpsErrorType {
         enum Code: String {
             case tooMuchTemplate = "LimitExceeded.TooMuchTemplate"
         }
@@ -29,8 +29,6 @@ extension TCMpsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCMpsError {
         public static var tooMuchTemplate: LimitExceeded {
             LimitExceeded(.tooMuchTemplate)
         }
-    }
-}
-
-extension TCMpsError.LimitExceeded: Equatable {
-    public static func == (lhs: TCMpsError.LimitExceeded, rhs: TCMpsError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMpsError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMpsError.LimitExceeded {
-    /// - Returns: ``TCMpsError`` that holds the same error and context.
-    public func toMpsError() -> TCMpsError {
-        guard let code = TCMpsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMpsError() -> TCMpsError {
+            let code: TCMpsError.Code
+            switch self.error {
+            case .tooMuchTemplate: 
+                code = .limitExceeded_TooMuchTemplate
+            }
+            return TCMpsError(code, context: self.context)
         }
-        return TCMpsError(code, context: self.context)
-    }
-}
-
-extension TCMpsError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

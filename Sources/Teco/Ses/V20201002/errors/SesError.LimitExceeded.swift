@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSesError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCSesErrorType {
         enum Code: String {
             case exceedReceiverLimit = "LimitExceeded.ExceedReceiverLimit"
             case receiverDetailCountLimit = "LimitExceeded.ReceiverDetailCountLimit"
@@ -32,8 +32,6 @@ extension TCSesError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -68,37 +66,20 @@ extension TCSesError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCSesError.LimitExceeded: Equatable {
-    public static func == (lhs: TCSesError.LimitExceeded, rhs: TCSesError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSesError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSesError.LimitExceeded {
-    /// - Returns: ``TCSesError`` that holds the same error and context.
-    public func toSesError() -> TCSesError {
-        guard let code = TCSesError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSesError() -> TCSesError {
+            let code: TCSesError.Code
+            switch self.error {
+            case .exceedReceiverLimit: 
+                code = .limitExceeded_ExceedReceiverLimit
+            case .receiverDetailCountLimit: 
+                code = .limitExceeded_ReceiverDetailCountLimit
+            case .receiverDetailRequestLimit: 
+                code = .limitExceeded_ReceiverDetailRequestLimit
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCSesError(code, context: self.context)
         }
-        return TCSesError(code, context: self.context)
-    }
-}
-
-extension TCSesError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

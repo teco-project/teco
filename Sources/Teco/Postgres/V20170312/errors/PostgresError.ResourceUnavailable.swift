@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCPostgresError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCPostgresErrorType {
         enum Code: String {
             case invalidInstanceStatus = "ResourceUnavailable.InvalidInstanceStatus"
             case resourceNoPermission = "ResourceUnavailable.ResourceNoPermission"
@@ -31,8 +31,6 @@ extension TCPostgresError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCPostgresError {
         public static var vpcResourceNotFound: ResourceUnavailable {
             ResourceUnavailable(.vpcResourceNotFound)
         }
-    }
-}
-
-extension TCPostgresError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCPostgresError.ResourceUnavailable, rhs: TCPostgresError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCPostgresError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCPostgresError.ResourceUnavailable {
-    /// - Returns: ``TCPostgresError`` that holds the same error and context.
-    public func toPostgresError() -> TCPostgresError {
-        guard let code = TCPostgresError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asPostgresError() -> TCPostgresError {
+            let code: TCPostgresError.Code
+            switch self.error {
+            case .invalidInstanceStatus: 
+                code = .resourceUnavailable_InvalidInstanceStatus
+            case .resourceNoPermission: 
+                code = .resourceUnavailable_ResourceNoPermission
+            case .vpcResourceNotFound: 
+                code = .resourceUnavailable_VpcResourceNotFound
+            }
+            return TCPostgresError(code, context: self.context)
         }
-        return TCPostgresError(code, context: self.context)
-    }
-}
-
-extension TCPostgresError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

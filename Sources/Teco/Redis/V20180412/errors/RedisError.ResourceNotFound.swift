@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCRedisError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCRedisErrorType {
         enum Code: String {
             case accountDoesNotExists = "ResourceNotFound.AccountDoesNotExists"
             case instanceNotExists = "ResourceNotFound.InstanceNotExists"
@@ -32,8 +32,6 @@ extension TCRedisError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCRedisError {
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-    }
-}
-
-extension TCRedisError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCRedisError.ResourceNotFound, rhs: TCRedisError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCRedisError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCRedisError.ResourceNotFound {
-    /// - Returns: ``TCRedisError`` that holds the same error and context.
-    public func toRedisError() -> TCRedisError {
-        guard let code = TCRedisError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asRedisError() -> TCRedisError {
+            let code: TCRedisError.Code
+            switch self.error {
+            case .accountDoesNotExists: 
+                code = .resourceNotFound_AccountDoesNotExists
+            case .instanceNotExists: 
+                code = .resourceNotFound_InstanceNotExists
+            case .instanceNotFound: 
+                code = .resourceNotFound_InstanceNotFound
+            case .other: 
+                code = .resourceNotFound
+            }
+            return TCRedisError(code, context: self.context)
         }
-        return TCRedisError(code, context: self.context)
-    }
-}
-
-extension TCRedisError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

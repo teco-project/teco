@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDlcError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCDlcErrorType {
         enum Code: String {
             case addUsersToWorkgroup = "UnauthorizedOperation.AddUsersToWorkgroup"
             case bindWorkgroupsToUser = "UnauthorizedOperation.BindWorkgroupsToUser"
@@ -42,8 +42,6 @@ extension TCDlcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -152,37 +150,40 @@ extension TCDlcError {
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-    }
-}
-
-extension TCDlcError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCDlcError.UnauthorizedOperation, rhs: TCDlcError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDlcError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDlcError.UnauthorizedOperation {
-    /// - Returns: ``TCDlcError`` that holds the same error and context.
-    public func toDlcError() -> TCDlcError {
-        guard let code = TCDlcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDlcError() -> TCDlcError {
+            let code: TCDlcError.Code
+            switch self.error {
+            case .addUsersToWorkgroup: 
+                code = .unauthorizedOperation_AddUsersToWorkgroup
+            case .bindWorkgroupsToUser: 
+                code = .unauthorizedOperation_BindWorkgroupsToUser
+            case .createWorkgroup: 
+                code = .unauthorizedOperation_CreateWorkgroup
+            case .deleteUser: 
+                code = .unauthorizedOperation_DeleteUser
+            case .deleteUsersFromWorkgroup: 
+                code = .unauthorizedOperation_DeleteUsersFromWorkgroup
+            case .deleteWorkgroup: 
+                code = .unauthorizedOperation_DeleteWorkgroup
+            case .grantPolicy: 
+                code = .unauthorizedOperation_GrantPolicy
+            case .modifyUserInfo: 
+                code = .unauthorizedOperation_ModifyUserInfo
+            case .modifyWorkgroupInfo: 
+                code = .unauthorizedOperation_ModifyWorkgroupInfo
+            case .revokePolicy: 
+                code = .unauthorizedOperation_RevokePolicy
+            case .unbindWorkgroupsFromUser: 
+                code = .unauthorizedOperation_UnbindWorkgroupsFromUser
+            case .useComputingEngine: 
+                code = .unauthorizedOperation_UseComputingEngine
+            case .userNotExist: 
+                code = .unauthorizedOperation_UserNotExist
+            case .other: 
+                code = .unauthorizedOperation
+            }
+            return TCDlcError(code, context: self.context)
         }
-        return TCDlcError(code, context: self.context)
-    }
-}
-
-extension TCDlcError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

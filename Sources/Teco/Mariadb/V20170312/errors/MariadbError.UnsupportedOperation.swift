@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMariadbError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCMariadbErrorType {
         enum Code: String {
             case invalidOperation = "UnsupportedOperation.InvalidOperation"
             case oldProxyVersion = "UnsupportedOperation.OldProxyVersion"
@@ -30,8 +30,6 @@ extension TCMariadbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCMariadbError {
         public static var oldProxyVersion: UnsupportedOperation {
             UnsupportedOperation(.oldProxyVersion)
         }
-    }
-}
-
-extension TCMariadbError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCMariadbError.UnsupportedOperation, rhs: TCMariadbError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMariadbError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMariadbError.UnsupportedOperation {
-    /// - Returns: ``TCMariadbError`` that holds the same error and context.
-    public func toMariadbError() -> TCMariadbError {
-        guard let code = TCMariadbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMariadbError() -> TCMariadbError {
+            let code: TCMariadbError.Code
+            switch self.error {
+            case .invalidOperation: 
+                code = .unsupportedOperation_InvalidOperation
+            case .oldProxyVersion: 
+                code = .unsupportedOperation_OldProxyVersion
+            }
+            return TCMariadbError(code, context: self.context)
         }
-        return TCMariadbError(code, context: self.context)
-    }
-}
-
-extension TCMariadbError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

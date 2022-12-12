@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCZjError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCZjErrorType {
         enum Code: String {
             case accountNotFound = "InvalidParameter.AccountNotFound"
             case licenseMultipleSmsAccount = "InvalidParameter.LicenseMultipleSmsAccount"
@@ -46,8 +46,6 @@ extension TCZjError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -150,37 +148,48 @@ extension TCZjError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCZjError.InvalidParameter: Equatable {
-    public static func == (lhs: TCZjError.InvalidParameter, rhs: TCZjError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCZjError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCZjError.InvalidParameter {
-    /// - Returns: ``TCZjError`` that holds the same error and context.
-    public func toZjError() -> TCZjError {
-        guard let code = TCZjError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asZjError() -> TCZjError {
+            let code: TCZjError.Code
+            switch self.error {
+            case .accountNotFound: 
+                code = .invalidParameter_AccountNotFound
+            case .licenseMultipleSmsAccount: 
+                code = .invalidParameter_LicenseMultipleSmsAccount
+            case .licenseNotEmpty: 
+                code = .invalidParameter_LicenseNotEmpty
+            case .licenseSmsAccountNotFound: 
+                code = .invalidParameter_LicenseSmsAccountNotFound
+            case .smsPostLinkActionTimeNotNull: 
+                code = .invalidParameter_SmsPostLinkActionTimeNotNull
+            case .smsPostLinkActionType: 
+                code = .invalidParameter_SmsPostLinkActionType
+            case .smsPostLinkActionTypeNotEmpty: 
+                code = .invalidParameter_SmsPostLinkActionTypeNotEmpty
+            case .smsPostLinkActionValueExceedLimit: 
+                code = .invalidParameter_SmsPostLinkActionValueExceedLimit
+            case .smsPostLinkParamsExceedLimit: 
+                code = .invalidParameter_SmsPostLinkParamsExceedLimit
+            case .smsPostLinkTypeKey: 
+                code = .invalidParameter_SmsPostLinkTypeKey
+            case .smsPostLinkTypeKeyNotEmpty: 
+                code = .invalidParameter_SmsPostLinkTypeKeyNotEmpty
+            case .smsPostLinkTypeValueExceedLimit: 
+                code = .invalidParameter_SmsPostLinkTypeValueExceedLimit
+            case .smsPostLinkTypeValueNotEmpty: 
+                code = .invalidParameter_SmsPostLinkTypeValueNotEmpty
+            case .smsSignCheckingInSmsAccount: 
+                code = .invalidParameter_SmsSignCheckingInSmsAccount
+            case .smsSignExistsInSmsAccount: 
+                code = .invalidParameter_SmsSignExistsInSmsAccount
+            case .smsSignPic: 
+                code = .invalidParameter_SmsSignPic
+            case .uinNotEmpty: 
+                code = .invalidParameter_UinNotEmpty
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCZjError(code, context: self.context)
         }
-        return TCZjError(code, context: self.context)
-    }
-}
-
-extension TCZjError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTcssError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCTcssErrorType {
         enum Code: String {
             case agentOffline = "FailedOperation.AgentOffline"
             case authorizedNotEnough = "FailedOperation.AuthorizedNotEnough"
@@ -40,8 +40,6 @@ extension TCTcssError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -114,37 +112,36 @@ extension TCTcssError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCTcssError.FailedOperation: Equatable {
-    public static func == (lhs: TCTcssError.FailedOperation, rhs: TCTcssError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTcssError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTcssError.FailedOperation {
-    /// - Returns: ``TCTcssError`` that holds the same error and context.
-    public func toTcssError() -> TCTcssError {
-        guard let code = TCTcssError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTcssError() -> TCTcssError {
+            let code: TCTcssError.Code
+            switch self.error {
+            case .agentOffline: 
+                code = .failedOperation_AgentOffline
+            case .authorizedNotEnough: 
+                code = .failedOperation_AuthorizedNotEnough
+            case .dataValueNotCorrect: 
+                code = .failedOperation_DataValueNotCorrect
+            case .errAlreadyScanning: 
+                code = .failedOperation_ErrAlreadyScanning
+            case .errRuleNotFind: 
+                code = .failedOperation_ErrRuleNotFind
+            case .notifyPolicyChangeFailed: 
+                code = .failedOperation_NotifyPolicyChangeFailed
+            case .ruleConfigTooMany: 
+                code = .failedOperation_RuleConfigTooMany
+            case .ruleInfoRepeat: 
+                code = .failedOperation_RuleInfoRepeat
+            case .ruleNameRepeat: 
+                code = .failedOperation_RuleNameRepeat
+            case .ruleNotFind: 
+                code = .failedOperation_RuleNotFind
+            case .ruleSelectImageOutRange: 
+                code = .failedOperation_RuleSelectImageOutRange
+            case .other: 
+                code = .failedOperation
+            }
+            return TCTcssError(code, context: self.context)
         }
-        return TCTcssError(code, context: self.context)
-    }
-}
-
-extension TCTcssError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

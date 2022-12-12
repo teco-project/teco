@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCRkpError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCRkpErrorType {
         enum Code: String {
             case notAllready = "ResourceUnavailable.NotAllready"
             case permissionDenied = "ResourceUnavailable.PermissionDenied"
@@ -31,8 +31,6 @@ extension TCRkpError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCRkpError {
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-    }
-}
-
-extension TCRkpError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCRkpError.ResourceUnavailable, rhs: TCRkpError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCRkpError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCRkpError.ResourceUnavailable {
-    /// - Returns: ``TCRkpError`` that holds the same error and context.
-    public func toRkpError() -> TCRkpError {
-        guard let code = TCRkpError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asRkpError() -> TCRkpError {
+            let code: TCRkpError.Code
+            switch self.error {
+            case .notAllready: 
+                code = .resourceUnavailable_NotAllready
+            case .permissionDenied: 
+                code = .resourceUnavailable_PermissionDenied
+            case .other: 
+                code = .resourceUnavailable
+            }
+            return TCRkpError(code, context: self.context)
         }
-        return TCRkpError(code, context: self.context)
-    }
-}
-
-extension TCRkpError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

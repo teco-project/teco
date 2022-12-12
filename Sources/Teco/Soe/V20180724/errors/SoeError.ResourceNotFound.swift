@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSoeError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCSoeErrorType {
         enum Code: String {
             case appidNotFount = "ResourceNotFound.AppidNotFount"
             case interfaceNotFount = "ResourceNotFound.InterfaceNotFount"
@@ -30,8 +30,6 @@ extension TCSoeError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCSoeError {
         public static var interfaceNotFount: ResourceNotFound {
             ResourceNotFound(.interfaceNotFount)
         }
-    }
-}
-
-extension TCSoeError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCSoeError.ResourceNotFound, rhs: TCSoeError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSoeError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSoeError.ResourceNotFound {
-    /// - Returns: ``TCSoeError`` that holds the same error and context.
-    public func toSoeError() -> TCSoeError {
-        guard let code = TCSoeError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSoeError() -> TCSoeError {
+            let code: TCSoeError.Code
+            switch self.error {
+            case .appidNotFount: 
+                code = .resourceNotFound_AppidNotFount
+            case .interfaceNotFount: 
+                code = .resourceNotFound_InterfaceNotFount
+            }
+            return TCSoeError(code, context: self.context)
         }
-        return TCSoeError(code, context: self.context)
-    }
-}
-
-extension TCSoeError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

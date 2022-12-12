@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotcloudError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCIotcloudErrorType {
         enum Code: String {
             case accountIsolated = "FailedOperation.AccountIsolated"
             case alreadyDistributionDevice = "FailedOperation.AlreadyDistributionDevice"
@@ -51,8 +51,6 @@ extension TCIotcloudError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -182,37 +180,58 @@ extension TCIotcloudError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCIotcloudError.FailedOperation: Equatable {
-    public static func == (lhs: TCIotcloudError.FailedOperation, rhs: TCIotcloudError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotcloudError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotcloudError.FailedOperation {
-    /// - Returns: ``TCIotcloudError`` that holds the same error and context.
-    public func toIotcloudError() -> TCIotcloudError {
-        guard let code = TCIotcloudError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotcloudError() -> TCIotcloudError {
+            let code: TCIotcloudError.Code
+            switch self.error {
+            case .accountIsolated: 
+                code = .failedOperation_AccountIsolated
+            case .alreadyDistributionDevice: 
+                code = .failedOperation_AlreadyDistributionDevice
+            case .bindDeviceOverLimit: 
+                code = .failedOperation_BindDeviceOverLimit
+            case .broadcastTaskIsRunning: 
+                code = .failedOperation_BroadcastTaskIsRunning
+            case .deviceAlreadyDisabled: 
+                code = .failedOperation_DeviceAlreadyDisabled
+            case .deviceFirmwareTaskAlreadDone: 
+                code = .failedOperation_DeviceFirmwareTaskAlreadDone
+            case .deviceIsUpdating: 
+                code = .failedOperation_DeviceIsUpdating
+            case .deviceNoSubscription: 
+                code = .failedOperation_DeviceNoSubscription
+            case .deviceOffline: 
+                code = .failedOperation_DeviceOffline
+            case .deviceRunningOtherOtaTask: 
+                code = .failedOperation_DeviceRunningOtherOtaTask
+            case .duplicationOfFunctionItem: 
+                code = .failedOperation_DuplicationOfFunctionItem
+            case .functionFileNotExist: 
+                code = .failedOperation_FunctionFileNotExist
+            case .invalidMsgLen: 
+                code = .failedOperation_InvalidMsgLen
+            case .invalidTopicName: 
+                code = .failedOperation_InvalidTopicName
+            case .productNotBind: 
+                code = .failedOperation_ProductNotBind
+            case .productResourceDuplicate: 
+                code = .failedOperation_ProductResourceDuplicate
+            case .proxyIPIsNotEnough: 
+                code = .failedOperation_ProxyIPIsNotEnough
+            case .rrpcTimeout: 
+                code = .failedOperation_RRPCTimeout
+            case .ruleAlreadyDisabled: 
+                code = .failedOperation_RuleAlreadyDisabled
+            case .ruleAlreadyEnabled: 
+                code = .failedOperation_RuleAlreadyEnabled
+            case .tidWhiteListNotOpen: 
+                code = .failedOperation_TidWhiteListNotOpen
+            case .updateVersionNotMatch: 
+                code = .failedOperation_UpdateVersionNotMatch
+            case .other: 
+                code = .failedOperation
+            }
+            return TCIotcloudError(code, context: self.context)
         }
-        return TCIotcloudError(code, context: self.context)
-    }
-}
-
-extension TCIotcloudError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

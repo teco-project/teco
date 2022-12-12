@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCIotErrorType {
         enum Code: String {
             case iotApplicationInvalidPassword = "InvalidParameter.IotApplicationInvalidPassword"
             case iotApplicationInvalidUserPassword = "InvalidParameter.IotApplicationInvalidUserPassword"
@@ -43,8 +43,6 @@ extension TCIotError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -132,37 +130,42 @@ extension TCIotError {
         public static var iotStatInvalidDate: InvalidParameter {
             InvalidParameter(.iotStatInvalidDate)
         }
-    }
-}
-
-extension TCIotError.InvalidParameter: Equatable {
-    public static func == (lhs: TCIotError.InvalidParameter, rhs: TCIotError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotError.InvalidParameter {
-    /// - Returns: ``TCIotError`` that holds the same error and context.
-    public func toIotError() -> TCIotError {
-        guard let code = TCIotError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotError() -> TCIotError {
+            let code: TCIotError.Code
+            switch self.error {
+            case .iotApplicationInvalidPassword: 
+                code = .invalidParameter_IotApplicationInvalidPassword
+            case .iotApplicationInvalidUserPassword: 
+                code = .invalidParameter_IotApplicationInvalidUserPassword
+            case .iotExpiredAccessToken: 
+                code = .invalidParameter_IotExpiredAccessToken
+            case .iotExpiredSignature: 
+                code = .invalidParameter_IotExpiredSignature
+            case .iotInvalidAccessToken: 
+                code = .invalidParameter_IotInvalidAccessToken
+            case .iotInvalidSignature: 
+                code = .invalidParameter_IotInvalidSignature
+            case .iotParamError: 
+                code = .invalidParameter_IotParamError
+            case .iotProductEmptyDataTemplate: 
+                code = .invalidParameter_IotProductEmptyDataTemplate
+            case .iotProductInvalidAuthType: 
+                code = .invalidParameter_IotProductInvalidAuthType
+            case .iotProductInvalidDataProtocol: 
+                code = .invalidParameter_IotProductInvalidDataProtocol
+            case .iotProductInvalidDataTemplate: 
+                code = .invalidParameter_IotProductInvalidDataTemplate
+            case .iotProductInvalidDataTemplateRange: 
+                code = .invalidParameter_IotProductInvalidDataTemplateRange
+            case .iotProductInvalidGatewayProductId: 
+                code = .invalidParameter_IotProductInvalidGatewayProductId
+            case .iotProductInvalidSubDeviceProductId: 
+                code = .invalidParameter_IotProductInvalidSubDeviceProductId
+            case .iotStatInvalidDate: 
+                code = .invalidParameter_IotStatInvalidDate
+            }
+            return TCIotError(code, context: self.context)
         }
-        return TCIotError(code, context: self.context)
-    }
-}
-
-extension TCIotError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

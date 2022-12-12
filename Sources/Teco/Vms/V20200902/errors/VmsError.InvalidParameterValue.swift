@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCVmsError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCVmsErrorType {
         enum Code: String {
             case calledNumberVerifyFail = "InvalidParameterValue.CalledNumberVerifyFail"
             case contentLengthLimit = "InvalidParameterValue.ContentLengthLimit"
@@ -31,8 +31,6 @@ extension TCVmsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -62,37 +60,18 @@ extension TCVmsError {
         public static var sdkAppidNotExist: InvalidParameterValue {
             InvalidParameterValue(.sdkAppidNotExist)
         }
-    }
-}
-
-extension TCVmsError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCVmsError.InvalidParameterValue, rhs: TCVmsError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCVmsError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCVmsError.InvalidParameterValue {
-    /// - Returns: ``TCVmsError`` that holds the same error and context.
-    public func toVmsError() -> TCVmsError {
-        guard let code = TCVmsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asVmsError() -> TCVmsError {
+            let code: TCVmsError.Code
+            switch self.error {
+            case .calledNumberVerifyFail: 
+                code = .invalidParameterValue_CalledNumberVerifyFail
+            case .contentLengthLimit: 
+                code = .invalidParameterValue_ContentLengthLimit
+            case .sdkAppidNotExist: 
+                code = .invalidParameterValue_SdkAppidNotExist
+            }
+            return TCVmsError(code, context: self.context)
         }
-        return TCVmsError(code, context: self.context)
-    }
-}
-
-extension TCVmsError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTbaasError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCTbaasErrorType {
         enum Code: String {
             case accountParamError = "InvalidParameter.AccountParamError"
             case agencyInvalid = "InvalidParameter.AgencyInvalid"
@@ -50,8 +50,6 @@ extension TCTbaasError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -174,37 +172,56 @@ extension TCTbaasError {
         public static var roleInvalid: InvalidParameter {
             InvalidParameter(.roleInvalid)
         }
-    }
-}
-
-extension TCTbaasError.InvalidParameter: Equatable {
-    public static func == (lhs: TCTbaasError.InvalidParameter, rhs: TCTbaasError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTbaasError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTbaasError.InvalidParameter {
-    /// - Returns: ``TCTbaasError`` that holds the same error and context.
-    public func toTbaasError() -> TCTbaasError {
-        guard let code = TCTbaasError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTbaasError() -> TCTbaasError {
+            let code: TCTbaasError.Code
+            switch self.error {
+            case .accountParamError: 
+                code = .invalidParameter_AccountParamError
+            case .agencyInvalid: 
+                code = .invalidParameter_AgencyInvalid
+            case .agencyNetParamInvalid: 
+                code = .invalidParameter_AgencyNetParamInvalid
+            case .allianceIdOfNetEmpty: 
+                code = .invalidParameter_AllianceIdOfNetEmpty
+            case .contractIdInvalid: 
+                code = .invalidParameter_ContractIdInvalid
+            case .dataHadExist: 
+                code = .invalidParameter_DataHadExist
+            case .emptyParam: 
+                code = .invalidParameter_EmptyParam
+            case .expireTimeInvalid: 
+                code = .invalidParameter_ExpireTimeInvalid
+            case .frontConnFail: 
+                code = .invalidParameter_FrontConnFail
+            case .frontIpInvalid: 
+                code = .invalidParameter_FrontIpInvalid
+            case .frontParamError: 
+                code = .invalidParameter_FrontParamError
+            case .frontRequestFail: 
+                code = .invalidParameter_FrontRequestFail
+            case .inputDataViolation: 
+                code = .invalidParameter_InputDataViolation
+            case .invalidContractArg: 
+                code = .invalidParameter_InvalidContractArg
+            case .netIdInvalid: 
+                code = .invalidParameter_NetIdInvalid
+            case .netParamError: 
+                code = .invalidParameter_NetParamError
+            case .newKeyUserParamError: 
+                code = .invalidParameter_NewKeyUserParamError
+            case .noInfoToDelete: 
+                code = .invalidParameter_NoInfoToDelete
+            case .notFoundValidFront: 
+                code = .invalidParameter_NotFoundValidFront
+            case .reDeployedContract: 
+                code = .invalidParameter_ReDeployedContract
+            case .reDeployingContract: 
+                code = .invalidParameter_ReDeployingContract
+            case .roleInvalid: 
+                code = .invalidParameter_RoleInvalid
+            }
+            return TCTbaasError(code, context: self.context)
         }
-        return TCTbaasError(code, context: self.context)
-    }
-}
-
-extension TCTbaasError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

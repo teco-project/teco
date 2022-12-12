@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEcdnError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCEcdnErrorType {
         enum Code: String {
             case ecdnCamTagKeyNotExist = "InvalidParameter.EcdnCamTagKeyNotExist"
             case ecdnCertNoCertInfo = "InvalidParameter.EcdnCertNoCertInfo"
@@ -47,8 +47,6 @@ extension TCEcdnError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -156,37 +154,50 @@ extension TCEcdnError {
         public static var paramError: InvalidParameter {
             InvalidParameter(.paramError)
         }
-    }
-}
-
-extension TCEcdnError.InvalidParameter: Equatable {
-    public static func == (lhs: TCEcdnError.InvalidParameter, rhs: TCEcdnError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEcdnError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEcdnError.InvalidParameter {
-    /// - Returns: ``TCEcdnError`` that holds the same error and context.
-    public func toEcdnError() -> TCEcdnError {
-        guard let code = TCEcdnError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEcdnError() -> TCEcdnError {
+            let code: TCEcdnError.Code
+            switch self.error {
+            case .ecdnCamTagKeyNotExist: 
+                code = .invalidParameter_EcdnCamTagKeyNotExist
+            case .ecdnCertNoCertInfo: 
+                code = .invalidParameter_EcdnCertNoCertInfo
+            case .ecdnConfigInvalidCache: 
+                code = .invalidParameter_EcdnConfigInvalidCache
+            case .ecdnDomainInvalidStatus: 
+                code = .invalidParameter_EcdnDomainInvalidStatus
+            case .ecdnInterfaceError: 
+                code = .invalidParameter_EcdnInterfaceError
+            case .ecdnInvalidParamArea: 
+                code = .invalidParameter_EcdnInvalidParamArea
+            case .ecdnInvalidParamInterval: 
+                code = .invalidParameter_EcdnInvalidParamInterval
+            case .ecdnParamError: 
+                code = .invalidParameter_EcdnParamError
+            case .ecdnPurgeWildcardNotAllowed: 
+                code = .invalidParameter_EcdnPurgeWildcardNotAllowed
+            case .ecdnResourceManyTagKey: 
+                code = .invalidParameter_EcdnResourceManyTagKey
+            case .ecdnStatInvalidDate: 
+                code = .invalidParameter_EcdnStatInvalidDate
+            case .ecdnStatInvalidMetric: 
+                code = .invalidParameter_EcdnStatInvalidMetric
+            case .ecdnTagKeyInvalid: 
+                code = .invalidParameter_EcdnTagKeyInvalid
+            case .ecdnTagKeyNotExist: 
+                code = .invalidParameter_EcdnTagKeyNotExist
+            case .ecdnTagKeyTooManyValue: 
+                code = .invalidParameter_EcdnTagKeyTooManyValue
+            case .ecdnTagValueInvalid: 
+                code = .invalidParameter_EcdnTagValueInvalid
+            case .ecdnUrlExceedLength: 
+                code = .invalidParameter_EcdnUrlExceedLength
+            case .ecdnUserTooManyTagKey: 
+                code = .invalidParameter_EcdnUserTooManyTagKey
+            case .paramError: 
+                code = .invalidParameter_ParamError
+            }
+            return TCEcdnError(code, context: self.context)
         }
-        return TCEcdnError(code, context: self.context)
-    }
-}
-
-extension TCEcdnError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

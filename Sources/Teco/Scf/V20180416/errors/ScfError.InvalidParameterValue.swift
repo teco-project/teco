@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCScfError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCScfErrorType {
         enum Code: String {
             case action = "InvalidParameterValue.Action"
             case additionalVersionWeights = "InvalidParameterValue.AdditionalVersionWeights"
@@ -145,8 +145,6 @@ extension TCScfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -758,37 +756,246 @@ extension TCScfError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCScfError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCScfError.InvalidParameterValue, rhs: TCScfError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCScfError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCScfError.InvalidParameterValue {
-    /// - Returns: ``TCScfError`` that holds the same error and context.
-    public func toScfError() -> TCScfError {
-        guard let code = TCScfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asScfError() -> TCScfError {
+            let code: TCScfError.Code
+            switch self.error {
+            case .action: 
+                code = .invalidParameterValue_Action
+            case .additionalVersionWeights: 
+                code = .invalidParameterValue_AdditionalVersionWeights
+            case .alias: 
+                code = .invalidParameterValue_Alias
+            case .apiGateway: 
+                code = .invalidParameterValue_ApiGateway
+            case .apmConfig: 
+                code = .invalidParameterValue_ApmConfig
+            case .apmConfigInstanceId: 
+                code = .invalidParameterValue_ApmConfigInstanceId
+            case .apmConfigRegion: 
+                code = .invalidParameterValue_ApmConfigRegion
+            case .args: 
+                code = .invalidParameterValue_Args
+            case .asyncRunEnable: 
+                code = .invalidParameterValue_AsyncRunEnable
+            case .asyncTriggerConfig: 
+                code = .invalidParameterValue_AsyncTriggerConfig
+            case .cdn: 
+                code = .invalidParameterValue_Cdn
+            case .cfsParameterDuplicate: 
+                code = .invalidParameterValue_CfsParameterDuplicate
+            case .cfsParameterError: 
+                code = .invalidParameterValue_CfsParameterError
+            case .cfsStructionError: 
+                code = .invalidParameterValue_CfsStructionError
+            case .ckafka: 
+                code = .invalidParameterValue_Ckafka
+            case .clientContext: 
+                code = .invalidParameterValue_ClientContext
+            case .cls: 
+                code = .invalidParameterValue_Cls
+            case .clsRole: 
+                code = .invalidParameterValue_ClsRole
+            case .cmq: 
+                code = .invalidParameterValue_Cmq
+            case .code: 
+                code = .invalidParameterValue_Code
+            case .codeSecret: 
+                code = .invalidParameterValue_CodeSecret
+            case .codeSource: 
+                code = .invalidParameterValue_CodeSource
+            case .command: 
+                code = .invalidParameterValue_Command
+            case .compatibleRuntimes: 
+                code = .invalidParameterValue_CompatibleRuntimes
+            case .content: 
+                code = .invalidParameterValue_Content
+            case .cos: 
+                code = .invalidParameterValue_Cos
+            case .cosBucketName: 
+                code = .invalidParameterValue_CosBucketName
+            case .cosBucketRegion: 
+                code = .invalidParameterValue_CosBucketRegion
+            case .cosNotifyRuleConflict: 
+                code = .invalidParameterValue_CosNotifyRuleConflict
+            case .cosObjectName: 
+                code = .invalidParameterValue_CosObjectName
+            case .customArgument: 
+                code = .invalidParameterValue_CustomArgument
+            case .dateTime: 
+                code = .invalidParameterValue_DateTime
+            case .deadLetterConfig: 
+                code = .invalidParameterValue_DeadLetterConfig
+            case .defaultNamespace: 
+                code = .invalidParameterValue_DefaultNamespace
+            case .demo: 
+                code = .invalidParameterValue_Demo
+            case .demoId: 
+                code = .invalidParameterValue_DemoId
+            case .description: 
+                code = .invalidParameterValue_Description
+            case .dnsInfo: 
+                code = .invalidParameterValue_DnsInfo
+            case .dynamicEnabled: 
+                code = .invalidParameterValue_DynamicEnabled
+            case .eipConfig: 
+                code = .invalidParameterValue_EipConfig
+            case .enable: 
+                code = .invalidParameterValue_Enable
+            case .environment: 
+                code = .invalidParameterValue_Environment
+            case .environmentExceededLimit: 
+                code = .invalidParameterValue_EnvironmentExceededLimit
+            case .environmentSystemProtect: 
+                code = .invalidParameterValue_EnvironmentSystemProtect
+            case .filters: 
+                code = .invalidParameterValue_Filters
+            case .function: 
+                code = .invalidParameterValue_Function
+            case .functionName: 
+                code = .invalidParameterValue_FunctionName
+            case .functionRequestId: 
+                code = .invalidParameterValue_FunctionRequestId
+            case .functionType: 
+                code = .invalidParameterValue_FunctionType
+            case .gitBranch: 
+                code = .invalidParameterValue_GitBranch
+            case .gitCommitId: 
+                code = .invalidParameterValue_GitCommitId
+            case .gitDirectory: 
+                code = .invalidParameterValue_GitDirectory
+            case .gitPassword: 
+                code = .invalidParameterValue_GitPassword
+            case .gitPasswordSecret: 
+                code = .invalidParameterValue_GitPasswordSecret
+            case .gitUrl: 
+                code = .invalidParameterValue_GitUrl
+            case .gitUserName: 
+                code = .invalidParameterValue_GitUserName
+            case .gitUserNameSecret: 
+                code = .invalidParameterValue_GitUserNameSecret
+            case .handler: 
+                code = .invalidParameterValue_Handler
+            case .idleTimeOut: 
+                code = .invalidParameterValue_IdleTimeOut
+            case .imageType: 
+                code = .invalidParameterValue_ImageType
+            case .imageUri: 
+                code = .invalidParameterValue_ImageUri
+            case .inlineZipFile: 
+                code = .invalidParameterValue_InlineZipFile
+            case .instanceConcurrencyConfig: 
+                code = .invalidParameterValue_InstanceConcurrencyConfig
+            case .invokeType: 
+                code = .invalidParameterValue_InvokeType
+            case .l5Enable: 
+                code = .invalidParameterValue_L5Enable
+            case .layerName: 
+                code = .invalidParameterValue_LayerName
+            case .layers: 
+                code = .invalidParameterValue_Layers
+            case .limit: 
+                code = .invalidParameterValue_Limit
+            case .limitExceeded: 
+                code = .invalidParameterValue_LimitExceeded
+            case .maxConcurrency: 
+                code = .invalidParameterValue_MaxConcurrency
+            case .memory: 
+                code = .invalidParameterValue_Memory
+            case .memorySize: 
+                code = .invalidParameterValue_MemorySize
+            case .minCapacity: 
+                code = .invalidParameterValue_MinCapacity
+            case .name: 
+                code = .invalidParameterValue_Name
+            case .namespace: 
+                code = .invalidParameterValue_Namespace
+            case .namespaceInvalid: 
+                code = .invalidParameterValue_NamespaceInvalid
+            case .nodeSpec: 
+                code = .invalidParameterValue_NodeSpec
+            case .nodeType: 
+                code = .invalidParameterValue_NodeType
+            case .offset: 
+                code = .invalidParameterValue_Offset
+            case .order: 
+                code = .invalidParameterValue_Order
+            case .orderBy: 
+                code = .invalidParameterValue_OrderBy
+            case .orderby: 
+                code = .invalidParameterValue_Orderby
+            case .param: 
+                code = .invalidParameterValue_Param
+            case .protocolType: 
+                code = .invalidParameterValue_ProtocolType
+            case .provisionTriggerCronConfigDuplicate: 
+                code = .invalidParameterValue_ProvisionTriggerCronConfigDuplicate
+            case .provisionTriggerName: 
+                code = .invalidParameterValue_ProvisionTriggerName
+            case .provisionTriggerNameDuplicate: 
+                code = .invalidParameterValue_ProvisionTriggerNameDuplicate
+            case .provisionType: 
+                code = .invalidParameterValue_ProvisionType
+            case .publicNetConfig: 
+                code = .invalidParameterValue_PublicNetConfig
+            case .qualifier: 
+                code = .invalidParameterValue_Qualifier
+            case .queryVersion: 
+                code = .invalidParameterValue_QueryVersion
+            case .registryId: 
+                code = .invalidParameterValue_RegistryId
+            case .retCode: 
+                code = .invalidParameterValue_RetCode
+            case .routingConfig: 
+                code = .invalidParameterValue_RoutingConfig
+            case .runtime: 
+                code = .invalidParameterValue_Runtime
+            case .searchKey: 
+                code = .invalidParameterValue_SearchKey
+            case .secretInfo: 
+                code = .invalidParameterValue_SecretInfo
+            case .serviceName: 
+                code = .invalidParameterValue_ServiceName
+            case .stamp: 
+                code = .invalidParameterValue_Stamp
+            case .startTime: 
+                code = .invalidParameterValue_StartTime
+            case .startTimeOrEndTime: 
+                code = .invalidParameterValue_StartTimeOrEndTime
+            case .status: 
+                code = .invalidParameterValue_Status
+            case .systemEnvironment: 
+                code = .invalidParameterValue_SystemEnvironment
+            case .tempCosObjectName: 
+                code = .invalidParameterValue_TempCosObjectName
+            case .traceEnable: 
+                code = .invalidParameterValue_TraceEnable
+            case .trackingTarget: 
+                code = .invalidParameterValue_TrackingTarget
+            case .triggerCronConfig: 
+                code = .invalidParameterValue_TriggerCronConfig
+            case .triggerCronConfigTimeInterval: 
+                code = .invalidParameterValue_TriggerCronConfigTimeInterval
+            case .triggerDesc: 
+                code = .invalidParameterValue_TriggerDesc
+            case .triggerName: 
+                code = .invalidParameterValue_TriggerName
+            case .triggerProvisionedConcurrencyNum: 
+                code = .invalidParameterValue_TriggerProvisionedConcurrencyNum
+            case .type: 
+                code = .invalidParameterValue_Type
+            case .vpcNotSetWhenOpenCfs: 
+                code = .invalidParameterValue_VpcNotSetWhenOpenCfs
+            case .webSocketsParams: 
+                code = .invalidParameterValue_WebSocketsParams
+            case .zipFile: 
+                code = .invalidParameterValue_ZipFile
+            case .zipFileBase64BinasciiError: 
+                code = .invalidParameterValue_ZipFileBase64BinasciiError
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCScfError(code, context: self.context)
         }
-        return TCScfError(code, context: self.context)
-    }
-}
-
-extension TCScfError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

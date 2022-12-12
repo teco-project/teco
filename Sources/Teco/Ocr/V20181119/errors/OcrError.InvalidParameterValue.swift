@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCOcrError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCOcrErrorType {
         enum Code: String {
             case invalidParameterValueLimit = "InvalidParameterValue.InvalidParameterValueLimit"
             case priceOrVerificationParameterValueLimit = "InvalidParameterValue.PriceOrVerificationParameterValueLimit"
@@ -33,8 +33,6 @@ extension TCOcrError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,22 @@ extension TCOcrError {
         public static var ticketSnParameterValueLimit: InvalidParameterValue {
             InvalidParameterValue(.ticketSnParameterValueLimit)
         }
-    }
-}
-
-extension TCOcrError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCOcrError.InvalidParameterValue, rhs: TCOcrError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCOcrError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCOcrError.InvalidParameterValue {
-    /// - Returns: ``TCOcrError`` that holds the same error and context.
-    public func toOcrError() -> TCOcrError {
-        guard let code = TCOcrError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asOcrError() -> TCOcrError {
+            let code: TCOcrError.Code
+            switch self.error {
+            case .invalidParameterValueLimit: 
+                code = .invalidParameterValue_InvalidParameterValueLimit
+            case .priceOrVerificationParameterValueLimit: 
+                code = .invalidParameterValue_PriceOrVerificationParameterValueLimit
+            case .ticketCodeParameterValueLimit: 
+                code = .invalidParameterValue_TicketCodeParameterValueLimit
+            case .ticketDateParameterValueLimit: 
+                code = .invalidParameterValue_TicketDateParameterValueLimit
+            case .ticketSnParameterValueLimit: 
+                code = .invalidParameterValue_TicketSnParameterValueLimit
+            }
+            return TCOcrError(code, context: self.context)
         }
-        return TCOcrError(code, context: self.context)
-    }
-}
-
-extension TCOcrError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

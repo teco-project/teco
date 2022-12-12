@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCynosdbError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCCynosdbErrorType {
         enum Code: String {
             case notRealNameAccount = "UnauthorizedOperation.NotRealNameAccount"
             case permissionDenied = "UnauthorizedOperation.PermissionDenied"
@@ -30,8 +30,6 @@ extension TCCynosdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCCynosdbError {
         public static var permissionDenied: UnauthorizedOperation {
             UnauthorizedOperation(.permissionDenied)
         }
-    }
-}
-
-extension TCCynosdbError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCCynosdbError.UnauthorizedOperation, rhs: TCCynosdbError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCynosdbError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCynosdbError.UnauthorizedOperation {
-    /// - Returns: ``TCCynosdbError`` that holds the same error and context.
-    public func toCynosdbError() -> TCCynosdbError {
-        guard let code = TCCynosdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCynosdbError() -> TCCynosdbError {
+            let code: TCCynosdbError.Code
+            switch self.error {
+            case .notRealNameAccount: 
+                code = .unauthorizedOperation_NotRealNameAccount
+            case .permissionDenied: 
+                code = .unauthorizedOperation_PermissionDenied
+            }
+            return TCCynosdbError(code, context: self.context)
         }
-        return TCCynosdbError(code, context: self.context)
-    }
-}
-
-extension TCCynosdbError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

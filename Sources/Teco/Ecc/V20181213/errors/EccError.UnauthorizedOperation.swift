@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEccError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCEccErrorType {
         enum Code: String {
             case licenseInvalidForbiddenAccessError = "UnauthorizedOperation.LicenseInvalidForbiddenAccessError"
             case serverNameUnauthorizedInError = "UnauthorizedOperation.ServerNameUnauthorizedInError"
@@ -30,8 +30,6 @@ extension TCEccError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCEccError {
         public static var serverNameUnauthorizedInError: UnauthorizedOperation {
             UnauthorizedOperation(.serverNameUnauthorizedInError)
         }
-    }
-}
-
-extension TCEccError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCEccError.UnauthorizedOperation, rhs: TCEccError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEccError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEccError.UnauthorizedOperation {
-    /// - Returns: ``TCEccError`` that holds the same error and context.
-    public func toEccError() -> TCEccError {
-        guard let code = TCEccError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEccError() -> TCEccError {
+            let code: TCEccError.Code
+            switch self.error {
+            case .licenseInvalidForbiddenAccessError: 
+                code = .unauthorizedOperation_LicenseInvalidForbiddenAccessError
+            case .serverNameUnauthorizedInError: 
+                code = .unauthorizedOperation_ServerNameUnauthorizedInError
+            }
+            return TCEccError(code, context: self.context)
         }
-        return TCEccError(code, context: self.context)
-    }
-}
-
-extension TCEccError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

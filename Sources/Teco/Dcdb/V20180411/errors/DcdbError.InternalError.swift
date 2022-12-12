@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDcdbError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCDcdbErrorType {
         enum Code: String {
             case camAuthFailed = "InternalError.CamAuthFailed"
             case checkVipStatusFailed = "InternalError.CheckVipStatusFailed"
@@ -69,8 +69,6 @@ extension TCDcdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -286,37 +284,94 @@ extension TCDcdbError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCDcdbError.InternalError: Equatable {
-    public static func == (lhs: TCDcdbError.InternalError, rhs: TCDcdbError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDcdbError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDcdbError.InternalError {
-    /// - Returns: ``TCDcdbError`` that holds the same error and context.
-    public func toDcdbError() -> TCDcdbError {
-        guard let code = TCDcdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDcdbError() -> TCDcdbError {
+            let code: TCDcdbError.Code
+            switch self.error {
+            case .camAuthFailed: 
+                code = .internalError_CamAuthFailed
+            case .checkVipStatusFailed: 
+                code = .internalError_CheckVipStatusFailed
+            case .cosConfiguration: 
+                code = .internalError_CosConfiguration
+            case .cosSignUrl: 
+                code = .internalError_CosSignUrl
+            case .createFlowFailed: 
+                code = .internalError_CreateFlowFailed
+            case .dbOperationFailed: 
+                code = .internalError_DbOperationFailed
+            case .dbRowsAffectedError: 
+                code = .internalError_DBRowsAffectedError
+            case .fenceError: 
+                code = .internalError_FenceError
+            case .getDbConfigFailed: 
+                code = .internalError_GetDbConfigFailed
+            case .getDbListFailed: 
+                code = .internalError_GetDbListFailed
+            case .getDbObjectFailed: 
+                code = .internalError_GetDbObjectFailed
+            case .getInstanceDetailFailed: 
+                code = .internalError_GetInstanceDetailFailed
+            case .getInstanceInfoFailed: 
+                code = .internalError_GetInstanceInfoFailed
+            case .getRightFailed: 
+                code = .internalError_GetRightFailed
+            case .getSecurityGroupDetailFailed: 
+                code = .internalError_GetSecurityGroupDetailFailed
+            case .getSlowLogFailed: 
+                code = .internalError_GetSlowLogFailed
+            case .getSubnetFailed: 
+                code = .internalError_GetSubnetFailed
+            case .getTableInfoFailed: 
+                code = .internalError_GetTableInfoFailed
+            case .getUserListFailed: 
+                code = .internalError_GetUserListFailed
+            case .getUserSGCountFailed: 
+                code = .internalError_GetUserSGCountFailed
+            case .getUsgQuotaError: 
+                code = .internalError_GetUsgQuotaError
+            case .getVpcFailed: 
+                code = .internalError_GetVpcFailed
+            case .innerSystemError: 
+                code = .internalError_InnerSystemError
+            case .insertFail: 
+                code = .internalError_InsertFail
+            case .instanceOperatePermissionError: 
+                code = .internalError_InstanceOperatePermissionError
+            case .instanceSGOverLimitError: 
+                code = .internalError_InstanceSGOverLimitError
+            case .listInstanceRespResourceCountNotMatchError: 
+                code = .internalError_ListInstanceRespResourceCountNotMatchError
+            case .listInstancesError: 
+                code = .internalError_ListInstancesError
+            case .listProjectFailed: 
+                code = .internalError_ListProjectFailed
+            case .operateDatabaseFailed: 
+                code = .internalError_OperateDatabaseFailed
+            case .queryDatabaseFailed: 
+                code = .internalError_QueryDatabaseFailed
+            case .queryOrderFailed: 
+                code = .internalError_QueryOrderFailed
+            case .queryPriceFailed: 
+                code = .internalError_QueryPriceFailed
+            case .readDatabaseFailed: 
+                code = .internalError_ReadDatabaseFailed
+            case .retreateTime: 
+                code = .internalError_RetreateTime
+            case .routeNotFound: 
+                code = .internalError_RouteNotFound
+            case .setSvcLocationFailed: 
+                code = .internalError_SetSvcLocationFailed
+            case .updateDatabaseFailed: 
+                code = .internalError_UpdateDatabaseFailed
+            case .vpcOperationFailed: 
+                code = .internalError_VpcOperationFailed
+            case .wanServiceFailed: 
+                code = .internalError_WanServiceFailed
+            case .other: 
+                code = .internalError
+            }
+            return TCDcdbError(code, context: self.context)
         }
-        return TCDcdbError(code, context: self.context)
-    }
-}
-
-extension TCDcdbError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

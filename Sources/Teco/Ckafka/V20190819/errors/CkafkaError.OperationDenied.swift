@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCkafkaError {
-    public struct OperationDenied: TCErrorType {
+    public struct OperationDenied: TCCkafkaErrorType {
         enum Code: String {
             case resourceTaskPaused = "OperationDenied.ResourceTaskPaused"
             case other = "OperationDenied"
@@ -30,8 +30,6 @@ extension TCCkafkaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -56,37 +54,16 @@ extension TCCkafkaError {
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-    }
-}
-
-extension TCCkafkaError.OperationDenied: Equatable {
-    public static func == (lhs: TCCkafkaError.OperationDenied, rhs: TCCkafkaError.OperationDenied) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCkafkaError.OperationDenied: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCkafkaError.OperationDenied {
-    /// - Returns: ``TCCkafkaError`` that holds the same error and context.
-    public func toCkafkaError() -> TCCkafkaError {
-        guard let code = TCCkafkaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCkafkaError() -> TCCkafkaError {
+            let code: TCCkafkaError.Code
+            switch self.error {
+            case .resourceTaskPaused: 
+                code = .operationDenied_ResourceTaskPaused
+            case .other: 
+                code = .operationDenied
+            }
+            return TCCkafkaError(code, context: self.context)
         }
-        return TCCkafkaError(code, context: self.context)
-    }
-}
-
-extension TCCkafkaError.OperationDenied {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

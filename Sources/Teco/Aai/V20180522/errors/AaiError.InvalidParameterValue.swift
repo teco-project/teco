@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAaiError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCAaiErrorType {
         enum Code: String {
             case appIdNotRegistered = "InvalidParameterValue.AppIdNotRegistered"
             case errorInvalidAppid = "InvalidParameterValue.ErrorInvalidAppid"
@@ -50,8 +50,6 @@ extension TCAaiError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -177,37 +175,56 @@ extension TCAaiError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCAaiError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCAaiError.InvalidParameterValue, rhs: TCAaiError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAaiError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAaiError.InvalidParameterValue {
-    /// - Returns: ``TCAaiError`` that holds the same error and context.
-    public func toAaiError() -> TCAaiError {
-        guard let code = TCAaiError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAaiError() -> TCAaiError {
+            let code: TCAaiError.Code
+            switch self.error {
+            case .appIdNotRegistered: 
+                code = .invalidParameterValue_AppIdNotRegistered
+            case .errorInvalidAppid: 
+                code = .invalidParameterValue_ErrorInvalidAppid
+            case .errorInvalidClientip: 
+                code = .invalidParameterValue_ErrorInvalidClientip
+            case .errorInvalidEngservice: 
+                code = .invalidParameterValue_ErrorInvalidEngservice
+            case .errorInvalidOpenTranslate: 
+                code = .invalidParameterValue_ErrorInvalidOpenTranslate
+            case .errorInvalidProjectid: 
+                code = .invalidParameterValue_ErrorInvalidProjectid
+            case .errorInvalidRequestid: 
+                code = .invalidParameterValue_ErrorInvalidRequestid
+            case .errorInvalidSourceLanguage: 
+                code = .invalidParameterValue_ErrorInvalidSourceLanguage
+            case .errorInvalidSourcetype: 
+                code = .invalidParameterValue_ErrorInvalidSourcetype
+            case .errorInvalidSubservicetype: 
+                code = .invalidParameterValue_ErrorInvalidSubservicetype
+            case .errorInvalidTargetLanguage: 
+                code = .invalidParameterValue_ErrorInvalidTargetLanguage
+            case .errorInvalidUrl: 
+                code = .invalidParameterValue_ErrorInvalidUrl
+            case .errorInvalidUseraudiokey: 
+                code = .invalidParameterValue_ErrorInvalidUseraudiokey
+            case .errorInvalidVoiceFormat: 
+                code = .invalidParameterValue_ErrorInvalidVoiceFormat
+            case .errorInvalidVoicedata: 
+                code = .invalidParameterValue_ErrorInvalidVoicedata
+            case .errorVoicedataTooLong: 
+                code = .invalidParameterValue_ErrorVoicedataTooLong
+            case .primaryLanguage: 
+                code = .invalidParameterValue_PrimaryLanguage
+            case .sampleRate: 
+                code = .invalidParameterValue_SampleRate
+            case .speed: 
+                code = .invalidParameterValue_Speed
+            case .voiceType: 
+                code = .invalidParameterValue_VoiceType
+            case .volume: 
+                code = .invalidParameterValue_Volume
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCAaiError(code, context: self.context)
         }
-        return TCAaiError(code, context: self.context)
-    }
-}
-
-extension TCAaiError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

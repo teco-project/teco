@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCynosdbError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCCynosdbErrorType {
         enum Code: String {
             case accountAlreadyExistError = "InvalidParameterValue.AccountAlreadyExistError"
             case accountExist = "InvalidParameterValue.AccountExist"
@@ -55,8 +55,6 @@ extension TCCynosdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -204,37 +202,66 @@ extension TCCynosdbError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCCynosdbError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCCynosdbError.InvalidParameterValue, rhs: TCCynosdbError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCynosdbError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCynosdbError.InvalidParameterValue {
-    /// - Returns: ``TCCynosdbError`` that holds the same error and context.
-    public func toCynosdbError() -> TCCynosdbError {
-        guard let code = TCCynosdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCynosdbError() -> TCCynosdbError {
+            let code: TCCynosdbError.Code
+            switch self.error {
+            case .accountAlreadyExistError: 
+                code = .invalidParameterValue_AccountAlreadyExistError
+            case .accountExist: 
+                code = .invalidParameterValue_AccountExist
+            case .accountNotExistError: 
+                code = .invalidParameterValue_AccountNotExistError
+            case .clusterNotFound: 
+                code = .invalidParameterValue_ClusterNotFound
+            case .dbModeNotServerlessError: 
+                code = .invalidParameterValue_DbModeNotServerlessError
+            case .dbTypeNotFound: 
+                code = .invalidParameterValue_DBTypeNotFound
+            case .dealNameNotFound: 
+                code = .invalidParameterValue_DealNameNotFound
+            case .flowNotFound: 
+                code = .invalidParameterValue_FlowNotFound
+            case .illegalInstanceName: 
+                code = .invalidParameterValue_IllegalInstanceName
+            case .illegalOrderBy: 
+                code = .invalidParameterValue_IllegalOrderBy
+            case .illegalPassword: 
+                code = .invalidParameterValue_IllegalPassword
+            case .instanceNotFound: 
+                code = .invalidParameterValue_InstanceNotFound
+            case .internalAccount: 
+                code = .invalidParameterValue_InternalAccount
+            case .invalidDBVersion: 
+                code = .invalidParameterValue_InvalidDBVersion
+            case .invalidParameterValueError: 
+                code = .invalidParameterValue_InvalidParameterValueError
+            case .invalidRegionIdError: 
+                code = .invalidParameterValue_InvalidRegionIdError
+            case .invalidSpec: 
+                code = .invalidParameterValue_InvalidSpec
+            case .invalidZoneIdError: 
+                code = .invalidParameterValue_InvalidZoneIdError
+            case .paramBothSetError: 
+                code = .invalidParameterValue_ParamBothSetError
+            case .paramError: 
+                code = .invalidParameterValue_ParamError
+            case .parameterOutRangeError: 
+                code = .invalidParameterValue_ParameterOutRangeError
+            case .prePayPayModeError: 
+                code = .invalidParameterValue_PrePayPayModeError
+            case .regionZoneUnavailable: 
+                code = .invalidParameterValue_RegionZoneUnavailable
+            case .storagePoolNotFound: 
+                code = .invalidParameterValue_StoragePoolNotFound
+            case .subnetNotFound: 
+                code = .invalidParameterValue_SubnetNotFound
+            case .vpcNotFound: 
+                code = .invalidParameterValue_VpcNotFound
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCCynosdbError(code, context: self.context)
         }
-        return TCCynosdbError(code, context: self.context)
-    }
-}
-
-extension TCCynosdbError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEssbasicError {
-    public struct MissingParameter: TCErrorType {
+    public struct MissingParameter: TCEssbasicErrorType {
         enum Code: String {
             case companyActiveInfo = "MissingParameter.CompanyActiveInfo"
             case date = "MissingParameter.Date"
@@ -45,8 +45,6 @@ extension TCEssbasicError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -129,37 +127,46 @@ extension TCEssbasicError {
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-    }
-}
-
-extension TCEssbasicError.MissingParameter: Equatable {
-    public static func == (lhs: TCEssbasicError.MissingParameter, rhs: TCEssbasicError.MissingParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEssbasicError.MissingParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEssbasicError.MissingParameter {
-    /// - Returns: ``TCEssbasicError`` that holds the same error and context.
-    public func toEssbasicError() -> TCEssbasicError {
-        guard let code = TCEssbasicError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEssbasicError() -> TCEssbasicError {
+            let code: TCEssbasicError.Code
+            switch self.error {
+            case .companyActiveInfo: 
+                code = .missingParameter_CompanyActiveInfo
+            case .date: 
+                code = .missingParameter_Date
+            case .flowId: 
+                code = .missingParameter_FlowId
+            case .flowIds: 
+                code = .missingParameter_FlowIds
+            case .flowIdsOrFlowGroupId: 
+                code = .missingParameter_FlowIdsOrFlowGroupId
+            case .flowInfo: 
+                code = .missingParameter_FlowInfo
+            case .missComponentName: 
+                code = .missingParameter_MissComponentName
+            case .orgOpenId: 
+                code = .missingParameter_OrgOpenId
+            case .organizationId: 
+                code = .missingParameter_OrganizationId
+            case .proxyOperatorOpenId: 
+                code = .missingParameter_ProxyOperatorOpenId
+            case .sealId: 
+                code = .missingParameter_SealId
+            case .sealImage: 
+                code = .missingParameter_SealImage
+            case .sealName: 
+                code = .missingParameter_SealName
+            case .signComponents: 
+                code = .missingParameter_SignComponents
+            case .templates: 
+                code = .missingParameter_Templates
+            case .userOpenId: 
+                code = .missingParameter_UserOpenId
+            case .other: 
+                code = .missingParameter
+            }
+            return TCEssbasicError(code, context: self.context)
         }
-        return TCEssbasicError(code, context: self.context)
-    }
-}
-
-extension TCEssbasicError.MissingParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAsError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCAsErrorType {
         enum Code: String {
             case actionNotFound = "InvalidParameter.ActionNotFound"
             case conflict = "InvalidParameter.Conflict"
@@ -38,8 +38,6 @@ extension TCAsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -101,37 +99,32 @@ extension TCAsError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCAsError.InvalidParameter: Equatable {
-    public static func == (lhs: TCAsError.InvalidParameter, rhs: TCAsError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAsError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAsError.InvalidParameter {
-    /// - Returns: ``TCAsError`` that holds the same error and context.
-    public func toAsError() -> TCAsError {
-        guard let code = TCAsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAsError() -> TCAsError {
+            let code: TCAsError.Code
+            switch self.error {
+            case .actionNotFound: 
+                code = .invalidParameter_ActionNotFound
+            case .conflict: 
+                code = .invalidParameter_Conflict
+            case .hostNameUnavailable: 
+                code = .invalidParameter_HostNameUnavailable
+            case .inScenario: 
+                code = .invalidParameter_InScenario
+            case .invalidCombination: 
+                code = .invalidParameter_InvalidCombination
+            case .loadBalancerNotInAutoScalingGroup: 
+                code = .invalidParameter_LoadBalancerNotInAutoScalingGroup
+            case .mustOneParameter: 
+                code = .invalidParameter_MustOneParameter
+            case .parameterDeprecated: 
+                code = .invalidParameter_ParameterDeprecated
+            case .parameterMustBeDeleted: 
+                code = .invalidParameter_ParameterMustBeDeleted
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCAsError(code, context: self.context)
         }
-        return TCAsError(code, context: self.context)
-    }
-}
-
-extension TCAsError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCvmError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCCvmErrorType {
         enum Code: String {
             case accountAlreadyExists = "FailedOperation.AccountAlreadyExists"
             case accountIsYourSelf = "FailedOperation.AccountIsYourSelf"
@@ -52,8 +52,6 @@ extension TCCvmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -214,37 +212,60 @@ extension TCCvmError {
         public static var unreturnable: FailedOperation {
             FailedOperation(.unreturnable)
         }
-    }
-}
-
-extension TCCvmError.FailedOperation: Equatable {
-    public static func == (lhs: TCCvmError.FailedOperation, rhs: TCCvmError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCvmError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCvmError.FailedOperation {
-    /// - Returns: ``TCCvmError`` that holds the same error and context.
-    public func toCvmError() -> TCCvmError {
-        guard let code = TCCvmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCvmError() -> TCCvmError {
+            let code: TCCvmError.Code
+            switch self.error {
+            case .accountAlreadyExists: 
+                code = .failedOperation_AccountAlreadyExists
+            case .accountIsYourSelf: 
+                code = .failedOperation_AccountIsYourSelf
+            case .byolImageShareFailed: 
+                code = .failedOperation_BYOLImageShareFailed
+            case .disasterRecoverGroupNotFound: 
+                code = .failedOperation_DisasterRecoverGroupNotFound
+            case .illegalTagKey: 
+                code = .failedOperation_IllegalTagKey
+            case .illegalTagValue: 
+                code = .failedOperation_IllegalTagValue
+            case .inquiryPriceFailed: 
+                code = .failedOperation_InquiryPriceFailed
+            case .inquiryRefundPriceFailed: 
+                code = .failedOperation_InquiryRefundPriceFailed
+            case .invalidImageState: 
+                code = .failedOperation_InvalidImageState
+            case .invalidInstanceApplicationRoleEmr: 
+                code = .failedOperation_InvalidInstanceApplicationRoleEmr
+            case .noAvailableIpAddressCountInSubnet: 
+                code = .failedOperation_NoAvailableIpAddressCountInSubnet
+            case .notFoundEIP: 
+                code = .failedOperation_NotFoundEIP
+            case .notMasterAccount: 
+                code = .failedOperation_NotMasterAccount
+            case .placementSetNotEmpty: 
+                code = .failedOperation_PlacementSetNotEmpty
+            case .promotionalPerioRestriction: 
+                code = .failedOperation_PromotionalPerioRestriction
+            case .promotionalRegionRestriction: 
+                code = .failedOperation_PromotionalRegionRestriction
+            case .qImageShareFailed: 
+                code = .failedOperation_QImageShareFailed
+            case .rImageShareFailed: 
+                code = .failedOperation_RImageShareFailed
+            case .securityGroupActionFailed: 
+                code = .failedOperation_SecurityGroupActionFailed
+            case .snapshotSizeLargerThanDataSize: 
+                code = .failedOperation_SnapshotSizeLargerThanDataSize
+            case .snapshotSizeLessThanDataSize: 
+                code = .failedOperation_SnapshotSizeLessThanDataSize
+            case .tagKeyReserved: 
+                code = .failedOperation_TagKeyReserved
+            case .tatAgentNotSupport: 
+                code = .failedOperation_TatAgentNotSupport
+            case .unreturnable: 
+                code = .failedOperation_Unreturnable
+            }
+            return TCCvmError(code, context: self.context)
         }
-        return TCCvmError(code, context: self.context)
-    }
-}
-
-extension TCCvmError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

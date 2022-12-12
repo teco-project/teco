@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotexplorerError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCIotexplorerErrorType {
         enum Code: String {
             case batchProductionNotExist = "ResourceNotFound.BatchProductionNotExist"
             case cannotGetFromUrl = "ResourceNotFound.CannotGetFromUrl"
@@ -52,8 +52,6 @@ extension TCIotexplorerError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -186,37 +184,60 @@ extension TCIotexplorerError {
         public static var topicRuleNotExist: ResourceNotFound {
             ResourceNotFound(.topicRuleNotExist)
         }
-    }
-}
-
-extension TCIotexplorerError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCIotexplorerError.ResourceNotFound, rhs: TCIotexplorerError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotexplorerError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotexplorerError.ResourceNotFound {
-    /// - Returns: ``TCIotexplorerError`` that holds the same error and context.
-    public func toIotexplorerError() -> TCIotexplorerError {
-        guard let code = TCIotexplorerError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotexplorerError() -> TCIotexplorerError {
+            let code: TCIotexplorerError.Code
+            switch self.error {
+            case .batchProductionNotExist: 
+                code = .resourceNotFound_BatchProductionNotExist
+            case .cannotGetFromUrl: 
+                code = .resourceNotFound_CannotGetFromUrl
+            case .deviceDupKeyExist: 
+                code = .resourceNotFound_DeviceDupKeyExist
+            case .deviceHasNoFirmware: 
+                code = .resourceNotFound_DeviceHasNoFirmware
+            case .deviceNotBind: 
+                code = .resourceNotFound_DeviceNotBind
+            case .deviceNotExist: 
+                code = .resourceNotFound_DeviceNotExist
+            case .deviceShadowNotExist: 
+                code = .resourceNotFound_DeviceShadowNotExist
+            case .fenceBindNotExist: 
+                code = .resourceNotFound_FenceBindNotExist
+            case .fenceNotExist: 
+                code = .resourceNotFound_FenceNotExist
+            case .firmwareNotExist: 
+                code = .resourceNotFound_FirmwareNotExist
+            case .firmwareTaskNotExist: 
+                code = .resourceNotFound_FirmwareTaskNotExist
+            case .gatewayDupKeyExist: 
+                code = .resourceNotFound_GatewayDupKeyExist
+            case .gatewayNotExist: 
+                code = .resourceNotFound_GatewayNotExist
+            case .instanceNotExist: 
+                code = .resourceNotFound_InstanceNotExist
+            case .moduleNotExist: 
+                code = .resourceNotFound_ModuleNotExist
+            case .productNotExist: 
+                code = .resourceNotFound_ProductNotExist
+            case .productOrDeviceNotExist: 
+                code = .resourceNotFound_ProductOrDeviceNotExist
+            case .productResourceNotExist: 
+                code = .resourceNotFound_ProductResourceNotExist
+            case .projectNotExist: 
+                code = .resourceNotFound_ProjectNotExist
+            case .spaceNotExist: 
+                code = .resourceNotFound_SpaceNotExist
+            case .studioLoRaFreqNotExist: 
+                code = .resourceNotFound_StudioLoRaFreqNotExist
+            case .studioProductNotExist: 
+                code = .resourceNotFound_StudioProductNotExist
+            case .topicPolicyNotExist: 
+                code = .resourceNotFound_TopicPolicyNotExist
+            case .topicRuleNotExist: 
+                code = .resourceNotFound_TopicRuleNotExist
+            }
+            return TCIotexplorerError(code, context: self.context)
         }
-        return TCIotexplorerError(code, context: self.context)
-    }
-}
-
-extension TCIotexplorerError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

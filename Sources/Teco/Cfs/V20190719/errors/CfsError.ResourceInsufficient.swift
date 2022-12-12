@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCfsError {
-    public struct ResourceInsufficient: TCErrorType {
+    public struct ResourceInsufficient: TCCfsErrorType {
         enum Code: String {
             case fileSystemLimitExceeded = "ResourceInsufficient.FileSystemLimitExceeded"
             case pgroupNumberLimitExceeded = "ResourceInsufficient.PgroupNumberLimitExceeded"
@@ -35,8 +35,6 @@ extension TCCfsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -83,37 +81,26 @@ extension TCCfsError {
         public static var tagQuotasExceeded: ResourceInsufficient {
             ResourceInsufficient(.tagQuotasExceeded)
         }
-    }
-}
-
-extension TCCfsError.ResourceInsufficient: Equatable {
-    public static func == (lhs: TCCfsError.ResourceInsufficient, rhs: TCCfsError.ResourceInsufficient) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCfsError.ResourceInsufficient: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCfsError.ResourceInsufficient {
-    /// - Returns: ``TCCfsError`` that holds the same error and context.
-    public func toCfsError() -> TCCfsError {
-        guard let code = TCCfsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCfsError() -> TCCfsError {
+            let code: TCCfsError.Code
+            switch self.error {
+            case .fileSystemLimitExceeded: 
+                code = .resourceInsufficient_FileSystemLimitExceeded
+            case .pgroupNumberLimitExceeded: 
+                code = .resourceInsufficient_PgroupNumberLimitExceeded
+            case .regionSoldOut: 
+                code = .resourceInsufficient_RegionSoldOut
+            case .ruleLimitExceeded: 
+                code = .resourceInsufficient_RuleLimitExceeded
+            case .subnetIpAllOccupied: 
+                code = .resourceInsufficient_SubnetIpAllOccupied
+            case .tagLimitExceeded: 
+                code = .resourceInsufficient_TagLimitExceeded
+            case .tagQuotasExceeded: 
+                code = .resourceInsufficient_TagQuotasExceeded
+            }
+            return TCCfsError(code, context: self.context)
         }
-        return TCCfsError(code, context: self.context)
-    }
-}
-
-extension TCCfsError.ResourceInsufficient {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

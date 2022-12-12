@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCloudauditError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCCloudauditErrorType {
         enum Code: String {
             case time = "InvalidParameter.Time"
             case other = "InvalidParameter"
@@ -30,8 +30,6 @@ extension TCCloudauditError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCCloudauditError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCCloudauditError.InvalidParameter: Equatable {
-    public static func == (lhs: TCCloudauditError.InvalidParameter, rhs: TCCloudauditError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCloudauditError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCloudauditError.InvalidParameter {
-    /// - Returns: ``TCCloudauditError`` that holds the same error and context.
-    public func toCloudauditError() -> TCCloudauditError {
-        guard let code = TCCloudauditError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCloudauditError() -> TCCloudauditError {
+            let code: TCCloudauditError.Code
+            switch self.error {
+            case .time: 
+                code = .invalidParameter_Time
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCCloudauditError(code, context: self.context)
         }
-        return TCCloudauditError(code, context: self.context)
-    }
-}
-
-extension TCCloudauditError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

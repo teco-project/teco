@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEmrError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCEmrErrorType {
         enum Code: String {
             case accountCgwError = "InternalError.AccountCgwError"
             case camCgwError = "InternalError.CamCgwError"
@@ -49,8 +49,6 @@ extension TCEmrError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -182,37 +180,54 @@ extension TCEmrError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCEmrError.InternalError: Equatable {
-    public static func == (lhs: TCEmrError.InternalError, rhs: TCEmrError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEmrError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEmrError.InternalError {
-    /// - Returns: ``TCEmrError`` that holds the same error and context.
-    public func toEmrError() -> TCEmrError {
-        guard let code = TCEmrError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEmrError() -> TCEmrError {
+            let code: TCEmrError.Code
+            switch self.error {
+            case .accountCgwError: 
+                code = .internalError_AccountCgwError
+            case .camCgwError: 
+                code = .internalError_CamCgwError
+            case .camError: 
+                code = .internalError_CamError
+            case .cbsCgwError: 
+                code = .internalError_CbsCgwError
+            case .cbsError: 
+                code = .internalError_CbsError
+            case .cdbCgwError: 
+                code = .internalError_CdbCgwError
+            case .cdbError: 
+                code = .internalError_CdbError
+            case .checkQuotaErr: 
+                code = .internalError_CheckQuotaErr
+            case .configCgwError: 
+                code = .internalError_ConfigCgwError
+            case .cvmError: 
+                code = .internalError_CvmError
+            case .eksError: 
+                code = .internalError_EKSError
+            case .kmsError: 
+                code = .internalError_KmsError
+            case .projectCgwError: 
+                code = .internalError_ProjectCgwError
+            case .sgError: 
+                code = .internalError_SgError
+            case .tagError: 
+                code = .internalError_TagError
+            case .tkeError: 
+                code = .internalError_TKEError
+            case .tradeCgwError: 
+                code = .internalError_TradeCgwError
+            case .vpcCgwError: 
+                code = .internalError_VpcCgwError
+            case .vpcError: 
+                code = .internalError_VpcError
+            case .woodServerError: 
+                code = .internalError_WoodServerError
+            case .other: 
+                code = .internalError
+            }
+            return TCEmrError(code, context: self.context)
         }
-        return TCEmrError(code, context: self.context)
-    }
-}
-
-extension TCEmrError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

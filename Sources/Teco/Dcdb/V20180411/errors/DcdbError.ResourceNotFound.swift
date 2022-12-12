@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDcdbError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCDcdbErrorType {
         enum Code: String {
             case accountDoesNotExist = "ResourceNotFound.AccountDoesNotExist"
             case instanceNotFound = "ResourceNotFound.InstanceNotFound"
@@ -32,8 +32,6 @@ extension TCDcdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCDcdbError {
         public static var productConfigNotExistedError: ResourceNotFound {
             ResourceNotFound(.productConfigNotExistedError)
         }
-    }
-}
-
-extension TCDcdbError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCDcdbError.ResourceNotFound, rhs: TCDcdbError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDcdbError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDcdbError.ResourceNotFound {
-    /// - Returns: ``TCDcdbError`` that holds the same error and context.
-    public func toDcdbError() -> TCDcdbError {
-        guard let code = TCDcdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDcdbError() -> TCDcdbError {
+            let code: TCDcdbError.Code
+            switch self.error {
+            case .accountDoesNotExist: 
+                code = .resourceNotFound_AccountDoesNotExist
+            case .instanceNotFound: 
+                code = .resourceNotFound_InstanceNotFound
+            case .noInstanceFound: 
+                code = .resourceNotFound_NoInstanceFound
+            case .productConfigNotExistedError: 
+                code = .resourceNotFound_ProductConfigNotExistedError
+            }
+            return TCDcdbError(code, context: self.context)
         }
-        return TCDcdbError(code, context: self.context)
-    }
-}
-
-extension TCDcdbError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

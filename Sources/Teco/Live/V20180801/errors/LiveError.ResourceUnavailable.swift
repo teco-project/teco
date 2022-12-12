@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCLiveError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCLiveErrorType {
         enum Code: String {
             case invalidVodStatus = "ResourceUnavailable.InvalidVodStatus"
             case streamNotExist = "ResourceUnavailable.StreamNotExist"
@@ -31,8 +31,6 @@ extension TCLiveError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCLiveError {
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-    }
-}
-
-extension TCLiveError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCLiveError.ResourceUnavailable, rhs: TCLiveError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCLiveError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCLiveError.ResourceUnavailable {
-    /// - Returns: ``TCLiveError`` that holds the same error and context.
-    public func toLiveError() -> TCLiveError {
-        guard let code = TCLiveError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asLiveError() -> TCLiveError {
+            let code: TCLiveError.Code
+            switch self.error {
+            case .invalidVodStatus: 
+                code = .resourceUnavailable_InvalidVodStatus
+            case .streamNotExist: 
+                code = .resourceUnavailable_StreamNotExist
+            case .other: 
+                code = .resourceUnavailable
+            }
+            return TCLiveError(code, context: self.context)
         }
-        return TCLiveError(code, context: self.context)
-    }
-}
-
-extension TCLiveError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

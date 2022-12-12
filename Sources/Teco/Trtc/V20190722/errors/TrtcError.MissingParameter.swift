@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTrtcError {
-    public struct MissingParameter: TCErrorType {
+    public struct MissingParameter: TCTrtcErrorType {
         enum Code: String {
             case accessKey = "MissingParameter.AccessKey"
             case appId = "MissingParameter.AppId"
@@ -60,8 +60,6 @@ extension TCTrtcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -234,37 +232,76 @@ extension TCTrtcError {
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-    }
-}
-
-extension TCTrtcError.MissingParameter: Equatable {
-    public static func == (lhs: TCTrtcError.MissingParameter, rhs: TCTrtcError.MissingParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTrtcError.MissingParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTrtcError.MissingParameter {
-    /// - Returns: ``TCTrtcError`` that holds the same error and context.
-    public func toTrtcError() -> TCTrtcError {
-        guard let code = TCTrtcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTrtcError() -> TCTrtcError {
+            let code: TCTrtcError.Code
+            switch self.error {
+            case .accessKey: 
+                code = .missingParameter_AccessKey
+            case .appId: 
+                code = .missingParameter_AppId
+            case .audioEncodeParams: 
+                code = .missingParameter_AudioEncodeParams
+            case .bizId: 
+                code = .missingParameter_BizId
+            case .bucket: 
+                code = .missingParameter_Bucket
+            case .cloudStorage: 
+                code = .missingParameter_CloudStorage
+            case .commId: 
+                code = .missingParameter_CommId
+            case .commIdOrSdkAppId: 
+                code = .missingParameter_CommIdOrSdkAppId
+            case .encodeParams: 
+                code = .missingParameter_EncodeParams
+            case .endTs: 
+                code = .missingParameter_EndTs
+            case .outputParams: 
+                code = .missingParameter_OutputParams
+            case .presetLayoutConfig: 
+                code = .missingParameter_PresetLayoutConfig
+            case .publishCdnParams: 
+                code = .missingParameter_PublishCdnParams
+            case .publishCdnUrls: 
+                code = .missingParameter_PublishCdnUrls
+            case .recordMode: 
+                code = .missingParameter_RecordMode
+            case .recordParams: 
+                code = .missingParameter_RecordParams
+            case .region: 
+                code = .missingParameter_Region
+            case .roomId: 
+                code = .missingParameter_RoomId
+            case .roomNum: 
+                code = .missingParameter_RoomNum
+            case .sdkAppId: 
+                code = .missingParameter_SdkAppId
+            case .secretKey: 
+                code = .missingParameter_SecretKey
+            case .startTs: 
+                code = .missingParameter_StartTs
+            case .storageParams: 
+                code = .missingParameter_StorageParams
+            case .streamId: 
+                code = .missingParameter_StreamId
+            case .streamType: 
+                code = .missingParameter_StreamType
+            case .taskId: 
+                code = .missingParameter_TaskId
+            case .userId: 
+                code = .missingParameter_UserId
+            case .userIds: 
+                code = .missingParameter_UserIds
+            case .userSig: 
+                code = .missingParameter_UserSig
+            case .vendor: 
+                code = .missingParameter_Vendor
+            case .videoEncodeParams: 
+                code = .missingParameter_VideoEncodeParams
+            case .other: 
+                code = .missingParameter
+            }
+            return TCTrtcError(code, context: self.context)
         }
-        return TCTrtcError(code, context: self.context)
-    }
-}
-
-extension TCTrtcError.MissingParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

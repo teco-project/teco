@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSoeError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCSoeErrorType {
         enum Code: String {
             case audioDataSizeLimitExceeded = "InvalidParameterValue.AudioDataSizeLimitExceeded"
             case audioDecodeFailed = "InvalidParameterValue.AudioDecodeFailed"
@@ -54,8 +54,6 @@ extension TCSoeError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -219,37 +217,64 @@ extension TCSoeError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCSoeError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCSoeError.InvalidParameterValue, rhs: TCSoeError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSoeError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSoeError.InvalidParameterValue {
-    /// - Returns: ``TCSoeError`` that holds the same error and context.
-    public func toSoeError() -> TCSoeError {
-        guard let code = TCSoeError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSoeError() -> TCSoeError {
+            let code: TCSoeError.Code
+            switch self.error {
+            case .audioDataSizeLimitExceeded: 
+                code = .invalidParameterValue_AudioDataSizeLimitExceeded
+            case .audioDecodeFailed: 
+                code = .invalidParameterValue_AudioDecodeFailed
+            case .audioLimitExceeded: 
+                code = .invalidParameterValue_AudioLimitExceeded
+            case .audioSizeMustBeEven: 
+                code = .invalidParameterValue_AudioSizeMustBeEven
+            case .baseDecodeFailed: 
+                code = .invalidParameterValue_BASEDecodeFailed
+            case .invalidSeqId: 
+                code = .invalidParameterValue_InvalidSeqId
+            case .invalidWAVHeader: 
+                code = .invalidParameterValue_InvalidWAVHeader
+            case .noDocInList: 
+                code = .invalidParameterValue_NoDocInList
+            case .parameterInvalid: 
+                code = .invalidParameterValue_ParameterInvalid
+            case .refTextEmpty: 
+                code = .invalidParameterValue_RefTextEmpty
+            case .refTextGrammarError: 
+                code = .invalidParameterValue_RefTextGrammarError
+            case .refTextLimitExceeded: 
+                code = .invalidParameterValue_RefTextLimitExceeded
+            case .refTextOOV: 
+                code = .invalidParameterValue_RefTextOOV
+            case .refTextPolyphonicLimitExceeded: 
+                code = .invalidParameterValue_RefTextPolyphonicLimitExceeded
+            case .refTxtEmpty: 
+                code = .invalidParameterValue_RefTxtEmpty
+            case .refTxtTooLang: 
+                code = .invalidParameterValue_RefTxtTooLang
+            case .sensitiveWords: 
+                code = .invalidParameterValue_SensitiveWords
+            case .sessionIdInUse: 
+                code = .invalidParameterValue_SessionIdInUse
+            case .shardNoStartWithOne: 
+                code = .invalidParameterValue_ShardNoStartWithOne
+            case .streamingvoicepkgTimeout: 
+                code = .invalidParameterValue_StreamingvoicepkgTimeout
+            case .vadNotDetectedSpeak: 
+                code = .invalidParameterValue_VadNotDetectedSpeak
+            case .voiceFileTypeNotFound: 
+                code = .invalidParameterValue_VoiceFileTypeNotFound
+            case .voiceLengthTooLong: 
+                code = .invalidParameterValue_VoiceLengthTooLong
+            case .wavHeaderDecodeFailed: 
+                code = .invalidParameterValue_WAVHeaderDecodeFailed
+            case .wordLengthTooLong: 
+                code = .invalidParameterValue_WordLengthTooLong
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCSoeError(code, context: self.context)
         }
-        return TCSoeError(code, context: self.context)
-    }
-}
-
-extension TCSoeError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

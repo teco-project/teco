@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCOceanusError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCOceanusErrorType {
         enum Code: String {
             case job = "LimitExceeded.Job"
             case jobConfig = "LimitExceeded.JobConfig"
@@ -31,8 +31,6 @@ extension TCOceanusError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCOceanusError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCOceanusError.LimitExceeded: Equatable {
-    public static func == (lhs: TCOceanusError.LimitExceeded, rhs: TCOceanusError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCOceanusError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCOceanusError.LimitExceeded {
-    /// - Returns: ``TCOceanusError`` that holds the same error and context.
-    public func toOceanusError() -> TCOceanusError {
-        guard let code = TCOceanusError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asOceanusError() -> TCOceanusError {
+            let code: TCOceanusError.Code
+            switch self.error {
+            case .job: 
+                code = .limitExceeded_Job
+            case .jobConfig: 
+                code = .limitExceeded_JobConfig
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCOceanusError(code, context: self.context)
         }
-        return TCOceanusError(code, context: self.context)
-    }
-}
-
-extension TCOceanusError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

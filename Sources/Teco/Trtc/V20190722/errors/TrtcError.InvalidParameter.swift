@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTrtcError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCTrtcErrorType {
         enum Code: String {
             case appId = "InvalidParameter.AppId"
             case audioEncodeParams = "InvalidParameter.AudioEncodeParams"
@@ -66,8 +66,6 @@ extension TCTrtcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -271,37 +269,88 @@ extension TCTrtcError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCTrtcError.InvalidParameter: Equatable {
-    public static func == (lhs: TCTrtcError.InvalidParameter, rhs: TCTrtcError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTrtcError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTrtcError.InvalidParameter {
-    /// - Returns: ``TCTrtcError`` that holds the same error and context.
-    public func toTrtcError() -> TCTrtcError {
-        guard let code = TCTrtcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTrtcError() -> TCTrtcError {
+            let code: TCTrtcError.Code
+            switch self.error {
+            case .appId: 
+                code = .invalidParameter_AppId
+            case .audioEncodeParams: 
+                code = .invalidParameter_AudioEncodeParams
+            case .bodyParamsError: 
+                code = .invalidParameter_BodyParamsError
+            case .checkContentFailed: 
+                code = .invalidParameter_CheckContentFailed
+            case .checkSuffixFailed: 
+                code = .invalidParameter_CheckSuffixFailed
+            case .encodeParams: 
+                code = .invalidParameter_EncodeParams
+            case .endTs: 
+                code = .invalidParameter_EndTs
+            case .mainVideoRightAlign: 
+                code = .invalidParameter_MainVideoRightAlign
+            case .mainVideoStreamType: 
+                code = .invalidParameter_MainVideoStreamType
+            case .outOfRange: 
+                code = .invalidParameter_OutOfRange
+            case .outputParams: 
+                code = .invalidParameter_OutputParams
+            case .pageNumber: 
+                code = .invalidParameter_PageNumber
+            case .pageSize: 
+                code = .invalidParameter_PageSize
+            case .pageSizeOversize: 
+                code = .invalidParameter_PageSizeOversize
+            case .pictureNotFound: 
+                code = .invalidParameter_PictureNotFound
+            case .presetLayoutConfig: 
+                code = .invalidParameter_PresetLayoutConfig
+            case .publishCdnUrls: 
+                code = .invalidParameter_PublishCdnUrls
+            case .pureAudioStream: 
+                code = .invalidParameter_PureAudioStream
+            case .queryScaleOversize: 
+                code = .invalidParameter_QueryScaleOversize
+            case .recordAudioOnly: 
+                code = .invalidParameter_RecordAudioOnly
+            case .recordId: 
+                code = .invalidParameter_RecordId
+            case .roomId: 
+                code = .invalidParameter_RoomId
+            case .sdkAppId: 
+                code = .invalidParameter_SdkAppId
+            case .sdkAppid: 
+                code = .invalidParameter_SdkAppid
+            case .smallVideoLayoutParams: 
+                code = .invalidParameter_SmallVideoLayoutParams
+            case .smallVideoStreamType: 
+                code = .invalidParameter_SmallVideoStreamType
+            case .startTimeExpire: 
+                code = .invalidParameter_StartTimeExpire
+            case .startTimeOversize: 
+                code = .invalidParameter_StartTimeOversize
+            case .startTs: 
+                code = .invalidParameter_StartTs
+            case .startTsOversize: 
+                code = .invalidParameter_StartTsOversize
+            case .strRoomId: 
+                code = .invalidParameter_StrRoomId
+            case .streamId: 
+                code = .invalidParameter_StreamId
+            case .urlParamsError: 
+                code = .invalidParameter_UrlParamsError
+            case .userId: 
+                code = .invalidParameter_UserId
+            case .userIds: 
+                code = .invalidParameter_UserIds
+            case .userIdsMorethanSix: 
+                code = .invalidParameter_UserIdsMorethanSix
+            case .videoResolution: 
+                code = .invalidParameter_VideoResolution
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCTrtcError(code, context: self.context)
         }
-        return TCTrtcError(code, context: self.context)
-    }
-}
-
-extension TCTrtcError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

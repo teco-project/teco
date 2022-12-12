@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCLighthouseError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCLighthouseErrorType {
         enum Code: String {
             case mfaExpired = "UnauthorizedOperation.MFAExpired"
             case mfaNotFound = "UnauthorizedOperation.MFANotFound"
@@ -31,8 +31,6 @@ extension TCLighthouseError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCLighthouseError {
         public static var noPermission: UnauthorizedOperation {
             UnauthorizedOperation(.noPermission)
         }
-    }
-}
-
-extension TCLighthouseError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCLighthouseError.UnauthorizedOperation, rhs: TCLighthouseError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCLighthouseError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCLighthouseError.UnauthorizedOperation {
-    /// - Returns: ``TCLighthouseError`` that holds the same error and context.
-    public func toLighthouseError() -> TCLighthouseError {
-        guard let code = TCLighthouseError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asLighthouseError() -> TCLighthouseError {
+            let code: TCLighthouseError.Code
+            switch self.error {
+            case .mfaExpired: 
+                code = .unauthorizedOperation_MFAExpired
+            case .mfaNotFound: 
+                code = .unauthorizedOperation_MFANotFound
+            case .noPermission: 
+                code = .unauthorizedOperation_NoPermission
+            }
+            return TCLighthouseError(code, context: self.context)
         }
-        return TCLighthouseError(code, context: self.context)
-    }
-}
-
-extension TCLighthouseError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

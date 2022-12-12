@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBtoeError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCBtoeErrorType {
         enum Code: String {
             case accountInfoInvalid = "InvalidParameter.AccountInfoInvalid"
             case invalidFileSuffix = "InvalidParameter.InvalidFileSuffix"
@@ -32,8 +32,6 @@ extension TCBtoeError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCBtoeError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCBtoeError.InvalidParameter: Equatable {
-    public static func == (lhs: TCBtoeError.InvalidParameter, rhs: TCBtoeError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBtoeError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBtoeError.InvalidParameter {
-    /// - Returns: ``TCBtoeError`` that holds the same error and context.
-    public func toBtoeError() -> TCBtoeError {
-        guard let code = TCBtoeError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBtoeError() -> TCBtoeError {
+            let code: TCBtoeError.Code
+            switch self.error {
+            case .accountInfoInvalid: 
+                code = .invalidParameter_AccountInfoInvalid
+            case .invalidFileSuffix: 
+                code = .invalidParameter_InvalidFileSuffix
+            case .invalidParameterValue: 
+                code = .invalidParameter_InvalidParameterValue
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCBtoeError(code, context: self.context)
         }
-        return TCBtoeError(code, context: self.context)
-    }
-}
-
-extension TCBtoeError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

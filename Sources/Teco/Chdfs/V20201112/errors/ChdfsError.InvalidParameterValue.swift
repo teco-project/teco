@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCChdfsError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCChdfsErrorType {
         enum Code: String {
             case invalidAccessGroupId = "InvalidParameterValue.InvalidAccessGroupId"
             case invalidAccessGroupName = "InvalidParameterValue.InvalidAccessGroupName"
@@ -39,8 +39,6 @@ extension TCChdfsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -108,37 +106,34 @@ extension TCChdfsError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCChdfsError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCChdfsError.InvalidParameterValue, rhs: TCChdfsError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCChdfsError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCChdfsError.InvalidParameterValue {
-    /// - Returns: ``TCChdfsError`` that holds the same error and context.
-    public func toChdfsError() -> TCChdfsError {
-        guard let code = TCChdfsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asChdfsError() -> TCChdfsError {
+            let code: TCChdfsError.Code
+            switch self.error {
+            case .invalidAccessGroupId: 
+                code = .invalidParameterValue_InvalidAccessGroupId
+            case .invalidAccessGroupName: 
+                code = .invalidParameterValue_InvalidAccessGroupName
+            case .invalidAccessRuleAddress: 
+                code = .invalidParameterValue_InvalidAccessRuleAddress
+            case .invalidCapacityQuota: 
+                code = .invalidParameterValue_InvalidCapacityQuota
+            case .invalidDescription: 
+                code = .invalidParameterValue_InvalidDescription
+            case .invalidFileSystemId: 
+                code = .invalidParameterValue_InvalidFileSystemId
+            case .invalidFileSystemName: 
+                code = .invalidParameterValue_InvalidFileSystemName
+            case .invalidMountPointId: 
+                code = .invalidParameterValue_InvalidMountPointId
+            case .invalidMountPointName: 
+                code = .invalidParameterValue_InvalidMountPointName
+            case .invalidVpcId: 
+                code = .invalidParameterValue_InvalidVpcId
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCChdfsError(code, context: self.context)
         }
-        return TCChdfsError(code, context: self.context)
-    }
-}
-
-extension TCChdfsError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

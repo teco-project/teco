@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTagError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCTagErrorType {
         enum Code: String {
             case quota = "LimitExceeded.Quota"
             case resourceAttachedTags = "LimitExceeded.ResourceAttachedTags"
@@ -35,8 +35,6 @@ extension TCTagError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -84,37 +82,26 @@ extension TCTagError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCTagError.LimitExceeded: Equatable {
-    public static func == (lhs: TCTagError.LimitExceeded, rhs: TCTagError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTagError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTagError.LimitExceeded {
-    /// - Returns: ``TCTagError`` that holds the same error and context.
-    public func toTagError() -> TCTagError {
-        guard let code = TCTagError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTagError() -> TCTagError {
+            let code: TCTagError.Code
+            switch self.error {
+            case .quota: 
+                code = .limitExceeded_Quota
+            case .resourceAttachedTags: 
+                code = .limitExceeded_ResourceAttachedTags
+            case .resourceNumPerRequest: 
+                code = .limitExceeded_ResourceNumPerRequest
+            case .tagKey: 
+                code = .limitExceeded_TagKey
+            case .tagNumPerRequest: 
+                code = .limitExceeded_TagNumPerRequest
+            case .tagValue: 
+                code = .limitExceeded_TagValue
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCTagError(code, context: self.context)
         }
-        return TCTagError(code, context: self.context)
-    }
-}
-
-extension TCTagError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

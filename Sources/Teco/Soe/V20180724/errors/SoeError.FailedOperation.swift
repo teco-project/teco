@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSoeError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCSoeErrorType {
         enum Code: String {
             case errorGetSession = "FailedOperation.ErrorGetSession"
             case errorGetUser = "FailedOperation.ErrorGetUser"
@@ -54,8 +54,6 @@ extension TCSoeError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -242,37 +240,64 @@ extension TCSoeError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCSoeError.FailedOperation: Equatable {
-    public static func == (lhs: TCSoeError.FailedOperation, rhs: TCSoeError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSoeError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSoeError.FailedOperation {
-    /// - Returns: ``TCSoeError`` that holds the same error and context.
-    public func toSoeError() -> TCSoeError {
-        guard let code = TCSoeError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSoeError() -> TCSoeError {
+            let code: TCSoeError.Code
+            switch self.error {
+            case .errorGetSession: 
+                code = .failedOperation_ErrorGetSession
+            case .errorGetUser: 
+                code = .failedOperation_ErrorGetUser
+            case .evaluateTimeout: 
+                code = .failedOperation_EvaluateTimeout
+            case .evaluateUnknownError: 
+                code = .failedOperation_EvaluateUnknownError
+            case .failedGetEngineIP: 
+                code = .failedOperation_FailedGetEngineIP
+            case .failedGetResult: 
+                code = .failedOperation_FailedGetResult
+            case .failedGetSession: 
+                code = .failedOperation_FailedGetSession
+            case .failedGetSessionSeqID: 
+                code = .failedOperation_FailedGetSessionSeqID
+            case .failedGetUser: 
+                code = .failedOperation_FailedGetUser
+            case .failedInit: 
+                code = .failedOperation_FailedInit
+            case .failedSetResult: 
+                code = .failedOperation_FailedSetResult
+            case .failedSetSession: 
+                code = .failedOperation_FailedSetSession
+            case .failedSetSessionSeqID: 
+                code = .failedOperation_FailedSetSessionSeqID
+            case .failedSetUser: 
+                code = .failedOperation_FailedSetUser
+            case .internalServerError: 
+                code = .failedOperation_InternalServerError
+            case .invalidParameterValue: 
+                code = .failedOperation_InvalidParameterValue
+            case .jsonCodecError: 
+                code = .failedOperation_JsonCodecError
+            case .needInitBeforeEvaluation: 
+                code = .failedOperation_NeedInitBeforeEvaluation
+            case .pastSeqIdLose: 
+                code = .failedOperation_PastSeqIdLose
+            case .resultExpired: 
+                code = .failedOperation_ResultExpired
+            case .seqIdExpired: 
+                code = .failedOperation_SeqIdExpired
+            case .serverOverload: 
+                code = .failedOperation_ServerOverload
+            case .serviceTimeout: 
+                code = .failedOperation_ServiceTimeout
+            case .sessionExpired: 
+                code = .failedOperation_SessionExpired
+            case .waitPastSeqIdTimeout: 
+                code = .failedOperation_WaitPastSeqIdTimeout
+            case .other: 
+                code = .failedOperation
+            }
+            return TCSoeError(code, context: self.context)
         }
-        return TCSoeError(code, context: self.context)
-    }
-}
-
-extension TCSoeError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

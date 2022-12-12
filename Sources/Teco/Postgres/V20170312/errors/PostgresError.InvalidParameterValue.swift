@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCPostgresError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCPostgresErrorType {
         enum Code: String {
             case accountExist = "InvalidParameterValue.AccountExist"
             case accountNotExist = "InvalidParameterValue.AccountNotExist"
@@ -69,8 +69,6 @@ extension TCPostgresError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -288,37 +286,94 @@ extension TCPostgresError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCPostgresError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCPostgresError.InvalidParameterValue, rhs: TCPostgresError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCPostgresError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCPostgresError.InvalidParameterValue {
-    /// - Returns: ``TCPostgresError`` that holds the same error and context.
-    public func toPostgresError() -> TCPostgresError {
-        guard let code = TCPostgresError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asPostgresError() -> TCPostgresError {
+            let code: TCPostgresError.Code
+            switch self.error {
+            case .accountExist: 
+                code = .invalidParameterValue_AccountExist
+            case .accountNotExist: 
+                code = .invalidParameterValue_AccountNotExist
+            case .accountNotExistError: 
+                code = .invalidParameterValue_AccountNotExistError
+            case .badSpec: 
+                code = .invalidParameterValue_BadSpec
+            case .charsetNotFoundError: 
+                code = .invalidParameterValue_CharsetNotFoundError
+            case .dataConvertError: 
+                code = .invalidParameterValue_DataConvertError
+            case .illegalChargeType: 
+                code = .invalidParameterValue_IllegalChargeType
+            case .illegalInstanceChargeType: 
+                code = .invalidParameterValue_IllegalInstanceChargeType
+            case .illegalProjectId: 
+                code = .invalidParameterValue_IllegalProjectId
+            case .illegalRegion: 
+                code = .invalidParameterValue_IllegalRegion
+            case .illegalZone: 
+                code = .invalidParameterValue_IllegalZone
+            case .instanceNameExist: 
+                code = .invalidParameterValue_InstanceNameExist
+            case .instanceNotExist: 
+                code = .invalidParameterValue_InstanceNotExist
+            case .interfaceNameNotFound: 
+                code = .invalidParameterValue_InterfaceNameNotFound
+            case .invalidAccountError: 
+                code = .invalidParameterValue_InvalidAccountError
+            case .invalidAccountFormat: 
+                code = .invalidParameterValue_InvalidAccountFormat
+            case .invalidAccountName: 
+                code = .invalidParameterValue_InvalidAccountName
+            case .invalidCharset: 
+                code = .invalidParameterValue_InvalidCharset
+            case .invalidInstanceNum: 
+                code = .invalidParameterValue_InvalidInstanceNum
+            case .invalidInstanceVolume: 
+                code = .invalidParameterValue_InvalidInstanceVolume
+            case .invalidOrderNum: 
+                code = .invalidParameterValue_InvalidOrderNum
+            case .invalidParameterValueError: 
+                code = .invalidParameterValue_InvalidParameterValueError
+            case .invalidPasswordFormat: 
+                code = .invalidParameterValue_InvalidPasswordFormat
+            case .invalidPasswordLengthError: 
+                code = .invalidParameterValue_InvalidPasswordLengthError
+            case .invalidPasswordValueError: 
+                code = .invalidParameterValue_InvalidPasswordValueError
+            case .invalidPid: 
+                code = .invalidParameterValue_InvalidPid
+            case .invalidReadOnlyGroupStatus: 
+                code = .invalidParameterValue_InvalidReadOnlyGroupStatus
+            case .invalidZoneIdError: 
+                code = .invalidParameterValue_InvalidZoneIdError
+            case .nullDealNames: 
+                code = .invalidParameterValue_NullDealNames
+            case .parameterCharacterError: 
+                code = .invalidParameterValue_ParameterCharacterError
+            case .parameterCharacterLimitError: 
+                code = .invalidParameterValue_ParameterCharacterLimitError
+            case .parameterCharacterPreLimitError: 
+                code = .invalidParameterValue_ParameterCharacterPreLimitError
+            case .parameterHandleError: 
+                code = .invalidParameterValue_ParameterHandleError
+            case .parameterLengthLimitError: 
+                code = .invalidParameterValue_ParameterLengthLimitError
+            case .parameterOutRangeError: 
+                code = .invalidParameterValue_ParameterOutRangeError
+            case .parameterValueExceedError: 
+                code = .invalidParameterValue_ParameterValueExceedError
+            case .readOnlyGroupNotExist: 
+                code = .invalidParameterValue_ReadOnlyGroupNotExist
+            case .regionNotSupported: 
+                code = .invalidParameterValue_RegionNotSupported
+            case .specNotRecognizedError: 
+                code = .invalidParameterValue_SpecNotRecognizedError
+            case .structParseFailed: 
+                code = .invalidParameterValue_StructParseFailed
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCPostgresError(code, context: self.context)
         }
-        return TCPostgresError(code, context: self.context)
-    }
-}
-
-extension TCPostgresError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

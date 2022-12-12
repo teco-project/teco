@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCKmsError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCKmsErrorType {
         enum Code: String {
             case aliasAlreadyExists = "InvalidParameterValue.AliasAlreadyExists"
             case duplicatedKeyId = "InvalidParameterValue.DuplicatedKeyId"
@@ -41,8 +41,6 @@ extension TCKmsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -120,37 +118,38 @@ extension TCKmsError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCKmsError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCKmsError.InvalidParameterValue, rhs: TCKmsError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCKmsError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCKmsError.InvalidParameterValue {
-    /// - Returns: ``TCKmsError`` that holds the same error and context.
-    public func toKmsError() -> TCKmsError {
-        guard let code = TCKmsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asKmsError() -> TCKmsError {
+            let code: TCKmsError.Code
+            switch self.error {
+            case .aliasAlreadyExists: 
+                code = .invalidParameterValue_AliasAlreadyExists
+            case .duplicatedKeyId: 
+                code = .invalidParameterValue_DuplicatedKeyId
+            case .invalidAlias: 
+                code = .invalidParameterValue_InvalidAlias
+            case .invalidCiphertext: 
+                code = .invalidParameterValue_InvalidCiphertext
+            case .invalidHsmClusterId: 
+                code = .invalidParameterValue_InvalidHsmClusterId
+            case .invalidKeyId: 
+                code = .invalidParameterValue_InvalidKeyId
+            case .invalidKeyUsage: 
+                code = .invalidParameterValue_InvalidKeyUsage
+            case .invalidPlaintext: 
+                code = .invalidParameterValue_InvalidPlaintext
+            case .invalidType: 
+                code = .invalidParameterValue_InvalidType
+            case .materialNotMatch: 
+                code = .invalidParameterValue_MaterialNotMatch
+            case .tagKeysDuplicated: 
+                code = .invalidParameterValue_TagKeysDuplicated
+            case .tagsNotExisted: 
+                code = .invalidParameterValue_TagsNotExisted
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCKmsError(code, context: self.context)
         }
-        return TCKmsError(code, context: self.context)
-    }
-}
-
-extension TCKmsError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

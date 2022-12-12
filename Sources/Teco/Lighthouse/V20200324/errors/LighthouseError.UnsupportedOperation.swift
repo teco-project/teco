@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCLighthouseError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCLighthouseErrorType {
         enum Code: String {
             case attachCcnConditionUnsatisfied = "UnsupportedOperation.AttachCcnConditionUnsatisfied"
             case attachCcnFailed = "UnsupportedOperation.AttachCcnFailed"
@@ -58,8 +58,6 @@ extension TCLighthouseError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -223,37 +221,72 @@ extension TCLighthouseError {
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-    }
-}
-
-extension TCLighthouseError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCLighthouseError.UnsupportedOperation, rhs: TCLighthouseError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCLighthouseError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCLighthouseError.UnsupportedOperation {
-    /// - Returns: ``TCLighthouseError`` that holds the same error and context.
-    public func toLighthouseError() -> TCLighthouseError {
-        guard let code = TCLighthouseError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asLighthouseError() -> TCLighthouseError {
+            let code: TCLighthouseError.Code
+            switch self.error {
+            case .attachCcnConditionUnsatisfied: 
+                code = .unsupportedOperation_AttachCcnConditionUnsatisfied
+            case .attachCcnFailed: 
+                code = .unsupportedOperation_AttachCcnFailed
+            case .blueprintCurStateInvalid: 
+                code = .unsupportedOperation_BlueprintCurStateInvalid
+            case .blueprintOccupied: 
+                code = .unsupportedOperation_BlueprintOccupied
+            case .ccnAlreadyAttached: 
+                code = .unsupportedOperation_CcnAlreadyAttached
+            case .ccnNotAttached: 
+                code = .unsupportedOperation_CcnNotAttached
+            case .describeCcnAttachedInstancesFailed: 
+                code = .unsupportedOperation_DescribeCcnAttachedInstancesFailed
+            case .detachCcnFailed: 
+                code = .unsupportedOperation_DetachCcnFailed
+            case .diskBusy: 
+                code = .unsupportedOperation_DiskBusy
+            case .diskLatestOperationUnfinished: 
+                code = .unsupportedOperation_DiskLatestOperationUnfinished
+            case .firewallBusy: 
+                code = .unsupportedOperation_FirewallBusy
+            case .firewallVersionMismatch: 
+                code = .unsupportedOperation_FirewallVersionMismatch
+            case .instanceExpired: 
+                code = .unsupportedOperation_InstanceExpired
+            case .instanceLinuxUnixCreatingNotSupportPassword: 
+                code = .unsupportedOperation_InstanceLinuxUnixCreatingNotSupportPassword
+            case .invalidDiskState: 
+                code = .unsupportedOperation_InvalidDiskState
+            case .invalidInstanceState: 
+                code = .unsupportedOperation_InvalidInstanceState
+            case .invalidSnapshotState: 
+                code = .unsupportedOperation_InvalidSnapshotState
+            case .keyPairBindDuplicate: 
+                code = .unsupportedOperation_KeyPairBindDuplicate
+            case .keyPairBindToBlueprints: 
+                code = .unsupportedOperation_KeyPairBindToBlueprints
+            case .keyPairNotBoundToInstance: 
+                code = .unsupportedOperation_KeyPairNotBoundToInstance
+            case .latestOperationUnfinished: 
+                code = .unsupportedOperation_LatestOperationUnfinished
+            case .notSupportSharedBlueprint: 
+                code = .unsupportedOperation_NotSupportSharedBlueprint
+            case .postDestroyResourceFailed: 
+                code = .unsupportedOperation_PostDestroyResourceFailed
+            case .resetAttachCcnFailed: 
+                code = .unsupportedOperation_ResetAttachCcnFailed
+            case .resourceNotReturnable: 
+                code = .unsupportedOperation_ResourceNotReturnable
+            case .snapshotBusy: 
+                code = .unsupportedOperation_SnapshotBusy
+            case .systemBusy: 
+                code = .unsupportedOperation_SystemBusy
+            case .windowsNotAllowToAssociateKeyPair: 
+                code = .unsupportedOperation_WindowsNotAllowToAssociateKeyPair
+            case .windowsNotSupportKeyPair: 
+                code = .unsupportedOperation_WindowsNotSupportKeyPair
+            case .other: 
+                code = .unsupportedOperation
+            }
+            return TCLighthouseError(code, context: self.context)
         }
-        return TCLighthouseError(code, context: self.context)
-    }
-}
-
-extension TCLighthouseError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

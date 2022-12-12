@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotexplorerError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCIotexplorerErrorType {
         enum Code: String {
             case dbOperationError = "InternalError.DBOperationError"
             case dbOpertaionError = "InternalError.DBOpertaionError"
@@ -36,8 +36,6 @@ extension TCIotexplorerError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -91,37 +89,28 @@ extension TCIotexplorerError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCIotexplorerError.InternalError: Equatable {
-    public static func == (lhs: TCIotexplorerError.InternalError, rhs: TCIotexplorerError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotexplorerError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotexplorerError.InternalError {
-    /// - Returns: ``TCIotexplorerError`` that holds the same error and context.
-    public func toIotexplorerError() -> TCIotexplorerError {
-        guard let code = TCIotexplorerError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotexplorerError() -> TCIotexplorerError {
+            let code: TCIotexplorerError.Code
+            switch self.error {
+            case .dbOperationError: 
+                code = .internalError_DBOperationError
+            case .dbOpertaionError: 
+                code = .internalError_DBOpertaionError
+            case .internalLoRaServerError: 
+                code = .internalError_InternalLoRaServerError
+            case .internalRPCError: 
+                code = .internalError_InternalRPCError
+            case .internalServerException: 
+                code = .internalError_InternalServerException
+            case .internalServerExceptionDB: 
+                code = .internalError_InternalServerExceptionDB
+            case .timeout: 
+                code = .internalError_Timeout
+            case .other: 
+                code = .internalError
+            }
+            return TCIotexplorerError(code, context: self.context)
         }
-        return TCIotexplorerError(code, context: self.context)
-    }
-}
-
-extension TCIotexplorerError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

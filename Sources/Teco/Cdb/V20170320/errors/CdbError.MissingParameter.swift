@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCdbError {
-    public struct MissingParameter: TCErrorType {
+    public struct MissingParameter: TCCdbErrorType {
         enum Code: String {
             case accountMissingParameterError = "MissingParameter.AccountMissingParameterError"
             case missingParamError = "MissingParameter.MissingParamError"
@@ -31,8 +31,6 @@ extension TCCdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCCdbError {
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-    }
-}
-
-extension TCCdbError.MissingParameter: Equatable {
-    public static func == (lhs: TCCdbError.MissingParameter, rhs: TCCdbError.MissingParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCdbError.MissingParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCdbError.MissingParameter {
-    /// - Returns: ``TCCdbError`` that holds the same error and context.
-    public func toCdbError() -> TCCdbError {
-        guard let code = TCCdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCdbError() -> TCCdbError {
+            let code: TCCdbError.Code
+            switch self.error {
+            case .accountMissingParameterError: 
+                code = .missingParameter_AccountMissingParameterError
+            case .missingParamError: 
+                code = .missingParameter_MissingParamError
+            case .other: 
+                code = .missingParameter
+            }
+            return TCCdbError(code, context: self.context)
         }
-        return TCCdbError(code, context: self.context)
-    }
-}
-
-extension TCCdbError.MissingParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

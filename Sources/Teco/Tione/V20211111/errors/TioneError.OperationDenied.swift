@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTioneError {
-    public struct OperationDenied: TCErrorType {
+    public struct OperationDenied: TCTioneErrorType {
         enum Code: String {
             case balanceInsufficient = "OperationDenied.BalanceInsufficient"
             case miyingBalanceInsufficient = "OperationDenied.MIYINGBalanceInsufficient"
@@ -33,8 +33,6 @@ extension TCTioneError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,22 @@ extension TCTioneError {
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-    }
-}
-
-extension TCTioneError.OperationDenied: Equatable {
-    public static func == (lhs: TCTioneError.OperationDenied, rhs: TCTioneError.OperationDenied) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTioneError.OperationDenied: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTioneError.OperationDenied {
-    /// - Returns: ``TCTioneError`` that holds the same error and context.
-    public func toTioneError() -> TCTioneError {
-        guard let code = TCTioneError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTioneError() -> TCTioneError {
+            let code: TCTioneError.Code
+            switch self.error {
+            case .balanceInsufficient: 
+                code = .operationDenied_BalanceInsufficient
+            case .miyingBalanceInsufficient: 
+                code = .operationDenied_MIYINGBalanceInsufficient
+            case .networkCidrIllegal: 
+                code = .operationDenied_NetworkCidrIllegal
+            case .whitelistQuotaExceed: 
+                code = .operationDenied_WhitelistQuotaExceed
+            case .other: 
+                code = .operationDenied
+            }
+            return TCTioneError(code, context: self.context)
         }
-        return TCTioneError(code, context: self.context)
-    }
-}
-
-extension TCTioneError.OperationDenied {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

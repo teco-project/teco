@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCVmsError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCVmsErrorType {
         enum Code: String {
             case accessUpstreamTimeout = "FailedOperation.AccessUpstreamTimeout"
             case containSensitiveWord = "FailedOperation.ContainSensitiveWord"
@@ -38,8 +38,6 @@ extension TCVmsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -102,37 +100,32 @@ extension TCVmsError {
         public static var templateIncorrectOrUnapproved: FailedOperation {
             FailedOperation(.templateIncorrectOrUnapproved)
         }
-    }
-}
-
-extension TCVmsError.FailedOperation: Equatable {
-    public static func == (lhs: TCVmsError.FailedOperation, rhs: TCVmsError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCVmsError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCVmsError.FailedOperation {
-    /// - Returns: ``TCVmsError`` that holds the same error and context.
-    public func toVmsError() -> TCVmsError {
-        guard let code = TCVmsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asVmsError() -> TCVmsError {
+            let code: TCVmsError.Code
+            switch self.error {
+            case .accessUpstreamTimeout: 
+                code = .failedOperation_AccessUpstreamTimeout
+            case .containSensitiveWord: 
+                code = .failedOperation_ContainSensitiveWord
+            case .failResolvePacket: 
+                code = .failedOperation_FailResolvePacket
+            case .insufficientBalanceInVoicePackage: 
+                code = .failedOperation_InsufficientBalanceInVoicePackage
+            case .invalidJsonParameters: 
+                code = .failedOperation_InvalidJsonParameters
+            case .invalidParameters: 
+                code = .failedOperation_InvalidParameters
+            case .jsonParseFail: 
+                code = .failedOperation_JsonParseFail
+            case .parametersOtherError: 
+                code = .failedOperation_ParametersOtherError
+            case .phonenumberUnappliedOrExpired: 
+                code = .failedOperation_PhonenumberUnappliedOrExpired
+            case .templateIncorrectOrUnapproved: 
+                code = .failedOperation_TemplateIncorrectOrUnapproved
+            }
+            return TCVmsError(code, context: self.context)
         }
-        return TCVmsError(code, context: self.context)
-    }
-}
-
-extension TCVmsError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

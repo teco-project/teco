@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCThpcError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCThpcErrorType {
         enum Code: String {
             case malformed = "InvalidParameter.Malformed"
         }
@@ -29,8 +29,6 @@ extension TCThpcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCThpcError {
         public static var malformed: InvalidParameter {
             InvalidParameter(.malformed)
         }
-    }
-}
-
-extension TCThpcError.InvalidParameter: Equatable {
-    public static func == (lhs: TCThpcError.InvalidParameter, rhs: TCThpcError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCThpcError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCThpcError.InvalidParameter {
-    /// - Returns: ``TCThpcError`` that holds the same error and context.
-    public func toThpcError() -> TCThpcError {
-        guard let code = TCThpcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asThpcError() -> TCThpcError {
+            let code: TCThpcError.Code
+            switch self.error {
+            case .malformed: 
+                code = .invalidParameter_Malformed
+            }
+            return TCThpcError(code, context: self.context)
         }
-        return TCThpcError(code, context: self.context)
-    }
-}
-
-extension TCThpcError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

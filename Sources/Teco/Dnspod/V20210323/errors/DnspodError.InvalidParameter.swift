@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDnspodError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCDnspodErrorType {
         enum Code: String {
             case accountIsBanned = "InvalidParameter.AccountIsBanned"
             case actionInvalid = "InvalidParameter.ActionInvalid"
@@ -135,8 +135,6 @@ extension TCDnspodError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -683,37 +681,226 @@ extension TCDnspodError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCDnspodError.InvalidParameter: Equatable {
-    public static func == (lhs: TCDnspodError.InvalidParameter, rhs: TCDnspodError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDnspodError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDnspodError.InvalidParameter {
-    /// - Returns: ``TCDnspodError`` that holds the same error and context.
-    public func toDnspodError() -> TCDnspodError {
-        guard let code = TCDnspodError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDnspodError() -> TCDnspodError {
+            let code: TCDnspodError.Code
+            switch self.error {
+            case .accountIsBanned: 
+                code = .invalidParameter_AccountIsBanned
+            case .actionInvalid: 
+                code = .invalidParameter_ActionInvalid
+            case .actionSuccess: 
+                code = .invalidParameter_ActionSuccess
+            case .activity: 
+                code = .invalidParameter_Activity
+            case .batchDomainCreateActionError: 
+                code = .invalidParameter_BatchDomainCreateActionError
+            case .batchRecordCreateActionError: 
+                code = .invalidParameter_BatchRecordCreateActionError
+            case .batchRecordModifyActionError: 
+                code = .invalidParameter_BatchRecordModifyActionError
+            case .batchRecordModifyActionInvalidValue: 
+                code = .invalidParameter_BatchRecordModifyActionInvalidValue
+            case .batchRecordReplaceActionError: 
+                code = .invalidParameter_BatchRecordReplaceActionError
+            case .batchTaskCountLimit: 
+                code = .invalidParameter_BatchTaskCountLimit
+            case .batchTaskNotExist: 
+                code = .invalidParameter_BatchTaskNotExist
+            case .billNumberInvalid: 
+                code = .invalidParameter_BillNumberInvalid
+            case .browserNull: 
+                code = .invalidParameter_BrowserNull
+            case .common: 
+                code = .invalidParameter_Common
+            case .customMessage: 
+                code = .invalidParameter_CustomMessage
+            case .dataExpired: 
+                code = .invalidParameter_DataExpired
+            case .dataInvalid: 
+                code = .invalidParameter_DataInvalid
+            case .dealTypeInvalid: 
+                code = .invalidParameter_DealTypeInvalid
+            case .dnsDealDomainUpgraded: 
+                code = .invalidParameter_DnsDealDomainUpgraded
+            case .dnsDealLocked: 
+                code = .invalidParameter_DnsDealLocked
+            case .dnsInvalidDeal: 
+                code = .invalidParameter_DnsInvalidDeal
+            case .dnssecAddCnameError: 
+                code = .invalidParameter_DnssecAddCnameError
+            case .domainAliasExists: 
+                code = .invalidParameter_DomainAliasExists
+            case .domainAliasIdInvalid: 
+                code = .invalidParameter_DomainAliasIdInvalid
+            case .domainIdInvalid: 
+                code = .invalidParameter_DomainIdInvalid
+            case .domainInEffectOrInvalidated: 
+                code = .invalidParameter_DomainInEffectOrInvalidated
+            case .domainInvalid: 
+                code = .invalidParameter_DomainInvalid
+            case .domainIsAliaser: 
+                code = .invalidParameter_DomainIsAliaser
+            case .domainIsModifyingDns: 
+                code = .invalidParameter_DomainIsModifyingDns
+            case .domainIsNotlocked: 
+                code = .invalidParameter_DomainIsNotlocked
+            case .domainNotAllowedLock: 
+                code = .invalidParameter_DomainNotAllowedLock
+            case .domainNotAllowedModifyRecords: 
+                code = .invalidParameter_DomainNotAllowedModifyRecords
+            case .domainNotBeian: 
+                code = .invalidParameter_DomainNotBeian
+            case .domainNotReged: 
+                code = .invalidParameter_DomainNotReged
+            case .domainNotVip: 
+                code = .invalidParameter_DomainNotVip
+            case .domainRecordExist: 
+                code = .invalidParameter_DomainRecordExist
+            case .domainSelfNoCopy: 
+                code = .invalidParameter_DomainSelfNoCopy
+            case .domainTooLong: 
+                code = .invalidParameter_DomainTooLong
+            case .domainTypeInvalid: 
+                code = .invalidParameter_DomainTypeInvalid
+            case .domainsEmpty: 
+                code = .invalidParameter_DomainsEmpty
+            case .emailInvalid: 
+                code = .invalidParameter_EmailInvalid
+            case .emailNotVerified: 
+                code = .invalidParameter_EmailNotVerified
+            case .emailOrQqInvalid: 
+                code = .invalidParameter_EmailOrQqInvalid
+            case .emailSame: 
+                code = .invalidParameter_EmailSame
+            case .goodsChildTypeInvalid: 
+                code = .invalidParameter_GoodsChildTypeInvalid
+            case .goodsNumInvalid: 
+                code = .invalidParameter_GoodsNumInvalid
+            case .goodsTypeInvalid: 
+                code = .invalidParameter_GoodsTypeInvalid
+            case .gradeNotCopy: 
+                code = .invalidParameter_GradeNotCopy
+            case .groupIdInvalid: 
+                code = .invalidParameter_GroupIdInvalid
+            case .groupNameExists: 
+                code = .invalidParameter_GroupNameExists
+            case .groupNameInvalid: 
+                code = .invalidParameter_GroupNameInvalid
+            case .hasPendingApply: 
+                code = .invalidParameter_HasPendingApply
+            case .illegalNewDeal: 
+                code = .invalidParameter_IllegalNewDeal
+            case .invalidCoupon: 
+                code = .invalidParameter_InvalidCoupon
+            case .invalidDealName: 
+                code = .invalidParameter_InvalidDealName
+            case .invalidSecretId: 
+                code = .invalidParameter_InvalidSecretId
+            case .invalidSignature: 
+                code = .invalidParameter_InvalidSignature
+            case .invalidTime: 
+                code = .invalidParameter_InvalidTime
+            case .invalidWeight: 
+                code = .invalidParameter_InvalidWeight
+            case .ipsExceedLimit: 
+                code = .invalidParameter_IpsExceedLimit
+            case .jobGreaterThanLimit: 
+                code = .invalidParameter_JobGreaterThanLimit
+            case .lockDaysInvalid: 
+                code = .invalidParameter_LockDaysInvalid
+            case .loginTokenIdError: 
+                code = .invalidParameter_LoginTokenIdError
+            case .loginTokenNotExists: 
+                code = .invalidParameter_LoginTokenNotExists
+            case .loginTokenValidateFailed: 
+                code = .invalidParameter_LoginTokenValidateFailed
+            case .mobileNotVerified: 
+                code = .invalidParameter_MobileNotVerified
+            case .mxInvalid: 
+                code = .invalidParameter_MxInvalid
+            case .newPackageTypeInvalid: 
+                code = .invalidParameter_NewPackageTypeInvalid
+            case .offsetInvalid: 
+                code = .invalidParameter_OffsetInvalid
+            case .openidInvalid: 
+                code = .invalidParameter_OpenidInvalid
+            case .operateFailed: 
+                code = .invalidParameter_OperateFailed
+            case .operationIsTooFrequent: 
+                code = .invalidParameter_OperationIsTooFrequent
+            case .optypeNotSupported: 
+                code = .invalidParameter_OptypeNotSupported
+            case .otherAccountUnrealName: 
+                code = .invalidParameter_OtherAccountUnrealName
+            case .paramInvalid: 
+                code = .invalidParameter_ParamInvalid
+            case .paramsIllegal: 
+                code = .invalidParameter_ParamsIllegal
+            case .paramsMissing: 
+                code = .invalidParameter_ParamsMissing
+            case .permissionDenied: 
+                code = .invalidParameter_PermissionDenied
+            case .qcloudUinInvalid: 
+                code = .invalidParameter_QcloudUinInvalid
+            case .realNameUser: 
+                code = .invalidParameter_RealNameUser
+            case .recordIdInvalid: 
+                code = .invalidParameter_RecordIdInvalid
+            case .recordLineInvalid: 
+                code = .invalidParameter_RecordLineInvalid
+            case .recordTypeInvalid: 
+                code = .invalidParameter_RecordTypeInvalid
+            case .recordValueInvalid: 
+                code = .invalidParameter_RecordValueInvalid
+            case .recordValueLengthInvalid: 
+                code = .invalidParameter_RecordValueLengthInvalid
+            case .recordsEmpty: 
+                code = .invalidParameter_RecordsEmpty
+            case .remarkLengthExceeded: 
+                code = .invalidParameter_RemarkLengthExceeded
+            case .remarkTooLong: 
+                code = .invalidParameter_RemarkTooLong
+            case .requestIpLimited: 
+                code = .invalidParameter_RequestIpLimited
+            case .resultMoreThan500: 
+                code = .invalidParameter_ResultMoreThan500
+            case .sharedUsersUnrealName: 
+                code = .invalidParameter_SharedUsersUnrealName
+            case .statusCodeInvalid: 
+                code = .invalidParameter_StatusCodeInvalid
+            case .subdomainInvalid: 
+                code = .invalidParameter_SubdomainInvalid
+            case .taskNotCompleted: 
+                code = .invalidParameter_TaskNotCompleted
+            case .timeSpanInvalid: 
+                code = .invalidParameter_TimeSpanInvalid
+            case .timestampExpired: 
+                code = .invalidParameter_TimestampExpired
+            case .tooManyInvalidDomains: 
+                code = .invalidParameter_TooManyInvalidDomains
+            case .toolsDomainInvalid: 
+                code = .invalidParameter_ToolsDomainInvalid
+            case .unLockCodeExpired: 
+                code = .invalidParameter_UnLockCodeExpired
+            case .unLockCodeInvalid: 
+                code = .invalidParameter_UnLockCodeInvalid
+            case .unrealNameUser: 
+                code = .invalidParameter_UnrealNameUser
+            case .urlValueIllegal: 
+                code = .invalidParameter_UrlValueIllegal
+            case .userAlreadyLocked: 
+                code = .invalidParameter_UserAlreadyLocked
+            case .userAreaInvalid: 
+                code = .invalidParameter_UserAreaInvalid
+            case .userNotExists: 
+                code = .invalidParameter_UserNotExists
+            case .uuidInvalid: 
+                code = .invalidParameter_UuidInvalid
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCDnspodError(code, context: self.context)
         }
-        return TCDnspodError(code, context: self.context)
-    }
-}
-
-extension TCDnspodError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

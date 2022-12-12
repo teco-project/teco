@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCLiveError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCLiveErrorType {
         enum Code: String {
             case cdnLogEmpty = "ResourceNotFound.CdnLogEmpty"
             case cdnThemeEmpty = "ResourceNotFound.CdnThemeEmpty"
@@ -47,8 +47,6 @@ extension TCLiveError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -156,37 +154,50 @@ extension TCLiveError {
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-    }
-}
-
-extension TCLiveError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCLiveError.ResourceNotFound, rhs: TCLiveError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCLiveError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCLiveError.ResourceNotFound {
-    /// - Returns: ``TCLiveError`` that holds the same error and context.
-    public func toLiveError() -> TCLiveError {
-        guard let code = TCLiveError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asLiveError() -> TCLiveError {
+            let code: TCLiveError.Code
+            switch self.error {
+            case .cdnLogEmpty: 
+                code = .resourceNotFound_CdnLogEmpty
+            case .cdnThemeEmpty: 
+                code = .resourceNotFound_CdnThemeEmpty
+            case .channelNotExist: 
+                code = .resourceNotFound_ChannelNotExist
+            case .crtDateNotFound: 
+                code = .resourceNotFound_CrtDateNotFound
+            case .crtDomainNotFound: 
+                code = .resourceNotFound_CrtDomainNotFound
+            case .domainNoRecord: 
+                code = .resourceNotFound_DomainNoRecord
+            case .domainNotExist: 
+                code = .resourceNotFound_DomainNotExist
+            case .forbidService: 
+                code = .resourceNotFound_ForbidService
+            case .freezeService: 
+                code = .resourceNotFound_FreezeService
+            case .invalidUser: 
+                code = .resourceNotFound_InvalidUser
+            case .playDomainNoRecord: 
+                code = .resourceNotFound_PlayDomainNoRecord
+            case .pushDomainNoRecord: 
+                code = .resourceNotFound_PushDomainNoRecord
+            case .stopService: 
+                code = .resourceNotFound_StopService
+            case .taskId: 
+                code = .resourceNotFound_TaskId
+            case .userDisableService: 
+                code = .resourceNotFound_UserDisableService
+            case .userNotExist: 
+                code = .resourceNotFound_UserNotExist
+            case .userNotFount: 
+                code = .resourceNotFound_UserNotFount
+            case .watermarkNotExist: 
+                code = .resourceNotFound_WatermarkNotExist
+            case .other: 
+                code = .resourceNotFound
+            }
+            return TCLiveError(code, context: self.context)
         }
-        return TCLiveError(code, context: self.context)
-    }
-}
-
-extension TCLiveError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEcmError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCEcmErrorType {
         enum Code: String {
             case componentError = "InternalError.ComponentError"
             case failQueryResource = "InternalError.FailQueryResource"
@@ -32,8 +32,6 @@ extension TCEcmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCEcmError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCEcmError.InternalError: Equatable {
-    public static func == (lhs: TCEcmError.InternalError, rhs: TCEcmError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEcmError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEcmError.InternalError {
-    /// - Returns: ``TCEcmError`` that holds the same error and context.
-    public func toEcmError() -> TCEcmError {
-        guard let code = TCEcmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEcmError() -> TCEcmError {
+            let code: TCEcmError.Code
+            switch self.error {
+            case .componentError: 
+                code = .internalError_ComponentError
+            case .failQueryResource: 
+                code = .internalError_FailQueryResource
+            case .resourceOpFailed: 
+                code = .internalError_ResourceOpFailed
+            case .other: 
+                code = .internalError
+            }
+            return TCEcmError(code, context: self.context)
         }
-        return TCEcmError(code, context: self.context)
-    }
-}
-
-extension TCEcmError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

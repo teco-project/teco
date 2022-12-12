@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEiamError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCEiamErrorType {
         enum Code: String {
             case itemsNumberLimitExceeded = "LimitExceeded.ItemsNumberLimitExceeded"
             case parameterLengthLimitExceeded = "LimitExceeded.ParameterLengthLimitExceeded"
@@ -31,8 +31,6 @@ extension TCEiamError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCEiamError {
         public static var secondaryNodeCountLimitExceeded: LimitExceeded {
             LimitExceeded(.secondaryNodeCountLimitExceeded)
         }
-    }
-}
-
-extension TCEiamError.LimitExceeded: Equatable {
-    public static func == (lhs: TCEiamError.LimitExceeded, rhs: TCEiamError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEiamError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEiamError.LimitExceeded {
-    /// - Returns: ``TCEiamError`` that holds the same error and context.
-    public func toEiamError() -> TCEiamError {
-        guard let code = TCEiamError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEiamError() -> TCEiamError {
+            let code: TCEiamError.Code
+            switch self.error {
+            case .itemsNumberLimitExceeded: 
+                code = .limitExceeded_ItemsNumberLimitExceeded
+            case .parameterLengthLimitExceeded: 
+                code = .limitExceeded_ParameterLengthLimitExceeded
+            case .secondaryNodeCountLimitExceeded: 
+                code = .limitExceeded_SecondaryNodeCountLimitExceeded
+            }
+            return TCEiamError(code, context: self.context)
         }
-        return TCEiamError(code, context: self.context)
-    }
-}
-
-extension TCEiamError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

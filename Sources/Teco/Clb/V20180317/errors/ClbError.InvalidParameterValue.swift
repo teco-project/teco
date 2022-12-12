@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCClbError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCClbErrorType {
         enum Code: String {
             case duplicate = "InvalidParameterValue.Duplicate"
             case invalidFilter = "InvalidParameterValue.InvalidFilter"
@@ -33,8 +33,6 @@ extension TCClbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,22 @@ extension TCClbError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCClbError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCClbError.InvalidParameterValue, rhs: TCClbError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCClbError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCClbError.InvalidParameterValue {
-    /// - Returns: ``TCClbError`` that holds the same error and context.
-    public func toClbError() -> TCClbError {
-        guard let code = TCClbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asClbError() -> TCClbError {
+            let code: TCClbError.Code
+            switch self.error {
+            case .duplicate: 
+                code = .invalidParameterValue_Duplicate
+            case .invalidFilter: 
+                code = .invalidParameterValue_InvalidFilter
+            case .length: 
+                code = .invalidParameterValue_Length
+            case .range: 
+                code = .invalidParameterValue_Range
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCClbError(code, context: self.context)
         }
-        return TCClbError(code, context: self.context)
-    }
-}
-
-extension TCClbError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

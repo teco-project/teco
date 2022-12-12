@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCClsError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCClsErrorType {
         enum Code: String {
             case config = "LimitExceeded.Config"
             case export = "LimitExceeded.Export"
@@ -43,8 +43,6 @@ extension TCClsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -134,37 +132,42 @@ extension TCClsError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCClsError.LimitExceeded: Equatable {
-    public static func == (lhs: TCClsError.LimitExceeded, rhs: TCClsError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCClsError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCClsError.LimitExceeded {
-    /// - Returns: ``TCClsError`` that holds the same error and context.
-    public func toClsError() -> TCClsError {
-        guard let code = TCClsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asClsError() -> TCClsError {
+            let code: TCClsError.Code
+            switch self.error {
+            case .config: 
+                code = .limitExceeded_Config
+            case .export: 
+                code = .limitExceeded_Export
+            case .logSearch: 
+                code = .limitExceeded_LogSearch
+            case .logSize: 
+                code = .limitExceeded_LogSize
+            case .logset: 
+                code = .limitExceeded_Logset
+            case .machineGroup: 
+                code = .limitExceeded_MachineGroup
+            case .machineGroupIp: 
+                code = .limitExceeded_MachineGroupIp
+            case .machineGroupIpLabels: 
+                code = .limitExceeded_MachineGroupIpLabels
+            case .partition: 
+                code = .limitExceeded_Partition
+            case .searchResources: 
+                code = .limitExceeded_SearchResources
+            case .searchResultTooLarge: 
+                code = .limitExceeded_SearchResultTooLarge
+            case .shipper: 
+                code = .limitExceeded_Shipper
+            case .tag: 
+                code = .limitExceeded_Tag
+            case .topic: 
+                code = .limitExceeded_Topic
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCClsError(code, context: self.context)
         }
-        return TCClsError(code, context: self.context)
-    }
-}
-
-extension TCClsError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

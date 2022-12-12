@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEiamError {
-    public struct OperationDenied: TCErrorType {
+    public struct OperationDenied: TCEiamErrorType {
         enum Code: String {
             case actionPermissionDeny = "OperationDenied.ActionPermissionDeny"
         }
@@ -29,8 +29,6 @@ extension TCEiamError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -50,37 +48,14 @@ extension TCEiamError {
         public static var actionPermissionDeny: OperationDenied {
             OperationDenied(.actionPermissionDeny)
         }
-    }
-}
-
-extension TCEiamError.OperationDenied: Equatable {
-    public static func == (lhs: TCEiamError.OperationDenied, rhs: TCEiamError.OperationDenied) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEiamError.OperationDenied: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEiamError.OperationDenied {
-    /// - Returns: ``TCEiamError`` that holds the same error and context.
-    public func toEiamError() -> TCEiamError {
-        guard let code = TCEiamError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEiamError() -> TCEiamError {
+            let code: TCEiamError.Code
+            switch self.error {
+            case .actionPermissionDeny: 
+                code = .operationDenied_ActionPermissionDeny
+            }
+            return TCEiamError(code, context: self.context)
         }
-        return TCEiamError(code, context: self.context)
-    }
-}
-
-extension TCEiamError.OperationDenied {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

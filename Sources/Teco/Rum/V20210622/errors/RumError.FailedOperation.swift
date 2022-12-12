@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCRumError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCRumErrorType {
         enum Code: String {
             case chargeNoBalance = "FailedOperation.ChargeNoBalance"
             case chargeNoPayRight = "FailedOperation.ChargeNoPayRight"
@@ -35,8 +35,6 @@ extension TCRumError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -84,37 +82,26 @@ extension TCRumError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCRumError.FailedOperation: Equatable {
-    public static func == (lhs: TCRumError.FailedOperation, rhs: TCRumError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCRumError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCRumError.FailedOperation {
-    /// - Returns: ``TCRumError`` that holds the same error and context.
-    public func toRumError() -> TCRumError {
-        guard let code = TCRumError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asRumError() -> TCRumError {
+            let code: TCRumError.Code
+            switch self.error {
+            case .chargeNoBalance: 
+                code = .failedOperation_ChargeNoBalance
+            case .chargeNoPayRight: 
+                code = .failedOperation_ChargeNoPayRight
+            case .chargeParamInvalid: 
+                code = .failedOperation_ChargeParamInvalid
+            case .clsCallFail: 
+                code = .failedOperation_ClsCallFail
+            case .dataBaseException: 
+                code = .failedOperation_DataBaseException
+            case .infrastructureError: 
+                code = .failedOperation_InfrastructureError
+            case .other: 
+                code = .failedOperation
+            }
+            return TCRumError(code, context: self.context)
         }
-        return TCRumError(code, context: self.context)
-    }
-}
-
-extension TCRumError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

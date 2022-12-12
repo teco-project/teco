@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCPrivatednsError {
-    public struct ResourceInsufficient: TCErrorType {
+    public struct ResourceInsufficient: TCPrivatednsErrorType {
         enum Code: String {
             case balance = "ResourceInsufficient.Balance"
             case other = "ResourceInsufficient"
@@ -30,8 +30,6 @@ extension TCPrivatednsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -53,37 +51,16 @@ extension TCPrivatednsError {
         public static var other: ResourceInsufficient {
             ResourceInsufficient(.other)
         }
-    }
-}
-
-extension TCPrivatednsError.ResourceInsufficient: Equatable {
-    public static func == (lhs: TCPrivatednsError.ResourceInsufficient, rhs: TCPrivatednsError.ResourceInsufficient) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCPrivatednsError.ResourceInsufficient: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCPrivatednsError.ResourceInsufficient {
-    /// - Returns: ``TCPrivatednsError`` that holds the same error and context.
-    public func toPrivatednsError() -> TCPrivatednsError {
-        guard let code = TCPrivatednsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asPrivatednsError() -> TCPrivatednsError {
+            let code: TCPrivatednsError.Code
+            switch self.error {
+            case .balance: 
+                code = .resourceInsufficient_Balance
+            case .other: 
+                code = .resourceInsufficient
+            }
+            return TCPrivatednsError(code, context: self.context)
         }
-        return TCPrivatednsError(code, context: self.context)
-    }
-}
-
-extension TCPrivatednsError.ResourceInsufficient {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

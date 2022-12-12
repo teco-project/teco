@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCRedisError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCRedisErrorType {
         enum Code: String {
             case backupNotExists = "InvalidParameterValue.BackupNotExists"
             case baseNetWorkAccessDeny = "InvalidParameterValue.BaseNetWorkAccessDeny"
@@ -48,8 +48,6 @@ extension TCRedisError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -164,37 +162,52 @@ extension TCRedisError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCRedisError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCRedisError.InvalidParameterValue, rhs: TCRedisError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCRedisError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCRedisError.InvalidParameterValue {
-    /// - Returns: ``TCRedisError`` that holds the same error and context.
-    public func toRedisError() -> TCRedisError {
-        guard let code = TCRedisError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asRedisError() -> TCRedisError {
+            let code: TCRedisError.Code
+            switch self.error {
+            case .backupNotExists: 
+                code = .invalidParameterValue_BackupNotExists
+            case .baseNetWorkAccessDeny: 
+                code = .invalidParameterValue_BaseNetWorkAccessDeny
+            case .checkNotPass: 
+                code = .invalidParameterValue_CheckNotPass
+            case .instanceNameRuleError: 
+                code = .invalidParameterValue_InstanceNameRuleError
+            case .invalidInstanceTypeId: 
+                code = .invalidParameterValue_InvalidInstanceTypeId
+            case .invalidSubnetId: 
+                code = .invalidParameterValue_InvalidSubnetId
+            case .memSizeNotInRange: 
+                code = .invalidParameterValue_MemSizeNotInRange
+            case .notRepeatBind: 
+                code = .invalidParameterValue_NotRepeatBind
+            case .passwordEmpty: 
+                code = .invalidParameterValue_PasswordEmpty
+            case .passwordError: 
+                code = .invalidParameterValue_PasswordError
+            case .passwordFreeDenied: 
+                code = .invalidParameterValue_PasswordFreeDenied
+            case .passwordRuleError: 
+                code = .invalidParameterValue_PasswordRuleError
+            case .reduceCapacityNotAllowed: 
+                code = .invalidParameterValue_ReduceCapacityNotAllowed
+            case .replicationGroupNotExists: 
+                code = .invalidParameterValue_ReplicationGroupNotExists
+            case .securityGroupIdsNotExists: 
+                code = .invalidParameterValue_SecurityGroupIdsNotExists
+            case .specNotExist: 
+                code = .invalidParameterValue_SpecNotExist
+            case .unSupportedType: 
+                code = .invalidParameterValue_UnSupportedType
+            case .unVpcIdNotExists: 
+                code = .invalidParameterValue_UnVpcIdNotExists
+            case .weekDaysIsInvalid: 
+                code = .invalidParameterValue_WeekDaysIsInvalid
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCRedisError(code, context: self.context)
         }
-        return TCRedisError(code, context: self.context)
-    }
-}
-
-extension TCRedisError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

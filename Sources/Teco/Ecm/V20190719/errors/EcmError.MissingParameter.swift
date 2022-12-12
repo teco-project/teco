@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEcmError {
-    public struct MissingParameter: TCErrorType {
+    public struct MissingParameter: TCEcmErrorType {
         enum Code: String {
             case missingAssociateEntity = "MissingParameter.MissingAssociateEntity"
             case missingBaseConfigParameter = "MissingParameter.MissingBaseConfigParameter"
@@ -39,8 +39,6 @@ extension TCEcmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -108,37 +106,34 @@ extension TCEcmError {
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-    }
-}
-
-extension TCEcmError.MissingParameter: Equatable {
-    public static func == (lhs: TCEcmError.MissingParameter, rhs: TCEcmError.MissingParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEcmError.MissingParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEcmError.MissingParameter {
-    /// - Returns: ``TCEcmError`` that holds the same error and context.
-    public func toEcmError() -> TCEcmError {
-        guard let code = TCEcmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEcmError() -> TCEcmError {
+            let code: TCEcmError.Code
+            switch self.error {
+            case .missingAssociateEntity: 
+                code = .missingParameter_MissingAssociateEntity
+            case .missingBaseConfigParameter: 
+                code = .missingParameter_MissingBaseConfigParameter
+            case .missingImageParameter: 
+                code = .missingParameter_MissingImageParameter
+            case .missingInstanceTypeConfigParameter: 
+                code = .missingParameter_MissingInstanceTypeConfigParameter
+            case .missingInstancesParameter: 
+                code = .missingParameter_MissingInstancesParameter
+            case .missingModuleParameter: 
+                code = .missingParameter_MissingModuleParameter
+            case .missingNetworkInterfaceParameter: 
+                code = .missingParameter_MissingNetworkInterfaceParameter
+            case .missingNodeParameter: 
+                code = .missingParameter_MissingNodeParameter
+            case .missingOverViewParameter: 
+                code = .missingParameter_MissingOverViewParameter
+            case .missingPrivateIpAddress: 
+                code = .missingParameter_MissingPrivateIpAddress
+            case .other: 
+                code = .missingParameter
+            }
+            return TCEcmError(code, context: self.context)
         }
-        return TCEcmError(code, context: self.context)
-    }
-}
-
-extension TCEcmError.MissingParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

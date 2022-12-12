@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCOrganizationError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCOrganizationErrorType {
         enum Code: String {
             case addDelegatePayerNotAllow = "UnsupportedOperation.AddDelegatePayerNotAllow"
             case addDiscountInheritNotAllow = "UnsupportedOperation.AddDiscountInheritNotAllow"
@@ -44,8 +44,6 @@ extension TCOrganizationError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -137,37 +135,44 @@ extension TCOrganizationError {
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-    }
-}
-
-extension TCOrganizationError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCOrganizationError.UnsupportedOperation, rhs: TCOrganizationError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCOrganizationError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCOrganizationError.UnsupportedOperation {
-    /// - Returns: ``TCOrganizationError`` that holds the same error and context.
-    public func toOrganizationError() -> TCOrganizationError {
-        guard let code = TCOrganizationError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asOrganizationError() -> TCOrganizationError {
+            let code: TCOrganizationError.Code
+            switch self.error {
+            case .addDelegatePayerNotAllow: 
+                code = .unsupportedOperation_AddDelegatePayerNotAllow
+            case .addDiscountInheritNotAllow: 
+                code = .unsupportedOperation_AddDiscountInheritNotAllow
+            case .createMemberNotAllowDelete: 
+                code = .unsupportedOperation_CreateMemberNotAllowDelete
+            case .inconsistentUserTypes: 
+                code = .unsupportedOperation_InconsistentUserTypes
+            case .managementSystemError: 
+                code = .unsupportedOperation_ManagementSystemError
+            case .memberAccountArrears: 
+                code = .unsupportedOperation_MemberAccountArrears
+            case .memberDiscountInheritExisted: 
+                code = .unsupportedOperation_MemberDiscountInheritExisted
+            case .memberExistAccountLevelDiscountInherit: 
+                code = .unsupportedOperation_MemberExistAccountLevelDiscountInherit
+            case .memberExistOperateProcessNotAllowDelete: 
+                code = .unsupportedOperation_MemberExistOperateProcessNotAllowDelete
+            case .memberExistServiceNotAllowDelete: 
+                code = .unsupportedOperation_MemberExistServiceNotAllowDelete
+            case .memberIsAgent: 
+                code = .unsupportedOperation_MemberIsAgent
+            case .orderInProgressExisted: 
+                code = .unsupportedOperation_OrderInProgressExisted
+            case .ownerDiscountInheritExisted: 
+                code = .unsupportedOperation_OwnerDiscountInheritExisted
+            case .payerArrearsAndNoCreditAccount: 
+                code = .unsupportedOperation_PayerArrearsAndNoCreditAccount
+            case .payerExistAccountLevelDiscountInherit: 
+                code = .unsupportedOperation_PayerExistAccountLevelDiscountInherit
+            case .other: 
+                code = .unsupportedOperation
+            }
+            return TCOrganizationError(code, context: self.context)
         }
-        return TCOrganizationError(code, context: self.context)
-    }
-}
-
-extension TCOrganizationError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

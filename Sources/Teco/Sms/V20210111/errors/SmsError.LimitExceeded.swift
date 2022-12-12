@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSmsError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCSmsErrorType {
         enum Code: String {
             case appCountryOrRegionDailyLimit = "LimitExceeded.AppCountryOrRegionDailyLimit"
             case appCountryOrRegionInBlacklist = "LimitExceeded.AppCountryOrRegionInBlacklist"
@@ -40,8 +40,6 @@ extension TCSmsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -114,37 +112,36 @@ extension TCSmsError {
         public static var phoneNumberThirtySecondLimit: LimitExceeded {
             LimitExceeded(.phoneNumberThirtySecondLimit)
         }
-    }
-}
-
-extension TCSmsError.LimitExceeded: Equatable {
-    public static func == (lhs: TCSmsError.LimitExceeded, rhs: TCSmsError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSmsError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSmsError.LimitExceeded {
-    /// - Returns: ``TCSmsError`` that holds the same error and context.
-    public func toSmsError() -> TCSmsError {
-        guard let code = TCSmsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSmsError() -> TCSmsError {
+            let code: TCSmsError.Code
+            switch self.error {
+            case .appCountryOrRegionDailyLimit: 
+                code = .limitExceeded_AppCountryOrRegionDailyLimit
+            case .appCountryOrRegionInBlacklist: 
+                code = .limitExceeded_AppCountryOrRegionInBlacklist
+            case .appDailyLimit: 
+                code = .limitExceeded_AppDailyLimit
+            case .appGlobalDailyLimit: 
+                code = .limitExceeded_AppGlobalDailyLimit
+            case .appMainlandChinaDailyLimit: 
+                code = .limitExceeded_AppMainlandChinaDailyLimit
+            case .dailyLimit: 
+                code = .limitExceeded_DailyLimit
+            case .deliveryFrequencyLimit: 
+                code = .limitExceeded_DeliveryFrequencyLimit
+            case .phoneNumberCountLimit: 
+                code = .limitExceeded_PhoneNumberCountLimit
+            case .phoneNumberDailyLimit: 
+                code = .limitExceeded_PhoneNumberDailyLimit
+            case .phoneNumberOneHourLimit: 
+                code = .limitExceeded_PhoneNumberOneHourLimit
+            case .phoneNumberSameContentDailyLimit: 
+                code = .limitExceeded_PhoneNumberSameContentDailyLimit
+            case .phoneNumberThirtySecondLimit: 
+                code = .limitExceeded_PhoneNumberThirtySecondLimit
+            }
+            return TCSmsError(code, context: self.context)
         }
-        return TCSmsError(code, context: self.context)
-    }
-}
-
-extension TCSmsError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIaiError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCIaiErrorType {
         enum Code: String {
             case unknowMethod = "UnsupportedOperation.UnknowMethod"
         }
@@ -29,8 +29,6 @@ extension TCIaiError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCIaiError {
         public static var unknowMethod: UnsupportedOperation {
             UnsupportedOperation(.unknowMethod)
         }
-    }
-}
-
-extension TCIaiError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCIaiError.UnsupportedOperation, rhs: TCIaiError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIaiError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIaiError.UnsupportedOperation {
-    /// - Returns: ``TCIaiError`` that holds the same error and context.
-    public func toIaiError() -> TCIaiError {
-        guard let code = TCIaiError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIaiError() -> TCIaiError {
+            let code: TCIaiError.Code
+            switch self.error {
+            case .unknowMethod: 
+                code = .unsupportedOperation_UnknowMethod
+            }
+            return TCIaiError(code, context: self.context)
         }
-        return TCIaiError(code, context: self.context)
-    }
-}
-
-extension TCIaiError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

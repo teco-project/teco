@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCLighthouseError {
-    public struct ResourcesSoldOut: TCErrorType {
+    public struct ResourcesSoldOut: TCLighthouseErrorType {
         enum Code: String {
             case purchaseSourceHasNoBundleConfigs = "ResourcesSoldOut.PurchaseSourceHasNoBundleConfigs"
             case zonesHasNoBundleConfigs = "ResourcesSoldOut.ZonesHasNoBundleConfigs"
@@ -30,8 +30,6 @@ extension TCLighthouseError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -58,37 +56,16 @@ extension TCLighthouseError {
         public static var zonesHasNoBundleConfigs: ResourcesSoldOut {
             ResourcesSoldOut(.zonesHasNoBundleConfigs)
         }
-    }
-}
-
-extension TCLighthouseError.ResourcesSoldOut: Equatable {
-    public static func == (lhs: TCLighthouseError.ResourcesSoldOut, rhs: TCLighthouseError.ResourcesSoldOut) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCLighthouseError.ResourcesSoldOut: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCLighthouseError.ResourcesSoldOut {
-    /// - Returns: ``TCLighthouseError`` that holds the same error and context.
-    public func toLighthouseError() -> TCLighthouseError {
-        guard let code = TCLighthouseError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asLighthouseError() -> TCLighthouseError {
+            let code: TCLighthouseError.Code
+            switch self.error {
+            case .purchaseSourceHasNoBundleConfigs: 
+                code = .resourcesSoldOut_PurchaseSourceHasNoBundleConfigs
+            case .zonesHasNoBundleConfigs: 
+                code = .resourcesSoldOut_ZonesHasNoBundleConfigs
+            }
+            return TCLighthouseError(code, context: self.context)
         }
-        return TCLighthouseError(code, context: self.context)
-    }
-}
-
-extension TCLighthouseError.ResourcesSoldOut {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

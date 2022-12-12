@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDlcError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCDlcErrorType {
         enum Code: String {
             case duplicateGroupName = "InvalidParameter.DuplicateGroupName"
             case duplicateUserName = "InvalidParameter.DuplicateUserName"
@@ -51,8 +51,6 @@ extension TCDlcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -189,37 +187,58 @@ extension TCDlcError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCDlcError.InvalidParameter: Equatable {
-    public static func == (lhs: TCDlcError.InvalidParameter, rhs: TCDlcError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDlcError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDlcError.InvalidParameter {
-    /// - Returns: ``TCDlcError`` that holds the same error and context.
-    public func toDlcError() -> TCDlcError {
-        guard let code = TCDlcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDlcError() -> TCDlcError {
+            let code: TCDlcError.Code
+            switch self.error {
+            case .duplicateGroupName: 
+                code = .invalidParameter_DuplicateGroupName
+            case .duplicateUserName: 
+                code = .invalidParameter_DuplicateUserName
+            case .invalidAccessPolicy: 
+                code = .invalidParameter_InvalidAccessPolicy
+            case .invalidDataEngineName: 
+                code = .invalidParameter_InvalidDataEngineName
+            case .invalidDescription: 
+                code = .invalidParameter_InvalidDescription
+            case .invalidFailureTolerance: 
+                code = .invalidParameter_InvalidFailureTolerance
+            case .invalidFilterKey: 
+                code = .invalidParameter_InvalidFilterKey
+            case .invalidGroupId: 
+                code = .invalidParameter_InvalidGroupId
+            case .invalidOffset: 
+                code = .invalidParameter_InvalidOffset
+            case .invalidRoleArn: 
+                code = .invalidParameter_InvalidRoleArn
+            case .invalidSQL: 
+                code = .invalidParameter_InvalidSQL
+            case .invalidSQLNum: 
+                code = .invalidParameter_InvalidSQLNum
+            case .invalidSortByType: 
+                code = .invalidParameter_InvalidSortByType
+            case .invalidSparkAppParam: 
+                code = .invalidParameter_InvalidSparkAppParam
+            case .invalidStoreLocation: 
+                code = .invalidParameter_InvalidStoreLocation
+            case .invalidTaskId: 
+                code = .invalidParameter_InvalidTaskId
+            case .invalidTaskType: 
+                code = .invalidParameter_InvalidTaskType
+            case .invalidUserAlias: 
+                code = .invalidParameter_InvalidUserAlias
+            case .invalidUserName: 
+                code = .invalidParameter_InvalidUserName
+            case .invalidUserType: 
+                code = .invalidParameter_InvalidUserType
+            case .invalidWorkGroupName: 
+                code = .invalidParameter_InvalidWorkGroupName
+            case .taskAlreadyFinished: 
+                code = .invalidParameter_TaskAlreadyFinished
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCDlcError(code, context: self.context)
         }
-        return TCDlcError(code, context: self.context)
-    }
-}
-
-extension TCDlcError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

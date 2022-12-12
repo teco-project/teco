@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCmqError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCCmqErrorType {
         enum Code: String {
             case noTaskId = "InvalidParameterValue.NoTaskId"
         }
@@ -29,8 +29,6 @@ extension TCCmqError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCCmqError {
         public static var noTaskId: InvalidParameterValue {
             InvalidParameterValue(.noTaskId)
         }
-    }
-}
-
-extension TCCmqError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCCmqError.InvalidParameterValue, rhs: TCCmqError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCmqError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCmqError.InvalidParameterValue {
-    /// - Returns: ``TCCmqError`` that holds the same error and context.
-    public func toCmqError() -> TCCmqError {
-        guard let code = TCCmqError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCmqError() -> TCCmqError {
+            let code: TCCmqError.Code
+            switch self.error {
+            case .noTaskId: 
+                code = .invalidParameterValue_NoTaskId
+            }
+            return TCCmqError(code, context: self.context)
         }
-        return TCCmqError(code, context: self.context)
-    }
-}
-
-extension TCCmqError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

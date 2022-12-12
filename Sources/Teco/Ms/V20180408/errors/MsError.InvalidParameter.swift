@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMsError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCMsErrorType {
         enum Code: String {
             case missingServiceInfo = "InvalidParameter.MissingServiceInfo"
             case parameterError = "InvalidParameter.ParameterError"
@@ -32,8 +32,6 @@ extension TCMsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCMsError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCMsError.InvalidParameter: Equatable {
-    public static func == (lhs: TCMsError.InvalidParameter, rhs: TCMsError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMsError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMsError.InvalidParameter {
-    /// - Returns: ``TCMsError`` that holds the same error and context.
-    public func toMsError() -> TCMsError {
-        guard let code = TCMsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMsError() -> TCMsError {
+            let code: TCMsError.Code
+            switch self.error {
+            case .missingServiceInfo: 
+                code = .invalidParameter_MissingServiceInfo
+            case .parameterError: 
+                code = .invalidParameter_ParameterError
+            case .planIdNotFound: 
+                code = .invalidParameter_PlanIdNotFound
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCMsError(code, context: self.context)
         }
-        return TCMsError(code, context: self.context)
-    }
-}
-
-extension TCMsError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

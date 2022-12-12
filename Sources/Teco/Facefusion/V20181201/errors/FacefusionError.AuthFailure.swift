@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCFacefusionError {
-    public struct AuthFailure: TCErrorType {
+    public struct AuthFailure: TCFacefusionErrorType {
         enum Code: String {
             case invalidAuthorization = "AuthFailure.InvalidAuthorization"
         }
@@ -29,8 +29,6 @@ extension TCFacefusionError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCFacefusionError {
         public static var invalidAuthorization: AuthFailure {
             AuthFailure(.invalidAuthorization)
         }
-    }
-}
-
-extension TCFacefusionError.AuthFailure: Equatable {
-    public static func == (lhs: TCFacefusionError.AuthFailure, rhs: TCFacefusionError.AuthFailure) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCFacefusionError.AuthFailure: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCFacefusionError.AuthFailure {
-    /// - Returns: ``TCFacefusionError`` that holds the same error and context.
-    public func toFacefusionError() -> TCFacefusionError {
-        guard let code = TCFacefusionError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asFacefusionError() -> TCFacefusionError {
+            let code: TCFacefusionError.Code
+            switch self.error {
+            case .invalidAuthorization: 
+                code = .authFailure_InvalidAuthorization
+            }
+            return TCFacefusionError(code, context: self.context)
         }
-        return TCFacefusionError(code, context: self.context)
-    }
-}
-
-extension TCFacefusionError.AuthFailure {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

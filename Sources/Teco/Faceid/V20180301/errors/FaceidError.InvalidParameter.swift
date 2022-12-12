@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCFaceidError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCFaceidErrorType {
         enum Code: String {
             case ruleId = "InvalidParameter.RuleId"
             case unsupportEncryptField = "InvalidParameter.UnsupportEncryptField"
@@ -31,8 +31,6 @@ extension TCFaceidError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCFaceidError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCFaceidError.InvalidParameter: Equatable {
-    public static func == (lhs: TCFaceidError.InvalidParameter, rhs: TCFaceidError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCFaceidError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCFaceidError.InvalidParameter {
-    /// - Returns: ``TCFaceidError`` that holds the same error and context.
-    public func toFaceidError() -> TCFaceidError {
-        guard let code = TCFaceidError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asFaceidError() -> TCFaceidError {
+            let code: TCFaceidError.Code
+            switch self.error {
+            case .ruleId: 
+                code = .invalidParameter_RuleId
+            case .unsupportEncryptField: 
+                code = .invalidParameter_UnsupportEncryptField
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCFaceidError(code, context: self.context)
         }
-        return TCFaceidError(code, context: self.context)
-    }
-}
-
-extension TCFaceidError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

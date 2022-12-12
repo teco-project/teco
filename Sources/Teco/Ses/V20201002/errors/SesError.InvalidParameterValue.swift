@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSesError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCSesErrorType {
         enum Code: String {
             case attachContentIsWrong = "InvalidParameterValue.AttachContentIsWrong"
             case beginTimeBeforeNow = "InvalidParameterValue.BeginTimeBeforeNow"
@@ -57,8 +57,6 @@ extension TCSesError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -226,37 +224,70 @@ extension TCSesError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCSesError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCSesError.InvalidParameterValue, rhs: TCSesError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSesError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSesError.InvalidParameterValue {
-    /// - Returns: ``TCSesError`` that holds the same error and context.
-    public func toSesError() -> TCSesError {
-        guard let code = TCSesError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSesError() -> TCSesError {
+            let code: TCSesError.Code
+            switch self.error {
+            case .attachContentIsWrong: 
+                code = .invalidParameterValue_AttachContentIsWrong
+            case .beginTimeBeforeNow: 
+                code = .invalidParameterValue_BeginTimeBeforeNow
+            case .createdByOther: 
+                code = .invalidParameterValue_CreatedByOther
+            case .emailAddressIsNULL: 
+                code = .invalidParameterValue_EmailAddressIsNULL
+            case .emailContentIsWrong: 
+                code = .invalidParameterValue_EmailContentIsWrong
+            case .illegalEmailAddress: 
+                code = .invalidParameterValue_IllegalEmailAddress
+            case .illegalSenderName: 
+                code = .invalidParameterValue_IllegalSenderName
+            case .inValidTemplateData: 
+                code = .invalidParameterValue_InValidTemplateData
+            case .invalidEmailIdentity: 
+                code = .invalidParameterValue_InvalidEmailIdentity
+            case .noSuchSender: 
+                code = .invalidParameterValue_NoSuchSender
+            case .notExistDomain: 
+                code = .invalidParameterValue_NotExistDomain
+            case .receiverDescIllegal: 
+                code = .invalidParameterValue_ReceiverDescIllegal
+            case .receiverEmailInvalid: 
+                code = .invalidParameterValue_ReceiverEmailInvalid
+            case .receiverNameIllegal: 
+                code = .invalidParameterValue_ReceiverNameIllegal
+            case .repeatCreation: 
+                code = .invalidParameterValue_RepeatCreation
+            case .repeatEmailAddress: 
+                code = .invalidParameterValue_RepeatEmailAddress
+            case .repeatReceiverName: 
+                code = .invalidParameterValue_RepeatReceiverName
+            case .subjectLengthError: 
+                code = .invalidParameterValue_SubjectLengthError
+            case .templateContentIsNULL: 
+                code = .invalidParameterValue_TemplateContentIsNULL
+            case .templateContentIsWrong: 
+                code = .invalidParameterValue_TemplateContentIsWrong
+            case .templateDataError: 
+                code = .invalidParameterValue_TemplateDataError
+            case .templateDataInconsistent: 
+                code = .invalidParameterValue_TemplateDataInconsistent
+            case .templateDataLenLimit: 
+                code = .invalidParameterValue_TemplateDataLenLimit
+            case .templateNameIllegal: 
+                code = .invalidParameterValue_TemplateNameIllegal
+            case .templateNameIsNULL: 
+                code = .invalidParameterValue_TemplateNameIsNULL
+            case .templateNotExist: 
+                code = .invalidParameterValue_TemplateNotExist
+            case .templateNotMatchData: 
+                code = .invalidParameterValue_TemplateNotMatchData
+            case .wrongDate: 
+                code = .invalidParameterValue_WrongDate
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCSesError(code, context: self.context)
         }
-        return TCSesError(code, context: self.context)
-    }
-}
-
-extension TCSesError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCHcmError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCHcmErrorType {
         enum Code: String {
             case engineRequestFailed = "InternalError.EngineRequestFailed"
             case engineResultError = "InternalError.EngineResultError"
@@ -32,8 +32,6 @@ extension TCHcmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -70,37 +68,20 @@ extension TCHcmError {
         public static var serverInternalError: InternalError {
             InternalError(.serverInternalError)
         }
-    }
-}
-
-extension TCHcmError.InternalError: Equatable {
-    public static func == (lhs: TCHcmError.InternalError, rhs: TCHcmError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCHcmError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCHcmError.InternalError {
-    /// - Returns: ``TCHcmError`` that holds the same error and context.
-    public func toHcmError() -> TCHcmError {
-        guard let code = TCHcmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asHcmError() -> TCHcmError {
+            let code: TCHcmError.Code
+            switch self.error {
+            case .engineRequestFailed: 
+                code = .internalError_EngineRequestFailed
+            case .engineResultError: 
+                code = .internalError_EngineResultError
+            case .initialParameterError: 
+                code = .internalError_InitialParameterError
+            case .serverInternalError: 
+                code = .internalError_ServerInternalError
+            }
+            return TCHcmError(code, context: self.context)
         }
-        return TCHcmError(code, context: self.context)
-    }
-}
-
-extension TCHcmError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

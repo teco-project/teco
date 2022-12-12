@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCPostgresError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCPostgresErrorType {
         enum Code: String {
             case allocateQuotasError = "FailedOperation.AllocateQuotasError"
             case baseNetworkAccessError = "FailedOperation.BaseNetworkAccessError"
@@ -91,8 +91,6 @@ extension TCPostgresError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -420,37 +418,138 @@ extension TCPostgresError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCPostgresError.FailedOperation: Equatable {
-    public static func == (lhs: TCPostgresError.FailedOperation, rhs: TCPostgresError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCPostgresError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCPostgresError.FailedOperation {
-    /// - Returns: ``TCPostgresError`` that holds the same error and context.
-    public func toPostgresError() -> TCPostgresError {
-        guard let code = TCPostgresError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asPostgresError() -> TCPostgresError {
+            let code: TCPostgresError.Code
+            switch self.error {
+            case .allocateQuotasError: 
+                code = .failedOperation_AllocateQuotasError
+            case .baseNetworkAccessError: 
+                code = .failedOperation_BaseNetworkAccessError
+            case .camAuthFailed: 
+                code = .failedOperation_CamAuthFailed
+            case .camCheckResourceError: 
+                code = .failedOperation_CamCheckResourceError
+            case .camCheckResourceFailed: 
+                code = .failedOperation_CamCheckResourceFailed
+            case .camSigAndAuthError: 
+                code = .failedOperation_CamSigAndAuthError
+            case .cdbCgwConnectError: 
+                code = .failedOperation_CdbCgwConnectError
+            case .cmqResponseError: 
+                code = .failedOperation_CMQResponseError
+            case .createBasicNetworkDeniedError: 
+                code = .failedOperation_CreateBasicNetworkDeniedError
+            case .createOrderFailed: 
+                code = .failedOperation_CreateOrderFailed
+            case .databaseAccessError: 
+                code = .failedOperation_DatabaseAccessError
+            case .databaseAffectedError: 
+                code = .failedOperation_DatabaseAffectedError
+            case .deleteAllRoute: 
+                code = .failedOperation_DeleteAllRoute
+            case .deleteResourceProjectTagError: 
+                code = .failedOperation_DeleteResourceProjectTagError
+            case .deleteResourcesToTagError: 
+                code = .failedOperation_DeleteResourcesToTagError
+            case .esConnectError: 
+                code = .failedOperation_ESConnectError
+            case .esQueryError: 
+                code = .failedOperation_ESQueryError
+            case .failedOperationError: 
+                code = .failedOperation_FailedOperationError
+            case .flowCreateError: 
+                code = .failedOperation_FlowCreateError
+            case .getInstanceByResourceIdError: 
+                code = .failedOperation_GetInstanceByResourceIdError
+            case .getPurchaseRecordFailed: 
+                code = .failedOperation_GetPurchaseRecordFailed
+            case .getSubnetError: 
+                code = .failedOperation_GetSubnetError
+            case .getVpcInfoError: 
+                code = .failedOperation_GetVpcInfoError
+            case .illegalROInstanceNum: 
+                code = .failedOperation_IllegalROInstanceNum
+            case .invalidAccountStatus: 
+                code = .failedOperation_InvalidAccountStatus
+            case .invalidTradeOperate: 
+                code = .failedOperation_InvalidTradeOperate
+            case .limitOperation: 
+                code = .failedOperation_LimitOperation
+            case .masterInstanceQueryError: 
+                code = .failedOperation_MasterInstanceQueryError
+            case .modifyROGroupError: 
+                code = .failedOperation_ModifyROGroupError
+            case .networkNumLimitError: 
+                code = .failedOperation_NetworkNumLimitError
+            case .operateFrequencyLimitedError: 
+                code = .failedOperation_OperateFrequencyLimitedError
+            case .ossAccessError: 
+                code = .failedOperation_OssAccessError
+            case .ossOperationFailed: 
+                code = .failedOperation_OssOperationFailed
+            case .payOrderFailed: 
+                code = .failedOperation_PayOrderFailed
+            case .postPaidUnblockError: 
+                code = .failedOperation_PostPaidUnblockError
+            case .presignedURLGetError: 
+                code = .failedOperation_PresignedURLGetError
+            case .queryDealFailed: 
+                code = .failedOperation_QueryDealFailed
+            case .queryInstanceBatchError: 
+                code = .failedOperation_QueryInstanceBatchError
+            case .queryPriceFailed: 
+                code = .failedOperation_QueryPriceFailed
+            case .querySpecBySpecCodeError: 
+                code = .failedOperation_QuerySpecBySpecCodeError
+            case .querySpecError: 
+                code = .failedOperation_QuerySpecError
+            case .queryTradeStatusError: 
+                code = .failedOperation_QueryTradeStatusError
+            case .queryVpcFailed: 
+                code = .failedOperation_QueryVpcFailed
+            case .queryVpcFalied: 
+                code = .failedOperation_QueryVpcFalied
+            case .roGroupCannotBeDeletedError: 
+                code = .failedOperation_ROGroupCannotBeDeletedError
+            case .roGroupMasterInstanceNotRight: 
+                code = .failedOperation_ROGroupMasterInstanceNotRight
+            case .roGroupNotFoundError: 
+                code = .failedOperation_ROGroupNotFoundError
+            case .roGroupNumExceedError: 
+                code = .failedOperation_ROGroupNumExceedError
+            case .roInstanceHasInROGroupError: 
+                code = .failedOperation_ROInstanceHasInROGroupError
+            case .serverlessNotSupportedError: 
+                code = .failedOperation_ServerlessNotSupportedError
+            case .serviceAccessError: 
+                code = .failedOperation_ServiceAccessError
+            case .setAutoRenewFlagError: 
+                code = .failedOperation_SetAutoRenewFlagError
+            case .storageMemoryCheckError: 
+                code = .failedOperation_StorageMemoryCheckError
+            case .storePathSplitError: 
+                code = .failedOperation_StorePathSplitError
+            case .tradeAccessError: 
+                code = .failedOperation_TradeAccessError
+            case .tradeCreateError: 
+                code = .failedOperation_TradeCreateError
+            case .tradePayOrdersError: 
+                code = .failedOperation_TradePayOrdersError
+            case .tradeQueryOrderError: 
+                code = .failedOperation_TradeQueryOrderError
+            case .tradeQueryPriceError: 
+                code = .failedOperation_TradeQueryPriceError
+            case .updateResourceProjectTagValueError: 
+                code = .failedOperation_UpdateResourceProjectTagValueError
+            case .vpcResetServiceError: 
+                code = .failedOperation_VPCResetServiceError
+            case .vpcUpdateRouteError: 
+                code = .failedOperation_VPCUpdateRouteError
+            case .other: 
+                code = .failedOperation
+            }
+            return TCPostgresError(code, context: self.context)
         }
-        return TCPostgresError(code, context: self.context)
-    }
-}
-
-extension TCPostgresError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

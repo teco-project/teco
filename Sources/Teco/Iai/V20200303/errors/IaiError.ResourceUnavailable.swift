@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIaiError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCIaiErrorType {
         enum Code: String {
             case chargeStatusException = "ResourceUnavailable.ChargeStatusException"
             case delivering = "ResourceUnavailable.Delivering"
@@ -39,8 +39,6 @@ extension TCIaiError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -108,37 +106,34 @@ extension TCIaiError {
         public static var unknownStatus: ResourceUnavailable {
             ResourceUnavailable(.unknownStatus)
         }
-    }
-}
-
-extension TCIaiError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCIaiError.ResourceUnavailable, rhs: TCIaiError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIaiError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIaiError.ResourceUnavailable {
-    /// - Returns: ``TCIaiError`` that holds the same error and context.
-    public func toIaiError() -> TCIaiError {
-        guard let code = TCIaiError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIaiError() -> TCIaiError {
+            let code: TCIaiError.Code
+            switch self.error {
+            case .chargeStatusException: 
+                code = .resourceUnavailable_ChargeStatusException
+            case .delivering: 
+                code = .resourceUnavailable_Delivering
+            case .freeze: 
+                code = .resourceUnavailable_Freeze
+            case .getAuthInfoError: 
+                code = .resourceUnavailable_GetAuthInfoError
+            case .inArrears: 
+                code = .resourceUnavailable_InArrears
+            case .lowBalance: 
+                code = .resourceUnavailable_LowBalance
+            case .notExist: 
+                code = .resourceUnavailable_NotExist
+            case .notReady: 
+                code = .resourceUnavailable_NotReady
+            case .recover: 
+                code = .resourceUnavailable_Recover
+            case .stopUsing: 
+                code = .resourceUnavailable_StopUsing
+            case .unknownStatus: 
+                code = .resourceUnavailable_UnknownStatus
+            }
+            return TCIaiError(code, context: self.context)
         }
-        return TCIaiError(code, context: self.context)
-    }
-}
-
-extension TCIaiError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

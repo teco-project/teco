@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTatError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCTatErrorType {
         enum Code: String {
             case conflictParameter = "InvalidParameter.ConflictParameter"
             case invalidUsername = "InvalidParameter.InvalidUsername"
@@ -32,8 +32,6 @@ extension TCTatError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -65,37 +63,20 @@ extension TCTatError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCTatError.InvalidParameter: Equatable {
-    public static func == (lhs: TCTatError.InvalidParameter, rhs: TCTatError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTatError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTatError.InvalidParameter {
-    /// - Returns: ``TCTatError`` that holds the same error and context.
-    public func toTatError() -> TCTatError {
-        guard let code = TCTatError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTatError() -> TCTatError {
+            let code: TCTatError.Code
+            switch self.error {
+            case .conflictParameter: 
+                code = .invalidParameter_ConflictParameter
+            case .invalidUsername: 
+                code = .invalidParameter_InvalidUsername
+            case .parameterNameDuplicated: 
+                code = .invalidParameter_ParameterNameDuplicated
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCTatError(code, context: self.context)
         }
-        return TCTatError(code, context: self.context)
-    }
-}
-
-extension TCTatError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

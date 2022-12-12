@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCiamError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCCiamErrorType {
         enum Code: String {
             case tenantNotActivated = "UnauthorizedOperation.TenantNotActivated"
             case other = "UnauthorizedOperation"
@@ -30,8 +30,6 @@ extension TCCiamError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCCiamError {
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-    }
-}
-
-extension TCCiamError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCCiamError.UnauthorizedOperation, rhs: TCCiamError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCiamError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCiamError.UnauthorizedOperation {
-    /// - Returns: ``TCCiamError`` that holds the same error and context.
-    public func toCiamError() -> TCCiamError {
-        guard let code = TCCiamError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCiamError() -> TCCiamError {
+            let code: TCCiamError.Code
+            switch self.error {
+            case .tenantNotActivated: 
+                code = .unauthorizedOperation_TenantNotActivated
+            case .other: 
+                code = .unauthorizedOperation
+            }
+            return TCCiamError(code, context: self.context)
         }
-        return TCCiamError(code, context: self.context)
-    }
-}
-
-extension TCCiamError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

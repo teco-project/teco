@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAfcError {
-    public struct UnknownParameter: TCErrorType {
+    public struct UnknownParameter: TCAfcErrorType {
         enum Code: String {
             case secretIdNotExists = "UnknownParameter.SecretIdNotExists"
             case other = "UnknownParameter"
@@ -30,8 +30,6 @@ extension TCAfcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCAfcError {
         public static var other: UnknownParameter {
             UnknownParameter(.other)
         }
-    }
-}
-
-extension TCAfcError.UnknownParameter: Equatable {
-    public static func == (lhs: TCAfcError.UnknownParameter, rhs: TCAfcError.UnknownParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAfcError.UnknownParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAfcError.UnknownParameter {
-    /// - Returns: ``TCAfcError`` that holds the same error and context.
-    public func toAfcError() -> TCAfcError {
-        guard let code = TCAfcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAfcError() -> TCAfcError {
+            let code: TCAfcError.Code
+            switch self.error {
+            case .secretIdNotExists: 
+                code = .unknownParameter_SecretIdNotExists
+            case .other: 
+                code = .unknownParameter
+            }
+            return TCAfcError(code, context: self.context)
         }
-        return TCAfcError(code, context: self.context)
-    }
-}
-
-extension TCAfcError.UnknownParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

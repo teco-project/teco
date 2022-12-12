@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTdmqError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCTdmqErrorType {
         enum Code: String {
             case cmqBackendError = "FailedOperation.CmqBackendError"
             case createBindVpc = "FailedOperation.CreateBindVpc"
@@ -71,8 +71,6 @@ extension TCTdmqError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -313,37 +311,98 @@ extension TCTdmqError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCTdmqError.FailedOperation: Equatable {
-    public static func == (lhs: TCTdmqError.FailedOperation, rhs: TCTdmqError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTdmqError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTdmqError.FailedOperation {
-    /// - Returns: ``TCTdmqError`` that holds the same error and context.
-    public func toTdmqError() -> TCTdmqError {
-        guard let code = TCTdmqError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTdmqError() -> TCTdmqError {
+            let code: TCTdmqError.Code
+            switch self.error {
+            case .cmqBackendError: 
+                code = .failedOperation_CmqBackendError
+            case .createBindVpc: 
+                code = .failedOperation_CreateBindVpc
+            case .createCluster: 
+                code = .failedOperation_CreateCluster
+            case .createEnvironment: 
+                code = .failedOperation_CreateEnvironment
+            case .createEnvironmentRole: 
+                code = .failedOperation_CreateEnvironmentRole
+            case .createNamespace: 
+                code = .failedOperation_CreateNamespace
+            case .createProducerError: 
+                code = .failedOperation_CreateProducerError
+            case .createPulsarClientError: 
+                code = .failedOperation_CreatePulsarClientError
+            case .createRole: 
+                code = .failedOperation_CreateRole
+            case .createSecretKey: 
+                code = .failedOperation_CreateSecretKey
+            case .createSubscription: 
+                code = .failedOperation_CreateSubscription
+            case .createTopic: 
+                code = .failedOperation_CreateTopic
+            case .deleteCluster: 
+                code = .failedOperation_DeleteCluster
+            case .deleteEnvironmentRoles: 
+                code = .failedOperation_DeleteEnvironmentRoles
+            case .deleteEnvironments: 
+                code = .failedOperation_DeleteEnvironments
+            case .deleteNamespace: 
+                code = .failedOperation_DeleteNamespace
+            case .deleteRoles: 
+                code = .failedOperation_DeleteRoles
+            case .deleteSubscriptions: 
+                code = .failedOperation_DeleteSubscriptions
+            case .deleteTopics: 
+                code = .failedOperation_DeleteTopics
+            case .describeSubscription: 
+                code = .failedOperation_DescribeSubscription
+            case .getEnvironmentAttributesFailed: 
+                code = .failedOperation_GetEnvironmentAttributesFailed
+            case .getTopicPartitionsFailed: 
+                code = .failedOperation_GetTopicPartitionsFailed
+            case .maxMessageSizeError: 
+                code = .failedOperation_MaxMessageSizeError
+            case .messageIDError: 
+                code = .failedOperation_MessageIDError
+            case .namespaceInUse: 
+                code = .failedOperation_NamespaceInUse
+            case .pulsarAdminError: 
+                code = .failedOperation_PulsarAdminError
+            case .receiveError: 
+                code = .failedOperation_ReceiveError
+            case .receiveTimeout: 
+                code = .failedOperation_ReceiveTimeout
+            case .resetMsgSubOffsetByTimestampFailed: 
+                code = .failedOperation_ResetMsgSubOffsetByTimestampFailed
+            case .roleInUse: 
+                code = .failedOperation_RoleInUse
+            case .saveSecretKey: 
+                code = .failedOperation_SaveSecretKey
+            case .sendMessageTimeoutError: 
+                code = .failedOperation_SendMessageTimeoutError
+            case .sendMsgFailed: 
+                code = .failedOperation_SendMsgFailed
+            case .setRetentionPolicy: 
+                code = .failedOperation_SetRetentionPolicy
+            case .setTTL: 
+                code = .failedOperation_SetTTL
+            case .topicInUse: 
+                code = .failedOperation_TopicInUse
+            case .topicTypeError: 
+                code = .failedOperation_TopicTypeError
+            case .updateEnvironment: 
+                code = .failedOperation_UpdateEnvironment
+            case .updateEnvironmentRole: 
+                code = .failedOperation_UpdateEnvironmentRole
+            case .updateRole: 
+                code = .failedOperation_UpdateRole
+            case .updateTopic: 
+                code = .failedOperation_UpdateTopic
+            case .vpcInUse: 
+                code = .failedOperation_VpcInUse
+            case .other: 
+                code = .failedOperation
+            }
+            return TCTdmqError(code, context: self.context)
         }
-        return TCTdmqError(code, context: self.context)
-    }
-}
-
-extension TCTdmqError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

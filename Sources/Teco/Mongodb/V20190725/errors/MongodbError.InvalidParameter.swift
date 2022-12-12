@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMongodbError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCMongodbErrorType {
         enum Code: String {
             case currentInstanceNotSupportModifyParams = "InvalidParameter.CurrentInstanceNotSupportModifyParams"
             case invalidVip = "InvalidParameter.InvalidVip"
@@ -33,8 +33,6 @@ extension TCMongodbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -76,37 +74,22 @@ extension TCMongodbError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCMongodbError.InvalidParameter: Equatable {
-    public static func == (lhs: TCMongodbError.InvalidParameter, rhs: TCMongodbError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMongodbError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMongodbError.InvalidParameter {
-    /// - Returns: ``TCMongodbError`` that holds the same error and context.
-    public func toMongodbError() -> TCMongodbError {
-        guard let code = TCMongodbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMongodbError() -> TCMongodbError {
+            let code: TCMongodbError.Code
+            switch self.error {
+            case .currentInstanceNotSupportModifyParams: 
+                code = .invalidParameter_CurrentInstanceNotSupportModifyParams
+            case .invalidVip: 
+                code = .invalidParameter_InvalidVip
+            case .permissionDenied: 
+                code = .invalidParameter_PermissionDenied
+            case .zoneClosed: 
+                code = .invalidParameter_ZoneClosed
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCMongodbError(code, context: self.context)
         }
-        return TCMongodbError(code, context: self.context)
-    }
-}
-
-extension TCMongodbError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

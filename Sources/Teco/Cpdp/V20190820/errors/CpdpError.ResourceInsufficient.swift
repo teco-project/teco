@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCpdpError {
-    public struct ResourceInsufficient: TCErrorType {
+    public struct ResourceInsufficient: TCCpdpErrorType {
         enum Code: String {
             case threadPoolReject = "ResourceInsufficient.ThreadPoolReject"
         }
@@ -29,8 +29,6 @@ extension TCCpdpError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCCpdpError {
         public static var threadPoolReject: ResourceInsufficient {
             ResourceInsufficient(.threadPoolReject)
         }
-    }
-}
-
-extension TCCpdpError.ResourceInsufficient: Equatable {
-    public static func == (lhs: TCCpdpError.ResourceInsufficient, rhs: TCCpdpError.ResourceInsufficient) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCpdpError.ResourceInsufficient: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCpdpError.ResourceInsufficient {
-    /// - Returns: ``TCCpdpError`` that holds the same error and context.
-    public func toCpdpError() -> TCCpdpError {
-        guard let code = TCCpdpError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCpdpError() -> TCCpdpError {
+            let code: TCCpdpError.Code
+            switch self.error {
+            case .threadPoolReject: 
+                code = .resourceInsufficient_ThreadPoolReject
+            }
+            return TCCpdpError(code, context: self.context)
         }
-        return TCCpdpError(code, context: self.context)
-    }
-}
-
-extension TCCpdpError.ResourceInsufficient {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

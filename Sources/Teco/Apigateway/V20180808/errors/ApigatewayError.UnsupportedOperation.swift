@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCApigatewayError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCApigatewayErrorType {
         enum Code: String {
             case accountArrears = "UnsupportedOperation.AccountArrears"
             case alreadyBindUsagePlan = "UnsupportedOperation.AlreadyBindUsagePlan"
@@ -58,8 +58,6 @@ extension TCApigatewayError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -224,37 +222,72 @@ extension TCApigatewayError {
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-    }
-}
-
-extension TCApigatewayError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCApigatewayError.UnsupportedOperation, rhs: TCApigatewayError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCApigatewayError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCApigatewayError.UnsupportedOperation {
-    /// - Returns: ``TCApigatewayError`` that holds the same error and context.
-    public func toApigatewayError() -> TCApigatewayError {
-        guard let code = TCApigatewayError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asApigatewayError() -> TCApigatewayError {
+            let code: TCApigatewayError.Code
+            switch self.error {
+            case .accountArrears: 
+                code = .unsupportedOperation_AccountArrears
+            case .alreadyBindUsagePlan: 
+                code = .unsupportedOperation_AlreadyBindUsagePlan
+            case .attachPlugin: 
+                code = .unsupportedOperation_AttachPlugin
+            case .basicServiceNoMoreApi: 
+                code = .unsupportedOperation_BasicServiceNoMoreApi
+            case .clsSearchTime: 
+                code = .unsupportedOperation_ClsSearchTime
+            case .forceHttps: 
+                code = .unsupportedOperation_ForceHttps
+            case .invalidAction: 
+                code = .unsupportedOperation_InvalidAction
+            case .invalidEndpointType: 
+                code = .unsupportedOperation_InvalidEndpointType
+            case .invalidInstanceState: 
+                code = .unsupportedOperation_InvalidInstanceState
+            case .invalidServiceTrade: 
+                code = .unsupportedOperation_InvalidServiceTrade
+            case .invalidStatus: 
+                code = .unsupportedOperation_InvalidStatus
+            case .modifyEIAMAuthApi: 
+                code = .unsupportedOperation_ModifyEIAMAuthApi
+            case .modifyNetType: 
+                code = .unsupportedOperation_ModifyNetType
+            case .modifyProtocol: 
+                code = .unsupportedOperation_ModifyProtocol
+            case .noUsagePlanEnv: 
+                code = .unsupportedOperation_NoUsagePlanEnv
+            case .reduceNetTypes: 
+                code = .unsupportedOperation_ReduceNetTypes
+            case .resourceAssociated: 
+                code = .unsupportedOperation_ResourceAssociated
+            case .resourceIsInUse: 
+                code = .unsupportedOperation_ResourceIsInUse
+            case .resourceUnassociated: 
+                code = .unsupportedOperation_ResourceUnassociated
+            case .uinNotInWhiteList: 
+                code = .unsupportedOperation_UinNotInWhiteList
+            case .unsupportedBindApiKey: 
+                code = .unsupportedOperation_UnsupportedBindApiKey
+            case .unsupportedBindEnvironment: 
+                code = .unsupportedOperation_UnsupportedBindEnvironment
+            case .unsupportedDeleteApi: 
+                code = .unsupportedOperation_UnsupportedDeleteApi
+            case .unsupportedDeleteService: 
+                code = .unsupportedOperation_UnsupportedDeleteService
+            case .unsupportedDeleteUpstream: 
+                code = .unsupportedOperation_UnsupportedDeleteUpstream
+            case .unsupportedNetType: 
+                code = .unsupportedOperation_UnsupportedNetType
+            case .unsupportedUnBindEnvironment: 
+                code = .unsupportedOperation_UnsupportedUnBindEnvironment
+            case .unsupportedUpdateApiKey: 
+                code = .unsupportedOperation_UnsupportedUpdateApiKey
+            case .usagePlanInUse: 
+                code = .unsupportedOperation_UsagePlanInUse
+            case .other: 
+                code = .unsupportedOperation
+            }
+            return TCApigatewayError(code, context: self.context)
         }
-        return TCApigatewayError(code, context: self.context)
-    }
-}
-
-extension TCApigatewayError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

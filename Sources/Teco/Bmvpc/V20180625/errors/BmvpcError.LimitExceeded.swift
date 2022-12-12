@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBmvpcError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCBmvpcErrorType {
         enum Code: String {
             case spdAclLimit = "LimitExceeded.SpdAclLimit"
             case spdDnetLimit = "LimitExceeded.SpdDnetLimit"
@@ -32,8 +32,6 @@ extension TCBmvpcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCBmvpcError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCBmvpcError.LimitExceeded: Equatable {
-    public static func == (lhs: TCBmvpcError.LimitExceeded, rhs: TCBmvpcError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBmvpcError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBmvpcError.LimitExceeded {
-    /// - Returns: ``TCBmvpcError`` that holds the same error and context.
-    public func toBmvpcError() -> TCBmvpcError {
-        guard let code = TCBmvpcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBmvpcError() -> TCBmvpcError {
+            let code: TCBmvpcError.Code
+            switch self.error {
+            case .spdAclLimit: 
+                code = .limitExceeded_SpdAclLimit
+            case .spdDnetLimit: 
+                code = .limitExceeded_SpdDnetLimit
+            case .spdSnetLimit: 
+                code = .limitExceeded_SpdSnetLimit
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCBmvpcError(code, context: self.context)
         }
-        return TCBmvpcError(code, context: self.context)
-    }
-}
-
-extension TCBmvpcError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

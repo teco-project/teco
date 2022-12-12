@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCamError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCCamErrorType {
         enum Code: String {
             case identityKeyError = "InvalidParameterValue.IdentityKeyError"
             case identityUrlError = "InvalidParameterValue.IdentityUrlError"
@@ -32,8 +32,6 @@ extension TCCamError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCCamError {
         public static var nameError: InvalidParameterValue {
             InvalidParameterValue(.nameError)
         }
-    }
-}
-
-extension TCCamError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCCamError.InvalidParameterValue, rhs: TCCamError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCamError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCamError.InvalidParameterValue {
-    /// - Returns: ``TCCamError`` that holds the same error and context.
-    public func toCamError() -> TCCamError {
-        guard let code = TCCamError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCamError() -> TCCamError {
+            let code: TCCamError.Code
+            switch self.error {
+            case .identityKeyError: 
+                code = .invalidParameterValue_IdentityKeyError
+            case .identityUrlError: 
+                code = .invalidParameterValue_IdentityUrlError
+            case .metadataError: 
+                code = .invalidParameterValue_MetadataError
+            case .nameError: 
+                code = .invalidParameterValue_NameError
+            }
+            return TCCamError(code, context: self.context)
         }
-        return TCCamError(code, context: self.context)
-    }
-}
-
-extension TCCamError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

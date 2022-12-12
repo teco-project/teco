@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotvideoError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCIotvideoErrorType {
         enum Code: String {
             case deviceFirmwareTaskNotExist = "ResourceNotFound.DeviceFirmwareTaskNotExist"
             case deviceHasNoFirmware = "ResourceNotFound.DeviceHasNoFirmware"
@@ -32,8 +32,6 @@ extension TCIotvideoError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCIotvideoError {
         public static var firmwareTaskNotExist: ResourceNotFound {
             ResourceNotFound(.firmwareTaskNotExist)
         }
-    }
-}
-
-extension TCIotvideoError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCIotvideoError.ResourceNotFound, rhs: TCIotvideoError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotvideoError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotvideoError.ResourceNotFound {
-    /// - Returns: ``TCIotvideoError`` that holds the same error and context.
-    public func toIotvideoError() -> TCIotvideoError {
-        guard let code = TCIotvideoError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotvideoError() -> TCIotvideoError {
+            let code: TCIotvideoError.Code
+            switch self.error {
+            case .deviceFirmwareTaskNotExist: 
+                code = .resourceNotFound_DeviceFirmwareTaskNotExist
+            case .deviceHasNoFirmware: 
+                code = .resourceNotFound_DeviceHasNoFirmware
+            case .firmwareNotExist: 
+                code = .resourceNotFound_FirmwareNotExist
+            case .firmwareTaskNotExist: 
+                code = .resourceNotFound_FirmwareTaskNotExist
+            }
+            return TCIotvideoError(code, context: self.context)
         }
-        return TCIotvideoError(code, context: self.context)
-    }
-}
-
-extension TCIotvideoError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

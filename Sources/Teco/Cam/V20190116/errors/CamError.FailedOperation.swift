@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCamError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCCamErrorType {
         enum Code: String {
             case accesskey = "FailedOperation.Accesskey"
             case policyFull = "FailedOperation.PolicyFull"
@@ -39,8 +39,6 @@ extension TCCamError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -108,37 +106,34 @@ extension TCCamError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCCamError.FailedOperation: Equatable {
-    public static func == (lhs: TCCamError.FailedOperation, rhs: TCCamError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCamError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCamError.FailedOperation {
-    /// - Returns: ``TCCamError`` that holds the same error and context.
-    public func toCamError() -> TCCamError {
-        guard let code = TCCamError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCamError() -> TCCamError {
+            let code: TCCamError.Code
+            switch self.error {
+            case .accesskey: 
+                code = .failedOperation_Accesskey
+            case .policyFull: 
+                code = .failedOperation_PolicyFull
+            case .policyNameInUse: 
+                code = .failedOperation_PolicyNameInUse
+            case .policyVersionAlreadyDefault: 
+                code = .failedOperation_PolicyVersionAlreadyDefault
+            case .policyVersionFull: 
+                code = .failedOperation_PolicyVersionFull
+            case .tagResourceFailed: 
+                code = .failedOperation_TagResourceFailed
+            case .unTagResourceFailed: 
+                code = .failedOperation_UnTagResourceFailed
+            case .userNotBindPhone: 
+                code = .failedOperation_UserNotBindPhone
+            case .userNotBindWechat: 
+                code = .failedOperation_UserNotBindWechat
+            case .userUnbindNoPermission: 
+                code = .failedOperation_UserUnbindNoPermission
+            case .other: 
+                code = .failedOperation
+            }
+            return TCCamError(code, context: self.context)
         }
-        return TCCamError(code, context: self.context)
-    }
-}
-
-extension TCCamError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTtsError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCTtsErrorType {
         enum Code: String {
             case appId = "InvalidParameterValue.AppId"
             case appIdNotRegistered = "InvalidParameterValue.AppIdNotRegistered"
@@ -50,8 +50,6 @@ extension TCTtsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -174,37 +172,56 @@ extension TCTtsError {
         public static var volume: InvalidParameterValue {
             InvalidParameterValue(.volume)
         }
-    }
-}
-
-extension TCTtsError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCTtsError.InvalidParameterValue, rhs: TCTtsError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTtsError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTtsError.InvalidParameterValue {
-    /// - Returns: ``TCTtsError`` that holds the same error and context.
-    public func toTtsError() -> TCTtsError {
-        guard let code = TCTtsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTtsError() -> TCTtsError {
+            let code: TCTtsError.Code
+            switch self.error {
+            case .appId: 
+                code = .invalidParameterValue_AppId
+            case .appIdNotRegistered: 
+                code = .invalidParameterValue_AppIdNotRegistered
+            case .callbackUrl: 
+                code = .invalidParameterValue_CallbackUrl
+            case .codec: 
+                code = .invalidParameterValue_Codec
+            case .errorCardinalFormat: 
+                code = .invalidParameterValue_ErrorCardinalFormat
+            case .invalidText: 
+                code = .invalidParameterValue_InvalidText
+            case .missParameters: 
+                code = .invalidParameterValue_MissParameters
+            case .modelType: 
+                code = .invalidParameterValue_ModelType
+            case .participleError: 
+                code = .invalidParameterValue_ParticipleError
+            case .primaryLanguage: 
+                code = .invalidParameterValue_PrimaryLanguage
+            case .sampleRate: 
+                code = .invalidParameterValue_SampleRate
+            case .sessionId: 
+                code = .invalidParameterValue_SessionId
+            case .speed: 
+                code = .invalidParameterValue_Speed
+            case .ssmlInvalid: 
+                code = .invalidParameterValue_SSMLInvalid
+            case .text: 
+                code = .invalidParameterValue_Text
+            case .textEmpty: 
+                code = .invalidParameterValue_TextEmpty
+            case .textNotUtf8: 
+                code = .invalidParameterValue_TextNotUtf8
+            case .textSsmlParseError: 
+                code = .invalidParameterValue_TextSsmlParseError
+            case .textTooLong: 
+                code = .invalidParameterValue_TextTooLong
+            case .type: 
+                code = .invalidParameterValue_Type
+            case .voiceType: 
+                code = .invalidParameterValue_VoiceType
+            case .volume: 
+                code = .invalidParameterValue_Volume
+            }
+            return TCTtsError(code, context: self.context)
         }
-        return TCTtsError(code, context: self.context)
-    }
-}
-
-extension TCTtsError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

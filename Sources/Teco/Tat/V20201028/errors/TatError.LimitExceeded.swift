@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTatError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCTatErrorType {
         enum Code: String {
             case filterValueExceeded = "LimitExceeded.FilterValueExceeded"
             case other = "LimitExceeded"
@@ -30,8 +30,6 @@ extension TCTatError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -53,37 +51,16 @@ extension TCTatError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCTatError.LimitExceeded: Equatable {
-    public static func == (lhs: TCTatError.LimitExceeded, rhs: TCTatError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTatError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTatError.LimitExceeded {
-    /// - Returns: ``TCTatError`` that holds the same error and context.
-    public func toTatError() -> TCTatError {
-        guard let code = TCTatError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTatError() -> TCTatError {
+            let code: TCTatError.Code
+            switch self.error {
+            case .filterValueExceeded: 
+                code = .limitExceeded_FilterValueExceeded
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCTatError(code, context: self.context)
         }
-        return TCTatError(code, context: self.context)
-    }
-}
-
-extension TCTatError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

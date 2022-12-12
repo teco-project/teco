@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCFtError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCFtErrorType {
         enum Code: String {
             case cancelJobFailure = "FailedOperation.CancelJobFailure"
             case detectNoFace = "FailedOperation.DetectNoFace"
@@ -51,8 +51,6 @@ extension TCFtError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -180,37 +178,58 @@ extension TCFtError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCFtError.FailedOperation: Equatable {
-    public static func == (lhs: TCFtError.FailedOperation, rhs: TCFtError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCFtError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCFtError.FailedOperation {
-    /// - Returns: ``TCFtError`` that holds the same error and context.
-    public func toFtError() -> TCFtError {
-        guard let code = TCFtError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asFtError() -> TCFtError {
+            let code: TCFtError.Code
+            switch self.error {
+            case .cancelJobFailure: 
+                code = .failedOperation_CancelJobFailure
+            case .detectNoFace: 
+                code = .failedOperation_DetectNoFace
+            case .faceDetectFailed: 
+                code = .failedOperation_FaceDetectFailed
+            case .faceExceedBorder: 
+                code = .failedOperation_FaceExceedBorder
+            case .faceShapeFailed: 
+                code = .failedOperation_FaceShapeFailed
+            case .faceSizeTooSmall: 
+                code = .failedOperation_FaceSizeTooSmall
+            case .freqCtrl: 
+                code = .failedOperation_FreqCtrl
+            case .imageDecodeFailed: 
+                code = .failedOperation_ImageDecodeFailed
+            case .imageDownloadError: 
+                code = .failedOperation_ImageDownloadError
+            case .imageNotSupported: 
+                code = .failedOperation_ImageNotSupported
+            case .imagePixelExceed: 
+                code = .failedOperation_ImagePixelExceed
+            case .imageResolutionExceed: 
+                code = .failedOperation_ImageResolutionExceed
+            case .imageResolutionTooSmall: 
+                code = .failedOperation_ImageResolutionTooSmall
+            case .innerError: 
+                code = .failedOperation_InnerError
+            case .jobConflict: 
+                code = .failedOperation_JobConflict
+            case .jobHasBeenCanceled: 
+                code = .failedOperation_JobHasBeenCanceled
+            case .jobNotExist: 
+                code = .failedOperation_JobNotExist
+            case .jobStopProcessing: 
+                code = .failedOperation_JobStopProcessing
+            case .requestEntityTooLarge: 
+                code = .failedOperation_RequestEntityTooLarge
+            case .requestTimeout: 
+                code = .failedOperation_RequestTimeout
+            case .rpcFail: 
+                code = .failedOperation_RpcFail
+            case .taskNotExist: 
+                code = .failedOperation_TaskNotExist
+            case .other: 
+                code = .failedOperation
+            }
+            return TCFtError(code, context: self.context)
         }
-        return TCFtError(code, context: self.context)
-    }
-}
-
-extension TCFtError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

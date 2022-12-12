@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEssError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCEssErrorType {
         enum Code: String {
             case approverType = "InvalidParameter.ApproverType"
             case businessId = "InvalidParameter.BusinessId"
@@ -86,8 +86,6 @@ extension TCEssError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -354,37 +352,128 @@ extension TCEssError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCEssError.InvalidParameter: Equatable {
-    public static func == (lhs: TCEssError.InvalidParameter, rhs: TCEssError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEssError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEssError.InvalidParameter {
-    /// - Returns: ``TCEssError`` that holds the same error and context.
-    public func toEssError() -> TCEssError {
-        guard let code = TCEssError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEssError() -> TCEssError {
+            let code: TCEssError.Code
+            switch self.error {
+            case .approverType: 
+                code = .invalidParameter_ApproverType
+            case .businessId: 
+                code = .invalidParameter_BusinessId
+            case .businessType: 
+                code = .invalidParameter_BusinessType
+            case .cancelReason: 
+                code = .invalidParameter_CancelReason
+            case .cardNumber: 
+                code = .invalidParameter_CardNumber
+            case .cardType: 
+                code = .invalidParameter_CardType
+            case .ccNum: 
+                code = .invalidParameter_CcNum
+            case .clientToken: 
+                code = .invalidParameter_ClientToken
+            case .componentFileIndex: 
+                code = .invalidParameter_ComponentFileIndex
+            case .componentPage: 
+                code = .invalidParameter_ComponentPage
+            case .componentPosition: 
+                code = .invalidParameter_ComponentPosition
+            case .componentTypeNoMatchValue: 
+                code = .invalidParameter_ComponentTypeNoMatchValue
+            case .componentValue: 
+                code = .invalidParameter_ComponentValue
+            case .contentType: 
+                code = .invalidParameter_ContentType
+            case .customShowMap: 
+                code = .invalidParameter_CustomShowMap
+            case .dataExists: 
+                code = .invalidParameter_DataExists
+            case .dataNotFound: 
+                code = .invalidParameter_DataNotFound
+            case .emptyParams: 
+                code = .invalidParameter_EmptyParams
+            case .endPoint: 
+                code = .invalidParameter_EndPoint
+            case .flowCallbackUrl: 
+                code = .invalidParameter_FlowCallbackUrl
+            case .flowDeadLine: 
+                code = .invalidParameter_FlowDeadLine
+            case .flowDescription: 
+                code = .invalidParameter_FlowDescription
+            case .flowName: 
+                code = .invalidParameter_FlowName
+            case .flowType: 
+                code = .invalidParameter_FlowType
+            case .flowUserData: 
+                code = .invalidParameter_FlowUserData
+            case .fromSource: 
+                code = .invalidParameter_FromSource
+            case .idCardValidityOverLimit: 
+                code = .invalidParameter_IdCardValidityOverLimit
+            case .invalidChannel: 
+                code = .invalidParameter_InvalidChannel
+            case .invalidId: 
+                code = .invalidParameter_InvalidId
+            case .invalidLimit: 
+                code = .invalidParameter_InvalidLimit
+            case .invalidMobile: 
+                code = .invalidParameter_InvalidMobile
+            case .invalidName: 
+                code = .invalidParameter_InvalidName
+            case .invalidOffset: 
+                code = .invalidParameter_InvalidOffset
+            case .invalidOpenId: 
+                code = .invalidParameter_InvalidOpenId
+            case .invalidOperatorId: 
+                code = .invalidParameter_InvalidOperatorId
+            case .invalidOrganizationId: 
+                code = .invalidParameter_InvalidOrganizationId
+            case .invalidOrganizationName: 
+                code = .invalidParameter_InvalidOrganizationName
+            case .invalidRoleId: 
+                code = .invalidParameter_InvalidRoleId
+            case .invalidRoleName: 
+                code = .invalidParameter_InvalidRoleName
+            case .invalidVerifyChannel: 
+                code = .invalidParameter_InvalidVerifyChannel
+            case .invalidVerifyCode: 
+                code = .invalidParameter_InvalidVerifyCode
+            case .missingRequiredComponentValue: 
+                code = .invalidParameter_MissingRequiredComponentValue
+            case .mobile: 
+                code = .invalidParameter_Mobile
+            case .name: 
+                code = .invalidParameter_Name
+            case .notifyType: 
+                code = .invalidParameter_NotifyType
+            case .organizationName: 
+                code = .invalidParameter_OrganizationName
+            case .paramError: 
+                code = .invalidParameter_ParamError
+            case .personAutoSignTag: 
+                code = .invalidParameter_PersonAutoSignTag
+            case .preReadTime: 
+                code = .invalidParameter_PreReadTime
+            case .qrEffectDay: 
+                code = .invalidParameter_QrEffectDay
+            case .qrFlowEffectDay: 
+                code = .invalidParameter_QrFlowEffectDay
+            case .resourceType: 
+                code = .invalidParameter_ResourceType
+            case .sealId: 
+                code = .invalidParameter_SealId
+            case .signComponents: 
+                code = .invalidParameter_SignComponents
+            case .status: 
+                code = .invalidParameter_Status
+            case .templateId: 
+                code = .invalidParameter_TemplateId
+            case .verifyChannel: 
+                code = .invalidParameter_VerifyChannel
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCEssError(code, context: self.context)
         }
-        return TCEssError(code, context: self.context)
-    }
-}
-
-extension TCEssError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

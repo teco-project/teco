@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDsError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCDsErrorType {
         enum Code: String {
             case accountNotOwnContractError = "FailedOperation.AccountNotOwnContractError"
             case authorizationTimeError = "FailedOperation.AuthorizationTimeError"
@@ -87,8 +87,6 @@ extension TCDsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -396,37 +394,130 @@ extension TCDsError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCDsError.FailedOperation: Equatable {
-    public static func == (lhs: TCDsError.FailedOperation, rhs: TCDsError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDsError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDsError.FailedOperation {
-    /// - Returns: ``TCDsError`` that holds the same error and context.
-    public func toDsError() -> TCDsError {
-        guard let code = TCDsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDsError() -> TCDsError {
+            let code: TCDsError.Code
+            switch self.error {
+            case .accountNotOwnContractError: 
+                code = .failedOperation_AccountNotOwnContractError
+            case .authorizationTimeError: 
+                code = .failedOperation_AuthorizationTimeError
+            case .backendInterfaceError: 
+                code = .failedOperation_BackendInterfaceError
+            case .backendInterfaceResponseContentError: 
+                code = .failedOperation_BackendInterfaceResponseContentError
+            case .backendInterfaceResponseHeaderError: 
+                code = .failedOperation_BackendInterfaceResponseHeaderError
+            case .certTypeError: 
+                code = .failedOperation_CertTypeError
+            case .checkVcodeError: 
+                code = .failedOperation_CheckVcodeError
+            case .contractExpired: 
+                code = .failedOperation_ContractExpired
+            case .contractSignedError: 
+                code = .failedOperation_ContractSignedError
+            case .coordinateError: 
+                code = .failedOperation_CoordinateError
+            case .coordinateOutsidePDF: 
+                code = .failedOperation_CoordinateOutsidePDF
+            case .costAccountError: 
+                code = .failedOperation_CostAccountError
+            case .createContractError: 
+                code = .failedOperation_CreateContractError
+            case .createEnterpriseAccountError: 
+                code = .failedOperation_CreateEnterpriseAccountError
+            case .createPersonalAccountError: 
+                code = .failedOperation_CreatePersonalAccountError
+            case .createSealError: 
+                code = .failedOperation_CreateSealError
+            case .deleteAccountError: 
+                code = .failedOperation_DeleteAccountError
+            case .deleteSealError: 
+                code = .failedOperation_DeleteSealError
+            case .describeSubplatError: 
+                code = .failedOperation_DescribeSubplatError
+            case .describeTaskStatusError: 
+                code = .failedOperation_DescribeTaskStatusError
+            case .downloadSealError: 
+                code = .failedOperation_DownloadSealError
+            case .enterpriseNameFormatError: 
+                code = .failedOperation_EnterpriseNameFormatError
+            case .firstEnterpriseAccountDeleteError: 
+                code = .failedOperation_FirstEnterpriseAccountDeleteError
+            case .formatError: 
+                code = .failedOperation_FormatError
+            case .getPDFSizeFailed: 
+                code = .failedOperation_GetPDFSizeFailed
+            case .identNoFormatError: 
+                code = .failedOperation_IdentNoFormatError
+            case .identTypeError: 
+                code = .failedOperation_IdentTypeError
+            case .imageMeasurementOverLimitError: 
+                code = .failedOperation_ImageMeasurementOverLimitError
+            case .imageNotBase: 
+                code = .failedOperation_ImageNotBase
+            case .imageNotPNG: 
+                code = .failedOperation_ImageNotPNG
+            case .ipFormatError: 
+                code = .failedOperation_IPFormatError
+            case .messageDataIllegal: 
+                code = .failedOperation_MessageDataIllegal
+            case .messageDataOverSize: 
+                code = .failedOperation_MessageDataOverSize
+            case .nameContainsNumber: 
+                code = .failedOperation_NameContainsNumber
+            case .nameIsPureNumber: 
+                code = .failedOperation_NameIsPureNumber
+            case .noPermissionToSign: 
+                code = .failedOperation_NoPermissionToSign
+            case .noVerifyError: 
+                code = .failedOperation_NoVerifyError
+            case .offsetCoordOverLimitError: 
+                code = .failedOperation_OffsetCoordOverLimitError
+            case .repeatedCoordinate: 
+                code = .failedOperation_RepeatedCoordinate
+            case .sealMismatched: 
+                code = .failedOperation_SealMismatched
+            case .sealNumOverLimit: 
+                code = .failedOperation_SealNumOverLimit
+            case .sealsExceed: 
+                code = .failedOperation_SealsExceed
+            case .sendVcodeError: 
+                code = .failedOperation_SendVcodeError
+            case .signContractByCoordinateError: 
+                code = .failedOperation_SignContractByCoordinateError
+            case .signContractByKeywordError: 
+                code = .failedOperation_SignContractByKeywordError
+            case .signFieldNotFound: 
+                code = .failedOperation_SignFieldNotFound
+            case .signPageError: 
+                code = .failedOperation_SignPageError
+            case .signPermissionExisted: 
+                code = .failedOperation_SignPermissionExisted
+            case .smsCodeExpired: 
+                code = .failedOperation_SMSCodeExpired
+            case .smsCodeLengthWrong: 
+                code = .failedOperation_SMSCodeLengthWrong
+            case .transactorNameFormatError: 
+                code = .failedOperation_TransactorNameFormatError
+            case .transactorPhoneFormatError: 
+                code = .failedOperation_TransactorPhoneFormatError
+            case .updateFeeStatusError: 
+                code = .failedOperation_UpdateFeeStatusError
+            case .vcodeChecked: 
+                code = .failedOperation_VcodeChecked
+            case .wrongCertType: 
+                code = .failedOperation_WrongCertType
+            case .wrongIdentNoFormat: 
+                code = .failedOperation_WrongIdentNoFormat
+            case .wrongIdentNoSize: 
+                code = .failedOperation_WrongIdentNoSize
+            case .wrongSMSCode: 
+                code = .failedOperation_WrongSMSCode
+            case .other: 
+                code = .failedOperation_Other
+            }
+            return TCDsError(code, context: self.context)
         }
-        return TCDsError(code, context: self.context)
-    }
-}
-
-extension TCDsError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

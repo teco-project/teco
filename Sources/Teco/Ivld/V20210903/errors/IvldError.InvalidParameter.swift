@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIvldError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCIvldErrorType {
         enum Code: String {
             case invalidCategoryId = "InvalidParameter.InvalidCategoryId"
             case invalidFilePath = "InvalidParameter.InvalidFilePath"
@@ -59,8 +59,6 @@ extension TCIvldError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -288,37 +286,74 @@ extension TCIvldError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCIvldError.InvalidParameter: Equatable {
-    public static func == (lhs: TCIvldError.InvalidParameter, rhs: TCIvldError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIvldError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIvldError.InvalidParameter {
-    /// - Returns: ``TCIvldError`` that holds the same error and context.
-    public func toIvldError() -> TCIvldError {
-        guard let code = TCIvldError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIvldError() -> TCIvldError {
+            let code: TCIvldError.Code
+            switch self.error {
+            case .invalidCategoryId: 
+                code = .invalidParameter_InvalidCategoryId
+            case .invalidFilePath: 
+                code = .invalidParameter_InvalidFilePath
+            case .invalidImage: 
+                code = .invalidParameter_InvalidImage
+            case .invalidImageId: 
+                code = .invalidParameter_InvalidImageId
+            case .invalidL1Category: 
+                code = .invalidParameter_InvalidL1Category
+            case .invalidL2Category: 
+                code = .invalidParameter_InvalidL2Category
+            case .invalidMD5: 
+                code = .invalidParameter_InvalidMD5
+            case .invalidMediaId: 
+                code = .invalidParameter_InvalidMediaId
+            case .invalidMediaLabel: 
+                code = .invalidParameter_InvalidMediaLabel
+            case .invalidMediaLang: 
+                code = .invalidParameter_InvalidMediaLang
+            case .invalidMediaName: 
+                code = .invalidParameter_InvalidMediaName
+            case .invalidMediaPreknownInfo: 
+                code = .invalidParameter_InvalidMediaPreknownInfo
+            case .invalidMediaStatus: 
+                code = .invalidParameter_InvalidMediaStatus
+            case .invalidMediaType: 
+                code = .invalidParameter_InvalidMediaType
+            case .invalidName: 
+                code = .invalidParameter_InvalidName
+            case .invalidPageNumber: 
+                code = .invalidParameter_InvalidPageNumber
+            case .invalidPageSize: 
+                code = .invalidParameter_InvalidPageSize
+            case .invalidParam: 
+                code = .invalidParameter_InvalidParam
+            case .invalidPersonId: 
+                code = .invalidParameter_InvalidPersonId
+            case .invalidSortBy: 
+                code = .invalidParameter_InvalidSortBy
+            case .invalidSortOrder: 
+                code = .invalidParameter_InvalidSortOrder
+            case .invalidTaskId: 
+                code = .invalidParameter_InvalidTaskId
+            case .invalidTaskName: 
+                code = .invalidParameter_InvalidTaskName
+            case .invalidTaskStatus: 
+                code = .invalidParameter_InvalidTaskStatus
+            case .invalidURL: 
+                code = .invalidParameter_InvalidURL
+            case .invalidUin: 
+                code = .invalidParameter_InvalidUin
+            case .nameTooLong: 
+                code = .invalidParameter_NameTooLong
+            case .paramTooLong: 
+                code = .invalidParameter_ParamTooLong
+            case .unsupportURL: 
+                code = .invalidParameter_UnsupportURL
+            case .urlNotResolved: 
+                code = .invalidParameter_URLNotResolved
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCIvldError(code, context: self.context)
         }
-        return TCIvldError(code, context: self.context)
-    }
-}
-
-extension TCIvldError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

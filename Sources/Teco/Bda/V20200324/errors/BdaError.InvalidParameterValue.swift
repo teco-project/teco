@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBdaError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCBdaErrorType {
         enum Code: String {
             case accountTraceNumExceed = "InvalidParameterValue.AccountTraceNumExceed"
             case bodyModelVersionIllegal = "InvalidParameterValue.BodyModelVersionIllegal"
@@ -55,8 +55,6 @@ extension TCBdaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -204,37 +202,66 @@ extension TCBdaError {
         public static var urlIllegal: InvalidParameterValue {
             InvalidParameterValue(.urlIllegal)
         }
-    }
-}
-
-extension TCBdaError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCBdaError.InvalidParameterValue, rhs: TCBdaError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBdaError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBdaError.InvalidParameterValue {
-    /// - Returns: ``TCBdaError`` that holds the same error and context.
-    public func toBdaError() -> TCBdaError {
-        guard let code = TCBdaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBdaError() -> TCBdaError {
+            let code: TCBdaError.Code
+            switch self.error {
+            case .accountTraceNumExceed: 
+                code = .invalidParameterValue_AccountTraceNumExceed
+            case .bodyModelVersionIllegal: 
+                code = .invalidParameterValue_BodyModelVersionIllegal
+            case .bodyRectsExceed: 
+                code = .invalidParameterValue_BodyRectsExceed
+            case .groupIdAlreadyExist: 
+                code = .invalidParameterValue_GroupIdAlreadyExist
+            case .groupIdIllegal: 
+                code = .invalidParameterValue_GroupIdIllegal
+            case .groupIdNotExist: 
+                code = .invalidParameterValue_GroupIdNotExist
+            case .groupIdTooLong: 
+                code = .invalidParameterValue_GroupIdTooLong
+            case .groupNameAlreadyExist: 
+                code = .invalidParameterValue_GroupNameAlreadyExist
+            case .groupNameTooLong: 
+                code = .invalidParameterValue_GroupNameTooLong
+            case .groupNumExceed: 
+                code = .invalidParameterValue_GroupNumExceed
+            case .groupTagTooLong: 
+                code = .invalidParameterValue_GroupTagTooLong
+            case .groupTraceNumExceed: 
+                code = .invalidParameterValue_GroupTraceNumExceed
+            case .imageEmpty: 
+                code = .invalidParameterValue_ImageEmpty
+            case .limitExceed: 
+                code = .invalidParameterValue_LimitExceed
+            case .noFaceInPhoto: 
+                code = .invalidParameterValue_NoFaceInPhoto
+            case .offsetExceed: 
+                code = .invalidParameterValue_OffsetExceed
+            case .personIdAlreadyExist: 
+                code = .invalidParameterValue_PersonIdAlreadyExist
+            case .personIdIllegal: 
+                code = .invalidParameterValue_PersonIdIllegal
+            case .personIdNotExist: 
+                code = .invalidParameterValue_PersonIdNotExist
+            case .personIdTooLong: 
+                code = .invalidParameterValue_PersonIdTooLong
+            case .personNameIllegal: 
+                code = .invalidParameterValue_PersonNameIllegal
+            case .personNameTooLong: 
+                code = .invalidParameterValue_PersonNameTooLong
+            case .personTraceNumExceed: 
+                code = .invalidParameterValue_PersonTraceNumExceed
+            case .searchPersonsExceed: 
+                code = .invalidParameterValue_SearchPersonsExceed
+            case .traceBodyNumExceed: 
+                code = .invalidParameterValue_TraceBodyNumExceed
+            case .traceMatchThresholdIllegal: 
+                code = .invalidParameterValue_TraceMatchThresholdIllegal
+            case .urlIllegal: 
+                code = .invalidParameterValue_UrlIllegal
+            }
+            return TCBdaError(code, context: self.context)
         }
-        return TCBdaError(code, context: self.context)
-    }
-}
-
-extension TCBdaError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTtsError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCTtsErrorType {
         enum Code: String {
             case errorGetRoute = "InternalError.ErrorGetRoute"
             case exceedMaxLimit = "InternalError.ExceedMaxLimit"
@@ -33,8 +33,6 @@ extension TCTtsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,22 @@ extension TCTtsError {
         public static var internalError: InternalError {
             InternalError(.internalError)
         }
-    }
-}
-
-extension TCTtsError.InternalError: Equatable {
-    public static func == (lhs: TCTtsError.InternalError, rhs: TCTtsError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTtsError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTtsError.InternalError {
-    /// - Returns: ``TCTtsError`` that holds the same error and context.
-    public func toTtsError() -> TCTtsError {
-        guard let code = TCTtsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTtsError() -> TCTtsError {
+            let code: TCTtsError.Code
+            switch self.error {
+            case .errorGetRoute: 
+                code = .internalError_ErrorGetRoute
+            case .exceedMaxLimit: 
+                code = .internalError_ExceedMaxLimit
+            case .failAccessDatabase: 
+                code = .internalError_FailAccessDatabase
+            case .failAccessRedis: 
+                code = .internalError_FailAccessRedis
+            case .internalError: 
+                code = .internalError_InternalError
+            }
+            return TCTtsError(code, context: self.context)
         }
-        return TCTtsError(code, context: self.context)
-    }
-}
-
-extension TCTtsError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

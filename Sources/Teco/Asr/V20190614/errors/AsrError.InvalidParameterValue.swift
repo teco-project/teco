@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAsrError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCAsrErrorType {
         enum Code: String {
             case errorInvalidAppid = "InvalidParameterValue.ErrorInvalidAppid"
             case errorInvalidClientip = "InvalidParameterValue.ErrorInvalidClientip"
@@ -48,8 +48,6 @@ extension TCAsrError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -162,37 +160,52 @@ extension TCAsrError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCAsrError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCAsrError.InvalidParameterValue, rhs: TCAsrError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAsrError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAsrError.InvalidParameterValue {
-    /// - Returns: ``TCAsrError`` that holds the same error and context.
-    public func toAsrError() -> TCAsrError {
-        guard let code = TCAsrError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAsrError() -> TCAsrError {
+            let code: TCAsrError.Code
+            switch self.error {
+            case .errorInvalidAppid: 
+                code = .invalidParameterValue_ErrorInvalidAppid
+            case .errorInvalidClientip: 
+                code = .invalidParameterValue_ErrorInvalidClientip
+            case .errorInvalidEngservice: 
+                code = .invalidParameterValue_ErrorInvalidEngservice
+            case .errorInvalidProjectid: 
+                code = .invalidParameterValue_ErrorInvalidProjectid
+            case .errorInvalidRequestid: 
+                code = .invalidParameterValue_ErrorInvalidRequestid
+            case .errorInvalidSourcetype: 
+                code = .invalidParameterValue_ErrorInvalidSourcetype
+            case .errorInvalidSubservicetype: 
+                code = .invalidParameterValue_ErrorInvalidSubservicetype
+            case .errorInvalidUrl: 
+                code = .invalidParameterValue_ErrorInvalidUrl
+            case .errorInvalidUseraudiokey: 
+                code = .invalidParameterValue_ErrorInvalidUseraudiokey
+            case .errorInvalidVoiceFormat: 
+                code = .invalidParameterValue_ErrorInvalidVoiceFormat
+            case .errorInvalidVoicedata: 
+                code = .invalidParameterValue_ErrorInvalidVoicedata
+            case .errorVoicedataTooLong: 
+                code = .invalidParameterValue_ErrorVoicedataTooLong
+            case .invalidParameterLength: 
+                code = .invalidParameterValue_InvalidParameterLength
+            case .invalidVocabId: 
+                code = .invalidParameterValue_InvalidVocabId
+            case .invalidVocabState: 
+                code = .invalidParameterValue_InvalidVocabState
+            case .invalidWordWeight: 
+                code = .invalidParameterValue_InvalidWordWeight
+            case .invalidWordWeightStr: 
+                code = .invalidParameterValue_InvalidWordWeightStr
+            case .modelId: 
+                code = .invalidParameterValue_ModelId
+            case .toState: 
+                code = .invalidParameterValue_ToState
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCAsrError(code, context: self.context)
         }
-        return TCAsrError(code, context: self.context)
-    }
-}
-
-extension TCAsrError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

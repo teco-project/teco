@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCScfError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCScfErrorType {
         enum Code: String {
             case alias = "ResourceNotFound.Alias"
             case asyncEvent = "ResourceNotFound.AsyncEvent"
@@ -57,8 +57,6 @@ extension TCScfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -218,37 +216,70 @@ extension TCScfError {
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-    }
-}
-
-extension TCScfError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCScfError.ResourceNotFound, rhs: TCScfError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCScfError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCScfError.ResourceNotFound {
-    /// - Returns: ``TCScfError`` that holds the same error and context.
-    public func toScfError() -> TCScfError {
-        guard let code = TCScfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asScfError() -> TCScfError {
+            let code: TCScfError.Code
+            switch self.error {
+            case .alias: 
+                code = .resourceNotFound_Alias
+            case .asyncEvent: 
+                code = .resourceNotFound_AsyncEvent
+            case .cdn: 
+                code = .resourceNotFound_Cdn
+            case .cfsMountInsNotMatch: 
+                code = .resourceNotFound_CfsMountInsNotMatch
+            case .cfsProtocolError: 
+                code = .resourceNotFound_CfsProtocolError
+            case .cfsStatusError: 
+                code = .resourceNotFound_CfsStatusError
+            case .cfsVpcNotMatch: 
+                code = .resourceNotFound_CfsVpcNotMatch
+            case .ckafka: 
+                code = .resourceNotFound_Ckafka
+            case .cmq: 
+                code = .resourceNotFound_Cmq
+            case .cos: 
+                code = .resourceNotFound_Cos
+            case .demo: 
+                code = .resourceNotFound_Demo
+            case .function: 
+                code = .resourceNotFound_Function
+            case .functionName: 
+                code = .resourceNotFound_FunctionName
+            case .functionVersion: 
+                code = .resourceNotFound_FunctionVersion
+            case .getCfsMountInsError: 
+                code = .resourceNotFound_GetCfsMountInsError
+            case .getCfsNotMatch: 
+                code = .resourceNotFound_GetCfsNotMatch
+            case .imageConfig: 
+                code = .resourceNotFound_ImageConfig
+            case .layer: 
+                code = .resourceNotFound_Layer
+            case .layerVersion: 
+                code = .resourceNotFound_LayerVersion
+            case .namespace: 
+                code = .resourceNotFound_Namespace
+            case .qualifier: 
+                code = .resourceNotFound_Qualifier
+            case .role: 
+                code = .resourceNotFound_Role
+            case .roleCheck: 
+                code = .resourceNotFound_RoleCheck
+            case .timer: 
+                code = .resourceNotFound_Timer
+            case .totalConcurrencyMemory: 
+                code = .resourceNotFound_TotalConcurrencyMemory
+            case .trigger: 
+                code = .resourceNotFound_Trigger
+            case .version: 
+                code = .resourceNotFound_Version
+            case .vpc: 
+                code = .resourceNotFound_Vpc
+            case .other: 
+                code = .resourceNotFound
+            }
+            return TCScfError(code, context: self.context)
         }
-        return TCScfError(code, context: self.context)
-    }
-}
-
-extension TCScfError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

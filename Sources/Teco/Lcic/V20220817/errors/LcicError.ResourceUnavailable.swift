@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCLcicError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCLcicErrorType {
         enum Code: String {
             case roomStatistics = "ResourceUnavailable.RoomStatistics"
         }
@@ -29,8 +29,6 @@ extension TCLcicError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -47,37 +45,14 @@ extension TCLcicError {
         public static var roomStatistics: ResourceUnavailable {
             ResourceUnavailable(.roomStatistics)
         }
-    }
-}
-
-extension TCLcicError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCLcicError.ResourceUnavailable, rhs: TCLcicError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCLcicError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCLcicError.ResourceUnavailable {
-    /// - Returns: ``TCLcicError`` that holds the same error and context.
-    public func toLcicError() -> TCLcicError {
-        guard let code = TCLcicError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asLcicError() -> TCLcicError {
+            let code: TCLcicError.Code
+            switch self.error {
+            case .roomStatistics: 
+                code = .resourceUnavailable_RoomStatistics
+            }
+            return TCLcicError(code, context: self.context)
         }
-        return TCLcicError(code, context: self.context)
-    }
-}
-
-extension TCLcicError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

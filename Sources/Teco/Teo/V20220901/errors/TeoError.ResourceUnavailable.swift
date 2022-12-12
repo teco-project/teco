@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTeoError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCTeoErrorType {
         enum Code: String {
             case availableDomainNotFound = "ResourceUnavailable.AvailableDomainNotFound"
             case certNotFound = "ResourceUnavailable.CertNotFound"
@@ -34,8 +34,6 @@ extension TCTeoError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -78,37 +76,24 @@ extension TCTeoError {
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-    }
-}
-
-extension TCTeoError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCTeoError.ResourceUnavailable, rhs: TCTeoError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTeoError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTeoError.ResourceUnavailable {
-    /// - Returns: ``TCTeoError`` that holds the same error and context.
-    public func toTeoError() -> TCTeoError {
-        guard let code = TCTeoError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTeoError() -> TCTeoError {
+            let code: TCTeoError.Code
+            switch self.error {
+            case .availableDomainNotFound: 
+                code = .resourceUnavailable_AvailableDomainNotFound
+            case .certNotFound: 
+                code = .resourceUnavailable_CertNotFound
+            case .hostNotFound: 
+                code = .resourceUnavailable_HostNotFound
+            case .proxyZoneNotFound: 
+                code = .resourceUnavailable_ProxyZoneNotFound
+            case .zoneNotFound: 
+                code = .resourceUnavailable_ZoneNotFound
+            case .other: 
+                code = .resourceUnavailable
+            }
+            return TCTeoError(code, context: self.context)
         }
-        return TCTeoError(code, context: self.context)
-    }
-}
-
-extension TCTeoError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

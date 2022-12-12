@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCVpcError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCVpcErrorType {
         enum Code: String {
             case coexist = "InvalidParameter.Coexist"
             case filterInvalidKey = "InvalidParameter.FilterInvalidKey"
@@ -36,8 +36,6 @@ extension TCVpcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -90,37 +88,28 @@ extension TCVpcError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCVpcError.InvalidParameter: Equatable {
-    public static func == (lhs: TCVpcError.InvalidParameter, rhs: TCVpcError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCVpcError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCVpcError.InvalidParameter {
-    /// - Returns: ``TCVpcError`` that holds the same error and context.
-    public func toVpcError() -> TCVpcError {
-        guard let code = TCVpcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asVpcError() -> TCVpcError {
+            let code: TCVpcError.Code
+            switch self.error {
+            case .coexist: 
+                code = .invalidParameter_Coexist
+            case .filterInvalidKey: 
+                code = .invalidParameter_FilterInvalidKey
+            case .filterNotDict: 
+                code = .invalidParameter_FilterNotDict
+            case .filterValuesNotList: 
+                code = .invalidParameter_FilterValuesNotList
+            case .invalidFilter: 
+                code = .invalidParameter_InvalidFilter
+            case .nextHopMismatch: 
+                code = .invalidParameter_NextHopMismatch
+            case .vpgHaGroupNotFound: 
+                code = .invalidParameter_VpgHaGroupNotFound
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCVpcError(code, context: self.context)
         }
-        return TCVpcError(code, context: self.context)
-    }
-}
-
-extension TCVpcError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

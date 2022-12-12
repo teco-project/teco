@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIaiError {
-    public struct ResourcesSoldOut: TCErrorType {
+    public struct ResourcesSoldOut: TCIaiErrorType {
         enum Code: String {
             case chargeStatusException = "ResourcesSoldOut.ChargeStatusException"
         }
@@ -29,8 +29,6 @@ extension TCIaiError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCIaiError {
         public static var chargeStatusException: ResourcesSoldOut {
             ResourcesSoldOut(.chargeStatusException)
         }
-    }
-}
-
-extension TCIaiError.ResourcesSoldOut: Equatable {
-    public static func == (lhs: TCIaiError.ResourcesSoldOut, rhs: TCIaiError.ResourcesSoldOut) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIaiError.ResourcesSoldOut: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIaiError.ResourcesSoldOut {
-    /// - Returns: ``TCIaiError`` that holds the same error and context.
-    public func toIaiError() -> TCIaiError {
-        guard let code = TCIaiError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIaiError() -> TCIaiError {
+            let code: TCIaiError.Code
+            switch self.error {
+            case .chargeStatusException: 
+                code = .resourcesSoldOut_ChargeStatusException
+            }
+            return TCIaiError(code, context: self.context)
         }
-        return TCIaiError(code, context: self.context)
-    }
-}
-
-extension TCIaiError.ResourcesSoldOut {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

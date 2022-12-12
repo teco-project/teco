@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCApigatewayError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCApigatewayErrorType {
         enum Code: String {
             case apigwException = "InternalError.ApigwException"
             case cauthException = "InternalError.CauthException"
@@ -36,8 +36,6 @@ extension TCApigatewayError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -90,37 +88,28 @@ extension TCApigatewayError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCApigatewayError.InternalError: Equatable {
-    public static func == (lhs: TCApigatewayError.InternalError, rhs: TCApigatewayError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCApigatewayError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCApigatewayError.InternalError {
-    /// - Returns: ``TCApigatewayError`` that holds the same error and context.
-    public func toApigatewayError() -> TCApigatewayError {
-        guard let code = TCApigatewayError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asApigatewayError() -> TCApigatewayError {
+            let code: TCApigatewayError.Code
+            switch self.error {
+            case .apigwException: 
+                code = .internalError_ApigwException
+            case .cauthException: 
+                code = .internalError_CauthException
+            case .clbException: 
+                code = .internalError_ClbException
+            case .ossException: 
+                code = .internalError_OssException
+            case .scfException: 
+                code = .internalError_ScfException
+            case .tsfException: 
+                code = .internalError_TsfException
+            case .vpcException: 
+                code = .internalError_VpcException
+            case .other: 
+                code = .internalError
+            }
+            return TCApigatewayError(code, context: self.context)
         }
-        return TCApigatewayError(code, context: self.context)
-    }
-}
-
-extension TCApigatewayError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

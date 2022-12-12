@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCamError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCCamErrorType {
         enum Code: String {
             case actionError = "InvalidParameter.ActionError"
             case actionMiss = "InvalidParameter.ActionMiss"
@@ -90,8 +90,6 @@ extension TCCamError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -414,37 +412,136 @@ extension TCCamError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCCamError.InvalidParameter: Equatable {
-    public static func == (lhs: TCCamError.InvalidParameter, rhs: TCCamError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCamError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCamError.InvalidParameter {
-    /// - Returns: ``TCCamError`` that holds the same error and context.
-    public func toCamError() -> TCCamError {
-        guard let code = TCCamError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCamError() -> TCCamError {
+            let code: TCCamError.Code
+            switch self.error {
+            case .actionError: 
+                code = .invalidParameter_ActionError
+            case .actionMiss: 
+                code = .invalidParameter_ActionMiss
+            case .actionNotExist: 
+                code = .invalidParameter_ActionNotExist
+            case .actionServiceNotExist: 
+                code = .invalidParameter_ActionServiceNotExist
+            case .attachmentFull: 
+                code = .invalidParameter_AttachmentFull
+            case .conditionContentError: 
+                code = .invalidParameter_ConditionContentError
+            case .conditionError: 
+                code = .invalidParameter_ConditionError
+            case .conditionTypeError: 
+                code = .invalidParameter_ConditionTypeError
+            case .deletionTaskNotExist: 
+                code = .invalidParameter_DeletionTaskNotExist
+            case .descriptionLengthOverlimit: 
+                code = .invalidParameter_DescriptionLengthOverlimit
+            case .effectError: 
+                code = .invalidParameter_EffectError
+            case .entityFilterError: 
+                code = .invalidParameter_EntityFilterError
+            case .groupFull: 
+                code = .invalidParameter_GroupFull
+            case .groupIdError: 
+                code = .invalidParameter_GroupIdError
+            case .groupNameInUse: 
+                code = .invalidParameter_GroupNameInUse
+            case .groupNotExist: 
+                code = .invalidParameter_GroupNotExist
+            case .groupUserFull: 
+                code = .invalidParameter_GroupUserFull
+            case .identityNameInUse: 
+                code = .invalidParameter_IdentityNameInUse
+            case .keywordError: 
+                code = .invalidParameter_KeywordError
+            case .mfaTokenError: 
+                code = .invalidParameter_MFATokenError
+            case .notSupportProduct: 
+                code = .invalidParameter_NotSupportProduct
+            case .operateEntitiesOverLimit: 
+                code = .invalidParameter_OperateEntitiesOverLimit
+            case .paramError: 
+                code = .invalidParameter_ParamError
+            case .passwordViolatedRules: 
+                code = .invalidParameter_PasswordViolatedRules
+            case .policyDocumentError: 
+                code = .invalidParameter_PolicyDocumentError
+            case .policyDocumentLengthOverLimit: 
+                code = .invalidParameter_PolicyDocumentLengthOverLimit
+            case .policyIdError: 
+                code = .invalidParameter_PolicyIdError
+            case .policyIdNotExist: 
+                code = .invalidParameter_PolicyIdNotExist
+            case .policyNameError: 
+                code = .invalidParameter_PolicyNameError
+            case .policyVersionNotExists: 
+                code = .invalidParameter_PolicyVersionNotExists
+            case .principalError: 
+                code = .invalidParameter_PrincipalError
+            case .principalQcsCrossError: 
+                code = .invalidParameter_PrincipalQcsCrossError
+            case .principalQcsError: 
+                code = .invalidParameter_PrincipalQcsError
+            case .principalQcsNotExist: 
+                code = .invalidParameter_PrincipalQcsNotExist
+            case .principalServiceNotExist: 
+                code = .invalidParameter_PrincipalServiceNotExist
+            case .resourceContentError: 
+                code = .invalidParameter_ResourceContentError
+            case .resourceError: 
+                code = .invalidParameter_ResourceError
+            case .resourceProjectError: 
+                code = .invalidParameter_ResourceProjectError
+            case .resourceQcsError: 
+                code = .invalidParameter_ResourceQcsError
+            case .resourceRegionError: 
+                code = .invalidParameter_ResourceRegionError
+            case .resourceServiceNotExist: 
+                code = .invalidParameter_ResourceServiceNotExist
+            case .resourceUinError: 
+                code = .invalidParameter_ResourceUinError
+            case .roleFull: 
+                code = .invalidParameter_RoleFull
+            case .roleNameError: 
+                code = .invalidParameter_RoleNameError
+            case .roleNameInUse: 
+                code = .invalidParameter_RoleNameInUse
+            case .roleNotExist: 
+                code = .invalidParameter_RoleNotExist
+            case .scopeError: 
+                code = .invalidParameter_ScopeError
+            case .serviceLinkedPolicyCantInPermissionBoundary: 
+                code = .invalidParameter_ServiceLinkedPolicyCantInPermissionBoundary
+            case .serviceLinkedRoleCantUsePermissionBoundary: 
+                code = .invalidParameter_ServiceLinkedRoleCantUsePermissionBoundary
+            case .serviceTypeError: 
+                code = .invalidParameter_ServiceTypeError
+            case .statementError: 
+                code = .invalidParameter_StatementError
+            case .subUserFull: 
+                code = .invalidParameter_SubUserFull
+            case .subUserNameInUse: 
+                code = .invalidParameter_SubUserNameInUse
+            case .tagLimitExceeded: 
+                code = .invalidParameter_TagLimitExceeded
+            case .tagParamError: 
+                code = .invalidParameter_TagParamError
+            case .uinError: 
+                code = .invalidParameter_UinError
+            case .userGroupFull: 
+                code = .invalidParameter_UserGroupFull
+            case .userNameIllegal: 
+                code = .invalidParameter_UserNameIllegal
+            case .userNotExist: 
+                code = .invalidParameter_UserNotExist
+            case .userUinAndUinNotAllNull: 
+                code = .invalidParameter_UserUinAndUinNotAllNull
+            case .versionError: 
+                code = .invalidParameter_VersionError
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCCamError(code, context: self.context)
         }
-        return TCCamError(code, context: self.context)
-    }
-}
-
-extension TCCamError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

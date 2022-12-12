@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEssError {
-    public struct MissingParameter: TCErrorType {
+    public struct MissingParameter: TCEssErrorType {
         enum Code: String {
             case approverMobile = "MissingParameter.ApproverMobile"
             case approverName = "MissingParameter.ApproverName"
@@ -48,8 +48,6 @@ extension TCEssError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -143,37 +141,52 @@ extension TCEssError {
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-    }
-}
-
-extension TCEssError.MissingParameter: Equatable {
-    public static func == (lhs: TCEssError.MissingParameter, rhs: TCEssError.MissingParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEssError.MissingParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEssError.MissingParameter {
-    /// - Returns: ``TCEssError`` that holds the same error and context.
-    public func toEssError() -> TCEssError {
-        guard let code = TCEssError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEssError() -> TCEssError {
+            let code: TCEssError.Code
+            switch self.error {
+            case .approverMobile: 
+                code = .missingParameter_ApproverMobile
+            case .approverName: 
+                code = .missingParameter_ApproverName
+            case .approverOrganizationInfo: 
+                code = .missingParameter_ApproverOrganizationInfo
+            case .approverRole: 
+                code = .missingParameter_ApproverRole
+            case .approverSignComponent: 
+                code = .missingParameter_ApproverSignComponent
+            case .authCode: 
+                code = .missingParameter_AuthCode
+            case .cancelReason: 
+                code = .missingParameter_CancelReason
+            case .field: 
+                code = .missingParameter_Field
+            case .fileNames: 
+                code = .missingParameter_FileNames
+            case .flowApprover: 
+                code = .missingParameter_FlowApprover
+            case .flowId: 
+                code = .missingParameter_FlowId
+            case .keyWord: 
+                code = .missingParameter_KeyWord
+            case .qrCodeId: 
+                code = .missingParameter_QrCodeId
+            case .recipient: 
+                code = .missingParameter_Recipient
+            case .resourceId: 
+                code = .missingParameter_ResourceId
+            case .resourceName: 
+                code = .missingParameter_ResourceName
+            case .serverSignSealId: 
+                code = .missingParameter_ServerSignSealId
+            case .signComponents: 
+                code = .missingParameter_SignComponents
+            case .userId: 
+                code = .missingParameter_UserId
+            case .other: 
+                code = .missingParameter
+            }
+            return TCEssError(code, context: self.context)
         }
-        return TCEssError(code, context: self.context)
-    }
-}
-
-extension TCEssError.MissingParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

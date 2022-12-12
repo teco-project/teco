@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTsfError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCTsfErrorType {
         enum Code: String {
             case apiMetaParseFailed = "FailedOperation.ApiMetaParseFailed"
             case applicationCreateEsAtuhError = "FailedOperation.ApplicationCreateEsAtuhError"
@@ -78,8 +78,6 @@ extension TCTsfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -342,37 +340,112 @@ extension TCTsfError {
         public static var unhandledException: FailedOperation {
             FailedOperation(.unhandledException)
         }
-    }
-}
-
-extension TCTsfError.FailedOperation: Equatable {
-    public static func == (lhs: TCTsfError.FailedOperation, rhs: TCTsfError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTsfError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTsfError.FailedOperation {
-    /// - Returns: ``TCTsfError`` that holds the same error and context.
-    public func toTsfError() -> TCTsfError {
-        guard let code = TCTsfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTsfError() -> TCTsfError {
+            let code: TCTsfError.Code
+            switch self.error {
+            case .apiMetaParseFailed: 
+                code = .failedOperation_ApiMetaParseFailed
+            case .applicationCreateEsAtuhError: 
+                code = .failedOperation_ApplicationCreateEsAtuhError
+            case .applicationQueryFailed: 
+                code = .failedOperation_ApplicationQueryFailed
+            case .clusterCreateVpcFail: 
+                code = .failedOperation_ClusterCreateVpcFail
+            case .clusterQueryFailed: 
+                code = .failedOperation_ClusterQueryFailed
+            case .configApplicationQueryFailed: 
+                code = .failedOperation_ConfigApplicationQueryFailed
+            case .configCreateFailed: 
+                code = .failedOperation_ConfigCreateFailed
+            case .configGroupQueryFailed: 
+                code = .failedOperation_ConfigGroupQueryFailed
+            case .configNamespaceQueryFailed: 
+                code = .failedOperation_ConfigNamespaceQueryFailed
+            case .configQueryFailed: 
+                code = .failedOperation_ConfigQueryFailed
+            case .configReleaseQueryFailed: 
+                code = .failedOperation_ConfigReleaseQueryFailed
+            case .containergroupGroupHasrun: 
+                code = .failedOperation_ContainergroupGroupHasrun
+            case .containergroupGroupHasstop: 
+                code = .failedOperation_ContainergroupGroupHasstop
+            case .cvmCaeMasterHealthCheckConfigError: 
+                code = .failedOperation_CvmCaeMasterHealthCheckConfigError
+            case .gatewayRemoteCallError: 
+                code = .failedOperation_GatewayRemoteCallError
+            case .groupExists: 
+                code = .failedOperation_GroupExists
+            case .groupQueryFaild: 
+                code = .failedOperation_GroupQueryFaild
+            case .instanceDeleteFailed: 
+                code = .failedOperation_InstanceDeleteFailed
+            case .instanceQueryFailed: 
+                code = .failedOperation_InstanceQueryFailed
+            case .instanceResetError: 
+                code = .failedOperation_InstanceResetError
+            case .instanceResetTimeout: 
+                code = .failedOperation_InstanceResetTimeout
+            case .instanceUpdateFailed: 
+                code = .failedOperation_InstanceUpdateFailed
+            case .laneInfoDeleteConsulFailed: 
+                code = .failedOperation_LaneInfoDeleteConsulFailed
+            case .laneInfoGroupNotEmpty: 
+                code = .failedOperation_LaneInfoGroupNotEmpty
+            case .laneInfoReleaseConsulFailed: 
+                code = .failedOperation_LaneInfoReleaseConsulFailed
+            case .laneInfoReleaseMeshFailed: 
+                code = .failedOperation_LaneInfoReleaseMeshFailed
+            case .laneRuleEnableConsulFailed: 
+                code = .failedOperation_LaneRuleEnableConsulFailed
+            case .laneRuleMaxLimit: 
+                code = .failedOperation_LaneRuleMaxLimit
+            case .namespaceCreateFailed: 
+                code = .failedOperation_NamespaceCreateFailed
+            case .namespaceQueryFailed: 
+                code = .failedOperation_NamespaceQueryFailed
+            case .ratelimitConsulError: 
+                code = .failedOperation_RatelimitConsulError
+            case .serviceInsertFailed: 
+                code = .failedOperation_ServiceInsertFailed
+            case .serviceQueryFailed: 
+                code = .failedOperation_ServiceQueryFailed
+            case .taskCreateError: 
+                code = .failedOperation_TaskCreateError
+            case .taskDeleteError: 
+                code = .failedOperation_TaskDeleteError
+            case .taskOperationFailed: 
+                code = .failedOperation_TaskOperationFailed
+            case .taskOperationForbidden: 
+                code = .failedOperation_TaskOperationForbidden
+            case .taskPushError: 
+                code = .failedOperation_TaskPushError
+            case .taskQueryError: 
+                code = .failedOperation_TaskQueryError
+            case .taskTerminateFailed: 
+                code = .failedOperation_TaskTerminateFailed
+            case .taskUpdateError: 
+                code = .failedOperation_TaskUpdateError
+            case .tkeClusterCreateFailed: 
+                code = .failedOperation_TkeClusterCreateFailed
+            case .tkeClusterQueryFailed: 
+                code = .failedOperation_TkeClusterQueryFailed
+            case .tsfApmBusiLogCfgSchemaQueryError: 
+                code = .failedOperation_TsfApmBusiLogCfgSchemaQueryError
+            case .tsfApmBusiLogCfgWriteError: 
+                code = .failedOperation_TsfApmBusiLogCfgWriteError
+            case .tsfApmCtsdbClientRequestError: 
+                code = .failedOperation_TsfApmCtsdbClientRequestError
+            case .tsfCmonitorCtsdbClientRequestFail: 
+                code = .failedOperation_TsfCmonitorCtsdbClientRequestFail
+            case .tsfMonitorWaitedTimeout: 
+                code = .failedOperation_TsfMonitorWaitedTimeout
+            case .tsfPrivilegeError: 
+                code = .failedOperation_TsfPrivilegeError
+            case .unhandledException: 
+                code = .failedOperation_UnhandledException
+            }
+            return TCTsfError(code, context: self.context)
         }
-        return TCTsfError(code, context: self.context)
-    }
-}
-
-extension TCTsfError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

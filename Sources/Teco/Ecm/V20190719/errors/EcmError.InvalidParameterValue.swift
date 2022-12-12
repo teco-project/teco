@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEcmError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCEcmErrorType {
         enum Code: String {
             case addressQuotaLimitExceeded = "InvalidParameterValue.AddressQuotaLimitExceeded"
             case bandwidthOutOfRange = "InvalidParameterValue.BandwidthOutOfRange"
@@ -113,8 +113,6 @@ extension TCEcmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -554,37 +552,182 @@ extension TCEcmError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCEcmError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCEcmError.InvalidParameterValue, rhs: TCEcmError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEcmError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEcmError.InvalidParameterValue {
-    /// - Returns: ``TCEcmError`` that holds the same error and context.
-    public func toEcmError() -> TCEcmError {
-        guard let code = TCEcmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEcmError() -> TCEcmError {
+            let code: TCEcmError.Code
+            switch self.error {
+            case .addressQuotaLimitExceeded: 
+                code = .invalidParameterValue_AddressQuotaLimitExceeded
+            case .bandwidthOutOfRange: 
+                code = .invalidParameterValue_BandwidthOutOfRange
+            case .cidrNotInPeerVpc: 
+                code = .invalidParameterValue_CidrNotInPeerVpc
+            case .duplicate: 
+                code = .invalidParameterValue_Duplicate
+            case .filterLimitExceeded: 
+                code = .invalidParameterValue_FilterLimitExceeded
+            case .imageDuplicate: 
+                code = .invalidParameterValue_ImageDuplicate
+            case .imageNameDuplicate: 
+                code = .invalidParameterValue_ImageNameDuplicate
+            case .imageSizeLargeThanSysDiskSize: 
+                code = .invalidParameterValue_ImageSizeLargeThanSysDiskSize
+            case .instanceConfigNotMatch: 
+                code = .invalidParameterValue_InstanceConfigNotMatch
+            case .instanceIdNotSupported: 
+                code = .invalidParameterValue_InstanceIdNotSupported
+            case .instanceNameTooLong: 
+                code = .invalidParameterValue_InstanceNameTooLong
+            case .instanceTypeNotMatchPid: 
+                code = .invalidParameterValue_InstanceTypeNotMatchPid
+            case .insufficientRefundQuota: 
+                code = .invalidParameterValue_InsufficientRefundQuota
+            case .invaildAddressId: 
+                code = .invalidParameterValue_InvaildAddressId
+            case .invaildDescribeInstance: 
+                code = .invalidParameterValue_InvaildDescribeInstance
+            case .invaildEniID: 
+                code = .invalidParameterValue_InvaildEniID
+            case .invaildHostName: 
+                code = .invalidParameterValue_InvaildHostName
+            case .invaildModifyParam: 
+                code = .invalidParameterValue_InvaildModifyParam
+            case .invaildModuleNum: 
+                code = .invalidParameterValue_InvaildModuleNum
+            case .invaildPageParam: 
+                code = .invalidParameterValue_InvaildPageParam
+            case .invaildPassword: 
+                code = .invalidParameterValue_InvaildPassword
+            case .invalidAddressCount: 
+                code = .invalidParameterValue_InvalidAddressCount
+            case .invalidBandwidth: 
+                code = .invalidParameterValue_InvalidBandwidth
+            case .invalidBandwidthIn: 
+                code = .invalidParameterValue_InvalidBandwidthIn
+            case .invalidBandwidthInAndOut: 
+                code = .invalidParameterValue_InvalidBandwidthInAndOut
+            case .invalidBillingType: 
+                code = .invalidParameterValue_InvalidBillingType
+            case .invalidDataDiskNum: 
+                code = .invalidParameterValue_InvalidDataDiskNum
+            case .invalidDataDiskSize: 
+                code = .invalidParameterValue_InvalidDataDiskSize
+            case .invalidDataDiskType: 
+                code = .invalidParameterValue_InvalidDataDiskType
+            case .invalidDisk: 
+                code = .invalidParameterValue_InvalidDisk
+            case .invalidDiskId: 
+                code = .invalidParameterValue_InvalidDiskId
+            case .invalidDiskType: 
+                code = .invalidParameterValue_InvalidDiskType
+            case .invalidEIPDirectService: 
+                code = .invalidParameterValue_InvalidEIPDirectService
+            case .invalidEcmRegion: 
+                code = .invalidParameterValue_InvalidEcmRegion
+            case .invalidFilter: 
+                code = .invalidParameterValue_InvalidFilter
+            case .invalidISPInNode: 
+                code = .invalidParameterValue_InvalidISPInNode
+            case .invalidImageArchitecture: 
+                code = .invalidParameterValue_InvalidImageArchitecture
+            case .invalidImageID: 
+                code = .invalidParameterValue_InvalidImageID
+            case .invalidInstanceChargeType: 
+                code = .invalidParameterValue_InvalidInstanceChargeType
+            case .invalidInstanceID: 
+                code = .invalidParameterValue_InvalidInstanceID
+            case .invalidInstanceType: 
+                code = .invalidParameterValue_InvalidInstanceType
+            case .invalidInstanceTypeConfigID: 
+                code = .invalidParameterValue_InvalidInstanceTypeConfigID
+            case .invalidInternetChargeType: 
+                code = .invalidParameterValue_InvalidInternetChargeType
+            case .invalidKeyPairId: 
+                code = .invalidParameterValue_InvalidKeyPairId
+            case .invalidKeyPairName: 
+                code = .invalidParameterValue_InvalidKeyPairName
+            case .invalidLoadBalancerNum: 
+                code = .invalidParameterValue_InvalidLoadBalancerNum
+            case .invalidLoadBalancerType: 
+                code = .invalidParameterValue_InvalidLoadBalancerType
+            case .invalidModuleID: 
+                code = .invalidParameterValue_InvalidModuleID
+            case .invalidModuleIDAndInstanceTypeConfigID: 
+                code = .invalidParameterValue_InvalidModuleIDAndInstanceTypeConfigID
+            case .invalidModuleIDAndInstanceTypeID: 
+                code = .invalidParameterValue_InvalidModuleIDAndInstanceTypeID
+            case .invalidModuleName: 
+                code = .invalidParameterValue_InvalidModuleName
+            case .invalidOrderByField: 
+                code = .invalidParameterValue_InvalidOrderByField
+            case .invalidPublicParam: 
+                code = .invalidParameterValue_InvalidPublicParam
+            case .invalidRegion: 
+                code = .invalidParameterValue_InvalidRegion
+            case .invalidSecurityGroupID: 
+                code = .invalidParameterValue_InvalidSecurityGroupID
+            case .invalidSnapshot: 
+                code = .invalidParameterValue_InvalidSnapshot
+            case .invalidSnapshotId: 
+                code = .invalidParameterValue_InvalidSnapshotId
+            case .invalidSystemDiskSize: 
+                code = .invalidParameterValue_InvalidSystemDiskSize
+            case .invalidSystemDiskType: 
+                code = .invalidParameterValue_InvalidSystemDiskType
+            case .invalidTime: 
+                code = .invalidParameterValue_InvalidTime
+            case .invalidZone: 
+                code = .invalidParameterValue_InvalidZone
+            case .invalidZoneInstanceCount: 
+                code = .invalidParameterValue_InvalidZoneInstanceCount
+            case .invalidZoneInstanceType: 
+                code = .invalidParameterValue_InvalidZoneInstanceType
+            case .length: 
+                code = .invalidParameterValue_Length
+            case .limitExceeded: 
+                code = .invalidParameterValue_LimitExceeded
+            case .malformed: 
+                code = .invalidParameterValue_Malformed
+            case .moduleNotAllowChange: 
+                code = .invalidParameterValue_ModuleNotAllowChange
+            case .nodeNotSupportIPv6: 
+                code = .invalidParameterValue_NodeNotSupportIPv6
+            case .objectNotCurrentSubnet: 
+                code = .invalidParameterValue_ObjectNotCurrentSubnet
+            case .objectVpcNotCurrentVpc: 
+                code = .invalidParameterValue_ObjectVpcNotCurrentVpc
+            case .parameterValueTooLarge: 
+                code = .invalidParameterValue_ParameterValueTooLarge
+            case .range: 
+                code = .invalidParameterValue_Range
+            case .reserved: 
+                code = .invalidParameterValue_Reserved
+            case .subnetConflict: 
+                code = .invalidParameterValue_SubnetConflict
+            case .subnetNotExist: 
+                code = .invalidParameterValue_SubnetNotExist
+            case .subnetRange: 
+                code = .invalidParameterValue_SubnetRange
+            case .tagNumOutOfRange: 
+                code = .invalidParameterValue_TagNumOutOfRange
+            case .taskNotFound: 
+                code = .invalidParameterValue_TaskNotFound
+            case .terminateTimeSmaller: 
+                code = .invalidParameterValue_TerminateTimeSmaller
+            case .tooLong: 
+                code = .invalidParameterValue_TooLong
+            case .unmatchedBillingType: 
+                code = .invalidParameterValue_UnmatchedBillingType
+            case .unsupportedRegion: 
+                code = .invalidParameterValue_UnsupportedRegion
+            case .userNotSupportIPv6: 
+                code = .invalidParameterValue_UserNotSupportIPv6
+            case .vpcCidrConflict: 
+                code = .invalidParameterValue_VpcCidrConflict
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCEcmError(code, context: self.context)
         }
-        return TCEcmError(code, context: self.context)
-    }
-}
-
-extension TCEcmError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

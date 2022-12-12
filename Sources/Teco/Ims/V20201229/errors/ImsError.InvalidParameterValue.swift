@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCImsError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCImsErrorType {
         enum Code: String {
             case emptyImageContent = "InvalidParameterValue.EmptyImageContent"
             case imageSizeTooSmall = "InvalidParameterValue.ImageSizeTooSmall"
@@ -36,8 +36,6 @@ extension TCImsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -90,37 +88,28 @@ extension TCImsError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCImsError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCImsError.InvalidParameterValue, rhs: TCImsError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCImsError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCImsError.InvalidParameterValue {
-    /// - Returns: ``TCImsError`` that holds the same error and context.
-    public func toImsError() -> TCImsError {
-        guard let code = TCImsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asImsError() -> TCImsError {
+            let code: TCImsError.Code
+            switch self.error {
+            case .emptyImageContent: 
+                code = .invalidParameterValue_EmptyImageContent
+            case .imageSizeTooSmall: 
+                code = .invalidParameterValue_ImageSizeTooSmall
+            case .invalidContent: 
+                code = .invalidParameterValue_InvalidContent
+            case .invalidDataId: 
+                code = .invalidParameterValue_InvalidDataId
+            case .invalidFileContentSize: 
+                code = .invalidParameterValue_InvalidFileContentSize
+            case .invalidImageContent: 
+                code = .invalidParameterValue_InvalidImageContent
+            case .invalidParameter: 
+                code = .invalidParameterValue_InvalidParameter
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCImsError(code, context: self.context)
         }
-        return TCImsError(code, context: self.context)
-    }
-}
-
-extension TCImsError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEbError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCEbErrorType {
         enum Code: String {
             case connection = "ResourceUnavailable.Connection"
             case esUnhealth = "ResourceUnavailable.ESUnhealth"
@@ -31,8 +31,6 @@ extension TCEbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -59,37 +57,18 @@ extension TCEbError {
         public static var target: ResourceUnavailable {
             ResourceUnavailable(.target)
         }
-    }
-}
-
-extension TCEbError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCEbError.ResourceUnavailable, rhs: TCEbError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEbError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEbError.ResourceUnavailable {
-    /// - Returns: ``TCEbError`` that holds the same error and context.
-    public func toEbError() -> TCEbError {
-        guard let code = TCEbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEbError() -> TCEbError {
+            let code: TCEbError.Code
+            switch self.error {
+            case .connection: 
+                code = .resourceUnavailable_Connection
+            case .esUnhealth: 
+                code = .resourceUnavailable_ESUnhealth
+            case .target: 
+                code = .resourceUnavailable_Target
+            }
+            return TCEbError(code, context: self.context)
         }
-        return TCEbError(code, context: self.context)
-    }
-}
-
-extension TCEbError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

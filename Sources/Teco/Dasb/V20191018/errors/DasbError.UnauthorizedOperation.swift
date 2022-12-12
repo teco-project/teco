@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDasbError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCDasbErrorType {
         enum Code: String {
             case noPermission = "UnauthorizedOperation.NoPermission"
             case other = "UnauthorizedOperation"
@@ -30,8 +30,6 @@ extension TCDasbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCDasbError {
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-    }
-}
-
-extension TCDasbError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCDasbError.UnauthorizedOperation, rhs: TCDasbError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDasbError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDasbError.UnauthorizedOperation {
-    /// - Returns: ``TCDasbError`` that holds the same error and context.
-    public func toDasbError() -> TCDasbError {
-        guard let code = TCDasbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDasbError() -> TCDasbError {
+            let code: TCDasbError.Code
+            switch self.error {
+            case .noPermission: 
+                code = .unauthorizedOperation_NoPermission
+            case .other: 
+                code = .unauthorizedOperation
+            }
+            return TCDasbError(code, context: self.context)
         }
-        return TCDasbError(code, context: self.context)
-    }
-}
-
-extension TCDasbError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

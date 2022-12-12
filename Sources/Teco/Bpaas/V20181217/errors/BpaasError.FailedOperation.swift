@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBpaasError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCBpaasErrorType {
         enum Code: String {
             case sendToCkafka = "FailedOperation.SendToCkafka"
             case other = "FailedOperation"
@@ -30,8 +30,6 @@ extension TCBpaasError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -53,37 +51,16 @@ extension TCBpaasError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCBpaasError.FailedOperation: Equatable {
-    public static func == (lhs: TCBpaasError.FailedOperation, rhs: TCBpaasError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBpaasError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBpaasError.FailedOperation {
-    /// - Returns: ``TCBpaasError`` that holds the same error and context.
-    public func toBpaasError() -> TCBpaasError {
-        guard let code = TCBpaasError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBpaasError() -> TCBpaasError {
+            let code: TCBpaasError.Code
+            switch self.error {
+            case .sendToCkafka: 
+                code = .failedOperation_SendToCkafka
+            case .other: 
+                code = .failedOperation
+            }
+            return TCBpaasError(code, context: self.context)
         }
-        return TCBpaasError(code, context: self.context)
-    }
-}
-
-extension TCBpaasError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

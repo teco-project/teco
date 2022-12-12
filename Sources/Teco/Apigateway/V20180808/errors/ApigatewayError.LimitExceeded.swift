@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCApigatewayError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCApigatewayErrorType {
         enum Code: String {
             case accessKeyCountInUsagePlanLimitExceeded = "LimitExceeded.AccessKeyCountInUsagePlanLimitExceeded"
             case apiAppCountLimitExceeded = "LimitExceeded.ApiAppCountLimitExceeded"
@@ -41,8 +41,6 @@ extension TCApigatewayError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -120,37 +118,38 @@ extension TCApigatewayError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCApigatewayError.LimitExceeded: Equatable {
-    public static func == (lhs: TCApigatewayError.LimitExceeded, rhs: TCApigatewayError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCApigatewayError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCApigatewayError.LimitExceeded {
-    /// - Returns: ``TCApigatewayError`` that holds the same error and context.
-    public func toApigatewayError() -> TCApigatewayError {
-        guard let code = TCApigatewayError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asApigatewayError() -> TCApigatewayError {
+            let code: TCApigatewayError.Code
+            switch self.error {
+            case .accessKeyCountInUsagePlanLimitExceeded: 
+                code = .limitExceeded_AccessKeyCountInUsagePlanLimitExceeded
+            case .apiAppCountLimitExceeded: 
+                code = .limitExceeded_ApiAppCountLimitExceeded
+            case .apiCountLimitExceeded: 
+                code = .limitExceeded_ApiCountLimitExceeded
+            case .apiDocLimitExceeded: 
+                code = .limitExceeded_APIDocLimitExceeded
+            case .apiKeyCountLimitExceeded: 
+                code = .limitExceeded_ApiKeyCountLimitExceeded
+            case .exceededDefineMappingLimit: 
+                code = .limitExceeded_ExceededDefineMappingLimit
+            case .exceededDomainLimit: 
+                code = .limitExceeded_ExceededDomainLimit
+            case .ipStrategyLimitExceeded: 
+                code = .limitExceeded_IpStrategyLimitExceeded
+            case .requestLimitExceeded: 
+                code = .limitExceeded_RequestLimitExceeded
+            case .serviceCountForPluginLimitExceeded: 
+                code = .limitExceeded_ServiceCountForPluginLimitExceeded
+            case .serviceCountLimitExceeded: 
+                code = .limitExceeded_ServiceCountLimitExceeded
+            case .usagePlanLimitExceeded: 
+                code = .limitExceeded_UsagePlanLimitExceeded
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCApigatewayError(code, context: self.context)
         }
-        return TCApigatewayError(code, context: self.context)
-    }
-}
-
-extension TCApigatewayError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

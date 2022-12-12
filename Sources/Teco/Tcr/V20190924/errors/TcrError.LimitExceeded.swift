@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTcrError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCTcrErrorType {
         enum Code: String {
             case errNamespaceMaxLimit = "LimitExceeded.ErrNamespaceMaxLimit"
             case errRepoMaxLimit = "LimitExceeded.ErrRepoMaxLimit"
@@ -31,8 +31,6 @@ extension TCTcrError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCTcrError {
         public static var errTriggerMaxLimit: LimitExceeded {
             LimitExceeded(.errTriggerMaxLimit)
         }
-    }
-}
-
-extension TCTcrError.LimitExceeded: Equatable {
-    public static func == (lhs: TCTcrError.LimitExceeded, rhs: TCTcrError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTcrError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTcrError.LimitExceeded {
-    /// - Returns: ``TCTcrError`` that holds the same error and context.
-    public func toTcrError() -> TCTcrError {
-        guard let code = TCTcrError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTcrError() -> TCTcrError {
+            let code: TCTcrError.Code
+            switch self.error {
+            case .errNamespaceMaxLimit: 
+                code = .limitExceeded_ErrNamespaceMaxLimit
+            case .errRepoMaxLimit: 
+                code = .limitExceeded_ErrRepoMaxLimit
+            case .errTriggerMaxLimit: 
+                code = .limitExceeded_ErrTriggerMaxLimit
+            }
+            return TCTcrError(code, context: self.context)
         }
-        return TCTcrError(code, context: self.context)
-    }
-}
-
-extension TCTcrError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

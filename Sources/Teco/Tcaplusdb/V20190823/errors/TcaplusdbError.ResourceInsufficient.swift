@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTcaplusdbError {
-    public struct ResourceInsufficient: TCErrorType {
+    public struct ResourceInsufficient: TCTcaplusdbErrorType {
         enum Code: String {
             case balanceError = "ResourceInsufficient.BalanceError"
             case noAvailableApp = "ResourceInsufficient.NoAvailableApp"
@@ -33,8 +33,6 @@ extension TCTcaplusdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,22 @@ extension TCTcaplusdbError {
         public static var other: ResourceInsufficient {
             ResourceInsufficient(.other)
         }
-    }
-}
-
-extension TCTcaplusdbError.ResourceInsufficient: Equatable {
-    public static func == (lhs: TCTcaplusdbError.ResourceInsufficient, rhs: TCTcaplusdbError.ResourceInsufficient) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTcaplusdbError.ResourceInsufficient: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTcaplusdbError.ResourceInsufficient {
-    /// - Returns: ``TCTcaplusdbError`` that holds the same error and context.
-    public func toTcaplusdbError() -> TCTcaplusdbError {
-        guard let code = TCTcaplusdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTcaplusdbError() -> TCTcaplusdbError {
+            let code: TCTcaplusdbError.Code
+            switch self.error {
+            case .balanceError: 
+                code = .resourceInsufficient_BalanceError
+            case .noAvailableApp: 
+                code = .resourceInsufficient_NoAvailableApp
+            case .noAvailableCluster: 
+                code = .resourceInsufficient_NoAvailableCluster
+            case .noEnoughVipInVPC: 
+                code = .resourceInsufficient_NoEnoughVipInVPC
+            case .other: 
+                code = .resourceInsufficient
+            }
+            return TCTcaplusdbError(code, context: self.context)
         }
-        return TCTcaplusdbError(code, context: self.context)
-    }
-}
-
-extension TCTcaplusdbError.ResourceInsufficient {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

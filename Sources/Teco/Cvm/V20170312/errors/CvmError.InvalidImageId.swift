@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCvmError {
-    public struct InvalidImageId: TCErrorType {
+    public struct InvalidImageId: TCCvmErrorType {
         enum Code: String {
             case inShared = "InvalidImageId.InShared"
             case incorrectState = "InvalidImageId.IncorrectState"
@@ -33,8 +33,6 @@ extension TCCvmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,22 @@ extension TCCvmError {
         public static var tooLarge: InvalidImageId {
             InvalidImageId(.tooLarge)
         }
-    }
-}
-
-extension TCCvmError.InvalidImageId: Equatable {
-    public static func == (lhs: TCCvmError.InvalidImageId, rhs: TCCvmError.InvalidImageId) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCvmError.InvalidImageId: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCvmError.InvalidImageId {
-    /// - Returns: ``TCCvmError`` that holds the same error and context.
-    public func toCvmError() -> TCCvmError {
-        guard let code = TCCvmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCvmError() -> TCCvmError {
+            let code: TCCvmError.Code
+            switch self.error {
+            case .inShared: 
+                code = .invalidImageId_InShared
+            case .incorrectState: 
+                code = .invalidImageId_IncorrectState
+            case .malformed: 
+                code = .invalidImageId_Malformed
+            case .notFound: 
+                code = .invalidImageId_NotFound
+            case .tooLarge: 
+                code = .invalidImageId_TooLarge
+            }
+            return TCCvmError(code, context: self.context)
         }
-        return TCCvmError(code, context: self.context)
-    }
-}
-
-extension TCCvmError.InvalidImageId {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

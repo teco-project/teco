@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTsfError {
-    public struct MissingParameter: TCErrorType {
+    public struct MissingParameter: TCTsfErrorType {
         enum Code: String {
             case applicationIdNull = "MissingParameter.ApplicationIdNull"
             case applicationIdRequired = "MissingParameter.ApplicationIdRequired"
@@ -50,8 +50,6 @@ extension TCTsfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -174,37 +172,56 @@ extension TCTsfError {
         public static var taskParameterMissed: MissingParameter {
             MissingParameter(.taskParameterMissed)
         }
-    }
-}
-
-extension TCTsfError.MissingParameter: Equatable {
-    public static func == (lhs: TCTsfError.MissingParameter, rhs: TCTsfError.MissingParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTsfError.MissingParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTsfError.MissingParameter {
-    /// - Returns: ``TCTsfError`` that holds the same error and context.
-    public func toTsfError() -> TCTsfError {
-        guard let code = TCTsfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTsfError() -> TCTsfError {
+            let code: TCTsfError.Code
+            switch self.error {
+            case .applicationIdNull: 
+                code = .missingParameter_ApplicationIdNull
+            case .applicationIdRequired: 
+                code = .missingParameter_ApplicationIdRequired
+            case .applicationTypeNull: 
+                code = .missingParameter_ApplicationTypeNull
+            case .clusterIdRequired: 
+                code = .missingParameter_ClusterIdRequired
+            case .clusterSubnetRequired: 
+                code = .missingParameter_ClusterSubnetRequired
+            case .configIdRequired: 
+                code = .missingParameter_ConfigIdRequired
+            case .configNameRequired: 
+                code = .missingParameter_ConfigNameRequired
+            case .configReleaseIdRequired: 
+                code = .missingParameter_ConfigReleaseIdRequired
+            case .configTypeRequired: 
+                code = .missingParameter_ConfigTypeRequired
+            case .configValueRequired: 
+                code = .missingParameter_ConfigValueRequired
+            case .configVersionRequired: 
+                code = .missingParameter_ConfigVersionRequired
+            case .fileConfigFileValueRequired: 
+                code = .missingParameter_FileConfigFileValueRequired
+            case .gatewayParameterRequired: 
+                code = .missingParameter_GatewayParameterRequired
+            case .groupApplicationNull: 
+                code = .missingParameter_GroupApplicationNull
+            case .groupIdNull: 
+                code = .missingParameter_GroupIdNull
+            case .groupIdRequired: 
+                code = .missingParameter_GroupIdRequired
+            case .groupNamespaceNull: 
+                code = .missingParameter_GroupNamespaceNull
+            case .instanceImportModeNull: 
+                code = .missingParameter_InstanceImportModeNull
+            case .namespaceIdRequired: 
+                code = .missingParameter_NamespaceIdRequired
+            case .requiredParameterMissing: 
+                code = .missingParameter_RequiredParameterMissing
+            case .serviceIdRequired: 
+                code = .missingParameter_ServiceIdRequired
+            case .taskParameterMissed: 
+                code = .missingParameter_TaskParameterMissed
+            }
+            return TCTsfError(code, context: self.context)
         }
-        return TCTsfError(code, context: self.context)
-    }
-}
-
-extension TCTsfError.MissingParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

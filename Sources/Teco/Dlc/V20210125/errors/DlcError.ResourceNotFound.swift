@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDlcError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCDlcErrorType {
         enum Code: String {
             case datasourceNotFound = "ResourceNotFound.DatasourceNotFound"
             case resultOutputPathNotFound = "ResourceNotFound.ResultOutputPathNotFound"
@@ -31,8 +31,6 @@ extension TCDlcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -59,37 +57,18 @@ extension TCDlcError {
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-    }
-}
-
-extension TCDlcError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCDlcError.ResourceNotFound, rhs: TCDlcError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDlcError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDlcError.ResourceNotFound {
-    /// - Returns: ``TCDlcError`` that holds the same error and context.
-    public func toDlcError() -> TCDlcError {
-        guard let code = TCDlcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDlcError() -> TCDlcError {
+            let code: TCDlcError.Code
+            switch self.error {
+            case .datasourceNotFound: 
+                code = .resourceNotFound_DatasourceNotFound
+            case .resultOutputPathNotFound: 
+                code = .resourceNotFound_ResultOutputPathNotFound
+            case .other: 
+                code = .resourceNotFound
+            }
+            return TCDlcError(code, context: self.context)
         }
-        return TCDlcError(code, context: self.context)
-    }
-}
-
-extension TCDlcError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

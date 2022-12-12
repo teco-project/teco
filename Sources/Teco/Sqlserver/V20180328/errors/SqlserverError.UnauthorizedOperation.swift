@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSqlserverError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCSqlserverErrorType {
         enum Code: String {
             case permissionDenied = "UnauthorizedOperation.PermissionDenied"
             case other = "UnauthorizedOperation"
@@ -30,8 +30,6 @@ extension TCSqlserverError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCSqlserverError {
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-    }
-}
-
-extension TCSqlserverError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCSqlserverError.UnauthorizedOperation, rhs: TCSqlserverError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSqlserverError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSqlserverError.UnauthorizedOperation {
-    /// - Returns: ``TCSqlserverError`` that holds the same error and context.
-    public func toSqlserverError() -> TCSqlserverError {
-        guard let code = TCSqlserverError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSqlserverError() -> TCSqlserverError {
+            let code: TCSqlserverError.Code
+            switch self.error {
+            case .permissionDenied: 
+                code = .unauthorizedOperation_PermissionDenied
+            case .other: 
+                code = .unauthorizedOperation
+            }
+            return TCSqlserverError(code, context: self.context)
         }
-        return TCSqlserverError(code, context: self.context)
-    }
-}
-
-extension TCSqlserverError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

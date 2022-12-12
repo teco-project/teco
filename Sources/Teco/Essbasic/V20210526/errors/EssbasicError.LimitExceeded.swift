@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEssbasicError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCEssbasicErrorType {
         enum Code: String {
             case callTimes = "LimitExceeded.CallTimes"
             case createFlowNum = "LimitExceeded.CreateFlowNum"
@@ -35,8 +35,6 @@ extension TCEssbasicError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -78,37 +76,26 @@ extension TCEssbasicError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCEssbasicError.LimitExceeded: Equatable {
-    public static func == (lhs: TCEssbasicError.LimitExceeded, rhs: TCEssbasicError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEssbasicError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEssbasicError.LimitExceeded {
-    /// - Returns: ``TCEssbasicError`` that holds the same error and context.
-    public func toEssbasicError() -> TCEssbasicError {
-        guard let code = TCEssbasicError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEssbasicError() -> TCEssbasicError {
+            let code: TCEssbasicError.Code
+            switch self.error {
+            case .callTimes: 
+                code = .limitExceeded_CallTimes
+            case .createFlowNum: 
+                code = .limitExceeded_CreateFlowNum
+            case .fileSize: 
+                code = .limitExceeded_FileSize
+            case .flowIds: 
+                code = .limitExceeded_FlowIds
+            case .flowInfos: 
+                code = .limitExceeded_FlowInfos
+            case .proxyOrganizationOperator: 
+                code = .limitExceeded_ProxyOrganizationOperator
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCEssbasicError(code, context: self.context)
         }
-        return TCEssbasicError(code, context: self.context)
-    }
-}
-
-extension TCEssbasicError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

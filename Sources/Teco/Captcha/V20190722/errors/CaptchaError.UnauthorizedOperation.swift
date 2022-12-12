@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCaptchaError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCCaptchaErrorType {
         enum Code: String {
             case errAuth = "UnauthorizedOperation.ErrAuth"
             case unauthorized = "UnauthorizedOperation.Unauthorized"
@@ -30,8 +30,6 @@ extension TCCaptchaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCCaptchaError {
         public static var unauthorized: UnauthorizedOperation {
             UnauthorizedOperation(.unauthorized)
         }
-    }
-}
-
-extension TCCaptchaError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCCaptchaError.UnauthorizedOperation, rhs: TCCaptchaError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCaptchaError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCaptchaError.UnauthorizedOperation {
-    /// - Returns: ``TCCaptchaError`` that holds the same error and context.
-    public func toCaptchaError() -> TCCaptchaError {
-        guard let code = TCCaptchaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCaptchaError() -> TCCaptchaError {
+            let code: TCCaptchaError.Code
+            switch self.error {
+            case .errAuth: 
+                code = .unauthorizedOperation_ErrAuth
+            case .unauthorized: 
+                code = .unauthorizedOperation_Unauthorized
+            }
+            return TCCaptchaError(code, context: self.context)
         }
-        return TCCaptchaError(code, context: self.context)
-    }
-}
-
-extension TCCaptchaError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

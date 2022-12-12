@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEcmError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCEcmErrorType {
         enum Code: String {
             case coexist = "InvalidParameter.Coexist"
             case diskConfigNotSupported = "InvalidParameter.DiskConfigNotSupported"
@@ -42,8 +42,6 @@ extension TCEcmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -126,37 +124,40 @@ extension TCEcmError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCEcmError.InvalidParameter: Equatable {
-    public static func == (lhs: TCEcmError.InvalidParameter, rhs: TCEcmError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEcmError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEcmError.InvalidParameter {
-    /// - Returns: ``TCEcmError`` that holds the same error and context.
-    public func toEcmError() -> TCEcmError {
-        guard let code = TCEcmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEcmError() -> TCEcmError {
+            let code: TCEcmError.Code
+            switch self.error {
+            case .coexist: 
+                code = .invalidParameter_Coexist
+            case .diskConfigNotSupported: 
+                code = .invalidParameter_DiskConfigNotSupported
+            case .formatError: 
+                code = .invalidParameter_FormatError
+            case .invalidDataFormat: 
+                code = .invalidParameter_InvalidDataFormat
+            case .invalidParameterConflict: 
+                code = .invalidParameter_InvalidParameterConflict
+            case .lbIdNotFound: 
+                code = .invalidParameter_LBIdNotFound
+            case .listenerIdNotFound: 
+                code = .invalidParameter_ListenerIdNotFound
+            case .locationNotFound: 
+                code = .invalidParameter_LocationNotFound
+            case .parameterConflict: 
+                code = .invalidParameter_ParameterConflict
+            case .portCheckFailed: 
+                code = .invalidParameter_PortCheckFailed
+            case .projectIdNotExist: 
+                code = .invalidParameter_ProjectIdNotExist
+            case .protocolCheckFailed: 
+                code = .invalidParameter_ProtocolCheckFailed
+            case .regionNotFound: 
+                code = .invalidParameter_RegionNotFound
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCEcmError(code, context: self.context)
         }
-        return TCEcmError(code, context: self.context)
-    }
-}
-
-extension TCEcmError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

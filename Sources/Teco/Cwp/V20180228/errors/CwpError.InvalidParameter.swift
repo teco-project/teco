@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCwpError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCCwpErrorType {
         enum Code: String {
             case dateRange = "InvalidParameter.DateRange"
             case illegalRequest = "InvalidParameter.IllegalRequest"
@@ -39,8 +39,6 @@ extension TCCwpError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -108,37 +106,34 @@ extension TCCwpError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCCwpError.InvalidParameter: Equatable {
-    public static func == (lhs: TCCwpError.InvalidParameter, rhs: TCCwpError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCwpError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCwpError.InvalidParameter {
-    /// - Returns: ``TCCwpError`` that holds the same error and context.
-    public func toCwpError() -> TCCwpError {
-        guard let code = TCCwpError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCwpError() -> TCCwpError {
+            let code: TCCwpError.Code
+            switch self.error {
+            case .dateRange: 
+                code = .invalidParameter_DateRange
+            case .illegalRequest: 
+                code = .invalidParameter_IllegalRequest
+            case .invalidFormat: 
+                code = .invalidParameter_InvalidFormat
+            case .ipNoValid: 
+                code = .invalidParameter_IpNoValid
+            case .missingParameter: 
+                code = .invalidParameter_MissingParameter
+            case .nameHasRepetition: 
+                code = .invalidParameter_NameHasRepetition
+            case .parsingError: 
+                code = .invalidParameter_ParsingError
+            case .regexRuleError: 
+                code = .invalidParameter_RegexRuleError
+            case .reverShellKeyFieldAllEmpty: 
+                code = .invalidParameter_ReverShellKeyFieldAllEmpty
+            case .ruleHostipErr: 
+                code = .invalidParameter_RuleHostipErr
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCCwpError(code, context: self.context)
         }
-        return TCCwpError(code, context: self.context)
-    }
-}
-
-extension TCCwpError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

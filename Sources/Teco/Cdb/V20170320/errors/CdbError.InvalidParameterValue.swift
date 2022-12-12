@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCdbError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCCdbErrorType {
         enum Code: String {
             case accountDescriptionCharacterError = "InvalidParameterValue.AccountDescriptionCharacterError"
             case accountDescriptionLengthError = "InvalidParameterValue.AccountDescriptionLengthError"
@@ -42,8 +42,6 @@ extension TCCdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -126,37 +124,40 @@ extension TCCdbError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCCdbError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCCdbError.InvalidParameterValue, rhs: TCCdbError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCdbError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCdbError.InvalidParameterValue {
-    /// - Returns: ``TCCdbError`` that holds the same error and context.
-    public func toCdbError() -> TCCdbError {
-        guard let code = TCCdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCdbError() -> TCCdbError {
+            let code: TCCdbError.Code
+            switch self.error {
+            case .accountDescriptionCharacterError: 
+                code = .invalidParameterValue_AccountDescriptionCharacterError
+            case .accountDescriptionLengthError: 
+                code = .invalidParameterValue_AccountDescriptionLengthError
+            case .accountHostRuleError: 
+                code = .invalidParameterValue_AccountHostRuleError
+            case .accountPasswordCharacterError: 
+                code = .invalidParameterValue_AccountPasswordCharacterError
+            case .accountPasswordLengthError: 
+                code = .invalidParameterValue_AccountPasswordLengthError
+            case .accountPasswordRuleError: 
+                code = .invalidParameterValue_AccountPasswordRuleError
+            case .dataConvertError: 
+                code = .invalidParameterValue_DataConvertError
+            case .invalidParameterValueError: 
+                code = .invalidParameterValue_InvalidParameterValueError
+            case .userNameRuleError: 
+                code = .invalidParameterValue_UserNameRuleError
+            case .userNotExistError: 
+                code = .invalidParameterValue_UserNotExistError
+            case .verifyAccountNoRootError: 
+                code = .invalidParameterValue_VerifyAccountNoRootError
+            case .verifyAccountPasswordError: 
+                code = .invalidParameterValue_VerifyAccountPasswordError
+            case .verifyAccountPrivError: 
+                code = .invalidParameterValue_VerifyAccountPrivError
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCCdbError(code, context: self.context)
         }
-        return TCCdbError(code, context: self.context)
-    }
-}
-
-extension TCCdbError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

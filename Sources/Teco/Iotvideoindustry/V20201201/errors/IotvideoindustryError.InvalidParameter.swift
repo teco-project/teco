@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotvideoindustryError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCIotvideoindustryErrorType {
         enum Code: String {
             case deviceOnline = "InvalidParameter.DeviceOnline"
             case other = "InvalidParameter"
@@ -30,8 +30,6 @@ extension TCIotvideoindustryError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCIotvideoindustryError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCIotvideoindustryError.InvalidParameter: Equatable {
-    public static func == (lhs: TCIotvideoindustryError.InvalidParameter, rhs: TCIotvideoindustryError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotvideoindustryError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotvideoindustryError.InvalidParameter {
-    /// - Returns: ``TCIotvideoindustryError`` that holds the same error and context.
-    public func toIotvideoindustryError() -> TCIotvideoindustryError {
-        guard let code = TCIotvideoindustryError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotvideoindustryError() -> TCIotvideoindustryError {
+            let code: TCIotvideoindustryError.Code
+            switch self.error {
+            case .deviceOnline: 
+                code = .invalidParameter_DeviceOnline
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCIotvideoindustryError(code, context: self.context)
         }
-        return TCIotvideoindustryError(code, context: self.context)
-    }
-}
-
-extension TCIotvideoindustryError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

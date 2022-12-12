@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDnspodError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCDnspodErrorType {
         enum Code: String {
             case domainGradeInvalid = "InvalidParameterValue.DomainGradeInvalid"
             case domainNotExists = "InvalidParameterValue.DomainNotExists"
@@ -34,8 +34,6 @@ extension TCDnspodError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -78,37 +76,24 @@ extension TCDnspodError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCDnspodError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCDnspodError.InvalidParameterValue, rhs: TCDnspodError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDnspodError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDnspodError.InvalidParameterValue {
-    /// - Returns: ``TCDnspodError`` that holds the same error and context.
-    public func toDnspodError() -> TCDnspodError {
-        guard let code = TCDnspodError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDnspodError() -> TCDnspodError {
+            let code: TCDnspodError.Code
+            switch self.error {
+            case .domainGradeInvalid: 
+                code = .invalidParameterValue_DomainGradeInvalid
+            case .domainNotExists: 
+                code = .invalidParameterValue_DomainNotExists
+            case .limitInvalid: 
+                code = .invalidParameterValue_LimitInvalid
+            case .upgradeTermInvalid: 
+                code = .invalidParameterValue_UpgradeTermInvalid
+            case .userIdInvalid: 
+                code = .invalidParameterValue_UserIdInvalid
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCDnspodError(code, context: self.context)
         }
-        return TCDnspodError(code, context: self.context)
-    }
-}
-
-extension TCDnspodError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

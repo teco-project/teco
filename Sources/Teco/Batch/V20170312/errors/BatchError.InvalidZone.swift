@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBatchError {
-    public struct InvalidZone: TCErrorType {
+    public struct InvalidZone: TCBatchErrorType {
         enum Code: String {
             case mismatchRegion = "InvalidZone.MismatchRegion"
         }
@@ -29,8 +29,6 @@ extension TCBatchError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCBatchError {
         public static var mismatchRegion: InvalidZone {
             InvalidZone(.mismatchRegion)
         }
-    }
-}
-
-extension TCBatchError.InvalidZone: Equatable {
-    public static func == (lhs: TCBatchError.InvalidZone, rhs: TCBatchError.InvalidZone) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBatchError.InvalidZone: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBatchError.InvalidZone {
-    /// - Returns: ``TCBatchError`` that holds the same error and context.
-    public func toBatchError() -> TCBatchError {
-        guard let code = TCBatchError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBatchError() -> TCBatchError {
+            let code: TCBatchError.Code
+            switch self.error {
+            case .mismatchRegion: 
+                code = .invalidZone_MismatchRegion
+            }
+            return TCBatchError(code, context: self.context)
         }
-        return TCBatchError(code, context: self.context)
-    }
-}
-
-extension TCBatchError.InvalidZone {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

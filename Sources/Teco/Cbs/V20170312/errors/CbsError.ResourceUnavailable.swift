@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCbsError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCCbsErrorType {
         enum Code: String {
             case attached = "ResourceUnavailable.Attached"
             case diskSnapshotChainTooLarge = "ResourceUnavailable.DiskSnapshotChainTooLarge"
@@ -40,8 +40,6 @@ extension TCCbsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -113,37 +111,36 @@ extension TCCbsError {
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-    }
-}
-
-extension TCCbsError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCCbsError.ResourceUnavailable, rhs: TCCbsError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCbsError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCbsError.ResourceUnavailable {
-    /// - Returns: ``TCCbsError`` that holds the same error and context.
-    public func toCbsError() -> TCCbsError {
-        guard let code = TCCbsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCbsError() -> TCCbsError {
+            let code: TCCbsError.Code
+            switch self.error {
+            case .attached: 
+                code = .resourceUnavailable_Attached
+            case .diskSnapshotChainTooLarge: 
+                code = .resourceUnavailable_DiskSnapshotChainTooLarge
+            case .expire: 
+                code = .resourceUnavailable_Expire
+            case .notPortable: 
+                code = .resourceUnavailable_NotPortable
+            case .notSupportRefund: 
+                code = .resourceUnavailable_NotSupportRefund
+            case .notSupported: 
+                code = .resourceUnavailable_NotSupported
+            case .repeatRefund: 
+                code = .resourceUnavailable_RepeatRefund
+            case .snapshotCreating: 
+                code = .resourceUnavailable_SnapshotCreating
+            case .tooManyCreatingSnapshot: 
+                code = .resourceUnavailable_TooManyCreatingSnapshot
+            case .typeError: 
+                code = .resourceUnavailable_TypeError
+            case .zoneNotMatch: 
+                code = .resourceUnavailable_ZoneNotMatch
+            case .other: 
+                code = .resourceUnavailable
+            }
+            return TCCbsError(code, context: self.context)
         }
-        return TCCbsError(code, context: self.context)
-    }
-}
-
-extension TCCbsError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

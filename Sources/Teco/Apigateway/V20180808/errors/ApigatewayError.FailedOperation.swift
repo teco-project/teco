@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCApigatewayError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCApigatewayErrorType {
         enum Code: String {
             case accessKeyExist = "FailedOperation.AccessKeyExist"
             case apiBindEnvironmen = "FailedOperation.ApiBindEnvironmen"
@@ -75,8 +75,6 @@ extension TCApigatewayError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -326,37 +324,106 @@ extension TCApigatewayError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCApigatewayError.FailedOperation: Equatable {
-    public static func == (lhs: TCApigatewayError.FailedOperation, rhs: TCApigatewayError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCApigatewayError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCApigatewayError.FailedOperation {
-    /// - Returns: ``TCApigatewayError`` that holds the same error and context.
-    public func toApigatewayError() -> TCApigatewayError {
-        guard let code = TCApigatewayError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asApigatewayError() -> TCApigatewayError {
+            let code: TCApigatewayError.Code
+            switch self.error {
+            case .accessKeyExist: 
+                code = .failedOperation_AccessKeyExist
+            case .apiBindEnvironmen: 
+                code = .failedOperation_ApiBindEnvironmen
+            case .apiBindEnvironment: 
+                code = .failedOperation_ApiBindEnvironment
+            case .apiError: 
+                code = .failedOperation_ApiError
+            case .apiInOperation: 
+                code = .failedOperation_ApiInOperation
+            case .certificateIdBindError: 
+                code = .failedOperation_CertificateIdBindError
+            case .certificateIdEnterpriseWaitSubmit: 
+                code = .failedOperation_CertificateIdEnterpriseWaitSubmit
+            case .certificateIdError: 
+                code = .failedOperation_CertificateIdError
+            case .certificateIdExpired: 
+                code = .failedOperation_CertificateIdExpired
+            case .certificateIdInfoError: 
+                code = .failedOperation_CertificateIdInfoError
+            case .certificateIdUnderVerify: 
+                code = .failedOperation_CertificateIdUnderVerify
+            case .certificateIdUnknownError: 
+                code = .failedOperation_CertificateIdUnknownError
+            case .certificateIdVerifyFail: 
+                code = .failedOperation_CertificateIdVerifyFail
+            case .certificateIsNull: 
+                code = .failedOperation_CertificateIsNull
+            case .clsError: 
+                code = .failedOperation_ClsError
+            case .codingError: 
+                code = .failedOperation_CodingError
+            case .defineMappingEnvironmentError: 
+                code = .failedOperation_DefineMappingEnvironmentError
+            case .defineMappingNotNull: 
+                code = .failedOperation_DefineMappingNotNull
+            case .defineMappingParamRepeat: 
+                code = .failedOperation_DefineMappingParamRepeat
+            case .defineMappingPathError: 
+                code = .failedOperation_DefineMappingPathError
+            case .deletePathMappingSetError: 
+                code = .failedOperation_DeletePathMappingSetError
+            case .describeServiceSubDomainsError: 
+                code = .failedOperation_DescribeServiceSubDomainsError
+            case .domainAlreadyBindOtherService: 
+                code = .failedOperation_DomainAlreadyBindOtherService
+            case .domainAlreadyBindService: 
+                code = .failedOperation_DomainAlreadyBindService
+            case .domainInBlackList: 
+                code = .failedOperation_DomainInBlackList
+            case .domainNeedBeian: 
+                code = .failedOperation_DomainNeedBeian
+            case .domainNotBindService: 
+                code = .failedOperation_DomainNotBindService
+            case .domainResolveError: 
+                code = .failedOperation_DomainResolveError
+            case .ebError: 
+                code = .failedOperation_EbError
+            case .eiamError: 
+                code = .failedOperation_EIAMError
+            case .formatError: 
+                code = .failedOperation_FormatError
+            case .generateApiDocumentError: 
+                code = .failedOperation_GenerateApiDocumentError
+            case .getRoleError: 
+                code = .failedOperation_GetRoleError
+            case .instanceNotExist: 
+                code = .failedOperation_InstanceNotExist
+            case .isDefaultMapping: 
+                code = .failedOperation_IsDefaultMapping
+            case .netSubDomainError: 
+                code = .failedOperation_NetSubDomainError
+            case .operateUpstream: 
+                code = .failedOperation_OperateUpstream
+            case .pathMappingSetError: 
+                code = .failedOperation_PathMappingSetError
+            case .scfError: 
+                code = .failedOperation_ScfError
+            case .serviceError: 
+                code = .failedOperation_ServiceError
+            case .serviceInOperation: 
+                code = .failedOperation_ServiceInOperation
+            case .serviceNotExist: 
+                code = .failedOperation_ServiceNotExist
+            case .setCustomPathMappingError: 
+                code = .failedOperation_SetCustomPathMappingError
+            case .subDomainFormatError: 
+                code = .failedOperation_SubDomainFormatError
+            case .tagBindServiceError: 
+                code = .failedOperation_TagBindServiceError
+            case .unknownProtocolTypeError: 
+                code = .failedOperation_UnknownProtocolTypeError
+            case .other: 
+                code = .failedOperation
+            }
+            return TCApigatewayError(code, context: self.context)
         }
-        return TCApigatewayError(code, context: self.context)
-    }
-}
-
-extension TCApigatewayError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

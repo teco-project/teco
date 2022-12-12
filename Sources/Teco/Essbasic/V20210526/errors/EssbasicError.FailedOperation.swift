@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEssbasicError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCEssbasicErrorType {
         enum Code: String {
             case ageNotAchieveNormalLegal = "FailedOperation.AgeNotAchieveNormalLegal"
             case authFail = "FailedOperation.AuthFail"
@@ -39,8 +39,6 @@ extension TCEssbasicError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -108,37 +106,34 @@ extension TCEssbasicError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCEssbasicError.FailedOperation: Equatable {
-    public static func == (lhs: TCEssbasicError.FailedOperation, rhs: TCEssbasicError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEssbasicError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEssbasicError.FailedOperation {
-    /// - Returns: ``TCEssbasicError`` that holds the same error and context.
-    public func toEssbasicError() -> TCEssbasicError {
-        guard let code = TCEssbasicError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEssbasicError() -> TCEssbasicError {
+            let code: TCEssbasicError.Code
+            switch self.error {
+            case .ageNotAchieveNormalLegal: 
+                code = .failedOperation_AgeNotAchieveNormalLegal
+            case .authFail: 
+                code = .failedOperation_AuthFail
+            case .existSameSealName: 
+                code = .failedOperation_ExistSameSealName
+            case .flowNumExceed: 
+                code = .failedOperation_FlowNumExceed
+            case .hasAuthorized: 
+                code = .failedOperation_HasAuthorized
+            case .notAvailableSignReview: 
+                code = .failedOperation_NotAvailableSignReview
+            case .qrCodeCreatorSignComponents: 
+                code = .failedOperation_QrCodeCreatorSignComponents
+            case .qrCodeSignUsers: 
+                code = .failedOperation_QrCodeSignUsers
+            case .qrCodeTemplateId: 
+                code = .failedOperation_QrCodeTemplateId
+            case .staffAlreadyVerify: 
+                code = .failedOperation_StaffAlreadyVerify
+            case .other: 
+                code = .failedOperation
+            }
+            return TCEssbasicError(code, context: self.context)
         }
-        return TCEssbasicError(code, context: self.context)
-    }
-}
-
-extension TCEssbasicError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

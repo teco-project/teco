@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCLiveError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCLiveErrorType {
         enum Code: String {
             case aiTranscodeOptionFail = "FailedOperation.AiTranscodeOptionFail"
             case alterTaskState = "FailedOperation.AlterTaskState"
@@ -73,8 +73,6 @@ extension TCLiveError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -319,37 +317,102 @@ extension TCLiveError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCLiveError.FailedOperation: Equatable {
-    public static func == (lhs: TCLiveError.FailedOperation, rhs: TCLiveError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCLiveError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCLiveError.FailedOperation {
-    /// - Returns: ``TCLiveError`` that holds the same error and context.
-    public func toLiveError() -> TCLiveError {
-        guard let code = TCLiveError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asLiveError() -> TCLiveError {
+            let code: TCLiveError.Code
+            switch self.error {
+            case .aiTranscodeOptionFail: 
+                code = .failedOperation_AiTranscodeOptionFail
+            case .alterTaskState: 
+                code = .failedOperation_AlterTaskState
+            case .authError: 
+                code = .failedOperation_AuthError
+            case .callOtherSvrError: 
+                code = .failedOperation_CallOtherSvrError
+            case .callOtherSvrFailed: 
+                code = .failedOperation_CallOtherSvrFailed
+            case .cancelSessionNotExist: 
+                code = .failedOperation_CancelSessionNotExist
+            case .cannotBeDeletedIssued: 
+                code = .failedOperation_CannotBeDeletedIssued
+            case .cannotBeDeletedWithinHour: 
+                code = .failedOperation_CannotBeDeletedWithinHour
+            case .certificateExists: 
+                code = .failedOperation_CertificateExists
+            case .certificateInvalid: 
+                code = .failedOperation_CertificateInvalid
+            case .certificateMismatch: 
+                code = .failedOperation_CertificateMismatch
+            case .certificateNotFound: 
+                code = .failedOperation_CertificateNotFound
+            case .confInUsed: 
+                code = .failedOperation_ConfInUsed
+            case .configCDNFailed: 
+                code = .failedOperation_ConfigCDNFailed
+            case .cosBucketNotExist: 
+                code = .failedOperation_CosBucketNotExist
+            case .cosBucketNotPermission: 
+                code = .failedOperation_CosBucketNotPermission
+            case .cosRoleNotExists: 
+                code = .failedOperation_CosRoleNotExists
+            case .deleteDomainInLockedTime: 
+                code = .failedOperation_DeleteDomainInLockedTime
+            case .domainAdded: 
+                code = .failedOperation_DomainAdded
+            case .domainGslbFail: 
+                code = .failedOperation_DomainGslbFail
+            case .domainNeedRealName: 
+                code = .failedOperation_DomainNeedRealName
+            case .domainNeedVerifyOwner: 
+                code = .failedOperation_DomainNeedVerifyOwner
+            case .exceedsFreeLimit: 
+                code = .failedOperation_ExceedsFreeLimit
+            case .getPictureUrlError: 
+                code = .failedOperation_GetPictureUrlError
+            case .getStreamResolutionError: 
+                code = .failedOperation_GetStreamResolutionError
+            case .hasNotLivingStream: 
+                code = .failedOperation_HasNotLivingStream
+            case .hostOutLimit: 
+                code = .failedOperation_HostOutLimit
+            case .invalidCertificateStatusCode: 
+                code = .failedOperation_InvalidCertificateStatusCode
+            case .invalidParam: 
+                code = .failedOperation_InvalidParam
+            case .invokeCdnApiFail: 
+                code = .failedOperation_InvokeCdnApiFail
+            case .invokeVideoApiFail: 
+                code = .failedOperation_InvokeVideoApiFail
+            case .jiFeiNoEnoughFund: 
+                code = .failedOperation_JiFeiNoEnoughFund
+            case .networkError: 
+                code = .failedOperation_NetworkError
+            case .noProjectPermission: 
+                code = .failedOperation_NoProjectPermission
+            case .noRealNameAuth: 
+                code = .failedOperation_NoRealNameAuth
+            case .notFound: 
+                code = .failedOperation_NotFound
+            case .parentDomainAdded: 
+                code = .failedOperation_ParentDomainAdded
+            case .processMixError: 
+                code = .failedOperation_ProcessMixError
+            case .queryUploadInfoFailed: 
+                code = .failedOperation_QueryUploadInfoFailed
+            case .ruleAlreadyExist: 
+                code = .failedOperation_RuleAlreadyExist
+            case .sdkNoPackage: 
+                code = .failedOperation_SdkNoPackage
+            case .streamNotExist: 
+                code = .failedOperation_StreamNotExist
+            case .subDomainAdded: 
+                code = .failedOperation_SubDomainAdded
+            case .tagUnbindError: 
+                code = .failedOperation_TagUnbindError
+            case .other: 
+                code = .failedOperation
+            }
+            return TCLiveError(code, context: self.context)
         }
-        return TCLiveError(code, context: self.context)
-    }
-}
-
-extension TCLiveError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

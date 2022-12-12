@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTcrError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCTcrErrorType {
         enum Code: String {
             case createPrivateZone = "UnsupportedOperation.CreatePrivateZone"
             case createPrivateZoneRecord = "UnsupportedOperation.CreatePrivateZoneRecord"
@@ -37,8 +37,6 @@ extension TCTcrError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -88,37 +86,30 @@ extension TCTcrError {
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-    }
-}
-
-extension TCTcrError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCTcrError.UnsupportedOperation, rhs: TCTcrError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTcrError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTcrError.UnsupportedOperation {
-    /// - Returns: ``TCTcrError`` that holds the same error and context.
-    public func toTcrError() -> TCTcrError {
-        guard let code = TCTcrError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTcrError() -> TCTcrError {
+            let code: TCTcrError.Code
+            switch self.error {
+            case .createPrivateZone: 
+                code = .unsupportedOperation_CreatePrivateZone
+            case .createPrivateZoneRecord: 
+                code = .unsupportedOperation_CreatePrivateZoneRecord
+            case .deletePrivateZoneRecord: 
+                code = .unsupportedOperation_DeletePrivateZoneRecord
+            case .describePrivateZoneList: 
+                code = .unsupportedOperation_DescribePrivateZoneList
+            case .describePrivateZoneRecordList: 
+                code = .unsupportedOperation_DescribePrivateZoneRecordList
+            case .errNoUserInitialized: 
+                code = .unsupportedOperation_ErrNoUserInitialized
+            case .modifyPrivateZoneRecord: 
+                code = .unsupportedOperation_ModifyPrivateZoneRecord
+            case .modifyPrivateZoneVpc: 
+                code = .unsupportedOperation_ModifyPrivateZoneVpc
+            case .other: 
+                code = .unsupportedOperation
+            }
+            return TCTcrError(code, context: self.context)
         }
-        return TCTcrError(code, context: self.context)
-    }
-}
-
-extension TCTcrError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

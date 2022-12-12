@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAaError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCAaErrorType {
         enum Code: String {
             case capSigError = "InvalidParameter.CapSigError"
             case paramError = "InvalidParameter.ParamError"
@@ -32,8 +32,6 @@ extension TCAaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCAaError {
         public static var versionError: InvalidParameter {
             InvalidParameter(.versionError)
         }
-    }
-}
-
-extension TCAaError.InvalidParameter: Equatable {
-    public static func == (lhs: TCAaError.InvalidParameter, rhs: TCAaError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAaError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAaError.InvalidParameter {
-    /// - Returns: ``TCAaError`` that holds the same error and context.
-    public func toAaError() -> TCAaError {
-        guard let code = TCAaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAaError() -> TCAaError {
+            let code: TCAaError.Code
+            switch self.error {
+            case .capSigError: 
+                code = .invalidParameter_CapSigError
+            case .paramError: 
+                code = .invalidParameter_ParamError
+            case .urlError: 
+                code = .invalidParameter_UrlError
+            case .versionError: 
+                code = .invalidParameter_VersionError
+            }
+            return TCAaError(code, context: self.context)
         }
-        return TCAaError(code, context: self.context)
-    }
-}
-
-extension TCAaError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

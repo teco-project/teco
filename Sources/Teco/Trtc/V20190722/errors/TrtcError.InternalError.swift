@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTrtcError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCTrtcErrorType {
         enum Code: String {
             case crInternalError = "InternalError.CRInternalError"
             case dbError = "InternalError.DBError"
@@ -39,8 +39,6 @@ extension TCTrtcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -108,37 +106,34 @@ extension TCTrtcError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCTrtcError.InternalError: Equatable {
-    public static func == (lhs: TCTrtcError.InternalError, rhs: TCTrtcError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTrtcError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTrtcError.InternalError {
-    /// - Returns: ``TCTrtcError`` that holds the same error and context.
-    public func toTrtcError() -> TCTrtcError {
-        guard let code = TCTrtcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTrtcError() -> TCTrtcError {
+            let code: TCTrtcError.Code
+            switch self.error {
+            case .crInternalError: 
+                code = .internalError_CRInternalError
+            case .dbError: 
+                code = .internalError_DBError
+            case .esQueryError: 
+                code = .internalError_EsQueryError
+            case .getRoomCacheIpError: 
+                code = .internalError_GetRoomCacheIpError
+            case .getRoomFromCacheError: 
+                code = .internalError_GetRoomFromCacheError
+            case .httpParaseFalied: 
+                code = .internalError_HttpParaseFalied
+            case .interfaceErr: 
+                code = .internalError_InterfaceErr
+            case .internalError: 
+                code = .internalError_InternalError
+            case .methodErr: 
+                code = .internalError_MethodErr
+            case .userNotExist: 
+                code = .internalError_UserNotExist
+            case .other: 
+                code = .internalError
+            }
+            return TCTrtcError(code, context: self.context)
         }
-        return TCTrtcError(code, context: self.context)
-    }
-}
-
-extension TCTrtcError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

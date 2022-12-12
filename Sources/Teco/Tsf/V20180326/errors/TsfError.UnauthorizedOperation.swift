@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTsfError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCTsfErrorType {
         enum Code: String {
             case camGeneralError = "UnauthorizedOperation.CamGeneralError"
             case camTsfRoleNoPermission = "UnauthorizedOperation.CamTsfRoleNoPermission"
@@ -35,8 +35,6 @@ extension TCTsfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -84,37 +82,26 @@ extension TCTsfError {
         public static var noPrivilege: UnauthorizedOperation {
             UnauthorizedOperation(.noPrivilege)
         }
-    }
-}
-
-extension TCTsfError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCTsfError.UnauthorizedOperation, rhs: TCTsfError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTsfError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTsfError.UnauthorizedOperation {
-    /// - Returns: ``TCTsfError`` that holds the same error and context.
-    public func toTsfError() -> TCTsfError {
-        guard let code = TCTsfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTsfError() -> TCTsfError {
+            let code: TCTsfError.Code
+            switch self.error {
+            case .camGeneralError: 
+                code = .unauthorizedOperation_CamGeneralError
+            case .camTsfRoleNoPermission: 
+                code = .unauthorizedOperation_CamTsfRoleNoPermission
+            case .camTsfRoleNotExist: 
+                code = .unauthorizedOperation_CamTsfRoleNotExist
+            case .licenseInactive: 
+                code = .unauthorizedOperation_LicenseInactive
+            case .licenseUnauthorized: 
+                code = .unauthorizedOperation_LicenseUnauthorized
+            case .noLicense: 
+                code = .unauthorizedOperation_NoLicense
+            case .noPrivilege: 
+                code = .unauthorizedOperation_NoPrivilege
+            }
+            return TCTsfError(code, context: self.context)
         }
-        return TCTsfError(code, context: self.context)
-    }
-}
-
-extension TCTsfError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

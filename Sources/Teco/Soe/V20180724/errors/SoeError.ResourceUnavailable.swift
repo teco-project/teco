@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSoeError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCSoeErrorType {
         enum Code: String {
             case authorizeError = "ResourceUnavailable.AuthorizeError"
             case cannotFindSession = "ResourceUnavailable.CannotFindSession"
@@ -37,8 +37,6 @@ extension TCSoeError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -96,37 +94,30 @@ extension TCSoeError {
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-    }
-}
-
-extension TCSoeError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCSoeError.ResourceUnavailable, rhs: TCSoeError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSoeError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSoeError.ResourceUnavailable {
-    /// - Returns: ``TCSoeError`` that holds the same error and context.
-    public func toSoeError() -> TCSoeError {
-        guard let code = TCSoeError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSoeError() -> TCSoeError {
+            let code: TCSoeError.Code
+            switch self.error {
+            case .authorizeError: 
+                code = .resourceUnavailable_AuthorizeError
+            case .cannotFindSession: 
+                code = .resourceUnavailable_CannotFindSession
+            case .concurrencyLimit: 
+                code = .resourceUnavailable_ConcurrencyLimit
+            case .initStreamNotSupport: 
+                code = .resourceUnavailable_InitStreamNotSupport
+            case .initStreamUnfinished: 
+                code = .resourceUnavailable_InitStreamUnfinished
+            case .lastSeqUnfinished: 
+                code = .resourceUnavailable_LastSeqUnfinished
+            case .noConversationFound: 
+                code = .resourceUnavailable_NoConversationFound
+            case .noInitBeforeEvaluation: 
+                code = .resourceUnavailable_NoInitBeforeEvaluation
+            case .other: 
+                code = .resourceUnavailable
+            }
+            return TCSoeError(code, context: self.context)
         }
-        return TCSoeError(code, context: self.context)
-    }
-}
-
-extension TCSoeError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

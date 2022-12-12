@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCpdpError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCCpdpErrorType {
         enum Code: String {
             case backendConnectionError = "InternalError.BackendConnectionError"
             case backendError = "InternalError.BackendError"
@@ -48,8 +48,6 @@ extension TCCpdpError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -164,37 +162,52 @@ extension TCCpdpError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCCpdpError.InternalError: Equatable {
-    public static func == (lhs: TCCpdpError.InternalError, rhs: TCCpdpError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCpdpError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCpdpError.InternalError {
-    /// - Returns: ``TCCpdpError`` that holds the same error and context.
-    public func toCpdpError() -> TCCpdpError {
-        guard let code = TCCpdpError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCpdpError() -> TCCpdpError {
+            let code: TCCpdpError.Code
+            switch self.error {
+            case .backendConnectionError: 
+                code = .internalError_BackendConnectionError
+            case .backendError: 
+                code = .internalError_BackendError
+            case .backendInternalError: 
+                code = .internalError_BackendInternalError
+            case .backendNetworkError: 
+                code = .internalError_BackendNetworkError
+            case .backendRouterError: 
+                code = .internalError_BackendRouterError
+            case .backendTimeOut: 
+                code = .internalError_BackendTimeOut
+            case .dbAccessError: 
+                code = .internalError_DBAccessError
+            case .deleteDBError: 
+                code = .internalError_DeleteDBError
+            case .duplicateKeyError: 
+                code = .internalError_DuplicateKeyError
+            case .fundSummaryAcctNoInconsistentError: 
+                code = .internalError_FundSummaryAcctNoInconsistentError
+            case .invoiceExist: 
+                code = .internalError_InvoiceExist
+            case .midas: 
+                code = .internalError_Midas
+            case .parameterError: 
+                code = .internalError_ParameterError
+            case .sandBoxAccessError: 
+                code = .internalError_SandBoxAccessError
+            case .saveDBError: 
+                code = .internalError_SaveDBError
+            case .sigGenError: 
+                code = .internalError_SigGenError
+            case .subAccountNotFoundError: 
+                code = .internalError_SubAccountNotFoundError
+            case .unknown: 
+                code = .internalError_Unknown
+            case .unkownError: 
+                code = .internalError_UnkownError
+            case .other: 
+                code = .internalError_
+            }
+            return TCCpdpError(code, context: self.context)
         }
-        return TCCpdpError(code, context: self.context)
-    }
-}
-
-extension TCCpdpError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

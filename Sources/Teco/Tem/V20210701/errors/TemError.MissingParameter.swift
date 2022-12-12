@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTemError {
-    public struct MissingParameter: TCErrorType {
+    public struct MissingParameter: TCTemErrorType {
         enum Code: String {
             case autoScalerNameNull = "MissingParameter.AutoScalerNameNull"
             case deployModeNull = "MissingParameter.DeployModeNull"
@@ -41,8 +41,6 @@ extension TCTemError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -115,37 +113,38 @@ extension TCTemError {
         public static var vpcServiceSubnetNull: MissingParameter {
             MissingParameter(.vpcServiceSubnetNull)
         }
-    }
-}
-
-extension TCTemError.MissingParameter: Equatable {
-    public static func == (lhs: TCTemError.MissingParameter, rhs: TCTemError.MissingParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTemError.MissingParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTemError.MissingParameter {
-    /// - Returns: ``TCTemError`` that holds the same error and context.
-    public func toTemError() -> TCTemError {
-        guard let code = TCTemError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTemError() -> TCTemError {
+            let code: TCTemError.Code
+            switch self.error {
+            case .autoScalerNameNull: 
+                code = .missingParameter_AutoScalerNameNull
+            case .deployModeNull: 
+                code = .missingParameter_DeployModeNull
+            case .deployVersionNull: 
+                code = .missingParameter_DeployVersionNull
+            case .environmentNameNull: 
+                code = .missingParameter_EnvironmentNameNull
+            case .logsetOrTopicNull: 
+                code = .missingParameter_LogsetOrTopicNull
+            case .minMaxNumNull: 
+                code = .missingParameter_MinMaxNumNull
+            case .namespaceIdNull: 
+                code = .missingParameter_NamespaceIdNull
+            case .pkgNameNull: 
+                code = .missingParameter_PkgNameNull
+            case .scalerIdNull: 
+                code = .missingParameter_ScalerIdNull
+            case .serviceIdNull: 
+                code = .missingParameter_ServiceIdNull
+            case .svcRepoNotReady: 
+                code = .missingParameter_SvcRepoNotReady
+            case .tcrEntInstanceNameNull: 
+                code = .missingParameter_TcrEntInstanceNameNull
+            case .vpcServiceSubnetNull: 
+                code = .missingParameter_VpcServiceSubnetNull
+            }
+            return TCTemError(code, context: self.context)
         }
-        return TCTemError(code, context: self.context)
-    }
-}
-
-extension TCTemError.MissingParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

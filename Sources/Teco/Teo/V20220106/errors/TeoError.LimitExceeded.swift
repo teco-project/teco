@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTeoError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCTeoErrorType {
         enum Code: String {
             case batchQuota = "LimitExceeded.BatchQuota"
             case dailyQuota = "LimitExceeded.DailyQuota"
@@ -31,8 +31,6 @@ extension TCTeoError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCTeoError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCTeoError.LimitExceeded: Equatable {
-    public static func == (lhs: TCTeoError.LimitExceeded, rhs: TCTeoError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTeoError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTeoError.LimitExceeded {
-    /// - Returns: ``TCTeoError`` that holds the same error and context.
-    public func toTeoError() -> TCTeoError {
-        guard let code = TCTeoError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTeoError() -> TCTeoError {
+            let code: TCTeoError.Code
+            switch self.error {
+            case .batchQuota: 
+                code = .limitExceeded_BatchQuota
+            case .dailyQuota: 
+                code = .limitExceeded_DailyQuota
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCTeoError(code, context: self.context)
         }
-        return TCTeoError(code, context: self.context)
-    }
-}
-
-extension TCTeoError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

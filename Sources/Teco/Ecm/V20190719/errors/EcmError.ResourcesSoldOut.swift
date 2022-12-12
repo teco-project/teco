@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEcmError {
-    public struct ResourcesSoldOut: TCErrorType {
+    public struct ResourcesSoldOut: TCEcmErrorType {
         enum Code: String {
             case loadBalancerSoldOut = "ResourcesSoldOut.LoadBalancerSoldOut"
             case specifiedInstanceType = "ResourcesSoldOut.SpecifiedInstanceType"
@@ -30,8 +30,6 @@ extension TCEcmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCEcmError {
         public static var specifiedInstanceType: ResourcesSoldOut {
             ResourcesSoldOut(.specifiedInstanceType)
         }
-    }
-}
-
-extension TCEcmError.ResourcesSoldOut: Equatable {
-    public static func == (lhs: TCEcmError.ResourcesSoldOut, rhs: TCEcmError.ResourcesSoldOut) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEcmError.ResourcesSoldOut: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEcmError.ResourcesSoldOut {
-    /// - Returns: ``TCEcmError`` that holds the same error and context.
-    public func toEcmError() -> TCEcmError {
-        guard let code = TCEcmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEcmError() -> TCEcmError {
+            let code: TCEcmError.Code
+            switch self.error {
+            case .loadBalancerSoldOut: 
+                code = .resourcesSoldOut_LoadBalancerSoldOut
+            case .specifiedInstanceType: 
+                code = .resourcesSoldOut_SpecifiedInstanceType
+            }
+            return TCEcmError(code, context: self.context)
         }
-        return TCEcmError(code, context: self.context)
-    }
-}
-
-extension TCEcmError.ResourcesSoldOut {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCmeError {
-    public struct OperationDenied: TCErrorType {
+    public struct OperationDenied: TCCmeErrorType {
         enum Code: String {
             case permissionDeny = "OperationDenied.PermissionDeny"
             case other = "OperationDenied"
@@ -30,8 +30,6 @@ extension TCCmeError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCCmeError {
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-    }
-}
-
-extension TCCmeError.OperationDenied: Equatable {
-    public static func == (lhs: TCCmeError.OperationDenied, rhs: TCCmeError.OperationDenied) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCmeError.OperationDenied: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCmeError.OperationDenied {
-    /// - Returns: ``TCCmeError`` that holds the same error and context.
-    public func toCmeError() -> TCCmeError {
-        guard let code = TCCmeError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCmeError() -> TCCmeError {
+            let code: TCCmeError.Code
+            switch self.error {
+            case .permissionDeny: 
+                code = .operationDenied_PermissionDeny
+            case .other: 
+                code = .operationDenied
+            }
+            return TCCmeError(code, context: self.context)
         }
-        return TCCmeError(code, context: self.context)
-    }
-}
-
-extension TCCmeError.OperationDenied {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

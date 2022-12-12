@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCFmuError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCFmuErrorType {
         enum Code: String {
             case invalidParameter = "InvalidParameter.InvalidParameter"
             case noFaceInPhoto = "InvalidParameter.NoFaceInPhoto"
@@ -31,8 +31,6 @@ extension TCFmuError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCFmuError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCFmuError.InvalidParameter: Equatable {
-    public static func == (lhs: TCFmuError.InvalidParameter, rhs: TCFmuError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCFmuError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCFmuError.InvalidParameter {
-    /// - Returns: ``TCFmuError`` that holds the same error and context.
-    public func toFmuError() -> TCFmuError {
-        guard let code = TCFmuError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asFmuError() -> TCFmuError {
+            let code: TCFmuError.Code
+            switch self.error {
+            case .invalidParameter: 
+                code = .invalidParameter_InvalidParameter
+            case .noFaceInPhoto: 
+                code = .invalidParameter_NoFaceInPhoto
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCFmuError(code, context: self.context)
         }
-        return TCFmuError(code, context: self.context)
-    }
-}
-
-extension TCFmuError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

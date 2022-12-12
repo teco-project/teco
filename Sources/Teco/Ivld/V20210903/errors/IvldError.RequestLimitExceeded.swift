@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIvldError {
-    public struct RequestLimitExceeded: TCErrorType {
+    public struct RequestLimitExceeded: TCIvldErrorType {
         enum Code: String {
             case batchImportOverflow = "RequestLimitExceeded.BatchImportOverflow"
             case concurrencyOverflow = "RequestLimitExceeded.ConcurrencyOverflow"
@@ -30,8 +30,6 @@ extension TCIvldError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -58,37 +56,16 @@ extension TCIvldError {
         public static var concurrencyOverflow: RequestLimitExceeded {
             RequestLimitExceeded(.concurrencyOverflow)
         }
-    }
-}
-
-extension TCIvldError.RequestLimitExceeded: Equatable {
-    public static func == (lhs: TCIvldError.RequestLimitExceeded, rhs: TCIvldError.RequestLimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIvldError.RequestLimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIvldError.RequestLimitExceeded {
-    /// - Returns: ``TCIvldError`` that holds the same error and context.
-    public func toIvldError() -> TCIvldError {
-        guard let code = TCIvldError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIvldError() -> TCIvldError {
+            let code: TCIvldError.Code
+            switch self.error {
+            case .batchImportOverflow: 
+                code = .requestLimitExceeded_BatchImportOverflow
+            case .concurrencyOverflow: 
+                code = .requestLimitExceeded_ConcurrencyOverflow
+            }
+            return TCIvldError(code, context: self.context)
         }
-        return TCIvldError(code, context: self.context)
-    }
-}
-
-extension TCIvldError.RequestLimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

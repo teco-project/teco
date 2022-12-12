@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTsfError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCTsfErrorType {
         enum Code: String {
             case badRequest = "InvalidParameter.BadRequest"
             case cvmCaeMasterUnknownInstanceStatus = "InvalidParameter.CvmCaeMasterUnknownInstanceStatus"
@@ -68,8 +68,6 @@ extension TCTsfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -282,37 +280,92 @@ extension TCTsfError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCTsfError.InvalidParameter: Equatable {
-    public static func == (lhs: TCTsfError.InvalidParameter, rhs: TCTsfError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTsfError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTsfError.InvalidParameter {
-    /// - Returns: ``TCTsfError`` that holds the same error and context.
-    public func toTsfError() -> TCTsfError {
-        guard let code = TCTsfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTsfError() -> TCTsfError {
+            let code: TCTsfError.Code
+            switch self.error {
+            case .badRequest: 
+                code = .invalidParameter_BadRequest
+            case .cvmCaeMasterUnknownInstanceStatus: 
+                code = .invalidParameter_CvmCaeMasterUnknownInstanceStatus
+            case .imagerepoTcrNamespaceNotFound: 
+                code = .invalidParameter_ImagerepoTcrNamespaceNotFound
+            case .kubernetesParamError: 
+                code = .invalidParameter_KubernetesParamError
+            case .laneInfoAlreadyUsed: 
+                code = .invalidParameter_LaneInfoAlreadyUsed
+            case .laneInfoNameAlreadyUsed: 
+                code = .invalidParameter_LaneInfoNameAlreadyUsed
+            case .laneInfoNameInvalid: 
+                code = .invalidParameter_LaneInfoNameInvalid
+            case .laneInfoNameNotEmpty: 
+                code = .invalidParameter_LaneInfoNameNotEmpty
+            case .laneInfoNameTooLong: 
+                code = .invalidParameter_LaneInfoNameTooLong
+            case .laneInfoNotExist: 
+                code = .invalidParameter_LaneInfoNotExist
+            case .laneInfoNotExistEntrance: 
+                code = .invalidParameter_LaneInfoNotExistEntrance
+            case .laneInfoRemarkTooLong: 
+                code = .invalidParameter_LaneInfoRemarkTooLong
+            case .laneRuleInfoNotExist: 
+                code = .invalidParameter_LaneRuleInfoNotExist
+            case .laneRuleNameAlreadyUsed: 
+                code = .invalidParameter_LaneRuleNameAlreadyUsed
+            case .laneRuleNameInvalid: 
+                code = .invalidParameter_LaneRuleNameInvalid
+            case .laneRuleNameNotEmpty: 
+                code = .invalidParameter_LaneRuleNameNotEmpty
+            case .laneRuleNameTooLong: 
+                code = .invalidParameter_LaneRuleNameTooLong
+            case .laneRuleNotExist: 
+                code = .invalidParameter_LaneRuleNotExist
+            case .laneRuleRemarkTooLong: 
+                code = .invalidParameter_LaneRuleRemarkTooLong
+            case .laneRuleTagNameNotEmpty: 
+                code = .invalidParameter_LaneRuleTagNameNotEmpty
+            case .laneRuleTagNameTooLong: 
+                code = .invalidParameter_LaneRuleTagNameTooLong
+            case .laneRuleTagNotEmpty: 
+                code = .invalidParameter_LaneRuleTagNotEmpty
+            case .laneRuleTagValueTooLong: 
+                code = .invalidParameter_LaneRuleTagValueTooLong
+            case .laneRuleTagValueTotalTooLong: 
+                code = .invalidParameter_LaneRuleTagValueTotalTooLong
+            case .packageInUse: 
+                code = .invalidParameter_PackageInUse
+            case .paramError: 
+                code = .invalidParameter_ParamError
+            case .repoPackageParamError: 
+                code = .invalidParameter_RepoPackageParamError
+            case .repositoryNotEmpty: 
+                code = .invalidParameter_RepositoryNotEmpty
+            case .tsfApmBusiLogCfgAppParamError: 
+                code = .invalidParameter_TsfApmBusiLogCfgAppParamError
+            case .tsfApmBusiLogCfgAppRelationParamError: 
+                code = .invalidParameter_TsfApmBusiLogCfgAppRelationParamError
+            case .tsfApmBusiLogCfgCloudParamError: 
+                code = .invalidParameter_TsfApmBusiLogCfgCloudParamError
+            case .tsfApmBusiLogCfgIdParamError: 
+                code = .invalidParameter_TsfApmBusiLogCfgIdParamError
+            case .tsfApmBusiLogCfgLimitParamError: 
+                code = .invalidParameter_TsfApmBusiLogCfgLimitParamError
+            case .tsfApmBusiLogSearchRequestParamError: 
+                code = .invalidParameter_TsfApmBusiLogSearchRequestParamError
+            case .tsfApmStatsSearchRequestParamError: 
+                code = .invalidParameter_TsfApmStatsSearchRequestParamError
+            case .tsfApmStdoutSearchRequestParamError: 
+                code = .invalidParameter_TsfApmStdoutSearchRequestParamError
+            case .tsfApmTraceSearchRequestParamError: 
+                code = .invalidParameter_TsfApmTraceSearchRequestParamError
+            case .tsfMonitorRequestParamIllegal: 
+                code = .invalidParameter_TsfMonitorRequestParamIllegal
+            case .upperDeleteLimit: 
+                code = .invalidParameter_UpperDeleteLimit
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCTsfError(code, context: self.context)
         }
-        return TCTsfError(code, context: self.context)
-    }
-}
-
-extension TCTsfError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

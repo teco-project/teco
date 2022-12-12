@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCbsError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCCbsErrorType {
         enum Code: String {
             case detachPod = "UnsupportedOperation.DetachPod"
             case diskEncrypt = "UnsupportedOperation.DiskEncrypt"
@@ -36,8 +36,6 @@ extension TCCbsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -90,37 +88,28 @@ extension TCCbsError {
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-    }
-}
-
-extension TCCbsError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCCbsError.UnsupportedOperation, rhs: TCCbsError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCbsError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCbsError.UnsupportedOperation {
-    /// - Returns: ``TCCbsError`` that holds the same error and context.
-    public func toCbsError() -> TCCbsError {
-        guard let code = TCCbsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCbsError() -> TCCbsError {
+            let code: TCCbsError.Code
+            switch self.error {
+            case .detachPod: 
+                code = .unsupportedOperation_DetachPod
+            case .diskEncrypt: 
+                code = .unsupportedOperation_DiskEncrypt
+            case .instanceNotStopped: 
+                code = .unsupportedOperation_InstanceNotStopped
+            case .snapHasShared: 
+                code = .unsupportedOperation_SnapHasShared
+            case .snapshotHasBindedImage: 
+                code = .unsupportedOperation_SnapshotHasBindedImage
+            case .snapshotNotSupportCopy: 
+                code = .unsupportedOperation_SnapshotNotSupportCopy
+            case .stateError: 
+                code = .unsupportedOperation_StateError
+            case .other: 
+                code = .unsupportedOperation
+            }
+            return TCCbsError(code, context: self.context)
         }
-        return TCCbsError(code, context: self.context)
-    }
-}
-
-extension TCCbsError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

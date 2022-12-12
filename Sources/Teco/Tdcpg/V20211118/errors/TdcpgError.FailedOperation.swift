@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTdcpgError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCTdcpgErrorType {
         enum Code: String {
             case databaseAccessError = "FailedOperation.DatabaseAccessError"
             case flowError = "FailedOperation.FlowError"
@@ -40,8 +40,6 @@ extension TCTdcpgError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -113,37 +111,36 @@ extension TCTdcpgError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCTdcpgError.FailedOperation: Equatable {
-    public static func == (lhs: TCTdcpgError.FailedOperation, rhs: TCTdcpgError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTdcpgError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTdcpgError.FailedOperation {
-    /// - Returns: ``TCTdcpgError`` that holds the same error and context.
-    public func toTdcpgError() -> TCTdcpgError {
-        guard let code = TCTdcpgError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTdcpgError() -> TCTdcpgError {
+            let code: TCTdcpgError.Code
+            switch self.error {
+            case .databaseAccessError: 
+                code = .failedOperation_DatabaseAccessError
+            case .flowError: 
+                code = .failedOperation_FlowError
+            case .getVpcFailed: 
+                code = .failedOperation_GetVpcFailed
+            case .internalServiceAccessError: 
+                code = .failedOperation_InternalServiceAccessError
+            case .payModeInvalid: 
+                code = .failedOperation_PayModeInvalid
+            case .specNotChange: 
+                code = .failedOperation_SpecNotChange
+            case .specStorageLack: 
+                code = .failedOperation_SpecStorageLack
+            case .statusError: 
+                code = .failedOperation_StatusError
+            case .storagePayModeInvalid: 
+                code = .failedOperation_StoragePayModeInvalid
+            case .taskConflict: 
+                code = .failedOperation_TaskConflict
+            case .tradeAccessError: 
+                code = .failedOperation_TradeAccessError
+            case .other: 
+                code = .failedOperation
+            }
+            return TCTdcpgError(code, context: self.context)
         }
-        return TCTdcpgError(code, context: self.context)
-    }
-}
-
-extension TCTdcpgError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

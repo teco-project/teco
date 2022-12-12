@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEssbasicError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCEssbasicErrorType {
         enum Code: String {
             case application = "InvalidParameter.Application"
             case approverType = "InvalidParameter.ApproverType"
@@ -71,8 +71,6 @@ extension TCEssbasicError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -276,37 +274,98 @@ extension TCEssbasicError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCEssbasicError.InvalidParameter: Equatable {
-    public static func == (lhs: TCEssbasicError.InvalidParameter, rhs: TCEssbasicError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEssbasicError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEssbasicError.InvalidParameter {
-    /// - Returns: ``TCEssbasicError`` that holds the same error and context.
-    public func toEssbasicError() -> TCEssbasicError {
-        guard let code = TCEssbasicError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEssbasicError() -> TCEssbasicError {
+            let code: TCEssbasicError.Code
+            switch self.error {
+            case .application: 
+                code = .invalidParameter_Application
+            case .approverType: 
+                code = .invalidParameter_ApproverType
+            case .bizApproverAlreadyExists: 
+                code = .invalidParameter_BizApproverAlreadyExists
+            case .businessLicense: 
+                code = .invalidParameter_BusinessLicense
+            case .cardType: 
+                code = .invalidParameter_CardType
+            case .componentValue: 
+                code = .invalidParameter_ComponentValue
+            case .contentType: 
+                code = .invalidParameter_ContentType
+            case .customShowMap: 
+                code = .invalidParameter_CustomShowMap
+            case .customerData: 
+                code = .invalidParameter_CustomerData
+            case .dataNotFound: 
+                code = .invalidParameter_DataNotFound
+            case .date: 
+                code = .invalidParameter_Date
+            case .departUserId: 
+                code = .invalidParameter_DepartUserId
+            case .dupTask: 
+                code = .invalidParameter_DupTask
+            case .emptyParams: 
+                code = .invalidParameter_EmptyParams
+            case .endPoint: 
+                code = .invalidParameter_EndPoint
+            case .fileType: 
+                code = .invalidParameter_FileType
+            case .flowApproverInfos: 
+                code = .invalidParameter_FlowApproverInfos
+            case .flowApprovers: 
+                code = .invalidParameter_FlowApprovers
+            case .flowCallbackUrl: 
+                code = .invalidParameter_FlowCallbackUrl
+            case .flowDeadLine: 
+                code = .invalidParameter_FlowDeadLine
+            case .flowDescription: 
+                code = .invalidParameter_FlowDescription
+            case .flowFileIds: 
+                code = .invalidParameter_FlowFileIds
+            case .flowIds: 
+                code = .invalidParameter_FlowIds
+            case .flowInfos: 
+                code = .invalidParameter_FlowInfos
+            case .flowName: 
+                code = .invalidParameter_FlowName
+            case .flowType: 
+                code = .invalidParameter_FlowType
+            case .generateType: 
+                code = .invalidParameter_GenerateType
+            case .image: 
+                code = .invalidParameter_Image
+            case .limitSealName: 
+                code = .invalidParameter_LimitSealName
+            case .menuStatus: 
+                code = .invalidParameter_MenuStatus
+            case .missingRequiredParameterValue: 
+                code = .invalidParameter_MissingRequiredParameterValue
+            case .name: 
+                code = .invalidParameter_Name
+            case .nonsupportMobile: 
+                code = .invalidParameter_NonsupportMobile
+            case .openId: 
+                code = .invalidParameter_OpenId
+            case .organizationId: 
+                code = .invalidParameter_OrganizationId
+            case .organizationName: 
+                code = .invalidParameter_OrganizationName
+            case .paramError: 
+                code = .invalidParameter_ParamError
+            case .sensitiveFileContent: 
+                code = .invalidParameter_SensitiveFileContent
+            case .signComponentType: 
+                code = .invalidParameter_SignComponentType
+            case .status: 
+                code = .invalidParameter_Status
+            case .unordered: 
+                code = .invalidParameter_Unordered
+            case .unsupportedComponentType: 
+                code = .invalidParameter_UnsupportedComponentType
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCEssbasicError(code, context: self.context)
         }
-        return TCEssbasicError(code, context: self.context)
-    }
-}
-
-extension TCEssbasicError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCynosdbError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCCynosdbErrorType {
         enum Code: String {
             case dbOperationFailed = "InternalError.DbOperationFailed"
             case getSecurityGroupDetailFailed = "InternalError.GetSecurityGroupDetailFailed"
@@ -40,8 +40,6 @@ extension TCCynosdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -114,37 +112,36 @@ extension TCCynosdbError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCCynosdbError.InternalError: Equatable {
-    public static func == (lhs: TCCynosdbError.InternalError, rhs: TCCynosdbError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCynosdbError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCynosdbError.InternalError {
-    /// - Returns: ``TCCynosdbError`` that holds the same error and context.
-    public func toCynosdbError() -> TCCynosdbError {
-        guard let code = TCCynosdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCynosdbError() -> TCCynosdbError {
+            let code: TCCynosdbError.Code
+            switch self.error {
+            case .dbOperationFailed: 
+                code = .internalError_DbOperationFailed
+            case .getSecurityGroupDetailFailed: 
+                code = .internalError_GetSecurityGroupDetailFailed
+            case .getSubnetFailed: 
+                code = .internalError_GetSubnetFailed
+            case .getVpcFailed: 
+                code = .internalError_GetVpcFailed
+            case .internalHttpServerError: 
+                code = .internalError_InternalHttpServerError
+            case .listInstanceFailed: 
+                code = .internalError_ListInstanceFailed
+            case .operateWanFail: 
+                code = .internalError_OperateWanFail
+            case .operationNotSupport: 
+                code = .internalError_OperationNotSupport
+            case .queryDatabaseFailed: 
+                code = .internalError_QueryDatabaseFailed
+            case .systemError: 
+                code = .internalError_SystemError
+            case .unknownError: 
+                code = .internalError_UnknownError
+            case .other: 
+                code = .internalError
+            }
+            return TCCynosdbError(code, context: self.context)
         }
-        return TCCynosdbError(code, context: self.context)
-    }
-}
-
-extension TCCynosdbError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

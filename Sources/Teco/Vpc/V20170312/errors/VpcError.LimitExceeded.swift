@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCVpcError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCVpcErrorType {
         enum Code: String {
             case accountReturnQuota = "LimitExceeded.AccountReturnQuota"
             case address = "LimitExceeded.Address"
@@ -52,8 +52,6 @@ extension TCVpcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -180,37 +178,60 @@ extension TCVpcError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCVpcError.LimitExceeded: Equatable {
-    public static func == (lhs: TCVpcError.LimitExceeded, rhs: TCVpcError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCVpcError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCVpcError.LimitExceeded {
-    /// - Returns: ``TCVpcError`` that holds the same error and context.
-    public func toVpcError() -> TCVpcError {
-        guard let code = TCVpcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asVpcError() -> TCVpcError {
+            let code: TCVpcError.Code
+            switch self.error {
+            case .accountReturnQuota: 
+                code = .limitExceeded_AccountReturnQuota
+            case .address: 
+                code = .limitExceeded_Address
+            case .addressQuotaLimitExceeded: 
+                code = .limitExceeded_AddressQuotaLimitExceeded
+            case .bandwidthPackageQuota: 
+                code = .limitExceeded_BandwidthPackageQuota
+            case .changeAddressQuota: 
+                code = .limitExceeded_ChangeAddressQuota
+            case .cidrBlock: 
+                code = .limitExceeded_CidrBlock
+            case .dailyAllocateAddressQuotaLimitExceeded: 
+                code = .limitExceeded_DailyAllocateAddressQuotaLimitExceeded
+            case .dailyChangeAddressQuota: 
+                code = .limitExceeded_DailyChangeAddressQuota
+            case .instanceAddressQuota: 
+                code = .limitExceeded_InstanceAddressQuota
+            case .modifyAddressInternetChargeTypeQuota: 
+                code = .limitExceeded_ModifyAddressInternetChargeTypeQuota
+            case .monthlyAddressRecoveryQuota: 
+                code = .limitExceeded_MonthlyAddressRecoveryQuota
+            case .natGatewayLimitExceeded: 
+                code = .limitExceeded_NatGatewayLimitExceeded
+            case .natGatewayPerVpcLimitExceeded: 
+                code = .limitExceeded_NatGatewayPerVpcLimitExceeded
+            case .numberOfFilters: 
+                code = .limitExceeded_NumberOfFilters
+            case .publicIpAddressPerNatGatewayLimitExceeded: 
+                code = .limitExceeded_PublicIpAddressPerNatGatewayLimitExceeded
+            case .securityGroupPolicySet: 
+                code = .limitExceeded_SecurityGroupPolicySet
+            case .subnetCidrBlock: 
+                code = .limitExceeded_SubnetCidrBlock
+            case .tagKeyExceeded: 
+                code = .limitExceeded_TagKeyExceeded
+            case .tagKeyPerResourceExceeded: 
+                code = .limitExceeded_TagKeyPerResourceExceeded
+            case .tagNotEnoughQuota: 
+                code = .limitExceeded_TagNotEnoughQuota
+            case .tagQuota: 
+                code = .limitExceeded_TagQuota
+            case .tagQuotaExceeded: 
+                code = .limitExceeded_TagQuotaExceeded
+            case .tagTagsExceeded: 
+                code = .limitExceeded_TagTagsExceeded
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCVpcError(code, context: self.context)
         }
-        return TCVpcError(code, context: self.context)
-    }
-}
-
-extension TCVpcError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

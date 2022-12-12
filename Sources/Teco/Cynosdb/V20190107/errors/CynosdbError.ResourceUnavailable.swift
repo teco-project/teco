@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCynosdbError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCCynosdbErrorType {
         enum Code: String {
             case instanceLockFail = "ResourceUnavailable.InstanceLockFail"
             case instanceStatusAbnormal = "ResourceUnavailable.InstanceStatusAbnormal"
@@ -30,8 +30,6 @@ extension TCCynosdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCCynosdbError {
         public static var instanceStatusAbnormal: ResourceUnavailable {
             ResourceUnavailable(.instanceStatusAbnormal)
         }
-    }
-}
-
-extension TCCynosdbError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCCynosdbError.ResourceUnavailable, rhs: TCCynosdbError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCynosdbError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCynosdbError.ResourceUnavailable {
-    /// - Returns: ``TCCynosdbError`` that holds the same error and context.
-    public func toCynosdbError() -> TCCynosdbError {
-        guard let code = TCCynosdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCynosdbError() -> TCCynosdbError {
+            let code: TCCynosdbError.Code
+            switch self.error {
+            case .instanceLockFail: 
+                code = .resourceUnavailable_InstanceLockFail
+            case .instanceStatusAbnormal: 
+                code = .resourceUnavailable_InstanceStatusAbnormal
+            }
+            return TCCynosdbError(code, context: self.context)
         }
-        return TCCynosdbError(code, context: self.context)
-    }
-}
-
-extension TCCynosdbError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

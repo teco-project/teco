@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEsError {
-    public struct ResourceInsufficient: TCErrorType {
+    public struct ResourceInsufficient: TCEsErrorType {
         enum Code: String {
             case balance = "ResourceInsufficient.Balance"
             case hiddenZone = "ResourceInsufficient.HiddenZone"
@@ -32,8 +32,6 @@ extension TCEsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCEsError {
         public static var other: ResourceInsufficient {
             ResourceInsufficient(.other)
         }
-    }
-}
-
-extension TCEsError.ResourceInsufficient: Equatable {
-    public static func == (lhs: TCEsError.ResourceInsufficient, rhs: TCEsError.ResourceInsufficient) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEsError.ResourceInsufficient: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEsError.ResourceInsufficient {
-    /// - Returns: ``TCEsError`` that holds the same error and context.
-    public func toEsError() -> TCEsError {
-        guard let code = TCEsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEsError() -> TCEsError {
+            let code: TCEsError.Code
+            switch self.error {
+            case .balance: 
+                code = .resourceInsufficient_Balance
+            case .hiddenZone: 
+                code = .resourceInsufficient_HiddenZone
+            case .subnet: 
+                code = .resourceInsufficient_Subnet
+            case .other: 
+                code = .resourceInsufficient
+            }
+            return TCEsError(code, context: self.context)
         }
-        return TCEsError(code, context: self.context)
-    }
-}
-
-extension TCEsError.ResourceInsufficient {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

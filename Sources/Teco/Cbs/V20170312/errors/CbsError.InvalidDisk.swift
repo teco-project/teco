@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCbsError {
-    public struct InvalidDisk: TCErrorType {
+    public struct InvalidDisk: TCCbsErrorType {
         enum Code: String {
             case alreadyBound = "InvalidDisk.AlreadyBound"
             case busy = "InvalidDisk.Busy"
@@ -36,8 +36,6 @@ extension TCCbsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -90,37 +88,28 @@ extension TCCbsError {
         public static var typeError: InvalidDisk {
             InvalidDisk(.typeError)
         }
-    }
-}
-
-extension TCCbsError.InvalidDisk: Equatable {
-    public static func == (lhs: TCCbsError.InvalidDisk, rhs: TCCbsError.InvalidDisk) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCbsError.InvalidDisk: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCbsError.InvalidDisk {
-    /// - Returns: ``TCCbsError`` that holds the same error and context.
-    public func toCbsError() -> TCCbsError {
-        guard let code = TCCbsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCbsError() -> TCCbsError {
+            let code: TCCbsError.Code
+            switch self.error {
+            case .alreadyBound: 
+                code = .invalidDisk_AlreadyBound
+            case .busy: 
+                code = .invalidDisk_Busy
+            case .expire: 
+                code = .invalidDisk_Expire
+            case .notPortable: 
+                code = .invalidDisk_NotPortable
+            case .notSupportSnapshot: 
+                code = .invalidDisk_NotSupportSnapshot
+            case .notSupported: 
+                code = .invalidDisk_NotSupported
+            case .snapshotCreating: 
+                code = .invalidDisk_SnapshotCreating
+            case .typeError: 
+                code = .invalidDisk_TypeError
+            }
+            return TCCbsError(code, context: self.context)
         }
-        return TCCbsError(code, context: self.context)
-    }
-}
-
-extension TCCbsError.InvalidDisk {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

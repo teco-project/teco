@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTeoError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCTeoErrorType {
         enum Code: String {
             case backendError = "InternalError.BackendError"
             case dbError = "InternalError.DBError"
@@ -38,8 +38,6 @@ extension TCTeoError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -104,37 +102,32 @@ extension TCTeoError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCTeoError.InternalError: Equatable {
-    public static func == (lhs: TCTeoError.InternalError, rhs: TCTeoError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTeoError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTeoError.InternalError {
-    /// - Returns: ``TCTeoError`` that holds the same error and context.
-    public func toTeoError() -> TCTeoError {
-        guard let code = TCTeoError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTeoError() -> TCTeoError {
+            let code: TCTeoError.Code
+            switch self.error {
+            case .backendError: 
+                code = .internalError_BackendError
+            case .dbError: 
+                code = .internalError_DBError
+            case .domainConfig: 
+                code = .internalError_DomainConfig
+            case .failedToGenerateUrl: 
+                code = .internalError_FailedToGenerateUrl
+            case .getRoleError: 
+                code = .internalError_GetRoleError
+            case .proxyServer: 
+                code = .internalError_ProxyServer
+            case .quotaSystem: 
+                code = .internalError_QuotaSystem
+            case .routeError: 
+                code = .internalError_RouteError
+            case .systemError: 
+                code = .internalError_SystemError
+            case .other: 
+                code = .internalError
+            }
+            return TCTeoError(code, context: self.context)
         }
-        return TCTeoError(code, context: self.context)
-    }
-}
-
-extension TCTeoError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

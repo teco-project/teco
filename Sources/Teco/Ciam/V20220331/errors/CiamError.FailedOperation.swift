@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCiamError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCCiamErrorType {
         enum Code: String {
             case accountAlreadyBeLinked = "FailedOperation.AccountAlreadyBeLinked"
             case attributeFormatError = "FailedOperation.AttributeFormatError"
@@ -54,8 +54,6 @@ extension TCCiamError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -200,37 +198,64 @@ extension TCCiamError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCCiamError.FailedOperation: Equatable {
-    public static func == (lhs: TCCiamError.FailedOperation, rhs: TCCiamError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCiamError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCiamError.FailedOperation {
-    /// - Returns: ``TCCiamError`` that holds the same error and context.
-    public func toCiamError() -> TCCiamError {
-        guard let code = TCCiamError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCiamError() -> TCCiamError {
+            let code: TCCiamError.Code
+            switch self.error {
+            case .accountAlreadyBeLinked: 
+                code = .failedOperation_AccountAlreadyBeLinked
+            case .attributeFormatError: 
+                code = .failedOperation_AttributeFormatError
+            case .dataFlowTooManyRequests: 
+                code = .failedOperation_DataFlowTooManyRequests
+            case .emailAlreadyExists: 
+                code = .failedOperation_EmailAlreadyExists
+            case .emailIsNull: 
+                code = .failedOperation_EmailIsNull
+            case .importUserIsEmpty: 
+                code = .failedOperation_ImportUserIsEmpty
+            case .indexedAttributeTooLong: 
+                code = .failedOperation_IndexedAttributeTooLong
+            case .invalidTenant: 
+                code = .failedOperation_InvalidTenant
+            case .invalidUserStatusEnum: 
+                code = .failedOperation_InvalidUserStatusEnum
+            case .invalidUserStore: 
+                code = .failedOperation_InvalidUserStore
+            case .passwordIsNull: 
+                code = .failedOperation_PasswordIsNull
+            case .phoneNumberAlreadyExists: 
+                code = .failedOperation_PhoneNumberAlreadyExists
+            case .phoneNumberIsNull: 
+                code = .failedOperation_PhoneNumberIsNull
+            case .primaryUserNotFound: 
+                code = .failedOperation_PrimaryUserNotFound
+            case .queryUsersParameterMustInWhitelist: 
+                code = .failedOperation_QueryUsersParameterMustInWhitelist
+            case .queryUsersParameterRepeat: 
+                code = .failedOperation_QueryUsersParameterRepeat
+            case .queryUsersSortParameterMustInWhitelist: 
+                code = .failedOperation_QueryUsersSortParameterMustInWhitelist
+            case .quotaLimitExceeded: 
+                code = .failedOperation_QuotaLimitExceeded
+            case .secondaryUserNotFound: 
+                code = .failedOperation_SecondaryUserNotFound
+            case .userGroupNotFound: 
+                code = .failedOperation_UserGroupNotFound
+            case .userIsFreeze: 
+                code = .failedOperation_UserIsFreeze
+            case .userNameAlreadyExists: 
+                code = .failedOperation_UserNameAlreadyExists
+            case .userNameIsNull: 
+                code = .failedOperation_UserNameIsNull
+            case .userNotFound: 
+                code = .failedOperation_UserNotFound
+            case .userStatusRequired: 
+                code = .failedOperation_UserStatusRequired
+            case .other: 
+                code = .failedOperation
+            }
+            return TCCiamError(code, context: self.context)
         }
-        return TCCiamError(code, context: self.context)
-    }
-}
-
-extension TCCiamError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

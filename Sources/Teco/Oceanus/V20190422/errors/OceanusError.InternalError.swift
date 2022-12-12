@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCOceanusError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCOceanusErrorType {
         enum Code: String {
             case camCgwError = "InternalError.CamCgwError"
             case cls = "InternalError.CLS"
@@ -42,8 +42,6 @@ extension TCOceanusError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -126,37 +124,40 @@ extension TCOceanusError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCOceanusError.InternalError: Equatable {
-    public static func == (lhs: TCOceanusError.InternalError, rhs: TCOceanusError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCOceanusError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCOceanusError.InternalError {
-    /// - Returns: ``TCOceanusError`` that holds the same error and context.
-    public func toOceanusError() -> TCOceanusError {
-        guard let code = TCOceanusError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asOceanusError() -> TCOceanusError {
+            let code: TCOceanusError.Code
+            switch self.error {
+            case .camCgwError: 
+                code = .internalError_CamCgwError
+            case .cls: 
+                code = .internalError_CLS
+            case .cosClient: 
+                code = .internalError_COSClient
+            case .db: 
+                code = .internalError_DB
+            case .failedToBescribeResources: 
+                code = .internalError_FailedToBescribeResources
+            case .failedToUpdateJob: 
+                code = .internalError_FailedToUpdateJob
+            case .jobInstanceNotFound: 
+                code = .internalError_JobInstanceNotFound
+            case .logicError: 
+                code = .internalError_LogicError
+            case .resourceConfigCanNotDelete: 
+                code = .internalError_ResourceConfigCanNotDelete
+            case .resourceNotExist: 
+                code = .internalError_ResourceNotExist
+            case .sqlCodeNotFound: 
+                code = .internalError_SqlCodeNotFound
+            case .stsNewClient: 
+                code = .internalError_StsNewClient
+            case .systemError: 
+                code = .internalError_SystemError
+            case .other: 
+                code = .internalError
+            }
+            return TCOceanusError(code, context: self.context)
         }
-        return TCOceanusError(code, context: self.context)
-    }
-}
-
-extension TCOceanusError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

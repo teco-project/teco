@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCClsError {
-    public struct OperationDenied: TCErrorType {
+    public struct OperationDenied: TCClsErrorType {
         enum Code: String {
             case accountDestroy = "OperationDenied.AccountDestroy"
             case accountIsolate = "OperationDenied.AccountIsolate"
@@ -41,8 +41,6 @@ extension TCClsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -125,37 +123,38 @@ extension TCClsError {
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-    }
-}
-
-extension TCClsError.OperationDenied: Equatable {
-    public static func == (lhs: TCClsError.OperationDenied, rhs: TCClsError.OperationDenied) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCClsError.OperationDenied: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCClsError.OperationDenied {
-    /// - Returns: ``TCClsError`` that holds the same error and context.
-    public func toClsError() -> TCClsError {
-        guard let code = TCClsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asClsError() -> TCClsError {
+            let code: TCClsError.Code
+            switch self.error {
+            case .accountDestroy: 
+                code = .operationDenied_AccountDestroy
+            case .accountIsolate: 
+                code = .operationDenied_AccountIsolate
+            case .accountNotExists: 
+                code = .operationDenied_AccountNotExists
+            case .aclFailed: 
+                code = .operationDenied_ACLFailed
+            case .alarmNotSupportForSearchLow: 
+                code = .operationDenied_AlarmNotSupportForSearchLow
+            case .analysisSwitchClose: 
+                code = .operationDenied_AnalysisSwitchClose
+            case .newSyntaxNotSupported: 
+                code = .operationDenied_NewSyntaxNotSupported
+            case .noticeHasAlarm: 
+                code = .operationDenied_NoticeHasAlarm
+            case .operationNotSupportInSearchLow: 
+                code = .operationDenied_OperationNotSupportInSearchLow
+            case .topicHasDataFormTask: 
+                code = .operationDenied_TopicHasDataFormTask
+            case .topicHasDeliverFunction: 
+                code = .operationDenied_TopicHasDeliverFunction
+            case .topicHasScheduleSqlTask: 
+                code = .operationDenied_TopicHasScheduleSqlTask
+            case .other: 
+                code = .operationDenied
+            }
+            return TCClsError(code, context: self.context)
         }
-        return TCClsError(code, context: self.context)
-    }
-}
-
-extension TCClsError.OperationDenied {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

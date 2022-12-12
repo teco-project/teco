@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDnspodError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCDnspodErrorType {
         enum Code: String {
             case accountIsLocked = "FailedOperation.AccountIsLocked"
             case containsPersonalVip = "FailedOperation.ContainsPersonalVip"
@@ -62,8 +62,6 @@ extension TCDnspodError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -244,37 +242,80 @@ extension TCDnspodError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCDnspodError.FailedOperation: Equatable {
-    public static func == (lhs: TCDnspodError.FailedOperation, rhs: TCDnspodError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDnspodError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDnspodError.FailedOperation {
-    /// - Returns: ``TCDnspodError`` that holds the same error and context.
-    public func toDnspodError() -> TCDnspodError {
-        guard let code = TCDnspodError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDnspodError() -> TCDnspodError {
+            let code: TCDnspodError.Code
+            switch self.error {
+            case .accountIsLocked: 
+                code = .failedOperation_AccountIsLocked
+            case .containsPersonalVip: 
+                code = .failedOperation_ContainsPersonalVip
+            case .couponForFreeDomain: 
+                code = .failedOperation_CouponForFreeDomain
+            case .couponNotSupported: 
+                code = .failedOperation_CouponNotSupported
+            case .couponTypeAlreadyUsed: 
+                code = .failedOperation_CouponTypeAlreadyUsed
+            case .domainExists: 
+                code = .failedOperation_DomainExists
+            case .domainIsKeyDomain: 
+                code = .failedOperation_DomainIsKeyDomain
+            case .domainIsLocked: 
+                code = .failedOperation_DomainIsLocked
+            case .domainIsPersonalType: 
+                code = .failedOperation_DomainIsPersonalType
+            case .domainIsSpam: 
+                code = .failedOperation_DomainIsSpam
+            case .domainIsVip: 
+                code = .failedOperation_DomainIsVip
+            case .domainNotInService: 
+                code = .failedOperation_DomainNotInService
+            case .domainOwnedByOtherUser: 
+                code = .failedOperation_DomainOwnedByOtherUser
+            case .eipCheckFailed: 
+                code = .failedOperation_EipCheckFailed
+            case .functionNotAllowedApply: 
+                code = .failedOperation_FunctionNotAllowedApply
+            case .getWhoisFailed: 
+                code = .failedOperation_GetWhoisFailed
+            case .insufficientBalance: 
+                code = .failedOperation_InsufficientBalance
+            case .loginAreaNotAllowed: 
+                code = .failedOperation_LoginAreaNotAllowed
+            case .loginFailed: 
+                code = .failedOperation_LoginFailed
+            case .loginTimeout: 
+                code = .failedOperation_LoginTimeout
+            case .mobileNotVerified: 
+                code = .failedOperation_MobileNotVerified
+            case .notBatchTaskOwner: 
+                code = .failedOperation_NotBatchTaskOwner
+            case .notDomainOwner: 
+                code = .failedOperation_NotDomainOwner
+            case .notRealNamedUser: 
+                code = .failedOperation_NotRealNamedUser
+            case .notResourceOwner: 
+                code = .failedOperation_NotResourceOwner
+            case .orderCanNotPay: 
+                code = .failedOperation_OrderCanNotPay
+            case .orderHasPaid: 
+                code = .failedOperation_OrderHasPaid
+            case .resourceNotBind: 
+                code = .failedOperation_ResourceNotBind
+            case .temporaryError: 
+                code = .failedOperation_TemporaryError
+            case .transferToEnterpriseDenied: 
+                code = .failedOperation_TransferToEnterpriseDenied
+            case .transferToPersonDenied: 
+                code = .failedOperation_TransferToPersonDenied
+            case .unknowError: 
+                code = .failedOperation_UnknowError
+            case .verifyingBillExists: 
+                code = .failedOperation_VerifyingBillExists
+            case .other: 
+                code = .failedOperation
+            }
+            return TCDnspodError(code, context: self.context)
         }
-        return TCDnspodError(code, context: self.context)
-    }
-}
-
-extension TCDnspodError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

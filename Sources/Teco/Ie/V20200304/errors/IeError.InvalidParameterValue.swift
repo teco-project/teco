@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIeError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCIeErrorType {
         enum Code: String {
             case actionNotSupport = "InvalidParameterValue.ActionNotSupport"
             case callbackUrlError = "InvalidParameterValue.CallbackUrlError"
@@ -44,8 +44,6 @@ extension TCIeError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -138,37 +136,44 @@ extension TCIeError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCIeError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCIeError.InvalidParameterValue, rhs: TCIeError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIeError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIeError.InvalidParameterValue {
-    /// - Returns: ``TCIeError`` that holds the same error and context.
-    public func toIeError() -> TCIeError {
-        guard let code = TCIeError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIeError() -> TCIeError {
+            let code: TCIeError.Code
+            switch self.error {
+            case .actionNotSupport: 
+                code = .invalidParameterValue_ActionNotSupport
+            case .callbackUrlError: 
+                code = .invalidParameterValue_CallbackUrlError
+            case .callbackUrlNotExist: 
+                code = .invalidParameterValue_CallbackUrlNotExist
+            case .cosAuthModeError: 
+                code = .invalidParameterValue_CosAuthModeError
+            case .cosHostedIdNotExist: 
+                code = .invalidParameterValue_CosHostedIdNotExist
+            case .downInfoFormatWrong: 
+                code = .invalidParameterValue_DownInfoFormatWrong
+            case .downInfoTypeWrong: 
+                code = .invalidParameterValue_DownInfoTypeWrong
+            case .liveSourceNotSupport: 
+                code = .invalidParameterValue_LiveSourceNotSupport
+            case .saveInfoNotExist: 
+                code = .invalidParameterValue_SaveInfoNotExist
+            case .taskAlreadyDone: 
+                code = .invalidParameterValue_TaskAlreadyDone
+            case .taskDeleted: 
+                code = .invalidParameterValue_TaskDeleted
+            case .taskIdNotExist: 
+                code = .invalidParameterValue_TaskIdNotExist
+            case .uriError: 
+                code = .invalidParameterValue_UriError
+            case .urlInfoUrlError: 
+                code = .invalidParameterValue_UrlInfoUrlError
+            case .videoFormatError: 
+                code = .invalidParameterValue_VideoFormatError
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCIeError(code, context: self.context)
         }
-        return TCIeError(code, context: self.context)
-    }
-}
-
-extension TCIeError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

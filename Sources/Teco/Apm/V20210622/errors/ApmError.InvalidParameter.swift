@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCApmError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCApmErrorType {
         enum Code: String {
             case filtersFieldsNotExistOrIllegal = "InvalidParameter.FiltersFieldsNotExistOrIllegal"
             case groupByFieldsNotExistOrIllegal = "InvalidParameter.GroupByFieldsNotExistOrIllegal"
@@ -37,8 +37,6 @@ extension TCApmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -96,37 +94,30 @@ extension TCApmError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCApmError.InvalidParameter: Equatable {
-    public static func == (lhs: TCApmError.InvalidParameter, rhs: TCApmError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCApmError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCApmError.InvalidParameter {
-    /// - Returns: ``TCApmError`` that holds the same error and context.
-    public func toApmError() -> TCApmError {
-        guard let code = TCApmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asApmError() -> TCApmError {
+            let code: TCApmError.Code
+            switch self.error {
+            case .filtersFieldsNotExistOrIllegal: 
+                code = .invalidParameter_FiltersFieldsNotExistOrIllegal
+            case .groupByFieldsNotExistOrIllegal: 
+                code = .invalidParameter_GroupByFieldsNotExistOrIllegal
+            case .metricFiltersLackParams: 
+                code = .invalidParameter_MetricFiltersLackParams
+            case .metricsFieldNotExistOrIllegal: 
+                code = .invalidParameter_MetricsFieldNotExistOrIllegal
+            case .metricsFieldsNotAllowEmpty: 
+                code = .invalidParameter_MetricsFieldsNotAllowEmpty
+            case .periodIsIllegal: 
+                code = .invalidParameter_PeriodIsIllegal
+            case .queryTimeIntervalIsNotSupported: 
+                code = .invalidParameter_QueryTimeIntervalIsNotSupported
+            case .viewNameNotExistOrIllegal: 
+                code = .invalidParameter_ViewNameNotExistOrIllegal
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCApmError(code, context: self.context)
         }
-        return TCApmError(code, context: self.context)
-    }
-}
-
-extension TCApmError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

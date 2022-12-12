@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEcmError {
-    public struct ResourceInsufficient: TCErrorType {
+    public struct ResourceInsufficient: TCEcmErrorType {
         enum Code: String {
             case instanceQuotaNotEnough = "ResourceInsufficient.InstanceQuotaNotEnough"
             case invaildPrivateImageNum = "ResourceInsufficient.InvaildPrivateImageNum"
@@ -32,8 +32,6 @@ extension TCEcmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCEcmError {
         public static var other: ResourceInsufficient {
             ResourceInsufficient(.other)
         }
-    }
-}
-
-extension TCEcmError.ResourceInsufficient: Equatable {
-    public static func == (lhs: TCEcmError.ResourceInsufficient, rhs: TCEcmError.ResourceInsufficient) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEcmError.ResourceInsufficient: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEcmError.ResourceInsufficient {
-    /// - Returns: ``TCEcmError`` that holds the same error and context.
-    public func toEcmError() -> TCEcmError {
-        guard let code = TCEcmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEcmError() -> TCEcmError {
+            let code: TCEcmError.Code
+            switch self.error {
+            case .instanceQuotaNotEnough: 
+                code = .resourceInsufficient_InstanceQuotaNotEnough
+            case .invaildPrivateImageNum: 
+                code = .resourceInsufficient_InvaildPrivateImageNum
+            case .ipQuotaNotEnough: 
+                code = .resourceInsufficient_IPQuotaNotEnough
+            case .other: 
+                code = .resourceInsufficient
+            }
+            return TCEcmError(code, context: self.context)
         }
-        return TCEcmError(code, context: self.context)
-    }
-}
-
-extension TCEcmError.ResourceInsufficient {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

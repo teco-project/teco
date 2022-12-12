@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEsError {
-    public struct AuthFailure: TCErrorType {
+    public struct AuthFailure: TCEsErrorType {
         enum Code: String {
             case unAuthorizedOperation = "AuthFailure.UnAuthorizedOperation"
             case other = "AuthFailure"
@@ -30,8 +30,6 @@ extension TCEsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCEsError {
         public static var other: AuthFailure {
             AuthFailure(.other)
         }
-    }
-}
-
-extension TCEsError.AuthFailure: Equatable {
-    public static func == (lhs: TCEsError.AuthFailure, rhs: TCEsError.AuthFailure) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEsError.AuthFailure: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEsError.AuthFailure {
-    /// - Returns: ``TCEsError`` that holds the same error and context.
-    public func toEsError() -> TCEsError {
-        guard let code = TCEsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEsError() -> TCEsError {
+            let code: TCEsError.Code
+            switch self.error {
+            case .unAuthorizedOperation: 
+                code = .authFailure_UnAuthorizedOperation
+            case .other: 
+                code = .authFailure
+            }
+            return TCEsError(code, context: self.context)
         }
-        return TCEsError(code, context: self.context)
-    }
-}
-
-extension TCEsError.AuthFailure {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCarError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCCarErrorType {
         enum Code: String {
             case noIdle = "ResourceNotFound.NoIdle"
             case sessionNotFound = "ResourceNotFound.SessionNotFound"
@@ -30,8 +30,6 @@ extension TCCarError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCCarError {
         public static var sessionNotFound: ResourceNotFound {
             ResourceNotFound(.sessionNotFound)
         }
-    }
-}
-
-extension TCCarError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCCarError.ResourceNotFound, rhs: TCCarError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCarError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCarError.ResourceNotFound {
-    /// - Returns: ``TCCarError`` that holds the same error and context.
-    public func toCarError() -> TCCarError {
-        guard let code = TCCarError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCarError() -> TCCarError {
+            let code: TCCarError.Code
+            switch self.error {
+            case .noIdle: 
+                code = .resourceNotFound_NoIdle
+            case .sessionNotFound: 
+                code = .resourceNotFound_SessionNotFound
+            }
+            return TCCarError(code, context: self.context)
         }
-        return TCCarError(code, context: self.context)
-    }
-}
-
-extension TCCarError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

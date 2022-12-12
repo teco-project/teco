@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTagError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCTagErrorType {
         enum Code: String {
             case projectDisabled = "FailedOperation.ProjectDisabled"
             case projectNumExceed = "FailedOperation.ProjectNumExceed"
@@ -35,8 +35,6 @@ extension TCTagError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -86,37 +84,26 @@ extension TCTagError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCTagError.FailedOperation: Equatable {
-    public static func == (lhs: TCTagError.FailedOperation, rhs: TCTagError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTagError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTagError.FailedOperation {
-    /// - Returns: ``TCTagError`` that holds the same error and context.
-    public func toTagError() -> TCTagError {
-        guard let code = TCTagError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTagError() -> TCTagError {
+            let code: TCTagError.Code
+            switch self.error {
+            case .projectDisabled: 
+                code = .failedOperation_ProjectDisabled
+            case .projectNumExceed: 
+                code = .failedOperation_ProjectNumExceed
+            case .resourceAppIdNotSame: 
+                code = .failedOperation_ResourceAppIdNotSame
+            case .resourceTagProcessing: 
+                code = .failedOperation_ResourceTagProcessing
+            case .tagAttachedQuota: 
+                code = .failedOperation_TagAttachedQuota
+            case .tagAttachedResource: 
+                code = .failedOperation_TagAttachedResource
+            case .other: 
+                code = .failedOperation
+            }
+            return TCTagError(code, context: self.context)
         }
-        return TCTagError(code, context: self.context)
-    }
-}
-
-extension TCTagError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAaiError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCAaiErrorType {
         enum Code: String {
             case errorRecognize = "FailedOperation.ErrorRecognize"
             case serviceIsolate = "FailedOperation.ServiceIsolate"
@@ -32,8 +32,6 @@ extension TCAaiError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCAaiError {
         public static var userNotRegistered: FailedOperation {
             FailedOperation(.userNotRegistered)
         }
-    }
-}
-
-extension TCAaiError.FailedOperation: Equatable {
-    public static func == (lhs: TCAaiError.FailedOperation, rhs: TCAaiError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAaiError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAaiError.FailedOperation {
-    /// - Returns: ``TCAaiError`` that holds the same error and context.
-    public func toAaiError() -> TCAaiError {
-        guard let code = TCAaiError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAaiError() -> TCAaiError {
+            let code: TCAaiError.Code
+            switch self.error {
+            case .errorRecognize: 
+                code = .failedOperation_ErrorRecognize
+            case .serviceIsolate: 
+                code = .failedOperation_ServiceIsolate
+            case .userHasNoFreeAmount: 
+                code = .failedOperation_UserHasNoFreeAmount
+            case .userNotRegistered: 
+                code = .failedOperation_UserNotRegistered
+            }
+            return TCAaiError(code, context: self.context)
         }
-        return TCAaiError(code, context: self.context)
-    }
-}
-
-extension TCAaiError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

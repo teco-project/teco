@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAsError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCAsErrorType {
         enum Code: String {
             case callCmqError = "InternalError.CallCmqError"
             case callError = "InternalError.CallError"
@@ -41,8 +41,6 @@ extension TCAsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -119,37 +117,38 @@ extension TCAsError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCAsError.InternalError: Equatable {
-    public static func == (lhs: TCAsError.InternalError, rhs: TCAsError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAsError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAsError.InternalError {
-    /// - Returns: ``TCAsError`` that holds the same error and context.
-    public func toAsError() -> TCAsError {
-        guard let code = TCAsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAsError() -> TCAsError {
+            let code: TCAsError.Code
+            switch self.error {
+            case .callCmqError: 
+                code = .internalError_CallCmqError
+            case .callError: 
+                code = .internalError_CallError
+            case .callLbError: 
+                code = .internalError_CallLbError
+            case .callMonitorError: 
+                code = .internalError_CallMonitorError
+            case .callNotificationError: 
+                code = .internalError_CallNotificationError
+            case .callStsError: 
+                code = .internalError_CallStsError
+            case .callTATError: 
+                code = .internalError_CallTATError
+            case .callTagError: 
+                code = .internalError_CallTagError
+            case .callTvpcError: 
+                code = .internalError_CallTvpcError
+            case .callVpcError: 
+                code = .internalError_CallVpcError
+            case .calleeError: 
+                code = .internalError_CalleeError
+            case .requestError: 
+                code = .internalError_RequestError
+            case .other: 
+                code = .internalError
+            }
+            return TCAsError(code, context: self.context)
         }
-        return TCAsError(code, context: self.context)
-    }
-}
-
-extension TCAsError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

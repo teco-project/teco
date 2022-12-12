@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTdmqError {
-    public struct MissingParameter: TCErrorType {
+    public struct MissingParameter: TCTdmqErrorType {
         enum Code: String {
             case needMoreParams = "MissingParameter.NeedMoreParams"
             case other = "MissingParameter"
@@ -30,8 +30,6 @@ extension TCTdmqError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCTdmqError {
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-    }
-}
-
-extension TCTdmqError.MissingParameter: Equatable {
-    public static func == (lhs: TCTdmqError.MissingParameter, rhs: TCTdmqError.MissingParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTdmqError.MissingParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTdmqError.MissingParameter {
-    /// - Returns: ``TCTdmqError`` that holds the same error and context.
-    public func toTdmqError() -> TCTdmqError {
-        guard let code = TCTdmqError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTdmqError() -> TCTdmqError {
+            let code: TCTdmqError.Code
+            switch self.error {
+            case .needMoreParams: 
+                code = .missingParameter_NeedMoreParams
+            case .other: 
+                code = .missingParameter
+            }
+            return TCTdmqError(code, context: self.context)
         }
-        return TCTdmqError(code, context: self.context)
-    }
-}
-
-extension TCTdmqError.MissingParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

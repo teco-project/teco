@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCLighthouseError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCLighthouseErrorType {
         enum Code: String {
             case bundleAndBlueprintNotMatch = "InvalidParameter.BundleAndBlueprintNotMatch"
             case bundleIdNotFound = "InvalidParameter.BundleIdNotFound"
@@ -42,8 +42,6 @@ extension TCLighthouseError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -128,37 +126,40 @@ extension TCLighthouseError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCLighthouseError.InvalidParameter: Equatable {
-    public static func == (lhs: TCLighthouseError.InvalidParameter, rhs: TCLighthouseError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCLighthouseError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCLighthouseError.InvalidParameter {
-    /// - Returns: ``TCLighthouseError`` that holds the same error and context.
-    public func toLighthouseError() -> TCLighthouseError {
-        guard let code = TCLighthouseError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asLighthouseError() -> TCLighthouseError {
+            let code: TCLighthouseError.Code
+            switch self.error {
+            case .bundleAndBlueprintNotMatch: 
+                code = .invalidParameter_BundleAndBlueprintNotMatch
+            case .bundleIdNotFound: 
+                code = .invalidParameter_BundleIdNotFound
+            case .filterValueLimitExceeded: 
+                code = .invalidParameter_FilterValueLimitExceeded
+            case .firewallRulesDuplicated: 
+                code = .invalidParameter_FirewallRulesDuplicated
+            case .firewallRulesExist: 
+                code = .invalidParameter_FirewallRulesExist
+            case .invalidFilter: 
+                code = .invalidParameter_InvalidFilter
+            case .invalidFilterInvalidKey: 
+                code = .invalidParameter_InvalidFilterInvalidKey
+            case .invalidFilterInvalidNameNotStr: 
+                code = .invalidParameter_InvalidFilterInvalidNameNotStr
+            case .invalidFilterInvalidValuesNotList: 
+                code = .invalidParameter_InvalidFilterInvalidValuesNotList
+            case .invalidFilterNotDict: 
+                code = .invalidParameter_InvalidFilterNotDict
+            case .invalidFilterNotSupportedName: 
+                code = .invalidParameter_InvalidFilterNotSupportedName
+            case .onlyAllowModifyOneAttribute: 
+                code = .invalidParameter_OnlyAllowModifyOneAttribute
+            case .parameterConflict: 
+                code = .invalidParameter_ParameterConflict
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCLighthouseError(code, context: self.context)
         }
-        return TCLighthouseError(code, context: self.context)
-    }
-}
-
-extension TCLighthouseError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

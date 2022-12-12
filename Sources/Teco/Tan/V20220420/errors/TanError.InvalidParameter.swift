@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTanError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCTanErrorType {
         enum Code: String {
             case groupNameExisted = "InvalidParameter.GroupNameExisted"
             case recordExceedsLimit = "InvalidParameter.RecordExceedsLimit"
@@ -33,8 +33,6 @@ extension TCTanError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,22 @@ extension TCTanError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCTanError.InvalidParameter: Equatable {
-    public static func == (lhs: TCTanError.InvalidParameter, rhs: TCTanError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTanError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTanError.InvalidParameter {
-    /// - Returns: ``TCTanError`` that holds the same error and context.
-    public func toTanError() -> TCTanError {
-        guard let code = TCTanError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTanError() -> TCTanError {
+            let code: TCTanError.Code
+            switch self.error {
+            case .groupNameExisted: 
+                code = .invalidParameter_GroupNameExisted
+            case .recordExceedsLimit: 
+                code = .invalidParameter_RecordExceedsLimit
+            case .recordParameterCheckFail: 
+                code = .invalidParameter_RecordParameterCheckFail
+            case .recordParameterParseFail: 
+                code = .invalidParameter_RecordParameterParseFail
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCTanError(code, context: self.context)
         }
-        return TCTanError(code, context: self.context)
-    }
-}
-
-extension TCTanError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

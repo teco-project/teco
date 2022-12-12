@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMnaError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCMnaErrorType {
         enum Code: String {
             case vendorNotFound = "InvalidParameterValue.VendorNotFound"
             case other = "InvalidParameterValue"
@@ -30,8 +30,6 @@ extension TCMnaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -57,37 +55,16 @@ extension TCMnaError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCMnaError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCMnaError.InvalidParameterValue, rhs: TCMnaError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMnaError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMnaError.InvalidParameterValue {
-    /// - Returns: ``TCMnaError`` that holds the same error and context.
-    public func toMnaError() -> TCMnaError {
-        guard let code = TCMnaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMnaError() -> TCMnaError {
+            let code: TCMnaError.Code
+            switch self.error {
+            case .vendorNotFound: 
+                code = .invalidParameterValue_VendorNotFound
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCMnaError(code, context: self.context)
         }
-        return TCMnaError(code, context: self.context)
-    }
-}
-
-extension TCMnaError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

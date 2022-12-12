@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAaiError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCAaiErrorType {
         enum Code: String {
             case accountArrears = "UnsupportedOperation.AccountArrears"
             case noFreeAccount = "UnsupportedOperation.NoFreeAccount"
@@ -33,8 +33,6 @@ extension TCAaiError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -71,37 +69,22 @@ extension TCAaiError {
         public static var textTooLong: UnsupportedOperation {
             UnsupportedOperation(.textTooLong)
         }
-    }
-}
-
-extension TCAaiError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCAaiError.UnsupportedOperation, rhs: TCAaiError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAaiError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAaiError.UnsupportedOperation {
-    /// - Returns: ``TCAaiError`` that holds the same error and context.
-    public func toAaiError() -> TCAaiError {
-        guard let code = TCAaiError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAaiError() -> TCAaiError {
+            let code: TCAaiError.Code
+            switch self.error {
+            case .accountArrears: 
+                code = .unsupportedOperation_AccountArrears
+            case .noFreeAccount: 
+                code = .unsupportedOperation_NoFreeAccount
+            case .serverNotOpen: 
+                code = .unsupportedOperation_ServerNotOpen
+            case .serverStopped: 
+                code = .unsupportedOperation_ServerStopped
+            case .textTooLong: 
+                code = .unsupportedOperation_TextTooLong
+            }
+            return TCAaiError(code, context: self.context)
         }
-        return TCAaiError(code, context: self.context)
-    }
-}
-
-extension TCAaiError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

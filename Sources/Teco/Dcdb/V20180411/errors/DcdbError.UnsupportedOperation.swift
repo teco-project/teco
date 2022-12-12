@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDcdbError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCDcdbErrorType {
         enum Code: String {
             case invalidOperation = "UnsupportedOperation.InvalidOperation"
             case oldProxyVersion = "UnsupportedOperation.OldProxyVersion"
@@ -30,8 +30,6 @@ extension TCDcdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCDcdbError {
         public static var oldProxyVersion: UnsupportedOperation {
             UnsupportedOperation(.oldProxyVersion)
         }
-    }
-}
-
-extension TCDcdbError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCDcdbError.UnsupportedOperation, rhs: TCDcdbError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDcdbError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDcdbError.UnsupportedOperation {
-    /// - Returns: ``TCDcdbError`` that holds the same error and context.
-    public func toDcdbError() -> TCDcdbError {
-        guard let code = TCDcdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDcdbError() -> TCDcdbError {
+            let code: TCDcdbError.Code
+            switch self.error {
+            case .invalidOperation: 
+                code = .unsupportedOperation_InvalidOperation
+            case .oldProxyVersion: 
+                code = .unsupportedOperation_OldProxyVersion
+            }
+            return TCDcdbError(code, context: self.context)
         }
-        return TCDcdbError(code, context: self.context)
-    }
-}
-
-extension TCDcdbError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

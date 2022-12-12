@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEssbasicError {
-    public struct OperationDenied: TCErrorType {
+    public struct OperationDenied: TCEssbasicErrorType {
         enum Code: String {
             case authTag = "OperationDenied.AuthTag"
             case bannedApplication = "OperationDenied.BannedApplication"
@@ -46,8 +46,6 @@ extension TCEssbasicError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -152,37 +150,48 @@ extension TCEssbasicError {
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-    }
-}
-
-extension TCEssbasicError.OperationDenied: Equatable {
-    public static func == (lhs: TCEssbasicError.OperationDenied, rhs: TCEssbasicError.OperationDenied) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEssbasicError.OperationDenied: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEssbasicError.OperationDenied {
-    /// - Returns: ``TCEssbasicError`` that holds the same error and context.
-    public func toEssbasicError() -> TCEssbasicError {
-        guard let code = TCEssbasicError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEssbasicError() -> TCEssbasicError {
+            let code: TCEssbasicError.Code
+            switch self.error {
+            case .authTag: 
+                code = .operationDenied_AuthTag
+            case .bannedApplication: 
+                code = .operationDenied_BannedApplication
+            case .byFilesServerSignForbid: 
+                code = .operationDenied_ByFilesServerSignForbid
+            case .downLoadMoreThanOne: 
+                code = .operationDenied_DownLoadMoreThanOne
+            case .errNoResourceAccess: 
+                code = .operationDenied_ErrNoResourceAccess
+            case .fileDeleted: 
+                code = .operationDenied_FileDeleted
+            case .flowHasTerminated: 
+                code = .operationDenied_FlowHasTerminated
+            case .forbid: 
+                code = .operationDenied_Forbid
+            case .invalidApproverAge: 
+                code = .operationDenied_InvalidApproverAge
+            case .noApiAuth: 
+                code = .operationDenied_NoApiAuth
+            case .noFlowPermission: 
+                code = .operationDenied_NoFlowPermission
+            case .noIdentityVerify: 
+                code = .operationDenied_NoIdentityVerify
+            case .noQuota: 
+                code = .operationDenied_NoQuota
+            case .operateType: 
+                code = .operationDenied_OperateType
+            case .operatorHasNoPermission: 
+                code = .operationDenied_OperatorHasNoPermission
+            case .outQueryLimit: 
+                code = .operationDenied_OutQueryLimit
+            case .userNotInOrganization: 
+                code = .operationDenied_UserNotInOrganization
+            case .other: 
+                code = .operationDenied
+            }
+            return TCEssbasicError(code, context: self.context)
         }
-        return TCEssbasicError(code, context: self.context)
-    }
-}
-
-extension TCEssbasicError.OperationDenied {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

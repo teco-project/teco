@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCpdpError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCCpdpErrorType {
         enum Code: String {
             case abnormalMerchantState = "FailedOperation.AbnormalMerchantState"
             case abnormalOrderState = "FailedOperation.AbnormalOrderState"
@@ -138,8 +138,6 @@ extension TCCpdpError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -716,37 +714,232 @@ extension TCCpdpError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCCpdpError.FailedOperation: Equatable {
-    public static func == (lhs: TCCpdpError.FailedOperation, rhs: TCCpdpError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCpdpError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCpdpError.FailedOperation {
-    /// - Returns: ``TCCpdpError`` that holds the same error and context.
-    public func toCpdpError() -> TCCpdpError {
-        guard let code = TCCpdpError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCpdpError() -> TCCpdpError {
+            let code: TCCpdpError.Code
+            switch self.error {
+            case .abnormalMerchantState: 
+                code = .failedOperation_AbnormalMerchantState
+            case .abnormalOrderState: 
+                code = .failedOperation_AbnormalOrderState
+            case .acctNotBind: 
+                code = .failedOperation_AcctNotBind
+            case .acctNotExist: 
+                code = .failedOperation_AcctNotExist
+            case .action: 
+                code = .failedOperation_Action
+            case .actionInvalid: 
+                code = .failedOperation_ActionInvalid
+            case .addMerchantFailed: 
+                code = .failedOperation_AddMerchantFailed
+            case .alreadyExists: 
+                code = .failedOperation_AlreadyExists
+            case .appDeny: 
+                code = .failedOperation_AppDeny
+            case .appidMchidNotMatch: 
+                code = .failedOperation_AppidMchidNotMatch
+            case .backCallError: 
+                code = .failedOperation_BackCallError
+            case .backendError: 
+                code = .failedOperation_BackendError
+            case .balanceInsufficient: 
+                code = .failedOperation_BalanceInsufficient
+            case .bankFailed: 
+                code = .failedOperation_BankFailed
+            case .banlanceNotEnoughError: 
+                code = .failedOperation_BanlanceNotEnoughError
+            case .callChannelGatewayError: 
+                code = .failedOperation_CallChannelGatewayError
+            case .channelDeny: 
+                code = .failedOperation_ChannelDeny
+            case .channelError: 
+                code = .failedOperation_ChannelError
+            case .channelRefundFailed: 
+                code = .failedOperation_ChannelRefundFailed
+            case .channelRefundFrequencyLimited: 
+                code = .failedOperation_ChannelRefundFrequencyLimited
+            case .closeContractDbFailed: 
+                code = .failedOperation_CloseContractDbFailed
+            case .closeContractModeInvalid: 
+                code = .failedOperation_CloseContractModeInvalid
+            case .configError: 
+                code = .failedOperation_ConfigError
+            case .contractStatusError: 
+                code = .failedOperation_ContractStatusError
+            case .createAgent: 
+                code = .failedOperation_CreateAgent
+            case .createOrderError: 
+                code = .failedOperation_CreateOrderError
+            case .createOrderUnknown: 
+                code = .failedOperation_CreateOrderUnknown
+            case .dbClientConnectFailed: 
+                code = .failedOperation_DbClientConnectFailed
+            case .dbClientInserttFailed: 
+                code = .failedOperation_DbClientInserttFailed
+            case .dbClientQueryFailed: 
+                code = .failedOperation_DbClientQueryFailed
+            case .dbClientUpdateFailed: 
+                code = .failedOperation_DbClientUpdateFailed
+            case .dbConfigError: 
+                code = .failedOperation_DBConfigError
+            case .downloadBillError: 
+                code = .failedOperation_DownloadBillError
+            case .externalContractIndexNotFound: 
+                code = .failedOperation_ExternalContractIndexNotFound
+            case .externalContractNotFound: 
+                code = .failedOperation_ExternalContractNotFound
+            case .externalContractStatusInvalid: 
+                code = .failedOperation_ExternalContractStatusInvalid
+            case .externalMerchantContractInfoConfigNoFound: 
+                code = .failedOperation_ExternalMerchantContractInfoConfigNoFound
+            case .externalMerchantIndexConfigNoFound: 
+                code = .failedOperation_ExternalMerchantIndexConfigNoFound
+            case .externalMerchantInfoConfigNoFound: 
+                code = .failedOperation_ExternalMerchantInfoConfigNoFound
+            case .fileNotExist: 
+                code = .failedOperation_FileNotExist
+            case .frequencyLimited: 
+                code = .failedOperation_FrequencyLimited
+            case .getLiveDailySummary: 
+                code = .failedOperation_GetLiveDailySummary
+            case .httpDoRequestError: 
+                code = .failedOperation_HttpDoRequestError
+            case .internalServiceTimeout: 
+                code = .failedOperation_InternalServiceTimeout
+            case .invalidParameter: 
+                code = .failedOperation_InvalidParameter
+            case .invalidRefundAmt: 
+                code = .failedOperation_InvalidRefundAmt
+            case .invalidRequest: 
+                code = .failedOperation_InvalidRequest
+            case .invoiceExist: 
+                code = .failedOperation_InvoiceExist
+            case .isEmpty: 
+                code = .failedOperation_IsEmpty
+            case .marshalError: 
+                code = .failedOperation_MarshalError
+            case .merchantBalanceNotEnough: 
+                code = .failedOperation_MerchantBalanceNotEnough
+            case .merchantCheckFailed: 
+                code = .failedOperation_MerchantCheckFailed
+            case .merchantCreateFailed: 
+                code = .failedOperation_MerchantCreateFailed
+            case .merchantExist: 
+                code = .failedOperation_MerchantExist
+            case .merchantNotExist: 
+                code = .failedOperation_MerchantNotExist
+            case .merchantNotExists: 
+                code = .failedOperation_MerchantNotExists
+            case .merchantPermissionError: 
+                code = .failedOperation_MerchantPermissionError
+            case .midasInternalError: 
+                code = .failedOperation_MidasInternalError
+            case .midasInvalidRequest: 
+                code = .failedOperation_MidasInvalidRequest
+            case .midasNeedRetry: 
+                code = .failedOperation_MidasNeedRetry
+            case .midasRegisterUnfinished: 
+                code = .failedOperation_MidasRegisterUnfinished
+            case .midasRepeatOrder: 
+                code = .failedOperation_MidasRepeatOrder
+            case .midasRisk: 
+                code = .failedOperation_MidasRisk
+            case .midasStatusNotMatch: 
+                code = .failedOperation_MidasStatusNotMatch
+            case .midasUnsupportedAction: 
+                code = .failedOperation_MidasUnsupportedAction
+            case .missingParameter: 
+                code = .failedOperation_MissingParameter
+            case .modifyMerchantFailed: 
+                code = .failedOperation_ModifyMerchantFailed
+            case .mountNotFound: 
+                code = .failedOperation_MountNotFound
+            case .noAuth: 
+                code = .failedOperation_NoAuth
+            case .noRecord: 
+                code = .failedOperation_NoRecord
+            case .notEnough: 
+                code = .failedOperation_NotEnough
+            case .notFound: 
+                code = .failedOperation_NotFound
+            case .notifyUrlParseError: 
+                code = .failedOperation_NotifyUrlParseError
+            case .ocCompletedOrder: 
+                code = .failedOperation_OcCompletedOrder
+            case .ocRepeatOrder: 
+                code = .failedOperation_OcRepeatOrder
+            case .orderLocked: 
+                code = .failedOperation_OrderLocked
+            case .orderNotActivated: 
+                code = .failedOperation_OrderNotActivated
+            case .orderRefundError: 
+                code = .failedOperation_OrderRefundError
+            case .paBankError: 
+                code = .failedOperation_PABankError
+            case .paramError: 
+                code = .failedOperation_ParamError
+            case .parameterError: 
+                code = .failedOperation_ParameterError
+            case .parentAppIdError: 
+                code = .failedOperation_ParentAppIdError
+            case .portalError: 
+                code = .failedOperation_PortalError
+            case .queryAgentStatements: 
+                code = .failedOperation_QueryAgentStatements
+            case .queryContractNull: 
+                code = .failedOperation_QueryContractNull
+            case .queryMchannelError: 
+                code = .failedOperation_QueryMchannelError
+            case .queryModeError: 
+                code = .failedOperation_QueryModeError
+            case .queryOrderError: 
+                code = .failedOperation_QueryOrderError
+            case .queryResultNull: 
+                code = .failedOperation_QueryResultNull
+            case .quotaExceed: 
+                code = .failedOperation_QuotaExceed
+            case .refundInfoDuplicate: 
+                code = .failedOperation_RefundInfoDuplicate
+            case .refundNotRetrieable: 
+                code = .failedOperation_RefundNotRetrieable
+            case .refundProcessIng: 
+                code = .failedOperation_RefundProcessIng
+            case .refundTransactionClosed: 
+                code = .failedOperation_RefundTransactionClosed
+            case .refundTransactionFinished: 
+                code = .failedOperation_RefundTransactionFinished
+            case .sdkError: 
+                code = .failedOperation_SDKError
+            case .serviceError: 
+                code = .failedOperation_ServiceError
+            case .signError: 
+                code = .failedOperation_SignError
+            case .syncMchannelError: 
+                code = .failedOperation_SyncMchannelError
+            case .systemError: 
+                code = .failedOperation_SystemError
+            case .terminateMchannelError: 
+                code = .failedOperation_TerminateMchannelError
+            case .unknown: 
+                code = .failedOperation_Unknown
+            case .unmarshalError: 
+                code = .failedOperation_UnmarshalError
+            case .updateContractStatusFailed: 
+                code = .failedOperation_UpdateContractStatusFailed
+            case .uploadTaxList: 
+                code = .failedOperation_UploadTaxList
+            case .uploadTaxPayment: 
+                code = .failedOperation_UploadTaxPayment
+            case .wechatError: 
+                code = .failedOperation_WechatError
+            case .wxCrtNotSet: 
+                code = .failedOperation_WxCrtNotSet
+            case .xmlFail: 
+                code = .failedOperation_XmlFail
+            case .other: 
+                code = .failedOperation
+            }
+            return TCCpdpError(code, context: self.context)
         }
-        return TCCpdpError(code, context: self.context)
-    }
-}
-
-extension TCCpdpError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

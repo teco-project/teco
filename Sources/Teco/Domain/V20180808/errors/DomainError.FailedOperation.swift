@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDomainError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCDomainErrorType {
         enum Code: String {
             case checkDomainFailed = "FailedOperation.CheckDomainFailed"
             case createTemplateFailed = "FailedOperation.CreateTemplateFailed"
@@ -46,8 +46,6 @@ extension TCDomainError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -150,37 +148,48 @@ extension TCDomainError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCDomainError.FailedOperation: Equatable {
-    public static func == (lhs: TCDomainError.FailedOperation, rhs: TCDomainError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDomainError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDomainError.FailedOperation {
-    /// - Returns: ``TCDomainError`` that holds the same error and context.
-    public func toDomainError() -> TCDomainError {
-        guard let code = TCDomainError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDomainError() -> TCDomainError {
+            let code: TCDomainError.Code
+            switch self.error {
+            case .checkDomainFailed: 
+                code = .failedOperation_CheckDomainFailed
+            case .createTemplateFailed: 
+                code = .failedOperation_CreateTemplateFailed
+            case .deleteTemplateFailed: 
+                code = .failedOperation_DeleteTemplateFailed
+            case .describeDomainFailed: 
+                code = .failedOperation_DescribeDomainFailed
+            case .describeDomainListFailed: 
+                code = .failedOperation_DescribeDomainListFailed
+            case .describeTemplateFailed: 
+                code = .failedOperation_DescribeTemplateFailed
+            case .domainPriceListFailed: 
+                code = .failedOperation_DomainPriceListFailed
+            case .duplicatePhoneEmail: 
+                code = .failedOperation_DuplicatePhoneEmail
+            case .modifyDomainOwnerFailed: 
+                code = .failedOperation_ModifyDomainOwnerFailed
+            case .registerDomain: 
+                code = .failedOperation_RegisterDomain
+            case .registerDomainFailed: 
+                code = .failedOperation_RegisterDomainFailed
+            case .sendTcbPhoneEmailCodeFailed: 
+                code = .failedOperation_SendTcbPhoneEmailCodeFailed
+            case .sendVerifyCodeIsLimited: 
+                code = .failedOperation_SendVerifyCodeIsLimited
+            case .setDomainDnsFailed: 
+                code = .failedOperation_SetDomainDnsFailed
+            case .templateMaxNumFailed: 
+                code = .failedOperation_TemplateMaxNumFailed
+            case .uploadImageFailed: 
+                code = .failedOperation_UploadImageFailed
+            case .verifyUinIsRealname: 
+                code = .failedOperation_VerifyUinIsRealname
+            case .other: 
+                code = .failedOperation
+            }
+            return TCDomainError(code, context: self.context)
         }
-        return TCDomainError(code, context: self.context)
-    }
-}
-
-extension TCDomainError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCFaceidError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCFaceidErrorType {
         enum Code: String {
             case activateError = "UnauthorizedOperation.ActivateError"
             case activating = "UnauthorizedOperation.Activating"
@@ -35,8 +35,6 @@ extension TCFaceidError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -84,37 +82,26 @@ extension TCFaceidError {
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-    }
-}
-
-extension TCFaceidError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCFaceidError.UnauthorizedOperation, rhs: TCFaceidError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCFaceidError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCFaceidError.UnauthorizedOperation {
-    /// - Returns: ``TCFaceidError`` that holds the same error and context.
-    public func toFaceidError() -> TCFaceidError {
-        guard let code = TCFaceidError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asFaceidError() -> TCFaceidError {
+            let code: TCFaceidError.Code
+            switch self.error {
+            case .activateError: 
+                code = .unauthorizedOperation_ActivateError
+            case .activating: 
+                code = .unauthorizedOperation_Activating
+            case .arrears: 
+                code = .unauthorizedOperation_Arrears
+            case .chargeStatusException: 
+                code = .unauthorizedOperation_ChargeStatusException
+            case .nonAuthorize: 
+                code = .unauthorizedOperation_NonAuthorize
+            case .nonactivated: 
+                code = .unauthorizedOperation_Nonactivated
+            case .other: 
+                code = .unauthorizedOperation
+            }
+            return TCFaceidError(code, context: self.context)
         }
-        return TCFaceidError(code, context: self.context)
-    }
-}
-
-extension TCFaceidError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

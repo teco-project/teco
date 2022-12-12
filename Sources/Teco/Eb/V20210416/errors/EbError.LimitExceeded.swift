@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEbError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCEbErrorType {
         enum Code: String {
             case bannedAccount = "LimitExceeded.BannedAccount"
             case clusterPrivateLinkExceeded = "LimitExceeded.ClusterPrivateLinkExceeded"
@@ -40,8 +40,6 @@ extension TCEbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -112,37 +110,36 @@ extension TCEbError {
         public static var userPrivateLinkExceeded: LimitExceeded {
             LimitExceeded(.userPrivateLinkExceeded)
         }
-    }
-}
-
-extension TCEbError.LimitExceeded: Equatable {
-    public static func == (lhs: TCEbError.LimitExceeded, rhs: TCEbError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEbError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEbError.LimitExceeded {
-    /// - Returns: ``TCEbError`` that holds the same error and context.
-    public func toEbError() -> TCEbError {
-        guard let code = TCEbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEbError() -> TCEbError {
+            let code: TCEbError.Code
+            switch self.error {
+            case .bannedAccount: 
+                code = .limitExceeded_BannedAccount
+            case .clusterPrivateLinkExceeded: 
+                code = .limitExceeded_ClusterPrivateLinkExceeded
+            case .connection: 
+                code = .limitExceeded_Connection
+            case .eventBus: 
+                code = .limitExceeded_EventBus
+            case .insufficientBalance: 
+                code = .limitExceeded_InsufficientBalance
+            case .logset: 
+                code = .limitExceeded_Logset
+            case .resourceLimit: 
+                code = .limitExceeded_ResourceLimit
+            case .routeOverLimit: 
+                code = .limitExceeded_RouteOverLimit
+            case .rule: 
+                code = .limitExceeded_Rule
+            case .target: 
+                code = .limitExceeded_Target
+            case .trigger: 
+                code = .limitExceeded_Trigger
+            case .userPrivateLinkExceeded: 
+                code = .limitExceeded_UserPrivateLinkExceeded
+            }
+            return TCEbError(code, context: self.context)
         }
-        return TCEbError(code, context: self.context)
-    }
-}
-
-extension TCEbError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTdmqError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCTdmqErrorType {
         enum Code: String {
             case clusters = "LimitExceeded.Clusters"
             case environments = "LimitExceeded.Environments"
@@ -36,8 +36,6 @@ extension TCTdmqError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -90,37 +88,28 @@ extension TCTdmqError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCTdmqError.LimitExceeded: Equatable {
-    public static func == (lhs: TCTdmqError.LimitExceeded, rhs: TCTdmqError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTdmqError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTdmqError.LimitExceeded {
-    /// - Returns: ``TCTdmqError`` that holds the same error and context.
-    public func toTdmqError() -> TCTdmqError {
-        guard let code = TCTdmqError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTdmqError() -> TCTdmqError {
+            let code: TCTdmqError.Code
+            switch self.error {
+            case .clusters: 
+                code = .limitExceeded_Clusters
+            case .environments: 
+                code = .limitExceeded_Environments
+            case .namespaces: 
+                code = .limitExceeded_Namespaces
+            case .retentionSize: 
+                code = .limitExceeded_RetentionSize
+            case .retentionTime: 
+                code = .limitExceeded_RetentionTime
+            case .subscriptions: 
+                code = .limitExceeded_Subscriptions
+            case .topics: 
+                code = .limitExceeded_Topics
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCTdmqError(code, context: self.context)
         }
-        return TCTdmqError(code, context: self.context)
-    }
-}
-
-extension TCTdmqError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

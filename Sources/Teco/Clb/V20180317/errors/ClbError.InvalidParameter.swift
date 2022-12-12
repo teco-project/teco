@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCClbError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCClbErrorType {
         enum Code: String {
             case formatError = "InvalidParameter.FormatError"
             case invalidFilter = "InvalidParameter.InvalidFilter"
@@ -39,8 +39,6 @@ extension TCClbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -110,37 +108,34 @@ extension TCClbError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCClbError.InvalidParameter: Equatable {
-    public static func == (lhs: TCClbError.InvalidParameter, rhs: TCClbError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCClbError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCClbError.InvalidParameter {
-    /// - Returns: ``TCClbError`` that holds the same error and context.
-    public func toClbError() -> TCClbError {
-        guard let code = TCClbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asClbError() -> TCClbError {
+            let code: TCClbError.Code
+            switch self.error {
+            case .formatError: 
+                code = .invalidParameter_FormatError
+            case .invalidFilter: 
+                code = .invalidParameter_InvalidFilter
+            case .lbIdNotFound: 
+                code = .invalidParameter_LBIdNotFound
+            case .listenerIdNotFound: 
+                code = .invalidParameter_ListenerIdNotFound
+            case .locationNotFound: 
+                code = .invalidParameter_LocationNotFound
+            case .portCheckFailed: 
+                code = .invalidParameter_PortCheckFailed
+            case .protocolCheckFailed: 
+                code = .invalidParameter_ProtocolCheckFailed
+            case .regionNotFound: 
+                code = .invalidParameter_RegionNotFound
+            case .rewriteAlreadyExist: 
+                code = .invalidParameter_RewriteAlreadyExist
+            case .someRewriteNotFound: 
+                code = .invalidParameter_SomeRewriteNotFound
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCClbError(code, context: self.context)
         }
-        return TCClbError(code, context: self.context)
-    }
-}
-
-extension TCClbError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

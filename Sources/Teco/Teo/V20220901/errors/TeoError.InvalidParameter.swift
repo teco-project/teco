@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTeoError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCTeoErrorType {
         enum Code: String {
             case actionInProgress = "InvalidParameter.ActionInProgress"
             case certChainError = "InvalidParameter.CertChainError"
@@ -95,8 +95,6 @@ extension TCTeoError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -443,37 +441,146 @@ extension TCTeoError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCTeoError.InvalidParameter: Equatable {
-    public static func == (lhs: TCTeoError.InvalidParameter, rhs: TCTeoError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTeoError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTeoError.InvalidParameter {
-    /// - Returns: ``TCTeoError`` that holds the same error and context.
-    public func toTeoError() -> TCTeoError {
-        guard let code = TCTeoError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTeoError() -> TCTeoError {
+            let code: TCTeoError.Code
+            switch self.error {
+            case .actionInProgress: 
+                code = .invalidParameter_ActionInProgress
+            case .certChainError: 
+                code = .invalidParameter_CertChainError
+            case .certCheckError: 
+                code = .invalidParameter_CertCheckError
+            case .certCompleteError: 
+                code = .invalidParameter_CertCompleteError
+            case .certFormatError: 
+                code = .invalidParameter_CertFormatError
+            case .certIsExpired: 
+                code = .invalidParameter_CertIsExpired
+            case .certNoCn: 
+                code = .invalidParameter_CertNoCn
+            case .certNoInfo: 
+                code = .invalidParameter_CertNoInfo
+            case .certNotMatchDomain: 
+                code = .invalidParameter_CertNotMatchDomain
+            case .certNotMatchKey: 
+                code = .invalidParameter_CertNotMatchKey
+            case .certNotPem: 
+                code = .invalidParameter_CertNotPem
+            case .certSystemError: 
+                code = .invalidParameter_CertSystemError
+            case .certToExpire: 
+                code = .invalidParameter_CertToExpire
+            case .certTooShortKeySize: 
+                code = .invalidParameter_CertTooShortKeySize
+            case .certUnsupportedType: 
+                code = .invalidParameter_CertUnsupportedType
+            case .domainNotFound: 
+                code = .invalidParameter_DomainNotFound
+            case .domainOnTrafficScheduling: 
+                code = .invalidParameter_DomainOnTrafficScheduling
+            case .errInvalidAction: 
+                code = .invalidParameter_ErrInvalidAction
+            case .errInvalidActionParam: 
+                code = .invalidParameter_ErrInvalidActionParam
+            case .errInvalidActionParamDuplicateName: 
+                code = .invalidParameter_ErrInvalidActionParamDuplicateName
+            case .errInvalidActionParamTooManyValues: 
+                code = .invalidParameter_ErrInvalidActionParamTooManyValues
+            case .errInvalidConditionIgnoreCase: 
+                code = .invalidParameter_ErrInvalidConditionIgnoreCase
+            case .errInvalidConditionNameTargetNotSupportName: 
+                code = .invalidParameter_ErrInvalidConditionNameTargetNotSupportName
+            case .errInvalidConditionValueBadValue: 
+                code = .invalidParameter_ErrInvalidConditionValueBadValue
+            case .errInvalidConditionValueBadValueContainFileNameExtension: 
+                code = .invalidParameter_ErrInvalidConditionValueBadValueContainFileNameExtension
+            case .errInvalidConditionValueTooLongValue: 
+                code = .invalidParameter_ErrInvalidConditionValueTooLongValue
+            case .hostNotFound: 
+                code = .invalidParameter_HostNotFound
+            case .invalidAuthenticationTypeSignParam: 
+                code = .invalidParameter_InvalidAuthenticationTypeSignParam
+            case .invalidCacheKey: 
+                code = .invalidParameter_InvalidCacheKey
+            case .invalidCacheKeyQueryStringValue: 
+                code = .invalidParameter_InvalidCacheKeyQueryStringValue
+            case .invalidCacheOnlyOnSwitch: 
+                code = .invalidParameter_InvalidCacheOnlyOnSwitch
+            case .invalidCertInfo: 
+                code = .invalidParameter_InvalidCertInfo
+            case .invalidClientIpHeaderName: 
+                code = .invalidParameter_InvalidClientIpHeaderName
+            case .invalidDynamicRoutine: 
+                code = .invalidParameter_InvalidDynamicRoutine
+            case .invalidErrorPageRedirectUrl: 
+                code = .invalidParameter_InvalidErrorPageRedirectUrl
+            case .invalidHttpsHstsMaxAge: 
+                code = .invalidParameter_InvalidHttpsHstsMaxAge
+            case .invalidHttpsTlsVersion: 
+                code = .invalidParameter_InvalidHttpsTlsVersion
+            case .invalidIpv6Switch: 
+                code = .invalidParameter_InvalidIpv6Switch
+            case .invalidOrigin: 
+                code = .invalidParameter_InvalidOrigin
+            case .invalidParameter: 
+                code = .invalidParameter_InvalidParameter
+            case .invalidPostMaxSizeBilling: 
+                code = .invalidParameter_InvalidPostMaxSizeBilling
+            case .invalidPostSizeValue: 
+                code = .invalidParameter_InvalidPostSizeValue
+            case .invalidRequestHeaderName: 
+                code = .invalidParameter_InvalidRequestHeaderName
+            case .invalidResourceIdBilling: 
+                code = .invalidParameter_InvalidResourceIdBilling
+            case .invalidResponseHeaderName: 
+                code = .invalidParameter_InvalidResponseHeaderName
+            case .invalidRuleEngine: 
+                code = .invalidParameter_InvalidRuleEngine
+            case .invalidRuleEngineAction: 
+                code = .invalidParameter_InvalidRuleEngineAction
+            case .invalidRuleEngineNotFound: 
+                code = .invalidParameter_InvalidRuleEngineNotFound
+            case .invalidRuleEngineTarget: 
+                code = .invalidParameter_InvalidRuleEngineTarget
+            case .invalidRuleEngineTargetsExtension: 
+                code = .invalidParameter_InvalidRuleEngineTargetsExtension
+            case .invalidRuleEngineTargetsUrl: 
+                code = .invalidParameter_InvalidRuleEngineTargetsUrl
+            case .invalidServerName: 
+                code = .invalidParameter_InvalidServerName
+            case .invalidUrlRedirectHost: 
+                code = .invalidParameter_InvalidUrlRedirectHost
+            case .invalidUrlRedirectUrl: 
+                code = .invalidParameter_InvalidUrlRedirectUrl
+            case .invalidWebSocketTimeout: 
+                code = .invalidParameter_InvalidWebSocketTimeout
+            case .keyRulesInvalidQueryStringValue: 
+                code = .invalidParameter_KeyRulesInvalidQueryStringValue
+            case .lengthExceedsLimit: 
+                code = .invalidParameter_LengthExceedsLimit
+            case .parameterError: 
+                code = .invalidParameter_ParameterError
+            case .planNotFound: 
+                code = .invalidParameter_PlanNotFound
+            case .security: 
+                code = .invalidParameter_Security
+            case .settingInvalidParam: 
+                code = .invalidParameter_SettingInvalidParam
+            case .target: 
+                code = .invalidParameter_Target
+            case .taskNotGenerated: 
+                code = .invalidParameter_TaskNotGenerated
+            case .uploadUrl: 
+                code = .invalidParameter_UploadUrl
+            case .zoneHasBeenBound: 
+                code = .invalidParameter_ZoneHasBeenBound
+            case .zoneNotFound: 
+                code = .invalidParameter_ZoneNotFound
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCTeoError(code, context: self.context)
         }
-        return TCTeoError(code, context: self.context)
-    }
-}
-
-extension TCTeoError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

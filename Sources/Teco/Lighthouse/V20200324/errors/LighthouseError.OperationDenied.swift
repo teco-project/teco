@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCLighthouseError {
-    public struct OperationDenied: TCErrorType {
+    public struct OperationDenied: TCLighthouseErrorType {
         enum Code: String {
             case bundleNotSupportModify = "OperationDenied.BundleNotSupportModify"
             case diskCreating = "OperationDenied.DiskCreating"
@@ -35,8 +35,6 @@ extension TCLighthouseError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -86,37 +84,26 @@ extension TCLighthouseError {
         public static var operationDeniedCreateSnapshotForStorageBundle: OperationDenied {
             OperationDenied(.operationDeniedCreateSnapshotForStorageBundle)
         }
-    }
-}
-
-extension TCLighthouseError.OperationDenied: Equatable {
-    public static func == (lhs: TCLighthouseError.OperationDenied, rhs: TCLighthouseError.OperationDenied) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCLighthouseError.OperationDenied: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCLighthouseError.OperationDenied {
-    /// - Returns: ``TCLighthouseError`` that holds the same error and context.
-    public func toLighthouseError() -> TCLighthouseError {
-        guard let code = TCLighthouseError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asLighthouseError() -> TCLighthouseError {
+            let code: TCLighthouseError.Code
+            switch self.error {
+            case .bundleNotSupportModify: 
+                code = .operationDenied_BundleNotSupportModify
+            case .diskCreating: 
+                code = .operationDenied_DiskCreating
+            case .diskOperationInProgress: 
+                code = .operationDenied_DiskOperationInProgress
+            case .diskUsageNotSupportOperation: 
+                code = .operationDenied_DiskUsageNotSupportOperation
+            case .instanceCreating: 
+                code = .operationDenied_InstanceCreating
+            case .instanceOperationInProgress: 
+                code = .operationDenied_InstanceOperationInProgress
+            case .operationDeniedCreateSnapshotForStorageBundle: 
+                code = .operationDenied_OperationDeniedCreateSnapshotForStorageBundle
+            }
+            return TCLighthouseError(code, context: self.context)
         }
-        return TCLighthouseError(code, context: self.context)
-    }
-}
-
-extension TCLighthouseError.OperationDenied {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

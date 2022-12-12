@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTioneError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCTioneErrorType {
         enum Code: String {
             case apiGatewayQueryFailed = "FailedOperation.ApiGatewayQueryFailed"
             case billingQueryFailed = "FailedOperation.BillingQueryFailed"
@@ -72,8 +72,6 @@ extension TCTioneError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -332,37 +330,100 @@ extension TCTioneError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCTioneError.FailedOperation: Equatable {
-    public static func == (lhs: TCTioneError.FailedOperation, rhs: TCTioneError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTioneError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTioneError.FailedOperation {
-    /// - Returns: ``TCTioneError`` that holds the same error and context.
-    public func toTioneError() -> TCTioneError {
-        guard let code = TCTioneError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTioneError() -> TCTioneError {
+            let code: TCTioneError.Code
+            switch self.error {
+            case .apiGatewayQueryFailed: 
+                code = .failedOperation_ApiGatewayQueryFailed
+            case .billingQueryFailed: 
+                code = .failedOperation_BillingQueryFailed
+            case .bindingTagsFailed: 
+                code = .failedOperation_BindingTagsFailed
+            case .callClusterFail: 
+                code = .failedOperation_CallClusterFail
+            case .camFailure: 
+                code = .failedOperation_CAMFailure
+            case .clsServiceNotActived: 
+                code = .failedOperation_ClsServiceNotActived
+            case .clusterQueryFailed: 
+                code = .failedOperation_ClusterQueryFailed
+            case .createJobInstanceFailed: 
+                code = .failedOperation_CreateJobInstanceFailed
+            case .dcCosClientErr: 
+                code = .failedOperation_DCCosClientErr
+            case .dcCreateAsyncTaskError: 
+                code = .failedOperation_DCCreateAsyncTaskError
+            case .dcCreateUserCosClientErr: 
+                code = .failedOperation_DCCreateUserCosClientErr
+            case .dcDataAnnotationRpcErr: 
+                code = .failedOperation_DCDataAnnotationRpcErr
+            case .dcDatarepoRpcErr: 
+                code = .failedOperation_DCDatarepoRpcErr
+            case .dcDatasetExceedLimit: 
+                code = .failedOperation_DCDatasetExceedLimit
+            case .dcDatasetStatusNotReady: 
+                code = .failedOperation_DCDatasetStatusNotReady
+            case .dcGetUserTemporarySecretErr: 
+                code = .failedOperation_DCGetUserTemporarySecretErr
+            case .dcMarshalDataErr: 
+                code = .failedOperation_DCMarshalDataErr
+            case .dcQueryDatasetContentErr: 
+                code = .failedOperation_DCQueryDatasetContentErr
+            case .dcUnmarshalDataErr: 
+                code = .failedOperation_DCUnmarshalDataErr
+            case .dcUnsupportedOperation: 
+                code = .failedOperation_DCUnsupportedOperation
+            case .duplicateName: 
+                code = .failedOperation_DuplicateName
+            case .execDatabaseFail: 
+                code = .failedOperation_ExecDatabaseFail
+            case .execTagFail: 
+                code = .failedOperation_ExecTagFail
+            case .insufficientWhitelistQuota: 
+                code = .failedOperation_InsufficientWhitelistQuota
+            case .invalidUserType: 
+                code = .failedOperation_InvalidUserType
+            case .kmsKeyNotOpen: 
+                code = .failedOperation_KmsKeyNotOpen
+            case .moveModelDirFailed: 
+                code = .failedOperation_MoveModelDirFailed
+            case .noFreeBucket: 
+                code = .failedOperation_NoFreeBucket
+            case .noPermission: 
+                code = .failedOperation_NoPermission
+            case .notAllow: 
+                code = .failedOperation_NotAllow
+            case .processing: 
+                code = .failedOperation_Processing
+            case .queryBindingTagsFailed: 
+                code = .failedOperation_QueryBindingTagsFailed
+            case .queryDatabaseFail: 
+                code = .failedOperation_QueryDatabaseFail
+            case .queryModelsByTagsFailed: 
+                code = .failedOperation_QueryModelsByTagsFailed
+            case .queryPriceFailed: 
+                code = .failedOperation_QueryPriceFailed
+            case .querySpecsFailed: 
+                code = .failedOperation_QuerySpecsFailed
+            case .queryTagFail: 
+                code = .failedOperation_QueryTagFail
+            case .recordNotFound: 
+                code = .failedOperation_RecordNotFound
+            case .repoBindByInstance: 
+                code = .failedOperation_RepoBindByInstance
+            case .stsQueryFailed: 
+                code = .failedOperation_StsQueryFailed
+            case .timedout: 
+                code = .failedOperation_Timedout
+            case .unknownInstanceType: 
+                code = .failedOperation_UnknownInstanceType
+            case .unmarshalData: 
+                code = .failedOperation_UnmarshalData
+            case .other: 
+                code = .failedOperation
+            }
+            return TCTioneError(code, context: self.context)
         }
-        return TCTioneError(code, context: self.context)
-    }
-}
-
-extension TCTioneError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

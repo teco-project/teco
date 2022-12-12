@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTioneError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCTioneErrorType {
         enum Code: String {
             case badName = "InvalidParameterValue.BadName"
             case clsConfigRequired = "InvalidParameterValue.ClsConfigRequired"
@@ -44,8 +44,6 @@ extension TCTioneError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -140,37 +138,44 @@ extension TCTioneError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCTioneError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCTioneError.InvalidParameterValue, rhs: TCTioneError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTioneError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTioneError.InvalidParameterValue {
-    /// - Returns: ``TCTioneError`` that holds the same error and context.
-    public func toTioneError() -> TCTioneError {
-        guard let code = TCTioneError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTioneError() -> TCTioneError {
+            let code: TCTioneError.Code
+            switch self.error {
+            case .badName: 
+                code = .invalidParameterValue_BadName
+            case .clsConfigRequired: 
+                code = .invalidParameterValue_ClsConfigRequired
+            case .codeRepoNotFound: 
+                code = .invalidParameterValue_CodeRepoNotFound
+            case .datasetNumLimitExceeded: 
+                code = .invalidParameterValue_DatasetNumLimitExceeded
+            case .dcAnnotationType: 
+                code = .invalidParameterValue_DCAnnotationType
+            case .dcCosPathInfo: 
+                code = .invalidParameterValue_DCCosPathInfo
+            case .dcDatasetAnnotationNotMatch: 
+                code = .invalidParameterValue_DCDatasetAnnotationNotMatch
+            case .dcDatasetIdNotExist: 
+                code = .invalidParameterValue_DCDatasetIdNotExist
+            case .dcDatasetNameExist: 
+                code = .invalidParameterValue_DCDatasetNameExist
+            case .dcDatasetType: 
+                code = .invalidParameterValue_DCDatasetType
+            case .dcFilterValues: 
+                code = .invalidParameterValue_DCFilterValues
+            case .duplicateName: 
+                code = .invalidParameterValue_DuplicateName
+            case .frameworkVersionNotSupport: 
+                code = .invalidParameterValue_FrameworkVersionNotSupport
+            case .invalidFilter: 
+                code = .invalidParameterValue_InvalidFilter
+            case .limitExceeded: 
+                code = .invalidParameterValue_LimitExceeded
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCTioneError(code, context: self.context)
         }
-        return TCTioneError(code, context: self.context)
-    }
-}
-
-extension TCTioneError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

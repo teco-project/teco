@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTdcpgError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCTdcpgErrorType {
         enum Code: String {
             case accountNotFound = "InvalidParameterValue.AccountNotFound"
             case backupDataPointInvalid = "InvalidParameterValue.BackupDataPointInvalid"
@@ -49,8 +49,6 @@ extension TCTdcpgError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -168,37 +166,54 @@ extension TCTdcpgError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCTdcpgError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCTdcpgError.InvalidParameterValue, rhs: TCTdcpgError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTdcpgError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTdcpgError.InvalidParameterValue {
-    /// - Returns: ``TCTdcpgError`` that holds the same error and context.
-    public func toTdcpgError() -> TCTdcpgError {
-        guard let code = TCTdcpgError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTdcpgError() -> TCTdcpgError {
+            let code: TCTdcpgError.Code
+            switch self.error {
+            case .accountNotFound: 
+                code = .invalidParameterValue_AccountNotFound
+            case .backupDataPointInvalid: 
+                code = .invalidParameterValue_BackupDataPointInvalid
+            case .clusterNotFound: 
+                code = .invalidParameterValue_ClusterNotFound
+            case .databaseVersionParamCountError: 
+                code = .invalidParameterValue_DatabaseVersionParamCountError
+            case .dealNameNotFound: 
+                code = .invalidParameterValue_DealNameNotFound
+            case .endpointNotFound: 
+                code = .invalidParameterValue_EndpointNotFound
+            case .illegalInstanceName: 
+                code = .invalidParameterValue_IllegalInstanceName
+            case .illegalPassword: 
+                code = .invalidParameterValue_IllegalPassword
+            case .instanceNotFound: 
+                code = .invalidParameterValue_InstanceNotFound
+            case .invalidDBVersion: 
+                code = .invalidParameterValue_InvalidDBVersion
+            case .invalidDatabaseVersion: 
+                code = .invalidParameterValue_InvalidDatabaseVersion
+            case .invalidParameterValueError: 
+                code = .invalidParameterValue_InvalidParameterValueError
+            case .invalidSpec: 
+                code = .invalidParameterValue_InvalidSpec
+            case .parameterOutRangeError: 
+                code = .invalidParameterValue_ParameterOutRangeError
+            case .regionZoneUnavailable: 
+                code = .invalidParameterValue_RegionZoneUnavailable
+            case .sourceBackupClusterIdInvalid: 
+                code = .invalidParameterValue_SourceBackupClusterIdInvalid
+            case .storagePoolNotFound: 
+                code = .invalidParameterValue_StoragePoolNotFound
+            case .vpcDeniedError: 
+                code = .invalidParameterValue_VpcDeniedError
+            case .vpcNotFound: 
+                code = .invalidParameterValue_VpcNotFound
+            case .vpcSubnetIpLack: 
+                code = .invalidParameterValue_VpcSubnetIpLack
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCTdcpgError(code, context: self.context)
         }
-        return TCTdcpgError(code, context: self.context)
-    }
-}
-
-extension TCTdcpgError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

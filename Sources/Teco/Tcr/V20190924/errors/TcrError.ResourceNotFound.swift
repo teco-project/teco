@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTcrError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCTcrErrorType {
         enum Code: String {
             case errNoNamespace = "ResourceNotFound.ErrNoNamespace"
             case errNoRepo = "ResourceNotFound.ErrNoRepo"
@@ -35,8 +35,6 @@ extension TCTcrError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -84,37 +82,26 @@ extension TCTcrError {
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-    }
-}
-
-extension TCTcrError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCTcrError.ResourceNotFound, rhs: TCTcrError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTcrError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTcrError.ResourceNotFound {
-    /// - Returns: ``TCTcrError`` that holds the same error and context.
-    public func toTcrError() -> TCTcrError {
-        guard let code = TCTcrError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTcrError() -> TCTcrError {
+            let code: TCTcrError.Code
+            switch self.error {
+            case .errNoNamespace: 
+                code = .resourceNotFound_ErrNoNamespace
+            case .errNoRepo: 
+                code = .resourceNotFound_ErrNoRepo
+            case .errNoTag: 
+                code = .resourceNotFound_ErrNoTag
+            case .errNoTrigger: 
+                code = .resourceNotFound_ErrNoTrigger
+            case .errNoUser: 
+                code = .resourceNotFound_ErrNoUser
+            case .tcrResourceNotFound: 
+                code = .resourceNotFound_TcrResourceNotFound
+            case .other: 
+                code = .resourceNotFound
+            }
+            return TCTcrError(code, context: self.context)
         }
-        return TCTcrError(code, context: self.context)
-    }
-}
-
-extension TCTcrError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

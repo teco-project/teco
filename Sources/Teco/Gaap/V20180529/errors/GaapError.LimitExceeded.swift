@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCGaapError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCGaapErrorType {
         enum Code: String {
             case domain = "LimitExceeded.Domain"
             case tagQuota = "LimitExceeded.TagQuota"
@@ -31,8 +31,6 @@ extension TCGaapError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -59,37 +57,18 @@ extension TCGaapError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCGaapError.LimitExceeded: Equatable {
-    public static func == (lhs: TCGaapError.LimitExceeded, rhs: TCGaapError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCGaapError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCGaapError.LimitExceeded {
-    /// - Returns: ``TCGaapError`` that holds the same error and context.
-    public func toGaapError() -> TCGaapError {
-        guard let code = TCGaapError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asGaapError() -> TCGaapError {
+            let code: TCGaapError.Code
+            switch self.error {
+            case .domain: 
+                code = .limitExceeded_Domain
+            case .tagQuota: 
+                code = .limitExceeded_TagQuota
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCGaapError(code, context: self.context)
         }
-        return TCGaapError(code, context: self.context)
-    }
-}
-
-extension TCGaapError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

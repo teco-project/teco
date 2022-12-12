@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCdbError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCCdbErrorType {
         enum Code: String {
             case controllerNotFoundError = "InvalidParameter.ControllerNotFoundError"
             case deployGroupNotEmpty = "InvalidParameter.DeployGroupNotEmpty"
@@ -42,8 +42,6 @@ extension TCCdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -128,37 +126,40 @@ extension TCCdbError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCCdbError.InvalidParameter: Equatable {
-    public static func == (lhs: TCCdbError.InvalidParameter, rhs: TCCdbError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCdbError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCdbError.InvalidParameter {
-    /// - Returns: ``TCCdbError`` that holds the same error and context.
-    public func toCdbError() -> TCCdbError {
-        guard let code = TCCdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCdbError() -> TCCdbError {
+            let code: TCCdbError.Code
+            switch self.error {
+            case .controllerNotFoundError: 
+                code = .invalidParameter_ControllerNotFoundError
+            case .deployGroupNotEmpty: 
+                code = .invalidParameter_DeployGroupNotEmpty
+            case .exceptionParam: 
+                code = .invalidParameter_ExceptionParam
+            case .instanceNameNotFound: 
+                code = .invalidParameter_InstanceNameNotFound
+            case .instanceNotFound: 
+                code = .invalidParameter_InstanceNotFound
+            case .invalidAsyncRequestId: 
+                code = .invalidParameter_InvalidAsyncRequestId
+            case .invalidName: 
+                code = .invalidParameter_InvalidName
+            case .invalidParameterError: 
+                code = .invalidParameter_InvalidParameterError
+            case .jsonUnmarshalError: 
+                code = .invalidParameter_JsonUnmarshalError
+            case .overDeployGroupQuota: 
+                code = .invalidParameter_OverDeployGroupQuota
+            case .resourceExists: 
+                code = .invalidParameter_ResourceExists
+            case .resourceNotExists: 
+                code = .invalidParameter_ResourceNotExists
+            case .resourceNotFound: 
+                code = .invalidParameter_ResourceNotFound
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCCdbError(code, context: self.context)
         }
-        return TCCdbError(code, context: self.context)
-    }
-}
-
-extension TCCdbError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

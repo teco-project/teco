@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTsfError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCTsfErrorType {
         enum Code: String {
             case applicationMicroTypeInvalid = "InvalidParameterValue.ApplicationMicroTypeInvalid"
             case applicationNameExist = "InvalidParameterValue.ApplicationNameExist"
@@ -147,8 +147,6 @@ extension TCTsfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -756,37 +754,250 @@ extension TCTsfError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCTsfError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCTsfError.InvalidParameterValue, rhs: TCTsfError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTsfError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTsfError.InvalidParameterValue {
-    /// - Returns: ``TCTsfError`` that holds the same error and context.
-    public func toTsfError() -> TCTsfError {
-        guard let code = TCTsfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTsfError() -> TCTsfError {
+            let code: TCTsfError.Code
+            switch self.error {
+            case .applicationMicroTypeInvalid: 
+                code = .invalidParameterValue_ApplicationMicroTypeInvalid
+            case .applicationNameExist: 
+                code = .invalidParameterValue_ApplicationNameExist
+            case .applicationNameLength: 
+                code = .invalidParameterValue_ApplicationNameLength
+            case .applicationNameNull: 
+                code = .invalidParameterValue_ApplicationNameNull
+            case .applicationNameRegxInvalid: 
+                code = .invalidParameterValue_ApplicationNameRegxInvalid
+            case .applicationNotExists: 
+                code = .invalidParameterValue_ApplicationNotExists
+            case .applicationPageLimitInvalid: 
+                code = .invalidParameterValue_ApplicationPageLimitInvalid
+            case .applicationTypeInvalid: 
+                code = .invalidParameterValue_ApplicationTypeInvalid
+            case .clusterCidrConflict: 
+                code = .invalidParameterValue_ClusterCidrConflict
+            case .clusterNameExist: 
+                code = .invalidParameterValue_ClusterNameExist
+            case .clusterNameRequired: 
+                code = .invalidParameterValue_ClusterNameRequired
+            case .clusterRegionInvalid: 
+                code = .invalidParameterValue_ClusterRegionInvalid
+            case .clusterTypeInvalid: 
+                code = .invalidParameterValue_ClusterTypeInvalid
+            case .clusterZoneInvalid: 
+                code = .invalidParameterValue_ClusterZoneInvalid
+            case .configAlreadyReleased: 
+                code = .invalidParameterValue_ConfigAlreadyReleased
+            case .configExists: 
+                code = .invalidParameterValue_ConfigExists
+            case .configGroupApplicationIdNotMatch: 
+                code = .invalidParameterValue_ConfigGroupApplicationIdNotMatch
+            case .configNameInvalid: 
+                code = .invalidParameterValue_ConfigNameInvalid
+            case .configNotExistsOrPermissionDenied: 
+                code = .invalidParameterValue_ConfigNotExistsOrPermissionDenied
+            case .configReleaseNotExists: 
+                code = .invalidParameterValue_ConfigReleaseNotExists
+            case .configValueFormatInvalid: 
+                code = .invalidParameterValue_ConfigValueFormatInvalid
+            case .configValueTooLong: 
+                code = .invalidParameterValue_ConfigValueTooLong
+            case .configVersionDescInvalid: 
+                code = .invalidParameterValue_ConfigVersionDescInvalid
+            case .configVersionInvalid: 
+                code = .invalidParameterValue_ConfigVersionInvalid
+            case .containerGroupImageTagIsInUse: 
+                code = .invalidParameterValue_ContainerGroupImageTagIsInUse
+            case .containergroupAccesstypeNull: 
+                code = .invalidParameterValue_ContainergroupAccesstypeNull
+            case .containergroupApplicationIdNull: 
+                code = .invalidParameterValue_ContainergroupApplicationIdNull
+            case .containergroupCpulimitOver: 
+                code = .invalidParameterValue_ContainergroupCpulimitOver
+            case .containergroupGroupidNull: 
+                code = .invalidParameterValue_ContainergroupGroupidNull
+            case .containergroupGroupnameLegnth: 
+                code = .invalidParameterValue_ContainergroupGroupnameLegnth
+            case .containergroupGroupnameNull: 
+                code = .invalidParameterValue_ContainergroupGroupnameNull
+            case .containergroupGroupnameRegexMatchFalse: 
+                code = .invalidParameterValue_ContainergroupGroupnameRegexMatchFalse
+            case .containergroupInstanceNumInvalid: 
+                code = .invalidParameterValue_ContainergroupInstanceNumInvalid
+            case .containergroupInvalidCpuInfo: 
+                code = .invalidParameterValue_ContainergroupInvalidCpuInfo
+            case .containergroupInvalidMemInfo: 
+                code = .invalidParameterValue_ContainergroupInvalidMemInfo
+            case .containergroupLimitValueInvalid: 
+                code = .invalidParameterValue_ContainergroupLimitValueInvalid
+            case .containergroupMemlimitOver: 
+                code = .invalidParameterValue_ContainergroupMemlimitOver
+            case .containergroupNodePortInvalid: 
+                code = .invalidParameterValue_ContainergroupNodePortInvalid
+            case .containergroupPortInvalid: 
+                code = .invalidParameterValue_ContainergroupPortInvalid
+            case .containergroupPortsRepeat: 
+                code = .invalidParameterValue_ContainergroupPortsRepeat
+            case .containergroupProtocolInvalid: 
+                code = .invalidParameterValue_ContainergroupProtocolInvalid
+            case .containergroupProtocolMixError: 
+                code = .invalidParameterValue_ContainergroupProtocolMixError
+            case .containergroupProtocolNull: 
+                code = .invalidParameterValue_ContainergroupProtocolNull
+            case .containergroupProtocolPortsNull: 
+                code = .invalidParameterValue_ContainergroupProtocolPortsNull
+            case .containergroupReponameInvalid: 
+                code = .invalidParameterValue_ContainergroupReponameInvalid
+            case .containergroupResourceAgentValueInvalid: 
+                code = .invalidParameterValue_ContainergroupResourceAgentValueInvalid
+            case .containergroupTargetPortsRepeat: 
+                code = .invalidParameterValue_ContainergroupTargetPortsRepeat
+            case .containergroupTargetportNull: 
+                code = .invalidParameterValue_ContainergroupTargetportNull
+            case .containergroupUpdateivlInvalid: 
+                code = .invalidParameterValue_ContainergroupUpdateivlInvalid
+            case .containergroupUpdatetypeInvalid: 
+                code = .invalidParameterValue_ContainergroupUpdatetypeInvalid
+            case .containergroupYamlUserContainerNotFound: 
+                code = .invalidParameterValue_ContainergroupYamlUserContainerNotFound
+            case .cvmCaeMasterAgentBusy: 
+                code = .invalidParameterValue_CvmCaeMasterAgentBusy
+            case .cvmCaeMasterAgentNotFound: 
+                code = .invalidParameterValue_CvmCaeMasterAgentNotFound
+            case .cvmCaeMasterGroupNoAgent: 
+                code = .invalidParameterValue_CvmCaeMasterGroupNoAgent
+            case .deployGroupNotExists: 
+                code = .invalidParameterValue_DeployGroupNotExists
+            case .fileConfigAlreadyReleased: 
+                code = .invalidParameterValue_FileConfigAlreadyReleased
+            case .fileConfigExists: 
+                code = .invalidParameterValue_FileConfigExists
+            case .fileConfigExistsPath: 
+                code = .invalidParameterValue_FileConfigExistsPath
+            case .fileConfigExistsPathOther: 
+                code = .invalidParameterValue_FileConfigExistsPathOther
+            case .fileConfigFilePathInvalid: 
+                code = .invalidParameterValue_FileConfigFilePathInvalid
+            case .fileConfigNameInvalid: 
+                code = .invalidParameterValue_FileConfigNameInvalid
+            case .fileConfigNotExistsOrPermissionDenied: 
+                code = .invalidParameterValue_FileConfigNotExistsOrPermissionDenied
+            case .fileConfigPathExists: 
+                code = .invalidParameterValue_FileConfigPathExists
+            case .fileConfigVersionDescInvalid: 
+                code = .invalidParameterValue_FileConfigVersionDescInvalid
+            case .gatewayParameterError: 
+                code = .invalidParameterValue_GatewayParameterError
+            case .gatewayParameterInvalid: 
+                code = .invalidParameterValue_GatewayParameterInvalid
+            case .globalNamespaceNameExist: 
+                code = .invalidParameterValue_GlobalNamespaceNameExist
+            case .groupBatchParameterInvalid: 
+                code = .invalidParameterValue_GroupBatchParameterInvalid
+            case .groupClusterNamespaceNotBound: 
+                code = .invalidParameterValue_GroupClusterNamespaceNotBound
+            case .groupClusterTypeMismatch: 
+                code = .invalidParameterValue_GroupClusterTypeMismatch
+            case .groupDeleteClusterTypeMismatch: 
+                code = .invalidParameterValue_GroupDeleteClusterTypeMismatch
+            case .groupIdNull: 
+                code = .invalidParameterValue_GroupIdNull
+            case .groupNameExist: 
+                code = .invalidParameterValue_GroupNameExist
+            case .groupNameLength: 
+                code = .invalidParameterValue_GroupNameLength
+            case .groupNameRegxMismatch: 
+                code = .invalidParameterValue_GroupNameRegxMismatch
+            case .groupNotExists: 
+                code = .invalidParameterValue_GroupNotExists
+            case .groupPageLimitInvalid: 
+                code = .invalidParameterValue_GroupPageLimitInvalid
+            case .groupStatusInvalid: 
+                code = .invalidParameterValue_GroupStatusInvalid
+            case .groupValidInstanceNull: 
+                code = .invalidParameterValue_GroupValidInstanceNull
+            case .imagerepoRepoNameNull: 
+                code = .invalidParameterValue_ImagerepoRepoNameNull
+            case .imagerepoReponameInvalid: 
+                code = .invalidParameterValue_ImagerepoReponameInvalid
+            case .imagerepoTagnameNull: 
+                code = .invalidParameterValue_ImagerepoTagnameNull
+            case .instanceInvalidImage: 
+                code = .invalidParameterValue_InstanceInvalidImage
+            case .invalidParameter: 
+                code = .invalidParameterValue_InvalidParameter
+            case .invalidParameterFormat: 
+                code = .invalidParameterValue_InvalidParameterFormat
+            case .laneInfoAlreadyUsed: 
+                code = .invalidParameterValue_LaneInfoAlreadyUsed
+            case .laneInfoNameAlreadyUsed: 
+                code = .invalidParameterValue_LaneInfoNameAlreadyUsed
+            case .laneInfoNameInvalid: 
+                code = .invalidParameterValue_LaneInfoNameInvalid
+            case .laneInfoNameNotEmpty: 
+                code = .invalidParameterValue_LaneInfoNameNotEmpty
+            case .laneInfoNameTooLong: 
+                code = .invalidParameterValue_LaneInfoNameTooLong
+            case .laneInfoNotExist: 
+                code = .invalidParameterValue_LaneInfoNotExist
+            case .laneInfoNotExistEntrance: 
+                code = .invalidParameterValue_LaneInfoNotExistEntrance
+            case .laneInfoRemarkTooLong: 
+                code = .invalidParameterValue_LaneInfoRemarkTooLong
+            case .laneRuleInfoNotExist: 
+                code = .invalidParameterValue_LaneRuleInfoNotExist
+            case .laneRuleNameAlreadyUsed: 
+                code = .invalidParameterValue_LaneRuleNameAlreadyUsed
+            case .laneRuleNameInvalid: 
+                code = .invalidParameterValue_LaneRuleNameInvalid
+            case .laneRuleNameNotEmpty: 
+                code = .invalidParameterValue_LaneRuleNameNotEmpty
+            case .laneRuleNameTooLong: 
+                code = .invalidParameterValue_LaneRuleNameTooLong
+            case .laneRuleNotExist: 
+                code = .invalidParameterValue_LaneRuleNotExist
+            case .laneRuleRemarkTooLong: 
+                code = .invalidParameterValue_LaneRuleRemarkTooLong
+            case .laneRuleTagNameNotEmpty: 
+                code = .invalidParameterValue_LaneRuleTagNameNotEmpty
+            case .laneRuleTagNameTooLong: 
+                code = .invalidParameterValue_LaneRuleTagNameTooLong
+            case .laneRuleTagNotEmpty: 
+                code = .invalidParameterValue_LaneRuleTagNotEmpty
+            case .laneRuleTagValueTooLong: 
+                code = .invalidParameterValue_LaneRuleTagValueTooLong
+            case .laneRuleTagValueTotalTooLong: 
+                code = .invalidParameterValue_LaneRuleTagValueTotalTooLong
+            case .namespaceAlreadyBindCluster: 
+                code = .invalidParameterValue_NamespaceAlreadyBindCluster
+            case .namespaceDescInvalid: 
+                code = .invalidParameterValue_NamespaceDescInvalid
+            case .namespaceNameExist: 
+                code = .invalidParameterValue_NamespaceNameExist
+            case .namespaceNameInvalid: 
+                code = .invalidParameterValue_NamespaceNameInvalid
+            case .namespaceNotExists: 
+                code = .invalidParameterValue_NamespaceNotExists
+            case .releasedConfigCanNotBeDeleted: 
+                code = .invalidParameterValue_ReleasedConfigCanNotBeDeleted
+            case .resourcePermissionDenied: 
+                code = .invalidParameterValue_ResourcePermissionDenied
+            case .resourceTypeError: 
+                code = .invalidParameterValue_ResourceTypeError
+            case .serviceDescLength: 
+                code = .invalidParameterValue_ServiceDescLength
+            case .serviceNameRepeated: 
+                code = .invalidParameterValue_ServiceNameRepeated
+            case .serviceNotExistsOrPermissionDenied: 
+                code = .invalidParameterValue_ServiceNotExistsOrPermissionDenied
+            case .taskParameterInvalid: 
+                code = .invalidParameterValue_TaskParameterInvalid
+            case .wrongDontStartValue: 
+                code = .invalidParameterValue_WrongDontStartValue
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCTsfError(code, context: self.context)
         }
-        return TCTsfError(code, context: self.context)
-    }
-}
-
-extension TCTsfError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

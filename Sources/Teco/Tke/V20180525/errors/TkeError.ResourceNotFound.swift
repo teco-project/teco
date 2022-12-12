@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTkeError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCTkeErrorType {
         enum Code: String {
             case asAsgNotExist = "ResourceNotFound.AsAsgNotExist"
             case clusterNotFound = "ResourceNotFound.ClusterNotFound"
@@ -34,8 +34,6 @@ extension TCTkeError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -78,37 +76,24 @@ extension TCTkeError {
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-    }
-}
-
-extension TCTkeError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCTkeError.ResourceNotFound, rhs: TCTkeError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTkeError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTkeError.ResourceNotFound {
-    /// - Returns: ``TCTkeError`` that holds the same error and context.
-    public func toTkeError() -> TCTkeError {
-        guard let code = TCTkeError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTkeError() -> TCTkeError {
+            let code: TCTkeError.Code
+            switch self.error {
+            case .asAsgNotExist: 
+                code = .resourceNotFound_AsAsgNotExist
+            case .clusterNotFound: 
+                code = .resourceNotFound_ClusterNotFound
+            case .kubeResourceNotFound: 
+                code = .resourceNotFound_KubeResourceNotFound
+            case .kubernetesResourceNotFound: 
+                code = .resourceNotFound_KubernetesResourceNotFound
+            case .routeTableNotFound: 
+                code = .resourceNotFound_RouteTableNotFound
+            case .other: 
+                code = .resourceNotFound
+            }
+            return TCTkeError(code, context: self.context)
         }
-        return TCTkeError(code, context: self.context)
-    }
-}
-
-extension TCTkeError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDtsError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCDtsErrorType {
         enum Code: String {
             case notEnoughPrivileges = "UnauthorizedOperation.NotEnoughPrivileges"
             case permissionDenied = "UnauthorizedOperation.PermissionDenied"
@@ -32,8 +32,6 @@ extension TCDtsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -65,37 +63,20 @@ extension TCDtsError {
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-    }
-}
-
-extension TCDtsError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCDtsError.UnauthorizedOperation, rhs: TCDtsError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDtsError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDtsError.UnauthorizedOperation {
-    /// - Returns: ``TCDtsError`` that holds the same error and context.
-    public func toDtsError() -> TCDtsError {
-        guard let code = TCDtsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDtsError() -> TCDtsError {
+            let code: TCDtsError.Code
+            switch self.error {
+            case .notEnoughPrivileges: 
+                code = .unauthorizedOperation_NotEnoughPrivileges
+            case .permissionDenied: 
+                code = .unauthorizedOperation_PermissionDenied
+            case .unauthorizedOperationError: 
+                code = .unauthorizedOperation_UnauthorizedOperationError
+            case .other: 
+                code = .unauthorizedOperation
+            }
+            return TCDtsError(code, context: self.context)
         }
-        return TCDtsError(code, context: self.context)
-    }
-}
-
-extension TCDtsError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCWavError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCWavErrorType {
         enum Code: String {
             case openPlatformError = "FailedOperation.OpenPlatformError"
             case other = "FailedOperation"
@@ -30,8 +30,6 @@ extension TCWavError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -56,37 +54,16 @@ extension TCWavError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCWavError.FailedOperation: Equatable {
-    public static func == (lhs: TCWavError.FailedOperation, rhs: TCWavError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCWavError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCWavError.FailedOperation {
-    /// - Returns: ``TCWavError`` that holds the same error and context.
-    public func toWavError() -> TCWavError {
-        guard let code = TCWavError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asWavError() -> TCWavError {
+            let code: TCWavError.Code
+            switch self.error {
+            case .openPlatformError: 
+                code = .failedOperation_OpenPlatformError
+            case .other: 
+                code = .failedOperation
+            }
+            return TCWavError(code, context: self.context)
         }
-        return TCWavError(code, context: self.context)
-    }
-}
-
-extension TCWavError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

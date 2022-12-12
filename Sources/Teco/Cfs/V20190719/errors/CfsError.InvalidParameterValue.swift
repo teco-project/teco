@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCfsError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCCfsErrorType {
         enum Code: String {
             case clientTokenLimitExceeded = "InvalidParameterValue.ClientTokenLimitExceeded"
             case duplicatedPgroupName = "InvalidParameterValue.DuplicatedPgroupName"
@@ -89,8 +89,6 @@ extension TCCfsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -404,37 +402,134 @@ extension TCCfsError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCCfsError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCCfsError.InvalidParameterValue, rhs: TCCfsError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCfsError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCfsError.InvalidParameterValue {
-    /// - Returns: ``TCCfsError`` that holds the same error and context.
-    public func toCfsError() -> TCCfsError {
-        guard let code = TCCfsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCfsError() -> TCCfsError {
+            let code: TCCfsError.Code
+            switch self.error {
+            case .clientTokenLimitExceeded: 
+                code = .invalidParameterValue_ClientTokenLimitExceeded
+            case .duplicatedPgroupName: 
+                code = .invalidParameterValue_DuplicatedPgroupName
+            case .duplicatedRuleAuthClientIp: 
+                code = .invalidParameterValue_DuplicatedRuleAuthClientIp
+            case .fsNameLimitExceeded: 
+                code = .invalidParameterValue_FsNameLimitExceeded
+            case .fsSizeLimitExceeded: 
+                code = .invalidParameterValue_FsSizeLimitExceeded
+            case .invalidAuthClientIp: 
+                code = .invalidParameterValue_InvalidAuthClientIp
+            case .invalidClientToken: 
+                code = .invalidParameterValue_InvalidClientToken
+            case .invalidEncrypted: 
+                code = .invalidParameterValue_InvalidEncrypted
+            case .invalidFileSystemId: 
+                code = .invalidParameterValue_InvalidFileSystemId
+            case .invalidFsName: 
+                code = .invalidParameterValue_InvalidFsName
+            case .invalidFsSizeLimit: 
+                code = .invalidParameterValue_InvalidFsSizeLimit
+            case .invalidFsStatus: 
+                code = .invalidParameterValue_InvalidFsStatus
+            case .invalidMountTargetIp: 
+                code = .invalidParameterValue_InvalidMountTargetIp
+            case .invalidNetInterface: 
+                code = .invalidParameterValue_InvalidNetInterface
+            case .invalidPgroup: 
+                code = .invalidParameterValue_InvalidPgroup
+            case .invalidPgroupId: 
+                code = .invalidParameterValue_InvalidPgroupId
+            case .invalidPgroupName: 
+                code = .invalidParameterValue_InvalidPgroupName
+            case .invalidPriority: 
+                code = .invalidParameterValue_InvalidPriority
+            case .invalidProtocol: 
+                code = .invalidParameterValue_InvalidProtocol
+            case .invalidRegionZoneInfo: 
+                code = .invalidParameterValue_InvalidRegionZoneInfo
+            case .invalidResourceTags: 
+                code = .invalidParameterValue_InvalidResourceTags
+            case .invalidRwPermission: 
+                code = .invalidParameterValue_InvalidRwPermission
+            case .invalidSnapshotStatus: 
+                code = .invalidParameterValue_InvalidSnapshotStatus
+            case .invalidStorageResourcePkg: 
+                code = .invalidParameterValue_InvalidStorageResourcePkg
+            case .invalidStorageType: 
+                code = .invalidParameterValue_InvalidStorageType
+            case .invalidSubnetId: 
+                code = .invalidParameterValue_InvalidSubnetId
+            case .invalidTagKey: 
+                code = .invalidParameterValue_InvalidTagKey
+            case .invalidTagValue: 
+                code = .invalidParameterValue_InvalidTagValue
+            case .invalidTurboCapacity: 
+                code = .invalidParameterValue_InvalidTurboCapacity
+            case .invalidUserPermission: 
+                code = .invalidParameterValue_InvalidUserPermission
+            case .invalidVip: 
+                code = .invalidParameterValue_InvalidVip
+            case .invalidVpcId: 
+                code = .invalidParameterValue_InvalidVpcId
+            case .invalidVpcParameter: 
+                code = .invalidParameterValue_InvalidVpcParameter
+            case .invalidZoneId: 
+                code = .invalidParameterValue_InvalidZoneId
+            case .invalidZoneOrZoneId: 
+                code = .invalidParameterValue_InvalidZoneOrZoneId
+            case .missingFileSystemId: 
+                code = .invalidParameterValue_MissingFileSystemId
+            case .missingFileSystemIdOrRegion: 
+                code = .invalidParameterValue_MissingFileSystemIdOrRegion
+            case .missingFsParameter: 
+                code = .invalidParameterValue_MissingFsParameter
+            case .missingKmsKeyId: 
+                code = .invalidParameterValue_MissingKmsKeyId
+            case .missingNameOrDescinfo: 
+                code = .invalidParameterValue_MissingNameOrDescinfo
+            case .missingPgroupName: 
+                code = .invalidParameterValue_MissingPgroupName
+            case .missingStorageResourcePkg: 
+                code = .invalidParameterValue_MissingStorageResourcePkg
+            case .missingSubnetidOrUnsubnetid: 
+                code = .invalidParameterValue_MissingSubnetidOrUnsubnetid
+            case .missingVpcParameter: 
+                code = .invalidParameterValue_MissingVpcParameter
+            case .missingVpcidOrUnvpcid: 
+                code = .invalidParameterValue_MissingVpcidOrUnvpcid
+            case .missingZoneId: 
+                code = .invalidParameterValue_MissingZoneId
+            case .missingZoneOrZoneId: 
+                code = .invalidParameterValue_MissingZoneOrZoneId
+            case .pgroupDescinfoLimitExceeded: 
+                code = .invalidParameterValue_PgroupDescinfoLimitExceeded
+            case .pgroupNameLimitExceeded: 
+                code = .invalidParameterValue_PgroupNameLimitExceeded
+            case .quotaCapLimitError: 
+                code = .invalidParameterValue_QuotaCapLimitError
+            case .quotaFileLimitError: 
+                code = .invalidParameterValue_QuotaFileLimitError
+            case .quotaUserIdError: 
+                code = .invalidParameterValue_QuotaUserIdError
+            case .quotaUserTypeError: 
+                code = .invalidParameterValue_QuotaUserTypeError
+            case .ruleNotMatchPgroup: 
+                code = .invalidParameterValue_RuleNotMatchPgroup
+            case .tagKeyFilterLimitExceeded: 
+                code = .invalidParameterValue_TagKeyFilterLimitExceeded
+            case .tagKeyLimitExceeded: 
+                code = .invalidParameterValue_TagKeyLimitExceeded
+            case .tagValueLimitExceeded: 
+                code = .invalidParameterValue_TagValueLimitExceeded
+            case .unavailableRegion: 
+                code = .invalidParameterValue_UnavailableRegion
+            case .unavailableZone: 
+                code = .invalidParameterValue_UnavailableZone
+            case .zoneIdRegionNotMatch: 
+                code = .invalidParameterValue_ZoneIdRegionNotMatch
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCCfsError(code, context: self.context)
         }
-        return TCCfsError(code, context: self.context)
-    }
-}
-
-extension TCCfsError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

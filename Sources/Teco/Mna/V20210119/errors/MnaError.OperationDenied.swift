@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMnaError {
-    public struct OperationDenied: TCErrorType {
+    public struct OperationDenied: TCMnaErrorType {
         enum Code: String {
             case accelerationNotSuggest = "OperationDenied.AccelerationNotSuggest"
             case createQosExceedLimit = "OperationDenied.CreateQosExceedLimit"
@@ -37,8 +37,6 @@ extension TCMnaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -112,37 +110,30 @@ extension TCMnaError {
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-    }
-}
-
-extension TCMnaError.OperationDenied: Equatable {
-    public static func == (lhs: TCMnaError.OperationDenied, rhs: TCMnaError.OperationDenied) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMnaError.OperationDenied: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMnaError.OperationDenied {
-    /// - Returns: ``TCMnaError`` that holds the same error and context.
-    public func toMnaError() -> TCMnaError {
-        guard let code = TCMnaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMnaError() -> TCMnaError {
+            let code: TCMnaError.Code
+            switch self.error {
+            case .accelerationNotSuggest: 
+                code = .operationDenied_AccelerationNotSuggest
+            case .createQosExceedLimit: 
+                code = .operationDenied_CreateQosExceedLimit
+            case .ctccTokenExpired: 
+                code = .operationDenied_CTCCTokenExpired
+            case .requestQosTimeout: 
+                code = .operationDenied_RequestQosTimeout
+            case .userNonAccelerated: 
+                code = .operationDenied_UserNonAccelerated
+            case .userOutOfCoverage: 
+                code = .operationDenied_UserOutOfCoverage
+            case .vendorReturnError: 
+                code = .operationDenied_VendorReturnError
+            case .vendorServerError: 
+                code = .operationDenied_VendorServerError
+            case .other: 
+                code = .operationDenied
+            }
+            return TCMnaError(code, context: self.context)
         }
-        return TCMnaError(code, context: self.context)
-    }
-}
-
-extension TCMnaError.OperationDenied {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

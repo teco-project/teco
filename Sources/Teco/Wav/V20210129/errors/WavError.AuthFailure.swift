@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCWavError {
-    public struct AuthFailure: TCErrorType {
+    public struct AuthFailure: TCWavErrorType {
         enum Code: String {
             case invalidAuthorizationCode = "AuthFailure.InvalidAuthorizationCode"
             case missingAccessToken = "AuthFailure.MissingAccessToken"
@@ -31,8 +31,6 @@ extension TCWavError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -64,37 +62,18 @@ extension TCWavError {
         public static var other: AuthFailure {
             AuthFailure(.other)
         }
-    }
-}
-
-extension TCWavError.AuthFailure: Equatable {
-    public static func == (lhs: TCWavError.AuthFailure, rhs: TCWavError.AuthFailure) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCWavError.AuthFailure: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCWavError.AuthFailure {
-    /// - Returns: ``TCWavError`` that holds the same error and context.
-    public func toWavError() -> TCWavError {
-        guard let code = TCWavError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asWavError() -> TCWavError {
+            let code: TCWavError.Code
+            switch self.error {
+            case .invalidAuthorizationCode: 
+                code = .authFailure_InvalidAuthorizationCode
+            case .missingAccessToken: 
+                code = .authFailure_MissingAccessToken
+            case .other: 
+                code = .authFailure
+            }
+            return TCWavError(code, context: self.context)
         }
-        return TCWavError(code, context: self.context)
-    }
-}
-
-extension TCWavError.AuthFailure {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

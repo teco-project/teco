@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTemError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCTemErrorType {
         enum Code: String {
             case actionReadTimeout = "InternalError.ActionReadTimeout"
             case addNewNodeError = "InternalError.AddNewNodeError"
@@ -55,8 +55,6 @@ extension TCTemError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -198,37 +196,66 @@ extension TCTemError {
         public static var updateIngressError: InternalError {
             InternalError(.updateIngressError)
         }
-    }
-}
-
-extension TCTemError.InternalError: Equatable {
-    public static func == (lhs: TCTemError.InternalError, rhs: TCTemError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTemError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTemError.InternalError {
-    /// - Returns: ``TCTemError`` that holds the same error and context.
-    public func toTemError() -> TCTemError {
-        guard let code = TCTemError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTemError() -> TCTemError {
+            let code: TCTemError.Code
+            switch self.error {
+            case .actionReadTimeout: 
+                code = .internalError_ActionReadTimeout
+            case .addNewNodeError: 
+                code = .internalError_AddNewNodeError
+            case .createApmResourceError: 
+                code = .internalError_CreateApmResourceError
+            case .createConfigDataError: 
+                code = .internalError_CreateConfigDataError
+            case .createEksClusterError: 
+                code = .internalError_CreateEksClusterError
+            case .createLogConfigError: 
+                code = .internalError_CreateLogConfigError
+            case .createServiceError: 
+                code = .internalError_CreateServiceError
+            case .defaultInternalError: 
+                code = .internalError_DefaultInternalError
+            case .deleteIngressError: 
+                code = .internalError_DeleteIngressError
+            case .deleteLogConfigError: 
+                code = .internalError_DeleteLogConfigError
+            case .deleteServiceError: 
+                code = .internalError_DeleteServiceError
+            case .deployVersionError: 
+                code = .internalError_DeployVersionError
+            case .describeConfigDataError: 
+                code = .internalError_DescribeConfigDataError
+            case .describeConfigDataListError: 
+                code = .internalError_DescribeConfigDataListError
+            case .describeIngressError: 
+                code = .internalError_DescribeIngressError
+            case .describeLogConfigError: 
+                code = .internalError_DescribeLogConfigError
+            case .describeLogConfigListError: 
+                code = .internalError_DescribeLogConfigListError
+            case .describeRunPodListError: 
+                code = .internalError_DescribeRunPodListError
+            case .describeServiceError: 
+                code = .internalError_DescribeServiceError
+            case .describeServiceIngressError: 
+                code = .internalError_DescribeServiceIngressError
+            case .describeServiceListError: 
+                code = .internalError_DescribeServiceListError
+            case .modifyConfigDataError: 
+                code = .internalError_ModifyConfigDataError
+            case .modifyLogConfigError: 
+                code = .internalError_ModifyLogConfigError
+            case .restartApplicationError: 
+                code = .internalError_RestartApplicationError
+            case .stopApplicationError: 
+                code = .internalError_StopApplicationError
+            case .tagInterfaceError: 
+                code = .internalError_TagInterfaceError
+            case .updateIngressError: 
+                code = .internalError_UpdateIngressError
+            }
+            return TCTemError(code, context: self.context)
         }
-        return TCTemError(code, context: self.context)
-    }
-}
-
-extension TCTemError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

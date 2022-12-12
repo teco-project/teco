@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAsrError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCAsrErrorType {
         enum Code: String {
             case errorConfigure = "InternalError.ErrorConfigure"
             case errorCreateLog = "InternalError.ErrorCreateLog"
@@ -40,8 +40,6 @@ extension TCAsrError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -114,37 +112,36 @@ extension TCAsrError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCAsrError.InternalError: Equatable {
-    public static func == (lhs: TCAsrError.InternalError, rhs: TCAsrError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAsrError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAsrError.InternalError {
-    /// - Returns: ``TCAsrError`` that holds the same error and context.
-    public func toAsrError() -> TCAsrError {
-        guard let code = TCAsrError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAsrError() -> TCAsrError {
+            let code: TCAsrError.Code
+            switch self.error {
+            case .errorConfigure: 
+                code = .internalError_ErrorConfigure
+            case .errorCreateLog: 
+                code = .internalError_ErrorCreateLog
+            case .errorDownFile: 
+                code = .internalError_ErrorDownFile
+            case .errorFailNewprequest: 
+                code = .internalError_ErrorFailNewprequest
+            case .errorFailWritetodb: 
+                code = .internalError_ErrorFailWritetodb
+            case .errorFileCannotopen: 
+                code = .internalError_ErrorFileCannotopen
+            case .errorGetRoute: 
+                code = .internalError_ErrorGetRoute
+            case .errorMakeLogpath: 
+                code = .internalError_ErrorMakeLogpath
+            case .errorRecognize: 
+                code = .internalError_ErrorRecognize
+            case .failAccessDatabase: 
+                code = .internalError_FailAccessDatabase
+            case .failAccessRedis: 
+                code = .internalError_FailAccessRedis
+            case .other: 
+                code = .internalError
+            }
+            return TCAsrError(code, context: self.context)
         }
-        return TCAsrError(code, context: self.context)
-    }
-}
-
-extension TCAsrError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

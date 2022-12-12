@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSoeError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCSoeErrorType {
         enum Code: String {
             case audioProcessingFailed = "InternalError.AudioProcessingFailed"
             case authorizeError = "InternalError.AuthorizeError"
@@ -63,8 +63,6 @@ extension TCSoeError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -252,37 +250,82 @@ extension TCSoeError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCSoeError.InternalError: Equatable {
-    public static func == (lhs: TCSoeError.InternalError, rhs: TCSoeError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSoeError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSoeError.InternalError {
-    /// - Returns: ``TCSoeError`` that holds the same error and context.
-    public func toSoeError() -> TCSoeError {
-        guard let code = TCSoeError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSoeError() -> TCSoeError {
+            let code: TCSoeError.Code
+            switch self.error {
+            case .audioProcessingFailed: 
+                code = .internalError_AudioProcessingFailed
+            case .authorizeError: 
+                code = .internalError_AuthorizeError
+            case .base64DecodeFailed: 
+                code = .internalError_BASE64DecodeFailed
+            case .cannotFindSession: 
+                code = .internalError_CannotFindSession
+            case .failToDecodeVoice: 
+                code = .internalError_FailToDecodeVoice
+            case .ilegalServerResponse: 
+                code = .internalError_IlegalServerResponse
+            case .initStreamNotSupport: 
+                code = .internalError_InitStreamNotSupport
+            case .initStreamUnfinished: 
+                code = .internalError_InitStreamUnfinished
+            case .initialParameterError: 
+                code = .internalError_InitialParameterError
+            case .invalidSeqId: 
+                code = .internalError_InvalidSeqId
+            case .invalidWAVHeader: 
+                code = .internalError_InvalidWAVHeader
+            case .lastSeqUnfinished: 
+                code = .internalError_LastSeqUnfinished
+            case .mp3DecodeFailed: 
+                code = .internalError_MP3DecodeFailed
+            case .needToInit: 
+                code = .internalError_NeedToInit
+            case .noConversationFound: 
+                code = .internalError_NoConversationFound
+            case .noDocInList: 
+                code = .internalError_NoDocInList
+            case .noError: 
+                code = .internalError_NoError
+            case .noInitBeforeEvaluation: 
+                code = .internalError_NoInitBeforeEvaluation
+            case .refTxtEmpty: 
+                code = .internalError_RefTxtEmpty
+            case .refTxtOov: 
+                code = .internalError_RefTxtOov
+            case .refTxtTooLang: 
+                code = .internalError_RefTxtTooLang
+            case .serverInternalError: 
+                code = .internalError_ServerInternalError
+            case .serverOverload: 
+                code = .internalError_ServerOverload
+            case .serviceTimeout: 
+                code = .internalError_ServiceTimeout
+            case .shardNoStartWithOne: 
+                code = .internalError_ShardNoStartWithOne
+            case .streamProcessFail: 
+                code = .internalError_StreamProcessFail
+            case .streamProcessTimeOut: 
+                code = .internalError_StreamProcessTimeOut
+            case .streamingvoicepkgTimeout: 
+                code = .internalError_StreamingvoicepkgTimeout
+            case .timeOut: 
+                code = .internalError_TimeOut
+            case .tooLongPackage: 
+                code = .internalError_TooLongPackage
+            case .vadNotDetectedSpeak: 
+                code = .internalError_VadNotDetectedSpeak
+            case .voiceMsgOversized: 
+                code = .internalError_VoiceMsgOversized
+            case .voiceMsgTooShort: 
+                code = .internalError_VoiceMsgTooShort
+            case .wordLengthTooLong: 
+                code = .internalError_WordLengthTooLong
+            case .other: 
+                code = .internalError
+            }
+            return TCSoeError(code, context: self.context)
         }
-        return TCSoeError(code, context: self.context)
-    }
-}
-
-extension TCSoeError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

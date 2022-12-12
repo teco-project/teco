@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMpsError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCMpsErrorType {
         enum Code: String {
             case audioBitrate = "InvalidParameterValue.AudioBitrate"
             case audioChannel = "InvalidParameterValue.AudioChannel"
@@ -106,8 +106,6 @@ extension TCMpsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -510,37 +508,168 @@ extension TCMpsError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCMpsError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCMpsError.InvalidParameterValue, rhs: TCMpsError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMpsError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMpsError.InvalidParameterValue {
-    /// - Returns: ``TCMpsError`` that holds the same error and context.
-    public func toMpsError() -> TCMpsError {
-        guard let code = TCMpsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMpsError() -> TCMpsError {
+            let code: TCMpsError.Code
+            switch self.error {
+            case .audioBitrate: 
+                code = .invalidParameterValue_AudioBitrate
+            case .audioChannel: 
+                code = .invalidParameterValue_AudioChannel
+            case .audioCodec: 
+                code = .invalidParameterValue_AudioCodec
+            case .audioSampleRate: 
+                code = .invalidParameterValue_AudioSampleRate
+            case .bitrate: 
+                code = .invalidParameterValue_Bitrate
+            case .blockConfidence: 
+                code = .invalidParameterValue_BlockConfidence
+            case .classifcationConfigure: 
+                code = .invalidParameterValue_ClassifcationConfigure
+            case .codec: 
+                code = .invalidParameterValue_Codec
+            case .columnCount: 
+                code = .invalidParameterValue_ColumnCount
+            case .comment: 
+                code = .invalidParameterValue_Comment
+            case .container: 
+                code = .invalidParameterValue_Container
+            case .containerType: 
+                code = .invalidParameterValue_ContainerType
+            case .coordinateOrigin: 
+                code = .invalidParameterValue_CoordinateOrigin
+            case .coverConfigure: 
+                code = .invalidParameterValue_CoverConfigure
+            case .defaultLibraryLabelSet: 
+                code = .invalidParameterValue_DefaultLibraryLabelSet
+            case .definition: 
+                code = .invalidParameterValue_Definition
+            case .definitions: 
+                code = .invalidParameterValue_Definitions
+            case .deleteDefaultTemplate: 
+                code = .invalidParameterValue_DeleteDefaultTemplate
+            case .disableHigherVideoBitrate: 
+                code = .invalidParameterValue_DisableHigherVideoBitrate
+            case .disableHigherVideoResolution: 
+                code = .invalidParameterValue_DisableHigherVideoResolution
+            case .faceDuplicate: 
+                code = .invalidParameterValue_FaceDuplicate
+            case .faceLibrary: 
+                code = .invalidParameterValue_FaceLibrary
+            case .faceScore: 
+                code = .invalidParameterValue_FaceScore
+            case .fillType: 
+                code = .invalidParameterValue_FillType
+            case .format: 
+                code = .invalidParameterValue_Format
+            case .formatWebpLackWidthAndHeight: 
+                code = .invalidParameterValue_FormatWebpLackWidthAndHeight
+            case .formatWebpWidthAndHeightBothZero: 
+                code = .invalidParameterValue_FormatWebpWidthAndHeightBothZero
+            case .fps: 
+                code = .invalidParameterValue_Fps
+            case .frameTagConfigure: 
+                code = .invalidParameterValue_FrameTagConfigure
+            case .functionArg: 
+                code = .invalidParameterValue_FunctionArg
+            case .functionName: 
+                code = .invalidParameterValue_FunctionName
+            case .gop: 
+                code = .invalidParameterValue_Gop
+            case .height: 
+                code = .invalidParameterValue_Height
+            case .imageContent: 
+                code = .invalidParameterValue_ImageContent
+            case .imageTemplate: 
+                code = .invalidParameterValue_ImageTemplate
+            case .invalidContent: 
+                code = .invalidParameterValue_InvalidContent
+            case .invalidOperationType: 
+                code = .invalidParameterValue_InvalidOperationType
+            case .labelSet: 
+                code = .invalidParameterValue_LabelSet
+            case .limit: 
+                code = .invalidParameterValue_Limit
+            case .modifyDefaultTemplate: 
+                code = .invalidParameterValue_ModifyDefaultTemplate
+            case .name: 
+                code = .invalidParameterValue_Name
+            case .notProcessingTask: 
+                code = .invalidParameterValue_NotProcessingTask
+            case .objectLibrary: 
+                code = .invalidParameterValue_ObjectLibrary
+            case .picFormatError: 
+                code = .invalidParameterValue_PicFormatError
+            case .quality: 
+                code = .invalidParameterValue_Quality
+            case .removeAudio: 
+                code = .invalidParameterValue_RemoveAudio
+            case .removeVideo: 
+                code = .invalidParameterValue_RemoveVideo
+            case .repeatType: 
+                code = .invalidParameterValue_RepeatType
+            case .resolution: 
+                code = .invalidParameterValue_Resolution
+            case .resolutionAdaptive: 
+                code = .invalidParameterValue_ResolutionAdaptive
+            case .reviewConfidence: 
+                code = .invalidParameterValue_ReviewConfidence
+            case .rowCount: 
+                code = .invalidParameterValue_RowCount
+            case .sampleInterval: 
+                code = .invalidParameterValue_SampleInterval
+            case .sampleRate: 
+                code = .invalidParameterValue_SampleRate
+            case .sampleType: 
+                code = .invalidParameterValue_SampleType
+            case .sessionContextTooLong: 
+                code = .invalidParameterValue_SessionContextTooLong
+            case .sessionId: 
+                code = .invalidParameterValue_SessionId
+            case .sessionIdTooLong: 
+                code = .invalidParameterValue_SessionIdTooLong
+            case .soundSystem: 
+                code = .invalidParameterValue_SoundSystem
+            case .srcFile: 
+                code = .invalidParameterValue_SrcFile
+            case .subtitleFormat: 
+                code = .invalidParameterValue_SubtitleFormat
+            case .svgTemplate: 
+                code = .invalidParameterValue_SvgTemplate
+            case .svgTemplateHeight: 
+                code = .invalidParameterValue_SvgTemplateHeight
+            case .svgTemplateWidth: 
+                code = .invalidParameterValue_SvgTemplateWidth
+            case .`switch`: 
+                code = .invalidParameterValue_Switch
+            case .tagConfigure: 
+                code = .invalidParameterValue_TagConfigure
+            case .taskId: 
+                code = .invalidParameterValue_TaskId
+            case .tehdType: 
+                code = .invalidParameterValue_TEHDType
+            case .textAlpha: 
+                code = .invalidParameterValue_TextAlpha
+            case .textTemplate: 
+                code = .invalidParameterValue_TextTemplate
+            case .type: 
+                code = .invalidParameterValue_Type
+            case .userDefineLibraryLabelSet: 
+                code = .invalidParameterValue_UserDefineLibraryLabelSet
+            case .videoBitrate: 
+                code = .invalidParameterValue_VideoBitrate
+            case .videoCodec: 
+                code = .invalidParameterValue_VideoCodec
+            case .width: 
+                code = .invalidParameterValue_Width
+            case .xPos: 
+                code = .invalidParameterValue_XPos
+            case .yPos: 
+                code = .invalidParameterValue_YPos
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCMpsError(code, context: self.context)
         }
-        return TCMpsError(code, context: self.context)
-    }
-}
-
-extension TCMpsError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

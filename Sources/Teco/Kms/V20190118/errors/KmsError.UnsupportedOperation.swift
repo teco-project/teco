@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCKmsError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCKmsErrorType {
         enum Code: String {
             case externalCmkCanNotRotate = "UnsupportedOperation.ExternalCmkCanNotRotate"
             case notExternalCmk = "UnsupportedOperation.NotExternalCmk"
@@ -33,8 +33,6 @@ extension TCKmsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,22 @@ extension TCKmsError {
         public static var unsupportedKeyUsageInCurrentRegion: UnsupportedOperation {
             UnsupportedOperation(.unsupportedKeyUsageInCurrentRegion)
         }
-    }
-}
-
-extension TCKmsError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCKmsError.UnsupportedOperation, rhs: TCKmsError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCKmsError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCKmsError.UnsupportedOperation {
-    /// - Returns: ``TCKmsError`` that holds the same error and context.
-    public func toKmsError() -> TCKmsError {
-        guard let code = TCKmsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asKmsError() -> TCKmsError {
+            let code: TCKmsError.Code
+            switch self.error {
+            case .externalCmkCanNotRotate: 
+                code = .unsupportedOperation_ExternalCmkCanNotRotate
+            case .notExternalCmk: 
+                code = .unsupportedOperation_NotExternalCmk
+            case .notUserCreatedCmk: 
+                code = .unsupportedOperation_NotUserCreatedCmk
+            case .serviceTemporaryUnavailable: 
+                code = .unsupportedOperation_ServiceTemporaryUnavailable
+            case .unsupportedKeyUsageInCurrentRegion: 
+                code = .unsupportedOperation_UnsupportedKeyUsageInCurrentRegion
+            }
+            return TCKmsError(code, context: self.context)
         }
-        return TCKmsError(code, context: self.context)
-    }
-}
-
-extension TCKmsError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

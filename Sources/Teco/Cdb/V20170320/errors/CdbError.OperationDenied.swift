@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCdbError {
-    public struct OperationDenied: TCErrorType {
+    public struct OperationDenied: TCCdbErrorType {
         enum Code: String {
             case actionInProcess = "OperationDenied.ActionInProcess"
             case actionNotSupport = "OperationDenied.ActionNotSupport"
@@ -69,8 +69,6 @@ extension TCCdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -286,37 +284,94 @@ extension TCCdbError {
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-    }
-}
-
-extension TCCdbError.OperationDenied: Equatable {
-    public static func == (lhs: TCCdbError.OperationDenied, rhs: TCCdbError.OperationDenied) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCdbError.OperationDenied: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCdbError.OperationDenied {
-    /// - Returns: ``TCCdbError`` that holds the same error and context.
-    public func toCdbError() -> TCCdbError {
-        guard let code = TCCdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCdbError() -> TCCdbError {
+            let code: TCCdbError.Code
+            switch self.error {
+            case .actionInProcess: 
+                code = .operationDenied_ActionInProcess
+            case .actionNotSupport: 
+                code = .operationDenied_ActionNotSupport
+            case .atLeastAllRuleAuditPolicyError: 
+                code = .operationDenied_AtLeastAllRuleAuditPolicyError
+            case .atLeastAuditPolicyError: 
+                code = .operationDenied_AtLeastAuditPolicyError
+            case .auditFileOverQuotaError: 
+                code = .operationDenied_AuditFileOverQuotaError
+            case .auditPolicyConflictError: 
+                code = .operationDenied_AuditPolicyConflictError
+            case .auditPolicyExistError: 
+                code = .operationDenied_AuditPolicyExistError
+            case .auditPolicyNotExistError: 
+                code = .operationDenied_AuditPolicyNotExistError
+            case .auditPolicyOverQuotaError: 
+                code = .operationDenied_AuditPolicyOverQuotaError
+            case .auditRuleDeleteError: 
+                code = .operationDenied_AuditRuleDeleteError
+            case .auditRuleExistError: 
+                code = .operationDenied_AuditRuleExistError
+            case .auditRuleHasBind: 
+                code = .operationDenied_AuditRuleHasBind
+            case .auditRuleNotExistError: 
+                code = .operationDenied_AuditRuleNotExistError
+            case .auditStatusError: 
+                code = .operationDenied_AuditStatusError
+            case .auditTaskConflictError: 
+                code = .operationDenied_AuditTaskConflictError
+            case .conflictRoStatus: 
+                code = .operationDenied_ConflictRoStatus
+            case .conflictStatus: 
+                code = .operationDenied_ConflictStatus
+            case .dbBrainPolicyConflict: 
+                code = .operationDenied_DBBrainPolicyConflict
+            case .delayReplicationRunning: 
+                code = .operationDenied_DelayReplicationRunning
+            case .deleteRootAccountError: 
+                code = .operationDenied_DeleteRootAccountError
+            case .functionDenied: 
+                code = .operationDenied_FunctionDenied
+            case .instTypeNotSupport: 
+                code = .operationDenied_InstTypeNotSupport
+            case .instanceLockerConflict: 
+                code = .operationDenied_InstanceLockerConflict
+            case .instanceStatusError: 
+                code = .operationDenied_InstanceStatusError
+            case .instanceTaskRunning: 
+                code = .operationDenied_InstanceTaskRunning
+            case .instanceTaskStatusError: 
+                code = .operationDenied_InstanceTaskStatusError
+            case .instanceUnsupportedOperateError: 
+                code = .operationDenied_InstanceUnsupportedOperateError
+            case .modifyAuditStatusError: 
+                code = .operationDenied_ModifyAuditStatusError
+            case .notSupportBasic: 
+                code = .operationDenied_NotSupportBasic
+            case .notSupportModifyLocalRootHostError: 
+                code = .operationDenied_NotSupportModifyLocalRootHostError
+            case .otherOderInProcess: 
+                code = .operationDenied_OtherOderInProcess
+            case .overQuota: 
+                code = .operationDenied_OverQuota
+            case .proxyUpgradeTaskStatusError: 
+                code = .operationDenied_ProxyUpgradeTaskStatusError
+            case .resultOverLimit: 
+                code = .operationDenied_ResultOverLimit
+            case .subAccountOperationDenied: 
+                code = .operationDenied_SubAccountOperationDenied
+            case .unSupportRefundError: 
+                code = .operationDenied_UnSupportRefundError
+            case .unsupportOpenAuditError: 
+                code = .operationDenied_UnsupportOpenAuditError
+            case .userHasNoStrategy: 
+                code = .operationDenied_UserHasNoStrategy
+            case .wrongPassword: 
+                code = .operationDenied_WrongPassword
+            case .wrongStatus: 
+                code = .operationDenied_WrongStatus
+            case .other: 
+                code = .operationDenied
+            }
+            return TCCdbError(code, context: self.context)
         }
-        return TCCdbError(code, context: self.context)
-    }
-}
-
-extension TCCdbError.OperationDenied {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAaError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCAaErrorType {
         enum Code: String {
             case authFailed = "UnauthorizedOperation.AuthFailed"
         }
@@ -29,8 +29,6 @@ extension TCAaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCAaError {
         public static var authFailed: UnauthorizedOperation {
             UnauthorizedOperation(.authFailed)
         }
-    }
-}
-
-extension TCAaError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCAaError.UnauthorizedOperation, rhs: TCAaError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAaError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAaError.UnauthorizedOperation {
-    /// - Returns: ``TCAaError`` that holds the same error and context.
-    public func toAaError() -> TCAaError {
-        guard let code = TCAaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAaError() -> TCAaError {
+            let code: TCAaError.Code
+            switch self.error {
+            case .authFailed: 
+                code = .unauthorizedOperation_AuthFailed
+            }
+            return TCAaError(code, context: self.context)
         }
-        return TCAaError(code, context: self.context)
-    }
-}
-
-extension TCAaError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

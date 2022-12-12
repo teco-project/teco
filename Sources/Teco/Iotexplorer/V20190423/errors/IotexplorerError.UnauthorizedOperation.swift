@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotexplorerError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCIotexplorerErrorType {
         enum Code: String {
             case appNoPermission = "UnauthorizedOperation.AppNoPermission"
             case appNoPermissionToStudioProduct = "UnauthorizedOperation.APPNoPermissionToStudioProduct"
@@ -43,8 +43,6 @@ extension TCIotexplorerError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -132,37 +130,42 @@ extension TCIotexplorerError {
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-    }
-}
-
-extension TCIotexplorerError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCIotexplorerError.UnauthorizedOperation, rhs: TCIotexplorerError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotexplorerError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotexplorerError.UnauthorizedOperation {
-    /// - Returns: ``TCIotexplorerError`` that holds the same error and context.
-    public func toIotexplorerError() -> TCIotexplorerError {
-        guard let code = TCIotexplorerError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotexplorerError() -> TCIotexplorerError {
+            let code: TCIotexplorerError.Code
+            switch self.error {
+            case .appNoPermission: 
+                code = .unauthorizedOperation_AppNoPermission
+            case .appNoPermissionToStudioProduct: 
+                code = .unauthorizedOperation_APPNoPermissionToStudioProduct
+            case .deviceHasAlreadyBindGateway: 
+                code = .unauthorizedOperation_DeviceHasAlreadyBindGateway
+            case .deviceIsNotEnabled: 
+                code = .unauthorizedOperation_DeviceIsNotEnabled
+            case .gatewayHasBindedDevices: 
+                code = .unauthorizedOperation_GatewayHasBindedDevices
+            case .noPermissionToFamily: 
+                code = .unauthorizedOperation_NoPermissionToFamily
+            case .noPermissionToInstance: 
+                code = .unauthorizedOperation_NoPermissionToInstance
+            case .noPermissionToProject: 
+                code = .unauthorizedOperation_NoPermissionToProject
+            case .noPermissionToStudioFence: 
+                code = .unauthorizedOperation_NoPermissionToStudioFence
+            case .noPermissionToStudioInstance: 
+                code = .unauthorizedOperation_NoPermissionToStudioInstance
+            case .noPermissionToStudioProduct: 
+                code = .unauthorizedOperation_NoPermissionToStudioProduct
+            case .permissionDenied: 
+                code = .unauthorizedOperation_PermissionDenied
+            case .productNotSupportPSK: 
+                code = .unauthorizedOperation_ProductNotSupportPSK
+            case .userLicenseExceedLimit: 
+                code = .unauthorizedOperation_UserLicenseExceedLimit
+            case .other: 
+                code = .unauthorizedOperation
+            }
+            return TCIotexplorerError(code, context: self.context)
         }
-        return TCIotexplorerError(code, context: self.context)
-    }
-}
-
-extension TCIotexplorerError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

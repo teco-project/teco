@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCZjError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCZjErrorType {
         enum Code: String {
             case smsSignCreate = "FailedOperation.SmsSignCreate"
             case smsTemplateExists = "FailedOperation.SmsTemplateExists"
@@ -32,8 +32,6 @@ extension TCZjError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCZjError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCZjError.FailedOperation: Equatable {
-    public static func == (lhs: TCZjError.FailedOperation, rhs: TCZjError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCZjError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCZjError.FailedOperation {
-    /// - Returns: ``TCZjError`` that holds the same error and context.
-    public func toZjError() -> TCZjError {
-        guard let code = TCZjError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asZjError() -> TCZjError {
+            let code: TCZjError.Code
+            switch self.error {
+            case .smsSignCreate: 
+                code = .failedOperation_SmsSignCreate
+            case .smsTemplateExists: 
+                code = .failedOperation_SmsTemplateExists
+            case .templateAmountIsOverLimit: 
+                code = .failedOperation_TemplateAmountIsOverLimit
+            case .other: 
+                code = .failedOperation
+            }
+            return TCZjError(code, context: self.context)
         }
-        return TCZjError(code, context: self.context)
-    }
-}
-
-extension TCZjError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCKmsError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCKmsErrorType {
         enum Code: String {
             case cmkLimitExceeded = "LimitExceeded.CmkLimitExceeded"
             case fingerprintsLimitExceeded = "LimitExceeded.FingerprintsLimitExceeded"
@@ -31,8 +31,6 @@ extension TCKmsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCKmsError {
         public static var keyLimitExceeded: LimitExceeded {
             LimitExceeded(.keyLimitExceeded)
         }
-    }
-}
-
-extension TCKmsError.LimitExceeded: Equatable {
-    public static func == (lhs: TCKmsError.LimitExceeded, rhs: TCKmsError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCKmsError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCKmsError.LimitExceeded {
-    /// - Returns: ``TCKmsError`` that holds the same error and context.
-    public func toKmsError() -> TCKmsError {
-        guard let code = TCKmsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asKmsError() -> TCKmsError {
+            let code: TCKmsError.Code
+            switch self.error {
+            case .cmkLimitExceeded: 
+                code = .limitExceeded_CmkLimitExceeded
+            case .fingerprintsLimitExceeded: 
+                code = .limitExceeded_FingerprintsLimitExceeded
+            case .keyLimitExceeded: 
+                code = .limitExceeded_KeyLimitExceeded
+            }
+            return TCKmsError(code, context: self.context)
         }
-        return TCKmsError(code, context: self.context)
-    }
-}
-
-extension TCKmsError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

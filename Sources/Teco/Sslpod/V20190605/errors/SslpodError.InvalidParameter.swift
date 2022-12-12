@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSslpodError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCSslpodErrorType {
         enum Code: String {
             case invalidDomain = "InvalidParameter.InvalidDomain"
             case invalidIP = "InvalidParameter.InvalidIP"
@@ -34,8 +34,6 @@ extension TCSslpodError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -78,37 +76,24 @@ extension TCSslpodError {
         public static var tooManyTag: InvalidParameter {
             InvalidParameter(.tooManyTag)
         }
-    }
-}
-
-extension TCSslpodError.InvalidParameter: Equatable {
-    public static func == (lhs: TCSslpodError.InvalidParameter, rhs: TCSslpodError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSslpodError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSslpodError.InvalidParameter {
-    /// - Returns: ``TCSslpodError`` that holds the same error and context.
-    public func toSslpodError() -> TCSslpodError {
-        guard let code = TCSslpodError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSslpodError() -> TCSslpodError {
+            let code: TCSslpodError.Code
+            switch self.error {
+            case .invalidDomain: 
+                code = .invalidParameter_InvalidDomain
+            case .invalidIP: 
+                code = .invalidParameter_InvalidIP
+            case .invalidPort: 
+                code = .invalidParameter_InvalidPort
+            case .invalidServerType: 
+                code = .invalidParameter_InvalidServerType
+            case .invalidTagName: 
+                code = .invalidParameter_InvalidTagName
+            case .tooManyTag: 
+                code = .invalidParameter_TooManyTag
+            }
+            return TCSslpodError(code, context: self.context)
         }
-        return TCSslpodError(code, context: self.context)
-    }
-}
-
-extension TCSslpodError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

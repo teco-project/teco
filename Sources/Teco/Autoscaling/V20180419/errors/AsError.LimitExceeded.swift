@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAsError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCAsErrorType {
         enum Code: String {
             case afterAttachLbLimitExceeded = "LimitExceeded.AfterAttachLbLimitExceeded"
             case autoScalingGroupLimitExceeded = "LimitExceeded.AutoScalingGroupLimitExceeded"
@@ -38,8 +38,6 @@ extension TCAsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -104,37 +102,32 @@ extension TCAsError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCAsError.LimitExceeded: Equatable {
-    public static func == (lhs: TCAsError.LimitExceeded, rhs: TCAsError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAsError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAsError.LimitExceeded {
-    /// - Returns: ``TCAsError`` that holds the same error and context.
-    public func toAsError() -> TCAsError {
-        guard let code = TCAsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAsError() -> TCAsError {
+            let code: TCAsError.Code
+            switch self.error {
+            case .afterAttachLbLimitExceeded: 
+                code = .limitExceeded_AfterAttachLbLimitExceeded
+            case .autoScalingGroupLimitExceeded: 
+                code = .limitExceeded_AutoScalingGroupLimitExceeded
+            case .desiredCapacityLimitExceeded: 
+                code = .limitExceeded_DesiredCapacityLimitExceeded
+            case .filterValuesTooLong: 
+                code = .limitExceeded_FilterValuesTooLong
+            case .launchConfigurationQuotaNotEnough: 
+                code = .limitExceeded_LaunchConfigurationQuotaNotEnough
+            case .maxSizeLimitExceeded: 
+                code = .limitExceeded_MaxSizeLimitExceeded
+            case .minSizeLimitExceeded: 
+                code = .limitExceeded_MinSizeLimitExceeded
+            case .quotaNotEnough: 
+                code = .limitExceeded_QuotaNotEnough
+            case .scheduledActionLimitExceeded: 
+                code = .limitExceeded_ScheduledActionLimitExceeded
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCAsError(code, context: self.context)
         }
-        return TCAsError(code, context: self.context)
-    }
-}
-
-extension TCAsError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

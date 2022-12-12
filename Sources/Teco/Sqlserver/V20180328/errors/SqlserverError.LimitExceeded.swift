@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSqlserverError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCSqlserverErrorType {
         enum Code: String {
             case tooManyDB = "LimitExceeded.TooManyDB"
         }
@@ -29,8 +29,6 @@ extension TCSqlserverError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCSqlserverError {
         public static var tooManyDB: LimitExceeded {
             LimitExceeded(.tooManyDB)
         }
-    }
-}
-
-extension TCSqlserverError.LimitExceeded: Equatable {
-    public static func == (lhs: TCSqlserverError.LimitExceeded, rhs: TCSqlserverError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSqlserverError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSqlserverError.LimitExceeded {
-    /// - Returns: ``TCSqlserverError`` that holds the same error and context.
-    public func toSqlserverError() -> TCSqlserverError {
-        guard let code = TCSqlserverError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSqlserverError() -> TCSqlserverError {
+            let code: TCSqlserverError.Code
+            switch self.error {
+            case .tooManyDB: 
+                code = .limitExceeded_TooManyDB
+            }
+            return TCSqlserverError(code, context: self.context)
         }
-        return TCSqlserverError(code, context: self.context)
-    }
-}
-
-extension TCSqlserverError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCdnError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCCdnErrorType {
         enum Code: String {
             case accessPortOpenedHttps = "InvalidParameter.AccessPortOpenedHttps"
             case bandLimitRequiredMainland = "InvalidParameter.BandLimitRequiredMainland"
@@ -92,8 +92,6 @@ extension TCCdnError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -426,37 +424,140 @@ extension TCCdnError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCCdnError.InvalidParameter: Equatable {
-    public static func == (lhs: TCCdnError.InvalidParameter, rhs: TCCdnError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCdnError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCdnError.InvalidParameter {
-    /// - Returns: ``TCCdnError`` that holds the same error and context.
-    public func toCdnError() -> TCCdnError {
-        guard let code = TCCdnError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCdnError() -> TCCdnError {
+            let code: TCCdnError.Code
+            switch self.error {
+            case .accessPortOpenedHttps: 
+                code = .invalidParameter_AccessPortOpenedHttps
+            case .bandLimitRequiredMainland: 
+                code = .invalidParameter_BandLimitRequiredMainland
+            case .bandwidthAlertCounterMeasureConflictOriginType: 
+                code = .invalidParameter_BandwidthAlertCounterMeasureConflictOriginType
+            case .camResourceBelongToDifferentUser: 
+                code = .invalidParameter_CamResourceBelongToDifferentUser
+            case .camResourceSixStageError: 
+                code = .invalidParameter_CamResourceSixStageError
+            case .camTagKeyAlreadyAttached: 
+                code = .invalidParameter_CamTagKeyAlreadyAttached
+            case .camTagKeyIllegal: 
+                code = .invalidParameter_CamTagKeyIllegal
+            case .camTagKeyNotExist: 
+                code = .invalidParameter_CamTagKeyNotExist
+            case .camTagValueIllegal: 
+                code = .invalidParameter_CamTagValueIllegal
+            case .cdnCertInfoNotFound: 
+                code = .invalidParameter_CdnCertInfoNotFound
+            case .cdnCertNoCertInfo: 
+                code = .invalidParameter_CdnCertNoCertInfo
+            case .cdnCertNotPem: 
+                code = .invalidParameter_CdnCertNotPem
+            case .cdnClsDuplicateTopic: 
+                code = .invalidParameter_CdnClsDuplicateTopic
+            case .cdnClsTopicNameInvalid: 
+                code = .invalidParameter_CdnClsTopicNameInvalid
+            case .cdnClsTopicNotExist: 
+                code = .invalidParameter_CdnClsTopicNotExist
+            case .cdnConfigInvalidCache: 
+                code = .invalidParameter_CdnConfigInvalidCache
+            case .cdnConfigInvalidHost: 
+                code = .invalidParameter_CdnConfigInvalidHost
+            case .cdnConfigInvalidTag: 
+                code = .invalidParameter_CdnConfigInvalidTag
+            case .cdnConfigTagRequired: 
+                code = .invalidParameter_CdnConfigTagRequired
+            case .cdnHostHasSpecialConfig: 
+                code = .invalidParameter_CdnHostHasSpecialConfig
+            case .cdnHostInternalHost: 
+                code = .invalidParameter_CdnHostInternalHost
+            case .cdnHostInvalidMiddleConfig: 
+                code = .invalidParameter_CdnHostInvalidMiddleConfig
+            case .cdnHostInvalidParam: 
+                code = .invalidParameter_CdnHostInvalidParam
+            case .cdnHostInvalidStatus: 
+                code = .invalidParameter_CdnHostInvalidStatus
+            case .cdnHostIsCosDefaultAccess: 
+                code = .invalidParameter_CdnHostIsCosDefaultAccess
+            case .cdnHostTooLongHost: 
+                code = .invalidParameter_CdnHostTooLongHost
+            case .cdnInterfaceError: 
+                code = .invalidParameter_CdnInterfaceError
+            case .cdnInvalidParamInterval: 
+                code = .invalidParameter_CdnInvalidParamInterval
+            case .cdnInvalidParamMetric: 
+                code = .invalidParameter_CdnInvalidParamMetric
+            case .cdnInvalidParamServiceType: 
+                code = .invalidParameter_CdnInvalidParamServiceType
+            case .cdnKeyRulesExcludeCustomRequiresFullLego: 
+                code = .invalidParameter_CdnKeyRulesExcludeCustomRequiresFullLego
+            case .cdnKeyRulesInvalidQueryStringValue: 
+                code = .invalidParameter_CdnKeyRulesInvalidQueryStringValue
+            case .cdnParamError: 
+                code = .invalidParameter_CdnParamError
+            case .cdnPurgeWildcardNotAllowed: 
+                code = .invalidParameter_CdnPurgeWildcardNotAllowed
+            case .cdnPushWildcardNotAllowed: 
+                code = .invalidParameter_CdnPushWildcardNotAllowed
+            case .cdnStatInvalidDate: 
+                code = .invalidParameter_CdnStatInvalidDate
+            case .cdnStatInvalidFilter: 
+                code = .invalidParameter_CdnStatInvalidFilter
+            case .cdnStatInvalidMetric: 
+                code = .invalidParameter_CdnStatInvalidMetric
+            case .cdnStatInvalidProjectId: 
+                code = .invalidParameter_CdnStatInvalidProjectId
+            case .cdnStatTooManyDomains: 
+                code = .invalidParameter_CdnStatTooManyDomains
+            case .cdnStatusInvalidDomain: 
+                code = .invalidParameter_CDNStatusInvalidDomain
+            case .cdnUrlExceedLength: 
+                code = .invalidParameter_CdnUrlExceedLength
+            case .clsIndexConflict: 
+                code = .invalidParameter_ClsIndexConflict
+            case .clsIndexRuleEmpty: 
+                code = .invalidParameter_ClsIndexRuleEmpty
+            case .clsInvalidContent: 
+                code = .invalidParameter_ClsInvalidContent
+            case .clsInvalidContentType: 
+                code = .invalidParameter_ClsInvalidContentType
+            case .clsInvalidParam: 
+                code = .invalidParameter_ClsInvalidParam
+            case .clsLogsetConflict: 
+                code = .invalidParameter_ClsLogsetConflict
+            case .clsLogsetEmpty: 
+                code = .invalidParameter_ClsLogsetEmpty
+            case .clsLogsetNotEmpty: 
+                code = .invalidParameter_ClsLogsetNotEmpty
+            case .clsMissingAuthorization: 
+                code = .invalidParameter_ClsMissingAuthorization
+            case .clsMissingContent: 
+                code = .invalidParameter_ClsMissingContent
+            case .clsSyntaxError: 
+                code = .invalidParameter_ClsSyntaxError
+            case .clsTopicClosed: 
+                code = .invalidParameter_ClsTopicClosed
+            case .clsTopicConflict: 
+                code = .invalidParameter_ClsTopicConflict
+            case .ecdnInterfaceError: 
+                code = .invalidParameter_EcdnInterfaceError
+            case .paramError: 
+                code = .invalidParameter_ParamError
+            case .pathRegexTooManySubPattern: 
+                code = .invalidParameter_PathRegexTooManySubPattern
+            case .remoteAuthInvalidPlatform: 
+                code = .invalidParameter_RemoteAuthInvalidPlatform
+            case .remoteAuthInvalidProtocol: 
+                code = .invalidParameter_RemoteAuthInvalidProtocol
+            case .scdnLogTaskExpired: 
+                code = .invalidParameter_ScdnLogTaskExpired
+            case .scdnLogTaskNotFoundOrNotFail: 
+                code = .invalidParameter_ScdnLogTaskNotFoundOrNotFail
+            case .scdnLogTaskTimeRangeInvalid: 
+                code = .invalidParameter_ScdnLogTaskTimeRangeInvalid
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCCdnError(code, context: self.context)
         }
-        return TCCdnError(code, context: self.context)
-    }
-}
-
-extension TCCdnError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

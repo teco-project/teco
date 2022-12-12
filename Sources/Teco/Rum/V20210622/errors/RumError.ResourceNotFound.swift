@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCRumError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCRumErrorType {
         enum Code: String {
             case noInstance = "ResourceNotFound.NoInstance"
             case other = "ResourceNotFound"
@@ -30,8 +30,6 @@ extension TCRumError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCRumError {
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-    }
-}
-
-extension TCRumError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCRumError.ResourceNotFound, rhs: TCRumError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCRumError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCRumError.ResourceNotFound {
-    /// - Returns: ``TCRumError`` that holds the same error and context.
-    public func toRumError() -> TCRumError {
-        guard let code = TCRumError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asRumError() -> TCRumError {
+            let code: TCRumError.Code
+            switch self.error {
+            case .noInstance: 
+                code = .resourceNotFound_NoInstance
+            case .other: 
+                code = .resourceNotFound
+            }
+            return TCRumError(code, context: self.context)
         }
-        return TCRumError(code, context: self.context)
-    }
-}
-
-extension TCRumError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

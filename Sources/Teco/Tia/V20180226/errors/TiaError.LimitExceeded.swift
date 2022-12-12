@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTiaError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCTiaErrorType {
         enum Code: String {
             case function = "LimitExceeded.Function"
             case memory = "LimitExceeded.Memory"
@@ -31,8 +31,6 @@ extension TCTiaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCTiaError {
         public static var timeout: LimitExceeded {
             LimitExceeded(.timeout)
         }
-    }
-}
-
-extension TCTiaError.LimitExceeded: Equatable {
-    public static func == (lhs: TCTiaError.LimitExceeded, rhs: TCTiaError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTiaError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTiaError.LimitExceeded {
-    /// - Returns: ``TCTiaError`` that holds the same error and context.
-    public func toTiaError() -> TCTiaError {
-        guard let code = TCTiaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTiaError() -> TCTiaError {
+            let code: TCTiaError.Code
+            switch self.error {
+            case .function: 
+                code = .limitExceeded_Function
+            case .memory: 
+                code = .limitExceeded_Memory
+            case .timeout: 
+                code = .limitExceeded_Timeout
+            }
+            return TCTiaError(code, context: self.context)
         }
-        return TCTiaError(code, context: self.context)
-    }
-}
-
-extension TCTiaError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

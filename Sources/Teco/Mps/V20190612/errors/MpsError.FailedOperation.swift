@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMpsError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCMpsErrorType {
         enum Code: String {
             case bucketNotifyAlreadyExist = "FailedOperation.BucketNotifyAlreadyExist"
             case cosStatusInavlid = "FailedOperation.CosStatusInavlid"
@@ -33,8 +33,6 @@ extension TCMpsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,22 @@ extension TCMpsError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCMpsError.FailedOperation: Equatable {
-    public static func == (lhs: TCMpsError.FailedOperation, rhs: TCMpsError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMpsError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMpsError.FailedOperation {
-    /// - Returns: ``TCMpsError`` that holds the same error and context.
-    public func toMpsError() -> TCMpsError {
-        guard let code = TCMpsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMpsError() -> TCMpsError {
+            let code: TCMpsError.Code
+            switch self.error {
+            case .bucketNotifyAlreadyExist: 
+                code = .failedOperation_BucketNotifyAlreadyExist
+            case .cosStatusInavlid: 
+                code = .failedOperation_CosStatusInavlid
+            case .invalidMpsUser: 
+                code = .failedOperation_InvalidMpsUser
+            case .invalidUser: 
+                code = .failedOperation_InvalidUser
+            case .other: 
+                code = .failedOperation
+            }
+            return TCMpsError(code, context: self.context)
         }
-        return TCMpsError(code, context: self.context)
-    }
-}
-
-extension TCMpsError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

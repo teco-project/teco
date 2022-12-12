@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTcssError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCTcssErrorType {
         enum Code: String {
             case dataNotFound = "InvalidParameterValue.DataNotFound"
             case dataRange = "InvalidParameterValue.DataRange"
@@ -32,8 +32,6 @@ extension TCTcssError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCTcssError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCTcssError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCTcssError.InvalidParameterValue, rhs: TCTcssError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTcssError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTcssError.InvalidParameterValue {
-    /// - Returns: ``TCTcssError`` that holds the same error and context.
-    public func toTcssError() -> TCTcssError {
-        guard let code = TCTcssError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTcssError() -> TCTcssError {
+            let code: TCTcssError.Code
+            switch self.error {
+            case .dataNotFound: 
+                code = .invalidParameterValue_DataNotFound
+            case .dataRange: 
+                code = .invalidParameterValue_DataRange
+            case .lengthLimit: 
+                code = .invalidParameterValue_LengthLimit
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCTcssError(code, context: self.context)
         }
-        return TCTcssError(code, context: self.context)
-    }
-}
-
-extension TCTcssError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

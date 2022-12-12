@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCmeError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCCmeErrorType {
         enum Code: String {
             case billItemLiveDispatchDuration = "LimitExceeded.BillItemLiveDispatchDuration"
             case billItemLiveDispatchMaxCount = "LimitExceeded.BillItemLiveDispatchMaxCount"
@@ -33,8 +33,6 @@ extension TCCmeError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -80,37 +78,22 @@ extension TCCmeError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCCmeError.LimitExceeded: Equatable {
-    public static func == (lhs: TCCmeError.LimitExceeded, rhs: TCCmeError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCmeError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCmeError.LimitExceeded {
-    /// - Returns: ``TCCmeError`` that holds the same error and context.
-    public func toCmeError() -> TCCmeError {
-        guard let code = TCCmeError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCmeError() -> TCCmeError {
+            let code: TCCmeError.Code
+            switch self.error {
+            case .billItemLiveDispatchDuration: 
+                code = .limitExceeded_BillItemLiveDispatchDuration
+            case .billItemLiveDispatchMaxCount: 
+                code = .limitExceeded_BillItemLiveDispatchMaxCount
+            case .billItemStorage: 
+                code = .limitExceeded_BillItemStorage
+            case .billItemVideoEditExportDuration: 
+                code = .limitExceeded_BillItemVideoEditExportDuration
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCCmeError(code, context: self.context)
         }
-        return TCCmeError(code, context: self.context)
-    }
-}
-
-extension TCCmeError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

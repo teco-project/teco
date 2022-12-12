@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotcloudError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCIotcloudErrorType {
         enum Code: String {
             case caAlreadyBindProduct = "LimitExceeded.CAAlreadyBindProduct"
             case caCertNameRepeat = "LimitExceeded.CACertNameRepeat"
@@ -38,8 +38,6 @@ extension TCIotcloudError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -102,37 +100,32 @@ extension TCIotcloudError {
         public static var topicPolicyExceedLimit: LimitExceeded {
             LimitExceeded(.topicPolicyExceedLimit)
         }
-    }
-}
-
-extension TCIotcloudError.LimitExceeded: Equatable {
-    public static func == (lhs: TCIotcloudError.LimitExceeded, rhs: TCIotcloudError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotcloudError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotcloudError.LimitExceeded {
-    /// - Returns: ``TCIotcloudError`` that holds the same error and context.
-    public func toIotcloudError() -> TCIotcloudError {
-        guard let code = TCIotcloudError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotcloudError() -> TCIotcloudError {
+            let code: TCIotcloudError.Code
+            switch self.error {
+            case .caAlreadyBindProduct: 
+                code = .limitExceeded_CAAlreadyBindProduct
+            case .caCertNameRepeat: 
+                code = .limitExceeded_CACertNameRepeat
+            case .caCertNotSupport: 
+                code = .limitExceeded_CACertNotSupport
+            case .caRepeat: 
+                code = .limitExceeded_CARepeat
+            case .deviceExceedLimit: 
+                code = .limitExceeded_DeviceExceedLimit
+            case .firmwareExceedLimit: 
+                code = .limitExceeded_FirmwareExceedLimit
+            case .messageSaved: 
+                code = .limitExceeded_MessageSaved
+            case .offlineMessageExceedLimit: 
+                code = .limitExceeded_OfflineMessageExceedLimit
+            case .productExceedLimit: 
+                code = .limitExceeded_ProductExceedLimit
+            case .topicPolicyExceedLimit: 
+                code = .limitExceeded_TopicPolicyExceedLimit
+            }
+            return TCIotcloudError(code, context: self.context)
         }
-        return TCIotcloudError(code, context: self.context)
-    }
-}
-
-extension TCIotcloudError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMonitorError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCMonitorErrorType {
         enum Code: String {
             case accessSTSFail = "FailedOperation.AccessSTSFail"
             case accessTKEFail = "FailedOperation.AccessTKEFail"
@@ -74,8 +74,6 @@ extension TCMonitorError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -317,37 +315,104 @@ extension TCMonitorError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCMonitorError.FailedOperation: Equatable {
-    public static func == (lhs: TCMonitorError.FailedOperation, rhs: TCMonitorError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMonitorError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMonitorError.FailedOperation {
-    /// - Returns: ``TCMonitorError`` that holds the same error and context.
-    public func toMonitorError() -> TCMonitorError {
-        guard let code = TCMonitorError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMonitorError() -> TCMonitorError {
+            let code: TCMonitorError.Code
+            switch self.error {
+            case .accessSTSFail: 
+                code = .failedOperation_AccessSTSFail
+            case .accessTKEFail: 
+                code = .failedOperation_AccessTKEFail
+            case .accessTagFail: 
+                code = .failedOperation_AccessTagFail
+            case .agentNotAllowed: 
+                code = .failedOperation_AgentNotAllowed
+            case .agentVersionNotSupported: 
+                code = .failedOperation_AgentVersionNotSupported
+            case .agentsNotInUninstallStage: 
+                code = .failedOperation_AgentsNotInUninstallStage
+            case .alertFilterRuleDeleteFailed: 
+                code = .failedOperation_AlertFilterRuleDeleteFailed
+            case .alertPolicyCreateFailed: 
+                code = .failedOperation_AlertPolicyCreateFailed
+            case .alertPolicyDeleteFailed: 
+                code = .failedOperation_AlertPolicyDeleteFailed
+            case .alertPolicyDescribeFailed: 
+                code = .failedOperation_AlertPolicyDescribeFailed
+            case .alertPolicyModifyFailed: 
+                code = .failedOperation_AlertPolicyModifyFailed
+            case .alertTriggerRuleDeleteFailed: 
+                code = .failedOperation_AlertTriggerRuleDeleteFailed
+            case .badYamlFormat: 
+                code = .failedOperation_BadYamlFormat
+            case .createInstance: 
+                code = .failedOperation_CreateInstance
+            case .createInstanceLimited: 
+                code = .failedOperation_CreateInstanceLimited
+            case .dataColumnNotFound: 
+                code = .failedOperation_DataColumnNotFound
+            case .dataQueryFailed: 
+                code = .failedOperation_DataQueryFailed
+            case .dataTableNotFound: 
+                code = .failedOperation_DataTableNotFound
+            case .dbQueryFailed: 
+                code = .failedOperation_DbQueryFailed
+            case .dbRecordCreateFailed: 
+                code = .failedOperation_DbRecordCreateFailed
+            case .dbRecordDeleteFailed: 
+                code = .failedOperation_DbRecordDeleteFailed
+            case .dbRecordUpdateFailed: 
+                code = .failedOperation_DbRecordUpdateFailed
+            case .dbTransactionBeginFailed: 
+                code = .failedOperation_DbTransactionBeginFailed
+            case .dbTransactionCommitFailed: 
+                code = .failedOperation_DbTransactionCommitFailed
+            case .dimQueryRequestFailed: 
+                code = .failedOperation_DimQueryRequestFailed
+            case .divisionByZero: 
+                code = .failedOperation_DivisionByZero
+            case .druidQueryFailed: 
+                code = .failedOperation_DruidQueryFailed
+            case .druidTableNotFound: 
+                code = .failedOperation_DruidTableNotFound
+            case .duplicateName: 
+                code = .failedOperation_DuplicateName
+            case .errNotOpen: 
+                code = .failedOperation_ErrNotOpen
+            case .errOwed: 
+                code = .failedOperation_ErrOwed
+            case .generateInstanceIDFailed: 
+                code = .failedOperation_GenerateInstanceIDFailed
+            case .instanceNotFound: 
+                code = .failedOperation_InstanceNotFound
+            case .instanceNotRunning: 
+                code = .failedOperation_InstanceNotRunning
+            case .internalError: 
+                code = .failedOperation_InternalError
+            case .regionUnavailable: 
+                code = .failedOperation_RegionUnavailable
+            case .resourceExist: 
+                code = .failedOperation_ResourceExist
+            case .resourceNotFound: 
+                code = .failedOperation_ResourceNotFound
+            case .resourceOperating: 
+                code = .failedOperation_ResourceOperating
+            case .sendRequest: 
+                code = .failedOperation_SendRequest
+            case .serviceNotEnabled: 
+                code = .failedOperation_ServiceNotEnabled
+            case .tkeClientAuthFail: 
+                code = .failedOperation_TKEClientAuthFail
+            case .tkeEndpointStatusError: 
+                code = .failedOperation_TKEEndpointStatusError
+            case .tkeResourceConflict: 
+                code = .failedOperation_TKEResourceConflict
+            case .zoneUnavailable: 
+                code = .failedOperation_ZoneUnavailable
+            case .other: 
+                code = .failedOperation
+            }
+            return TCMonitorError(code, context: self.context)
         }
-        return TCMonitorError(code, context: self.context)
-    }
-}
-
-extension TCMonitorError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

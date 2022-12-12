@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCWedataError {
-    public struct OperationDenied: TCErrorType {
+    public struct OperationDenied: TCWedataErrorType {
         enum Code: String {
             case userNotInWhitelistError = "OperationDenied.UserNotInWhitelistError"
             case other = "OperationDenied"
@@ -30,8 +30,6 @@ extension TCWedataError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCWedataError {
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-    }
-}
-
-extension TCWedataError.OperationDenied: Equatable {
-    public static func == (lhs: TCWedataError.OperationDenied, rhs: TCWedataError.OperationDenied) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCWedataError.OperationDenied: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCWedataError.OperationDenied {
-    /// - Returns: ``TCWedataError`` that holds the same error and context.
-    public func toWedataError() -> TCWedataError {
-        guard let code = TCWedataError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asWedataError() -> TCWedataError {
+            let code: TCWedataError.Code
+            switch self.error {
+            case .userNotInWhitelistError: 
+                code = .operationDenied_UserNotInWhitelistError
+            case .other: 
+                code = .operationDenied
+            }
+            return TCWedataError(code, context: self.context)
         }
-        return TCWedataError(code, context: self.context)
-    }
-}
-
-extension TCWedataError.OperationDenied {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

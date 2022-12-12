@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTemError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCTemErrorType {
         enum Code: String {
             case applicationNotDeletable = "ResourceUnavailable.ApplicationNotDeletable"
             case applicationStopped = "ResourceUnavailable.ApplicationStopped"
@@ -31,8 +31,6 @@ extension TCTemError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -58,37 +56,18 @@ extension TCTemError {
         public static var waitForKruise: ResourceUnavailable {
             ResourceUnavailable(.waitForKruise)
         }
-    }
-}
-
-extension TCTemError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCTemError.ResourceUnavailable, rhs: TCTemError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTemError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTemError.ResourceUnavailable {
-    /// - Returns: ``TCTemError`` that holds the same error and context.
-    public func toTemError() -> TCTemError {
-        guard let code = TCTemError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTemError() -> TCTemError {
+            let code: TCTemError.Code
+            switch self.error {
+            case .applicationNotDeletable: 
+                code = .resourceUnavailable_ApplicationNotDeletable
+            case .applicationStopped: 
+                code = .resourceUnavailable_ApplicationStopped
+            case .waitForKruise: 
+                code = .resourceUnavailable_WaitForKruise
+            }
+            return TCTemError(code, context: self.context)
         }
-        return TCTemError(code, context: self.context)
-    }
-}
-
-extension TCTemError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

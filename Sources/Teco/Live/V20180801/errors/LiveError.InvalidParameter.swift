@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCLiveError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCLiveErrorType {
         enum Code: String {
             case argsNotMatch = "InvalidParameter.ArgsNotMatch"
             case cancelSessionNotExist = "InvalidParameter.CancelSessionNotExist"
@@ -72,8 +72,6 @@ extension TCLiveError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -306,37 +304,100 @@ extension TCLiveError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCLiveError.InvalidParameter: Equatable {
-    public static func == (lhs: TCLiveError.InvalidParameter, rhs: TCLiveError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCLiveError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCLiveError.InvalidParameter {
-    /// - Returns: ``TCLiveError`` that holds the same error and context.
-    public func toLiveError() -> TCLiveError {
-        guard let code = TCLiveError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asLiveError() -> TCLiveError {
+            let code: TCLiveError.Code
+            switch self.error {
+            case .argsNotMatch: 
+                code = .invalidParameter_ArgsNotMatch
+            case .cancelSessionNotExist: 
+                code = .invalidParameter_CancelSessionNotExist
+            case .cloudCrtIdError: 
+                code = .invalidParameter_CloudCrtIdError
+            case .cloudDomainIsStop: 
+                code = .invalidParameter_CloudDomainIsStop
+            case .cosCustomFileNameError: 
+                code = .invalidParameter_COSCustomFileNameError
+            case .crtDateInUsing: 
+                code = .invalidParameter_CrtDateInUsing
+            case .crtDateNotFound: 
+                code = .invalidParameter_CrtDateNotFound
+            case .crtDateNotLegal: 
+                code = .invalidParameter_CrtDateNotLegal
+            case .crtDateOverdue: 
+                code = .invalidParameter_CrtDateOverdue
+            case .crtDomainNotFound: 
+                code = .invalidParameter_CrtDomainNotFound
+            case .crtKeyNotMatch: 
+                code = .invalidParameter_CrtKeyNotMatch
+            case .crtOrKeyNotExist: 
+                code = .invalidParameter_CrtOrKeyNotExist
+            case .domainAlreadyExist: 
+                code = .invalidParameter_DomainAlreadyExist
+            case .domainFormatError: 
+                code = .invalidParameter_DomainFormatError
+            case .domainHitBlackList: 
+                code = .invalidParameter_DomainHitBlackList
+            case .domainIsFamous: 
+                code = .invalidParameter_DomainIsFamous
+            case .domainIsLimited: 
+                code = .invalidParameter_DomainIsLimited
+            case .domainTooLong: 
+                code = .invalidParameter_DomainTooLong
+            case .gopMustEqualAndExists: 
+                code = .invalidParameter_GopMustEqualAndExists
+            case .inputNumLimitExceeded: 
+                code = .invalidParameter_InputNumLimitExceeded
+            case .invalidBackgroudResolution: 
+                code = .invalidParameter_InvalidBackgroudResolution
+            case .invalidBitrate: 
+                code = .invalidParameter_InvalidBitrate
+            case .invalidCallbackUrl: 
+                code = .invalidParameter_InvalidCallbackUrl
+            case .invalidCropParam: 
+                code = .invalidParameter_InvalidCropParam
+            case .invalidLayerParam: 
+                code = .invalidParameter_InvalidLayerParam
+            case .invalidOutputStreamID: 
+                code = .invalidParameter_InvalidOutputStreamID
+            case .invalidOutputType: 
+                code = .invalidParameter_InvalidOutputType
+            case .invalidPictureID: 
+                code = .invalidParameter_InvalidPictureID
+            case .invalidRoundRectRadius: 
+                code = .invalidParameter_InvalidRoundRectRadius
+            case .invalidSourceUrl: 
+                code = .invalidParameter_InvalidSourceUrl
+            case .invalidTaskTime: 
+                code = .invalidParameter_InvalidTaskTime
+            case .invalidToUrl: 
+                code = .invalidParameter_InvalidToUrl
+            case .invalidVodFileName: 
+                code = .invalidParameter_InvalidVodFileName
+            case .invalidWatermark: 
+                code = .invalidParameter_InvalidWatermark
+            case .mpHostDelete: 
+                code = .invalidParameter_MpHostDelete
+            case .mpPluginNoUse: 
+                code = .invalidParameter_MpPluginNoUse
+            case .otherError: 
+                code = .invalidParameter_OtherError
+            case .sessionOutputStreamChanged: 
+                code = .invalidParameter_SessionOutputStreamChanged
+            case .taskNotExist: 
+                code = .invalidParameter_TaskNotExist
+            case .taskNumMoreThanLimit: 
+                code = .invalidParameter_TaskNumMoreThanLimit
+            case .templateNotMatchInputNum: 
+                code = .invalidParameter_TemplateNotMatchInputNum
+            case .toUrlNoPermission: 
+                code = .invalidParameter_ToUrlNoPermission
+            case .urlNotSafe: 
+                code = .invalidParameter_UrlNotSafe
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCLiveError(code, context: self.context)
         }
-        return TCLiveError(code, context: self.context)
-    }
-}
-
-extension TCLiveError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

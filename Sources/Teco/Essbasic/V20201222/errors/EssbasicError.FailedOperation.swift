@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEssbasicError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCEssbasicErrorType {
         enum Code: String {
             case accountAlreadyExists = "FailedOperation.AccountAlreadyExists"
             case accountVerifyFail = "FailedOperation.AccountVerifyFail"
@@ -43,8 +43,6 @@ extension TCEssbasicError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -160,37 +158,42 @@ extension TCEssbasicError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCEssbasicError.FailedOperation: Equatable {
-    public static func == (lhs: TCEssbasicError.FailedOperation, rhs: TCEssbasicError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEssbasicError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEssbasicError.FailedOperation {
-    /// - Returns: ``TCEssbasicError`` that holds the same error and context.
-    public func toEssbasicError() -> TCEssbasicError {
-        guard let code = TCEssbasicError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEssbasicError() -> TCEssbasicError {
+            let code: TCEssbasicError.Code
+            switch self.error {
+            case .accountAlreadyExists: 
+                code = .failedOperation_AccountAlreadyExists
+            case .accountVerifyFail: 
+                code = .failedOperation_AccountVerifyFail
+            case .authFail: 
+                code = .failedOperation_AuthFail
+            case .dLockFailed: 
+                code = .failedOperation_DLockFailed
+            case .errBindingRepeated: 
+                code = .failedOperation_ErrBindingRepeated
+            case .generateOrgSeal: 
+                code = .failedOperation_GenerateOrgSeal
+            case .generateUserSeal: 
+                code = .failedOperation_GenerateUserSeal
+            case .noRole: 
+                code = .failedOperation_NoRole
+            case .openIdAlreadyExists: 
+                code = .failedOperation_OpenIdAlreadyExists
+            case .orgIdCardNumberAlreadyExists: 
+                code = .failedOperation_OrgIdCardNumberAlreadyExists
+            case .requestLimitExceeded: 
+                code = .failedOperation_RequestLimitExceeded
+            case .requestLimitExceeded1D: 
+                code = .failedOperation_RequestLimitExceeded1D
+            case .requestLimitExceeded1H: 
+                code = .failedOperation_RequestLimitExceeded1H
+            case .requestLimitExceeded30S: 
+                code = .failedOperation_RequestLimitExceeded30S
+            case .other: 
+                code = .failedOperation
+            }
+            return TCEssbasicError(code, context: self.context)
         }
-        return TCEssbasicError(code, context: self.context)
-    }
-}
-
-extension TCEssbasicError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

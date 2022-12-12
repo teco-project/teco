@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotexplorerError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCIotexplorerErrorType {
         enum Code: String {
             case bindsExistUnderFence = "UnsupportedOperation.BindsExistUnderFence"
             case deviceDupKeyExist = "UnsupportedOperation.DeviceDupKeyExist"
@@ -57,8 +57,6 @@ extension TCIotexplorerError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -214,37 +212,70 @@ extension TCIotexplorerError {
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-    }
-}
-
-extension TCIotexplorerError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCIotexplorerError.UnsupportedOperation, rhs: TCIotexplorerError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotexplorerError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotexplorerError.UnsupportedOperation {
-    /// - Returns: ``TCIotexplorerError`` that holds the same error and context.
-    public func toIotexplorerError() -> TCIotexplorerError {
-        guard let code = TCIotexplorerError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotexplorerError() -> TCIotexplorerError {
+            let code: TCIotexplorerError.Code
+            switch self.error {
+            case .bindsExistUnderFence: 
+                code = .unsupportedOperation_BindsExistUnderFence
+            case .deviceDupKeyExist: 
+                code = .unsupportedOperation_DeviceDupKeyExist
+            case .deviceExceedLimit: 
+                code = .unsupportedOperation_DeviceExceedLimit
+            case .deviceOtaTaskInProgress: 
+                code = .unsupportedOperation_DeviceOtaTaskInProgress
+            case .deviceType: 
+                code = .unsupportedOperation_DeviceType
+            case .devicesExistUnderProduct: 
+                code = .unsupportedOperation_DevicesExistUnderProduct
+            case .enableSaasServiceExistUnderProject: 
+                code = .unsupportedOperation_EnableSaasServiceExistUnderProject
+            case .existBindedDevicesUnderGatewayProduct: 
+                code = .unsupportedOperation_ExistBindedDevicesUnderGatewayProduct
+            case .fenceDupKeyExist: 
+                code = .unsupportedOperation_FenceDupKeyExist
+            case .fenceExistUnderSpace: 
+                code = .unsupportedOperation_FenceExistUnderSpace
+            case .gatewayProductHasBindedProduct: 
+                code = .unsupportedOperation_GatewayProductHasBindedProduct
+            case .instanceIsolated: 
+                code = .unsupportedOperation_InstanceIsolated
+            case .loRaFreqDupKeyExist: 
+                code = .unsupportedOperation_LoRaFreqDupKeyExist
+            case .loRaNoUpLink: 
+                code = .unsupportedOperation_LoRaNoUpLink
+            case .loRaNotActivate: 
+                code = .unsupportedOperation_LoRaNotActivate
+            case .nodesExistUnderVPN: 
+                code = .unsupportedOperation_NodesExistUnderVPN
+            case .poolExistUnderProject: 
+                code = .unsupportedOperation_PoolExistUnderProject
+            case .productDupKeyExist: 
+                code = .unsupportedOperation_ProductDupKeyExist
+            case .productExistUnderProject: 
+                code = .unsupportedOperation_ProductExistUnderProject
+            case .productHasBindedGateWayProduct: 
+                code = .unsupportedOperation_ProductHasBindedGateWayProduct
+            case .projectDupKeyExist: 
+                code = .unsupportedOperation_ProjectDupKeyExist
+            case .spaceDupKeyExist: 
+                code = .unsupportedOperation_SpaceDupKeyExist
+            case .staffPoolDupNameExist: 
+                code = .unsupportedOperation_StaffPoolDupNameExist
+            case .studioLoRaFreqInUsed: 
+                code = .unsupportedOperation_StudioLoRaFreqInUsed
+            case .unpaidOrder: 
+                code = .unsupportedOperation_UnpaidOrder
+            case .videoAccountNotExist: 
+                code = .unsupportedOperation_VideoAccountNotExist
+            case .videoInsufficientLicenses: 
+                code = .unsupportedOperation_VideoInsufficientLicenses
+            case .vpnDupKeyExist: 
+                code = .unsupportedOperation_VPNDupKeyExist
+            case .other: 
+                code = .unsupportedOperation
+            }
+            return TCIotexplorerError(code, context: self.context)
         }
-        return TCIotexplorerError(code, context: self.context)
-    }
-}
-
-extension TCIotexplorerError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

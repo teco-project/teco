@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCOrganizationError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCOrganizationErrorType {
         enum Code: String {
             case memberIdentityNotExist = "ResourceNotFound.MemberIdentityNotExist"
             case memberNotExist = "ResourceNotFound.MemberNotExist"
@@ -35,8 +35,6 @@ extension TCOrganizationError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -84,37 +82,26 @@ extension TCOrganizationError {
         public static var organizationServiceNotExist: ResourceNotFound {
             ResourceNotFound(.organizationServiceNotExist)
         }
-    }
-}
-
-extension TCOrganizationError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCOrganizationError.ResourceNotFound, rhs: TCOrganizationError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCOrganizationError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCOrganizationError.ResourceNotFound {
-    /// - Returns: ``TCOrganizationError`` that holds the same error and context.
-    public func toOrganizationError() -> TCOrganizationError {
-        guard let code = TCOrganizationError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asOrganizationError() -> TCOrganizationError {
+            let code: TCOrganizationError.Code
+            switch self.error {
+            case .memberIdentityNotExist: 
+                code = .resourceNotFound_MemberIdentityNotExist
+            case .memberNotExist: 
+                code = .resourceNotFound_MemberNotExist
+            case .memberPolicyNotExist: 
+                code = .resourceNotFound_MemberPolicyNotExist
+            case .organizationMemberNotExist: 
+                code = .resourceNotFound_OrganizationMemberNotExist
+            case .organizationNodeNotExist: 
+                code = .resourceNotFound_OrganizationNodeNotExist
+            case .organizationNotExist: 
+                code = .resourceNotFound_OrganizationNotExist
+            case .organizationServiceNotExist: 
+                code = .resourceNotFound_OrganizationServiceNotExist
+            }
+            return TCOrganizationError(code, context: self.context)
         }
-        return TCOrganizationError(code, context: self.context)
-    }
-}
-
-extension TCOrganizationError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

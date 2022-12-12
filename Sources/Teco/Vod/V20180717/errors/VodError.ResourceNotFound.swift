@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCVodError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCVodErrorType {
         enum Code: String {
             case coverUrl = "ResourceNotFound.CoverUrl"
             case fileNotExist = "ResourceNotFound.FileNotExist"
@@ -36,8 +36,6 @@ extension TCVodError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -90,37 +88,28 @@ extension TCVodError {
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-    }
-}
-
-extension TCVodError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCVodError.ResourceNotFound, rhs: TCVodError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCVodError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCVodError.ResourceNotFound {
-    /// - Returns: ``TCVodError`` that holds the same error and context.
-    public func toVodError() -> TCVodError {
-        guard let code = TCVodError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asVodError() -> TCVodError {
+            let code: TCVodError.Code
+            switch self.error {
+            case .coverUrl: 
+                code = .resourceNotFound_CoverUrl
+            case .fileNotExist: 
+                code = .resourceNotFound_FileNotExist
+            case .person: 
+                code = .resourceNotFound_Person
+            case .serviceNotExist: 
+                code = .resourceNotFound_ServiceNotExist
+            case .templateNotExist: 
+                code = .resourceNotFound_TemplateNotExist
+            case .userNotExist: 
+                code = .resourceNotFound_UserNotExist
+            case .word: 
+                code = .resourceNotFound_Word
+            case .other: 
+                code = .resourceNotFound
+            }
+            return TCVodError(code, context: self.context)
         }
-        return TCVodError(code, context: self.context)
-    }
-}
-
-extension TCVodError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

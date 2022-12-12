@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMariadbError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCMariadbErrorType {
         enum Code: String {
             case badInstanceStatus = "ResourceUnavailable.BadInstanceStatus"
             case cosApiFailed = "ResourceUnavailable.CosApiFailed"
@@ -35,8 +35,6 @@ extension TCMariadbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -83,37 +81,26 @@ extension TCMariadbError {
         public static var sgCheckFail: ResourceUnavailable {
             ResourceUnavailable(.sgCheckFail)
         }
-    }
-}
-
-extension TCMariadbError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCMariadbError.ResourceUnavailable, rhs: TCMariadbError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMariadbError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMariadbError.ResourceUnavailable {
-    /// - Returns: ``TCMariadbError`` that holds the same error and context.
-    public func toMariadbError() -> TCMariadbError {
-        guard let code = TCMariadbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMariadbError() -> TCMariadbError {
+            let code: TCMariadbError.Code
+            switch self.error {
+            case .badInstanceStatus: 
+                code = .resourceUnavailable_BadInstanceStatus
+            case .cosApiFailed: 
+                code = .resourceUnavailable_CosApiFailed
+            case .exclusterStatusAbnormal: 
+                code = .resourceUnavailable_ExclusterStatusAbnormal
+            case .instanceAlreadyDeleted: 
+                code = .resourceUnavailable_InstanceAlreadyDeleted
+            case .instanceHasBeenLocked: 
+                code = .resourceUnavailable_InstanceHasBeenLocked
+            case .instanceStatusAbnormal: 
+                code = .resourceUnavailable_InstanceStatusAbnormal
+            case .sgCheckFail: 
+                code = .resourceUnavailable_SGCheckFail
+            }
+            return TCMariadbError(code, context: self.context)
         }
-        return TCMariadbError(code, context: self.context)
-    }
-}
-
-extension TCMariadbError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

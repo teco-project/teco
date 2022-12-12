@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBtoeError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCBtoeErrorType {
         enum Code: String {
             case arrearsError = "FailedOperation.ArrearsError"
             case countLimitError = "FailedOperation.CountLimitError"
@@ -40,8 +40,6 @@ extension TCBtoeError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -114,37 +112,36 @@ extension TCBtoeError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCBtoeError.FailedOperation: Equatable {
-    public static func == (lhs: TCBtoeError.FailedOperation, rhs: TCBtoeError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBtoeError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBtoeError.FailedOperation {
-    /// - Returns: ``TCBtoeError`` that holds the same error and context.
-    public func toBtoeError() -> TCBtoeError {
-        guard let code = TCBtoeError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBtoeError() -> TCBtoeError {
+            let code: TCBtoeError.Code
+            switch self.error {
+            case .arrearsError: 
+                code = .failedOperation_ArrearsError
+            case .countLimitError: 
+                code = .failedOperation_CountLimitError
+            case .dataInfoTooLong: 
+                code = .failedOperation_DataInfoTooLong
+            case .downLoadError: 
+                code = .failedOperation_DownLoadError
+            case .fileEncodindFormatError: 
+                code = .failedOperation_FileEncodindFormatError
+            case .fileReadFailed: 
+                code = .failedOperation_FileReadFailed
+            case .hashNoMatch: 
+                code = .failedOperation_HashNoMatch
+            case .onChainFailure: 
+                code = .failedOperation_OnChainFailure
+            case .queryNoRecord: 
+                code = .failedOperation_QueryNoRecord
+            case .sensitiveData: 
+                code = .failedOperation_SensitiveData
+            case .unKnowError: 
+                code = .failedOperation_UnKnowError
+            case .other: 
+                code = .failedOperation
+            }
+            return TCBtoeError(code, context: self.context)
         }
-        return TCBtoeError(code, context: self.context)
-    }
-}
-
-extension TCBtoeError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

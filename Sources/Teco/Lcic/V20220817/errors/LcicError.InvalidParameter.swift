@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCLcicError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCLcicErrorType {
         enum Code: String {
             case endTime = "InvalidParameter.EndTime"
             case sdkAppId = "InvalidParameter.SdkAppId"
@@ -32,8 +32,6 @@ extension TCLcicError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -62,37 +60,20 @@ extension TCLcicError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCLcicError.InvalidParameter: Equatable {
-    public static func == (lhs: TCLcicError.InvalidParameter, rhs: TCLcicError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCLcicError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCLcicError.InvalidParameter {
-    /// - Returns: ``TCLcicError`` that holds the same error and context.
-    public func toLcicError() -> TCLcicError {
-        guard let code = TCLcicError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asLcicError() -> TCLcicError {
+            let code: TCLcicError.Code
+            switch self.error {
+            case .endTime: 
+                code = .invalidParameter_EndTime
+            case .sdkAppId: 
+                code = .invalidParameter_SdkAppId
+            case .startTime: 
+                code = .invalidParameter_StartTime
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCLcicError(code, context: self.context)
         }
-        return TCLcicError(code, context: self.context)
-    }
-}
-
-extension TCLcicError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

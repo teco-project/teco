@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCStsError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCStsErrorType {
         enum Code: String {
             case accessKeyNotSupport = "InvalidParameter.AccessKeyNotSupport"
             case accountNotAvaliable = "InvalidParameter.AccountNotAvaliable"
@@ -41,8 +41,6 @@ extension TCStsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -120,37 +118,38 @@ extension TCStsError {
         public static var webIdentityTokenError: InvalidParameter {
             InvalidParameter(.webIdentityTokenError)
         }
-    }
-}
-
-extension TCStsError.InvalidParameter: Equatable {
-    public static func == (lhs: TCStsError.InvalidParameter, rhs: TCStsError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCStsError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCStsError.InvalidParameter {
-    /// - Returns: ``TCStsError`` that holds the same error and context.
-    public func toStsError() -> TCStsError {
-        guard let code = TCStsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asStsError() -> TCStsError {
+            let code: TCStsError.Code
+            switch self.error {
+            case .accessKeyNotSupport: 
+                code = .invalidParameter_AccessKeyNotSupport
+            case .accountNotAvaliable: 
+                code = .invalidParameter_AccountNotAvaliable
+            case .extendStrategyOverSize: 
+                code = .invalidParameter_ExtendStrategyOverSize
+            case .grantOtherResource: 
+                code = .invalidParameter_GrantOtherResource
+            case .overLimit: 
+                code = .invalidParameter_OverLimit
+            case .overTimeError: 
+                code = .invalidParameter_OverTimeError
+            case .paramError: 
+                code = .invalidParameter_ParamError
+            case .policyTooLong: 
+                code = .invalidParameter_PolicyTooLong
+            case .resouceError: 
+                code = .invalidParameter_ResouceError
+            case .strategyFormatError: 
+                code = .invalidParameter_StrategyFormatError
+            case .strategyInvalid: 
+                code = .invalidParameter_StrategyInvalid
+            case .tempCodeNotAvaliable: 
+                code = .invalidParameter_TempCodeNotAvaliable
+            case .webIdentityTokenError: 
+                code = .invalidParameter_WebIdentityTokenError
+            }
+            return TCStsError(code, context: self.context)
         }
-        return TCStsError(code, context: self.context)
-    }
-}
-
-extension TCStsError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

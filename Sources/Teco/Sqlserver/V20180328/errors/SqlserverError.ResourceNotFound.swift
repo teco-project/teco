@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSqlserverError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCSqlserverErrorType {
         enum Code: String {
             case accountNotExist = "ResourceNotFound.AccountNotExist"
             case backupNotFound = "ResourceNotFound.BackupNotFound"
@@ -38,8 +38,6 @@ extension TCSqlserverError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -102,37 +100,32 @@ extension TCSqlserverError {
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-    }
-}
-
-extension TCSqlserverError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCSqlserverError.ResourceNotFound, rhs: TCSqlserverError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSqlserverError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSqlserverError.ResourceNotFound {
-    /// - Returns: ``TCSqlserverError`` that holds the same error and context.
-    public func toSqlserverError() -> TCSqlserverError {
-        guard let code = TCSqlserverError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSqlserverError() -> TCSqlserverError {
+            let code: TCSqlserverError.Code
+            switch self.error {
+            case .accountNotExist: 
+                code = .resourceNotFound_AccountNotExist
+            case .backupNotFound: 
+                code = .resourceNotFound_BackupNotFound
+            case .dbNotExit: 
+                code = .resourceNotFound_DBNotExit
+            case .dbNotFound: 
+                code = .resourceNotFound_DBNotFound
+            case .fullBackupMigrationNotExist: 
+                code = .resourceNotFound_FullBackupMigrationNotExist
+            case .increBackupMigrationNotExist: 
+                code = .resourceNotFound_IncreBackupMigrationNotExist
+            case .instanceNotFound: 
+                code = .resourceNotFound_InstanceNotFound
+            case .paramsNotFound: 
+                code = .resourceNotFound_ParamsNotFound
+            case .vpcNotExist: 
+                code = .resourceNotFound_VpcNotExist
+            case .other: 
+                code = .resourceNotFound
+            }
+            return TCSqlserverError(code, context: self.context)
         }
-        return TCSqlserverError(code, context: self.context)
-    }
-}
-
-extension TCSqlserverError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

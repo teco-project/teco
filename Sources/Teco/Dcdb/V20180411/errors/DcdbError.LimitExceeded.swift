@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDcdbError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCDcdbErrorType {
         enum Code: String {
             case tooFrequentlyCalled = "LimitExceeded.TooFrequentlyCalled"
         }
@@ -29,8 +29,6 @@ extension TCDcdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCDcdbError {
         public static var tooFrequentlyCalled: LimitExceeded {
             LimitExceeded(.tooFrequentlyCalled)
         }
-    }
-}
-
-extension TCDcdbError.LimitExceeded: Equatable {
-    public static func == (lhs: TCDcdbError.LimitExceeded, rhs: TCDcdbError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDcdbError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDcdbError.LimitExceeded {
-    /// - Returns: ``TCDcdbError`` that holds the same error and context.
-    public func toDcdbError() -> TCDcdbError {
-        guard let code = TCDcdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDcdbError() -> TCDcdbError {
+            let code: TCDcdbError.Code
+            switch self.error {
+            case .tooFrequentlyCalled: 
+                code = .limitExceeded_TooFrequentlyCalled
+            }
+            return TCDcdbError(code, context: self.context)
         }
-        return TCDcdbError(code, context: self.context)
-    }
-}
-
-extension TCDcdbError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

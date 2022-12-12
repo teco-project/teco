@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEisError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCEisErrorType {
         enum Code: String {
             case invalidRuntimeMetricSearchCondition = "InvalidParameterValue.InvalidRuntimeMetricSearchCondition"
             case notSupportedActionForPublicRuntime = "InvalidParameterValue.NotSupportedActionForPublicRuntime"
@@ -36,8 +36,6 @@ extension TCEisError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -90,37 +88,28 @@ extension TCEisError {
         public static var runtimeZoneNotExisted: InvalidParameterValue {
             InvalidParameterValue(.runtimeZoneNotExisted)
         }
-    }
-}
-
-extension TCEisError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCEisError.InvalidParameterValue, rhs: TCEisError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEisError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEisError.InvalidParameterValue {
-    /// - Returns: ``TCEisError`` that holds the same error and context.
-    public func toEisError() -> TCEisError {
-        guard let code = TCEisError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEisError() -> TCEisError {
+            let code: TCEisError.Code
+            switch self.error {
+            case .invalidRuntimeMetricSearchCondition: 
+                code = .invalidParameterValue_InvalidRuntimeMetricSearchCondition
+            case .notSupportedActionForPublicRuntime: 
+                code = .invalidParameterValue_NotSupportedActionForPublicRuntime
+            case .pilotZoneNotSupported: 
+                code = .invalidParameterValue_PilotZoneNotSupported
+            case .runtimeAlreadyDeleted: 
+                code = .invalidParameterValue_RuntimeAlreadyDeleted
+            case .runtimeIdNotExist: 
+                code = .invalidParameterValue_RuntimeIdNotExist
+            case .runtimeMetricRateNotSupport: 
+                code = .invalidParameterValue_RuntimeMetricRateNotSupport
+            case .runtimeNamespaceInvalid: 
+                code = .invalidParameterValue_RuntimeNamespaceInvalid
+            case .runtimeZoneNotExisted: 
+                code = .invalidParameterValue_RuntimeZoneNotExisted
+            }
+            return TCEisError(code, context: self.context)
         }
-        return TCEisError(code, context: self.context)
-    }
-}
-
-extension TCEisError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

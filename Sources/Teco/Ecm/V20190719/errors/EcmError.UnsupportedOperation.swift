@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEcmError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCEcmErrorType {
         enum Code: String {
             case addressIdNotFound = "UnsupportedOperation.AddressIdNotFound"
             case alreadyBindEip = "UnsupportedOperation.AlreadyBindEip"
@@ -55,8 +55,6 @@ extension TCEcmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -204,37 +202,66 @@ extension TCEcmError {
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-    }
-}
-
-extension TCEcmError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCEcmError.UnsupportedOperation, rhs: TCEcmError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEcmError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEcmError.UnsupportedOperation {
-    /// - Returns: ``TCEcmError`` that holds the same error and context.
-    public func toEcmError() -> TCEcmError {
-        guard let code = TCEcmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEcmError() -> TCEcmError {
+            let code: TCEcmError.Code
+            switch self.error {
+            case .addressIdNotFound: 
+                code = .unsupportedOperation_AddressIdNotFound
+            case .alreadyBindEip: 
+                code = .unsupportedOperation_AlreadyBindEip
+            case .attachmentAlreadyExists: 
+                code = .unsupportedOperation_AttachmentAlreadyExists
+            case .attachmentNotFound: 
+                code = .unsupportedOperation_AttachmentNotFound
+            case .delDefaultRoute: 
+                code = .unsupportedOperation_DelDefaultRoute
+            case .delRouteWithSubnet: 
+                code = .unsupportedOperation_DelRouteWithSubnet
+            case .duplicatePolicy: 
+                code = .unsupportedOperation_DuplicatePolicy
+            case .ecmp: 
+                code = .unsupportedOperation_Ecmp
+            case .ecmpWithCcnRoute: 
+                code = .unsupportedOperation_EcmpWithCcnRoute
+            case .ecmpWithUserRoute: 
+                code = .unsupportedOperation_EcmpWithUserRoute
+            case .instanceIdNotFound: 
+                code = .unsupportedOperation_InstanceIdNotFound
+            case .instanceIdNotSupported: 
+                code = .unsupportedOperation_InstanceIdNotSupported
+            case .instanceTypeNotSupportImage: 
+                code = .unsupportedOperation_InstanceTypeNotSupportImage
+            case .invalidInstanceState: 
+                code = .unsupportedOperation_InvalidInstanceState
+            case .invalidNetworkInterfaceIdNotFound: 
+                code = .unsupportedOperation_InvalidNetworkInterfaceIdNotFound
+            case .invalidPrivateIpAddressAlreadyBindEip: 
+                code = .unsupportedOperation_InvalidPrivateIpAddressAlreadyBindEip
+            case .invalidState: 
+                code = .unsupportedOperation_InvalidState
+            case .malformed: 
+                code = .unsupportedOperation_Malformed
+            case .mutexOperationTaskRunning: 
+                code = .unsupportedOperation_MutexOperationTaskRunning
+            case .quotaLimitExceeded: 
+                code = .unsupportedOperation_QuotaLimitExceeded
+            case .snapHasShared: 
+                code = .unsupportedOperation_SnapHasShared
+            case .snapshotHasBindedImage: 
+                code = .unsupportedOperation_SnapshotHasBindedImage
+            case .statusNotPermit: 
+                code = .unsupportedOperation_StatusNotPermit
+            case .systemRoute: 
+                code = .unsupportedOperation_SystemRoute
+            case .versionMismatch: 
+                code = .unsupportedOperation_VersionMismatch
+            case .vpcMismatch: 
+                code = .unsupportedOperation_VpcMismatch
+            case .other: 
+                code = .unsupportedOperation
+            }
+            return TCEcmError(code, context: self.context)
         }
-        return TCEcmError(code, context: self.context)
-    }
-}
-
-extension TCEcmError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

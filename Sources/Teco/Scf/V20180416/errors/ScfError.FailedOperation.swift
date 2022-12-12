@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCScfError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCScfErrorType {
         enum Code: String {
             case apiGateway = "FailedOperation.ApiGateway"
             case apigw = "FailedOperation.Apigw"
@@ -78,8 +78,6 @@ extension TCScfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -344,37 +342,112 @@ extension TCScfError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCScfError.FailedOperation: Equatable {
-    public static func == (lhs: TCScfError.FailedOperation, rhs: TCScfError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCScfError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCScfError.FailedOperation {
-    /// - Returns: ``TCScfError`` that holds the same error and context.
-    public func toScfError() -> TCScfError {
-        guard let code = TCScfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asScfError() -> TCScfError {
+            let code: TCScfError.Code
+            switch self.error {
+            case .apiGateway: 
+                code = .failedOperation_ApiGateway
+            case .apigw: 
+                code = .failedOperation_Apigw
+            case .apmConfigInstanceId: 
+                code = .failedOperation_ApmConfigInstanceId
+            case .asyncEventStatus: 
+                code = .failedOperation_AsyncEventStatus
+            case .authFailure: 
+                code = .failedOperation_AuthFailure
+            case .callRoleFailed: 
+                code = .failedOperation_CallRoleFailed
+            case .copyAsyncRun: 
+                code = .failedOperation_CopyAsyncRun
+            case .copyFailed: 
+                code = .failedOperation_CopyFailed
+            case .copyFunction: 
+                code = .failedOperation_CopyFunction
+            case .cos: 
+                code = .failedOperation_Cos
+            case .createAlias: 
+                code = .failedOperation_CreateAlias
+            case .createFunction: 
+                code = .failedOperation_CreateFunction
+            case .createNamespace: 
+                code = .failedOperation_CreateNamespace
+            case .createTrigger: 
+                code = .failedOperation_CreateTrigger
+            case .debugModeStatus: 
+                code = .failedOperation_DebugModeStatus
+            case .debugModeUpdateTimeOutFail: 
+                code = .failedOperation_DebugModeUpdateTimeOutFail
+            case .deleteAlias: 
+                code = .failedOperation_DeleteAlias
+            case .deleteFunction: 
+                code = .failedOperation_DeleteFunction
+            case .deleteLayerVersion: 
+                code = .failedOperation_DeleteLayerVersion
+            case .deleteNamespace: 
+                code = .failedOperation_DeleteNamespace
+            case .deleteTrigger: 
+                code = .failedOperation_DeleteTrigger
+            case .functionNameStatusError: 
+                code = .failedOperation_FunctionNameStatusError
+            case .functionStatusError: 
+                code = .failedOperation_FunctionStatusError
+            case .functionVersionStatusNotActive: 
+                code = .failedOperation_FunctionVersionStatusNotActive
+            case .getAlias: 
+                code = .failedOperation_GetAlias
+            case .getFunctionAddress: 
+                code = .failedOperation_GetFunctionAddress
+            case .instanceNotFound: 
+                code = .failedOperation_InstanceNotFound
+            case .insufficientBalance: 
+                code = .failedOperation_InsufficientBalance
+            case .invokeFunction: 
+                code = .failedOperation_InvokeFunction
+            case .namespace: 
+                code = .failedOperation_Namespace
+            case .openService: 
+                code = .failedOperation_OpenService
+            case .operationConflict: 
+                code = .failedOperation_OperationConflict
+            case .provisionCreateTimer: 
+                code = .failedOperation_ProvisionCreateTimer
+            case .provisionDeleteTimer: 
+                code = .failedOperation_ProvisionDeleteTimer
+            case .provisionedExceedAvailable: 
+                code = .failedOperation_ProvisionedExceedAvailable
+            case .provisionedExceedReserved: 
+                code = .failedOperation_ProvisionedExceedReserved
+            case .provisionedInProgress: 
+                code = .failedOperation_ProvisionedInProgress
+            case .publishLayerVersion: 
+                code = .failedOperation_PublishLayerVersion
+            case .publishVersion: 
+                code = .failedOperation_PublishVersion
+            case .qcsRoleNotFound: 
+                code = .failedOperation_QcsRoleNotFound
+            case .reservedExceedTotal: 
+                code = .failedOperation_ReservedExceedTotal
+            case .reservedInProgress: 
+                code = .failedOperation_ReservedInProgress
+            case .serviceClosed: 
+                code = .failedOperation_ServiceClosed
+            case .topicNotExist: 
+                code = .failedOperation_TopicNotExist
+            case .totalConcurrencyMemoryInProgress: 
+                code = .failedOperation_TotalConcurrencyMemoryInProgress
+            case .unOpenedService: 
+                code = .failedOperation_UnOpenedService
+            case .updateAlias: 
+                code = .failedOperation_UpdateAlias
+            case .updateFunctionCode: 
+                code = .failedOperation_UpdateFunctionCode
+            case .updateFunctionConfiguration: 
+                code = .failedOperation_UpdateFunctionConfiguration
+            case .other: 
+                code = .failedOperation
+            }
+            return TCScfError(code, context: self.context)
         }
-        return TCScfError(code, context: self.context)
-    }
-}
-
-extension TCScfError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

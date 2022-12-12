@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEsError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCEsErrorType {
         enum Code: String {
             case clusterResourceLimitError = "FailedOperation.ClusterResourceLimitError"
             case diskCountParamError = "FailedOperation.DiskCountParamError"
@@ -39,8 +39,6 @@ extension TCEsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -116,37 +114,34 @@ extension TCEsError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCEsError.FailedOperation: Equatable {
-    public static func == (lhs: TCEsError.FailedOperation, rhs: TCEsError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEsError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEsError.FailedOperation {
-    /// - Returns: ``TCEsError`` that holds the same error and context.
-    public func toEsError() -> TCEsError {
-        guard let code = TCEsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEsError() -> TCEsError {
+            let code: TCEsError.Code
+            switch self.error {
+            case .clusterResourceLimitError: 
+                code = .failedOperation_ClusterResourceLimitError
+            case .diskCountParamError: 
+                code = .failedOperation_DiskCountParamError
+            case .errorClusterState: 
+                code = .failedOperation_ErrorClusterState
+            case .errorClusterStateNoReplication: 
+                code = .failedOperation_ErrorClusterStateNoReplication
+            case .errorClusterStateUnhealth: 
+                code = .failedOperation_ErrorClusterStateUnhealth
+            case .noPayment: 
+                code = .failedOperation_NoPayment
+            case .notAuthenticated: 
+                code = .failedOperation_NotAuthenticated
+            case .unsupportResetNodeTypeAndScaleoutDisk: 
+                code = .failedOperation_UnsupportResetNodeTypeAndScaleoutDisk
+            case .unsupportResetScaledownAndModifyDisk: 
+                code = .failedOperation_UnsupportResetScaledownAndModifyDisk
+            case .unsupportReverseRegulationNodeTypeAndDisk: 
+                code = .failedOperation_UnsupportReverseRegulationNodeTypeAndDisk
+            case .other: 
+                code = .failedOperation
+            }
+            return TCEsError(code, context: self.context)
         }
-        return TCEsError(code, context: self.context)
-    }
-}
-
-extension TCEsError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

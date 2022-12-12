@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCFaceidError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCFaceidErrorType {
         enum Code: String {
             case actionLightDark = "InternalError.ActionLightDark"
             case actionLightStrong = "InternalError.ActionLightStrong"
@@ -37,8 +37,6 @@ extension TCFaceidError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -96,37 +94,30 @@ extension TCFaceidError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCFaceidError.InternalError: Equatable {
-    public static func == (lhs: TCFaceidError.InternalError, rhs: TCFaceidError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCFaceidError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCFaceidError.InternalError {
-    /// - Returns: ``TCFaceidError`` that holds the same error and context.
-    public func toFaceidError() -> TCFaceidError {
-        guard let code = TCFaceidError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asFaceidError() -> TCFaceidError {
+            let code: TCFaceidError.Code
+            switch self.error {
+            case .actionLightDark: 
+                code = .internalError_ActionLightDark
+            case .actionLightStrong: 
+                code = .internalError_ActionLightStrong
+            case .actionNodetectFace: 
+                code = .internalError_ActionNodetectFace
+            case .compareLowSimilarity: 
+                code = .internalError_CompareLowSimilarity
+            case .encryptSystemError: 
+                code = .internalError_EncryptSystemError
+            case .lifePhotoPoorQuality: 
+                code = .internalError_LifePhotoPoorQuality
+            case .lifePhotoSizeError: 
+                code = .internalError_LifePhotoSizeError
+            case .unKnown: 
+                code = .internalError_UnKnown
+            case .other: 
+                code = .internalError
+            }
+            return TCFaceidError(code, context: self.context)
         }
-        return TCFaceidError(code, context: self.context)
-    }
-}
-
-extension TCFaceidError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

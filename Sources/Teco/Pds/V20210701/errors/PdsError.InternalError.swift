@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCPdsError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCPdsErrorType {
         enum Code: String {
             case serviceTimeout = "InternalError.ServiceTimeout"
             case other = "InternalError"
@@ -30,8 +30,6 @@ extension TCPdsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCPdsError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCPdsError.InternalError: Equatable {
-    public static func == (lhs: TCPdsError.InternalError, rhs: TCPdsError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCPdsError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCPdsError.InternalError {
-    /// - Returns: ``TCPdsError`` that holds the same error and context.
-    public func toPdsError() -> TCPdsError {
-        guard let code = TCPdsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asPdsError() -> TCPdsError {
+            let code: TCPdsError.Code
+            switch self.error {
+            case .serviceTimeout: 
+                code = .internalError_ServiceTimeout
+            case .other: 
+                code = .internalError
+            }
+            return TCPdsError(code, context: self.context)
         }
-        return TCPdsError(code, context: self.context)
-    }
-}
-
-extension TCPdsError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

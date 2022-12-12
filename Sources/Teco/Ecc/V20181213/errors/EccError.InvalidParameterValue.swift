@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEccError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCEccErrorType {
         enum Code: String {
             case appidInvalidError = "InvalidParameterValue.AppidInvalidError"
             case decodeImageError = "InvalidParameterValue.DecodeImageError"
@@ -38,8 +38,6 @@ extension TCEccError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -102,37 +100,32 @@ extension TCEccError {
         public static var urlFromatIvadlidError: InvalidParameterValue {
             InvalidParameterValue(.urlFromatIvadlidError)
         }
-    }
-}
-
-extension TCEccError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCEccError.InvalidParameterValue, rhs: TCEccError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEccError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEccError.InvalidParameterValue {
-    /// - Returns: ``TCEccError`` that holds the same error and context.
-    public func toEccError() -> TCEccError {
-        guard let code = TCEccError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEccError() -> TCEccError {
+            let code: TCEccError.Code
+            switch self.error {
+            case .appidInvalidError: 
+                code = .invalidParameterValue_AppidInvalidError
+            case .decodeImageError: 
+                code = .invalidParameterValue_DecodeImageError
+            case .downloadImageFailError: 
+                code = .invalidParameterValue_DownloadImageFailError
+            case .emptyImageError: 
+                code = .invalidParameterValue_EmptyImageError
+            case .imageDownloadFailError: 
+                code = .invalidParameterValue_ImageDownloadFailError
+            case .imageSizeExceedError: 
+                code = .invalidParameterValue_ImageSizeExceedError
+            case .imageTooBigError: 
+                code = .invalidParameterValue_ImageTooBigError
+            case .inputTypeValueError: 
+                code = .invalidParameterValue_InputTypeValueError
+            case .sessionError: 
+                code = .invalidParameterValue_SessionError
+            case .urlFromatIvadlidError: 
+                code = .invalidParameterValue_UrlFromatIvadlidError
+            }
+            return TCEccError(code, context: self.context)
         }
-        return TCEccError(code, context: self.context)
-    }
-}
-
-extension TCEccError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

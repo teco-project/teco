@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCdnError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCCdnErrorType {
         enum Code: String {
             case camResourceArrayTooLong = "LimitExceeded.CamResourceArrayTooLong"
             case camResourceTooManyTagKey = "LimitExceeded.CamResourceTooManyTagKey"
@@ -51,8 +51,6 @@ extension TCCdnError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -179,37 +177,58 @@ extension TCCdnError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCCdnError.LimitExceeded: Equatable {
-    public static func == (lhs: TCCdnError.LimitExceeded, rhs: TCCdnError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCdnError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCdnError.LimitExceeded {
-    /// - Returns: ``TCCdnError`` that holds the same error and context.
-    public func toCdnError() -> TCCdnError {
-        guard let code = TCCdnError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCdnError() -> TCCdnError {
+            let code: TCCdnError.Code
+            switch self.error {
+            case .camResourceArrayTooLong: 
+                code = .limitExceeded_CamResourceArrayTooLong
+            case .camResourceTooManyTagKey: 
+                code = .limitExceeded_CamResourceTooManyTagKey
+            case .camTagKeyTooLong: 
+                code = .limitExceeded_CamTagKeyTooLong
+            case .camTagKeyTooManyTagValue: 
+                code = .limitExceeded_CamTagKeyTooManyTagValue
+            case .camTagQuotaExceedLimit: 
+                code = .limitExceeded_CamTagQuotaExceedLimit
+            case .camUserTooManyTagKey: 
+                code = .limitExceeded_CamUserTooManyTagKey
+            case .cdnCallingQueryIpTooOften: 
+                code = .limitExceeded_CdnCallingQueryIpTooOften
+            case .cdnClsTooManyTopics: 
+                code = .limitExceeded_CdnClsTooManyTopics
+            case .cdnConfigTooManyCacheRules: 
+                code = .limitExceeded_CdnConfigTooManyCacheRules
+            case .cdnHostOpTooOften: 
+                code = .limitExceeded_CdnHostOpTooOften
+            case .cdnPurgePathExceedBatchLimit: 
+                code = .limitExceeded_CdnPurgePathExceedBatchLimit
+            case .cdnPurgePathExceedDayLimit: 
+                code = .limitExceeded_CdnPurgePathExceedDayLimit
+            case .cdnPurgeUrlExceedBatchLimit: 
+                code = .limitExceeded_CdnPurgeUrlExceedBatchLimit
+            case .cdnPurgeUrlExceedDayLimit: 
+                code = .limitExceeded_CdnPurgeUrlExceedDayLimit
+            case .cdnPushExceedBatchLimit: 
+                code = .limitExceeded_CdnPushExceedBatchLimit
+            case .cdnPushExceedDayLimit: 
+                code = .limitExceeded_CdnPushExceedDayLimit
+            case .cdnQueryIpBatchTooMany: 
+                code = .limitExceeded_CdnQueryIpBatchTooMany
+            case .cdnUserTooManyHosts: 
+                code = .limitExceeded_CdnUserTooManyHosts
+            case .clsLogSizeExceed: 
+                code = .limitExceeded_ClsLogSizeExceed
+            case .clsLogsetExceed: 
+                code = .limitExceeded_ClsLogsetExceed
+            case .clsTopicExceed: 
+                code = .limitExceeded_ClsTopicExceed
+            case .scdnLogTaskExceedDayLimit: 
+                code = .limitExceeded_ScdnLogTaskExceedDayLimit
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCCdnError(code, context: self.context)
         }
-        return TCCdnError(code, context: self.context)
-    }
-}
-
-extension TCCdnError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSmsError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCSmsErrorType {
         enum Code: String {
             case containSensitiveWord = "FailedOperation.ContainSensitiveWord"
             case failResolvePacket = "FailedOperation.FailResolvePacket"
@@ -53,8 +53,6 @@ extension TCSmsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -202,37 +200,62 @@ extension TCSmsError {
         public static var templateUnapprovedOrNotExist: FailedOperation {
             FailedOperation(.templateUnapprovedOrNotExist)
         }
-    }
-}
-
-extension TCSmsError.FailedOperation: Equatable {
-    public static func == (lhs: TCSmsError.FailedOperation, rhs: TCSmsError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSmsError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSmsError.FailedOperation {
-    /// - Returns: ``TCSmsError`` that holds the same error and context.
-    public func toSmsError() -> TCSmsError {
-        guard let code = TCSmsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSmsError() -> TCSmsError {
+            let code: TCSmsError.Code
+            switch self.error {
+            case .containSensitiveWord: 
+                code = .failedOperation_ContainSensitiveWord
+            case .failResolvePacket: 
+                code = .failedOperation_FailResolvePacket
+            case .forbidAddMarketingTemplates: 
+                code = .failedOperation_ForbidAddMarketingTemplates
+            case .insufficientBalanceInSmsPackage: 
+                code = .failedOperation_InsufficientBalanceInSmsPackage
+            case .jsonParseFail: 
+                code = .failedOperation_JsonParseFail
+            case .marketingSendTimeConstraint: 
+                code = .failedOperation_MarketingSendTimeConstraint
+            case .missingSignature: 
+                code = .failedOperation_MissingSignature
+            case .missingSignatureList: 
+                code = .failedOperation_MissingSignatureList
+            case .missingSignatureToModify: 
+                code = .failedOperation_MissingSignatureToModify
+            case .missingTemplateList: 
+                code = .failedOperation_MissingTemplateList
+            case .missingTemplateToModify: 
+                code = .failedOperation_MissingTemplateToModify
+            case .notEnterpriseCertification: 
+                code = .failedOperation_NotEnterpriseCertification
+            case .otherError: 
+                code = .failedOperation_OtherError
+            case .parametersOtherError: 
+                code = .failedOperation_ParametersOtherError
+            case .phoneNumberInBlacklist: 
+                code = .failedOperation_PhoneNumberInBlacklist
+            case .phoneNumberParseFail: 
+                code = .failedOperation_PhoneNumberParseFail
+            case .prohibitSubAccountUse: 
+                code = .failedOperation_ProhibitSubAccountUse
+            case .signNumberLimit: 
+                code = .failedOperation_SignNumberLimit
+            case .signatureIncorrectOrUnapproved: 
+                code = .failedOperation_SignatureIncorrectOrUnapproved
+            case .templateAlreadyPassedCheck: 
+                code = .failedOperation_TemplateAlreadyPassedCheck
+            case .templateIdNotExist: 
+                code = .failedOperation_TemplateIdNotExist
+            case .templateIncorrectOrUnapproved: 
+                code = .failedOperation_TemplateIncorrectOrUnapproved
+            case .templateNumberLimit: 
+                code = .failedOperation_TemplateNumberLimit
+            case .templateParamSetNotMatchApprovedTemplate: 
+                code = .failedOperation_TemplateParamSetNotMatchApprovedTemplate
+            case .templateUnapprovedOrNotExist: 
+                code = .failedOperation_TemplateUnapprovedOrNotExist
+            }
+            return TCSmsError(code, context: self.context)
         }
-        return TCSmsError(code, context: self.context)
-    }
-}
-
-extension TCSmsError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

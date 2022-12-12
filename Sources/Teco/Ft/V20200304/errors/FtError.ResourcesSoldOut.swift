@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCFtError {
-    public struct ResourcesSoldOut: TCErrorType {
+    public struct ResourcesSoldOut: TCFtErrorType {
         enum Code: String {
             case chargeStatusException = "ResourcesSoldOut.ChargeStatusException"
         }
@@ -29,8 +29,6 @@ extension TCFtError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCFtError {
         public static var chargeStatusException: ResourcesSoldOut {
             ResourcesSoldOut(.chargeStatusException)
         }
-    }
-}
-
-extension TCFtError.ResourcesSoldOut: Equatable {
-    public static func == (lhs: TCFtError.ResourcesSoldOut, rhs: TCFtError.ResourcesSoldOut) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCFtError.ResourcesSoldOut: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCFtError.ResourcesSoldOut {
-    /// - Returns: ``TCFtError`` that holds the same error and context.
-    public func toFtError() -> TCFtError {
-        guard let code = TCFtError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asFtError() -> TCFtError {
+            let code: TCFtError.Code
+            switch self.error {
+            case .chargeStatusException: 
+                code = .resourcesSoldOut_ChargeStatusException
+            }
+            return TCFtError(code, context: self.context)
         }
-        return TCFtError(code, context: self.context)
-    }
-}
-
-extension TCFtError.ResourcesSoldOut {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

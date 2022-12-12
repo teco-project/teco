@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCClbError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCClbErrorType {
         enum Code: String {
             case invalidLBStatus = "FailedOperation.InvalidLBStatus"
             case other = "FailedOperation"
@@ -30,8 +30,6 @@ extension TCClbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCClbError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCClbError.FailedOperation: Equatable {
-    public static func == (lhs: TCClbError.FailedOperation, rhs: TCClbError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCClbError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCClbError.FailedOperation {
-    /// - Returns: ``TCClbError`` that holds the same error and context.
-    public func toClbError() -> TCClbError {
-        guard let code = TCClbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asClbError() -> TCClbError {
+            let code: TCClbError.Code
+            switch self.error {
+            case .invalidLBStatus: 
+                code = .failedOperation_InvalidLBStatus
+            case .other: 
+                code = .failedOperation
+            }
+            return TCClbError(code, context: self.context)
         }
-        return TCClbError(code, context: self.context)
-    }
-}
-
-extension TCClbError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEcdnError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCEcdnErrorType {
         enum Code: String {
             case ecdnDomainOpTooOften = "LimitExceeded.EcdnDomainOpTooOften"
             case ecdnPurgePathExceedBatchLimit = "LimitExceeded.EcdnPurgePathExceedBatchLimit"
@@ -34,8 +34,6 @@ extension TCEcdnError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -78,37 +76,24 @@ extension TCEcdnError {
         public static var ecdnUserTooManyDomains: LimitExceeded {
             LimitExceeded(.ecdnUserTooManyDomains)
         }
-    }
-}
-
-extension TCEcdnError.LimitExceeded: Equatable {
-    public static func == (lhs: TCEcdnError.LimitExceeded, rhs: TCEcdnError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEcdnError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEcdnError.LimitExceeded {
-    /// - Returns: ``TCEcdnError`` that holds the same error and context.
-    public func toEcdnError() -> TCEcdnError {
-        guard let code = TCEcdnError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEcdnError() -> TCEcdnError {
+            let code: TCEcdnError.Code
+            switch self.error {
+            case .ecdnDomainOpTooOften: 
+                code = .limitExceeded_EcdnDomainOpTooOften
+            case .ecdnPurgePathExceedBatchLimit: 
+                code = .limitExceeded_EcdnPurgePathExceedBatchLimit
+            case .ecdnPurgePathExceedDayLimit: 
+                code = .limitExceeded_EcdnPurgePathExceedDayLimit
+            case .ecdnPurgeUrlExceedBatchLimit: 
+                code = .limitExceeded_EcdnPurgeUrlExceedBatchLimit
+            case .ecdnPurgeUrlExceedDayLimit: 
+                code = .limitExceeded_EcdnPurgeUrlExceedDayLimit
+            case .ecdnUserTooManyDomains: 
+                code = .limitExceeded_EcdnUserTooManyDomains
+            }
+            return TCEcdnError(code, context: self.context)
         }
-        return TCEcdnError(code, context: self.context)
-    }
-}
-
-extension TCEcdnError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCKmsError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCKmsErrorType {
         enum Code: String {
             case cloudResourceBindingNotFound = "ResourceUnavailable.CloudResourceBindingNotFound"
             case cmkArchived = "ResourceUnavailable.CmkArchived"
@@ -39,8 +39,6 @@ extension TCKmsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -108,37 +106,34 @@ extension TCKmsError {
         public static var tokenExpired: ResourceUnavailable {
             ResourceUnavailable(.tokenExpired)
         }
-    }
-}
-
-extension TCKmsError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCKmsError.ResourceUnavailable, rhs: TCKmsError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCKmsError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCKmsError.ResourceUnavailable {
-    /// - Returns: ``TCKmsError`` that holds the same error and context.
-    public func toKmsError() -> TCKmsError {
-        guard let code = TCKmsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asKmsError() -> TCKmsError {
+            let code: TCKmsError.Code
+            switch self.error {
+            case .cloudResourceBindingNotFound: 
+                code = .resourceUnavailable_CloudResourceBindingNotFound
+            case .cmkArchived: 
+                code = .resourceUnavailable_CmkArchived
+            case .cmkDisabled: 
+                code = .resourceUnavailable_CmkDisabled
+            case .cmkNotFound: 
+                code = .resourceUnavailable_CmkNotFound
+            case .cmkNotPendingDelete: 
+                code = .resourceUnavailable_CmkNotPendingDelete
+            case .cmkShouldBeDisabled: 
+                code = .resourceUnavailable_CmkShouldBeDisabled
+            case .cmkStateNotSupport: 
+                code = .resourceUnavailable_CmkStateNotSupport
+            case .keyDisabled: 
+                code = .resourceUnavailable_KeyDisabled
+            case .keyPendingDelete: 
+                code = .resourceUnavailable_KeyPendingDelete
+            case .notPurchased: 
+                code = .resourceUnavailable_NotPurchased
+            case .tokenExpired: 
+                code = .resourceUnavailable_TokenExpired
+            }
+            return TCKmsError(code, context: self.context)
         }
-        return TCKmsError(code, context: self.context)
-    }
-}
-
-extension TCKmsError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

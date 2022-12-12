@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCThpcError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCThpcErrorType {
         enum Code: String {
             case notSupported = "InvalidParameterValue.NotSupported"
             case tooLarge = "InvalidParameterValue.TooLarge"
@@ -33,8 +33,6 @@ extension TCThpcError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,22 @@ extension TCThpcError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCThpcError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCThpcError.InvalidParameterValue, rhs: TCThpcError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCThpcError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCThpcError.InvalidParameterValue {
-    /// - Returns: ``TCThpcError`` that holds the same error and context.
-    public func toThpcError() -> TCThpcError {
-        guard let code = TCThpcError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asThpcError() -> TCThpcError {
+            let code: TCThpcError.Code
+            switch self.error {
+            case .notSupported: 
+                code = .invalidParameterValue_NotSupported
+            case .tooLarge: 
+                code = .invalidParameterValue_TooLarge
+            case .tooLong: 
+                code = .invalidParameterValue_TooLong
+            case .tooSmall: 
+                code = .invalidParameterValue_TooSmall
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCThpcError(code, context: self.context)
         }
-        return TCThpcError(code, context: self.context)
-    }
-}
-
-extension TCThpcError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

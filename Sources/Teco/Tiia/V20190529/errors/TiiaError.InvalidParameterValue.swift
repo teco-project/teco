@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTiiaError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCTiiaErrorType {
         enum Code: String {
             case briefTooLong = "InvalidParameterValue.BriefTooLong"
             case customContentTooLong = "InvalidParameterValue.CustomContentTooLong"
@@ -50,8 +50,6 @@ extension TCTiiaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -174,37 +172,56 @@ extension TCTiiaError {
         public static var urlIllegal: InvalidParameterValue {
             InvalidParameterValue(.urlIllegal)
         }
-    }
-}
-
-extension TCTiiaError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCTiiaError.InvalidParameterValue, rhs: TCTiiaError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTiiaError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTiiaError.InvalidParameterValue {
-    /// - Returns: ``TCTiiaError`` that holds the same error and context.
-    public func toTiiaError() -> TCTiiaError {
-        guard let code = TCTiiaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTiiaError() -> TCTiiaError {
+            let code: TCTiiaError.Code
+            switch self.error {
+            case .briefTooLong: 
+                code = .invalidParameterValue_BriefTooLong
+            case .customContentTooLong: 
+                code = .invalidParameterValue_CustomContentTooLong
+            case .entityIdEmpty: 
+                code = .invalidParameterValue_EntityIdEmpty
+            case .entityIdTooLong: 
+                code = .invalidParameterValue_EntityIdTooLong
+            case .filterInvalid: 
+                code = .invalidParameterValue_FilterInvalid
+            case .filterSizeExceed: 
+                code = .invalidParameterValue_FilterSizeExceed
+            case .imageEmpty: 
+                code = .invalidParameterValue_ImageEmpty
+            case .imageGroupIdAlreadyExist: 
+                code = .invalidParameterValue_ImageGroupIdAlreadyExist
+            case .imageGroupIdIllegal: 
+                code = .invalidParameterValue_ImageGroupIdIllegal
+            case .imageGroupIdNotExist: 
+                code = .invalidParameterValue_ImageGroupIdNotExist
+            case .imageGroupIdTooLong: 
+                code = .invalidParameterValue_ImageGroupIdTooLong
+            case .imageGroupNameEmpty: 
+                code = .invalidParameterValue_ImageGroupNameEmpty
+            case .imageGroupNameTooLong: 
+                code = .invalidParameterValue_ImageGroupNameTooLong
+            case .invalidParameterValueLimit: 
+                code = .invalidParameterValue_InvalidParameterValueLimit
+            case .limitExceed: 
+                code = .invalidParameterValue_LimitExceed
+            case .picNameAlreadyExist: 
+                code = .invalidParameterValue_PicNameAlreadyExist
+            case .picNameEmpty: 
+                code = .invalidParameterValue_PicNameEmpty
+            case .picNameTooLong: 
+                code = .invalidParameterValue_PicNameTooLong
+            case .tagsKeysExceed: 
+                code = .invalidParameterValue_TagsKeysExceed
+            case .tagsValueIllegal: 
+                code = .invalidParameterValue_TagsValueIllegal
+            case .tagsValueSizeExceed: 
+                code = .invalidParameterValue_TagsValueSizeExceed
+            case .urlIllegal: 
+                code = .invalidParameterValue_UrlIllegal
+            }
+            return TCTiiaError(code, context: self.context)
         }
-        return TCTiiaError(code, context: self.context)
-    }
-}
-
-extension TCTiiaError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

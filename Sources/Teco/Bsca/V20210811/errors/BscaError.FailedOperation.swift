@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBscaError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCBscaErrorType {
         enum Code: String {
             case accountNotEnough = "FailedOperation.AccountNotEnough"
         }
@@ -29,8 +29,6 @@ extension TCBscaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -50,37 +48,14 @@ extension TCBscaError {
         public static var accountNotEnough: FailedOperation {
             FailedOperation(.accountNotEnough)
         }
-    }
-}
-
-extension TCBscaError.FailedOperation: Equatable {
-    public static func == (lhs: TCBscaError.FailedOperation, rhs: TCBscaError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBscaError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBscaError.FailedOperation {
-    /// - Returns: ``TCBscaError`` that holds the same error and context.
-    public func toBscaError() -> TCBscaError {
-        guard let code = TCBscaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBscaError() -> TCBscaError {
+            let code: TCBscaError.Code
+            switch self.error {
+            case .accountNotEnough: 
+                code = .failedOperation_AccountNotEnough
+            }
+            return TCBscaError(code, context: self.context)
         }
-        return TCBscaError(code, context: self.context)
-    }
-}
-
-extension TCBscaError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

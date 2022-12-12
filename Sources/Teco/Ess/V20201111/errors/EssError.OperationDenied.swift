@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEssError {
-    public struct OperationDenied: TCErrorType {
+    public struct OperationDenied: TCEssErrorType {
         enum Code: String {
             case approverNoMatchTemplate = "OperationDenied.ApproverNoMatchTemplate"
             case approverRepeat = "OperationDenied.ApproverRepeat"
@@ -75,8 +75,6 @@ extension TCEssError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -286,37 +284,106 @@ extension TCEssError {
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-    }
-}
-
-extension TCEssError.OperationDenied: Equatable {
-    public static func == (lhs: TCEssError.OperationDenied, rhs: TCEssError.OperationDenied) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEssError.OperationDenied: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEssError.OperationDenied {
-    /// - Returns: ``TCEssError`` that holds the same error and context.
-    public func toEssError() -> TCEssError {
-        guard let code = TCEssError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEssError() -> TCEssError {
+            let code: TCEssError.Code
+            switch self.error {
+            case .approverNoMatchTemplate: 
+                code = .operationDenied_ApproverNoMatchTemplate
+            case .approverRepeat: 
+                code = .operationDenied_ApproverRepeat
+            case .authCodeInvalid: 
+                code = .operationDenied_AuthCodeInvalid
+            case .batchCancelForbid: 
+                code = .operationDenied_BatchCancelForbid
+            case .branchSendFlowToParentNotAllow: 
+                code = .operationDenied_BranchSendFlowToParentNotAllow
+            case .ccForbid: 
+                code = .operationDenied_CcForbid
+            case .ccUserRepeat: 
+                code = .operationDenied_CcUserRepeat
+            case .documentNoAvailable: 
+                code = .operationDenied_DocumentNoAvailable
+            case .errNoResourceAccess: 
+                code = .operationDenied_ErrNoResourceAccess
+            case .errNoSupportIndividualHasOrganizationName: 
+                code = .operationDenied_ErrNoSupportIndividualHasOrganizationName
+            case .fileDeleted: 
+                code = .operationDenied_FileDeleted
+            case .fileNoMatchResource: 
+                code = .operationDenied_FileNoMatchResource
+            case .flowCancelForbid: 
+                code = .operationDenied_FlowCancelForbid
+            case .flowHasStarted: 
+                code = .operationDenied_FlowHasStarted
+            case .flowHasTerminated: 
+                code = .operationDenied_FlowHasTerminated
+            case .flowNoNeedReview: 
+                code = .operationDenied_FlowNoNeedReview
+            case .flowStatusForbid: 
+                code = .operationDenied_FlowStatusForbid
+            case .forbid: 
+                code = .operationDenied_Forbid
+            case .invalidApproverAge: 
+                code = .operationDenied_InvalidApproverAge
+            case .manyResourceId: 
+                code = .operationDenied_ManyResourceId
+            case .noFlowPermission: 
+                code = .operationDenied_NoFlowPermission
+            case .noIdentityVerify: 
+                code = .operationDenied_NoIdentityVerify
+            case .noLogin: 
+                code = .operationDenied_NoLogin
+            case .noOpenServerSign: 
+                code = .operationDenied_NoOpenServerSign
+            case .noPermissionUseResource: 
+                code = .operationDenied_NoPermissionUseResource
+            case .noPermissionUseServerSignSeal: 
+                code = .operationDenied_NoPermissionUseServerSignSeal
+            case .noQuota: 
+                code = .operationDenied_NoQuota
+            case .noSupportComponentType: 
+                code = .operationDenied_NoSupportComponentType
+            case .noSupportJumpPage: 
+                code = .operationDenied_NoSupportJumpPage
+            case .noVerify: 
+                code = .operationDenied_NoVerify
+            case .notBelongSuperAdminOrLegalPerson: 
+                code = .operationDenied_NotBelongSuperAdminOrLegalPerson
+            case .operatorHasNoPermission: 
+                code = .operationDenied_OperatorHasNoPermission
+            case .orgUniformSocialCreditCodeErr: 
+                code = .operationDenied_OrgUniformSocialCreditCodeErr
+            case .organizationNotActivated: 
+                code = .operationDenied_OrganizationNotActivated
+            case .outQueryLimit: 
+                code = .operationDenied_OutQueryLimit
+            case .overSeaForbid: 
+                code = .operationDenied_OverSeaForbid
+            case .personHasNoSignature: 
+                code = .operationDenied_PersonHasNoSignature
+            case .personNoOpenServerSign: 
+                code = .operationDenied_PersonNoOpenServerSign
+            case .personServerSignForbid: 
+                code = .operationDenied_PersonServerSignForbid
+            case .qrHasExpire: 
+                code = .operationDenied_QrHasExpire
+            case .qrInvalid: 
+                code = .operationDenied_QrInvalid
+            case .requiredComponentNotFill: 
+                code = .operationDenied_RequiredComponentNotFill
+            case .serverSignNoAllowComponent: 
+                code = .operationDenied_ServerSignNoAllowComponent
+            case .serverSignNoSupportSignature: 
+                code = .operationDenied_ServerSignNoSupportSignature
+            case .userNotInOrganization: 
+                code = .operationDenied_UserNotInOrganization
+            case .whiteListForbid: 
+                code = .operationDenied_WhiteListForbid
+            case .other: 
+                code = .operationDenied
+            }
+            return TCEssError(code, context: self.context)
         }
-        return TCEssError(code, context: self.context)
-    }
-}
-
-extension TCEssError.OperationDenied {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

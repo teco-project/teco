@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCLcicError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCLcicErrorType {
         enum Code: String {
             case classTooLong = "FailedOperation.ClassTooLong"
             case originIdExists = "FailedOperation.OriginIdExists"
@@ -31,8 +31,6 @@ extension TCLcicError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -57,37 +55,18 @@ extension TCLcicError {
         public static var roomNotEnd: FailedOperation {
             FailedOperation(.roomNotEnd)
         }
-    }
-}
-
-extension TCLcicError.FailedOperation: Equatable {
-    public static func == (lhs: TCLcicError.FailedOperation, rhs: TCLcicError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCLcicError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCLcicError.FailedOperation {
-    /// - Returns: ``TCLcicError`` that holds the same error and context.
-    public func toLcicError() -> TCLcicError {
-        guard let code = TCLcicError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asLcicError() -> TCLcicError {
+            let code: TCLcicError.Code
+            switch self.error {
+            case .classTooLong: 
+                code = .failedOperation_ClassTooLong
+            case .originIdExists: 
+                code = .failedOperation_OriginIdExists
+            case .roomNotEnd: 
+                code = .failedOperation_RoomNotEnd
+            }
+            return TCLcicError(code, context: self.context)
         }
-        return TCLcicError(code, context: self.context)
-    }
-}
-
-extension TCLcicError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

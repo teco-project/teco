@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAdvisorError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCAdvisorErrorType {
         enum Code: String {
             case paramError = "InvalidParameter.ParamError"
             case other = "InvalidParameter"
@@ -30,8 +30,6 @@ extension TCAdvisorError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCAdvisorError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCAdvisorError.InvalidParameter: Equatable {
-    public static func == (lhs: TCAdvisorError.InvalidParameter, rhs: TCAdvisorError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAdvisorError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAdvisorError.InvalidParameter {
-    /// - Returns: ``TCAdvisorError`` that holds the same error and context.
-    public func toAdvisorError() -> TCAdvisorError {
-        guard let code = TCAdvisorError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAdvisorError() -> TCAdvisorError {
+            let code: TCAdvisorError.Code
+            switch self.error {
+            case .paramError: 
+                code = .invalidParameter_ParamError
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCAdvisorError(code, context: self.context)
         }
-        return TCAdvisorError(code, context: self.context)
-    }
-}
-
-extension TCAdvisorError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

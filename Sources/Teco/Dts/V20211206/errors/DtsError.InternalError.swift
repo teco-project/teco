@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDtsError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCDtsErrorType {
         enum Code: String {
             case addTaskError = "InternalError.AddTaskError"
             case celeryError = "InternalError.CeleryError"
@@ -43,8 +43,6 @@ extension TCDtsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -139,37 +137,42 @@ extension TCDtsError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCDtsError.InternalError: Equatable {
-    public static func == (lhs: TCDtsError.InternalError, rhs: TCDtsError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDtsError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDtsError.InternalError {
-    /// - Returns: ``TCDtsError`` that holds the same error and context.
-    public func toDtsError() -> TCDtsError {
-        guard let code = TCDtsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDtsError() -> TCDtsError {
+            let code: TCDtsError.Code
+            switch self.error {
+            case .addTaskError: 
+                code = .internalError_AddTaskError
+            case .celeryError: 
+                code = .internalError_CeleryError
+            case .cgwSystemError: 
+                code = .internalError_CgwSystemError
+            case .databaseError: 
+                code = .internalError_DatabaseError
+            case .duplicateJob: 
+                code = .internalError_DuplicateJob
+            case .internalErrorError: 
+                code = .internalError_InternalErrorError
+            case .internalHttpServerError: 
+                code = .internalError_InternalHttpServerError
+            case .internalInnerCommonError: 
+                code = .internalError_InternalInnerCommonError
+            case .internalTradeError: 
+                code = .internalError_InternalTradeError
+            case .lockError: 
+                code = .internalError_LockError
+            case .notEnoughMoneyError: 
+                code = .internalError_NotEnoughMoneyError
+            case .protocolError: 
+                code = .internalError_ProtocolError
+            case .undefinedError: 
+                code = .internalError_UndefinedError
+            case .unknownError: 
+                code = .internalError_UnknownError
+            case .other: 
+                code = .internalError
+            }
+            return TCDtsError(code, context: self.context)
         }
-        return TCDtsError(code, context: self.context)
-    }
-}
-
-extension TCDtsError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

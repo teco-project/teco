@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotexplorerError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCIotexplorerErrorType {
         enum Code: String {
             case actionInputParamsInvalid = "InvalidParameter.ActionInputParamsInvalid"
             case firmwareAlreadyExist = "InvalidParameter.FirmwareAlreadyExist"
@@ -32,8 +32,6 @@ extension TCIotexplorerError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCIotexplorerError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCIotexplorerError.InvalidParameter: Equatable {
-    public static func == (lhs: TCIotexplorerError.InvalidParameter, rhs: TCIotexplorerError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotexplorerError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotexplorerError.InvalidParameter {
-    /// - Returns: ``TCIotexplorerError`` that holds the same error and context.
-    public func toIotexplorerError() -> TCIotexplorerError {
-        guard let code = TCIotexplorerError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotexplorerError() -> TCIotexplorerError {
+            let code: TCIotexplorerError.Code
+            switch self.error {
+            case .actionInputParamsInvalid: 
+                code = .invalidParameter_ActionInputParamsInvalid
+            case .firmwareAlreadyExist: 
+                code = .invalidParameter_FirmwareAlreadyExist
+            case .productIsNotGateway: 
+                code = .invalidParameter_ProductIsNotGateway
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCIotexplorerError(code, context: self.context)
         }
-        return TCIotexplorerError(code, context: self.context)
-    }
-}
-
-extension TCIotexplorerError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

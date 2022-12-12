@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTiaError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCTiaErrorType {
         enum Code: String {
             case unsupportedVersion = "UnsupportedOperation.UnsupportedVersion"
         }
@@ -29,8 +29,6 @@ extension TCTiaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCTiaError {
         public static var unsupportedVersion: UnsupportedOperation {
             UnsupportedOperation(.unsupportedVersion)
         }
-    }
-}
-
-extension TCTiaError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCTiaError.UnsupportedOperation, rhs: TCTiaError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTiaError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTiaError.UnsupportedOperation {
-    /// - Returns: ``TCTiaError`` that holds the same error and context.
-    public func toTiaError() -> TCTiaError {
-        guard let code = TCTiaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTiaError() -> TCTiaError {
+            let code: TCTiaError.Code
+            switch self.error {
+            case .unsupportedVersion: 
+                code = .unsupportedOperation_UnsupportedVersion
+            }
+            return TCTiaError(code, context: self.context)
         }
-        return TCTiaError(code, context: self.context)
-    }
-}
-
-extension TCTiaError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

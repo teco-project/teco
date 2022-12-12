@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTemError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCTemErrorType {
         enum Code: String {
             case applicationAccessServiceReachMaximum = "InvalidParameter.ApplicationAccessServiceReachMaximum"
             case lbServiceCannotSupportTcpUdpSameTime = "InvalidParameter.LBServiceCannotSupportTcpUdpSameTime"
@@ -34,8 +34,6 @@ extension TCTemError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,24 @@ extension TCTemError {
         public static var tooManyPortMappingRules: InvalidParameter {
             InvalidParameter(.tooManyPortMappingRules)
         }
-    }
-}
-
-extension TCTemError.InvalidParameter: Equatable {
-    public static func == (lhs: TCTemError.InvalidParameter, rhs: TCTemError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTemError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTemError.InvalidParameter {
-    /// - Returns: ``TCTemError`` that holds the same error and context.
-    public func toTemError() -> TCTemError {
-        guard let code = TCTemError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTemError() -> TCTemError {
+            let code: TCTemError.Code
+            switch self.error {
+            case .applicationAccessServiceReachMaximum: 
+                code = .invalidParameter_ApplicationAccessServiceReachMaximum
+            case .lbServiceCannotSupportTcpUdpSameTime: 
+                code = .invalidParameter_LBServiceCannotSupportTcpUdpSameTime
+            case .mustProvidePortMappingRules: 
+                code = .invalidParameter_MustProvidePortMappingRules
+            case .serviceNameNotValid: 
+                code = .invalidParameter_ServiceNameNotValid
+            case .serviceUseReserveSuffix: 
+                code = .invalidParameter_ServiceUseReserveSuffix
+            case .tooManyPortMappingRules: 
+                code = .invalidParameter_TooManyPortMappingRules
+            }
+            return TCTemError(code, context: self.context)
         }
-        return TCTemError(code, context: self.context)
-    }
-}
-
-extension TCTemError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

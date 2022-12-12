@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEcdnError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCEcdnErrorType {
         enum Code: String {
             case ecdnConfigError = "FailedOperation.EcdnConfigError"
         }
@@ -29,8 +29,6 @@ extension TCEcdnError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCEcdnError {
         public static var ecdnConfigError: FailedOperation {
             FailedOperation(.ecdnConfigError)
         }
-    }
-}
-
-extension TCEcdnError.FailedOperation: Equatable {
-    public static func == (lhs: TCEcdnError.FailedOperation, rhs: TCEcdnError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEcdnError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEcdnError.FailedOperation {
-    /// - Returns: ``TCEcdnError`` that holds the same error and context.
-    public func toEcdnError() -> TCEcdnError {
-        guard let code = TCEcdnError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEcdnError() -> TCEcdnError {
+            let code: TCEcdnError.Code
+            switch self.error {
+            case .ecdnConfigError: 
+                code = .failedOperation_EcdnConfigError
+            }
+            return TCEcdnError(code, context: self.context)
         }
-        return TCEcdnError(code, context: self.context)
-    }
-}
-
-extension TCEcdnError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

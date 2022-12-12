@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTeoError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCTeoErrorType {
         enum Code: String {
             case actionInProgress = "InvalidParameter.ActionInProgress"
             case domainNotFound = "InvalidParameter.DomainNotFound"
@@ -57,8 +57,6 @@ extension TCTeoError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -218,37 +216,70 @@ extension TCTeoError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCTeoError.InvalidParameter: Equatable {
-    public static func == (lhs: TCTeoError.InvalidParameter, rhs: TCTeoError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTeoError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTeoError.InvalidParameter {
-    /// - Returns: ``TCTeoError`` that holds the same error and context.
-    public func toTeoError() -> TCTeoError {
-        guard let code = TCTeoError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTeoError() -> TCTeoError {
+            let code: TCTeoError.Code
+            switch self.error {
+            case .actionInProgress: 
+                code = .invalidParameter_ActionInProgress
+            case .domainNotFound: 
+                code = .invalidParameter_DomainNotFound
+            case .invalidCacheOnlyOnSwitch: 
+                code = .invalidParameter_InvalidCacheOnlyOnSwitch
+            case .invalidCertInfo: 
+                code = .invalidParameter_InvalidCertInfo
+            case .invalidClientIpHeaderName: 
+                code = .invalidParameter_InvalidClientIpHeaderName
+            case .invalidDynamicRoutineBilling: 
+                code = .invalidParameter_InvalidDynamicRoutineBilling
+            case .invalidFilterName: 
+                code = .invalidParameter_InvalidFilterName
+            case .invalidForceRedirectType: 
+                code = .invalidParameter_InvalidForceRedirectType
+            case .invalidOrigin: 
+                code = .invalidParameter_InvalidOrigin
+            case .invalidPostMaxSizeBilling: 
+                code = .invalidParameter_InvalidPostMaxSizeBilling
+            case .invalidPostSizeValue: 
+                code = .invalidParameter_InvalidPostSizeValue
+            case .invalidRedirectUrlCapture: 
+                code = .invalidParameter_InvalidRedirectUrlCapture
+            case .invalidRequestHeaderName: 
+                code = .invalidParameter_InvalidRequestHeaderName
+            case .invalidRequestHeaderValue: 
+                code = .invalidParameter_InvalidRequestHeaderValue
+            case .invalidResourceIdBilling: 
+                code = .invalidParameter_InvalidResourceIdBilling
+            case .invalidResponseHeaderValue: 
+                code = .invalidParameter_InvalidResponseHeaderValue
+            case .invalidRuleEngineAction: 
+                code = .invalidParameter_InvalidRuleEngineAction
+            case .invalidRuleEngineTarget: 
+                code = .invalidParameter_InvalidRuleEngineTarget
+            case .invalidRuleEngineTargetsExtension: 
+                code = .invalidParameter_InvalidRuleEngineTargetsExtension
+            case .invalidUrlRedirectUrl: 
+                code = .invalidParameter_InvalidUrlRedirectUrl
+            case .invalidWebSocketTimeout: 
+                code = .invalidParameter_InvalidWebSocketTimeout
+            case .parameterError: 
+                code = .invalidParameter_ParameterError
+            case .security: 
+                code = .invalidParameter_Security
+            case .settingInvalidParam: 
+                code = .invalidParameter_SettingInvalidParam
+            case .target: 
+                code = .invalidParameter_Target
+            case .taskNotGenerated: 
+                code = .invalidParameter_TaskNotGenerated
+            case .uploadUrl: 
+                code = .invalidParameter_UploadUrl
+            case .zoneNotFound: 
+                code = .invalidParameter_ZoneNotFound
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCTeoError(code, context: self.context)
         }
-        return TCTeoError(code, context: self.context)
-    }
-}
-
-extension TCTeoError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

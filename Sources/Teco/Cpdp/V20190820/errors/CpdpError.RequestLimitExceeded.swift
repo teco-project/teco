@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCpdpError {
-    public struct RequestLimitExceeded: TCErrorType {
+    public struct RequestLimitExceeded: TCCpdpErrorType {
         enum Code: String {
             case midas = "RequestLimitExceeded.Midas"
             case midasInvalidRequest = "RequestLimitExceeded.MidasInvalidRequest"
@@ -30,8 +30,6 @@ extension TCCpdpError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -58,37 +56,16 @@ extension TCCpdpError {
         public static var midasInvalidRequest: RequestLimitExceeded {
             RequestLimitExceeded(.midasInvalidRequest)
         }
-    }
-}
-
-extension TCCpdpError.RequestLimitExceeded: Equatable {
-    public static func == (lhs: TCCpdpError.RequestLimitExceeded, rhs: TCCpdpError.RequestLimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCpdpError.RequestLimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCpdpError.RequestLimitExceeded {
-    /// - Returns: ``TCCpdpError`` that holds the same error and context.
-    public func toCpdpError() -> TCCpdpError {
-        guard let code = TCCpdpError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCpdpError() -> TCCpdpError {
+            let code: TCCpdpError.Code
+            switch self.error {
+            case .midas: 
+                code = .requestLimitExceeded_Midas
+            case .midasInvalidRequest: 
+                code = .requestLimitExceeded_MidasInvalidRequest
+            }
+            return TCCpdpError(code, context: self.context)
         }
-        return TCCpdpError(code, context: self.context)
-    }
-}
-
-extension TCCpdpError.RequestLimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

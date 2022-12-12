@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDnspodError {
-    public struct OperationDenied: TCErrorType {
+    public struct OperationDenied: TCDnspodErrorType {
         enum Code: String {
             case accessDenied = "OperationDenied.AccessDenied"
             case agentDenied = "OperationDenied.AgentDenied"
@@ -48,8 +48,6 @@ extension TCDnspodError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -160,37 +158,52 @@ extension TCDnspodError {
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-    }
-}
-
-extension TCDnspodError.OperationDenied: Equatable {
-    public static func == (lhs: TCDnspodError.OperationDenied, rhs: TCDnspodError.OperationDenied) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDnspodError.OperationDenied: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDnspodError.OperationDenied {
-    /// - Returns: ``TCDnspodError`` that holds the same error and context.
-    public func toDnspodError() -> TCDnspodError {
-        guard let code = TCDnspodError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDnspodError() -> TCDnspodError {
+            let code: TCDnspodError.Code
+            switch self.error {
+            case .accessDenied: 
+                code = .operationDenied_AccessDenied
+            case .agentDenied: 
+                code = .operationDenied_AgentDenied
+            case .agentSubordinateDenied: 
+                code = .operationDenied_AgentSubordinateDenied
+            case .cancelBillNotAllowed: 
+                code = .operationDenied_CancelBillNotAllowed
+            case .deleteUsingRecordLineNotAllowed: 
+                code = .operationDenied_DeleteUsingRecordLineNotAllowed
+            case .domainOwnerAllowedOnly: 
+                code = .operationDenied_DomainOwnerAllowedOnly
+            case .ipInBlacklistNotAllowed: 
+                code = .operationDenied_IPInBlacklistNotAllowed
+            case .monitorCallbackNotEnabled: 
+                code = .operationDenied_MonitorCallbackNotEnabled
+            case .noPermissionToOperateDomain: 
+                code = .operationDenied_NoPermissionToOperateDomain
+            case .notAdmin: 
+                code = .operationDenied_NotAdmin
+            case .notAgent: 
+                code = .operationDenied_NotAgent
+            case .notGrantedByOwner: 
+                code = .operationDenied_NotGrantedByOwner
+            case .notManagedUser: 
+                code = .operationDenied_NotManagedUser
+            case .notOrderOwner: 
+                code = .operationDenied_NotOrderOwner
+            case .notResourceOwner: 
+                code = .operationDenied_NotResourceOwner
+            case .personalCouponNotAllowed: 
+                code = .operationDenied_PersonalCouponNotAllowed
+            case .postRequestAcceptOnly: 
+                code = .operationDenied_PostRequestAcceptOnly
+            case .resourceNotAllowRenew: 
+                code = .operationDenied_ResourceNotAllowRenew
+            case .vipDomainAllowed: 
+                code = .operationDenied_VipDomainAllowed
+            case .other: 
+                code = .operationDenied
+            }
+            return TCDnspodError(code, context: self.context)
         }
-        return TCDnspodError(code, context: self.context)
-    }
-}
-
-extension TCDnspodError.OperationDenied {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

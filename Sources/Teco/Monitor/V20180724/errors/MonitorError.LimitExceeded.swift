@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMonitorError {
-    public struct LimitExceeded: TCErrorType {
+    public struct LimitExceeded: TCMonitorErrorType {
         enum Code: String {
             case metricQuotaExceeded = "LimitExceeded.MetricQuotaExceeded"
             case other = "LimitExceeded"
@@ -30,8 +30,6 @@ extension TCMonitorError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCMonitorError {
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-    }
-}
-
-extension TCMonitorError.LimitExceeded: Equatable {
-    public static func == (lhs: TCMonitorError.LimitExceeded, rhs: TCMonitorError.LimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMonitorError.LimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMonitorError.LimitExceeded {
-    /// - Returns: ``TCMonitorError`` that holds the same error and context.
-    public func toMonitorError() -> TCMonitorError {
-        guard let code = TCMonitorError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMonitorError() -> TCMonitorError {
+            let code: TCMonitorError.Code
+            switch self.error {
+            case .metricQuotaExceeded: 
+                code = .limitExceeded_MetricQuotaExceeded
+            case .other: 
+                code = .limitExceeded
+            }
+            return TCMonitorError(code, context: self.context)
         }
-        return TCMonitorError(code, context: self.context)
-    }
-}
-
-extension TCMonitorError.LimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

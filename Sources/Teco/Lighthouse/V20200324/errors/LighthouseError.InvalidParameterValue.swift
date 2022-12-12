@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCLighthouseError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCLighthouseErrorType {
         enum Code: String {
             case blueprintConfigNotMatch = "InvalidParameterValue.BlueprintConfigNotMatch"
             case blueprintId = "InvalidParameterValue.BlueprintId"
@@ -68,8 +68,6 @@ extension TCLighthouseError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -284,37 +282,92 @@ extension TCLighthouseError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCLighthouseError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCLighthouseError.InvalidParameterValue, rhs: TCLighthouseError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCLighthouseError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCLighthouseError.InvalidParameterValue {
-    /// - Returns: ``TCLighthouseError`` that holds the same error and context.
-    public func toLighthouseError() -> TCLighthouseError {
-        guard let code = TCLighthouseError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asLighthouseError() -> TCLighthouseError {
+            let code: TCLighthouseError.Code
+            switch self.error {
+            case .blueprintConfigNotMatch: 
+                code = .invalidParameterValue_BlueprintConfigNotMatch
+            case .blueprintId: 
+                code = .invalidParameterValue_BlueprintId
+            case .blueprintIdMalformed: 
+                code = .invalidParameterValue_BlueprintIdMalformed
+            case .bundleAndBlueprintNotMatch: 
+                code = .invalidParameterValue_BundleAndBlueprintNotMatch
+            case .ccnIdMalformed: 
+                code = .invalidParameterValue_CcnIdMalformed
+            case .diskNameTooLong: 
+                code = .invalidParameterValue_DiskNameTooLong
+            case .diskSizeNotMatch: 
+                code = .invalidParameterValue_DiskSizeNotMatch
+            case .duplicateParameterValue: 
+                code = .invalidParameterValue_DuplicateParameterValue
+            case .duplicated: 
+                code = .invalidParameterValue_Duplicated
+            case .firewallRuleDescriptionTooLong: 
+                code = .invalidParameterValue_FirewallRuleDescriptionTooLong
+            case .instanceIdMalformed: 
+                code = .invalidParameterValue_InstanceIdMalformed
+            case .instanceNameTooLong: 
+                code = .invalidParameterValue_InstanceNameTooLong
+            case .invalidBlueprintId: 
+                code = .invalidParameterValue_InvalidBlueprintId
+            case .invalidBlueprintPlatformType: 
+                code = .invalidParameterValue_InvalidBlueprintPlatformType
+            case .invalidBlueprintState: 
+                code = .invalidParameterValue_InvalidBlueprintState
+            case .invalidBlueprintType: 
+                code = .invalidParameterValue_InvalidBlueprintType
+            case .invalidBundle: 
+                code = .invalidParameterValue_InvalidBundle
+            case .invalidConsoleDisplayTypes: 
+                code = .invalidParameterValue_InvalidConsoleDisplayTypes
+            case .invalidDiskIdMalformed: 
+                code = .invalidParameterValue_InvalidDiskIdMalformed
+            case .invalidInstanceLoginKeyPairPermitLogin: 
+                code = .invalidParameterValue_InvalidInstanceLoginKeyPairPermitLogin
+            case .invalidIpFormat: 
+                code = .invalidParameterValue_InvalidIpFormat
+            case .invalidKeyPairNameEmpty: 
+                code = .invalidParameterValue_InvalidKeyPairNameEmpty
+            case .invalidKeyPairNameIncludeIllegalChar: 
+                code = .invalidParameterValue_InvalidKeyPairNameIncludeIllegalChar
+            case .invalidKeyPairNameTooLong: 
+                code = .invalidParameterValue_InvalidKeyPairNameTooLong
+            case .invalidParameterCombination: 
+                code = .invalidParameterValue_InvalidParameterCombination
+            case .invalidPassword: 
+                code = .invalidParameterValue_InvalidPassword
+            case .invalidResourceQuotaResourceName: 
+                code = .invalidParameterValue_InvalidResourceQuotaResourceName
+            case .invalidZone: 
+                code = .invalidParameterValue_InvalidZone
+            case .keyPairIdMalformed: 
+                code = .invalidParameterValue_KeyPairIdMalformed
+            case .keyPairPublicKeyDuplicated: 
+                code = .invalidParameterValue_KeyPairPublicKeyDuplicated
+            case .keyPairPublicKeyMalformed: 
+                code = .invalidParameterValue_KeyPairPublicKeyMalformed
+            case .limitExceeded: 
+                code = .invalidParameterValue_LimitExceeded
+            case .negative: 
+                code = .invalidParameterValue_Negative
+            case .notAllowToChangePlatformType: 
+                code = .invalidParameterValue_NotAllowToChangePlatformType
+            case .outOfRange: 
+                code = .invalidParameterValue_OutOfRange
+            case .snapshotIdMalformed: 
+                code = .invalidParameterValue_SnapshotIdMalformed
+            case .snapshotNameTooLong: 
+                code = .invalidParameterValue_SnapshotNameTooLong
+            case .tooLong: 
+                code = .invalidParameterValue_TooLong
+            case .zoneInvalid: 
+                code = .invalidParameterValue_ZoneInvalid
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCLighthouseError(code, context: self.context)
         }
-        return TCLighthouseError(code, context: self.context)
-    }
-}
-
-extension TCLighthouseError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

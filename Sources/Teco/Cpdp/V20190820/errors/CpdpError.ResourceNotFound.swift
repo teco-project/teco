@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCpdpError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCCpdpErrorType {
         enum Code: String {
             case account = "ResourceNotFound.Account"
             case batchInfoNotFound = "ResourceNotFound.BatchInfoNotFound"
@@ -38,8 +38,6 @@ extension TCCpdpError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -110,37 +108,32 @@ extension TCCpdpError {
         public static var platformInfoNotFound: ResourceNotFound {
             ResourceNotFound(.platformInfoNotFound)
         }
-    }
-}
-
-extension TCCpdpError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCCpdpError.ResourceNotFound, rhs: TCCpdpError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCpdpError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCpdpError.ResourceNotFound {
-    /// - Returns: ``TCCpdpError`` that holds the same error and context.
-    public func toCpdpError() -> TCCpdpError {
-        guard let code = TCCpdpError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCpdpError() -> TCCpdpError {
+            let code: TCCpdpError.Code
+            switch self.error {
+            case .account: 
+                code = .resourceNotFound_Account
+            case .batchInfoNotFound: 
+                code = .resourceNotFound_BatchInfoNotFound
+            case .invoiceNotFound: 
+                code = .resourceNotFound_InvoiceNotFound
+            case .key: 
+                code = .resourceNotFound_Key
+            case .merchantInfoNotFound: 
+                code = .resourceNotFound_MerchantInfoNotFound
+            case .midasExternalApp: 
+                code = .resourceNotFound_MidasExternalApp
+            case .midasExternalOrder: 
+                code = .resourceNotFound_MidasExternalOrder
+            case .midasOrder: 
+                code = .resourceNotFound_MidasOrder
+            case .midasSign: 
+                code = .resourceNotFound_MidasSign
+            case .platformInfoNotFound: 
+                code = .resourceNotFound_PlatformInfoNotFound
+            }
+            return TCCpdpError(code, context: self.context)
         }
-        return TCCpdpError(code, context: self.context)
-    }
-}
-
-extension TCCpdpError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

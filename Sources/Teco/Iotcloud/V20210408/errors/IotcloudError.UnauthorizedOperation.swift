@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotcloudError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCIotcloudErrorType {
         enum Code: String {
             case deleteTidFail = "UnauthorizedOperation.DeleteTidFail"
             case deviceHasAlreadyBindGateway = "UnauthorizedOperation.DeviceHasAlreadyBindGateway"
@@ -40,8 +40,6 @@ extension TCIotcloudError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -114,37 +112,36 @@ extension TCIotcloudError {
         public static var userNotAuthenticaed: UnauthorizedOperation {
             UnauthorizedOperation(.userNotAuthenticaed)
         }
-    }
-}
-
-extension TCIotcloudError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCIotcloudError.UnauthorizedOperation, rhs: TCIotcloudError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotcloudError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotcloudError.UnauthorizedOperation {
-    /// - Returns: ``TCIotcloudError`` that holds the same error and context.
-    public func toIotcloudError() -> TCIotcloudError {
-        guard let code = TCIotcloudError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotcloudError() -> TCIotcloudError {
+            let code: TCIotcloudError.Code
+            switch self.error {
+            case .deleteTidFail: 
+                code = .unauthorizedOperation_DeleteTidFail
+            case .deviceHasAlreadyBindGateway: 
+                code = .unauthorizedOperation_DeviceHasAlreadyBindGateway
+            case .deviceIsNotEnabled: 
+                code = .unauthorizedOperation_DeviceIsNotEnabled
+            case .devicesExistUnderProduct: 
+                code = .unauthorizedOperation_DevicesExistUnderProduct
+            case .gatewayHasBindedDevices: 
+                code = .unauthorizedOperation_GatewayHasBindedDevices
+            case .permissionDenied: 
+                code = .unauthorizedOperation_PermissionDenied
+            case .productCantHaveLoRaDevice: 
+                code = .unauthorizedOperation_ProductCantHaveLoRaDevice
+            case .productCantHaveNormalDevice: 
+                code = .unauthorizedOperation_ProductCantHaveNormalDevice
+            case .productCantHaveNotLoRaDevice: 
+                code = .unauthorizedOperation_ProductCantHaveNotLoRaDevice
+            case .productIsForbidden: 
+                code = .unauthorizedOperation_ProductIsForbidden
+            case .productNotSupportPSK: 
+                code = .unauthorizedOperation_ProductNotSupportPSK
+            case .userNotAuthenticaed: 
+                code = .unauthorizedOperation_UserNotAuthenticaed
+            }
+            return TCIotcloudError(code, context: self.context)
         }
-        return TCIotcloudError(code, context: self.context)
-    }
-}
-
-extension TCIotcloudError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

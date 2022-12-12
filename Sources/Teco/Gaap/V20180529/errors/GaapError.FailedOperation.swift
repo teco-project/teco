@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCGaapError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCGaapErrorType {
         enum Code: String {
             case accountBalanceInsufficient = "FailedOperation.AccountBalanceInsufficient"
             case actionIsDoing = "FailedOperation.ActionIsDoing"
@@ -82,8 +82,6 @@ extension TCGaapError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -364,37 +362,120 @@ extension TCGaapError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCGaapError.FailedOperation: Equatable {
-    public static func == (lhs: TCGaapError.FailedOperation, rhs: TCGaapError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCGaapError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCGaapError.FailedOperation {
-    /// - Returns: ``TCGaapError`` that holds the same error and context.
-    public func toGaapError() -> TCGaapError {
-        guard let code = TCGaapError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asGaapError() -> TCGaapError {
+            let code: TCGaapError.Code
+            switch self.error {
+            case .accountBalanceInsufficient: 
+                code = .failedOperation_AccountBalanceInsufficient
+            case .actionIsDoing: 
+                code = .failedOperation_ActionIsDoing
+            case .actionOperateTooQuickly: 
+                code = .failedOperation_ActionOperateTooQuickly
+            case .belongDifferentGroup: 
+                code = .failedOperation_BelongDifferentGroup
+            case .certificateIsUsing: 
+                code = .failedOperation_CertificateIsUsing
+            case .createQosExceedLimit: 
+                code = .failedOperation_CreateQosExceedLimit
+            case .ctccTokenExpired: 
+                code = .failedOperation_CTCCTokenExpired
+            case .deleteProxyGroupProxyRemained: 
+                code = .failedOperation_DeleteProxyGroupProxyRemained
+            case .domainAlreadyExisted: 
+                code = .failedOperation_DomainAlreadyExisted
+            case .domainStatusNotInRunning: 
+                code = .failedOperation_DomainStatusNotInRunning
+            case .duplicatedRequest: 
+                code = .failedOperation_DuplicatedRequest
+            case .groupStatusNotInRuning: 
+                code = .failedOperation_GroupStatusNotInRuning
+            case .instanceStatusNotInRuning: 
+                code = .failedOperation_InstanceStatusNotInRuning
+            case .invalidListenerProtocol: 
+                code = .failedOperation_InvalidListenerProtocol
+            case .ipUnmatched: 
+                code = .failedOperation_IPUnmatched
+            case .limitNumofListener: 
+                code = .failedOperation_LimitNumofListener
+            case .limitNumofProxiesInGroup: 
+                code = .failedOperation_LimitNumofProxiesInGroup
+            case .limitNumofRules: 
+                code = .failedOperation_LimitNumofRules
+            case .limitRealServerNum: 
+                code = .failedOperation_LimitRealServerNum
+            case .listenerHasTask: 
+                code = .failedOperation_ListenerHasTask
+            case .listenerStatusError: 
+                code = .failedOperation_ListenerStatusError
+            case .migration: 
+                code = .failedOperation_Migration
+            case .noResourceBound: 
+                code = .failedOperation_NoResourceBound
+            case .nonStandardProxy: 
+                code = .failedOperation_NonStandardProxy
+            case .notSupportOldVersionProxy: 
+                code = .failedOperation_NotSupportOldVersionProxy
+            case .notSupportProxyGroup: 
+                code = .failedOperation_NotSupportProxyGroup
+            case .notSupportScalar: 
+                code = .failedOperation_NotSupportScalar
+            case .operateLimitNumofListener: 
+                code = .failedOperation_OperateLimitNumofListener
+            case .proxySecurityAlreadyClose: 
+                code = .failedOperation_ProxySecurityAlreadyClose
+            case .proxySecurityAlreadyOpen: 
+                code = .failedOperation_ProxySecurityAlreadyOpen
+            case .proxySecurityPolicyDefaultRule: 
+                code = .failedOperation_ProxySecurityPolicyDefaultRule
+            case .proxySecurityPolicyDuplicatedRule: 
+                code = .failedOperation_ProxySecurityPolicyDuplicatedRule
+            case .proxySecurityPolicyExisted: 
+                code = .failedOperation_ProxySecurityPolicyExisted
+            case .proxySecurityPolicyOperating: 
+                code = .failedOperation_ProxySecurityPolicyOperating
+            case .proxySellOut: 
+                code = .failedOperation_ProxySellOut
+            case .proxyStatusNotInRuning: 
+                code = .failedOperation_ProxyStatusNotInRuning
+            case .proxyVersionNotSupport: 
+                code = .failedOperation_ProxyVersionNotSupport
+            case .realServerAlreadyBound: 
+                code = .failedOperation_RealServerAlreadyBound
+            case .realServerNotInProject: 
+                code = .failedOperation_RealServerNotInProject
+            case .requestVendorTimeout: 
+                code = .failedOperation_RequestVendorTimeout
+            case .resourceCanNotAccess: 
+                code = .failedOperation_ResourceCanNotAccess
+            case .resourceHadBeenDone: 
+                code = .failedOperation_ResourceHadBeenDone
+            case .resourceNotFound: 
+                code = .failedOperation_ResourceNotFound
+            case .resourceUpgrading: 
+                code = .failedOperation_ResourceUpgrading
+            case .ruleAlreadyExisted: 
+                code = .failedOperation_RuleAlreadyExisted
+            case .sessionNotExist: 
+                code = .failedOperation_SessionNotExist
+            case .tagResourcesFailed: 
+                code = .failedOperation_TagResourcesFailed
+            case .unTagResourcesFailed: 
+                code = .failedOperation_UnTagResourcesFailed
+            case .userNotAuthenticated: 
+                code = .failedOperation_UserNotAuthenticated
+            case .userNotConfirmProtocol: 
+                code = .failedOperation_UserNotConfirmProtocol
+            case .userOutOfCoverage: 
+                code = .failedOperation_UserOutOfCoverage
+            case .vendorReturnError: 
+                code = .failedOperation_VendorReturnError
+            case .vendorServerError: 
+                code = .failedOperation_VendorServerError
+            case .other: 
+                code = .failedOperation
+            }
+            return TCGaapError(code, context: self.context)
         }
-        return TCGaapError(code, context: self.context)
-    }
-}
-
-extension TCGaapError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSesError {
-    public struct OperationDenied: TCErrorType {
+    public struct OperationDenied: TCSesErrorType {
         enum Code: String {
             case domainNotVerified = "OperationDenied.DomainNotVerified"
             case exceedDomainLimit = "OperationDenied.ExceedDomainLimit"
@@ -37,8 +37,6 @@ extension TCSesError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -106,37 +104,30 @@ extension TCSesError {
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-    }
-}
-
-extension TCSesError.OperationDenied: Equatable {
-    public static func == (lhs: TCSesError.OperationDenied, rhs: TCSesError.OperationDenied) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSesError.OperationDenied: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSesError.OperationDenied {
-    /// - Returns: ``TCSesError`` that holds the same error and context.
-    public func toSesError() -> TCSesError {
-        guard let code = TCSesError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSesError() -> TCSesError {
+            let code: TCSesError.Code
+            switch self.error {
+            case .domainNotVerified: 
+                code = .operationDenied_DomainNotVerified
+            case .exceedDomainLimit: 
+                code = .operationDenied_ExceedDomainLimit
+            case .exceedSenderLimit: 
+                code = .operationDenied_ExceedSenderLimit
+            case .receiverIsOperating: 
+                code = .operationDenied_ReceiverIsOperating
+            case .receiverNotExist: 
+                code = .operationDenied_ReceiverNotExist
+            case .receiverStatusError: 
+                code = .operationDenied_ReceiverStatusError
+            case .sendAddressStatusError: 
+                code = .operationDenied_SendAddressStatusError
+            case .templateStatusError: 
+                code = .operationDenied_TemplateStatusError
+            case .other: 
+                code = .operationDenied
+            }
+            return TCSesError(code, context: self.context)
         }
-        return TCSesError(code, context: self.context)
-    }
-}
-
-extension TCSesError.OperationDenied {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

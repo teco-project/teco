@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEbError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCEbErrorType {
         enum Code: String {
             case addPrivateLink = "FailedOperation.AddPrivateLink"
             case authenticateUserFailed = "FailedOperation.AuthenticateUserFailed"
@@ -46,8 +46,6 @@ extension TCEbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -140,37 +138,48 @@ extension TCEbError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCEbError.FailedOperation: Equatable {
-    public static func == (lhs: TCEbError.FailedOperation, rhs: TCEbError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEbError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEbError.FailedOperation {
-    /// - Returns: ``TCEbError`` that holds the same error and context.
-    public func toEbError() -> TCEbError {
-        guard let code = TCEbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEbError() -> TCEbError {
+            let code: TCEbError.Code
+            switch self.error {
+            case .addPrivateLink: 
+                code = .failedOperation_AddPrivateLink
+            case .authenticateUserFailed: 
+                code = .failedOperation_AuthenticateUserFailed
+            case .createTrigger: 
+                code = .failedOperation_CreateTrigger
+            case .deleteConnection: 
+                code = .failedOperation_DeleteConnection
+            case .deletePrivateLink: 
+                code = .failedOperation_DeletePrivateLink
+            case .deleteRule: 
+                code = .failedOperation_DeleteRule
+            case .errorFilter: 
+                code = .failedOperation_ErrorFilter
+            case .esInternalError: 
+                code = .failedOperation_ESInternalError
+            case .esRequestFailed: 
+                code = .failedOperation_ESRequestFailed
+            case .esTemplateConflict: 
+                code = .failedOperation_ESTemplateConflict
+            case .registerCLSService: 
+                code = .failedOperation_RegisterCLSService
+            case .serviceError: 
+                code = .failedOperation_ServiceError
+            case .tagResource: 
+                code = .failedOperation_TagResource
+            case .tagResourceAllocateQuotas: 
+                code = .failedOperation_TagResourceAllocateQuotas
+            case .unTagResource: 
+                code = .failedOperation_UnTagResource
+            case .updateConnection: 
+                code = .failedOperation_UpdateConnection
+            case .updateRule: 
+                code = .failedOperation_UpdateRule
+            case .other: 
+                code = .failedOperation
+            }
+            return TCEbError(code, context: self.context)
         }
-        return TCEbError(code, context: self.context)
-    }
-}
-
-extension TCEbError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

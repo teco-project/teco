@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCMrsError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCMrsErrorType {
         enum Code: String {
             case imageCodeInvalid = "InvalidParameterValue.ImageCodeInvalid"
             case imageIsNoText = "InvalidParameterValue.ImageIsNoText"
@@ -31,8 +31,6 @@ extension TCMrsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -64,37 +62,18 @@ extension TCMrsError {
         public static var imageURLInvalid: InvalidParameterValue {
             InvalidParameterValue(.imageURLInvalid)
         }
-    }
-}
-
-extension TCMrsError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCMrsError.InvalidParameterValue, rhs: TCMrsError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCMrsError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCMrsError.InvalidParameterValue {
-    /// - Returns: ``TCMrsError`` that holds the same error and context.
-    public func toMrsError() -> TCMrsError {
-        guard let code = TCMrsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asMrsError() -> TCMrsError {
+            let code: TCMrsError.Code
+            switch self.error {
+            case .imageCodeInvalid: 
+                code = .invalidParameterValue_ImageCodeInvalid
+            case .imageIsNoText: 
+                code = .invalidParameterValue_ImageIsNoText
+            case .imageURLInvalid: 
+                code = .invalidParameterValue_ImageURLInvalid
+            }
+            return TCMrsError(code, context: self.context)
         }
-        return TCMrsError(code, context: self.context)
-    }
-}
-
-extension TCMrsError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

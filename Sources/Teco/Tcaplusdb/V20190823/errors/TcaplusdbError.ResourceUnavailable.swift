@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTcaplusdbError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCTcaplusdbErrorType {
         enum Code: String {
             case duplicateClusterName = "ResourceUnavailable.DuplicateClusterName"
             case duplicateTableGroupInfo = "ResourceUnavailable.DuplicateTableGroupInfo"
@@ -33,8 +33,6 @@ extension TCTcaplusdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,22 @@ extension TCTcaplusdbError {
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-    }
-}
-
-extension TCTcaplusdbError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCTcaplusdbError.ResourceUnavailable, rhs: TCTcaplusdbError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTcaplusdbError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTcaplusdbError.ResourceUnavailable {
-    /// - Returns: ``TCTcaplusdbError`` that holds the same error and context.
-    public func toTcaplusdbError() -> TCTcaplusdbError {
-        guard let code = TCTcaplusdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTcaplusdbError() -> TCTcaplusdbError {
+            let code: TCTcaplusdbError.Code
+            switch self.error {
+            case .duplicateClusterName: 
+                code = .resourceUnavailable_DuplicateClusterName
+            case .duplicateTableGroupInfo: 
+                code = .resourceUnavailable_DuplicateTableGroupInfo
+            case .duplicateTableGroupName: 
+                code = .resourceUnavailable_DuplicateTableGroupName
+            case .noAvailableTableGroup: 
+                code = .resourceUnavailable_NoAvailableTableGroup
+            case .other: 
+                code = .resourceUnavailable
+            }
+            return TCTcaplusdbError(code, context: self.context)
         }
-        return TCTcaplusdbError(code, context: self.context)
-    }
-}
-
-extension TCTcaplusdbError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

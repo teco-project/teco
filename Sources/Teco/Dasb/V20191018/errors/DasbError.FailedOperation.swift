@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDasbError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCDasbErrorType {
         enum Code: String {
             case dataNotFound = "FailedOperation.DataNotFound"
             case duplicateData = "FailedOperation.DuplicateData"
@@ -31,8 +31,6 @@ extension TCDasbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCDasbError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCDasbError.FailedOperation: Equatable {
-    public static func == (lhs: TCDasbError.FailedOperation, rhs: TCDasbError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDasbError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDasbError.FailedOperation {
-    /// - Returns: ``TCDasbError`` that holds the same error and context.
-    public func toDasbError() -> TCDasbError {
-        guard let code = TCDasbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDasbError() -> TCDasbError {
+            let code: TCDasbError.Code
+            switch self.error {
+            case .dataNotFound: 
+                code = .failedOperation_DataNotFound
+            case .duplicateData: 
+                code = .failedOperation_DuplicateData
+            case .other: 
+                code = .failedOperation
+            }
+            return TCDasbError(code, context: self.context)
         }
-        return TCDasbError(code, context: self.context)
-    }
-}
-
-extension TCDasbError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAsError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCAsErrorType {
         enum Code: String {
             case accountNotSupportBandwidthPackageId = "InvalidParameterValue.AccountNotSupportBandwidthPackageId"
             case baseCapacityTooLarge = "InvalidParameterValue.BaseCapacityTooLarge"
@@ -91,8 +91,6 @@ extension TCAsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -421,37 +419,138 @@ extension TCAsError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCAsError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCAsError.InvalidParameterValue, rhs: TCAsError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAsError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAsError.InvalidParameterValue {
-    /// - Returns: ``TCAsError`` that holds the same error and context.
-    public func toAsError() -> TCAsError {
-        guard let code = TCAsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAsError() -> TCAsError {
+            let code: TCAsError.Code
+            switch self.error {
+            case .accountNotSupportBandwidthPackageId: 
+                code = .invalidParameterValue_AccountNotSupportBandwidthPackageId
+            case .baseCapacityTooLarge: 
+                code = .invalidParameterValue_BaseCapacityTooLarge
+            case .classicLb: 
+                code = .invalidParameterValue_ClassicLb
+            case .conflictNotificationTarget: 
+                code = .invalidParameterValue_ConflictNotificationTarget
+            case .cronExpressionIllegal: 
+                code = .invalidParameterValue_CronExpressionIllegal
+            case .cvmConfigurationError: 
+                code = .invalidParameterValue_CvmConfigurationError
+            case .cvmError: 
+                code = .invalidParameterValue_CvmError
+            case .duplicatedForwardLb: 
+                code = .invalidParameterValue_DuplicatedForwardLb
+            case .duplicatedSubnet: 
+                code = .invalidParameterValue_DuplicatedSubnet
+            case .endTimeBeforeStartTime: 
+                code = .invalidParameterValue_EndTimeBeforeStartTime
+            case .filter: 
+                code = .invalidParameterValue_Filter
+            case .forwardLb: 
+                code = .invalidParameterValue_ForwardLb
+            case .groupNameDuplicated: 
+                code = .invalidParameterValue_GroupNameDuplicated
+            case .hostNameIllegal: 
+                code = .invalidParameterValue_HostNameIllegal
+            case .iPv6InternetChargeType: 
+                code = .invalidParameterValue_IPv6InternetChargeType
+            case .imageNotFound: 
+                code = .invalidParameterValue_ImageNotFound
+            case .instanceNameIllegal: 
+                code = .invalidParameterValue_InstanceNameIllegal
+            case .instanceTypeNotSupported: 
+                code = .invalidParameterValue_InstanceTypeNotSupported
+            case .invalidActivityId: 
+                code = .invalidParameterValue_InvalidActivityId
+            case .invalidAutoScalingGroupId: 
+                code = .invalidParameterValue_InvalidAutoScalingGroupId
+            case .invalidAutoScalingNotificationId: 
+                code = .invalidParameterValue_InvalidAutoScalingNotificationId
+            case .invalidAutoScalingPolicyId: 
+                code = .invalidParameterValue_InvalidAutoScalingPolicyId
+            case .invalidClbRegion: 
+                code = .invalidParameterValue_InvalidClbRegion
+            case .invalidFilter: 
+                code = .invalidParameterValue_InvalidFilter
+            case .invalidHpcClusterId: 
+                code = .invalidParameterValue_InvalidHpcClusterId
+            case .invalidImageId: 
+                code = .invalidParameterValue_InvalidImageId
+            case .invalidInstanceId: 
+                code = .invalidParameterValue_InvalidInstanceId
+            case .invalidInstanceType: 
+                code = .invalidParameterValue_InvalidInstanceType
+            case .invalidLaunchConfiguration: 
+                code = .invalidParameterValue_InvalidLaunchConfiguration
+            case .invalidLaunchConfigurationId: 
+                code = .invalidParameterValue_InvalidLaunchConfigurationId
+            case .invalidLifecycleHookId: 
+                code = .invalidParameterValue_InvalidLifecycleHookId
+            case .invalidNotificationUserGroupId: 
+                code = .invalidParameterValue_InvalidNotificationUserGroupId
+            case .invalidScheduledActionId: 
+                code = .invalidParameterValue_InvalidScheduledActionId
+            case .invalidScheduledActionNameIncludeIllegalChar: 
+                code = .invalidParameterValue_InvalidScheduledActionNameIncludeIllegalChar
+            case .invalidSecurityGroupId: 
+                code = .invalidParameterValue_InvalidSecurityGroupId
+            case .invalidSnapshotId: 
+                code = .invalidParameterValue_InvalidSnapshotId
+            case .invalidSubnetId: 
+                code = .invalidParameterValue_InvalidSubnetId
+            case .launchConfigurationNameDuplicated: 
+                code = .invalidParameterValue_LaunchConfigurationNameDuplicated
+            case .launchConfigurationNotFound: 
+                code = .invalidParameterValue_LaunchConfigurationNotFound
+            case .lbProjectInconsistent: 
+                code = .invalidParameterValue_LbProjectInconsistent
+            case .lifecycleHookNameDuplicated: 
+                code = .invalidParameterValue_LifecycleHookNameDuplicated
+            case .limitExceeded: 
+                code = .invalidParameterValue_LimitExceeded
+            case .missingBandwidthPackageId: 
+                code = .invalidParameterValue_MissingBandwidthPackageId
+            case .noResourcePermission: 
+                code = .invalidParameterValue_NoResourcePermission
+            case .notStringTypeFloat: 
+                code = .invalidParameterValue_NotStringTypeFloat
+            case .onlyVpc: 
+                code = .invalidParameterValue_OnlyVpc
+            case .projectIdNotFound: 
+                code = .invalidParameterValue_ProjectIdNotFound
+            case .range: 
+                code = .invalidParameterValue_Range
+            case .scalingPolicyNameDuplicate: 
+                code = .invalidParameterValue_ScalingPolicyNameDuplicate
+            case .scheduledActionNameDuplicate: 
+                code = .invalidParameterValue_ScheduledActionNameDuplicate
+            case .size: 
+                code = .invalidParameterValue_Size
+            case .startTimeBeforeCurrentTime: 
+                code = .invalidParameterValue_StartTimeBeforeCurrentTime
+            case .subnetIds: 
+                code = .invalidParameterValue_SubnetIds
+            case .targetPortDuplicated: 
+                code = .invalidParameterValue_TargetPortDuplicated
+            case .thresholdOutOfRange: 
+                code = .invalidParameterValue_ThresholdOutOfRange
+            case .timeFormat: 
+                code = .invalidParameterValue_TimeFormat
+            case .tooLong: 
+                code = .invalidParameterValue_TooLong
+            case .tooShort: 
+                code = .invalidParameterValue_TooShort
+            case .userDataFormatError: 
+                code = .invalidParameterValue_UserDataFormatError
+            case .userDataSizeExceeded: 
+                code = .invalidParameterValue_UserDataSizeExceeded
+            case .userGroupIdNotFound: 
+                code = .invalidParameterValue_UserGroupIdNotFound
+            case .zoneMismatchRegion: 
+                code = .invalidParameterValue_ZoneMismatchRegion
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCAsError(code, context: self.context)
         }
-        return TCAsError(code, context: self.context)
-    }
-}
-
-extension TCAsError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

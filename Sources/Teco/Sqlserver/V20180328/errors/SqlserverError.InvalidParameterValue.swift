@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSqlserverError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCSqlserverErrorType {
         enum Code: String {
             case accountExist = "InvalidParameterValue.AccountExist"
             case accountNameIsIllegal = "InvalidParameterValue.AccountNameIsIllegal"
@@ -61,8 +61,6 @@ extension TCSqlserverError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -242,37 +240,78 @@ extension TCSqlserverError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCSqlserverError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCSqlserverError.InvalidParameterValue, rhs: TCSqlserverError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSqlserverError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSqlserverError.InvalidParameterValue {
-    /// - Returns: ``TCSqlserverError`` that holds the same error and context.
-    public func toSqlserverError() -> TCSqlserverError {
-        guard let code = TCSqlserverError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSqlserverError() -> TCSqlserverError {
+            let code: TCSqlserverError.Code
+            switch self.error {
+            case .accountExist: 
+                code = .invalidParameterValue_AccountExist
+            case .accountNameIsIllegal: 
+                code = .invalidParameterValue_AccountNameIsIllegal
+            case .accountNameIsKeyWords: 
+                code = .invalidParameterValue_AccountNameIsKeyWords
+            case .accountRemarkIsIllegal: 
+                code = .invalidParameterValue_AccountRemarkIsIllegal
+            case .adminAccountNotUnique: 
+                code = .invalidParameterValue_AdminAccountNotUnique
+            case .backupNameIsIllegal: 
+                code = .invalidParameterValue_BackupNameIsIllegal
+            case .badGoodsNum: 
+                code = .invalidParameterValue_BadGoodsNum
+            case .charsetIsIllegal: 
+                code = .invalidParameterValue_CharsetIsIllegal
+            case .cosPathError: 
+                code = .invalidParameterValue_CosPathError
+            case .costTypeNotSupported: 
+                code = .invalidParameterValue_CostTypeNotSupported
+            case .dataBaseRemarkIsIllegal: 
+                code = .invalidParameterValue_DataBaseRemarkIsIllegal
+            case .dbCharIllegal: 
+                code = .invalidParameterValue_DBCharIllegal
+            case .dbExist: 
+                code = .invalidParameterValue_DBExist
+            case .dbNameIsKeyWrods: 
+                code = .invalidParameterValue_DBNameIsKeyWrods
+            case .dbNameNotNull: 
+                code = .invalidParameterValue_DBNameNotNull
+            case .dbNameSame: 
+                code = .invalidParameterValue_DBNameSame
+            case .grantIsIllegal: 
+                code = .invalidParameterValue_GrantIsIllegal
+            case .illegalRegion: 
+                code = .invalidParameterValue_IllegalRegion
+            case .illegalSpec: 
+                code = .invalidParameterValue_IllegalSpec
+            case .illegalZone: 
+                code = .invalidParameterValue_IllegalZone
+            case .instanceExpandVolumeLow: 
+                code = .invalidParameterValue_InstanceExpandVolumeLow
+            case .instanceNameIsIllegal: 
+                code = .invalidParameterValue_InstanceNameIsIllegal
+            case .migrationNameIsIllegal: 
+                code = .invalidParameterValue_MigrationNameIsIllegal
+            case .modifyTypeValueInvalid: 
+                code = .invalidParameterValue_ModifyTypeValueInvalid
+            case .onCvmTypeNotSupported: 
+                code = .invalidParameterValue_OnCvmTypeNotSupported
+            case .parameterTypeError: 
+                code = .invalidParameterValue_ParameterTypeError
+            case .passwordIsIllegal: 
+                code = .invalidParameterValue_PasswordIsIllegal
+            case .privilegeIsIllegal: 
+                code = .invalidParameterValue_PrivilegeIsIllegal
+            case .pubSubNameIsIllegal: 
+                code = .invalidParameterValue_PubSubNameIsIllegal
+            case .roGroupNameIsIllegal: 
+                code = .invalidParameterValue_RoGroupNameIsIllegal
+            case .roGroupStatusIsIllegal: 
+                code = .invalidParameterValue_RoGroupStatusIsIllegal
+            case .securityGroupIdIsIllegal: 
+                code = .invalidParameterValue_SecurityGroupIdIsIllegal
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCSqlserverError(code, context: self.context)
         }
-        return TCSqlserverError(code, context: self.context)
-    }
-}
-
-extension TCSqlserverError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

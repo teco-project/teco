@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTioneError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCTioneErrorType {
         enum Code: String {
             case freezeBillFailed = "InternalError.FreezeBillFailed"
             case insufficientBalance = "InternalError.InsufficientBalance"
@@ -34,8 +34,6 @@ extension TCTioneError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -81,37 +79,24 @@ extension TCTioneError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCTioneError.InternalError: Equatable {
-    public static func == (lhs: TCTioneError.InternalError, rhs: TCTioneError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTioneError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTioneError.InternalError {
-    /// - Returns: ``TCTioneError`` that holds the same error and context.
-    public func toTioneError() -> TCTioneError {
-        guard let code = TCTioneError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTioneError() -> TCTioneError {
+            let code: TCTioneError.Code
+            switch self.error {
+            case .freezeBillFailed: 
+                code = .internalError_FreezeBillFailed
+            case .insufficientBalance: 
+                code = .internalError_InsufficientBalance
+            case .noPermission: 
+                code = .internalError_NoPermission
+            case .notAllow: 
+                code = .internalError_NotAllow
+            case .queryHDFSInfoFailed: 
+                code = .internalError_QueryHDFSInfoFailed
+            case .other: 
+                code = .internalError
+            }
+            return TCTioneError(code, context: self.context)
         }
-        return TCTioneError(code, context: self.context)
-    }
-}
-
-extension TCTioneError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

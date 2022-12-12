@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDsError {
-    public struct ResourceInUse: TCErrorType {
+    public struct ResourceInUse: TCDsErrorType {
         enum Code: String {
             case accountExist = "ResourceInUse.AccountExist"
             case enterpriseAccountAlreadyExist = "ResourceInUse.EnterpriseAccountAlreadyExist"
@@ -31,8 +31,6 @@ extension TCDsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCDsError {
         public static var personAccountAlreadyExist: ResourceInUse {
             ResourceInUse(.personAccountAlreadyExist)
         }
-    }
-}
-
-extension TCDsError.ResourceInUse: Equatable {
-    public static func == (lhs: TCDsError.ResourceInUse, rhs: TCDsError.ResourceInUse) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDsError.ResourceInUse: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDsError.ResourceInUse {
-    /// - Returns: ``TCDsError`` that holds the same error and context.
-    public func toDsError() -> TCDsError {
-        guard let code = TCDsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDsError() -> TCDsError {
+            let code: TCDsError.Code
+            switch self.error {
+            case .accountExist: 
+                code = .resourceInUse_AccountExist
+            case .enterpriseAccountAlreadyExist: 
+                code = .resourceInUse_EnterpriseAccountAlreadyExist
+            case .personAccountAlreadyExist: 
+                code = .resourceInUse_PersonAccountAlreadyExist
+            }
+            return TCDsError(code, context: self.context)
         }
-        return TCDsError(code, context: self.context)
-    }
-}
-
-extension TCDsError.ResourceInUse {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

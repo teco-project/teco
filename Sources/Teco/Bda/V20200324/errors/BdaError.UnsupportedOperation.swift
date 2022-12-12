@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBdaError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCBdaErrorType {
         enum Code: String {
             case unknowMethod = "UnsupportedOperation.UnknowMethod"
         }
@@ -29,8 +29,6 @@ extension TCBdaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -48,37 +46,14 @@ extension TCBdaError {
         public static var unknowMethod: UnsupportedOperation {
             UnsupportedOperation(.unknowMethod)
         }
-    }
-}
-
-extension TCBdaError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCBdaError.UnsupportedOperation, rhs: TCBdaError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBdaError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBdaError.UnsupportedOperation {
-    /// - Returns: ``TCBdaError`` that holds the same error and context.
-    public func toBdaError() -> TCBdaError {
-        guard let code = TCBdaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBdaError() -> TCBdaError {
+            let code: TCBdaError.Code
+            switch self.error {
+            case .unknowMethod: 
+                code = .unsupportedOperation_UnknowMethod
+            }
+            return TCBdaError(code, context: self.context)
         }
-        return TCBdaError(code, context: self.context)
-    }
-}
-
-extension TCBdaError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

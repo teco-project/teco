@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCScfError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCScfErrorType {
         enum Code: String {
             case cam = "UnauthorizedOperation.CAM"
             case codeSecret = "UnauthorizedOperation.CodeSecret"
@@ -39,8 +39,6 @@ extension TCScfError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -108,37 +106,34 @@ extension TCScfError {
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
         }
-    }
-}
-
-extension TCScfError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCScfError.UnauthorizedOperation, rhs: TCScfError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCScfError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCScfError.UnauthorizedOperation {
-    /// - Returns: ``TCScfError`` that holds the same error and context.
-    public func toScfError() -> TCScfError {
-        guard let code = TCScfError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asScfError() -> TCScfError {
+            let code: TCScfError.Code
+            switch self.error {
+            case .cam: 
+                code = .unauthorizedOperation_CAM
+            case .codeSecret: 
+                code = .unauthorizedOperation_CodeSecret
+            case .createTrigger: 
+                code = .unauthorizedOperation_CreateTrigger
+            case .deleteFunction: 
+                code = .unauthorizedOperation_DeleteFunction
+            case .deleteTrigger: 
+                code = .unauthorizedOperation_DeleteTrigger
+            case .notMC: 
+                code = .unauthorizedOperation_NotMC
+            case .region: 
+                code = .unauthorizedOperation_Region
+            case .role: 
+                code = .unauthorizedOperation_Role
+            case .tempCosAppid: 
+                code = .unauthorizedOperation_TempCosAppid
+            case .updateFunctionCode: 
+                code = .unauthorizedOperation_UpdateFunctionCode
+            case .other: 
+                code = .unauthorizedOperation
+            }
+            return TCScfError(code, context: self.context)
         }
-        return TCScfError(code, context: self.context)
-    }
-}
-
-extension TCScfError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

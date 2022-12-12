@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTbpError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCTbpErrorType {
         enum Code: String {
             case errorMms = "InternalError.ErrorMms"
             case errorNlu = "InternalError.ErrorNlu"
@@ -34,8 +34,6 @@ extension TCTbpError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -78,37 +76,24 @@ extension TCTbpError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCTbpError.InternalError: Equatable {
-    public static func == (lhs: TCTbpError.InternalError, rhs: TCTbpError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTbpError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTbpError.InternalError {
-    /// - Returns: ``TCTbpError`` that holds the same error and context.
-    public func toTbpError() -> TCTbpError {
-        guard let code = TCTbpError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTbpError() -> TCTbpError {
+            let code: TCTbpError.Code
+            switch self.error {
+            case .errorMms: 
+                code = .internalError_ErrorMms
+            case .errorNlu: 
+                code = .internalError_ErrorNlu
+            case .errorRpc: 
+                code = .internalError_ErrorRpc
+            case .errorWebHook: 
+                code = .internalError_ErrorWebHook
+            case .noAppPrivilege: 
+                code = .internalError_NoAppPrivilege
+            case .other: 
+                code = .internalError
+            }
+            return TCTbpError(code, context: self.context)
         }
-        return TCTbpError(code, context: self.context)
-    }
-}
-
-extension TCTbpError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

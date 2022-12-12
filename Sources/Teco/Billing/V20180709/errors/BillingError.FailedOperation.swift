@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBillingError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCBillingErrorType {
         enum Code: String {
             case agentPayDealCannotDown = "FailedOperation.AgentPayDealCannotDown"
             case balanceInsufficient = "FailedOperation.BalanceInsufficient"
@@ -41,8 +41,6 @@ extension TCBillingError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -122,37 +120,38 @@ extension TCBillingError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCBillingError.FailedOperation: Equatable {
-    public static func == (lhs: TCBillingError.FailedOperation, rhs: TCBillingError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBillingError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBillingError.FailedOperation {
-    /// - Returns: ``TCBillingError`` that holds the same error and context.
-    public func toBillingError() -> TCBillingError {
-        guard let code = TCBillingError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBillingError() -> TCBillingError {
+            let code: TCBillingError.Code
+            switch self.error {
+            case .agentPayDealCannotDown: 
+                code = .failedOperation_AgentPayDealCannotDown
+            case .balanceInsufficient: 
+                code = .failedOperation_BalanceInsufficient
+            case .invalidAppId: 
+                code = .failedOperation_InvalidAppId
+            case .invalidDeal: 
+                code = .failedOperation_InvalidDeal
+            case .invalidVoucher: 
+                code = .failedOperation_InvalidVoucher
+            case .needPayTogeter: 
+                code = .failedOperation_NeedPayTogeter
+            case .needPayTogether: 
+                code = .failedOperation_NeedPayTogether
+            case .payPriceError: 
+                code = .failedOperation_PayPriceError
+            case .paySuccDeliverFailed: 
+                code = .failedOperation_PaySuccDeliverFailed
+            case .queryCountFailed: 
+                code = .failedOperation_QueryCountFailed
+            case .summaryDataNotReady: 
+                code = .failedOperation_SummaryDataNotReady
+            case .tagKeyNotExist: 
+                code = .failedOperation_TagKeyNotExist
+            case .other: 
+                code = .failedOperation
+            }
+            return TCBillingError(code, context: self.context)
         }
-        return TCBillingError(code, context: self.context)
-    }
-}
-
-extension TCBillingError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

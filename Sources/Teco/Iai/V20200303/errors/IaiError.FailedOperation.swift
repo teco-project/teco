@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIaiError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCIaiErrorType {
         enum Code: String {
             case acrossVersionsError = "FailedOperation.AcrossVersionsError"
             case conflictOperation = "FailedOperation.ConflictOperation"
@@ -53,8 +53,6 @@ extension TCIaiError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -192,37 +190,62 @@ extension TCIaiError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCIaiError.FailedOperation: Equatable {
-    public static func == (lhs: TCIaiError.FailedOperation, rhs: TCIaiError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIaiError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIaiError.FailedOperation {
-    /// - Returns: ``TCIaiError`` that holds the same error and context.
-    public func toIaiError() -> TCIaiError {
-        guard let code = TCIaiError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIaiError() -> TCIaiError {
+            let code: TCIaiError.Code
+            switch self.error {
+            case .acrossVersionsError: 
+                code = .failedOperation_AcrossVersionsError
+            case .conflictOperation: 
+                code = .failedOperation_ConflictOperation
+            case .createFaceConcurrent: 
+                code = .failedOperation_CreateFaceConcurrent
+            case .duplicatedGroupDescription: 
+                code = .failedOperation_DuplicatedGroupDescription
+            case .faceQualityNotQualified: 
+                code = .failedOperation_FaceQualityNotQualified
+            case .faceSizeTooSmall: 
+                code = .failedOperation_FaceSizeTooSmall
+            case .groupCannotUpgrade: 
+                code = .failedOperation_GroupCannotUpgrade
+            case .groupInDeletedState: 
+                code = .failedOperation_GroupInDeletedState
+            case .groupLostFaces: 
+                code = .failedOperation_GroupLostFaces
+            case .groupPersonMapExist: 
+                code = .failedOperation_GroupPersonMapExist
+            case .groupPersonMapNotExist: 
+                code = .failedOperation_GroupPersonMapNotExist
+            case .imageDecodeFailed: 
+                code = .failedOperation_ImageDecodeFailed
+            case .imageDownloadError: 
+                code = .failedOperation_ImageDownloadError
+            case .imageFacedetectFailed: 
+                code = .failedOperation_ImageFacedetectFailed
+            case .imageResolutionExceed: 
+                code = .failedOperation_ImageResolutionExceed
+            case .imageResolutionTooSmall: 
+                code = .failedOperation_ImageResolutionTooSmall
+            case .imageSizeExceed: 
+                code = .failedOperation_ImageSizeExceed
+            case .jobCannnotRollback: 
+                code = .failedOperation_JobCannnotRollback
+            case .requestLimitExceeded: 
+                code = .failedOperation_RequestLimitExceeded
+            case .requestTimeout: 
+                code = .failedOperation_RequestTimeout
+            case .searchFacesExceed: 
+                code = .failedOperation_SearchFacesExceed
+            case .serverError: 
+                code = .failedOperation_ServerError
+            case .unKnowError: 
+                code = .failedOperation_UnKnowError
+            case .upgradeJobIdNotExist: 
+                code = .failedOperation_UpgradeJobIdNotExist
+            case .other: 
+                code = .failedOperation
+            }
+            return TCIaiError(code, context: self.context)
         }
-        return TCIaiError(code, context: self.context)
-    }
-}
-
-extension TCIaiError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

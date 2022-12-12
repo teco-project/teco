@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTemError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCTemErrorType {
         enum Code: String {
             case apmNotBind = "InvalidParameterValue.ApmNotBind"
             case applicationAccessServiceReachMaximum = "InvalidParameterValue.ApplicationAccessServiceReachMaximum"
@@ -81,8 +81,6 @@ extension TCTemError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -331,37 +329,118 @@ extension TCTemError {
         public static var versionRouteRateNotZero: InvalidParameterValue {
             InvalidParameterValue(.versionRouteRateNotZero)
         }
-    }
-}
-
-extension TCTemError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCTemError.InvalidParameterValue, rhs: TCTemError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTemError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTemError.InvalidParameterValue {
-    /// - Returns: ``TCTemError`` that holds the same error and context.
-    public func toTemError() -> TCTemError {
-        guard let code = TCTemError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTemError() -> TCTemError {
+            let code: TCTemError.Code
+            switch self.error {
+            case .apmNotBind: 
+                code = .invalidParameterValue_ApmNotBind
+            case .applicationAccessServiceReachMaximum: 
+                code = .invalidParameterValue_ApplicationAccessServiceReachMaximum
+            case .applicationServiceAlreadyExist: 
+                code = .invalidParameterValue_ApplicationServiceAlreadyExist
+            case .applicationServiceNotFound: 
+                code = .invalidParameterValue_ApplicationServiceNotFound
+            case .atLeastOneScalerRuleShouldBeApplied: 
+                code = .invalidParameterValue_AtLeastOneScalerRuleShouldBeApplied
+            case .autoScalerLargerThanOne: 
+                code = .invalidParameterValue_AutoScalerLargerThanOne
+            case .cannotOverWriteOtherApplicationService: 
+                code = .invalidParameterValue_CannotOverWriteOtherApplicationService
+            case .cannotUpdateServiceByBothMethods: 
+                code = .invalidParameterValue_CannotUpdateServiceByBothMethods
+            case .configDataAlreadyExist: 
+                code = .invalidParameterValue_ConfigDataAlreadyExist
+            case .configDataInvalid: 
+                code = .invalidParameterValue_ConfigDataInvalid
+            case .cronHpaReplicasInvalid: 
+                code = .invalidParameterValue_CronHpaReplicasInvalid
+            case .dailyCreateNamespaceReachMaximum: 
+                code = .invalidParameterValue_DailyCreateNamespaceReachMaximum
+            case .disableScalerBeforeDelete: 
+                code = .invalidParameterValue_DisableScalerBeforeDelete
+            case .environmentNameImmutable: 
+                code = .invalidParameterValue_EnvironmentNameImmutable
+            case .hpaMetricsInvalid: 
+                code = .invalidParameterValue_HpaMetricsInvalid
+            case .hpaMinMaxInvalid: 
+                code = .invalidParameterValue_HpaMinMaxInvalid
+            case .hpaThresholdInvalid: 
+                code = .invalidParameterValue_HpaThresholdInvalid
+            case .ingressRewriteRequiredHttpsEnable: 
+                code = .invalidParameterValue_IngressRewriteRequiredHttpsEnable
+            case .invalidCronScalerPeriod: 
+                code = .invalidParameterValue_InvalidCronScalerPeriod
+            case .invalidDeployVersion: 
+                code = .invalidParameterValue_InvalidDeployVersion
+            case .invalidEksServiceType: 
+                code = .invalidParameterValue_InvalidEksServiceType
+            case .invalidEnvName: 
+                code = .invalidParameterValue_InvalidEnvName
+            case .invalidEnvValue: 
+                code = .invalidParameterValue_InvalidEnvValue
+            case .invalidMountPath: 
+                code = .invalidParameterValue_InvalidMountPath
+            case .invalidServiceName: 
+                code = .invalidParameterValue_InvalidServiceName
+            case .invalidTenantInfo: 
+                code = .invalidParameterValue_InvalidTenantInfo
+            case .jdkVersionRequired: 
+                code = .invalidParameterValue_JdkVersionRequired
+            case .logConfigAlreadyExist: 
+                code = .invalidParameterValue_LogConfigAlreadyExist
+            case .mustProvidePortMappingRules: 
+                code = .invalidParameterValue_MustProvidePortMappingRules
+            case .namespaceDuplicateError: 
+                code = .invalidParameterValue_NamespaceDuplicateError
+            case .namespaceNotBelongToAppid: 
+                code = .invalidParameterValue_NamespaceNotBelongToAppid
+            case .namespaceNotFound: 
+                code = .invalidParameterValue_NamespaceNotFound
+            case .namespaceReachMaximum: 
+                code = .invalidParameterValue_NamespaceReachMaximum
+            case .namespaceResourceReachMaximum: 
+                code = .invalidParameterValue_NamespaceResourceReachMaximum
+            case .osNotSupport: 
+                code = .invalidParameterValue_OsNotSupport
+            case .portDuplicateError: 
+                code = .invalidParameterValue_PortDuplicateError
+            case .portIsReserved: 
+                code = .invalidParameterValue_PortIsReserved
+            case .publicRepoTypeParameterError: 
+                code = .invalidParameterValue_PublicRepoTypeParameterError
+            case .registryNotBind: 
+                code = .invalidParameterValue_RegistryNotBind
+            case .scalerNameDuplicated: 
+                code = .invalidParameterValue_ScalerNameDuplicated
+            case .serviceFoundRunningVersion: 
+                code = .invalidParameterValue_ServiceFoundRunningVersion
+            case .serviceLowerCase: 
+                code = .invalidParameterValue_ServiceLowerCase
+            case .serviceNameDuplicateError: 
+                code = .invalidParameterValue_ServiceNameDuplicateError
+            case .serviceNotBelongToAppid: 
+                code = .invalidParameterValue_ServiceNotBelongToAppid
+            case .servicePodReachMaximum: 
+                code = .invalidParameterValue_ServicePodReachMaximum
+            case .serviceReachMaximum: 
+                code = .invalidParameterValue_ServiceReachMaximum
+            case .serviceUseReserveSuffix: 
+                code = .invalidParameterValue_ServiceUseReserveSuffix
+            case .tcrEntInstanceNameNotValid: 
+                code = .invalidParameterValue_TcrEntInstanceNameNotValid
+            case .temIdInvalid: 
+                code = .invalidParameterValue_TemIdInvalid
+            case .traitsTracingNotSupported: 
+                code = .invalidParameterValue_TraitsTracingNotSupported
+            case .versionLengthLimit: 
+                code = .invalidParameterValue_VersionLengthLimit
+            case .versionLowerCase: 
+                code = .invalidParameterValue_VersionLowerCase
+            case .versionRouteRateNotZero: 
+                code = .invalidParameterValue_VersionRouteRateNotZero
+            }
+            return TCTemError(code, context: self.context)
         }
-        return TCTemError(code, context: self.context)
-    }
-}
-
-extension TCTemError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

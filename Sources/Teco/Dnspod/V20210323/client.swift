@@ -22,23 +22,25 @@
 /// DNSPod ，又称为 DNS 解析、云解析，为用户提供快速、稳定且高可用的 DNS 服务，支持智能解析、流量调度、安全防护。
 /// DNSPod 为腾讯云旗下品牌，专注于域名及 DNS 服务。DNSPod 持续提供了 17 年不间断服务，已服务 800 万+用户，累计 2000 万+域名，拥有 48 个全球集群节点，始终坚持为用户提供安全、稳定且快速的服务。国民级 DNS 服务平台，更值得信赖。
 public struct Dnspod: TCService {
-    /// Client used for communication with Tencent Cloud
+    /// Client used to communicate with Tencent Cloud.
     public let client: TCClient
     
-    /// Service configuration
+    /// Service context details.
     public let config: TCServiceConfig
     
-    /// Initialize the ``Dnspod`` client
+    /// Initialize the ``Dnspod`` client.
     ///
     /// - Parameters:
-    ///    - client: ``TCClient`` used to process requests
-    ///    - region: The service region you want to operate on
-    ///    - endpoint: Custom Endpoint URL preference
-    ///    - timeout: Timeout value for HTTP requests
+    ///    - client: ``TCClient`` used to perform actions.
+    ///    - region: Region of the service you want to operate on.
+    ///    - language: Preferred language for API response.
+    ///    - endpoint: Custom endpoint URL for API request.
+    ///    - timeout: Timeout value for HTTP requests.
     public init (
     client: TCClient, 
     region: TCRegion? = nil, 
-    endpoint: TCServiceConfig.EndpointPreference = .global, 
+    language: TCServiceConfig.Language? = nil, 
+    endpoint: TCServiceConfig.Endpoint = .global, 
     timeout: TimeAmount? = nil, 
     byteBufferAllocator: ByteBufferAllocator = ByteBufferAllocator()
     ) {
@@ -47,6 +49,7 @@ public struct Dnspod: TCService {
         region: region, 
         service: "dnspod", 
         apiVersion: "2021-03-23", 
+        language: language, 
         endpoint: endpoint, 
         errorType: TCDnspodError.self, 
         timeout: timeout, 
@@ -56,10 +59,10 @@ public struct Dnspod: TCService {
 }
 
 extension Dnspod {
-    /// Initializer required by ``with(region:language:timeout:byteBufferAllocator:)``.
+    /// Initializer required by ``with(region:language:endpoint:timeout:byteBufferAllocator:)``.
     ///
     /// You are not able to use this initializer directly as there are no public initializers for ``TCServiceConfig/Patch``.
-    /// Please use ``with(region:language:timeout:byteBufferAllocator:)`` instead.
+    /// Please use ``with(region:language:endpoint:timeout:byteBufferAllocator:)`` instead.
     public init (from service: Self, patch: TCServiceConfig.Patch) {
         self.client = service.client
         self.config = service.config.with(patch: patch)

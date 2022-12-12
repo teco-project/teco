@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCOceanusError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCOceanusErrorType {
         enum Code: String {
             case clusterId = "ResourceNotFound.ClusterId"
             case cosBucket = "ResourceNotFound.COSBucket"
@@ -37,8 +37,6 @@ extension TCOceanusError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -96,37 +94,30 @@ extension TCOceanusError {
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-    }
-}
-
-extension TCOceanusError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCOceanusError.ResourceNotFound, rhs: TCOceanusError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCOceanusError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCOceanusError.ResourceNotFound {
-    /// - Returns: ``TCOceanusError`` that holds the same error and context.
-    public func toOceanusError() -> TCOceanusError {
-        guard let code = TCOceanusError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asOceanusError() -> TCOceanusError {
+            let code: TCOceanusError.Code
+            switch self.error {
+            case .clusterId: 
+                code = .resourceNotFound_ClusterId
+            case .cosBucket: 
+                code = .resourceNotFound_COSBucket
+            case .job: 
+                code = .resourceNotFound_Job
+            case .jobConfig: 
+                code = .resourceNotFound_JobConfig
+            case .jobId: 
+                code = .resourceNotFound_JobId
+            case .resource: 
+                code = .resourceNotFound_Resource
+            case .resourceConfig: 
+                code = .resourceNotFound_ResourceConfig
+            case .resourceNotExist: 
+                code = .resourceNotFound_ResourceNotExist
+            case .other: 
+                code = .resourceNotFound
+            }
+            return TCOceanusError(code, context: self.context)
         }
-        return TCOceanusError(code, context: self.context)
-    }
-}
-
-extension TCOceanusError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

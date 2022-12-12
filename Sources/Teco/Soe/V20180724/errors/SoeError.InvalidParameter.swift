@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSoeError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCSoeErrorType {
         enum Code: String {
             case authorizeError = "InvalidParameter.AuthorizeError"
             case errorPhoneme = "InvalidParameter.ErrorPhoneme"
@@ -37,8 +37,6 @@ extension TCSoeError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -104,37 +102,30 @@ extension TCSoeError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCSoeError.InvalidParameter: Equatable {
-    public static func == (lhs: TCSoeError.InvalidParameter, rhs: TCSoeError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSoeError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSoeError.InvalidParameter {
-    /// - Returns: ``TCSoeError`` that holds the same error and context.
-    public func toSoeError() -> TCSoeError {
-        guard let code = TCSoeError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSoeError() -> TCSoeError {
+            let code: TCSoeError.Code
+            switch self.error {
+            case .authorizeError: 
+                code = .invalidParameter_AuthorizeError
+            case .errorPhoneme: 
+                code = .invalidParameter_ErrorPhoneme
+            case .initialParameterError: 
+                code = .invalidParameter_InitialParameterError
+            case .invalidAction: 
+                code = .invalidParameter_InvalidAction
+            case .invalidParameter: 
+                code = .invalidParameter_InvalidParameter
+            case .seqIdLimitExceeded: 
+                code = .invalidParameter_SeqIdLimitExceeded
+            case .voiceMsgOversized: 
+                code = .invalidParameter_VoiceMsgOversized
+            case .withoutRealName: 
+                code = .invalidParameter_WithoutRealName
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCSoeError(code, context: self.context)
         }
-        return TCSoeError(code, context: self.context)
-    }
-}
-
-extension TCSoeError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

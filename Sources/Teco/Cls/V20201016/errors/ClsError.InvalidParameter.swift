@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCClsError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCClsErrorType {
         enum Code: String {
             case alarmConflict = "InvalidParameter.AlarmConflict"
             case alarmNoticeConflict = "InvalidParameter.AlarmNoticeConflict"
@@ -41,8 +41,6 @@ extension TCClsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -121,37 +119,38 @@ extension TCClsError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCClsError.InvalidParameter: Equatable {
-    public static func == (lhs: TCClsError.InvalidParameter, rhs: TCClsError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCClsError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCClsError.InvalidParameter {
-    /// - Returns: ``TCClsError`` that holds the same error and context.
-    public func toClsError() -> TCClsError {
-        guard let code = TCClsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asClsError() -> TCClsError {
+            let code: TCClsError.Code
+            switch self.error {
+            case .alarmConflict: 
+                code = .invalidParameter_AlarmConflict
+            case .alarmNoticeConflict: 
+                code = .invalidParameter_AlarmNoticeConflict
+            case .configConflict: 
+                code = .invalidParameter_ConfigConflict
+            case .content: 
+                code = .invalidParameter_Content
+            case .dbDuplication: 
+                code = .invalidParameter_DbDuplication
+            case .exportConflict: 
+                code = .invalidParameter_ExportConflict
+            case .inValidIndexRuleForSearchLow: 
+                code = .invalidParameter_InValidIndexRuleForSearchLow
+            case .indexConflict: 
+                code = .invalidParameter_IndexConflict
+            case .logsetConflict: 
+                code = .invalidParameter_LogsetConflict
+            case .machineGroupConflict: 
+                code = .invalidParameter_MachineGroupConflict
+            case .shipperConflict: 
+                code = .invalidParameter_ShipperConflict
+            case .topicConflict: 
+                code = .invalidParameter_TopicConflict
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCClsError(code, context: self.context)
         }
-        return TCClsError(code, context: self.context)
-    }
-}
-
-extension TCClsError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotcloudError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCIotcloudErrorType {
         enum Code: String {
             case clientCertAlreadyGot = "UnsupportedOperation.ClientCertAlreadyGot"
             case deviceOtaTaskInProgress = "UnsupportedOperation.DeviceOtaTaskInProgress"
@@ -35,8 +35,6 @@ extension TCIotcloudError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -84,37 +82,26 @@ extension TCIotcloudError {
         public static var wrongProductAuthType: UnsupportedOperation {
             UnsupportedOperation(.wrongProductAuthType)
         }
-    }
-}
-
-extension TCIotcloudError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCIotcloudError.UnsupportedOperation, rhs: TCIotcloudError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotcloudError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotcloudError.UnsupportedOperation {
-    /// - Returns: ``TCIotcloudError`` that holds the same error and context.
-    public func toIotcloudError() -> TCIotcloudError {
-        guard let code = TCIotcloudError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotcloudError() -> TCIotcloudError {
+            let code: TCIotcloudError.Code
+            switch self.error {
+            case .clientCertAlreadyGot: 
+                code = .unsupportedOperation_ClientCertAlreadyGot
+            case .deviceOtaTaskInProgress: 
+                code = .unsupportedOperation_DeviceOtaTaskInProgress
+            case .gatewayProductHasBindedProduct: 
+                code = .unsupportedOperation_GatewayProductHasBindedProduct
+            case .productHasBindGateway: 
+                code = .unsupportedOperation_ProductHasBindGateway
+            case .productHasBindedGatewayProduct: 
+                code = .unsupportedOperation_ProductHasBindedGatewayProduct
+            case .suiteTokenNoCreate: 
+                code = .unsupportedOperation_SuiteTokenNoCreate
+            case .wrongProductAuthType: 
+                code = .unsupportedOperation_WrongProductAuthType
+            }
+            return TCIotcloudError(code, context: self.context)
         }
-        return TCIotcloudError(code, context: self.context)
-    }
-}
-
-extension TCIotcloudError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

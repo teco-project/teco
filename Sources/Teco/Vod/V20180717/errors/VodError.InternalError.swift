@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCVodError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCVodErrorType {
         enum Code: String {
             case dbError = "InternalError.DBError"
             case genDefinition = "InternalError.GenDefinition"
@@ -37,8 +37,6 @@ extension TCVodError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -96,37 +94,30 @@ extension TCVodError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCVodError.InternalError: Equatable {
-    public static func == (lhs: TCVodError.InternalError, rhs: TCVodError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCVodError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCVodError.InternalError {
-    /// - Returns: ``TCVodError`` that holds the same error and context.
-    public func toVodError() -> TCVodError {
-        guard let code = TCVodError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asVodError() -> TCVodError {
+            let code: TCVodError.Code
+            switch self.error {
+            case .dbError: 
+                code = .internalError_DBError
+            case .genDefinition: 
+                code = .internalError_GenDefinition
+            case .getFileInfoError: 
+                code = .internalError_GetFileInfoError
+            case .getMediaListError: 
+                code = .internalError_GetMediaListError
+            case .timeParseError: 
+                code = .internalError_TimeParseError
+            case .updateMediaError: 
+                code = .internalError_UpdateMediaError
+            case .uploadCoverImageError: 
+                code = .internalError_UploadCoverImageError
+            case .uploadWatermarkError: 
+                code = .internalError_UploadWatermarkError
+            case .other: 
+                code = .internalError
+            }
+            return TCVodError(code, context: self.context)
         }
-        return TCVodError(code, context: self.context)
-    }
-}
-
-extension TCVodError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

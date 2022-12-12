@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSesError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCSesErrorType {
         enum Code: String {
             case attachContentToolarge = "FailedOperation.AttachContentToolarge"
             case emailAddrInBlacklist = "FailedOperation.EmailAddrInBlacklist"
@@ -59,8 +59,6 @@ extension TCSesError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -230,37 +228,74 @@ extension TCSesError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCSesError.FailedOperation: Equatable {
-    public static func == (lhs: TCSesError.FailedOperation, rhs: TCSesError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSesError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSesError.FailedOperation {
-    /// - Returns: ``TCSesError`` that holds the same error and context.
-    public func toSesError() -> TCSesError {
-        guard let code = TCSesError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSesError() -> TCSesError {
+            let code: TCSesError.Code
+            switch self.error {
+            case .attachContentToolarge: 
+                code = .failedOperation_AttachContentToolarge
+            case .emailAddrInBlacklist: 
+                code = .failedOperation_EmailAddrInBlacklist
+            case .emailContentToolarge: 
+                code = .failedOperation_EmailContentToolarge
+            case .exceedSendLimit: 
+                code = .failedOperation_ExceedSendLimit
+            case .exceedTemplateLimit: 
+                code = .failedOperation_ExceedTemplateLimit
+            case .frequencyLimit: 
+                code = .failedOperation_FrequencyLimit
+            case .highRejectionRate: 
+                code = .failedOperation_HighRejectionRate
+            case .incorrectEmail: 
+                code = .failedOperation_IncorrectEmail
+            case .incorrectSender: 
+                code = .failedOperation_IncorrectSender
+            case .insufficientBalance: 
+                code = .failedOperation_InsufficientBalance
+            case .insufficientQuota: 
+                code = .failedOperation_InsufficientQuota
+            case .invalidAttachName: 
+                code = .failedOperation_InvalidAttachName
+            case .invalidLimit: 
+                code = .failedOperation_InvalidLimit
+            case .invalidTemplateID: 
+                code = .failedOperation_InvalidTemplateID
+            case .missingEmailContent: 
+                code = .failedOperation_MissingEmailContent
+            case .noAttachPermission: 
+                code = .failedOperation_NoAttachPermission
+            case .notAuthenticatedSender: 
+                code = .failedOperation_NotAuthenticatedSender
+            case .notSupportDate: 
+                code = .failedOperation_NotSupportDate
+            case .protocolCheckErr: 
+                code = .failedOperation_ProtocolCheckErr
+            case .receiverHasUnsubscribed: 
+                code = .failedOperation_ReceiverHasUnsubscribed
+            case .rejectedByRecipients: 
+                code = .failedOperation_RejectedByRecipients
+            case .sendEmailErr: 
+                code = .failedOperation_SendEmailErr
+            case .serviceNotAvailable: 
+                code = .failedOperation_ServiceNotAvailable
+            case .templateContentToolarge: 
+                code = .failedOperation_TemplateContentToolarge
+            case .temporaryBlocked: 
+                code = .failedOperation_TemporaryBlocked
+            case .tooManyAttachments: 
+                code = .failedOperation_TooManyAttachments
+            case .tooManyRecipients: 
+                code = .failedOperation_TooManyRecipients
+            case .unsupportMailType: 
+                code = .failedOperation_UnsupportMailType
+            case .withOutPermission: 
+                code = .failedOperation_WithOutPermission
+            case .wrongContentJson: 
+                code = .failedOperation_WrongContentJson
+            case .other: 
+                code = .failedOperation
+            }
+            return TCSesError(code, context: self.context)
         }
-        return TCSesError(code, context: self.context)
-    }
-}
-
-extension TCSesError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

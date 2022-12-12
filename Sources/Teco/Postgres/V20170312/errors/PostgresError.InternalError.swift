@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCPostgresError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCPostgresErrorType {
         enum Code: String {
             case cgwError = "InternalError.CgwError"
             case cnsError = "InternalError.CnsError"
@@ -41,8 +41,6 @@ extension TCPostgresError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -118,37 +116,38 @@ extension TCPostgresError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCPostgresError.InternalError: Equatable {
-    public static func == (lhs: TCPostgresError.InternalError, rhs: TCPostgresError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCPostgresError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCPostgresError.InternalError {
-    /// - Returns: ``TCPostgresError`` that holds the same error and context.
-    public func toPostgresError() -> TCPostgresError {
-        guard let code = TCPostgresError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asPostgresError() -> TCPostgresError {
+            let code: TCPostgresError.Code
+            switch self.error {
+            case .cgwError: 
+                code = .internalError_CgwError
+            case .cnsError: 
+                code = .internalError_CnsError
+            case .dbError: 
+                code = .internalError_DBError
+            case .dfwError: 
+                code = .internalError_DfwError
+            case .flowError: 
+                code = .internalError_FlowError
+            case .instanceDataError: 
+                code = .internalError_InstanceDataError
+            case .internalHttpServerError: 
+                code = .internalError_InternalHttpServerError
+            case .marshalError: 
+                code = .internalError_MarshalError
+            case .systemError: 
+                code = .internalError_SystemError
+            case .transactioBeginError: 
+                code = .internalError_TransactioBeginError
+            case .unknownError: 
+                code = .internalError_UnknownError
+            case .vpcError: 
+                code = .internalError_VpcError
+            case .other: 
+                code = .internalError
+            }
+            return TCPostgresError(code, context: self.context)
         }
-        return TCPostgresError(code, context: self.context)
-    }
-}
-
-extension TCPostgresError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

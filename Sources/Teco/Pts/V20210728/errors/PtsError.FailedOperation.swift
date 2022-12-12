@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCPtsError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCPtsErrorType {
         enum Code: String {
             case accessTagFail = "FailedOperation.AccessTagFail"
             case dbQueryFailed = "FailedOperation.DbQueryFailed"
@@ -38,8 +38,6 @@ extension TCPtsError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -103,37 +101,32 @@ extension TCPtsError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCPtsError.FailedOperation: Equatable {
-    public static func == (lhs: TCPtsError.FailedOperation, rhs: TCPtsError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCPtsError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCPtsError.FailedOperation {
-    /// - Returns: ``TCPtsError`` that holds the same error and context.
-    public func toPtsError() -> TCPtsError {
-        guard let code = TCPtsError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asPtsError() -> TCPtsError {
+            let code: TCPtsError.Code
+            switch self.error {
+            case .accessTagFail: 
+                code = .failedOperation_AccessTagFail
+            case .dbQueryFailed: 
+                code = .failedOperation_DbQueryFailed
+            case .dbRecordCreateFailed: 
+                code = .failedOperation_DbRecordCreateFailed
+            case .dbRecordUpdateFailed: 
+                code = .failedOperation_DbRecordUpdateFailed
+            case .jobStatusNotRunning: 
+                code = .failedOperation_JobStatusNotRunning
+            case .noTasksInJob: 
+                code = .failedOperation_NoTasksInJob
+            case .notSupportedInEnv: 
+                code = .failedOperation_NotSupportedInEnv
+            case .resourceNotFound: 
+                code = .failedOperation_ResourceNotFound
+            case .sendRequest: 
+                code = .failedOperation_SendRequest
+            case .other: 
+                code = .failedOperation
+            }
+            return TCPtsError(code, context: self.context)
         }
-        return TCPtsError(code, context: self.context)
-    }
-}
-
-extension TCPtsError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

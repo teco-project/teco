@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCdbError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCCdbErrorType {
         enum Code: String {
             case asyncRequestError = "InternalError.AsyncRequestError"
             case auditCreateLogFileError = "InternalError.AuditCreateLogFileError"
@@ -76,8 +76,6 @@ extension TCCdbError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -329,37 +327,108 @@ extension TCCdbError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCCdbError.InternalError: Equatable {
-    public static func == (lhs: TCCdbError.InternalError, rhs: TCCdbError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCdbError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCdbError.InternalError {
-    /// - Returns: ``TCCdbError`` that holds the same error and context.
-    public func toCdbError() -> TCCdbError {
-        guard let code = TCCdbError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCdbError() -> TCCdbError {
+            let code: TCCdbError.Code
+            switch self.error {
+            case .asyncRequestError: 
+                code = .internalError_AsyncRequestError
+            case .auditCreateLogFileError: 
+                code = .internalError_AuditCreateLogFileError
+            case .auditDeleteLogFileError: 
+                code = .internalError_AuditDeleteLogFileError
+            case .auditDeletePolicyError: 
+                code = .internalError_AuditDeletePolicyError
+            case .auditError: 
+                code = .internalError_AuditError
+            case .auditModifyStatusError: 
+                code = .internalError_AuditModifyStatusError
+            case .auditOssLogicError: 
+                code = .internalError_AuditOssLogicError
+            case .authError: 
+                code = .internalError_AuthError
+            case .cauthError: 
+                code = .internalError_CauthError
+            case .cdbCgwError: 
+                code = .internalError_CdbCgwError
+            case .cdbError: 
+                code = .internalError_CdbError
+            case .cosError: 
+                code = .internalError_CosError
+            case .databaseAccessError: 
+                code = .internalError_DatabaseAccessError
+            case .dbError: 
+                code = .internalError_DBError
+            case .dbOperationError: 
+                code = .internalError_DBOperationError
+            case .dbRecordNotExistError: 
+                code = .internalError_DBRecordNotExistError
+            case .desError: 
+                code = .internalError_DesError
+            case .dfwError: 
+                code = .internalError_DfwError
+            case .exeSqlError: 
+                code = .internalError_ExeSqlError
+            case .execHttpRequestError: 
+                code = .internalError_ExecHttpRequestError
+            case .executeSQLError: 
+                code = .internalError_ExecuteSQLError
+            case .ftpError: 
+                code = .internalError_FtpError
+            case .httpError: 
+                code = .internalError_HttpError
+            case .innerCommonError: 
+                code = .internalError_InnerCommonError
+            case .internalAssertError: 
+                code = .internalError_InternalAssertError
+            case .internalHttpServerError: 
+                code = .internalError_InternalHttpServerError
+            case .internalRequestError: 
+                code = .internalError_InternalRequestError
+            case .internalServiceErrorErr: 
+                code = .internalError_InternalServiceErrorErr
+            case .jsonError: 
+                code = .internalError_JSONError
+            case .networkError: 
+                code = .internalError_NetworkError
+            case .ossError: 
+                code = .internalError_OssError
+            case .paramError: 
+                code = .internalError_ParamError
+            case .regexpCompileError: 
+                code = .internalError_RegexpCompileError
+            case .resourceNotMatch: 
+                code = .internalError_ResourceNotMatch
+            case .resourceNotUnique: 
+                code = .internalError_ResourceNotUnique
+            case .securityGroupError: 
+                code = .internalError_SecurityGroupError
+            case .serverError: 
+                code = .internalError_ServerError
+            case .serviceError: 
+                code = .internalError_ServiceError
+            case .tagError: 
+                code = .internalError_TagError
+            case .taskError: 
+                code = .internalError_TaskError
+            case .taskFrameError: 
+                code = .internalError_TaskFrameError
+            case .timeWindowError: 
+                code = .internalError_TimeWindowError
+            case .tradeError: 
+                code = .internalError_TradeError
+            case .transactionBeginError: 
+                code = .internalError_TransactionBeginError
+            case .undefinedError: 
+                code = .internalError_UndefinedError
+            case .unknownError: 
+                code = .internalError_UnknownError
+            case .vpcError: 
+                code = .internalError_VpcError
+            case .other: 
+                code = .internalError
+            }
+            return TCCdbError(code, context: self.context)
         }
-        return TCCdbError(code, context: self.context)
-    }
-}
-
-extension TCCdbError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

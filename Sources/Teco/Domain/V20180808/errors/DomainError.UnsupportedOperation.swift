@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCDomainError {
-    public struct UnsupportedOperation: TCErrorType {
+    public struct UnsupportedOperation: TCDomainErrorType {
         enum Code: String {
             case accountRealName = "UnsupportedOperation.AccountRealName"
             case domainNotVerified = "UnsupportedOperation.DomainNotVerified"
@@ -32,8 +32,6 @@ extension TCDomainError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -66,37 +64,20 @@ extension TCDomainError {
         public static var modifyDomainUnsupported: UnsupportedOperation {
             UnsupportedOperation(.modifyDomainUnsupported)
         }
-    }
-}
-
-extension TCDomainError.UnsupportedOperation: Equatable {
-    public static func == (lhs: TCDomainError.UnsupportedOperation, rhs: TCDomainError.UnsupportedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCDomainError.UnsupportedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCDomainError.UnsupportedOperation {
-    /// - Returns: ``TCDomainError`` that holds the same error and context.
-    public func toDomainError() -> TCDomainError {
-        guard let code = TCDomainError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asDomainError() -> TCDomainError {
+            let code: TCDomainError.Code
+            switch self.error {
+            case .accountRealName: 
+                code = .unsupportedOperation_AccountRealName
+            case .domainNotVerified: 
+                code = .unsupportedOperation_DomainNotVerified
+            case .modifyDomainInfoUnsupported: 
+                code = .unsupportedOperation_ModifyDomainInfoUnsupported
+            case .modifyDomainUnsupported: 
+                code = .unsupportedOperation_ModifyDomainUnsupported
+            }
+            return TCDomainError(code, context: self.context)
         }
-        return TCDomainError(code, context: self.context)
-    }
-}
-
-extension TCDomainError.UnsupportedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

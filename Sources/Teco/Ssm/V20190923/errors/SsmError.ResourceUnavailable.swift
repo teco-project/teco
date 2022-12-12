@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCSsmError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCSsmErrorType {
         enum Code: String {
             case notPurchased = "ResourceUnavailable.NotPurchased"
             case resourceDisabled = "ResourceUnavailable.ResourceDisabled"
@@ -33,8 +33,6 @@ extension TCSsmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -72,37 +70,22 @@ extension TCSsmError {
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
         }
-    }
-}
-
-extension TCSsmError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCSsmError.ResourceUnavailable, rhs: TCSsmError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCSsmError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCSsmError.ResourceUnavailable {
-    /// - Returns: ``TCSsmError`` that holds the same error and context.
-    public func toSsmError() -> TCSsmError {
-        guard let code = TCSsmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asSsmError() -> TCSsmError {
+            let code: TCSsmError.Code
+            switch self.error {
+            case .notPurchased: 
+                code = .resourceUnavailable_NotPurchased
+            case .resourceDisabled: 
+                code = .resourceUnavailable_ResourceDisabled
+            case .resourcePendingDeleted: 
+                code = .resourceUnavailable_ResourcePendingDeleted
+            case .resourceUninitialized: 
+                code = .resourceUnavailable_ResourceUninitialized
+            case .other: 
+                code = .resourceUnavailable
+            }
+            return TCSsmError(code, context: self.context)
         }
-        return TCSsmError(code, context: self.context)
-    }
-}
-
-extension TCSsmError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

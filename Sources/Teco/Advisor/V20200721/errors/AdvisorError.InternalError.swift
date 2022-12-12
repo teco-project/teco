@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCAdvisorError {
-    public struct InternalError: TCErrorType {
+    public struct InternalError: TCAdvisorErrorType {
         enum Code: String {
             case dependsDb = "InternalError.DependsDb"
             case system = "InternalError.System"
@@ -31,8 +31,6 @@ extension TCAdvisorError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCAdvisorError {
         public static var other: InternalError {
             InternalError(.other)
         }
-    }
-}
-
-extension TCAdvisorError.InternalError: Equatable {
-    public static func == (lhs: TCAdvisorError.InternalError, rhs: TCAdvisorError.InternalError) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCAdvisorError.InternalError: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCAdvisorError.InternalError {
-    /// - Returns: ``TCAdvisorError`` that holds the same error and context.
-    public func toAdvisorError() -> TCAdvisorError {
-        guard let code = TCAdvisorError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asAdvisorError() -> TCAdvisorError {
+            let code: TCAdvisorError.Code
+            switch self.error {
+            case .dependsDb: 
+                code = .internalError_DependsDb
+            case .system: 
+                code = .internalError_System
+            case .other: 
+                code = .internalError
+            }
+            return TCAdvisorError(code, context: self.context)
         }
-        return TCAdvisorError(code, context: self.context)
-    }
-}
-
-extension TCAdvisorError.InternalError {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

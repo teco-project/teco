@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCkafkaError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCCkafkaErrorType {
         enum Code: String {
             case instanceNotExist = "InvalidParameterValue.InstanceNotExist"
             case notAllowedEmpty = "InvalidParameterValue.NotAllowedEmpty"
@@ -37,8 +37,6 @@ extension TCCkafkaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -96,37 +94,30 @@ extension TCCkafkaError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCCkafkaError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCCkafkaError.InvalidParameterValue, rhs: TCCkafkaError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCkafkaError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCkafkaError.InvalidParameterValue {
-    /// - Returns: ``TCCkafkaError`` that holds the same error and context.
-    public func toCkafkaError() -> TCCkafkaError {
-        guard let code = TCCkafkaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCkafkaError() -> TCCkafkaError {
+            let code: TCCkafkaError.Code
+            switch self.error {
+            case .instanceNotExist: 
+                code = .invalidParameterValue_InstanceNotExist
+            case .notAllowedEmpty: 
+                code = .invalidParameterValue_NotAllowedEmpty
+            case .repetitionValue: 
+                code = .invalidParameterValue_RepetitionValue
+            case .subnetIdInvalid: 
+                code = .invalidParameterValue_SubnetIdInvalid
+            case .subnetNotBelongToZone: 
+                code = .invalidParameterValue_SubnetNotBelongToZone
+            case .vpcIdInvalid: 
+                code = .invalidParameterValue_VpcIdInvalid
+            case .wrongAction: 
+                code = .invalidParameterValue_WrongAction
+            case .zoneNotSupport: 
+                code = .invalidParameterValue_ZoneNotSupport
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCCkafkaError(code, context: self.context)
         }
-        return TCCkafkaError(code, context: self.context)
-    }
-}
-
-extension TCCkafkaError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

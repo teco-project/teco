@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCIotcloudError {
-    public struct InvalidParameterValue: TCErrorType {
+    public struct InvalidParameterValue: TCIotcloudErrorType {
         enum Code: String {
             case actionNil = "InvalidParameterValue.ActionNil"
             case caCertInvalid = "InvalidParameterValue.CACertInvalid"
@@ -58,8 +58,6 @@ extension TCIotcloudError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -226,37 +224,72 @@ extension TCIotcloudError {
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-    }
-}
-
-extension TCIotcloudError.InvalidParameterValue: Equatable {
-    public static func == (lhs: TCIotcloudError.InvalidParameterValue, rhs: TCIotcloudError.InvalidParameterValue) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCIotcloudError.InvalidParameterValue: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCIotcloudError.InvalidParameterValue {
-    /// - Returns: ``TCIotcloudError`` that holds the same error and context.
-    public func toIotcloudError() -> TCIotcloudError {
-        guard let code = TCIotcloudError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asIotcloudError() -> TCIotcloudError {
+            let code: TCIotcloudError.Code
+            switch self.error {
+            case .actionNil: 
+                code = .invalidParameterValue_ActionNil
+            case .caCertInvalid: 
+                code = .invalidParameterValue_CACertInvalid
+            case .caCertNotMatch: 
+                code = .invalidParameterValue_CACertNotMatch
+            case .checkForwardURLFail: 
+                code = .invalidParameterValue_CheckForwardURLFail
+            case .cloudComponentAlreadyExist: 
+                code = .invalidParameterValue_CloudComponentAlreadyExist
+            case .definedPskNotBase64: 
+                code = .invalidParameterValue_DefinedPskNotBase64
+            case .deviceAlreadyExist: 
+                code = .invalidParameterValue_DeviceAlreadyExist
+            case .deviceIsNotGateway: 
+                code = .invalidParameterValue_DeviceIsNotGateway
+            case .failActionHasSameDevice: 
+                code = .invalidParameterValue_FailActionHasSameDevice
+            case .firmwareAlreadyExist: 
+                code = .invalidParameterValue_FirmwareAlreadyExist
+            case .forwardRedirectDenied: 
+                code = .invalidParameterValue_ForwardRedirectDenied
+            case .invalidJSON: 
+                code = .invalidParameterValue_InvalidJSON
+            case .invalidSQL: 
+                code = .invalidParameterValue_InvalidSQL
+            case .jsonHasInvalidNode: 
+                code = .invalidParameterValue_JSONHasInvalidNode
+            case .jsonSizeExceedLimit: 
+                code = .invalidParameterValue_JSONSizeExceedLimit
+            case .notMergeAble: 
+                code = .invalidParameterValue_NotMergeAble
+            case .operationDenied: 
+                code = .invalidParameterValue_OperationDenied
+            case .paramIncomplete: 
+                code = .invalidParameterValue_ParamIncomplete
+            case .payloadOverLimit: 
+                code = .invalidParameterValue_PayloadOverLimit
+            case .prefixInvalid: 
+                code = .invalidParameterValue_PrefixInvalid
+            case .productAlreadyExist: 
+                code = .invalidParameterValue_ProductAlreadyExist
+            case .productTypeNotSupport: 
+                code = .invalidParameterValue_ProductTypeNotSupport
+            case .republishTopicFormatError: 
+                code = .invalidParameterValue_RepublishTopicFormatError
+            case .ruleNumberBeyondLimit: 
+                code = .invalidParameterValue_RuleNumberBeyondLimit
+            case .tidProductAlreadyExist: 
+                code = .invalidParameterValue_TidProductAlreadyExist
+            case .topicPolicyAlreadyExist: 
+                code = .invalidParameterValue_TopicPolicyAlreadyExist
+            case .topicRuleAlreadyExist: 
+                code = .invalidParameterValue_TopicRuleAlreadyExist
+            case .topicRuleSqlNotEdited: 
+                code = .invalidParameterValue_TopicRuleSqlNotEdited
+            case .updateTopicRuleDBFail: 
+                code = .invalidParameterValue_UpdateTopicRuleDBFail
+            case .other: 
+                code = .invalidParameterValue
+            }
+            return TCIotcloudError(code, context: self.context)
         }
-        return TCIotcloudError(code, context: self.context)
-    }
-}
-
-extension TCIotcloudError.InvalidParameterValue {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

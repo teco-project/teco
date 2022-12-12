@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCBatchError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCBatchErrorType {
         enum Code: String {
             case computeEnv = "ResourceNotFound.ComputeEnv"
             case computeNode = "ResourceNotFound.ComputeNode"
@@ -34,8 +34,6 @@ extension TCBatchError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -78,37 +76,24 @@ extension TCBatchError {
         public static var taskTemplate: ResourceNotFound {
             ResourceNotFound(.taskTemplate)
         }
-    }
-}
-
-extension TCBatchError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCBatchError.ResourceNotFound, rhs: TCBatchError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCBatchError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCBatchError.ResourceNotFound {
-    /// - Returns: ``TCBatchError`` that holds the same error and context.
-    public func toBatchError() -> TCBatchError {
-        guard let code = TCBatchError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asBatchError() -> TCBatchError {
+            let code: TCBatchError.Code
+            switch self.error {
+            case .computeEnv: 
+                code = .resourceNotFound_ComputeEnv
+            case .computeNode: 
+                code = .resourceNotFound_ComputeNode
+            case .job: 
+                code = .resourceNotFound_Job
+            case .task: 
+                code = .resourceNotFound_Task
+            case .taskInstance: 
+                code = .resourceNotFound_TaskInstance
+            case .taskTemplate: 
+                code = .resourceNotFound_TaskTemplate
+            }
+            return TCBatchError(code, context: self.context)
         }
-        return TCBatchError(code, context: self.context)
-    }
-}
-
-extension TCBatchError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

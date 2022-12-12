@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCamError {
-    public struct RequestLimitExceeded: TCErrorType {
+    public struct RequestLimitExceeded: TCCamErrorType {
         enum Code: String {
             case createUser = "RequestLimitExceeded.CreateUser"
             case uinLimitExceeded = "RequestLimitExceeded.UinLimitExceeded"
@@ -30,8 +30,6 @@ extension TCCamError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCCamError {
         public static var uinLimitExceeded: RequestLimitExceeded {
             RequestLimitExceeded(.uinLimitExceeded)
         }
-    }
-}
-
-extension TCCamError.RequestLimitExceeded: Equatable {
-    public static func == (lhs: TCCamError.RequestLimitExceeded, rhs: TCCamError.RequestLimitExceeded) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCamError.RequestLimitExceeded: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCamError.RequestLimitExceeded {
-    /// - Returns: ``TCCamError`` that holds the same error and context.
-    public func toCamError() -> TCCamError {
-        guard let code = TCCamError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCamError() -> TCCamError {
+            let code: TCCamError.Code
+            switch self.error {
+            case .createUser: 
+                code = .requestLimitExceeded_CreateUser
+            case .uinLimitExceeded: 
+                code = .requestLimitExceeded_UinLimitExceeded
+            }
+            return TCCamError(code, context: self.context)
         }
-        return TCCamError(code, context: self.context)
-    }
-}
-
-extension TCCamError.RequestLimitExceeded {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

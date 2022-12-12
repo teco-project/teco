@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTiiaError {
-    public struct ResourceUnavailable: TCErrorType {
+    public struct ResourceUnavailable: TCTiiaErrorType {
         enum Code: String {
             case inArrears = "ResourceUnavailable.InArrears"
             case isOpening = "ResourceUnavailable.IsOpening"
@@ -31,8 +31,6 @@ extension TCTiiaError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -60,37 +58,18 @@ extension TCTiiaError {
         public static var notExist: ResourceUnavailable {
             ResourceUnavailable(.notExist)
         }
-    }
-}
-
-extension TCTiiaError.ResourceUnavailable: Equatable {
-    public static func == (lhs: TCTiiaError.ResourceUnavailable, rhs: TCTiiaError.ResourceUnavailable) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTiiaError.ResourceUnavailable: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTiiaError.ResourceUnavailable {
-    /// - Returns: ``TCTiiaError`` that holds the same error and context.
-    public func toTiiaError() -> TCTiiaError {
-        guard let code = TCTiiaError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTiiaError() -> TCTiiaError {
+            let code: TCTiiaError.Code
+            switch self.error {
+            case .inArrears: 
+                code = .resourceUnavailable_InArrears
+            case .isOpening: 
+                code = .resourceUnavailable_IsOpening
+            case .notExist: 
+                code = .resourceUnavailable_NotExist
+            }
+            return TCTiiaError(code, context: self.context)
         }
-        return TCTiiaError(code, context: self.context)
-    }
-}
-
-extension TCTiiaError.ResourceUnavailable {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

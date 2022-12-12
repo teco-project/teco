@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEcdnError {
-    public struct UnauthorizedOperation: TCErrorType {
+    public struct UnauthorizedOperation: TCEcdnErrorType {
         enum Code: String {
             case cdnAccountUnauthorized = "UnauthorizedOperation.CdnAccountUnauthorized"
             case cdnCamUnauthorized = "UnauthorizedOperation.CdnCamUnauthorized"
@@ -52,8 +52,6 @@ extension TCEcdnError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -186,37 +184,60 @@ extension TCEcdnError {
         public static var unknown: UnauthorizedOperation {
             UnauthorizedOperation(.unknown)
         }
-    }
-}
-
-extension TCEcdnError.UnauthorizedOperation: Equatable {
-    public static func == (lhs: TCEcdnError.UnauthorizedOperation, rhs: TCEcdnError.UnauthorizedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEcdnError.UnauthorizedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEcdnError.UnauthorizedOperation {
-    /// - Returns: ``TCEcdnError`` that holds the same error and context.
-    public func toEcdnError() -> TCEcdnError {
-        guard let code = TCEcdnError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEcdnError() -> TCEcdnError {
+            let code: TCEcdnError.Code
+            switch self.error {
+            case .cdnAccountUnauthorized: 
+                code = .unauthorizedOperation_CdnAccountUnauthorized
+            case .cdnCamUnauthorized: 
+                code = .unauthorizedOperation_CdnCamUnauthorized
+            case .cdnDomainUnauthorized: 
+                code = .unauthorizedOperation_CdnDomainUnauthorized
+            case .cdnHostUnauthorized: 
+                code = .unauthorizedOperation_CdnHostUnauthorized
+            case .cdnNoDomainUnauthorized: 
+                code = .unauthorizedOperation_CdnNoDomainUnauthorized
+            case .cdnProjectUnauthorized: 
+                code = .unauthorizedOperation_CdnProjectUnauthorized
+            case .domainNoPermission: 
+                code = .unauthorizedOperation_DomainNoPermission
+            case .domainsNoPermission: 
+                code = .unauthorizedOperation_DomainsNoPermission
+            case .ecdnAccountUnauthorized: 
+                code = .unauthorizedOperation_EcdnAccountUnauthorized
+            case .ecdnCamUnauthorized: 
+                code = .unauthorizedOperation_EcdnCamUnauthorized
+            case .ecdnDomainRecordNotVerified: 
+                code = .unauthorizedOperation_EcdnDomainRecordNotVerified
+            case .ecdnDomainUnauthorized: 
+                code = .unauthorizedOperation_EcdnDomainUnauthorized
+            case .ecdnHostIsOwnedByOther: 
+                code = .unauthorizedOperation_EcdnHostIsOwnedByOther
+            case .ecdnHostUnauthorized: 
+                code = .unauthorizedOperation_EcdnHostUnauthorized
+            case .ecdnMigratedCdn: 
+                code = .unauthorizedOperation_EcdnMigratedCdn
+            case .ecdnNoDomainUnauthorized: 
+                code = .unauthorizedOperation_EcdnNoDomainUnauthorized
+            case .ecdnProjectUnauthorized: 
+                code = .unauthorizedOperation_EcdnProjectUnauthorized
+            case .ecdnUserIsSuspended: 
+                code = .unauthorizedOperation_EcdnUserIsSuspended
+            case .ecdnUserNoWhitelist: 
+                code = .unauthorizedOperation_EcdnUserNoWhitelist
+            case .noPermission: 
+                code = .unauthorizedOperation_NoPermission
+            case .operationTooOften: 
+                code = .unauthorizedOperation_OperationTooOften
+            case .projectNoPermission: 
+                code = .unauthorizedOperation_ProjectNoPermission
+            case .projectsNoPermission: 
+                code = .unauthorizedOperation_ProjectsNoPermission
+            case .unknown: 
+                code = .unauthorizedOperation_Unknown
+            }
+            return TCEcdnError(code, context: self.context)
         }
-        return TCEcdnError(code, context: self.context)
-    }
-}
-
-extension TCEcdnError.UnauthorizedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

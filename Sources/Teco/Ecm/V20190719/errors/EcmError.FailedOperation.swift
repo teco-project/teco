@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCEcmError {
-    public struct FailedOperation: TCErrorType {
+    public struct FailedOperation: TCEcmErrorType {
         enum Code: String {
             case blockBalance = "FailedOperation.BlockBalance"
             case dataOperationFailed = "FailedOperation.DataOperationFailed"
@@ -42,8 +42,6 @@ extension TCEcmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -126,37 +124,40 @@ extension TCEcmError {
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-    }
-}
-
-extension TCEcmError.FailedOperation: Equatable {
-    public static func == (lhs: TCEcmError.FailedOperation, rhs: TCEcmError.FailedOperation) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCEcmError.FailedOperation: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCEcmError.FailedOperation {
-    /// - Returns: ``TCEcmError`` that holds the same error and context.
-    public func toEcmError() -> TCEcmError {
-        guard let code = TCEcmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asEcmError() -> TCEcmError {
+            let code: TCEcmError.Code
+            switch self.error {
+            case .blockBalance: 
+                code = .failedOperation_BlockBalance
+            case .dataOperationFailed: 
+                code = .failedOperation_DataOperationFailed
+            case .diskAttached: 
+                code = .failedOperation_DiskAttached
+            case .imageInUse: 
+                code = .failedOperation_ImageInUse
+            case .instanceInModule: 
+                code = .failedOperation_InstanceInModule
+            case .instanceNotAllStopped: 
+                code = .failedOperation_InstanceNotAllStopped
+            case .instanceOwnerCheckFailed: 
+                code = .failedOperation_InstanceOwnerCheckFailed
+            case .internalOperationFailure: 
+                code = .failedOperation_InternalOperationFailure
+            case .invalidStatus: 
+                code = .failedOperation_InvalidStatus
+            case .operationConflict: 
+                code = .failedOperation_OperationConflict
+            case .operationNotAllow: 
+                code = .failedOperation_OperationNotAllow
+            case .privateIpAddressBinded: 
+                code = .failedOperation_PrivateIpAddressBinded
+            case .privateIpAddressUnavailable: 
+                code = .failedOperation_PrivateIpAddressUnavailable
+            case .other: 
+                code = .failedOperation
+            }
+            return TCEcmError(code, context: self.context)
         }
-        return TCEcmError(code, context: self.context)
-    }
-}
-
-extension TCEcmError.FailedOperation {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

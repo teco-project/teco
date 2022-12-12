@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCTafError {
-    public struct ResourceNotFound: TCErrorType {
+    public struct ResourceNotFound: TCTafErrorType {
         enum Code: String {
             case interfaceNotFound = "ResourceNotFound.InterfaceNotFound"
             case other = "ResourceNotFound"
@@ -30,8 +30,6 @@ extension TCTafError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -54,37 +52,16 @@ extension TCTafError {
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-    }
-}
-
-extension TCTafError.ResourceNotFound: Equatable {
-    public static func == (lhs: TCTafError.ResourceNotFound, rhs: TCTafError.ResourceNotFound) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCTafError.ResourceNotFound: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCTafError.ResourceNotFound {
-    /// - Returns: ``TCTafError`` that holds the same error and context.
-    public func toTafError() -> TCTafError {
-        guard let code = TCTafError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asTafError() -> TCTafError {
+            let code: TCTafError.Code
+            switch self.error {
+            case .interfaceNotFound: 
+                code = .resourceNotFound_InterfaceNotFound
+            case .other: 
+                code = .resourceNotFound
+            }
+            return TCTafError(code, context: self.context)
         }
-        return TCTafError(code, context: self.context)
-    }
-}
-
-extension TCTafError.ResourceNotFound {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }

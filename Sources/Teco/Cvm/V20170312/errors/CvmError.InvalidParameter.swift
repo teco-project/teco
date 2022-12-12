@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 extension TCCvmError {
-    public struct InvalidParameter: TCErrorType {
+    public struct InvalidParameter: TCCvmErrorType {
         enum Code: String {
             case atMostOne = "InvalidParameter.AtMostOne"
             case dataDiskIdContainsRootDisk = "InvalidParameter.DataDiskIdContainsRootDisk"
@@ -53,8 +53,6 @@ extension TCCvmError {
         }
         
         /// Initializer used by ``TCClient`` to match an error of this type.
-        ///
-        /// You should not use this initializer directly as there are no public initializers for ``TCErrorContext``.
         public init ?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
@@ -196,37 +194,62 @@ extension TCCvmError {
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-    }
-}
-
-extension TCCvmError.InvalidParameter: Equatable {
-    public static func == (lhs: TCCvmError.InvalidParameter, rhs: TCCvmError.InvalidParameter) -> Bool {
-        lhs.error == rhs.error
-    }
-}
-
-extension TCCvmError.InvalidParameter: CustomStringConvertible {
-    public var description: String {
-        return "\(self.error.rawValue): \(message ?? "")"
-    }
-}
-
-extension TCCvmError.InvalidParameter {
-    /// - Returns: ``TCCvmError`` that holds the same error and context.
-    public func toCvmError() -> TCCvmError {
-        guard let code = TCCvmError.Code(rawValue: self.error.rawValue) else {
-            fatalError("Unexpected internal conversion error!\nPlease file a bug at https://github.com/teco-project/teco to help address the problem.")
+        
+        public func asCvmError() -> TCCvmError {
+            let code: TCCvmError.Code
+            switch self.error {
+            case .atMostOne: 
+                code = .invalidParameter_AtMostOne
+            case .dataDiskIdContainsRootDisk: 
+                code = .invalidParameter_DataDiskIdContainsRootDisk
+            case .dataDiskNotBelongSpecifiedInstance: 
+                code = .invalidParameter_DataDiskNotBelongSpecifiedInstance
+            case .duplicateSystemSnapshots: 
+                code = .invalidParameter_DuplicateSystemSnapshots
+            case .hostIdStatusNotSupport: 
+                code = .invalidParameter_HostIdStatusNotSupport
+            case .hostNameIllegal: 
+                code = .invalidParameter_HostNameIllegal
+            case .imageIdsSnapshotIdsMustOne: 
+                code = .invalidParameter_ImageIdsSnapshotIdsMustOne
+            case .instanceImageNotSupport: 
+                code = .invalidParameter_InstanceImageNotSupport
+            case .internetAccessibleNotSupported: 
+                code = .invalidParameter_InternetAccessibleNotSupported
+            case .invalidCloudDiskSoldOut: 
+                code = .invalidParameter_InvalidCloudDiskSoldOut
+            case .invalidDependence: 
+                code = .invalidParameter_InvalidDependence
+            case .invalidInstanceNotSupported: 
+                code = .invalidParameter_InvalidInstanceNotSupported
+            case .invalidIpFormat: 
+                code = .invalidParameter_InvalidIpFormat
+            case .invalidParameterCoexistImageIdsFilters: 
+                code = .invalidParameter_InvalidParameterCoexistImageIdsFilters
+            case .invalidParameterUrlError: 
+                code = .invalidParameter_InvalidParameterUrlError
+            case .lackCoreCountOrThreadPerCore: 
+                code = .invalidParameter_LackCoreCountOrThreadPerCore
+            case .localDataDiskNotSupport: 
+                code = .invalidParameter_LocalDataDiskNotSupport
+            case .parameterConflict: 
+                code = .invalidParameter_ParameterConflict
+            case .passwordNotSupported: 
+                code = .invalidParameter_PasswordNotSupported
+            case .snapshotNotFound: 
+                code = .invalidParameter_SnapshotNotFound
+            case .specifyOneParameter: 
+                code = .invalidParameter_SpecifyOneParameter
+            case .swapDiskNotSupport: 
+                code = .invalidParameter_SwapDiskNotSupport
+            case .systemSnapshotNotFound: 
+                code = .invalidParameter_SystemSnapshotNotFound
+            case .valueTooLarge: 
+                code = .invalidParameter_ValueTooLarge
+            case .other: 
+                code = .invalidParameter
+            }
+            return TCCvmError(code, context: self.context)
         }
-        return TCCvmError(code, context: self.context)
-    }
-}
-
-extension TCCvmError.InvalidParameter {
-    /// - Returns: ``TCCommonError`` that holds the same error and context.
-    public func toCommonError() -> TCCommonError? {
-        if let context = self.context, let error = TCCommonError(errorCode: self.error.rawValue, context: context) {
-            return error
-        }
-        return nil
     }
 }
