@@ -85,4 +85,16 @@ extension Tcss {
     public func createEmergencyVulExportJob(_ input: CreateEmergencyVulExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmergencyVulExportJobResponse {
         try await self.client.execute(action: "CreateEmergencyVulExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建应急漏洞导出任务
+    @inlinable
+    public func createEmergencyVulExportJob(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEmergencyVulExportJobResponse > {
+        self.createEmergencyVulExportJob(CreateEmergencyVulExportJobRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建应急漏洞导出任务
+    @inlinable
+    public func createEmergencyVulExportJob(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmergencyVulExportJobResponse {
+        try await self.createEmergencyVulExportJob(CreateEmergencyVulExportJobRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

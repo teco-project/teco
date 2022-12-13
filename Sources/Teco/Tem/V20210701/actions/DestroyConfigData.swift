@@ -64,4 +64,16 @@ extension Tem {
     public func destroyConfigData(_ input: DestroyConfigDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyConfigDataResponse {
         try await self.client.execute(action: "DestroyConfigData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 销毁配置
+    @inlinable
+    public func destroyConfigData(environmentId: String, name: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyConfigDataResponse > {
+        self.destroyConfigData(DestroyConfigDataRequest(environmentId: environmentId, name: name, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁配置
+    @inlinable
+    public func destroyConfigData(environmentId: String, name: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyConfigDataResponse {
+        try await self.destroyConfigData(DestroyConfigDataRequest(environmentId: environmentId, name: name, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    }
 }

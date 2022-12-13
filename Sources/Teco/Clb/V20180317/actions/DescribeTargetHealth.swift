@@ -59,4 +59,20 @@ extension Clb {
     public func describeTargetHealth(_ input: DescribeTargetHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetHealthResponse {
         try await self.client.execute(action: "DescribeTargetHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取负载均衡后端服务的健康检查状态
+    ///
+    /// DescribeTargetHealth 接口用来获取负载均衡后端服务的健康检查结果，不支持传统型负载均衡。
+    @inlinable
+    public func describeTargetHealth(loadBalancerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTargetHealthResponse > {
+        self.describeTargetHealth(DescribeTargetHealthRequest(loadBalancerIds: loadBalancerIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取负载均衡后端服务的健康检查状态
+    ///
+    /// DescribeTargetHealth 接口用来获取负载均衡后端服务的健康检查结果，不支持传统型负载均衡。
+    @inlinable
+    public func describeTargetHealth(loadBalancerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetHealthResponse {
+        try await self.describeTargetHealth(DescribeTargetHealthRequest(loadBalancerIds: loadBalancerIds), logger: logger, on: eventLoop)
+    }
 }

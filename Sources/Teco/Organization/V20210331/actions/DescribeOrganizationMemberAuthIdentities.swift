@@ -70,4 +70,16 @@ extension Organization {
     public func describeOrganizationMemberAuthIdentities(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthIdentitiesResponse {
         try await self.client.execute(action: "DescribeOrganizationMemberAuthIdentities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取组织成员可被管理的身份列表
+    @inlinable
+    public func describeOrganizationMemberAuthIdentities(offset: Int64, limit: Int64, memberUin: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationMemberAuthIdentitiesResponse > {
+        self.describeOrganizationMemberAuthIdentities(DescribeOrganizationMemberAuthIdentitiesRequest(offset: offset, limit: limit, memberUin: memberUin), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取组织成员可被管理的身份列表
+    @inlinable
+    public func describeOrganizationMemberAuthIdentities(offset: Int64, limit: Int64, memberUin: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthIdentitiesResponse {
+        try await self.describeOrganizationMemberAuthIdentities(DescribeOrganizationMemberAuthIdentitiesRequest(offset: offset, limit: limit, memberUin: memberUin), logger: logger, on: eventLoop)
+    }
 }

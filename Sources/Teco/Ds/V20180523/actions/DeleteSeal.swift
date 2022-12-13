@@ -73,4 +73,20 @@ extension Ds {
     public func deleteSeal(_ input: DeleteSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSealResponse {
         try await self.client.execute(action: "DeleteSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除签章
+    ///
+    /// 删除印章接口，删除指定账号的某个印章
+    @inlinable
+    public func deleteSeal(module: String, operation: String, accountResId: String, sealResId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSealResponse > {
+        self.deleteSeal(DeleteSealRequest(module: module, operation: operation, accountResId: accountResId, sealResId: sealResId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除签章
+    ///
+    /// 删除印章接口，删除指定账号的某个印章
+    @inlinable
+    public func deleteSeal(module: String, operation: String, accountResId: String, sealResId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSealResponse {
+        try await self.deleteSeal(DeleteSealRequest(module: module, operation: operation, accountResId: accountResId, sealResId: sealResId), logger: logger, on: eventLoop)
+    }
 }

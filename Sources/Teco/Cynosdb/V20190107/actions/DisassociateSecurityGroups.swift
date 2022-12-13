@@ -60,4 +60,16 @@ extension Cynosdb {
     public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {
         try await self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安全组批量解绑云资源
+    @inlinable
+    public func disassociateSecurityGroups(instanceIds: [String], securityGroupIds: [String], zone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateSecurityGroupsResponse > {
+        self.disassociateSecurityGroups(DisassociateSecurityGroupsRequest(instanceIds: instanceIds, securityGroupIds: securityGroupIds, zone: zone), logger: logger, on: eventLoop)
+    }
+    
+    /// 安全组批量解绑云资源
+    @inlinable
+    public func disassociateSecurityGroups(instanceIds: [String], securityGroupIds: [String], zone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {
+        try await self.disassociateSecurityGroups(DisassociateSecurityGroupsRequest(instanceIds: instanceIds, securityGroupIds: securityGroupIds, zone: zone), logger: logger, on: eventLoop)
+    }
 }

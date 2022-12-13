@@ -63,4 +63,16 @@ extension Tbp {
     public func createBot(_ input: CreateBotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBotResponse {
         try await self.client.execute(action: "CreateBot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建机器人
+    @inlinable
+    public func createBot(botName: String, botCnName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBotResponse > {
+        self.createBot(CreateBotRequest(botName: botName, botCnName: botCnName), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建机器人
+    @inlinable
+    public func createBot(botName: String, botCnName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBotResponse {
+        try await self.createBot(CreateBotRequest(botName: botName, botCnName: botCnName), logger: logger, on: eventLoop)
+    }
 }

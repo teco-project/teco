@@ -83,4 +83,20 @@ extension Batch {
     public func describeJobSubmitInfo(_ input: DescribeJobSubmitInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobSubmitInfoResponse {
         try await self.client.execute(action: "DescribeJobSubmitInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取作业的提交信息
+    ///
+    /// 用于查询指定作业的提交信息，其返回内容包括 JobId 和 SubmitJob 接口中作为输入参数的作业提交信息
+    @inlinable
+    public func describeJobSubmitInfo(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobSubmitInfoResponse > {
+        self.describeJobSubmitInfo(DescribeJobSubmitInfoRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取作业的提交信息
+    ///
+    /// 用于查询指定作业的提交信息，其返回内容包括 JobId 和 SubmitJob 接口中作为输入参数的作业提交信息
+    @inlinable
+    public func describeJobSubmitInfo(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobSubmitInfoResponse {
+        try await self.describeJobSubmitInfo(DescribeJobSubmitInfoRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
 }

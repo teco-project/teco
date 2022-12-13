@@ -63,4 +63,20 @@ extension Bmlb {
     public func createTrafficMirror(_ input: CreateTrafficMirrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrafficMirrorResponse {
         try await self.client.execute(action: "CreateTrafficMirror", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建流量镜像实例
+    ///
+    /// 创建流量镜像实例。
+    @inlinable
+    public func createTrafficMirror(alias: String, vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTrafficMirrorResponse > {
+        self.createTrafficMirror(CreateTrafficMirrorRequest(alias: alias, vpcId: vpcId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建流量镜像实例
+    ///
+    /// 创建流量镜像实例。
+    @inlinable
+    public func createTrafficMirror(alias: String, vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrafficMirrorResponse {
+        try await self.createTrafficMirror(CreateTrafficMirrorRequest(alias: alias, vpcId: vpcId), logger: logger, on: eventLoop)
+    }
 }

@@ -34,7 +34,7 @@ extension Essbasic {
         /// 操作者的信息
         public let `operator`: UserInfo?
         
-        public init (agent: Agent, flowInfos: [FlowInfo], needPreview: Bool? = nil, previewType: Int64? = nil, `operator`: UserInfo? = nil) {
+        public init (agent: Agent, flowInfos: [FlowInfo], needPreview: Bool? = nil, previewType: Int64? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.flowInfos = flowInfos
             self.needPreview = needPreview
@@ -101,5 +101,25 @@ extension Essbasic {
     @inlinable
     public func createFlowsByTemplates(_ input: CreateFlowsByTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowsByTemplatesResponse {
         try await self.client.execute(action: "CreateFlowsByTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 使用多个模板批量创建签署流程
+    ///
+    /// 接口（CreateFlowsByTemplates）用于使用多个模板批量创建签署流程。当前可批量发起合同（签署流程）数量最大为20个。
+    /// 如若在模板中配置了动态表格, 上传的附件必须为A4大小
+    /// 合同发起人必须在电子签已经进行实名。
+    @inlinable
+    public func createFlowsByTemplates(agent: Agent, flowInfos: [FlowInfo], needPreview: Bool? = nil, previewType: Int64? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowsByTemplatesResponse > {
+        self.createFlowsByTemplates(CreateFlowsByTemplatesRequest(agent: agent, flowInfos: flowInfos, needPreview: needPreview, previewType: previewType, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 使用多个模板批量创建签署流程
+    ///
+    /// 接口（CreateFlowsByTemplates）用于使用多个模板批量创建签署流程。当前可批量发起合同（签署流程）数量最大为20个。
+    /// 如若在模板中配置了动态表格, 上传的附件必须为A4大小
+    /// 合同发起人必须在电子签已经进行实名。
+    @inlinable
+    public func createFlowsByTemplates(agent: Agent, flowInfos: [FlowInfo], needPreview: Bool? = nil, previewType: Int64? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowsByTemplatesResponse {
+        try await self.createFlowsByTemplates(CreateFlowsByTemplatesRequest(agent: agent, flowInfos: flowInfos, needPreview: needPreview, previewType: previewType, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

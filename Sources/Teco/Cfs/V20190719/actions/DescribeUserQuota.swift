@@ -75,4 +75,16 @@ extension Cfs {
     public func describeUserQuota(_ input: DescribeUserQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotaResponse {
         try await self.client.execute(action: "DescribeUserQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询文件系统配额
+    @inlinable
+    public func describeUserQuota(fileSystemId: String, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserQuotaResponse > {
+        self.describeUserQuota(DescribeUserQuotaRequest(fileSystemId: fileSystemId, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文件系统配额
+    @inlinable
+    public func describeUserQuota(fileSystemId: String, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotaResponse {
+        try await self.describeUserQuota(DescribeUserQuotaRequest(fileSystemId: fileSystemId, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

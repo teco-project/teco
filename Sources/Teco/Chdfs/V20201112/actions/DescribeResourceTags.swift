@@ -58,4 +58,20 @@ extension Chdfs {
     public func describeResourceTags(_ input: DescribeResourceTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsResponse {
         try await self.client.execute(action: "DescribeResourceTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看资源标签列表
+    ///
+    /// 通过文件系统ID查看资源标签列表。
+    @inlinable
+    public func describeResourceTags(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceTagsResponse > {
+        self.describeResourceTags(DescribeResourceTagsRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看资源标签列表
+    ///
+    /// 通过文件系统ID查看资源标签列表。
+    @inlinable
+    public func describeResourceTags(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsResponse {
+        try await self.describeResourceTags(DescribeResourceTagsRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    }
 }

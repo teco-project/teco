@@ -70,4 +70,16 @@ extension Tem {
     public func modifyApplicationInfo(_ input: ModifyApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationInfoResponse {
         try await self.client.execute(action: "ModifyApplicationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改应用基本信息
+    @inlinable
+    public func modifyApplicationInfo(applicationId: String, description: String, sourceChannel: Int64? = nil, enableTracing: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationInfoResponse > {
+        self.modifyApplicationInfo(ModifyApplicationInfoRequest(applicationId: applicationId, description: description, sourceChannel: sourceChannel, enableTracing: enableTracing), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改应用基本信息
+    @inlinable
+    public func modifyApplicationInfo(applicationId: String, description: String, sourceChannel: Int64? = nil, enableTracing: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationInfoResponse {
+        try await self.modifyApplicationInfo(ModifyApplicationInfoRequest(applicationId: applicationId, description: description, sourceChannel: sourceChannel, enableTracing: enableTracing), logger: logger, on: eventLoop)
+    }
 }

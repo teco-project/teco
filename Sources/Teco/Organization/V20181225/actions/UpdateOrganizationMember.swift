@@ -60,4 +60,16 @@ extension Organization {
     public func updateOrganizationMember(_ input: UpdateOrganizationMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrganizationMemberResponse {
         try await self.client.execute(action: "UpdateOrganizationMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新企业成员信息
+    @inlinable
+    public func updateOrganizationMember(memberUin: UInt64, name: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateOrganizationMemberResponse > {
+        self.updateOrganizationMember(UpdateOrganizationMemberRequest(memberUin: memberUin, name: name, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新企业成员信息
+    @inlinable
+    public func updateOrganizationMember(memberUin: UInt64, name: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrganizationMemberResponse {
+        try await self.updateOrganizationMember(UpdateOrganizationMemberRequest(memberUin: memberUin, name: name, remark: remark), logger: logger, on: eventLoop)
+    }
 }

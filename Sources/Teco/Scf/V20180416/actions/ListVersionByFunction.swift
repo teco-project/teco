@@ -93,4 +93,20 @@ extension Scf {
     public func listVersionByFunction(_ input: ListVersionByFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListVersionByFunctionResponse {
         try await self.client.execute(action: "ListVersionByFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询函数版本
+    ///
+    /// 该接口根据传入的参数查询函数的版本。
+    @inlinable
+    public func listVersionByFunction(functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListVersionByFunctionResponse > {
+        self.listVersionByFunction(ListVersionByFunctionRequest(functionName: functionName, namespace: namespace, offset: offset, limit: limit, order: order, orderBy: orderBy), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询函数版本
+    ///
+    /// 该接口根据传入的参数查询函数的版本。
+    @inlinable
+    public func listVersionByFunction(functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListVersionByFunctionResponse {
+        try await self.listVersionByFunction(ListVersionByFunctionRequest(functionName: functionName, namespace: namespace, offset: offset, limit: limit, order: order, orderBy: orderBy), logger: logger, on: eventLoop)
+    }
 }

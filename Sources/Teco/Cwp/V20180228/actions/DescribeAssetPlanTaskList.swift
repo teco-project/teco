@@ -92,4 +92,16 @@ extension Cwp {
     public func describeAssetPlanTaskList(_ input: DescribeAssetPlanTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetPlanTaskListResponse {
         try await self.client.execute(action: "DescribeAssetPlanTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询资产管理计划任务列表
+    @inlinable
+    public func describeAssetPlanTaskList(uuid: String? = nil, quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetPlanTaskListResponse > {
+        self.describeAssetPlanTaskList(DescribeAssetPlanTaskListRequest(uuid: uuid, quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资产管理计划任务列表
+    @inlinable
+    public func describeAssetPlanTaskList(uuid: String? = nil, quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetPlanTaskListResponse {
+        try await self.describeAssetPlanTaskList(DescribeAssetPlanTaskListRequest(uuid: uuid, quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

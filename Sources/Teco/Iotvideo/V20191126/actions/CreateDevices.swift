@@ -29,7 +29,7 @@ extension Iotvideo {
         /// 操作人
         public let `operator`: String?
         
-        public init (productId: String, number: UInt64, namePrefix: String? = nil, `operator`: String? = nil) {
+        public init (productId: String, number: UInt64, namePrefix: String? = nil, operator: String? = nil) {
             self.productId = productId
             self.number = number
             self.namePrefix = namePrefix
@@ -74,5 +74,23 @@ extension Iotvideo {
     @inlinable
     public func createDevices(_ input: CreateDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDevicesResponse {
         try await self.client.execute(action: "CreateDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 创建设备
+    ///
+    /// 本接口（CreateDevices）用于批量创建新的物联网视频通信设备。
+    /// 注意：腾讯云不会对设备私钥进行保存，请自行保管好您的设备私钥。
+    @inlinable
+    public func createDevices(productId: String, number: UInt64, namePrefix: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDevicesResponse > {
+        self.createDevices(CreateDevicesRequest(productId: productId, number: number, namePrefix: namePrefix, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建设备
+    ///
+    /// 本接口（CreateDevices）用于批量创建新的物联网视频通信设备。
+    /// 注意：腾讯云不会对设备私钥进行保存，请自行保管好您的设备私钥。
+    @inlinable
+    public func createDevices(productId: String, number: UInt64, namePrefix: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDevicesResponse {
+        try await self.createDevices(CreateDevicesRequest(productId: productId, number: number, namePrefix: namePrefix, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

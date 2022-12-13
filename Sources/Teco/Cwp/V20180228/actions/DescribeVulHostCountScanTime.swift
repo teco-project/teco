@@ -70,4 +70,16 @@ extension Cwp {
     public func describeVulHostCountScanTime(_ input: DescribeVulHostCountScanTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulHostCountScanTimeResponse {
         try await self.client.execute(action: "DescribeVulHostCountScanTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取待处理漏洞数+影响主机数
+    @inlinable
+    public func describeVulHostCountScanTime(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulHostCountScanTimeResponse > {
+        self.describeVulHostCountScanTime(DescribeVulHostCountScanTimeRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取待处理漏洞数+影响主机数
+    @inlinable
+    public func describeVulHostCountScanTime(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulHostCountScanTimeResponse {
+        try await self.describeVulHostCountScanTime(DescribeVulHostCountScanTimeRequest(), logger: logger, on: eventLoop)
+    }
 }

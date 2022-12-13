@@ -78,4 +78,20 @@ extension Tcss {
     public func describeAssetPortList(_ input: DescribeAssetPortListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetPortListResponse {
         try await self.client.execute(action: "DescribeAssetPortList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询端口占用列表
+    ///
+    /// 容器安全搜索查询端口占用列表
+    @inlinable
+    public func describeAssetPortList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetPortListResponse > {
+        self.describeAssetPortList(DescribeAssetPortListRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询端口占用列表
+    ///
+    /// 容器安全搜索查询端口占用列表
+    @inlinable
+    public func describeAssetPortList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetPortListResponse {
+        try await self.describeAssetPortList(DescribeAssetPortListRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

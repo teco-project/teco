@@ -73,4 +73,20 @@ extension Cwp {
     public func describeAccountStatistics(_ input: DescribeAccountStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountStatisticsResponse {
         try await self.client.execute(action: "DescribeAccountStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取帐号统计列表数据
+    ///
+    /// 本接口 (DescribeAccountStatistics) 用于获取帐号统计列表数据。
+    @inlinable
+    public func describeAccountStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountStatisticsResponse > {
+        self.describeAccountStatistics(DescribeAccountStatisticsRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取帐号统计列表数据
+    ///
+    /// 本接口 (DescribeAccountStatistics) 用于获取帐号统计列表数据。
+    @inlinable
+    public func describeAccountStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountStatisticsResponse {
+        try await self.describeAccountStatistics(DescribeAccountStatisticsRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

@@ -66,4 +66,16 @@ extension Tke {
     public func describeResourceUsage(_ input: DescribeResourceUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUsageResponse {
         try await self.client.execute(action: "DescribeResourceUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取集群资源使用量
+    @inlinable
+    public func describeResourceUsage(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceUsageResponse > {
+        self.describeResourceUsage(DescribeResourceUsageRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群资源使用量
+    @inlinable
+    public func describeResourceUsage(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUsageResponse {
+        try await self.describeResourceUsage(DescribeResourceUsageRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

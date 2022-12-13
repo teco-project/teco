@@ -79,4 +79,20 @@ extension Iotcloud {
     public func publishMessage(_ input: PublishMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMessageResponse {
         try await self.client.execute(action: "PublishMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 发布消息
+    ///
+    /// 本接口（PublishMessage）用于向某个主题发消息。 
+    @inlinable
+    public func publishMessage(topic: String, payload: String, productId: String, deviceName: String, qos: UInt64? = nil, payloadEncoding: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishMessageResponse > {
+        self.publishMessage(PublishMessageRequest(topic: topic, payload: payload, productId: productId, deviceName: deviceName, qos: qos, payloadEncoding: payloadEncoding), logger: logger, on: eventLoop)
+    }
+    
+    /// 发布消息
+    ///
+    /// 本接口（PublishMessage）用于向某个主题发消息。 
+    @inlinable
+    public func publishMessage(topic: String, payload: String, productId: String, deviceName: String, qos: UInt64? = nil, payloadEncoding: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMessageResponse {
+        try await self.publishMessage(PublishMessageRequest(topic: topic, payload: payload, productId: productId, deviceName: deviceName, qos: qos, payloadEncoding: payloadEncoding), logger: logger, on: eventLoop)
+    }
 }

@@ -68,4 +68,20 @@ extension Dbbrain {
     public func addUserContact(_ input: AddUserContactRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserContactResponse {
         try await self.client.execute(action: "AddUserContact", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加联系人信息
+    ///
+    /// 添加邮件接收联系人的姓名， 邮件地址，返回值为添加成功的联系人id。Region统一选择广州。
+    @inlinable
+    public func addUserContact(name: String, contactInfo: String, product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUserContactResponse > {
+        self.addUserContact(AddUserContactRequest(name: name, contactInfo: contactInfo, product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加联系人信息
+    ///
+    /// 添加邮件接收联系人的姓名， 邮件地址，返回值为添加成功的联系人id。Region统一选择广州。
+    @inlinable
+    public func addUserContact(name: String, contactInfo: String, product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserContactResponse {
+        try await self.addUserContact(AddUserContactRequest(name: name, contactInfo: contactInfo, product: product), logger: logger, on: eventLoop)
+    }
 }

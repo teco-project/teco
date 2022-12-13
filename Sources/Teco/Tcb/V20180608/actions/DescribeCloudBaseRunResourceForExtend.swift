@@ -79,4 +79,20 @@ extension Tcb {
     public func describeCloudBaseRunResourceForExtend(_ input: DescribeCloudBaseRunResourceForExtendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunResourceForExtendResponse {
         try await self.client.execute(action: "DescribeCloudBaseRunResourceForExtend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看容器托管的资源状态扩展使用
+    ///
+    /// 查看容器托管的集群状态扩展使用
+    @inlinable
+    public func describeCloudBaseRunResourceForExtend(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunResourceForExtendResponse > {
+        self.describeCloudBaseRunResourceForExtend(DescribeCloudBaseRunResourceForExtendRequest(envId: envId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看容器托管的资源状态扩展使用
+    ///
+    /// 查看容器托管的集群状态扩展使用
+    @inlinable
+    public func describeCloudBaseRunResourceForExtend(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunResourceForExtendResponse {
+        try await self.describeCloudBaseRunResourceForExtend(DescribeCloudBaseRunResourceForExtendRequest(envId: envId), logger: logger, on: eventLoop)
+    }
 }

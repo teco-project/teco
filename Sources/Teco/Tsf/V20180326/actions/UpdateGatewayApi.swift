@@ -79,4 +79,16 @@ extension Tsf {
     public func updateGatewayApi(_ input: UpdateGatewayApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGatewayApiResponse {
         try await self.client.execute(action: "UpdateGatewayApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新API
+    @inlinable
+    public func updateGatewayApi(apiId: String, path: String? = nil, method: String? = nil, pathMapping: String? = nil, host: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGatewayApiResponse > {
+        self.updateGatewayApi(UpdateGatewayApiRequest(apiId: apiId, path: path, method: method, pathMapping: pathMapping, host: host, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新API
+    @inlinable
+    public func updateGatewayApi(apiId: String, path: String? = nil, method: String? = nil, pathMapping: String? = nil, host: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGatewayApiResponse {
+        try await self.updateGatewayApi(UpdateGatewayApiRequest(apiId: apiId, path: path, method: method, pathMapping: pathMapping, host: host, description: description), logger: logger, on: eventLoop)
+    }
 }

@@ -77,4 +77,20 @@ extension Tcaplusdb {
     public func modifyClusterPassword(_ input: ModifyClusterPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterPasswordResponse {
         try await self.client.execute(action: "ModifyClusterPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改集群密码
+    ///
+    /// 修改指定集群的密码，后台将在旧密码失效之前同时支持TcaplusDB SDK使用旧密码和新密码访问数据库。在旧密码失效之前不能提交新的密码修改请求，在旧密码失效之后不能提交修改旧密码过期时间的请求。
+    @inlinable
+    public func modifyClusterPassword(clusterId: String, oldPassword: String, oldPasswordExpireTime: Date, newPassword: String, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterPasswordResponse > {
+        self.modifyClusterPassword(ModifyClusterPasswordRequest(clusterId: clusterId, oldPassword: oldPassword, oldPasswordExpireTime: oldPasswordExpireTime, newPassword: newPassword, mode: mode), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改集群密码
+    ///
+    /// 修改指定集群的密码，后台将在旧密码失效之前同时支持TcaplusDB SDK使用旧密码和新密码访问数据库。在旧密码失效之前不能提交新的密码修改请求，在旧密码失效之后不能提交修改旧密码过期时间的请求。
+    @inlinable
+    public func modifyClusterPassword(clusterId: String, oldPassword: String, oldPasswordExpireTime: Date, newPassword: String, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterPasswordResponse {
+        try await self.modifyClusterPassword(ModifyClusterPasswordRequest(clusterId: clusterId, oldPassword: oldPassword, oldPasswordExpireTime: oldPasswordExpireTime, newPassword: newPassword, mode: mode), logger: logger, on: eventLoop)
+    }
 }

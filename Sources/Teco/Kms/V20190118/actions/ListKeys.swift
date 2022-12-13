@@ -78,4 +78,20 @@ extension Kms {
     public func listKeys(_ input: ListKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListKeysResponse {
         try await self.client.execute(action: "ListKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取主密钥列表
+    ///
+    /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表
+    @inlinable
+    public func listKeys(offset: UInt64? = nil, limit: UInt64? = nil, role: UInt64? = nil, hsmClusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListKeysResponse > {
+        self.listKeys(ListKeysRequest(offset: offset, limit: limit, role: role, hsmClusterId: hsmClusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取主密钥列表
+    ///
+    /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表
+    @inlinable
+    public func listKeys(offset: UInt64? = nil, limit: UInt64? = nil, role: UInt64? = nil, hsmClusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListKeysResponse {
+        try await self.listKeys(ListKeysRequest(offset: offset, limit: limit, role: role, hsmClusterId: hsmClusterId), logger: logger, on: eventLoop)
+    }
 }

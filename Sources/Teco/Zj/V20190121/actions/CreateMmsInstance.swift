@@ -98,4 +98,20 @@ extension Zj {
     public func createMmsInstance(_ input: CreateMmsInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMmsInstanceResponse {
         try await self.client.execute(action: "CreateMmsInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建超级短信素材样例
+    ///
+    /// 创建超级短信的素材样例内容
+    @inlinable
+    public func createMmsInstance(license: String, instanceName: String, title: String, sign: String, contents: [CreateMmsInstanceItem], urls: [String]? = nil, phoneType: [UInt64]? = nil, commonParams: [UInt64]? = nil, urlParams: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMmsInstanceResponse > {
+        self.createMmsInstance(CreateMmsInstanceRequest(license: license, instanceName: instanceName, title: title, sign: sign, contents: contents, urls: urls, phoneType: phoneType, commonParams: commonParams, urlParams: urlParams), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建超级短信素材样例
+    ///
+    /// 创建超级短信的素材样例内容
+    @inlinable
+    public func createMmsInstance(license: String, instanceName: String, title: String, sign: String, contents: [CreateMmsInstanceItem], urls: [String]? = nil, phoneType: [UInt64]? = nil, commonParams: [UInt64]? = nil, urlParams: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMmsInstanceResponse {
+        try await self.createMmsInstance(CreateMmsInstanceRequest(license: license, instanceName: instanceName, title: title, sign: sign, contents: contents, urls: urls, phoneType: phoneType, commonParams: commonParams, urlParams: urlParams), logger: logger, on: eventLoop)
+    }
 }

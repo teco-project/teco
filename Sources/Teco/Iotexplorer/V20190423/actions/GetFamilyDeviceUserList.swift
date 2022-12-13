@@ -64,4 +64,20 @@ extension Iotexplorer {
     public func getFamilyDeviceUserList(_ input: GetFamilyDeviceUserListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFamilyDeviceUserListResponse {
         try await self.client.execute(action: "GetFamilyDeviceUserList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备绑定的用户列表
+    ///
+    /// 用于获取设备绑定的用户列表
+    @inlinable
+    public func getFamilyDeviceUserList(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFamilyDeviceUserListResponse > {
+        self.getFamilyDeviceUserList(GetFamilyDeviceUserListRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备绑定的用户列表
+    ///
+    /// 用于获取设备绑定的用户列表
+    @inlinable
+    public func getFamilyDeviceUserList(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFamilyDeviceUserListResponse {
+        try await self.getFamilyDeviceUserList(GetFamilyDeviceUserListRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
 }

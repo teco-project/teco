@@ -83,4 +83,16 @@ extension Ecm {
     public func describeRouteTables(_ input: DescribeRouteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteTablesResponse {
         try await self.client.execute(action: "DescribeRouteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询路由表对象列表
+    @inlinable
+    public func describeRouteTables(routeTableIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, ecmRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRouteTablesResponse > {
+        self.describeRouteTables(DescribeRouteTablesRequest(routeTableIds: routeTableIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询路由表对象列表
+    @inlinable
+    public func describeRouteTables(routeTableIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, ecmRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteTablesResponse {
+        try await self.describeRouteTables(DescribeRouteTablesRequest(routeTableIds: routeTableIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    }
 }

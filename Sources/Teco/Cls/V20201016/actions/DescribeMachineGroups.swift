@@ -89,4 +89,20 @@ extension Cls {
     public func describeMachineGroups(_ input: DescribeMachineGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineGroupsResponse {
         try await self.client.execute(action: "DescribeMachineGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取机器组列表
+    ///
+    /// 获取机器组信息列表
+    @inlinable
+    public func describeMachineGroups(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineGroupsResponse > {
+        self.describeMachineGroups(DescribeMachineGroupsRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取机器组列表
+    ///
+    /// 获取机器组信息列表
+    @inlinable
+    public func describeMachineGroups(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineGroupsResponse {
+        try await self.describeMachineGroups(DescribeMachineGroupsRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -75,4 +75,16 @@ extension Trp {
     public func createCustomRule(_ input: CreateCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomRuleResponse {
         try await self.client.execute(action: "CreateCustomRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新建自定义码规则
+    @inlinable
+    public func createCustomRule(name: String, merchantId: String, codeLength: UInt64, codeParts: [CodePart], corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomRuleResponse > {
+        self.createCustomRule(CreateCustomRuleRequest(name: name, merchantId: merchantId, codeLength: codeLength, codeParts: codeParts, corpId: corpId), logger: logger, on: eventLoop)
+    }
+    
+    /// 新建自定义码规则
+    @inlinable
+    public func createCustomRule(name: String, merchantId: String, codeLength: UInt64, codeParts: [CodePart], corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomRuleResponse {
+        try await self.createCustomRule(CreateCustomRuleRequest(name: name, merchantId: merchantId, codeLength: codeLength, codeParts: codeParts, corpId: corpId), logger: logger, on: eventLoop)
+    }
 }

@@ -70,7 +70,7 @@ extension Iotvideo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `default`: String?
         
-        public init (en: String? = nil, cn: String? = nil, tc: String? = nil, `default`: String? = nil) {
+        public init (en: String? = nil, cn: String? = nil, tc: String? = nil, default: String? = nil) {
             self.en = en
             self.cn = cn
             self.tc = tc

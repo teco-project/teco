@@ -60,4 +60,16 @@ extension Tsf {
     public func disassociateKafkaConfig(_ input: DisassociateKafkaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateKafkaConfigResponse {
         try await self.client.execute(action: "DisassociateKafkaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 取消关联投递信息和部署组
+    @inlinable
+    public func disassociateKafkaConfig(configId: String, groupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateKafkaConfigResponse > {
+        self.disassociateKafkaConfig(DisassociateKafkaConfigRequest(configId: configId, groupIds: groupIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 取消关联投递信息和部署组
+    @inlinable
+    public func disassociateKafkaConfig(configId: String, groupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateKafkaConfigResponse {
+        try await self.disassociateKafkaConfig(DisassociateKafkaConfigRequest(configId: configId, groupIds: groupIds), logger: logger, on: eventLoop)
+    }
 }

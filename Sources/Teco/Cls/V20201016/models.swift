@@ -867,7 +867,7 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let parseProtocol: String?
         
-        public init (timeKey: String? = nil, timeFormat: String? = nil, delimiter: String? = nil, logRegex: String? = nil, beginRegex: String? = nil, keys: [String]? = nil, filterKeyRegex: [KeyRegexInfo]? = nil, unMatchUpLoadSwitch: Bool? = nil, unMatchLogKey: String? = nil, backtracking: Int64? = nil, isGBK: Int64? = nil, jsonStandard: Int64? = nil, `protocol`: String? = nil, address: String? = nil, parseProtocol: String? = nil) {
+        public init (timeKey: String? = nil, timeFormat: String? = nil, delimiter: String? = nil, logRegex: String? = nil, beginRegex: String? = nil, keys: [String]? = nil, filterKeyRegex: [KeyRegexInfo]? = nil, unMatchUpLoadSwitch: Bool? = nil, unMatchLogKey: String? = nil, backtracking: Int64? = nil, isGBK: Int64? = nil, jsonStandard: Int64? = nil, protocol: String? = nil, address: String? = nil, parseProtocol: String? = nil) {
             self.timeKey = timeKey
             self.timeFormat = timeFormat
             self.delimiter = delimiter

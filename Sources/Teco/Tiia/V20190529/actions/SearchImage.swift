@@ -150,4 +150,20 @@ extension Tiia {
     public func searchImage(_ input: SearchImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchImageResponse {
         try await self.client.execute(action: "SearchImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 检索图片
+    ///
+    /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
+    @inlinable
+    public func searchImage(groupId: String, imageUrl: String? = nil, imageBase64: String? = nil, limit: Int64? = nil, offset: Int64? = nil, matchThreshold: Int64? = nil, filter: String? = nil, imageRect: ImageRect? = nil, enableDetect: Bool? = nil, categoryId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchImageResponse > {
+        self.searchImage(SearchImageRequest(groupId: groupId, imageUrl: imageUrl, imageBase64: imageBase64, limit: limit, offset: offset, matchThreshold: matchThreshold, filter: filter, imageRect: imageRect, enableDetect: enableDetect, categoryId: categoryId), logger: logger, on: eventLoop)
+    }
+    
+    /// 检索图片
+    ///
+    /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
+    @inlinable
+    public func searchImage(groupId: String, imageUrl: String? = nil, imageBase64: String? = nil, limit: Int64? = nil, offset: Int64? = nil, matchThreshold: Int64? = nil, filter: String? = nil, imageRect: ImageRect? = nil, enableDetect: Bool? = nil, categoryId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchImageResponse {
+        try await self.searchImage(SearchImageRequest(groupId: groupId, imageUrl: imageUrl, imageBase64: imageBase64, limit: limit, offset: offset, matchThreshold: matchThreshold, filter: filter, imageRect: imageRect, enableDetect: enableDetect, categoryId: categoryId), logger: logger, on: eventLoop)
+    }
 }

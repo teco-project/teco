@@ -76,4 +76,16 @@ extension Tcaplusdb {
     public func rollbackTables(_ input: RollbackTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackTablesResponse {
         try await self.client.execute(action: "RollbackTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 表格数据回档
+    @inlinable
+    public func rollbackTables(clusterId: String, selectedTables: [SelectedTableInfoNew], rollbackTime: Date, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollbackTablesResponse > {
+        self.rollbackTables(RollbackTablesRequest(clusterId: clusterId, selectedTables: selectedTables, rollbackTime: rollbackTime, mode: mode), logger: logger, on: eventLoop)
+    }
+    
+    /// 表格数据回档
+    @inlinable
+    public func rollbackTables(clusterId: String, selectedTables: [SelectedTableInfoNew], rollbackTime: Date, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackTablesResponse {
+        try await self.rollbackTables(RollbackTablesRequest(clusterId: clusterId, selectedTables: selectedTables, rollbackTime: rollbackTime, mode: mode), logger: logger, on: eventLoop)
+    }
 }

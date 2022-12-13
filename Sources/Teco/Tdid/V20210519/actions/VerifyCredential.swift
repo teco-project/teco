@@ -62,4 +62,16 @@ extension Tdid {
     public func verifyCredential(_ input: VerifyCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyCredentialResponse {
         try await self.client.execute(action: "VerifyCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 验证凭证
+    @inlinable
+    public func verifyCredential(functionArg: VerifyFunctionArg, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyCredentialResponse > {
+        self.verifyCredential(VerifyCredentialRequest(functionArg: functionArg), logger: logger, on: eventLoop)
+    }
+    
+    /// 验证凭证
+    @inlinable
+    public func verifyCredential(functionArg: VerifyFunctionArg, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyCredentialResponse {
+        try await self.verifyCredential(VerifyCredentialRequest(functionArg: functionArg), logger: logger, on: eventLoop)
+    }
 }

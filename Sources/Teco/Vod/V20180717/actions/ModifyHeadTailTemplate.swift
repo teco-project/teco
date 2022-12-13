@@ -89,4 +89,20 @@ extension Vod {
     public func modifyHeadTailTemplate(_ input: ModifyHeadTailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHeadTailTemplateResponse {
         try await self.client.execute(action: "ModifyHeadTailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改片头片尾模板
+    ///
+    /// 修改片头片尾模板。
+    @inlinable
+    public func modifyHeadTailTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, headCandidateSet: [String]? = nil, tailCandidateSet: [String]? = nil, fillType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyHeadTailTemplateResponse > {
+        self.modifyHeadTailTemplate(ModifyHeadTailTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, headCandidateSet: headCandidateSet, tailCandidateSet: tailCandidateSet, fillType: fillType), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改片头片尾模板
+    ///
+    /// 修改片头片尾模板。
+    @inlinable
+    public func modifyHeadTailTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, headCandidateSet: [String]? = nil, tailCandidateSet: [String]? = nil, fillType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHeadTailTemplateResponse {
+        try await self.modifyHeadTailTemplate(ModifyHeadTailTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, headCandidateSet: headCandidateSet, tailCandidateSet: tailCandidateSet, fillType: fillType), logger: logger, on: eventLoop)
+    }
 }

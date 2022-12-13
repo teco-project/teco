@@ -91,4 +91,20 @@ extension Vpc {
     public func modifyNetDetect(_ input: ModifyNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetDetectResponse {
         try await self.client.execute(action: "ModifyNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改网络探测
+    ///
+    /// 本接口(ModifyNetDetect)用于修改网络探测参数。
+    @inlinable
+    public func modifyNetDetect(netDetectId: String, netDetectName: String? = nil, detectDestinationIp: [String]? = nil, nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetDetectResponse > {
+        self.modifyNetDetect(ModifyNetDetectRequest(netDetectId: netDetectId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改网络探测
+    ///
+    /// 本接口(ModifyNetDetect)用于修改网络探测参数。
+    @inlinable
+    public func modifyNetDetect(netDetectId: String, netDetectName: String? = nil, detectDestinationIp: [String]? = nil, nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetDetectResponse {
+        try await self.modifyNetDetect(ModifyNetDetectRequest(netDetectId: netDetectId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription), logger: logger, on: eventLoop)
+    }
 }

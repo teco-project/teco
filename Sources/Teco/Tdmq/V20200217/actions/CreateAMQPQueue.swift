@@ -80,4 +80,16 @@ extension Tdmq {
     public func createAMQPQueue(_ input: CreateAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPQueueResponse {
         try await self.client.execute(action: "CreateAMQPQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建AMQP队列
+    @inlinable
+    public func createAMQPQueue(queue: String, vHostId: String, autoDelete: Bool, clusterId: String, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAMQPQueueResponse > {
+        self.createAMQPQueue(CreateAMQPQueueRequest(queue: queue, vHostId: vHostId, autoDelete: autoDelete, clusterId: clusterId, remark: remark, deadLetterExchange: deadLetterExchange, deadLetterRoutingKey: deadLetterRoutingKey), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建AMQP队列
+    @inlinable
+    public func createAMQPQueue(queue: String, vHostId: String, autoDelete: Bool, clusterId: String, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPQueueResponse {
+        try await self.createAMQPQueue(CreateAMQPQueueRequest(queue: queue, vHostId: vHostId, autoDelete: autoDelete, clusterId: clusterId, remark: remark, deadLetterExchange: deadLetterExchange, deadLetterRoutingKey: deadLetterRoutingKey), logger: logger, on: eventLoop)
+    }
 }

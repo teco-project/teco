@@ -95,4 +95,20 @@ extension Cdn {
     public func listClsTopicDomains(_ input: ListClsTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListClsTopicDomainsResponse {
         try await self.client.execute(action: "ListClsTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取日志主题下绑定的域名
+    ///
+    /// ListClsTopicDomains 用于获取某日志主题下绑定的域名列表。
+    @inlinable
+    public func listClsTopicDomains(logsetId: String, topicId: String, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListClsTopicDomainsResponse > {
+        self.listClsTopicDomains(ListClsTopicDomainsRequest(logsetId: logsetId, topicId: topicId, channel: channel), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志主题下绑定的域名
+    ///
+    /// ListClsTopicDomains 用于获取某日志主题下绑定的域名列表。
+    @inlinable
+    public func listClsTopicDomains(logsetId: String, topicId: String, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListClsTopicDomainsResponse {
+        try await self.listClsTopicDomains(ListClsTopicDomainsRequest(logsetId: logsetId, topicId: topicId, channel: channel), logger: logger, on: eventLoop)
+    }
 }

@@ -81,4 +81,20 @@ extension Vpc {
     public func describeVpcEndPoint(_ input: DescribeVpcEndPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointResponse {
         try await self.client.execute(action: "DescribeVpcEndPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询终端节点列表
+    ///
+    /// 查询终端节点列表。
+    @inlinable
+    public func describeVpcEndPoint(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointId: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcEndPointResponse > {
+        self.describeVpcEndPoint(DescribeVpcEndPointRequest(filters: filters, offset: offset, limit: limit, endPointId: endPointId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询终端节点列表
+    ///
+    /// 查询终端节点列表。
+    @inlinable
+    public func describeVpcEndPoint(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointId: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointResponse {
+        try await self.describeVpcEndPoint(DescribeVpcEndPointRequest(filters: filters, offset: offset, limit: limit, endPointId: endPointId), logger: logger, on: eventLoop)
+    }
 }

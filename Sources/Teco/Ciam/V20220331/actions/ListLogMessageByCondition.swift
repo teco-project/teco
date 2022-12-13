@@ -79,4 +79,16 @@ extension Ciam {
     public func listLogMessageByCondition(_ input: ListLogMessageByConditionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogMessageByConditionResponse {
         try await self.client.execute(action: "ListLogMessageByCondition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询日志信息
+    @inlinable
+    public func listLogMessageByCondition(userStoreId: String, pageable: Pageable, startTime: Int64, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListLogMessageByConditionResponse > {
+        self.listLogMessageByCondition(ListLogMessageByConditionRequest(userStoreId: userStoreId, pageable: pageable, startTime: startTime, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询日志信息
+    @inlinable
+    public func listLogMessageByCondition(userStoreId: String, pageable: Pageable, startTime: Int64, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogMessageByConditionResponse {
+        try await self.listLogMessageByCondition(ListLogMessageByConditionRequest(userStoreId: userStoreId, pageable: pageable, startTime: startTime, filters: filters), logger: logger, on: eventLoop)
+    }
 }

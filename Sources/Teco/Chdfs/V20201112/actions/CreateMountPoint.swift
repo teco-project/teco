@@ -68,4 +68,20 @@ extension Chdfs {
     public func createMountPoint(_ input: CreateMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMountPointResponse {
         try await self.client.execute(action: "CreateMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建挂载点
+    ///
+    /// 创建文件系统挂载点，仅限于创建成功的文件系统。
+    @inlinable
+    public func createMountPoint(mountPointName: String, fileSystemId: String, mountPointStatus: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMountPointResponse > {
+        self.createMountPoint(CreateMountPointRequest(mountPointName: mountPointName, fileSystemId: fileSystemId, mountPointStatus: mountPointStatus), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建挂载点
+    ///
+    /// 创建文件系统挂载点，仅限于创建成功的文件系统。
+    @inlinable
+    public func createMountPoint(mountPointName: String, fileSystemId: String, mountPointStatus: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMountPointResponse {
+        try await self.createMountPoint(CreateMountPointRequest(mountPointName: mountPointName, fileSystemId: fileSystemId, mountPointStatus: mountPointStatus), logger: logger, on: eventLoop)
+    }
 }

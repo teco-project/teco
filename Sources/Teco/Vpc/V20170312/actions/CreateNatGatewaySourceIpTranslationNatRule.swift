@@ -59,4 +59,20 @@ extension Vpc {
     public func createNatGatewaySourceIpTranslationNatRule(_ input: CreateNatGatewaySourceIpTranslationNatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewaySourceIpTranslationNatRuleResponse {
         try await self.client.execute(action: "CreateNatGatewaySourceIpTranslationNatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建NAT网关SNAT规则
+    ///
+    /// 本接口(CreateNatGatewaySourceIpTranslationNatRule)用于创建NAT网关SNAT规则
+    @inlinable
+    public func createNatGatewaySourceIpTranslationNatRule(natGatewayId: String, sourceIpTranslationNatRules: [SourceIpTranslationNatRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNatGatewaySourceIpTranslationNatRuleResponse > {
+        self.createNatGatewaySourceIpTranslationNatRule(CreateNatGatewaySourceIpTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceIpTranslationNatRules: sourceIpTranslationNatRules), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建NAT网关SNAT规则
+    ///
+    /// 本接口(CreateNatGatewaySourceIpTranslationNatRule)用于创建NAT网关SNAT规则
+    @inlinable
+    public func createNatGatewaySourceIpTranslationNatRule(natGatewayId: String, sourceIpTranslationNatRules: [SourceIpTranslationNatRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewaySourceIpTranslationNatRuleResponse {
+        try await self.createNatGatewaySourceIpTranslationNatRule(CreateNatGatewaySourceIpTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceIpTranslationNatRules: sourceIpTranslationNatRules), logger: logger, on: eventLoop)
+    }
 }

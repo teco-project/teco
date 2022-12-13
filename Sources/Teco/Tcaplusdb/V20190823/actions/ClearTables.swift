@@ -67,4 +67,20 @@ extension Tcaplusdb {
     public func clearTables(_ input: ClearTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearTablesResponse {
         try await self.client.execute(action: "ClearTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 清除表数据
+    ///
+    /// 根据给定的表信息，清除表数据。
+    @inlinable
+    public func clearTables(clusterId: String, selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ClearTablesResponse > {
+        self.clearTables(ClearTablesRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    }
+    
+    /// 清除表数据
+    ///
+    /// 根据给定的表信息，清除表数据。
+    @inlinable
+    public func clearTables(clusterId: String, selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearTablesResponse {
+        try await self.clearTables(ClearTablesRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    }
 }

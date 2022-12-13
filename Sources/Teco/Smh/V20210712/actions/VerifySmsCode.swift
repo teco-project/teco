@@ -74,4 +74,20 @@ extension Smh {
     public func verifySmsCode(_ input: VerifySmsCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySmsCodeResponse {
         try await self.client.execute(action: "VerifySmsCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 验证短信验证码
+    ///
+    /// 验证短信验证码以换绑官方云盘实例的超级管理员账号
+    @inlinable
+    public func verifySmsCode(purpose: String, phoneNumber: String, code: String, instanceId: String? = nil, countryCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifySmsCodeResponse > {
+        self.verifySmsCode(VerifySmsCodeRequest(purpose: purpose, phoneNumber: phoneNumber, code: code, instanceId: instanceId, countryCode: countryCode), logger: logger, on: eventLoop)
+    }
+    
+    /// 验证短信验证码
+    ///
+    /// 验证短信验证码以换绑官方云盘实例的超级管理员账号
+    @inlinable
+    public func verifySmsCode(purpose: String, phoneNumber: String, code: String, instanceId: String? = nil, countryCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySmsCodeResponse {
+        try await self.verifySmsCode(VerifySmsCodeRequest(purpose: purpose, phoneNumber: phoneNumber, code: code, instanceId: instanceId, countryCode: countryCode), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,16 @@ extension Cwp {
     public func describeBanRegions(_ input: DescribeBanRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanRegionsResponse {
         try await self.client.execute(action: "DescribeBanRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取阻断地域
+    @inlinable
+    public func describeBanRegions(mode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBanRegionsResponse > {
+        self.describeBanRegions(DescribeBanRegionsRequest(mode: mode), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取阻断地域
+    @inlinable
+    public func describeBanRegions(mode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanRegionsResponse {
+        try await self.describeBanRegions(DescribeBanRegionsRequest(mode: mode), logger: logger, on: eventLoop)
+    }
 }

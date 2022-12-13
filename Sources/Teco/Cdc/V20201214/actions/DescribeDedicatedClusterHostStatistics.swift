@@ -54,4 +54,16 @@ extension Cdc {
     public func describeDedicatedClusterHostStatistics(_ input: DescribeDedicatedClusterHostStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterHostStatisticsResponse {
         try await self.client.execute(action: "DescribeDedicatedClusterHostStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询专用集群内宿主机的统计信息
+    @inlinable
+    public func describeDedicatedClusterHostStatistics(dedicatedClusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterHostStatisticsResponse > {
+        self.describeDedicatedClusterHostStatistics(DescribeDedicatedClusterHostStatisticsRequest(dedicatedClusterId: dedicatedClusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专用集群内宿主机的统计信息
+    @inlinable
+    public func describeDedicatedClusterHostStatistics(dedicatedClusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterHostStatisticsResponse {
+        try await self.describeDedicatedClusterHostStatistics(DescribeDedicatedClusterHostStatisticsRequest(dedicatedClusterId: dedicatedClusterId), logger: logger, on: eventLoop)
+    }
 }

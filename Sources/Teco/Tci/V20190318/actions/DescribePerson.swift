@@ -103,4 +103,16 @@ extension Tci {
     public func describePerson(_ input: DescribePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
         try await self.client.execute(action: "DescribePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取人员详情
+    @inlinable
+    public func describePerson(libraryId: String, personId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonResponse > {
+        self.describePerson(DescribePersonRequest(libraryId: libraryId, personId: personId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取人员详情
+    @inlinable
+    public func describePerson(libraryId: String, personId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
+        try await self.describePerson(DescribePersonRequest(libraryId: libraryId, personId: personId), logger: logger, on: eventLoop)
+    }
 }

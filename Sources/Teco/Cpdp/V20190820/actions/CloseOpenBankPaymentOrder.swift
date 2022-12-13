@@ -78,4 +78,16 @@ extension Cpdp {
     public func closeOpenBankPaymentOrder(_ input: CloseOpenBankPaymentOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseOpenBankPaymentOrderResponse {
         try await self.client.execute(action: "CloseOpenBankPaymentOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-关闭订单
+    @inlinable
+    public func closeOpenBankPaymentOrder(channelMerchantId: String, outOrderId: String? = nil, channelOrderId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseOpenBankPaymentOrderResponse > {
+        self.closeOpenBankPaymentOrder(CloseOpenBankPaymentOrderRequest(channelMerchantId: channelMerchantId, outOrderId: outOrderId, channelOrderId: channelOrderId, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-关闭订单
+    @inlinable
+    public func closeOpenBankPaymentOrder(channelMerchantId: String, outOrderId: String? = nil, channelOrderId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseOpenBankPaymentOrderResponse {
+        try await self.closeOpenBankPaymentOrder(CloseOpenBankPaymentOrderRequest(channelMerchantId: channelMerchantId, outOrderId: outOrderId, channelOrderId: channelOrderId, environment: environment), logger: logger, on: eventLoop)
+    }
 }

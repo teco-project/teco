@@ -64,4 +64,16 @@ extension Organization {
     public func addOrganizationNode(_ input: AddOrganizationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddOrganizationNodeResponse {
         try await self.client.execute(action: "AddOrganizationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加企业组织节点
+    @inlinable
+    public func addOrganizationNode(parentNodeId: UInt64, name: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddOrganizationNodeResponse > {
+        self.addOrganizationNode(AddOrganizationNodeRequest(parentNodeId: parentNodeId, name: name, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加企业组织节点
+    @inlinable
+    public func addOrganizationNode(parentNodeId: UInt64, name: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddOrganizationNodeResponse {
+        try await self.addOrganizationNode(AddOrganizationNodeRequest(parentNodeId: parentNodeId, name: name, remark: remark), logger: logger, on: eventLoop)
+    }
 }

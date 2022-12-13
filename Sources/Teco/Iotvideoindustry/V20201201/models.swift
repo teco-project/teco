@@ -101,7 +101,7 @@ extension Iotvideoindustry {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
         
-        public init (deviceId: String, deviceType: Int64, status: Int64? = nil, createTime: Int64? = nil, extraInformation: String? = nil, nickName: String? = nil, groupPath: String? = nil, deviceCode: String? = nil, isRecord: Int64? = nil, recordable: Int64? = nil, `protocol`: String? = nil, groupId: String? = nil, groupName: String? = nil) {
+        public init (deviceId: String, deviceType: Int64, status: Int64? = nil, createTime: Int64? = nil, extraInformation: String? = nil, nickName: String? = nil, groupPath: String? = nil, deviceCode: String? = nil, isRecord: Int64? = nil, recordable: Int64? = nil, protocol: String? = nil, groupId: String? = nil, groupName: String? = nil) {
             self.deviceId = deviceId
             self.deviceType = deviceType
             self.status = status
@@ -423,7 +423,7 @@ extension Iotvideoindustry {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let videoChannelNum: Int64?
         
-        public init (deviceId: String, nickName: String? = nil, status: Int64? = nil, extraInformation: String? = nil, deviceType: Int64? = nil, rtspUrl: String? = nil, deviceCode: String? = nil, isRecord: Int64? = nil, recordable: Int64? = nil, `protocol`: String? = nil, createTime: Int64? = nil, channelNum: Int64? = nil, videoChannelNum: Int64? = nil) {
+        public init (deviceId: String, nickName: String? = nil, status: Int64? = nil, extraInformation: String? = nil, deviceType: Int64? = nil, rtspUrl: String? = nil, deviceCode: String? = nil, isRecord: Int64? = nil, recordable: Int64? = nil, protocol: String? = nil, createTime: Int64? = nil, channelNum: Int64? = nil, videoChannelNum: Int64? = nil) {
             self.deviceId = deviceId
             self.nickName = nickName
             self.status = status

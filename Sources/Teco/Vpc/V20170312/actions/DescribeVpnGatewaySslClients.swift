@@ -83,4 +83,16 @@ extension Vpc {
     public func describeVpnGatewaySslClients(_ input: DescribeVpnGatewaySslClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaySslClientsResponse {
         try await self.client.execute(action: "DescribeVpnGatewaySslClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询SSL-VPN-CLIENT 列表
+    @inlinable
+    public func describeVpnGatewaySslClients(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, sslVpnClientIds: [String]? = nil, isVpnPortal: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpnGatewaySslClientsResponse > {
+        self.describeVpnGatewaySslClients(DescribeVpnGatewaySslClientsRequest(filters: filters, offset: offset, limit: limit, sslVpnClientIds: sslVpnClientIds, isVpnPortal: isVpnPortal), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询SSL-VPN-CLIENT 列表
+    @inlinable
+    public func describeVpnGatewaySslClients(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, sslVpnClientIds: [String]? = nil, isVpnPortal: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaySslClientsResponse {
+        try await self.describeVpnGatewaySslClients(DescribeVpnGatewaySslClientsRequest(filters: filters, offset: offset, limit: limit, sslVpnClientIds: sslVpnClientIds, isVpnPortal: isVpnPortal), logger: logger, on: eventLoop)
+    }
 }

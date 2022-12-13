@@ -55,4 +55,16 @@ extension Teo {
     public func checkCertificate(_ input: CheckCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCertificateResponse {
         try await self.client.execute(action: "CheckCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 校验证书
+    @inlinable
+    public func checkCertificate(certificate: String, privateKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckCertificateResponse > {
+        self.checkCertificate(CheckCertificateRequest(certificate: certificate, privateKey: privateKey), logger: logger, on: eventLoop)
+    }
+    
+    /// 校验证书
+    @inlinable
+    public func checkCertificate(certificate: String, privateKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCertificateResponse {
+        try await self.checkCertificate(CheckCertificateRequest(certificate: certificate, privateKey: privateKey), logger: logger, on: eventLoop)
+    }
 }

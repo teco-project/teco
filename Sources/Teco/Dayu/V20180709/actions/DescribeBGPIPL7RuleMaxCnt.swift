@@ -59,4 +59,16 @@ extension Dayu {
     public func describeBGPIPL7RuleMaxCnt(_ input: DescribeBGPIPL7RuleMaxCntRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBGPIPL7RuleMaxCntResponse {
         try await self.client.execute(action: "DescribeBGPIPL7RuleMaxCnt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取高防IP可添加的最多7层规则数量
+    @inlinable
+    public func describeBGPIPL7RuleMaxCnt(business: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBGPIPL7RuleMaxCntResponse > {
+        self.describeBGPIPL7RuleMaxCnt(DescribeBGPIPL7RuleMaxCntRequest(business: business, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取高防IP可添加的最多7层规则数量
+    @inlinable
+    public func describeBGPIPL7RuleMaxCnt(business: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBGPIPL7RuleMaxCntResponse {
+        try await self.describeBGPIPL7RuleMaxCnt(DescribeBGPIPL7RuleMaxCntRequest(business: business, id: id), logger: logger, on: eventLoop)
+    }
 }

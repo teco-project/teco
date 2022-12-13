@@ -60,4 +60,16 @@ extension Dnspod {
     public func modifyDomainRemark(_ input: ModifyDomainRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainRemarkResponse {
         try await self.client.execute(action: "ModifyDomainRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置域名备注
+    @inlinable
+    public func modifyDomainRemark(domain: String, domainId: UInt64? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainRemarkResponse > {
+        self.modifyDomainRemark(ModifyDomainRemarkRequest(domain: domain, domainId: domainId, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置域名备注
+    @inlinable
+    public func modifyDomainRemark(domain: String, domainId: UInt64? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainRemarkResponse {
+        try await self.modifyDomainRemark(ModifyDomainRemarkRequest(domain: domain, domainId: domainId, remark: remark), logger: logger, on: eventLoop)
+    }
 }

@@ -85,4 +85,16 @@ extension Pts {
     public func describeSampleMatrixQuery(_ input: DescribeSampleMatrixQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleMatrixQueryResponse {
         try await self.client.execute(action: "DescribeSampleMatrixQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询指标矩阵
+    @inlinable
+    public func describeSampleMatrixQuery(jobId: String, projectId: String, scenarioId: String, metric: String, aggregation: String, filters: [Filter]? = nil, groupBy: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSampleMatrixQueryResponse > {
+        self.describeSampleMatrixQuery(DescribeSampleMatrixQueryRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, filters: filters, groupBy: groupBy), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询指标矩阵
+    @inlinable
+    public func describeSampleMatrixQuery(jobId: String, projectId: String, scenarioId: String, metric: String, aggregation: String, filters: [Filter]? = nil, groupBy: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleMatrixQueryResponse {
+        try await self.describeSampleMatrixQuery(DescribeSampleMatrixQueryRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, filters: filters, groupBy: groupBy), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,16 @@ extension Ssl {
     public func deleteManager(_ input: DeleteManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteManagerResponse {
         try await self.client.execute(action: "DeleteManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除管理人
+    @inlinable
+    public func deleteManager(managerId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteManagerResponse > {
+        self.deleteManager(DeleteManagerRequest(managerId: managerId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除管理人
+    @inlinable
+    public func deleteManager(managerId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteManagerResponse {
+        try await self.deleteManager(DeleteManagerRequest(managerId: managerId), logger: logger, on: eventLoop)
+    }
 }

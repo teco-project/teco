@@ -74,4 +74,16 @@ extension Apigateway {
     public func modifyAPIDoc(_ input: ModifyAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAPIDocResponse {
         try await self.client.execute(action: "ModifyAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改 API 文档
+    @inlinable
+    public func modifyAPIDoc(apiDocId: String, apiDocName: String? = nil, serviceId: String? = nil, environment: String? = nil, apiIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAPIDocResponse > {
+        self.modifyAPIDoc(ModifyAPIDocRequest(apiDocId: apiDocId, apiDocName: apiDocName, serviceId: serviceId, environment: environment, apiIds: apiIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改 API 文档
+    @inlinable
+    public func modifyAPIDoc(apiDocId: String, apiDocName: String? = nil, serviceId: String? = nil, environment: String? = nil, apiIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAPIDocResponse {
+        try await self.modifyAPIDoc(ModifyAPIDocRequest(apiDocId: apiDocId, apiDocName: apiDocName, serviceId: serviceId, environment: environment, apiIds: apiIds), logger: logger, on: eventLoop)
+    }
 }

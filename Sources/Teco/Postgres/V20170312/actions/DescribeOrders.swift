@@ -62,4 +62,20 @@ extension Postgres {
     public func describeOrders(_ input: DescribeOrdersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrdersResponse {
         try await self.client.execute(action: "DescribeOrders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取订单信息
+    ///
+    /// 本接口（DescribeOrders）用于获取订单信息。
+    @inlinable
+    public func describeOrders(dealNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrdersResponse > {
+        self.describeOrders(DescribeOrdersRequest(dealNames: dealNames), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取订单信息
+    ///
+    /// 本接口（DescribeOrders）用于获取订单信息。
+    @inlinable
+    public func describeOrders(dealNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrdersResponse {
+        try await self.describeOrders(DescribeOrdersRequest(dealNames: dealNames), logger: logger, on: eventLoop)
+    }
 }

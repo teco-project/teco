@@ -69,4 +69,16 @@ extension Tem {
     public func describeIngress(_ input: DescribeIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIngressResponse {
         try await self.client.execute(action: "DescribeIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询 Ingress 规则
+    @inlinable
+    public func describeIngress(environmentId: String, clusterNamespace: String, ingressName: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIngressResponse > {
+        self.describeIngress(DescribeIngressRequest(environmentId: environmentId, clusterNamespace: clusterNamespace, ingressName: ingressName, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询 Ingress 规则
+    @inlinable
+    public func describeIngress(environmentId: String, clusterNamespace: String, ingressName: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIngressResponse {
+        try await self.describeIngress(DescribeIngressRequest(environmentId: environmentId, clusterNamespace: clusterNamespace, ingressName: ingressName, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    }
 }

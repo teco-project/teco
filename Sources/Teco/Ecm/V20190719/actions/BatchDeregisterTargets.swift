@@ -64,4 +64,20 @@ extension Ecm {
     public func batchDeregisterTargets(_ input: BatchDeregisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeregisterTargetsResponse {
         try await self.client.execute(action: "BatchDeregisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量解绑后端服务
+    ///
+    /// 批量解绑后端服务。
+    @inlinable
+    public func batchDeregisterTargets(loadBalancerId: String, targets: [BatchTarget], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDeregisterTargetsResponse > {
+        self.batchDeregisterTargets(BatchDeregisterTargetsRequest(loadBalancerId: loadBalancerId, targets: targets), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量解绑后端服务
+    ///
+    /// 批量解绑后端服务。
+    @inlinable
+    public func batchDeregisterTargets(loadBalancerId: String, targets: [BatchTarget], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeregisterTargetsResponse {
+        try await self.batchDeregisterTargets(BatchDeregisterTargetsRequest(loadBalancerId: loadBalancerId, targets: targets), logger: logger, on: eventLoop)
+    }
 }

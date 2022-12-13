@@ -69,4 +69,16 @@ extension Wedata {
     public func checkIntegrationNodeNameExists(_ input: CheckIntegrationNodeNameExistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIntegrationNodeNameExistsResponse {
         try await self.client.execute(action: "CheckIntegrationNodeNameExists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 判断集成节点名称是否存在
+    @inlinable
+    public func checkIntegrationNodeNameExists(taskId: String, name: String, projectId: String, id: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckIntegrationNodeNameExistsResponse > {
+        self.checkIntegrationNodeNameExists(CheckIntegrationNodeNameExistsRequest(taskId: taskId, name: name, projectId: projectId, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 判断集成节点名称是否存在
+    @inlinable
+    public func checkIntegrationNodeNameExists(taskId: String, name: String, projectId: String, id: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIntegrationNodeNameExistsResponse {
+        try await self.checkIntegrationNodeNameExists(CheckIntegrationNodeNameExistsRequest(taskId: taskId, name: name, projectId: projectId, id: id), logger: logger, on: eventLoop)
+    }
 }

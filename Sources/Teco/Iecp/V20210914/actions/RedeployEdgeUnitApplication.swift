@@ -55,4 +55,16 @@ extension Iecp {
     public func redeployEdgeUnitApplication(_ input: RedeployEdgeUnitApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedeployEdgeUnitApplicationResponse {
         try await self.client.execute(action: "RedeployEdgeUnitApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 单元应用重部署
+    @inlinable
+    public func redeployEdgeUnitApplication(edgeUnitId: UInt64, applicationId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RedeployEdgeUnitApplicationResponse > {
+        self.redeployEdgeUnitApplication(RedeployEdgeUnitApplicationRequest(edgeUnitId: edgeUnitId, applicationId: applicationId), logger: logger, on: eventLoop)
+    }
+    
+    /// 单元应用重部署
+    @inlinable
+    public func redeployEdgeUnitApplication(edgeUnitId: UInt64, applicationId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedeployEdgeUnitApplicationResponse {
+        try await self.redeployEdgeUnitApplication(RedeployEdgeUnitApplicationRequest(edgeUnitId: edgeUnitId, applicationId: applicationId), logger: logger, on: eventLoop)
+    }
 }

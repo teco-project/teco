@@ -75,4 +75,16 @@ extension Eb {
     public func updateRule(_ input: UpdateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRuleResponse {
         try await self.client.execute(action: "UpdateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新事件规则
+    @inlinable
+    public func updateRule(ruleId: String, eventBusId: String, enable: Bool? = nil, description: String? = nil, eventPattern: String? = nil, ruleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRuleResponse > {
+        self.updateRule(UpdateRuleRequest(ruleId: ruleId, eventBusId: eventBusId, enable: enable, description: description, eventPattern: eventPattern, ruleName: ruleName), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新事件规则
+    @inlinable
+    public func updateRule(ruleId: String, eventBusId: String, enable: Bool? = nil, description: String? = nil, eventPattern: String? = nil, ruleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRuleResponse {
+        try await self.updateRule(UpdateRuleRequest(ruleId: ruleId, eventBusId: eventBusId, enable: enable, description: description, eventPattern: eventPattern, ruleName: ruleName), logger: logger, on: eventLoop)
+    }
 }

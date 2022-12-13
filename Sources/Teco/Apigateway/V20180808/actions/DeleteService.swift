@@ -64,4 +64,20 @@ extension Apigateway {
     public func deleteService(_ input: DeleteServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceResponse {
         try await self.client.execute(action: "DeleteService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除服务
+    ///
+    /// 本接口（DeleteService）用于删除 API 网关中某个服务。
+    @inlinable
+    public func deleteService(serviceId: String, skipVerification: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServiceResponse > {
+        self.deleteService(DeleteServiceRequest(serviceId: serviceId, skipVerification: skipVerification), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除服务
+    ///
+    /// 本接口（DeleteService）用于删除 API 网关中某个服务。
+    @inlinable
+    public func deleteService(serviceId: String, skipVerification: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceResponse {
+        try await self.deleteService(DeleteServiceRequest(serviceId: serviceId, skipVerification: skipVerification), logger: logger, on: eventLoop)
+    }
 }

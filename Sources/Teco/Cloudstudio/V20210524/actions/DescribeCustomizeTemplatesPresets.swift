@@ -60,4 +60,16 @@ extension Cloudstudio {
     public func describeCustomizeTemplatesPresets(_ input: DescribeCustomizeTemplatesPresetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizeTemplatesPresetsResponse {
         try await self.client.execute(action: "DescribeCustomizeTemplatesPresets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取创建模板的预置参数
+    @inlinable
+    public func describeCustomizeTemplatesPresets(cloudStudioSessionTeam: String, spaceKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomizeTemplatesPresetsResponse > {
+        self.describeCustomizeTemplatesPresets(DescribeCustomizeTemplatesPresetsRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取创建模板的预置参数
+    @inlinable
+    public func describeCustomizeTemplatesPresets(cloudStudioSessionTeam: String, spaceKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizeTemplatesPresetsResponse {
+        try await self.describeCustomizeTemplatesPresets(DescribeCustomizeTemplatesPresetsRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey), logger: logger, on: eventLoop)
+    }
 }

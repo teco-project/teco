@@ -64,4 +64,20 @@ extension Vpc {
     public func modifyCcnAttribute(_ input: ModifyCcnAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttributeResponse {
         try await self.client.execute(action: "ModifyCcnAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改CCN属性
+    ///
+    /// 本接口（ModifyCcnAttribute）用于修改云联网（CCN）的相关属性。
+    @inlinable
+    public func modifyCcnAttribute(ccnId: String, ccnName: String? = nil, ccnDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCcnAttributeResponse > {
+        self.modifyCcnAttribute(ModifyCcnAttributeRequest(ccnId: ccnId, ccnName: ccnName, ccnDescription: ccnDescription), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CCN属性
+    ///
+    /// 本接口（ModifyCcnAttribute）用于修改云联网（CCN）的相关属性。
+    @inlinable
+    public func modifyCcnAttribute(ccnId: String, ccnName: String? = nil, ccnDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttributeResponse {
+        try await self.modifyCcnAttribute(ModifyCcnAttributeRequest(ccnId: ccnId, ccnName: ccnName, ccnDescription: ccnDescription), logger: logger, on: eventLoop)
+    }
 }

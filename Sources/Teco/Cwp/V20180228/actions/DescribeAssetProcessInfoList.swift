@@ -102,4 +102,16 @@ extension Cwp {
     public func describeAssetProcessInfoList(_ input: DescribeAssetProcessInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetProcessInfoListResponse {
         try await self.client.execute(action: "DescribeAssetProcessInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取资产管理进程列表
+    @inlinable
+    public func describeAssetProcessInfoList(quuid: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetProcessInfoListResponse > {
+        self.describeAssetProcessInfoList(DescribeAssetProcessInfoListRequest(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资产管理进程列表
+    @inlinable
+    public func describeAssetProcessInfoList(quuid: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetProcessInfoListResponse {
+        try await self.describeAssetProcessInfoList(DescribeAssetProcessInfoListRequest(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

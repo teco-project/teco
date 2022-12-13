@@ -68,4 +68,20 @@ extension Apigateway {
     public func generateApiDocument(_ input: GenerateApiDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateApiDocumentResponse {
         try await self.client.execute(action: "GenerateApiDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 生成文档和 SDK
+    ///
+    /// 本接口（GenerateApiDocument）用于自动生成 API 文档和 SDK，一个服务的一个环境生成一份文档和 SDK。
+    @inlinable
+    public func generateApiDocument(serviceId: String, genEnvironment: String, genLanguage: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateApiDocumentResponse > {
+        self.generateApiDocument(GenerateApiDocumentRequest(serviceId: serviceId, genEnvironment: genEnvironment, genLanguage: genLanguage), logger: logger, on: eventLoop)
+    }
+    
+    /// 生成文档和 SDK
+    ///
+    /// 本接口（GenerateApiDocument）用于自动生成 API 文档和 SDK，一个服务的一个环境生成一份文档和 SDK。
+    @inlinable
+    public func generateApiDocument(serviceId: String, genEnvironment: String, genLanguage: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateApiDocumentResponse {
+        try await self.generateApiDocument(GenerateApiDocumentRequest(serviceId: serviceId, genEnvironment: genEnvironment, genLanguage: genLanguage), logger: logger, on: eventLoop)
+    }
 }

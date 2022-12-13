@@ -99,4 +99,22 @@ extension Ocr {
     public func smartStructuralOCR(_ input: SmartStructuralOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SmartStructuralOCRResponse {
         try await self.client.execute(action: "SmartStructuralOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 智能结构化识别
+    ///
+    /// 本接口支持识别并提取各类证照、票据、表单、合同等结构化场景的字段信息。无需任何配置，灵活高效。适用于各类结构化信息录入场景。
+    /// 默认接口请求频率限制：5次/秒。
+    @inlinable
+    public func smartStructuralOCR(imageUrl: String? = nil, imageBase64: String? = nil, itemNames: [String]? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, returnFullText: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SmartStructuralOCRResponse > {
+        self.smartStructuralOCR(SmartStructuralOCRRequest(imageUrl: imageUrl, imageBase64: imageBase64, itemNames: itemNames, isPdf: isPdf, pdfPageNumber: pdfPageNumber, returnFullText: returnFullText), logger: logger, on: eventLoop)
+    }
+    
+    /// 智能结构化识别
+    ///
+    /// 本接口支持识别并提取各类证照、票据、表单、合同等结构化场景的字段信息。无需任何配置，灵活高效。适用于各类结构化信息录入场景。
+    /// 默认接口请求频率限制：5次/秒。
+    @inlinable
+    public func smartStructuralOCR(imageUrl: String? = nil, imageBase64: String? = nil, itemNames: [String]? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, returnFullText: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SmartStructuralOCRResponse {
+        try await self.smartStructuralOCR(SmartStructuralOCRRequest(imageUrl: imageUrl, imageBase64: imageBase64, itemNames: itemNames, isPdf: isPdf, pdfPageNumber: pdfPageNumber, returnFullText: returnFullText), logger: logger, on: eventLoop)
+    }
 }

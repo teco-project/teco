@@ -77,4 +77,20 @@ extension Ccc {
     public func describeCarrierPrivilegeNumberApplicants(_ input: DescribeCarrierPrivilegeNumberApplicantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCarrierPrivilegeNumberApplicantsResponse {
         try await self.client.execute(action: "DescribeCarrierPrivilegeNumberApplicants", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询运营商白名单号码申请
+    ///
+    /// 查询单状态
+    @inlinable
+    public func describeCarrierPrivilegeNumberApplicants(sdkAppId: UInt64, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCarrierPrivilegeNumberApplicantsResponse > {
+        self.describeCarrierPrivilegeNumberApplicants(DescribeCarrierPrivilegeNumberApplicantsRequest(sdkAppId: sdkAppId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询运营商白名单号码申请
+    ///
+    /// 查询单状态
+    @inlinable
+    public func describeCarrierPrivilegeNumberApplicants(sdkAppId: UInt64, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCarrierPrivilegeNumberApplicantsResponse {
+        try await self.describeCarrierPrivilegeNumberApplicants(DescribeCarrierPrivilegeNumberApplicantsRequest(sdkAppId: sdkAppId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), logger: logger, on: eventLoop)
+    }
 }

@@ -62,4 +62,20 @@ extension Domain {
     public func setDomainAutoRenew(_ input: SetDomainAutoRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDomainAutoRenewResponse {
         try await self.client.execute(action: "SetDomainAutoRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 域名自动续费
+    ///
+    /// 本接口 ( SetDomainAutoRenew ) 用于设置域名自动续费。
+    @inlinable
+    public func setDomainAutoRenew(domainId: String, autoRenew: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetDomainAutoRenewResponse > {
+        self.setDomainAutoRenew(SetDomainAutoRenewRequest(domainId: domainId, autoRenew: autoRenew), logger: logger, on: eventLoop)
+    }
+    
+    /// 域名自动续费
+    ///
+    /// 本接口 ( SetDomainAutoRenew ) 用于设置域名自动续费。
+    @inlinable
+    public func setDomainAutoRenew(domainId: String, autoRenew: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDomainAutoRenewResponse {
+        try await self.setDomainAutoRenew(SetDomainAutoRenewRequest(domainId: domainId, autoRenew: autoRenew), logger: logger, on: eventLoop)
+    }
 }

@@ -106,4 +106,20 @@ extension Mariadb {
     public func describePrice(_ input: DescribePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePriceResponse {
         try await self.client.execute(action: "DescribePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新购实例询价
+    ///
+    /// 本接口（DescribePrice）用于在购买实例前，查询实例的价格。
+    @inlinable
+    public func describePrice(zone: String, nodeCount: Int64, memory: Int64, storage: Int64, period: Int64? = nil, count: Int64? = nil, paymode: String? = nil, amountUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePriceResponse > {
+        self.describePrice(DescribePriceRequest(zone: zone, nodeCount: nodeCount, memory: memory, storage: storage, period: period, count: count, paymode: paymode, amountUnit: amountUnit), logger: logger, on: eventLoop)
+    }
+    
+    /// 新购实例询价
+    ///
+    /// 本接口（DescribePrice）用于在购买实例前，查询实例的价格。
+    @inlinable
+    public func describePrice(zone: String, nodeCount: Int64, memory: Int64, storage: Int64, period: Int64? = nil, count: Int64? = nil, paymode: String? = nil, amountUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePriceResponse {
+        try await self.describePrice(DescribePriceRequest(zone: zone, nodeCount: nodeCount, memory: memory, storage: storage, period: period, count: count, paymode: paymode, amountUnit: amountUnit), logger: logger, on: eventLoop)
+    }
 }

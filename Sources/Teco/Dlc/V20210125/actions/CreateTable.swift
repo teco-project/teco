@@ -58,4 +58,20 @@ extension Dlc {
     public func createTable(_ input: CreateTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTableResponse {
         try await self.client.execute(action: "CreateTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 生成建表SQL
+    ///
+    /// 本接口（CreateTable）用于生成建表SQL。
+    @inlinable
+    public func createTable(tableInfo: TableInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTableResponse > {
+        self.createTable(CreateTableRequest(tableInfo: tableInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 生成建表SQL
+    ///
+    /// 本接口（CreateTable）用于生成建表SQL。
+    @inlinable
+    public func createTable(tableInfo: TableInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTableResponse {
+        try await self.createTable(CreateTableRequest(tableInfo: tableInfo), logger: logger, on: eventLoop)
+    }
 }

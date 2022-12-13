@@ -139,4 +139,16 @@ extension Tione {
     public func createBatchTask(_ input: CreateBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchTaskResponse {
         try await self.client.execute(action: "CreateBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建跑批任务
+    @inlinable
+    public func createBatchTask(batchTaskName: String, chargeType: String, resourceConfigInfo: ResourceConfigInfo, outputs: [DataConfig], logEnable: Bool, jobType: UInt64? = nil, cronInfo: CronInfo? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, modelInfo: ModelInfo? = nil, imageInfo: ImageInfo? = nil, codePackage: CosPathInfo? = nil, startCmd: String? = nil, dataConfigs: [DataConfig]? = nil, logConfig: LogConfig? = nil, vpcId: String? = nil, subnetId: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBatchTaskResponse > {
+        self.createBatchTask(CreateBatchTaskRequest(batchTaskName: batchTaskName, chargeType: chargeType, resourceConfigInfo: resourceConfigInfo, outputs: outputs, logEnable: logEnable, jobType: jobType, cronInfo: cronInfo, resourceGroupId: resourceGroupId, tags: tags, modelInfo: modelInfo, imageInfo: imageInfo, codePackage: codePackage, startCmd: startCmd, dataConfigs: dataConfigs, logConfig: logConfig, vpcId: vpcId, subnetId: subnetId, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建跑批任务
+    @inlinable
+    public func createBatchTask(batchTaskName: String, chargeType: String, resourceConfigInfo: ResourceConfigInfo, outputs: [DataConfig], logEnable: Bool, jobType: UInt64? = nil, cronInfo: CronInfo? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, modelInfo: ModelInfo? = nil, imageInfo: ImageInfo? = nil, codePackage: CosPathInfo? = nil, startCmd: String? = nil, dataConfigs: [DataConfig]? = nil, logConfig: LogConfig? = nil, vpcId: String? = nil, subnetId: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchTaskResponse {
+        try await self.createBatchTask(CreateBatchTaskRequest(batchTaskName: batchTaskName, chargeType: chargeType, resourceConfigInfo: resourceConfigInfo, outputs: outputs, logEnable: logEnable, jobType: jobType, cronInfo: cronInfo, resourceGroupId: resourceGroupId, tags: tags, modelInfo: modelInfo, imageInfo: imageInfo, codePackage: codePackage, startCmd: startCmd, dataConfigs: dataConfigs, logConfig: logConfig, vpcId: vpcId, subnetId: subnetId, remark: remark), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Postgres {
     public func modifyDBInstanceParameters(_ input: ModifyDBInstanceParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceParametersResponse {
         try await self.client.execute(action: "ModifyDBInstanceParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量修改参数
+    @inlinable
+    public func modifyDBInstanceParameters(dbInstanceId: String, paramList: [ParamEntry], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceParametersResponse > {
+        self.modifyDBInstanceParameters(ModifyDBInstanceParametersRequest(dbInstanceId: dbInstanceId, paramList: paramList), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量修改参数
+    @inlinable
+    public func modifyDBInstanceParameters(dbInstanceId: String, paramList: [ParamEntry], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceParametersResponse {
+        try await self.modifyDBInstanceParameters(ModifyDBInstanceParametersRequest(dbInstanceId: dbInstanceId, paramList: paramList), logger: logger, on: eventLoop)
+    }
 }

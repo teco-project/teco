@@ -134,4 +134,20 @@ extension Eiam {
     public func describeUserInfo(_ input: DescribeUserInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserInfoResponse {
         try await self.client.execute(action: "DescribeUserInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取用户信息
+    ///
+    /// 通过用户名或用户 id 搜索用户
+    @inlinable
+    public func describeUserInfo(userName: String? = nil, userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserInfoResponse > {
+        self.describeUserInfo(DescribeUserInfoRequest(userName: userName, userId: userId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户信息
+    ///
+    /// 通过用户名或用户 id 搜索用户
+    @inlinable
+    public func describeUserInfo(userName: String? = nil, userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserInfoResponse {
+        try await self.describeUserInfo(DescribeUserInfoRequest(userName: userName, userId: userId), logger: logger, on: eventLoop)
+    }
 }

@@ -77,4 +77,20 @@ extension Teo {
     public func createAliasDomain(_ input: CreateAliasDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAliasDomainResponse {
         try await self.client.execute(action: "CreateAliasDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建别称域名
+    ///
+    /// 创建别称域名。
+    @inlinable
+    public func createAliasDomain(zoneId: String, aliasName: String, targetName: String, certType: String? = nil, certId: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAliasDomainResponse > {
+        self.createAliasDomain(CreateAliasDomainRequest(zoneId: zoneId, aliasName: aliasName, targetName: targetName, certType: certType, certId: certId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建别称域名
+    ///
+    /// 创建别称域名。
+    @inlinable
+    public func createAliasDomain(zoneId: String, aliasName: String, targetName: String, certType: String? = nil, certId: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAliasDomainResponse {
+        try await self.createAliasDomain(CreateAliasDomainRequest(zoneId: zoneId, aliasName: aliasName, targetName: targetName, certType: certType, certId: certId), logger: logger, on: eventLoop)
+    }
 }

@@ -72,4 +72,20 @@ extension Bm {
     public func describeTaskOperationLog(_ input: DescribeTaskOperationLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskOperationLogResponse {
         try await self.client.execute(action: "DescribeTaskOperationLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 维修任务操作日志获取
+    ///
+    /// 获取维修任务操作日志
+    @inlinable
+    public func describeTaskOperationLog(taskId: String, orderField: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskOperationLogResponse > {
+        self.describeTaskOperationLog(DescribeTaskOperationLogRequest(taskId: taskId, orderField: orderField, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 维修任务操作日志获取
+    ///
+    /// 获取维修任务操作日志
+    @inlinable
+    public func describeTaskOperationLog(taskId: String, orderField: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskOperationLogResponse {
+        try await self.describeTaskOperationLog(DescribeTaskOperationLogRequest(taskId: taskId, orderField: orderField, order: order), logger: logger, on: eventLoop)
+    }
 }

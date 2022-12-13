@@ -79,4 +79,16 @@ extension Cwp {
     public func describeAssetWebAppPluginList(_ input: DescribeAssetWebAppPluginListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebAppPluginListResponse {
         try await self.client.execute(action: "DescribeAssetWebAppPluginList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取资产管理Web应用插件列表
+    @inlinable
+    public func describeAssetWebAppPluginList(quuid: String, uuid: String, id: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetWebAppPluginListResponse > {
+        self.describeAssetWebAppPluginList(DescribeAssetWebAppPluginListRequest(quuid: quuid, uuid: uuid, id: id, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资产管理Web应用插件列表
+    @inlinable
+    public func describeAssetWebAppPluginList(quuid: String, uuid: String, id: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebAppPluginListResponse {
+        try await self.describeAssetWebAppPluginList(DescribeAssetWebAppPluginListRequest(quuid: quuid, uuid: uuid, id: id, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

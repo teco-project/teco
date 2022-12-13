@@ -191,4 +191,20 @@ extension Cpdp {
     public func createOpenBankPaymentOrder(_ input: CreateOpenBankPaymentOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankPaymentOrderResponse {
         try await self.client.execute(action: "CreateOpenBankPaymentOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-创建支付订单
+    ///
+    /// 云企付-创建支付订单。支持B2B网关支付，B2C转账下单。
+    @inlinable
+    public func createOpenBankPaymentOrder(channelMerchantId: String, channelName: String, paymentMethod: String, paymentMode: String, outOrderId: String, totalAmount: Int64, currency: String, payerInfo: OpenBankPayerInfo, payeeInfo: OpenBankPayeeInfo, notifyUrl: String? = nil, expireTime: String? = nil, frontUrl: String? = nil, refreshUrl: String? = nil, sceneInfo: OpenBankSceneInfo? = nil, goodsInfo: OpenBankGoodsInfo? = nil, attachment: String? = nil, profitShareFlag: String? = nil, profitShareInfoList: [OpenBankProfitShareInfo]? = nil, settlementRulesInfo: OpenBankSettlementRulesInfo? = nil, externalPaymentData: String? = nil, remark: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankPaymentOrderResponse > {
+        self.createOpenBankPaymentOrder(CreateOpenBankPaymentOrderRequest(channelMerchantId: channelMerchantId, channelName: channelName, paymentMethod: paymentMethod, paymentMode: paymentMode, outOrderId: outOrderId, totalAmount: totalAmount, currency: currency, payerInfo: payerInfo, payeeInfo: payeeInfo, notifyUrl: notifyUrl, expireTime: expireTime, frontUrl: frontUrl, refreshUrl: refreshUrl, sceneInfo: sceneInfo, goodsInfo: goodsInfo, attachment: attachment, profitShareFlag: profitShareFlag, profitShareInfoList: profitShareInfoList, settlementRulesInfo: settlementRulesInfo, externalPaymentData: externalPaymentData, remark: remark, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-创建支付订单
+    ///
+    /// 云企付-创建支付订单。支持B2B网关支付，B2C转账下单。
+    @inlinable
+    public func createOpenBankPaymentOrder(channelMerchantId: String, channelName: String, paymentMethod: String, paymentMode: String, outOrderId: String, totalAmount: Int64, currency: String, payerInfo: OpenBankPayerInfo, payeeInfo: OpenBankPayeeInfo, notifyUrl: String? = nil, expireTime: String? = nil, frontUrl: String? = nil, refreshUrl: String? = nil, sceneInfo: OpenBankSceneInfo? = nil, goodsInfo: OpenBankGoodsInfo? = nil, attachment: String? = nil, profitShareFlag: String? = nil, profitShareInfoList: [OpenBankProfitShareInfo]? = nil, settlementRulesInfo: OpenBankSettlementRulesInfo? = nil, externalPaymentData: String? = nil, remark: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankPaymentOrderResponse {
+        try await self.createOpenBankPaymentOrder(CreateOpenBankPaymentOrderRequest(channelMerchantId: channelMerchantId, channelName: channelName, paymentMethod: paymentMethod, paymentMode: paymentMode, outOrderId: outOrderId, totalAmount: totalAmount, currency: currency, payerInfo: payerInfo, payeeInfo: payeeInfo, notifyUrl: notifyUrl, expireTime: expireTime, frontUrl: frontUrl, refreshUrl: refreshUrl, sceneInfo: sceneInfo, goodsInfo: goodsInfo, attachment: attachment, profitShareFlag: profitShareFlag, profitShareInfoList: profitShareInfoList, settlementRulesInfo: settlementRulesInfo, externalPaymentData: externalPaymentData, remark: remark, environment: environment), logger: logger, on: eventLoop)
+    }
 }

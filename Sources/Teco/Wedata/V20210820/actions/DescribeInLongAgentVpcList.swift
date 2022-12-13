@@ -54,4 +54,16 @@ extension Wedata {
     public func describeInLongAgentVpcList(_ input: DescribeInLongAgentVpcListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentVpcListResponse {
         try await self.client.execute(action: "DescribeInLongAgentVpcList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取采集器所在集群的VPC列表
+    @inlinable
+    public func describeInLongAgentVpcList(projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInLongAgentVpcListResponse > {
+        self.describeInLongAgentVpcList(DescribeInLongAgentVpcListRequest(projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取采集器所在集群的VPC列表
+    @inlinable
+    public func describeInLongAgentVpcList(projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentVpcListResponse {
+        try await self.describeInLongAgentVpcList(DescribeInLongAgentVpcListRequest(projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

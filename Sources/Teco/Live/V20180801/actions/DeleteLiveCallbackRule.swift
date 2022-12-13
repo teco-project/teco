@@ -59,4 +59,20 @@ extension Live {
     public func deleteLiveCallbackRule(_ input: DeleteLiveCallbackRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveCallbackRuleResponse {
         try await self.client.execute(action: "DeleteLiveCallbackRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除回调规则
+    ///
+    /// 删除回调规则。
+    @inlinable
+    public func deleteLiveCallbackRule(domainName: String, appName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveCallbackRuleResponse > {
+        self.deleteLiveCallbackRule(DeleteLiveCallbackRuleRequest(domainName: domainName, appName: appName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除回调规则
+    ///
+    /// 删除回调规则。
+    @inlinable
+    public func deleteLiveCallbackRule(domainName: String, appName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveCallbackRuleResponse {
+        try await self.deleteLiveCallbackRule(DeleteLiveCallbackRuleRequest(domainName: domainName, appName: appName), logger: logger, on: eventLoop)
+    }
 }

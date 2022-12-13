@@ -56,4 +56,20 @@ extension Live {
     public func deleteLiveCallbackTemplate(_ input: DeleteLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveCallbackTemplateResponse {
         try await self.client.execute(action: "DeleteLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除回调模板
+    ///
+    /// 删除回调模板。
+    @inlinable
+    public func deleteLiveCallbackTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveCallbackTemplateResponse > {
+        self.deleteLiveCallbackTemplate(DeleteLiveCallbackTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除回调模板
+    ///
+    /// 删除回调模板。
+    @inlinable
+    public func deleteLiveCallbackTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveCallbackTemplateResponse {
+        try await self.deleteLiveCallbackTemplate(DeleteLiveCallbackTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
 }

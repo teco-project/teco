@@ -65,4 +65,16 @@ extension Pts {
     public func describeCheckSummary(_ input: DescribeCheckSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckSummaryResponse {
         try await self.client.execute(action: "DescribeCheckSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询检查点汇总信息
+    @inlinable
+    public func describeCheckSummary(jobId: String, scenarioId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCheckSummaryResponse > {
+        self.describeCheckSummary(DescribeCheckSummaryRequest(jobId: jobId, scenarioId: scenarioId, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询检查点汇总信息
+    @inlinable
+    public func describeCheckSummary(jobId: String, scenarioId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckSummaryResponse {
+        try await self.describeCheckSummary(DescribeCheckSummaryRequest(jobId: jobId, scenarioId: scenarioId, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

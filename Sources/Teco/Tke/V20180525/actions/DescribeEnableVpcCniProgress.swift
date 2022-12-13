@@ -63,4 +63,20 @@ extension Tke {
     public func describeEnableVpcCniProgress(_ input: DescribeEnableVpcCniProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnableVpcCniProgressResponse {
         try await self.client.execute(action: "DescribeEnableVpcCniProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询开启vpc-cni异步任务的进度
+    ///
+    /// 本接口用于查询开启vpc-cni模式的任务进度
+    @inlinable
+    public func describeEnableVpcCniProgress(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnableVpcCniProgressResponse > {
+        self.describeEnableVpcCniProgress(DescribeEnableVpcCniProgressRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询开启vpc-cni异步任务的进度
+    ///
+    /// 本接口用于查询开启vpc-cni模式的任务进度
+    @inlinable
+    public func describeEnableVpcCniProgress(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnableVpcCniProgressResponse {
+        try await self.describeEnableVpcCniProgress(DescribeEnableVpcCniProgressRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

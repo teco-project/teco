@@ -62,4 +62,20 @@ extension Cws {
     public func verifySites(_ input: VerifySitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySitesResponse {
         try await self.client.execute(action: "VerifySites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 验证站点
+    ///
+    /// 本接口 (VerifySites) 用于验证一个或多个待验证站点。
+    @inlinable
+    public func verifySites(urls: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifySitesResponse > {
+        self.verifySites(VerifySitesRequest(urls: urls), logger: logger, on: eventLoop)
+    }
+    
+    /// 验证站点
+    ///
+    /// 本接口 (VerifySites) 用于验证一个或多个待验证站点。
+    @inlinable
+    public func verifySites(urls: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySitesResponse {
+        try await self.verifySites(VerifySitesRequest(urls: urls), logger: logger, on: eventLoop)
+    }
 }

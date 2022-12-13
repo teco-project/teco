@@ -70,4 +70,16 @@ extension Tcb {
     public func describeEnvPostpaidDeduct(_ input: DescribeEnvPostpaidDeductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvPostpaidDeductResponse {
         try await self.client.execute(action: "DescribeEnvPostpaidDeduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询环境后付费计费详情
+    @inlinable
+    public func describeEnvPostpaidDeduct(resourceTypes: [String], envId: String? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvPostpaidDeductResponse > {
+        self.describeEnvPostpaidDeduct(DescribeEnvPostpaidDeductRequest(resourceTypes: resourceTypes, envId: envId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询环境后付费计费详情
+    @inlinable
+    public func describeEnvPostpaidDeduct(resourceTypes: [String], envId: String? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvPostpaidDeductResponse {
+        try await self.describeEnvPostpaidDeduct(DescribeEnvPostpaidDeductRequest(resourceTypes: resourceTypes, envId: envId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

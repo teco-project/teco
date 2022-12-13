@@ -70,4 +70,16 @@ extension Tem {
     public func deleteApplicationService(_ input: DeleteApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationServiceResponse {
         try await self.client.execute(action: "DeleteApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除一条访问方式
+    @inlinable
+    public func deleteApplicationService(applicationId: String? = nil, sourceChannel: Int64? = nil, environmentId: String? = nil, serviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationServiceResponse > {
+        self.deleteApplicationService(DeleteApplicationServiceRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId, serviceName: serviceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除一条访问方式
+    @inlinable
+    public func deleteApplicationService(applicationId: String? = nil, sourceChannel: Int64? = nil, environmentId: String? = nil, serviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationServiceResponse {
+        try await self.deleteApplicationService(DeleteApplicationServiceRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId, serviceName: serviceName), logger: logger, on: eventLoop)
+    }
 }

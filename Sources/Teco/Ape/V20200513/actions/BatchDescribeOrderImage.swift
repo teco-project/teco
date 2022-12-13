@@ -54,4 +54,16 @@ extension Ape {
     public func batchDescribeOrderImage(_ input: BatchDescribeOrderImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeOrderImageResponse {
         try await self.client.execute(action: "BatchDescribeOrderImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量获取图片下载地址
+    @inlinable
+    public func batchDescribeOrderImage(orderIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDescribeOrderImageResponse > {
+        self.batchDescribeOrderImage(BatchDescribeOrderImageRequest(orderIds: orderIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量获取图片下载地址
+    @inlinable
+    public func batchDescribeOrderImage(orderIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeOrderImageResponse {
+        try await self.batchDescribeOrderImage(BatchDescribeOrderImageRequest(orderIds: orderIds), logger: logger, on: eventLoop)
+    }
 }

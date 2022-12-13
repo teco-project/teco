@@ -65,4 +65,22 @@ extension Wedata {
     public func forceSucInstances(_ input: ForceSucInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForceSucInstancesResponse {
         try await self.client.execute(action: "ForceSucInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 实例批量置成功【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 实例批量置成功
+    @inlinable
+    public func forceSucInstances(projectId: String, instances: [InstanceInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ForceSucInstancesResponse > {
+        self.forceSucInstances(ForceSucInstancesRequest(projectId: projectId, instances: instances), logger: logger, on: eventLoop)
+    }
+    
+    /// 实例批量置成功【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 实例批量置成功
+    @inlinable
+    public func forceSucInstances(projectId: String, instances: [InstanceInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForceSucInstancesResponse {
+        try await self.forceSucInstances(ForceSucInstancesRequest(projectId: projectId, instances: instances), logger: logger, on: eventLoop)
+    }
 }

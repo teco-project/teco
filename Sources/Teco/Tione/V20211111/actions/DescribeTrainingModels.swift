@@ -93,4 +93,16 @@ extension Tione {
     public func describeTrainingModels(_ input: DescribeTrainingModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelsResponse {
         try await self.client.execute(action: "DescribeTrainingModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 模型列表
+    @inlinable
+    public func describeTrainingModels(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: Int64? = nil, limit: Int64? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingModelsResponse > {
+        self.describeTrainingModels(DescribeTrainingModelsRequest(filters: filters, orderField: orderField, order: order, offset: offset, limit: limit, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    }
+    
+    /// 模型列表
+    @inlinable
+    public func describeTrainingModels(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: Int64? = nil, limit: Int64? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelsResponse {
+        try await self.describeTrainingModels(DescribeTrainingModelsRequest(filters: filters, orderField: orderField, order: order, offset: offset, limit: limit, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    }
 }

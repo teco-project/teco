@@ -59,4 +59,16 @@ extension Teo {
     public func deleteOriginGroup(_ input: DeleteOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOriginGroupResponse {
         try await self.client.execute(action: "DeleteOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 源站组删除
+    @inlinable
+    public func deleteOriginGroup(originId: String, zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOriginGroupResponse > {
+        self.deleteOriginGroup(DeleteOriginGroupRequest(originId: originId, zoneId: zoneId), logger: logger, on: eventLoop)
+    }
+    
+    /// 源站组删除
+    @inlinable
+    public func deleteOriginGroup(originId: String, zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOriginGroupResponse {
+        try await self.deleteOriginGroup(DeleteOriginGroupRequest(originId: originId, zoneId: zoneId), logger: logger, on: eventLoop)
+    }
 }

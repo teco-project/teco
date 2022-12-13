@@ -59,4 +59,20 @@ extension Iotvideo {
     public func describeRunLog(_ input: DescribeRunLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRunLogResponse {
         try await self.client.execute(action: "DescribeRunLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备运行日志
+    ///
+    /// 本接口（DescribeRunLog）用于获取设备运行日志。
+    @inlinable
+    public func describeRunLog(tid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRunLogResponse > {
+        self.describeRunLog(DescribeRunLogRequest(tid: tid), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备运行日志
+    ///
+    /// 本接口（DescribeRunLog）用于获取设备运行日志。
+    @inlinable
+    public func describeRunLog(tid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRunLogResponse {
+        try await self.describeRunLog(DescribeRunLogRequest(tid: tid), logger: logger, on: eventLoop)
+    }
 }

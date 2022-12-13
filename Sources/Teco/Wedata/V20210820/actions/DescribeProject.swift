@@ -80,4 +80,16 @@ extension Wedata {
     public func describeProject(_ input: DescribeProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectResponse {
         try await self.client.execute(action: "DescribeProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取项目信息
+    @inlinable
+    public func describeProject(projectId: String? = nil, describeClusters: Bool? = nil, describeExecutors: Bool? = nil, describeAdminUsers: Bool? = nil, describeMemberCount: Bool? = nil, describeCreator: Bool? = nil, projectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectResponse > {
+        self.describeProject(DescribeProjectRequest(projectId: projectId, describeClusters: describeClusters, describeExecutors: describeExecutors, describeAdminUsers: describeAdminUsers, describeMemberCount: describeMemberCount, describeCreator: describeCreator, projectName: projectName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取项目信息
+    @inlinable
+    public func describeProject(projectId: String? = nil, describeClusters: Bool? = nil, describeExecutors: Bool? = nil, describeAdminUsers: Bool? = nil, describeMemberCount: Bool? = nil, describeCreator: Bool? = nil, projectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectResponse {
+        try await self.describeProject(DescribeProjectRequest(projectId: projectId, describeClusters: describeClusters, describeExecutors: describeExecutors, describeAdminUsers: describeAdminUsers, describeMemberCount: describeMemberCount, describeCreator: describeCreator, projectName: projectName), logger: logger, on: eventLoop)
+    }
 }

@@ -62,4 +62,20 @@ extension Cfs {
     public func describeMountTargets(_ input: DescribeMountTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountTargetsResponse {
         try await self.client.execute(action: "DescribeMountTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询文件系统挂载点
+    ///
+    /// 本接口（DescribeMountTargets）用于查询文件系统挂载点信息
+    @inlinable
+    public func describeMountTargets(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMountTargetsResponse > {
+        self.describeMountTargets(DescribeMountTargetsRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文件系统挂载点
+    ///
+    /// 本接口（DescribeMountTargets）用于查询文件系统挂载点信息
+    @inlinable
+    public func describeMountTargets(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountTargetsResponse {
+        try await self.describeMountTargets(DescribeMountTargetsRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    }
 }

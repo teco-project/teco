@@ -54,4 +54,20 @@ extension Tke {
     public func acquireClusterAdminRole(_ input: AcquireClusterAdminRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcquireClusterAdminRoleResponse {
         try await self.client.execute(action: "AcquireClusterAdminRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取集群RBAC管理员角色
+    ///
+    /// 通过此接口，可以获取集群的tke:admin的ClusterRole，即管理员角色，可以用于CAM侧高权限的用户，通过CAM策略给予子账户此接口权限，进而可以通过此接口直接获取到kubernetes集群内的管理员角色。
+    @inlinable
+    public func acquireClusterAdminRole(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcquireClusterAdminRoleResponse > {
+        self.acquireClusterAdminRole(AcquireClusterAdminRoleRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群RBAC管理员角色
+    ///
+    /// 通过此接口，可以获取集群的tke:admin的ClusterRole，即管理员角色，可以用于CAM侧高权限的用户，通过CAM策略给予子账户此接口权限，进而可以通过此接口直接获取到kubernetes集群内的管理员角色。
+    @inlinable
+    public func acquireClusterAdminRole(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcquireClusterAdminRoleResponse {
+        try await self.acquireClusterAdminRole(AcquireClusterAdminRoleRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

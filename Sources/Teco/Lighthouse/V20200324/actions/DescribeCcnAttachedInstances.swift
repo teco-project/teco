@@ -51,4 +51,20 @@ extension Lighthouse {
     public func describeCcnAttachedInstances(_ input: DescribeCcnAttachedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnAttachedInstancesResponse {
         try await self.client.execute(action: "DescribeCcnAttachedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询云联网关联的实例信息
+    ///
+    /// 本接口 (DescribeCcnAttachedInstances) 用于查询云联网关联的实例信息。
+    @inlinable
+    public func describeCcnAttachedInstances(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCcnAttachedInstancesResponse > {
+        self.describeCcnAttachedInstances(DescribeCcnAttachedInstancesRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云联网关联的实例信息
+    ///
+    /// 本接口 (DescribeCcnAttachedInstances) 用于查询云联网关联的实例信息。
+    @inlinable
+    public func describeCcnAttachedInstances(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnAttachedInstancesResponse {
+        try await self.describeCcnAttachedInstances(DescribeCcnAttachedInstancesRequest(), logger: logger, on: eventLoop)
+    }
 }

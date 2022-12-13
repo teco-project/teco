@@ -54,4 +54,20 @@ extension Cws {
     public func deleteMonitors(_ input: DeleteMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMonitorsResponse {
         try await self.client.execute(action: "DeleteMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除监控任务
+    ///
+    /// 本接口 (DeleteMonitors) 用于删除用户监控任务。
+    @inlinable
+    public func deleteMonitors(monitorIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMonitorsResponse > {
+        self.deleteMonitors(DeleteMonitorsRequest(monitorIds: monitorIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除监控任务
+    ///
+    /// 本接口 (DeleteMonitors) 用于删除用户监控任务。
+    @inlinable
+    public func deleteMonitors(monitorIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMonitorsResponse {
+        try await self.deleteMonitors(DeleteMonitorsRequest(monitorIds: monitorIds), logger: logger, on: eventLoop)
+    }
 }

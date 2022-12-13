@@ -79,4 +79,30 @@ extension Ic {
     public func renewCards(_ input: RenewCardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewCardsResponse {
         try await self.client.execute(action: "RenewCards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 卡片续费
+    ///
+    /// 批量为卡片续费，此接口建议调用至少间隔10s,如果出现返回deal lock failed相关的错误，请过10s再重试。
+    /// 续费的必要条件：
+    /// 1、单次续费的卡片不可以超过 100张。
+    /// 2、接口只支持在控制台购买的卡片进行续费
+    /// 3、销户和未激活的卡片不支持续费。
+    /// 4、每张物联网卡，续费总周期不能超过24个月
+    @inlinable
+    public func renewCards(sdkappid: UInt64, iccids: [String], renewNum: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewCardsResponse > {
+        self.renewCards(RenewCardsRequest(sdkappid: sdkappid, iccids: iccids, renewNum: renewNum), logger: logger, on: eventLoop)
+    }
+    
+    /// 卡片续费
+    ///
+    /// 批量为卡片续费，此接口建议调用至少间隔10s,如果出现返回deal lock failed相关的错误，请过10s再重试。
+    /// 续费的必要条件：
+    /// 1、单次续费的卡片不可以超过 100张。
+    /// 2、接口只支持在控制台购买的卡片进行续费
+    /// 3、销户和未激活的卡片不支持续费。
+    /// 4、每张物联网卡，续费总周期不能超过24个月
+    @inlinable
+    public func renewCards(sdkappid: UInt64, iccids: [String], renewNum: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewCardsResponse {
+        try await self.renewCards(RenewCardsRequest(sdkappid: sdkappid, iccids: iccids, renewNum: renewNum), logger: logger, on: eventLoop)
+    }
 }

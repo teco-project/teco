@@ -50,4 +50,16 @@ extension Iotexplorer {
     public func deletePositionSpace(_ input: DeletePositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePositionSpaceResponse {
         try await self.client.execute(action: "DeletePositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除位置空间
+    @inlinable
+    public func deletePositionSpace(spaceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePositionSpaceResponse > {
+        self.deletePositionSpace(DeletePositionSpaceRequest(spaceId: spaceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除位置空间
+    @inlinable
+    public func deletePositionSpace(spaceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePositionSpaceResponse {
+        try await self.deletePositionSpace(DeletePositionSpaceRequest(spaceId: spaceId), logger: logger, on: eventLoop)
+    }
 }

@@ -67,4 +67,24 @@ extension Ecm {
     public func releaseAddresses(_ input: ReleaseAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseAddressesResponse {
         try await self.client.execute(action: "ReleaseAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 释放弹性公网IP
+    ///
+    /// 释放一个或多个弹性公网IP（简称 EIP）。
+    /// 该操作不可逆，释放后 EIP 关联的 IP 地址将不再属于您的名下。
+    /// 只有状态为 UNBIND 的 EIP 才能进行释放操作。
+    @inlinable
+    public func releaseAddresses(ecmRegion: String, addressIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseAddressesResponse > {
+        self.releaseAddresses(ReleaseAddressesRequest(ecmRegion: ecmRegion, addressIds: addressIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 释放弹性公网IP
+    ///
+    /// 释放一个或多个弹性公网IP（简称 EIP）。
+    /// 该操作不可逆，释放后 EIP 关联的 IP 地址将不再属于您的名下。
+    /// 只有状态为 UNBIND 的 EIP 才能进行释放操作。
+    @inlinable
+    public func releaseAddresses(ecmRegion: String, addressIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseAddressesResponse {
+        try await self.releaseAddresses(ReleaseAddressesRequest(ecmRegion: ecmRegion, addressIds: addressIds), logger: logger, on: eventLoop)
+    }
 }

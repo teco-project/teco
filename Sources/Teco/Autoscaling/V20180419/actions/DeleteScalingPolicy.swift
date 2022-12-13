@@ -54,4 +54,20 @@ extension As {
     public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
         try await self.client.execute(action: "DeleteScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除告警触发策略
+    ///
+    /// 本接口（DeleteScalingPolicy）用于删除告警触发策略。
+    @inlinable
+    public func deleteScalingPolicy(autoScalingPolicyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScalingPolicyResponse > {
+        self.deleteScalingPolicy(DeleteScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除告警触发策略
+    ///
+    /// 本接口（DeleteScalingPolicy）用于删除告警触发策略。
+    @inlinable
+    public func deleteScalingPolicy(autoScalingPolicyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
+        try await self.deleteScalingPolicy(DeleteScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId), logger: logger, on: eventLoop)
+    }
 }

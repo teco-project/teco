@@ -75,4 +75,16 @@ extension Es {
     public func createIndex(_ input: CreateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIndexResponse {
         try await self.client.execute(action: "CreateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建索引
+    @inlinable
+    public func createIndex(instanceId: String, indexType: String, indexName: String, indexMetaJson: String? = nil, username: String? = nil, password: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIndexResponse > {
+        self.createIndex(CreateIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, indexMetaJson: indexMetaJson, username: username, password: password), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建索引
+    @inlinable
+    public func createIndex(instanceId: String, indexType: String, indexName: String, indexMetaJson: String? = nil, username: String? = nil, password: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIndexResponse {
+        try await self.createIndex(CreateIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, indexMetaJson: indexMetaJson, username: username, password: password), logger: logger, on: eventLoop)
+    }
 }

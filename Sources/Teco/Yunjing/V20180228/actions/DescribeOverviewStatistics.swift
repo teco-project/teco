@@ -74,4 +74,20 @@ extension Yunjing {
     public func describeOverviewStatistics(_ input: DescribeOverviewStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewStatisticsResponse {
         try await self.client.execute(action: "DescribeOverviewStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取概览统计数据
+    ///
+    /// 本接口用于（DescribeOverviewStatistics）获取概览统计数据。
+    @inlinable
+    public func describeOverviewStatistics(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewStatisticsResponse > {
+        self.describeOverviewStatistics(DescribeOverviewStatisticsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取概览统计数据
+    ///
+    /// 本接口用于（DescribeOverviewStatistics）获取概览统计数据。
+    @inlinable
+    public func describeOverviewStatistics(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewStatisticsResponse {
+        try await self.describeOverviewStatistics(DescribeOverviewStatisticsRequest(), logger: logger, on: eventLoop)
+    }
 }

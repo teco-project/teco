@@ -54,4 +54,20 @@ extension Yunjing {
     public func deleteMachine(_ input: DeleteMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineResponse {
         try await self.client.execute(action: "DeleteMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 卸载云镜客户端
+    ///
+    /// 本接口（DeleteMachine）用于卸载云镜客户端。
+    @inlinable
+    public func deleteMachine(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMachineResponse > {
+        self.deleteMachine(DeleteMachineRequest(uuid: uuid), logger: logger, on: eventLoop)
+    }
+    
+    /// 卸载云镜客户端
+    ///
+    /// 本接口（DeleteMachine）用于卸载云镜客户端。
+    @inlinable
+    public func deleteMachine(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineResponse {
+        try await self.deleteMachine(DeleteMachineRequest(uuid: uuid), logger: logger, on: eventLoop)
+    }
 }

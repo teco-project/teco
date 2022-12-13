@@ -79,4 +79,20 @@ extension Wedata {
     public func describeOrganizationalFunctions(_ input: DescribeOrganizationalFunctionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationalFunctionsResponse {
         try await self.client.execute(action: "DescribeOrganizationalFunctions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询全量函数（层级化）接口
+    ///
+    /// 查询全量函数
+    @inlinable
+    public func describeOrganizationalFunctions(type: String, projectId: String, name: String? = nil, displayName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationalFunctionsResponse > {
+        self.describeOrganizationalFunctions(DescribeOrganizationalFunctionsRequest(type: type, projectId: projectId, name: name, displayName: displayName), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询全量函数（层级化）接口
+    ///
+    /// 查询全量函数
+    @inlinable
+    public func describeOrganizationalFunctions(type: String, projectId: String, name: String? = nil, displayName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationalFunctionsResponse {
+        try await self.describeOrganizationalFunctions(DescribeOrganizationalFunctionsRequest(type: type, projectId: projectId, name: name, displayName: displayName), logger: logger, on: eventLoop)
+    }
 }

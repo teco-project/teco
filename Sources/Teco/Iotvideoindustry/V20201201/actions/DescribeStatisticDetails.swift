@@ -76,4 +76,20 @@ extension Iotvideoindustry {
     public func describeStatisticDetails(_ input: DescribeStatisticDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticDetailsResponse {
         try await self.client.execute(action: "DescribeStatisticDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询指定统计项详情
+    ///
+    /// 本接口(DescribeStatisticDetails)用于查询指定统计项详情，返回结果按天为单位聚合，支持的最大时间查询范围为31天。
+    @inlinable
+    public func describeStatisticDetails(startDate: String, endDate: String, statisticField: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStatisticDetailsResponse > {
+        self.describeStatisticDetails(DescribeStatisticDetailsRequest(startDate: startDate, endDate: endDate, statisticField: statisticField), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询指定统计项详情
+    ///
+    /// 本接口(DescribeStatisticDetails)用于查询指定统计项详情，返回结果按天为单位聚合，支持的最大时间查询范围为31天。
+    @inlinable
+    public func describeStatisticDetails(startDate: String, endDate: String, statisticField: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticDetailsResponse {
+        try await self.describeStatisticDetails(DescribeStatisticDetailsRequest(startDate: startDate, endDate: endDate, statisticField: statisticField), logger: logger, on: eventLoop)
+    }
 }

@@ -58,4 +58,16 @@ extension Tiw {
     public func describeVideoGenerationTaskCallback(_ input: DescribeVideoGenerationTaskCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoGenerationTaskCallbackResponse {
         try await self.client.execute(action: "DescribeVideoGenerationTaskCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询录制视频生成回调地址
+    @inlinable
+    public func describeVideoGenerationTaskCallback(sdkAppId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoGenerationTaskCallbackResponse > {
+        self.describeVideoGenerationTaskCallback(DescribeVideoGenerationTaskCallbackRequest(sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询录制视频生成回调地址
+    @inlinable
+    public func describeVideoGenerationTaskCallback(sdkAppId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoGenerationTaskCallbackResponse {
+        try await self.describeVideoGenerationTaskCallback(DescribeVideoGenerationTaskCallbackRequest(sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    }
 }

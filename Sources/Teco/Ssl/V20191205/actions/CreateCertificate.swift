@@ -72,4 +72,20 @@ extension Ssl {
     public func createCertificate(_ input: CreateCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCertificateResponse {
         try await self.client.execute(action: "CreateCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建付费证书
+    ///
+    /// 本接口（CreateCertificate）用于创建付费证书。
+    @inlinable
+    public func createCertificate(productId: Int64, domainNum: Int64, timeSpan: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCertificateResponse > {
+        self.createCertificate(CreateCertificateRequest(productId: productId, domainNum: domainNum, timeSpan: timeSpan), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建付费证书
+    ///
+    /// 本接口（CreateCertificate）用于创建付费证书。
+    @inlinable
+    public func createCertificate(productId: Int64, domainNum: Int64, timeSpan: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCertificateResponse {
+        try await self.createCertificate(CreateCertificateRequest(productId: productId, domainNum: domainNum, timeSpan: timeSpan), logger: logger, on: eventLoop)
+    }
 }

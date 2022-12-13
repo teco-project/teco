@@ -80,4 +80,20 @@ extension Cfw {
     public func describeResourceGroupNew(_ input: DescribeResourceGroupNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupNewResponse {
         try await self.client.execute(action: "DescribeResourceGroupNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 资产中心资产树信息查询new
+    ///
+    /// DescribeResourceGroupNew资产中心资产树信息
+    @inlinable
+    public func describeResourceGroupNew(queryType: String, groupId: String? = nil, showType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceGroupNewResponse > {
+        self.describeResourceGroupNew(DescribeResourceGroupNewRequest(queryType: queryType, groupId: groupId, showType: showType), logger: logger, on: eventLoop)
+    }
+    
+    /// 资产中心资产树信息查询new
+    ///
+    /// DescribeResourceGroupNew资产中心资产树信息
+    @inlinable
+    public func describeResourceGroupNew(queryType: String, groupId: String? = nil, showType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupNewResponse {
+        try await self.describeResourceGroupNew(DescribeResourceGroupNewRequest(queryType: queryType, groupId: groupId, showType: showType), logger: logger, on: eventLoop)
+    }
 }

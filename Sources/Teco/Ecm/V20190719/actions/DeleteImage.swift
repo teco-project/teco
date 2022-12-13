@@ -50,4 +50,16 @@ extension Ecm {
     public func deleteImage(_ input: DeleteImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageResponse {
         try await self.client.execute(action: "DeleteImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除镜像
+    @inlinable
+    public func deleteImage(imageIDSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageResponse > {
+        self.deleteImage(DeleteImageRequest(imageIDSet: imageIDSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除镜像
+    @inlinable
+    public func deleteImage(imageIDSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageResponse {
+        try await self.deleteImage(DeleteImageRequest(imageIDSet: imageIDSet), logger: logger, on: eventLoop)
+    }
 }

@@ -76,7 +76,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `operator`: Int64?
         
-        public init (alarmId: String, alarmTime: String, taskId: String, regularName: String, alarmLevel: UInt64, alarmIndicator: UInt64, alarmWay: UInt64, alarmRecipientId: String, projectId: String, alarmIndicatorDesc: String? = nil, triggerType: UInt64? = nil, estimatedTime: UInt64? = nil, instanceId: String? = nil, taskName: String? = nil, isSendSuccess: UInt64? = nil, messageId: String? = nil, `operator`: Int64? = nil) {
+        public init (alarmId: String, alarmTime: String, taskId: String, regularName: String, alarmLevel: UInt64, alarmIndicator: UInt64, alarmWay: UInt64, alarmRecipientId: String, projectId: String, alarmIndicatorDesc: String? = nil, triggerType: UInt64? = nil, estimatedTime: UInt64? = nil, instanceId: String? = nil, taskName: String? = nil, isSendSuccess: UInt64? = nil, messageId: String? = nil, operator: Int64? = nil) {
             self.alarmId = alarmId
             self.alarmTime = alarmTime
             self.taskId = taskId
@@ -441,7 +441,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let valueList: [ThresholdValue]?
         
-        public init (compareType: UInt64? = nil, `operator`: String? = nil, valueComputeType: UInt64? = nil, valueList: [ThresholdValue]? = nil) {
+        public init (compareType: UInt64? = nil, operator: String? = nil, valueComputeType: UInt64? = nil, valueList: [ThresholdValue]? = nil) {
             self.compareType = compareType
             self.`operator` = `operator`
             self.valueComputeType = valueComputeType
@@ -2742,7 +2742,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let whereFlag: Bool?
         
-        public init (ruleId: UInt64? = nil, ruleGroupId: UInt64? = nil, tableId: String? = nil, name: String? = nil, type: UInt64? = nil, ruleTemplateId: UInt64? = nil, ruleTemplateContent: String? = nil, qualityDim: UInt64? = nil, sourceObjectType: UInt64? = nil, sourceObjectDataType: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, `operator`: String? = nil, targetDatabaseId: String? = nil, targetDatabaseName: String? = nil, targetTableId: String? = nil, targetTableName: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, multiSourceFlag: Bool? = nil, whereFlag: Bool? = nil) {
+        public init (ruleId: UInt64? = nil, ruleGroupId: UInt64? = nil, tableId: String? = nil, name: String? = nil, type: UInt64? = nil, ruleTemplateId: UInt64? = nil, ruleTemplateContent: String? = nil, qualityDim: UInt64? = nil, sourceObjectType: UInt64? = nil, sourceObjectDataType: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, operator: String? = nil, targetDatabaseId: String? = nil, targetDatabaseName: String? = nil, targetTableId: String? = nil, targetTableName: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, multiSourceFlag: Bool? = nil, whereFlag: Bool? = nil) {
             self.ruleId = ruleId
             self.ruleGroupId = ruleGroupId
             self.tableId = tableId
@@ -4575,7 +4575,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeName: String?
         
-        public init (taskId: String, regularName: String, regularStatus: UInt64, alarmLevel: UInt64, alarmIndicator: UInt64, alarmWay: String, alarmRecipientId: String, taskType: UInt64, alarmRecipientName: String, id: String? = nil, regularId: String? = nil, triggerType: UInt64? = nil, estimatedTime: UInt64? = nil, projectId: String? = nil, creater: String? = nil, alarmIndicatorDesc: String? = nil, `operator`: UInt64? = nil, nodeId: String? = nil, nodeName: String? = nil) {
+        public init (taskId: String, regularName: String, regularStatus: UInt64, alarmLevel: UInt64, alarmIndicator: UInt64, alarmWay: String, alarmRecipientId: String, taskType: UInt64, alarmRecipientName: String, id: String? = nil, regularId: String? = nil, triggerType: UInt64? = nil, estimatedTime: UInt64? = nil, projectId: String? = nil, creater: String? = nil, alarmIndicatorDesc: String? = nil, operator: UInt64? = nil, nodeId: String? = nil, nodeName: String? = nil) {
             self.taskId = taskId
             self.regularName = regularName
             self.regularStatus = regularStatus

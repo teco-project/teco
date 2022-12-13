@@ -50,4 +50,20 @@ extension Cfw {
     public func describeNatFwInstance(_ input: DescribeNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInstanceResponse {
         try await self.client.execute(action: "DescribeNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取租户所有NAT实例
+    ///
+    /// DescribeNatFwInstance 获取租户所有NAT实例
+    @inlinable
+    public func describeNatFwInstance(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatFwInstanceResponse > {
+        self.describeNatFwInstance(DescribeNatFwInstanceRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取租户所有NAT实例
+    ///
+    /// DescribeNatFwInstance 获取租户所有NAT实例
+    @inlinable
+    public func describeNatFwInstance(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInstanceResponse {
+        try await self.describeNatFwInstance(DescribeNatFwInstanceRequest(), logger: logger, on: eventLoop)
+    }
 }

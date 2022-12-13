@@ -65,4 +65,16 @@ extension Car {
     public func applyConcurrent(_ input: ApplyConcurrentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConcurrentResponse {
         try await self.client.execute(action: "ApplyConcurrent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 申请并发
+    @inlinable
+    public func applyConcurrent(userId: String, userIp: String, projectId: String, applicationVersionId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyConcurrentResponse > {
+        self.applyConcurrent(ApplyConcurrentRequest(userId: userId, userIp: userIp, projectId: projectId, applicationVersionId: applicationVersionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 申请并发
+    @inlinable
+    public func applyConcurrent(userId: String, userIp: String, projectId: String, applicationVersionId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConcurrentResponse {
+        try await self.applyConcurrent(ApplyConcurrentRequest(userId: userId, userIp: userIp, projectId: projectId, applicationVersionId: applicationVersionId), logger: logger, on: eventLoop)
+    }
 }

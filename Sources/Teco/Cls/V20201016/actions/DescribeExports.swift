@@ -72,4 +72,20 @@ extension Cls {
     public func describeExports(_ input: DescribeExportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportsResponse {
         try await self.client.execute(action: "DescribeExports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取日志下载任务列表
+    ///
+    /// 本接口用于获取日志下载任务列表
+    @inlinable
+    public func describeExports(topicId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExportsResponse > {
+        self.describeExports(DescribeExportsRequest(topicId: topicId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志下载任务列表
+    ///
+    /// 本接口用于获取日志下载任务列表
+    @inlinable
+    public func describeExports(topicId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportsResponse {
+        try await self.describeExports(DescribeExportsRequest(topicId: topicId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

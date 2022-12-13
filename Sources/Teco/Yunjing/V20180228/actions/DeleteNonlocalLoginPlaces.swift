@@ -54,4 +54,20 @@ extension Yunjing {
     public func deleteNonlocalLoginPlaces(_ input: DeleteNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNonlocalLoginPlacesResponse {
         try await self.client.execute(action: "DeleteNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除异地登录记录
+    ///
+    /// 本接口 (DeleteNonlocalLoginPlaces) 用于删除异地登录记录。
+    @inlinable
+    public func deleteNonlocalLoginPlaces(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNonlocalLoginPlacesResponse > {
+        self.deleteNonlocalLoginPlaces(DeleteNonlocalLoginPlacesRequest(ids: ids), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除异地登录记录
+    ///
+    /// 本接口 (DeleteNonlocalLoginPlaces) 用于删除异地登录记录。
+    @inlinable
+    public func deleteNonlocalLoginPlaces(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNonlocalLoginPlacesResponse {
+        try await self.deleteNonlocalLoginPlaces(DeleteNonlocalLoginPlacesRequest(ids: ids), logger: logger, on: eventLoop)
+    }
 }

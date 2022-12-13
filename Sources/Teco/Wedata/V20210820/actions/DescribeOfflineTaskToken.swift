@@ -46,4 +46,16 @@ extension Wedata {
     public func describeOfflineTaskToken(_ input: DescribeOfflineTaskTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineTaskTokenResponse {
         try await self.client.execute(action: "DescribeOfflineTaskToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取离线任务长连接Token
+    @inlinable
+    public func describeOfflineTaskToken(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOfflineTaskTokenResponse > {
+        self.describeOfflineTaskToken(DescribeOfflineTaskTokenRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取离线任务长连接Token
+    @inlinable
+    public func describeOfflineTaskToken(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineTaskTokenResponse {
+        try await self.describeOfflineTaskToken(DescribeOfflineTaskTokenRequest(), logger: logger, on: eventLoop)
+    }
 }

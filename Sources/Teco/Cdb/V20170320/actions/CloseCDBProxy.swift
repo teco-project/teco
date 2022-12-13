@@ -60,4 +60,16 @@ extension Cdb {
     public func closeCDBProxy(_ input: CloseCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseCDBProxyResponse {
         try await self.client.execute(action: "CloseCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 关闭数据库代理
+    @inlinable
+    public func closeCDBProxy(instanceId: String, proxyGroupId: String? = nil, onlyCloseRW: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseCDBProxyResponse > {
+        self.closeCDBProxy(CloseCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, onlyCloseRW: onlyCloseRW), logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭数据库代理
+    @inlinable
+    public func closeCDBProxy(instanceId: String, proxyGroupId: String? = nil, onlyCloseRW: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseCDBProxyResponse {
+        try await self.closeCDBProxy(CloseCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, onlyCloseRW: onlyCloseRW), logger: logger, on: eventLoop)
+    }
 }

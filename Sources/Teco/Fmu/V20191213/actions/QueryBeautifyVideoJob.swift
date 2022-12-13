@@ -63,4 +63,20 @@ extension Fmu {
     public func queryBeautifyVideoJob(_ input: QueryBeautifyVideoJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBeautifyVideoJobResponse {
         try await self.client.execute(action: "QueryBeautifyVideoJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询视频美颜任务
+    ///
+    /// 查询视频美颜处理进度
+    @inlinable
+    public func queryBeautifyVideoJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBeautifyVideoJobResponse > {
+        self.queryBeautifyVideoJob(QueryBeautifyVideoJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询视频美颜任务
+    ///
+    /// 查询视频美颜处理进度
+    @inlinable
+    public func queryBeautifyVideoJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBeautifyVideoJobResponse {
+        try await self.queryBeautifyVideoJob(QueryBeautifyVideoJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
 }

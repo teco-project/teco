@@ -87,4 +87,20 @@ extension Acp {
     public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskStatusResponse {
         try await self.client.execute(action: "DescribeScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询应用合规隐私诊断任务状态
+    ///
+    /// 查询App隐私合规诊断任务状态
+    @inlinable
+    public func describeScanTaskStatus(source: Int64, platform: Int64, taskID: String, taskType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskStatusResponse > {
+        self.describeScanTaskStatus(DescribeScanTaskStatusRequest(source: source, platform: platform, taskID: taskID, taskType: taskType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询应用合规隐私诊断任务状态
+    ///
+    /// 查询App隐私合规诊断任务状态
+    @inlinable
+    public func describeScanTaskStatus(source: Int64, platform: Int64, taskID: String, taskType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskStatusResponse {
+        try await self.describeScanTaskStatus(DescribeScanTaskStatusRequest(source: source, platform: platform, taskID: taskID, taskType: taskType), logger: logger, on: eventLoop)
+    }
 }

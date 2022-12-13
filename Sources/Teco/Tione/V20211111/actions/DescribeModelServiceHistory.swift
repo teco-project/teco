@@ -60,4 +60,16 @@ extension Tione {
     public func describeModelServiceHistory(_ input: DescribeModelServiceHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceHistoryResponse {
         try await self.client.execute(action: "DescribeModelServiceHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 展示服务的历史版本
+    @inlinable
+    public func describeModelServiceHistory(serviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServiceHistoryResponse > {
+        self.describeModelServiceHistory(DescribeModelServiceHistoryRequest(serviceId: serviceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 展示服务的历史版本
+    @inlinable
+    public func describeModelServiceHistory(serviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceHistoryResponse {
+        try await self.describeModelServiceHistory(DescribeModelServiceHistoryRequest(serviceId: serviceId), logger: logger, on: eventLoop)
+    }
 }

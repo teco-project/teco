@@ -54,4 +54,16 @@ extension Bm {
     public func startDevices(_ input: StartDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartDevicesResponse {
         try await self.client.execute(action: "StartDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开启服务器
+    @inlinable
+    public func startDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartDevicesResponse > {
+        self.startDevices(StartDevicesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 开启服务器
+    @inlinable
+    public func startDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartDevicesResponse {
+        try await self.startDevices(StartDevicesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

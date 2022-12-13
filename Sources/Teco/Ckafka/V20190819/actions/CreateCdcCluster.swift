@@ -93,4 +93,20 @@ extension Ckafka {
     public func createCdcCluster(_ input: CreateCdcClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCdcClusterResponse {
         try await self.client.execute(action: "CreateCdcCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建cdc-ckafka集群
+    ///
+    /// 用于cdc的专用ckafka集群
+    @inlinable
+    public func createCdcCluster(cdcId: String, cdcVpcId: String, cdcSubnetId: String, zoneId: Int64, bandwidth: Int64, diskSize: Int64, diskType: String, systemDiskType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCdcClusterResponse > {
+        self.createCdcCluster(CreateCdcClusterRequest(cdcId: cdcId, cdcVpcId: cdcVpcId, cdcSubnetId: cdcSubnetId, zoneId: zoneId, bandwidth: bandwidth, diskSize: diskSize, diskType: diskType, systemDiskType: systemDiskType), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建cdc-ckafka集群
+    ///
+    /// 用于cdc的专用ckafka集群
+    @inlinable
+    public func createCdcCluster(cdcId: String, cdcVpcId: String, cdcSubnetId: String, zoneId: Int64, bandwidth: Int64, diskSize: Int64, diskType: String, systemDiskType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCdcClusterResponse {
+        try await self.createCdcCluster(CreateCdcClusterRequest(cdcId: cdcId, cdcVpcId: cdcVpcId, cdcSubnetId: cdcSubnetId, zoneId: zoneId, bandwidth: bandwidth, diskSize: diskSize, diskType: diskType, systemDiskType: systemDiskType), logger: logger, on: eventLoop)
+    }
 }

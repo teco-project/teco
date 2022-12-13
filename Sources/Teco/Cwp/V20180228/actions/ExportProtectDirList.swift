@@ -69,4 +69,20 @@ extension Cwp {
     public func exportProtectDirList(_ input: ExportProtectDirListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportProtectDirListResponse {
         try await self.client.execute(action: "ExportProtectDirList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导出防护目录列表
+    ///
+    /// 导出网页防篡改防护目录列表
+    @inlinable
+    public func exportProtectDirList(filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportProtectDirListResponse > {
+        self.exportProtectDirList(ExportProtectDirListRequest(filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 导出防护目录列表
+    ///
+    /// 导出网页防篡改防护目录列表
+    @inlinable
+    public func exportProtectDirList(filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportProtectDirListResponse {
+        try await self.exportProtectDirList(ExportProtectDirListRequest(filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

@@ -109,4 +109,16 @@ extension Tione {
     public func describeDatasetDetailUnstructured(_ input: DescribeDatasetDetailUnstructuredRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasetDetailUnstructuredResponse {
         try await self.client.execute(action: "DescribeDatasetDetailUnstructured", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询非结构化数据集详情
+    @inlinable
+    public func describeDatasetDetailUnstructured(datasetId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, labelList: [String]? = nil, annotationStatus: String? = nil, datasetIds: [String]? = nil, textClassificationLabels: [TextLabelDistributionInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatasetDetailUnstructuredResponse > {
+        self.describeDatasetDetailUnstructured(DescribeDatasetDetailUnstructuredRequest(datasetId: datasetId, offset: offset, limit: limit, labelList: labelList, annotationStatus: annotationStatus, datasetIds: datasetIds, textClassificationLabels: textClassificationLabels), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询非结构化数据集详情
+    @inlinable
+    public func describeDatasetDetailUnstructured(datasetId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, labelList: [String]? = nil, annotationStatus: String? = nil, datasetIds: [String]? = nil, textClassificationLabels: [TextLabelDistributionInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasetDetailUnstructuredResponse {
+        try await self.describeDatasetDetailUnstructured(DescribeDatasetDetailUnstructuredRequest(datasetId: datasetId, offset: offset, limit: limit, labelList: labelList, annotationStatus: annotationStatus, datasetIds: datasetIds, textClassificationLabels: textClassificationLabels), logger: logger, on: eventLoop)
+    }
 }

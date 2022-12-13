@@ -58,4 +58,20 @@ extension Faceid {
     public func getActionSequence(_ input: GetActionSequenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetActionSequenceResponse {
         try await self.client.execute(action: "GetActionSequence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取动作顺序
+    ///
+    /// 使用动作活体检测模式前，需调用本接口获取动作顺序。
+    @inlinable
+    public func getActionSequence(actionType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetActionSequenceResponse > {
+        self.getActionSequence(GetActionSequenceRequest(actionType: actionType), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取动作顺序
+    ///
+    /// 使用动作活体检测模式前，需调用本接口获取动作顺序。
+    @inlinable
+    public func getActionSequence(actionType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetActionSequenceResponse {
+        try await self.getActionSequence(GetActionSequenceRequest(actionType: actionType), logger: logger, on: eventLoop)
+    }
 }

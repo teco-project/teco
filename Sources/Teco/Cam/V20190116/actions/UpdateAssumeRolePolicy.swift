@@ -64,4 +64,20 @@ extension Cam {
     public func updateAssumeRolePolicy(_ input: UpdateAssumeRolePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAssumeRolePolicyResponse {
         try await self.client.execute(action: "UpdateAssumeRolePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改角色信任策略
+    ///
+    /// 本接口（UpdateAssumeRolePolicy）用于修改角色信任策略的策略文档。
+    @inlinable
+    public func updateAssumeRolePolicy(policyDocument: String, roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAssumeRolePolicyResponse > {
+        self.updateAssumeRolePolicy(UpdateAssumeRolePolicyRequest(policyDocument: policyDocument, roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改角色信任策略
+    ///
+    /// 本接口（UpdateAssumeRolePolicy）用于修改角色信任策略的策略文档。
+    @inlinable
+    public func updateAssumeRolePolicy(policyDocument: String, roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAssumeRolePolicyResponse {
+        try await self.updateAssumeRolePolicy(UpdateAssumeRolePolicyRequest(policyDocument: policyDocument, roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    }
 }

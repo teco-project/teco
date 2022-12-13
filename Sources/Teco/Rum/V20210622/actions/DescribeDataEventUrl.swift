@@ -159,4 +159,16 @@ extension Rum {
     public func describeDataEventUrl(_ input: DescribeDataEventUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataEventUrlResponse {
         try await self.client.execute(action: "DescribeDataEventUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取DescribeDataEventUrl信息
+    @inlinable
+    public func describeDataEventUrl(startTime: Int64, type: String, endTime: Int64, id: Int64, extSecond: String? = nil, engine: String? = nil, isp: String? = nil, from: String? = nil, level: String? = nil, brand: String? = nil, area: String? = nil, versionNum: String? = nil, platform: String? = nil, extThird: String? = nil, extFirst: String? = nil, netType: String? = nil, device: String? = nil, isAbroad: String? = nil, os: String? = nil, browser: String? = nil, name: String? = nil, env: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataEventUrlResponse > {
+        self.describeDataEventUrl(DescribeDataEventUrlRequest(startTime: startTime, type: type, endTime: endTime, id: id, extSecond: extSecond, engine: engine, isp: isp, from: from, level: level, brand: brand, area: area, versionNum: versionNum, platform: platform, extThird: extThird, extFirst: extFirst, netType: netType, device: device, isAbroad: isAbroad, os: os, browser: browser, name: name, env: env), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DescribeDataEventUrl信息
+    @inlinable
+    public func describeDataEventUrl(startTime: Int64, type: String, endTime: Int64, id: Int64, extSecond: String? = nil, engine: String? = nil, isp: String? = nil, from: String? = nil, level: String? = nil, brand: String? = nil, area: String? = nil, versionNum: String? = nil, platform: String? = nil, extThird: String? = nil, extFirst: String? = nil, netType: String? = nil, device: String? = nil, isAbroad: String? = nil, os: String? = nil, browser: String? = nil, name: String? = nil, env: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataEventUrlResponse {
+        try await self.describeDataEventUrl(DescribeDataEventUrlRequest(startTime: startTime, type: type, endTime: endTime, id: id, extSecond: extSecond, engine: engine, isp: isp, from: from, level: level, brand: brand, area: area, versionNum: versionNum, platform: platform, extThird: extThird, extFirst: extFirst, netType: netType, device: device, isAbroad: isAbroad, os: os, browser: browser, name: name, env: env), logger: logger, on: eventLoop)
+    }
 }

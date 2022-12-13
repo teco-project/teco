@@ -74,4 +74,20 @@ extension Vpc {
     public func modifyNetworkInterfaceAttribute(_ input: ModifyNetworkInterfaceAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkInterfaceAttributeResponse {
         try await self.client.execute(action: "ModifyNetworkInterfaceAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改弹性网卡
+    ///
+    /// 本接口（ModifyNetworkInterfaceAttribute）用于修改弹性网卡属性。
+    @inlinable
+    public func modifyNetworkInterfaceAttribute(networkInterfaceId: String, networkInterfaceName: String? = nil, networkInterfaceDescription: String? = nil, securityGroupIds: [String]? = nil, trunkingFlag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetworkInterfaceAttributeResponse > {
+        self.modifyNetworkInterfaceAttribute(ModifyNetworkInterfaceAttributeRequest(networkInterfaceId: networkInterfaceId, networkInterfaceName: networkInterfaceName, networkInterfaceDescription: networkInterfaceDescription, securityGroupIds: securityGroupIds, trunkingFlag: trunkingFlag), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改弹性网卡
+    ///
+    /// 本接口（ModifyNetworkInterfaceAttribute）用于修改弹性网卡属性。
+    @inlinable
+    public func modifyNetworkInterfaceAttribute(networkInterfaceId: String, networkInterfaceName: String? = nil, networkInterfaceDescription: String? = nil, securityGroupIds: [String]? = nil, trunkingFlag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkInterfaceAttributeResponse {
+        try await self.modifyNetworkInterfaceAttribute(ModifyNetworkInterfaceAttributeRequest(networkInterfaceId: networkInterfaceId, networkInterfaceName: networkInterfaceName, networkInterfaceDescription: networkInterfaceDescription, securityGroupIds: securityGroupIds, trunkingFlag: trunkingFlag), logger: logger, on: eventLoop)
+    }
 }

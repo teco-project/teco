@@ -65,4 +65,16 @@ extension Wedata {
     public func checkDuplicateTemplateName(_ input: CheckDuplicateTemplateNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDuplicateTemplateNameResponse {
         try await self.client.execute(action: "CheckDuplicateTemplateName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 检查规则模板名称是否重复
+    @inlinable
+    public func checkDuplicateTemplateName(templateId: UInt64? = nil, name: String? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckDuplicateTemplateNameResponse > {
+        self.checkDuplicateTemplateName(CheckDuplicateTemplateNameRequest(templateId: templateId, name: name, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 检查规则模板名称是否重复
+    @inlinable
+    public func checkDuplicateTemplateName(templateId: UInt64? = nil, name: String? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDuplicateTemplateNameResponse {
+        try await self.checkDuplicateTemplateName(CheckDuplicateTemplateNameRequest(templateId: templateId, name: name, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

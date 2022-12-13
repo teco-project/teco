@@ -59,4 +59,20 @@ extension Cloudstudio {
     public func describeWorkspaceEnvList(_ input: DescribeWorkspaceEnvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceEnvListResponse {
         try await self.client.execute(action: "DescribeWorkspaceEnvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 环境列表接口
+    ///
+    /// 环境列表接口返回信息
+    @inlinable
+    public func describeWorkspaceEnvList(cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkspaceEnvListResponse > {
+        self.describeWorkspaceEnvList(DescribeWorkspaceEnvListRequest(cloudStudioSessionTeam: cloudStudioSessionTeam), logger: logger, on: eventLoop)
+    }
+    
+    /// 环境列表接口
+    ///
+    /// 环境列表接口返回信息
+    @inlinable
+    public func describeWorkspaceEnvList(cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceEnvListResponse {
+        try await self.describeWorkspaceEnvList(DescribeWorkspaceEnvListRequest(cloudStudioSessionTeam: cloudStudioSessionTeam), logger: logger, on: eventLoop)
+    }
 }

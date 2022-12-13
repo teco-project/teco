@@ -50,4 +50,16 @@ extension Iecp {
     public func deleteIotDevice(_ input: DeleteIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDeviceResponse {
         try await self.client.execute(action: "DeleteIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除设备
+    @inlinable
+    public func deleteIotDevice(deviceId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIotDeviceResponse > {
+        self.deleteIotDevice(DeleteIotDeviceRequest(deviceId: deviceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除设备
+    @inlinable
+    public func deleteIotDevice(deviceId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDeviceResponse {
+        try await self.deleteIotDevice(DeleteIotDeviceRequest(deviceId: deviceId), logger: logger, on: eventLoop)
+    }
 }

@@ -101,4 +101,20 @@ extension Cpdp {
     public func unbindRelateAcct(_ input: UnbindRelateAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRelateAcctResponse {
         try await self.client.execute(action: "UnbindRelateAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云鉴-会员解绑提现账户
+    ///
+    /// 会员解绑提现账户。此接口可以支持会员解除名下的绑定账户关系。
+    @inlinable
+    public func unbindRelateAcct(mrchCode: String, functionFlag: String, tranNetMemberCode: String, memberAcctNo: String, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindRelateAcctResponse > {
+        self.unbindRelateAcct(UnbindRelateAcctRequest(mrchCode: mrchCode, functionFlag: functionFlag, tranNetMemberCode: tranNetMemberCode, memberAcctNo: memberAcctNo, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-会员解绑提现账户
+    ///
+    /// 会员解绑提现账户。此接口可以支持会员解除名下的绑定账户关系。
+    @inlinable
+    public func unbindRelateAcct(mrchCode: String, functionFlag: String, tranNetMemberCode: String, memberAcctNo: String, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRelateAcctResponse {
+        try await self.unbindRelateAcct(UnbindRelateAcctRequest(mrchCode: mrchCode, functionFlag: functionFlag, tranNetMemberCode: tranNetMemberCode, memberAcctNo: memberAcctNo, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    }
 }

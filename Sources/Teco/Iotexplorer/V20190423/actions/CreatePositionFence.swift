@@ -65,4 +65,16 @@ extension Iotexplorer {
     public func createPositionFence(_ input: CreatePositionFenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePositionFenceResponse {
         try await self.client.execute(action: "CreatePositionFence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建围栏
+    @inlinable
+    public func createPositionFence(spaceId: String, fenceName: String, fenceArea: String, fenceDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePositionFenceResponse > {
+        self.createPositionFence(CreatePositionFenceRequest(spaceId: spaceId, fenceName: fenceName, fenceArea: fenceArea, fenceDesc: fenceDesc), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建围栏
+    @inlinable
+    public func createPositionFence(spaceId: String, fenceName: String, fenceArea: String, fenceDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePositionFenceResponse {
+        try await self.createPositionFence(CreatePositionFenceRequest(spaceId: spaceId, fenceName: fenceName, fenceArea: fenceArea, fenceDesc: fenceDesc), logger: logger, on: eventLoop)
+    }
 }

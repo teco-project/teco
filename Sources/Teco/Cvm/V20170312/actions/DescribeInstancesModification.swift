@@ -69,4 +69,20 @@ extension Cvm {
     public func describeInstancesModification(_ input: DescribeInstancesModificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesModificationResponse {
         try await self.client.execute(action: "DescribeInstancesModification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例可调整配置
+    ///
+    /// 本接口 (DescribeInstancesModification) 用于查询指定实例支持调整的机型配置。
+    @inlinable
+    public func describeInstancesModification(instanceIds: [String], filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesModificationResponse > {
+        self.describeInstancesModification(DescribeInstancesModificationRequest(instanceIds: instanceIds, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例可调整配置
+    ///
+    /// 本接口 (DescribeInstancesModification) 用于查询指定实例支持调整的机型配置。
+    @inlinable
+    public func describeInstancesModification(instanceIds: [String], filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesModificationResponse {
+        try await self.describeInstancesModification(DescribeInstancesModificationRequest(instanceIds: instanceIds, filters: filters), logger: logger, on: eventLoop)
+    }
 }

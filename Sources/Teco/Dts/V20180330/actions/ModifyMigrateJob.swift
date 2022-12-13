@@ -108,4 +108,24 @@ extension Dts {
     public func modifyMigrateJob(_ input: ModifyMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateJobResponse {
         try await self.client.execute(action: "ModifyMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改数据迁移任务
+    ///
+    /// 本接口（ModifyMigrateJob）用于修改数据迁移任务。
+    /// 当迁移任务处于下述状态时，允许调用本接口修改迁移任务：迁移创建中（status=1）、 校验成功(status=4)、校验失败(status=5)、迁移失败(status=10)。但源实例、目标实例类型和目标实例地域不允许修改。
+    /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
+    @inlinable
+    public func modifyMigrateJob(jobId: String, jobName: String? = nil, migrateOption: MigrateOption? = nil, srcAccessType: String? = nil, srcInfo: SrcInfo? = nil, dstAccessType: String? = nil, dstInfo: DstInfo? = nil, databaseInfo: String? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrateJobResponse > {
+        self.modifyMigrateJob(ModifyMigrateJobRequest(jobId: jobId, jobName: jobName, migrateOption: migrateOption, srcAccessType: srcAccessType, srcInfo: srcInfo, dstAccessType: dstAccessType, dstInfo: dstInfo, databaseInfo: databaseInfo, srcNodeType: srcNodeType, srcInfoMulti: srcInfoMulti), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改数据迁移任务
+    ///
+    /// 本接口（ModifyMigrateJob）用于修改数据迁移任务。
+    /// 当迁移任务处于下述状态时，允许调用本接口修改迁移任务：迁移创建中（status=1）、 校验成功(status=4)、校验失败(status=5)、迁移失败(status=10)。但源实例、目标实例类型和目标实例地域不允许修改。
+    /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
+    @inlinable
+    public func modifyMigrateJob(jobId: String, jobName: String? = nil, migrateOption: MigrateOption? = nil, srcAccessType: String? = nil, srcInfo: SrcInfo? = nil, dstAccessType: String? = nil, dstInfo: DstInfo? = nil, databaseInfo: String? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateJobResponse {
+        try await self.modifyMigrateJob(ModifyMigrateJobRequest(jobId: jobId, jobName: jobName, migrateOption: migrateOption, srcAccessType: srcAccessType, srcInfo: srcInfo, dstAccessType: dstAccessType, dstInfo: dstInfo, databaseInfo: databaseInfo, srcNodeType: srcNodeType, srcInfoMulti: srcInfoMulti), logger: logger, on: eventLoop)
+    }
 }

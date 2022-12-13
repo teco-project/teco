@@ -67,4 +67,20 @@ extension Tcaplusdb {
     public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotsResponse {
         try await self.client.execute(action: "DeleteSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除表格快照
+    ///
+    /// 删除表格的快照
+    @inlinable
+    public func deleteSnapshots(clusterId: String, selectedTables: [SnapshotInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSnapshotsResponse > {
+        self.deleteSnapshots(DeleteSnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除表格快照
+    ///
+    /// 删除表格的快照
+    @inlinable
+    public func deleteSnapshots(clusterId: String, selectedTables: [SnapshotInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotsResponse {
+        try await self.deleteSnapshots(DeleteSnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    }
 }

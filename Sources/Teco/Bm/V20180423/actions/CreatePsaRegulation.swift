@@ -69,4 +69,16 @@ extension Bm {
     public func createPsaRegulation(_ input: CreatePsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePsaRegulationResponse {
         try await self.client.execute(action: "CreatePsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建预授权规则
+    @inlinable
+    public func createPsaRegulation(psaName: String, taskTypeIds: [UInt64], repairLimit: UInt64? = nil, psaDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePsaRegulationResponse > {
+        self.createPsaRegulation(CreatePsaRegulationRequest(psaName: psaName, taskTypeIds: taskTypeIds, repairLimit: repairLimit, psaDescription: psaDescription), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建预授权规则
+    @inlinable
+    public func createPsaRegulation(psaName: String, taskTypeIds: [UInt64], repairLimit: UInt64? = nil, psaDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePsaRegulationResponse {
+        try await self.createPsaRegulation(CreatePsaRegulationRequest(psaName: psaName, taskTypeIds: taskTypeIds, repairLimit: repairLimit, psaDescription: psaDescription), logger: logger, on: eventLoop)
+    }
 }

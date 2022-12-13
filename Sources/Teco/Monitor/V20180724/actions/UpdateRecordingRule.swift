@@ -83,4 +83,20 @@ extension Monitor {
     public func updateRecordingRule(_ input: UpdateRecordingRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRecordingRuleResponse {
         try await self.client.execute(action: "UpdateRecordingRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新预聚合规则
+    ///
+    /// 更新 Prometheus 的预聚合规则
+    @inlinable
+    public func updateRecordingRule(name: String, group: String, instanceId: String, ruleId: String, ruleState: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRecordingRuleResponse > {
+        self.updateRecordingRule(UpdateRecordingRuleRequest(name: name, group: group, instanceId: instanceId, ruleId: ruleId, ruleState: ruleState), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新预聚合规则
+    ///
+    /// 更新 Prometheus 的预聚合规则
+    @inlinable
+    public func updateRecordingRule(name: String, group: String, instanceId: String, ruleId: String, ruleState: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRecordingRuleResponse {
+        try await self.updateRecordingRule(UpdateRecordingRuleRequest(name: name, group: group, instanceId: instanceId, ruleId: ruleId, ruleState: ruleState), logger: logger, on: eventLoop)
+    }
 }

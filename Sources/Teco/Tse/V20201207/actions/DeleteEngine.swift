@@ -50,4 +50,16 @@ extension Tse {
     public func deleteEngine(_ input: DeleteEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEngineResponse {
         try await self.client.execute(action: "DeleteEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除引擎实例
+    @inlinable
+    public func deleteEngine(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEngineResponse > {
+        self.deleteEngine(DeleteEngineRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除引擎实例
+    @inlinable
+    public func deleteEngine(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEngineResponse {
+        try await self.deleteEngine(DeleteEngineRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

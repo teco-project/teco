@@ -103,4 +103,20 @@ extension Cpdp {
     public func applyApplicationMaterial(_ input: ApplyApplicationMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyApplicationMaterialResponse {
         try await self.client.execute(action: "ApplyApplicationMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 跨境-提交申报材料
+    ///
+    /// 跨境-提交申报材料。申报材料的主体是付款人，需要提前调用【跨境-付款人申请】接口提交付款人信息且审核通过后调用。
+    @inlinable
+    public func applyApplicationMaterial(transactionId: String, declareId: String, payerId: String, sourceCurrency: String, targetCurrency: String, tradeCode: String, originalDeclareId: String? = nil, sourceAmount: Int64? = nil, targetAmount: Int64? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyApplicationMaterialResponse > {
+        self.applyApplicationMaterial(ApplyApplicationMaterialRequest(transactionId: transactionId, declareId: declareId, payerId: payerId, sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, tradeCode: tradeCode, originalDeclareId: originalDeclareId, sourceAmount: sourceAmount, targetAmount: targetAmount, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 跨境-提交申报材料
+    ///
+    /// 跨境-提交申报材料。申报材料的主体是付款人，需要提前调用【跨境-付款人申请】接口提交付款人信息且审核通过后调用。
+    @inlinable
+    public func applyApplicationMaterial(transactionId: String, declareId: String, payerId: String, sourceCurrency: String, targetCurrency: String, tradeCode: String, originalDeclareId: String? = nil, sourceAmount: Int64? = nil, targetAmount: Int64? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyApplicationMaterialResponse {
+        try await self.applyApplicationMaterial(ApplyApplicationMaterialRequest(transactionId: transactionId, declareId: declareId, payerId: payerId, sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, tradeCode: tradeCode, originalDeclareId: originalDeclareId, sourceAmount: sourceAmount, targetAmount: targetAmount, profile: profile), logger: logger, on: eventLoop)
+    }
 }

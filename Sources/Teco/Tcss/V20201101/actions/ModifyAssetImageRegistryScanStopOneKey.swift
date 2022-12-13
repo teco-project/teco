@@ -60,4 +60,16 @@ extension Tcss {
     public func modifyAssetImageRegistryScanStopOneKey(_ input: ModifyAssetImageRegistryScanStopOneKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetImageRegistryScanStopOneKeyResponse {
         try await self.client.execute(action: "ModifyAssetImageRegistryScanStopOneKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 镜像仓库停止镜像一键扫描任务
+    @inlinable
+    public func modifyAssetImageRegistryScanStopOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAssetImageRegistryScanStopOneKeyResponse > {
+        self.modifyAssetImageRegistryScanStopOneKey(ModifyAssetImageRegistryScanStopOneKeyRequest(all: all, images: images, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库停止镜像一键扫描任务
+    @inlinable
+    public func modifyAssetImageRegistryScanStopOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetImageRegistryScanStopOneKeyResponse {
+        try await self.modifyAssetImageRegistryScanStopOneKey(ModifyAssetImageRegistryScanStopOneKeyRequest(all: all, images: images, id: id), logger: logger, on: eventLoop)
+    }
 }

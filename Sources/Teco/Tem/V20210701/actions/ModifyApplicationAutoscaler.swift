@@ -75,4 +75,16 @@ extension Tem {
     public func modifyApplicationAutoscaler(_ input: ModifyApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationAutoscalerResponse {
         try await self.client.execute(action: "ModifyApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改弹性伸缩策略组合
+    @inlinable
+    public func modifyApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscalerId: String? = nil, autoscaler: Autoscaler? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationAutoscalerResponse > {
+        self.modifyApplicationAutoscaler(ModifyApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscalerId: autoscalerId, autoscaler: autoscaler), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改弹性伸缩策略组合
+    @inlinable
+    public func modifyApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscalerId: String? = nil, autoscaler: Autoscaler? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationAutoscalerResponse {
+        try await self.modifyApplicationAutoscaler(ModifyApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscalerId: autoscalerId, autoscaler: autoscaler), logger: logger, on: eventLoop)
+    }
 }

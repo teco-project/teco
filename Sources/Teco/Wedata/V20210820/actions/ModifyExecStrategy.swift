@@ -135,4 +135,16 @@ extension Wedata {
     public func modifyExecStrategy(_ input: ModifyExecStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExecStrategyResponse {
         try await self.client.execute(action: "ModifyExecStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新规则组执行策略
+    @inlinable
+    public func modifyExecStrategy(ruleGroupId: UInt64? = nil, monitorType: UInt64? = nil, execQueue: String? = nil, executorGroupId: String? = nil, executorGroupName: String? = nil, tasks: [ProdSchedulerTask]? = nil, projectId: String? = nil, startTime: String? = nil, endTime: String? = nil, cycleType: String? = nil, cycleStep: UInt64? = nil, taskAction: String? = nil, delayTime: UInt64? = nil, databaseId: String? = nil, datasourceId: String? = nil, tableId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyExecStrategyResponse > {
+        self.modifyExecStrategy(ModifyExecStrategyRequest(ruleGroupId: ruleGroupId, monitorType: monitorType, execQueue: execQueue, executorGroupId: executorGroupId, executorGroupName: executorGroupName, tasks: tasks, projectId: projectId, startTime: startTime, endTime: endTime, cycleType: cycleType, cycleStep: cycleStep, taskAction: taskAction, delayTime: delayTime, databaseId: databaseId, datasourceId: datasourceId, tableId: tableId), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新规则组执行策略
+    @inlinable
+    public func modifyExecStrategy(ruleGroupId: UInt64? = nil, monitorType: UInt64? = nil, execQueue: String? = nil, executorGroupId: String? = nil, executorGroupName: String? = nil, tasks: [ProdSchedulerTask]? = nil, projectId: String? = nil, startTime: String? = nil, endTime: String? = nil, cycleType: String? = nil, cycleStep: UInt64? = nil, taskAction: String? = nil, delayTime: UInt64? = nil, databaseId: String? = nil, datasourceId: String? = nil, tableId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExecStrategyResponse {
+        try await self.modifyExecStrategy(ModifyExecStrategyRequest(ruleGroupId: ruleGroupId, monitorType: monitorType, execQueue: execQueue, executorGroupId: executorGroupId, executorGroupName: executorGroupName, tasks: tasks, projectId: projectId, startTime: startTime, endTime: endTime, cycleType: cycleType, cycleStep: cycleStep, taskAction: taskAction, delayTime: delayTime, databaseId: databaseId, datasourceId: datasourceId, tableId: tableId), logger: logger, on: eventLoop)
+    }
 }

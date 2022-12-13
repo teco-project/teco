@@ -65,4 +65,16 @@ extension Tbaas {
     public func queryChainMakerDemoTransaction(_ input: QueryChainMakerDemoTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerDemoTransactionResponse {
         try await self.client.execute(action: "QueryChainMakerDemoTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 通过交易ID查询长安链体验网络交易
+    @inlinable
+    public func queryChainMakerDemoTransaction(clusterId: String, chainId: String, txID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryChainMakerDemoTransactionResponse > {
+        self.queryChainMakerDemoTransaction(QueryChainMakerDemoTransactionRequest(clusterId: clusterId, chainId: chainId, txID: txID), logger: logger, on: eventLoop)
+    }
+    
+    /// 通过交易ID查询长安链体验网络交易
+    @inlinable
+    public func queryChainMakerDemoTransaction(clusterId: String, chainId: String, txID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerDemoTransactionResponse {
+        try await self.queryChainMakerDemoTransaction(QueryChainMakerDemoTransactionRequest(clusterId: clusterId, chainId: chainId, txID: txID), logger: logger, on: eventLoop)
+    }
 }

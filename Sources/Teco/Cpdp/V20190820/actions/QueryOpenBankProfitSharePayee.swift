@@ -88,4 +88,16 @@ extension Cpdp {
     public func queryOpenBankProfitSharePayee(_ input: QueryOpenBankProfitSharePayeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankProfitSharePayeeResponse {
         try await self.client.execute(action: "QueryOpenBankProfitSharePayee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-绑定分账收款方查询
+    @inlinable
+    public func queryOpenBankProfitSharePayee(channelMerchantId: String, channelSubMerchantId: String? = nil, accountId: String? = nil, accountNo: String? = nil, currency: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankProfitSharePayeeResponse > {
+        self.queryOpenBankProfitSharePayee(QueryOpenBankProfitSharePayeeRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, accountId: accountId, accountNo: accountNo, currency: currency, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-绑定分账收款方查询
+    @inlinable
+    public func queryOpenBankProfitSharePayee(channelMerchantId: String, channelSubMerchantId: String? = nil, accountId: String? = nil, accountNo: String? = nil, currency: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankProfitSharePayeeResponse {
+        try await self.queryOpenBankProfitSharePayee(QueryOpenBankProfitSharePayeeRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, accountId: accountId, accountNo: accountNo, currency: currency, environment: environment), logger: logger, on: eventLoop)
+    }
 }

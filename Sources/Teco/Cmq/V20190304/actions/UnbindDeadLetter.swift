@@ -50,4 +50,16 @@ extension Cmq {
     public func unbindDeadLetter(_ input: UnbindDeadLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDeadLetterResponse {
         try await self.client.execute(action: "UnbindDeadLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解绑死信队列
+    @inlinable
+    public func unbindDeadLetter(queueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindDeadLetterResponse > {
+        self.unbindDeadLetter(UnbindDeadLetterRequest(queueName: queueName), logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑死信队列
+    @inlinable
+    public func unbindDeadLetter(queueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDeadLetterResponse {
+        try await self.unbindDeadLetter(UnbindDeadLetterRequest(queueName: queueName), logger: logger, on: eventLoop)
+    }
 }

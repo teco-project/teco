@@ -54,4 +54,16 @@ extension Ckafka {
     public func describeRoute(_ input: DescribeRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteResponse {
         try await self.client.execute(action: "DescribeRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看路由信息
+    @inlinable
+    public func describeRoute(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRouteResponse > {
+        self.describeRoute(DescribeRouteRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看路由信息
+    @inlinable
+    public func describeRoute(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteResponse {
+        try await self.describeRoute(DescribeRouteRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

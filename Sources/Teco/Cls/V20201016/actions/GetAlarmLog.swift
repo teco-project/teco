@@ -121,4 +121,20 @@ extension Cls {
     public func getAlarmLog(_ input: GetAlarmLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAlarmLogResponse {
         try await self.client.execute(action: "GetAlarmLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取告警任务历史记录
+    ///
+    /// 本接口用于获取告警任务历史
+    @inlinable
+    public func getAlarmLog(from: Int64, to: Int64, query: String, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAlarmLogResponse > {
+        self.getAlarmLog(GetAlarmLogRequest(from: from, to: to, query: query, limit: limit, context: context, sort: sort, useNewAnalysis: useNewAnalysis), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取告警任务历史记录
+    ///
+    /// 本接口用于获取告警任务历史
+    @inlinable
+    public func getAlarmLog(from: Int64, to: Int64, query: String, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAlarmLogResponse {
+        try await self.getAlarmLog(GetAlarmLogRequest(from: from, to: to, query: query, limit: limit, context: context, sort: sort, useNewAnalysis: useNewAnalysis), logger: logger, on: eventLoop)
+    }
 }

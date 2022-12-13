@@ -60,4 +60,16 @@ extension Ccc {
     public func bindStaffSkillGroupList(_ input: BindStaffSkillGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindStaffSkillGroupListResponse {
         try await self.client.execute(action: "BindStaffSkillGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 绑定坐席所属技能组
+    @inlinable
+    public func bindStaffSkillGroupList(sdkAppId: Int64, staffEmail: String, skillGroupList: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindStaffSkillGroupListResponse > {
+        self.bindStaffSkillGroupList(BindStaffSkillGroupListRequest(sdkAppId: sdkAppId, staffEmail: staffEmail, skillGroupList: skillGroupList), logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定坐席所属技能组
+    @inlinable
+    public func bindStaffSkillGroupList(sdkAppId: Int64, staffEmail: String, skillGroupList: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindStaffSkillGroupListResponse {
+        try await self.bindStaffSkillGroupList(BindStaffSkillGroupListRequest(sdkAppId: sdkAppId, staffEmail: staffEmail, skillGroupList: skillGroupList), logger: logger, on: eventLoop)
+    }
 }

@@ -58,4 +58,20 @@ extension Cvm {
     public func describeImageSharePermission(_ input: DescribeImageSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSharePermissionResponse {
         try await self.client.execute(action: "DescribeImageSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看镜像分享信息
+    ///
+    /// 本接口（DescribeImageSharePermission）用于查询镜像分享信息。
+    @inlinable
+    public func describeImageSharePermission(imageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageSharePermissionResponse > {
+        self.describeImageSharePermission(DescribeImageSharePermissionRequest(imageId: imageId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看镜像分享信息
+    ///
+    /// 本接口（DescribeImageSharePermission）用于查询镜像分享信息。
+    @inlinable
+    public func describeImageSharePermission(imageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSharePermissionResponse {
+        try await self.describeImageSharePermission(DescribeImageSharePermissionRequest(imageId: imageId), logger: logger, on: eventLoop)
+    }
 }

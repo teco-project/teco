@@ -64,4 +64,16 @@ extension Mongodb {
     public func resetDBInstancePassword(_ input: ResetDBInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDBInstancePasswordResponse {
         try await self.client.execute(action: "ResetDBInstancePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改实例用户的密码
+    @inlinable
+    public func resetDBInstancePassword(instanceId: String, userName: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetDBInstancePasswordResponse > {
+        self.resetDBInstancePassword(ResetDBInstancePasswordRequest(instanceId: instanceId, userName: userName, password: password), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例用户的密码
+    @inlinable
+    public func resetDBInstancePassword(instanceId: String, userName: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDBInstancePasswordResponse {
+        try await self.resetDBInstancePassword(ResetDBInstancePasswordRequest(instanceId: instanceId, userName: userName, password: password), logger: logger, on: eventLoop)
+    }
 }

@@ -50,4 +50,16 @@ extension Cwp {
     public func deleteBashRules(_ input: DeleteBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBashRulesResponse {
         try await self.client.execute(action: "DeleteBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除高危命令规则
+    @inlinable
+    public func deleteBashRules(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBashRulesResponse > {
+        self.deleteBashRules(DeleteBashRulesRequest(ids: ids), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除高危命令规则
+    @inlinable
+    public func deleteBashRules(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBashRulesResponse {
+        try await self.deleteBashRules(DeleteBashRulesRequest(ids: ids), logger: logger, on: eventLoop)
+    }
 }

@@ -64,4 +64,20 @@ extension Tke {
     public func deleteCluster(_ input: DeleteClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterResponse {
         try await self.client.execute(action: "DeleteCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除集群
+    ///
+    /// 删除集群(YUNAPI V3版本)
+    @inlinable
+    public func deleteCluster(clusterId: String, instanceDeleteMode: String, resourceDeleteOptions: [ResourceDeleteOption]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterResponse > {
+        self.deleteCluster(DeleteClusterRequest(clusterId: clusterId, instanceDeleteMode: instanceDeleteMode, resourceDeleteOptions: resourceDeleteOptions), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除集群
+    ///
+    /// 删除集群(YUNAPI V3版本)
+    @inlinable
+    public func deleteCluster(clusterId: String, instanceDeleteMode: String, resourceDeleteOptions: [ResourceDeleteOption]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterResponse {
+        try await self.deleteCluster(DeleteClusterRequest(clusterId: clusterId, instanceDeleteMode: instanceDeleteMode, resourceDeleteOptions: resourceDeleteOptions), logger: logger, on: eventLoop)
+    }
 }

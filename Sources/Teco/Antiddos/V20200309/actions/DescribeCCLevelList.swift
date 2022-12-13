@@ -77,4 +77,20 @@ extension Antiddos {
     public func describeCCLevelList(_ input: DescribeCCLevelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelListResponse {
         try await self.client.execute(action: "DescribeCCLevelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取CC防护等级列表
+    ///
+    /// 获取边界防护CC防护等级列表
+    @inlinable
+    public func describeCCLevelList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCLevelListResponse > {
+        self.describeCCLevelList(DescribeCCLevelListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC防护等级列表
+    ///
+    /// 获取边界防护CC防护等级列表
+    @inlinable
+    public func describeCCLevelList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelListResponse {
+        try await self.describeCCLevelList(DescribeCCLevelListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

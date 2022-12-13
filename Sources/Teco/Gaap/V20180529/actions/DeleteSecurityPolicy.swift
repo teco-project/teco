@@ -50,4 +50,16 @@ extension Gaap {
     public func deleteSecurityPolicy(_ input: DeleteSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityPolicyResponse {
         try await self.client.execute(action: "DeleteSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除安全策略
+    @inlinable
+    public func deleteSecurityPolicy(policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityPolicyResponse > {
+        self.deleteSecurityPolicy(DeleteSecurityPolicyRequest(policyId: policyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除安全策略
+    @inlinable
+    public func deleteSecurityPolicy(policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityPolicyResponse {
+        try await self.deleteSecurityPolicy(DeleteSecurityPolicyRequest(policyId: policyId), logger: logger, on: eventLoop)
+    }
 }

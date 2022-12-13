@@ -55,4 +55,16 @@ extension Antiddos {
     public func modifyDomainUsrName(_ input: ModifyDomainUsrNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainUsrNameResponse {
         try await self.client.execute(action: "ModifyDomainUsrName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改智能解析域名名称
+    @inlinable
+    public func modifyDomainUsrName(domainName: String, domainUserName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainUsrNameResponse > {
+        self.modifyDomainUsrName(ModifyDomainUsrNameRequest(domainName: domainName, domainUserName: domainUserName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改智能解析域名名称
+    @inlinable
+    public func modifyDomainUsrName(domainName: String, domainUserName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainUsrNameResponse {
+        try await self.modifyDomainUsrName(ModifyDomainUsrNameRequest(domainName: domainName, domainUserName: domainUserName), logger: logger, on: eventLoop)
+    }
 }

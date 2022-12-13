@@ -75,4 +75,16 @@ extension Tsf {
     public func describeLaneRules(_ input: DescribeLaneRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaneRulesResponse {
         try await self.client.execute(action: "DescribeLaneRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询泳道规则列表
+    @inlinable
+    public func describeLaneRules(limit: Int64, offset: Int64, searchWord: String? = nil, ruleId: String? = nil, ruleIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLaneRulesResponse > {
+        self.describeLaneRules(DescribeLaneRulesRequest(limit: limit, offset: offset, searchWord: searchWord, ruleId: ruleId, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询泳道规则列表
+    @inlinable
+    public func describeLaneRules(limit: Int64, offset: Int64, searchWord: String? = nil, ruleId: String? = nil, ruleIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaneRulesResponse {
+        try await self.describeLaneRules(DescribeLaneRulesRequest(limit: limit, offset: offset, searchWord: searchWord, ruleId: ruleId, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
+    }
 }

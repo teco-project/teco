@@ -62,4 +62,20 @@ extension Cwp {
     public func exportBruteAttacks(_ input: ExportBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBruteAttacksResponse {
         try await self.client.execute(action: "ExportBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导出密码破解记录
+    ///
+    /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。
+    @inlinable
+    public func exportBruteAttacks(filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBruteAttacksResponse > {
+        self.exportBruteAttacks(ExportBruteAttacksRequest(filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 导出密码破解记录
+    ///
+    /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。
+    @inlinable
+    public func exportBruteAttacks(filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBruteAttacksResponse {
+        try await self.exportBruteAttacks(ExportBruteAttacksRequest(filters: filters), logger: logger, on: eventLoop)
+    }
 }

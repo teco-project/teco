@@ -79,4 +79,20 @@ extension Eiam {
     public func modifyApplication(_ input: ModifyApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationResponse {
         try await self.client.execute(action: "ModifyApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新应用
+    ///
+    /// 更新一个应用的信息
+    @inlinable
+    public func modifyApplication(applicationId: String, secureLevel: String? = nil, displayName: String? = nil, appStatus: Bool? = nil, iconUrl: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationResponse > {
+        self.modifyApplication(ModifyApplicationRequest(applicationId: applicationId, secureLevel: secureLevel, displayName: displayName, appStatus: appStatus, iconUrl: iconUrl, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新应用
+    ///
+    /// 更新一个应用的信息
+    @inlinable
+    public func modifyApplication(applicationId: String, secureLevel: String? = nil, displayName: String? = nil, appStatus: Bool? = nil, iconUrl: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationResponse {
+        try await self.modifyApplication(ModifyApplicationRequest(applicationId: applicationId, secureLevel: secureLevel, displayName: displayName, appStatus: appStatus, iconUrl: iconUrl, description: description), logger: logger, on: eventLoop)
+    }
 }

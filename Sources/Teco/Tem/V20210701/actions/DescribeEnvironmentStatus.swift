@@ -59,4 +59,16 @@ extension Tem {
     public func describeEnvironmentStatus(_ input: DescribeEnvironmentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentStatusResponse {
         try await self.client.execute(action: "DescribeEnvironmentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取环境状态
+    @inlinable
+    public func describeEnvironmentStatus(environmentIds: [String], sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentStatusResponse > {
+        self.describeEnvironmentStatus(DescribeEnvironmentStatusRequest(environmentIds: environmentIds, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取环境状态
+    @inlinable
+    public func describeEnvironmentStatus(environmentIds: [String], sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentStatusResponse {
+        try await self.describeEnvironmentStatus(DescribeEnvironmentStatusRequest(environmentIds: environmentIds, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    }
 }

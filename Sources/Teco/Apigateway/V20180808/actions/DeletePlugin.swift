@@ -58,4 +58,20 @@ extension Apigateway {
     public func deletePlugin(_ input: DeletePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePluginResponse {
         try await self.client.execute(action: "DeletePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除插件
+    ///
+    /// 删除API网关插件
+    @inlinable
+    public func deletePlugin(pluginId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePluginResponse > {
+        self.deletePlugin(DeletePluginRequest(pluginId: pluginId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除插件
+    ///
+    /// 删除API网关插件
+    @inlinable
+    public func deletePlugin(pluginId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePluginResponse {
+        try await self.deletePlugin(DeletePluginRequest(pluginId: pluginId), logger: logger, on: eventLoop)
+    }
 }

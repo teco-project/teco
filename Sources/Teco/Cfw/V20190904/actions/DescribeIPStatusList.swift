@@ -62,4 +62,16 @@ extension Cfw {
     public func describeIPStatusList(_ input: DescribeIPStatusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStatusListResponse {
         try await self.client.execute(action: "DescribeIPStatusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// ip防护状态查询
+    @inlinable
+    public func describeIPStatusList(ipList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIPStatusListResponse > {
+        self.describeIPStatusList(DescribeIPStatusListRequest(ipList: ipList), logger: logger, on: eventLoop)
+    }
+    
+    /// ip防护状态查询
+    @inlinable
+    public func describeIPStatusList(ipList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStatusListResponse {
+        try await self.describeIPStatusList(DescribeIPStatusListRequest(ipList: ipList), logger: logger, on: eventLoop)
+    }
 }

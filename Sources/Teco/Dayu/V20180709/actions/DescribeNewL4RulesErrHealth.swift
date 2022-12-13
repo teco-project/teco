@@ -67,4 +67,20 @@ extension Dayu {
     public func describeNewL4RulesErrHealth(_ input: DescribeNewL4RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL4RulesErrHealthResponse {
         try await self.client.execute(action: "DescribeNewL4RulesErrHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取四层转发规则健康检查异常结果
+    ///
+    /// 获取L4转发规则健康检查异常结果
+    @inlinable
+    public func describeNewL4RulesErrHealth(business: String, ruleIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewL4RulesErrHealthResponse > {
+        self.describeNewL4RulesErrHealth(DescribeNewL4RulesErrHealthRequest(business: business, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取四层转发规则健康检查异常结果
+    ///
+    /// 获取L4转发规则健康检查异常结果
+    @inlinable
+    public func describeNewL4RulesErrHealth(business: String, ruleIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL4RulesErrHealthResponse {
+        try await self.describeNewL4RulesErrHealth(DescribeNewL4RulesErrHealthRequest(business: business, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
+    }
 }

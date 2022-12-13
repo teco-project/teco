@@ -79,4 +79,20 @@ extension Asr {
     public func updateAsrVocab(_ input: UpdateAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAsrVocabResponse {
         try await self.client.execute(action: "UpdateAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新热词表
+    ///
+    /// 用户通过本接口进行对应的词表信息更新。
+    @inlinable
+    public func updateAsrVocab(vocabId: String, name: String? = nil, wordWeights: [HotWord]? = nil, wordWeightStr: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAsrVocabResponse > {
+        self.updateAsrVocab(UpdateAsrVocabRequest(vocabId: vocabId, name: name, wordWeights: wordWeights, wordWeightStr: wordWeightStr, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新热词表
+    ///
+    /// 用户通过本接口进行对应的词表信息更新。
+    @inlinable
+    public func updateAsrVocab(vocabId: String, name: String? = nil, wordWeights: [HotWord]? = nil, wordWeightStr: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAsrVocabResponse {
+        try await self.updateAsrVocab(UpdateAsrVocabRequest(vocabId: vocabId, name: name, wordWeights: wordWeights, wordWeightStr: wordWeightStr, description: description), logger: logger, on: eventLoop)
+    }
 }

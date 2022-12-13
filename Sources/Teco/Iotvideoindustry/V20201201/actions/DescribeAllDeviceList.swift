@@ -86,4 +86,22 @@ extension Iotvideoindustry {
     public func describeAllDeviceList(_ input: DescribeAllDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllDeviceListResponse {
         try await self.client.execute(action: "DescribeAllDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备列表（旧）
+    ///
+    /// 本接口(DescribeAllDeviceList) 用于获取设备列表。
+    /// 请使用DescribeDevicesList接口
+    @inlinable
+    public func describeAllDeviceList(offset: Int64? = nil, limit: Int64? = nil, nickName: String? = nil, deviceIds: [String]? = nil, deviceTypes: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllDeviceListResponse > {
+        self.describeAllDeviceList(DescribeAllDeviceListRequest(offset: offset, limit: limit, nickName: nickName, deviceIds: deviceIds, deviceTypes: deviceTypes), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备列表（旧）
+    ///
+    /// 本接口(DescribeAllDeviceList) 用于获取设备列表。
+    /// 请使用DescribeDevicesList接口
+    @inlinable
+    public func describeAllDeviceList(offset: Int64? = nil, limit: Int64? = nil, nickName: String? = nil, deviceIds: [String]? = nil, deviceTypes: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllDeviceListResponse {
+        try await self.describeAllDeviceList(DescribeAllDeviceListRequest(offset: offset, limit: limit, nickName: nickName, deviceIds: deviceIds, deviceTypes: deviceTypes), logger: logger, on: eventLoop)
+    }
 }

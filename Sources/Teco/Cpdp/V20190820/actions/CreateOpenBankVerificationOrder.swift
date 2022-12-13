@@ -111,4 +111,20 @@ extension Cpdp {
     public func createOpenBankVerificationOrder(_ input: CreateOpenBankVerificationOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankVerificationOrderResponse {
         try await self.client.execute(action: "CreateOpenBankVerificationOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-创建核销申请
+    ///
+    /// 云企付-创建核销申请，适用于针对支付订单维度的确认收货，解冻等业务场景。目前支持的渠道有TENPAY下的EBANK_PAYMENT付款方式创建支付订单时，选择担保支付下单的订单进行解冻。
+    @inlinable
+    public func createOpenBankVerificationOrder(channelMerchantId: String, outVerificationId: String, verificationAmount: Int64, outOrderId: String? = nil, channelOrderId: String? = nil, notifyUrl: String? = nil, remark: String? = nil, externalVerificationData: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankVerificationOrderResponse > {
+        self.createOpenBankVerificationOrder(CreateOpenBankVerificationOrderRequest(channelMerchantId: channelMerchantId, outVerificationId: outVerificationId, verificationAmount: verificationAmount, outOrderId: outOrderId, channelOrderId: channelOrderId, notifyUrl: notifyUrl, remark: remark, externalVerificationData: externalVerificationData, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-创建核销申请
+    ///
+    /// 云企付-创建核销申请，适用于针对支付订单维度的确认收货，解冻等业务场景。目前支持的渠道有TENPAY下的EBANK_PAYMENT付款方式创建支付订单时，选择担保支付下单的订单进行解冻。
+    @inlinable
+    public func createOpenBankVerificationOrder(channelMerchantId: String, outVerificationId: String, verificationAmount: Int64, outOrderId: String? = nil, channelOrderId: String? = nil, notifyUrl: String? = nil, remark: String? = nil, externalVerificationData: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankVerificationOrderResponse {
+        try await self.createOpenBankVerificationOrder(CreateOpenBankVerificationOrderRequest(channelMerchantId: channelMerchantId, outVerificationId: outVerificationId, verificationAmount: verificationAmount, outOrderId: outOrderId, channelOrderId: channelOrderId, notifyUrl: notifyUrl, remark: remark, externalVerificationData: externalVerificationData, environment: environment), logger: logger, on: eventLoop)
+    }
 }

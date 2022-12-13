@@ -69,4 +69,20 @@ extension Cwp {
     public func modifyOrderAttribute(_ input: ModifyOrderAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrderAttributeResponse {
         try await self.client.execute(action: "ModifyOrderAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 编辑订单属性
+    ///
+    /// 对订单属性编辑
+    @inlinable
+    public func modifyOrderAttribute(licenseType: UInt64, resourceId: String, attrName: String, attrValue: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyOrderAttributeResponse > {
+        self.modifyOrderAttribute(ModifyOrderAttributeRequest(licenseType: licenseType, resourceId: resourceId, attrName: attrName, attrValue: attrValue), logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑订单属性
+    ///
+    /// 对订单属性编辑
+    @inlinable
+    public func modifyOrderAttribute(licenseType: UInt64, resourceId: String, attrName: String, attrValue: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrderAttributeResponse {
+        try await self.modifyOrderAttribute(ModifyOrderAttributeRequest(licenseType: licenseType, resourceId: resourceId, attrName: attrName, attrValue: attrValue), logger: logger, on: eventLoop)
+    }
 }

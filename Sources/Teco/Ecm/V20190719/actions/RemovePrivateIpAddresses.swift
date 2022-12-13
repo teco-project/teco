@@ -66,4 +66,22 @@ extension Ecm {
     public func removePrivateIpAddresses(_ input: RemovePrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemovePrivateIpAddressesResponse {
         try await self.client.execute(action: "RemovePrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 弹性网卡退还内网 IP
+    ///
+    /// 弹性网卡退还内网 IP。
+    /// 退还弹性网卡上的辅助内网IP，接口自动解关联弹性公网 IP。不能退还弹性网卡的主内网IP。
+    @inlinable
+    public func removePrivateIpAddresses(ecmRegion: String, networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemovePrivateIpAddressesResponse > {
+        self.removePrivateIpAddresses(RemovePrivateIpAddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses), logger: logger, on: eventLoop)
+    }
+    
+    /// 弹性网卡退还内网 IP
+    ///
+    /// 弹性网卡退还内网 IP。
+    /// 退还弹性网卡上的辅助内网IP，接口自动解关联弹性公网 IP。不能退还弹性网卡的主内网IP。
+    @inlinable
+    public func removePrivateIpAddresses(ecmRegion: String, networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemovePrivateIpAddressesResponse {
+        try await self.removePrivateIpAddresses(RemovePrivateIpAddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses), logger: logger, on: eventLoop)
+    }
 }

@@ -89,4 +89,20 @@ extension Wedata {
     public func createCustomFunction(_ input: CreateCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomFunctionResponse {
         try await self.client.execute(action: "CreateCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建用户自定义函数
+    ///
+    ///  创建用户自定义函数
+    @inlinable
+    public func createCustomFunction(type: String, kind: String, name: String, clusterIdentifier: String, dbName: String? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomFunctionResponse > {
+        self.createCustomFunction(CreateCustomFunctionRequest(type: type, kind: kind, name: name, clusterIdentifier: clusterIdentifier, dbName: dbName, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建用户自定义函数
+    ///
+    ///  创建用户自定义函数
+    @inlinable
+    public func createCustomFunction(type: String, kind: String, name: String, clusterIdentifier: String, dbName: String? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomFunctionResponse {
+        try await self.createCustomFunction(CreateCustomFunctionRequest(type: type, kind: kind, name: name, clusterIdentifier: clusterIdentifier, dbName: dbName, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

@@ -84,4 +84,20 @@ extension Iotvideoindustry {
     public func describeSubGroups(_ input: DescribeSubGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubGroupsResponse {
         try await self.client.execute(action: "DescribeSubGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询子分组列表
+    ///
+    /// 本接口(DescribeSubGroups)用于查询分组下的子分组列表。
+    @inlinable
+    public func describeSubGroups(groupId: String? = nil, groupName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, onlyGroup: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubGroupsResponse > {
+        self.describeSubGroups(DescribeSubGroupsRequest(groupId: groupId, groupName: groupName, offset: offset, limit: limit, onlyGroup: onlyGroup), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询子分组列表
+    ///
+    /// 本接口(DescribeSubGroups)用于查询分组下的子分组列表。
+    @inlinable
+    public func describeSubGroups(groupId: String? = nil, groupName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, onlyGroup: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubGroupsResponse {
+        try await self.describeSubGroups(DescribeSubGroupsRequest(groupId: groupId, groupName: groupName, offset: offset, limit: limit, onlyGroup: onlyGroup), logger: logger, on: eventLoop)
+    }
 }

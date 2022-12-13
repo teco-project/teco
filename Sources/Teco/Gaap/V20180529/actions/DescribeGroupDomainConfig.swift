@@ -70,4 +70,20 @@ extension Gaap {
     public func describeGroupDomainConfig(_ input: DescribeGroupDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupDomainConfigResponse {
         try await self.client.execute(action: "DescribeGroupDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取通道组域名解析配置详情（废弃）
+    ///
+    /// 本接口（DescribeGroupDomainConfig）用于获取通道组域名解析配置详情。
+    @inlinable
+    public func describeGroupDomainConfig(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupDomainConfigResponse > {
+        self.describeGroupDomainConfig(DescribeGroupDomainConfigRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取通道组域名解析配置详情（废弃）
+    ///
+    /// 本接口（DescribeGroupDomainConfig）用于获取通道组域名解析配置详情。
+    @inlinable
+    public func describeGroupDomainConfig(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupDomainConfigResponse {
+        try await self.describeGroupDomainConfig(DescribeGroupDomainConfigRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

@@ -172,4 +172,16 @@ extension Dlc {
     public func describeDMSTable(_ input: DescribeDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSTableResponse {
         try await self.client.execute(action: "DescribeDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// DMS元数据获取表
+    @inlinable
+    public func describeDMSTable(dbName: String? = nil, schemaName: String? = nil, name: String? = nil, catalog: String? = nil, keyword: String? = nil, pattern: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDMSTableResponse > {
+        self.describeDMSTable(DescribeDMSTableRequest(dbName: dbName, schemaName: schemaName, name: name, catalog: catalog, keyword: keyword, pattern: pattern, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// DMS元数据获取表
+    @inlinable
+    public func describeDMSTable(dbName: String? = nil, schemaName: String? = nil, name: String? = nil, catalog: String? = nil, keyword: String? = nil, pattern: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSTableResponse {
+        try await self.describeDMSTable(DescribeDMSTableRequest(dbName: dbName, schemaName: schemaName, name: name, catalog: catalog, keyword: keyword, pattern: pattern, type: type), logger: logger, on: eventLoop)
+    }
 }

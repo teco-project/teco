@@ -77,4 +77,20 @@ extension Cam {
     public func listAttachedGroupPolicies(_ input: ListAttachedGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedGroupPoliciesResponse {
         try await self.client.execute(action: "ListAttachedGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询用户组关联的策略列表
+    ///
+    /// 本接口（ListAttachedGroupPolicies）可用于查询用户组关联的策略列表。
+    @inlinable
+    public func listAttachedGroupPolicies(targetGroupId: UInt64, page: UInt64? = nil, rp: UInt64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAttachedGroupPoliciesResponse > {
+        self.listAttachedGroupPolicies(ListAttachedGroupPoliciesRequest(targetGroupId: targetGroupId, page: page, rp: rp, keyword: keyword), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户组关联的策略列表
+    ///
+    /// 本接口（ListAttachedGroupPolicies）可用于查询用户组关联的策略列表。
+    @inlinable
+    public func listAttachedGroupPolicies(targetGroupId: UInt64, page: UInt64? = nil, rp: UInt64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedGroupPoliciesResponse {
+        try await self.listAttachedGroupPolicies(ListAttachedGroupPoliciesRequest(targetGroupId: targetGroupId, page: page, rp: rp, keyword: keyword), logger: logger, on: eventLoop)
+    }
 }

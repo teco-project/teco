@@ -74,4 +74,26 @@ extension Vod {
     public func createClass(_ input: CreateClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClassResponse {
         try await self.client.execute(action: "CreateClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建分类
+    ///
+    /// * 用于对媒体进行分类管理；
+    /// * 该接口不影响既有媒体的分类，如需修改媒体分类，请调用[修改媒体文件属性](/document/product/266/31762)接口。
+    /// * 分类层次不可超过 4 层。
+    /// * 每个分类的子类数量不可超过 500 个。
+    @inlinable
+    public func createClass(parentId: Int64, className: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClassResponse > {
+        self.createClass(CreateClassRequest(parentId: parentId, className: className, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建分类
+    ///
+    /// * 用于对媒体进行分类管理；
+    /// * 该接口不影响既有媒体的分类，如需修改媒体分类，请调用[修改媒体文件属性](/document/product/266/31762)接口。
+    /// * 分类层次不可超过 4 层。
+    /// * 每个分类的子类数量不可超过 500 个。
+    @inlinable
+    public func createClass(parentId: Int64, className: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClassResponse {
+        try await self.createClass(CreateClassRequest(parentId: parentId, className: className, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

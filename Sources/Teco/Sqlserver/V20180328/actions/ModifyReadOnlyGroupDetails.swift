@@ -94,4 +94,20 @@ extension Sqlserver {
     public func modifyReadOnlyGroupDetails(_ input: ModifyReadOnlyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReadOnlyGroupDetailsResponse {
         try await self.client.execute(action: "ModifyReadOnlyGroupDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改只读组详情
+    ///
+    /// 本接口（ModifyReadOnlyGroupDetails）用于修改只读组详情。
+    @inlinable
+    public func modifyReadOnlyGroupDetails(instanceId: String, readOnlyGroupId: String, readOnlyGroupName: String? = nil, isOfflineDelay: Int64? = nil, readOnlyMaxDelayTime: Int64? = nil, minReadOnlyInGroup: Int64? = nil, weightPairs: [ReadOnlyInstanceWeightPair]? = nil, autoWeight: Int64? = nil, balanceWeight: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyReadOnlyGroupDetailsResponse > {
+        self.modifyReadOnlyGroupDetails(ModifyReadOnlyGroupDetailsRequest(instanceId: instanceId, readOnlyGroupId: readOnlyGroupId, readOnlyGroupName: readOnlyGroupName, isOfflineDelay: isOfflineDelay, readOnlyMaxDelayTime: readOnlyMaxDelayTime, minReadOnlyInGroup: minReadOnlyInGroup, weightPairs: weightPairs, autoWeight: autoWeight, balanceWeight: balanceWeight), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改只读组详情
+    ///
+    /// 本接口（ModifyReadOnlyGroupDetails）用于修改只读组详情。
+    @inlinable
+    public func modifyReadOnlyGroupDetails(instanceId: String, readOnlyGroupId: String, readOnlyGroupName: String? = nil, isOfflineDelay: Int64? = nil, readOnlyMaxDelayTime: Int64? = nil, minReadOnlyInGroup: Int64? = nil, weightPairs: [ReadOnlyInstanceWeightPair]? = nil, autoWeight: Int64? = nil, balanceWeight: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReadOnlyGroupDetailsResponse {
+        try await self.modifyReadOnlyGroupDetails(ModifyReadOnlyGroupDetailsRequest(instanceId: instanceId, readOnlyGroupId: readOnlyGroupId, readOnlyGroupName: readOnlyGroupName, isOfflineDelay: isOfflineDelay, readOnlyMaxDelayTime: readOnlyMaxDelayTime, minReadOnlyInGroup: minReadOnlyInGroup, weightPairs: weightPairs, autoWeight: autoWeight, balanceWeight: balanceWeight), logger: logger, on: eventLoop)
+    }
 }

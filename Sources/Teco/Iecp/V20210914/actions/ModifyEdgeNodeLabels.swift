@@ -60,4 +60,16 @@ extension Iecp {
     public func modifyEdgeNodeLabels(_ input: ModifyEdgeNodeLabelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeNodeLabelsResponse {
         try await self.client.execute(action: "ModifyEdgeNodeLabels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 编辑边缘节点标签
+    @inlinable
+    public func modifyEdgeNodeLabels(edgeUnitId: UInt64, nodeId: UInt64, labels: [KeyValueObj], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeNodeLabelsResponse > {
+        self.modifyEdgeNodeLabels(ModifyEdgeNodeLabelsRequest(edgeUnitId: edgeUnitId, nodeId: nodeId, labels: labels), logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑边缘节点标签
+    @inlinable
+    public func modifyEdgeNodeLabels(edgeUnitId: UInt64, nodeId: UInt64, labels: [KeyValueObj], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeNodeLabelsResponse {
+        try await self.modifyEdgeNodeLabels(ModifyEdgeNodeLabelsRequest(edgeUnitId: edgeUnitId, nodeId: nodeId, labels: labels), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Dlc {
     public func attachWorkGroupPolicy(_ input: AttachWorkGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachWorkGroupPolicyResponse {
         try await self.client.execute(action: "AttachWorkGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 绑定鉴权策略到工作组
+    @inlinable
+    public func attachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachWorkGroupPolicyResponse > {
+        self.attachWorkGroupPolicy(AttachWorkGroupPolicyRequest(workGroupId: workGroupId, policySet: policySet), logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定鉴权策略到工作组
+    @inlinable
+    public func attachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachWorkGroupPolicyResponse {
+        try await self.attachWorkGroupPolicy(AttachWorkGroupPolicyRequest(workGroupId: workGroupId, policySet: policySet), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,20 @@ extension Domain {
     public func modifyDomainOwnerBatch(_ input: ModifyDomainOwnerBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainOwnerBatchResponse {
         try await self.client.execute(action: "ModifyDomainOwnerBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量账号间转移
+    ///
+    /// 本接口 ( ModifyDomainOwnerBatch) 用于域名批量账号间转移 。
+    @inlinable
+    public func modifyDomainOwnerBatch(domains: [String], newOwnerUin: String, transferDns: Bool? = nil, newOwnerAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainOwnerBatchResponse > {
+        self.modifyDomainOwnerBatch(ModifyDomainOwnerBatchRequest(domains: domains, newOwnerUin: newOwnerUin, transferDns: transferDns, newOwnerAppId: newOwnerAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量账号间转移
+    ///
+    /// 本接口 ( ModifyDomainOwnerBatch) 用于域名批量账号间转移 。
+    @inlinable
+    public func modifyDomainOwnerBatch(domains: [String], newOwnerUin: String, transferDns: Bool? = nil, newOwnerAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainOwnerBatchResponse {
+        try await self.modifyDomainOwnerBatch(ModifyDomainOwnerBatchRequest(domains: domains, newOwnerUin: newOwnerUin, transferDns: transferDns, newOwnerAppId: newOwnerAppId), logger: logger, on: eventLoop)
+    }
 }

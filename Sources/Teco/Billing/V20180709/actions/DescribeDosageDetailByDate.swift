@@ -108,4 +108,16 @@ extension Billing {
     public func describeDosageDetailByDate(_ input: DescribeDosageDetailByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDosageDetailByDateResponse {
         try await self.client.execute(action: "DescribeDosageDetailByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 按日期获取产品用量明细
+    @inlinable
+    public func describeDosageDetailByDate(startDate: String, endDate: String, productCode: String, domain: String, instanceID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDosageDetailByDateResponse > {
+        self.describeDosageDetailByDate(DescribeDosageDetailByDateRequest(startDate: startDate, endDate: endDate, productCode: productCode, domain: domain, instanceID: instanceID), logger: logger, on: eventLoop)
+    }
+    
+    /// 按日期获取产品用量明细
+    @inlinable
+    public func describeDosageDetailByDate(startDate: String, endDate: String, productCode: String, domain: String, instanceID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDosageDetailByDateResponse {
+        try await self.describeDosageDetailByDate(DescribeDosageDetailByDateRequest(startDate: startDate, endDate: endDate, productCode: productCode, domain: domain, instanceID: instanceID), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,16 @@ extension Ecm {
     public func detachNetworkInterface(_ input: DetachNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachNetworkInterfaceResponse {
         try await self.client.execute(action: "DetachNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 弹性网卡解绑云主机
+    @inlinable
+    public func detachNetworkInterface(networkInterfaceId: String, instanceId: String, ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachNetworkInterfaceResponse > {
+        self.detachNetworkInterface(DetachNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, instanceId: instanceId, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    }
+    
+    /// 弹性网卡解绑云主机
+    @inlinable
+    public func detachNetworkInterface(networkInterfaceId: String, instanceId: String, ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachNetworkInterfaceResponse {
+        try await self.detachNetworkInterface(DetachNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, instanceId: instanceId, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    }
 }

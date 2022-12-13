@@ -92,4 +92,22 @@ extension Btoe {
     public func createHashDepositNoSeal(_ input: CreateHashDepositNoSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositNoSealResponse {
         try await self.client.execute(action: "CreateHashDepositNoSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 哈希上链存证(有证书，无签章)
+    ///
+    /// 功能迭代，已上线更高版本的接口2021-05-14
+    /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，并生成无电子签章的区块链存证电子凭证。
+    @inlinable
+    public func createHashDepositNoSeal(evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHashDepositNoSealResponse > {
+        self.createHashDepositNoSeal(CreateHashDepositNoSealRequest(evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceInfo: evidenceInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 哈希上链存证(有证书，无签章)
+    ///
+    /// 功能迭代，已上线更高版本的接口2021-05-14
+    /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，并生成无电子签章的区块链存证电子凭证。
+    @inlinable
+    public func createHashDepositNoSeal(evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositNoSealResponse {
+        try await self.createHashDepositNoSeal(CreateHashDepositNoSealRequest(evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceInfo: evidenceInfo), logger: logger, on: eventLoop)
+    }
 }

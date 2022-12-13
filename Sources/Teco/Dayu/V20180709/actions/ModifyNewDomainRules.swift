@@ -64,4 +64,16 @@ extension Dayu {
     public func modifyNewDomainRules(_ input: ModifyNewDomainRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNewDomainRulesResponse {
         try await self.client.execute(action: "ModifyNewDomainRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改7层转发规则
+    @inlinable
+    public func modifyNewDomainRules(business: String, id: String, rule: NewL7RuleEntry, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNewDomainRulesResponse > {
+        self.modifyNewDomainRules(ModifyNewDomainRulesRequest(business: business, id: id, rule: rule), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改7层转发规则
+    @inlinable
+    public func modifyNewDomainRules(business: String, id: String, rule: NewL7RuleEntry, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNewDomainRulesResponse {
+        try await self.modifyNewDomainRules(ModifyNewDomainRulesRequest(business: business, id: id, rule: rule), logger: logger, on: eventLoop)
+    }
 }

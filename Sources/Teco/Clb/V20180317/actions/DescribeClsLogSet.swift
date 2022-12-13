@@ -54,4 +54,20 @@ extension Clb {
     public func describeClsLogSet(_ input: DescribeClsLogSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClsLogSetResponse {
         try await self.client.execute(action: "DescribeClsLogSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取用户的CLB专有日志集
+    ///
+    /// 获取用户的CLB专有日志集。
+    @inlinable
+    public func describeClsLogSet(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClsLogSetResponse > {
+        self.describeClsLogSet(DescribeClsLogSetRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户的CLB专有日志集
+    ///
+    /// 获取用户的CLB专有日志集。
+    @inlinable
+    public func describeClsLogSet(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClsLogSetResponse {
+        try await self.describeClsLogSet(DescribeClsLogSetRequest(), logger: logger, on: eventLoop)
+    }
 }

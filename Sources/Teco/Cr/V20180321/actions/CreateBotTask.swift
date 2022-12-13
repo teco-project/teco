@@ -139,4 +139,16 @@ extension Cr {
     public func createBotTask(_ input: CreateBotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBotTaskResponse {
         try await self.client.execute(action: "CreateBotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建机器人任务
+    @inlinable
+    public func createBotTask(module: String, operation: String, botName: String, flowId: String, banCall: String, phoneCollection: String, callTimeCollection: CallTimeDict? = nil, startTimeBan: String? = nil, endTimeBan: String? = nil, codeType: String? = nil, codeCollection: String? = nil, callCount: Int64? = nil, callInterval: Int64? = nil, smsSignId: String? = nil, smsTemplateId: String? = nil, callType: String? = nil, callStartDate: String? = nil, callEndDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBotTaskResponse > {
+        self.createBotTask(CreateBotTaskRequest(module: module, operation: operation, botName: botName, flowId: flowId, banCall: banCall, phoneCollection: phoneCollection, callTimeCollection: callTimeCollection, startTimeBan: startTimeBan, endTimeBan: endTimeBan, codeType: codeType, codeCollection: codeCollection, callCount: callCount, callInterval: callInterval, smsSignId: smsSignId, smsTemplateId: smsTemplateId, callType: callType, callStartDate: callStartDate, callEndDate: callEndDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建机器人任务
+    @inlinable
+    public func createBotTask(module: String, operation: String, botName: String, flowId: String, banCall: String, phoneCollection: String, callTimeCollection: CallTimeDict? = nil, startTimeBan: String? = nil, endTimeBan: String? = nil, codeType: String? = nil, codeCollection: String? = nil, callCount: Int64? = nil, callInterval: Int64? = nil, smsSignId: String? = nil, smsTemplateId: String? = nil, callType: String? = nil, callStartDate: String? = nil, callEndDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBotTaskResponse {
+        try await self.createBotTask(CreateBotTaskRequest(module: module, operation: operation, botName: botName, flowId: flowId, banCall: banCall, phoneCollection: phoneCollection, callTimeCollection: callTimeCollection, startTimeBan: startTimeBan, endTimeBan: endTimeBan, codeType: codeType, codeCollection: codeCollection, callCount: callCount, callInterval: callInterval, smsSignId: smsSignId, smsTemplateId: smsTemplateId, callType: callType, callStartDate: callStartDate, callEndDate: callEndDate), logger: logger, on: eventLoop)
+    }
 }

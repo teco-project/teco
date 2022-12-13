@@ -54,4 +54,20 @@ extension Lighthouse {
     public func terminateDisks(_ input: TerminateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDisksResponse {
         try await self.client.execute(action: "TerminateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 销毁云硬盘
+    ///
+    /// 本接口（TerminateDisks）用于销毁一个或多个云硬盘。
+    @inlinable
+    public func terminateDisks(diskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateDisksResponse > {
+        self.terminateDisks(TerminateDisksRequest(diskIds: diskIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁云硬盘
+    ///
+    /// 本接口（TerminateDisks）用于销毁一个或多个云硬盘。
+    @inlinable
+    public func terminateDisks(diskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDisksResponse {
+        try await self.terminateDisks(TerminateDisksRequest(diskIds: diskIds), logger: logger, on: eventLoop)
+    }
 }

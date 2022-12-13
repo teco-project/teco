@@ -108,4 +108,20 @@ extension Tcaplusdb {
     public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
         try await self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建集群
+    ///
+    /// 本接口用于创建TcaplusDB集群
+    @inlinable
+    public func createCluster(idlType: String, clusterName: String, vpcId: String, subnetId: String, password: String, resourceTags: [TagInfoUnit]? = nil, ipv6Enable: Int64? = nil, serverList: [MachineInfo]? = nil, proxyList: [MachineInfo]? = nil, clusterType: Int64? = nil, authType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterResponse > {
+        self.createCluster(CreateClusterRequest(idlType: idlType, clusterName: clusterName, vpcId: vpcId, subnetId: subnetId, password: password, resourceTags: resourceTags, ipv6Enable: ipv6Enable, serverList: serverList, proxyList: proxyList, clusterType: clusterType, authType: authType), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群
+    ///
+    /// 本接口用于创建TcaplusDB集群
+    @inlinable
+    public func createCluster(idlType: String, clusterName: String, vpcId: String, subnetId: String, password: String, resourceTags: [TagInfoUnit]? = nil, ipv6Enable: Int64? = nil, serverList: [MachineInfo]? = nil, proxyList: [MachineInfo]? = nil, clusterType: Int64? = nil, authType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
+        try await self.createCluster(CreateClusterRequest(idlType: idlType, clusterName: clusterName, vpcId: vpcId, subnetId: subnetId, password: password, resourceTags: resourceTags, ipv6Enable: ipv6Enable, serverList: serverList, proxyList: proxyList, clusterType: clusterType, authType: authType), logger: logger, on: eventLoop)
+    }
 }

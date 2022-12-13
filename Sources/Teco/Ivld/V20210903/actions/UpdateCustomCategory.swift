@@ -72,4 +72,24 @@ extension Ivld {
     public func updateCustomCategory(_ input: UpdateCustomCategoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCustomCategoryResponse {
         try await self.client.execute(action: "UpdateCustomCategory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新自定义人物分类
+    ///
+    /// 更新自定义人物分类
+    /// 当L2Category为空时，代表更新CategoryId对应的一级自定义人物类型以及所有二级自定义人物类型所从属的一级自定义人物类型；
+    /// 当L2Category非空时，仅更新CategoryId对应的二级自定义人物类型
+    @inlinable
+    public func updateCustomCategory(categoryId: String, l1Category: String, l2Category: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCustomCategoryResponse > {
+        self.updateCustomCategory(UpdateCustomCategoryRequest(categoryId: categoryId, l1Category: l1Category, l2Category: l2Category), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新自定义人物分类
+    ///
+    /// 更新自定义人物分类
+    /// 当L2Category为空时，代表更新CategoryId对应的一级自定义人物类型以及所有二级自定义人物类型所从属的一级自定义人物类型；
+    /// 当L2Category非空时，仅更新CategoryId对应的二级自定义人物类型
+    @inlinable
+    public func updateCustomCategory(categoryId: String, l1Category: String, l2Category: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCustomCategoryResponse {
+        try await self.updateCustomCategory(UpdateCustomCategoryRequest(categoryId: categoryId, l1Category: l1Category, l2Category: l2Category), logger: logger, on: eventLoop)
+    }
 }

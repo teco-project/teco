@@ -85,4 +85,16 @@ extension Iotvideoindustry {
     public func describeDeviceEvent(_ input: DescribeDeviceEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceEventResponse {
         try await self.client.execute(action: "DescribeDeviceEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备事件
+    @inlinable
+    public func describeDeviceEvent(startTime: Int64, endTime: Int64, deviceId: String? = nil, eventTypes: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceEventResponse > {
+        self.describeDeviceEvent(DescribeDeviceEventRequest(startTime: startTime, endTime: endTime, deviceId: deviceId, eventTypes: eventTypes, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备事件
+    @inlinable
+    public func describeDeviceEvent(startTime: Int64, endTime: Int64, deviceId: String? = nil, eventTypes: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceEventResponse {
+        try await self.describeDeviceEvent(DescribeDeviceEventRequest(startTime: startTime, endTime: endTime, deviceId: deviceId, eventTypes: eventTypes, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

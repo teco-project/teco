@@ -65,4 +65,16 @@ extension Wedata {
     public func describeTableInfoList(_ input: DescribeTableInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableInfoListResponse {
         try await self.client.execute(action: "DescribeTableInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取数据表信息
+    @inlinable
+    public func describeTableInfoList(filters: [Filter], connectionType: String, catalog: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableInfoListResponse > {
+        self.describeTableInfoList(DescribeTableInfoListRequest(filters: filters, connectionType: connectionType, catalog: catalog), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取数据表信息
+    @inlinable
+    public func describeTableInfoList(filters: [Filter], connectionType: String, catalog: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableInfoListResponse {
+        try await self.describeTableInfoList(DescribeTableInfoListRequest(filters: filters, connectionType: connectionType, catalog: catalog), logger: logger, on: eventLoop)
+    }
 }

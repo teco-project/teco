@@ -63,4 +63,16 @@ extension Iotexplorer {
     public func getTopicRuleList(_ input: GetTopicRuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTopicRuleListResponse {
         try await self.client.execute(action: "GetTopicRuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取规则列表
+    @inlinable
+    public func getTopicRuleList(pageNum: Int64, pageSize: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTopicRuleListResponse > {
+        self.getTopicRuleList(GetTopicRuleListRequest(pageNum: pageNum, pageSize: pageSize), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取规则列表
+    @inlinable
+    public func getTopicRuleList(pageNum: Int64, pageSize: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTopicRuleListResponse {
+        try await self.getTopicRuleList(GetTopicRuleListRequest(pageNum: pageNum, pageSize: pageSize), logger: logger, on: eventLoop)
+    }
 }

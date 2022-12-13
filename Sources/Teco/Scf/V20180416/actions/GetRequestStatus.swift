@@ -84,4 +84,20 @@ extension Scf {
     public func getRequestStatus(_ input: GetRequestStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRequestStatusResponse {
         try await self.client.execute(action: "GetRequestStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取函数单个请求运行状态
+    ///
+    /// 该接口根据指定的查询条件返回函数单个请求运行状态。
+    @inlinable
+    public func getRequestStatus(functionName: String, functionRequestId: String, namespace: String? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRequestStatusResponse > {
+        self.getRequestStatus(GetRequestStatusRequest(functionName: functionName, functionRequestId: functionRequestId, namespace: namespace, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取函数单个请求运行状态
+    ///
+    /// 该接口根据指定的查询条件返回函数单个请求运行状态。
+    @inlinable
+    public func getRequestStatus(functionName: String, functionRequestId: String, namespace: String? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRequestStatusResponse {
+        try await self.getRequestStatus(GetRequestStatusRequest(functionName: functionName, functionRequestId: functionRequestId, namespace: namespace, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

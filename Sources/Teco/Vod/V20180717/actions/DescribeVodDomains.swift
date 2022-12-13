@@ -78,4 +78,20 @@ extension Vod {
     public func describeVodDomains(_ input: DescribeVodDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVodDomainsResponse {
         try await self.client.execute(action: "DescribeVodDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询点播域名列表
+    ///
+    /// 该接口用于查询点播域名信息列表。
+    @inlinable
+    public func describeVodDomains(domains: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVodDomainsResponse > {
+        self.describeVodDomains(DescribeVodDomainsRequest(domains: domains, limit: limit, offset: offset, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询点播域名列表
+    ///
+    /// 该接口用于查询点播域名信息列表。
+    @inlinable
+    public func describeVodDomains(domains: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVodDomainsResponse {
+        try await self.describeVodDomains(DescribeVodDomainsRequest(domains: domains, limit: limit, offset: offset, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

@@ -71,4 +71,24 @@ extension Tiia {
     public func detectPet(_ input: DetectPetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectPetResponse {
         try await self.client.execute(action: "DetectPet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 宠物识别
+    ///
+    /// 传入一张图片，识别出图片中是否存在宠物
+    /// >     
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func detectPet(imageUrl: String? = nil, imageBase64: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectPetResponse > {
+        self.detectPet(DetectPetRequest(imageUrl: imageUrl, imageBase64: imageBase64), logger: logger, on: eventLoop)
+    }
+    
+    /// 宠物识别
+    ///
+    /// 传入一张图片，识别出图片中是否存在宠物
+    /// >     
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func detectPet(imageUrl: String? = nil, imageBase64: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectPetResponse {
+        try await self.detectPet(DetectPetRequest(imageUrl: imageUrl, imageBase64: imageBase64), logger: logger, on: eventLoop)
+    }
 }

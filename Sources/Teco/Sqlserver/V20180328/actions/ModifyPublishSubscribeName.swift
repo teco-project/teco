@@ -59,4 +59,20 @@ extension Sqlserver {
     public func modifyPublishSubscribeName(_ input: ModifyPublishSubscribeNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPublishSubscribeNameResponse {
         try await self.client.execute(action: "ModifyPublishSubscribeName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改发布订阅的名称
+    ///
+    /// 本接口（ModifyPublishSubscribeName）修改发布订阅的名称。
+    @inlinable
+    public func modifyPublishSubscribeName(publishSubscribeId: UInt64, publishSubscribeName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPublishSubscribeNameResponse > {
+        self.modifyPublishSubscribeName(ModifyPublishSubscribeNameRequest(publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改发布订阅的名称
+    ///
+    /// 本接口（ModifyPublishSubscribeName）修改发布订阅的名称。
+    @inlinable
+    public func modifyPublishSubscribeName(publishSubscribeId: UInt64, publishSubscribeName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPublishSubscribeNameResponse {
+        try await self.modifyPublishSubscribeName(ModifyPublishSubscribeNameRequest(publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName), logger: logger, on: eventLoop)
+    }
 }

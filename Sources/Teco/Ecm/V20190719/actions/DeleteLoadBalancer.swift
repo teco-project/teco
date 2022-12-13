@@ -54,4 +54,20 @@ extension Ecm {
     public func deleteLoadBalancer(_ input: DeleteLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerResponse {
         try await self.client.execute(action: "DeleteLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除负载均衡实例
+    ///
+    /// 删除负载均衡实例。
+    @inlinable
+    public func deleteLoadBalancer(loadBalancerIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoadBalancerResponse > {
+        self.deleteLoadBalancer(DeleteLoadBalancerRequest(loadBalancerIds: loadBalancerIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除负载均衡实例
+    ///
+    /// 删除负载均衡实例。
+    @inlinable
+    public func deleteLoadBalancer(loadBalancerIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerResponse {
+        try await self.deleteLoadBalancer(DeleteLoadBalancerRequest(loadBalancerIds: loadBalancerIds), logger: logger, on: eventLoop)
+    }
 }

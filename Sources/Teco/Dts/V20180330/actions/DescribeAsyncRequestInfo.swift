@@ -62,4 +62,20 @@ extension Dts {
     public func describeAsyncRequestInfo(_ input: DescribeAsyncRequestInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRequestInfoResponse {
         try await self.client.execute(action: "DescribeAsyncRequestInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询任务执行结果
+    ///
+    /// 本接口（DescribeAsyncRequestInfo）用于查询任务执行结果
+    @inlinable
+    public func describeAsyncRequestInfo(asyncRequestId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAsyncRequestInfoResponse > {
+        self.describeAsyncRequestInfo(DescribeAsyncRequestInfoRequest(asyncRequestId: asyncRequestId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务执行结果
+    ///
+    /// 本接口（DescribeAsyncRequestInfo）用于查询任务执行结果
+    @inlinable
+    public func describeAsyncRequestInfo(asyncRequestId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRequestInfoResponse {
+        try await self.describeAsyncRequestInfo(DescribeAsyncRequestInfoRequest(asyncRequestId: asyncRequestId), logger: logger, on: eventLoop)
+    }
 }

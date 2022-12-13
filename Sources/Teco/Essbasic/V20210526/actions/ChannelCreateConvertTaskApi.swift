@@ -35,7 +35,7 @@ extension Essbasic {
         /// 暂未开放
         public let organization: OrganizationInfo?
         
-        public init (agent: Agent, resourceType: String, resourceName: String, resourceId: String, `operator`: UserInfo? = nil, organization: OrganizationInfo? = nil) {
+        public init (agent: Agent, resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, organization: OrganizationInfo? = nil) {
             self.agent = agent
             self.resourceType = resourceType
             self.resourceName = resourceName
@@ -78,5 +78,17 @@ extension Essbasic {
     @inlinable
     public func channelCreateConvertTaskApi(_ input: ChannelCreateConvertTaskApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateConvertTaskApiResponse {
         try await self.client.execute(action: "ChannelCreateConvertTaskApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 渠道创建文件转换任务
+    @inlinable
+    public func channelCreateConvertTaskApi(agent: Agent, resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, organization: OrganizationInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateConvertTaskApiResponse > {
+        self.channelCreateConvertTaskApi(ChannelCreateConvertTaskApiRequest(agent: agent, resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, organization: organization), logger: logger, on: eventLoop)
+    }
+    
+    /// 渠道创建文件转换任务
+    @inlinable
+    public func channelCreateConvertTaskApi(agent: Agent, resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, organization: OrganizationInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateConvertTaskApiResponse {
+        try await self.channelCreateConvertTaskApi(ChannelCreateConvertTaskApiRequest(agent: agent, resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, organization: organization), logger: logger, on: eventLoop)
     }
 }

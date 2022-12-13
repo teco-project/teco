@@ -60,4 +60,16 @@ extension Cr {
     public func applyBlackListData(_ input: ApplyBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyBlackListDataResponse {
         try await self.client.execute(action: "ApplyBlackListData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 提交机器人黑名单申请
+    @inlinable
+    public func applyBlackListData(module: String, operation: String, blackList: [BlackListData], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyBlackListDataResponse > {
+        self.applyBlackListData(ApplyBlackListDataRequest(module: module, operation: operation, blackList: blackList), logger: logger, on: eventLoop)
+    }
+    
+    /// 提交机器人黑名单申请
+    @inlinable
+    public func applyBlackListData(module: String, operation: String, blackList: [BlackListData], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyBlackListDataResponse {
+        try await self.applyBlackListData(ApplyBlackListDataRequest(module: module, operation: operation, blackList: blackList), logger: logger, on: eventLoop)
+    }
 }

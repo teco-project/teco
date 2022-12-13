@@ -96,4 +96,20 @@ extension Scf {
     public func publishVersion(_ input: PublishVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishVersionResponse {
         try await self.client.execute(action: "PublishVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 发布新版本
+    ///
+    /// 该接口用于用户发布新版本函数。
+    @inlinable
+    public func publishVersion(functionName: String, description: String? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishVersionResponse > {
+        self.publishVersion(PublishVersionRequest(functionName: functionName, description: description, namespace: namespace), logger: logger, on: eventLoop)
+    }
+    
+    /// 发布新版本
+    ///
+    /// 该接口用于用户发布新版本函数。
+    @inlinable
+    public func publishVersion(functionName: String, description: String? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishVersionResponse {
+        try await self.publishVersion(PublishVersionRequest(functionName: functionName, description: description, namespace: namespace), logger: logger, on: eventLoop)
+    }
 }

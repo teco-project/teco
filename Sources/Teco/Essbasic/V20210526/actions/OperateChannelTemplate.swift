@@ -35,7 +35,7 @@ extension Essbasic {
         /// 操作者的信息
         public let `operator`: UserInfo?
         
-        public init (agent: Agent, operateType: String, templateId: String, proxyOrganizationOpenIds: String? = nil, authTag: String? = nil, `operator`: UserInfo? = nil) {
+        public init (agent: Agent, operateType: String, templateId: String, proxyOrganizationOpenIds: String? = nil, authTag: String? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.operateType = operateType
             self.templateId = templateId
@@ -116,5 +116,29 @@ extension Essbasic {
     @inlinable
     public func operateChannelTemplate(_ input: OperateChannelTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateChannelTemplateResponse {
         try await self.client.execute(action: "OperateChannelTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 操作渠道模板
+    ///
+    /// 此接口（OperateChannelTemplate）用于针对渠道模板库中的模板对子客企业可见性的查询和设置，不会直接分配渠道模板给子客企业。
+    /// 1、OperateType=select时：
+    /// 查询渠道模板库
+    /// 2、OperateType=update或者delete时：
+    /// 对子客企业进行模板库中模板可见性的修改、删除操作。
+    @inlinable
+    public func operateChannelTemplate(agent: Agent, operateType: String, templateId: String, proxyOrganizationOpenIds: String? = nil, authTag: String? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OperateChannelTemplateResponse > {
+        self.operateChannelTemplate(OperateChannelTemplateRequest(agent: agent, operateType: operateType, templateId: templateId, proxyOrganizationOpenIds: proxyOrganizationOpenIds, authTag: authTag, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 操作渠道模板
+    ///
+    /// 此接口（OperateChannelTemplate）用于针对渠道模板库中的模板对子客企业可见性的查询和设置，不会直接分配渠道模板给子客企业。
+    /// 1、OperateType=select时：
+    /// 查询渠道模板库
+    /// 2、OperateType=update或者delete时：
+    /// 对子客企业进行模板库中模板可见性的修改、删除操作。
+    @inlinable
+    public func operateChannelTemplate(agent: Agent, operateType: String, templateId: String, proxyOrganizationOpenIds: String? = nil, authTag: String? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateChannelTemplateResponse {
+        try await self.operateChannelTemplate(OperateChannelTemplateRequest(agent: agent, operateType: operateType, templateId: templateId, proxyOrganizationOpenIds: proxyOrganizationOpenIds, authTag: authTag, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

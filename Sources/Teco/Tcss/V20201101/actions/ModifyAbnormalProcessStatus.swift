@@ -68,4 +68,20 @@ extension Tcss {
     public func modifyAbnormalProcessStatus(_ input: ModifyAbnormalProcessStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAbnormalProcessStatusResponse {
         try await self.client.execute(action: "ModifyAbnormalProcessStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改异常进程事件状态
+    ///
+    /// 修改异常进程事件的状态信息
+    @inlinable
+    public func modifyAbnormalProcessStatus(eventIdSet: [String], status: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAbnormalProcessStatusResponse > {
+        self.modifyAbnormalProcessStatus(ModifyAbnormalProcessStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改异常进程事件状态
+    ///
+    /// 修改异常进程事件的状态信息
+    @inlinable
+    public func modifyAbnormalProcessStatus(eventIdSet: [String], status: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAbnormalProcessStatusResponse {
+        try await self.modifyAbnormalProcessStatus(ModifyAbnormalProcessStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), logger: logger, on: eventLoop)
+    }
 }

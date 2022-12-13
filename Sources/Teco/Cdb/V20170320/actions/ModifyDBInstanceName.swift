@@ -59,4 +59,20 @@ extension Cdb {
     public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNameResponse {
         try await self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改云数据库实例名
+    ///
+    /// 本接口(ModifyDBInstanceName)用于修改云数据库实例的名称。
+    @inlinable
+    public func modifyDBInstanceName(instanceId: String, instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceNameResponse > {
+        self.modifyDBInstanceName(ModifyDBInstanceNameRequest(instanceId: instanceId, instanceName: instanceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云数据库实例名
+    ///
+    /// 本接口(ModifyDBInstanceName)用于修改云数据库实例的名称。
+    @inlinable
+    public func modifyDBInstanceName(instanceId: String, instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNameResponse {
+        try await self.modifyDBInstanceName(ModifyDBInstanceNameRequest(instanceId: instanceId, instanceName: instanceName), logger: logger, on: eventLoop)
+    }
 }

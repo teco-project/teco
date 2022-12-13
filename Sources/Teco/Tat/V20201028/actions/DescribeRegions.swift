@@ -56,4 +56,22 @@ extension Tat {
     public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
         try await self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询地域列表
+    ///
+    /// 此接口用于查询 TAT 产品后台地域列表。
+    /// RegionState 为 AVAILABLE，代表该地域的 TAT 后台服务已经可用；未返回，代表该地域的 TAT 后台服务尚不可用。
+    @inlinable
+    public func describeRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionsResponse > {
+        self.describeRegions(DescribeRegionsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询地域列表
+    ///
+    /// 此接口用于查询 TAT 产品后台地域列表。
+    /// RegionState 为 AVAILABLE，代表该地域的 TAT 后台服务已经可用；未返回，代表该地域的 TAT 后台服务尚不可用。
+    @inlinable
+    public func describeRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
+        try await self.describeRegions(DescribeRegionsRequest(), logger: logger, on: eventLoop)
+    }
 }

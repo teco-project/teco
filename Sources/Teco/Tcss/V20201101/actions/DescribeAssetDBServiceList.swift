@@ -73,4 +73,20 @@ extension Tcss {
     public func describeAssetDBServiceList(_ input: DescribeAssetDBServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDBServiceListResponse {
         try await self.client.execute(action: "DescribeAssetDBServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询db服务列表
+    ///
+    /// 容器安全查询db服务列表
+    @inlinable
+    public func describeAssetDBServiceList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetDBServiceListResponse > {
+        self.describeAssetDBServiceList(DescribeAssetDBServiceListRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询db服务列表
+    ///
+    /// 容器安全查询db服务列表
+    @inlinable
+    public func describeAssetDBServiceList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDBServiceListResponse {
+        try await self.describeAssetDBServiceList(DescribeAssetDBServiceListRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

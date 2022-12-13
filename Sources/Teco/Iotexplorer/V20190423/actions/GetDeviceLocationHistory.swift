@@ -74,4 +74,16 @@ extension Iotexplorer {
     public func getDeviceLocationHistory(_ input: GetDeviceLocationHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceLocationHistoryResponse {
         try await self.client.execute(action: "GetDeviceLocationHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备历史位置
+    @inlinable
+    public func getDeviceLocationHistory(productId: String, deviceName: String, startTime: Int64, endTime: Int64, coordinateType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceLocationHistoryResponse > {
+        self.getDeviceLocationHistory(GetDeviceLocationHistoryRequest(productId: productId, deviceName: deviceName, startTime: startTime, endTime: endTime, coordinateType: coordinateType), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备历史位置
+    @inlinable
+    public func getDeviceLocationHistory(productId: String, deviceName: String, startTime: Int64, endTime: Int64, coordinateType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceLocationHistoryResponse {
+        try await self.getDeviceLocationHistory(GetDeviceLocationHistoryRequest(productId: productId, deviceName: deviceName, startTime: startTime, endTime: endTime, coordinateType: coordinateType), logger: logger, on: eventLoop)
+    }
 }

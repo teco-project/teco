@@ -99,4 +99,20 @@ extension Cwp {
     public func editBashRules(_ input: EditBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRulesResponse {
         try await self.client.execute(action: "EditBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新增或修改高危命令规则（支持多服务器选择）
+    ///
+    /// 新增或修改高危命令规则
+    @inlinable
+    public func editBashRules(id: UInt64? = nil, uuids: [String]? = nil, hostIp: String? = nil, name: String? = nil, level: UInt64? = nil, rule: String? = nil, isGlobal: UInt64? = nil, white: UInt64? = nil, eventId: UInt64? = nil, dealOldEvents: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditBashRulesResponse > {
+        self.editBashRules(EditBashRulesRequest(id: id, uuids: uuids, hostIp: hostIp, name: name, level: level, rule: rule, isGlobal: isGlobal, white: white, eventId: eventId, dealOldEvents: dealOldEvents), logger: logger, on: eventLoop)
+    }
+    
+    /// 新增或修改高危命令规则（支持多服务器选择）
+    ///
+    /// 新增或修改高危命令规则
+    @inlinable
+    public func editBashRules(id: UInt64? = nil, uuids: [String]? = nil, hostIp: String? = nil, name: String? = nil, level: UInt64? = nil, rule: String? = nil, isGlobal: UInt64? = nil, white: UInt64? = nil, eventId: UInt64? = nil, dealOldEvents: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRulesResponse {
+        try await self.editBashRules(EditBashRulesRequest(id: id, uuids: uuids, hostIp: hostIp, name: name, level: level, rule: rule, isGlobal: isGlobal, white: white, eventId: eventId, dealOldEvents: dealOldEvents), logger: logger, on: eventLoop)
+    }
 }

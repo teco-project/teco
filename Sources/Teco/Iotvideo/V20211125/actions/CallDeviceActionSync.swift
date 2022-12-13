@@ -80,4 +80,16 @@ extension Iotvideo {
     public func callDeviceActionSync(_ input: CallDeviceActionSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CallDeviceActionSyncResponse {
         try await self.client.execute(action: "CallDeviceActionSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 同步调用设备行为
+    @inlinable
+    public func callDeviceActionSync(productId: String, deviceName: String, actionId: String, inputParams: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CallDeviceActionSyncResponse > {
+        self.callDeviceActionSync(CallDeviceActionSyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams), logger: logger, on: eventLoop)
+    }
+    
+    /// 同步调用设备行为
+    @inlinable
+    public func callDeviceActionSync(productId: String, deviceName: String, actionId: String, inputParams: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CallDeviceActionSyncResponse {
+        try await self.callDeviceActionSync(CallDeviceActionSyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams), logger: logger, on: eventLoop)
+    }
 }

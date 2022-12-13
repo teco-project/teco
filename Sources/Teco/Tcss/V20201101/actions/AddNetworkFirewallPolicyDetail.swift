@@ -99,4 +99,16 @@ extension Tcss {
     public func addNetworkFirewallPolicyDetail(_ input: AddNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNetworkFirewallPolicyDetailResponse {
         try await self.client.execute(action: "AddNetworkFirewallPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 容器网络创建网络策略添加任务
+    @inlinable
+    public func addNetworkFirewallPolicyDetail(clusterId: String, policyName: String, fromPolicyRule: Int64, toPolicyRule: Int64, podSelector: String, namespace: String? = nil, description: String? = nil, customPolicy: [NetworkCustomPolicy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddNetworkFirewallPolicyDetailResponse > {
+        self.addNetworkFirewallPolicyDetail(AddNetworkFirewallPolicyDetailRequest(clusterId: clusterId, policyName: policyName, fromPolicyRule: fromPolicyRule, toPolicyRule: toPolicyRule, podSelector: podSelector, namespace: namespace, description: description, customPolicy: customPolicy), logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络创建网络策略添加任务
+    @inlinable
+    public func addNetworkFirewallPolicyDetail(clusterId: String, policyName: String, fromPolicyRule: Int64, toPolicyRule: Int64, podSelector: String, namespace: String? = nil, description: String? = nil, customPolicy: [NetworkCustomPolicy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNetworkFirewallPolicyDetailResponse {
+        try await self.addNetworkFirewallPolicyDetail(AddNetworkFirewallPolicyDetailRequest(clusterId: clusterId, policyName: policyName, fromPolicyRule: fromPolicyRule, toPolicyRule: toPolicyRule, podSelector: podSelector, namespace: namespace, description: description, customPolicy: customPolicy), logger: logger, on: eventLoop)
+    }
 }

@@ -85,4 +85,20 @@ extension Dbbrain {
     public func describeTopSpaceSchemaTimeSeries(_ input: DescribeTopSpaceSchemaTimeSeriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopSpaceSchemaTimeSeriesResponse {
         try await self.client.execute(action: "DescribeTopSpaceSchemaTimeSeries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取Top库在指定时间段内的每日空间统计信息
+    ///
+    /// 获取实例占用空间最大的前几个库在指定时间段内的每日由DBbrain定时采集的空间数据，默认返回按大小排序。
+    @inlinable
+    public func describeTopSpaceSchemaTimeSeries(instanceId: String, limit: Int64? = nil, sortBy: String? = nil, startDate: Date? = nil, endDate: Date? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopSpaceSchemaTimeSeriesResponse > {
+        self.describeTopSpaceSchemaTimeSeries(DescribeTopSpaceSchemaTimeSeriesRequest(instanceId: instanceId, limit: limit, sortBy: sortBy, startDate: startDate, endDate: endDate, product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Top库在指定时间段内的每日空间统计信息
+    ///
+    /// 获取实例占用空间最大的前几个库在指定时间段内的每日由DBbrain定时采集的空间数据，默认返回按大小排序。
+    @inlinable
+    public func describeTopSpaceSchemaTimeSeries(instanceId: String, limit: Int64? = nil, sortBy: String? = nil, startDate: Date? = nil, endDate: Date? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopSpaceSchemaTimeSeriesResponse {
+        try await self.describeTopSpaceSchemaTimeSeries(DescribeTopSpaceSchemaTimeSeriesRequest(instanceId: instanceId, limit: limit, sortBy: sortBy, startDate: startDate, endDate: endDate, product: product), logger: logger, on: eventLoop)
+    }
 }

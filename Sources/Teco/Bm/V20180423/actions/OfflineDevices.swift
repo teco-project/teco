@@ -58,4 +58,20 @@ extension Bm {
     public func offlineDevices(_ input: OfflineDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineDevicesResponse {
         try await self.client.execute(action: "OfflineDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 退还服务器
+    ///
+    /// 销毁黑石物理机实例：可以销毁物理机列表中的竞价实例，或回收站列表中所有计费模式的实例
+    @inlinable
+    public func offlineDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OfflineDevicesResponse > {
+        self.offlineDevices(OfflineDevicesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 退还服务器
+    ///
+    /// 销毁黑石物理机实例：可以销毁物理机列表中的竞价实例，或回收站列表中所有计费模式的实例
+    @inlinable
+    public func offlineDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineDevicesResponse {
+        try await self.offlineDevices(OfflineDevicesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

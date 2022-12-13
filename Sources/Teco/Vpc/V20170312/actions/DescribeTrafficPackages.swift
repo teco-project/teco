@@ -80,4 +80,20 @@ extension Vpc {
     public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficPackagesResponse {
         try await self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询共享流量包
+    ///
+    /// 本接口 (DescribeTrafficPackages)  用于查询共享流量包详细信息，包括共享流量包唯一标识ID，名称，流量使用信息等
+    @inlinable
+    public func describeTrafficPackages(trafficPackageIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficPackagesResponse > {
+        self.describeTrafficPackages(DescribeTrafficPackagesRequest(trafficPackageIds: trafficPackageIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询共享流量包
+    ///
+    /// 本接口 (DescribeTrafficPackages)  用于查询共享流量包详细信息，包括共享流量包唯一标识ID，名称，流量使用信息等
+    @inlinable
+    public func describeTrafficPackages(trafficPackageIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficPackagesResponse {
+        try await self.describeTrafficPackages(DescribeTrafficPackagesRequest(trafficPackageIds: trafficPackageIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

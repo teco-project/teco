@@ -54,4 +54,20 @@ extension Lighthouse {
     public func deleteBlueprints(_ input: DeleteBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBlueprintsResponse {
         try await self.client.execute(action: "DeleteBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除镜像
+    ///
+    /// 本接口 (DeleteBlueprints) 用于删除镜像。
+    @inlinable
+    public func deleteBlueprints(blueprintIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBlueprintsResponse > {
+        self.deleteBlueprints(DeleteBlueprintsRequest(blueprintIds: blueprintIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除镜像
+    ///
+    /// 本接口 (DeleteBlueprints) 用于删除镜像。
+    @inlinable
+    public func deleteBlueprints(blueprintIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBlueprintsResponse {
+        try await self.deleteBlueprints(DeleteBlueprintsRequest(blueprintIds: blueprintIds), logger: logger, on: eventLoop)
+    }
 }

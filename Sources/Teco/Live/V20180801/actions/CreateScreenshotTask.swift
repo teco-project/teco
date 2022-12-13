@@ -43,7 +43,7 @@ extension Live {
         /// 扩展字段，暂无定义。默认为空。
         public let `extension`: String?
         
-        public init (streamName: String, domainName: String, appName: String, endTime: UInt64, templateId: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, `extension`: String? = nil) {
+        public init (streamName: String, domainName: String, appName: String, endTime: UInt64, templateId: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, extension: String? = nil) {
             self.streamName = streamName
             self.domainName = domainName
             self.appName = appName
@@ -106,5 +106,33 @@ extension Live {
     @inlinable
     public func createScreenshotTask(_ input: CreateScreenshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScreenshotTaskResponse {
         try await self.client.execute(action: "CreateScreenshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 创建截图任务
+    ///
+    /// 创建一个在指定时间启动、结束的截图任务，并使用指定截图模板ID对应的配置进行截图。
+    /// - 注意事项
+    /// 1. 断流会结束当前截图。在结束时间到达之前任务仍然有效，期间只要正常推流都会正常截图，与是否多次推、断流无关。
+    /// 2. 使用上避免创建时间段相互重叠的截图任务。若同一条流当前存在多个时段重叠的任务，为避免重复系统将启动最多3个截图任务。
+    /// 3. 创建的截图任务记录在平台侧只保留3个月。
+    /// 4. 当前截图任务管理API（CreateScreenshotTask/StopScreenshotTask/DeleteScreenshotTask）与旧API（CreateLiveInstantSnapshot/StopLiveInstantSnapshot）不兼容，两套接口不能混用。
+    /// 5. 避免 创建截图任务 与 推流 操作同时进行，可能导致因截图任务未生效而引起任务延迟启动问题，两者操作间隔建议大于3秒。
+    @inlinable
+    public func createScreenshotTask(streamName: String, domainName: String, appName: String, endTime: UInt64, templateId: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, extension: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScreenshotTaskResponse > {
+        self.createScreenshotTask(CreateScreenshotTaskRequest(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, templateId: templateId, startTime: startTime, streamType: streamType, extension: `extension`), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建截图任务
+    ///
+    /// 创建一个在指定时间启动、结束的截图任务，并使用指定截图模板ID对应的配置进行截图。
+    /// - 注意事项
+    /// 1. 断流会结束当前截图。在结束时间到达之前任务仍然有效，期间只要正常推流都会正常截图，与是否多次推、断流无关。
+    /// 2. 使用上避免创建时间段相互重叠的截图任务。若同一条流当前存在多个时段重叠的任务，为避免重复系统将启动最多3个截图任务。
+    /// 3. 创建的截图任务记录在平台侧只保留3个月。
+    /// 4. 当前截图任务管理API（CreateScreenshotTask/StopScreenshotTask/DeleteScreenshotTask）与旧API（CreateLiveInstantSnapshot/StopLiveInstantSnapshot）不兼容，两套接口不能混用。
+    /// 5. 避免 创建截图任务 与 推流 操作同时进行，可能导致因截图任务未生效而引起任务延迟启动问题，两者操作间隔建议大于3秒。
+    @inlinable
+    public func createScreenshotTask(streamName: String, domainName: String, appName: String, endTime: UInt64, templateId: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, extension: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScreenshotTaskResponse {
+        try await self.createScreenshotTask(CreateScreenshotTaskRequest(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, templateId: templateId, startTime: startTime, streamType: streamType, extension: `extension`), logger: logger, on: eventLoop)
     }
 }

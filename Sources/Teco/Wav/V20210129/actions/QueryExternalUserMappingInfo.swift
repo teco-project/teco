@@ -59,4 +59,20 @@ extension Wav {
     public func queryExternalUserMappingInfo(_ input: QueryExternalUserMappingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExternalUserMappingInfoResponse {
         try await self.client.execute(action: "QueryExternalUserMappingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 外部联系人转换接口
+    ///
+    /// 企业可通过此接口将企业主体对应的外部联系人id转换为乐销车应用主体对应的外部联系人。
+    @inlinable
+    public func queryExternalUserMappingInfo(corpExternalUserIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryExternalUserMappingInfoResponse > {
+        self.queryExternalUserMappingInfo(QueryExternalUserMappingInfoRequest(corpExternalUserIdList: corpExternalUserIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 外部联系人转换接口
+    ///
+    /// 企业可通过此接口将企业主体对应的外部联系人id转换为乐销车应用主体对应的外部联系人。
+    @inlinable
+    public func queryExternalUserMappingInfo(corpExternalUserIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExternalUserMappingInfoResponse {
+        try await self.queryExternalUserMappingInfo(QueryExternalUserMappingInfoRequest(corpExternalUserIdList: corpExternalUserIdList), logger: logger, on: eventLoop)
+    }
 }

@@ -90,4 +90,16 @@ extension Iecp {
     public func describeEdgeOperationLogs(_ input: DescribeEdgeOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeOperationLogsResponse {
         try await self.client.execute(action: "DescribeEdgeOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询边缘操作日志
+    @inlinable
+    public func describeEdgeOperationLogs(beginTime: String, endTime: String, offset: UInt64, limit: UInt64, sort: [FieldSort]? = nil, module: String? = nil, condition: OperationLogsCondition? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeOperationLogsResponse > {
+        self.describeEdgeOperationLogs(DescribeEdgeOperationLogsRequest(beginTime: beginTime, endTime: endTime, offset: offset, limit: limit, sort: sort, module: module, condition: condition), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘操作日志
+    @inlinable
+    public func describeEdgeOperationLogs(beginTime: String, endTime: String, offset: UInt64, limit: UInt64, sort: [FieldSort]? = nil, module: String? = nil, condition: OperationLogsCondition? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeOperationLogsResponse {
+        try await self.describeEdgeOperationLogs(DescribeEdgeOperationLogsRequest(beginTime: beginTime, endTime: endTime, offset: offset, limit: limit, sort: sort, module: module, condition: condition), logger: logger, on: eventLoop)
+    }
 }

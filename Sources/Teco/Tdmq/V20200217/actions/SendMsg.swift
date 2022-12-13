@@ -69,4 +69,20 @@ extension Tdmq {
     public func sendMsg(_ input: SendMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMsgResponse {
         try await self.client.execute(action: "SendMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 发送消息
+    ///
+    /// 此接口仅用于测试发生消息，不能作为现网正式生产使用
+    @inlinable
+    public func sendMsg(environmentId: String, topicName: String, msgContent: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendMsgResponse > {
+        self.sendMsg(SendMsgRequest(environmentId: environmentId, topicName: topicName, msgContent: msgContent, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 发送消息
+    ///
+    /// 此接口仅用于测试发生消息，不能作为现网正式生产使用
+    @inlinable
+    public func sendMsg(environmentId: String, topicName: String, msgContent: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMsgResponse {
+        try await self.sendMsg(SendMsgRequest(environmentId: environmentId, topicName: topicName, msgContent: msgContent, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

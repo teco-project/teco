@@ -63,4 +63,16 @@ extension Tci {
     public func modifyLibrary(_ input: ModifyLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLibraryResponse {
         try await self.client.execute(action: "ModifyLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改人员库信息
+    @inlinable
+    public func modifyLibrary(libraryId: String, libraryName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLibraryResponse > {
+        self.modifyLibrary(ModifyLibraryRequest(libraryId: libraryId, libraryName: libraryName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改人员库信息
+    @inlinable
+    public func modifyLibrary(libraryId: String, libraryName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLibraryResponse {
+        try await self.modifyLibrary(ModifyLibraryRequest(libraryId: libraryId, libraryName: libraryName), logger: logger, on: eventLoop)
+    }
 }

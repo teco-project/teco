@@ -72,4 +72,16 @@ extension Ciam {
     public func listUserByProperty(_ input: ListUserByPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserByPropertyResponse {
         try await self.client.execute(action: "ListUserByProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 根据属性查询用户列表
+    @inlinable
+    public func listUserByProperty(userStoreId: String, propertyCode: String, propertyValue: String, original: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUserByPropertyResponse > {
+        self.listUserByProperty(ListUserByPropertyRequest(userStoreId: userStoreId, propertyCode: propertyCode, propertyValue: propertyValue, original: original), logger: logger, on: eventLoop)
+    }
+    
+    /// 根据属性查询用户列表
+    @inlinable
+    public func listUserByProperty(userStoreId: String, propertyCode: String, propertyValue: String, original: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserByPropertyResponse {
+        try await self.listUserByProperty(ListUserByPropertyRequest(userStoreId: userStoreId, propertyCode: propertyCode, propertyValue: propertyValue, original: original), logger: logger, on: eventLoop)
+    }
 }

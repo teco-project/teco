@@ -76,4 +76,20 @@ extension Wedata {
     public func batchResumeIntegrationTasks(_ input: BatchResumeIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchResumeIntegrationTasksResponse {
         try await self.client.execute(action: "BatchResumeIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量继续执行集成任务
+    ///
+    /// 批量继续执行集成实时任务
+    @inlinable
+    public func batchResumeIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchResumeIntegrationTasksResponse > {
+        self.batchResumeIntegrationTasks(BatchResumeIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量继续执行集成任务
+    ///
+    /// 批量继续执行集成实时任务
+    @inlinable
+    public func batchResumeIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchResumeIntegrationTasksResponse {
+        try await self.batchResumeIntegrationTasks(BatchResumeIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

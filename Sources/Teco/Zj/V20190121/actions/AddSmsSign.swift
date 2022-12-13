@@ -105,4 +105,20 @@ extension Zj {
     public func addSmsSign(_ input: AddSmsSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSmsSignResponse {
         try await self.client.execute(action: "AddSmsSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 短信签名创建接口
+    ///
+    /// 创建普通短信签名信息
+    @inlinable
+    public func addSmsSign(license: String, signType: UInt64, documentType: UInt64, international: UInt64, proofImage: String, signName: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddSmsSignResponse > {
+        self.addSmsSign(AddSmsSignRequest(license: license, signType: signType, documentType: documentType, international: international, proofImage: proofImage, signName: signName, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 短信签名创建接口
+    ///
+    /// 创建普通短信签名信息
+    @inlinable
+    public func addSmsSign(license: String, signType: UInt64, documentType: UInt64, international: UInt64, proofImage: String, signName: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSmsSignResponse {
+        try await self.addSmsSign(AddSmsSignRequest(license: license, signType: signType, documentType: documentType, international: international, proofImage: proofImage, signName: signName, remark: remark), logger: logger, on: eventLoop)
+    }
 }

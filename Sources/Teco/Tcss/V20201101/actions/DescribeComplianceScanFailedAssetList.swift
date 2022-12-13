@@ -82,4 +82,20 @@ extension Tcss {
     public func describeComplianceScanFailedAssetList(_ input: DescribeComplianceScanFailedAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceScanFailedAssetListResponse {
         try await self.client.execute(action: "DescribeComplianceScanFailedAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安全合规查询上次检测失败的资产的列表
+    ///
+    /// 按照 资产 → 检测项 二层结构展示的信息。这里查询第一层 资产的通过率汇总信息。
+    @inlinable
+    public func describeComplianceScanFailedAssetList(assetTypeSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceScanFailedAssetListResponse > {
+        self.describeComplianceScanFailedAssetList(DescribeComplianceScanFailedAssetListRequest(assetTypeSet: assetTypeSet, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规查询上次检测失败的资产的列表
+    ///
+    /// 按照 资产 → 检测项 二层结构展示的信息。这里查询第一层 资产的通过率汇总信息。
+    @inlinable
+    public func describeComplianceScanFailedAssetList(assetTypeSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceScanFailedAssetListResponse {
+        try await self.describeComplianceScanFailedAssetList(DescribeComplianceScanFailedAssetListRequest(assetTypeSet: assetTypeSet, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

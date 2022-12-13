@@ -69,4 +69,16 @@ extension Iotexplorer {
     public func publishBroadcastMessage(_ input: PublishBroadcastMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishBroadcastMessageResponse {
         try await self.client.execute(action: "PublishBroadcastMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 发布广播消息
+    @inlinable
+    public func publishBroadcastMessage(productId: String, payload: String, qos: Int64, payloadEncoding: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishBroadcastMessageResponse > {
+        self.publishBroadcastMessage(PublishBroadcastMessageRequest(productId: productId, payload: payload, qos: qos, payloadEncoding: payloadEncoding), logger: logger, on: eventLoop)
+    }
+    
+    /// 发布广播消息
+    @inlinable
+    public func publishBroadcastMessage(productId: String, payload: String, qos: Int64, payloadEncoding: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishBroadcastMessageResponse {
+        try await self.publishBroadcastMessage(PublishBroadcastMessageRequest(productId: productId, payload: payload, qos: qos, payloadEncoding: payloadEncoding), logger: logger, on: eventLoop)
+    }
 }

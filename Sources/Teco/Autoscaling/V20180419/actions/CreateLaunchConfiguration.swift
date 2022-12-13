@@ -191,4 +191,24 @@ extension As {
     public func createLaunchConfiguration(_ input: CreateLaunchConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaunchConfigurationResponse {
         try await self.client.execute(action: "CreateLaunchConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建启动配置
+    ///
+    /// 本接口（CreateLaunchConfiguration）用于创建新的启动配置。
+    /// * 启动配置，可以通过 `ModifyLaunchConfigurationAttributes` 修改少量字段。如需使用新的启动配置，建议重新创建启动配置。
+    /// * 每个项目最多只能创建20个启动配置，详见[使用限制](https://cloud.tencent.com/document/product/377/3120)。
+    @inlinable
+    public func createLaunchConfiguration(launchConfigurationName: String, imageId: String, projectId: UInt64? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, enhancedService: EnhancedService? = nil, userData: String? = nil, instanceChargeType: String? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, instanceTypes: [String]? = nil, camRoleName: String? = nil, instanceTypesCheckPolicy: String? = nil, instanceTags: [InstanceTag]? = nil, tags: [Tag]? = nil, hostNameSettings: HostNameSettings? = nil, instanceNameSettings: InstanceNameSettings? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, diskTypePolicy: String? = nil, hpcClusterId: String? = nil, iPv6InternetAccessible: IPv6InternetAccessible? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLaunchConfigurationResponse > {
+        self.createLaunchConfiguration(CreateLaunchConfigurationRequest(launchConfigurationName: launchConfigurationName, imageId: imageId, projectId: projectId, instanceType: instanceType, systemDisk: systemDisk, dataDisks: dataDisks, internetAccessible: internetAccessible, loginSettings: loginSettings, securityGroupIds: securityGroupIds, enhancedService: enhancedService, userData: userData, instanceChargeType: instanceChargeType, instanceMarketOptions: instanceMarketOptions, instanceTypes: instanceTypes, camRoleName: camRoleName, instanceTypesCheckPolicy: instanceTypesCheckPolicy, instanceTags: instanceTags, tags: tags, hostNameSettings: hostNameSettings, instanceNameSettings: instanceNameSettings, instanceChargePrepaid: instanceChargePrepaid, diskTypePolicy: diskTypePolicy, hpcClusterId: hpcClusterId, iPv6InternetAccessible: iPv6InternetAccessible), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建启动配置
+    ///
+    /// 本接口（CreateLaunchConfiguration）用于创建新的启动配置。
+    /// * 启动配置，可以通过 `ModifyLaunchConfigurationAttributes` 修改少量字段。如需使用新的启动配置，建议重新创建启动配置。
+    /// * 每个项目最多只能创建20个启动配置，详见[使用限制](https://cloud.tencent.com/document/product/377/3120)。
+    @inlinable
+    public func createLaunchConfiguration(launchConfigurationName: String, imageId: String, projectId: UInt64? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, enhancedService: EnhancedService? = nil, userData: String? = nil, instanceChargeType: String? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, instanceTypes: [String]? = nil, camRoleName: String? = nil, instanceTypesCheckPolicy: String? = nil, instanceTags: [InstanceTag]? = nil, tags: [Tag]? = nil, hostNameSettings: HostNameSettings? = nil, instanceNameSettings: InstanceNameSettings? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, diskTypePolicy: String? = nil, hpcClusterId: String? = nil, iPv6InternetAccessible: IPv6InternetAccessible? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaunchConfigurationResponse {
+        try await self.createLaunchConfiguration(CreateLaunchConfigurationRequest(launchConfigurationName: launchConfigurationName, imageId: imageId, projectId: projectId, instanceType: instanceType, systemDisk: systemDisk, dataDisks: dataDisks, internetAccessible: internetAccessible, loginSettings: loginSettings, securityGroupIds: securityGroupIds, enhancedService: enhancedService, userData: userData, instanceChargeType: instanceChargeType, instanceMarketOptions: instanceMarketOptions, instanceTypes: instanceTypes, camRoleName: camRoleName, instanceTypesCheckPolicy: instanceTypesCheckPolicy, instanceTags: instanceTags, tags: tags, hostNameSettings: hostNameSettings, instanceNameSettings: instanceNameSettings, instanceChargePrepaid: instanceChargePrepaid, diskTypePolicy: diskTypePolicy, hpcClusterId: hpcClusterId, iPv6InternetAccessible: iPv6InternetAccessible), logger: logger, on: eventLoop)
+    }
 }

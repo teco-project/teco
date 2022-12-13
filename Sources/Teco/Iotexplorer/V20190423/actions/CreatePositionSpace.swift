@@ -80,4 +80,16 @@ extension Iotexplorer {
     public func createPositionSpace(_ input: CreatePositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePositionSpaceResponse {
         try await self.client.execute(action: "CreatePositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建位置空间
+    @inlinable
+    public func createPositionSpace(projectId: String, spaceName: String, authorizeType: Int64, productIdList: [String], description: String? = nil, icon: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePositionSpaceResponse > {
+        self.createPositionSpace(CreatePositionSpaceRequest(projectId: projectId, spaceName: spaceName, authorizeType: authorizeType, productIdList: productIdList, description: description, icon: icon), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建位置空间
+    @inlinable
+    public func createPositionSpace(projectId: String, spaceName: String, authorizeType: Int64, productIdList: [String], description: String? = nil, icon: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePositionSpaceResponse {
+        try await self.createPositionSpace(CreatePositionSpaceRequest(projectId: projectId, spaceName: spaceName, authorizeType: authorizeType, productIdList: productIdList, description: description, icon: icon), logger: logger, on: eventLoop)
+    }
 }

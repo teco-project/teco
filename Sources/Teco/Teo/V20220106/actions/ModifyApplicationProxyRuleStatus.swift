@@ -71,4 +71,16 @@ extension Teo {
     public func modifyApplicationProxyRuleStatus(_ input: ModifyApplicationProxyRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyRuleStatusResponse {
         try await self.client.execute(action: "ModifyApplicationProxyRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改应用代理规则的状态
+    @inlinable
+    public func modifyApplicationProxyRuleStatus(zoneId: String, proxyId: String, ruleId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationProxyRuleStatusResponse > {
+        self.modifyApplicationProxyRuleStatus(ModifyApplicationProxyRuleStatusRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改应用代理规则的状态
+    @inlinable
+    public func modifyApplicationProxyRuleStatus(zoneId: String, proxyId: String, ruleId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyRuleStatusResponse {
+        try await self.modifyApplicationProxyRuleStatus(ModifyApplicationProxyRuleStatusRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, status: status), logger: logger, on: eventLoop)
+    }
 }

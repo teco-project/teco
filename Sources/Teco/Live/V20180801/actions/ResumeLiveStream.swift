@@ -64,4 +64,20 @@ extension Live {
     public func resumeLiveStream(_ input: ResumeLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeLiveStreamResponse {
         try await self.client.execute(action: "ResumeLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 恢复直播推流
+    ///
+    /// 恢复某条流的推流。
+    @inlinable
+    public func resumeLiveStream(appName: String, domainName: String, streamName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeLiveStreamResponse > {
+        self.resumeLiveStream(ResumeLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName), logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复直播推流
+    ///
+    /// 恢复某条流的推流。
+    @inlinable
+    public func resumeLiveStream(appName: String, domainName: String, streamName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeLiveStreamResponse {
+        try await self.resumeLiveStream(ResumeLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName), logger: logger, on: eventLoop)
+    }
 }

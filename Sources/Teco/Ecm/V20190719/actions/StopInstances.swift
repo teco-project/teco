@@ -72,4 +72,24 @@ extension Ecm {
     public func stopInstances(_ input: StopInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstancesResponse {
         try await self.client.execute(action: "StopInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 实例关机
+    ///
+    /// 只有处于"RUNNING"状态的实例才能够进行关机操作；
+    /// 调用成功时，实例会进入STOPPING状态；关闭实例成功时，实例会进入STOPPED状态；
+    /// 支持强制关闭，强制关机的效果等同于关闭物理计算机的电源开关，强制关机可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常关机时使用。
+    @inlinable
+    public func stopInstances(instanceIdSet: [String], forceStop: Bool? = nil, stopType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopInstancesResponse > {
+        self.stopInstances(StopInstancesRequest(instanceIdSet: instanceIdSet, forceStop: forceStop, stopType: stopType), logger: logger, on: eventLoop)
+    }
+    
+    /// 实例关机
+    ///
+    /// 只有处于"RUNNING"状态的实例才能够进行关机操作；
+    /// 调用成功时，实例会进入STOPPING状态；关闭实例成功时，实例会进入STOPPED状态；
+    /// 支持强制关闭，强制关机的效果等同于关闭物理计算机的电源开关，强制关机可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常关机时使用。
+    @inlinable
+    public func stopInstances(instanceIdSet: [String], forceStop: Bool? = nil, stopType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstancesResponse {
+        try await self.stopInstances(StopInstancesRequest(instanceIdSet: instanceIdSet, forceStop: forceStop, stopType: stopType), logger: logger, on: eventLoop)
+    }
 }

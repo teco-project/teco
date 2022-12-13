@@ -105,4 +105,16 @@ extension Iecp {
     public func describeApplicationVisualization(_ input: DescribeApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationVisualizationResponse {
         try await self.client.execute(action: "DescribeApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取应用模板可视化配置信息
+    @inlinable
+    public func describeApplicationVisualization(applicationId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationVisualizationResponse > {
+        self.describeApplicationVisualization(DescribeApplicationVisualizationRequest(applicationId: applicationId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用模板可视化配置信息
+    @inlinable
+    public func describeApplicationVisualization(applicationId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationVisualizationResponse {
+        try await self.describeApplicationVisualization(DescribeApplicationVisualizationRequest(applicationId: applicationId), logger: logger, on: eventLoop)
+    }
 }

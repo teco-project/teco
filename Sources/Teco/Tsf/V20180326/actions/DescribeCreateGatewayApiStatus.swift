@@ -59,4 +59,16 @@ extension Tsf {
     public func describeCreateGatewayApiStatus(_ input: DescribeCreateGatewayApiStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCreateGatewayApiStatusResponse {
         try await self.client.execute(action: "DescribeCreateGatewayApiStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询一键导入API分组任务的状态
+    @inlinable
+    public func describeCreateGatewayApiStatus(groupId: String? = nil, microserviceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCreateGatewayApiStatusResponse > {
+        self.describeCreateGatewayApiStatus(DescribeCreateGatewayApiStatusRequest(groupId: groupId, microserviceId: microserviceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询一键导入API分组任务的状态
+    @inlinable
+    public func describeCreateGatewayApiStatus(groupId: String? = nil, microserviceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCreateGatewayApiStatusResponse {
+        try await self.describeCreateGatewayApiStatus(DescribeCreateGatewayApiStatusRequest(groupId: groupId, microserviceId: microserviceId), logger: logger, on: eventLoop)
+    }
 }

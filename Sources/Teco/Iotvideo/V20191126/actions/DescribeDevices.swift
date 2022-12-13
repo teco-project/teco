@@ -89,4 +89,20 @@ extension Iotvideo {
     public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
         try await self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备信息列表
+    ///
+    /// 本接口（DescribeDevices）用于获取设备信息列表。
+    @inlinable
+    public func describeDevices(productId: String, returnModel: Bool, limit: UInt64, offset: UInt64, otaVersion: String? = nil, deviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicesResponse > {
+        self.describeDevices(DescribeDevicesRequest(productId: productId, returnModel: returnModel, limit: limit, offset: offset, otaVersion: otaVersion, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备信息列表
+    ///
+    /// 本接口（DescribeDevices）用于获取设备信息列表。
+    @inlinable
+    public func describeDevices(productId: String, returnModel: Bool, limit: UInt64, offset: UInt64, otaVersion: String? = nil, deviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
+        try await self.describeDevices(DescribeDevicesRequest(productId: productId, returnModel: returnModel, limit: limit, offset: offset, otaVersion: otaVersion, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
 }

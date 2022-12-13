@@ -54,4 +54,20 @@ extension Cfs {
     public func deleteCfsFileSystem(_ input: DeleteCfsFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsFileSystemResponse {
         try await self.client.execute(action: "DeleteCfsFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除文件系统
+    ///
+    /// 用于删除文件系统
+    @inlinable
+    public func deleteCfsFileSystem(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCfsFileSystemResponse > {
+        self.deleteCfsFileSystem(DeleteCfsFileSystemRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除文件系统
+    ///
+    /// 用于删除文件系统
+    @inlinable
+    public func deleteCfsFileSystem(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsFileSystemResponse {
+        try await self.deleteCfsFileSystem(DeleteCfsFileSystemRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    }
 }

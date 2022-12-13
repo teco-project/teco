@@ -64,4 +64,20 @@ extension Rum {
     public func deleteStarProject(_ input: DeleteStarProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStarProjectResponse {
         try await self.client.execute(action: "DeleteStarProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除星标项目
+    ///
+    /// 删除用户名下的星标项目
+    @inlinable
+    public func deleteStarProject(instanceID: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStarProjectResponse > {
+        self.deleteStarProject(DeleteStarProjectRequest(instanceID: instanceID, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除星标项目
+    ///
+    /// 删除用户名下的星标项目
+    @inlinable
+    public func deleteStarProject(instanceID: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStarProjectResponse {
+        try await self.deleteStarProject(DeleteStarProjectRequest(instanceID: instanceID, id: id), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Pts {
     public func deleteFiles(_ input: DeleteFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFilesResponse {
         try await self.client.execute(action: "DeleteFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除文件
+    @inlinable
+    public func deleteFiles(projectId: String, fileIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFilesResponse > {
+        self.deleteFiles(DeleteFilesRequest(projectId: projectId, fileIds: fileIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除文件
+    @inlinable
+    public func deleteFiles(projectId: String, fileIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFilesResponse {
+        try await self.deleteFiles(DeleteFilesRequest(projectId: projectId, fileIds: fileIds), logger: logger, on: eventLoop)
+    }
 }

@@ -87,4 +87,20 @@ extension Cfs {
     public func describeAutoSnapshotPolicies(_ input: DescribeAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoSnapshotPoliciesResponse {
         try await self.client.execute(action: "DescribeAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询文件系统快照策略列表信息
+    ///
+    /// 查询文件系统快照定期策略列表信息
+    @inlinable
+    public func describeAutoSnapshotPolicies(autoSnapshotPolicyId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoSnapshotPoliciesResponse > {
+        self.describeAutoSnapshotPolicies(DescribeAutoSnapshotPoliciesRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, offset: offset, limit: limit, filters: filters, order: order, orderField: orderField), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文件系统快照策略列表信息
+    ///
+    /// 查询文件系统快照定期策略列表信息
+    @inlinable
+    public func describeAutoSnapshotPolicies(autoSnapshotPolicyId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoSnapshotPoliciesResponse {
+        try await self.describeAutoSnapshotPolicies(DescribeAutoSnapshotPoliciesRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, offset: offset, limit: limit, filters: filters, order: order, orderField: orderField), logger: logger, on: eventLoop)
+    }
 }

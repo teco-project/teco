@@ -130,4 +130,24 @@ extension Iai {
     public func createFace(_ input: CreateFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceResponse {
         try await self.client.execute(action: "CreateFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 增加人脸
+    ///
+    /// 将一组人脸图片添加到一个人员中。一个人员最多允许包含 5 张图片。若该人员存在多个人员库中，所有人员库中该人员图片均会增加。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func createFace(personId: String, images: [String]? = nil, urls: [String]? = nil, faceMatchThreshold: Float? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFaceResponse > {
+        self.createFace(CreateFaceRequest(personId: personId, images: images, urls: urls, faceMatchThreshold: faceMatchThreshold, qualityControl: qualityControl, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    }
+    
+    /// 增加人脸
+    ///
+    /// 将一组人脸图片添加到一个人员中。一个人员最多允许包含 5 张图片。若该人员存在多个人员库中，所有人员库中该人员图片均会增加。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func createFace(personId: String, images: [String]? = nil, urls: [String]? = nil, faceMatchThreshold: Float? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceResponse {
+        try await self.createFace(CreateFaceRequest(personId: personId, images: images, urls: urls, faceMatchThreshold: faceMatchThreshold, qualityControl: qualityControl, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,16 @@ extension Tdcpg {
     public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountDescriptionResponse {
         try await self.client.execute(action: "ModifyAccountDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改数据库账号描述
+    @inlinable
+    public func modifyAccountDescription(clusterId: String, accountName: String, accountDescription: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountDescriptionResponse > {
+        self.modifyAccountDescription(ModifyAccountDescriptionRequest(clusterId: clusterId, accountName: accountName, accountDescription: accountDescription), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改数据库账号描述
+    @inlinable
+    public func modifyAccountDescription(clusterId: String, accountName: String, accountDescription: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountDescriptionResponse {
+        try await self.modifyAccountDescription(ModifyAccountDescriptionRequest(clusterId: clusterId, accountName: accountName, accountDescription: accountDescription), logger: logger, on: eventLoop)
+    }
 }

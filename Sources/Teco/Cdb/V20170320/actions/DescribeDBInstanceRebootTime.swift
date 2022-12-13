@@ -62,4 +62,20 @@ extension Cdb {
     public func describeDBInstanceRebootTime(_ input: DescribeDBInstanceRebootTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceRebootTimeResponse {
         try await self.client.execute(action: "DescribeDBInstanceRebootTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询云数据库实例的预期重启时间
+    ///
+    /// 本接口(DescribeDBInstanceRebootTime)用于查询云数据库实例重启预计所需的时间。
+    @inlinable
+    public func describeDBInstanceRebootTime(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceRebootTimeResponse > {
+        self.describeDBInstanceRebootTime(DescribeDBInstanceRebootTimeRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云数据库实例的预期重启时间
+    ///
+    /// 本接口(DescribeDBInstanceRebootTime)用于查询云数据库实例重启预计所需的时间。
+    @inlinable
+    public func describeDBInstanceRebootTime(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceRebootTimeResponse {
+        try await self.describeDBInstanceRebootTime(DescribeDBInstanceRebootTimeRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

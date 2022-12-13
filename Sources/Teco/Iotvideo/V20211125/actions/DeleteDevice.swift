@@ -55,4 +55,16 @@ extension Iotvideo {
     public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
         try await self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除设备
+    @inlinable
+    public func deleteDevice(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceResponse > {
+        self.deleteDevice(DeleteDeviceRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除设备
+    @inlinable
+    public func deleteDevice(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
+        try await self.deleteDevice(DeleteDeviceRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
 }

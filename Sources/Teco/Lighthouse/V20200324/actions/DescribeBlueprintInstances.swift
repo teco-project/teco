@@ -62,4 +62,20 @@ extension Lighthouse {
     public func describeBlueprintInstances(_ input: DescribeBlueprintInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlueprintInstancesResponse {
         try await self.client.execute(action: "DescribeBlueprintInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询镜像实例信息
+    ///
+    /// 本接口（DescribeBlueprintInstances）用于查询镜像实例信息。
+    @inlinable
+    public func describeBlueprintInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBlueprintInstancesResponse > {
+        self.describeBlueprintInstances(DescribeBlueprintInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像实例信息
+    ///
+    /// 本接口（DescribeBlueprintInstances）用于查询镜像实例信息。
+    @inlinable
+    public func describeBlueprintInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlueprintInstancesResponse {
+        try await self.describeBlueprintInstances(DescribeBlueprintInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

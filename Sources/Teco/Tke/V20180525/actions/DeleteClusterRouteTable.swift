@@ -50,4 +50,16 @@ extension Tke {
     public func deleteClusterRouteTable(_ input: DeleteClusterRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterRouteTableResponse {
         try await self.client.execute(action: "DeleteClusterRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除集群路由表
+    @inlinable
+    public func deleteClusterRouteTable(routeTableName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterRouteTableResponse > {
+        self.deleteClusterRouteTable(DeleteClusterRouteTableRequest(routeTableName: routeTableName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除集群路由表
+    @inlinable
+    public func deleteClusterRouteTable(routeTableName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterRouteTableResponse {
+        try await self.deleteClusterRouteTable(DeleteClusterRouteTableRequest(routeTableName: routeTableName), logger: logger, on: eventLoop)
+    }
 }

@@ -83,4 +83,20 @@ extension Cdn {
     public func createScdnDomain(_ input: CreateScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScdnDomainResponse {
         try await self.client.execute(action: "CreateScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建SCDN域名
+    ///
+    /// CreateScdnDomain 用于创建 SCDN 加速域名
+    @inlinable
+    public func createScdnDomain(domain: String, waf: ScdnWafConfig? = nil, acl: ScdnAclConfig? = nil, cc: ScdnConfig? = nil, ddos: ScdnDdosConfig? = nil, bot: ScdnBotConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScdnDomainResponse > {
+        self.createScdnDomain(CreateScdnDomainRequest(domain: domain, waf: waf, acl: acl, cc: cc, ddos: ddos, bot: bot), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建SCDN域名
+    ///
+    /// CreateScdnDomain 用于创建 SCDN 加速域名
+    @inlinable
+    public func createScdnDomain(domain: String, waf: ScdnWafConfig? = nil, acl: ScdnAclConfig? = nil, cc: ScdnConfig? = nil, ddos: ScdnDdosConfig? = nil, bot: ScdnBotConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScdnDomainResponse {
+        try await self.createScdnDomain(CreateScdnDomainRequest(domain: domain, waf: waf, acl: acl, cc: cc, ddos: ddos, bot: bot), logger: logger, on: eventLoop)
+    }
 }

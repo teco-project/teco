@@ -81,4 +81,22 @@ extension Ckafka {
     public func describeTopic(_ input: DescribeTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicResponse {
         try await self.client.execute(action: "DescribeTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取主题列表
+    ///
+    /// 接口请求域名：https://ckafka.tencentcloudapi.com
+    /// 本接口（DescribeTopic）用于在用户获取消息队列 CKafka 实例的主题列表
+    @inlinable
+    public func describeTopic(instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, aclRuleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicResponse > {
+        self.describeTopic(DescribeTopicRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit, aclRuleName: aclRuleName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取主题列表
+    ///
+    /// 接口请求域名：https://ckafka.tencentcloudapi.com
+    /// 本接口（DescribeTopic）用于在用户获取消息队列 CKafka 实例的主题列表
+    @inlinable
+    public func describeTopic(instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, aclRuleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicResponse {
+        try await self.describeTopic(DescribeTopicRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit, aclRuleName: aclRuleName), logger: logger, on: eventLoop)
+    }
 }

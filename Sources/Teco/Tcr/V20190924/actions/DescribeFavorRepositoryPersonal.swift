@@ -64,4 +64,16 @@ extension Tcr {
     public func describeFavorRepositoryPersonal(_ input: DescribeFavorRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFavorRepositoryPersonalResponse {
         try await self.client.execute(action: "DescribeFavorRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询个人收藏仓库
+    @inlinable
+    public func describeFavorRepositoryPersonal(repoName: String, limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFavorRepositoryPersonalResponse > {
+        self.describeFavorRepositoryPersonal(DescribeFavorRepositoryPersonalRequest(repoName: repoName, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询个人收藏仓库
+    @inlinable
+    public func describeFavorRepositoryPersonal(repoName: String, limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFavorRepositoryPersonalResponse {
+        try await self.describeFavorRepositoryPersonal(DescribeFavorRepositoryPersonalRequest(repoName: repoName, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

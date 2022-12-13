@@ -62,4 +62,20 @@ extension Dcdb {
     public func destroyHourDCDBInstance(_ input: DestroyHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyHourDCDBInstanceResponse {
         try await self.client.execute(action: "DestroyHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 销毁按量计费实例
+    ///
+    /// 本接口（DestroyHourDCDBInstance）用于销毁按量计费实例。
+    @inlinable
+    public func destroyHourDCDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyHourDCDBInstanceResponse > {
+        self.destroyHourDCDBInstance(DestroyHourDCDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁按量计费实例
+    ///
+    /// 本接口（DestroyHourDCDBInstance）用于销毁按量计费实例。
+    @inlinable
+    public func destroyHourDCDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyHourDCDBInstanceResponse {
+        try await self.destroyHourDCDBInstance(DestroyHourDCDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

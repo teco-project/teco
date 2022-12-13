@@ -94,4 +94,22 @@ extension Dts {
     public func describeMigrateJobs(_ input: DescribeMigrateJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrateJobsResponse {
         try await self.client.execute(action: "DescribeMigrateJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询数据迁移任务
+    ///
+    /// 查询数据迁移任务.
+    /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
+    @inlinable
+    public func describeMigrateJobs(jobId: String? = nil, jobName: String? = nil, order: String? = nil, orderSeq: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrateJobsResponse > {
+        self.describeMigrateJobs(DescribeMigrateJobsRequest(jobId: jobId, jobName: jobName, order: order, orderSeq: orderSeq, offset: offset, limit: limit, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据迁移任务
+    ///
+    /// 查询数据迁移任务.
+    /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
+    @inlinable
+    public func describeMigrateJobs(jobId: String? = nil, jobName: String? = nil, order: String? = nil, orderSeq: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrateJobsResponse {
+        try await self.describeMigrateJobs(DescribeMigrateJobsRequest(jobId: jobId, jobName: jobName, order: order, orderSeq: orderSeq, offset: offset, limit: limit, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    }
 }

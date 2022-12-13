@@ -95,4 +95,20 @@ extension Lighthouse {
     public func describeResetInstanceBlueprints(_ input: DescribeResetInstanceBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResetInstanceBlueprintsResponse {
         try await self.client.execute(action: "DescribeResetInstanceBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询重置实例的镜像信息
+    ///
+    /// 本接口（DescribeResetInstanceBlueprints）查询重置实例的镜像信息。
+    @inlinable
+    public func describeResetInstanceBlueprints(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResetInstanceBlueprintsResponse > {
+        self.describeResetInstanceBlueprints(DescribeResetInstanceBlueprintsRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询重置实例的镜像信息
+    ///
+    /// 本接口（DescribeResetInstanceBlueprints）查询重置实例的镜像信息。
+    @inlinable
+    public func describeResetInstanceBlueprints(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResetInstanceBlueprintsResponse {
+        try await self.describeResetInstanceBlueprints(DescribeResetInstanceBlueprintsRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

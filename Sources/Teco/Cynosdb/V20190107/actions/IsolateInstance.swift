@@ -73,4 +73,20 @@ extension Cynosdb {
     public func isolateInstance(_ input: IsolateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateInstanceResponse {
         try await self.client.execute(action: "IsolateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 隔离实例
+    ///
+    /// 本接口(IsolateInstance)用于隔离实例。
+    @inlinable
+    public func isolateInstance(clusterId: String, instanceIdList: [String], dbType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateInstanceResponse > {
+        self.isolateInstance(IsolateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList, dbType: dbType), logger: logger, on: eventLoop)
+    }
+    
+    /// 隔离实例
+    ///
+    /// 本接口(IsolateInstance)用于隔离实例。
+    @inlinable
+    public func isolateInstance(clusterId: String, instanceIdList: [String], dbType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateInstanceResponse {
+        try await self.isolateInstance(IsolateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList, dbType: dbType), logger: logger, on: eventLoop)
+    }
 }

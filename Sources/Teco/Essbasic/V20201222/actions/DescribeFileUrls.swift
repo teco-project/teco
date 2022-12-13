@@ -96,4 +96,20 @@ extension Essbasic {
     public func describeFileUrls(_ input: DescribeFileUrlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
         try await self.client.execute(action: "DescribeFileUrls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询文件下载链接
+    ///
+    /// 此接口（DescribeFileUrls）用于获取签署文件下载的URL。
+    @inlinable
+    public func describeFileUrls(caller: Caller, businessIds: [String], businessType: String, fileName: String? = nil, resourceOffset: Int64? = nil, resourceLimit: Int64? = nil, fileType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileUrlsResponse > {
+        self.describeFileUrls(DescribeFileUrlsRequest(caller: caller, businessIds: businessIds, businessType: businessType, fileName: fileName, resourceOffset: resourceOffset, resourceLimit: resourceLimit, fileType: fileType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文件下载链接
+    ///
+    /// 此接口（DescribeFileUrls）用于获取签署文件下载的URL。
+    @inlinable
+    public func describeFileUrls(caller: Caller, businessIds: [String], businessType: String, fileName: String? = nil, resourceOffset: Int64? = nil, resourceLimit: Int64? = nil, fileType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
+        try await self.describeFileUrls(DescribeFileUrlsRequest(caller: caller, businessIds: businessIds, businessType: businessType, fileName: fileName, resourceOffset: resourceOffset, resourceLimit: resourceLimit, fileType: fileType), logger: logger, on: eventLoop)
+    }
 }

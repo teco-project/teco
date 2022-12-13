@@ -58,4 +58,20 @@ extension Mariadb {
     public func describeFlow(_ input: DescribeFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowResponse {
         try await self.client.execute(action: "DescribeFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询流程状态
+    ///
+    /// 本接口（DescribeFlow）用于查询流程状态。
+    @inlinable
+    public func describeFlow(flowId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowResponse > {
+        self.describeFlow(DescribeFlowRequest(flowId: flowId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流程状态
+    ///
+    /// 本接口（DescribeFlow）用于查询流程状态。
+    @inlinable
+    public func describeFlow(flowId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowResponse {
+        try await self.describeFlow(DescribeFlowRequest(flowId: flowId), logger: logger, on: eventLoop)
+    }
 }

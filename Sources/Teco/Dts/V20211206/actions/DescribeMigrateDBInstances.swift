@@ -109,4 +109,20 @@ extension Dts {
     public func describeMigrateDBInstances(_ input: DescribeMigrateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrateDBInstancesResponse {
         try await self.client.execute(action: "DescribeMigrateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询可迁移的实例列表
+    ///
+    /// 本接口用于查询支持迁移的云数据库实例
+    @inlinable
+    public func describeMigrateDBInstances(databaseType: String, migrateRole: String? = nil, instanceId: String? = nil, instanceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, accountMode: String? = nil, tmpSecretId: String? = nil, tmpSecretKey: String? = nil, tmpToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrateDBInstancesResponse > {
+        self.describeMigrateDBInstances(DescribeMigrateDBInstancesRequest(databaseType: databaseType, migrateRole: migrateRole, instanceId: instanceId, instanceName: instanceName, limit: limit, offset: offset, accountMode: accountMode, tmpSecretId: tmpSecretId, tmpSecretKey: tmpSecretKey, tmpToken: tmpToken), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询可迁移的实例列表
+    ///
+    /// 本接口用于查询支持迁移的云数据库实例
+    @inlinable
+    public func describeMigrateDBInstances(databaseType: String, migrateRole: String? = nil, instanceId: String? = nil, instanceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, accountMode: String? = nil, tmpSecretId: String? = nil, tmpSecretKey: String? = nil, tmpToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrateDBInstancesResponse {
+        try await self.describeMigrateDBInstances(DescribeMigrateDBInstancesRequest(databaseType: databaseType, migrateRole: migrateRole, instanceId: instanceId, instanceName: instanceName, limit: limit, offset: offset, accountMode: accountMode, tmpSecretId: tmpSecretId, tmpSecretKey: tmpSecretKey, tmpToken: tmpToken), logger: logger, on: eventLoop)
+    }
 }

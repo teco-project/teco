@@ -79,4 +79,16 @@ extension Teo {
     public func modifyApplicationProxy(_ input: ModifyApplicationProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyResponse {
         try await self.client.execute(action: "ModifyApplicationProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改应用代理
+    @inlinable
+    public func modifyApplicationProxy(zoneId: String, proxyId: String, proxyName: String, sessionPersistTime: UInt64? = nil, proxyType: String? = nil, ipv6: Ipv6? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationProxyResponse > {
+        self.modifyApplicationProxy(ModifyApplicationProxyRequest(zoneId: zoneId, proxyId: proxyId, proxyName: proxyName, sessionPersistTime: sessionPersistTime, proxyType: proxyType, ipv6: ipv6), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改应用代理
+    @inlinable
+    public func modifyApplicationProxy(zoneId: String, proxyId: String, proxyName: String, sessionPersistTime: UInt64? = nil, proxyType: String? = nil, ipv6: Ipv6? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyResponse {
+        try await self.modifyApplicationProxy(ModifyApplicationProxyRequest(zoneId: zoneId, proxyId: proxyId, proxyName: proxyName, sessionPersistTime: sessionPersistTime, proxyType: proxyType, ipv6: ipv6), logger: logger, on: eventLoop)
+    }
 }

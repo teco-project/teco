@@ -60,4 +60,16 @@ extension Tke {
     public func enableClusterAudit(_ input: EnableClusterAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableClusterAuditResponse {
         try await self.client.execute(action: "EnableClusterAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开启集群审计
+    @inlinable
+    public func enableClusterAudit(clusterId: String, logsetId: String? = nil, topicId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableClusterAuditResponse > {
+        self.enableClusterAudit(EnableClusterAuditRequest(clusterId: clusterId, logsetId: logsetId, topicId: topicId), logger: logger, on: eventLoop)
+    }
+    
+    /// 开启集群审计
+    @inlinable
+    public func enableClusterAudit(clusterId: String, logsetId: String? = nil, topicId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableClusterAuditResponse {
+        try await self.enableClusterAudit(EnableClusterAuditRequest(clusterId: clusterId, logsetId: logsetId, topicId: topicId), logger: logger, on: eventLoop)
+    }
 }

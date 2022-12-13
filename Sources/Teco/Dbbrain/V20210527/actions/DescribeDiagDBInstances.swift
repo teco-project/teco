@@ -96,4 +96,20 @@ extension Dbbrain {
     public func describeDiagDBInstances(_ input: DescribeDiagDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiagDBInstancesResponse {
         try await self.client.execute(action: "DescribeDiagDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取实例信息列表
+    ///
+    /// 获取实例信息列表。Region统一选择广州。
+    @inlinable
+    public func describeDiagDBInstances(isSupported: Bool, product: String, offset: Int64, limit: Int64, instanceNames: [String]? = nil, instanceIds: [String]? = nil, regions: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiagDBInstancesResponse > {
+        self.describeDiagDBInstances(DescribeDiagDBInstancesRequest(isSupported: isSupported, product: product, offset: offset, limit: limit, instanceNames: instanceNames, instanceIds: instanceIds, regions: regions), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例信息列表
+    ///
+    /// 获取实例信息列表。Region统一选择广州。
+    @inlinable
+    public func describeDiagDBInstances(isSupported: Bool, product: String, offset: Int64, limit: Int64, instanceNames: [String]? = nil, instanceIds: [String]? = nil, regions: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiagDBInstancesResponse {
+        try await self.describeDiagDBInstances(DescribeDiagDBInstancesRequest(isSupported: isSupported, product: product, offset: offset, limit: limit, instanceNames: instanceNames, instanceIds: instanceIds, regions: regions), logger: logger, on: eventLoop)
+    }
 }

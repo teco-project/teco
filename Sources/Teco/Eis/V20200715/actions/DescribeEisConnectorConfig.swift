@@ -233,4 +233,16 @@ extension Eis {
     public func describeEisConnectorConfig(_ input: DescribeEisConnectorConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEisConnectorConfigResponse {
         try await self.client.execute(action: "DescribeEisConnectorConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取连接器配置参数
+    @inlinable
+    public func describeEisConnectorConfig(connectorName: String, connectorVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEisConnectorConfigResponse > {
+        self.describeEisConnectorConfig(DescribeEisConnectorConfigRequest(connectorName: connectorName, connectorVersion: connectorVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取连接器配置参数
+    @inlinable
+    public func describeEisConnectorConfig(connectorName: String, connectorVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEisConnectorConfigResponse {
+        try await self.describeEisConnectorConfig(DescribeEisConnectorConfigRequest(connectorName: connectorName, connectorVersion: connectorVersion), logger: logger, on: eventLoop)
+    }
 }

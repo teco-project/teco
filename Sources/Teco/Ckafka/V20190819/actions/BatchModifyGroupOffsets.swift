@@ -69,4 +69,16 @@ extension Ckafka {
     public func batchModifyGroupOffsets(_ input: BatchModifyGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyGroupOffsetsResponse {
         try await self.client.execute(action: "BatchModifyGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量修改消费组offset
+    @inlinable
+    public func batchModifyGroupOffsets(groupName: String, instanceId: String, partitions: [Partitions], topicName: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyGroupOffsetsResponse > {
+        self.batchModifyGroupOffsets(BatchModifyGroupOffsetsRequest(groupName: groupName, instanceId: instanceId, partitions: partitions, topicName: topicName), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量修改消费组offset
+    @inlinable
+    public func batchModifyGroupOffsets(groupName: String, instanceId: String, partitions: [Partitions], topicName: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyGroupOffsetsResponse {
+        try await self.batchModifyGroupOffsets(BatchModifyGroupOffsetsRequest(groupName: groupName, instanceId: instanceId, partitions: partitions, topicName: topicName), logger: logger, on: eventLoop)
+    }
 }

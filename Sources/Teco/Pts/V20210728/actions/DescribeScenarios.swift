@@ -99,4 +99,16 @@ extension Pts {
     public func describeScenarios(_ input: DescribeScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScenariosResponse {
         try await self.client.execute(action: "DescribeScenarios", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询场景列表
+    @inlinable
+    public func describeScenarios(scenarioIds: [String]? = nil, scenarioName: String? = nil, scenarioStatus: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil, projectIds: [String]? = nil, scenarioType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScenariosResponse > {
+        self.describeScenarios(DescribeScenariosRequest(scenarioIds: scenarioIds, scenarioName: scenarioName, scenarioStatus: scenarioStatus, offset: offset, limit: limit, orderBy: orderBy, ascend: ascend, projectIds: projectIds, scenarioType: scenarioType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询场景列表
+    @inlinable
+    public func describeScenarios(scenarioIds: [String]? = nil, scenarioName: String? = nil, scenarioStatus: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil, projectIds: [String]? = nil, scenarioType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScenariosResponse {
+        try await self.describeScenarios(DescribeScenariosRequest(scenarioIds: scenarioIds, scenarioName: scenarioName, scenarioStatus: scenarioStatus, offset: offset, limit: limit, orderBy: orderBy, ascend: ascend, projectIds: projectIds, scenarioType: scenarioType), logger: logger, on: eventLoop)
+    }
 }

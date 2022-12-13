@@ -68,4 +68,20 @@ extension Apigateway {
     public func describeApiForApiApp(_ input: DescribeApiForApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiForApiAppResponse {
         try await self.client.execute(action: "DescribeApiForApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 应用使用者查询API详情
+    ///
+    /// 本接口（DescribeApiForApiApp）用于应用使用者查询部署于 API 网关的 API 接口的详细信息。​
+    @inlinable
+    public func describeApiForApiApp(serviceId: String, apiId: String, apiRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiForApiAppResponse > {
+        self.describeApiForApiApp(DescribeApiForApiAppRequest(serviceId: serviceId, apiId: apiId, apiRegion: apiRegion), logger: logger, on: eventLoop)
+    }
+    
+    /// 应用使用者查询API详情
+    ///
+    /// 本接口（DescribeApiForApiApp）用于应用使用者查询部署于 API 网关的 API 接口的详细信息。​
+    @inlinable
+    public func describeApiForApiApp(serviceId: String, apiId: String, apiRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiForApiAppResponse {
+        try await self.describeApiForApiApp(DescribeApiForApiAppRequest(serviceId: serviceId, apiId: apiId, apiRegion: apiRegion), logger: logger, on: eventLoop)
+    }
 }

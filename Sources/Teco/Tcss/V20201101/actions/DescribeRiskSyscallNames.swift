@@ -54,4 +54,20 @@ extension Tcss {
     public func describeRiskSyscallNames(_ input: DescribeRiskSyscallNamesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallNamesResponse {
         try await self.client.execute(action: "DescribeRiskSyscallNames", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行时高危系统调用系统名称列表
+    ///
+    /// 查询运行时高危系统调用系统名称列表
+    @inlinable
+    public func describeRiskSyscallNames(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskSyscallNamesResponse > {
+        self.describeRiskSyscallNames(DescribeRiskSyscallNamesRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时高危系统调用系统名称列表
+    ///
+    /// 查询运行时高危系统调用系统名称列表
+    @inlinable
+    public func describeRiskSyscallNames(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallNamesResponse {
+        try await self.describeRiskSyscallNames(DescribeRiskSyscallNamesRequest(), logger: logger, on: eventLoop)
+    }
 }

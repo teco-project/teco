@@ -60,4 +60,16 @@ extension Rum {
     public func modifyInstance(_ input: ModifyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {
         try await self.client.execute(action: "ModifyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改实例信息
+    @inlinable
+    public func modifyInstance(instanceId: String, instanceName: String? = nil, instanceDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceResponse > {
+        self.modifyInstance(ModifyInstanceRequest(instanceId: instanceId, instanceName: instanceName, instanceDesc: instanceDesc), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例信息
+    @inlinable
+    public func modifyInstance(instanceId: String, instanceName: String? = nil, instanceDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {
+        try await self.modifyInstance(ModifyInstanceRequest(instanceId: instanceId, instanceName: instanceName, instanceDesc: instanceDesc), logger: logger, on: eventLoop)
+    }
 }

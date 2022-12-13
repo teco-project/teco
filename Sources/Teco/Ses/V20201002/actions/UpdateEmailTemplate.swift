@@ -64,4 +64,20 @@ extension Ses {
     public func updateEmailTemplate(_ input: UpdateEmailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEmailTemplateResponse {
         try await self.client.execute(action: "UpdateEmailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新邮件模板
+    ///
+    /// 更新邮件模板，更新后需再次审核
+    @inlinable
+    public func updateEmailTemplate(templateContent: TemplateContent, templateID: UInt64, templateName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateEmailTemplateResponse > {
+        self.updateEmailTemplate(UpdateEmailTemplateRequest(templateContent: templateContent, templateID: templateID, templateName: templateName), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新邮件模板
+    ///
+    /// 更新邮件模板，更新后需再次审核
+    @inlinable
+    public func updateEmailTemplate(templateContent: TemplateContent, templateID: UInt64, templateName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEmailTemplateResponse {
+        try await self.updateEmailTemplate(UpdateEmailTemplateRequest(templateContent: templateContent, templateID: templateID, templateName: templateName), logger: logger, on: eventLoop)
+    }
 }

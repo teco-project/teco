@@ -79,4 +79,20 @@ extension Vms {
     public func sendCodeVoice(_ input: SendCodeVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendCodeVoiceResponse {
         try await self.client.execute(action: "SendCodeVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 发送语音验证码
+    ///
+    /// 给用户发语音验证码（仅支持数字）。
+    @inlinable
+    public func sendCodeVoice(codeMessage: String, calledNumber: String, voiceSdkAppid: String, playTimes: UInt64? = nil, sessionContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendCodeVoiceResponse > {
+        self.sendCodeVoice(SendCodeVoiceRequest(codeMessage: codeMessage, calledNumber: calledNumber, voiceSdkAppid: voiceSdkAppid, playTimes: playTimes, sessionContext: sessionContext), logger: logger, on: eventLoop)
+    }
+    
+    /// 发送语音验证码
+    ///
+    /// 给用户发语音验证码（仅支持数字）。
+    @inlinable
+    public func sendCodeVoice(codeMessage: String, calledNumber: String, voiceSdkAppid: String, playTimes: UInt64? = nil, sessionContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendCodeVoiceResponse {
+        try await self.sendCodeVoice(SendCodeVoiceRequest(codeMessage: codeMessage, calledNumber: calledNumber, voiceSdkAppid: voiceSdkAppid, playTimes: playTimes, sessionContext: sessionContext), logger: logger, on: eventLoop)
+    }
 }

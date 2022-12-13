@@ -71,4 +71,16 @@ extension Dayu {
     public func describeRuleSets(_ input: DescribeRuleSetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleSetsResponse {
         try await self.client.execute(action: "DescribeRuleSets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取资源的规则数
+    @inlinable
+    public func describeRuleSets(business: String, idList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleSetsResponse > {
+        self.describeRuleSets(DescribeRuleSetsRequest(business: business, idList: idList), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资源的规则数
+    @inlinable
+    public func describeRuleSets(business: String, idList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleSetsResponse {
+        try await self.describeRuleSets(DescribeRuleSetsRequest(business: business, idList: idList), logger: logger, on: eventLoop)
+    }
 }

@@ -97,4 +97,20 @@ extension Smh {
     public func describeOfficialInstances(_ input: DescribeOfficialInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfficialInstancesResponse {
         try await self.client.execute(action: "DescribeOfficialInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询官方实例
+    ///
+    /// 查询官方云盘实例
+    @inlinable
+    public func describeOfficialInstances(superAdminAccount: Bool? = nil, instanceIds: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, autoRenew: UInt64? = nil, bindPhone: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOfficialInstancesResponse > {
+        self.describeOfficialInstances(DescribeOfficialInstancesRequest(superAdminAccount: superAdminAccount, instanceIds: instanceIds, pageNumber: pageNumber, pageSize: pageSize, orderBy: orderBy, orderByType: orderByType, autoRenew: autoRenew, bindPhone: bindPhone), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询官方实例
+    ///
+    /// 查询官方云盘实例
+    @inlinable
+    public func describeOfficialInstances(superAdminAccount: Bool? = nil, instanceIds: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, autoRenew: UInt64? = nil, bindPhone: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfficialInstancesResponse {
+        try await self.describeOfficialInstances(DescribeOfficialInstancesRequest(superAdminAccount: superAdminAccount, instanceIds: instanceIds, pageNumber: pageNumber, pageSize: pageSize, orderBy: orderBy, orderByType: orderByType, autoRenew: autoRenew, bindPhone: bindPhone), logger: logger, on: eventLoop)
+    }
 }

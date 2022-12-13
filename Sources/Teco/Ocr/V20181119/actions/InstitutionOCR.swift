@@ -86,4 +86,20 @@ extension Ocr {
     public func institutionOCR(_ input: InstitutionOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstitutionOCRResponse {
         try await self.client.execute(action: "InstitutionOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 事业单位法人证书识别
+    ///
+    /// 本接口支持事业单位法人证书关键字段识别，包括注册号、有效期、住所、名称、法定代表人等。
+    @inlinable
+    public func institutionOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstitutionOCRResponse > {
+        self.institutionOCR(InstitutionOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 事业单位法人证书识别
+    ///
+    /// 本接口支持事业单位法人证书关键字段识别，包括注册号、有效期、住所、名称、法定代表人等。
+    @inlinable
+    public func institutionOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstitutionOCRResponse {
+        try await self.institutionOCR(InstitutionOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
 }

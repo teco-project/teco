@@ -62,4 +62,16 @@ extension Ccc {
     public func describeCCCBuyInfoList(_ input: DescribeCCCBuyInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCCBuyInfoListResponse {
         try await self.client.execute(action: "DescribeCCCBuyInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取用户购买信息列表
+    @inlinable
+    public func describeCCCBuyInfoList(sdkAppIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCCBuyInfoListResponse > {
+        self.describeCCCBuyInfoList(DescribeCCCBuyInfoListRequest(sdkAppIds: sdkAppIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户购买信息列表
+    @inlinable
+    public func describeCCCBuyInfoList(sdkAppIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCCBuyInfoListResponse {
+        try await self.describeCCCBuyInfoList(DescribeCCCBuyInfoListRequest(sdkAppIds: sdkAppIds), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Cls {
     public func deleteLogset(_ input: DeleteLogsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogsetResponse {
         try await self.client.execute(action: "DeleteLogset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除日志集
+    ///
+    /// 本接口用于删除日志集。
+    @inlinable
+    public func deleteLogset(logsetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLogsetResponse > {
+        self.deleteLogset(DeleteLogsetRequest(logsetId: logsetId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除日志集
+    ///
+    /// 本接口用于删除日志集。
+    @inlinable
+    public func deleteLogset(logsetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogsetResponse {
+        try await self.deleteLogset(DeleteLogsetRequest(logsetId: logsetId), logger: logger, on: eventLoop)
+    }
 }

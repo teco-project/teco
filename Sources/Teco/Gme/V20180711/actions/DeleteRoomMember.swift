@@ -73,4 +73,20 @@ extension Gme {
     public func deleteRoomMember(_ input: DeleteRoomMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoomMemberResponse {
         try await self.client.execute(action: "DeleteRoomMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 剔除房间或房间成员
+    ///
+    /// 本接口(DeleteRoomMember)用户删除房间或者剔除房间内用户
+    @inlinable
+    public func deleteRoomMember(roomId: String, uids: [String], deleteType: UInt64, bizId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRoomMemberResponse > {
+        self.deleteRoomMember(DeleteRoomMemberRequest(roomId: roomId, uids: uids, deleteType: deleteType, bizId: bizId), logger: logger, on: eventLoop)
+    }
+    
+    /// 剔除房间或房间成员
+    ///
+    /// 本接口(DeleteRoomMember)用户删除房间或者剔除房间内用户
+    @inlinable
+    public func deleteRoomMember(roomId: String, uids: [String], deleteType: UInt64, bizId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoomMemberResponse {
+        try await self.deleteRoomMember(DeleteRoomMemberRequest(roomId: roomId, uids: uids, deleteType: deleteType, bizId: bizId), logger: logger, on: eventLoop)
+    }
 }

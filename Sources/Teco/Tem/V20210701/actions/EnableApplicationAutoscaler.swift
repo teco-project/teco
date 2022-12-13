@@ -70,4 +70,16 @@ extension Tem {
     public func enableApplicationAutoscaler(_ input: EnableApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableApplicationAutoscalerResponse {
         try await self.client.execute(action: "EnableApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启用应用弹性策略组合
+    @inlinable
+    public func enableApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscalerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableApplicationAutoscalerResponse > {
+        self.enableApplicationAutoscaler(EnableApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscalerId: autoscalerId), logger: logger, on: eventLoop)
+    }
+    
+    /// 启用应用弹性策略组合
+    @inlinable
+    public func enableApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscalerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableApplicationAutoscalerResponse {
+        try await self.enableApplicationAutoscaler(EnableApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscalerId: autoscalerId), logger: logger, on: eventLoop)
+    }
 }

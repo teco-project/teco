@@ -70,4 +70,16 @@ extension Wedata {
     public func describeIntegrationNode(_ input: DescribeIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationNodeResponse {
         try await self.client.execute(action: "DescribeIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询集成节点
+    @inlinable
+    public func describeIntegrationNode(id: String, projectId: String, taskType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationNodeResponse > {
+        self.describeIntegrationNode(DescribeIntegrationNodeRequest(id: id, projectId: projectId, taskType: taskType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集成节点
+    @inlinable
+    public func describeIntegrationNode(id: String, projectId: String, taskType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationNodeResponse {
+        try await self.describeIntegrationNode(DescribeIntegrationNodeRequest(id: id, projectId: projectId, taskType: taskType), logger: logger, on: eventLoop)
+    }
 }

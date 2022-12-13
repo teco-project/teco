@@ -59,4 +59,16 @@ extension Monitor {
     public func describeInstalledPlugins(_ input: DescribeInstalledPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstalledPluginsResponse {
         try await self.client.execute(action: "DescribeInstalledPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 列出实例已安装的插件
+    @inlinable
+    public func describeInstalledPlugins(instanceId: String, pluginId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstalledPluginsResponse > {
+        self.describeInstalledPlugins(DescribeInstalledPluginsRequest(instanceId: instanceId, pluginId: pluginId), logger: logger, on: eventLoop)
+    }
+    
+    /// 列出实例已安装的插件
+    @inlinable
+    public func describeInstalledPlugins(instanceId: String, pluginId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstalledPluginsResponse {
+        try await self.describeInstalledPlugins(DescribeInstalledPluginsRequest(instanceId: instanceId, pluginId: pluginId), logger: logger, on: eventLoop)
+    }
 }

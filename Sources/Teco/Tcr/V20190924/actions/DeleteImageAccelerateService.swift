@@ -50,4 +50,16 @@ extension Tcr {
     public func deleteImageAccelerateService(_ input: DeleteImageAccelerateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageAccelerateServiceResponse {
         try await self.client.execute(action: "DeleteImageAccelerateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除镜像加速服务
+    @inlinable
+    public func deleteImageAccelerateService(registryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageAccelerateServiceResponse > {
+        self.deleteImageAccelerateService(DeleteImageAccelerateServiceRequest(registryId: registryId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除镜像加速服务
+    @inlinable
+    public func deleteImageAccelerateService(registryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageAccelerateServiceResponse {
+        try await self.deleteImageAccelerateService(DeleteImageAccelerateServiceRequest(registryId: registryId), logger: logger, on: eventLoop)
+    }
 }

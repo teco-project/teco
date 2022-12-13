@@ -77,4 +77,16 @@ extension Monitor {
     public func createExporterIntegration(_ input: CreateExporterIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExporterIntegrationResponse {
         try await self.client.execute(action: "CreateExporterIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建 exporter 集成
+    @inlinable
+    public func createExporterIntegration(instanceId: String, kind: String, content: String, kubeType: Int64? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateExporterIntegrationResponse > {
+        self.createExporterIntegration(CreateExporterIntegrationRequest(instanceId: instanceId, kind: kind, content: content, kubeType: kubeType, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建 exporter 集成
+    @inlinable
+    public func createExporterIntegration(instanceId: String, kind: String, content: String, kubeType: Int64? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExporterIntegrationResponse {
+        try await self.createExporterIntegration(CreateExporterIntegrationRequest(instanceId: instanceId, kind: kind, content: content, kubeType: kubeType, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

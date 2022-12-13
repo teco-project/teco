@@ -63,4 +63,20 @@ extension Vpc {
     public func inquiryPriceResetVpnGatewayInternetMaxBandwidth(_ input: InquiryPriceResetVpnGatewayInternetMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetVpnGatewayInternetMaxBandwidthResponse {
         try await self.client.execute(action: "InquiryPriceResetVpnGatewayInternetMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 调整VPN网关带宽上限询价
+    ///
+    /// 本接口（InquiryPriceResetVpnGatewayInternetMaxBandwidth）调整VPN网关带宽上限询价。
+    @inlinable
+    public func inquiryPriceResetVpnGatewayInternetMaxBandwidth(vpnGatewayId: String, internetMaxBandwidthOut: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceResetVpnGatewayInternetMaxBandwidthResponse > {
+        self.inquiryPriceResetVpnGatewayInternetMaxBandwidth(InquiryPriceResetVpnGatewayInternetMaxBandwidthRequest(vpnGatewayId: vpnGatewayId, internetMaxBandwidthOut: internetMaxBandwidthOut), logger: logger, on: eventLoop)
+    }
+    
+    /// 调整VPN网关带宽上限询价
+    ///
+    /// 本接口（InquiryPriceResetVpnGatewayInternetMaxBandwidth）调整VPN网关带宽上限询价。
+    @inlinable
+    public func inquiryPriceResetVpnGatewayInternetMaxBandwidth(vpnGatewayId: String, internetMaxBandwidthOut: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetVpnGatewayInternetMaxBandwidthResponse {
+        try await self.inquiryPriceResetVpnGatewayInternetMaxBandwidth(InquiryPriceResetVpnGatewayInternetMaxBandwidthRequest(vpnGatewayId: vpnGatewayId, internetMaxBandwidthOut: internetMaxBandwidthOut), logger: logger, on: eventLoop)
+    }
 }

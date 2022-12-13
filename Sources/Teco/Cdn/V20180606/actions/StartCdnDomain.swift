@@ -55,4 +55,20 @@ extension Cdn {
     public func startCdnDomain(_ input: StartCdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartCdnDomainResponse {
         try await self.client.execute(action: "StartCdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启用加速域名
+    ///
+    /// StartCdnDomain 用于启用已停用域名的加速服务
+    @inlinable
+    public func startCdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartCdnDomainResponse > {
+        self.startCdnDomain(StartCdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
+    }
+    
+    /// 启用加速域名
+    ///
+    /// StartCdnDomain 用于启用已停用域名的加速服务
+    @inlinable
+    public func startCdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartCdnDomainResponse {
+        try await self.startCdnDomain(StartCdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
+    }
 }

@@ -69,4 +69,16 @@ extension Cpdp {
     public func modifyAgentTaxPaymentInfo(_ input: ModifyAgentTaxPaymentInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAgentTaxPaymentInfoResponse {
         try await self.client.execute(action: "ModifyAgentTaxPaymentInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 直播平台-修改代理商完税信息
+    @inlinable
+    public func modifyAgentTaxPaymentInfo(batchNum: Int64, rawElectronicCertUrl: String, fileName: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAgentTaxPaymentInfoResponse > {
+        self.modifyAgentTaxPaymentInfo(ModifyAgentTaxPaymentInfoRequest(batchNum: batchNum, rawElectronicCertUrl: rawElectronicCertUrl, fileName: fileName, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 直播平台-修改代理商完税信息
+    @inlinable
+    public func modifyAgentTaxPaymentInfo(batchNum: Int64, rawElectronicCertUrl: String, fileName: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAgentTaxPaymentInfoResponse {
+        try await self.modifyAgentTaxPaymentInfo(ModifyAgentTaxPaymentInfoRequest(batchNum: batchNum, rawElectronicCertUrl: rawElectronicCertUrl, fileName: fileName, profile: profile), logger: logger, on: eventLoop)
+    }
 }

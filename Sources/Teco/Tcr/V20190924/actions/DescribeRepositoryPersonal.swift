@@ -54,4 +54,16 @@ extension Tcr {
     public func describeRepositoryPersonal(_ input: DescribeRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryPersonalResponse {
         try await self.client.execute(action: "DescribeRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询个人版仓库信息
+    @inlinable
+    public func describeRepositoryPersonal(repoName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRepositoryPersonalResponse > {
+        self.describeRepositoryPersonal(DescribeRepositoryPersonalRequest(repoName: repoName), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询个人版仓库信息
+    @inlinable
+    public func describeRepositoryPersonal(repoName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryPersonalResponse {
+        try await self.describeRepositoryPersonal(DescribeRepositoryPersonalRequest(repoName: repoName), logger: logger, on: eventLoop)
+    }
 }

@@ -32,7 +32,7 @@ extension Iotvideo {
         /// 备注信息
         public let remark: String?
         
-        public init (productId: String, otaVersion: String, tids: [String], `operator`: String? = nil, remark: String? = nil) {
+        public init (productId: String, otaVersion: String, tids: [String], operator: String? = nil, remark: String? = nil) {
             self.productId = productId
             self.otaVersion = otaVersion
             self.tids = tids
@@ -73,5 +73,21 @@ extension Iotvideo {
     @inlinable
     public func runTestOtaVersion(_ input: RunTestOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunTestOtaVersionResponse {
         try await self.client.execute(action: "RunTestOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 固件版本测试发布
+    ///
+    /// 本接口（RunTestOtaVersion）用于固件版本测试发布。
+    @inlinable
+    public func runTestOtaVersion(productId: String, otaVersion: String, tids: [String], operator: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunTestOtaVersionResponse > {
+        self.runTestOtaVersion(RunTestOtaVersionRequest(productId: productId, otaVersion: otaVersion, tids: tids, operator: `operator`, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 固件版本测试发布
+    ///
+    /// 本接口（RunTestOtaVersion）用于固件版本测试发布。
+    @inlinable
+    public func runTestOtaVersion(productId: String, otaVersion: String, tids: [String], operator: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunTestOtaVersionResponse {
+        try await self.runTestOtaVersion(RunTestOtaVersionRequest(productId: productId, otaVersion: otaVersion, tids: tids, operator: `operator`, remark: remark), logger: logger, on: eventLoop)
     }
 }

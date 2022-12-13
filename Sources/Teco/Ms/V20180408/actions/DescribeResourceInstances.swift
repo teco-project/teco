@@ -87,4 +87,20 @@ extension Ms {
     public func describeResourceInstances(_ input: DescribeResourceInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceInstancesResponse {
         try await self.client.execute(action: "DescribeResourceInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取用户的所有资源信息
+    ///
+    /// 获取某个用户的所有资源信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
+    @inlinable
+    public func describeResourceInstances(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, pids: [UInt64]? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceInstancesResponse > {
+        self.describeResourceInstances(DescribeResourceInstancesRequest(filters: filters, offset: offset, limit: limit, pids: pids, orderField: orderField, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户的所有资源信息
+    ///
+    /// 获取某个用户的所有资源信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
+    @inlinable
+    public func describeResourceInstances(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, pids: [UInt64]? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceInstancesResponse {
+        try await self.describeResourceInstances(DescribeResourceInstancesRequest(filters: filters, offset: offset, limit: limit, pids: pids, orderField: orderField, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    }
 }

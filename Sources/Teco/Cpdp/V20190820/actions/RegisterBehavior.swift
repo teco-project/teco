@@ -127,4 +127,20 @@ extension Cpdp {
     public func registerBehavior(_ input: RegisterBehaviorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterBehaviorResponse {
         try await self.client.execute(action: "RegisterBehavior", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 聚鑫-签约行为上报
+    ///
+    /// 商户查询是否签约和签约行为上报
+    @inlinable
+    public func registerBehavior(midasAppId: String, subAppId: String, midasSecretId: String, midasSignature: String, functionFlag: Int64, midasEnvironment: String? = nil, operationClickTime: String? = nil, ipAddress: String? = nil, macAddress: String? = nil, signChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterBehaviorResponse > {
+        self.registerBehavior(RegisterBehaviorRequest(midasAppId: midasAppId, subAppId: subAppId, midasSecretId: midasSecretId, midasSignature: midasSignature, functionFlag: functionFlag, midasEnvironment: midasEnvironment, operationClickTime: operationClickTime, ipAddress: ipAddress, macAddress: macAddress, signChannel: signChannel), logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-签约行为上报
+    ///
+    /// 商户查询是否签约和签约行为上报
+    @inlinable
+    public func registerBehavior(midasAppId: String, subAppId: String, midasSecretId: String, midasSignature: String, functionFlag: Int64, midasEnvironment: String? = nil, operationClickTime: String? = nil, ipAddress: String? = nil, macAddress: String? = nil, signChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterBehaviorResponse {
+        try await self.registerBehavior(RegisterBehaviorRequest(midasAppId: midasAppId, subAppId: subAppId, midasSecretId: midasSecretId, midasSignature: midasSignature, functionFlag: functionFlag, midasEnvironment: midasEnvironment, operationClickTime: operationClickTime, ipAddress: ipAddress, macAddress: macAddress, signChannel: signChannel), logger: logger, on: eventLoop)
+    }
 }

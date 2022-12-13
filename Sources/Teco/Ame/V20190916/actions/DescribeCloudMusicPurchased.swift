@@ -59,4 +59,20 @@ extension Ame {
     public func describeCloudMusicPurchased(_ input: DescribeCloudMusicPurchasedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudMusicPurchasedResponse {
         try await self.client.execute(action: "DescribeCloudMusicPurchased", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取授权项目已购云音乐列表
+    ///
+    /// 获取授权项目下已购云音乐列表
+    @inlinable
+    public func describeCloudMusicPurchased(authInfoId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudMusicPurchasedResponse > {
+        self.describeCloudMusicPurchased(DescribeCloudMusicPurchasedRequest(authInfoId: authInfoId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取授权项目已购云音乐列表
+    ///
+    /// 获取授权项目下已购云音乐列表
+    @inlinable
+    public func describeCloudMusicPurchased(authInfoId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudMusicPurchasedResponse {
+        try await self.describeCloudMusicPurchased(DescribeCloudMusicPurchasedRequest(authInfoId: authInfoId), logger: logger, on: eventLoop)
+    }
 }

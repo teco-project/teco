@@ -119,4 +119,26 @@ extension Cvm {
     public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
         try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看实例列表
+    ///
+    /// 本接口 (DescribeInstances) 用于查询一个或多个实例的详细信息。
+    /// * 可以根据实例`ID`、实例名称或者实例计费模式等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
+    /// * 支持查询实例的最新操作（LatestOperation）以及最新操作状态(LatestOperationState)。
+    @inlinable
+    public func describeInstances(instanceIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+        self.describeInstances(DescribeInstancesRequest(instanceIds: instanceIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看实例列表
+    ///
+    /// 本接口 (DescribeInstances) 用于查询一个或多个实例的详细信息。
+    /// * 可以根据实例`ID`、实例名称或者实例计费模式等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
+    /// * 支持查询实例的最新操作（LatestOperation）以及最新操作状态(LatestOperationState)。
+    @inlinable
+    public func describeInstances(instanceIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
+        try await self.describeInstances(DescribeInstancesRequest(instanceIds: instanceIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

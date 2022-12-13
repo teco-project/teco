@@ -69,4 +69,16 @@ extension Tem {
     public func createConfigData(_ input: CreateConfigDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigDataResponse {
         try await self.client.execute(action: "CreateConfigData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建配置
+    @inlinable
+    public func createConfigData(environmentId: String, name: String, sourceChannel: Int64? = nil, data: [Pair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConfigDataResponse > {
+        self.createConfigData(CreateConfigDataRequest(environmentId: environmentId, name: name, sourceChannel: sourceChannel, data: data), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建配置
+    @inlinable
+    public func createConfigData(environmentId: String, name: String, sourceChannel: Int64? = nil, data: [Pair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigDataResponse {
+        try await self.createConfigData(CreateConfigDataRequest(environmentId: environmentId, name: name, sourceChannel: sourceChannel, data: data), logger: logger, on: eventLoop)
+    }
 }

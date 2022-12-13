@@ -50,4 +50,20 @@ extension Cfs {
     public func signUpCfsService(_ input: SignUpCfsServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignUpCfsServiceResponse {
         try await self.client.execute(action: "SignUpCfsService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开通CFS服务
+    ///
+    /// 本接口（SignUpCfsService）用于开通CFS服务。
+    @inlinable
+    public func signUpCfsService(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SignUpCfsServiceResponse > {
+        self.signUpCfsService(SignUpCfsServiceRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 开通CFS服务
+    ///
+    /// 本接口（SignUpCfsService）用于开通CFS服务。
+    @inlinable
+    public func signUpCfsService(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignUpCfsServiceResponse {
+        try await self.signUpCfsService(SignUpCfsServiceRequest(), logger: logger, on: eventLoop)
+    }
 }

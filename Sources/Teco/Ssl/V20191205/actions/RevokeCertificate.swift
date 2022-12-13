@@ -66,4 +66,20 @@ extension Ssl {
     public func revokeCertificate(_ input: RevokeCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeCertificateResponse {
         try await self.client.execute(action: "RevokeCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 吊销证书
+    ///
+    /// 本接口（RevokeCertificate）用于吊销证书。
+    @inlinable
+    public func revokeCertificate(certificateId: String, reason: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevokeCertificateResponse > {
+        self.revokeCertificate(RevokeCertificateRequest(certificateId: certificateId, reason: reason), logger: logger, on: eventLoop)
+    }
+    
+    /// 吊销证书
+    ///
+    /// 本接口（RevokeCertificate）用于吊销证书。
+    @inlinable
+    public func revokeCertificate(certificateId: String, reason: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeCertificateResponse {
+        try await self.revokeCertificate(RevokeCertificateRequest(certificateId: certificateId, reason: reason), logger: logger, on: eventLoop)
+    }
 }

@@ -64,4 +64,16 @@ extension Tia {
     public func installAgent(_ input: InstallAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallAgentResponse {
         try await self.client.execute(action: "InstallAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安装agent
+    @inlinable
+    public func installAgent(cluster: String, tiaVersion: String? = nil, update: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstallAgentResponse > {
+        self.installAgent(InstallAgentRequest(cluster: cluster, tiaVersion: tiaVersion, update: update), logger: logger, on: eventLoop)
+    }
+    
+    /// 安装agent
+    @inlinable
+    public func installAgent(cluster: String, tiaVersion: String? = nil, update: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallAgentResponse {
+        try await self.installAgent(InstallAgentRequest(cluster: cluster, tiaVersion: tiaVersion, update: update), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,16 @@ extension Ess {
     public func describeThirdPartyAuthCode(_ input: DescribeThirdPartyAuthCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeThirdPartyAuthCodeResponse {
         try await self.client.execute(action: "DescribeThirdPartyAuthCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 通过AuthCode查询用户是否实名
+    @inlinable
+    public func describeThirdPartyAuthCode(authCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeThirdPartyAuthCodeResponse > {
+        self.describeThirdPartyAuthCode(DescribeThirdPartyAuthCodeRequest(authCode: authCode), logger: logger, on: eventLoop)
+    }
+    
+    /// 通过AuthCode查询用户是否实名
+    @inlinable
+    public func describeThirdPartyAuthCode(authCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeThirdPartyAuthCodeResponse {
+        try await self.describeThirdPartyAuthCode(DescribeThirdPartyAuthCodeRequest(authCode: authCode), logger: logger, on: eventLoop)
+    }
 }

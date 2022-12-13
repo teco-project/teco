@@ -102,4 +102,16 @@ extension Cpdp {
     public func queryOpenBankDailyReceiptDownloadUrl(_ input: QueryOpenBankDailyReceiptDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankDailyReceiptDownloadUrlResponse {
         try await self.client.execute(action: "QueryOpenBankDailyReceiptDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-按日期批量查询回单下载地址
+    @inlinable
+    public func queryOpenBankDailyReceiptDownloadUrl(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, queryDate: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankDailyReceiptDownloadUrlResponse > {
+        self.queryOpenBankDailyReceiptDownloadUrl(QueryOpenBankDailyReceiptDownloadUrlRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, bindSerialNo: bindSerialNo, queryDate: queryDate, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-按日期批量查询回单下载地址
+    @inlinable
+    public func queryOpenBankDailyReceiptDownloadUrl(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, queryDate: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankDailyReceiptDownloadUrlResponse {
+        try await self.queryOpenBankDailyReceiptDownloadUrl(QueryOpenBankDailyReceiptDownloadUrlRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, bindSerialNo: bindSerialNo, queryDate: queryDate, environment: environment), logger: logger, on: eventLoop)
+    }
 }

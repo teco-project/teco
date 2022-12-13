@@ -69,4 +69,30 @@ extension Lighthouse {
     public func disassociateInstancesKeyPairs(_ input: DisassociateInstancesKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateInstancesKeyPairsResponse {
         try await self.client.execute(action: "DisassociateInstancesKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解绑密钥对
+    ///
+    /// 本接口（DisassociateInstancesKeyPairs）用于解除实例与指定密钥对的绑定关系。
+    /// * 只支持 [RUNNING, STOPPED] 状态的 LINUX_UNIX 操作系统的实例。处于 RUNNING 状态的实例会强制关机，然后解绑。
+    /// * 解绑密钥后，实例可以通过原来设置的密码登录。
+    /// * 如果原来没有设置密码，解绑后将无法使用 SSH 登录。可以调用 ResetInstancesPassword 接口来设置登录密码。
+    /// * 支持批量操作。每次请求批量实例的上限为 100。
+    /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
+    @inlinable
+    public func disassociateInstancesKeyPairs(keyIds: [String], instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateInstancesKeyPairsResponse > {
+        self.disassociateInstancesKeyPairs(DisassociateInstancesKeyPairsRequest(keyIds: keyIds, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑密钥对
+    ///
+    /// 本接口（DisassociateInstancesKeyPairs）用于解除实例与指定密钥对的绑定关系。
+    /// * 只支持 [RUNNING, STOPPED] 状态的 LINUX_UNIX 操作系统的实例。处于 RUNNING 状态的实例会强制关机，然后解绑。
+    /// * 解绑密钥后，实例可以通过原来设置的密码登录。
+    /// * 如果原来没有设置密码，解绑后将无法使用 SSH 登录。可以调用 ResetInstancesPassword 接口来设置登录密码。
+    /// * 支持批量操作。每次请求批量实例的上限为 100。
+    /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
+    @inlinable
+    public func disassociateInstancesKeyPairs(keyIds: [String], instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateInstancesKeyPairsResponse {
+        try await self.disassociateInstancesKeyPairs(DisassociateInstancesKeyPairsRequest(keyIds: keyIds, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

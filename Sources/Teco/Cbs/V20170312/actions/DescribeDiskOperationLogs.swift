@@ -71,4 +71,20 @@ extension Cbs {
     public func describeDiskOperationLogs(_ input: DescribeDiskOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskOperationLogsResponse {
         try await self.client.execute(action: "DescribeDiskOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询云盘操作日志列表
+    ///
+    /// 查询云盘操作日志功能已迁移至LookUpEvents接口（https://cloud.tencent.com/document/product/629/12359），本接口（DescribeDiskOperationLogs）即将下线，后续不再提供调用，请知悉。
+    @inlinable
+    public func describeDiskOperationLogs(filters: [Filter], endTime: Date? = nil, beginTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiskOperationLogsResponse > {
+        self.describeDiskOperationLogs(DescribeDiskOperationLogsRequest(filters: filters, endTime: endTime, beginTime: beginTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云盘操作日志列表
+    ///
+    /// 查询云盘操作日志功能已迁移至LookUpEvents接口（https://cloud.tencent.com/document/product/629/12359），本接口（DescribeDiskOperationLogs）即将下线，后续不再提供调用，请知悉。
+    @inlinable
+    public func describeDiskOperationLogs(filters: [Filter], endTime: Date? = nil, beginTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskOperationLogsResponse {
+        try await self.describeDiskOperationLogs(DescribeDiskOperationLogsRequest(filters: filters, endTime: endTime, beginTime: beginTime), logger: logger, on: eventLoop)
+    }
 }

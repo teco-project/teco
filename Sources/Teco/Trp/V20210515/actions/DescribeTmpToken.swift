@@ -59,4 +59,20 @@ extension Trp {
     public func describeTmpToken(_ input: DescribeTmpTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTmpTokenResponse {
         try await self.client.execute(action: "DescribeTmpToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询临时Token
+    ///
+    /// 查询临时Token，主要用于上传接口
+    @inlinable
+    public func describeTmpToken(corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTmpTokenResponse > {
+        self.describeTmpToken(DescribeTmpTokenRequest(corpId: corpId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询临时Token
+    ///
+    /// 查询临时Token，主要用于上传接口
+    @inlinable
+    public func describeTmpToken(corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTmpTokenResponse {
+        try await self.describeTmpToken(DescribeTmpTokenRequest(corpId: corpId), logger: logger, on: eventLoop)
+    }
 }

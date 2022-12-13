@@ -107,4 +107,22 @@ extension Cdn {
     public func pushUrlsCache(_ input: PushUrlsCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushUrlsCacheResponse {
         try await self.client.execute(action: "PushUrlsCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 预热 URL
+    ///
+    /// PushUrlsCache 用于将指定 URL 资源列表加载至 CDN 节点，支持指定加速区域预热。
+    /// 默认情况下境内、境外每日预热 URL 限额为各 1000 条，每次最多可提交 500 条。注意：中国境外区域预热，资源默认加载至中国境外边缘节点，所产生的边缘层流量会计入计费流量。
+    @inlinable
+    public func pushUrlsCache(urls: [String], userAgent: String? = nil, area: String? = nil, layer: String? = nil, parseM3U8: Bool? = nil, disableRange: Bool? = nil, headers: [HTTPHeader]? = nil, urlEncode: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PushUrlsCacheResponse > {
+        self.pushUrlsCache(PushUrlsCacheRequest(urls: urls, userAgent: userAgent, area: area, layer: layer, parseM3U8: parseM3U8, disableRange: disableRange, headers: headers, urlEncode: urlEncode), logger: logger, on: eventLoop)
+    }
+    
+    /// 预热 URL
+    ///
+    /// PushUrlsCache 用于将指定 URL 资源列表加载至 CDN 节点，支持指定加速区域预热。
+    /// 默认情况下境内、境外每日预热 URL 限额为各 1000 条，每次最多可提交 500 条。注意：中国境外区域预热，资源默认加载至中国境外边缘节点，所产生的边缘层流量会计入计费流量。
+    @inlinable
+    public func pushUrlsCache(urls: [String], userAgent: String? = nil, area: String? = nil, layer: String? = nil, parseM3U8: Bool? = nil, disableRange: Bool? = nil, headers: [HTTPHeader]? = nil, urlEncode: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushUrlsCacheResponse {
+        try await self.pushUrlsCache(PushUrlsCacheRequest(urls: urls, userAgent: userAgent, area: area, layer: layer, parseM3U8: parseM3U8, disableRange: disableRange, headers: headers, urlEncode: urlEncode), logger: logger, on: eventLoop)
+    }
 }

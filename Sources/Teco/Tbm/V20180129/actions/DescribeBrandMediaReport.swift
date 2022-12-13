@@ -76,4 +76,20 @@ extension Tbm {
     public func describeBrandMediaReport(_ input: DescribeBrandMediaReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandMediaReportResponse {
         try await self.client.execute(action: "DescribeBrandMediaReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取品牌媒体报道数
+    ///
+    /// 监测品牌关键词出现在媒体网站（新闻媒体、网络门户、政府网站、微信公众号、天天快报等）发布资讯标题和正文中的报道数。按天输出结果。
+    @inlinable
+    public func describeBrandMediaReport(brandId: String, startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBrandMediaReportResponse > {
+        self.describeBrandMediaReport(DescribeBrandMediaReportRequest(brandId: brandId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取品牌媒体报道数
+    ///
+    /// 监测品牌关键词出现在媒体网站（新闻媒体、网络门户、政府网站、微信公众号、天天快报等）发布资讯标题和正文中的报道数。按天输出结果。
+    @inlinable
+    public func describeBrandMediaReport(brandId: String, startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandMediaReportResponse {
+        try await self.describeBrandMediaReport(DescribeBrandMediaReportRequest(brandId: brandId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
 }

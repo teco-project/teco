@@ -68,4 +68,20 @@ extension Tbaas {
     public func getBcosTransByHash(_ input: GetBcosTransByHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosTransByHashResponse {
         try await self.client.execute(action: "GetBcosTransByHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 使用交易哈希查询Bcos交易信息
+    ///
+    /// Bcos根据交易哈希查看交易详细信息
+    @inlinable
+    public func getBcosTransByHash(clusterId: String, groupId: Int64, transHash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBcosTransByHashResponse > {
+        self.getBcosTransByHash(GetBcosTransByHashRequest(clusterId: clusterId, groupId: groupId, transHash: transHash), logger: logger, on: eventLoop)
+    }
+    
+    /// 使用交易哈希查询Bcos交易信息
+    ///
+    /// Bcos根据交易哈希查看交易详细信息
+    @inlinable
+    public func getBcosTransByHash(clusterId: String, groupId: Int64, transHash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosTransByHashResponse {
+        try await self.getBcosTransByHash(GetBcosTransByHashRequest(clusterId: clusterId, groupId: groupId, transHash: transHash), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Tcb {
     public func bindEnvGateway(_ input: BindEnvGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEnvGatewayResponse {
         try await self.client.execute(action: "BindEnvGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 绑定环境网关
+    ///
+    /// 绑定另外一个环境下的网关，callContainer请求可以访问到该网关
+    @inlinable
+    public func bindEnvGateway(subEnvId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindEnvGatewayResponse > {
+        self.bindEnvGateway(BindEnvGatewayRequest(subEnvId: subEnvId), logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定环境网关
+    ///
+    /// 绑定另外一个环境下的网关，callContainer请求可以访问到该网关
+    @inlinable
+    public func bindEnvGateway(subEnvId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEnvGatewayResponse {
+        try await self.bindEnvGateway(BindEnvGatewayRequest(subEnvId: subEnvId), logger: logger, on: eventLoop)
+    }
 }

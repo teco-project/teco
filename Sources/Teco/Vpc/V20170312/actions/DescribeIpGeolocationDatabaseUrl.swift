@@ -65,4 +65,20 @@ extension Vpc {
     public func describeIpGeolocationDatabaseUrl(_ input: DescribeIpGeolocationDatabaseUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpGeolocationDatabaseUrlResponse {
         try await self.client.execute(action: "DescribeIpGeolocationDatabaseUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取IP地理位置库下载链接
+    ///
+    /// 本接口（DescribeIpGeolocationDatabaseUrl）用于获取IP地理位置库下载链接。
+    @inlinable
+    public func describeIpGeolocationDatabaseUrl(type: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpGeolocationDatabaseUrlResponse > {
+        self.describeIpGeolocationDatabaseUrl(DescribeIpGeolocationDatabaseUrlRequest(type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取IP地理位置库下载链接
+    ///
+    /// 本接口（DescribeIpGeolocationDatabaseUrl）用于获取IP地理位置库下载链接。
+    @inlinable
+    public func describeIpGeolocationDatabaseUrl(type: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpGeolocationDatabaseUrlResponse {
+        try await self.describeIpGeolocationDatabaseUrl(DescribeIpGeolocationDatabaseUrlRequest(type: type), logger: logger, on: eventLoop)
+    }
 }

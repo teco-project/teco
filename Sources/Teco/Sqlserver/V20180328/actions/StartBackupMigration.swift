@@ -63,4 +63,20 @@ extension Sqlserver {
     public func startBackupMigration(_ input: StartBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBackupMigrationResponse {
         try await self.client.execute(action: "StartBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启动备份导入任务
+    ///
+    /// 本接口（StartBackupMigration）用于启动备份导入任务。
+    @inlinable
+    public func startBackupMigration(instanceId: String, backupMigrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartBackupMigrationResponse > {
+        self.startBackupMigration(StartBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId), logger: logger, on: eventLoop)
+    }
+    
+    /// 启动备份导入任务
+    ///
+    /// 本接口（StartBackupMigration）用于启动备份导入任务。
+    @inlinable
+    public func startBackupMigration(instanceId: String, backupMigrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBackupMigrationResponse {
+        try await self.startBackupMigration(StartBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId), logger: logger, on: eventLoop)
+    }
 }

@@ -85,4 +85,16 @@ extension Tcss {
     public func createComponentExportJob(_ input: CreateComponentExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateComponentExportJobResponse {
         try await self.client.execute(action: "CreateComponentExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询本地镜像组件列表导出
+    @inlinable
+    public func createComponentExportJob(imageID: String, exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateComponentExportJobResponse > {
+        self.createComponentExportJob(CreateComponentExportJobRequest(imageID: imageID, exportField: exportField, limit: limit, offset: offset, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询本地镜像组件列表导出
+    @inlinable
+    public func createComponentExportJob(imageID: String, exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateComponentExportJobResponse {
+        try await self.createComponentExportJob(CreateComponentExportJobRequest(imageID: imageID, exportField: exportField, limit: limit, offset: offset, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    }
 }

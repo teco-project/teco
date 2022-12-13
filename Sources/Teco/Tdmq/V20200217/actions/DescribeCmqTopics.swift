@@ -84,4 +84,16 @@ extension Tdmq {
     public func describeCmqTopics(_ input: DescribeCmqTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqTopicsResponse {
         try await self.client.execute(action: "DescribeCmqTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 枚举cmq全量主题
+    @inlinable
+    public func describeCmqTopics(offset: UInt64? = nil, limit: UInt64? = nil, topicName: String? = nil, topicNameList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCmqTopicsResponse > {
+        self.describeCmqTopics(DescribeCmqTopicsRequest(offset: offset, limit: limit, topicName: topicName, topicNameList: topicNameList, isTagFilter: isTagFilter, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 枚举cmq全量主题
+    @inlinable
+    public func describeCmqTopics(offset: UInt64? = nil, limit: UInt64? = nil, topicName: String? = nil, topicNameList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqTopicsResponse {
+        try await self.describeCmqTopics(DescribeCmqTopicsRequest(offset: offset, limit: limit, topicName: topicName, topicNameList: topicNameList, isTagFilter: isTagFilter, filters: filters), logger: logger, on: eventLoop)
+    }
 }

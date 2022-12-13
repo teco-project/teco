@@ -67,4 +67,20 @@ extension Dayu {
     public func describeSecIndex(_ input: DescribeSecIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecIndexResponse {
         try await self.client.execute(action: "DescribeSecIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取安全统计
+    ///
+    /// 获取本月安全统计
+    @inlinable
+    public func describeSecIndex(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecIndexResponse > {
+        self.describeSecIndex(DescribeSecIndexRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取安全统计
+    ///
+    /// 获取本月安全统计
+    @inlinable
+    public func describeSecIndex(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecIndexResponse {
+        try await self.describeSecIndex(DescribeSecIndexRequest(), logger: logger, on: eventLoop)
+    }
 }

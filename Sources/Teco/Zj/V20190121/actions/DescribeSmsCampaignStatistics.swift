@@ -59,4 +59,16 @@ extension Zj {
     public func describeSmsCampaignStatistics(_ input: DescribeSmsCampaignStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsCampaignStatisticsResponse {
         try await self.client.execute(action: "DescribeSmsCampaignStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取短信超短活动统计数据
+    @inlinable
+    public func describeSmsCampaignStatistics(campaignId: UInt64, license: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmsCampaignStatisticsResponse > {
+        self.describeSmsCampaignStatistics(DescribeSmsCampaignStatisticsRequest(campaignId: campaignId, license: license), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取短信超短活动统计数据
+    @inlinable
+    public func describeSmsCampaignStatistics(campaignId: UInt64, license: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsCampaignStatisticsResponse {
+        try await self.describeSmsCampaignStatistics(DescribeSmsCampaignStatisticsRequest(campaignId: campaignId, license: license), logger: logger, on: eventLoop)
+    }
 }

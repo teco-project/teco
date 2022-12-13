@@ -89,4 +89,20 @@ extension Tsf {
     public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
         try await self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建部署组
+    ///
+    /// 创建虚拟机部署组
+    @inlinable
+    public func createGroup(applicationId: String, namespaceId: String, groupName: String, clusterId: String, groupDesc: String? = nil, groupResourceType: String? = nil, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGroupResponse > {
+        self.createGroup(CreateGroupRequest(applicationId: applicationId, namespaceId: namespaceId, groupName: groupName, clusterId: clusterId, groupDesc: groupDesc, groupResourceType: groupResourceType, alias: alias), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建部署组
+    ///
+    /// 创建虚拟机部署组
+    @inlinable
+    public func createGroup(applicationId: String, namespaceId: String, groupName: String, clusterId: String, groupDesc: String? = nil, groupResourceType: String? = nil, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
+        try await self.createGroup(CreateGroupRequest(applicationId: applicationId, namespaceId: namespaceId, groupName: groupName, clusterId: clusterId, groupDesc: groupDesc, groupResourceType: groupResourceType, alias: alias), logger: logger, on: eventLoop)
+    }
 }

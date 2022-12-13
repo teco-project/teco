@@ -68,4 +68,16 @@ extension Antiddos {
     public func describeListSchedulingDomain(_ input: DescribeListSchedulingDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListSchedulingDomainResponse {
         try await self.client.execute(action: "DescribeListSchedulingDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取智能调度域名列表
+    @inlinable
+    public func describeListSchedulingDomain(offset: UInt64, limit: UInt64, filterDomain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListSchedulingDomainResponse > {
+        self.describeListSchedulingDomain(DescribeListSchedulingDomainRequest(offset: offset, limit: limit, filterDomain: filterDomain), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取智能调度域名列表
+    @inlinable
+    public func describeListSchedulingDomain(offset: UInt64, limit: UInt64, filterDomain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListSchedulingDomainResponse {
+        try await self.describeListSchedulingDomain(DescribeListSchedulingDomainRequest(offset: offset, limit: limit, filterDomain: filterDomain), logger: logger, on: eventLoop)
+    }
 }

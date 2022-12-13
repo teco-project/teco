@@ -58,4 +58,20 @@ extension Chdfs {
     public func describeMountPoint(_ input: DescribeMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountPointResponse {
         try await self.client.execute(action: "DescribeMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看挂载点详细信息
+    ///
+    /// 查看挂载点详细信息。
+    @inlinable
+    public func describeMountPoint(mountPointId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMountPointResponse > {
+        self.describeMountPoint(DescribeMountPointRequest(mountPointId: mountPointId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看挂载点详细信息
+    ///
+    /// 查看挂载点详细信息。
+    @inlinable
+    public func describeMountPoint(mountPointId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountPointResponse {
+        try await self.describeMountPoint(DescribeMountPointRequest(mountPointId: mountPointId), logger: logger, on: eventLoop)
+    }
 }

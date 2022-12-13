@@ -67,4 +67,16 @@ extension Ecm {
     public func terminateInstances(_ input: TerminateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
         try await self.client.execute(action: "TerminateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 销毁实例
+    @inlinable
+    public func terminateInstances(instanceIdSet: [String], terminateDelay: Bool? = nil, terminateTime: String? = nil, associatedResourceDestroy: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateInstancesResponse > {
+        self.terminateInstances(TerminateInstancesRequest(instanceIdSet: instanceIdSet, terminateDelay: terminateDelay, terminateTime: terminateTime, associatedResourceDestroy: associatedResourceDestroy), logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁实例
+    @inlinable
+    public func terminateInstances(instanceIdSet: [String], terminateDelay: Bool? = nil, terminateTime: String? = nil, associatedResourceDestroy: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
+        try await self.terminateInstances(TerminateInstancesRequest(instanceIdSet: instanceIdSet, terminateDelay: terminateDelay, terminateTime: terminateTime, associatedResourceDestroy: associatedResourceDestroy), logger: logger, on: eventLoop)
+    }
 }

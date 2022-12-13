@@ -78,4 +78,20 @@ extension Dcdb {
     public func describeDCDBRenewalPrice(_ input: DescribeDCDBRenewalPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBRenewalPriceResponse {
         try await self.client.execute(action: "DescribeDCDBRenewalPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 续费实例询价
+    ///
+    /// 本接口（DescribeDCDBRenewalPrice）用于在续费分布式数据库实例时，查询续费的价格。
+    @inlinable
+    public func describeDCDBRenewalPrice(instanceId: String, period: Int64? = nil, amountUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDCDBRenewalPriceResponse > {
+        self.describeDCDBRenewalPrice(DescribeDCDBRenewalPriceRequest(instanceId: instanceId, period: period, amountUnit: amountUnit), logger: logger, on: eventLoop)
+    }
+    
+    /// 续费实例询价
+    ///
+    /// 本接口（DescribeDCDBRenewalPrice）用于在续费分布式数据库实例时，查询续费的价格。
+    @inlinable
+    public func describeDCDBRenewalPrice(instanceId: String, period: Int64? = nil, amountUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBRenewalPriceResponse {
+        try await self.describeDCDBRenewalPrice(DescribeDCDBRenewalPriceRequest(instanceId: instanceId, period: period, amountUnit: amountUnit), logger: logger, on: eventLoop)
+    }
 }

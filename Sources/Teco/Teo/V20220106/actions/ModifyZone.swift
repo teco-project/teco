@@ -114,4 +114,20 @@ extension Teo {
     public func modifyZone(_ input: ModifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneResponse {
         try await self.client.execute(action: "ModifyZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改站点
+    ///
+    /// 用该站点信息
+    @inlinable
+    public func modifyZone(id: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyZoneResponse > {
+        self.modifyZone(ModifyZoneRequest(id: id, type: type, vanityNameServers: vanityNameServers), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改站点
+    ///
+    /// 用该站点信息
+    @inlinable
+    public func modifyZone(id: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneResponse {
+        try await self.modifyZone(ModifyZoneRequest(id: id, type: type, vanityNameServers: vanityNameServers), logger: logger, on: eventLoop)
+    }
 }

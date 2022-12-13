@@ -68,4 +68,16 @@ extension Cfs {
     public func describeSnapshotOperationLogs(_ input: DescribeSnapshotOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotOperationLogsResponse {
         try await self.client.execute(action: "DescribeSnapshotOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询快照操作日志
+    @inlinable
+    public func describeSnapshotOperationLogs(snapshotId: String, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotOperationLogsResponse > {
+        self.describeSnapshotOperationLogs(DescribeSnapshotOperationLogsRequest(snapshotId: snapshotId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询快照操作日志
+    @inlinable
+    public func describeSnapshotOperationLogs(snapshotId: String, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotOperationLogsResponse {
+        try await self.describeSnapshotOperationLogs(DescribeSnapshotOperationLogsRequest(snapshotId: snapshotId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

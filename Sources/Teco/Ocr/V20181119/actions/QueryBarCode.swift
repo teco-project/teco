@@ -64,4 +64,22 @@ extension Ocr {
     public func queryBarCode(_ input: QueryBarCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBarCodeResponse {
         try await self.client.execute(action: "QueryBarCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 条码信息查询
+    ///
+    /// 本接口支持条形码备案信息查询，返回条形码查询结果的相关信息，包括产品名称、产品英文名称、品牌名称、规格型号、宽度、高度、深度、关键字、产品描述、厂家名称、厂家地址、企业社会信用代码13个字段信息。
+    /// 产品优势：直联中国物品编码中心，查询结果更加准确、可靠。
+    @inlinable
+    public func queryBarCode(barCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBarCodeResponse > {
+        self.queryBarCode(QueryBarCodeRequest(barCode: barCode), logger: logger, on: eventLoop)
+    }
+    
+    /// 条码信息查询
+    ///
+    /// 本接口支持条形码备案信息查询，返回条形码查询结果的相关信息，包括产品名称、产品英文名称、品牌名称、规格型号、宽度、高度、深度、关键字、产品描述、厂家名称、厂家地址、企业社会信用代码13个字段信息。
+    /// 产品优势：直联中国物品编码中心，查询结果更加准确、可靠。
+    @inlinable
+    public func queryBarCode(barCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBarCodeResponse {
+        try await self.queryBarCode(QueryBarCodeRequest(barCode: barCode), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Scf {
     public func deleteLayerVersion(_ input: DeleteLayerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLayerVersionResponse {
         try await self.client.execute(action: "DeleteLayerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除层版本
+    ///
+    /// 删除指定层的指定版本，被删除的版本无法再关联到函数上，但不会影响正在引用这个层的函数。
+    @inlinable
+    public func deleteLayerVersion(layerName: String, layerVersion: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLayerVersionResponse > {
+        self.deleteLayerVersion(DeleteLayerVersionRequest(layerName: layerName, layerVersion: layerVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除层版本
+    ///
+    /// 删除指定层的指定版本，被删除的版本无法再关联到函数上，但不会影响正在引用这个层的函数。
+    @inlinable
+    public func deleteLayerVersion(layerName: String, layerVersion: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLayerVersionResponse {
+        try await self.deleteLayerVersion(DeleteLayerVersionRequest(layerName: layerName, layerVersion: layerVersion), logger: logger, on: eventLoop)
+    }
 }

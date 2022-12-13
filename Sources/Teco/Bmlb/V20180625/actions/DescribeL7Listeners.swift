@@ -63,4 +63,20 @@ extension Bmlb {
     public func describeL7Listeners(_ input: DescribeL7ListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenersResponse {
         try await self.client.execute(action: "DescribeL7Listeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取黑石负载均衡七层监听器列表信息
+    ///
+    /// 获取黑石负载均衡七层监听器列表信息。
+    @inlinable
+    public func describeL7Listeners(loadBalancerId: String, listenerIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7ListenersResponse > {
+        self.describeL7Listeners(DescribeL7ListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取黑石负载均衡七层监听器列表信息
+    ///
+    /// 获取黑石负载均衡七层监听器列表信息。
+    @inlinable
+    public func describeL7Listeners(loadBalancerId: String, listenerIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenersResponse {
+        try await self.describeL7Listeners(DescribeL7ListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds), logger: logger, on: eventLoop)
+    }
 }

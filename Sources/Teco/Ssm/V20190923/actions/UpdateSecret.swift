@@ -80,4 +80,22 @@ extension Ssm {
     public func updateSecret(_ input: UpdateSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateSecretResponse {
         try await self.client.execute(action: "UpdateSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新凭据内容
+    ///
+    /// 该接口用于更新指定凭据名称和版本号的内容，调用该接口会对新的凭据内容加密后覆盖旧的内容。仅允许更新Enabled 和 Disabled 状态的凭据。
+    /// 本接口仅适用于用户自定义凭据，不能对云产品凭据操作。
+    @inlinable
+    public func updateSecret(secretName: String, versionId: String, secretBinary: String? = nil, secretString: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateSecretResponse > {
+        self.updateSecret(UpdateSecretRequest(secretName: secretName, versionId: versionId, secretBinary: secretBinary, secretString: secretString), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新凭据内容
+    ///
+    /// 该接口用于更新指定凭据名称和版本号的内容，调用该接口会对新的凭据内容加密后覆盖旧的内容。仅允许更新Enabled 和 Disabled 状态的凭据。
+    /// 本接口仅适用于用户自定义凭据，不能对云产品凭据操作。
+    @inlinable
+    public func updateSecret(secretName: String, versionId: String, secretBinary: String? = nil, secretString: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateSecretResponse {
+        try await self.updateSecret(UpdateSecretRequest(secretName: secretName, versionId: versionId, secretBinary: secretBinary, secretString: secretString), logger: logger, on: eventLoop)
+    }
 }

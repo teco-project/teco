@@ -79,4 +79,16 @@ extension Tbaas {
     public func deployDynamicBcosContract(_ input: DeployDynamicBcosContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployDynamicBcosContractResponse {
         try await self.client.execute(action: "DeployDynamicBcosContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 动态部署并发布Bcos合约
+    @inlinable
+    public func deployDynamicBcosContract(clusterId: String, groupId: Int64, abiInfo: String, byteCodeBin: String, signUserId: String, constructorParams: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeployDynamicBcosContractResponse > {
+        self.deployDynamicBcosContract(DeployDynamicBcosContractRequest(clusterId: clusterId, groupId: groupId, abiInfo: abiInfo, byteCodeBin: byteCodeBin, signUserId: signUserId, constructorParams: constructorParams), logger: logger, on: eventLoop)
+    }
+    
+    /// 动态部署并发布Bcos合约
+    @inlinable
+    public func deployDynamicBcosContract(clusterId: String, groupId: Int64, abiInfo: String, byteCodeBin: String, signUserId: String, constructorParams: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployDynamicBcosContractResponse {
+        try await self.deployDynamicBcosContract(DeployDynamicBcosContractRequest(clusterId: clusterId, groupId: groupId, abiInfo: abiInfo, byteCodeBin: byteCodeBin, signUserId: signUserId, constructorParams: constructorParams), logger: logger, on: eventLoop)
+    }
 }

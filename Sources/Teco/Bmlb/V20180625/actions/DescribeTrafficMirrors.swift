@@ -97,4 +97,20 @@ extension Bmlb {
     public func describeTrafficMirrors(_ input: DescribeTrafficMirrorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorsResponse {
         try await self.client.execute(action: "DescribeTrafficMirrors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取流量镜像实例的列表信息
+    ///
+    /// 获取流量镜像实例的列表信息。
+    @inlinable
+    public func describeTrafficMirrors(trafficMirrorIds: [String]? = nil, aliases: [String]? = nil, vpcIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, searchKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficMirrorsResponse > {
+        self.describeTrafficMirrors(DescribeTrafficMirrorsRequest(trafficMirrorIds: trafficMirrorIds, aliases: aliases, vpcIds: vpcIds, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取流量镜像实例的列表信息
+    ///
+    /// 获取流量镜像实例的列表信息。
+    @inlinable
+    public func describeTrafficMirrors(trafficMirrorIds: [String]? = nil, aliases: [String]? = nil, vpcIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, searchKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorsResponse {
+        try await self.describeTrafficMirrors(DescribeTrafficMirrorsRequest(trafficMirrorIds: trafficMirrorIds, aliases: aliases, vpcIds: vpcIds, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey), logger: logger, on: eventLoop)
+    }
 }

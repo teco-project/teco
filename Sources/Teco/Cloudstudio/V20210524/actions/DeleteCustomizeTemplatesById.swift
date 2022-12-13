@@ -55,4 +55,16 @@ extension Cloudstudio {
     public func deleteCustomizeTemplatesById(_ input: DeleteCustomizeTemplatesByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizeTemplatesByIdResponse {
         try await self.client.execute(action: "DeleteCustomizeTemplatesById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除自定义模板
+    @inlinable
+    public func deleteCustomizeTemplatesById(cloudStudioSessionTeam: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomizeTemplatesByIdResponse > {
+        self.deleteCustomizeTemplatesById(DeleteCustomizeTemplatesByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除自定义模板
+    @inlinable
+    public func deleteCustomizeTemplatesById(cloudStudioSessionTeam: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizeTemplatesByIdResponse {
+        try await self.deleteCustomizeTemplatesById(DeleteCustomizeTemplatesByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id), logger: logger, on: eventLoop)
+    }
 }

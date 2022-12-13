@@ -64,4 +64,16 @@ extension Tdid {
     public func getDidRegisterTrend(_ input: GetDidRegisterTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidRegisterTrendResponse {
         try await self.client.execute(action: "GetDidRegisterTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// DID注册趋势
+    @inlinable
+    public func getDidRegisterTrend(startTime: String, endTime: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidRegisterTrendResponse > {
+        self.getDidRegisterTrend(GetDidRegisterTrendRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// DID注册趋势
+    @inlinable
+    public func getDidRegisterTrend(startTime: String, endTime: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidRegisterTrendResponse {
+        try await self.getDidRegisterTrend(GetDidRegisterTrendRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Iotvideo {
     public func describePubVersions(_ input: DescribePubVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePubVersionsResponse {
         try await self.client.execute(action: "DescribePubVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取某一产品发布过的全部固件版本
+    ///
+    /// 本接口（DescribePubVersions）用于获取某一产品发布过的全部固件版本。
+    @inlinable
+    public func describePubVersions(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePubVersionsResponse > {
+        self.describePubVersions(DescribePubVersionsRequest(productId: productId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取某一产品发布过的全部固件版本
+    ///
+    /// 本接口（DescribePubVersions）用于获取某一产品发布过的全部固件版本。
+    @inlinable
+    public func describePubVersions(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePubVersionsResponse {
+        try await self.describePubVersions(DescribePubVersionsRequest(productId: productId), logger: logger, on: eventLoop)
+    }
 }

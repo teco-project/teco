@@ -54,4 +54,20 @@ extension As {
     public func deleteNotificationConfiguration(_ input: DeleteNotificationConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotificationConfigurationResponse {
         try await self.client.execute(action: "DeleteNotificationConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除通知
+    ///
+    /// 本接口（DeleteNotificationConfiguration）用于删除特定的通知。
+    @inlinable
+    public func deleteNotificationConfiguration(autoScalingNotificationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNotificationConfigurationResponse > {
+        self.deleteNotificationConfiguration(DeleteNotificationConfigurationRequest(autoScalingNotificationId: autoScalingNotificationId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除通知
+    ///
+    /// 本接口（DeleteNotificationConfiguration）用于删除特定的通知。
+    @inlinable
+    public func deleteNotificationConfiguration(autoScalingNotificationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotificationConfigurationResponse {
+        try await self.deleteNotificationConfiguration(DeleteNotificationConfigurationRequest(autoScalingNotificationId: autoScalingNotificationId), logger: logger, on: eventLoop)
+    }
 }

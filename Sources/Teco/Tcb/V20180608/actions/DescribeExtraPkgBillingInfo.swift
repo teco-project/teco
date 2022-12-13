@@ -58,4 +58,16 @@ extension Tcb {
     public func describeExtraPkgBillingInfo(_ input: DescribeExtraPkgBillingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtraPkgBillingInfoResponse {
         try await self.client.execute(action: "DescribeExtraPkgBillingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取增值包计费相关信息
+    @inlinable
+    public func describeExtraPkgBillingInfo(envId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExtraPkgBillingInfoResponse > {
+        self.describeExtraPkgBillingInfo(DescribeExtraPkgBillingInfoRequest(envId: envId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取增值包计费相关信息
+    @inlinable
+    public func describeExtraPkgBillingInfo(envId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtraPkgBillingInfoResponse {
+        try await self.describeExtraPkgBillingInfo(DescribeExtraPkgBillingInfoRequest(envId: envId), logger: logger, on: eventLoop)
+    }
 }

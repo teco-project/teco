@@ -73,4 +73,20 @@ extension Ckafka {
     public func modifyInstancePre(_ input: ModifyInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancePreResponse {
         try await self.client.execute(action: "ModifyInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 预付费实例变配接口
+    ///
+    /// 预付费实例变配接口，调整磁盘，带宽
+    @inlinable
+    public func modifyInstancePre(instanceId: String, diskSize: Int64, bandWidth: Int64, partition: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancePreResponse > {
+        self.modifyInstancePre(ModifyInstancePreRequest(instanceId: instanceId, diskSize: diskSize, bandWidth: bandWidth, partition: partition), logger: logger, on: eventLoop)
+    }
+    
+    /// 预付费实例变配接口
+    ///
+    /// 预付费实例变配接口，调整磁盘，带宽
+    @inlinable
+    public func modifyInstancePre(instanceId: String, diskSize: Int64, bandWidth: Int64, partition: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancePreResponse {
+        try await self.modifyInstancePre(ModifyInstancePreRequest(instanceId: instanceId, diskSize: diskSize, bandWidth: bandWidth, partition: partition), logger: logger, on: eventLoop)
+    }
 }

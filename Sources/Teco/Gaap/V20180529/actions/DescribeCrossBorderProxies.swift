@@ -46,4 +46,20 @@ extension Gaap {
     public func describeCrossBorderProxies(_ input: DescribeCrossBorderProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossBorderProxiesResponse {
         try await self.client.execute(action: "DescribeCrossBorderProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询跨境通道实例列表
+    ///
+    /// 本接口（DescribeCrossBorderProxies）用于查询跨境通道实例列表。
+    @inlinable
+    public func describeCrossBorderProxies(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCrossBorderProxiesResponse > {
+        self.describeCrossBorderProxies(DescribeCrossBorderProxiesRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询跨境通道实例列表
+    ///
+    /// 本接口（DescribeCrossBorderProxies）用于查询跨境通道实例列表。
+    @inlinable
+    public func describeCrossBorderProxies(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossBorderProxiesResponse {
+        try await self.describeCrossBorderProxies(DescribeCrossBorderProxiesRequest(), logger: logger, on: eventLoop)
+    }
 }

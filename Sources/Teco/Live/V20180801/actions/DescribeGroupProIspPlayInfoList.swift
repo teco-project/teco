@@ -84,4 +84,20 @@ extension Live {
     public func describeGroupProIspPlayInfoList(_ input: DescribeGroupProIspPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupProIspPlayInfoListResponse {
         try await self.client.execute(action: "DescribeGroupProIspPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询按省份和运营商分组的播放数据
+    ///
+    /// 查询按省份和运营商分组的下行播放数据。
+    @inlinable
+    public func describeGroupProIspPlayInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, provinceNames: [String]? = nil, ispNames: [String]? = nil, mainlandOrOversea: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupProIspPlayInfoListResponse > {
+        self.describeGroupProIspPlayInfoList(DescribeGroupProIspPlayInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, provinceNames: provinceNames, ispNames: ispNames, mainlandOrOversea: mainlandOrOversea), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询按省份和运营商分组的播放数据
+    ///
+    /// 查询按省份和运营商分组的下行播放数据。
+    @inlinable
+    public func describeGroupProIspPlayInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, provinceNames: [String]? = nil, ispNames: [String]? = nil, mainlandOrOversea: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupProIspPlayInfoListResponse {
+        try await self.describeGroupProIspPlayInfoList(DescribeGroupProIspPlayInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, provinceNames: provinceNames, ispNames: ispNames, mainlandOrOversea: mainlandOrOversea), logger: logger, on: eventLoop)
+    }
 }

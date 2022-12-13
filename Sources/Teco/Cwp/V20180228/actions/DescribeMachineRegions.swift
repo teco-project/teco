@@ -66,4 +66,16 @@ extension Cwp {
     public func describeMachineRegions(_ input: DescribeMachineRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineRegionsResponse {
         try await self.client.execute(action: "DescribeMachineRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取机器地域列表
+    @inlinable
+    public func describeMachineRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineRegionsResponse > {
+        self.describeMachineRegions(DescribeMachineRegionsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取机器地域列表
+    @inlinable
+    public func describeMachineRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineRegionsResponse {
+        try await self.describeMachineRegions(DescribeMachineRegionsRequest(), logger: logger, on: eventLoop)
+    }
 }

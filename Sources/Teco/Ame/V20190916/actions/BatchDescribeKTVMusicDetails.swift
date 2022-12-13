@@ -62,4 +62,20 @@ extension Ame {
     public func batchDescribeKTVMusicDetails(_ input: BatchDescribeKTVMusicDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeKTVMusicDetailsResponse {
         try await self.client.execute(action: "BatchDescribeKTVMusicDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量获取直播互动曲目详情
+    ///
+    /// 根据 Id 列表查询歌曲的详细信息，包含基础信息及播放信息。
+    @inlinable
+    public func batchDescribeKTVMusicDetails(musicIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDescribeKTVMusicDetailsResponse > {
+        self.batchDescribeKTVMusicDetails(BatchDescribeKTVMusicDetailsRequest(musicIds: musicIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量获取直播互动曲目详情
+    ///
+    /// 根据 Id 列表查询歌曲的详细信息，包含基础信息及播放信息。
+    @inlinable
+    public func batchDescribeKTVMusicDetails(musicIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeKTVMusicDetailsResponse {
+        try await self.batchDescribeKTVMusicDetails(BatchDescribeKTVMusicDetailsRequest(musicIds: musicIds), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,16 @@ extension Tione {
     public func modifyServiceGroupWeights(_ input: ModifyServiceGroupWeightsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceGroupWeightsResponse {
         try await self.client.execute(action: "ModifyServiceGroupWeights", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新推理服务组流量分配
+    @inlinable
+    public func modifyServiceGroupWeights(serviceGroupId: String, weights: [WeightEntry], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyServiceGroupWeightsResponse > {
+        self.modifyServiceGroupWeights(ModifyServiceGroupWeightsRequest(serviceGroupId: serviceGroupId, weights: weights), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新推理服务组流量分配
+    @inlinable
+    public func modifyServiceGroupWeights(serviceGroupId: String, weights: [WeightEntry], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceGroupWeightsResponse {
+        try await self.modifyServiceGroupWeights(ModifyServiceGroupWeightsRequest(serviceGroupId: serviceGroupId, weights: weights), logger: logger, on: eventLoop)
+    }
 }

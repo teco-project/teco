@@ -84,4 +84,26 @@ extension Ecm {
     public func associateAddress(_ input: AssociateAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAddressResponse {
         try await self.client.execute(action: "AssociateAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 绑定弹性公网IP
+    ///
+    /// 将弹性公网IP（简称 EIP）绑定到实例或弹性网卡的指定内网 IP 上。
+    /// 将 EIP 绑定到实例（ECM）上，其本质是将 EIP 绑定到实例上主网卡的主内网 IP 上。
+    /// 将 EIP 绑定到指定网卡的内网 IP上，内网IP已经绑定了EIP或普通公网IP，则反馈失败。必须先解绑该 EIP，才能再绑定新的。
+    /// 只有状态为 UNBIND 的 EIP 才能够绑定内网IP。
+    @inlinable
+    public func associateAddress(ecmRegion: String, addressId: String, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateAddressResponse > {
+        self.associateAddress(AssociateAddressRequest(ecmRegion: ecmRegion, addressId: addressId, instanceId: instanceId, networkInterfaceId: networkInterfaceId, privateIpAddress: privateIpAddress), logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定弹性公网IP
+    ///
+    /// 将弹性公网IP（简称 EIP）绑定到实例或弹性网卡的指定内网 IP 上。
+    /// 将 EIP 绑定到实例（ECM）上，其本质是将 EIP 绑定到实例上主网卡的主内网 IP 上。
+    /// 将 EIP 绑定到指定网卡的内网 IP上，内网IP已经绑定了EIP或普通公网IP，则反馈失败。必须先解绑该 EIP，才能再绑定新的。
+    /// 只有状态为 UNBIND 的 EIP 才能够绑定内网IP。
+    @inlinable
+    public func associateAddress(ecmRegion: String, addressId: String, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAddressResponse {
+        try await self.associateAddress(AssociateAddressRequest(ecmRegion: ecmRegion, addressId: addressId, instanceId: instanceId, networkInterfaceId: networkInterfaceId, privateIpAddress: privateIpAddress), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Ie {
     public func describeMediaProcessTaskResult(_ input: DescribeMediaProcessTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaProcessTaskResultResponse {
         try await self.client.execute(action: "DescribeMediaProcessTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取编辑处理任务结果
+    ///
+    /// 用于获取编辑处理任务的结果。
+    @inlinable
+    public func describeMediaProcessTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMediaProcessTaskResultResponse > {
+        self.describeMediaProcessTaskResult(DescribeMediaProcessTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取编辑处理任务结果
+    ///
+    /// 用于获取编辑处理任务的结果。
+    @inlinable
+    public func describeMediaProcessTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaProcessTaskResultResponse {
+        try await self.describeMediaProcessTaskResult(DescribeMediaProcessTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

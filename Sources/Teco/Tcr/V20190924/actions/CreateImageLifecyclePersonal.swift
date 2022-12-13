@@ -64,4 +64,20 @@ extension Tcr {
     public func createImageLifecyclePersonal(_ input: CreateImageLifecyclePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageLifecyclePersonalResponse {
         try await self.client.execute(action: "CreateImageLifecyclePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建个人版镜像版本清理策略
+    ///
+    /// 用于在个人版中创建清理策略
+    @inlinable
+    public func createImageLifecyclePersonal(repoName: String, type: String, val: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageLifecyclePersonalResponse > {
+        self.createImageLifecyclePersonal(CreateImageLifecyclePersonalRequest(repoName: repoName, type: type, val: val), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建个人版镜像版本清理策略
+    ///
+    /// 用于在个人版中创建清理策略
+    @inlinable
+    public func createImageLifecyclePersonal(repoName: String, type: String, val: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageLifecyclePersonalResponse {
+        try await self.createImageLifecyclePersonal(CreateImageLifecyclePersonalRequest(repoName: repoName, type: type, val: val), logger: logger, on: eventLoop)
+    }
 }

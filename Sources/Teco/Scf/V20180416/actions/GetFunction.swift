@@ -261,4 +261,20 @@ extension Scf {
     public func getFunction(_ input: GetFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionResponse {
         try await self.client.execute(action: "GetFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取函数详细信息
+    ///
+    /// 该接口获取某个函数的详细信息，包括名称、代码、处理方法、关联触发器和超时时间等字段。
+    @inlinable
+    public func getFunction(functionName: String, qualifier: String? = nil, namespace: String? = nil, showCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFunctionResponse > {
+        self.getFunction(GetFunctionRequest(functionName: functionName, qualifier: qualifier, namespace: namespace, showCode: showCode), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取函数详细信息
+    ///
+    /// 该接口获取某个函数的详细信息，包括名称、代码、处理方法、关联触发器和超时时间等字段。
+    @inlinable
+    public func getFunction(functionName: String, qualifier: String? = nil, namespace: String? = nil, showCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionResponse {
+        try await self.getFunction(GetFunctionRequest(functionName: functionName, qualifier: qualifier, namespace: namespace, showCode: showCode), logger: logger, on: eventLoop)
+    }
 }

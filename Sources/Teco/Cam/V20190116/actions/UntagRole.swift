@@ -64,4 +64,20 @@ extension Cam {
     public func untagRole(_ input: UntagRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UntagRoleResponse {
         try await self.client.execute(action: "UntagRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 角色解绑标签
+    ///
+    /// 角色解绑标签。
+    @inlinable
+    public func untagRole(tagKeys: [String], roleName: String? = nil, roleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UntagRoleResponse > {
+        self.untagRole(UntagRoleRequest(tagKeys: tagKeys, roleName: roleName, roleId: roleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 角色解绑标签
+    ///
+    /// 角色解绑标签。
+    @inlinable
+    public func untagRole(tagKeys: [String], roleName: String? = nil, roleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UntagRoleResponse {
+        try await self.untagRole(UntagRoleRequest(tagKeys: tagKeys, roleName: roleName, roleId: roleId), logger: logger, on: eventLoop)
+    }
 }

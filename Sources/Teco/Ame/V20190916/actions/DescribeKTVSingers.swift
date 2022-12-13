@@ -93,4 +93,20 @@ extension Ame {
     public func describeKTVSingers(_ input: DescribeKTVSingersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSingersResponse {
         try await self.client.execute(action: "DescribeKTVSingers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取直播互动曲库歌手
+    ///
+    /// 根据过滤条件，返回匹配的歌手列表。
+    @inlinable
+    public func describeKTVSingers(singerIds: [String]? = nil, genders: [String]? = nil, areas: [String]? = nil, sort: SortBy? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVSingersResponse > {
+        self.describeKTVSingers(DescribeKTVSingersRequest(singerIds: singerIds, genders: genders, areas: areas, sort: sort, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取直播互动曲库歌手
+    ///
+    /// 根据过滤条件，返回匹配的歌手列表。
+    @inlinable
+    public func describeKTVSingers(singerIds: [String]? = nil, genders: [String]? = nil, areas: [String]? = nil, sort: SortBy? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSingersResponse {
+        try await self.describeKTVSingers(DescribeKTVSingersRequest(singerIds: singerIds, genders: genders, areas: areas, sort: sort, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

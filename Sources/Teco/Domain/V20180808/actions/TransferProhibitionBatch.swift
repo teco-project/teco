@@ -65,4 +65,20 @@ extension Domain {
     public func transferProhibitionBatch(_ input: TransferProhibitionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferProhibitionBatchResponse {
         try await self.client.execute(action: "TransferProhibitionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量禁止转移锁
+    ///
+    /// 本接口 ( TransferProhibitionBatch ) 用于批量禁止域名转移 。
+    @inlinable
+    public func transferProhibitionBatch(domains: [String], status: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransferProhibitionBatchResponse > {
+        self.transferProhibitionBatch(TransferProhibitionBatchRequest(domains: domains, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量禁止转移锁
+    ///
+    /// 本接口 ( TransferProhibitionBatch ) 用于批量禁止域名转移 。
+    @inlinable
+    public func transferProhibitionBatch(domains: [String], status: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferProhibitionBatchResponse {
+        try await self.transferProhibitionBatch(TransferProhibitionBatchRequest(domains: domains, status: status), logger: logger, on: eventLoop)
+    }
 }

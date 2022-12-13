@@ -58,4 +58,20 @@ extension Monitor {
     public func describeGrafanaConfig(_ input: DescribeGrafanaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaConfigResponse {
         try await self.client.execute(action: "DescribeGrafanaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 列出 Grafana 的设置
+    ///
+    /// 列出 Grafana 的设置，即 grafana.ini 文件内容
+    @inlinable
+    public func describeGrafanaConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaConfigResponse > {
+        self.describeGrafanaConfig(DescribeGrafanaConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 列出 Grafana 的设置
+    ///
+    /// 列出 Grafana 的设置，即 grafana.ini 文件内容
+    @inlinable
+    public func describeGrafanaConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaConfigResponse {
+        try await self.describeGrafanaConfig(DescribeGrafanaConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

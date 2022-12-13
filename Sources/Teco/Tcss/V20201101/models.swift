@@ -4333,7 +4333,7 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: String?
         
-        public init (`protocol`: String? = nil, port: String? = nil) {
+        public init (protocol: String? = nil, port: String? = nil) {
             self.`protocol` = `protocol`
             self.port = port
         }
@@ -6840,7 +6840,7 @@ extension Tcss {
         /// 告警类型不区分等级控制，则传1。
         public let controlBits: String
         
-        public init (type: String, `switch`: String, beginTime: String, endTime: String, controlBits: String) {
+        public init (type: String, switch: String, beginTime: String, endTime: String, controlBits: String) {
             self.type = type
             self.`switch` = `switch`
             self.beginTime = beginTime

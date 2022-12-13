@@ -79,4 +79,16 @@ extension Iecp {
     public func describeEdgeUnitDeployGridItem(_ input: DescribeEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitDeployGridItemResponse {
         try await self.client.execute(action: "DescribeEdgeUnitDeployGridItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询边缘单元指定Grid下的部署应用列表
+    @inlinable
+    public func describeEdgeUnitDeployGridItem(edgeUnitId: UInt64, gridName: String, workloadKind: String, namespace: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitDeployGridItemResponse > {
+        self.describeEdgeUnitDeployGridItem(DescribeEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, gridName: gridName, workloadKind: workloadKind, namespace: namespace, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘单元指定Grid下的部署应用列表
+    @inlinable
+    public func describeEdgeUnitDeployGridItem(edgeUnitId: UInt64, gridName: String, workloadKind: String, namespace: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitDeployGridItemResponse {
+        try await self.describeEdgeUnitDeployGridItem(DescribeEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, gridName: gridName, workloadKind: workloadKind, namespace: namespace, order: order), logger: logger, on: eventLoop)
+    }
 }

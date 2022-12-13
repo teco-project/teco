@@ -74,4 +74,16 @@ extension Wedata {
     public func modifyIntegrationNode(_ input: ModifyIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIntegrationNodeResponse {
         try await self.client.execute(action: "ModifyIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新集成节点
+    @inlinable
+    public func modifyIntegrationNode(nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64? = nil, taskMode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIntegrationNodeResponse > {
+        self.modifyIntegrationNode(ModifyIntegrationNodeRequest(nodeInfo: nodeInfo, projectId: projectId, taskType: taskType, taskMode: taskMode), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新集成节点
+    @inlinable
+    public func modifyIntegrationNode(nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64? = nil, taskMode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIntegrationNodeResponse {
+        try await self.modifyIntegrationNode(ModifyIntegrationNodeRequest(nodeInfo: nodeInfo, projectId: projectId, taskType: taskType, taskMode: taskMode), logger: logger, on: eventLoop)
+    }
 }

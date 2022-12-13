@@ -55,4 +55,16 @@ extension Emr {
     public func deleteUserManagerUserList(_ input: DeleteUserManagerUserListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserManagerUserListResponse {
         try await self.client.execute(action: "DeleteUserManagerUserList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除用户列表（用户管理）
+    @inlinable
+    public func deleteUserManagerUserList(instanceId: String, userNameList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserManagerUserListResponse > {
+        self.deleteUserManagerUserList(DeleteUserManagerUserListRequest(instanceId: instanceId, userNameList: userNameList), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除用户列表（用户管理）
+    @inlinable
+    public func deleteUserManagerUserList(instanceId: String, userNameList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserManagerUserListResponse {
+        try await self.deleteUserManagerUserList(DeleteUserManagerUserListRequest(instanceId: instanceId, userNameList: userNameList), logger: logger, on: eventLoop)
+    }
 }

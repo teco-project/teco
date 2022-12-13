@@ -63,4 +63,20 @@ extension Cdb {
     public func deleteAccounts(_ input: DeleteAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountsResponse {
         try await self.client.execute(action: "DeleteAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除云数据库的账号
+    ///
+    /// 本接口(DeleteAccounts)用于删除云数据库的账户。
+    @inlinable
+    public func deleteAccounts(instanceId: String, accounts: [Account], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccountsResponse > {
+        self.deleteAccounts(DeleteAccountsRequest(instanceId: instanceId, accounts: accounts), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除云数据库的账号
+    ///
+    /// 本接口(DeleteAccounts)用于删除云数据库的账户。
+    @inlinable
+    public func deleteAccounts(instanceId: String, accounts: [Account], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountsResponse {
+        try await self.deleteAccounts(DeleteAccountsRequest(instanceId: instanceId, accounts: accounts), logger: logger, on: eventLoop)
+    }
 }

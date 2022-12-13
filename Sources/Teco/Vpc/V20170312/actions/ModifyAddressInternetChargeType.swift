@@ -73,4 +73,24 @@ extension Vpc {
     public func modifyAddressInternetChargeType(_ input: ModifyAddressInternetChargeTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressInternetChargeTypeResponse {
         try await self.client.execute(action: "ModifyAddressInternetChargeType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 调整弹性公网ip计费模式
+    ///
+    /// 该接口用于调整具有带宽属性弹性公网IP的网络计费模式
+    /// * 支持BANDWIDTH_PREPAID_BY_MONTH和TRAFFIC_POSTPAID_BY_HOUR两种网络计费模式之间的切换。
+    /// * 每个弹性公网IP支持调整两次，次数超出则无法调整。
+    @inlinable
+    public func modifyAddressInternetChargeType(addressId: String, internetChargeType: String, internetMaxBandwidthOut: UInt64, addressChargePrepaid: AddressChargePrepaid? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAddressInternetChargeTypeResponse > {
+        self.modifyAddressInternetChargeType(ModifyAddressInternetChargeTypeRequest(addressId: addressId, internetChargeType: internetChargeType, internetMaxBandwidthOut: internetMaxBandwidthOut, addressChargePrepaid: addressChargePrepaid), logger: logger, on: eventLoop)
+    }
+    
+    /// 调整弹性公网ip计费模式
+    ///
+    /// 该接口用于调整具有带宽属性弹性公网IP的网络计费模式
+    /// * 支持BANDWIDTH_PREPAID_BY_MONTH和TRAFFIC_POSTPAID_BY_HOUR两种网络计费模式之间的切换。
+    /// * 每个弹性公网IP支持调整两次，次数超出则无法调整。
+    @inlinable
+    public func modifyAddressInternetChargeType(addressId: String, internetChargeType: String, internetMaxBandwidthOut: UInt64, addressChargePrepaid: AddressChargePrepaid? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressInternetChargeTypeResponse {
+        try await self.modifyAddressInternetChargeType(ModifyAddressInternetChargeTypeRequest(addressId: addressId, internetChargeType: internetChargeType, internetMaxBandwidthOut: internetMaxBandwidthOut, addressChargePrepaid: addressChargePrepaid), logger: logger, on: eventLoop)
+    }
 }

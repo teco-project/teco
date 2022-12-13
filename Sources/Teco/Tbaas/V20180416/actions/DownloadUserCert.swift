@@ -83,4 +83,16 @@ extension Tbaas {
     public func downloadUserCert(_ input: DownloadUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadUserCertResponse {
         try await self.client.execute(action: "DownloadUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 下载用户证书
+    @inlinable
+    public func downloadUserCert(module: String, operation: String, certId: UInt64, certDn: String, clusterId: String, groupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadUserCertResponse > {
+        self.downloadUserCert(DownloadUserCertRequest(module: module, operation: operation, certId: certId, certDn: certDn, clusterId: clusterId, groupName: groupName), logger: logger, on: eventLoop)
+    }
+    
+    /// 下载用户证书
+    @inlinable
+    public func downloadUserCert(module: String, operation: String, certId: UInt64, certDn: String, clusterId: String, groupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadUserCertResponse {
+        try await self.downloadUserCert(DownloadUserCertRequest(module: module, operation: operation, certId: certId, certDn: certDn, clusterId: clusterId, groupName: groupName), logger: logger, on: eventLoop)
+    }
 }

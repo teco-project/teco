@@ -61,4 +61,22 @@ extension Cam {
     public func deleteAccessKey(_ input: DeleteAccessKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessKeyResponse {
         try await self.client.execute(action: "DeleteAccessKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除访问密钥
+    ///
+    /// 为CAM用户删除访问密钥。
+    /// 此接口属于高风险操作，删除密钥后不可恢复，腾讯云将永久拒绝此密钥的所有请求，请谨慎使用。
+    @inlinable
+    public func deleteAccessKey(accessKeyId: String, targetUin: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccessKeyResponse > {
+        self.deleteAccessKey(DeleteAccessKeyRequest(accessKeyId: accessKeyId, targetUin: targetUin), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除访问密钥
+    ///
+    /// 为CAM用户删除访问密钥。
+    /// 此接口属于高风险操作，删除密钥后不可恢复，腾讯云将永久拒绝此密钥的所有请求，请谨慎使用。
+    @inlinable
+    public func deleteAccessKey(accessKeyId: String, targetUin: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessKeyResponse {
+        try await self.deleteAccessKey(DeleteAccessKeyRequest(accessKeyId: accessKeyId, targetUin: targetUin), logger: logger, on: eventLoop)
+    }
 }

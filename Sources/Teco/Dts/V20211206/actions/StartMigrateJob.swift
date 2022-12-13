@@ -54,4 +54,20 @@ extension Dts {
     public func startMigrateJob(_ input: StartMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMigrateJobResponse {
         try await self.client.execute(action: "StartMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启动数据迁移任务
+    ///
+    /// 本接口（StartMigrationJob）用于启动迁移任务。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
+    @inlinable
+    public func startMigrateJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartMigrateJobResponse > {
+        self.startMigrateJob(StartMigrateJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
+    
+    /// 启动数据迁移任务
+    ///
+    /// 本接口（StartMigrationJob）用于启动迁移任务。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
+    @inlinable
+    public func startMigrateJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMigrateJobResponse {
+        try await self.startMigrateJob(StartMigrateJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
 }

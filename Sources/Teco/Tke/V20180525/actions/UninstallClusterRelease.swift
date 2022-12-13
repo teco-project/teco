@@ -74,4 +74,20 @@ extension Tke {
     public func uninstallClusterRelease(_ input: UninstallClusterReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallClusterReleaseResponse {
         try await self.client.execute(action: "UninstallClusterRelease", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 集群删除应用
+    ///
+    /// 在应用市场中集群删除某个应用
+    @inlinable
+    public func uninstallClusterRelease(clusterId: String, name: String, namespace: String, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UninstallClusterReleaseResponse > {
+        self.uninstallClusterRelease(UninstallClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType), logger: logger, on: eventLoop)
+    }
+    
+    /// 集群删除应用
+    ///
+    /// 在应用市场中集群删除某个应用
+    @inlinable
+    public func uninstallClusterRelease(clusterId: String, name: String, namespace: String, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallClusterReleaseResponse {
+        try await self.uninstallClusterRelease(UninstallClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType), logger: logger, on: eventLoop)
+    }
 }

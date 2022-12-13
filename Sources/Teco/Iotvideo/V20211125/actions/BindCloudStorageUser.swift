@@ -60,4 +60,16 @@ extension Iotvideo {
     public func bindCloudStorageUser(_ input: BindCloudStorageUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindCloudStorageUserResponse {
         try await self.client.execute(action: "BindCloudStorageUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 绑定云存用户
+    @inlinable
+    public func bindCloudStorageUser(productId: String, deviceName: String, userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindCloudStorageUserResponse > {
+        self.bindCloudStorageUser(BindCloudStorageUserRequest(productId: productId, deviceName: deviceName, userId: userId), logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定云存用户
+    @inlinable
+    public func bindCloudStorageUser(productId: String, deviceName: String, userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindCloudStorageUserResponse {
+        try await self.bindCloudStorageUser(BindCloudStorageUserRequest(productId: productId, deviceName: deviceName, userId: userId), logger: logger, on: eventLoop)
+    }
 }

@@ -67,4 +67,20 @@ extension Ssl {
     public func uploadRevokeLetter(_ input: UploadRevokeLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadRevokeLetterResponse {
         try await self.client.execute(action: "UploadRevokeLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 上传证书吊销确认函
+    ///
+    /// 本接口（UploadRevokeLetter）用于上传证书吊销确认函。
+    @inlinable
+    public func uploadRevokeLetter(certificateId: String, revokeLetter: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadRevokeLetterResponse > {
+        self.uploadRevokeLetter(UploadRevokeLetterRequest(certificateId: certificateId, revokeLetter: revokeLetter), logger: logger, on: eventLoop)
+    }
+    
+    /// 上传证书吊销确认函
+    ///
+    /// 本接口（UploadRevokeLetter）用于上传证书吊销确认函。
+    @inlinable
+    public func uploadRevokeLetter(certificateId: String, revokeLetter: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadRevokeLetterResponse {
+        try await self.uploadRevokeLetter(UploadRevokeLetterRequest(certificateId: certificateId, revokeLetter: revokeLetter), logger: logger, on: eventLoop)
+    }
 }

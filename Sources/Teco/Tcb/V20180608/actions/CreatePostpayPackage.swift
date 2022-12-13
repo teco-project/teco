@@ -109,4 +109,16 @@ extension Tcb {
     public func createPostpayPackage(_ input: CreatePostpayPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePostpayPackageResponse {
         try await self.client.execute(action: "CreatePostpayPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开通后付费资源
+    @inlinable
+    public func createPostpayPackage(envId: String? = nil, wxAppId: String? = nil, source: String? = nil, freeQuota: String? = nil, envSource: String? = nil, alias: String? = nil, channel: String? = nil, extensionId: String? = nil, flag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePostpayPackageResponse > {
+        self.createPostpayPackage(CreatePostpayPackageRequest(envId: envId, wxAppId: wxAppId, source: source, freeQuota: freeQuota, envSource: envSource, alias: alias, channel: channel, extensionId: extensionId, flag: flag), logger: logger, on: eventLoop)
+    }
+    
+    /// 开通后付费资源
+    @inlinable
+    public func createPostpayPackage(envId: String? = nil, wxAppId: String? = nil, source: String? = nil, freeQuota: String? = nil, envSource: String? = nil, alias: String? = nil, channel: String? = nil, extensionId: String? = nil, flag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePostpayPackageResponse {
+        try await self.createPostpayPackage(CreatePostpayPackageRequest(envId: envId, wxAppId: wxAppId, source: source, freeQuota: freeQuota, envSource: envSource, alias: alias, channel: channel, extensionId: extensionId, flag: flag), logger: logger, on: eventLoop)
+    }
 }

@@ -81,4 +81,20 @@ extension Ams {
     public func describeAmsList(_ input: DescribeAmsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAmsListResponse {
         try await self.client.execute(action: "DescribeAmsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取音频审核明细数据
+    ///
+    /// 音频审核明细列表
+    @inlinable
+    public func describeAmsList(pageToken: String, limit: Int64, pageDirection: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAmsListResponse > {
+        self.describeAmsList(DescribeAmsListRequest(pageToken: pageToken, limit: limit, pageDirection: pageDirection, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取音频审核明细数据
+    ///
+    /// 音频审核明细列表
+    @inlinable
+    public func describeAmsList(pageToken: String, limit: Int64, pageDirection: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAmsListResponse {
+        try await self.describeAmsList(DescribeAmsListRequest(pageToken: pageToken, limit: limit, pageDirection: pageDirection, filters: filters), logger: logger, on: eventLoop)
+    }
 }

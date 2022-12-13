@@ -68,4 +68,16 @@ extension Tci {
     public func describePersons(_ input: DescribePersonsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonsResponse {
         try await self.client.execute(action: "DescribePersons", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 拉取人员列表
+    @inlinable
+    public func describePersons(libraryId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonsResponse > {
+        self.describePersons(DescribePersonsRequest(libraryId: libraryId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取人员列表
+    @inlinable
+    public func describePersons(libraryId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonsResponse {
+        try await self.describePersons(DescribePersonsRequest(libraryId: libraryId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

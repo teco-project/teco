@@ -83,4 +83,16 @@ extension Cpdp {
     public func queryOpenBankExternalSubMerchantRegistration(_ input: QueryOpenBankExternalSubMerchantRegistrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankExternalSubMerchantRegistrationResponse {
         try await self.client.execute(action: "QueryOpenBankExternalSubMerchantRegistration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-子商户进件结果查询
+    @inlinable
+    public func queryOpenBankExternalSubMerchantRegistration(channelMerchantId: String, channelRegistrationNo: String? = nil, outRegistrationNo: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankExternalSubMerchantRegistrationResponse > {
+        self.queryOpenBankExternalSubMerchantRegistration(QueryOpenBankExternalSubMerchantRegistrationRequest(channelMerchantId: channelMerchantId, channelRegistrationNo: channelRegistrationNo, outRegistrationNo: outRegistrationNo, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-子商户进件结果查询
+    @inlinable
+    public func queryOpenBankExternalSubMerchantRegistration(channelMerchantId: String, channelRegistrationNo: String? = nil, outRegistrationNo: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankExternalSubMerchantRegistrationResponse {
+        try await self.queryOpenBankExternalSubMerchantRegistration(QueryOpenBankExternalSubMerchantRegistrationRequest(channelMerchantId: channelMerchantId, channelRegistrationNo: channelRegistrationNo, outRegistrationNo: outRegistrationNo, environment: environment), logger: logger, on: eventLoop)
+    }
 }

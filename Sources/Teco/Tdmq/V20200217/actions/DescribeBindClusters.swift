@@ -54,4 +54,20 @@ extension Tdmq {
     public func describeBindClusters(_ input: DescribeBindClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindClustersResponse {
         try await self.client.execute(action: "DescribeBindClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取专享集群列表
+    ///
+    /// 获取用户绑定的专享集群列表
+    @inlinable
+    public func describeBindClusters(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindClustersResponse > {
+        self.describeBindClusters(DescribeBindClustersRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取专享集群列表
+    ///
+    /// 获取用户绑定的专享集群列表
+    @inlinable
+    public func describeBindClusters(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindClustersResponse {
+        try await self.describeBindClusters(DescribeBindClustersRequest(), logger: logger, on: eventLoop)
+    }
 }

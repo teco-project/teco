@@ -91,4 +91,20 @@ extension Lighthouse {
     public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsResponse {
         try await self.client.execute(action: "DescribeSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看快照列表
+    ///
+    /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
+    @inlinable
+    public func describeSnapshots(snapshotIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotsResponse > {
+        self.describeSnapshots(DescribeSnapshotsRequest(snapshotIds: snapshotIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看快照列表
+    ///
+    /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
+    @inlinable
+    public func describeSnapshots(snapshotIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsResponse {
+        try await self.describeSnapshots(DescribeSnapshotsRequest(snapshotIds: snapshotIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

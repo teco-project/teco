@@ -67,4 +67,20 @@ extension Iotcloud {
     public func listTopicRules(_ input: ListTopicRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopicRulesResponse {
         try await self.client.execute(action: "ListTopicRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取规则列表
+    ///
+    /// 本接口（ListTopicRules）用于分页获取规则列表
+    @inlinable
+    public func listTopicRules(pageNum: UInt64, pageSize: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopicRulesResponse > {
+        self.listTopicRules(ListTopicRulesRequest(pageNum: pageNum, pageSize: pageSize), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取规则列表
+    ///
+    /// 本接口（ListTopicRules）用于分页获取规则列表
+    @inlinable
+    public func listTopicRules(pageNum: UInt64, pageSize: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopicRulesResponse {
+        try await self.listTopicRules(ListTopicRulesRequest(pageNum: pageNum, pageSize: pageSize), logger: logger, on: eventLoop)
+    }
 }

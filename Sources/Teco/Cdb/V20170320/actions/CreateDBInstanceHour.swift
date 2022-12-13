@@ -254,4 +254,32 @@ extension Cdb {
     public func createDBInstanceHour(_ input: CreateDBInstanceHourRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceHourResponse {
         try await self.client.execute(action: "CreateDBInstanceHour", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建云数据库实例（按量计费）
+    ///
+    /// 本接口(CreateDBInstanceHour)用于创建按量计费的实例，可通过传入实例规格、MySQL 版本号和数量等信息创建云数据库实例，支持主实例、灾备实例和只读实例的创建。
+    /// 该接口为异步接口，您还可以使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口查询该实例的详细信息。当该实例的 Status 为 1，且 TaskStatus 为 0，表示实例已经发货成功。
+    /// 1. 首先请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/api/236/17229) 接口查询可创建的实例规格信息，然后请使用 [查询数据库价格](https://cloud.tencent.com/document/api/236/18566) 接口查询可创建实例的售卖价格；
+    /// 2. 单次创建实例最大支持 100 个，实例时长最大支持 36 个月；
+    /// 3. 支持创建 MySQL 5.5、MySQL 5.6 、MySQL 5.7 和 MySQL 8.0 版本；
+    /// 4. 支持创建主实例、灾备实例和只读实例；
+    /// 5. 当入参指定 Port，ParamList 或 Password 时，该实例会进行初始化操作（暂不支持基础版实例）；
+    @inlinable
+    public func createDBInstanceHour(goodsNum: Int64, memory: Int64, volume: Int64, engineVersion: String? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, projectId: Int64? = nil, zone: String? = nil, masterInstanceId: String? = nil, instanceRole: String? = nil, masterRegion: String? = nil, port: Int64? = nil, password: String? = nil, paramList: [ParamInfo]? = nil, protectMode: Int64? = nil, deployMode: Int64? = nil, slaveZone: String? = nil, backupZone: String? = nil, securityGroup: [String]? = nil, roGroup: RoGroup? = nil, autoRenewFlag: Int64? = nil, instanceName: String? = nil, resourceTags: [TagInfo]? = nil, deployGroupId: String? = nil, clientToken: String? = nil, deviceType: String? = nil, paramTemplateId: Int64? = nil, alarmPolicyList: [Int64]? = nil, instanceNodes: Int64? = nil, cpu: Int64? = nil, autoSyncFlag: Int64? = nil, cageId: String? = nil, paramTemplateType: String? = nil, alarmPolicyIdList: [String]? = nil, dryRun: Bool? = nil, engineType: String? = nil, vips: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstanceHourResponse > {
+        self.createDBInstanceHour(CreateDBInstanceHourRequest(goodsNum: goodsNum, memory: memory, volume: volume, engineVersion: engineVersion, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, projectId: projectId, zone: zone, masterInstanceId: masterInstanceId, instanceRole: instanceRole, masterRegion: masterRegion, port: port, password: password, paramList: paramList, protectMode: protectMode, deployMode: deployMode, slaveZone: slaveZone, backupZone: backupZone, securityGroup: securityGroup, roGroup: roGroup, autoRenewFlag: autoRenewFlag, instanceName: instanceName, resourceTags: resourceTags, deployGroupId: deployGroupId, clientToken: clientToken, deviceType: deviceType, paramTemplateId: paramTemplateId, alarmPolicyList: alarmPolicyList, instanceNodes: instanceNodes, cpu: cpu, autoSyncFlag: autoSyncFlag, cageId: cageId, paramTemplateType: paramTemplateType, alarmPolicyIdList: alarmPolicyIdList, dryRun: dryRun, engineType: engineType, vips: vips), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云数据库实例（按量计费）
+    ///
+    /// 本接口(CreateDBInstanceHour)用于创建按量计费的实例，可通过传入实例规格、MySQL 版本号和数量等信息创建云数据库实例，支持主实例、灾备实例和只读实例的创建。
+    /// 该接口为异步接口，您还可以使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口查询该实例的详细信息。当该实例的 Status 为 1，且 TaskStatus 为 0，表示实例已经发货成功。
+    /// 1. 首先请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/api/236/17229) 接口查询可创建的实例规格信息，然后请使用 [查询数据库价格](https://cloud.tencent.com/document/api/236/18566) 接口查询可创建实例的售卖价格；
+    /// 2. 单次创建实例最大支持 100 个，实例时长最大支持 36 个月；
+    /// 3. 支持创建 MySQL 5.5、MySQL 5.6 、MySQL 5.7 和 MySQL 8.0 版本；
+    /// 4. 支持创建主实例、灾备实例和只读实例；
+    /// 5. 当入参指定 Port，ParamList 或 Password 时，该实例会进行初始化操作（暂不支持基础版实例）；
+    @inlinable
+    public func createDBInstanceHour(goodsNum: Int64, memory: Int64, volume: Int64, engineVersion: String? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, projectId: Int64? = nil, zone: String? = nil, masterInstanceId: String? = nil, instanceRole: String? = nil, masterRegion: String? = nil, port: Int64? = nil, password: String? = nil, paramList: [ParamInfo]? = nil, protectMode: Int64? = nil, deployMode: Int64? = nil, slaveZone: String? = nil, backupZone: String? = nil, securityGroup: [String]? = nil, roGroup: RoGroup? = nil, autoRenewFlag: Int64? = nil, instanceName: String? = nil, resourceTags: [TagInfo]? = nil, deployGroupId: String? = nil, clientToken: String? = nil, deviceType: String? = nil, paramTemplateId: Int64? = nil, alarmPolicyList: [Int64]? = nil, instanceNodes: Int64? = nil, cpu: Int64? = nil, autoSyncFlag: Int64? = nil, cageId: String? = nil, paramTemplateType: String? = nil, alarmPolicyIdList: [String]? = nil, dryRun: Bool? = nil, engineType: String? = nil, vips: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceHourResponse {
+        try await self.createDBInstanceHour(CreateDBInstanceHourRequest(goodsNum: goodsNum, memory: memory, volume: volume, engineVersion: engineVersion, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, projectId: projectId, zone: zone, masterInstanceId: masterInstanceId, instanceRole: instanceRole, masterRegion: masterRegion, port: port, password: password, paramList: paramList, protectMode: protectMode, deployMode: deployMode, slaveZone: slaveZone, backupZone: backupZone, securityGroup: securityGroup, roGroup: roGroup, autoRenewFlag: autoRenewFlag, instanceName: instanceName, resourceTags: resourceTags, deployGroupId: deployGroupId, clientToken: clientToken, deviceType: deviceType, paramTemplateId: paramTemplateId, alarmPolicyList: alarmPolicyList, instanceNodes: instanceNodes, cpu: cpu, autoSyncFlag: autoSyncFlag, cageId: cageId, paramTemplateType: paramTemplateType, alarmPolicyIdList: alarmPolicyIdList, dryRun: dryRun, engineType: engineType, vips: vips), logger: logger, on: eventLoop)
+    }
 }

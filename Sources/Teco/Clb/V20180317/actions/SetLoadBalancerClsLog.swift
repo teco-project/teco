@@ -76,4 +76,20 @@ extension Clb {
     public func setLoadBalancerClsLog(_ input: SetLoadBalancerClsLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetLoadBalancerClsLogResponse {
         try await self.client.execute(action: "SetLoadBalancerClsLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置负载均衡的日志服务主题
+    ///
+    /// 增加、删除、更新负载均衡的日志服务(CLS)主题。
+    @inlinable
+    public func setLoadBalancerClsLog(loadBalancerId: String, logSetId: String, logTopicId: String, logType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetLoadBalancerClsLogResponse > {
+        self.setLoadBalancerClsLog(SetLoadBalancerClsLogRequest(loadBalancerId: loadBalancerId, logSetId: logSetId, logTopicId: logTopicId, logType: logType), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置负载均衡的日志服务主题
+    ///
+    /// 增加、删除、更新负载均衡的日志服务(CLS)主题。
+    @inlinable
+    public func setLoadBalancerClsLog(loadBalancerId: String, logSetId: String, logTopicId: String, logType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetLoadBalancerClsLogResponse {
+        try await self.setLoadBalancerClsLog(SetLoadBalancerClsLogRequest(loadBalancerId: loadBalancerId, logSetId: logSetId, logTopicId: logTopicId, logType: logType), logger: logger, on: eventLoop)
+    }
 }

@@ -108,4 +108,20 @@ extension Kms {
     public func listKeyDetail(_ input: ListKeyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListKeyDetailResponse {
         try await self.client.execute(action: "ListKeyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取主密钥列表详情
+    ///
+    /// 根据指定Offset和Limit获取主密钥列表详情。
+    @inlinable
+    public func listKeyDetail(offset: UInt64? = nil, limit: UInt64? = nil, role: UInt64? = nil, orderType: UInt64? = nil, keyState: UInt64? = nil, searchKeyAlias: String? = nil, origin: String? = nil, keyUsage: String? = nil, tagFilters: [TagFilter]? = nil, hsmClusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListKeyDetailResponse > {
+        self.listKeyDetail(ListKeyDetailRequest(offset: offset, limit: limit, role: role, orderType: orderType, keyState: keyState, searchKeyAlias: searchKeyAlias, origin: origin, keyUsage: keyUsage, tagFilters: tagFilters, hsmClusterId: hsmClusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取主密钥列表详情
+    ///
+    /// 根据指定Offset和Limit获取主密钥列表详情。
+    @inlinable
+    public func listKeyDetail(offset: UInt64? = nil, limit: UInt64? = nil, role: UInt64? = nil, orderType: UInt64? = nil, keyState: UInt64? = nil, searchKeyAlias: String? = nil, origin: String? = nil, keyUsage: String? = nil, tagFilters: [TagFilter]? = nil, hsmClusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListKeyDetailResponse {
+        try await self.listKeyDetail(ListKeyDetailRequest(offset: offset, limit: limit, role: role, orderType: orderType, keyState: keyState, searchKeyAlias: searchKeyAlias, origin: origin, keyUsage: keyUsage, tagFilters: tagFilters, hsmClusterId: hsmClusterId), logger: logger, on: eventLoop)
+    }
 }

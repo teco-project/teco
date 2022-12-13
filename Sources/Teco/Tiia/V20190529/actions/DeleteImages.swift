@@ -64,4 +64,20 @@ extension Tiia {
     public func deleteImages(_ input: DeleteImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagesResponse {
         try await self.client.execute(action: "DeleteImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除图片
+    ///
+    /// 删除图片。
+    @inlinable
+    public func deleteImages(groupId: String, entityId: String, picName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImagesResponse > {
+        self.deleteImages(DeleteImagesRequest(groupId: groupId, entityId: entityId, picName: picName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除图片
+    ///
+    /// 删除图片。
+    @inlinable
+    public func deleteImages(groupId: String, entityId: String, picName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagesResponse {
+        try await self.deleteImages(DeleteImagesRequest(groupId: groupId, entityId: entityId, picName: picName), logger: logger, on: eventLoop)
+    }
 }

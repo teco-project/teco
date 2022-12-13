@@ -59,4 +59,20 @@ extension Vod {
     public func deleteImageProcessingTemplate(_ input: DeleteImageProcessingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageProcessingTemplateResponse {
         try await self.client.execute(action: "DeleteImageProcessingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除图片即时处理模板
+    ///
+    /// 删除用户自定义图片处理模板。
+    @inlinable
+    public func deleteImageProcessingTemplate(definition: UInt64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageProcessingTemplateResponse > {
+        self.deleteImageProcessingTemplate(DeleteImageProcessingTemplateRequest(definition: definition, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除图片即时处理模板
+    ///
+    /// 删除用户自定义图片处理模板。
+    @inlinable
+    public func deleteImageProcessingTemplate(definition: UInt64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageProcessingTemplateResponse {
+        try await self.deleteImageProcessingTemplate(DeleteImageProcessingTemplateRequest(definition: definition, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

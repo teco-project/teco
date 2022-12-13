@@ -75,4 +75,16 @@ extension Tsf {
     public func describeContainerEvents(_ input: DescribeContainerEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerEventsResponse {
         try await self.client.execute(action: "DescribeContainerEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取容器事件列表
+    @inlinable
+    public func describeContainerEvents(resourceType: String, resourceId: String, offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerEventsResponse > {
+        self.describeContainerEvents(DescribeContainerEventsRequest(resourceType: resourceType, resourceId: resourceId, offset: offset, limit: limit, groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取容器事件列表
+    @inlinable
+    public func describeContainerEvents(resourceType: String, resourceId: String, offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerEventsResponse {
+        try await self.describeContainerEvents(DescribeContainerEventsRequest(resourceType: resourceType, resourceId: resourceId, offset: offset, limit: limit, groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

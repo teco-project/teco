@@ -73,4 +73,20 @@ extension Cfw {
     public func describeTLogInfo(_ input: DescribeTLogInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTLogInfoResponse {
         try await self.client.execute(action: "DescribeTLogInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 告警中心概况
+    ///
+    /// DescribeTLogInfo告警中心概况
+    @inlinable
+    public func describeTLogInfo(startTime: String, endTime: String, queryType: String, searchValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTLogInfoResponse > {
+        self.describeTLogInfo(DescribeTLogInfoRequest(startTime: startTime, endTime: endTime, queryType: queryType, searchValue: searchValue), logger: logger, on: eventLoop)
+    }
+    
+    /// 告警中心概况
+    ///
+    /// DescribeTLogInfo告警中心概况
+    @inlinable
+    public func describeTLogInfo(startTime: String, endTime: String, queryType: String, searchValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTLogInfoResponse {
+        try await self.describeTLogInfo(DescribeTLogInfoRequest(startTime: startTime, endTime: endTime, queryType: queryType, searchValue: searchValue), logger: logger, on: eventLoop)
+    }
 }

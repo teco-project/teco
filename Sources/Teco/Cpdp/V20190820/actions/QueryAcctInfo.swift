@@ -140,4 +140,20 @@ extension Cpdp {
     public func queryAcctInfo(_ input: QueryAcctInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAcctInfoResponse {
         try await self.client.execute(action: "QueryAcctInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 聚鑫-开户查询
+    ///
+    /// 聚鑫-开户信息查询
+    @inlinable
+    public func queryAcctInfo(midasAppId: String, subMchId: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAcctInfoResponse > {
+        self.queryAcctInfo(QueryAcctInfoRequest(midasAppId: midasAppId, subMchId: subMchId, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-开户查询
+    ///
+    /// 聚鑫-开户信息查询
+    @inlinable
+    public func queryAcctInfo(midasAppId: String, subMchId: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAcctInfoResponse {
+        try await self.queryAcctInfo(QueryAcctInfoRequest(midasAppId: midasAppId, subMchId: subMchId, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
 }

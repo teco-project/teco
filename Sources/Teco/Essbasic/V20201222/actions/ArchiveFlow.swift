@@ -61,4 +61,22 @@ extension Essbasic {
     public func archiveFlow(_ input: ArchiveFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ArchiveFlowResponse {
         try await self.client.execute(action: "ArchiveFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 归档流程
+    ///
+    /// 此接口（ArchiveFlow）用于流程的归档。
+    /// 注意：归档后的流程不可再进行发送、签署、拒签、撤回等一系列操作。
+    @inlinable
+    public func archiveFlow(caller: Caller, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ArchiveFlowResponse > {
+        self.archiveFlow(ArchiveFlowRequest(caller: caller, flowId: flowId), logger: logger, on: eventLoop)
+    }
+    
+    /// 归档流程
+    ///
+    /// 此接口（ArchiveFlow）用于流程的归档。
+    /// 注意：归档后的流程不可再进行发送、签署、拒签、撤回等一系列操作。
+    @inlinable
+    public func archiveFlow(caller: Caller, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ArchiveFlowResponse {
+        try await self.archiveFlow(ArchiveFlowRequest(caller: caller, flowId: flowId), logger: logger, on: eventLoop)
+    }
 }

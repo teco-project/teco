@@ -105,4 +105,16 @@ extension Tione {
     public func createTrainingJob(_ input: CreateTrainingJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrainingJobResponse {
         try await self.client.execute(action: "CreateTrainingJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建训练任务
+    @inlinable
+    public func createTrainingJob(algorithmSpecification: AlgorithmSpecification, outputDataConfig: OutputDataConfig, resourceConfig: ResourceConfig, trainingJobName: String, inputDataConfig: [InputDataConfig]? = nil, stoppingCondition: StoppingCondition? = nil, vpcConfig: VpcConfig? = nil, hyperParameters: String? = nil, envConfig: [EnvConfig]? = nil, roleName: String? = nil, retryWhenResourceInsufficient: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTrainingJobResponse > {
+        self.createTrainingJob(CreateTrainingJobRequest(algorithmSpecification: algorithmSpecification, outputDataConfig: outputDataConfig, resourceConfig: resourceConfig, trainingJobName: trainingJobName, inputDataConfig: inputDataConfig, stoppingCondition: stoppingCondition, vpcConfig: vpcConfig, hyperParameters: hyperParameters, envConfig: envConfig, roleName: roleName, retryWhenResourceInsufficient: retryWhenResourceInsufficient), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建训练任务
+    @inlinable
+    public func createTrainingJob(algorithmSpecification: AlgorithmSpecification, outputDataConfig: OutputDataConfig, resourceConfig: ResourceConfig, trainingJobName: String, inputDataConfig: [InputDataConfig]? = nil, stoppingCondition: StoppingCondition? = nil, vpcConfig: VpcConfig? = nil, hyperParameters: String? = nil, envConfig: [EnvConfig]? = nil, roleName: String? = nil, retryWhenResourceInsufficient: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrainingJobResponse {
+        try await self.createTrainingJob(CreateTrainingJobRequest(algorithmSpecification: algorithmSpecification, outputDataConfig: outputDataConfig, resourceConfig: resourceConfig, trainingJobName: trainingJobName, inputDataConfig: inputDataConfig, stoppingCondition: stoppingCondition, vpcConfig: vpcConfig, hyperParameters: hyperParameters, envConfig: envConfig, roleName: roleName, retryWhenResourceInsufficient: retryWhenResourceInsufficient), logger: logger, on: eventLoop)
+    }
 }

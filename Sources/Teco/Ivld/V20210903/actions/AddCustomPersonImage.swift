@@ -74,4 +74,22 @@ extension Ivld {
     public func addCustomPersonImage(_ input: AddCustomPersonImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCustomPersonImageResponse {
         try await self.client.execute(action: "AddCustomPersonImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 增加自定义人脸图片
+    ///
+    /// 增加自定义人脸图片，每个自定义人物最多可包含10张人脸图片
+    /// 请注意，与创建自定义人物一样，图片数据优先级优于图片URL优先级
+    @inlinable
+    public func addCustomPersonImage(personId: String, imageURL: String? = nil, image: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddCustomPersonImageResponse > {
+        self.addCustomPersonImage(AddCustomPersonImageRequest(personId: personId, imageURL: imageURL, image: image), logger: logger, on: eventLoop)
+    }
+    
+    /// 增加自定义人脸图片
+    ///
+    /// 增加自定义人脸图片，每个自定义人物最多可包含10张人脸图片
+    /// 请注意，与创建自定义人物一样，图片数据优先级优于图片URL优先级
+    @inlinable
+    public func addCustomPersonImage(personId: String, imageURL: String? = nil, image: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCustomPersonImageResponse {
+        try await self.addCustomPersonImage(AddCustomPersonImageRequest(personId: personId, imageURL: imageURL, image: image), logger: logger, on: eventLoop)
+    }
 }

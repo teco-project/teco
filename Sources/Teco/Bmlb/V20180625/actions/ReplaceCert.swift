@@ -82,4 +82,20 @@ extension Bmlb {
     public func replaceCert(_ input: ReplaceCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertResponse {
         try await self.client.execute(action: "ReplaceCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新黑石负载均衡证书
+    ///
+    /// 更新黑石负载均衡证书。
+    @inlinable
+    public func replaceCert(oldCertId: String, newCert: String, newAlias: String? = nil, newKey: String? = nil, deleteOld: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceCertResponse > {
+        self.replaceCert(ReplaceCertRequest(oldCertId: oldCertId, newCert: newCert, newAlias: newAlias, newKey: newKey, deleteOld: deleteOld), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新黑石负载均衡证书
+    ///
+    /// 更新黑石负载均衡证书。
+    @inlinable
+    public func replaceCert(oldCertId: String, newCert: String, newAlias: String? = nil, newKey: String? = nil, deleteOld: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertResponse {
+        try await self.replaceCert(ReplaceCertRequest(oldCertId: oldCertId, newCert: newCert, newAlias: newAlias, newKey: newKey, deleteOld: deleteOld), logger: logger, on: eventLoop)
+    }
 }

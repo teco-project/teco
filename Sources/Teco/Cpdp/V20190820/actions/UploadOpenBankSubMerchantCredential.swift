@@ -115,4 +115,16 @@ extension Cpdp {
     public func uploadOpenBankSubMerchantCredential(_ input: UploadOpenBankSubMerchantCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOpenBankSubMerchantCredentialResponse {
         try await self.client.execute(action: "UploadOpenBankSubMerchantCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-子商户资质文件上传
+    @inlinable
+    public func uploadOpenBankSubMerchantCredential(channelMerchantId: String, channelSubMerchantId: String, channelName: String, outApplyId: String, credentialType: String, fileType: String, paymentMethod: String? = nil, credentialContent: String? = nil, credentialUrl: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadOpenBankSubMerchantCredentialResponse > {
+        self.uploadOpenBankSubMerchantCredential(UploadOpenBankSubMerchantCredentialRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, outApplyId: outApplyId, credentialType: credentialType, fileType: fileType, paymentMethod: paymentMethod, credentialContent: credentialContent, credentialUrl: credentialUrl, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-子商户资质文件上传
+    @inlinable
+    public func uploadOpenBankSubMerchantCredential(channelMerchantId: String, channelSubMerchantId: String, channelName: String, outApplyId: String, credentialType: String, fileType: String, paymentMethod: String? = nil, credentialContent: String? = nil, credentialUrl: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOpenBankSubMerchantCredentialResponse {
+        try await self.uploadOpenBankSubMerchantCredential(UploadOpenBankSubMerchantCredentialRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, outApplyId: outApplyId, credentialType: credentialType, fileType: fileType, paymentMethod: paymentMethod, credentialContent: credentialContent, credentialUrl: credentialUrl, environment: environment), logger: logger, on: eventLoop)
+    }
 }

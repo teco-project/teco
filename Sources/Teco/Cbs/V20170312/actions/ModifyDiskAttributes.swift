@@ -83,4 +83,24 @@ extension Cbs {
     public func modifyDiskAttributes(_ input: ModifyDiskAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskAttributesResponse {
         try await self.client.execute(action: "ModifyDiskAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改云硬盘属性
+    ///
+    /// * 只支持修改弹性云盘的项目ID。随云主机创建的云硬盘项目ID与云主机联动。可以通过[DescribeDisks](/document/product/362/16315)接口查询，见输出参数中Portable字段解释。
+    /// * “云硬盘名称”仅为方便用户自己管理之用，腾讯云并不以此名称作为提交工单或是进行云盘管理操作的依据。
+    /// * 支持批量操作，如果传入多个云盘ID，则所有云盘修改为同一属性。如果存在不允许操作的云盘，则操作不执行，以特定错误码返回。
+    @inlinable
+    public func modifyDiskAttributes(diskIds: [String], diskName: String? = nil, portable: Bool? = nil, projectId: UInt64? = nil, deleteWithInstance: Bool? = nil, diskType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDiskAttributesResponse > {
+        self.modifyDiskAttributes(ModifyDiskAttributesRequest(diskIds: diskIds, diskName: diskName, portable: portable, projectId: projectId, deleteWithInstance: deleteWithInstance, diskType: diskType), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云硬盘属性
+    ///
+    /// * 只支持修改弹性云盘的项目ID。随云主机创建的云硬盘项目ID与云主机联动。可以通过[DescribeDisks](/document/product/362/16315)接口查询，见输出参数中Portable字段解释。
+    /// * “云硬盘名称”仅为方便用户自己管理之用，腾讯云并不以此名称作为提交工单或是进行云盘管理操作的依据。
+    /// * 支持批量操作，如果传入多个云盘ID，则所有云盘修改为同一属性。如果存在不允许操作的云盘，则操作不执行，以特定错误码返回。
+    @inlinable
+    public func modifyDiskAttributes(diskIds: [String], diskName: String? = nil, portable: Bool? = nil, projectId: UInt64? = nil, deleteWithInstance: Bool? = nil, diskType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskAttributesResponse {
+        try await self.modifyDiskAttributes(ModifyDiskAttributesRequest(diskIds: diskIds, diskName: diskName, portable: portable, projectId: projectId, deleteWithInstance: deleteWithInstance, diskType: diskType), logger: logger, on: eventLoop)
+    }
 }

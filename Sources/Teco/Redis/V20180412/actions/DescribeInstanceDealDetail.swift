@@ -54,4 +54,16 @@ extension Redis {
     public func describeInstanceDealDetail(_ input: DescribeInstanceDealDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDealDetailResponse {
         try await self.client.execute(action: "DescribeInstanceDealDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询订单信息
+    @inlinable
+    public func describeInstanceDealDetail(dealIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceDealDetailResponse > {
+        self.describeInstanceDealDetail(DescribeInstanceDealDetailRequest(dealIds: dealIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询订单信息
+    @inlinable
+    public func describeInstanceDealDetail(dealIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDealDetailResponse {
+        try await self.describeInstanceDealDetail(DescribeInstanceDealDetailRequest(dealIds: dealIds), logger: logger, on: eventLoop)
+    }
 }

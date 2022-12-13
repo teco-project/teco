@@ -68,4 +68,20 @@ extension Clb {
     public func createClsLogSet(_ input: CreateClsLogSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClsLogSetResponse {
         try await self.client.execute(action: "CreateClsLogSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建CLB专有日志集
+    ///
+    /// 创建CLB专有日志集，此日志集用于存储CLB的日志。
+    @inlinable
+    public func createClsLogSet(logsetName: String? = nil, period: UInt64? = nil, logsetType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClsLogSetResponse > {
+        self.createClsLogSet(CreateClsLogSetRequest(logsetName: logsetName, period: period, logsetType: logsetType), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建CLB专有日志集
+    ///
+    /// 创建CLB专有日志集，此日志集用于存储CLB的日志。
+    @inlinable
+    public func createClsLogSet(logsetName: String? = nil, period: UInt64? = nil, logsetType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClsLogSetResponse {
+        try await self.createClsLogSet(CreateClsLogSetRequest(logsetName: logsetName, period: period, logsetType: logsetType), logger: logger, on: eventLoop)
+    }
 }

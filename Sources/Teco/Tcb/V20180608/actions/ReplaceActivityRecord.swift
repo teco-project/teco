@@ -70,4 +70,16 @@ extension Tcb {
     public func replaceActivityRecord(_ input: ReplaceActivityRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceActivityRecordResponse {
         try await self.client.execute(action: "ReplaceActivityRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新活动详情
+    @inlinable
+    public func replaceActivityRecord(activityId: Int64, status: Int64, subStatus: String? = nil, channelToken: String? = nil, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceActivityRecordResponse > {
+        self.replaceActivityRecord(ReplaceActivityRecordRequest(activityId: activityId, status: status, subStatus: subStatus, channelToken: channelToken, channel: channel), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新活动详情
+    @inlinable
+    public func replaceActivityRecord(activityId: Int64, status: Int64, subStatus: String? = nil, channelToken: String? = nil, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceActivityRecordResponse {
+        try await self.replaceActivityRecord(ReplaceActivityRecordRequest(activityId: activityId, status: status, subStatus: subStatus, channelToken: channelToken, channel: channel), logger: logger, on: eventLoop)
+    }
 }

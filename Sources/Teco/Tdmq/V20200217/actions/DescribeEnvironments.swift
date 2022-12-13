@@ -85,4 +85,20 @@ extension Tdmq {
     public func describeEnvironments(_ input: DescribeEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentsResponse {
         try await self.client.execute(action: "DescribeEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取命名空间列表
+    ///
+    /// 获取租户下命名空间列表
+    @inlinable
+    public func describeEnvironments(environmentId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentsResponse > {
+        self.describeEnvironments(DescribeEnvironmentsRequest(environmentId: environmentId, offset: offset, limit: limit, clusterId: clusterId, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取命名空间列表
+    ///
+    /// 获取租户下命名空间列表
+    @inlinable
+    public func describeEnvironments(environmentId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentsResponse {
+        try await self.describeEnvironments(DescribeEnvironmentsRequest(environmentId: environmentId, offset: offset, limit: limit, clusterId: clusterId, filters: filters), logger: logger, on: eventLoop)
+    }
 }

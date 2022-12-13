@@ -55,4 +55,16 @@ extension Gaap {
     public func describeDomainErrorPageInfoByIds(_ input: DescribeDomainErrorPageInfoByIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainErrorPageInfoByIdsResponse {
         try await self.client.execute(action: "DescribeDomainErrorPageInfoByIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 根据定制错误ID查询错误响应
+    @inlinable
+    public func describeDomainErrorPageInfoByIds(errorPageIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainErrorPageInfoByIdsResponse > {
+        self.describeDomainErrorPageInfoByIds(DescribeDomainErrorPageInfoByIdsRequest(errorPageIds: errorPageIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 根据定制错误ID查询错误响应
+    @inlinable
+    public func describeDomainErrorPageInfoByIds(errorPageIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainErrorPageInfoByIdsResponse {
+        try await self.describeDomainErrorPageInfoByIds(DescribeDomainErrorPageInfoByIdsRequest(errorPageIds: errorPageIds), logger: logger, on: eventLoop)
+    }
 }

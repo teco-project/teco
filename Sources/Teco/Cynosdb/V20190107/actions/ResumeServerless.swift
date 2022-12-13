@@ -54,4 +54,16 @@ extension Cynosdb {
     public func resumeServerless(_ input: ResumeServerlessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeServerlessResponse {
         try await self.client.execute(action: "ResumeServerless", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 恢复serverless集群
+    @inlinable
+    public func resumeServerless(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeServerlessResponse > {
+        self.resumeServerless(ResumeServerlessRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复serverless集群
+    @inlinable
+    public func resumeServerless(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeServerlessResponse {
+        try await self.resumeServerless(ResumeServerlessRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

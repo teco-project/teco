@@ -88,4 +88,16 @@ extension Tcss {
     public func createVulDefenceEventExportJob(_ input: CreateVulDefenceEventExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulDefenceEventExportJobResponse {
         try await self.client.execute(action: "CreateVulDefenceEventExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建漏洞防御导出任务
+    @inlinable
+    public func createVulDefenceEventExportJob(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVulDefenceEventExportJobResponse > {
+        self.createVulDefenceEventExportJob(CreateVulDefenceEventExportJobRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建漏洞防御导出任务
+    @inlinable
+    public func createVulDefenceEventExportJob(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulDefenceEventExportJobResponse {
+        try await self.createVulDefenceEventExportJob(CreateVulDefenceEventExportJobRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

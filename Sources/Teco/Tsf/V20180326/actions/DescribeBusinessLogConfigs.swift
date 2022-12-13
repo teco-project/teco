@@ -75,4 +75,16 @@ extension Tsf {
     public func describeBusinessLogConfigs(_ input: DescribeBusinessLogConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessLogConfigsResponse {
         try await self.client.execute(action: "DescribeBusinessLogConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询日志配置项列表
+    @inlinable
+    public func describeBusinessLogConfigs(offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, configIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBusinessLogConfigsResponse > {
+        self.describeBusinessLogConfigs(DescribeBusinessLogConfigsRequest(offset: offset, limit: limit, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck, configIdList: configIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询日志配置项列表
+    @inlinable
+    public func describeBusinessLogConfigs(offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, configIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessLogConfigsResponse {
+        try await self.describeBusinessLogConfigs(DescribeBusinessLogConfigsRequest(offset: offset, limit: limit, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck, configIdList: configIdList), logger: logger, on: eventLoop)
+    }
 }

@@ -75,4 +75,16 @@ extension Teo {
     public func createPlanForZone(_ input: CreatePlanForZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePlanForZoneResponse {
         try await self.client.execute(action: "CreatePlanForZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 为未购买套餐的站点购买套餐
+    @inlinable
+    public func createPlanForZone(zoneId: String, planType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePlanForZoneResponse > {
+        self.createPlanForZone(CreatePlanForZoneRequest(zoneId: zoneId, planType: planType), logger: logger, on: eventLoop)
+    }
+    
+    /// 为未购买套餐的站点购买套餐
+    @inlinable
+    public func createPlanForZone(zoneId: String, planType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePlanForZoneResponse {
+        try await self.createPlanForZone(CreatePlanForZoneRequest(zoneId: zoneId, planType: planType), logger: logger, on: eventLoop)
+    }
 }

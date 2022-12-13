@@ -77,4 +77,16 @@ extension Billing {
     public func payDeals(_ input: PayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayDealsResponse {
         try await self.client.execute(action: "PayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 支付订单
+    @inlinable
+    public func payDeals(orderIds: [String]? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, bigDealIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PayDealsResponse > {
+        self.payDeals(PayDealsRequest(orderIds: orderIds, autoVoucher: autoVoucher, voucherIds: voucherIds, bigDealIds: bigDealIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 支付订单
+    @inlinable
+    public func payDeals(orderIds: [String]? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, bigDealIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayDealsResponse {
+        try await self.payDeals(PayDealsRequest(orderIds: orderIds, autoVoucher: autoVoucher, voucherIds: voucherIds, bigDealIds: bigDealIds), logger: logger, on: eventLoop)
+    }
 }

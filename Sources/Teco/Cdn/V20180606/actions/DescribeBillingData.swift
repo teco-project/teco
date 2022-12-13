@@ -133,4 +133,20 @@ extension Cdn {
     public func describeBillingData(_ input: DescribeBillingDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingDataResponse {
         try await self.client.execute(action: "DescribeBillingData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 计费数据查询
+    ///
+    /// DescribeBillingData 用于查询实际计费数据明细。
+    @inlinable
+    public func describeBillingData(startTime: Date, endTime: Date, interval: String? = nil, domain: String? = nil, project: Int64? = nil, area: String? = nil, district: Int64? = nil, metric: String? = nil, product: String? = nil, timeZone: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillingDataResponse > {
+        self.describeBillingData(DescribeBillingDataRequest(startTime: startTime, endTime: endTime, interval: interval, domain: domain, project: project, area: area, district: district, metric: metric, product: product, timeZone: timeZone), logger: logger, on: eventLoop)
+    }
+    
+    /// 计费数据查询
+    ///
+    /// DescribeBillingData 用于查询实际计费数据明细。
+    @inlinable
+    public func describeBillingData(startTime: Date, endTime: Date, interval: String? = nil, domain: String? = nil, project: Int64? = nil, area: String? = nil, district: Int64? = nil, metric: String? = nil, product: String? = nil, timeZone: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingDataResponse {
+        try await self.describeBillingData(DescribeBillingDataRequest(startTime: startTime, endTime: endTime, interval: interval, domain: domain, project: project, area: area, district: district, metric: metric, product: product, timeZone: timeZone), logger: logger, on: eventLoop)
+    }
 }

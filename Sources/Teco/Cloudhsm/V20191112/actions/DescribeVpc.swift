@@ -73,4 +73,20 @@ extension Cloudhsm {
     public func describeVpc(_ input: DescribeVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResponse {
         try await self.client.execute(action: "DescribeVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询私有网络列表
+    ///
+    /// 查询用户的私有网络列表
+    @inlinable
+    public func describeVpc(offset: Int64, limit: Int64, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcResponse > {
+        self.describeVpc(DescribeVpcRequest(offset: offset, limit: limit, searchWord: searchWord), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询私有网络列表
+    ///
+    /// 查询用户的私有网络列表
+    @inlinable
+    public func describeVpc(offset: Int64, limit: Int64, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResponse {
+        try await self.describeVpc(DescribeVpcRequest(offset: offset, limit: limit, searchWord: searchWord), logger: logger, on: eventLoop)
+    }
 }

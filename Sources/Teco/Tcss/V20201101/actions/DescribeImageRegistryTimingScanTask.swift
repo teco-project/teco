@@ -74,4 +74,16 @@ extension Tcss {
     public func describeImageRegistryTimingScanTask(_ input: DescribeImageRegistryTimingScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRegistryTimingScanTaskResponse {
         try await self.client.execute(action: "DescribeImageRegistryTimingScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 镜像仓库查看定时任务
+    @inlinable
+    public func describeImageRegistryTimingScanTask(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageRegistryTimingScanTaskResponse > {
+        self.describeImageRegistryTimingScanTask(DescribeImageRegistryTimingScanTaskRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库查看定时任务
+    @inlinable
+    public func describeImageRegistryTimingScanTask(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRegistryTimingScanTaskResponse {
+        try await self.describeImageRegistryTimingScanTask(DescribeImageRegistryTimingScanTaskRequest(), logger: logger, on: eventLoop)
+    }
 }

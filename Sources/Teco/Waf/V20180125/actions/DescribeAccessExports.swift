@@ -73,4 +73,20 @@ extension Waf {
     public func describeAccessExports(_ input: DescribeAccessExportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessExportsResponse {
         try await self.client.execute(action: "DescribeAccessExports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取访问日志导出列表
+    ///
+    /// 本接口用于获取访问日志导出列表
+    @inlinable
+    public func describeAccessExports(topicId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessExportsResponse > {
+        self.describeAccessExports(DescribeAccessExportsRequest(topicId: topicId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取访问日志导出列表
+    ///
+    /// 本接口用于获取访问日志导出列表
+    @inlinable
+    public func describeAccessExports(topicId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessExportsResponse {
+        try await self.describeAccessExports(DescribeAccessExportsRequest(topicId: topicId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

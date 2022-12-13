@@ -158,4 +158,16 @@ extension Cpdp {
     public func createMerchant(_ input: CreateMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMerchantResponse {
         try await self.client.execute(action: "CreateMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 智慧零售-商户注册
+    @inlinable
+    public func createMerchant(invoicePlatformId: Int64, taxpayerName: String, taxpayerNum: String, legalPersonName: String, contactsName: String, phone: String, address: String, regionCode: Int64, cityName: String, drawer: String, taxRegistrationCertificate: String, email: String? = nil, businessMobile: String? = nil, bankName: String? = nil, bankAccount: String? = nil, reviewer: String? = nil, payee: String? = nil, registerCode: String? = nil, state: String? = nil, callbackUrl: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMerchantResponse > {
+        self.createMerchant(CreateMerchantRequest(invoicePlatformId: invoicePlatformId, taxpayerName: taxpayerName, taxpayerNum: taxpayerNum, legalPersonName: legalPersonName, contactsName: contactsName, phone: phone, address: address, regionCode: regionCode, cityName: cityName, drawer: drawer, taxRegistrationCertificate: taxRegistrationCertificate, email: email, businessMobile: businessMobile, bankName: bankName, bankAccount: bankAccount, reviewer: reviewer, payee: payee, registerCode: registerCode, state: state, callbackUrl: callbackUrl, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 智慧零售-商户注册
+    @inlinable
+    public func createMerchant(invoicePlatformId: Int64, taxpayerName: String, taxpayerNum: String, legalPersonName: String, contactsName: String, phone: String, address: String, regionCode: Int64, cityName: String, drawer: String, taxRegistrationCertificate: String, email: String? = nil, businessMobile: String? = nil, bankName: String? = nil, bankAccount: String? = nil, reviewer: String? = nil, payee: String? = nil, registerCode: String? = nil, state: String? = nil, callbackUrl: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMerchantResponse {
+        try await self.createMerchant(CreateMerchantRequest(invoicePlatformId: invoicePlatformId, taxpayerName: taxpayerName, taxpayerNum: taxpayerNum, legalPersonName: legalPersonName, contactsName: contactsName, phone: phone, address: address, regionCode: regionCode, cityName: cityName, drawer: drawer, taxRegistrationCertificate: taxRegistrationCertificate, email: email, businessMobile: businessMobile, bankName: bankName, bankAccount: bankAccount, reviewer: reviewer, payee: payee, registerCode: registerCode, state: state, callbackUrl: callbackUrl, profile: profile), logger: logger, on: eventLoop)
+    }
 }

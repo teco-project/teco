@@ -50,4 +50,16 @@ extension Scf {
     public func getAccount(_ input: GetAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAccountResponse {
         try await self.client.execute(action: "GetAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取账户信息
+    @inlinable
+    public func getAccount(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAccountResponse > {
+        self.getAccount(GetAccountRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取账户信息
+    @inlinable
+    public func getAccount(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAccountResponse {
+        try await self.getAccount(GetAccountRequest(), logger: logger, on: eventLoop)
+    }
 }

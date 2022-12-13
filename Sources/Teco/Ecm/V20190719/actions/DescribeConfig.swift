@@ -69,4 +69,20 @@ extension Ecm {
     public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
         try await self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取配置限制信息
+    ///
+    /// 获取带宽硬盘等数据的限制
+    @inlinable
+    public func describeConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigResponse > {
+        self.describeConfig(DescribeConfigRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取配置限制信息
+    ///
+    /// 获取带宽硬盘等数据的限制
+    @inlinable
+    public func describeConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
+        try await self.describeConfig(DescribeConfigRequest(), logger: logger, on: eventLoop)
+    }
 }

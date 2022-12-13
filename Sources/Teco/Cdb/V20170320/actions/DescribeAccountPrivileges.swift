@@ -80,4 +80,20 @@ extension Cdb {
     public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountPrivilegesResponse {
         try await self.client.execute(action: "DescribeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询云数据库账户的权限信息
+    ///
+    /// 本接口(DescribeAccountPrivileges)用于查询云数据库账户支持的权限信息。
+    @inlinable
+    public func describeAccountPrivileges(instanceId: String, user: String, host: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountPrivilegesResponse > {
+        self.describeAccountPrivileges(DescribeAccountPrivilegesRequest(instanceId: instanceId, user: user, host: host), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云数据库账户的权限信息
+    ///
+    /// 本接口(DescribeAccountPrivileges)用于查询云数据库账户支持的权限信息。
+    @inlinable
+    public func describeAccountPrivileges(instanceId: String, user: String, host: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountPrivilegesResponse {
+        try await self.describeAccountPrivileges(DescribeAccountPrivilegesRequest(instanceId: instanceId, user: user, host: host), logger: logger, on: eventLoop)
+    }
 }

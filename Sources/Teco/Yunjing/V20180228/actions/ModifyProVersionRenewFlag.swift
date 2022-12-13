@@ -62,4 +62,20 @@ extension Yunjing {
     public func modifyProVersionRenewFlag(_ input: ModifyProVersionRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProVersionRenewFlagResponse {
         try await self.client.execute(action: "ModifyProVersionRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改专业版续费标识
+    ///
+    /// 本接口 (ModifyProVersionRenewFlag) 用于修改专业版包年包月续费标识。
+    @inlinable
+    public func modifyProVersionRenewFlag(renewFlag: String, quuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProVersionRenewFlagResponse > {
+        self.modifyProVersionRenewFlag(ModifyProVersionRenewFlagRequest(renewFlag: renewFlag, quuid: quuid), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改专业版续费标识
+    ///
+    /// 本接口 (ModifyProVersionRenewFlag) 用于修改专业版包年包月续费标识。
+    @inlinable
+    public func modifyProVersionRenewFlag(renewFlag: String, quuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProVersionRenewFlagResponse {
+        try await self.modifyProVersionRenewFlag(ModifyProVersionRenewFlagRequest(renewFlag: renewFlag, quuid: quuid), logger: logger, on: eventLoop)
+    }
 }

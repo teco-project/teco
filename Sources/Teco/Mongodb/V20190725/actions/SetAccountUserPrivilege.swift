@@ -68,4 +68,20 @@ extension Mongodb {
     public func setAccountUserPrivilege(_ input: SetAccountUserPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAccountUserPrivilegeResponse {
         try await self.client.execute(action: "SetAccountUserPrivilege", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置账户权限
+    ///
+    /// 账户权限设置。
+    @inlinable
+    public func setAccountUserPrivilege(instanceId: String, userName: String, authRole: [Auth], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAccountUserPrivilegeResponse > {
+        self.setAccountUserPrivilege(SetAccountUserPrivilegeRequest(instanceId: instanceId, userName: userName, authRole: authRole), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置账户权限
+    ///
+    /// 账户权限设置。
+    @inlinable
+    public func setAccountUserPrivilege(instanceId: String, userName: String, authRole: [Auth], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAccountUserPrivilegeResponse {
+        try await self.setAccountUserPrivilege(SetAccountUserPrivilegeRequest(instanceId: instanceId, userName: userName, authRole: authRole), logger: logger, on: eventLoop)
+    }
 }

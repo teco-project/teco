@@ -74,4 +74,20 @@ extension Iotvideoindustry {
     public func describeBindSceneDevices(_ input: DescribeBindSceneDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindSceneDevicesResponse {
         try await self.client.execute(action: "DescribeBindSceneDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取场景绑定设备列表(旧)
+    ///
+    /// 获取场景绑定设备列表
+    @inlinable
+    public func describeBindSceneDevices(sceneId: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindSceneDevicesResponse > {
+        self.describeBindSceneDevices(DescribeBindSceneDevicesRequest(sceneId: sceneId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取场景绑定设备列表(旧)
+    ///
+    /// 获取场景绑定设备列表
+    @inlinable
+    public func describeBindSceneDevices(sceneId: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindSceneDevicesResponse {
+        try await self.describeBindSceneDevices(DescribeBindSceneDevicesRequest(sceneId: sceneId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

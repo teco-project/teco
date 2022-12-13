@@ -81,4 +81,20 @@ extension Partners {
     public func auditApplyClient(_ input: AuditApplyClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuditApplyClientResponse {
         try await self.client.execute(action: "AuditApplyClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 审核客户
+    ///
+    /// 代理商可以审核其名下申请中代客
+    @inlinable
+    public func auditApplyClient(clientUin: String, auditResult: String, note: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AuditApplyClientResponse > {
+        self.auditApplyClient(AuditApplyClientRequest(clientUin: clientUin, auditResult: auditResult, note: note), logger: logger, on: eventLoop)
+    }
+    
+    /// 审核客户
+    ///
+    /// 代理商可以审核其名下申请中代客
+    @inlinable
+    public func auditApplyClient(clientUin: String, auditResult: String, note: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuditApplyClientResponse {
+        try await self.auditApplyClient(AuditApplyClientRequest(clientUin: clientUin, auditResult: auditResult, note: note), logger: logger, on: eventLoop)
+    }
 }

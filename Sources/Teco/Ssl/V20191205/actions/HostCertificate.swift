@@ -59,4 +59,16 @@ extension Ssl {
     public func hostCertificate(_ input: HostCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HostCertificateResponse {
         try await self.client.execute(action: "HostCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云资源托管
+    @inlinable
+    public func hostCertificate(certificateId: String, resourceType: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < HostCertificateResponse > {
+        self.hostCertificate(HostCertificateRequest(certificateId: certificateId, resourceType: resourceType), logger: logger, on: eventLoop)
+    }
+    
+    /// 云资源托管
+    @inlinable
+    public func hostCertificate(certificateId: String, resourceType: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HostCertificateResponse {
+        try await self.hostCertificate(HostCertificateRequest(certificateId: certificateId, resourceType: resourceType), logger: logger, on: eventLoop)
+    }
 }

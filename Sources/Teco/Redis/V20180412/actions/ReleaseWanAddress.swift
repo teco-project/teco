@@ -62,4 +62,20 @@ extension Redis {
     public func releaseWanAddress(_ input: ReleaseWanAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseWanAddressResponse {
         try await self.client.execute(action: "ReleaseWanAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 关闭外网接口
+    ///
+    /// 关闭外网
+    @inlinable
+    public func releaseWanAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseWanAddressResponse > {
+        self.releaseWanAddress(ReleaseWanAddressRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭外网接口
+    ///
+    /// 关闭外网
+    @inlinable
+    public func releaseWanAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseWanAddressResponse {
+        try await self.releaseWanAddress(ReleaseWanAddressRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

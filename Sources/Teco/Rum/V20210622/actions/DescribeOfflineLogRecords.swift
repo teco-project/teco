@@ -58,4 +58,16 @@ extension Rum {
     public func describeOfflineLogRecords(_ input: DescribeOfflineLogRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogRecordsResponse {
         try await self.client.execute(action: "DescribeOfflineLogRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取所有离线日志记录(最多100条)
+    @inlinable
+    public func describeOfflineLogRecords(projectKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOfflineLogRecordsResponse > {
+        self.describeOfflineLogRecords(DescribeOfflineLogRecordsRequest(projectKey: projectKey), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取所有离线日志记录(最多100条)
+    @inlinable
+    public func describeOfflineLogRecords(projectKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogRecordsResponse {
+        try await self.describeOfflineLogRecords(DescribeOfflineLogRecordsRequest(projectKey: projectKey), logger: logger, on: eventLoop)
+    }
 }

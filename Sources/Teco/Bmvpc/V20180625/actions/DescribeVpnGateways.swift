@@ -91,4 +91,20 @@ extension Bmvpc {
     public func describeVpnGateways(_ input: DescribeVpnGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaysResponse {
         try await self.client.execute(action: "DescribeVpnGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询VPN网关
+    ///
+    /// 本接口（DescribeVpnGateways）用于查询VPN网关列表。
+    @inlinable
+    public func describeVpnGateways(vpnGatewayIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpnGatewaysResponse > {
+        self.describeVpnGateways(DescribeVpnGatewaysRequest(vpnGatewayIds: vpnGatewayIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询VPN网关
+    ///
+    /// 本接口（DescribeVpnGateways）用于查询VPN网关列表。
+    @inlinable
+    public func describeVpnGateways(vpnGatewayIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaysResponse {
+        try await self.describeVpnGateways(DescribeVpnGatewaysRequest(vpnGatewayIds: vpnGatewayIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    }
 }

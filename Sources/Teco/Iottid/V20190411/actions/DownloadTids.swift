@@ -64,4 +64,20 @@ extension Iottid {
     public func downloadTids(_ input: DownloadTidsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadTidsResponse {
         try await self.client.execute(action: "DownloadTids", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 下载芯片订单的TID
+    ///
+    /// 下载芯片订单的TID 
+    @inlinable
+    public func downloadTids(orderId: String, quantity: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadTidsResponse > {
+        self.downloadTids(DownloadTidsRequest(orderId: orderId, quantity: quantity), logger: logger, on: eventLoop)
+    }
+    
+    /// 下载芯片订单的TID
+    ///
+    /// 下载芯片订单的TID 
+    @inlinable
+    public func downloadTids(orderId: String, quantity: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadTidsResponse {
+        try await self.downloadTids(DownloadTidsRequest(orderId: orderId, quantity: quantity), logger: logger, on: eventLoop)
+    }
 }

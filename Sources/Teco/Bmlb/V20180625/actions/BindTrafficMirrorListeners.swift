@@ -63,4 +63,20 @@ extension Bmlb {
     public func bindTrafficMirrorListeners(_ input: BindTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindTrafficMirrorListenersResponse {
         try await self.client.execute(action: "BindTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 绑定黑石服务器七层监听器到流量镜像实例
+    ///
+    /// 绑定黑石服务器七层监听器到流量镜像实例。
+    @inlinable
+    public func bindTrafficMirrorListeners(trafficMirrorId: String, listenerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindTrafficMirrorListenersResponse > {
+        self.bindTrafficMirrorListeners(BindTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, listenerIds: listenerIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定黑石服务器七层监听器到流量镜像实例
+    ///
+    /// 绑定黑石服务器七层监听器到流量镜像实例。
+    @inlinable
+    public func bindTrafficMirrorListeners(trafficMirrorId: String, listenerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindTrafficMirrorListenersResponse {
+        try await self.bindTrafficMirrorListeners(BindTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, listenerIds: listenerIds), logger: logger, on: eventLoop)
+    }
 }

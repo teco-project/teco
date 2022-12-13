@@ -82,4 +82,20 @@ extension Postgres {
     public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
         try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取实例用户列表
+    ///
+    /// 本接口（DescribeAccounts）用于获取实例用户列表。
+    @inlinable
+    public func describeAccounts(dbInstanceId: String, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
+        self.describeAccounts(DescribeAccountsRequest(dbInstanceId: dbInstanceId, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例用户列表
+    ///
+    /// 本接口（DescribeAccounts）用于获取实例用户列表。
+    @inlinable
+    public func describeAccounts(dbInstanceId: String, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
+        try await self.describeAccounts(DescribeAccountsRequest(dbInstanceId: dbInstanceId, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    }
 }

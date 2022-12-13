@@ -72,4 +72,20 @@ extension Cam {
     public func getServiceLinkedRoleDeletionStatus(_ input: GetServiceLinkedRoleDeletionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceLinkedRoleDeletionStatusResponse {
         try await self.client.execute(action: "GetServiceLinkedRoleDeletionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取服务相关角色删除状态
+    ///
+    /// 根据删除TaskId获取服务相关角色删除状态
+    @inlinable
+    public func getServiceLinkedRoleDeletionStatus(deletionTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetServiceLinkedRoleDeletionStatusResponse > {
+        self.getServiceLinkedRoleDeletionStatus(GetServiceLinkedRoleDeletionStatusRequest(deletionTaskId: deletionTaskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取服务相关角色删除状态
+    ///
+    /// 根据删除TaskId获取服务相关角色删除状态
+    @inlinable
+    public func getServiceLinkedRoleDeletionStatus(deletionTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceLinkedRoleDeletionStatusResponse {
+        try await self.getServiceLinkedRoleDeletionStatus(GetServiceLinkedRoleDeletionStatusRequest(deletionTaskId: deletionTaskId), logger: logger, on: eventLoop)
+    }
 }

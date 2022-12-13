@@ -66,4 +66,20 @@ extension Cii {
     public func describeStructureTaskResult(_ input: DescribeStructureTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureTaskResultResponse {
         try await self.client.execute(action: "DescribeStructureTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取结构化结果接口
+    ///
+    /// 依据任务ID获取结构化结果接口。
+    @inlinable
+    public func describeStructureTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStructureTaskResultResponse > {
+        self.describeStructureTaskResult(DescribeStructureTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取结构化结果接口
+    ///
+    /// 依据任务ID获取结构化结果接口。
+    @inlinable
+    public func describeStructureTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureTaskResultResponse {
+        try await self.describeStructureTaskResult(DescribeStructureTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

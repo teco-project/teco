@@ -99,4 +99,20 @@ extension Scf {
     public func listFunctions(_ input: ListFunctionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFunctionsResponse {
         try await self.client.execute(action: "ListFunctions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取函数列表
+    ///
+    /// 该接口根据传入的查询参数返回相关函数信息。
+    @inlinable
+    public func listFunctions(order: String? = nil, orderby: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchKey: String? = nil, namespace: String? = nil, description: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListFunctionsResponse > {
+        self.listFunctions(ListFunctionsRequest(order: order, orderby: orderby, offset: offset, limit: limit, searchKey: searchKey, namespace: namespace, description: description, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取函数列表
+    ///
+    /// 该接口根据传入的查询参数返回相关函数信息。
+    @inlinable
+    public func listFunctions(order: String? = nil, orderby: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchKey: String? = nil, namespace: String? = nil, description: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFunctionsResponse {
+        try await self.listFunctions(ListFunctionsRequest(order: order, orderby: orderby, offset: offset, limit: limit, searchKey: searchKey, namespace: namespace, description: description, filters: filters), logger: logger, on: eventLoop)
+    }
 }

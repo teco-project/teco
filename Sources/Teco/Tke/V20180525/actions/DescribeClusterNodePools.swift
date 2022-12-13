@@ -79,4 +79,16 @@ extension Tke {
     public func describeClusterNodePools(_ input: DescribeClusterNodePoolsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNodePoolsResponse {
         try await self.client.execute(action: "DescribeClusterNodePools", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询节点池列表
+    @inlinable
+    public func describeClusterNodePools(clusterId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterNodePoolsResponse > {
+        self.describeClusterNodePools(DescribeClusterNodePoolsRequest(clusterId: clusterId, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询节点池列表
+    @inlinable
+    public func describeClusterNodePools(clusterId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNodePoolsResponse {
+        try await self.describeClusterNodePools(DescribeClusterNodePoolsRequest(clusterId: clusterId, filters: filters), logger: logger, on: eventLoop)
+    }
 }

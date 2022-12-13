@@ -98,4 +98,20 @@ extension Iotcloud {
     public func batchUpdateFirmware(_ input: BatchUpdateFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchUpdateFirmwareResponse {
         try await self.client.execute(action: "BatchUpdateFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量更新固件
+    ///
+    /// 本接口（BatchUpdateFirmware）用于批量更新设备固件 
+    @inlinable
+    public func batchUpdateFirmware(productID: String, firmwareVersion: String, firmwareOriVersion: String? = nil, upgradeMethod: UInt64? = nil, fileName: String? = nil, fileMd5: String? = nil, fileSize: UInt64? = nil, deviceNames: [String]? = nil, timeoutInterval: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchUpdateFirmwareResponse > {
+        self.batchUpdateFirmware(BatchUpdateFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, firmwareOriVersion: firmwareOriVersion, upgradeMethod: upgradeMethod, fileName: fileName, fileMd5: fileMd5, fileSize: fileSize, deviceNames: deviceNames, timeoutInterval: timeoutInterval), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量更新固件
+    ///
+    /// 本接口（BatchUpdateFirmware）用于批量更新设备固件 
+    @inlinable
+    public func batchUpdateFirmware(productID: String, firmwareVersion: String, firmwareOriVersion: String? = nil, upgradeMethod: UInt64? = nil, fileName: String? = nil, fileMd5: String? = nil, fileSize: UInt64? = nil, deviceNames: [String]? = nil, timeoutInterval: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchUpdateFirmwareResponse {
+        try await self.batchUpdateFirmware(BatchUpdateFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, firmwareOriVersion: firmwareOriVersion, upgradeMethod: upgradeMethod, fileName: fileName, fileMd5: fileMd5, fileSize: fileSize, deviceNames: deviceNames, timeoutInterval: timeoutInterval), logger: logger, on: eventLoop)
+    }
 }

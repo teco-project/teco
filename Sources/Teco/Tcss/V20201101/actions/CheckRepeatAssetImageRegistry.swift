@@ -55,4 +55,16 @@ extension Tcss {
     public func checkRepeatAssetImageRegistry(_ input: CheckRepeatAssetImageRegistryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRepeatAssetImageRegistryResponse {
         try await self.client.execute(action: "CheckRepeatAssetImageRegistry", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 检查单个镜像仓库名是否重复
+    @inlinable
+    public func checkRepeatAssetImageRegistry(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckRepeatAssetImageRegistryResponse > {
+        self.checkRepeatAssetImageRegistry(CheckRepeatAssetImageRegistryRequest(name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 检查单个镜像仓库名是否重复
+    @inlinable
+    public func checkRepeatAssetImageRegistry(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRepeatAssetImageRegistryResponse {
+        try await self.checkRepeatAssetImageRegistry(CheckRepeatAssetImageRegistryRequest(name: name), logger: logger, on: eventLoop)
+    }
 }

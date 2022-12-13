@@ -129,4 +129,16 @@ extension Cdn {
     public func listTopWafData(_ input: ListTopWafDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopWafDataResponse {
         try await self.client.execute(action: "ListTopWafData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取Waf攻击Top数据
+    @inlinable
+    public func listTopWafData(startTime: String, endTime: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, metric: String? = nil, area: String? = nil, attackTypes: [String]? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopWafDataResponse > {
+        self.listTopWafData(ListTopWafDataRequest(startTime: startTime, endTime: endTime, domain: domain, attackType: attackType, defenceMode: defenceMode, metric: metric, area: area, attackTypes: attackTypes, domains: domains), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Waf攻击Top数据
+    @inlinable
+    public func listTopWafData(startTime: String, endTime: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, metric: String? = nil, area: String? = nil, attackTypes: [String]? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopWafDataResponse {
+        try await self.listTopWafData(ListTopWafDataRequest(startTime: startTime, endTime: endTime, domain: domain, attackType: attackType, defenceMode: defenceMode, metric: metric, area: area, attackTypes: attackTypes, domains: domains), logger: logger, on: eventLoop)
+    }
 }

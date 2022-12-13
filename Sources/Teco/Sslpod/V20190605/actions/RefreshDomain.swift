@@ -54,4 +54,20 @@ extension Sslpod {
     public func refreshDomain(_ input: RefreshDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshDomainResponse {
         try await self.client.execute(action: "RefreshDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重新检测域名
+    ///
+    /// 强制重新检测域名
+    @inlinable
+    public func refreshDomain(domainId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RefreshDomainResponse > {
+        self.refreshDomain(RefreshDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
+    }
+    
+    /// 重新检测域名
+    ///
+    /// 强制重新检测域名
+    @inlinable
+    public func refreshDomain(domainId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshDomainResponse {
+        try await self.refreshDomain(RefreshDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
+    }
 }

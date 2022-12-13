@@ -117,4 +117,20 @@ extension Cdb {
     public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
         try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询云数据库实例任务列表
+    ///
+    /// 本接口(DescribeTasks)用于查询云数据库实例任务列表。
+    @inlinable
+    public func describeTasks(instanceId: String? = nil, asyncRequestId: String? = nil, taskTypes: [Int64]? = nil, taskStatus: [Int64]? = nil, startTimeBegin: String? = nil, startTimeEnd: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
+        self.describeTasks(DescribeTasksRequest(instanceId: instanceId, asyncRequestId: asyncRequestId, taskTypes: taskTypes, taskStatus: taskStatus, startTimeBegin: startTimeBegin, startTimeEnd: startTimeEnd, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云数据库实例任务列表
+    ///
+    /// 本接口(DescribeTasks)用于查询云数据库实例任务列表。
+    @inlinable
+    public func describeTasks(instanceId: String? = nil, asyncRequestId: String? = nil, taskTypes: [Int64]? = nil, taskStatus: [Int64]? = nil, startTimeBegin: String? = nil, startTimeEnd: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
+        try await self.describeTasks(DescribeTasksRequest(instanceId: instanceId, asyncRequestId: asyncRequestId, taskTypes: taskTypes, taskStatus: taskStatus, startTimeBegin: startTimeBegin, startTimeEnd: startTimeEnd, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

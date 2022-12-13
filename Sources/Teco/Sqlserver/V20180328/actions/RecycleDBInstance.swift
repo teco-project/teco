@@ -58,4 +58,20 @@ extension Sqlserver {
     public func recycleDBInstance(_ input: RecycleDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecycleDBInstanceResponse {
         try await self.client.execute(action: "RecycleDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 主动回收实例
+    ///
+    /// 本接口（RecycleDBInstance）用于主动回收已下线的SQLSERVER实例
+    @inlinable
+    public func recycleDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecycleDBInstanceResponse > {
+        self.recycleDBInstance(RecycleDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 主动回收实例
+    ///
+    /// 本接口（RecycleDBInstance）用于主动回收已下线的SQLSERVER实例
+    @inlinable
+    public func recycleDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecycleDBInstanceResponse {
+        try await self.recycleDBInstance(RecycleDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

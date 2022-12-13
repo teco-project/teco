@@ -63,4 +63,20 @@ extension Tcss {
     public func modifyAsset(_ input: ModifyAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetResponse {
         try await self.client.execute(action: "ModifyAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 主机资产刷新
+    ///
+    /// 容器安全主机资产刷新
+    @inlinable
+    public func modifyAsset(all: Bool? = nil, hosts: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAssetResponse > {
+        self.modifyAsset(ModifyAssetRequest(all: all, hosts: hosts), logger: logger, on: eventLoop)
+    }
+    
+    /// 主机资产刷新
+    ///
+    /// 容器安全主机资产刷新
+    @inlinable
+    public func modifyAsset(all: Bool? = nil, hosts: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetResponse {
+        try await self.modifyAsset(ModifyAssetRequest(all: all, hosts: hosts), logger: logger, on: eventLoop)
+    }
 }

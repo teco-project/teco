@@ -65,4 +65,20 @@ extension Cvm {
     public func describeAccountQuota(_ input: DescribeAccountQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountQuotaResponse {
         try await self.client.execute(action: "DescribeAccountQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询用户配额详情
+    ///
+    /// 本接口(DescribeAccountQuota)用于查询用户配额详情。
+    @inlinable
+    public func describeAccountQuota(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountQuotaResponse > {
+        self.describeAccountQuota(DescribeAccountQuotaRequest(filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户配额详情
+    ///
+    /// 本接口(DescribeAccountQuota)用于查询用户配额详情。
+    @inlinable
+    public func describeAccountQuota(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountQuotaResponse {
+        try await self.describeAccountQuota(DescribeAccountQuotaRequest(filters: filters), logger: logger, on: eventLoop)
+    }
 }

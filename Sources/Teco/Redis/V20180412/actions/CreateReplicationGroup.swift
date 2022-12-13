@@ -68,4 +68,20 @@ extension Redis {
     public func createReplicationGroup(_ input: CreateReplicationGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationGroupResponse {
         try await self.client.execute(action: "CreateReplicationGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建复制组接口
+    ///
+    /// 创建复制组
+    @inlinable
+    public func createReplicationGroup(instanceId: String, groupName: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReplicationGroupResponse > {
+        self.createReplicationGroup(CreateReplicationGroupRequest(instanceId: instanceId, groupName: groupName, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建复制组接口
+    ///
+    /// 创建复制组
+    @inlinable
+    public func createReplicationGroup(instanceId: String, groupName: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationGroupResponse {
+        try await self.createReplicationGroup(CreateReplicationGroupRequest(instanceId: instanceId, groupName: groupName, remark: remark), logger: logger, on: eventLoop)
+    }
 }

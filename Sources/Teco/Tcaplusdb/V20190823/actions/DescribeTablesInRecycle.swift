@@ -78,4 +78,16 @@ extension Tcaplusdb {
     public func describeTablesInRecycle(_ input: DescribeTablesInRecycleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTablesInRecycleResponse {
         try await self.client.execute(action: "DescribeTablesInRecycle", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询回收站中的表详情
+    @inlinable
+    public func describeTablesInRecycle(clusterId: String? = nil, tableGroupIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTablesInRecycleResponse > {
+        self.describeTablesInRecycle(DescribeTablesInRecycleRequest(clusterId: clusterId, tableGroupIds: tableGroupIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询回收站中的表详情
+    @inlinable
+    public func describeTablesInRecycle(clusterId: String? = nil, tableGroupIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTablesInRecycleResponse {
+        try await self.describeTablesInRecycle(DescribeTablesInRecycleRequest(clusterId: clusterId, tableGroupIds: tableGroupIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

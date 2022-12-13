@@ -74,4 +74,20 @@ extension Oceanus {
     public func copyJobs(_ input: CopyJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyJobsResponse {
         try await self.client.execute(action: "CopyJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 复制作业
+    ///
+    /// 单条和批量复制作业
+    @inlinable
+    public func copyJobs(jobItems: [CopyJobItem], workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyJobsResponse > {
+        self.copyJobs(CopyJobsRequest(jobItems: jobItems, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 复制作业
+    ///
+    /// 单条和批量复制作业
+    @inlinable
+    public func copyJobs(jobItems: [CopyJobItem], workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyJobsResponse {
+        try await self.copyJobs(CopyJobsRequest(jobItems: jobItems, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    }
 }

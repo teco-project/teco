@@ -64,4 +64,26 @@ extension Vod {
     public func describeStorageRegions(_ input: DescribeStorageRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageRegionsResponse {
         try await self.client.execute(action: "DescribeStorageRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询存储地域列表
+    ///
+    /// 该接口用于：
+    ///   1. 查询点播可开通的所有存储园区列表。
+    ///   2. 查询已经开通的园区列表。
+    ///   3. 查询默认使用的存储园区。
+    @inlinable
+    public func describeStorageRegions(subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStorageRegionsResponse > {
+        self.describeStorageRegions(DescribeStorageRegionsRequest(subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询存储地域列表
+    ///
+    /// 该接口用于：
+    ///   1. 查询点播可开通的所有存储园区列表。
+    ///   2. 查询已经开通的园区列表。
+    ///   3. 查询默认使用的存储园区。
+    @inlinable
+    public func describeStorageRegions(subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageRegionsResponse {
+        try await self.describeStorageRegions(DescribeStorageRegionsRequest(subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

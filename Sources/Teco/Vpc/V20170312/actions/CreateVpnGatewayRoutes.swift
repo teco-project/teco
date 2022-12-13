@@ -63,4 +63,20 @@ extension Vpc {
     public func createVpnGatewayRoutes(_ input: CreateVpnGatewayRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewayRoutesResponse {
         try await self.client.execute(action: "CreateVpnGatewayRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建VPN网关路由
+    ///
+    /// 创建路由型VPN网关的目的路由
+    @inlinable
+    public func createVpnGatewayRoutes(vpnGatewayId: String, routes: [VpnGatewayRoute], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpnGatewayRoutesResponse > {
+        self.createVpnGatewayRoutes(CreateVpnGatewayRoutesRequest(vpnGatewayId: vpnGatewayId, routes: routes), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建VPN网关路由
+    ///
+    /// 创建路由型VPN网关的目的路由
+    @inlinable
+    public func createVpnGatewayRoutes(vpnGatewayId: String, routes: [VpnGatewayRoute], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewayRoutesResponse {
+        try await self.createVpnGatewayRoutes(CreateVpnGatewayRoutesRequest(vpnGatewayId: vpnGatewayId, routes: routes), logger: logger, on: eventLoop)
+    }
 }

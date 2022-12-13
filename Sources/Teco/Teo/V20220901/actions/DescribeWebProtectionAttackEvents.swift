@@ -92,4 +92,20 @@ extension Teo {
     public func describeWebProtectionAttackEvents(_ input: DescribeWebProtectionAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionAttackEventsResponse {
         try await self.client.execute(action: "DescribeWebProtectionAttackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询CC相关攻击事件
+    ///
+    /// 本接口（DescribeWebProtectionAttackEvents）用于查询CC相关攻击事件列表。
+    @inlinable
+    public func describeWebProtectionAttackEvents(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebProtectionAttackEventsResponse > {
+        self.describeWebProtectionAttackEvents(DescribeWebProtectionAttackEventsRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询CC相关攻击事件
+    ///
+    /// 本接口（DescribeWebProtectionAttackEvents）用于查询CC相关攻击事件列表。
+    @inlinable
+    public func describeWebProtectionAttackEvents(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionAttackEventsResponse {
+        try await self.describeWebProtectionAttackEvents(DescribeWebProtectionAttackEventsRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

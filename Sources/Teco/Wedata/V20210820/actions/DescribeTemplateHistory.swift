@@ -70,4 +70,16 @@ extension Wedata {
     public func describeTemplateHistory(_ input: DescribeTemplateHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateHistoryResponse {
         try await self.client.execute(action: "DescribeTemplateHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询规则模版操作记录
+    @inlinable
+    public func describeTemplateHistory(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateHistoryResponse > {
+        self.describeTemplateHistory(DescribeTemplateHistoryRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询规则模版操作记录
+    @inlinable
+    public func describeTemplateHistory(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateHistoryResponse {
+        try await self.describeTemplateHistory(DescribeTemplateHistoryRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

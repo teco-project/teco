@@ -69,4 +69,20 @@ extension Vpc {
     public func modifyBandwidthPackageAttribute(_ input: ModifyBandwidthPackageAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBandwidthPackageAttributeResponse {
         try await self.client.execute(action: "ModifyBandwidthPackageAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改带宽包属性
+    ///
+    /// 接口用于修改带宽包属性，包括带宽包名字等
+    @inlinable
+    public func modifyBandwidthPackageAttribute(bandwidthPackageId: String, bandwidthPackageName: String, chargeType: String? = nil, migrateOnRefund: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBandwidthPackageAttributeResponse > {
+        self.modifyBandwidthPackageAttribute(ModifyBandwidthPackageAttributeRequest(bandwidthPackageId: bandwidthPackageId, bandwidthPackageName: bandwidthPackageName, chargeType: chargeType, migrateOnRefund: migrateOnRefund), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改带宽包属性
+    ///
+    /// 接口用于修改带宽包属性，包括带宽包名字等
+    @inlinable
+    public func modifyBandwidthPackageAttribute(bandwidthPackageId: String, bandwidthPackageName: String, chargeType: String? = nil, migrateOnRefund: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBandwidthPackageAttributeResponse {
+        try await self.modifyBandwidthPackageAttribute(ModifyBandwidthPackageAttributeRequest(bandwidthPackageId: bandwidthPackageId, bandwidthPackageName: bandwidthPackageName, chargeType: chargeType, migrateOnRefund: migrateOnRefund), logger: logger, on: eventLoop)
+    }
 }

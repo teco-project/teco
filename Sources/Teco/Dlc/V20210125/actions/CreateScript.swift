@@ -69,4 +69,20 @@ extension Dlc {
     public func createScript(_ input: CreateScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScriptResponse {
         try await self.client.execute(action: "CreateScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建sql脚本
+    ///
+    /// 该接口（CreateScript）用于创建sql脚本。
+    @inlinable
+    public func createScript(scriptName: String, sqlStatement: String, scriptDesc: String? = nil, databaseName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScriptResponse > {
+        self.createScript(CreateScriptRequest(scriptName: scriptName, sqlStatement: sqlStatement, scriptDesc: scriptDesc, databaseName: databaseName), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建sql脚本
+    ///
+    /// 该接口（CreateScript）用于创建sql脚本。
+    @inlinable
+    public func createScript(scriptName: String, sqlStatement: String, scriptDesc: String? = nil, databaseName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScriptResponse {
+        try await self.createScript(CreateScriptRequest(scriptName: scriptName, sqlStatement: sqlStatement, scriptDesc: scriptDesc, databaseName: databaseName), logger: logger, on: eventLoop)
+    }
 }

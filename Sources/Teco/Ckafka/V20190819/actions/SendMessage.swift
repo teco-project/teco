@@ -63,4 +63,20 @@ extension Ckafka {
     public func sendMessage(_ input: SendMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessageResponse {
         try await self.client.execute(action: "SendMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// HTTP发送消息
+    ///
+    /// 通过HTTP接入层发送消息
+    @inlinable
+    public func sendMessage(dataHubId: String, message: [BatchContent], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendMessageResponse > {
+        self.sendMessage(SendMessageRequest(dataHubId: dataHubId, message: message), logger: logger, on: eventLoop)
+    }
+    
+    /// HTTP发送消息
+    ///
+    /// 通过HTTP接入层发送消息
+    @inlinable
+    public func sendMessage(dataHubId: String, message: [BatchContent], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessageResponse {
+        try await self.sendMessage(SendMessageRequest(dataHubId: dataHubId, message: message), logger: logger, on: eventLoop)
+    }
 }

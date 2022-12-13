@@ -88,4 +88,16 @@ extension Cpdp {
     public func queryInvoice(_ input: QueryInvoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInvoiceResponse {
         try await self.client.execute(action: "QueryInvoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 智慧零售-发票查询
+    @inlinable
+    public func queryInvoice(invoicePlatformId: Int64, orderId: String, orderSn: String? = nil, isRed: Int64? = nil, profile: String? = nil, invoiceChannel: Int64? = nil, sellerTaxpayerNum: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryInvoiceResponse > {
+        self.queryInvoice(QueryInvoiceRequest(invoicePlatformId: invoicePlatformId, orderId: orderId, orderSn: orderSn, isRed: isRed, profile: profile, invoiceChannel: invoiceChannel, sellerTaxpayerNum: sellerTaxpayerNum), logger: logger, on: eventLoop)
+    }
+    
+    /// 智慧零售-发票查询
+    @inlinable
+    public func queryInvoice(invoicePlatformId: Int64, orderId: String, orderSn: String? = nil, isRed: Int64? = nil, profile: String? = nil, invoiceChannel: Int64? = nil, sellerTaxpayerNum: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInvoiceResponse {
+        try await self.queryInvoice(QueryInvoiceRequest(invoicePlatformId: invoicePlatformId, orderId: orderId, orderSn: orderSn, isRed: isRed, profile: profile, invoiceChannel: invoiceChannel, sellerTaxpayerNum: sellerTaxpayerNum), logger: logger, on: eventLoop)
+    }
 }

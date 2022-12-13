@@ -36,7 +36,7 @@ extension Dayu {
         /// 可选，代表HTTP协议或HTTPS协议的CC防护，取值[http（HTTP协议的CC防护），https（HTTPS协议的CC防护）]；
         public let `protocol`: String?
         
-        public init (business: String, id: String, type: [String], limit: UInt64? = nil, offset: UInt64? = nil, `protocol`: String? = nil) {
+        public init (business: String, id: String, type: [String], limit: UInt64? = nil, offset: UInt64? = nil, protocol: String? = nil) {
             self.business = business
             self.id = id
             self.type = type
@@ -91,5 +91,17 @@ extension Dayu {
     @inlinable
     public func describeCCUrlAllow(_ input: DescribeCCUrlAllowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCUrlAllowResponse {
         try await self.client.execute(action: "DescribeCCUrlAllow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 获取CC的Url白名单
+    @inlinable
+    public func describeCCUrlAllow(business: String, id: String, type: [String], limit: UInt64? = nil, offset: UInt64? = nil, protocol: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCUrlAllowResponse > {
+        self.describeCCUrlAllow(DescribeCCUrlAllowRequest(business: business, id: id, type: type, limit: limit, offset: offset, protocol: `protocol`), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC的Url白名单
+    @inlinable
+    public func describeCCUrlAllow(business: String, id: String, type: [String], limit: UInt64? = nil, offset: UInt64? = nil, protocol: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCUrlAllowResponse {
+        try await self.describeCCUrlAllow(DescribeCCUrlAllowRequest(business: business, id: id, type: type, limit: limit, offset: offset, protocol: `protocol`), logger: logger, on: eventLoop)
     }
 }

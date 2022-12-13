@@ -75,4 +75,16 @@ extension Tke {
     public func createPrometheusConfig(_ input: CreatePrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusConfigResponse {
         try await self.client.execute(action: "CreatePrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建prometheus配置
+    @inlinable
+    public func createPrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusConfigResponse > {
+        self.createPrometheusConfig(CreatePrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建prometheus配置
+    @inlinable
+    public func createPrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusConfigResponse {
+        try await self.createPrometheusConfig(CreatePrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), logger: logger, on: eventLoop)
+    }
 }

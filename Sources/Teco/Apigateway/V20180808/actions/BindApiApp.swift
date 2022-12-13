@@ -74,4 +74,20 @@ extension Apigateway {
     public func bindApiApp(_ input: BindApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindApiAppResponse {
         try await self.client.execute(action: "BindApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 绑定应用到API
+    ///
+    /// 本接口（BindApiApp）用于绑定应用到API。
+    @inlinable
+    public func bindApiApp(apiAppId: String, environment: String, serviceId: String, apiId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindApiAppResponse > {
+        self.bindApiApp(BindApiAppRequest(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId), logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定应用到API
+    ///
+    /// 本接口（BindApiApp）用于绑定应用到API。
+    @inlinable
+    public func bindApiApp(apiAppId: String, environment: String, serviceId: String, apiId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindApiAppResponse {
+        try await self.bindApiApp(BindApiAppRequest(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId), logger: logger, on: eventLoop)
+    }
 }

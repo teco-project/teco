@@ -93,4 +93,16 @@ extension Cloudaudit {
     public func describeEvents(_ input: DescribeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventsResponse {
         try await self.client.execute(action: "DescribeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询云审计日志
+    @inlinable
+    public func describeEvents(startTime: UInt64, endTime: UInt64, nextToken: UInt64? = nil, maxResults: UInt64? = nil, lookupAttributes: [LookupAttribute]? = nil, isReturnLocation: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEventsResponse > {
+        self.describeEvents(DescribeEventsRequest(startTime: startTime, endTime: endTime, nextToken: nextToken, maxResults: maxResults, lookupAttributes: lookupAttributes, isReturnLocation: isReturnLocation), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云审计日志
+    @inlinable
+    public func describeEvents(startTime: UInt64, endTime: UInt64, nextToken: UInt64? = nil, maxResults: UInt64? = nil, lookupAttributes: [LookupAttribute]? = nil, isReturnLocation: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventsResponse {
+        try await self.describeEvents(DescribeEventsRequest(startTime: startTime, endTime: endTime, nextToken: nextToken, maxResults: maxResults, lookupAttributes: lookupAttributes, isReturnLocation: isReturnLocation), logger: logger, on: eventLoop)
+    }
 }

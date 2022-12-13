@@ -63,4 +63,20 @@ extension Bmlb {
     public func describeL4Listeners(_ input: DescribeL4ListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4ListenersResponse {
         try await self.client.execute(action: "DescribeL4Listeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取黑石负载均衡四层监听器
+    ///
+    /// 获取黑石负载均衡四层监听器。
+    @inlinable
+    public func describeL4Listeners(loadBalancerId: String, listenerIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL4ListenersResponse > {
+        self.describeL4Listeners(DescribeL4ListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取黑石负载均衡四层监听器
+    ///
+    /// 获取黑石负载均衡四层监听器。
+    @inlinable
+    public func describeL4Listeners(loadBalancerId: String, listenerIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4ListenersResponse {
+        try await self.describeL4Listeners(DescribeL4ListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds), logger: logger, on: eventLoop)
+    }
 }

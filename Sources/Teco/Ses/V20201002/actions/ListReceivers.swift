@@ -77,4 +77,20 @@ extension Ses {
     public func listReceivers(_ input: ListReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListReceiversResponse {
         try await self.client.execute(action: "ListReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询收件人列表
+    ///
+    /// 根据条件查询收件人列表，支持分页，模糊查询，状态查询
+    @inlinable
+    public func listReceivers(offset: UInt64, limit: UInt64, status: UInt64? = nil, keyWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListReceiversResponse > {
+        self.listReceivers(ListReceiversRequest(offset: offset, limit: limit, status: status, keyWord: keyWord), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询收件人列表
+    ///
+    /// 根据条件查询收件人列表，支持分页，模糊查询，状态查询
+    @inlinable
+    public func listReceivers(offset: UInt64, limit: UInt64, status: UInt64? = nil, keyWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListReceiversResponse {
+        try await self.listReceivers(ListReceiversRequest(offset: offset, limit: limit, status: status, keyWord: keyWord), logger: logger, on: eventLoop)
+    }
 }

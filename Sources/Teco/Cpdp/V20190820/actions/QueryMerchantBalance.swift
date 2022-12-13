@@ -59,4 +59,16 @@ extension Cpdp {
     public func queryMerchantBalance(_ input: QueryMerchantBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantBalanceResponse {
         try await self.client.execute(action: "QueryMerchantBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 跨境-对接方账户余额查询
+    @inlinable
+    public func queryMerchantBalance(currency: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMerchantBalanceResponse > {
+        self.queryMerchantBalance(QueryMerchantBalanceRequest(currency: currency, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 跨境-对接方账户余额查询
+    @inlinable
+    public func queryMerchantBalance(currency: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantBalanceResponse {
+        try await self.queryMerchantBalance(QueryMerchantBalanceRequest(currency: currency, profile: profile), logger: logger, on: eventLoop)
+    }
 }

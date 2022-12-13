@@ -55,4 +55,16 @@ extension Bm {
     public func modifyDeviceAutoRenewFlag(_ input: ModifyDeviceAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceAutoRenewFlagResponse {
         try await self.client.execute(action: "ModifyDeviceAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改物理机服务器自动续费标志
+    @inlinable
+    public func modifyDeviceAutoRenewFlag(autoRenewFlag: UInt64, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceAutoRenewFlagResponse > {
+        self.modifyDeviceAutoRenewFlag(ModifyDeviceAutoRenewFlagRequest(autoRenewFlag: autoRenewFlag, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改物理机服务器自动续费标志
+    @inlinable
+    public func modifyDeviceAutoRenewFlag(autoRenewFlag: UInt64, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceAutoRenewFlagResponse {
+        try await self.modifyDeviceAutoRenewFlag(ModifyDeviceAutoRenewFlagRequest(autoRenewFlag: autoRenewFlag, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

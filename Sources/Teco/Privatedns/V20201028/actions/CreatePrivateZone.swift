@@ -93,4 +93,16 @@ extension Privatedns {
     public func createPrivateZone(_ input: CreatePrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateZoneResponse {
         try await self.client.execute(action: "CreatePrivateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建私有域
+    @inlinable
+    public func createPrivateZone(domain: String, tagSet: [TagInfo]? = nil, vpcSet: [VpcInfo]? = nil, remark: String? = nil, dnsForwardStatus: String? = nil, vpcs: [VpcInfo]? = nil, accountVpcSet: [AccountVpcInfo]? = nil, cnameSpeedupStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrivateZoneResponse > {
+        self.createPrivateZone(CreatePrivateZoneRequest(domain: domain, tagSet: tagSet, vpcSet: vpcSet, remark: remark, dnsForwardStatus: dnsForwardStatus, vpcs: vpcs, accountVpcSet: accountVpcSet, cnameSpeedupStatus: cnameSpeedupStatus), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建私有域
+    @inlinable
+    public func createPrivateZone(domain: String, tagSet: [TagInfo]? = nil, vpcSet: [VpcInfo]? = nil, remark: String? = nil, dnsForwardStatus: String? = nil, vpcs: [VpcInfo]? = nil, accountVpcSet: [AccountVpcInfo]? = nil, cnameSpeedupStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateZoneResponse {
+        try await self.createPrivateZone(CreatePrivateZoneRequest(domain: domain, tagSet: tagSet, vpcSet: vpcSet, remark: remark, dnsForwardStatus: dnsForwardStatus, vpcs: vpcs, accountVpcSet: accountVpcSet, cnameSpeedupStatus: cnameSpeedupStatus), logger: logger, on: eventLoop)
+    }
 }

@@ -90,4 +90,20 @@ extension Tke {
     public func getUpgradeInstanceProgress(_ input: GetUpgradeInstanceProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeInstanceProgressResponse {
         try await self.client.execute(action: "GetUpgradeInstanceProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获得节点升级当前的进度
+    ///
+    /// 获得节点升级当前的进度 
+    @inlinable
+    public func getUpgradeInstanceProgress(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUpgradeInstanceProgressResponse > {
+        self.getUpgradeInstanceProgress(GetUpgradeInstanceProgressRequest(clusterId: clusterId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获得节点升级当前的进度
+    ///
+    /// 获得节点升级当前的进度 
+    @inlinable
+    public func getUpgradeInstanceProgress(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeInstanceProgressResponse {
+        try await self.getUpgradeInstanceProgress(GetUpgradeInstanceProgressRequest(clusterId: clusterId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

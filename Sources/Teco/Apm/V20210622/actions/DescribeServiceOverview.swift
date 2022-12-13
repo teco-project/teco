@@ -99,4 +99,20 @@ extension Apm {
     public func describeServiceOverview(_ input: DescribeServiceOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceOverviewResponse {
         try await self.client.execute(action: "DescribeServiceOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取服务概览数据
+    ///
+    /// 服务概览数据拉取
+    @inlinable
+    public func describeServiceOverview(filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy? = nil, instanceId: String? = nil, limit: Int64? = nil, startTime: UInt64? = nil, offset: Int64? = nil, endTime: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceOverviewResponse > {
+        self.describeServiceOverview(DescribeServiceOverviewRequest(filters: filters, metrics: metrics, groupBy: groupBy, orderBy: orderBy, instanceId: instanceId, limit: limit, startTime: startTime, offset: offset, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取服务概览数据
+    ///
+    /// 服务概览数据拉取
+    @inlinable
+    public func describeServiceOverview(filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy? = nil, instanceId: String? = nil, limit: Int64? = nil, startTime: UInt64? = nil, offset: Int64? = nil, endTime: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceOverviewResponse {
+        try await self.describeServiceOverview(DescribeServiceOverviewRequest(filters: filters, metrics: metrics, groupBy: groupBy, orderBy: orderBy, instanceId: instanceId, limit: limit, startTime: startTime, offset: offset, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

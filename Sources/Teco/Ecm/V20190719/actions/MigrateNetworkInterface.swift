@@ -65,4 +65,16 @@ extension Ecm {
     public func migrateNetworkInterface(_ input: MigrateNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigrateNetworkInterfaceResponse {
         try await self.client.execute(action: "MigrateNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 弹性网卡迁移
+    @inlinable
+    public func migrateNetworkInterface(ecmRegion: String, networkInterfaceId: String, sourceInstanceId: String, destinationInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MigrateNetworkInterfaceResponse > {
+        self.migrateNetworkInterface(MigrateNetworkInterfaceRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, sourceInstanceId: sourceInstanceId, destinationInstanceId: destinationInstanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 弹性网卡迁移
+    @inlinable
+    public func migrateNetworkInterface(ecmRegion: String, networkInterfaceId: String, sourceInstanceId: String, destinationInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigrateNetworkInterfaceResponse {
+        try await self.migrateNetworkInterface(MigrateNetworkInterfaceRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, sourceInstanceId: sourceInstanceId, destinationInstanceId: destinationInstanceId), logger: logger, on: eventLoop)
+    }
 }

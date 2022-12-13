@@ -81,4 +81,22 @@ extension Gpm {
     public func describeData(_ input: DescribeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataResponse {
         try await self.client.execute(action: "DescribeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 统计数据
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 统计数据
+    @inlinable
+    public func describeData(startTime: Int64, endTime: Int64, timeType: Int64, matchCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataResponse > {
+        self.describeData(DescribeDataRequest(startTime: startTime, endTime: endTime, timeType: timeType, matchCode: matchCode), logger: logger, on: eventLoop)
+    }
+    
+    /// 统计数据
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 统计数据
+    @inlinable
+    public func describeData(startTime: Int64, endTime: Int64, timeType: Int64, matchCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataResponse {
+        try await self.describeData(DescribeDataRequest(startTime: startTime, endTime: endTime, timeType: timeType, matchCode: matchCode), logger: logger, on: eventLoop)
+    }
 }

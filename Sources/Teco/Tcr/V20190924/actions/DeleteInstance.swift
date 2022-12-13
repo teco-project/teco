@@ -64,4 +64,20 @@ extension Tcr {
     public func deleteInstance(_ input: DeleteInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
         try await self.client.execute(action: "DeleteInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除实例
+    ///
+    /// 删除镜像仓库企业版实例
+    @inlinable
+    public func deleteInstance(registryId: String, deleteBucket: Bool? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstanceResponse > {
+        self.deleteInstance(DeleteInstanceRequest(registryId: registryId, deleteBucket: deleteBucket, dryRun: dryRun), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除实例
+    ///
+    /// 删除镜像仓库企业版实例
+    @inlinable
+    public func deleteInstance(registryId: String, deleteBucket: Bool? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
+        try await self.deleteInstance(DeleteInstanceRequest(registryId: registryId, deleteBucket: deleteBucket, dryRun: dryRun), logger: logger, on: eventLoop)
+    }
 }

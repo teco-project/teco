@@ -60,4 +60,16 @@ extension Cam {
     public func putRolePermissionsBoundary(_ input: PutRolePermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutRolePermissionsBoundaryResponse {
         try await self.client.execute(action: "PutRolePermissionsBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置角色权限边界
+    @inlinable
+    public func putRolePermissionsBoundary(policyId: Int64, roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutRolePermissionsBoundaryResponse > {
+        self.putRolePermissionsBoundary(PutRolePermissionsBoundaryRequest(policyId: policyId, roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置角色权限边界
+    @inlinable
+    public func putRolePermissionsBoundary(policyId: Int64, roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutRolePermissionsBoundaryResponse {
+        try await self.putRolePermissionsBoundary(PutRolePermissionsBoundaryRequest(policyId: policyId, roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    }
 }

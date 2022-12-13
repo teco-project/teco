@@ -245,7 +245,7 @@ extension Iot {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bool: BoolData?
         
-        public init (number: NumberData? = nil, string: StringData? = nil, `enum`: EnumData? = nil, bool: BoolData? = nil) {
+        public init (number: NumberData? = nil, string: StringData? = nil, enum: EnumData? = nil, bool: BoolData? = nil) {
             self.number = number
             self.string = string
             self.`enum` = `enum`

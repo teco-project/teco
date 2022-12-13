@@ -73,4 +73,20 @@ extension Gaap {
     public func closeProxies(_ input: CloseProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseProxiesResponse {
         try await self.client.execute(action: "CloseProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 关闭通道
+    ///
+    /// 本接口（CloseProxies）用于关闭通道。通道关闭后，不再产生流量，但每天仍然收取通道基础配置费用。
+    @inlinable
+    public func closeProxies(instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseProxiesResponse > {
+        self.closeProxies(CloseProxiesRequest(instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭通道
+    ///
+    /// 本接口（CloseProxies）用于关闭通道。通道关闭后，不再产生流量，但每天仍然收取通道基础配置费用。
+    @inlinable
+    public func closeProxies(instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseProxiesResponse {
+        try await self.closeProxies(CloseProxiesRequest(instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds), logger: logger, on: eventLoop)
+    }
 }

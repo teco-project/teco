@@ -59,4 +59,20 @@ extension Vpc {
     public func replaceDirectConnectGatewayCcnRoutes(_ input: ReplaceDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceDirectConnectGatewayCcnRoutesResponse {
         try await self.client.execute(action: "ReplaceDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 替换专线网关云联网路由
+    ///
+    /// 本接口（ReplaceDirectConnectGatewayCcnRoutes）根据路由ID（RouteId）修改指定的路由（Route），支持批量修改。
+    @inlinable
+    public func replaceDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, routes: [DirectConnectGatewayCcnRoute], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceDirectConnectGatewayCcnRoutesResponse > {
+        self.replaceDirectConnectGatewayCcnRoutes(ReplaceDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, routes: routes), logger: logger, on: eventLoop)
+    }
+    
+    /// 替换专线网关云联网路由
+    ///
+    /// 本接口（ReplaceDirectConnectGatewayCcnRoutes）根据路由ID（RouteId）修改指定的路由（Route），支持批量修改。
+    @inlinable
+    public func replaceDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, routes: [DirectConnectGatewayCcnRoute], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceDirectConnectGatewayCcnRoutesResponse {
+        try await self.replaceDirectConnectGatewayCcnRoutes(ReplaceDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, routes: routes), logger: logger, on: eventLoop)
+    }
 }

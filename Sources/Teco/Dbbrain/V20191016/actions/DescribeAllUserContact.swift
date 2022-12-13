@@ -68,4 +68,20 @@ extension Dbbrain {
     public func describeAllUserContact(_ input: DescribeAllUserContactRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllUserContactResponse {
         try await self.client.execute(action: "DescribeAllUserContact", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取邮件发送中联系人信息
+    ///
+    /// 获取邮件发送中联系人的相关信息。
+    @inlinable
+    public func describeAllUserContact(product: String, names: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllUserContactResponse > {
+        self.describeAllUserContact(DescribeAllUserContactRequest(product: product, names: names), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取邮件发送中联系人信息
+    ///
+    /// 获取邮件发送中联系人的相关信息。
+    @inlinable
+    public func describeAllUserContact(product: String, names: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllUserContactResponse {
+        try await self.describeAllUserContact(DescribeAllUserContactRequest(product: product, names: names), logger: logger, on: eventLoop)
+    }
 }

@@ -35,7 +35,7 @@ extension Ess {
         /// 应用相关信息
         public let agent: Agent?
         
-        public init (`operator`: UserInfo, flowId: String, reviewType: String, reviewMessage: String? = nil, agent: Agent? = nil) {
+        public init (operator: UserInfo, flowId: String, reviewType: String, reviewMessage: String? = nil, agent: Agent? = nil) {
             self.`operator` = `operator`
             self.flowId = flowId
             self.reviewType = reviewType
@@ -82,5 +82,27 @@ extension Ess {
     @inlinable
     public func createFlowSignReview(_ input: CreateFlowSignReviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowSignReviewResponse {
         try await self.client.execute(action: "CreateFlowSignReview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 提交企业签署流程审批结果
+    ///
+    /// 提交企业签署流程审批结果
+    /// 适用场景: 
+    /// 在通过接口(CreateFlow 或者CreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true，且发起方企业作为签署方参与了流程签署，则可以调用此接口提交企业内部签署审批结果。
+    /// 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
+    @inlinable
+    public func createFlowSignReview(operator: UserInfo, flowId: String, reviewType: String, reviewMessage: String? = nil, agent: Agent? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowSignReviewResponse > {
+        self.createFlowSignReview(CreateFlowSignReviewRequest(operator: `operator`, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, agent: agent), logger: logger, on: eventLoop)
+    }
+    
+    /// 提交企业签署流程审批结果
+    ///
+    /// 提交企业签署流程审批结果
+    /// 适用场景: 
+    /// 在通过接口(CreateFlow 或者CreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true，且发起方企业作为签署方参与了流程签署，则可以调用此接口提交企业内部签署审批结果。
+    /// 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
+    @inlinable
+    public func createFlowSignReview(operator: UserInfo, flowId: String, reviewType: String, reviewMessage: String? = nil, agent: Agent? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowSignReviewResponse {
+        try await self.createFlowSignReview(CreateFlowSignReviewRequest(operator: `operator`, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, agent: agent), logger: logger, on: eventLoop)
     }
 }

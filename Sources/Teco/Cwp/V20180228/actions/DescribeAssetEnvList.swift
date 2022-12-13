@@ -97,4 +97,16 @@ extension Cwp {
     public func describeAssetEnvList(_ input: DescribeAssetEnvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetEnvListResponse {
         try await self.client.execute(action: "DescribeAssetEnvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询资产管理环境变量列表
+    @inlinable
+    public func describeAssetEnvList(uuid: String? = nil, quuid: String? = nil, type: UInt64? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetEnvListResponse > {
+        self.describeAssetEnvList(DescribeAssetEnvListRequest(uuid: uuid, quuid: quuid, type: type, filters: filters, offset: offset, limit: limit, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资产管理环境变量列表
+    @inlinable
+    public func describeAssetEnvList(uuid: String? = nil, quuid: String? = nil, type: UInt64? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetEnvListResponse {
+        try await self.describeAssetEnvList(DescribeAssetEnvListRequest(uuid: uuid, quuid: quuid, type: type, filters: filters, offset: offset, limit: limit, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

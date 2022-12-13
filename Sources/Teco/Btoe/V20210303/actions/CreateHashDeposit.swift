@@ -85,4 +85,22 @@ extension Btoe {
     public func createHashDeposit(_ input: CreateHashDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositResponse {
         try await self.client.execute(action: "CreateHashDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 哈希上链存证
+    ///
+    /// 功能迭代，已上线更高版本的接口2021-05-14
+    /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。
+    @inlinable
+    public func createHashDeposit(evidenceName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHashDepositResponse > {
+        self.createHashDeposit(CreateHashDepositRequest(evidenceName: evidenceName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), logger: logger, on: eventLoop)
+    }
+    
+    /// 哈希上链存证
+    ///
+    /// 功能迭代，已上线更高版本的接口2021-05-14
+    /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。
+    @inlinable
+    public func createHashDeposit(evidenceName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositResponse {
+        try await self.createHashDeposit(CreateHashDepositRequest(evidenceName: evidenceName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), logger: logger, on: eventLoop)
+    }
 }

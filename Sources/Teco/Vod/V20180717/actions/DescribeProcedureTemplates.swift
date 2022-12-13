@@ -84,4 +84,20 @@ extension Vod {
     public func describeProcedureTemplates(_ input: DescribeProcedureTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProcedureTemplatesResponse {
         try await self.client.execute(action: "DescribeProcedureTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取任务流模板列表
+    ///
+    /// 根据任务流模板名字，获取任务流模板详情列表。
+    @inlinable
+    public func describeProcedureTemplates(names: [String]? = nil, type: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProcedureTemplatesResponse > {
+        self.describeProcedureTemplates(DescribeProcedureTemplatesRequest(names: names, type: type, offset: offset, limit: limit, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取任务流模板列表
+    ///
+    /// 根据任务流模板名字，获取任务流模板详情列表。
+    @inlinable
+    public func describeProcedureTemplates(names: [String]? = nil, type: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProcedureTemplatesResponse {
+        try await self.describeProcedureTemplates(DescribeProcedureTemplatesRequest(names: names, type: type, offset: offset, limit: limit, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

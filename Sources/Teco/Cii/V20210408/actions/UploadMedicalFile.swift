@@ -59,4 +59,20 @@ extension Cii {
     public func uploadMedicalFile(_ input: UploadMedicalFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadMedicalFileResponse {
         try await self.client.execute(action: "UploadMedicalFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 上传医疗影像文件
+    ///
+    /// 上传医疗影像文件，可以用来做结构化。
+    @inlinable
+    public func uploadMedicalFile(fileURL: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadMedicalFileResponse > {
+        self.uploadMedicalFile(UploadMedicalFileRequest(fileURL: fileURL), logger: logger, on: eventLoop)
+    }
+    
+    /// 上传医疗影像文件
+    ///
+    /// 上传医疗影像文件，可以用来做结构化。
+    @inlinable
+    public func uploadMedicalFile(fileURL: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadMedicalFileResponse {
+        try await self.uploadMedicalFile(UploadMedicalFileRequest(fileURL: fileURL), logger: logger, on: eventLoop)
+    }
 }

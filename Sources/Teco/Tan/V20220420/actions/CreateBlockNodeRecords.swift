@@ -60,4 +60,16 @@ extension Tan {
     public func createBlockNodeRecords(_ input: CreateBlockNodeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlockNodeRecordsResponse {
         try await self.client.execute(action: "CreateBlockNodeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 推送节点数据
+    @inlinable
+    public func createBlockNodeRecords(groupId: String, nodeId: String, records: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBlockNodeRecordsResponse > {
+        self.createBlockNodeRecords(CreateBlockNodeRecordsRequest(groupId: groupId, nodeId: nodeId, records: records), logger: logger, on: eventLoop)
+    }
+    
+    /// 推送节点数据
+    @inlinable
+    public func createBlockNodeRecords(groupId: String, nodeId: String, records: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlockNodeRecordsResponse {
+        try await self.createBlockNodeRecords(CreateBlockNodeRecordsRequest(groupId: groupId, nodeId: nodeId, records: records), logger: logger, on: eventLoop)
+    }
 }

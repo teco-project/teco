@@ -87,4 +87,20 @@ extension Cpdp {
     public func applyReWithdrawal(_ input: ApplyReWithdrawalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyReWithdrawalResponse {
         try await self.client.execute(action: "ApplyReWithdrawal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 聚鑫-重新提现接口
+    ///
+    /// 正常结算提现失败情况下，发起重新提现的请求接口
+    @inlinable
+    public func applyReWithdrawal(businessType: UInt64, midasSecretId: String, midasSignature: String, body: WithdrawBill, midasAppId: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyReWithdrawalResponse > {
+        self.applyReWithdrawal(ApplyReWithdrawalRequest(businessType: businessType, midasSecretId: midasSecretId, midasSignature: midasSignature, body: body, midasAppId: midasAppId, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-重新提现接口
+    ///
+    /// 正常结算提现失败情况下，发起重新提现的请求接口
+    @inlinable
+    public func applyReWithdrawal(businessType: UInt64, midasSecretId: String, midasSignature: String, body: WithdrawBill, midasAppId: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyReWithdrawalResponse {
+        try await self.applyReWithdrawal(ApplyReWithdrawalRequest(businessType: businessType, midasSecretId: midasSecretId, midasSignature: midasSignature, body: body, midasAppId: midasAppId, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
 }

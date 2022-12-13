@@ -82,4 +82,20 @@ extension Vod {
     public func describeStorageData(_ input: DescribeStorageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageDataResponse {
         try await self.client.execute(action: "DescribeStorageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询当前存储情况
+    ///
+    /// 查询存储空间使用情况和文件数量。
+    @inlinable
+    public func describeStorageData(subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStorageDataResponse > {
+        self.describeStorageData(DescribeStorageDataRequest(subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询当前存储情况
+    ///
+    /// 查询存储空间使用情况和文件数量。
+    @inlinable
+    public func describeStorageData(subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageDataResponse {
+        try await self.describeStorageData(DescribeStorageDataRequest(subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

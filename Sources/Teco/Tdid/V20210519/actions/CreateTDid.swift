@@ -64,4 +64,16 @@ extension Tdid {
     public func createTDid(_ input: CreateTDidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidResponse {
         try await self.client.execute(action: "CreateTDid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建机构DID
+    @inlinable
+    public func createTDid(groupId: UInt64, clusterId: String, relegation: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTDidResponse > {
+        self.createTDid(CreateTDidRequest(groupId: groupId, clusterId: clusterId, relegation: relegation), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建机构DID
+    @inlinable
+    public func createTDid(groupId: UInt64, clusterId: String, relegation: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidResponse {
+        try await self.createTDid(CreateTDidRequest(groupId: groupId, clusterId: clusterId, relegation: relegation), logger: logger, on: eventLoop)
+    }
 }

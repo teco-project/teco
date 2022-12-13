@@ -59,4 +59,16 @@ extension Wedata {
     public func lockIntegrationTask(_ input: LockIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LockIntegrationTaskResponse {
         try await self.client.execute(action: "LockIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 锁定集成任务
+    @inlinable
+    public func lockIntegrationTask(taskId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LockIntegrationTaskResponse > {
+        self.lockIntegrationTask(LockIntegrationTaskRequest(taskId: taskId, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 锁定集成任务
+    @inlinable
+    public func lockIntegrationTask(taskId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LockIntegrationTaskResponse {
+        try await self.lockIntegrationTask(LockIntegrationTaskRequest(taskId: taskId, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

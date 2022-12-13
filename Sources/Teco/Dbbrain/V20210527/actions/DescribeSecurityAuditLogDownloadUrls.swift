@@ -68,4 +68,20 @@ extension Dbbrain {
     public func describeSecurityAuditLogDownloadUrls(_ input: DescribeSecurityAuditLogDownloadUrlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityAuditLogDownloadUrlsResponse {
         try await self.client.execute(action: "DescribeSecurityAuditLogDownloadUrls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询安全审计日志导出文件下载链接
+    ///
+    /// 查询安全审计日志导出文件下载链接。目前日志文件下载仅提供腾讯云内网地址，请通过广州地域的腾讯云服务器进行下载。
+    @inlinable
+    public func describeSecurityAuditLogDownloadUrls(secAuditGroupId: String, asyncRequestId: UInt64, product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityAuditLogDownloadUrlsResponse > {
+        self.describeSecurityAuditLogDownloadUrls(DescribeSecurityAuditLogDownloadUrlsRequest(secAuditGroupId: secAuditGroupId, asyncRequestId: asyncRequestId, product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全审计日志导出文件下载链接
+    ///
+    /// 查询安全审计日志导出文件下载链接。目前日志文件下载仅提供腾讯云内网地址，请通过广州地域的腾讯云服务器进行下载。
+    @inlinable
+    public func describeSecurityAuditLogDownloadUrls(secAuditGroupId: String, asyncRequestId: UInt64, product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityAuditLogDownloadUrlsResponse {
+        try await self.describeSecurityAuditLogDownloadUrls(DescribeSecurityAuditLogDownloadUrlsRequest(secAuditGroupId: secAuditGroupId, asyncRequestId: asyncRequestId, product: product), logger: logger, on: eventLoop)
+    }
 }

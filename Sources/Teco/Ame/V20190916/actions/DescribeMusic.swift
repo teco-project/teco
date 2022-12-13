@@ -76,4 +76,20 @@ extension Ame {
     public func describeMusic(_ input: DescribeMusicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMusicResponse {
         try await self.client.execute(action: "DescribeMusic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取曲库包歌曲播放信息
+    ///
+    /// 获取曲库包歌曲播放信息接口
+    @inlinable
+    public func describeMusic(itemId: String, identityId: String, subItemType: String? = nil, ssl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMusicResponse > {
+        self.describeMusic(DescribeMusicRequest(itemId: itemId, identityId: identityId, subItemType: subItemType, ssl: ssl), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取曲库包歌曲播放信息
+    ///
+    /// 获取曲库包歌曲播放信息接口
+    @inlinable
+    public func describeMusic(itemId: String, identityId: String, subItemType: String? = nil, ssl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMusicResponse {
+        try await self.describeMusic(DescribeMusicRequest(itemId: itemId, identityId: identityId, subItemType: subItemType, ssl: ssl), logger: logger, on: eventLoop)
+    }
 }

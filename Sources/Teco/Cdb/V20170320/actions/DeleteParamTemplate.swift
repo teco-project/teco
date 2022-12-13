@@ -54,4 +54,20 @@ extension Cdb {
     public func deleteParamTemplate(_ input: DeleteParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteParamTemplateResponse {
         try await self.client.execute(action: "DeleteParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除参数模板
+    ///
+    /// 该接口（DeleteParamTemplate）用于删除参数模板，全地域公共参数Region均为ap-guangzhou。
+    @inlinable
+    public func deleteParamTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteParamTemplateResponse > {
+        self.deleteParamTemplate(DeleteParamTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除参数模板
+    ///
+    /// 该接口（DeleteParamTemplate）用于删除参数模板，全地域公共参数Region均为ap-guangzhou。
+    @inlinable
+    public func deleteParamTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteParamTemplateResponse {
+        try await self.deleteParamTemplate(DeleteParamTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
 }

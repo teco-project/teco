@@ -73,4 +73,16 @@ extension Cpdp {
     public func uploadExternalAnchorInfo(_ input: UploadExternalAnchorInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadExternalAnchorInfoResponse {
         try await self.client.execute(action: "UploadExternalAnchorInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 灵云-上传主播信息
+    @inlinable
+    public func uploadExternalAnchorInfo(anchorId: String, idCardFront: String? = nil, idCardReverse: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadExternalAnchorInfoResponse > {
+        self.uploadExternalAnchorInfo(UploadExternalAnchorInfoRequest(anchorId: anchorId, idCardFront: idCardFront, idCardReverse: idCardReverse), logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云-上传主播信息
+    @inlinable
+    public func uploadExternalAnchorInfo(anchorId: String, idCardFront: String? = nil, idCardReverse: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadExternalAnchorInfoResponse {
+        try await self.uploadExternalAnchorInfo(UploadExternalAnchorInfoRequest(anchorId: anchorId, idCardFront: idCardFront, idCardReverse: idCardReverse), logger: logger, on: eventLoop)
+    }
 }

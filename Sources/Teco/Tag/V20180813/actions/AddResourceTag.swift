@@ -64,4 +64,20 @@ extension Tag {
     public func addResourceTag(_ input: AddResourceTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddResourceTagResponse {
         try await self.client.execute(action: "AddResourceTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 标签关联资源
+    ///
+    /// 本接口用于给标签关联资源
+    @inlinable
+    public func addResourceTag(tagKey: String, tagValue: String, resource: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddResourceTagResponse > {
+        self.addResourceTag(AddResourceTagRequest(tagKey: tagKey, tagValue: tagValue, resource: resource), logger: logger, on: eventLoop)
+    }
+    
+    /// 标签关联资源
+    ///
+    /// 本接口用于给标签关联资源
+    @inlinable
+    public func addResourceTag(tagKey: String, tagValue: String, resource: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddResourceTagResponse {
+        try await self.addResourceTag(AddResourceTagRequest(tagKey: tagKey, tagValue: tagValue, resource: resource), logger: logger, on: eventLoop)
+    }
 }

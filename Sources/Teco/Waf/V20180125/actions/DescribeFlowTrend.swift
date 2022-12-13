@@ -64,4 +64,16 @@ extension Waf {
     public func describeFlowTrend(_ input: DescribeFlowTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowTrendResponse {
         try await self.client.execute(action: "DescribeFlowTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取waf流量访问趋势
+    @inlinable
+    public func describeFlowTrend(domain: String, startTs: Int64, endTs: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowTrendResponse > {
+        self.describeFlowTrend(DescribeFlowTrendRequest(domain: domain, startTs: startTs, endTs: endTs), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取waf流量访问趋势
+    @inlinable
+    public func describeFlowTrend(domain: String, startTs: Int64, endTs: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowTrendResponse {
+        try await self.describeFlowTrend(DescribeFlowTrendRequest(domain: domain, startTs: startTs, endTs: endTs), logger: logger, on: eventLoop)
+    }
 }

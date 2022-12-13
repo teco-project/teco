@@ -75,4 +75,16 @@ extension Tdmq {
     public func createRocketMQGroup(_ input: CreateRocketMQGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQGroupResponse {
         try await self.client.execute(action: "CreateRocketMQGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建RocketMQ消费组
+    @inlinable
+    public func createRocketMQGroup(groupId: String, namespaces: [String], readEnable: Bool, broadcastEnable: Bool, clusterId: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRocketMQGroupResponse > {
+        self.createRocketMQGroup(CreateRocketMQGroupRequest(groupId: groupId, namespaces: namespaces, readEnable: readEnable, broadcastEnable: broadcastEnable, clusterId: clusterId, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建RocketMQ消费组
+    @inlinable
+    public func createRocketMQGroup(groupId: String, namespaces: [String], readEnable: Bool, broadcastEnable: Bool, clusterId: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQGroupResponse {
+        try await self.createRocketMQGroup(CreateRocketMQGroupRequest(groupId: groupId, namespaces: namespaces, readEnable: readEnable, broadcastEnable: broadcastEnable, clusterId: clusterId, remark: remark), logger: logger, on: eventLoop)
+    }
 }

@@ -85,4 +85,20 @@ extension Cwp {
     public func describeLicenseList(_ input: DescribeLicenseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseListResponse {
         try await self.client.execute(action: "DescribeLicenseList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取授权订单列表
+    ///
+    /// 获取用户所有授权订单信息
+    @inlinable
+    public func describeLicenseList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, tags: [Tags]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLicenseListResponse > {
+        self.describeLicenseList(DescribeLicenseListRequest(filters: filters, limit: limit, offset: offset, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取授权订单列表
+    ///
+    /// 获取用户所有授权订单信息
+    @inlinable
+    public func describeLicenseList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, tags: [Tags]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseListResponse {
+        try await self.describeLicenseList(DescribeLicenseListRequest(filters: filters, limit: limit, offset: offset, tags: tags), logger: logger, on: eventLoop)
+    }
 }

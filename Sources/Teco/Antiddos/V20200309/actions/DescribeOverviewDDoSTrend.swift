@@ -92,4 +92,16 @@ extension Antiddos {
     public func describeOverviewDDoSTrend(_ input: DescribeOverviewDDoSTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSTrendResponse {
         try await self.client.execute(action: "DescribeOverviewDDoSTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取防护概览DDoS攻击流量带宽和攻击包速率数据
+    @inlinable
+    public func describeOverviewDDoSTrend(business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]? = nil, id: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewDDoSTrendResponse > {
+        self.describeOverviewDDoSTrend(DescribeOverviewDDoSTrendRequest(business: business, period: period, startTime: startTime, endTime: endTime, metricName: metricName, ipList: ipList, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取防护概览DDoS攻击流量带宽和攻击包速率数据
+    @inlinable
+    public func describeOverviewDDoSTrend(business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]? = nil, id: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSTrendResponse {
+        try await self.describeOverviewDDoSTrend(DescribeOverviewDDoSTrendRequest(business: business, period: period, startTime: startTime, endTime: endTime, metricName: metricName, ipList: ipList, id: id), logger: logger, on: eventLoop)
+    }
 }

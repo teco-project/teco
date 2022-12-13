@@ -59,4 +59,16 @@ extension Tcr {
     public func manageExternalEndpoint(_ input: ManageExternalEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageExternalEndpointResponse {
         try await self.client.execute(action: "ManageExternalEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 管理实例公网访问
+    @inlinable
+    public func manageExternalEndpoint(registryId: String, operation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageExternalEndpointResponse > {
+        self.manageExternalEndpoint(ManageExternalEndpointRequest(registryId: registryId, operation: operation), logger: logger, on: eventLoop)
+    }
+    
+    /// 管理实例公网访问
+    @inlinable
+    public func manageExternalEndpoint(registryId: String, operation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageExternalEndpointResponse {
+        try await self.manageExternalEndpoint(ManageExternalEndpointRequest(registryId: registryId, operation: operation), logger: logger, on: eventLoop)
+    }
 }

@@ -62,4 +62,20 @@ extension Teo {
     public func identifyZone(_ input: IdentifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdentifyZoneResponse {
         try await self.client.execute(action: "IdentifyZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 认证站点
+    ///
+    /// 用于验证站点所有权。
+    @inlinable
+    public func identifyZone(zoneName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IdentifyZoneResponse > {
+        self.identifyZone(IdentifyZoneRequest(zoneName: zoneName), logger: logger, on: eventLoop)
+    }
+    
+    /// 认证站点
+    ///
+    /// 用于验证站点所有权。
+    @inlinable
+    public func identifyZone(zoneName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdentifyZoneResponse {
+        try await self.identifyZone(IdentifyZoneRequest(zoneName: zoneName), logger: logger, on: eventLoop)
+    }
 }

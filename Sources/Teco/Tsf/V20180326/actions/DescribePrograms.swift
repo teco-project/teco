@@ -64,4 +64,16 @@ extension Tsf {
     public func describePrograms(_ input: DescribeProgramsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProgramsResponse {
         try await self.client.execute(action: "DescribePrograms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询数据集列表
+    @inlinable
+    public func describePrograms(searchWord: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProgramsResponse > {
+        self.describePrograms(DescribeProgramsRequest(searchWord: searchWord, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据集列表
+    @inlinable
+    public func describePrograms(searchWord: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProgramsResponse {
+        try await self.describePrograms(DescribeProgramsRequest(searchWord: searchWord, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

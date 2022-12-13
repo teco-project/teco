@@ -54,4 +54,20 @@ extension Tcr {
     public func deleteApplicationTriggerPersonal(_ input: DeleteApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationTriggerPersonalResponse {
         try await self.client.execute(action: "DeleteApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除应用更新触发器
+    ///
+    /// 用于删除应用更新触发器
+    @inlinable
+    public func deleteApplicationTriggerPersonal(triggerName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationTriggerPersonalResponse > {
+        self.deleteApplicationTriggerPersonal(DeleteApplicationTriggerPersonalRequest(triggerName: triggerName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除应用更新触发器
+    ///
+    /// 用于删除应用更新触发器
+    @inlinable
+    public func deleteApplicationTriggerPersonal(triggerName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationTriggerPersonalResponse {
+        try await self.deleteApplicationTriggerPersonal(DeleteApplicationTriggerPersonalRequest(triggerName: triggerName), logger: logger, on: eventLoop)
+    }
 }

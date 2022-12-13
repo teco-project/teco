@@ -60,4 +60,16 @@ extension Dnspod {
     public func deleteDomainAlias(_ input: DeleteDomainAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainAliasResponse {
         try await self.client.execute(action: "DeleteDomainAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除域名别名
+    @inlinable
+    public func deleteDomainAlias(domainAliasId: Int64, domain: String, domainId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDomainAliasResponse > {
+        self.deleteDomainAlias(DeleteDomainAliasRequest(domainAliasId: domainAliasId, domain: domain, domainId: domainId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除域名别名
+    @inlinable
+    public func deleteDomainAlias(domainAliasId: Int64, domain: String, domainId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainAliasResponse {
+        try await self.deleteDomainAlias(DeleteDomainAliasRequest(domainAliasId: domainAliasId, domain: domain, domainId: domainId), logger: logger, on: eventLoop)
+    }
 }

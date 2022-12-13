@@ -70,4 +70,16 @@ extension Bmeip {
     public func modifyEipAcl(_ input: ModifyEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipAclResponse {
         try await self.client.execute(action: "ModifyEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改弹性公网IP ACL
+    @inlinable
+    public func modifyEipAcl(aclId: String, aclName: String? = nil, status: Int64? = nil, type: String? = nil, rules: [EipAclRule]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEipAclResponse > {
+        self.modifyEipAcl(ModifyEipAclRequest(aclId: aclId, aclName: aclName, status: status, type: type, rules: rules), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改弹性公网IP ACL
+    @inlinable
+    public func modifyEipAcl(aclId: String, aclName: String? = nil, status: Int64? = nil, type: String? = nil, rules: [EipAclRule]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipAclResponse {
+        try await self.modifyEipAcl(ModifyEipAclRequest(aclId: aclId, aclName: aclName, status: status, type: type, rules: rules), logger: logger, on: eventLoop)
+    }
 }

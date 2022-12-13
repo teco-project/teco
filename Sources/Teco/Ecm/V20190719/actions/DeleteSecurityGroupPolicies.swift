@@ -59,4 +59,20 @@ extension Ecm {
     public func deleteSecurityGroupPolicies(_ input: DeleteSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityGroupPoliciesResponse {
         try await self.client.execute(action: "DeleteSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除安全组规则
+    ///
+    /// SecurityGroupPolicySet.Version 用于指定要操作的安全组的版本。传入 Version 版本号若不等于当前安全组的最新版本，将返回失败；若不传 Version 则直接删除指定PolicyIndex的规则。
+    @inlinable
+    public func deleteSecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityGroupPoliciesResponse > {
+        self.deleteSecurityGroupPolicies(DeleteSecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除安全组规则
+    ///
+    /// SecurityGroupPolicySet.Version 用于指定要操作的安全组的版本。传入 Version 版本号若不等于当前安全组的最新版本，将返回失败；若不传 Version 则直接删除指定PolicyIndex的规则。
+    @inlinable
+    public func deleteSecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityGroupPoliciesResponse {
+        try await self.deleteSecurityGroupPolicies(DeleteSecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet), logger: logger, on: eventLoop)
+    }
 }

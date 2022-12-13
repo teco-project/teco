@@ -64,4 +64,20 @@ extension Cam {
     public func updateRoleDescription(_ input: UpdateRoleDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleDescriptionResponse {
         try await self.client.execute(action: "UpdateRoleDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改角色描述信息
+    ///
+    /// 本接口（UpdateRoleDescription）用于修改角色的描述信息。
+    @inlinable
+    public func updateRoleDescription(description: String, roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRoleDescriptionResponse > {
+        self.updateRoleDescription(UpdateRoleDescriptionRequest(description: description, roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改角色描述信息
+    ///
+    /// 本接口（UpdateRoleDescription）用于修改角色的描述信息。
+    @inlinable
+    public func updateRoleDescription(description: String, roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleDescriptionResponse {
+        try await self.updateRoleDescription(UpdateRoleDescriptionRequest(description: description, roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Iecp {
     public func modifyApplicationBasicInfo(_ input: ModifyApplicationBasicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationBasicInfoResponse {
         try await self.client.execute(action: "ModifyApplicationBasicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改应用模板基本信息
+    @inlinable
+    public func modifyApplicationBasicInfo(applicationId: UInt64, basicInfo: ApplicationBasicInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationBasicInfoResponse > {
+        self.modifyApplicationBasicInfo(ModifyApplicationBasicInfoRequest(applicationId: applicationId, basicInfo: basicInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改应用模板基本信息
+    @inlinable
+    public func modifyApplicationBasicInfo(applicationId: UInt64, basicInfo: ApplicationBasicInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationBasicInfoResponse {
+        try await self.modifyApplicationBasicInfo(ModifyApplicationBasicInfoRequest(applicationId: applicationId, basicInfo: basicInfo), logger: logger, on: eventLoop)
+    }
 }

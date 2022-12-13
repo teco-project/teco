@@ -92,4 +92,20 @@ extension Ccc {
     public func describeIMCdrs(_ input: DescribeIMCdrsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIMCdrsResponse {
         try await self.client.execute(action: "DescribeIMCdrs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询在线客服记录
+    ///
+    /// 包括全媒体和文本两种类型
+    @inlinable
+    public func describeIMCdrs(startTimestamp: Int64, endTimestamp: Int64, instanceId: Int64? = nil, sdkAppId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, type: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIMCdrsResponse > {
+        self.describeIMCdrs(DescribeIMCdrsRequest(startTimestamp: startTimestamp, endTimestamp: endTimestamp, instanceId: instanceId, sdkAppId: sdkAppId, limit: limit, offset: offset, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询在线客服记录
+    ///
+    /// 包括全媒体和文本两种类型
+    @inlinable
+    public func describeIMCdrs(startTimestamp: Int64, endTimestamp: Int64, instanceId: Int64? = nil, sdkAppId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, type: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIMCdrsResponse {
+        try await self.describeIMCdrs(DescribeIMCdrsRequest(startTimestamp: startTimestamp, endTimestamp: endTimestamp, instanceId: instanceId, sdkAppId: sdkAppId, limit: limit, offset: offset, type: type), logger: logger, on: eventLoop)
+    }
 }

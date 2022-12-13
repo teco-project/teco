@@ -89,4 +89,20 @@ extension Yinsuda {
     public func searchKTVMusics(_ input: SearchKTVMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchKTVMusicsResponse {
         try await self.client.execute(action: "SearchKTVMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 搜索歌曲
+    ///
+    /// 根据关键词搜索歌曲，返回相关歌曲列表。
+    @inlinable
+    public func searchKTVMusics(appName: String, userId: String, keyWord: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchKTVMusicsResponse > {
+        self.searchKTVMusics(SearchKTVMusicsRequest(appName: appName, userId: userId, keyWord: keyWord, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters), logger: logger, on: eventLoop)
+    }
+    
+    /// 搜索歌曲
+    ///
+    /// 根据关键词搜索歌曲，返回相关歌曲列表。
+    @inlinable
+    public func searchKTVMusics(appName: String, userId: String, keyWord: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchKTVMusicsResponse {
+        try await self.searchKTVMusics(SearchKTVMusicsRequest(appName: appName, userId: userId, keyWord: keyWord, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters), logger: logger, on: eventLoop)
+    }
 }

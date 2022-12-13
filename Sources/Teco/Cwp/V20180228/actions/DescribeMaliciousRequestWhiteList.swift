@@ -71,4 +71,16 @@ extension Cwp {
     public func describeMaliciousRequestWhiteList(_ input: DescribeMaliciousRequestWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaliciousRequestWhiteListResponse {
         try await self.client.execute(action: "DescribeMaliciousRequestWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询恶意请求白名单列表
+    @inlinable
+    public func describeMaliciousRequestWhiteList(limit: UInt64, offset: UInt64, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMaliciousRequestWhiteListResponse > {
+        self.describeMaliciousRequestWhiteList(DescribeMaliciousRequestWhiteListRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询恶意请求白名单列表
+    @inlinable
+    public func describeMaliciousRequestWhiteList(limit: UInt64, offset: UInt64, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaliciousRequestWhiteListResponse {
+        try await self.describeMaliciousRequestWhiteList(DescribeMaliciousRequestWhiteListRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

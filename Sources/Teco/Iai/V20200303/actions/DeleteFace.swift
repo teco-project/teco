@@ -67,4 +67,20 @@ extension Iai {
     public func deleteFace(_ input: DeleteFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFaceResponse {
         try await self.client.execute(action: "DeleteFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除人脸
+    ///
+    /// 删除一个人员下的人脸图片。如果该人员只有一张人脸图片，则返回错误。
+    @inlinable
+    public func deleteFace(personId: String, faceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFaceResponse > {
+        self.deleteFace(DeleteFaceRequest(personId: personId, faceIds: faceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除人脸
+    ///
+    /// 删除一个人员下的人脸图片。如果该人员只有一张人脸图片，则返回错误。
+    @inlinable
+    public func deleteFace(personId: String, faceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFaceResponse {
+        try await self.deleteFace(DeleteFaceRequest(personId: personId, faceIds: faceIds), logger: logger, on: eventLoop)
+    }
 }

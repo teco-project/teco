@@ -58,4 +58,20 @@ extension Tcss {
     public func createCheckComponent(_ input: CreateCheckComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckComponentResponse {
         try await self.client.execute(action: "CreateCheckComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安装检查组件
+    ///
+    /// 安装检查组件，创建防护容器
+    @inlinable
+    public func createCheckComponent(clusterInfoList: [ClusterCreateComponentItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCheckComponentResponse > {
+        self.createCheckComponent(CreateCheckComponentRequest(clusterInfoList: clusterInfoList), logger: logger, on: eventLoop)
+    }
+    
+    /// 安装检查组件
+    ///
+    /// 安装检查组件，创建防护容器
+    @inlinable
+    public func createCheckComponent(clusterInfoList: [ClusterCreateComponentItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckComponentResponse {
+        try await self.createCheckComponent(CreateCheckComponentRequest(clusterInfoList: clusterInfoList), logger: logger, on: eventLoop)
+    }
 }

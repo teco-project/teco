@@ -69,4 +69,20 @@ extension Apigateway {
     public func updateApiAppKey(_ input: UpdateApiAppKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiAppKeyResponse {
         try await self.client.execute(action: "UpdateApiAppKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新应用密钥
+    ///
+    /// 本接口（UpdateApiAppKey）用于更新应用密钥。
+    @inlinable
+    public func updateApiAppKey(apiAppId: String, apiAppKey: String, apiAppSecret: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateApiAppKeyResponse > {
+        self.updateApiAppKey(UpdateApiAppKeyRequest(apiAppId: apiAppId, apiAppKey: apiAppKey, apiAppSecret: apiAppSecret), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新应用密钥
+    ///
+    /// 本接口（UpdateApiAppKey）用于更新应用密钥。
+    @inlinable
+    public func updateApiAppKey(apiAppId: String, apiAppKey: String, apiAppSecret: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiAppKeyResponse {
+        try await self.updateApiAppKey(UpdateApiAppKeyRequest(apiAppId: apiAppId, apiAppKey: apiAppKey, apiAppSecret: apiAppSecret), logger: logger, on: eventLoop)
+    }
 }

@@ -70,4 +70,16 @@ extension Ccc {
     public func createCCCSkillGroup(_ input: CreateCCCSkillGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCCSkillGroupResponse {
         try await self.client.execute(action: "CreateCCCSkillGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建技能组
+    @inlinable
+    public func createCCCSkillGroup(sdkAppId: Int64, skillGroupName: String, skillGroupType: Int64, maxConcurrency: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCCCSkillGroupResponse > {
+        self.createCCCSkillGroup(CreateCCCSkillGroupRequest(sdkAppId: sdkAppId, skillGroupName: skillGroupName, skillGroupType: skillGroupType, maxConcurrency: maxConcurrency), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建技能组
+    @inlinable
+    public func createCCCSkillGroup(sdkAppId: Int64, skillGroupName: String, skillGroupType: Int64, maxConcurrency: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCCSkillGroupResponse {
+        try await self.createCCCSkillGroup(CreateCCCSkillGroupRequest(sdkAppId: sdkAppId, skillGroupName: skillGroupName, skillGroupType: skillGroupType, maxConcurrency: maxConcurrency), logger: logger, on: eventLoop)
+    }
 }

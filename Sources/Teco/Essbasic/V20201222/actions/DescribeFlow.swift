@@ -111,4 +111,20 @@ extension Essbasic {
     public func describeFlow(_ input: DescribeFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowResponse {
         try await self.client.execute(action: "DescribeFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询流程信息
+    ///
+    /// 通过此接口（DescribeFlow）可查询签署流程的详细信息。
+    @inlinable
+    public func describeFlow(caller: Caller, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowResponse > {
+        self.describeFlow(DescribeFlowRequest(caller: caller, flowId: flowId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流程信息
+    ///
+    /// 通过此接口（DescribeFlow）可查询签署流程的详细信息。
+    @inlinable
+    public func describeFlow(caller: Caller, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowResponse {
+        try await self.describeFlow(DescribeFlowRequest(caller: caller, flowId: flowId), logger: logger, on: eventLoop)
+    }
 }

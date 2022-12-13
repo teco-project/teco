@@ -65,4 +65,20 @@ extension Yunjing {
     public func modifyAlarmAttribute(_ input: ModifyAlarmAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmAttributeResponse {
         try await self.client.execute(action: "ModifyAlarmAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改告警设置
+    ///
+    /// 本接口（ModifyAlarmAttribute）用于修改告警设置。
+    @inlinable
+    public func modifyAlarmAttribute(attribute: String, value: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmAttributeResponse > {
+        self.modifyAlarmAttribute(ModifyAlarmAttributeRequest(attribute: attribute, value: value), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改告警设置
+    ///
+    /// 本接口（ModifyAlarmAttribute）用于修改告警设置。
+    @inlinable
+    public func modifyAlarmAttribute(attribute: String, value: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmAttributeResponse {
+        try await self.modifyAlarmAttribute(ModifyAlarmAttributeRequest(attribute: attribute, value: value), logger: logger, on: eventLoop)
+    }
 }

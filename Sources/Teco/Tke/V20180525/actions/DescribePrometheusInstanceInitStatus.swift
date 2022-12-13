@@ -68,4 +68,16 @@ extension Tke {
     public func describePrometheusInstanceInitStatus(_ input: DescribePrometheusInstanceInitStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstanceInitStatusResponse {
         try await self.client.execute(action: "DescribePrometheusInstanceInitStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取2.0实例初始化任务状态
+    @inlinable
+    public func describePrometheusInstanceInitStatus(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusInstanceInitStatusResponse > {
+        self.describePrometheusInstanceInitStatus(DescribePrometheusInstanceInitStatusRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取2.0实例初始化任务状态
+    @inlinable
+    public func describePrometheusInstanceInitStatus(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstanceInitStatusResponse {
+        try await self.describePrometheusInstanceInitStatus(DescribePrometheusInstanceInitStatusRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,20 @@ extension Cloudhsm {
     public func describeUsg(_ input: DescribeUsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgResponse {
         try await self.client.execute(action: "DescribeUsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取用户安全组列表
+    ///
+    /// 根据用户的AppId获取用户安全组列表
+    @inlinable
+    public func describeUsg(offset: Int64, limit: Int64, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsgResponse > {
+        self.describeUsg(DescribeUsgRequest(offset: offset, limit: limit, searchWord: searchWord), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户安全组列表
+    ///
+    /// 根据用户的AppId获取用户安全组列表
+    @inlinable
+    public func describeUsg(offset: Int64, limit: Int64, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgResponse {
+        try await self.describeUsg(DescribeUsgRequest(offset: offset, limit: limit, searchWord: searchWord), logger: logger, on: eventLoop)
+    }
 }

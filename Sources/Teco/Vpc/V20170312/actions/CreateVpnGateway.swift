@@ -103,4 +103,20 @@ extension Vpc {
     public func createVpnGateway(_ input: CreateVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewayResponse {
         try await self.client.execute(action: "CreateVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建VPN网关
+    ///
+    /// 本接口（CreateVpnGateway）用于创建VPN网关。
+    @inlinable
+    public func createVpnGateway(vpcId: String, vpnGatewayName: String, internetMaxBandwidthOut: UInt64, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, zone: String? = nil, type: String? = nil, tags: [Tag]? = nil, cdcId: String? = nil, maxConnection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpnGatewayResponse > {
+        self.createVpnGateway(CreateVpnGatewayRequest(vpcId: vpcId, vpnGatewayName: vpnGatewayName, internetMaxBandwidthOut: internetMaxBandwidthOut, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, zone: zone, type: type, tags: tags, cdcId: cdcId, maxConnection: maxConnection), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建VPN网关
+    ///
+    /// 本接口（CreateVpnGateway）用于创建VPN网关。
+    @inlinable
+    public func createVpnGateway(vpcId: String, vpnGatewayName: String, internetMaxBandwidthOut: UInt64, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, zone: String? = nil, type: String? = nil, tags: [Tag]? = nil, cdcId: String? = nil, maxConnection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewayResponse {
+        try await self.createVpnGateway(CreateVpnGatewayRequest(vpcId: vpcId, vpnGatewayName: vpnGatewayName, internetMaxBandwidthOut: internetMaxBandwidthOut, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, zone: zone, type: type, tags: tags, cdcId: cdcId, maxConnection: maxConnection), logger: logger, on: eventLoop)
+    }
 }

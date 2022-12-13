@@ -75,4 +75,16 @@ extension Trp {
     public func describeCorpQuotas(_ input: DescribeCorpQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCorpQuotasResponse {
         try await self.client.execute(action: "DescribeCorpQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询渠道商下属企业额度使用情况
+    @inlinable
+    public func describeCorpQuotas(agentId: UInt64? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCorpQuotasResponse > {
+        self.describeCorpQuotas(DescribeCorpQuotasRequest(agentId: agentId, pageNumber: pageNumber, pageSize: pageSize, keyword: keyword), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询渠道商下属企业额度使用情况
+    @inlinable
+    public func describeCorpQuotas(agentId: UInt64? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCorpQuotasResponse {
+        try await self.describeCorpQuotas(DescribeCorpQuotasRequest(agentId: agentId, pageNumber: pageNumber, pageSize: pageSize, keyword: keyword), logger: logger, on: eventLoop)
+    }
 }

@@ -69,4 +69,20 @@ extension Wav {
     public func queryChannelCodeList(_ input: QueryChannelCodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChannelCodeListResponse {
         try await self.client.execute(action: "QueryChannelCodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询渠道活码列表接口
+    ///
+    /// 根据游标拉取渠道活码列表信息
+    @inlinable
+    public func queryChannelCodeList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryChannelCodeListResponse > {
+        self.queryChannelCodeList(QueryChannelCodeListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询渠道活码列表接口
+    ///
+    /// 根据游标拉取渠道活码列表信息
+    @inlinable
+    public func queryChannelCodeList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChannelCodeListResponse {
+        try await self.queryChannelCodeList(QueryChannelCodeListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    }
 }

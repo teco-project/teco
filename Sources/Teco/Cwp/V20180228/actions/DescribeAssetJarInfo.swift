@@ -64,4 +64,16 @@ extension Cwp {
     public func describeAssetJarInfo(_ input: DescribeAssetJarInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetJarInfoResponse {
         try await self.client.execute(action: "DescribeAssetJarInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取Jar包详情
+    @inlinable
+    public func describeAssetJarInfo(quuid: String, uuid: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetJarInfoResponse > {
+        self.describeAssetJarInfo(DescribeAssetJarInfoRequest(quuid: quuid, uuid: uuid, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Jar包详情
+    @inlinable
+    public func describeAssetJarInfo(quuid: String, uuid: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetJarInfoResponse {
+        try await self.describeAssetJarInfo(DescribeAssetJarInfoRequest(quuid: quuid, uuid: uuid, id: id), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Clb {
     public func modifyLoadBalancerMixIpTarget(_ input: ModifyLoadBalancerMixIpTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerMixIpTargetResponse {
         try await self.client.execute(action: "ModifyLoadBalancerMixIpTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改IPv6FullChain负载均衡7层监听器支持混绑目标特性。
+    ///
+    /// 修改IPv6FullChain负载均衡7层监听器支持混绑IPv4/IPv6目标特性。
+    @inlinable
+    public func modifyLoadBalancerMixIpTarget(loadBalancerIds: [String], mixIpTarget: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancerMixIpTargetResponse > {
+        self.modifyLoadBalancerMixIpTarget(ModifyLoadBalancerMixIpTargetRequest(loadBalancerIds: loadBalancerIds, mixIpTarget: mixIpTarget), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改IPv6FullChain负载均衡7层监听器支持混绑目标特性。
+    ///
+    /// 修改IPv6FullChain负载均衡7层监听器支持混绑IPv4/IPv6目标特性。
+    @inlinable
+    public func modifyLoadBalancerMixIpTarget(loadBalancerIds: [String], mixIpTarget: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerMixIpTargetResponse {
+        try await self.modifyLoadBalancerMixIpTarget(ModifyLoadBalancerMixIpTargetRequest(loadBalancerIds: loadBalancerIds, mixIpTarget: mixIpTarget), logger: logger, on: eventLoop)
+    }
 }

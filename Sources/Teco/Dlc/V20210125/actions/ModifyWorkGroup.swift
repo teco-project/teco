@@ -55,4 +55,16 @@ extension Dlc {
     public func modifyWorkGroup(_ input: ModifyWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkGroupResponse {
         try await self.client.execute(action: "ModifyWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改工作组信息
+    @inlinable
+    public func modifyWorkGroup(workGroupId: Int64, workGroupDescription: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWorkGroupResponse > {
+        self.modifyWorkGroup(ModifyWorkGroupRequest(workGroupId: workGroupId, workGroupDescription: workGroupDescription), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改工作组信息
+    @inlinable
+    public func modifyWorkGroup(workGroupId: Int64, workGroupDescription: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkGroupResponse {
+        try await self.modifyWorkGroup(ModifyWorkGroupRequest(workGroupId: workGroupId, workGroupDescription: workGroupDescription), logger: logger, on: eventLoop)
+    }
 }

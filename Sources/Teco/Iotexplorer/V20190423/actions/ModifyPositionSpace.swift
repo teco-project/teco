@@ -75,4 +75,16 @@ extension Iotexplorer {
     public func modifyPositionSpace(_ input: ModifyPositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPositionSpaceResponse {
         try await self.client.execute(action: "ModifyPositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新位置空间
+    @inlinable
+    public func modifyPositionSpace(spaceId: String, spaceName: String, authorizeType: Int64, productIdList: [String], description: String? = nil, icon: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPositionSpaceResponse > {
+        self.modifyPositionSpace(ModifyPositionSpaceRequest(spaceId: spaceId, spaceName: spaceName, authorizeType: authorizeType, productIdList: productIdList, description: description, icon: icon), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新位置空间
+    @inlinable
+    public func modifyPositionSpace(spaceId: String, spaceName: String, authorizeType: Int64, productIdList: [String], description: String? = nil, icon: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPositionSpaceResponse {
+        try await self.modifyPositionSpace(ModifyPositionSpaceRequest(spaceId: spaceId, spaceName: spaceName, authorizeType: authorizeType, productIdList: productIdList, description: description, icon: icon), logger: logger, on: eventLoop)
+    }
 }

@@ -64,4 +64,16 @@ extension Tke {
     public func describeEdgeCVMInstances(_ input: DescribeEdgeCVMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeCVMInstancesResponse {
         try await self.client.execute(action: "DescribeEdgeCVMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取边缘容器CVM实例相关信息
+    @inlinable
+    public func describeEdgeCVMInstances(clusterID: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeCVMInstancesResponse > {
+        self.describeEdgeCVMInstances(DescribeEdgeCVMInstancesRequest(clusterID: clusterID, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取边缘容器CVM实例相关信息
+    @inlinable
+    public func describeEdgeCVMInstances(clusterID: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeCVMInstancesResponse {
+        try await self.describeEdgeCVMInstances(DescribeEdgeCVMInstancesRequest(clusterID: clusterID, filters: filters), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Ecm {
     public func deleteNetworkInterface(_ input: DeleteNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkInterfaceResponse {
         try await self.client.execute(action: "DeleteNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除弹性网卡
+    @inlinable
+    public func deleteNetworkInterface(networkInterfaceId: String, ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetworkInterfaceResponse > {
+        self.deleteNetworkInterface(DeleteNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除弹性网卡
+    @inlinable
+    public func deleteNetworkInterface(networkInterfaceId: String, ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkInterfaceResponse {
+        try await self.deleteNetworkInterface(DeleteNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    }
 }

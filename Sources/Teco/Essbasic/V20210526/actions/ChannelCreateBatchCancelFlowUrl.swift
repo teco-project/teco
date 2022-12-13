@@ -26,7 +26,7 @@ extension Essbasic {
         /// 操作人信息
         public let `operator`: UserInfo?
         
-        public init (agent: Agent, flowIds: [String], `operator`: UserInfo? = nil) {
+        public init (agent: Agent, flowIds: [String], operator: UserInfo? = nil) {
             self.agent = agent
             self.flowIds = flowIds
             self.`operator` = `operator`
@@ -85,5 +85,31 @@ extension Essbasic {
     @inlinable
     public func channelCreateBatchCancelFlowUrl(_ input: ChannelCreateBatchCancelFlowUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBatchCancelFlowUrlResponse {
         try await self.client.execute(action: "ChannelCreateBatchCancelFlowUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 电子签渠道版-根据签署流程id创建批量撤销url
+    ///
+    /// 指定需要批量撤销的签署流程Id，获取批量撤销链接
+    /// 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；
+    /// 接口调用成功返回批量撤销合同的链接，通过链接跳转到电子签小程序完成批量撤销;
+    /// 可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
+    /// 注意:
+    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
+    @inlinable
+    public func channelCreateBatchCancelFlowUrl(agent: Agent, flowIds: [String], operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateBatchCancelFlowUrlResponse > {
+        self.channelCreateBatchCancelFlowUrl(ChannelCreateBatchCancelFlowUrlRequest(agent: agent, flowIds: flowIds, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 电子签渠道版-根据签署流程id创建批量撤销url
+    ///
+    /// 指定需要批量撤销的签署流程Id，获取批量撤销链接
+    /// 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；
+    /// 接口调用成功返回批量撤销合同的链接，通过链接跳转到电子签小程序完成批量撤销;
+    /// 可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
+    /// 注意:
+    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
+    @inlinable
+    public func channelCreateBatchCancelFlowUrl(agent: Agent, flowIds: [String], operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBatchCancelFlowUrlResponse {
+        try await self.channelCreateBatchCancelFlowUrl(ChannelCreateBatchCancelFlowUrlRequest(agent: agent, flowIds: flowIds, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

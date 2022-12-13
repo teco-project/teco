@@ -54,4 +54,16 @@ extension Cynosdb {
     public func describeDBSecurityGroups(_ input: DescribeDBSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSecurityGroupsResponse {
         try await self.client.execute(action: "DescribeDBSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例安全组信息
+    @inlinable
+    public func describeDBSecurityGroups(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBSecurityGroupsResponse > {
+        self.describeDBSecurityGroups(DescribeDBSecurityGroupsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例安全组信息
+    @inlinable
+    public func describeDBSecurityGroups(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSecurityGroupsResponse {
+        try await self.describeDBSecurityGroups(DescribeDBSecurityGroupsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

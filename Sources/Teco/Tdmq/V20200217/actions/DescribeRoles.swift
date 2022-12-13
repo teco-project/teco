@@ -81,4 +81,16 @@ extension Tdmq {
     public func describeRoles(_ input: DescribeRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRolesResponse {
         try await self.client.execute(action: "DescribeRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取角色列表
+    @inlinable
+    public func describeRoles(roleName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRolesResponse > {
+        self.describeRoles(DescribeRolesRequest(roleName: roleName, offset: offset, limit: limit, clusterId: clusterId, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取角色列表
+    @inlinable
+    public func describeRoles(roleName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRolesResponse {
+        try await self.describeRoles(DescribeRolesRequest(roleName: roleName, offset: offset, limit: limit, clusterId: clusterId, filters: filters), logger: logger, on: eventLoop)
+    }
 }

@@ -71,4 +71,16 @@ extension Tcss {
     public func createAccessControlsRuleExportJob(_ input: CreateAccessControlsRuleExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessControlsRuleExportJobResponse {
         try await self.client.execute(action: "CreateAccessControlsRuleExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建文件篡改规则导出任务
+    @inlinable
+    public func createAccessControlsRuleExportJob(filters: [RunTimeFilters]? = nil, order: String? = nil, by: [String]? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccessControlsRuleExportJobResponse > {
+        self.createAccessControlsRuleExportJob(CreateAccessControlsRuleExportJobRequest(filters: filters, order: order, by: by, exportField: exportField), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建文件篡改规则导出任务
+    @inlinable
+    public func createAccessControlsRuleExportJob(filters: [RunTimeFilters]? = nil, order: String? = nil, by: [String]? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessControlsRuleExportJobResponse {
+        try await self.createAccessControlsRuleExportJob(CreateAccessControlsRuleExportJobRequest(filters: filters, order: order, by: by, exportField: exportField), logger: logger, on: eventLoop)
+    }
 }

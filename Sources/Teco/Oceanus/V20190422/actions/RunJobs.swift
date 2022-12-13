@@ -59,4 +59,20 @@ extension Oceanus {
     public func runJobs(_ input: RunJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunJobsResponse {
         try await self.client.execute(action: "RunJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行作业
+    ///
+    /// 批量启动或者恢复作业，批量操作数量上限20
+    @inlinable
+    public func runJobs(runJobDescriptions: [RunJobDescription], workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunJobsResponse > {
+        self.runJobs(RunJobsRequest(runJobDescriptions: runJobDescriptions, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行作业
+    ///
+    /// 批量启动或者恢复作业，批量操作数量上限20
+    @inlinable
+    public func runJobs(runJobDescriptions: [RunJobDescription], workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunJobsResponse {
+        try await self.runJobs(RunJobsRequest(runJobDescriptions: runJobDescriptions, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    }
 }

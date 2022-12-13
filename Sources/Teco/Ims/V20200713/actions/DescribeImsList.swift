@@ -73,4 +73,20 @@ extension Ims {
     public func describeImsList(_ input: DescribeImsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImsListResponse {
         try await self.client.execute(action: "DescribeImsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取图片审核明细数据
+    ///
+    /// 图片机器审核明细
+    @inlinable
+    public func describeImsList(pageIndex: Int64, pageSize: Int64, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImsListResponse > {
+        self.describeImsList(DescribeImsListRequest(pageIndex: pageIndex, pageSize: pageSize, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取图片审核明细数据
+    ///
+    /// 图片机器审核明细
+    @inlinable
+    public func describeImsList(pageIndex: Int64, pageSize: Int64, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImsListResponse {
+        try await self.describeImsList(DescribeImsListRequest(pageIndex: pageIndex, pageSize: pageSize, filters: filters), logger: logger, on: eventLoop)
+    }
 }

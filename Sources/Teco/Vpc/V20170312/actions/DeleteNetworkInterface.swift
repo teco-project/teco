@@ -60,4 +60,26 @@ extension Vpc {
     public func deleteNetworkInterface(_ input: DeleteNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkInterfaceResponse {
         try await self.client.execute(action: "DeleteNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除弹性网卡
+    ///
+    /// 本接口（DeleteNetworkInterface）用于删除弹性网卡。
+    /// * 弹性网卡上绑定了云服务器时，不能被删除。
+    /// * 删除指定弹性网卡，弹性网卡必须先和子机解绑才能删除。删除之后弹性网卡上所有内网IP都将被退还。
+    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
+    @inlinable
+    public func deleteNetworkInterface(networkInterfaceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetworkInterfaceResponse > {
+        self.deleteNetworkInterface(DeleteNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除弹性网卡
+    ///
+    /// 本接口（DeleteNetworkInterface）用于删除弹性网卡。
+    /// * 弹性网卡上绑定了云服务器时，不能被删除。
+    /// * 删除指定弹性网卡，弹性网卡必须先和子机解绑才能删除。删除之后弹性网卡上所有内网IP都将被退还。
+    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
+    @inlinable
+    public func deleteNetworkInterface(networkInterfaceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkInterfaceResponse {
+        try await self.deleteNetworkInterface(DeleteNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId), logger: logger, on: eventLoop)
+    }
 }

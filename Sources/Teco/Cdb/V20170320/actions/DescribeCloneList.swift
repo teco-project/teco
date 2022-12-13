@@ -72,4 +72,20 @@ extension Cdb {
     public func describeCloneList(_ input: DescribeCloneListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloneListResponse {
         try await self.client.execute(action: "DescribeCloneList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询克隆任务列表
+    ///
+    /// 本接口(DescribeCloneList) 用于查询用户实例的克隆任务列表。
+    @inlinable
+    public func describeCloneList(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloneListResponse > {
+        self.describeCloneList(DescribeCloneListRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询克隆任务列表
+    ///
+    /// 本接口(DescribeCloneList) 用于查询用户实例的克隆任务列表。
+    @inlinable
+    public func describeCloneList(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloneListResponse {
+        try await self.describeCloneList(DescribeCloneListRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -95,4 +95,16 @@ extension Dayu {
     public func describeIpUnBlockList(_ input: DescribeIpUnBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpUnBlockListResponse {
         try await self.client.execute(action: "DescribeIpUnBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取IP解封记录
+    @inlinable
+    public func describeIpUnBlockList(beginTime: Date, endTime: Date, ip: String? = nil, paging: Paging? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpUnBlockListResponse > {
+        self.describeIpUnBlockList(DescribeIpUnBlockListRequest(beginTime: beginTime, endTime: endTime, ip: ip, paging: paging, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取IP解封记录
+    @inlinable
+    public func describeIpUnBlockList(beginTime: Date, endTime: Date, ip: String? = nil, paging: Paging? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpUnBlockListResponse {
+        try await self.describeIpUnBlockList(DescribeIpUnBlockListRequest(beginTime: beginTime, endTime: endTime, ip: ip, paging: paging, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

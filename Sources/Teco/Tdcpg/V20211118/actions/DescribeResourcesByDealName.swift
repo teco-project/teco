@@ -54,4 +54,16 @@ extension Tdcpg {
     public func describeResourcesByDealName(_ input: DescribeResourcesByDealNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByDealNameResponse {
         try await self.client.execute(action: "DescribeResourcesByDealName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 根据订单号获取资源信息
+    @inlinable
+    public func describeResourcesByDealName(dealName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesByDealNameResponse > {
+        self.describeResourcesByDealName(DescribeResourcesByDealNameRequest(dealName: dealName), logger: logger, on: eventLoop)
+    }
+    
+    /// 根据订单号获取资源信息
+    @inlinable
+    public func describeResourcesByDealName(dealName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByDealNameResponse {
+        try await self.describeResourcesByDealName(DescribeResourcesByDealNameRequest(dealName: dealName), logger: logger, on: eventLoop)
+    }
 }

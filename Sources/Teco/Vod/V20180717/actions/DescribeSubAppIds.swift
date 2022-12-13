@@ -77,4 +77,20 @@ extension Vod {
     public func describeSubAppIds(_ input: DescribeSubAppIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubAppIdsResponse {
         try await self.client.execute(action: "DescribeSubAppIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询子应用列表
+    ///
+    /// 该接口用于获取当前账号的子应用列表，包含主应用。
+    @inlinable
+    public func describeSubAppIds(name: String? = nil, tags: [ResourceTag]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubAppIdsResponse > {
+        self.describeSubAppIds(DescribeSubAppIdsRequest(name: name, tags: tags, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询子应用列表
+    ///
+    /// 该接口用于获取当前账号的子应用列表，包含主应用。
+    @inlinable
+    public func describeSubAppIds(name: String? = nil, tags: [ResourceTag]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubAppIdsResponse {
+        try await self.describeSubAppIds(DescribeSubAppIdsRequest(name: name, tags: tags, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

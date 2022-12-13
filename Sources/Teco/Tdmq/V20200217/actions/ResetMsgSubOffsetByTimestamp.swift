@@ -79,4 +79,20 @@ extension Tdmq {
     public func resetMsgSubOffsetByTimestamp(_ input: ResetMsgSubOffsetByTimestampRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetMsgSubOffsetByTimestampResponse {
         try await self.client.execute(action: "ResetMsgSubOffsetByTimestamp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 消息回溯
+    ///
+    /// 根据时间戳进行消息回溯，精确到毫秒
+    @inlinable
+    public func resetMsgSubOffsetByTimestamp(environmentId: String, topicName: String, subscription: String, toTimestamp: UInt64, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetMsgSubOffsetByTimestampResponse > {
+        self.resetMsgSubOffsetByTimestamp(ResetMsgSubOffsetByTimestampRequest(environmentId: environmentId, topicName: topicName, subscription: subscription, toTimestamp: toTimestamp, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 消息回溯
+    ///
+    /// 根据时间戳进行消息回溯，精确到毫秒
+    @inlinable
+    public func resetMsgSubOffsetByTimestamp(environmentId: String, topicName: String, subscription: String, toTimestamp: UInt64, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetMsgSubOffsetByTimestampResponse {
+        try await self.resetMsgSubOffsetByTimestamp(ResetMsgSubOffsetByTimestampRequest(environmentId: environmentId, topicName: topicName, subscription: subscription, toTimestamp: toTimestamp, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

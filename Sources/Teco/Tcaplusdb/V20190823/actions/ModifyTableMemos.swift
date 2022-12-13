@@ -63,4 +63,16 @@ extension Tcaplusdb {
     public func modifyTableMemos(_ input: ModifyTableMemosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableMemosResponse {
         try await self.client.execute(action: "ModifyTableMemos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改表备注信息
+    @inlinable
+    public func modifyTableMemos(clusterId: String, tableMemos: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableMemosResponse > {
+        self.modifyTableMemos(ModifyTableMemosRequest(clusterId: clusterId, tableMemos: tableMemos), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改表备注信息
+    @inlinable
+    public func modifyTableMemos(clusterId: String, tableMemos: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableMemosResponse {
+        try await self.modifyTableMemos(ModifyTableMemosRequest(clusterId: clusterId, tableMemos: tableMemos), logger: logger, on: eventLoop)
+    }
 }

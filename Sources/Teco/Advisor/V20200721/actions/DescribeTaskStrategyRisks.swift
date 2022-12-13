@@ -96,4 +96,16 @@ extension Advisor {
     public func describeTaskStrategyRisks(_ input: DescribeTaskStrategyRisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStrategyRisksResponse {
         try await self.client.execute(action: "DescribeTaskStrategyRisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询评估项风险实例列表
+    @inlinable
+    public func describeTaskStrategyRisks(strategyId: UInt64, limit: UInt64? = nil, offset: UInt64? = nil, env: String? = nil, taskType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskStrategyRisksResponse > {
+        self.describeTaskStrategyRisks(DescribeTaskStrategyRisksRequest(strategyId: strategyId, limit: limit, offset: offset, env: env, taskType: taskType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询评估项风险实例列表
+    @inlinable
+    public func describeTaskStrategyRisks(strategyId: UInt64, limit: UInt64? = nil, offset: UInt64? = nil, env: String? = nil, taskType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStrategyRisksResponse {
+        try await self.describeTaskStrategyRisks(DescribeTaskStrategyRisksRequest(strategyId: strategyId, limit: limit, offset: offset, env: env, taskType: taskType), logger: logger, on: eventLoop)
+    }
 }

@@ -86,4 +86,32 @@ extension Iotvideo {
     public func modifyDeviceProperty(_ input: ModifyDevicePropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDevicePropertyResponse {
         try await self.client.execute(action: "ModifyDeviceProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改设备物模型属性
+    ///
+    /// 本接口（ModifyDeviceProperty）用于修改设备物模型的属性（ProWritable）。
+    /// 可对setVal数据属性进行写入,如:
+    /// ProWritable.Pos.setVal
+    /// 对于嵌套类型的可写属性，可以仅对其部分数据内容进行写入，如:
+    /// ProWritable.Pos.setVal.x;
+    /// 可写属性云端写入成功即返回;云端向设备端发布属性变更参数;若当前设备不在线,在设备下次上线时会自动更新这些属性参数;
+    /// 物模型写入数据时,不需要传入时标信息,平台以当前时标作为数据的时标更新物模型中的时标信息。
+    @inlinable
+    public func modifyDeviceProperty(tid: String, wakeup: Bool, branch: String, value: String, isNum: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDevicePropertyResponse > {
+        self.modifyDeviceProperty(ModifyDevicePropertyRequest(tid: tid, wakeup: wakeup, branch: branch, value: value, isNum: isNum), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改设备物模型属性
+    ///
+    /// 本接口（ModifyDeviceProperty）用于修改设备物模型的属性（ProWritable）。
+    /// 可对setVal数据属性进行写入,如:
+    /// ProWritable.Pos.setVal
+    /// 对于嵌套类型的可写属性，可以仅对其部分数据内容进行写入，如:
+    /// ProWritable.Pos.setVal.x;
+    /// 可写属性云端写入成功即返回;云端向设备端发布属性变更参数;若当前设备不在线,在设备下次上线时会自动更新这些属性参数;
+    /// 物模型写入数据时,不需要传入时标信息,平台以当前时标作为数据的时标更新物模型中的时标信息。
+    @inlinable
+    public func modifyDeviceProperty(tid: String, wakeup: Bool, branch: String, value: String, isNum: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDevicePropertyResponse {
+        try await self.modifyDeviceProperty(ModifyDevicePropertyRequest(tid: tid, wakeup: wakeup, branch: branch, value: value, isNum: isNum), logger: logger, on: eventLoop)
+    }
 }

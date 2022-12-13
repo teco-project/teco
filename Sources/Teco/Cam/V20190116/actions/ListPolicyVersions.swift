@@ -59,4 +59,20 @@ extension Cam {
     public func listPolicyVersions(_ input: ListPolicyVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPolicyVersionsResponse {
         try await self.client.execute(action: "ListPolicyVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取策略版本列表
+    ///
+    /// 该接口（ListPolicyVersions）用于获取策略版本列表
+    @inlinable
+    public func listPolicyVersions(policyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListPolicyVersionsResponse > {
+        self.listPolicyVersions(ListPolicyVersionsRequest(policyId: policyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取策略版本列表
+    ///
+    /// 该接口（ListPolicyVersions）用于获取策略版本列表
+    @inlinable
+    public func listPolicyVersions(policyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPolicyVersionsResponse {
+        try await self.listPolicyVersions(ListPolicyVersionsRequest(policyId: policyId), logger: logger, on: eventLoop)
+    }
 }

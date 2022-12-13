@@ -93,4 +93,20 @@ extension Acp {
     public func describeScanTaskReportUrl(_ input: DescribeScanTaskReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskReportUrlResponse {
         try await self.client.execute(action: "DescribeScanTaskReportUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取应用合规隐私诊断任务报告url
+    ///
+    /// 获取App合规诊断任务报告url
+    @inlinable
+    public func describeScanTaskReportUrl(source: Int64, platform: Int64, taskID: String, taskType: Int64, reportType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskReportUrlResponse > {
+        self.describeScanTaskReportUrl(DescribeScanTaskReportUrlRequest(source: source, platform: platform, taskID: taskID, taskType: taskType, reportType: reportType), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用合规隐私诊断任务报告url
+    ///
+    /// 获取App合规诊断任务报告url
+    @inlinable
+    public func describeScanTaskReportUrl(source: Int64, platform: Int64, taskID: String, taskType: Int64, reportType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskReportUrlResponse {
+        try await self.describeScanTaskReportUrl(DescribeScanTaskReportUrlRequest(source: source, platform: platform, taskID: taskID, taskType: taskType, reportType: reportType), logger: logger, on: eventLoop)
+    }
 }

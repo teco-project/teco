@@ -52,4 +52,16 @@ extension Tcss {
     public func describeSecLogKafkaUIN(_ input: DescribeSecLogKafkaUINRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogKafkaUINResponse {
         try await self.client.execute(action: "DescribeSecLogKafkaUIN", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询安全日志KafkaUIN
+    @inlinable
+    public func describeSecLogKafkaUIN(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogKafkaUINResponse > {
+        self.describeSecLogKafkaUIN(DescribeSecLogKafkaUINRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全日志KafkaUIN
+    @inlinable
+    public func describeSecLogKafkaUIN(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogKafkaUINResponse {
+        try await self.describeSecLogKafkaUIN(DescribeSecLogKafkaUINRequest(), logger: logger, on: eventLoop)
+    }
 }

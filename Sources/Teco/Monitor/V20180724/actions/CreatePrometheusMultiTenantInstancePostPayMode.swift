@@ -88,4 +88,20 @@ extension Monitor {
     public func createPrometheusMultiTenantInstancePostPayMode(_ input: CreatePrometheusMultiTenantInstancePostPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusMultiTenantInstancePostPayModeResponse {
         try await self.client.execute(action: "CreatePrometheusMultiTenantInstancePostPayMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建按量 Prometheus 实例
+    ///
+    /// 创建按量 Prometheus 实例，根据用量收费实例
+    @inlinable
+    public func createPrometheusMultiTenantInstancePostPayMode(instanceName: String, vpcId: String, subnetId: String, dataRetentionTime: Int64, zone: String, tagSpecification: [PrometheusTag]? = nil, grafanaInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusMultiTenantInstancePostPayModeResponse > {
+        self.createPrometheusMultiTenantInstancePostPayMode(CreatePrometheusMultiTenantInstancePostPayModeRequest(instanceName: instanceName, vpcId: vpcId, subnetId: subnetId, dataRetentionTime: dataRetentionTime, zone: zone, tagSpecification: tagSpecification, grafanaInstanceId: grafanaInstanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建按量 Prometheus 实例
+    ///
+    /// 创建按量 Prometheus 实例，根据用量收费实例
+    @inlinable
+    public func createPrometheusMultiTenantInstancePostPayMode(instanceName: String, vpcId: String, subnetId: String, dataRetentionTime: Int64, zone: String, tagSpecification: [PrometheusTag]? = nil, grafanaInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusMultiTenantInstancePostPayModeResponse {
+        try await self.createPrometheusMultiTenantInstancePostPayMode(CreatePrometheusMultiTenantInstancePostPayModeRequest(instanceName: instanceName, vpcId: vpcId, subnetId: subnetId, dataRetentionTime: dataRetentionTime, zone: zone, tagSpecification: tagSpecification, grafanaInstanceId: grafanaInstanceId), logger: logger, on: eventLoop)
+    }
 }

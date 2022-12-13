@@ -68,4 +68,16 @@ extension Redis {
     public func describeInstanceParamRecords(_ input: DescribeInstanceParamRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamRecordsResponse {
         try await self.client.execute(action: "DescribeInstanceParamRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询参数修改历史列表
+    @inlinable
+    public func describeInstanceParamRecords(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceParamRecordsResponse > {
+        self.describeInstanceParamRecords(DescribeInstanceParamRecordsRequest(instanceId: instanceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询参数修改历史列表
+    @inlinable
+    public func describeInstanceParamRecords(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamRecordsResponse {
+        try await self.describeInstanceParamRecords(DescribeInstanceParamRecordsRequest(instanceId: instanceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

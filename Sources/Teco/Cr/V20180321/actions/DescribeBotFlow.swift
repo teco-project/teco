@@ -70,4 +70,16 @@ extension Cr {
     public func describeBotFlow(_ input: DescribeBotFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotFlowResponse {
         try await self.client.execute(action: "DescribeBotFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询机器人对话流
+    @inlinable
+    public func describeBotFlow(module: String, operation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBotFlowResponse > {
+        self.describeBotFlow(DescribeBotFlowRequest(module: module, operation: operation), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询机器人对话流
+    @inlinable
+    public func describeBotFlow(module: String, operation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotFlowResponse {
+        try await self.describeBotFlow(DescribeBotFlowRequest(module: module, operation: operation), logger: logger, on: eventLoop)
+    }
 }

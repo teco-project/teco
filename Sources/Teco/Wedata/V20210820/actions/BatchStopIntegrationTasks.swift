@@ -72,4 +72,16 @@ extension Wedata {
     public func batchStopIntegrationTasks(_ input: BatchStopIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchStopIntegrationTasksResponse {
         try await self.client.execute(action: "BatchStopIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量停止集成任务
+    @inlinable
+    public func batchStopIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchStopIntegrationTasksResponse > {
+        self.batchStopIntegrationTasks(BatchStopIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量停止集成任务
+    @inlinable
+    public func batchStopIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchStopIntegrationTasksResponse {
+        try await self.batchStopIntegrationTasks(BatchStopIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

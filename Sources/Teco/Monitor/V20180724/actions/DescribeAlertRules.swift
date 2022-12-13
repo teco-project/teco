@@ -95,4 +95,20 @@ extension Monitor {
     public func describeAlertRules(_ input: DescribeAlertRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertRulesResponse {
         try await self.client.execute(action: "DescribeAlertRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 报警规则查询
+    ///
+    /// Prometheus 报警规则查询接口
+    @inlinable
+    public func describeAlertRules(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, ruleId: String? = nil, ruleState: Int64? = nil, ruleName: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlertRulesResponse > {
+        self.describeAlertRules(DescribeAlertRulesRequest(instanceId: instanceId, limit: limit, offset: offset, ruleId: ruleId, ruleState: ruleState, ruleName: ruleName, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 报警规则查询
+    ///
+    /// Prometheus 报警规则查询接口
+    @inlinable
+    public func describeAlertRules(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, ruleId: String? = nil, ruleState: Int64? = nil, ruleName: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertRulesResponse {
+        try await self.describeAlertRules(DescribeAlertRulesRequest(instanceId: instanceId, limit: limit, offset: offset, ruleId: ruleId, ruleState: ruleState, ruleName: ruleName, type: type), logger: logger, on: eventLoop)
+    }
 }

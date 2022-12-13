@@ -54,4 +54,24 @@ extension Vod {
     public func describePrepaidProducts(_ input: DescribePrepaidProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrepaidProductsResponse {
         try await self.client.execute(action: "DescribePrepaidProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询购买的预付费商品列表
+    ///
+    /// 该接口可以查询用户已经购买的预付费商品的信息，包括：
+    ///     1. 商品的类型、生效和失效日期。
+    ///     2. 商品中每种资源的额度和剩余额度。
+    @inlinable
+    public func describePrepaidProducts(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrepaidProductsResponse > {
+        self.describePrepaidProducts(DescribePrepaidProductsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询购买的预付费商品列表
+    ///
+    /// 该接口可以查询用户已经购买的预付费商品的信息，包括：
+    ///     1. 商品的类型、生效和失效日期。
+    ///     2. 商品中每种资源的额度和剩余额度。
+    @inlinable
+    public func describePrepaidProducts(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrepaidProductsResponse {
+        try await self.describePrepaidProducts(DescribePrepaidProductsRequest(), logger: logger, on: eventLoop)
+    }
 }

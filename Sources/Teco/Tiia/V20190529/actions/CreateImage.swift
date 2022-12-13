@@ -132,4 +132,20 @@ extension Tiia {
     public func createImage(_ input: CreateImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageResponse {
         try await self.client.execute(action: "CreateImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建图片
+    ///
+    /// 创建图片，并添加对应图片的自定义信息。模型将在创建图片时自动提取图像特征并存储到指定的图片库中。
+    @inlinable
+    public func createImage(groupId: String, entityId: String, picName: String, imageUrl: String? = nil, customContent: String? = nil, imageBase64: String? = nil, tags: String? = nil, enableDetect: Bool? = nil, categoryId: Int64? = nil, imageRect: Rect? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageResponse > {
+        self.createImage(CreateImageRequest(groupId: groupId, entityId: entityId, picName: picName, imageUrl: imageUrl, customContent: customContent, imageBase64: imageBase64, tags: tags, enableDetect: enableDetect, categoryId: categoryId, imageRect: imageRect), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建图片
+    ///
+    /// 创建图片，并添加对应图片的自定义信息。模型将在创建图片时自动提取图像特征并存储到指定的图片库中。
+    @inlinable
+    public func createImage(groupId: String, entityId: String, picName: String, imageUrl: String? = nil, customContent: String? = nil, imageBase64: String? = nil, tags: String? = nil, enableDetect: Bool? = nil, categoryId: Int64? = nil, imageRect: Rect? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageResponse {
+        try await self.createImage(CreateImageRequest(groupId: groupId, entityId: entityId, picName: picName, imageUrl: imageUrl, customContent: customContent, imageBase64: imageBase64, tags: tags, enableDetect: enableDetect, categoryId: categoryId, imageRect: imageRect), logger: logger, on: eventLoop)
+    }
 }

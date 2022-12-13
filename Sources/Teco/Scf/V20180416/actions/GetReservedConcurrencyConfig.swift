@@ -64,4 +64,20 @@ extension Scf {
     public func getReservedConcurrencyConfig(_ input: GetReservedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetReservedConcurrencyConfigResponse {
         try await self.client.execute(action: "GetReservedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取函数最大独占配额详情
+    ///
+    /// 获取函数的最大独占配额详情。
+    @inlinable
+    public func getReservedConcurrencyConfig(functionName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetReservedConcurrencyConfigResponse > {
+        self.getReservedConcurrencyConfig(GetReservedConcurrencyConfigRequest(functionName: functionName, namespace: namespace), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取函数最大独占配额详情
+    ///
+    /// 获取函数的最大独占配额详情。
+    @inlinable
+    public func getReservedConcurrencyConfig(functionName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetReservedConcurrencyConfigResponse {
+        try await self.getReservedConcurrencyConfig(GetReservedConcurrencyConfigRequest(functionName: functionName, namespace: namespace), logger: logger, on: eventLoop)
+    }
 }

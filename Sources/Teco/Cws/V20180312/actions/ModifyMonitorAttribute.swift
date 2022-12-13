@@ -92,4 +92,20 @@ extension Cws {
     public func modifyMonitorAttribute(_ input: ModifyMonitorAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMonitorAttributeResponse {
         try await self.client.execute(action: "ModifyMonitorAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改监测任务的属性
+    ///
+    /// 本接口 (ModifyMonitorAttribute) 用于修改监测任务的属性。
+    @inlinable
+    public func modifyMonitorAttribute(monitorId: UInt64, urls: [String], name: String, scannerType: String, crontab: UInt64, rateLimit: UInt64, firstScanStartTime: Date, monitorStatus: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMonitorAttributeResponse > {
+        self.modifyMonitorAttribute(ModifyMonitorAttributeRequest(monitorId: monitorId, urls: urls, name: name, scannerType: scannerType, crontab: crontab, rateLimit: rateLimit, firstScanStartTime: firstScanStartTime, monitorStatus: monitorStatus), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改监测任务的属性
+    ///
+    /// 本接口 (ModifyMonitorAttribute) 用于修改监测任务的属性。
+    @inlinable
+    public func modifyMonitorAttribute(monitorId: UInt64, urls: [String], name: String, scannerType: String, crontab: UInt64, rateLimit: UInt64, firstScanStartTime: Date, monitorStatus: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMonitorAttributeResponse {
+        try await self.modifyMonitorAttribute(ModifyMonitorAttributeRequest(monitorId: monitorId, urls: urls, name: name, scannerType: scannerType, crontab: crontab, rateLimit: rateLimit, firstScanStartTime: firstScanStartTime, monitorStatus: monitorStatus), logger: logger, on: eventLoop)
+    }
 }

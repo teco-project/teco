@@ -65,4 +65,16 @@ extension Cfw {
     public func modifyNatFwReSelect(_ input: ModifyNatFwReSelectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatFwReSelectResponse {
         try await self.client.execute(action: "ModifyNatFwReSelect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 防火墙实例重新选择vpc或nat
+    @inlinable
+    public func modifyNatFwReSelect(mode: Int64, cfwInstance: String, natGwList: [String]? = nil, vpcList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNatFwReSelectResponse > {
+        self.modifyNatFwReSelect(ModifyNatFwReSelectRequest(mode: mode, cfwInstance: cfwInstance, natGwList: natGwList, vpcList: vpcList), logger: logger, on: eventLoop)
+    }
+    
+    /// 防火墙实例重新选择vpc或nat
+    @inlinable
+    public func modifyNatFwReSelect(mode: Int64, cfwInstance: String, natGwList: [String]? = nil, vpcList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatFwReSelectResponse {
+        try await self.modifyNatFwReSelect(ModifyNatFwReSelectRequest(mode: mode, cfwInstance: cfwInstance, natGwList: natGwList, vpcList: vpcList), logger: logger, on: eventLoop)
+    }
 }

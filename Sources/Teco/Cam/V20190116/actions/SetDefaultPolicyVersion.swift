@@ -59,4 +59,20 @@ extension Cam {
     public func setDefaultPolicyVersion(_ input: SetDefaultPolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDefaultPolicyVersionResponse {
         try await self.client.execute(action: "SetDefaultPolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置生效的策略版本
+    ///
+    /// 本接口（SetDefaultPolicyVersion）可用于设置生效的策略版本。
+    @inlinable
+    public func setDefaultPolicyVersion(policyId: UInt64, versionId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetDefaultPolicyVersionResponse > {
+        self.setDefaultPolicyVersion(SetDefaultPolicyVersionRequest(policyId: policyId, versionId: versionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置生效的策略版本
+    ///
+    /// 本接口（SetDefaultPolicyVersion）可用于设置生效的策略版本。
+    @inlinable
+    public func setDefaultPolicyVersion(policyId: UInt64, versionId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDefaultPolicyVersionResponse {
+        try await self.setDefaultPolicyVersion(SetDefaultPolicyVersionRequest(policyId: policyId, versionId: versionId), logger: logger, on: eventLoop)
+    }
 }

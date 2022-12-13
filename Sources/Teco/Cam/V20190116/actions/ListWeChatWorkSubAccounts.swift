@@ -63,4 +63,16 @@ extension Cam {
     public func listWeChatWorkSubAccounts(_ input: ListWeChatWorkSubAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListWeChatWorkSubAccountsResponse {
         try await self.client.execute(action: "ListWeChatWorkSubAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取企业微信子用户列表
+    @inlinable
+    public func listWeChatWorkSubAccounts(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListWeChatWorkSubAccountsResponse > {
+        self.listWeChatWorkSubAccounts(ListWeChatWorkSubAccountsRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取企业微信子用户列表
+    @inlinable
+    public func listWeChatWorkSubAccounts(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListWeChatWorkSubAccountsResponse {
+        try await self.listWeChatWorkSubAccounts(ListWeChatWorkSubAccountsRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -93,4 +93,20 @@ extension Scf {
     public func createTrigger(_ input: CreateTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTriggerResponse {
         try await self.client.execute(action: "CreateTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置函数触发方式
+    ///
+    /// 该接口根据参数输入设置新的触发方式。
+    @inlinable
+    public func createTrigger(functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTriggerResponse > {
+        self.createTrigger(CreateTriggerRequest(functionName: functionName, triggerName: triggerName, type: type, triggerDesc: triggerDesc, namespace: namespace, qualifier: qualifier, enable: enable, customArgument: customArgument), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置函数触发方式
+    ///
+    /// 该接口根据参数输入设置新的触发方式。
+    @inlinable
+    public func createTrigger(functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTriggerResponse {
+        try await self.createTrigger(CreateTriggerRequest(functionName: functionName, triggerName: triggerName, type: type, triggerDesc: triggerDesc, namespace: namespace, qualifier: qualifier, enable: enable, customArgument: customArgument), logger: logger, on: eventLoop)
+    }
 }

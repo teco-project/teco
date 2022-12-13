@@ -76,4 +76,22 @@ extension Wedata {
     public func modifyTaskScript(_ input: ModifyTaskScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskScriptResponse {
         try await self.client.execute(action: "ModifyTaskScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改任务脚本【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 修改任务脚本
+    @inlinable
+    public func modifyTaskScript(projectId: String, taskId: String, scriptContent: String? = nil, integrationNodeDetails: [IntegrationNodeDetail]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskScriptResponse > {
+        self.modifyTaskScript(ModifyTaskScriptRequest(projectId: projectId, taskId: taskId, scriptContent: scriptContent, integrationNodeDetails: integrationNodeDetails), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改任务脚本【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 修改任务脚本
+    @inlinable
+    public func modifyTaskScript(projectId: String, taskId: String, scriptContent: String? = nil, integrationNodeDetails: [IntegrationNodeDetail]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskScriptResponse {
+        try await self.modifyTaskScript(ModifyTaskScriptRequest(projectId: projectId, taskId: taskId, scriptContent: scriptContent, integrationNodeDetails: integrationNodeDetails), logger: logger, on: eventLoop)
+    }
 }

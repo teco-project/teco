@@ -70,4 +70,16 @@ extension Cwp {
     public func describeHistoryService(_ input: DescribeHistoryServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHistoryServiceResponse {
         try await self.client.execute(action: "DescribeHistoryService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询日志检索服务信息
+    @inlinable
+    public func describeHistoryService(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHistoryServiceResponse > {
+        self.describeHistoryService(DescribeHistoryServiceRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询日志检索服务信息
+    @inlinable
+    public func describeHistoryService(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHistoryServiceResponse {
+        try await self.describeHistoryService(DescribeHistoryServiceRequest(), logger: logger, on: eventLoop)
+    }
 }

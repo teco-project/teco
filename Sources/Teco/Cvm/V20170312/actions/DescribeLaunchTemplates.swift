@@ -80,4 +80,20 @@ extension Cvm {
     public func describeLaunchTemplates(_ input: DescribeLaunchTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaunchTemplatesResponse {
         try await self.client.execute(action: "DescribeLaunchTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例启动模板
+    ///
+    /// 本接口（DescribeLaunchTemplates）用于查询一个或者多个实例启动模板。
+    @inlinable
+    public func describeLaunchTemplates(launchTemplateIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLaunchTemplatesResponse > {
+        self.describeLaunchTemplates(DescribeLaunchTemplatesRequest(launchTemplateIds: launchTemplateIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例启动模板
+    ///
+    /// 本接口（DescribeLaunchTemplates）用于查询一个或者多个实例启动模板。
+    @inlinable
+    public func describeLaunchTemplates(launchTemplateIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaunchTemplatesResponse {
+        try await self.describeLaunchTemplates(DescribeLaunchTemplatesRequest(launchTemplateIds: launchTemplateIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

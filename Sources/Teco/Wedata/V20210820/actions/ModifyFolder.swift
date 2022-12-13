@@ -75,4 +75,22 @@ extension Wedata {
     public func modifyFolder(_ input: ModifyFolderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFolderResponse {
         try await self.client.execute(action: "ModifyFolder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 文件夹更新【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 文件夹更新
+    @inlinable
+    public func modifyFolder(projectId: String, folderName: String, folderId: String, parentsFolderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyFolderResponse > {
+        self.modifyFolder(ModifyFolderRequest(projectId: projectId, folderName: folderName, folderId: folderId, parentsFolderId: parentsFolderId), logger: logger, on: eventLoop)
+    }
+    
+    /// 文件夹更新【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 文件夹更新
+    @inlinable
+    public func modifyFolder(projectId: String, folderName: String, folderId: String, parentsFolderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFolderResponse {
+        try await self.modifyFolder(ModifyFolderRequest(projectId: projectId, folderName: folderName, folderId: folderId, parentsFolderId: parentsFolderId), logger: logger, on: eventLoop)
+    }
 }

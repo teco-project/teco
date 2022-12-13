@@ -55,4 +55,16 @@ extension Antiddos {
     public func deletePacketFilterConfig(_ input: DeletePacketFilterConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePacketFilterConfigResponse {
         try await self.client.execute(action: "DeletePacketFilterConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除DDoS防护的特征过滤规则
+    @inlinable
+    public func deletePacketFilterConfig(instanceId: String, packetFilterConfig: PacketFilterConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePacketFilterConfigResponse > {
+        self.deletePacketFilterConfig(DeletePacketFilterConfigRequest(instanceId: instanceId, packetFilterConfig: packetFilterConfig), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除DDoS防护的特征过滤规则
+    @inlinable
+    public func deletePacketFilterConfig(instanceId: String, packetFilterConfig: PacketFilterConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePacketFilterConfigResponse {
+        try await self.deletePacketFilterConfig(DeletePacketFilterConfigRequest(instanceId: instanceId, packetFilterConfig: packetFilterConfig), logger: logger, on: eventLoop)
+    }
 }

@@ -74,4 +74,20 @@ extension Wedata {
     public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
         try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 数据质量-查询实例列表
+    ///
+    /// 数据质量，查询调度任务的实例列表
+    @inlinable
+    public func describeInstances(projectId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+        self.describeInstances(DescribeInstancesRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 数据质量-查询实例列表
+    ///
+    /// 数据质量，查询调度任务的实例列表
+    @inlinable
+    public func describeInstances(projectId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
+        try await self.describeInstances(DescribeInstancesRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), logger: logger, on: eventLoop)
+    }
 }

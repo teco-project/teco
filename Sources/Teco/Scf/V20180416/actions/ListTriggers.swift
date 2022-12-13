@@ -89,4 +89,16 @@ extension Scf {
     public func listTriggers(_ input: ListTriggersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTriggersResponse {
         try await self.client.execute(action: "ListTriggers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取函数触发器列表
+    @inlinable
+    public func listTriggers(functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, order: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTriggersResponse > {
+        self.listTriggers(ListTriggersRequest(functionName: functionName, namespace: namespace, offset: offset, limit: limit, orderBy: orderBy, order: order, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取函数触发器列表
+    @inlinable
+    public func listTriggers(functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, order: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTriggersResponse {
+        try await self.listTriggers(ListTriggersRequest(functionName: functionName, namespace: namespace, offset: offset, limit: limit, orderBy: orderBy, order: order, filters: filters), logger: logger, on: eventLoop)
+    }
 }

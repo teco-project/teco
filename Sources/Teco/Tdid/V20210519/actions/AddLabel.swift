@@ -55,4 +55,16 @@ extension Tdid {
     public func addLabel(_ input: AddLabelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLabelResponse {
         try await self.client.execute(action: "AddLabel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// DID添加标签
+    @inlinable
+    public func addLabel(labelId: UInt64, did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddLabelResponse > {
+        self.addLabel(AddLabelRequest(labelId: labelId, did: did), logger: logger, on: eventLoop)
+    }
+    
+    /// DID添加标签
+    @inlinable
+    public func addLabel(labelId: UInt64, did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLabelResponse {
+        try await self.addLabel(AddLabelRequest(labelId: labelId, did: did), logger: logger, on: eventLoop)
+    }
 }

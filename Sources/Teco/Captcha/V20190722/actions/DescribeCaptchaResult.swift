@@ -128,4 +128,16 @@ extension Captcha {
     public func describeCaptchaResult(_ input: DescribeCaptchaResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaResultResponse {
         try await self.client.execute(action: "DescribeCaptchaResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 核查验证码票据结果(Web及APP)
+    @inlinable
+    public func describeCaptchaResult(captchaType: UInt64, ticket: String, userIp: String, randstr: String, captchaAppId: UInt64, appSecretKey: String, businessId: UInt64? = nil, sceneId: UInt64? = nil, macAddress: String? = nil, imei: String? = nil, needGetCaptchaTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaResultResponse > {
+        self.describeCaptchaResult(DescribeCaptchaResultRequest(captchaType: captchaType, ticket: ticket, userIp: userIp, randstr: randstr, captchaAppId: captchaAppId, appSecretKey: appSecretKey, businessId: businessId, sceneId: sceneId, macAddress: macAddress, imei: imei, needGetCaptchaTime: needGetCaptchaTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 核查验证码票据结果(Web及APP)
+    @inlinable
+    public func describeCaptchaResult(captchaType: UInt64, ticket: String, userIp: String, randstr: String, captchaAppId: UInt64, appSecretKey: String, businessId: UInt64? = nil, sceneId: UInt64? = nil, macAddress: String? = nil, imei: String? = nil, needGetCaptchaTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaResultResponse {
+        try await self.describeCaptchaResult(DescribeCaptchaResultRequest(captchaType: captchaType, ticket: ticket, userIp: userIp, randstr: randstr, captchaAppId: captchaAppId, appSecretKey: appSecretKey, businessId: businessId, sceneId: sceneId, macAddress: macAddress, imei: imei, needGetCaptchaTime: needGetCaptchaTime), logger: logger, on: eventLoop)
+    }
 }

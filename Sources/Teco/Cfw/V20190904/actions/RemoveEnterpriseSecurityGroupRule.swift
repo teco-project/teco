@@ -64,4 +64,16 @@ extension Cfw {
     public func removeEnterpriseSecurityGroupRule(_ input: RemoveEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveEnterpriseSecurityGroupRuleResponse {
         try await self.client.execute(action: "RemoveEnterpriseSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除新企业安全组规则
+    @inlinable
+    public func removeEnterpriseSecurityGroupRule(ruleUuid: Int64, removeType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveEnterpriseSecurityGroupRuleResponse > {
+        self.removeEnterpriseSecurityGroupRule(RemoveEnterpriseSecurityGroupRuleRequest(ruleUuid: ruleUuid, removeType: removeType), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除新企业安全组规则
+    @inlinable
+    public func removeEnterpriseSecurityGroupRule(ruleUuid: Int64, removeType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveEnterpriseSecurityGroupRuleResponse {
+        try await self.removeEnterpriseSecurityGroupRule(RemoveEnterpriseSecurityGroupRuleRequest(ruleUuid: ruleUuid, removeType: removeType), logger: logger, on: eventLoop)
+    }
 }

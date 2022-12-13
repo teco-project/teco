@@ -78,4 +78,16 @@ extension Tcaplusdb {
     public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
         try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询任务列表
+    @inlinable
+    public func describeTasks(clusterIds: [String]? = nil, taskIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
+        self.describeTasks(DescribeTasksRequest(clusterIds: clusterIds, taskIds: taskIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务列表
+    @inlinable
+    public func describeTasks(clusterIds: [String]? = nil, taskIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
+        try await self.describeTasks(DescribeTasksRequest(clusterIds: clusterIds, taskIds: taskIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

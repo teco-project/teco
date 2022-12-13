@@ -60,4 +60,20 @@ extension Cls {
     public func deleteMachineGroupInfo(_ input: DeleteMachineGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupInfoResponse {
         try await self.client.execute(action: "DeleteMachineGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除机器组信息
+    ///
+    /// 用于删除机器组信息
+    @inlinable
+    public func deleteMachineGroupInfo(groupId: String, machineGroupType: MachineGroupTypeInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMachineGroupInfoResponse > {
+        self.deleteMachineGroupInfo(DeleteMachineGroupInfoRequest(groupId: groupId, machineGroupType: machineGroupType), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除机器组信息
+    ///
+    /// 用于删除机器组信息
+    @inlinable
+    public func deleteMachineGroupInfo(groupId: String, machineGroupType: MachineGroupTypeInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupInfoResponse {
+        try await self.deleteMachineGroupInfo(DeleteMachineGroupInfoRequest(groupId: groupId, machineGroupType: machineGroupType), logger: logger, on: eventLoop)
+    }
 }

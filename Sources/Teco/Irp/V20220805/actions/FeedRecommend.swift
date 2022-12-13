@@ -79,4 +79,16 @@ extension Irp {
     public func feedRecommend(_ input: FeedRecommendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FeedRecommendResponse {
         try await self.client.execute(action: "FeedRecommend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取信息流推荐结果
+    @inlinable
+    public func feedRecommend(instanceId: String, sceneId: String, userId: String, userIdList: [UserIdInfo]? = nil, itemCnt: Int64? = nil, currentItemId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FeedRecommendResponse > {
+        self.feedRecommend(FeedRecommendRequest(instanceId: instanceId, sceneId: sceneId, userId: userId, userIdList: userIdList, itemCnt: itemCnt, currentItemId: currentItemId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取信息流推荐结果
+    @inlinable
+    public func feedRecommend(instanceId: String, sceneId: String, userId: String, userIdList: [UserIdInfo]? = nil, itemCnt: Int64? = nil, currentItemId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FeedRecommendResponse {
+        try await self.feedRecommend(FeedRecommendRequest(instanceId: instanceId, sceneId: sceneId, userId: userId, userIdList: userIdList, itemCnt: itemCnt, currentItemId: currentItemId), logger: logger, on: eventLoop)
+    }
 }

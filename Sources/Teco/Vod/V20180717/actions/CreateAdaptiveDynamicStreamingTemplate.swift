@@ -122,4 +122,20 @@ extension Vod {
     public func createAdaptiveDynamicStreamingTemplate(_ input: CreateAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAdaptiveDynamicStreamingTemplateResponse {
         try await self.client.execute(action: "CreateAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建转自适应码流模板
+    ///
+    /// 创建转自适应码流模板，数量上限：100。
+    @inlinable
+    public func createAdaptiveDynamicStreamingTemplate(format: String, streamInfos: [AdaptiveStreamTemplate], subAppId: UInt64? = nil, name: String? = nil, drmType: String? = nil, drmKeyProvider: String? = nil, disableHigherVideoBitrate: UInt64? = nil, disableHigherVideoResolution: UInt64? = nil, comment: String? = nil, segmentType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAdaptiveDynamicStreamingTemplateResponse > {
+        self.createAdaptiveDynamicStreamingTemplate(CreateAdaptiveDynamicStreamingTemplateRequest(format: format, streamInfos: streamInfos, subAppId: subAppId, name: name, drmType: drmType, drmKeyProvider: drmKeyProvider, disableHigherVideoBitrate: disableHigherVideoBitrate, disableHigherVideoResolution: disableHigherVideoResolution, comment: comment, segmentType: segmentType), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建转自适应码流模板
+    ///
+    /// 创建转自适应码流模板，数量上限：100。
+    @inlinable
+    public func createAdaptiveDynamicStreamingTemplate(format: String, streamInfos: [AdaptiveStreamTemplate], subAppId: UInt64? = nil, name: String? = nil, drmType: String? = nil, drmKeyProvider: String? = nil, disableHigherVideoBitrate: UInt64? = nil, disableHigherVideoResolution: UInt64? = nil, comment: String? = nil, segmentType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAdaptiveDynamicStreamingTemplateResponse {
+        try await self.createAdaptiveDynamicStreamingTemplate(CreateAdaptiveDynamicStreamingTemplateRequest(format: format, streamInfos: streamInfos, subAppId: subAppId, name: name, drmType: drmType, drmKeyProvider: drmKeyProvider, disableHigherVideoBitrate: disableHigherVideoBitrate, disableHigherVideoResolution: disableHigherVideoResolution, comment: comment, segmentType: segmentType), logger: logger, on: eventLoop)
+    }
 }

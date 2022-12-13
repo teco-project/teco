@@ -93,4 +93,20 @@ extension Tdmq {
     public func createSubscription(_ input: CreateSubscriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscriptionResponse {
         try await self.client.execute(action: "CreateSubscription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建订阅关系
+    ///
+    /// 创建一个主题的订阅关系
+    @inlinable
+    public func createSubscription(environmentId: String, topicName: String, subscriptionName: String, isIdempotent: Bool, remark: String? = nil, clusterId: String? = nil, autoCreatePolicyTopic: Bool? = nil, postFixPattern: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubscriptionResponse > {
+        self.createSubscription(CreateSubscriptionRequest(environmentId: environmentId, topicName: topicName, subscriptionName: subscriptionName, isIdempotent: isIdempotent, remark: remark, clusterId: clusterId, autoCreatePolicyTopic: autoCreatePolicyTopic, postFixPattern: postFixPattern), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建订阅关系
+    ///
+    /// 创建一个主题的订阅关系
+    @inlinable
+    public func createSubscription(environmentId: String, topicName: String, subscriptionName: String, isIdempotent: Bool, remark: String? = nil, clusterId: String? = nil, autoCreatePolicyTopic: Bool? = nil, postFixPattern: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscriptionResponse {
+        try await self.createSubscription(CreateSubscriptionRequest(environmentId: environmentId, topicName: topicName, subscriptionName: subscriptionName, isIdempotent: isIdempotent, remark: remark, clusterId: clusterId, autoCreatePolicyTopic: autoCreatePolicyTopic, postFixPattern: postFixPattern), logger: logger, on: eventLoop)
+    }
 }

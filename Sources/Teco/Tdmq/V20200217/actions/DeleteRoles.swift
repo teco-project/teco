@@ -63,4 +63,20 @@ extension Tdmq {
     public func deleteRoles(_ input: DeleteRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRolesResponse {
         try await self.client.execute(action: "DeleteRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除角色
+    ///
+    /// 删除角色，支持批量。
+    @inlinable
+    public func deleteRoles(roleNames: [String], clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRolesResponse > {
+        self.deleteRoles(DeleteRolesRequest(roleNames: roleNames, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除角色
+    ///
+    /// 删除角色，支持批量。
+    @inlinable
+    public func deleteRoles(roleNames: [String], clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRolesResponse {
+        try await self.deleteRoles(DeleteRolesRequest(roleNames: roleNames, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

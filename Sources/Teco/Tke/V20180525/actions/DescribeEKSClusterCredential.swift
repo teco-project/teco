@@ -78,4 +78,20 @@ extension Tke {
     public func describeEKSClusterCredential(_ input: DescribeEKSClusterCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSClusterCredentialResponse {
         try await self.client.execute(action: "DescribeEKSClusterCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取弹性容器集群的认证信息
+    ///
+    /// 获取弹性容器集群的接入认证信息
+    @inlinable
+    public func describeEKSClusterCredential(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEKSClusterCredentialResponse > {
+        self.describeEKSClusterCredential(DescribeEKSClusterCredentialRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取弹性容器集群的认证信息
+    ///
+    /// 获取弹性容器集群的接入认证信息
+    @inlinable
+    public func describeEKSClusterCredential(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSClusterCredentialResponse {
+        try await self.describeEKSClusterCredential(DescribeEKSClusterCredentialRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

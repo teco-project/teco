@@ -54,4 +54,20 @@ extension Vpc {
     public func disableFlowLogs(_ input: DisableFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableFlowLogsResponse {
         try await self.client.execute(action: "DisableFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停止流日志
+    ///
+    /// 本接口（DisableFlowLogs）用于停止流日志。
+    @inlinable
+    public func disableFlowLogs(flowLogIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableFlowLogsResponse > {
+        self.disableFlowLogs(DisableFlowLogsRequest(flowLogIds: flowLogIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 停止流日志
+    ///
+    /// 本接口（DisableFlowLogs）用于停止流日志。
+    @inlinable
+    public func disableFlowLogs(flowLogIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableFlowLogsResponse {
+        try await self.disableFlowLogs(DisableFlowLogsRequest(flowLogIds: flowLogIds), logger: logger, on: eventLoop)
+    }
 }

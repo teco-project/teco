@@ -83,4 +83,20 @@ extension Cis {
     public func createContainerInstance(_ input: CreateContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContainerInstanceResponse {
         try await self.client.execute(action: "CreateContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建容器实例
+    ///
+    /// 此接口（CreateContainerInstance）用于创建容器实例
+    @inlinable
+    public func createContainerInstance(zone: String, vpcId: String, subnetId: String, instanceName: String, restartPolicy: String, containers: [Container], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateContainerInstanceResponse > {
+        self.createContainerInstance(CreateContainerInstanceRequest(zone: zone, vpcId: vpcId, subnetId: subnetId, instanceName: instanceName, restartPolicy: restartPolicy, containers: containers), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建容器实例
+    ///
+    /// 此接口（CreateContainerInstance）用于创建容器实例
+    @inlinable
+    public func createContainerInstance(zone: String, vpcId: String, subnetId: String, instanceName: String, restartPolicy: String, containers: [Container], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContainerInstanceResponse {
+        try await self.createContainerInstance(CreateContainerInstanceRequest(zone: zone, vpcId: vpcId, subnetId: subnetId, instanceName: instanceName, restartPolicy: restartPolicy, containers: containers), logger: logger, on: eventLoop)
+    }
 }

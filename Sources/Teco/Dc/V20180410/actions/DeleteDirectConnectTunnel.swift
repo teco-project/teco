@@ -50,4 +50,16 @@ extension Dc {
     public func deleteDirectConnectTunnel(_ input: DeleteDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectTunnelResponse {
         try await self.client.execute(action: "DeleteDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除专用通道
+    @inlinable
+    public func deleteDirectConnectTunnel(directConnectTunnelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDirectConnectTunnelResponse > {
+        self.deleteDirectConnectTunnel(DeleteDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除专用通道
+    @inlinable
+    public func deleteDirectConnectTunnel(directConnectTunnelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectTunnelResponse {
+        try await self.deleteDirectConnectTunnel(DeleteDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), logger: logger, on: eventLoop)
+    }
 }

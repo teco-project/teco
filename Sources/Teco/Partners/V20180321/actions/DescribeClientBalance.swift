@@ -62,4 +62,20 @@ extension Partners {
     public func describeClientBalance(_ input: DescribeClientBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientBalanceResponse {
         try await self.client.execute(action: "DescribeClientBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询客户余额
+    ///
+    /// 【该接口将逐步下线，请切换使用升级版本DescribeClientBalanceNew】为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额.
+    @inlinable
+    public func describeClientBalance(clientUin: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientBalanceResponse > {
+        self.describeClientBalance(DescribeClientBalanceRequest(clientUin: clientUin), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询客户余额
+    ///
+    /// 【该接口将逐步下线，请切换使用升级版本DescribeClientBalanceNew】为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额.
+    @inlinable
+    public func describeClientBalance(clientUin: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientBalanceResponse {
+        try await self.describeClientBalance(DescribeClientBalanceRequest(clientUin: clientUin), logger: logger, on: eventLoop)
+    }
 }

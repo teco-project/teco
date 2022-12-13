@@ -97,4 +97,20 @@ extension Gaap {
     public func describeHTTPListeners(_ input: DescribeHTTPListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHTTPListenersResponse {
         try await self.client.execute(action: "DescribeHTTPListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询HTTP监听器信息
+    ///
+    /// 该接口（DescribeHTTPListeners）用来查询HTTP监听器信息。
+    @inlinable
+    public func describeHTTPListeners(proxyId: String? = nil, listenerId: String? = nil, listenerName: String? = nil, port: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchValue: String? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHTTPListenersResponse > {
+        self.describeHTTPListeners(DescribeHTTPListenersRequest(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, searchValue: searchValue, groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询HTTP监听器信息
+    ///
+    /// 该接口（DescribeHTTPListeners）用来查询HTTP监听器信息。
+    @inlinable
+    public func describeHTTPListeners(proxyId: String? = nil, listenerId: String? = nil, listenerName: String? = nil, port: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchValue: String? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHTTPListenersResponse {
+        try await self.describeHTTPListeners(DescribeHTTPListenersRequest(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, searchValue: searchValue, groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

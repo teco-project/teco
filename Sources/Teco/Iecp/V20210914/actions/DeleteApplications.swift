@@ -50,4 +50,16 @@ extension Iecp {
     public func deleteApplications(_ input: DeleteApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationsResponse {
         try await self.client.execute(action: "DeleteApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除应用模板
+    @inlinable
+    public func deleteApplications(applicationIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationsResponse > {
+        self.deleteApplications(DeleteApplicationsRequest(applicationIds: applicationIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除应用模板
+    @inlinable
+    public func deleteApplications(applicationIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationsResponse {
+        try await self.deleteApplications(DeleteApplicationsRequest(applicationIds: applicationIds), logger: logger, on: eventLoop)
+    }
 }

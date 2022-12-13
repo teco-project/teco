@@ -73,4 +73,20 @@ extension Tke {
     public func createClusterInstances(_ input: CreateClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterInstancesResponse {
         try await self.client.execute(action: "CreateClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 扩展集群节点
+    ///
+    /// 扩展(新建)集群节点
+    @inlinable
+    public func createClusterInstances(clusterId: String, runInstancePara: String, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, skipValidateOptions: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterInstancesResponse > {
+        self.createClusterInstances(CreateClusterInstancesRequest(clusterId: clusterId, runInstancePara: runInstancePara, instanceAdvancedSettings: instanceAdvancedSettings, skipValidateOptions: skipValidateOptions), logger: logger, on: eventLoop)
+    }
+    
+    /// 扩展集群节点
+    ///
+    /// 扩展(新建)集群节点
+    @inlinable
+    public func createClusterInstances(clusterId: String, runInstancePara: String, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, skipValidateOptions: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterInstancesResponse {
+        try await self.createClusterInstances(CreateClusterInstancesRequest(clusterId: clusterId, runInstancePara: runInstancePara, instanceAdvancedSettings: instanceAdvancedSettings, skipValidateOptions: skipValidateOptions), logger: logger, on: eventLoop)
+    }
 }

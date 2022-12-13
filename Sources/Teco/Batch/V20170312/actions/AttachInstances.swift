@@ -69,4 +69,30 @@ extension Batch {
     public func attachInstances(_ input: AttachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachInstancesResponse {
         try await self.client.execute(action: "AttachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加实例到计算环境
+    ///
+    /// 此接口可将已存在实例添加到计算环境中。
+    /// 实例需要满足如下条件：<br/>
+    /// 1.实例不在批量计算系统中。<br/>
+    /// 2.实例状态要求处于运行中。<br/>
+    /// 3.支持预付费实例，按小时后付费实例，专享子机实例。不支持竞价实例。<br/>
+    /// 此接口会将加入到计算环境中的实例重设UserData和重装操作系统。
+    @inlinable
+    public func attachInstances(envId: String, instances: [Instance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachInstancesResponse > {
+        self.attachInstances(AttachInstancesRequest(envId: envId, instances: instances), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加实例到计算环境
+    ///
+    /// 此接口可将已存在实例添加到计算环境中。
+    /// 实例需要满足如下条件：<br/>
+    /// 1.实例不在批量计算系统中。<br/>
+    /// 2.实例状态要求处于运行中。<br/>
+    /// 3.支持预付费实例，按小时后付费实例，专享子机实例。不支持竞价实例。<br/>
+    /// 此接口会将加入到计算环境中的实例重设UserData和重装操作系统。
+    @inlinable
+    public func attachInstances(envId: String, instances: [Instance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachInstancesResponse {
+        try await self.attachInstances(AttachInstancesRequest(envId: envId, instances: instances), logger: logger, on: eventLoop)
+    }
 }

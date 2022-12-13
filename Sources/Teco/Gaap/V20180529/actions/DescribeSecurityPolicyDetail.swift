@@ -75,4 +75,16 @@ extension Gaap {
     public func describeSecurityPolicyDetail(_ input: DescribeSecurityPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyDetailResponse {
         try await self.client.execute(action: "DescribeSecurityPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取安全策略详情
+    @inlinable
+    public func describeSecurityPolicyDetail(policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPolicyDetailResponse > {
+        self.describeSecurityPolicyDetail(DescribeSecurityPolicyDetailRequest(policyId: policyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取安全策略详情
+    @inlinable
+    public func describeSecurityPolicyDetail(policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyDetailResponse {
+        try await self.describeSecurityPolicyDetail(DescribeSecurityPolicyDetailRequest(policyId: policyId), logger: logger, on: eventLoop)
+    }
 }

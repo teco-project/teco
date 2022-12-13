@@ -54,4 +54,20 @@ extension Lighthouse {
     public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteKeyPairsResponse {
         try await self.client.execute(action: "DeleteKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除密钥对
+    ///
+    /// 本接口（DeleteKeyPairs）用于删除密钥对。
+    @inlinable
+    public func deleteKeyPairs(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteKeyPairsResponse > {
+        self.deleteKeyPairs(DeleteKeyPairsRequest(keyIds: keyIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除密钥对
+    ///
+    /// 本接口（DeleteKeyPairs）用于删除密钥对。
+    @inlinable
+    public func deleteKeyPairs(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteKeyPairsResponse {
+        try await self.deleteKeyPairs(DeleteKeyPairsRequest(keyIds: keyIds), logger: logger, on: eventLoop)
+    }
 }

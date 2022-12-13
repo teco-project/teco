@@ -54,4 +54,16 @@ extension Redis {
     public func describeInstanceMonitorSIP(_ input: DescribeInstanceMonitorSIPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorSIPResponse {
         try await self.client.execute(action: "DescribeInstanceMonitorSIP", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例访问来源信息
+    @inlinable
+    public func describeInstanceMonitorSIP(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorSIPResponse > {
+        self.describeInstanceMonitorSIP(DescribeInstanceMonitorSIPRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例访问来源信息
+    @inlinable
+    public func describeInstanceMonitorSIP(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorSIPResponse {
+        try await self.describeInstanceMonitorSIP(DescribeInstanceMonitorSIPRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

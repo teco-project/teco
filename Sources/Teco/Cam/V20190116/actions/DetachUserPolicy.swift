@@ -59,4 +59,20 @@ extension Cam {
     public func detachUserPolicy(_ input: DetachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachUserPolicyResponse {
         try await self.client.execute(action: "DetachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解除绑定到用户的策略
+    ///
+    /// 本接口（DetachUserPolicy）可用于解除绑定到用户的策略。
+    @inlinable
+    public func detachUserPolicy(policyId: UInt64, detachUin: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachUserPolicyResponse > {
+        self.detachUserPolicy(DetachUserPolicyRequest(policyId: policyId, detachUin: detachUin), logger: logger, on: eventLoop)
+    }
+    
+    /// 解除绑定到用户的策略
+    ///
+    /// 本接口（DetachUserPolicy）可用于解除绑定到用户的策略。
+    @inlinable
+    public func detachUserPolicy(policyId: UInt64, detachUin: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachUserPolicyResponse {
+        try await self.detachUserPolicy(DetachUserPolicyRequest(policyId: policyId, detachUin: detachUin), logger: logger, on: eventLoop)
+    }
 }

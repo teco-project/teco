@@ -82,4 +82,20 @@ extension Cvm {
     public func describeHosts(_ input: DescribeHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsResponse {
         try await self.client.execute(action: "DescribeHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看CDH实例列表
+    ///
+    /// 本接口 (DescribeHosts) 用于获取一个或多个CDH实例的详细信息。
+    @inlinable
+    public func describeHosts(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostsResponse > {
+        self.describeHosts(DescribeHostsRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看CDH实例列表
+    ///
+    /// 本接口 (DescribeHosts) 用于获取一个或多个CDH实例的详细信息。
+    @inlinable
+    public func describeHosts(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsResponse {
+        try await self.describeHosts(DescribeHostsRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

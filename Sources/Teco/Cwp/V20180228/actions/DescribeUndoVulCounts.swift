@@ -74,4 +74,20 @@ extension Cwp {
     public func describeUndoVulCounts(_ input: DescribeUndoVulCountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUndoVulCountsResponse {
         try await self.client.execute(action: "DescribeUndoVulCounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取指定漏洞分类统计数
+    ///
+    /// 获取漏洞管理模块指定类型的待处理漏洞数、主机数和非专业版主机数量
+    @inlinable
+    public func describeUndoVulCounts(vulCategory: UInt64? = nil, ifEmergency: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUndoVulCountsResponse > {
+        self.describeUndoVulCounts(DescribeUndoVulCountsRequest(vulCategory: vulCategory, ifEmergency: ifEmergency), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定漏洞分类统计数
+    ///
+    /// 获取漏洞管理模块指定类型的待处理漏洞数、主机数和非专业版主机数量
+    @inlinable
+    public func describeUndoVulCounts(vulCategory: UInt64? = nil, ifEmergency: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUndoVulCountsResponse {
+        try await self.describeUndoVulCounts(DescribeUndoVulCountsRequest(vulCategory: vulCategory, ifEmergency: ifEmergency), logger: logger, on: eventLoop)
+    }
 }

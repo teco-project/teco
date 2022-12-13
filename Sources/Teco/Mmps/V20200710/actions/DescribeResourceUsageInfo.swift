@@ -58,4 +58,20 @@ extension Mmps {
     public func describeResourceUsageInfo(_ input: DescribeResourceUsageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUsageInfoResponse {
         try await self.client.execute(action: "DescribeResourceUsageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询安全资源使用情况
+    ///
+    /// 查询翼扬安全资源使用情况
+    @inlinable
+    public func describeResourceUsageInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceUsageInfoResponse > {
+        self.describeResourceUsageInfo(DescribeResourceUsageInfoRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全资源使用情况
+    ///
+    /// 查询翼扬安全资源使用情况
+    @inlinable
+    public func describeResourceUsageInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUsageInfoResponse {
+        try await self.describeResourceUsageInfo(DescribeResourceUsageInfoRequest(), logger: logger, on: eventLoop)
+    }
 }

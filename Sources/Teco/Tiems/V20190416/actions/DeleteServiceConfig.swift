@@ -61,4 +61,22 @@ extension Tiems {
     public func deleteServiceConfig(_ input: DeleteServiceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceConfigResponse {
         try await self.client.execute(action: "DeleteServiceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除服务配置
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 删除服务配置
+    @inlinable
+    public func deleteServiceConfig(serviceConfigId: String? = nil, serviceConfigName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServiceConfigResponse > {
+        self.deleteServiceConfig(DeleteServiceConfigRequest(serviceConfigId: serviceConfigId, serviceConfigName: serviceConfigName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除服务配置
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 删除服务配置
+    @inlinable
+    public func deleteServiceConfig(serviceConfigId: String? = nil, serviceConfigName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceConfigResponse {
+        try await self.deleteServiceConfig(DeleteServiceConfigRequest(serviceConfigId: serviceConfigId, serviceConfigName: serviceConfigName), logger: logger, on: eventLoop)
+    }
 }

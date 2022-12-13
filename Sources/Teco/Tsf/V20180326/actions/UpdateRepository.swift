@@ -60,4 +60,16 @@ extension Tsf {
     public func updateRepository(_ input: UpdateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRepositoryResponse {
         try await self.client.execute(action: "UpdateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新仓库信息
+    @inlinable
+    public func updateRepository(repositoryId: String, repositoryDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRepositoryResponse > {
+        self.updateRepository(UpdateRepositoryRequest(repositoryId: repositoryId, repositoryDesc: repositoryDesc), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新仓库信息
+    @inlinable
+    public func updateRepository(repositoryId: String, repositoryDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRepositoryResponse {
+        try await self.updateRepository(UpdateRepositoryRequest(repositoryId: repositoryId, repositoryDesc: repositoryDesc), logger: logger, on: eventLoop)
+    }
 }

@@ -50,4 +50,16 @@ extension Tdmq {
     public func deleteAMQPCluster(_ input: DeleteAMQPClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPClusterResponse {
         try await self.client.execute(action: "DeleteAMQPCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除AMQP集群
+    @inlinable
+    public func deleteAMQPCluster(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAMQPClusterResponse > {
+        self.deleteAMQPCluster(DeleteAMQPClusterRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除AMQP集群
+    @inlinable
+    public func deleteAMQPCluster(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPClusterResponse {
+        try await self.deleteAMQPCluster(DeleteAMQPClusterRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

@@ -64,4 +64,16 @@ extension Dnspod {
     public func createRecordGroup(_ input: CreateRecordGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordGroupResponse {
         try await self.client.execute(action: "CreateRecordGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加记录分组
+    @inlinable
+    public func createRecordGroup(domain: String, groupName: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRecordGroupResponse > {
+        self.createRecordGroup(CreateRecordGroupRequest(domain: domain, groupName: groupName, domainId: domainId), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加记录分组
+    @inlinable
+    public func createRecordGroup(domain: String, groupName: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordGroupResponse {
+        try await self.createRecordGroup(CreateRecordGroupRequest(domain: domain, groupName: groupName, domainId: domainId), logger: logger, on: eventLoop)
+    }
 }

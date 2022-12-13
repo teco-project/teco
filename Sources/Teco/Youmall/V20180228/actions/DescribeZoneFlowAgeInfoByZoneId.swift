@@ -90,4 +90,16 @@ extension Youmall {
     public func describeZoneFlowAgeInfoByZoneId(_ input: DescribeZoneFlowAgeInfoByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowAgeInfoByZoneIdResponse {
         try await self.client.execute(action: "DescribeZoneFlowAgeInfoByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取指定区域人流各年龄占比
+    @inlinable
+    public func describeZoneFlowAgeInfoByZoneId(companyId: String, shopId: Int64, zoneId: Int64, startDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneFlowAgeInfoByZoneIdResponse > {
+        self.describeZoneFlowAgeInfoByZoneId(DescribeZoneFlowAgeInfoByZoneIdRequest(companyId: companyId, shopId: shopId, zoneId: zoneId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定区域人流各年龄占比
+    @inlinable
+    public func describeZoneFlowAgeInfoByZoneId(companyId: String, shopId: Int64, zoneId: Int64, startDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowAgeInfoByZoneIdResponse {
+        try await self.describeZoneFlowAgeInfoByZoneId(DescribeZoneFlowAgeInfoByZoneIdRequest(companyId: companyId, shopId: shopId, zoneId: zoneId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
 }

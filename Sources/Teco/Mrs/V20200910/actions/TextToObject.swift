@@ -74,4 +74,20 @@ extension Mrs {
     public func textToObject(_ input: TextToObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToObjectResponse {
         try await self.client.execute(action: "TextToObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 文本结构化接口
+    ///
+    /// 文本转结构化对象
+    @inlinable
+    public func textToObject(text: String, type: UInt64, isUsedClassify: Bool, userType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextToObjectResponse > {
+        self.textToObject(TextToObjectRequest(text: text, type: type, isUsedClassify: isUsedClassify, userType: userType), logger: logger, on: eventLoop)
+    }
+    
+    /// 文本结构化接口
+    ///
+    /// 文本转结构化对象
+    @inlinable
+    public func textToObject(text: String, type: UInt64, isUsedClassify: Bool, userType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToObjectResponse {
+        try await self.textToObject(TextToObjectRequest(text: text, type: type, isUsedClassify: isUsedClassify, userType: userType), logger: logger, on: eventLoop)
+    }
 }

@@ -82,4 +82,20 @@ extension Tcss {
     public func describeAccessControlEvents(_ input: DescribeAccessControlEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlEventsResponse {
         try await self.client.execute(action: "DescribeAccessControlEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行时访问控制事件列表
+    ///
+    /// 查询运行时访问控制事件列表
+    @inlinable
+    public func describeAccessControlEvents(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessControlEventsResponse > {
+        self.describeAccessControlEvents(DescribeAccessControlEventsRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时访问控制事件列表
+    ///
+    /// 查询运行时访问控制事件列表
+    @inlinable
+    public func describeAccessControlEvents(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlEventsResponse {
+        try await self.describeAccessControlEvents(DescribeAccessControlEventsRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

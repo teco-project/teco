@@ -79,4 +79,20 @@ extension Cr {
     public func uploadDataJson(_ input: UploadDataJsonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadDataJsonResponse {
         try await self.client.execute(action: "UploadDataJson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 上传Json格式数据
+    ///
+    /// 上传Json格式数据，接口返回数据任务ID
+    @inlinable
+    public func uploadDataJson(module: String, operation: String, data: String, uploadModel: String? = nil, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadDataJsonResponse > {
+        self.uploadDataJson(UploadDataJsonRequest(module: module, operation: operation, data: data, uploadModel: uploadModel, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 上传Json格式数据
+    ///
+    /// 上传Json格式数据，接口返回数据任务ID
+    @inlinable
+    public func uploadDataJson(module: String, operation: String, data: String, uploadModel: String? = nil, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadDataJsonResponse {
+        try await self.uploadDataJson(UploadDataJsonRequest(module: module, operation: operation, data: data, uploadModel: uploadModel, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

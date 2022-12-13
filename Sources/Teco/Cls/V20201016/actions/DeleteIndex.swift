@@ -54,4 +54,20 @@ extension Cls {
     public func deleteIndex(_ input: DeleteIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
         try await self.client.execute(action: "DeleteIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除索引配置
+    ///
+    /// 本接口用于删除日志主题的索引配置，删除索引配置后将无法检索和查询采集到的日志。
+    @inlinable
+    public func deleteIndex(topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIndexResponse > {
+        self.deleteIndex(DeleteIndexRequest(topicId: topicId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除索引配置
+    ///
+    /// 本接口用于删除日志主题的索引配置，删除索引配置后将无法检索和查询采集到的日志。
+    @inlinable
+    public func deleteIndex(topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
+        try await self.deleteIndex(DeleteIndexRequest(topicId: topicId), logger: logger, on: eventLoop)
+    }
 }

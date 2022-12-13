@@ -63,4 +63,16 @@ extension Tcss {
     public func describeImageRiskTendency(_ input: DescribeImageRiskTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRiskTendencyResponse {
         try await self.client.execute(action: "DescribeImageRiskTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询容器安全本地镜像风险趋势
+    @inlinable
+    public func describeImageRiskTendency(startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageRiskTendencyResponse > {
+        self.describeImageRiskTendency(DescribeImageRiskTendencyRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器安全本地镜像风险趋势
+    @inlinable
+    public func describeImageRiskTendency(startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRiskTendencyResponse {
+        try await self.describeImageRiskTendency(DescribeImageRiskTendencyRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

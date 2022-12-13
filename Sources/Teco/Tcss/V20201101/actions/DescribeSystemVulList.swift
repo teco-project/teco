@@ -92,4 +92,16 @@ extension Tcss {
     public func describeSystemVulList(_ input: DescribeSystemVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSystemVulListResponse {
         try await self.client.execute(action: "DescribeSystemVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询系统漏洞列表
+    @inlinable
+    public func describeSystemVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSystemVulListResponse > {
+        self.describeSystemVulList(DescribeSystemVulListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询系统漏洞列表
+    @inlinable
+    public func describeSystemVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSystemVulListResponse {
+        try await self.describeSystemVulList(DescribeSystemVulListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

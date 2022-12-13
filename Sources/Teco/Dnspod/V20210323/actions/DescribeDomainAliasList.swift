@@ -59,4 +59,16 @@ extension Dnspod {
     public func describeDomainAliasList(_ input: DescribeDomainAliasListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainAliasListResponse {
         try await self.client.execute(action: "DescribeDomainAliasList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取域名别名列表
+    @inlinable
+    public func describeDomainAliasList(domain: String, domainId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainAliasListResponse > {
+        self.describeDomainAliasList(DescribeDomainAliasListRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取域名别名列表
+    @inlinable
+    public func describeDomainAliasList(domain: String, domainId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainAliasListResponse {
+        try await self.describeDomainAliasList(DescribeDomainAliasListRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
+    }
 }

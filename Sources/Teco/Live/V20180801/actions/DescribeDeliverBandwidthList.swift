@@ -63,4 +63,20 @@ extension Live {
     public func describeDeliverBandwidthList(_ input: DescribeDeliverBandwidthListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliverBandwidthListResponse {
         try await self.client.execute(action: "DescribeDeliverBandwidthList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询直播转推计费带宽
+    ///
+    /// 查询直播转推计费带宽，查询时间范围最大支持3个月内的数据，时间跨度最长31天。
+    @inlinable
+    public func describeDeliverBandwidthList(startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeliverBandwidthListResponse > {
+        self.describeDeliverBandwidthList(DescribeDeliverBandwidthListRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询直播转推计费带宽
+    ///
+    /// 查询直播转推计费带宽，查询时间范围最大支持3个月内的数据，时间跨度最长31天。
+    @inlinable
+    public func describeDeliverBandwidthList(startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliverBandwidthListResponse {
+        try await self.describeDeliverBandwidthList(DescribeDeliverBandwidthListRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

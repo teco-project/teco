@@ -78,4 +78,16 @@ extension Tcaplusdb {
     public func describeIdlFileInfos(_ input: DescribeIdlFileInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIdlFileInfosResponse {
         try await self.client.execute(action: "DescribeIdlFileInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询表描述文件详情
+    @inlinable
+    public func describeIdlFileInfos(clusterId: String, tableGroupIds: [String]? = nil, idlFileIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIdlFileInfosResponse > {
+        self.describeIdlFileInfos(DescribeIdlFileInfosRequest(clusterId: clusterId, tableGroupIds: tableGroupIds, idlFileIds: idlFileIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询表描述文件详情
+    @inlinable
+    public func describeIdlFileInfos(clusterId: String, tableGroupIds: [String]? = nil, idlFileIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIdlFileInfosResponse {
+        try await self.describeIdlFileInfos(DescribeIdlFileInfosRequest(clusterId: clusterId, tableGroupIds: tableGroupIds, idlFileIds: idlFileIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -65,4 +65,22 @@ extension Bmvpc {
     public func deleteSubnet(_ input: DeleteSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubnetResponse {
         try await self.client.execute(action: "DeleteSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除子网
+    ///
+    /// 本接口（DeleteSubnet）用于删除黑石私有网络子网。
+    /// 删除子网前，请清理该子网下所有资源，包括物理机、负载均衡、黑石数据库、弹性IP、NAT网关等资源
+    @inlinable
+    public func deleteSubnet(vpcId: String, subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSubnetResponse > {
+        self.deleteSubnet(DeleteSubnetRequest(vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除子网
+    ///
+    /// 本接口（DeleteSubnet）用于删除黑石私有网络子网。
+    /// 删除子网前，请清理该子网下所有资源，包括物理机、负载均衡、黑石数据库、弹性IP、NAT网关等资源
+    @inlinable
+    public func deleteSubnet(vpcId: String, subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubnetResponse {
+        try await self.deleteSubnet(DeleteSubnetRequest(vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    }
 }

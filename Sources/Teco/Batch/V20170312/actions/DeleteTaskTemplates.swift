@@ -54,4 +54,20 @@ extension Batch {
     public func deleteTaskTemplates(_ input: DeleteTaskTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskTemplatesResponse {
         try await self.client.execute(action: "DeleteTaskTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除任务模板
+    ///
+    /// 用于删除任务模板信息
+    @inlinable
+    public func deleteTaskTemplates(taskTemplateIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTaskTemplatesResponse > {
+        self.deleteTaskTemplates(DeleteTaskTemplatesRequest(taskTemplateIds: taskTemplateIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除任务模板
+    ///
+    /// 用于删除任务模板信息
+    @inlinable
+    public func deleteTaskTemplates(taskTemplateIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskTemplatesResponse {
+        try await self.deleteTaskTemplates(DeleteTaskTemplatesRequest(taskTemplateIds: taskTemplateIds), logger: logger, on: eventLoop)
+    }
 }

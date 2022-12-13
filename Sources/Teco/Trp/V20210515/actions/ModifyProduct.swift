@@ -85,4 +85,16 @@ extension Trp {
     public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
         try await self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 编辑商品
+    @inlinable
+    public func modifyProduct(name: String, productId: String, remark: String? = nil, specification: String? = nil, logo: [String]? = nil, corpId: UInt64? = nil, ext: Ext? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProductResponse > {
+        self.modifyProduct(ModifyProductRequest(name: name, productId: productId, remark: remark, specification: specification, logo: logo, corpId: corpId, ext: ext), logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑商品
+    @inlinable
+    public func modifyProduct(name: String, productId: String, remark: String? = nil, specification: String? = nil, logo: [String]? = nil, corpId: UInt64? = nil, ext: Ext? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
+        try await self.modifyProduct(ModifyProductRequest(name: name, productId: productId, remark: remark, specification: specification, logo: logo, corpId: corpId, ext: ext), logger: logger, on: eventLoop)
+    }
 }

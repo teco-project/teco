@@ -77,4 +77,20 @@ extension Essbasic {
     public func describeFlowApprovers(_ input: DescribeFlowApproversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowApproversResponse {
         try await self.client.execute(action: "DescribeFlowApprovers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询流程参与者信息
+    ///
+    /// 第三方应用可通过此接口（DescribeFlowApprovers）查询流程参与者信息。
+    @inlinable
+    public func describeFlowApprovers(caller: Caller, flowId: String, userId: String? = nil, signId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowApproversResponse > {
+        self.describeFlowApprovers(DescribeFlowApproversRequest(caller: caller, flowId: flowId, userId: userId, signId: signId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流程参与者信息
+    ///
+    /// 第三方应用可通过此接口（DescribeFlowApprovers）查询流程参与者信息。
+    @inlinable
+    public func describeFlowApprovers(caller: Caller, flowId: String, userId: String? = nil, signId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowApproversResponse {
+        try await self.describeFlowApprovers(DescribeFlowApproversRequest(caller: caller, flowId: flowId, userId: userId, signId: signId), logger: logger, on: eventLoop)
+    }
 }

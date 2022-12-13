@@ -78,4 +78,16 @@ extension Tdmq {
     public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
         try await self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取集群列表
+    @inlinable
+    public func describeClusters(offset: UInt64? = nil, limit: UInt64? = nil, clusterIdList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClustersResponse > {
+        self.describeClusters(DescribeClustersRequest(offset: offset, limit: limit, clusterIdList: clusterIdList, isTagFilter: isTagFilter, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群列表
+    @inlinable
+    public func describeClusters(offset: UInt64? = nil, limit: UInt64? = nil, clusterIdList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
+        try await self.describeClusters(DescribeClustersRequest(offset: offset, limit: limit, clusterIdList: clusterIdList, isTagFilter: isTagFilter, filters: filters), logger: logger, on: eventLoop)
+    }
 }

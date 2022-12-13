@@ -62,4 +62,16 @@ extension Tcss {
     public func describeNewestVul(_ input: DescribeNewestVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewestVulResponse {
         try await self.client.execute(action: "DescribeNewestVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询最新披露漏洞列表
+    @inlinable
+    public func describeNewestVul(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewestVulResponse > {
+        self.describeNewestVul(DescribeNewestVulRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询最新披露漏洞列表
+    @inlinable
+    public func describeNewestVul(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewestVulResponse {
+        try await self.describeNewestVul(DescribeNewestVulRequest(), logger: logger, on: eventLoop)
+    }
 }

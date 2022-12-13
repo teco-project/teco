@@ -113,4 +113,24 @@ extension Ecdn {
     public func updateDomainConfig(_ input: UpdateDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDomainConfigResponse {
         try await self.client.execute(action: "UpdateDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新域名配置
+    ///
+    /// 本接口（UpdateDomainConfig）用于更新ECDN加速域名配置信息。
+    /// 注意：如果需要更新复杂类型的配置项，必须传递整个对象的所有属性，未传递的属性将使用默认值。建议通过查询接口获取配置属性后，直接修改后传递给本接口。Https配置由于证书的特殊性，更新时不用传递证书和密钥字段。
+    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/product/228/41116"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @inlinable
+    public func updateDomainConfig(domain: String, origin: Origin? = nil, projectId: Int64? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, responseHeader: ResponseHeader? = nil, cacheKey: CacheKey? = nil, cache: Cache? = nil, https: Https? = nil, forceRedirect: ForceRedirect? = nil, area: String? = nil, webSocket: WebSocket? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDomainConfigResponse > {
+        self.updateDomainConfig(UpdateDomainConfigRequest(domain: domain, origin: origin, projectId: projectId, ipFilter: ipFilter, ipFreqLimit: ipFreqLimit, responseHeader: responseHeader, cacheKey: cacheKey, cache: cache, https: https, forceRedirect: forceRedirect, area: area, webSocket: webSocket), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新域名配置
+    ///
+    /// 本接口（UpdateDomainConfig）用于更新ECDN加速域名配置信息。
+    /// 注意：如果需要更新复杂类型的配置项，必须传递整个对象的所有属性，未传递的属性将使用默认值。建议通过查询接口获取配置属性后，直接修改后传递给本接口。Https配置由于证书的特殊性，更新时不用传递证书和密钥字段。
+    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/product/228/41116"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @inlinable
+    public func updateDomainConfig(domain: String, origin: Origin? = nil, projectId: Int64? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, responseHeader: ResponseHeader? = nil, cacheKey: CacheKey? = nil, cache: Cache? = nil, https: Https? = nil, forceRedirect: ForceRedirect? = nil, area: String? = nil, webSocket: WebSocket? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDomainConfigResponse {
+        try await self.updateDomainConfig(UpdateDomainConfigRequest(domain: domain, origin: origin, projectId: projectId, ipFilter: ipFilter, ipFreqLimit: ipFreqLimit, responseHeader: responseHeader, cacheKey: cacheKey, cache: cache, https: https, forceRedirect: forceRedirect, area: area, webSocket: webSocket), logger: logger, on: eventLoop)
+    }
 }

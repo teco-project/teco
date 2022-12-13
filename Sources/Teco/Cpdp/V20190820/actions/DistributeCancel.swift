@@ -89,4 +89,16 @@ extension Cpdp {
     public func distributeCancel(_ input: DistributeCancelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeCancelResponse {
         try await self.client.execute(action: "DistributeCancel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云支付-分账撤销接口
+    @inlinable
+    public func distributeCancel(openId: String, openKey: String, orderNo: String, outDistributeNo: String? = nil, distributeNo: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DistributeCancelResponse > {
+        self.distributeCancel(DistributeCancelRequest(openId: openId, openKey: openKey, orderNo: orderNo, outDistributeNo: outDistributeNo, distributeNo: distributeNo, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-分账撤销接口
+    @inlinable
+    public func distributeCancel(openId: String, openKey: String, orderNo: String, outDistributeNo: String? = nil, distributeNo: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeCancelResponse {
+        try await self.distributeCancel(DistributeCancelRequest(openId: openId, openKey: openKey, orderNo: orderNo, outDistributeNo: outDistributeNo, distributeNo: distributeNo, profile: profile), logger: logger, on: eventLoop)
+    }
 }

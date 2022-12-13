@@ -92,4 +92,20 @@ extension Partners {
     public func describeAgentBills(_ input: DescribeAgentBillsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentBillsResponse {
         try await self.client.execute(action: "DescribeAgentBills", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询业务明细
+    ///
+    /// 代理商可查询自己及名下代客所有业务明细
+    @inlinable
+    public func describeAgentBills(settleMonth: String, clientUin: String? = nil, payMode: String? = nil, orderId: String? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentBillsResponse > {
+        self.describeAgentBills(DescribeAgentBillsRequest(settleMonth: settleMonth, clientUin: clientUin, payMode: payMode, orderId: orderId, clientRemark: clientRemark, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询业务明细
+    ///
+    /// 代理商可查询自己及名下代客所有业务明细
+    @inlinable
+    public func describeAgentBills(settleMonth: String, clientUin: String? = nil, payMode: String? = nil, orderId: String? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentBillsResponse {
+        try await self.describeAgentBills(DescribeAgentBillsRequest(settleMonth: settleMonth, clientUin: clientUin, payMode: payMode, orderId: orderId, clientRemark: clientRemark, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

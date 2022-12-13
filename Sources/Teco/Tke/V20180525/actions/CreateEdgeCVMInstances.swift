@@ -84,4 +84,16 @@ extension Tke {
     public func createEdgeCVMInstances(_ input: CreateEdgeCVMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeCVMInstancesResponse {
         try await self.client.execute(action: "CreateEdgeCVMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建边缘容器CVM机器
+    @inlinable
+    public func createEdgeCVMInstances(clusterID: String, runInstancePara: String, cvmRegion: String, cvmCount: Int64, external: String? = nil, userScript: String? = nil, enableEni: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeCVMInstancesResponse > {
+        self.createEdgeCVMInstances(CreateEdgeCVMInstancesRequest(clusterID: clusterID, runInstancePara: runInstancePara, cvmRegion: cvmRegion, cvmCount: cvmCount, external: external, userScript: userScript, enableEni: enableEni), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建边缘容器CVM机器
+    @inlinable
+    public func createEdgeCVMInstances(clusterID: String, runInstancePara: String, cvmRegion: String, cvmCount: Int64, external: String? = nil, userScript: String? = nil, enableEni: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeCVMInstancesResponse {
+        try await self.createEdgeCVMInstances(CreateEdgeCVMInstancesRequest(clusterID: clusterID, runInstancePara: runInstancePara, cvmRegion: cvmRegion, cvmCount: cvmCount, external: external, userScript: userScript, enableEni: enableEni), logger: logger, on: eventLoop)
+    }
 }

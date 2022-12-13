@@ -59,4 +59,20 @@ extension Vpc {
     public func rejectAttachCcnInstances(_ input: RejectAttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectAttachCcnInstancesResponse {
         try await self.client.execute(action: "RejectAttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云联网拒绝关联实例
+    ///
+    /// 本接口（RejectAttachCcnInstances）用于跨账号关联实例时，云联网所有者拒绝关联操作。
+    @inlinable
+    public func rejectAttachCcnInstances(ccnId: String, instances: [CcnInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RejectAttachCcnInstancesResponse > {
+        self.rejectAttachCcnInstances(RejectAttachCcnInstancesRequest(ccnId: ccnId, instances: instances), logger: logger, on: eventLoop)
+    }
+    
+    /// 云联网拒绝关联实例
+    ///
+    /// 本接口（RejectAttachCcnInstances）用于跨账号关联实例时，云联网所有者拒绝关联操作。
+    @inlinable
+    public func rejectAttachCcnInstances(ccnId: String, instances: [CcnInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectAttachCcnInstancesResponse {
+        try await self.rejectAttachCcnInstances(RejectAttachCcnInstancesRequest(ccnId: ccnId, instances: instances), logger: logger, on: eventLoop)
+    }
 }

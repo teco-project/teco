@@ -63,4 +63,20 @@ extension Bm {
     public func describeDeviceClass(_ input: DescribeDeviceClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceClassResponse {
         try await self.client.execute(action: "DescribeDeviceClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询设备型号
+    ///
+    /// 获取设备类型
+    @inlinable
+    public func describeDeviceClass(onSale: UInt64? = nil, needPriceInfo: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceClassResponse > {
+        self.describeDeviceClass(DescribeDeviceClassRequest(onSale: onSale, needPriceInfo: needPriceInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备型号
+    ///
+    /// 获取设备类型
+    @inlinable
+    public func describeDeviceClass(onSale: UInt64? = nil, needPriceInfo: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceClassResponse {
+        try await self.describeDeviceClass(DescribeDeviceClassRequest(onSale: onSale, needPriceInfo: needPriceInfo), logger: logger, on: eventLoop)
+    }
 }

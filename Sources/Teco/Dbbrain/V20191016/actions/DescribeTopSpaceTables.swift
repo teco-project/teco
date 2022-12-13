@@ -77,4 +77,20 @@ extension Dbbrain {
     public func describeTopSpaceTables(_ input: DescribeTopSpaceTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopSpaceTablesResponse {
         try await self.client.execute(action: "DescribeTopSpaceTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取Top表的空间统计信息
+    ///
+    /// 获取实例Top表的实时空间统计信息，默认返回按大小排序。
+    @inlinable
+    public func describeTopSpaceTables(instanceId: String, limit: Int64? = nil, sortBy: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopSpaceTablesResponse > {
+        self.describeTopSpaceTables(DescribeTopSpaceTablesRequest(instanceId: instanceId, limit: limit, sortBy: sortBy, product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Top表的空间统计信息
+    ///
+    /// 获取实例Top表的实时空间统计信息，默认返回按大小排序。
+    @inlinable
+    public func describeTopSpaceTables(instanceId: String, limit: Int64? = nil, sortBy: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopSpaceTablesResponse {
+        try await self.describeTopSpaceTables(DescribeTopSpaceTablesRequest(instanceId: instanceId, limit: limit, sortBy: sortBy, product: product), logger: logger, on: eventLoop)
+    }
 }

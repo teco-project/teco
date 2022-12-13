@@ -81,4 +81,20 @@ extension Ecm {
     public func assignIpv6Addresses(_ input: AssignIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6AddressesResponse {
         try await self.client.execute(action: "AssignIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 分配IPv6地址
+    ///
+    /// 本接口（AssignIpv6Addresses）用于弹性网卡申请IPv6地址。
+    @inlinable
+    public func assignIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: Int64? = nil, ipv6ISP: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssignIpv6AddressesResponse > {
+        self.assignIpv6Addresses(AssignIpv6AddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount, ipv6ISP: ipv6ISP), logger: logger, on: eventLoop)
+    }
+    
+    /// 分配IPv6地址
+    ///
+    /// 本接口（AssignIpv6Addresses）用于弹性网卡申请IPv6地址。
+    @inlinable
+    public func assignIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: Int64? = nil, ipv6ISP: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6AddressesResponse {
+        try await self.assignIpv6Addresses(AssignIpv6AddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount, ipv6ISP: ipv6ISP), logger: logger, on: eventLoop)
+    }
 }

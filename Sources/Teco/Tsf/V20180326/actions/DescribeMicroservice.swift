@@ -75,4 +75,16 @@ extension Tsf {
     public func describeMicroservice(_ input: DescribeMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMicroserviceResponse {
         try await self.client.execute(action: "DescribeMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询微服务详情
+    @inlinable
+    public func describeMicroservice(microserviceId: String, offset: Int64? = nil, limit: Int64? = nil, groupIds: [String]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMicroserviceResponse > {
+        self.describeMicroservice(DescribeMicroserviceRequest(microserviceId: microserviceId, offset: offset, limit: limit, groupIds: groupIds, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询微服务详情
+    @inlinable
+    public func describeMicroservice(microserviceId: String, offset: Int64? = nil, limit: Int64? = nil, groupIds: [String]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMicroserviceResponse {
+        try await self.describeMicroservice(DescribeMicroserviceRequest(microserviceId: microserviceId, offset: offset, limit: limit, groupIds: groupIds, filters: filters), logger: logger, on: eventLoop)
+    }
 }

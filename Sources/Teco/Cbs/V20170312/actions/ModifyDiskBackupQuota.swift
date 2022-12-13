@@ -59,4 +59,20 @@ extension Cbs {
     public func modifyDiskBackupQuota(_ input: ModifyDiskBackupQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskBackupQuotaResponse {
         try await self.client.execute(action: "ModifyDiskBackupQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 调整云硬盘备份点配额
+    ///
+    /// 此接口 (ModifyDiskBackupQuota) 用于修改云硬盘备份点配额。
+    @inlinable
+    public func modifyDiskBackupQuota(diskId: String, diskBackupQuota: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDiskBackupQuotaResponse > {
+        self.modifyDiskBackupQuota(ModifyDiskBackupQuotaRequest(diskId: diskId, diskBackupQuota: diskBackupQuota), logger: logger, on: eventLoop)
+    }
+    
+    /// 调整云硬盘备份点配额
+    ///
+    /// 此接口 (ModifyDiskBackupQuota) 用于修改云硬盘备份点配额。
+    @inlinable
+    public func modifyDiskBackupQuota(diskId: String, diskBackupQuota: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskBackupQuotaResponse {
+        try await self.modifyDiskBackupQuota(ModifyDiskBackupQuotaRequest(diskId: diskId, diskBackupQuota: diskBackupQuota), logger: logger, on: eventLoop)
+    }
 }

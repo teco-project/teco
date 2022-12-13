@@ -128,4 +128,16 @@ extension Cdc {
     public func modifySiteDeviceInfo(_ input: ModifySiteDeviceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteDeviceInfoResponse {
         try await self.client.execute(action: "ModifySiteDeviceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改机房设备信息
+    @inlinable
+    public func modifySiteDeviceInfo(siteId: String, fiberType: String? = nil, opticalStandard: String? = nil, powerConnectors: String? = nil, powerFeedDrop: String? = nil, maxWeight: Int64? = nil, powerDrawKva: Int64? = nil, uplinkSpeedGbps: Int64? = nil, uplinkCount: Int64? = nil, conditionRequirement: Bool? = nil, dimensionRequirement: Bool? = nil, redundantNetworking: Bool? = nil, needHelp: Bool? = nil, redundantPower: Bool? = nil, breakerRequirement: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySiteDeviceInfoResponse > {
+        self.modifySiteDeviceInfo(ModifySiteDeviceInfoRequest(siteId: siteId, fiberType: fiberType, opticalStandard: opticalStandard, powerConnectors: powerConnectors, powerFeedDrop: powerFeedDrop, maxWeight: maxWeight, powerDrawKva: powerDrawKva, uplinkSpeedGbps: uplinkSpeedGbps, uplinkCount: uplinkCount, conditionRequirement: conditionRequirement, dimensionRequirement: dimensionRequirement, redundantNetworking: redundantNetworking, needHelp: needHelp, redundantPower: redundantPower, breakerRequirement: breakerRequirement), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改机房设备信息
+    @inlinable
+    public func modifySiteDeviceInfo(siteId: String, fiberType: String? = nil, opticalStandard: String? = nil, powerConnectors: String? = nil, powerFeedDrop: String? = nil, maxWeight: Int64? = nil, powerDrawKva: Int64? = nil, uplinkSpeedGbps: Int64? = nil, uplinkCount: Int64? = nil, conditionRequirement: Bool? = nil, dimensionRequirement: Bool? = nil, redundantNetworking: Bool? = nil, needHelp: Bool? = nil, redundantPower: Bool? = nil, breakerRequirement: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteDeviceInfoResponse {
+        try await self.modifySiteDeviceInfo(ModifySiteDeviceInfoRequest(siteId: siteId, fiberType: fiberType, opticalStandard: opticalStandard, powerConnectors: powerConnectors, powerFeedDrop: powerFeedDrop, maxWeight: maxWeight, powerDrawKva: powerDrawKva, uplinkSpeedGbps: uplinkSpeedGbps, uplinkCount: uplinkCount, conditionRequirement: conditionRequirement, dimensionRequirement: dimensionRequirement, redundantNetworking: redundantNetworking, needHelp: needHelp, redundantPower: redundantPower, breakerRequirement: breakerRequirement), logger: logger, on: eventLoop)
+    }
 }

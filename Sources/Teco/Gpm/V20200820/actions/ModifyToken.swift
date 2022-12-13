@@ -75,4 +75,22 @@ extension Gpm {
     public func modifyToken(_ input: ModifyTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTokenResponse {
         try await self.client.execute(action: "ModifyToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改匹配Token
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 修改匹配Token。
+    @inlinable
+    public func modifyToken(matchCode: String, compatibleSpan: UInt64, matchToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTokenResponse > {
+        self.modifyToken(ModifyTokenRequest(matchCode: matchCode, compatibleSpan: compatibleSpan, matchToken: matchToken), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改匹配Token
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 修改匹配Token。
+    @inlinable
+    public func modifyToken(matchCode: String, compatibleSpan: UInt64, matchToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTokenResponse {
+        try await self.modifyToken(ModifyTokenRequest(matchCode: matchCode, compatibleSpan: compatibleSpan, matchToken: matchToken), logger: logger, on: eventLoop)
+    }
 }

@@ -51,4 +51,20 @@ extension Gaap {
     public func describeBlackHeader(_ input: DescribeBlackHeaderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlackHeaderResponse {
         try await self.client.execute(action: "DescribeBlackHeader", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询禁用自定义header 名称列表
+    ///
+    /// 本接口（DescribeBlackHeader）用于查询禁用的自定义header 名称
+    @inlinable
+    public func describeBlackHeader(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBlackHeaderResponse > {
+        self.describeBlackHeader(DescribeBlackHeaderRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询禁用自定义header 名称列表
+    ///
+    /// 本接口（DescribeBlackHeader）用于查询禁用的自定义header 名称
+    @inlinable
+    public func describeBlackHeader(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlackHeaderResponse {
+        try await self.describeBlackHeader(DescribeBlackHeaderRequest(), logger: logger, on: eventLoop)
+    }
 }

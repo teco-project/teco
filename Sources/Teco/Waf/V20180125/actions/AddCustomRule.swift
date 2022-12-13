@@ -99,4 +99,16 @@ extension Waf {
     public func addCustomRule(_ input: AddCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCustomRuleResponse {
         try await self.client.execute(action: "AddCustomRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 增加自定义策略
+    @inlinable
+    public func addCustomRule(name: String, sortId: String, expireTime: String, strategies: [Strategy], domain: String, actionType: String, redirect: String? = nil, edition: String? = nil, bypass: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddCustomRuleResponse > {
+        self.addCustomRule(AddCustomRuleRequest(name: name, sortId: sortId, expireTime: expireTime, strategies: strategies, domain: domain, actionType: actionType, redirect: redirect, edition: edition, bypass: bypass), logger: logger, on: eventLoop)
+    }
+    
+    /// 增加自定义策略
+    @inlinable
+    public func addCustomRule(name: String, sortId: String, expireTime: String, strategies: [Strategy], domain: String, actionType: String, redirect: String? = nil, edition: String? = nil, bypass: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCustomRuleResponse {
+        try await self.addCustomRule(AddCustomRuleRequest(name: name, sortId: sortId, expireTime: expireTime, strategies: strategies, domain: domain, actionType: actionType, redirect: redirect, edition: edition, bypass: bypass), logger: logger, on: eventLoop)
+    }
 }

@@ -58,4 +58,20 @@ extension Ecm {
     public func describeInstancesDeniedActions(_ input: DescribeInstancesDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDeniedActionsResponse {
         try await self.client.execute(action: "DescribeInstancesDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取禁止的操作列表
+    ///
+    /// 通过实例id获取当前禁止的操作
+    @inlinable
+    public func describeInstancesDeniedActions(instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesDeniedActionsResponse > {
+        self.describeInstancesDeniedActions(DescribeInstancesDeniedActionsRequest(instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取禁止的操作列表
+    ///
+    /// 通过实例id获取当前禁止的操作
+    @inlinable
+    public func describeInstancesDeniedActions(instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDeniedActionsResponse {
+        try await self.describeInstancesDeniedActions(DescribeInstancesDeniedActionsRequest(instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    }
 }

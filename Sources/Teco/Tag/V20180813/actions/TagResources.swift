@@ -71,4 +71,20 @@ extension Tag {
     public func tagResources(_ input: TagResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TagResourcesResponse {
         try await self.client.execute(action: "TagResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 为资源绑定标签
+    ///
+    /// 为指定的多个云产品的多个云资源统一创建并绑定标签。
+    @inlinable
+    public func tagResources(resourceList: [String], tags: [Tag], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TagResourcesResponse > {
+        self.tagResources(TagResourcesRequest(resourceList: resourceList, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 为资源绑定标签
+    ///
+    /// 为指定的多个云产品的多个云资源统一创建并绑定标签。
+    @inlinable
+    public func tagResources(resourceList: [String], tags: [Tag], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TagResourcesResponse {
+        try await self.tagResources(TagResourcesRequest(resourceList: resourceList, tags: tags), logger: logger, on: eventLoop)
+    }
 }

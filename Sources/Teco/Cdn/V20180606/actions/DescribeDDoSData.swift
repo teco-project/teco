@@ -80,4 +80,16 @@ extension Cdn {
     public func describeDDoSData(_ input: DescribeDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSDataResponse {
         try await self.client.execute(action: "DescribeDDoSData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// DDoS统计数据查询
+    @inlinable
+    public func describeDDoSData(startTime: String, endTime: String, interval: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSDataResponse > {
+        self.describeDDoSData(DescribeDDoSDataRequest(startTime: startTime, endTime: endTime, interval: interval), logger: logger, on: eventLoop)
+    }
+    
+    /// DDoS统计数据查询
+    @inlinable
+    public func describeDDoSData(startTime: String, endTime: String, interval: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSDataResponse {
+        try await self.describeDDoSData(DescribeDDoSDataRequest(startTime: startTime, endTime: endTime, interval: interval), logger: logger, on: eventLoop)
+    }
 }

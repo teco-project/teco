@@ -55,4 +55,16 @@ extension Tcb {
     public func createAuthDomain(_ input: CreateAuthDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuthDomainResponse {
         try await self.client.execute(action: "CreateAuthDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 增加安全域名
+    @inlinable
+    public func createAuthDomain(envId: String, domains: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAuthDomainResponse > {
+        self.createAuthDomain(CreateAuthDomainRequest(envId: envId, domains: domains), logger: logger, on: eventLoop)
+    }
+    
+    /// 增加安全域名
+    @inlinable
+    public func createAuthDomain(envId: String, domains: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuthDomainResponse {
+        try await self.createAuthDomain(CreateAuthDomainRequest(envId: envId, domains: domains), logger: logger, on: eventLoop)
+    }
 }

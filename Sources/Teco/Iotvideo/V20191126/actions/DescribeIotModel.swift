@@ -64,4 +64,20 @@ extension Iotvideo {
     public func describeIotModel(_ input: DescribeIotModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotModelResponse {
         try await self.client.execute(action: "DescribeIotModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取物模型定义
+    ///
+    /// 本接口（DescribeIotModel）用于获取物模型定义详情。
+    @inlinable
+    public func describeIotModel(productId: String, revision: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIotModelResponse > {
+        self.describeIotModel(DescribeIotModelRequest(productId: productId, revision: revision), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取物模型定义
+    ///
+    /// 本接口（DescribeIotModel）用于获取物模型定义详情。
+    @inlinable
+    public func describeIotModel(productId: String, revision: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotModelResponse {
+        try await self.describeIotModel(DescribeIotModelRequest(productId: productId, revision: revision), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Live {
     public func describePullStreamConfigs(_ input: DescribePullStreamConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePullStreamConfigsResponse {
         try await self.client.execute(action: "DescribePullStreamConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询拉流配置(该接口已下线,请使用新接口 DescribeLivePullStreamTasks)
+    ///
+    /// 查询直播拉流配置。该接口已下线,请使用新接口 DescribeLivePullStreamTasks。
+    @inlinable
+    public func describePullStreamConfigs(configId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePullStreamConfigsResponse > {
+        self.describePullStreamConfigs(DescribePullStreamConfigsRequest(configId: configId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询拉流配置(该接口已下线,请使用新接口 DescribeLivePullStreamTasks)
+    ///
+    /// 查询直播拉流配置。该接口已下线,请使用新接口 DescribeLivePullStreamTasks。
+    @inlinable
+    public func describePullStreamConfigs(configId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePullStreamConfigsResponse {
+        try await self.describePullStreamConfigs(DescribePullStreamConfigsRequest(configId: configId), logger: logger, on: eventLoop)
+    }
 }

@@ -68,4 +68,20 @@ extension Mongodb {
     public func setPassword(_ input: SetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetPasswordResponse {
         try await self.client.execute(action: "SetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改云数据库实例的账户密码
+    ///
+    /// 本接口(SetPassword)用于设置云数据库账户的密码。
+    @inlinable
+    public func setPassword(instanceId: String, userName: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetPasswordResponse > {
+        self.setPassword(SetPasswordRequest(instanceId: instanceId, userName: userName, password: password), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云数据库实例的账户密码
+    ///
+    /// 本接口(SetPassword)用于设置云数据库账户的密码。
+    @inlinable
+    public func setPassword(instanceId: String, userName: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetPasswordResponse {
+        try await self.setPassword(SetPasswordRequest(instanceId: instanceId, userName: userName, password: password), logger: logger, on: eventLoop)
+    }
 }

@@ -79,4 +79,20 @@ extension Tag {
     public func modifyResourcesTagValue(_ input: ModifyResourcesTagValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourcesTagValueResponse {
         try await self.client.execute(action: "ModifyResourcesTagValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改批量资源关联的标签值
+    ///
+    /// 修改多个资源关联的某个标签键对应的标签值
+    @inlinable
+    public func modifyResourcesTagValue(serviceType: String, resourceIds: [String], tagKey: String, tagValue: String, resourceRegion: String? = nil, resourcePrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourcesTagValueResponse > {
+        self.modifyResourcesTagValue(ModifyResourcesTagValueRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, tagValue: tagValue, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改批量资源关联的标签值
+    ///
+    /// 修改多个资源关联的某个标签键对应的标签值
+    @inlinable
+    public func modifyResourcesTagValue(serviceType: String, resourceIds: [String], tagKey: String, tagValue: String, resourceRegion: String? = nil, resourcePrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourcesTagValueResponse {
+        try await self.modifyResourcesTagValue(ModifyResourcesTagValueRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, tagValue: tagValue, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix), logger: logger, on: eventLoop)
+    }
 }

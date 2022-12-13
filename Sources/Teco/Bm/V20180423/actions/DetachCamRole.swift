@@ -54,4 +54,20 @@ extension Bm {
     public func detachCamRole(_ input: DetachCamRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCamRoleResponse {
         try await self.client.execute(action: "DetachCamRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 服务器解绑CAM角色
+    ///
+    /// 服务器绑定CAM角色
+    @inlinable
+    public func detachCamRole(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachCamRoleResponse > {
+        self.detachCamRole(DetachCamRoleRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 服务器解绑CAM角色
+    ///
+    /// 服务器绑定CAM角色
+    @inlinable
+    public func detachCamRole(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCamRoleResponse {
+        try await self.detachCamRole(DetachCamRoleRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

@@ -38,7 +38,7 @@ extension Iotvideo {
         /// 版本发布的描述信息，需要国际化，可以为空
         public let contents: Contents?
         
-        public init (productId: String, otaVersion: String, grayValue: UInt64, oldVersions: [String]? = nil, `operator`: String? = nil, remark: String? = nil, contents: Contents? = nil) {
+        public init (productId: String, otaVersion: String, grayValue: UInt64, oldVersions: [String]? = nil, operator: String? = nil, remark: String? = nil, contents: Contents? = nil) {
             self.productId = productId
             self.otaVersion = otaVersion
             self.grayValue = grayValue
@@ -83,5 +83,21 @@ extension Iotvideo {
     @inlinable
     public func runOtaVersion(_ input: RunOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunOtaVersionResponse {
         try await self.client.execute(action: "RunOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 固件版本正式发布
+    ///
+    /// 本接口（RunOtaVersion）用于固件版本正式发布。
+    @inlinable
+    public func runOtaVersion(productId: String, otaVersion: String, grayValue: UInt64, oldVersions: [String]? = nil, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunOtaVersionResponse > {
+        self.runOtaVersion(RunOtaVersionRequest(productId: productId, otaVersion: otaVersion, grayValue: grayValue, oldVersions: oldVersions, operator: `operator`, remark: remark, contents: contents), logger: logger, on: eventLoop)
+    }
+    
+    /// 固件版本正式发布
+    ///
+    /// 本接口（RunOtaVersion）用于固件版本正式发布。
+    @inlinable
+    public func runOtaVersion(productId: String, otaVersion: String, grayValue: UInt64, oldVersions: [String]? = nil, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunOtaVersionResponse {
+        try await self.runOtaVersion(RunOtaVersionRequest(productId: productId, otaVersion: otaVersion, grayValue: grayValue, oldVersions: oldVersions, operator: `operator`, remark: remark, contents: contents), logger: logger, on: eventLoop)
     }
 }

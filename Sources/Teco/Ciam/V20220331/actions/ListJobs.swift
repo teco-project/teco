@@ -60,4 +60,16 @@ extension Ciam {
     public func listJobs(_ input: ListJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListJobsResponse {
         try await self.client.execute(action: "ListJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询任务详情
+    @inlinable
+    public func listJobs(userStoreId: String, jobIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListJobsResponse > {
+        self.listJobs(ListJobsRequest(userStoreId: userStoreId, jobIds: jobIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务详情
+    @inlinable
+    public func listJobs(userStoreId: String, jobIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListJobsResponse {
+        try await self.listJobs(ListJobsRequest(userStoreId: userStoreId, jobIds: jobIds), logger: logger, on: eventLoop)
+    }
 }

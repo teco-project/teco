@@ -114,4 +114,20 @@ extension Teo {
     public func describeBotClientIpList(_ input: DescribeBotClientIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotClientIpListResponse {
         try await self.client.execute(action: "DescribeBotClientIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询Bot攻击客户端Ip信息
+    ///
+    /// 本接口（DescribeBotClientIpList）用于查询Bot攻击客户端Ip信息列表。
+    @inlinable
+    public func describeBotClientIpList(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBotClientIpListResponse > {
+        self.describeBotClientIpList(DescribeBotClientIpListRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Bot攻击客户端Ip信息
+    ///
+    /// 本接口（DescribeBotClientIpList）用于查询Bot攻击客户端Ip信息列表。
+    @inlinable
+    public func describeBotClientIpList(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotClientIpListResponse {
+        try await self.describeBotClientIpList(DescribeBotClientIpListRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    }
 }

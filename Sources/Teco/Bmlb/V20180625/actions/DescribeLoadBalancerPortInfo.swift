@@ -58,4 +58,20 @@ extension Bmlb {
     public func describeLoadBalancerPortInfo(_ input: DescribeLoadBalancerPortInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerPortInfoResponse {
         try await self.client.execute(action: "DescribeLoadBalancerPortInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取黑石负载均衡端口相关信息
+    ///
+    /// 获取黑石负载均衡端口相关信息。
+    @inlinable
+    public func describeLoadBalancerPortInfo(loadBalancerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancerPortInfoResponse > {
+        self.describeLoadBalancerPortInfo(DescribeLoadBalancerPortInfoRequest(loadBalancerId: loadBalancerId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取黑石负载均衡端口相关信息
+    ///
+    /// 获取黑石负载均衡端口相关信息。
+    @inlinable
+    public func describeLoadBalancerPortInfo(loadBalancerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerPortInfoResponse {
+        try await self.describeLoadBalancerPortInfo(DescribeLoadBalancerPortInfoRequest(loadBalancerId: loadBalancerId), logger: logger, on: eventLoop)
+    }
 }

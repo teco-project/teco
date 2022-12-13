@@ -62,4 +62,20 @@ extension Tcr {
     public func checkInstance(_ input: CheckInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceResponse {
         try await self.client.execute(action: "CheckInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 校验实例信息
+    ///
+    /// 用于校验企业版实例信息
+    @inlinable
+    public func checkInstance(registryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckInstanceResponse > {
+        self.checkInstance(CheckInstanceRequest(registryId: registryId), logger: logger, on: eventLoop)
+    }
+    
+    /// 校验实例信息
+    ///
+    /// 用于校验企业版实例信息
+    @inlinable
+    public func checkInstance(registryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceResponse {
+        try await self.checkInstance(CheckInstanceRequest(registryId: registryId), logger: logger, on: eventLoop)
+    }
 }

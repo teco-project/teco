@@ -54,4 +54,16 @@ extension Tsf {
     public func createPathRewrites(_ input: CreatePathRewritesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePathRewritesResponse {
         try await self.client.execute(action: "CreatePathRewrites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建路径重写
+    @inlinable
+    public func createPathRewrites(pathRewrites: PathRewriteCreateObject, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePathRewritesResponse > {
+        self.createPathRewrites(CreatePathRewritesRequest(pathRewrites: pathRewrites), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建路径重写
+    @inlinable
+    public func createPathRewrites(pathRewrites: PathRewriteCreateObject, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePathRewritesResponse {
+        try await self.createPathRewrites(CreatePathRewritesRequest(pathRewrites: pathRewrites), logger: logger, on: eventLoop)
+    }
 }

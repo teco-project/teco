@@ -64,4 +64,20 @@ extension Clb {
     public func describeClassicalLBHealthStatus(_ input: DescribeClassicalLBHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBHealthStatusResponse {
         try await self.client.execute(action: "DescribeClassicalLBHealthStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取传统型负载均衡后端的健康状态
+    ///
+    /// DescribeClassicalLBHealthStatus用于获取传统型负载均衡后端的健康状态
+    @inlinable
+    public func describeClassicalLBHealthStatus(loadBalancerId: String, listenerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClassicalLBHealthStatusResponse > {
+        self.describeClassicalLBHealthStatus(DescribeClassicalLBHealthStatusRequest(loadBalancerId: loadBalancerId, listenerId: listenerId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取传统型负载均衡后端的健康状态
+    ///
+    /// DescribeClassicalLBHealthStatus用于获取传统型负载均衡后端的健康状态
+    @inlinable
+    public func describeClassicalLBHealthStatus(loadBalancerId: String, listenerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBHealthStatusResponse {
+        try await self.describeClassicalLBHealthStatus(DescribeClassicalLBHealthStatusRequest(loadBalancerId: loadBalancerId, listenerId: listenerId), logger: logger, on: eventLoop)
+    }
 }

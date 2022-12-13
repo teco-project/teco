@@ -56,4 +56,22 @@ extension Iai {
     public func revertGroupFaceModelVersion(_ input: RevertGroupFaceModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevertGroupFaceModelVersionResponse {
         try await self.client.execute(action: "RevertGroupFaceModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 人员库版本回滚
+    ///
+    /// 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。
+    /// 回滚操作会在10s内生效，回滚操作中，您对人员库的操作可能会失效。
+    @inlinable
+    public func revertGroupFaceModelVersion(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevertGroupFaceModelVersionResponse > {
+        self.revertGroupFaceModelVersion(RevertGroupFaceModelVersionRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
+    
+    /// 人员库版本回滚
+    ///
+    /// 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。
+    /// 回滚操作会在10s内生效，回滚操作中，您对人员库的操作可能会失效。
+    @inlinable
+    public func revertGroupFaceModelVersion(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevertGroupFaceModelVersionResponse {
+        try await self.revertGroupFaceModelVersion(RevertGroupFaceModelVersionRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
 }

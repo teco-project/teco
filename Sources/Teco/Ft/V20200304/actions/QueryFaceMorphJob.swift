@@ -68,4 +68,20 @@ extension Ft {
     public func queryFaceMorphJob(_ input: QueryFaceMorphJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFaceMorphJobResponse {
         try await self.client.execute(action: "QueryFaceMorphJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询人像渐变任务
+    ///
+    /// 查询人像渐变处理进度
+    @inlinable
+    public func queryFaceMorphJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFaceMorphJobResponse > {
+        self.queryFaceMorphJob(QueryFaceMorphJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询人像渐变任务
+    ///
+    /// 查询人像渐变处理进度
+    @inlinable
+    public func queryFaceMorphJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFaceMorphJobResponse {
+        try await self.queryFaceMorphJob(QueryFaceMorphJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
 }

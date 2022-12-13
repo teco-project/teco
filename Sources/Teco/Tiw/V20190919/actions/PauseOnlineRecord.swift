@@ -55,4 +55,16 @@ extension Tiw {
     public func pauseOnlineRecord(_ input: PauseOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PauseOnlineRecordResponse {
         try await self.client.execute(action: "PauseOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 暂停实时录制
+    @inlinable
+    public func pauseOnlineRecord(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PauseOnlineRecordResponse > {
+        self.pauseOnlineRecord(PauseOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 暂停实时录制
+    @inlinable
+    public func pauseOnlineRecord(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PauseOnlineRecordResponse {
+        try await self.pauseOnlineRecord(PauseOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

@@ -1303,7 +1303,7 @@ extension Antiddos {
         /// 证书ID
         public let sslId: String
         
-        public init (status: UInt64, domain: String, `protocol`: String, insId: String, appId: String, virtualPort: String, sslId: String) {
+        public init (status: UInt64, domain: String, protocol: String, insId: String, appId: String, virtualPort: String, sslId: String) {
             self.status = status
             self.domain = domain
             self.`protocol` = `protocol`
@@ -1477,7 +1477,7 @@ extension Antiddos {
         /// 智能cc开关，取值[0(关闭), 1(开启)]
         public let ccaiEnable: UInt64?
         
-        public init (keepTime: UInt64, domain: String, `protocol`: String, sourceType: UInt64, lbType: UInt64, sourceList: [L4RuleSource], keepEnable: UInt64, status: UInt64? = nil, ruleId: String? = nil, ccThreshold: UInt64? = nil, privateKey: String? = nil, ccEnable: UInt64? = nil, httpsToHttpEnable: UInt64? = nil, certType: UInt64? = nil, cert: String? = nil, ccLevel: String? = nil, ruleName: String? = nil, ccStatus: UInt64? = nil, virtualPort: UInt64? = nil, sslId: String? = nil, id: String? = nil, ccaiEnable: UInt64? = nil) {
+        public init (keepTime: UInt64, domain: String, protocol: String, sourceType: UInt64, lbType: UInt64, sourceList: [L4RuleSource], keepEnable: UInt64, status: UInt64? = nil, ruleId: String? = nil, ccThreshold: UInt64? = nil, privateKey: String? = nil, ccEnable: UInt64? = nil, httpsToHttpEnable: UInt64? = nil, certType: UInt64? = nil, cert: String? = nil, ccLevel: String? = nil, ruleName: String? = nil, ccStatus: UInt64? = nil, virtualPort: UInt64? = nil, sslId: String? = nil, id: String? = nil, ccaiEnable: UInt64? = nil) {
             self.keepTime = keepTime
             self.domain = domain
             self.`protocol` = `protocol`
@@ -1635,7 +1635,7 @@ extension Antiddos {
         /// 规则所属的资源实例
         public let instanceDetailRule: [RuleInstanceRelation]?
         
-        public init (backendPort: UInt64, frontendPort: UInt64, `protocol`: String, realServers: [SourceServer], instanceDetails: [InstanceRelation], instanceDetailRule: [RuleInstanceRelation]? = nil) {
+        public init (backendPort: UInt64, frontendPort: UInt64, protocol: String, realServers: [SourceServer], instanceDetails: [InstanceRelation], instanceDetailRule: [RuleInstanceRelation]? = nil) {
             self.backendPort = backendPort
             self.frontendPort = frontendPort
             self.`protocol` = `protocol`
@@ -1791,7 +1791,7 @@ extension Antiddos {
         /// 规则配置失败时的详细错误原因(仅当Status=2时有效)，1001证书不存在，1002证书获取失败，1003证书上传失败，1004证书已过期
         public let errCode: UInt64?
         
-        public init (`protocol`: String, domain: String, lbType: UInt64, keepEnable: UInt64, keepTime: UInt64, sourceType: UInt64, sourceList: [L4RuleSource], region: UInt64? = nil, id: String? = nil, ip: String? = nil, ruleId: String? = nil, ruleName: String? = nil, certType: UInt64? = nil, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil, status: UInt64? = nil, ccStatus: UInt64? = nil, ccEnable: UInt64? = nil, ccThreshold: UInt64? = nil, ccLevel: String? = nil, modifyTime: Date? = nil, httpsToHttpEnable: UInt64? = nil, virtualPort: UInt64? = nil, rewriteHttps: UInt64? = nil, errCode: UInt64? = nil) {
+        public init (protocol: String, domain: String, lbType: UInt64, keepEnable: UInt64, keepTime: UInt64, sourceType: UInt64, sourceList: [L4RuleSource], region: UInt64? = nil, id: String? = nil, ip: String? = nil, ruleId: String? = nil, ruleName: String? = nil, certType: UInt64? = nil, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil, status: UInt64? = nil, ccStatus: UInt64? = nil, ccEnable: UInt64? = nil, ccThreshold: UInt64? = nil, ccLevel: String? = nil, modifyTime: Date? = nil, httpsToHttpEnable: UInt64? = nil, virtualPort: UInt64? = nil, rewriteHttps: UInt64? = nil, errCode: UInt64? = nil) {
             self.`protocol` = `protocol`
             self.domain = domain
             self.lbType = lbType
@@ -2029,7 +2029,7 @@ extension Antiddos {
         /// 大于报文长度，取值1+
         public let pktLenGT: Int64?
         
-        public init (`protocol`: String, sportStart: Int64, sportEnd: Int64, dportStart: Int64, dportEnd: Int64, pktlenMin: Int64, pktlenMax: Int64, action: String, matchBegin: String? = nil, matchType: String? = nil, str: String? = nil, depth: Int64? = nil, offset: Int64? = nil, isNot: Int64? = nil, matchLogic: String? = nil, matchBegin2: String? = nil, matchType2: String? = nil, str2: String? = nil, depth2: Int64? = nil, offset2: Int64? = nil, isNot2: Int64? = nil, id: String? = nil, pktLenGT: Int64? = nil) {
+        public init (protocol: String, sportStart: Int64, sportEnd: Int64, dportStart: Int64, dportEnd: Int64, pktlenMin: Int64, pktlenMax: Int64, action: String, matchBegin: String? = nil, matchType: String? = nil, str: String? = nil, depth: Int64? = nil, offset: Int64? = nil, isNot: Int64? = nil, matchLogic: String? = nil, matchBegin2: String? = nil, matchType2: String? = nil, str2: String? = nil, depth2: Int64? = nil, offset2: Int64? = nil, isNot2: Int64? = nil, id: String? = nil, pktLenGT: Int64? = nil) {
             self.`protocol` = `protocol`
             self.sportStart = sportStart
             self.sportEnd = sportEnd
@@ -2279,7 +2279,7 @@ extension Antiddos {
         /// 端口
         public let port: UInt64
         
-        public init (`protocol`: String, port: UInt64) {
+        public init (protocol: String, port: UInt64) {
             self.`protocol` = `protocol`
             self.port = port
         }

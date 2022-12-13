@@ -113,4 +113,20 @@ extension Lighthouse {
     public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
         try await self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建实例
+    ///
+    /// 本接口(CreateInstances)用于创建一个或多个指定套餐的轻量应用服务器实例。
+    @inlinable
+    public func createInstances(bundleId: String, blueprintId: String, instanceChargePrepaid: InstanceChargePrepaid, instanceName: String? = nil, instanceCount: UInt64? = nil, zones: [String]? = nil, dryRun: Bool? = nil, clientToken: String? = nil, loginConfiguration: LoginConfiguration? = nil, containers: [DockerContainerConfiguration]? = nil, autoVoucher: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstancesResponse > {
+        self.createInstances(CreateInstancesRequest(bundleId: bundleId, blueprintId: blueprintId, instanceChargePrepaid: instanceChargePrepaid, instanceName: instanceName, instanceCount: instanceCount, zones: zones, dryRun: dryRun, clientToken: clientToken, loginConfiguration: loginConfiguration, containers: containers, autoVoucher: autoVoucher), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例
+    ///
+    /// 本接口(CreateInstances)用于创建一个或多个指定套餐的轻量应用服务器实例。
+    @inlinable
+    public func createInstances(bundleId: String, blueprintId: String, instanceChargePrepaid: InstanceChargePrepaid, instanceName: String? = nil, instanceCount: UInt64? = nil, zones: [String]? = nil, dryRun: Bool? = nil, clientToken: String? = nil, loginConfiguration: LoginConfiguration? = nil, containers: [DockerContainerConfiguration]? = nil, autoVoucher: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
+        try await self.createInstances(CreateInstancesRequest(bundleId: bundleId, blueprintId: blueprintId, instanceChargePrepaid: instanceChargePrepaid, instanceName: instanceName, instanceCount: instanceCount, zones: zones, dryRun: dryRun, clientToken: clientToken, loginConfiguration: loginConfiguration, containers: containers, autoVoucher: autoVoucher), logger: logger, on: eventLoop)
+    }
 }

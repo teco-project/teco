@@ -73,4 +73,16 @@ extension Iotexplorer {
     public func describeBindedProducts(_ input: DescribeBindedProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindedProductsResponse {
         try await self.client.execute(action: "DescribeBindedProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取网关产品已经绑定的子产品
+    @inlinable
+    public func describeBindedProducts(gatewayProductId: String, offset: Int64, limit: Int64, productSource: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindedProductsResponse > {
+        self.describeBindedProducts(DescribeBindedProductsRequest(gatewayProductId: gatewayProductId, offset: offset, limit: limit, productSource: productSource), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取网关产品已经绑定的子产品
+    @inlinable
+    public func describeBindedProducts(gatewayProductId: String, offset: Int64, limit: Int64, productSource: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindedProductsResponse {
+        try await self.describeBindedProducts(DescribeBindedProductsRequest(gatewayProductId: gatewayProductId, offset: offset, limit: limit, productSource: productSource), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Mps {
     public func deleteTranscodeTemplate(_ input: DeleteTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTranscodeTemplateResponse {
         try await self.client.execute(action: "DeleteTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除转码模板
+    ///
+    /// 删除用户自定义转码模板。
+    @inlinable
+    public func deleteTranscodeTemplate(definition: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTranscodeTemplateResponse > {
+        self.deleteTranscodeTemplate(DeleteTranscodeTemplateRequest(definition: definition), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除转码模板
+    ///
+    /// 删除用户自定义转码模板。
+    @inlinable
+    public func deleteTranscodeTemplate(definition: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTranscodeTemplateResponse {
+        try await self.deleteTranscodeTemplate(DeleteTranscodeTemplateRequest(definition: definition), logger: logger, on: eventLoop)
+    }
 }

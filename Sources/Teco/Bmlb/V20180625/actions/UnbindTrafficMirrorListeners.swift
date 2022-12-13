@@ -63,4 +63,20 @@ extension Bmlb {
     public func unbindTrafficMirrorListeners(_ input: UnbindTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindTrafficMirrorListenersResponse {
         try await self.client.execute(action: "UnbindTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解绑流量镜像监听器
+    ///
+    /// 解绑流量镜像监听器。
+    @inlinable
+    public func unbindTrafficMirrorListeners(trafficMirrorId: String, listenerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindTrafficMirrorListenersResponse > {
+        self.unbindTrafficMirrorListeners(UnbindTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, listenerIds: listenerIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑流量镜像监听器
+    ///
+    /// 解绑流量镜像监听器。
+    @inlinable
+    public func unbindTrafficMirrorListeners(trafficMirrorId: String, listenerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindTrafficMirrorListenersResponse {
+        try await self.unbindTrafficMirrorListeners(UnbindTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, listenerIds: listenerIds), logger: logger, on: eventLoop)
+    }
 }

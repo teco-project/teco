@@ -59,4 +59,20 @@ extension Teo {
     public func createSpeedTesting(_ input: CreateSpeedTestingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSpeedTestingResponse {
         try await self.client.execute(action: "CreateSpeedTesting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建站点拨测任务
+    ///
+    /// 对用户指定的域名进行一次站点拨测
+    @inlinable
+    public func createSpeedTesting(zoneId: String, host: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSpeedTestingResponse > {
+        self.createSpeedTesting(CreateSpeedTestingRequest(zoneId: zoneId, host: host), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建站点拨测任务
+    ///
+    /// 对用户指定的域名进行一次站点拨测
+    @inlinable
+    public func createSpeedTesting(zoneId: String, host: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSpeedTestingResponse {
+        try await self.createSpeedTesting(CreateSpeedTestingRequest(zoneId: zoneId, host: host), logger: logger, on: eventLoop)
+    }
 }

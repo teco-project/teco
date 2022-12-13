@@ -94,4 +94,16 @@ extension Iotexplorer {
     public func modifyLoRaFrequency(_ input: ModifyLoRaFrequencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoRaFrequencyResponse {
         try await self.client.execute(action: "ModifyLoRaFrequency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改LoRa自定义频点
+    @inlinable
+    public func modifyLoRaFrequency(freqId: String? = nil, freqName: String? = nil, description: String? = nil, channelsDataUp: [UInt64]? = nil, channelsDataRX1: [UInt64]? = nil, channelsDataRX2: [UInt64]? = nil, channelsJoinUp: [UInt64]? = nil, channelsJoinRX1: [UInt64]? = nil, channelsJoinRX2: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoRaFrequencyResponse > {
+        self.modifyLoRaFrequency(ModifyLoRaFrequencyRequest(freqId: freqId, freqName: freqName, description: description, channelsDataUp: channelsDataUp, channelsDataRX1: channelsDataRX1, channelsDataRX2: channelsDataRX2, channelsJoinUp: channelsJoinUp, channelsJoinRX1: channelsJoinRX1, channelsJoinRX2: channelsJoinRX2), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改LoRa自定义频点
+    @inlinable
+    public func modifyLoRaFrequency(freqId: String? = nil, freqName: String? = nil, description: String? = nil, channelsDataUp: [UInt64]? = nil, channelsDataRX1: [UInt64]? = nil, channelsDataRX2: [UInt64]? = nil, channelsJoinUp: [UInt64]? = nil, channelsJoinRX1: [UInt64]? = nil, channelsJoinRX2: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoRaFrequencyResponse {
+        try await self.modifyLoRaFrequency(ModifyLoRaFrequencyRequest(freqId: freqId, freqName: freqName, description: description, channelsDataUp: channelsDataUp, channelsDataRX1: channelsDataRX1, channelsDataRX2: channelsDataRX2, channelsJoinUp: channelsJoinUp, channelsJoinRX1: channelsJoinRX1, channelsJoinRX2: channelsJoinRX2), logger: logger, on: eventLoop)
+    }
 }

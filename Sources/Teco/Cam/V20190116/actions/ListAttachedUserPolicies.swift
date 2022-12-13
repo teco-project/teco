@@ -72,4 +72,20 @@ extension Cam {
     public func listAttachedUserPolicies(_ input: ListAttachedUserPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedUserPoliciesResponse {
         try await self.client.execute(action: "ListAttachedUserPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询子账号关联的策略列表
+    ///
+    /// 本接口（ListAttachedUserPolicies）可用于查询子账号关联的策略列表。
+    @inlinable
+    public func listAttachedUserPolicies(targetUin: UInt64, page: UInt64? = nil, rp: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAttachedUserPoliciesResponse > {
+        self.listAttachedUserPolicies(ListAttachedUserPoliciesRequest(targetUin: targetUin, page: page, rp: rp), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询子账号关联的策略列表
+    ///
+    /// 本接口（ListAttachedUserPolicies）可用于查询子账号关联的策略列表。
+    @inlinable
+    public func listAttachedUserPolicies(targetUin: UInt64, page: UInt64? = nil, rp: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedUserPoliciesResponse {
+        try await self.listAttachedUserPolicies(ListAttachedUserPoliciesRequest(targetUin: targetUin, page: page, rp: rp), logger: logger, on: eventLoop)
+    }
 }

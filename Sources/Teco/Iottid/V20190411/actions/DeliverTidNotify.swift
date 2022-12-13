@@ -71,4 +71,20 @@ extension Iottid {
     public func deliverTidNotify(_ input: DeliverTidNotifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidNotifyResponse {
         try await self.client.execute(action: "DeliverTidNotify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安全芯片TID空发回执
+    ///
+    /// 安全芯片为载体的TID空发回执，绑定TID与订单号。 
+    @inlinable
+    public func deliverTidNotify(orderId: String, tid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeliverTidNotifyResponse > {
+        self.deliverTidNotify(DeliverTidNotifyRequest(orderId: orderId, tid: tid), logger: logger, on: eventLoop)
+    }
+    
+    /// 安全芯片TID空发回执
+    ///
+    /// 安全芯片为载体的TID空发回执，绑定TID与订单号。 
+    @inlinable
+    public func deliverTidNotify(orderId: String, tid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidNotifyResponse {
+        try await self.deliverTidNotify(DeliverTidNotifyRequest(orderId: orderId, tid: tid), logger: logger, on: eventLoop)
+    }
 }

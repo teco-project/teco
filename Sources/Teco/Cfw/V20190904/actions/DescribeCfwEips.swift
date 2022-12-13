@@ -64,4 +64,16 @@ extension Cfw {
     public func describeCfwEips(_ input: DescribeCfwEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfwEipsResponse {
         try await self.client.execute(action: "DescribeCfwEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询防火墙弹性公网IP
+    @inlinable
+    public func describeCfwEips(mode: UInt64, natGatewayId: String, cfwInstance: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfwEipsResponse > {
+        self.describeCfwEips(DescribeCfwEipsRequest(mode: mode, natGatewayId: natGatewayId, cfwInstance: cfwInstance), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询防火墙弹性公网IP
+    @inlinable
+    public func describeCfwEips(mode: UInt64, natGatewayId: String, cfwInstance: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfwEipsResponse {
+        try await self.describeCfwEips(DescribeCfwEipsRequest(mode: mode, natGatewayId: natGatewayId, cfwInstance: cfwInstance), logger: logger, on: eventLoop)
+    }
 }

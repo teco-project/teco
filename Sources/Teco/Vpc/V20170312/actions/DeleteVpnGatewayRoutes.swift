@@ -59,4 +59,20 @@ extension Vpc {
     public func deleteVpnGatewayRoutes(_ input: DeleteVpnGatewayRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewayRoutesResponse {
         try await self.client.execute(action: "DeleteVpnGatewayRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除VPN网关路由
+    ///
+    /// 本接口（DeleteVpnGatewayCcnRoutes）用于删除VPN网关路由
+    @inlinable
+    public func deleteVpnGatewayRoutes(vpnGatewayId: String, routeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnGatewayRoutesResponse > {
+        self.deleteVpnGatewayRoutes(DeleteVpnGatewayRoutesRequest(vpnGatewayId: vpnGatewayId, routeIds: routeIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除VPN网关路由
+    ///
+    /// 本接口（DeleteVpnGatewayCcnRoutes）用于删除VPN网关路由
+    @inlinable
+    public func deleteVpnGatewayRoutes(vpnGatewayId: String, routeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewayRoutesResponse {
+        try await self.deleteVpnGatewayRoutes(DeleteVpnGatewayRoutesRequest(vpnGatewayId: vpnGatewayId, routeIds: routeIds), logger: logger, on: eventLoop)
+    }
 }

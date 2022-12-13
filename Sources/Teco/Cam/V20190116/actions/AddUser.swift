@@ -114,4 +114,16 @@ extension Cam {
     public func addUser(_ input: AddUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserResponse {
         try await self.client.execute(action: "AddUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加子用户
+    @inlinable
+    public func addUser(name: String, remark: String? = nil, consoleLogin: UInt64? = nil, useApi: UInt64? = nil, password: String? = nil, needResetPassword: UInt64? = nil, phoneNum: String? = nil, countryCode: String? = nil, email: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUserResponse > {
+        self.addUser(AddUserRequest(name: name, remark: remark, consoleLogin: consoleLogin, useApi: useApi, password: password, needResetPassword: needResetPassword, phoneNum: phoneNum, countryCode: countryCode, email: email), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加子用户
+    @inlinable
+    public func addUser(name: String, remark: String? = nil, consoleLogin: UInt64? = nil, useApi: UInt64? = nil, password: String? = nil, needResetPassword: UInt64? = nil, phoneNum: String? = nil, countryCode: String? = nil, email: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserResponse {
+        try await self.addUser(AddUserRequest(name: name, remark: remark, consoleLogin: consoleLogin, useApi: useApi, password: password, needResetPassword: needResetPassword, phoneNum: phoneNum, countryCode: countryCode, email: email), logger: logger, on: eventLoop)
+    }
 }

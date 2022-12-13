@@ -63,4 +63,16 @@ extension Teo {
     public func describeSecurityPolicyRegions(_ input: DescribeSecurityPolicyRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyRegionsResponse {
         try await self.client.execute(action: "DescribeSecurityPolicyRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询所有地域信息
+    @inlinable
+    public func describeSecurityPolicyRegions(offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPolicyRegionsResponse > {
+        self.describeSecurityPolicyRegions(DescribeSecurityPolicyRegionsRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询所有地域信息
+    @inlinable
+    public func describeSecurityPolicyRegions(offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyRegionsResponse {
+        try await self.describeSecurityPolicyRegions(DescribeSecurityPolicyRegionsRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -74,4 +74,20 @@ extension Cwp {
     public func describeWebPageGeneralize(_ input: DescribeWebPageGeneralizeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageGeneralizeResponse {
         try await self.client.execute(action: "DescribeWebPageGeneralize", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询网页防篡改概览信息
+    ///
+    /// 查询网站防篡改概览信息
+    @inlinable
+    public func describeWebPageGeneralize(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebPageGeneralizeResponse > {
+        self.describeWebPageGeneralize(DescribeWebPageGeneralizeRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网页防篡改概览信息
+    ///
+    /// 查询网站防篡改概览信息
+    @inlinable
+    public func describeWebPageGeneralize(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageGeneralizeResponse {
+        try await self.describeWebPageGeneralize(DescribeWebPageGeneralizeRequest(), logger: logger, on: eventLoop)
+    }
 }

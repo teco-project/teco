@@ -54,4 +54,20 @@ extension Cdb {
     public func deleteAuditRule(_ input: DeleteAuditRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditRuleResponse {
         try await self.client.execute(action: "DeleteAuditRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除审计规则
+    ///
+    /// 本接口(DeleteAuditRule)用于删除用户的审计规则。
+    @inlinable
+    public func deleteAuditRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAuditRuleResponse > {
+        self.deleteAuditRule(DeleteAuditRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除审计规则
+    ///
+    /// 本接口(DeleteAuditRule)用于删除用户的审计规则。
+    @inlinable
+    public func deleteAuditRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditRuleResponse {
+        try await self.deleteAuditRule(DeleteAuditRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    }
 }

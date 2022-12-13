@@ -68,4 +68,20 @@ extension Bmlb {
     public func createL7Rules(_ input: CreateL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RulesResponse {
         try await self.client.execute(action: "CreateL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建黑石负载均衡七层转发规则
+    ///
+    /// 创建黑石负载均衡七层转发规则。
+    @inlinable
+    public func createL7Rules(loadBalancerId: String, listenerId: String, ruleSet: [CreateL7Rule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateL7RulesResponse > {
+        self.createL7Rules(CreateL7RulesRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, ruleSet: ruleSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建黑石负载均衡七层转发规则
+    ///
+    /// 创建黑石负载均衡七层转发规则。
+    @inlinable
+    public func createL7Rules(loadBalancerId: String, listenerId: String, ruleSet: [CreateL7Rule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RulesResponse {
+        try await self.createL7Rules(CreateL7RulesRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, ruleSet: ruleSet), logger: logger, on: eventLoop)
+    }
 }

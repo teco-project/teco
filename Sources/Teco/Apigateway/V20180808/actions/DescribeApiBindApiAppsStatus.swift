@@ -79,4 +79,20 @@ extension Apigateway {
     public func describeApiBindApiAppsStatus(_ input: DescribeApiBindApiAppsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiBindApiAppsStatusResponse {
         try await self.client.execute(action: "DescribeApiBindApiAppsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询Api绑定的应用列表
+    ///
+    /// 本接口（DescribeApiBindApiAppsStatus）查询Api绑定的应用列表。
+    @inlinable
+    public func describeApiBindApiAppsStatus(serviceId: String, apiIds: [String], limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiBindApiAppsStatusResponse > {
+        self.describeApiBindApiAppsStatus(DescribeApiBindApiAppsStatusRequest(serviceId: serviceId, apiIds: apiIds, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Api绑定的应用列表
+    ///
+    /// 本接口（DescribeApiBindApiAppsStatus）查询Api绑定的应用列表。
+    @inlinable
+    public func describeApiBindApiAppsStatus(serviceId: String, apiIds: [String], limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiBindApiAppsStatusResponse {
+        try await self.describeApiBindApiAppsStatus(DescribeApiBindApiAppsStatusRequest(serviceId: serviceId, apiIds: apiIds, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

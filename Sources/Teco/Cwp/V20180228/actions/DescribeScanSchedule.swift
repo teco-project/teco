@@ -59,4 +59,20 @@ extension Cwp {
     public func describeScanSchedule(_ input: DescribeScanScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanScheduleResponse {
         try await self.client.execute(action: "DescribeScanSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询检测进度
+    ///
+    /// 根据taskid查询检测进度
+    @inlinable
+    public func describeScanSchedule(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanScheduleResponse > {
+        self.describeScanSchedule(DescribeScanScheduleRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询检测进度
+    ///
+    /// 根据taskid查询检测进度
+    @inlinable
+    public func describeScanSchedule(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanScheduleResponse {
+        try await self.describeScanSchedule(DescribeScanScheduleRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

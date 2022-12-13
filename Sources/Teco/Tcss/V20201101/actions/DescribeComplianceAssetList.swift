@@ -78,4 +78,20 @@ extension Tcss {
     public func describeComplianceAssetList(_ input: DescribeComplianceAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetListResponse {
         try await self.client.execute(action: "DescribeComplianceAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安全合规查询某类资产的列表
+    ///
+    /// 查询某类资产的列表
+    @inlinable
+    public func describeComplianceAssetList(assetTypeSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceAssetListResponse > {
+        self.describeComplianceAssetList(DescribeComplianceAssetListRequest(assetTypeSet: assetTypeSet, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规查询某类资产的列表
+    ///
+    /// 查询某类资产的列表
+    @inlinable
+    public func describeComplianceAssetList(assetTypeSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetListResponse {
+        try await self.describeComplianceAssetList(DescribeComplianceAssetListRequest(assetTypeSet: assetTypeSet, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

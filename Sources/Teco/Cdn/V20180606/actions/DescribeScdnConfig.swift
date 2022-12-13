@@ -79,4 +79,20 @@ extension Cdn {
     public func describeScdnConfig(_ input: DescribeScdnConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnConfigResponse {
         try await self.client.execute(action: "DescribeScdnConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// SCDN域名配置
+    ///
+    /// DescribeScdnConfig 用于查询指定 SCDN 加速域名的安全相关配置
+    @inlinable
+    public func describeScdnConfig(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnConfigResponse > {
+        self.describeScdnConfig(DescribeScdnConfigRequest(domain: domain), logger: logger, on: eventLoop)
+    }
+    
+    /// SCDN域名配置
+    ///
+    /// DescribeScdnConfig 用于查询指定 SCDN 加速域名的安全相关配置
+    @inlinable
+    public func describeScdnConfig(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnConfigResponse {
+        try await self.describeScdnConfig(DescribeScdnConfigRequest(domain: domain), logger: logger, on: eventLoop)
+    }
 }

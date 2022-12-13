@@ -88,4 +88,20 @@ extension Vod {
     public func describeWatermarkTemplates(_ input: DescribeWatermarkTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWatermarkTemplatesResponse {
         try await self.client.execute(action: "DescribeWatermarkTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取水印模板列表
+    ///
+    /// 查询用户自定义水印模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeWatermarkTemplates(subAppId: UInt64? = nil, type: String? = nil, offset: UInt64? = nil, definitions: [Int64]? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWatermarkTemplatesResponse > {
+        self.describeWatermarkTemplates(DescribeWatermarkTemplatesRequest(subAppId: subAppId, type: type, offset: offset, definitions: definitions, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取水印模板列表
+    ///
+    /// 查询用户自定义水印模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeWatermarkTemplates(subAppId: UInt64? = nil, type: String? = nil, offset: UInt64? = nil, definitions: [Int64]? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWatermarkTemplatesResponse {
+        try await self.describeWatermarkTemplates(DescribeWatermarkTemplatesRequest(subAppId: subAppId, type: type, offset: offset, definitions: definitions, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -75,4 +75,16 @@ extension Dts {
     public func describeCheckSyncJobResult(_ input: DescribeCheckSyncJobResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckSyncJobResultResponse {
         try await self.client.execute(action: "DescribeCheckSyncJobResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询同步校验任务结果
+    @inlinable
+    public func describeCheckSyncJobResult(jobId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCheckSyncJobResultResponse > {
+        self.describeCheckSyncJobResult(DescribeCheckSyncJobResultRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询同步校验任务结果
+    @inlinable
+    public func describeCheckSyncJobResult(jobId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckSyncJobResultResponse {
+        try await self.describeCheckSyncJobResult(DescribeCheckSyncJobResultRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
 }

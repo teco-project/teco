@@ -55,4 +55,16 @@ extension Tiw {
     public func stopOnlineRecord(_ input: StopOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopOnlineRecordResponse {
         try await self.client.execute(action: "StopOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停止实时录制
+    @inlinable
+    public func stopOnlineRecord(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopOnlineRecordResponse > {
+        self.stopOnlineRecord(StopOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 停止实时录制
+    @inlinable
+    public func stopOnlineRecord(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopOnlineRecordResponse {
+        try await self.stopOnlineRecord(StopOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

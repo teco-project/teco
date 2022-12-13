@@ -92,4 +92,24 @@ extension Rum {
     public func createLogExport(_ input: CreateLogExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogExportResponse {
         try await self.client.execute(action: "CreateLogExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建日志下载任务
+    ///
+    /// 接口请求域名： rum.tencentcloudapi.com 。
+    /// 本接口用于创建日志下载任务
+    /// 默认接口请求频率限制：20次/秒。
+    @inlinable
+    public func createLogExport(id: Int64, startTime: String, endTime: String, query: String, count: Int64, order: String? = nil, format: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLogExportResponse > {
+        self.createLogExport(CreateLogExportRequest(id: id, startTime: startTime, endTime: endTime, query: query, count: count, order: order, format: format), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建日志下载任务
+    ///
+    /// 接口请求域名： rum.tencentcloudapi.com 。
+    /// 本接口用于创建日志下载任务
+    /// 默认接口请求频率限制：20次/秒。
+    @inlinable
+    public func createLogExport(id: Int64, startTime: String, endTime: String, query: String, count: Int64, order: String? = nil, format: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogExportResponse {
+        try await self.createLogExport(CreateLogExportRequest(id: id, startTime: startTime, endTime: endTime, query: query, count: count, order: order, format: format), logger: logger, on: eventLoop)
+    }
 }

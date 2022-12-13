@@ -76,4 +76,24 @@ extension Cvm {
     public func describeInstancesStatus(_ input: DescribeInstancesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesStatusResponse {
         try await self.client.execute(action: "DescribeInstancesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看实例状态列表
+    ///
+    /// 本接口 (DescribeInstancesStatus) 用于查询一个或多个实例的状态。
+    /// * 可以根据实例`ID`来查询实例的状态。
+    /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例状态。
+    @inlinable
+    public func describeInstancesStatus(instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesStatusResponse > {
+        self.describeInstancesStatus(DescribeInstancesStatusRequest(instanceIds: instanceIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看实例状态列表
+    ///
+    /// 本接口 (DescribeInstancesStatus) 用于查询一个或多个实例的状态。
+    /// * 可以根据实例`ID`来查询实例的状态。
+    /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例状态。
+    @inlinable
+    public func describeInstancesStatus(instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesStatusResponse {
+        try await self.describeInstancesStatus(DescribeInstancesStatusRequest(instanceIds: instanceIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

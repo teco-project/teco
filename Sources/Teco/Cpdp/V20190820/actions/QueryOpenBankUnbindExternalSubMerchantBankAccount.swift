@@ -88,4 +88,16 @@ extension Cpdp {
     public func queryOpenBankUnbindExternalSubMerchantBankAccount(_ input: QueryOpenBankUnbindExternalSubMerchantBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankUnbindExternalSubMerchantBankAccountResponse {
         try await self.client.execute(action: "QueryOpenBankUnbindExternalSubMerchantBankAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-子商户银行卡解绑结果查询
+    @inlinable
+    public func queryOpenBankUnbindExternalSubMerchantBankAccount(channelSubMerchantId: String, channelMerchantId: String, channelApplyId: String? = nil, environment: String? = nil, outApplyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankUnbindExternalSubMerchantBankAccountResponse > {
+        self.queryOpenBankUnbindExternalSubMerchantBankAccount(QueryOpenBankUnbindExternalSubMerchantBankAccountRequest(channelSubMerchantId: channelSubMerchantId, channelMerchantId: channelMerchantId, channelApplyId: channelApplyId, environment: environment, outApplyId: outApplyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-子商户银行卡解绑结果查询
+    @inlinable
+    public func queryOpenBankUnbindExternalSubMerchantBankAccount(channelSubMerchantId: String, channelMerchantId: String, channelApplyId: String? = nil, environment: String? = nil, outApplyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankUnbindExternalSubMerchantBankAccountResponse {
+        try await self.queryOpenBankUnbindExternalSubMerchantBankAccount(QueryOpenBankUnbindExternalSubMerchantBankAccountRequest(channelSubMerchantId: channelSubMerchantId, channelMerchantId: channelMerchantId, channelApplyId: channelApplyId, environment: environment, outApplyId: outApplyId), logger: logger, on: eventLoop)
+    }
 }

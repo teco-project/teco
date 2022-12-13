@@ -54,4 +54,20 @@ extension Cvm {
     public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
         try await self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询地域列表
+    ///
+    /// 本接口(DescribeRegions)用于查询地域信息。因平台策略原因，该接口暂时停止更新，为确保您正常调用，可切换至新链接：https://cloud.tencent.com/document/product/1596/77929。
+    @inlinable
+    public func describeRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionsResponse > {
+        self.describeRegions(DescribeRegionsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询地域列表
+    ///
+    /// 本接口(DescribeRegions)用于查询地域信息。因平台策略原因，该接口暂时停止更新，为确保您正常调用，可切换至新链接：https://cloud.tencent.com/document/product/1596/77929。
+    @inlinable
+    public func describeRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
+        try await self.describeRegions(DescribeRegionsRequest(), logger: logger, on: eventLoop)
+    }
 }

@@ -88,4 +88,20 @@ extension Bmvpc {
     public func modifyVpnConnectionAttribute(_ input: ModifyVpnConnectionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnConnectionAttributeResponse {
         try await self.client.execute(action: "ModifyVpnConnectionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改VPN通道
+    ///
+    /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
+    @inlinable
+    public func modifyVpnConnectionAttribute(vpnConnectionId: String, vpcId: String, vpnConnectionName: String? = nil, preShareKey: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpnConnectionAttributeResponse > {
+        self.modifyVpnConnectionAttribute(ModifyVpnConnectionAttributeRequest(vpnConnectionId: vpnConnectionId, vpcId: vpcId, vpnConnectionName: vpnConnectionName, preShareKey: preShareKey, securityPolicyDatabases: securityPolicyDatabases, ikeOptionsSpecification: ikeOptionsSpecification, ipsecOptionsSpecification: ipsecOptionsSpecification), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改VPN通道
+    ///
+    /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
+    @inlinable
+    public func modifyVpnConnectionAttribute(vpnConnectionId: String, vpcId: String, vpnConnectionName: String? = nil, preShareKey: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnConnectionAttributeResponse {
+        try await self.modifyVpnConnectionAttribute(ModifyVpnConnectionAttributeRequest(vpnConnectionId: vpnConnectionId, vpcId: vpcId, vpnConnectionName: vpnConnectionName, preShareKey: preShareKey, securityPolicyDatabases: securityPolicyDatabases, ikeOptionsSpecification: ikeOptionsSpecification, ipsecOptionsSpecification: ipsecOptionsSpecification), logger: logger, on: eventLoop)
+    }
 }

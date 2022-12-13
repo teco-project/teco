@@ -64,4 +64,30 @@ extension Cvm {
     public func terminateInstances(_ input: TerminateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
         try await self.client.execute(action: "TerminateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 退还实例
+    ///
+    /// 本接口 (TerminateInstances) 用于主动退还实例。
+    /// * 不再使用的实例，可通过本接口主动退还。
+    /// * 按量计费的实例通过本接口可直接退还；包年包月实例如符合[退还规则](https://cloud.tencent.com/document/product/213/9711)，也可通过本接口主动退还。
+    /// * 包年包月实例首次调用本接口，实例将被移至回收站，再次调用本接口，实例将被销毁，且不可恢复。按量计费实例调用本接口将被直接销毁。
+    /// * 支持批量操作，每次请求批量实例的上限为100。
+    /// * 批量操作时，所有实例的付费类型必须一致。
+    @inlinable
+    public func terminateInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateInstancesResponse > {
+        self.terminateInstances(TerminateInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 退还实例
+    ///
+    /// 本接口 (TerminateInstances) 用于主动退还实例。
+    /// * 不再使用的实例，可通过本接口主动退还。
+    /// * 按量计费的实例通过本接口可直接退还；包年包月实例如符合[退还规则](https://cloud.tencent.com/document/product/213/9711)，也可通过本接口主动退还。
+    /// * 包年包月实例首次调用本接口，实例将被移至回收站，再次调用本接口，实例将被销毁，且不可恢复。按量计费实例调用本接口将被直接销毁。
+    /// * 支持批量操作，每次请求批量实例的上限为100。
+    /// * 批量操作时，所有实例的付费类型必须一致。
+    @inlinable
+    public func terminateInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
+        try await self.terminateInstances(TerminateInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

@@ -87,4 +87,20 @@ extension Cms {
     public func textModeration(_ input: TextModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextModerationResponse {
         try await self.client.execute(action: "TextModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 文本内容检测
+    ///
+    /// 文本内容检测（Text Moderation）服务使用了深度学习技术，识别涉黄、涉政、涉恐等有害内容，同时支持用户配置词库，打击自定义的违规文本。
+    @inlinable
+    public func textModeration(content: String, device: Device? = nil, user: User? = nil, bizType: UInt64? = nil, dataId: String? = nil, sdkAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextModerationResponse > {
+        self.textModeration(TextModerationRequest(content: content, device: device, user: user, bizType: bizType, dataId: dataId, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 文本内容检测
+    ///
+    /// 文本内容检测（Text Moderation）服务使用了深度学习技术，识别涉黄、涉政、涉恐等有害内容，同时支持用户配置词库，打击自定义的违规文本。
+    @inlinable
+    public func textModeration(content: String, device: Device? = nil, user: User? = nil, bizType: UInt64? = nil, dataId: String? = nil, sdkAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextModerationResponse {
+        try await self.textModeration(TextModerationRequest(content: content, device: device, user: user, bizType: bizType, dataId: dataId, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    }
 }

@@ -85,4 +85,16 @@ extension Iecp {
     public func describeSecret(_ input: DescribeSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretResponse {
         try await self.client.execute(action: "DescribeSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取Secret详情
+    @inlinable
+    public func describeSecret(edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecretResponse > {
+        self.describeSecret(DescribeSecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, secretNamespace: secretNamespace), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Secret详情
+    @inlinable
+    public func describeSecret(edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretResponse {
+        try await self.describeSecret(DescribeSecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, secretNamespace: secretNamespace), logger: logger, on: eventLoop)
+    }
 }

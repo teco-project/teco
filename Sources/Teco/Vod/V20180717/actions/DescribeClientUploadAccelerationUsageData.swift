@@ -82,4 +82,26 @@ extension Vod {
     public func describeClientUploadAccelerationUsageData(_ input: DescribeClientUploadAccelerationUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientUploadAccelerationUsageDataResponse {
         try await self.client.execute(action: "DescribeClientUploadAccelerationUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询客户端上传加速统计数据
+    ///
+    /// 该接口返回查询时间范围内客户端上传加速统计信息。
+    ///    1. 可以查询最近365天内的客户端上传加速统计数据。
+    ///    2. 查询时间跨度不超过90天。
+    ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
+    @inlinable
+    public func describeClientUploadAccelerationUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientUploadAccelerationUsageDataResponse > {
+        self.describeClientUploadAccelerationUsageData(DescribeClientUploadAccelerationUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询客户端上传加速统计数据
+    ///
+    /// 该接口返回查询时间范围内客户端上传加速统计信息。
+    ///    1. 可以查询最近365天内的客户端上传加速统计数据。
+    ///    2. 查询时间跨度不超过90天。
+    ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
+    @inlinable
+    public func describeClientUploadAccelerationUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientUploadAccelerationUsageDataResponse {
+        try await self.describeClientUploadAccelerationUsageData(DescribeClientUploadAccelerationUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type), logger: logger, on: eventLoop)
+    }
 }

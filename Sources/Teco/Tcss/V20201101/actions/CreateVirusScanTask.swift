@@ -84,4 +84,16 @@ extension Tcss {
     public func createVirusScanTask(_ input: CreateVirusScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanTaskResponse {
         try await self.client.execute(action: "CreateVirusScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行时文件查杀一键扫描
+    @inlinable
+    public func createVirusScanTask(scanPathAll: Bool, scanRangeType: UInt64, scanRangeAll: Bool, timeout: UInt64, scanPathType: UInt64? = nil, scanIds: [String]? = nil, scanPath: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVirusScanTaskResponse > {
+        self.createVirusScanTask(CreateVirusScanTaskRequest(scanPathAll: scanPathAll, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, timeout: timeout, scanPathType: scanPathType, scanIds: scanIds, scanPath: scanPath), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时文件查杀一键扫描
+    @inlinable
+    public func createVirusScanTask(scanPathAll: Bool, scanRangeType: UInt64, scanRangeAll: Bool, timeout: UInt64, scanPathType: UInt64? = nil, scanIds: [String]? = nil, scanPath: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanTaskResponse {
+        try await self.createVirusScanTask(CreateVirusScanTaskRequest(scanPathAll: scanPathAll, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, timeout: timeout, scanPathType: scanPathType, scanIds: scanIds, scanPath: scanPath), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Sqlserver {
     public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
         try await self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询售卖可用区
+    ///
+    /// 本接口 (DescribeZones) 用于查询当前可售卖的可用区信息。
+    @inlinable
+    public func describeZones(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZonesResponse > {
+        self.describeZones(DescribeZonesRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询售卖可用区
+    ///
+    /// 本接口 (DescribeZones) 用于查询当前可售卖的可用区信息。
+    @inlinable
+    public func describeZones(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
+        try await self.describeZones(DescribeZonesRequest(), logger: logger, on: eventLoop)
+    }
 }

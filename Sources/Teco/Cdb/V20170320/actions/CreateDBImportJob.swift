@@ -85,4 +85,22 @@ extension Cdb {
     public func createDBImportJob(_ input: CreateDBImportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBImportJobResponse {
         try await self.client.execute(action: "CreateDBImportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建数据导入任务
+    ///
+    /// 本接口(CreateDBImportJob)用于创建云数据库数据导入任务。
+    /// 注意，用户进行数据导入任务的文件，必须提前上传到腾讯云。用户须在控制台进行文件导入。
+    @inlinable
+    public func createDBImportJob(instanceId: String, user: String, fileName: String? = nil, password: String? = nil, dbName: String? = nil, cosUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBImportJobResponse > {
+        self.createDBImportJob(CreateDBImportJobRequest(instanceId: instanceId, user: user, fileName: fileName, password: password, dbName: dbName, cosUrl: cosUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建数据导入任务
+    ///
+    /// 本接口(CreateDBImportJob)用于创建云数据库数据导入任务。
+    /// 注意，用户进行数据导入任务的文件，必须提前上传到腾讯云。用户须在控制台进行文件导入。
+    @inlinable
+    public func createDBImportJob(instanceId: String, user: String, fileName: String? = nil, password: String? = nil, dbName: String? = nil, cosUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBImportJobResponse {
+        try await self.createDBImportJob(CreateDBImportJobRequest(instanceId: instanceId, user: user, fileName: fileName, password: password, dbName: dbName, cosUrl: cosUrl), logger: logger, on: eventLoop)
+    }
 }

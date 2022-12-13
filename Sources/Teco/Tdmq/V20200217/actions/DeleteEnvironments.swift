@@ -63,4 +63,20 @@ extension Tdmq {
     public func deleteEnvironments(_ input: DeleteEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEnvironmentsResponse {
         try await self.client.execute(action: "DeleteEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除命名空间
+    ///
+    /// 批量删除租户下的命名空间
+    @inlinable
+    public func deleteEnvironments(environmentIds: [String], clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEnvironmentsResponse > {
+        self.deleteEnvironments(DeleteEnvironmentsRequest(environmentIds: environmentIds, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除命名空间
+    ///
+    /// 批量删除租户下的命名空间
+    @inlinable
+    public func deleteEnvironments(environmentIds: [String], clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEnvironmentsResponse {
+        try await self.deleteEnvironments(DeleteEnvironmentsRequest(environmentIds: environmentIds, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

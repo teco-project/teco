@@ -60,4 +60,20 @@ extension Tiw {
     public func setTranscodeCallback(_ input: SetTranscodeCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTranscodeCallbackResponse {
         try await self.client.execute(action: "SetTranscodeCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置文档转码回调地址
+    ///
+    /// 设置文档转码回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260
+    @inlinable
+    public func setTranscodeCallback(sdkAppId: Int64, callback: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTranscodeCallbackResponse > {
+        self.setTranscodeCallback(SetTranscodeCallbackRequest(sdkAppId: sdkAppId, callback: callback), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置文档转码回调地址
+    ///
+    /// 设置文档转码回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260
+    @inlinable
+    public func setTranscodeCallback(sdkAppId: Int64, callback: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTranscodeCallbackResponse {
+        try await self.setTranscodeCallback(SetTranscodeCallbackRequest(sdkAppId: sdkAppId, callback: callback), logger: logger, on: eventLoop)
+    }
 }

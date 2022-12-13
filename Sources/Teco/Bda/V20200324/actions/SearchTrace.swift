@@ -103,4 +103,30 @@ extension Bda {
     public func searchTrace(_ input: SearchTraceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchTraceResponse {
         try await self.client.execute(action: "SearchTrace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 人体搜索
+    ///
+    /// 本接口用于对一组待识别的人体动作轨迹（Trace）图片，在人体库中识别出最相似的 TopK 人体，按照相似度从大到小排列。
+    /// 人体动作轨迹（Trace）图片要求：图片中当且仅包含一个人体。人体完整、无遮挡。
+    /// > 请注意：
+    /// - 我们希望您的输入为严格符合动作轨迹图片要求的图片。如果您输入的图片不符合动作轨迹图片要求，会对最终效果产生较大负面影响；
+    /// - 人体动作轨迹，是一个包含1-5张图片的图片序列。您可以输入1张图片作为动作轨迹，也可以输入多张。单个动作轨迹中包含越多符合质量的图片，搜索效果越好。
+    /// - 构成人体动作轨迹单张图片大小不得超过2M，分辨率不得超过1920*1080。
+    @inlinable
+    public func searchTrace(groupId: String, trace: Trace, maxPersonNum: UInt64? = nil, traceMatchThreshold: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchTraceResponse > {
+        self.searchTrace(SearchTraceRequest(groupId: groupId, trace: trace, maxPersonNum: maxPersonNum, traceMatchThreshold: traceMatchThreshold), logger: logger, on: eventLoop)
+    }
+    
+    /// 人体搜索
+    ///
+    /// 本接口用于对一组待识别的人体动作轨迹（Trace）图片，在人体库中识别出最相似的 TopK 人体，按照相似度从大到小排列。
+    /// 人体动作轨迹（Trace）图片要求：图片中当且仅包含一个人体。人体完整、无遮挡。
+    /// > 请注意：
+    /// - 我们希望您的输入为严格符合动作轨迹图片要求的图片。如果您输入的图片不符合动作轨迹图片要求，会对最终效果产生较大负面影响；
+    /// - 人体动作轨迹，是一个包含1-5张图片的图片序列。您可以输入1张图片作为动作轨迹，也可以输入多张。单个动作轨迹中包含越多符合质量的图片，搜索效果越好。
+    /// - 构成人体动作轨迹单张图片大小不得超过2M，分辨率不得超过1920*1080。
+    @inlinable
+    public func searchTrace(groupId: String, trace: Trace, maxPersonNum: UInt64? = nil, traceMatchThreshold: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchTraceResponse {
+        try await self.searchTrace(SearchTraceRequest(groupId: groupId, trace: trace, maxPersonNum: maxPersonNum, traceMatchThreshold: traceMatchThreshold), logger: logger, on: eventLoop)
+    }
 }

@@ -63,4 +63,20 @@ extension Cii {
     public func addSubStructureTasks(_ input: AddSubStructureTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSubStructureTasksResponse {
         try await self.client.execute(action: "AddSubStructureTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 结构化增量子任务
+    ///
+    /// 如果主任务下的报告不满足需求，可以基于主任务批量添加子任务
+    @inlinable
+    public func addSubStructureTasks(mainTaskId: String, taskInfos: [CreateStructureTaskInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddSubStructureTasksResponse > {
+        self.addSubStructureTasks(AddSubStructureTasksRequest(mainTaskId: mainTaskId, taskInfos: taskInfos), logger: logger, on: eventLoop)
+    }
+    
+    /// 结构化增量子任务
+    ///
+    /// 如果主任务下的报告不满足需求，可以基于主任务批量添加子任务
+    @inlinable
+    public func addSubStructureTasks(mainTaskId: String, taskInfos: [CreateStructureTaskInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSubStructureTasksResponse {
+        try await self.addSubStructureTasks(AddSubStructureTasksRequest(mainTaskId: mainTaskId, taskInfos: taskInfos), logger: logger, on: eventLoop)
+    }
 }

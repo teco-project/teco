@@ -65,4 +65,16 @@ extension Tcss {
     public func modifyVirusMonitorSetting(_ input: ModifyVirusMonitorSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusMonitorSettingResponse {
         try await self.client.execute(action: "ModifyVirusMonitorSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行时更新文件查杀实时监控设置
+    @inlinable
+    public func modifyVirusMonitorSetting(enableScan: Bool, scanPathAll: Bool, scanPathType: UInt64, scanPath: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVirusMonitorSettingResponse > {
+        self.modifyVirusMonitorSetting(ModifyVirusMonitorSettingRequest(enableScan: enableScan, scanPathAll: scanPathAll, scanPathType: scanPathType, scanPath: scanPath), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时更新文件查杀实时监控设置
+    @inlinable
+    public func modifyVirusMonitorSetting(enableScan: Bool, scanPathAll: Bool, scanPathType: UInt64, scanPath: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusMonitorSettingResponse {
+        try await self.modifyVirusMonitorSetting(ModifyVirusMonitorSettingRequest(enableScan: enableScan, scanPathAll: scanPathAll, scanPathType: scanPathType, scanPath: scanPath), logger: logger, on: eventLoop)
+    }
 }

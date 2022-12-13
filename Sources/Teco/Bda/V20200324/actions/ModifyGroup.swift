@@ -64,4 +64,20 @@ extension Bda {
     public func modifyGroup(_ input: ModifyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupResponse {
         try await self.client.execute(action: "ModifyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改人体库
+    ///
+    /// 修改人体库名称、备注。
+    @inlinable
+    public func modifyGroup(groupId: String, groupName: String? = nil, tag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGroupResponse > {
+        self.modifyGroup(ModifyGroupRequest(groupId: groupId, groupName: groupName, tag: tag), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改人体库
+    ///
+    /// 修改人体库名称、备注。
+    @inlinable
+    public func modifyGroup(groupId: String, groupName: String? = nil, tag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupResponse {
+        try await self.modifyGroup(ModifyGroupRequest(groupId: groupId, groupName: groupName, tag: tag), logger: logger, on: eventLoop)
+    }
 }

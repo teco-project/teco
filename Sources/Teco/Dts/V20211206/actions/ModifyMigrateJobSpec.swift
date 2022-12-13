@@ -59,4 +59,20 @@ extension Dts {
     public func modifyMigrateJobSpec(_ input: ModifyMigrateJobSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateJobSpecResponse {
         try await self.client.execute(action: "ModifyMigrateJobSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 调整实例规格
+    ///
+    /// 调整实例规格，此接口只支持按量计费任务的调整。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
+    @inlinable
+    public func modifyMigrateJobSpec(jobId: String, newInstanceClass: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrateJobSpecResponse > {
+        self.modifyMigrateJobSpec(ModifyMigrateJobSpecRequest(jobId: jobId, newInstanceClass: newInstanceClass), logger: logger, on: eventLoop)
+    }
+    
+    /// 调整实例规格
+    ///
+    /// 调整实例规格，此接口只支持按量计费任务的调整。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
+    @inlinable
+    public func modifyMigrateJobSpec(jobId: String, newInstanceClass: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateJobSpecResponse {
+        try await self.modifyMigrateJobSpec(ModifyMigrateJobSpecRequest(jobId: jobId, newInstanceClass: newInstanceClass), logger: logger, on: eventLoop)
+    }
 }

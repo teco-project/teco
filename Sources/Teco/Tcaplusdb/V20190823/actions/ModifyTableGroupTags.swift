@@ -70,4 +70,16 @@ extension Tcaplusdb {
     public func modifyTableGroupTags(_ input: ModifyTableGroupTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableGroupTagsResponse {
         try await self.client.execute(action: "ModifyTableGroupTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改表格组标签
+    @inlinable
+    public func modifyTableGroupTags(clusterId: String, tableGroupId: String, replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableGroupTagsResponse > {
+        self.modifyTableGroupTags(ModifyTableGroupTagsRequest(clusterId: clusterId, tableGroupId: tableGroupId, replaceTags: replaceTags, deleteTags: deleteTags), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改表格组标签
+    @inlinable
+    public func modifyTableGroupTags(clusterId: String, tableGroupId: String, replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableGroupTagsResponse {
+        try await self.modifyTableGroupTags(ModifyTableGroupTagsRequest(clusterId: clusterId, tableGroupId: tableGroupId, replaceTags: replaceTags, deleteTags: deleteTags), logger: logger, on: eventLoop)
+    }
 }

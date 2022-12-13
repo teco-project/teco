@@ -64,4 +64,20 @@ extension Chdfs {
     public func describeAccessGroups(_ input: DescribeAccessGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessGroupsResponse {
         try await self.client.execute(action: "DescribeAccessGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看权限组列表
+    ///
+    /// 查看权限组列表。
+    @inlinable
+    public func describeAccessGroups(vpcId: String? = nil, ownerUin: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessGroupsResponse > {
+        self.describeAccessGroups(DescribeAccessGroupsRequest(vpcId: vpcId, ownerUin: ownerUin), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看权限组列表
+    ///
+    /// 查看权限组列表。
+    @inlinable
+    public func describeAccessGroups(vpcId: String? = nil, ownerUin: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessGroupsResponse {
+        try await self.describeAccessGroups(DescribeAccessGroupsRequest(vpcId: vpcId, ownerUin: ownerUin), logger: logger, on: eventLoop)
+    }
 }

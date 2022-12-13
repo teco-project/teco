@@ -83,4 +83,30 @@ extension Trtc {
     public func describeMixTranscodingUsage(_ input: DescribeMixTranscodingUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMixTranscodingUsageResponse {
         try await self.client.execute(action: "DescribeMixTranscodingUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询TRTC混流转码用量
+    ///
+    /// 获取TRTC混流转码的用量明细。
+    /// - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
+    /// - 单次查询统计区间最多不能超过31天。
+    /// - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
+    /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
+    /// - 默认接口请求频率限制：5次/秒。
+    @inlinable
+    public func describeMixTranscodingUsage(startTime: String, endTime: String, sdkAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMixTranscodingUsageResponse > {
+        self.describeMixTranscodingUsage(DescribeMixTranscodingUsageRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询TRTC混流转码用量
+    ///
+    /// 获取TRTC混流转码的用量明细。
+    /// - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
+    /// - 单次查询统计区间最多不能超过31天。
+    /// - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
+    /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
+    /// - 默认接口请求频率限制：5次/秒。
+    @inlinable
+    public func describeMixTranscodingUsage(startTime: String, endTime: String, sdkAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMixTranscodingUsageResponse {
+        try await self.describeMixTranscodingUsage(DescribeMixTranscodingUsageRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    }
 }

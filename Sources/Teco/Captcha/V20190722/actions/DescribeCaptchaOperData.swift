@@ -83,4 +83,20 @@ extension Captcha {
     public func describeCaptchaOperData(_ input: DescribeCaptchaOperDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaOperDataResponse {
         try await self.client.execute(action: "DescribeCaptchaOperData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安全验证码用户操作数据查询
+    ///
+    /// 安全验证码用户操作数据查询，验证码加载耗时type = 1 、拦截情况type = 2、 一周通过平均尝试次数 type = 3、尝试次数分布 type = 4
+    @inlinable
+    public func describeCaptchaOperData(captchaAppId: UInt64, start: UInt64, type: UInt64, end: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaOperDataResponse > {
+        self.describeCaptchaOperData(DescribeCaptchaOperDataRequest(captchaAppId: captchaAppId, start: start, type: type, end: end), logger: logger, on: eventLoop)
+    }
+    
+    /// 安全验证码用户操作数据查询
+    ///
+    /// 安全验证码用户操作数据查询，验证码加载耗时type = 1 、拦截情况type = 2、 一周通过平均尝试次数 type = 3、尝试次数分布 type = 4
+    @inlinable
+    public func describeCaptchaOperData(captchaAppId: UInt64, start: UInt64, type: UInt64, end: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaOperDataResponse {
+        try await self.describeCaptchaOperData(DescribeCaptchaOperDataRequest(captchaAppId: captchaAppId, start: start, type: type, end: end), logger: logger, on: eventLoop)
+    }
 }

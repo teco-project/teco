@@ -96,4 +96,20 @@ extension Faceid {
     public func getEidResult(_ input: GetEidResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEidResultResponse {
         try await self.client.execute(action: "GetEidResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取E证通结果信息
+    ///
+    /// 完成验证后，用EidToken调用本接口获取结果信息，EidToken生成后三天内（3\*24\*3,600秒）可多次拉取。
+    @inlinable
+    public func getEidResult(eidToken: String, infoType: String? = nil, bestFramesCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetEidResultResponse > {
+        self.getEidResult(GetEidResultRequest(eidToken: eidToken, infoType: infoType, bestFramesCount: bestFramesCount), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取E证通结果信息
+    ///
+    /// 完成验证后，用EidToken调用本接口获取结果信息，EidToken生成后三天内（3\*24\*3,600秒）可多次拉取。
+    @inlinable
+    public func getEidResult(eidToken: String, infoType: String? = nil, bestFramesCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEidResultResponse {
+        try await self.getEidResult(GetEidResultRequest(eidToken: eidToken, infoType: infoType, bestFramesCount: bestFramesCount), logger: logger, on: eventLoop)
+    }
 }

@@ -80,4 +80,26 @@ extension Cvm {
     public func importKeyPair(_ input: ImportKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyPairResponse {
         try await self.client.execute(action: "ImportKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导入密钥对
+    ///
+    /// 本接口 (ImportKeyPair) 用于导入密钥对。
+    /// * 本接口的功能是将密钥对导入到用户账户，并不会自动绑定到实例。如需绑定可以使用[AssociasteInstancesKeyPair](https://cloud.tencent.com/document/api/213/9404)接口。
+    /// * 需指定密钥对名称以及该密钥对的公钥文本。
+    /// * 如果用户只有私钥，可以通过 `SSL` 工具将私钥转换成公钥后再导入。
+    @inlinable
+    public func importKeyPair(keyName: String, projectId: Int64, publicKey: String, tagSpecification: [TagSpecification]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportKeyPairResponse > {
+        self.importKeyPair(ImportKeyPairRequest(keyName: keyName, projectId: projectId, publicKey: publicKey, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    }
+    
+    /// 导入密钥对
+    ///
+    /// 本接口 (ImportKeyPair) 用于导入密钥对。
+    /// * 本接口的功能是将密钥对导入到用户账户，并不会自动绑定到实例。如需绑定可以使用[AssociasteInstancesKeyPair](https://cloud.tencent.com/document/api/213/9404)接口。
+    /// * 需指定密钥对名称以及该密钥对的公钥文本。
+    /// * 如果用户只有私钥，可以通过 `SSL` 工具将私钥转换成公钥后再导入。
+    @inlinable
+    public func importKeyPair(keyName: String, projectId: Int64, publicKey: String, tagSpecification: [TagSpecification]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyPairResponse {
+        try await self.importKeyPair(ImportKeyPairRequest(keyName: keyName, projectId: projectId, publicKey: publicKey, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,16 @@ extension Ciam {
     public func createApiImportUserJob(_ input: CreateApiImportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiImportUserJobResponse {
         try await self.client.execute(action: "CreateApiImportUserJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新建接口导入用户任务
+    @inlinable
+    public func createApiImportUserJob(userStoreId: String, dataFlowUserCreateList: [ImportUser], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApiImportUserJobResponse > {
+        self.createApiImportUserJob(CreateApiImportUserJobRequest(userStoreId: userStoreId, dataFlowUserCreateList: dataFlowUserCreateList), logger: logger, on: eventLoop)
+    }
+    
+    /// 新建接口导入用户任务
+    @inlinable
+    public func createApiImportUserJob(userStoreId: String, dataFlowUserCreateList: [ImportUser], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiImportUserJobResponse {
+        try await self.createApiImportUserJob(CreateApiImportUserJobRequest(userStoreId: userStoreId, dataFlowUserCreateList: dataFlowUserCreateList), logger: logger, on: eventLoop)
+    }
 }

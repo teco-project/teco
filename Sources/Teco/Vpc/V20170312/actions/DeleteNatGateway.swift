@@ -56,4 +56,22 @@ extension Vpc {
     public func deleteNatGateway(_ input: DeleteNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatGatewayResponse {
         try await self.client.execute(action: "DeleteNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除NAT网关
+    ///
+    /// 本接口（DeleteNatGateway）用于删除NAT网关。
+    /// 删除 NAT 网关后，系统会自动删除路由表中包含此 NAT 网关的路由项，同时也会解绑弹性公网IP（EIP）。
+    @inlinable
+    public func deleteNatGateway(natGatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNatGatewayResponse > {
+        self.deleteNatGateway(DeleteNatGatewayRequest(natGatewayId: natGatewayId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除NAT网关
+    ///
+    /// 本接口（DeleteNatGateway）用于删除NAT网关。
+    /// 删除 NAT 网关后，系统会自动删除路由表中包含此 NAT 网关的路由项，同时也会解绑弹性公网IP（EIP）。
+    @inlinable
+    public func deleteNatGateway(natGatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatGatewayResponse {
+        try await self.deleteNatGateway(DeleteNatGatewayRequest(natGatewayId: natGatewayId), logger: logger, on: eventLoop)
+    }
 }

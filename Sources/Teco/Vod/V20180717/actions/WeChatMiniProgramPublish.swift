@@ -70,4 +70,22 @@ extension Vod {
     public func weChatMiniProgramPublish(_ input: WeChatMiniProgramPublishRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WeChatMiniProgramPublishResponse {
         try await self.client.execute(action: "WeChatMiniProgramPublish", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 微信小程序视频发布
+    ///
+    /// 将点播视频发布到微信小程序，供微信小程序播放器播放。
+    /// 本接口支持发布原始视频和转码后视频，暂不支持发布自适应码流。
+    @inlinable
+    public func weChatMiniProgramPublish(fileId: String, subAppId: UInt64? = nil, sourceDefinition: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < WeChatMiniProgramPublishResponse > {
+        self.weChatMiniProgramPublish(WeChatMiniProgramPublishRequest(fileId: fileId, subAppId: subAppId, sourceDefinition: sourceDefinition), logger: logger, on: eventLoop)
+    }
+    
+    /// 微信小程序视频发布
+    ///
+    /// 将点播视频发布到微信小程序，供微信小程序播放器播放。
+    /// 本接口支持发布原始视频和转码后视频，暂不支持发布自适应码流。
+    @inlinable
+    public func weChatMiniProgramPublish(fileId: String, subAppId: UInt64? = nil, sourceDefinition: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WeChatMiniProgramPublishResponse {
+        try await self.weChatMiniProgramPublish(WeChatMiniProgramPublishRequest(fileId: fileId, subAppId: subAppId, sourceDefinition: sourceDefinition), logger: logger, on: eventLoop)
+    }
 }

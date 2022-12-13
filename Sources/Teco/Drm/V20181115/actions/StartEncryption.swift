@@ -81,4 +81,22 @@ extension Drm {
     public func startEncryption(_ input: StartEncryptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartEncryptionResponse {
         try await self.client.execute(action: "StartEncryption", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启动DRM加密(该接口已下线)
+    ///
+    /// 开发者调用该接口，启动一次内容文件的DRM加密工作流。
+    /// 注意：该接口已下线。
+    @inlinable
+    public func startEncryption(cosEndPoint: String, cosSecretId: String, cosSecretKey: String, drmType: String, sourceObject: DrmSourceObject, outputObjects: [DrmOutputObject], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartEncryptionResponse > {
+        self.startEncryption(StartEncryptionRequest(cosEndPoint: cosEndPoint, cosSecretId: cosSecretId, cosSecretKey: cosSecretKey, drmType: drmType, sourceObject: sourceObject, outputObjects: outputObjects), logger: logger, on: eventLoop)
+    }
+    
+    /// 启动DRM加密(该接口已下线)
+    ///
+    /// 开发者调用该接口，启动一次内容文件的DRM加密工作流。
+    /// 注意：该接口已下线。
+    @inlinable
+    public func startEncryption(cosEndPoint: String, cosSecretId: String, cosSecretKey: String, drmType: String, sourceObject: DrmSourceObject, outputObjects: [DrmOutputObject], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartEncryptionResponse {
+        try await self.startEncryption(StartEncryptionRequest(cosEndPoint: cosEndPoint, cosSecretId: cosSecretId, cosSecretKey: cosSecretKey, drmType: drmType, sourceObject: sourceObject, outputObjects: outputObjects), logger: logger, on: eventLoop)
+    }
 }

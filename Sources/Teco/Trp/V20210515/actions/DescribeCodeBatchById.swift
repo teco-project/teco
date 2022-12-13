@@ -59,4 +59,16 @@ extension Trp {
     public func describeCodeBatchById(_ input: DescribeCodeBatchByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodeBatchByIdResponse {
         try await self.client.execute(action: "DescribeCodeBatchById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询批次信息
+    @inlinable
+    public func describeCodeBatchById(corpId: UInt64? = nil, batchId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodeBatchByIdResponse > {
+        self.describeCodeBatchById(DescribeCodeBatchByIdRequest(corpId: corpId, batchId: batchId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询批次信息
+    @inlinable
+    public func describeCodeBatchById(corpId: UInt64? = nil, batchId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodeBatchByIdResponse {
+        try await self.describeCodeBatchById(DescribeCodeBatchByIdRequest(corpId: corpId, batchId: batchId), logger: logger, on: eventLoop)
+    }
 }

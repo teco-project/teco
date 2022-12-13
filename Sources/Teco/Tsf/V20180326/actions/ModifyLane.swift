@@ -64,4 +64,16 @@ extension Tsf {
     public func modifyLane(_ input: ModifyLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaneResponse {
         try await self.client.execute(action: "ModifyLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新泳道信息
+    @inlinable
+    public func modifyLane(laneId: String, laneName: String, remark: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLaneResponse > {
+        self.modifyLane(ModifyLaneRequest(laneId: laneId, laneName: laneName, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新泳道信息
+    @inlinable
+    public func modifyLane(laneId: String, laneName: String, remark: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaneResponse {
+        try await self.modifyLane(ModifyLaneRequest(laneId: laneId, laneName: laneName, remark: remark), logger: logger, on: eventLoop)
+    }
 }

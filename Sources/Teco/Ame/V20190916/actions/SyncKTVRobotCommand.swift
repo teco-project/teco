@@ -110,4 +110,20 @@ extension Ame {
     public func syncKTVRobotCommand(_ input: SyncKTVRobotCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncKTVRobotCommandResponse {
         try await self.client.execute(action: "SyncKTVRobotCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 同步直播互动机器人指令
+    ///
+    /// 下发操作机器人指令，支持播放、暂停、恢复、歌单设置等操作指令，实现对机器人行为的控制。
+    @inlinable
+    public func syncKTVRobotCommand(robotId: String, command: String, playCommandInput: PlayCommandInput? = nil, setPlaylistCommandInput: SetPlaylistCommandInput? = nil, seekCommandInput: SeekCommandInput? = nil, setAudioParamCommandInput: SetAudioParamCommandInput? = nil, sendMessageCommandInput: SendMessageCommandInput? = nil, setPlayModeCommandInput: SetPlayModeCommandInput? = nil, setDestroyModeCommandInput: SetDestroyModeCommandInput? = nil, setVolumeCommandInput: SetVolumeCommandInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncKTVRobotCommandResponse > {
+        self.syncKTVRobotCommand(SyncKTVRobotCommandRequest(robotId: robotId, command: command, playCommandInput: playCommandInput, setPlaylistCommandInput: setPlaylistCommandInput, seekCommandInput: seekCommandInput, setAudioParamCommandInput: setAudioParamCommandInput, sendMessageCommandInput: sendMessageCommandInput, setPlayModeCommandInput: setPlayModeCommandInput, setDestroyModeCommandInput: setDestroyModeCommandInput, setVolumeCommandInput: setVolumeCommandInput), logger: logger, on: eventLoop)
+    }
+    
+    /// 同步直播互动机器人指令
+    ///
+    /// 下发操作机器人指令，支持播放、暂停、恢复、歌单设置等操作指令，实现对机器人行为的控制。
+    @inlinable
+    public func syncKTVRobotCommand(robotId: String, command: String, playCommandInput: PlayCommandInput? = nil, setPlaylistCommandInput: SetPlaylistCommandInput? = nil, seekCommandInput: SeekCommandInput? = nil, setAudioParamCommandInput: SetAudioParamCommandInput? = nil, sendMessageCommandInput: SendMessageCommandInput? = nil, setPlayModeCommandInput: SetPlayModeCommandInput? = nil, setDestroyModeCommandInput: SetDestroyModeCommandInput? = nil, setVolumeCommandInput: SetVolumeCommandInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncKTVRobotCommandResponse {
+        try await self.syncKTVRobotCommand(SyncKTVRobotCommandRequest(robotId: robotId, command: command, playCommandInput: playCommandInput, setPlaylistCommandInput: setPlaylistCommandInput, seekCommandInput: seekCommandInput, setAudioParamCommandInput: setAudioParamCommandInput, sendMessageCommandInput: sendMessageCommandInput, setPlayModeCommandInput: setPlayModeCommandInput, setDestroyModeCommandInput: setDestroyModeCommandInput, setVolumeCommandInput: setVolumeCommandInput), logger: logger, on: eventLoop)
+    }
 }

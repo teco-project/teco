@@ -60,4 +60,16 @@ extension Redis {
     public func inquiryPriceRenewInstance(_ input: InquiryPriceRenewInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewInstanceResponse {
         try await self.client.execute(action: "InquiryPriceRenewInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例续费价格（包年包月）
+    @inlinable
+    public func inquiryPriceRenewInstance(period: UInt64, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceRenewInstanceResponse > {
+        self.inquiryPriceRenewInstance(InquiryPriceRenewInstanceRequest(period: period, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例续费价格（包年包月）
+    @inlinable
+    public func inquiryPriceRenewInstance(period: UInt64, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewInstanceResponse {
+        try await self.inquiryPriceRenewInstance(InquiryPriceRenewInstanceRequest(period: period, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

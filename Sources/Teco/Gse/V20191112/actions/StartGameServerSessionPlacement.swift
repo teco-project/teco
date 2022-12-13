@@ -95,4 +95,22 @@ extension Gse {
     public func startGameServerSessionPlacement(_ input: StartGameServerSessionPlacementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartGameServerSessionPlacementResponse {
         try await self.client.execute(action: "StartGameServerSessionPlacement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开始放置游戏服务器会话
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（StartGameServerSessionPlacement）用于开始放置游戏服务器会话。
+    @inlinable
+    public func startGameServerSessionPlacement(placementId: String, gameServerSessionQueueName: String, maximumPlayerSessionCount: UInt64, desiredPlayerSessions: [DesiredPlayerSession]? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionName: String? = nil, playerLatencies: [PlayerLatency]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartGameServerSessionPlacementResponse > {
+        self.startGameServerSessionPlacement(StartGameServerSessionPlacementRequest(placementId: placementId, gameServerSessionQueueName: gameServerSessionQueueName, maximumPlayerSessionCount: maximumPlayerSessionCount, desiredPlayerSessions: desiredPlayerSessions, gameProperties: gameProperties, gameServerSessionData: gameServerSessionData, gameServerSessionName: gameServerSessionName, playerLatencies: playerLatencies), logger: logger, on: eventLoop)
+    }
+    
+    /// 开始放置游戏服务器会话
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（StartGameServerSessionPlacement）用于开始放置游戏服务器会话。
+    @inlinable
+    public func startGameServerSessionPlacement(placementId: String, gameServerSessionQueueName: String, maximumPlayerSessionCount: UInt64, desiredPlayerSessions: [DesiredPlayerSession]? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionName: String? = nil, playerLatencies: [PlayerLatency]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartGameServerSessionPlacementResponse {
+        try await self.startGameServerSessionPlacement(StartGameServerSessionPlacementRequest(placementId: placementId, gameServerSessionQueueName: gameServerSessionQueueName, maximumPlayerSessionCount: maximumPlayerSessionCount, desiredPlayerSessions: desiredPlayerSessions, gameProperties: gameProperties, gameServerSessionData: gameServerSessionData, gameServerSessionName: gameServerSessionName, playerLatencies: playerLatencies), logger: logger, on: eventLoop)
+    }
 }

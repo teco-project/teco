@@ -54,4 +54,20 @@ extension Fmu {
     public func deleteModel(_ input: DeleteModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelResponse {
         try await self.client.execute(action: "DeleteModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除唇色素材
+    ///
+    /// 删除已注册的唇色素材。
+    @inlinable
+    public func deleteModel(modelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModelResponse > {
+        self.deleteModel(DeleteModelRequest(modelId: modelId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除唇色素材
+    ///
+    /// 删除已注册的唇色素材。
+    @inlinable
+    public func deleteModel(modelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelResponse {
+        try await self.deleteModel(DeleteModelRequest(modelId: modelId), logger: logger, on: eventLoop)
+    }
 }

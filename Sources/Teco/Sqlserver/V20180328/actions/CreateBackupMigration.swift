@@ -78,4 +78,20 @@ extension Sqlserver {
     public func createBackupMigration(_ input: CreateBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupMigrationResponse {
         try await self.client.execute(action: "CreateBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建备份导入任务
+    ///
+    /// 本接口（CreateBackupMigration）用于创建备份导入任务。
+    @inlinable
+    public func createBackupMigration(instanceId: String, recoveryType: String, uploadType: String, migrationName: String, backupFiles: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBackupMigrationResponse > {
+        self.createBackupMigration(CreateBackupMigrationRequest(instanceId: instanceId, recoveryType: recoveryType, uploadType: uploadType, migrationName: migrationName, backupFiles: backupFiles), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建备份导入任务
+    ///
+    /// 本接口（CreateBackupMigration）用于创建备份导入任务。
+    @inlinable
+    public func createBackupMigration(instanceId: String, recoveryType: String, uploadType: String, migrationName: String, backupFiles: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupMigrationResponse {
+        try await self.createBackupMigration(CreateBackupMigrationRequest(instanceId: instanceId, recoveryType: recoveryType, uploadType: uploadType, migrationName: migrationName, backupFiles: backupFiles), logger: logger, on: eventLoop)
+    }
 }

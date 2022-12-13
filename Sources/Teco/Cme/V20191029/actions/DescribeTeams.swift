@@ -77,4 +77,20 @@ extension Cme {
     public func describeTeams(_ input: DescribeTeamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTeamsResponse {
         try await self.client.execute(action: "DescribeTeams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取团队信息
+    ///
+    /// 获取指定团队的信息，拉取团队信息列表。
+    @inlinable
+    public func describeTeams(platform: String, teamIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTeamsResponse > {
+        self.describeTeams(DescribeTeamsRequest(platform: platform, teamIds: teamIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取团队信息
+    ///
+    /// 获取指定团队的信息，拉取团队信息列表。
+    @inlinable
+    public func describeTeams(platform: String, teamIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTeamsResponse {
+        try await self.describeTeams(DescribeTeamsRequest(platform: platform, teamIds: teamIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

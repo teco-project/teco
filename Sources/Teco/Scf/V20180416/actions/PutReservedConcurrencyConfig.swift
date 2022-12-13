@@ -64,4 +64,20 @@ extension Scf {
     public func putReservedConcurrencyConfig(_ input: PutReservedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutReservedConcurrencyConfigResponse {
         try await self.client.execute(action: "PutReservedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置最大独占配额
+    ///
+    /// 设置函数最大独占配额
+    @inlinable
+    public func putReservedConcurrencyConfig(functionName: String, reservedConcurrencyMem: UInt64, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutReservedConcurrencyConfigResponse > {
+        self.putReservedConcurrencyConfig(PutReservedConcurrencyConfigRequest(functionName: functionName, reservedConcurrencyMem: reservedConcurrencyMem, namespace: namespace), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置最大独占配额
+    ///
+    /// 设置函数最大独占配额
+    @inlinable
+    public func putReservedConcurrencyConfig(functionName: String, reservedConcurrencyMem: UInt64, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutReservedConcurrencyConfigResponse {
+        try await self.putReservedConcurrencyConfig(PutReservedConcurrencyConfigRequest(functionName: functionName, reservedConcurrencyMem: reservedConcurrencyMem, namespace: namespace), logger: logger, on: eventLoop)
+    }
 }

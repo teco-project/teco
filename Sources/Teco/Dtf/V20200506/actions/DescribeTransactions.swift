@@ -89,4 +89,16 @@ extension Dtf {
     public func describeTransactions(_ input: DescribeTransactionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTransactionsResponse {
         try await self.client.execute(action: "DescribeTransactions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询主事务列表
+    @inlinable
+    public func describeTransactions(groupId: String, transactionBeginFrom: Int64? = nil, transactionBeginTo: Int64? = nil, searchError: Bool? = nil, transactionId: Int64? = nil, transactionIdList: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTransactionsResponse > {
+        self.describeTransactions(DescribeTransactionsRequest(groupId: groupId, transactionBeginFrom: transactionBeginFrom, transactionBeginTo: transactionBeginTo, searchError: searchError, transactionId: transactionId, transactionIdList: transactionIdList, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询主事务列表
+    @inlinable
+    public func describeTransactions(groupId: String, transactionBeginFrom: Int64? = nil, transactionBeginTo: Int64? = nil, searchError: Bool? = nil, transactionId: Int64? = nil, transactionIdList: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTransactionsResponse {
+        try await self.describeTransactions(DescribeTransactionsRequest(groupId: groupId, transactionBeginFrom: transactionBeginFrom, transactionBeginTo: transactionBeginTo, searchError: searchError, transactionId: transactionId, transactionIdList: transactionIdList, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

@@ -82,4 +82,16 @@ extension Teo {
     public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
         try await self.client.execute(action: "DescribeBotManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 分页查询Bot托管规则
+    @inlinable
+    public func describeBotManagedRules(zoneId: String, entity: String, page: Int64, perPage: Int64, ruleType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBotManagedRulesResponse > {
+        self.describeBotManagedRules(DescribeBotManagedRulesRequest(zoneId: zoneId, entity: entity, page: page, perPage: perPage, ruleType: ruleType), logger: logger, on: eventLoop)
+    }
+    
+    /// 分页查询Bot托管规则
+    @inlinable
+    public func describeBotManagedRules(zoneId: String, entity: String, page: Int64, perPage: Int64, ruleType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
+        try await self.describeBotManagedRules(DescribeBotManagedRulesRequest(zoneId: zoneId, entity: entity, page: page, perPage: perPage, ruleType: ruleType), logger: logger, on: eventLoop)
+    }
 }

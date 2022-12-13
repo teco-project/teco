@@ -85,4 +85,20 @@ extension Vms {
     public func sendTtsVoice(_ input: SendTtsVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendTtsVoiceResponse {
         try await self.client.execute(action: "SendTtsVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 指定模板发送语音通知
+    ///
+    /// 给用户发送指定模板的语音通知。
+    @inlinable
+    public func sendTtsVoice(templateId: String, calledNumber: String, voiceSdkAppid: String, templateParamSet: [String]? = nil, playTimes: UInt64? = nil, sessionContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendTtsVoiceResponse > {
+        self.sendTtsVoice(SendTtsVoiceRequest(templateId: templateId, calledNumber: calledNumber, voiceSdkAppid: voiceSdkAppid, templateParamSet: templateParamSet, playTimes: playTimes, sessionContext: sessionContext), logger: logger, on: eventLoop)
+    }
+    
+    /// 指定模板发送语音通知
+    ///
+    /// 给用户发送指定模板的语音通知。
+    @inlinable
+    public func sendTtsVoice(templateId: String, calledNumber: String, voiceSdkAppid: String, templateParamSet: [String]? = nil, playTimes: UInt64? = nil, sessionContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendTtsVoiceResponse {
+        try await self.sendTtsVoice(SendTtsVoiceRequest(templateId: templateId, calledNumber: calledNumber, voiceSdkAppid: voiceSdkAppid, templateParamSet: templateParamSet, playTimes: playTimes, sessionContext: sessionContext), logger: logger, on: eventLoop)
+    }
 }

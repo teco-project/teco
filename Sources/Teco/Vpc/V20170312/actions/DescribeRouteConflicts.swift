@@ -63,4 +63,20 @@ extension Vpc {
     public func describeRouteConflicts(_ input: DescribeRouteConflictsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteConflictsResponse {
         try await self.client.execute(action: "DescribeRouteConflicts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询路由策略冲突列表
+    ///
+    /// 本接口（DescribeRouteConflicts）用于查询自定义路由策略与云联网路由策略冲突列表
+    @inlinable
+    public func describeRouteConflicts(routeTableId: String, destinationCidrBlocks: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRouteConflictsResponse > {
+        self.describeRouteConflicts(DescribeRouteConflictsRequest(routeTableId: routeTableId, destinationCidrBlocks: destinationCidrBlocks), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询路由策略冲突列表
+    ///
+    /// 本接口（DescribeRouteConflicts）用于查询自定义路由策略与云联网路由策略冲突列表
+    @inlinable
+    public func describeRouteConflicts(routeTableId: String, destinationCidrBlocks: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteConflictsResponse {
+        try await self.describeRouteConflicts(DescribeRouteConflictsRequest(routeTableId: routeTableId, destinationCidrBlocks: destinationCidrBlocks), logger: logger, on: eventLoop)
+    }
 }

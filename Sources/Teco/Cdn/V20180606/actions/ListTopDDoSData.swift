@@ -74,4 +74,16 @@ extension Cdn {
     public func listTopDDoSData(_ input: ListTopDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopDDoSDataResponse {
         try await self.client.execute(action: "ListTopDDoSData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取DDoS攻击Top数据
+    @inlinable
+    public func listTopDDoSData(startTime: String, endTime: String, topCount: UInt64? = nil, metric: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopDDoSDataResponse > {
+        self.listTopDDoSData(ListTopDDoSDataRequest(startTime: startTime, endTime: endTime, topCount: topCount, metric: metric), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS攻击Top数据
+    @inlinable
+    public func listTopDDoSData(startTime: String, endTime: String, topCount: UInt64? = nil, metric: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopDDoSDataResponse {
+        try await self.listTopDDoSData(ListTopDDoSDataRequest(startTime: startTime, endTime: endTime, topCount: topCount, metric: metric), logger: logger, on: eventLoop)
+    }
 }

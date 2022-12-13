@@ -64,4 +64,16 @@ extension Apigateway {
     public func describeExclusiveInstancesStatus(_ input: DescribeExclusiveInstancesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveInstancesStatusResponse {
         try await self.client.execute(action: "DescribeExclusiveInstancesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询专享实例列表（新）
+    @inlinable
+    public func describeExclusiveInstancesStatus(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExclusiveInstancesStatusResponse > {
+        self.describeExclusiveInstancesStatus(DescribeExclusiveInstancesStatusRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专享实例列表（新）
+    @inlinable
+    public func describeExclusiveInstancesStatus(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveInstancesStatusResponse {
+        try await self.describeExclusiveInstancesStatus(DescribeExclusiveInstancesStatusRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

@@ -69,4 +69,20 @@ extension Tcb {
     public func describeEnvs(_ input: DescribeEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvsResponse {
         try await self.client.execute(action: "DescribeEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取环境列表
+    ///
+    /// 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
+    @inlinable
+    public func describeEnvs(envId: String? = nil, isVisible: Bool? = nil, channels: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvsResponse > {
+        self.describeEnvs(DescribeEnvsRequest(envId: envId, isVisible: isVisible, channels: channels), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取环境列表
+    ///
+    /// 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
+    @inlinable
+    public func describeEnvs(envId: String? = nil, isVisible: Bool? = nil, channels: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvsResponse {
+        try await self.describeEnvs(DescribeEnvsRequest(envId: envId, isVisible: isVisible, channels: channels), logger: logger, on: eventLoop)
+    }
 }

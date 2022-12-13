@@ -93,4 +93,22 @@ extension Ocr {
     public func englishOCR(_ input: EnglishOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnglishOCRResponse {
         try await self.client.execute(action: "EnglishOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 英文识别
+    ///
+    /// 本接口支持图像英文文字的检测和识别，返回文字框位置与文字内容。支持多场景、任意版面下的英文、字母、数字和常见字符的识别，同时覆盖英文印刷体和英文手写体识别。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func englishOCR(imageBase64: String? = nil, imageUrl: String? = nil, enableCoordPoint: Bool? = nil, enableCandWord: Bool? = nil, preprocess: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnglishOCRResponse > {
+        self.englishOCR(EnglishOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, enableCoordPoint: enableCoordPoint, enableCandWord: enableCandWord, preprocess: preprocess), logger: logger, on: eventLoop)
+    }
+    
+    /// 英文识别
+    ///
+    /// 本接口支持图像英文文字的检测和识别，返回文字框位置与文字内容。支持多场景、任意版面下的英文、字母、数字和常见字符的识别，同时覆盖英文印刷体和英文手写体识别。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func englishOCR(imageBase64: String? = nil, imageUrl: String? = nil, enableCoordPoint: Bool? = nil, enableCandWord: Bool? = nil, preprocess: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnglishOCRResponse {
+        try await self.englishOCR(EnglishOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, enableCoordPoint: enableCoordPoint, enableCandWord: enableCandWord, preprocess: preprocess), logger: logger, on: eventLoop)
+    }
 }

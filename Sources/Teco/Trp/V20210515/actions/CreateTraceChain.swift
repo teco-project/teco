@@ -59,4 +59,16 @@ extension Trp {
     public func createTraceChain(_ input: CreateTraceChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceChainResponse {
         try await self.client.execute(action: "CreateTraceChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 上链溯源信息
+    @inlinable
+    public func createTraceChain(corpId: UInt64? = nil, traceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceChainResponse > {
+        self.createTraceChain(CreateTraceChainRequest(corpId: corpId, traceId: traceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 上链溯源信息
+    @inlinable
+    public func createTraceChain(corpId: UInt64? = nil, traceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceChainResponse {
+        try await self.createTraceChain(CreateTraceChainRequest(corpId: corpId, traceId: traceId), logger: logger, on: eventLoop)
+    }
 }

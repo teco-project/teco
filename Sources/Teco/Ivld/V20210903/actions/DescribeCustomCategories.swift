@@ -50,4 +50,20 @@ extension Ivld {
     public func describeCustomCategories(_ input: DescribeCustomCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomCategoriesResponse {
         try await self.client.execute(action: "DescribeCustomCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量描述自定义人物分类
+    ///
+    /// 批量描述自定义人物分类信息
+    @inlinable
+    public func describeCustomCategories(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomCategoriesResponse > {
+        self.describeCustomCategories(DescribeCustomCategoriesRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量描述自定义人物分类
+    ///
+    /// 批量描述自定义人物分类信息
+    @inlinable
+    public func describeCustomCategories(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomCategoriesResponse {
+        try await self.describeCustomCategories(DescribeCustomCategoriesRequest(), logger: logger, on: eventLoop)
+    }
 }

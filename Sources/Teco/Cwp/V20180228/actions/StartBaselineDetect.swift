@@ -54,4 +54,16 @@ extension Cwp {
     public func startBaselineDetect(_ input: StartBaselineDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBaselineDetectResponse {
         try await self.client.execute(action: "StartBaselineDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 检测基线
+    @inlinable
+    public func startBaselineDetect(param: BaselineDetectParam, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartBaselineDetectResponse > {
+        self.startBaselineDetect(StartBaselineDetectRequest(param: param), logger: logger, on: eventLoop)
+    }
+    
+    /// 检测基线
+    @inlinable
+    public func startBaselineDetect(param: BaselineDetectParam, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBaselineDetectResponse {
+        try await self.startBaselineDetect(StartBaselineDetectRequest(param: param), logger: logger, on: eventLoop)
+    }
 }

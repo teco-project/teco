@@ -80,4 +80,20 @@ extension Yunjing {
     public func describeMaliciousRequests(_ input: DescribeMaliciousRequestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaliciousRequestsResponse {
         try await self.client.execute(action: "DescribeMaliciousRequests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取恶意请求数据
+    ///
+    /// 本接口 (DescribeMaliciousRequests) 用于获取恶意请求数据。
+    @inlinable
+    public func describeMaliciousRequests(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, uuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMaliciousRequestsResponse > {
+        self.describeMaliciousRequests(DescribeMaliciousRequestsRequest(limit: limit, offset: offset, filters: filters, uuid: uuid), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取恶意请求数据
+    ///
+    /// 本接口 (DescribeMaliciousRequests) 用于获取恶意请求数据。
+    @inlinable
+    public func describeMaliciousRequests(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, uuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaliciousRequestsResponse {
+        try await self.describeMaliciousRequests(DescribeMaliciousRequestsRequest(limit: limit, offset: offset, filters: filters, uuid: uuid), logger: logger, on: eventLoop)
+    }
 }

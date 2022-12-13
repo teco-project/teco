@@ -46,4 +46,20 @@ extension Tcr {
     public func deleteImageLifecycleGlobalPersonal(_ input: DeleteImageLifecycleGlobalPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageLifecycleGlobalPersonalResponse {
         try await self.client.execute(action: "DeleteImageLifecycleGlobalPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除个人版全局镜像版本自动清理策略
+    ///
+    /// 用于删除个人版全局镜像版本自动清理策略
+    @inlinable
+    public func deleteImageLifecycleGlobalPersonal(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageLifecycleGlobalPersonalResponse > {
+        self.deleteImageLifecycleGlobalPersonal(DeleteImageLifecycleGlobalPersonalRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除个人版全局镜像版本自动清理策略
+    ///
+    /// 用于删除个人版全局镜像版本自动清理策略
+    @inlinable
+    public func deleteImageLifecycleGlobalPersonal(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageLifecycleGlobalPersonalResponse {
+        try await self.deleteImageLifecycleGlobalPersonal(DeleteImageLifecycleGlobalPersonalRequest(), logger: logger, on: eventLoop)
+    }
 }

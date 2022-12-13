@@ -54,4 +54,20 @@ extension Tke {
     public func deleteImageCaches(_ input: DeleteImageCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageCachesResponse {
         try await self.client.execute(action: "DeleteImageCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除镜像缓存
+    ///
+    /// 批量删除镜像缓存
+    @inlinable
+    public func deleteImageCaches(imageCacheIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageCachesResponse > {
+        self.deleteImageCaches(DeleteImageCachesRequest(imageCacheIds: imageCacheIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除镜像缓存
+    ///
+    /// 批量删除镜像缓存
+    @inlinable
+    public func deleteImageCaches(imageCacheIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageCachesResponse {
+        try await self.deleteImageCaches(DeleteImageCachesRequest(imageCacheIds: imageCacheIds), logger: logger, on: eventLoop)
+    }
 }

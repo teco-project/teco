@@ -73,4 +73,20 @@ extension Cdb {
     public func switchDBInstanceMasterSlave(_ input: SwitchDBInstanceMasterSlaveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDBInstanceMasterSlaveResponse {
         try await self.client.execute(action: "SwitchDBInstanceMasterSlave", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 切换实例主从角色
+    ///
+    /// 该接口 (SwitchDBInstanceMasterSlave) 支持用户主动切换实例主从角色。
+    @inlinable
+    public func switchDBInstanceMasterSlave(instanceId: String, dstSlave: String? = nil, forceSwitch: Bool? = nil, waitSwitch: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchDBInstanceMasterSlaveResponse > {
+        self.switchDBInstanceMasterSlave(SwitchDBInstanceMasterSlaveRequest(instanceId: instanceId, dstSlave: dstSlave, forceSwitch: forceSwitch, waitSwitch: waitSwitch), logger: logger, on: eventLoop)
+    }
+    
+    /// 切换实例主从角色
+    ///
+    /// 该接口 (SwitchDBInstanceMasterSlave) 支持用户主动切换实例主从角色。
+    @inlinable
+    public func switchDBInstanceMasterSlave(instanceId: String, dstSlave: String? = nil, forceSwitch: Bool? = nil, waitSwitch: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDBInstanceMasterSlaveResponse {
+        try await self.switchDBInstanceMasterSlave(SwitchDBInstanceMasterSlaveRequest(instanceId: instanceId, dstSlave: dstSlave, forceSwitch: forceSwitch, waitSwitch: waitSwitch), logger: logger, on: eventLoop)
+    }
 }

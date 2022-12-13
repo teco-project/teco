@@ -74,4 +74,16 @@ extension Redis {
     public func upgradeInstance(_ input: UpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceResponse {
         try await self.client.execute(action: "UpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 变更实例配置
+    @inlinable
+    public func upgradeInstance(instanceId: String, memSize: UInt64, redisShardNum: UInt64? = nil, redisReplicasNum: UInt64? = nil, nodeSet: [RedisNodeInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeInstanceResponse > {
+        self.upgradeInstance(UpgradeInstanceRequest(instanceId: instanceId, memSize: memSize, redisShardNum: redisShardNum, redisReplicasNum: redisReplicasNum, nodeSet: nodeSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 变更实例配置
+    @inlinable
+    public func upgradeInstance(instanceId: String, memSize: UInt64, redisShardNum: UInt64? = nil, redisReplicasNum: UInt64? = nil, nodeSet: [RedisNodeInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceResponse {
+        try await self.upgradeInstance(UpgradeInstanceRequest(instanceId: instanceId, memSize: memSize, redisShardNum: redisShardNum, redisReplicasNum: redisReplicasNum, nodeSet: nodeSet), logger: logger, on: eventLoop)
+    }
 }

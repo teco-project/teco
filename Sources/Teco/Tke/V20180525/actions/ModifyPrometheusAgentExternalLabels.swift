@@ -60,4 +60,16 @@ extension Tke {
     public func modifyPrometheusAgentExternalLabels(_ input: ModifyPrometheusAgentExternalLabelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAgentExternalLabelsResponse {
         try await self.client.execute(action: "ModifyPrometheusAgentExternalLabels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改被关联集群的external labels
+    @inlinable
+    public func modifyPrometheusAgentExternalLabels(instanceId: String, clusterId: String, externalLabels: [Label], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusAgentExternalLabelsResponse > {
+        self.modifyPrometheusAgentExternalLabels(ModifyPrometheusAgentExternalLabelsRequest(instanceId: instanceId, clusterId: clusterId, externalLabels: externalLabels), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改被关联集群的external labels
+    @inlinable
+    public func modifyPrometheusAgentExternalLabels(instanceId: String, clusterId: String, externalLabels: [Label], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAgentExternalLabelsResponse {
+        try await self.modifyPrometheusAgentExternalLabels(ModifyPrometheusAgentExternalLabelsRequest(instanceId: instanceId, clusterId: clusterId, externalLabels: externalLabels), logger: logger, on: eventLoop)
+    }
 }

@@ -61,4 +61,22 @@ extension Monitor {
     public func setDefaultAlarmPolicy(_ input: SetDefaultAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDefaultAlarmPolicyResponse {
         try await self.client.execute(action: "SetDefaultAlarmPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设为默认告警策略
+    ///
+    /// 设置一个策略为该告警策略类型、该项目的默认告警策略。
+    /// 同一项目下相同的告警策略类型，就会被设置为非默认。
+    @inlinable
+    public func setDefaultAlarmPolicy(module: String, policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetDefaultAlarmPolicyResponse > {
+        self.setDefaultAlarmPolicy(SetDefaultAlarmPolicyRequest(module: module, policyId: policyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 设为默认告警策略
+    ///
+    /// 设置一个策略为该告警策略类型、该项目的默认告警策略。
+    /// 同一项目下相同的告警策略类型，就会被设置为非默认。
+    @inlinable
+    public func setDefaultAlarmPolicy(module: String, policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDefaultAlarmPolicyResponse {
+        try await self.setDefaultAlarmPolicy(SetDefaultAlarmPolicyRequest(module: module, policyId: policyId), logger: logger, on: eventLoop)
+    }
 }

@@ -75,4 +75,20 @@ extension Cr {
     public func downloadBotRecord(_ input: DownloadBotRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadBotRecordResponse {
         try await self.client.execute(action: "DownloadBotRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 下载任务录音与文本
+    ///
+    /// 下载任务录音与文本，第二天12点后可使用此接口获取对应的录音与文本
+    @inlinable
+    public func downloadBotRecord(module: String, operation: String, bizDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadBotRecordResponse > {
+        self.downloadBotRecord(DownloadBotRecordRequest(module: module, operation: operation, bizDate: bizDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 下载任务录音与文本
+    ///
+    /// 下载任务录音与文本，第二天12点后可使用此接口获取对应的录音与文本
+    @inlinable
+    public func downloadBotRecord(module: String, operation: String, bizDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadBotRecordResponse {
+        try await self.downloadBotRecord(DownloadBotRecordRequest(module: module, operation: operation, bizDate: bizDate), logger: logger, on: eventLoop)
+    }
 }

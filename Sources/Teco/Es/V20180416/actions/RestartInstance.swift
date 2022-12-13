@@ -64,4 +64,20 @@ extension Es {
     public func restartInstance(_ input: RestartInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInstanceResponse {
         try await self.client.execute(action: "RestartInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重启ES集群实例
+    ///
+    /// 重启ES集群实例(用于系统版本更新等操作) 
+    @inlinable
+    public func restartInstance(instanceId: String, forceRestart: Bool? = nil, restartMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartInstanceResponse > {
+        self.restartInstance(RestartInstanceRequest(instanceId: instanceId, forceRestart: forceRestart, restartMode: restartMode), logger: logger, on: eventLoop)
+    }
+    
+    /// 重启ES集群实例
+    ///
+    /// 重启ES集群实例(用于系统版本更新等操作) 
+    @inlinable
+    public func restartInstance(instanceId: String, forceRestart: Bool? = nil, restartMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInstanceResponse {
+        try await self.restartInstance(RestartInstanceRequest(instanceId: instanceId, forceRestart: forceRestart, restartMode: restartMode), logger: logger, on: eventLoop)
+    }
 }

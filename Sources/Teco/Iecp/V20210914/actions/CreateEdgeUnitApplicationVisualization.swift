@@ -115,4 +115,16 @@ extension Iecp {
     public func createEdgeUnitApplicationVisualization(_ input: CreateEdgeUnitApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitApplicationVisualizationResponse {
         try await self.client.execute(action: "CreateEdgeUnitApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 可视化创建应用
+    @inlinable
+    public func createEdgeUnitApplicationVisualization(basicInfo: ApplicationBasicInfo, basicConfig: ApplicationBasicConfig, edgeUnitId: UInt64, volumes: [Volume]? = nil, service: Service? = nil, templateID: UInt64? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeUnitApplicationVisualizationResponse > {
+        self.createEdgeUnitApplicationVisualization(CreateEdgeUnitApplicationVisualizationRequest(basicInfo: basicInfo, basicConfig: basicConfig, edgeUnitId: edgeUnitId, volumes: volumes, service: service, templateID: templateID, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler, initContainers: initContainers, containers: containers), logger: logger, on: eventLoop)
+    }
+    
+    /// 可视化创建应用
+    @inlinable
+    public func createEdgeUnitApplicationVisualization(basicInfo: ApplicationBasicInfo, basicConfig: ApplicationBasicConfig, edgeUnitId: UInt64, volumes: [Volume]? = nil, service: Service? = nil, templateID: UInt64? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitApplicationVisualizationResponse {
+        try await self.createEdgeUnitApplicationVisualization(CreateEdgeUnitApplicationVisualizationRequest(basicInfo: basicInfo, basicConfig: basicConfig, edgeUnitId: edgeUnitId, volumes: volumes, service: service, templateID: templateID, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler, initContainers: initContainers, containers: containers), logger: logger, on: eventLoop)
+    }
 }

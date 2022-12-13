@@ -63,4 +63,20 @@ extension Cls {
     public func openKafkaConsumer(_ input: OpenKafkaConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenKafkaConsumerResponse {
         try await self.client.execute(action: "OpenKafkaConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 打开Kafka协议消费
+    ///
+    /// 打开Kafka协议消费功能
+    @inlinable
+    public func openKafkaConsumer(fromTopicId: String, compression: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenKafkaConsumerResponse > {
+        self.openKafkaConsumer(OpenKafkaConsumerRequest(fromTopicId: fromTopicId, compression: compression), logger: logger, on: eventLoop)
+    }
+    
+    /// 打开Kafka协议消费
+    ///
+    /// 打开Kafka协议消费功能
+    @inlinable
+    public func openKafkaConsumer(fromTopicId: String, compression: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenKafkaConsumerResponse {
+        try await self.openKafkaConsumer(OpenKafkaConsumerRequest(fromTopicId: fromTopicId, compression: compression), logger: logger, on: eventLoop)
+    }
 }

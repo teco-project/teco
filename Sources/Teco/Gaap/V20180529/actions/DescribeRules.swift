@@ -62,4 +62,20 @@ extension Gaap {
     public func describeRules(_ input: DescribeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesResponse {
         try await self.client.execute(action: "DescribeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询转发规则信息
+    ///
+    /// 本接口（DescribeRules）用于查询监听器下的所有规则信息，包括规则域名，路径以及该规则下所绑定的源站列表。当通道版本为3.0时，该接口会返回该域名对应的高级认证配置信息。
+    @inlinable
+    public func describeRules(listenerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesResponse > {
+        self.describeRules(DescribeRulesRequest(listenerId: listenerId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询转发规则信息
+    ///
+    /// 本接口（DescribeRules）用于查询监听器下的所有规则信息，包括规则域名，路径以及该规则下所绑定的源站列表。当通道版本为3.0时，该接口会返回该域名对应的高级认证配置信息。
+    @inlinable
+    public func describeRules(listenerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesResponse {
+        try await self.describeRules(DescribeRulesRequest(listenerId: listenerId), logger: logger, on: eventLoop)
+    }
 }

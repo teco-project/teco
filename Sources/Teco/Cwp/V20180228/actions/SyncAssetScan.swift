@@ -67,4 +67,16 @@ extension Cwp {
     public func syncAssetScan(_ input: SyncAssetScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncAssetScanResponse {
         try await self.client.execute(action: "SyncAssetScan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 同步资产扫描信息
+    @inlinable
+    public func syncAssetScan(sync: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncAssetScanResponse > {
+        self.syncAssetScan(SyncAssetScanRequest(sync: sync), logger: logger, on: eventLoop)
+    }
+    
+    /// 同步资产扫描信息
+    @inlinable
+    public func syncAssetScan(sync: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncAssetScanResponse {
+        try await self.syncAssetScan(SyncAssetScanRequest(sync: sync), logger: logger, on: eventLoop)
+    }
 }

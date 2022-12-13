@@ -85,4 +85,16 @@ extension Privatedns {
     public func modifyPrivateZoneRecord(_ input: ModifyPrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneRecordResponse {
         try await self.client.execute(action: "ModifyPrivateZoneRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改私有域解析记录
+    @inlinable
+    public func modifyPrivateZoneRecord(zoneId: String, recordId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrivateZoneRecordResponse > {
+        self.modifyPrivateZoneRecord(ModifyPrivateZoneRecordRequest(zoneId: zoneId, recordId: recordId, recordType: recordType, subDomain: subDomain, recordValue: recordValue, weight: weight, mx: mx, ttl: ttl), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改私有域解析记录
+    @inlinable
+    public func modifyPrivateZoneRecord(zoneId: String, recordId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneRecordResponse {
+        try await self.modifyPrivateZoneRecord(ModifyPrivateZoneRecordRequest(zoneId: zoneId, recordId: recordId, recordType: recordType, subDomain: subDomain, recordValue: recordValue, weight: weight, mx: mx, ttl: ttl), logger: logger, on: eventLoop)
+    }
 }

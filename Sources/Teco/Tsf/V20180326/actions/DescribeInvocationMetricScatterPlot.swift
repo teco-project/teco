@@ -82,4 +82,16 @@ extension Tsf {
     public func describeInvocationMetricScatterPlot(_ input: DescribeInvocationMetricScatterPlotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricScatterPlotResponse {
         try await self.client.execute(action: "DescribeInvocationMetricScatterPlot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询调用指标数据散点图
+    @inlinable
+    public func describeInvocationMetricScatterPlot(startTime: Date? = nil, endTime: Date? = nil, period: Int64? = nil, metricDimensions: [MetricDimension]? = nil, metrics: [Metric]? = nil, kind: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvocationMetricScatterPlotResponse > {
+        self.describeInvocationMetricScatterPlot(DescribeInvocationMetricScatterPlotRequest(startTime: startTime, endTime: endTime, period: period, metricDimensions: metricDimensions, metrics: metrics, kind: kind), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询调用指标数据散点图
+    @inlinable
+    public func describeInvocationMetricScatterPlot(startTime: Date? = nil, endTime: Date? = nil, period: Int64? = nil, metricDimensions: [MetricDimension]? = nil, metrics: [Metric]? = nil, kind: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricScatterPlotResponse {
+        try await self.describeInvocationMetricScatterPlot(DescribeInvocationMetricScatterPlotRequest(startTime: startTime, endTime: endTime, period: period, metricDimensions: metricDimensions, metrics: metrics, kind: kind), logger: logger, on: eventLoop)
+    }
 }

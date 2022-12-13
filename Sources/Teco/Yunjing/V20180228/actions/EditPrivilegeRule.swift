@@ -75,4 +75,16 @@ extension Yunjing {
     public func editPrivilegeRule(_ input: EditPrivilegeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditPrivilegeRuleResponse {
         try await self.client.execute(action: "EditPrivilegeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新增或修改本地提权规则
+    @inlinable
+    public func editPrivilegeRule(id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, processName: String? = nil, sMode: UInt64? = nil, isGlobal: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditPrivilegeRuleResponse > {
+        self.editPrivilegeRule(EditPrivilegeRuleRequest(id: id, uuid: uuid, hostip: hostip, processName: processName, sMode: sMode, isGlobal: isGlobal), logger: logger, on: eventLoop)
+    }
+    
+    /// 新增或修改本地提权规则
+    @inlinable
+    public func editPrivilegeRule(id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, processName: String? = nil, sMode: UInt64? = nil, isGlobal: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditPrivilegeRuleResponse {
+        try await self.editPrivilegeRule(EditPrivilegeRuleRequest(id: id, uuid: uuid, hostip: hostip, processName: processName, sMode: sMode, isGlobal: isGlobal), logger: logger, on: eventLoop)
+    }
 }

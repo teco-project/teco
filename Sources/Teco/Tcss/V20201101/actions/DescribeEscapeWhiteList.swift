@@ -81,4 +81,16 @@ extension Tcss {
     public func describeEscapeWhiteList(_ input: DescribeEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeWhiteListResponse {
         try await self.client.execute(action: "DescribeEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询逃逸白名单
+    @inlinable
+    public func describeEscapeWhiteList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeWhiteListResponse > {
+        self.describeEscapeWhiteList(DescribeEscapeWhiteListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询逃逸白名单
+    @inlinable
+    public func describeEscapeWhiteList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeWhiteListResponse {
+        try await self.describeEscapeWhiteList(DescribeEscapeWhiteListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

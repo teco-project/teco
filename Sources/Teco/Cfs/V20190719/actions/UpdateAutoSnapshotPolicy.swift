@@ -83,4 +83,20 @@ extension Cfs {
     public func updateAutoSnapshotPolicy(_ input: UpdateAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAutoSnapshotPolicyResponse {
         try await self.client.execute(action: "UpdateAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新定期快照策略
+    ///
+    /// 更新定期自动快照策略
+    @inlinable
+    public func updateAutoSnapshotPolicy(autoSnapshotPolicyId: String, policyName: String? = nil, dayOfWeek: String? = nil, hour: String? = nil, aliveDays: UInt64? = nil, isActivated: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAutoSnapshotPolicyResponse > {
+        self.updateAutoSnapshotPolicy(UpdateAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, policyName: policyName, dayOfWeek: dayOfWeek, hour: hour, aliveDays: aliveDays, isActivated: isActivated), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新定期快照策略
+    ///
+    /// 更新定期自动快照策略
+    @inlinable
+    public func updateAutoSnapshotPolicy(autoSnapshotPolicyId: String, policyName: String? = nil, dayOfWeek: String? = nil, hour: String? = nil, aliveDays: UInt64? = nil, isActivated: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAutoSnapshotPolicyResponse {
+        try await self.updateAutoSnapshotPolicy(UpdateAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, policyName: policyName, dayOfWeek: dayOfWeek, hour: hour, aliveDays: aliveDays, isActivated: isActivated), logger: logger, on: eventLoop)
+    }
 }

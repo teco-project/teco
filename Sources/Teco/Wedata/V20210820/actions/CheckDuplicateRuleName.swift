@@ -70,4 +70,16 @@ extension Wedata {
     public func checkDuplicateRuleName(_ input: CheckDuplicateRuleNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDuplicateRuleNameResponse {
         try await self.client.execute(action: "CheckDuplicateRuleName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 检查规则名称是否重复
+    @inlinable
+    public func checkDuplicateRuleName(projectId: String? = nil, ruleGroupId: UInt64? = nil, name: String? = nil, ruleId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckDuplicateRuleNameResponse > {
+        self.checkDuplicateRuleName(CheckDuplicateRuleNameRequest(projectId: projectId, ruleGroupId: ruleGroupId, name: name, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 检查规则名称是否重复
+    @inlinable
+    public func checkDuplicateRuleName(projectId: String? = nil, ruleGroupId: UInt64? = nil, name: String? = nil, ruleId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDuplicateRuleNameResponse {
+        try await self.checkDuplicateRuleName(CheckDuplicateRuleNameRequest(projectId: projectId, ruleGroupId: ruleGroupId, name: name, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
 }

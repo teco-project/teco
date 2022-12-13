@@ -63,4 +63,20 @@ extension Vpc {
     public func describeFlowLog(_ input: DescribeFlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowLogResponse {
         try await self.client.execute(action: "DescribeFlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询流日志实例信息
+    ///
+    /// 本接口（DescribeFlowLog）用于查询流日志实例信息
+    @inlinable
+    public func describeFlowLog(vpcId: String, flowLogId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowLogResponse > {
+        self.describeFlowLog(DescribeFlowLogRequest(vpcId: vpcId, flowLogId: flowLogId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流日志实例信息
+    ///
+    /// 本接口（DescribeFlowLog）用于查询流日志实例信息
+    @inlinable
+    public func describeFlowLog(vpcId: String, flowLogId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowLogResponse {
+        try await self.describeFlowLog(DescribeFlowLogRequest(vpcId: vpcId, flowLogId: flowLogId), logger: logger, on: eventLoop)
+    }
 }

@@ -87,4 +87,20 @@ extension Vpc {
     public func describeVpnGatewaySslServers(_ input: DescribeVpnGatewaySslServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaySslServersResponse {
         try await self.client.execute(action: "DescribeVpnGatewaySslServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询SSL-VPN SERVER 列表
+    ///
+    /// 查询SSL-VPN SERVER 列表信息
+    @inlinable
+    public func describeVpnGatewaySslServers(offset: UInt64? = nil, limit: UInt64? = nil, sslVpnServerIds: [String]? = nil, filters: [FilterObject]? = nil, isVpnPortal: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpnGatewaySslServersResponse > {
+        self.describeVpnGatewaySslServers(DescribeVpnGatewaySslServersRequest(offset: offset, limit: limit, sslVpnServerIds: sslVpnServerIds, filters: filters, isVpnPortal: isVpnPortal), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询SSL-VPN SERVER 列表
+    ///
+    /// 查询SSL-VPN SERVER 列表信息
+    @inlinable
+    public func describeVpnGatewaySslServers(offset: UInt64? = nil, limit: UInt64? = nil, sslVpnServerIds: [String]? = nil, filters: [FilterObject]? = nil, isVpnPortal: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaySslServersResponse {
+        try await self.describeVpnGatewaySslServers(DescribeVpnGatewaySslServersRequest(offset: offset, limit: limit, sslVpnServerIds: sslVpnServerIds, filters: filters, isVpnPortal: isVpnPortal), logger: logger, on: eventLoop)
+    }
 }

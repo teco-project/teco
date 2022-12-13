@@ -78,4 +78,20 @@ extension Redis {
     public func createParamTemplate(_ input: CreateParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateParamTemplateResponse {
         try await self.client.execute(action: "CreateParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建参数模板
+    ///
+    /// 创建参数模板。
+    @inlinable
+    public func createParamTemplate(name: String, description: String? = nil, productType: UInt64? = nil, templateId: String? = nil, paramList: [InstanceParam]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateParamTemplateResponse > {
+        self.createParamTemplate(CreateParamTemplateRequest(name: name, description: description, productType: productType, templateId: templateId, paramList: paramList), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建参数模板
+    ///
+    /// 创建参数模板。
+    @inlinable
+    public func createParamTemplate(name: String, description: String? = nil, productType: UInt64? = nil, templateId: String? = nil, paramList: [InstanceParam]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateParamTemplateResponse {
+        try await self.createParamTemplate(CreateParamTemplateRequest(name: name, description: description, productType: productType, templateId: templateId, paramList: paramList), logger: logger, on: eventLoop)
+    }
 }

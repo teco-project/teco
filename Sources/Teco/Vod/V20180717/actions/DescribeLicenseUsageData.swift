@@ -80,4 +80,26 @@ extension Vod {
     public func describeLicenseUsageData(_ input: DescribeLicenseUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseUsageDataResponse {
         try await self.client.execute(action: "DescribeLicenseUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询 License 请求数统计数据
+    ///
+    /// 该接口返回查询时间范围内每天 License 请求次数信息。
+    ///    1. 可以查询最近365天内的 License 请求次数统计数据。
+    ///    2. 查询时间跨度不超过90天。
+    ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
+    @inlinable
+    public func describeLicenseUsageData(startTime: String, endTime: String, licenseType: String? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLicenseUsageDataResponse > {
+        self.describeLicenseUsageData(DescribeLicenseUsageDataRequest(startTime: startTime, endTime: endTime, licenseType: licenseType, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询 License 请求数统计数据
+    ///
+    /// 该接口返回查询时间范围内每天 License 请求次数信息。
+    ///    1. 可以查询最近365天内的 License 请求次数统计数据。
+    ///    2. 查询时间跨度不超过90天。
+    ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
+    @inlinable
+    public func describeLicenseUsageData(startTime: String, endTime: String, licenseType: String? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseUsageDataResponse {
+        try await self.describeLicenseUsageData(DescribeLicenseUsageDataRequest(startTime: startTime, endTime: endTime, licenseType: licenseType, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

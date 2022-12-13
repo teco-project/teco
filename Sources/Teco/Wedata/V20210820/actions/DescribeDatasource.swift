@@ -61,4 +61,22 @@ extension Wedata {
     public func describeDatasource(_ input: DescribeDatasourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasourceResponse {
         try await self.client.execute(action: "DescribeDatasource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 数据源管理-数据源详情【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 数据源详情
+    @inlinable
+    public func describeDatasource(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatasourceResponse > {
+        self.describeDatasource(DescribeDatasourceRequest(id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 数据源管理-数据源详情【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 数据源详情
+    @inlinable
+    public func describeDatasource(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasourceResponse {
+        try await self.describeDatasource(DescribeDatasourceRequest(id: id), logger: logger, on: eventLoop)
+    }
 }

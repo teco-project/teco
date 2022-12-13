@@ -58,4 +58,20 @@ extension Ses {
     public func listEmailIdentities(_ input: ListEmailIdentitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEmailIdentitiesResponse {
         try await self.client.execute(action: "ListEmailIdentities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取当前发信域名列表
+    ///
+    /// 获取当前发信域名列表，包含已验证通过与未验证的域名
+    @inlinable
+    public func listEmailIdentities(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListEmailIdentitiesResponse > {
+        self.listEmailIdentities(ListEmailIdentitiesRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取当前发信域名列表
+    ///
+    /// 获取当前发信域名列表，包含已验证通过与未验证的域名
+    @inlinable
+    public func listEmailIdentities(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEmailIdentitiesResponse {
+        try await self.listEmailIdentities(ListEmailIdentitiesRequest(), logger: logger, on: eventLoop)
+    }
 }

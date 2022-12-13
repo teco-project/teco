@@ -80,4 +80,16 @@ extension Tsf {
     public func describeConfigReleaseLogs(_ input: DescribeConfigReleaseLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigReleaseLogsResponse {
         try await self.client.execute(action: "DescribeConfigReleaseLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询配置发布历史
+    @inlinable
+    public func describeConfigReleaseLogs(groupId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, applicationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigReleaseLogsResponse > {
+        self.describeConfigReleaseLogs(DescribeConfigReleaseLogsRequest(groupId: groupId, offset: offset, limit: limit, namespaceId: namespaceId, clusterId: clusterId, applicationId: applicationId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询配置发布历史
+    @inlinable
+    public func describeConfigReleaseLogs(groupId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, applicationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigReleaseLogsResponse {
+        try await self.describeConfigReleaseLogs(DescribeConfigReleaseLogsRequest(groupId: groupId, offset: offset, limit: limit, namespaceId: namespaceId, clusterId: clusterId, applicationId: applicationId), logger: logger, on: eventLoop)
+    }
 }

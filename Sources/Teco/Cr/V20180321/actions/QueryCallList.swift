@@ -83,4 +83,16 @@ extension Cr {
     public func queryCallList(_ input: QueryCallListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallListResponse {
         try await self.client.execute(action: "QueryCallList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 机器人任务查询
+    @inlinable
+    public func queryCallList(module: String, operation: String, bizDate: Date, botId: String? = nil, botName: String? = nil, fileName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCallListResponse > {
+        self.queryCallList(QueryCallListRequest(module: module, operation: operation, bizDate: bizDate, botId: botId, botName: botName, fileName: fileName), logger: logger, on: eventLoop)
+    }
+    
+    /// 机器人任务查询
+    @inlinable
+    public func queryCallList(module: String, operation: String, bizDate: Date, botId: String? = nil, botName: String? = nil, fileName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallListResponse {
+        try await self.queryCallList(QueryCallListRequest(module: module, operation: operation, bizDate: bizDate, botId: botId, botName: botName, fileName: fileName), logger: logger, on: eventLoop)
+    }
 }

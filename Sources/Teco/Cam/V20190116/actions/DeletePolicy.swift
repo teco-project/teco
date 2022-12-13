@@ -54,4 +54,20 @@ extension Cam {
     public func deletePolicy(_ input: DeletePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyResponse {
         try await self.client.execute(action: "DeletePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除策略
+    ///
+    /// 本接口（DeletePolicy）可用于删除策略。
+    @inlinable
+    public func deletePolicy(policyId: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePolicyResponse > {
+        self.deletePolicy(DeletePolicyRequest(policyId: policyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除策略
+    ///
+    /// 本接口（DeletePolicy）可用于删除策略。
+    @inlinable
+    public func deletePolicy(policyId: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyResponse {
+        try await self.deletePolicy(DeletePolicyRequest(policyId: policyId), logger: logger, on: eventLoop)
+    }
 }

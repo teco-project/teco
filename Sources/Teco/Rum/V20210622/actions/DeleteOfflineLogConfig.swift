@@ -63,4 +63,20 @@ extension Rum {
     public func deleteOfflineLogConfig(_ input: DeleteOfflineLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOfflineLogConfigResponse {
         try await self.client.execute(action: "DeleteOfflineLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除 rum 离线日志监听
+    ///
+    /// 删除 rum 离线日志监听 - 对应用户的离线日志将不会上报
+    @inlinable
+    public func deleteOfflineLogConfig(projectKey: String, uniqueID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOfflineLogConfigResponse > {
+        self.deleteOfflineLogConfig(DeleteOfflineLogConfigRequest(projectKey: projectKey, uniqueID: uniqueID), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除 rum 离线日志监听
+    ///
+    /// 删除 rum 离线日志监听 - 对应用户的离线日志将不会上报
+    @inlinable
+    public func deleteOfflineLogConfig(projectKey: String, uniqueID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOfflineLogConfigResponse {
+        try await self.deleteOfflineLogConfig(DeleteOfflineLogConfigRequest(projectKey: projectKey, uniqueID: uniqueID), logger: logger, on: eventLoop)
+    }
 }

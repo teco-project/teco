@@ -54,4 +54,20 @@ extension Dts {
     public func createCheckSyncJob(_ input: CreateCheckSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckSyncJobResponse {
         try await self.client.execute(action: "CreateCheckSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 校验同步任务
+    ///
+    /// 校验同步任务，检查必要参数和周边配置。
+    @inlinable
+    public func createCheckSyncJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCheckSyncJobResponse > {
+        self.createCheckSyncJob(CreateCheckSyncJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
+    
+    /// 校验同步任务
+    ///
+    /// 校验同步任务，检查必要参数和周边配置。
+    @inlinable
+    public func createCheckSyncJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckSyncJobResponse {
+        try await self.createCheckSyncJob(CreateCheckSyncJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
 }

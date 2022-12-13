@@ -50,4 +50,20 @@ extension Tcss {
     public func describeEscapeSafeState(_ input: DescribeEscapeSafeStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeSafeStateResponse {
         try await self.client.execute(action: "DescribeEscapeSafeState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询容器逃逸安全状态
+    ///
+    /// DescribeEscapeSafeState 查询容器逃逸安全状态
+    @inlinable
+    public func describeEscapeSafeState(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeSafeStateResponse > {
+        self.describeEscapeSafeState(DescribeEscapeSafeStateRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器逃逸安全状态
+    ///
+    /// DescribeEscapeSafeState 查询容器逃逸安全状态
+    @inlinable
+    public func describeEscapeSafeState(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeSafeStateResponse {
+        try await self.describeEscapeSafeState(DescribeEscapeSafeStateRequest(), logger: logger, on: eventLoop)
+    }
 }

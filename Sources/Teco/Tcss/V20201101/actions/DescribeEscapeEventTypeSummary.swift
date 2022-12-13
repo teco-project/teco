@@ -58,4 +58,16 @@ extension Tcss {
     public func describeEscapeEventTypeSummary(_ input: DescribeEscapeEventTypeSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventTypeSummaryResponse {
         try await self.client.execute(action: "DescribeEscapeEventTypeSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 统计容器逃逸各事件类型和待处理事件数
+    @inlinable
+    public func describeEscapeEventTypeSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeEventTypeSummaryResponse > {
+        self.describeEscapeEventTypeSummary(DescribeEscapeEventTypeSummaryRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 统计容器逃逸各事件类型和待处理事件数
+    @inlinable
+    public func describeEscapeEventTypeSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventTypeSummaryResponse {
+        try await self.describeEscapeEventTypeSummary(DescribeEscapeEventTypeSummaryRequest(), logger: logger, on: eventLoop)
+    }
 }

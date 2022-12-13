@@ -73,4 +73,20 @@ extension Lighthouse {
     public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
         try await self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询可用区列表
+    ///
+    /// 查询地域下可用区
+    @inlinable
+    public func describeZones(orderField: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZonesResponse > {
+        self.describeZones(DescribeZonesRequest(orderField: orderField, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询可用区列表
+    ///
+    /// 查询地域下可用区
+    @inlinable
+    public func describeZones(orderField: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
+        try await self.describeZones(DescribeZonesRequest(orderField: orderField, order: order), logger: logger, on: eventLoop)
+    }
 }

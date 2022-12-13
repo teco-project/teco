@@ -62,4 +62,20 @@ extension Ssl {
     public func commitCertificateInformation(_ input: CommitCertificateInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitCertificateInformationResponse {
         try await self.client.execute(action: "CommitCertificateInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 提交证书订单
+    ///
+    /// 提交证书订单。
+    @inlinable
+    public func commitCertificateInformation(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommitCertificateInformationResponse > {
+        self.commitCertificateInformation(CommitCertificateInformationRequest(certificateId: certificateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 提交证书订单
+    ///
+    /// 提交证书订单。
+    @inlinable
+    public func commitCertificateInformation(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitCertificateInformationResponse {
+        try await self.commitCertificateInformation(CommitCertificateInformationRequest(certificateId: certificateId), logger: logger, on: eventLoop)
+    }
 }

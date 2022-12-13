@@ -60,4 +60,16 @@ extension Iecp {
     public func modifyNodeUnitTemplate(_ input: ModifyNodeUnitTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodeUnitTemplateResponse {
         try await self.client.execute(action: "ModifyNodeUnitTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改边缘单元NodeUnit模板
+    @inlinable
+    public func modifyNodeUnitTemplate(edgeUnitId: UInt64, nodeUnitTemplateID: UInt64, nodes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNodeUnitTemplateResponse > {
+        self.modifyNodeUnitTemplate(ModifyNodeUnitTemplateRequest(edgeUnitId: edgeUnitId, nodeUnitTemplateID: nodeUnitTemplateID, nodes: nodes), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改边缘单元NodeUnit模板
+    @inlinable
+    public func modifyNodeUnitTemplate(edgeUnitId: UInt64, nodeUnitTemplateID: UInt64, nodes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodeUnitTemplateResponse {
+        try await self.modifyNodeUnitTemplate(ModifyNodeUnitTemplateRequest(edgeUnitId: edgeUnitId, nodeUnitTemplateID: nodeUnitTemplateID, nodes: nodes), logger: logger, on: eventLoop)
+    }
 }

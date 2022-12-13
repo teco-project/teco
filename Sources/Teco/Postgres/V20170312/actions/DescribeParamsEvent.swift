@@ -58,4 +58,16 @@ extension Postgres {
     public func describeParamsEvent(_ input: DescribeParamsEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamsEventResponse {
         try await self.client.execute(action: "DescribeParamsEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取参数修改事件详情
+    @inlinable
+    public func describeParamsEvent(dbInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeParamsEventResponse > {
+        self.describeParamsEvent(DescribeParamsEventRequest(dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取参数修改事件详情
+    @inlinable
+    public func describeParamsEvent(dbInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamsEventResponse {
+        try await self.describeParamsEvent(DescribeParamsEventRequest(dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
+    }
 }

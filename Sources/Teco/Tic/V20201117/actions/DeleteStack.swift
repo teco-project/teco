@@ -54,4 +54,20 @@ extension Tic {
     public func deleteStack(_ input: DeleteStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStackResponse {
         try await self.client.execute(action: "DeleteStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除资源栈
+    ///
+    /// 本接口（DeleteStack）用于删除一个资源栈（配置、版本、事件信息）。但不会销毁资源管理的云资源。如果需要销毁资源栈管理的云资源，请调用 DestoryStack 接口销毁云资源。
+    @inlinable
+    public func deleteStack(stackId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStackResponse > {
+        self.deleteStack(DeleteStackRequest(stackId: stackId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除资源栈
+    ///
+    /// 本接口（DeleteStack）用于删除一个资源栈（配置、版本、事件信息）。但不会销毁资源管理的云资源。如果需要销毁资源栈管理的云资源，请调用 DestoryStack 接口销毁云资源。
+    @inlinable
+    public func deleteStack(stackId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStackResponse {
+        try await self.deleteStack(DeleteStackRequest(stackId: stackId), logger: logger, on: eventLoop)
+    }
 }

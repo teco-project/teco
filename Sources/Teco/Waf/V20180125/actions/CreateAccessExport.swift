@@ -88,4 +88,20 @@ extension Waf {
     public func createAccessExport(_ input: CreateAccessExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessExportResponse {
         try await self.client.execute(action: "CreateAccessExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建访问日志导出
+    ///
+    /// 本接口用于创建访问日志导出
+    @inlinable
+    public func createAccessExport(topicId: String, from: Int64, to: Int64, query: String, count: Int64, format: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccessExportResponse > {
+        self.createAccessExport(CreateAccessExportRequest(topicId: topicId, from: from, to: to, query: query, count: count, format: format, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建访问日志导出
+    ///
+    /// 本接口用于创建访问日志导出
+    @inlinable
+    public func createAccessExport(topicId: String, from: Int64, to: Int64, query: String, count: Int64, format: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessExportResponse {
+        try await self.createAccessExport(CreateAccessExportRequest(topicId: topicId, from: from, to: to, query: query, count: count, format: format, order: order), logger: logger, on: eventLoop)
+    }
 }

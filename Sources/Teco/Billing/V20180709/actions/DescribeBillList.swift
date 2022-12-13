@@ -148,4 +148,20 @@ extension Billing {
     public func describeBillList(_ input: DescribeBillListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillListResponse {
         try await self.client.execute(action: "DescribeBillList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取收支明细列表
+    ///
+    /// 获取收支明细列表，支持翻页和参数过滤
+    @inlinable
+    public func describeBillList(startTime: String, endTime: String, offset: UInt64, limit: UInt64, payType: [String]? = nil, subPayType: [String]? = nil, withZeroAmount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillListResponse > {
+        self.describeBillList(DescribeBillListRequest(startTime: startTime, endTime: endTime, offset: offset, limit: limit, payType: payType, subPayType: subPayType, withZeroAmount: withZeroAmount), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取收支明细列表
+    ///
+    /// 获取收支明细列表，支持翻页和参数过滤
+    @inlinable
+    public func describeBillList(startTime: String, endTime: String, offset: UInt64, limit: UInt64, payType: [String]? = nil, subPayType: [String]? = nil, withZeroAmount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillListResponse {
+        try await self.describeBillList(DescribeBillListRequest(startTime: startTime, endTime: endTime, offset: offset, limit: limit, payType: payType, subPayType: subPayType, withZeroAmount: withZeroAmount), logger: logger, on: eventLoop)
+    }
 }

@@ -58,4 +58,16 @@ extension Tdid {
     public func getAgencyTDid(_ input: GetAgencyTDidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAgencyTDidResponse {
         try await self.client.execute(action: "GetAgencyTDid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 本机构DID详情
+    @inlinable
+    public func getAgencyTDid(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAgencyTDidResponse > {
+        self.getAgencyTDid(GetAgencyTDidRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 本机构DID详情
+    @inlinable
+    public func getAgencyTDid(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAgencyTDidResponse {
+        try await self.getAgencyTDid(GetAgencyTDidRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

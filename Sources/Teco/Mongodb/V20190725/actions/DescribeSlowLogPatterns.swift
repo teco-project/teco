@@ -96,4 +96,20 @@ extension Mongodb {
     public func describeSlowLogPatterns(_ input: DescribeSlowLogPatternsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogPatternsResponse {
         try await self.client.execute(action: "DescribeSlowLogPatterns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取慢日志统计信息
+    ///
+    /// 本接口（DescribeSlowLogPatterns）用于获取数据库实例慢日志的统计信息。
+    @inlinable
+    public func describeSlowLogPatterns(instanceId: String, startTime: Date, endTime: Date, slowMS: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, format: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogPatternsResponse > {
+        self.describeSlowLogPatterns(DescribeSlowLogPatternsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, slowMS: slowMS, offset: offset, limit: limit, format: format), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取慢日志统计信息
+    ///
+    /// 本接口（DescribeSlowLogPatterns）用于获取数据库实例慢日志的统计信息。
+    @inlinable
+    public func describeSlowLogPatterns(instanceId: String, startTime: Date, endTime: Date, slowMS: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, format: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogPatternsResponse {
+        try await self.describeSlowLogPatterns(DescribeSlowLogPatternsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, slowMS: slowMS, offset: offset, limit: limit, format: format), logger: logger, on: eventLoop)
+    }
 }

@@ -67,4 +67,24 @@ extension Tic {
     public func applyStack(_ input: ApplyStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyStackResponse {
         try await self.client.execute(action: "ApplyStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 执行Apply事件
+    ///
+    /// 本接口（ApplyStack）用于触发资源栈下某个版本的Apply事件。
+    /// - 当版本处于PLAN_IN_PROGRESS或APPLY_IN_PROGRESS状态时，将无法再执行本操作
+    /// - 当版本处于APPLY_COMPLETED状态时，本操作无法执行
+    @inlinable
+    public func applyStack(stackId: String, versionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyStackResponse > {
+        self.applyStack(ApplyStackRequest(stackId: stackId, versionId: versionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 执行Apply事件
+    ///
+    /// 本接口（ApplyStack）用于触发资源栈下某个版本的Apply事件。
+    /// - 当版本处于PLAN_IN_PROGRESS或APPLY_IN_PROGRESS状态时，将无法再执行本操作
+    /// - 当版本处于APPLY_COMPLETED状态时，本操作无法执行
+    @inlinable
+    public func applyStack(stackId: String, versionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyStackResponse {
+        try await self.applyStack(ApplyStackRequest(stackId: stackId, versionId: versionId), logger: logger, on: eventLoop)
+    }
 }

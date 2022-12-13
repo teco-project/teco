@@ -68,4 +68,20 @@ extension Bmlb {
     public func describeL4Backends(_ input: DescribeL4BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4BackendsResponse {
         try await self.client.execute(action: "DescribeL4Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取黑石负载均衡四层监听器绑定的主机列表
+    ///
+    /// 获取黑石负载均衡四层监听器绑定的主机列表。
+    @inlinable
+    public func describeL4Backends(loadBalancerId: String, listenerId: String, backendSet: [DescribeL4Backend]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL4BackendsResponse > {
+        self.describeL4Backends(DescribeL4BackendsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, backendSet: backendSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取黑石负载均衡四层监听器绑定的主机列表
+    ///
+    /// 获取黑石负载均衡四层监听器绑定的主机列表。
+    @inlinable
+    public func describeL4Backends(loadBalancerId: String, listenerId: String, backendSet: [DescribeL4Backend]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4BackendsResponse {
+        try await self.describeL4Backends(DescribeL4BackendsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, backendSet: backendSet), logger: logger, on: eventLoop)
+    }
 }

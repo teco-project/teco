@@ -55,4 +55,16 @@ extension Tke {
     public func disableEventPersistence(_ input: DisableEventPersistenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableEventPersistenceResponse {
         try await self.client.execute(action: "DisableEventPersistence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 关闭事件持久化功能
+    @inlinable
+    public func disableEventPersistence(clusterId: String, deleteLogSetAndTopic: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableEventPersistenceResponse > {
+        self.disableEventPersistence(DisableEventPersistenceRequest(clusterId: clusterId, deleteLogSetAndTopic: deleteLogSetAndTopic), logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭事件持久化功能
+    @inlinable
+    public func disableEventPersistence(clusterId: String, deleteLogSetAndTopic: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableEventPersistenceResponse {
+        try await self.disableEventPersistence(DisableEventPersistenceRequest(clusterId: clusterId, deleteLogSetAndTopic: deleteLogSetAndTopic), logger: logger, on: eventLoop)
+    }
 }

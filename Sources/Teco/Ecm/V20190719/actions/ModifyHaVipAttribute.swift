@@ -59,4 +59,20 @@ extension Ecm {
     public func modifyHaVipAttribute(_ input: ModifyHaVipAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHaVipAttributeResponse {
         try await self.client.execute(action: "ModifyHaVipAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改HAVIP属性
+    ///
+    /// 用于修改高可用虚拟IP（HAVIP）属性
+    @inlinable
+    public func modifyHaVipAttribute(haVipId: String, haVipName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyHaVipAttributeResponse > {
+        self.modifyHaVipAttribute(ModifyHaVipAttributeRequest(haVipId: haVipId, haVipName: haVipName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改HAVIP属性
+    ///
+    /// 用于修改高可用虚拟IP（HAVIP）属性
+    @inlinable
+    public func modifyHaVipAttribute(haVipId: String, haVipName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHaVipAttributeResponse {
+        try await self.modifyHaVipAttribute(ModifyHaVipAttributeRequest(haVipId: haVipId, haVipName: haVipName), logger: logger, on: eventLoop)
+    }
 }

@@ -86,4 +86,24 @@ extension Cms {
     public func describeFileSample(_ input: DescribeFileSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileSampleResponse {
         try await self.client.execute(action: "DescribeFileSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询图片样本库
+    ///
+    /// 本文档适用于图片内容安全、视频内容安全自定义识别库的管理。
+    /// <br>
+    /// 查询图片样本库，支持批量查询。
+    @inlinable
+    public func describeFileSample(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderDirection: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileSampleResponse > {
+        self.describeFileSample(DescribeFileSampleRequest(filters: filters, limit: limit, offset: offset, orderDirection: orderDirection, orderField: orderField), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询图片样本库
+    ///
+    /// 本文档适用于图片内容安全、视频内容安全自定义识别库的管理。
+    /// <br>
+    /// 查询图片样本库，支持批量查询。
+    @inlinable
+    public func describeFileSample(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderDirection: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileSampleResponse {
+        try await self.describeFileSample(DescribeFileSampleRequest(filters: filters, limit: limit, offset: offset, orderDirection: orderDirection, orderField: orderField), logger: logger, on: eventLoop)
+    }
 }

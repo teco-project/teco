@@ -54,4 +54,20 @@ extension Mongodb {
     public func terminateDBInstances(_ input: TerminateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstancesResponse {
         try await self.client.execute(action: "TerminateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 包年包月隔离接口
+    ///
+    /// 本接口（TerminateDBInstances）可将包年包月实例退还隔离。
+    @inlinable
+    public func terminateDBInstances(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateDBInstancesResponse > {
+        self.terminateDBInstances(TerminateDBInstancesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 包年包月隔离接口
+    ///
+    /// 本接口（TerminateDBInstances）可将包年包月实例退还隔离。
+    @inlinable
+    public func terminateDBInstances(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstancesResponse {
+        try await self.terminateDBInstances(TerminateDBInstancesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

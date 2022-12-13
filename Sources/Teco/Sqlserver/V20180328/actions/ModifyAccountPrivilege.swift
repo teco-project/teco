@@ -63,4 +63,20 @@ extension Sqlserver {
     public func modifyAccountPrivilege(_ input: ModifyAccountPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegeResponse {
         try await self.client.execute(action: "ModifyAccountPrivilege", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改实例账户权限
+    ///
+    /// 本接口（ModifyAccountPrivilege）用于修改实例账户权限。
+    @inlinable
+    public func modifyAccountPrivilege(instanceId: String, accounts: [AccountPrivilegeModifyInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountPrivilegeResponse > {
+        self.modifyAccountPrivilege(ModifyAccountPrivilegeRequest(instanceId: instanceId, accounts: accounts), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例账户权限
+    ///
+    /// 本接口（ModifyAccountPrivilege）用于修改实例账户权限。
+    @inlinable
+    public func modifyAccountPrivilege(instanceId: String, accounts: [AccountPrivilegeModifyInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegeResponse {
+        try await self.modifyAccountPrivilege(ModifyAccountPrivilegeRequest(instanceId: instanceId, accounts: accounts), logger: logger, on: eventLoop)
+    }
 }

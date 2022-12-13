@@ -74,4 +74,20 @@ extension Iotexplorer {
     public func updateFirmware(_ input: UpdateFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFirmwareResponse {
         try await self.client.execute(action: "UpdateFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新设备固件
+    ///
+    /// 本接口（UpdateFirmware）用于对指定设备发起固件升级请求 
+    @inlinable
+    public func updateFirmware(productID: String, deviceName: String, firmwareVersion: String, firmwareOriVersion: String, upgradeMethod: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateFirmwareResponse > {
+        self.updateFirmware(UpdateFirmwareRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, firmwareOriVersion: firmwareOriVersion, upgradeMethod: upgradeMethod), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新设备固件
+    ///
+    /// 本接口（UpdateFirmware）用于对指定设备发起固件升级请求 
+    @inlinable
+    public func updateFirmware(productID: String, deviceName: String, firmwareVersion: String, firmwareOriVersion: String, upgradeMethod: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFirmwareResponse {
+        try await self.updateFirmware(UpdateFirmwareRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, firmwareOriVersion: firmwareOriVersion, upgradeMethod: upgradeMethod), logger: logger, on: eventLoop)
+    }
 }

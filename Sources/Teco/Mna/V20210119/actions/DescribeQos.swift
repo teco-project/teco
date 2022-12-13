@@ -75,4 +75,16 @@ extension Mna {
     public func describeQos(_ input: DescribeQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQosResponse {
         try await self.client.execute(action: "DescribeQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取Qos加速状态
+    @inlinable
+    public func describeQos(sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQosResponse > {
+        self.describeQos(DescribeQosRequest(sessionId: sessionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Qos加速状态
+    @inlinable
+    public func describeQos(sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQosResponse {
+        try await self.describeQos(DescribeQosRequest(sessionId: sessionId), logger: logger, on: eventLoop)
+    }
 }

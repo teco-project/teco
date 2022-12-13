@@ -73,4 +73,16 @@ extension Tke {
     public func checkEdgeClusterCIDR(_ input: CheckEdgeClusterCIDRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckEdgeClusterCIDRResponse {
         try await self.client.execute(action: "CheckEdgeClusterCIDR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 检查边缘计算集群的CIDR是否冲突
+    @inlinable
+    public func checkEdgeClusterCIDR(vpcId: String, podCIDR: String, serviceCIDR: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckEdgeClusterCIDRResponse > {
+        self.checkEdgeClusterCIDR(CheckEdgeClusterCIDRRequest(vpcId: vpcId, podCIDR: podCIDR, serviceCIDR: serviceCIDR), logger: logger, on: eventLoop)
+    }
+    
+    /// 检查边缘计算集群的CIDR是否冲突
+    @inlinable
+    public func checkEdgeClusterCIDR(vpcId: String, podCIDR: String, serviceCIDR: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckEdgeClusterCIDRResponse {
+        try await self.checkEdgeClusterCIDR(CheckEdgeClusterCIDRRequest(vpcId: vpcId, podCIDR: podCIDR, serviceCIDR: serviceCIDR), logger: logger, on: eventLoop)
+    }
 }

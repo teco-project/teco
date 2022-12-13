@@ -50,4 +50,16 @@ extension Iecp {
     public func deleteIotDeviceBatch(_ input: DeleteIotDeviceBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDeviceBatchResponse {
         try await self.client.execute(action: "DeleteIotDeviceBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量删除设备
+    @inlinable
+    public func deleteIotDeviceBatch(deviceIDList: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIotDeviceBatchResponse > {
+        self.deleteIotDeviceBatch(DeleteIotDeviceBatchRequest(deviceIDList: deviceIDList), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除设备
+    @inlinable
+    public func deleteIotDeviceBatch(deviceIDList: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDeviceBatchResponse {
+        try await self.deleteIotDeviceBatch(DeleteIotDeviceBatchRequest(deviceIDList: deviceIDList), logger: logger, on: eventLoop)
+    }
 }

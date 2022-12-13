@@ -80,4 +80,16 @@ extension Yunjing {
     public func editBashRule(_ input: EditBashRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRuleResponse {
         try await self.client.execute(action: "EditBashRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新增或修改高危命令规则
+    @inlinable
+    public func editBashRule(name: String, level: UInt64, rule: String, id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, isGlobal: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditBashRuleResponse > {
+        self.editBashRule(EditBashRuleRequest(name: name, level: level, rule: rule, id: id, uuid: uuid, hostip: hostip, isGlobal: isGlobal), logger: logger, on: eventLoop)
+    }
+    
+    /// 新增或修改高危命令规则
+    @inlinable
+    public func editBashRule(name: String, level: UInt64, rule: String, id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, isGlobal: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRuleResponse {
+        try await self.editBashRule(EditBashRuleRequest(name: name, level: level, rule: rule, id: id, uuid: uuid, hostip: hostip, isGlobal: isGlobal), logger: logger, on: eventLoop)
+    }
 }

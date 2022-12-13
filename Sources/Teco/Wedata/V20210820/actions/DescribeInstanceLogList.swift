@@ -63,4 +63,20 @@ extension Wedata {
     public func describeInstanceLogList(_ input: DescribeInstanceLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogListResponse {
         try await self.client.execute(action: "DescribeInstanceLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取离线任务实例运行日志列表
+    ///
+    /// 离线任务实例运行日志列表
+    @inlinable
+    public func describeInstanceLogList(taskId: String, curRunDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLogListResponse > {
+        self.describeInstanceLogList(DescribeInstanceLogListRequest(taskId: taskId, curRunDate: curRunDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取离线任务实例运行日志列表
+    ///
+    /// 离线任务实例运行日志列表
+    @inlinable
+    public func describeInstanceLogList(taskId: String, curRunDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogListResponse {
+        try await self.describeInstanceLogList(DescribeInstanceLogListRequest(taskId: taskId, curRunDate: curRunDate), logger: logger, on: eventLoop)
+    }
 }

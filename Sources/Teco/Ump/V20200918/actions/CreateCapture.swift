@@ -59,4 +59,20 @@ extension Ump {
     public func createCapture(_ input: CreateCaptureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCaptureResponse {
         try await self.client.execute(action: "CreateCapture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 抓拍上报接口
+    ///
+    /// 场内抓拍上报接口
+    @inlinable
+    public func createCapture(data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCaptureResponse > {
+        self.createCapture(CreateCaptureRequest(data: data), logger: logger, on: eventLoop)
+    }
+    
+    /// 抓拍上报接口
+    ///
+    /// 场内抓拍上报接口
+    @inlinable
+    public func createCapture(data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCaptureResponse {
+        try await self.createCapture(CreateCaptureRequest(data: data), logger: logger, on: eventLoop)
+    }
 }

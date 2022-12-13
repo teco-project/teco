@@ -58,4 +58,20 @@ extension Cvm {
     public func describeChcDeniedActions(_ input: DescribeChcDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChcDeniedActionsResponse {
         try await self.client.execute(action: "DescribeChcDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询CHC物理服务器禁止做的操作
+    ///
+    /// 查询CHC物理服务器禁止做的操作，返回给用户
+    @inlinable
+    public func describeChcDeniedActions(chcIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChcDeniedActionsResponse > {
+        self.describeChcDeniedActions(DescribeChcDeniedActionsRequest(chcIds: chcIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询CHC物理服务器禁止做的操作
+    ///
+    /// 查询CHC物理服务器禁止做的操作，返回给用户
+    @inlinable
+    public func describeChcDeniedActions(chcIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChcDeniedActionsResponse {
+        try await self.describeChcDeniedActions(DescribeChcDeniedActionsRequest(chcIds: chcIds), logger: logger, on: eventLoop)
+    }
 }

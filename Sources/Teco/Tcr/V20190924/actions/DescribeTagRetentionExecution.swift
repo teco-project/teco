@@ -73,4 +73,16 @@ extension Tcr {
     public func describeTagRetentionExecution(_ input: DescribeTagRetentionExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagRetentionExecutionResponse {
         try await self.client.execute(action: "DescribeTagRetentionExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询版本保留执行记录
+    @inlinable
+    public func describeTagRetentionExecution(registryId: String, retentionId: Int64, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagRetentionExecutionResponse > {
+        self.describeTagRetentionExecution(DescribeTagRetentionExecutionRequest(registryId: registryId, retentionId: retentionId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询版本保留执行记录
+    @inlinable
+    public func describeTagRetentionExecution(registryId: String, retentionId: Int64, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagRetentionExecutionResponse {
+        try await self.describeTagRetentionExecution(DescribeTagRetentionExecutionRequest(registryId: registryId, retentionId: retentionId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

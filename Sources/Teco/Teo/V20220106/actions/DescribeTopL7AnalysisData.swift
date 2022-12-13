@@ -108,4 +108,20 @@ extension Teo {
     public func describeTopL7AnalysisData(_ input: DescribeTopL7AnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopL7AnalysisDataResponse {
         try await self.client.execute(action: "DescribeTopL7AnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 七层数据分析类top流量数据接口
+    ///
+    /// 查询top类流量数据
+    @inlinable
+    public func describeTopL7AnalysisData(startTime: Date, endTime: Date, metricName: String, limit: Int64, interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopL7AnalysisDataResponse > {
+        self.describeTopL7AnalysisData(DescribeTopL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, interval: interval, zoneIds: zoneIds, filters: filters, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 七层数据分析类top流量数据接口
+    ///
+    /// 查询top类流量数据
+    @inlinable
+    public func describeTopL7AnalysisData(startTime: Date, endTime: Date, metricName: String, limit: Int64, interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopL7AnalysisDataResponse {
+        try await self.describeTopL7AnalysisData(DescribeTopL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, interval: interval, zoneIds: zoneIds, filters: filters, area: area), logger: logger, on: eventLoop)
+    }
 }

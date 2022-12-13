@@ -104,4 +104,20 @@ extension Eiam {
     public func describeOrgNode(_ input: DescribeOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrgNodeResponse {
         try await self.client.execute(action: "DescribeOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 读取机构节点信息
+    ///
+    /// 根据机构节点ID读取机构节点信息
+    @inlinable
+    public func describeOrgNode(orgNodeId: String? = nil, includeOrgNodeChildInfo: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrgNodeResponse > {
+        self.describeOrgNode(DescribeOrgNodeRequest(orgNodeId: orgNodeId, includeOrgNodeChildInfo: includeOrgNodeChildInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 读取机构节点信息
+    ///
+    /// 根据机构节点ID读取机构节点信息
+    @inlinable
+    public func describeOrgNode(orgNodeId: String? = nil, includeOrgNodeChildInfo: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrgNodeResponse {
+        try await self.describeOrgNode(DescribeOrgNodeRequest(orgNodeId: orgNodeId, includeOrgNodeChildInfo: includeOrgNodeChildInfo), logger: logger, on: eventLoop)
+    }
 }

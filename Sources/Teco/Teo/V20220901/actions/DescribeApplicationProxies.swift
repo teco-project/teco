@@ -72,4 +72,20 @@ extension Teo {
     public func describeApplicationProxies(_ input: DescribeApplicationProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationProxiesResponse {
         try await self.client.execute(action: "DescribeApplicationProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询应用代理列表
+    ///
+    /// 查询应用代理列表。
+    @inlinable
+    public func describeApplicationProxies(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationProxiesResponse > {
+        self.describeApplicationProxies(DescribeApplicationProxiesRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询应用代理列表
+    ///
+    /// 查询应用代理列表。
+    @inlinable
+    public func describeApplicationProxies(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationProxiesResponse {
+        try await self.describeApplicationProxies(DescribeApplicationProxiesRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

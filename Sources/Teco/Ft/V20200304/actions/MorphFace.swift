@@ -101,4 +101,20 @@ extension Ft {
     public func morphFace(_ input: MorphFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MorphFaceResponse {
         try await self.client.execute(action: "MorphFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 人像渐变
+    ///
+    /// 输入2-5张人脸照片，生成一段以人脸为焦点的渐变视频或GIF图，支持自定义图片播放速度、视频每秒传输帧数，可用于短视频、表情包、创意H5等应用场景，丰富静态图片的玩法。
+    @inlinable
+    public func morphFace(images: [String]? = nil, urls: [String]? = nil, gradientInfos: [GradientInfo]? = nil, fps: Int64? = nil, outputType: Int64? = nil, outputWidth: Int64? = nil, outputHeight: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MorphFaceResponse > {
+        self.morphFace(MorphFaceRequest(images: images, urls: urls, gradientInfos: gradientInfos, fps: fps, outputType: outputType, outputWidth: outputWidth, outputHeight: outputHeight), logger: logger, on: eventLoop)
+    }
+    
+    /// 人像渐变
+    ///
+    /// 输入2-5张人脸照片，生成一段以人脸为焦点的渐变视频或GIF图，支持自定义图片播放速度、视频每秒传输帧数，可用于短视频、表情包、创意H5等应用场景，丰富静态图片的玩法。
+    @inlinable
+    public func morphFace(images: [String]? = nil, urls: [String]? = nil, gradientInfos: [GradientInfo]? = nil, fps: Int64? = nil, outputType: Int64? = nil, outputWidth: Int64? = nil, outputHeight: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MorphFaceResponse {
+        try await self.morphFace(MorphFaceRequest(images: images, urls: urls, gradientInfos: gradientInfos, fps: fps, outputType: outputType, outputWidth: outputWidth, outputHeight: outputHeight), logger: logger, on: eventLoop)
+    }
 }

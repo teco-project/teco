@@ -54,4 +54,16 @@ extension Bmeip {
     public func deleteEip(_ input: DeleteEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEipResponse {
         try await self.client.execute(action: "DeleteEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 释放黑石弹性公网IP
+    @inlinable
+    public func deleteEip(eipIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEipResponse > {
+        self.deleteEip(DeleteEipRequest(eipIds: eipIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 释放黑石弹性公网IP
+    @inlinable
+    public func deleteEip(eipIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEipResponse {
+        try await self.deleteEip(DeleteEipRequest(eipIds: eipIds), logger: logger, on: eventLoop)
+    }
 }

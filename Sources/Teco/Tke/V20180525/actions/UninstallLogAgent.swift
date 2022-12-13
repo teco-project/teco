@@ -54,4 +54,20 @@ extension Tke {
     public func uninstallLogAgent(_ input: UninstallLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallLogAgentResponse {
         try await self.client.execute(action: "UninstallLogAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 卸载日志采集组件
+    ///
+    /// 从TKE集群中卸载CLS日志采集组件
+    @inlinable
+    public func uninstallLogAgent(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UninstallLogAgentResponse > {
+        self.uninstallLogAgent(UninstallLogAgentRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 卸载日志采集组件
+    ///
+    /// 从TKE集群中卸载CLS日志采集组件
+    @inlinable
+    public func uninstallLogAgent(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallLogAgentResponse {
+        try await self.uninstallLogAgent(UninstallLogAgentRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

@@ -65,4 +65,26 @@ extension Lighthouse {
     public func modifyInstancesAttribute(_ input: ModifyInstancesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
         try await self.client.execute(action: "ModifyInstancesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改实例的属性
+    ///
+    /// 本接口（ModifyInstancesAttribute）用于修改实例的属性。
+    /// * “实例名称”仅为方便用户自己管理之用。
+    /// * 支持批量操作。每次请求批量实例的上限为 100。
+    /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
+    @inlinable
+    public func modifyInstancesAttribute(instanceIds: [String], instanceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancesAttributeResponse > {
+        self.modifyInstancesAttribute(ModifyInstancesAttributeRequest(instanceIds: instanceIds, instanceName: instanceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例的属性
+    ///
+    /// 本接口（ModifyInstancesAttribute）用于修改实例的属性。
+    /// * “实例名称”仅为方便用户自己管理之用。
+    /// * 支持批量操作。每次请求批量实例的上限为 100。
+    /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
+    @inlinable
+    public func modifyInstancesAttribute(instanceIds: [String], instanceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
+        try await self.modifyInstancesAttribute(ModifyInstancesAttributeRequest(instanceIds: instanceIds, instanceName: instanceName), logger: logger, on: eventLoop)
+    }
 }

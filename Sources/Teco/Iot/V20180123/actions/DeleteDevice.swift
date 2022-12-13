@@ -59,4 +59,20 @@ extension Iot {
     public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
         try await self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除设备
+    ///
+    /// 提供在指定的产品Id下删除一个设备的能力。
+    @inlinable
+    public func deleteDevice(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceResponse > {
+        self.deleteDevice(DeleteDeviceRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除设备
+    ///
+    /// 提供在指定的产品Id下删除一个设备的能力。
+    @inlinable
+    public func deleteDevice(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
+        try await self.deleteDevice(DeleteDeviceRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
 }

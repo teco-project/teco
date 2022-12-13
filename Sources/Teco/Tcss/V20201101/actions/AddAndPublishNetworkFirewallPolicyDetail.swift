@@ -99,4 +99,16 @@ extension Tcss {
     public func addAndPublishNetworkFirewallPolicyDetail(_ input: AddAndPublishNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAndPublishNetworkFirewallPolicyDetailResponse {
         try await self.client.execute(action: "AddAndPublishNetworkFirewallPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 容器网络创建网络策略添加并发布任务
+    @inlinable
+    public func addAndPublishNetworkFirewallPolicyDetail(clusterId: String, policyName: String, fromPolicyRule: Int64, toPolicyRule: Int64, podSelector: String, namespace: String? = nil, description: String? = nil, customPolicy: [NetworkCustomPolicy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddAndPublishNetworkFirewallPolicyDetailResponse > {
+        self.addAndPublishNetworkFirewallPolicyDetail(AddAndPublishNetworkFirewallPolicyDetailRequest(clusterId: clusterId, policyName: policyName, fromPolicyRule: fromPolicyRule, toPolicyRule: toPolicyRule, podSelector: podSelector, namespace: namespace, description: description, customPolicy: customPolicy), logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络创建网络策略添加并发布任务
+    @inlinable
+    public func addAndPublishNetworkFirewallPolicyDetail(clusterId: String, policyName: String, fromPolicyRule: Int64, toPolicyRule: Int64, podSelector: String, namespace: String? = nil, description: String? = nil, customPolicy: [NetworkCustomPolicy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAndPublishNetworkFirewallPolicyDetailResponse {
+        try await self.addAndPublishNetworkFirewallPolicyDetail(AddAndPublishNetworkFirewallPolicyDetailRequest(clusterId: clusterId, policyName: policyName, fromPolicyRule: fromPolicyRule, toPolicyRule: toPolicyRule, podSelector: podSelector, namespace: namespace, description: description, customPolicy: customPolicy), logger: logger, on: eventLoop)
+    }
 }

@@ -84,4 +84,20 @@ extension Cws {
     public func modifySiteAttribute(_ input: ModifySiteAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteAttributeResponse {
         try await self.client.execute(action: "ModifySiteAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改站点的属性
+    ///
+    /// 本接口 (ModifySiteAttribute) 用于修改站点的属性。
+    @inlinable
+    public func modifySiteAttribute(siteId: UInt64, name: String? = nil, needLogin: Int64? = nil, loginCookie: String? = nil, loginCheckUrl: String? = nil, loginCheckKw: String? = nil, scanDisallow: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySiteAttributeResponse > {
+        self.modifySiteAttribute(ModifySiteAttributeRequest(siteId: siteId, name: name, needLogin: needLogin, loginCookie: loginCookie, loginCheckUrl: loginCheckUrl, loginCheckKw: loginCheckKw, scanDisallow: scanDisallow), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改站点的属性
+    ///
+    /// 本接口 (ModifySiteAttribute) 用于修改站点的属性。
+    @inlinable
+    public func modifySiteAttribute(siteId: UInt64, name: String? = nil, needLogin: Int64? = nil, loginCookie: String? = nil, loginCheckUrl: String? = nil, loginCheckKw: String? = nil, scanDisallow: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteAttributeResponse {
+        try await self.modifySiteAttribute(ModifySiteAttributeRequest(siteId: siteId, name: name, needLogin: needLogin, loginCookie: loginCookie, loginCheckUrl: loginCheckUrl, loginCheckKw: loginCheckKw, scanDisallow: scanDisallow), logger: logger, on: eventLoop)
+    }
 }

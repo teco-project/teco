@@ -125,4 +125,16 @@ extension Ciam {
     public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
         try await self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建用户
+    @inlinable
+    public func createUser(userStoreId: String, phoneNumber: String, email: String, password: String, userName: String, nickname: String? = nil, address: String? = nil, userGroup: [String]? = nil, birthdate: Int64? = nil, customizationAttributes: [MemberMap]? = nil, indexedAttribute1: String? = nil, indexedAttribute2: String? = nil, indexedAttribute3: String? = nil, indexedAttribute4: String? = nil, indexedAttribute5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserResponse > {
+        self.createUser(CreateUserRequest(userStoreId: userStoreId, phoneNumber: phoneNumber, email: email, password: password, userName: userName, nickname: nickname, address: address, userGroup: userGroup, birthdate: birthdate, customizationAttributes: customizationAttributes, indexedAttribute1: indexedAttribute1, indexedAttribute2: indexedAttribute2, indexedAttribute3: indexedAttribute3, indexedAttribute4: indexedAttribute4, indexedAttribute5: indexedAttribute5), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建用户
+    @inlinable
+    public func createUser(userStoreId: String, phoneNumber: String, email: String, password: String, userName: String, nickname: String? = nil, address: String? = nil, userGroup: [String]? = nil, birthdate: Int64? = nil, customizationAttributes: [MemberMap]? = nil, indexedAttribute1: String? = nil, indexedAttribute2: String? = nil, indexedAttribute3: String? = nil, indexedAttribute4: String? = nil, indexedAttribute5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
+        try await self.createUser(CreateUserRequest(userStoreId: userStoreId, phoneNumber: phoneNumber, email: email, password: password, userName: userName, nickname: nickname, address: address, userGroup: userGroup, birthdate: birthdate, customizationAttributes: customizationAttributes, indexedAttribute1: indexedAttribute1, indexedAttribute2: indexedAttribute2, indexedAttribute3: indexedAttribute3, indexedAttribute4: indexedAttribute4, indexedAttribute5: indexedAttribute5), logger: logger, on: eventLoop)
+    }
 }

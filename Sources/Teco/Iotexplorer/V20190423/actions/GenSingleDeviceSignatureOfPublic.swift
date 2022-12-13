@@ -68,4 +68,20 @@ extension Iotexplorer {
     public func genSingleDeviceSignatureOfPublic(_ input: GenSingleDeviceSignatureOfPublicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenSingleDeviceSignatureOfPublicResponse {
         try await self.client.execute(action: "GenSingleDeviceSignatureOfPublic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 生成单个设备绑定的签名
+    ///
+    /// 无
+    @inlinable
+    public func genSingleDeviceSignatureOfPublic(productId: String, deviceName: String, expire: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenSingleDeviceSignatureOfPublicResponse > {
+        self.genSingleDeviceSignatureOfPublic(GenSingleDeviceSignatureOfPublicRequest(productId: productId, deviceName: deviceName, expire: expire), logger: logger, on: eventLoop)
+    }
+    
+    /// 生成单个设备绑定的签名
+    ///
+    /// 无
+    @inlinable
+    public func genSingleDeviceSignatureOfPublic(productId: String, deviceName: String, expire: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenSingleDeviceSignatureOfPublicResponse {
+        try await self.genSingleDeviceSignatureOfPublic(GenSingleDeviceSignatureOfPublicRequest(productId: productId, deviceName: deviceName, expire: expire), logger: logger, on: eventLoop)
+    }
 }

@@ -85,4 +85,20 @@ extension Kms {
     public func reEncrypt(_ input: ReEncryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReEncryptResponse {
         try await self.client.execute(action: "ReEncrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 密文刷新
+    ///
+    /// 使用指定CMK对密文重新加密。
+    @inlinable
+    public func reEncrypt(ciphertextBlob: String, destinationKeyId: String? = nil, sourceEncryptionContext: String? = nil, destinationEncryptionContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReEncryptResponse > {
+        self.reEncrypt(ReEncryptRequest(ciphertextBlob: ciphertextBlob, destinationKeyId: destinationKeyId, sourceEncryptionContext: sourceEncryptionContext, destinationEncryptionContext: destinationEncryptionContext), logger: logger, on: eventLoop)
+    }
+    
+    /// 密文刷新
+    ///
+    /// 使用指定CMK对密文重新加密。
+    @inlinable
+    public func reEncrypt(ciphertextBlob: String, destinationKeyId: String? = nil, sourceEncryptionContext: String? = nil, destinationEncryptionContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReEncryptResponse {
+        try await self.reEncrypt(ReEncryptRequest(ciphertextBlob: ciphertextBlob, destinationKeyId: destinationKeyId, sourceEncryptionContext: sourceEncryptionContext, destinationEncryptionContext: destinationEncryptionContext), logger: logger, on: eventLoop)
+    }
 }

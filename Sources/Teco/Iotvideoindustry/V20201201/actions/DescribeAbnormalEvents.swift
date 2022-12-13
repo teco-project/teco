@@ -60,4 +60,16 @@ extension Iotvideoindustry {
     public func describeAbnormalEvents(_ input: DescribeAbnormalEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalEventsResponse {
         try await self.client.execute(action: "DescribeAbnormalEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取异常事件统计
+    @inlinable
+    public func describeAbnormalEvents(startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalEventsResponse > {
+        self.describeAbnormalEvents(DescribeAbnormalEventsRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取异常事件统计
+    @inlinable
+    public func describeAbnormalEvents(startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalEventsResponse {
+        try await self.describeAbnormalEvents(DescribeAbnormalEventsRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

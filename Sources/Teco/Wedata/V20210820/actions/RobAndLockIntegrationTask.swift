@@ -64,4 +64,16 @@ extension Wedata {
     public func robAndLockIntegrationTask(_ input: RobAndLockIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RobAndLockIntegrationTaskResponse {
         try await self.client.execute(action: "RobAndLockIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 抢占锁定集成任务
+    @inlinable
+    public func robAndLockIntegrationTask(taskId: String, projectId: String, taskType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RobAndLockIntegrationTaskResponse > {
+        self.robAndLockIntegrationTask(RobAndLockIntegrationTaskRequest(taskId: taskId, projectId: projectId, taskType: taskType), logger: logger, on: eventLoop)
+    }
+    
+    /// 抢占锁定集成任务
+    @inlinable
+    public func robAndLockIntegrationTask(taskId: String, projectId: String, taskType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RobAndLockIntegrationTaskResponse {
+        try await self.robAndLockIntegrationTask(RobAndLockIntegrationTaskRequest(taskId: taskId, projectId: projectId, taskType: taskType), logger: logger, on: eventLoop)
+    }
 }

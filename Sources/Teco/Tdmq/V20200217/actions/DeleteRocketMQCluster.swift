@@ -50,4 +50,16 @@ extension Tdmq {
     public func deleteRocketMQCluster(_ input: DeleteRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQClusterResponse {
         try await self.client.execute(action: "DeleteRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除RocketMQ集群
+    @inlinable
+    public func deleteRocketMQCluster(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRocketMQClusterResponse > {
+        self.deleteRocketMQCluster(DeleteRocketMQClusterRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除RocketMQ集群
+    @inlinable
+    public func deleteRocketMQCluster(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQClusterResponse {
+        try await self.deleteRocketMQCluster(DeleteRocketMQClusterRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

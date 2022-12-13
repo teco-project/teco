@@ -65,4 +65,16 @@ extension Tke {
     public func createClusterRouteTable(_ input: CreateClusterRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterRouteTableResponse {
         try await self.client.execute(action: "CreateClusterRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建集群路由表
+    @inlinable
+    public func createClusterRouteTable(routeTableName: String, routeTableCidrBlock: String, vpcId: String, ignoreClusterCidrConflict: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterRouteTableResponse > {
+        self.createClusterRouteTable(CreateClusterRouteTableRequest(routeTableName: routeTableName, routeTableCidrBlock: routeTableCidrBlock, vpcId: vpcId, ignoreClusterCidrConflict: ignoreClusterCidrConflict), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群路由表
+    @inlinable
+    public func createClusterRouteTable(routeTableName: String, routeTableCidrBlock: String, vpcId: String, ignoreClusterCidrConflict: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterRouteTableResponse {
+        try await self.createClusterRouteTable(CreateClusterRouteTableRequest(routeTableName: routeTableName, routeTableCidrBlock: routeTableCidrBlock, vpcId: vpcId, ignoreClusterCidrConflict: ignoreClusterCidrConflict), logger: logger, on: eventLoop)
+    }
 }

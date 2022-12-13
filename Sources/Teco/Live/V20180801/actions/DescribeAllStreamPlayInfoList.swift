@@ -67,4 +67,20 @@ extension Live {
     public func describeAllStreamPlayInfoList(_ input: DescribeAllStreamPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllStreamPlayInfoListResponse {
         try await self.client.execute(action: "DescribeAllStreamPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询某个时间点所有流的下行播放数据
+    ///
+    /// 输入某个时间点（1分钟维度），查询该时间点所有流的下行信息。
+    @inlinable
+    public func describeAllStreamPlayInfoList(queryTime: String, playDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllStreamPlayInfoListResponse > {
+        self.describeAllStreamPlayInfoList(DescribeAllStreamPlayInfoListRequest(queryTime: queryTime, playDomains: playDomains), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询某个时间点所有流的下行播放数据
+    ///
+    /// 输入某个时间点（1分钟维度），查询该时间点所有流的下行信息。
+    @inlinable
+    public func describeAllStreamPlayInfoList(queryTime: String, playDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllStreamPlayInfoListResponse {
+        try await self.describeAllStreamPlayInfoList(DescribeAllStreamPlayInfoListRequest(queryTime: queryTime, playDomains: playDomains), logger: logger, on: eventLoop)
+    }
 }

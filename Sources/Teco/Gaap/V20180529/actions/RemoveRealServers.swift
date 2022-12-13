@@ -54,4 +54,20 @@ extension Gaap {
     public func removeRealServers(_ input: RemoveRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveRealServersResponse {
         try await self.client.execute(action: "RemoveRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除源站
+    ///
+    /// 删除已添加的源站(服务器)IP或域名
+    @inlinable
+    public func removeRealServers(realServerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveRealServersResponse > {
+        self.removeRealServers(RemoveRealServersRequest(realServerIds: realServerIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除源站
+    ///
+    /// 删除已添加的源站(服务器)IP或域名
+    @inlinable
+    public func removeRealServers(realServerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveRealServersResponse {
+        try await self.removeRealServers(RemoveRealServersRequest(realServerIds: realServerIds), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,16 @@ extension Teo {
     public func scanDnsRecords(_ input: ScanDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanDnsRecordsResponse {
         try await self.client.execute(action: "ScanDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 扫描站点历史解析记录
+    @inlinable
+    public func scanDnsRecords(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanDnsRecordsResponse > {
+        self.scanDnsRecords(ScanDnsRecordsRequest(zoneId: zoneId), logger: logger, on: eventLoop)
+    }
+    
+    /// 扫描站点历史解析记录
+    @inlinable
+    public func scanDnsRecords(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanDnsRecordsResponse {
+        try await self.scanDnsRecords(ScanDnsRecordsRequest(zoneId: zoneId), logger: logger, on: eventLoop)
+    }
 }

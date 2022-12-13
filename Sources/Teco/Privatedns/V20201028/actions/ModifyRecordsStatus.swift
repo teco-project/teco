@@ -72,4 +72,16 @@ extension Privatedns {
     public func modifyRecordsStatus(_ input: ModifyRecordsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordsStatusResponse {
         try await self.client.execute(action: "ModifyRecordsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改解析记录状态
+    @inlinable
+    public func modifyRecordsStatus(zoneId: String, recordIds: [Int64], status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordsStatusResponse > {
+        self.modifyRecordsStatus(ModifyRecordsStatusRequest(zoneId: zoneId, recordIds: recordIds, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改解析记录状态
+    @inlinable
+    public func modifyRecordsStatus(zoneId: String, recordIds: [Int64], status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordsStatusResponse {
+        try await self.modifyRecordsStatus(ModifyRecordsStatusRequest(zoneId: zoneId, recordIds: recordIds, status: status), logger: logger, on: eventLoop)
+    }
 }

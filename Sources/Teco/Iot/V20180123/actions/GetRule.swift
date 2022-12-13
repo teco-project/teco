@@ -54,4 +54,16 @@ extension Iot {
     public func getRule(_ input: GetRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuleResponse {
         try await self.client.execute(action: "GetRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取转发规则信息
+    @inlinable
+    public func getRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRuleResponse > {
+        self.getRule(GetRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取转发规则信息
+    @inlinable
+    public func getRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuleResponse {
+        try await self.getRule(GetRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    }
 }

@@ -245,4 +245,136 @@ extension Ocr {
     public func generalBasicOCR(_ input: GeneralBasicOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralBasicOCRResponse {
         try await self.client.execute(action: "GeneralBasicOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 通用印刷体识别
+    ///
+    /// 本接口支持图像整体文字的检测和识别。可以识别中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语，阿拉伯语20种语言，且各种语言均支持与英文混合的文字识别。
+    /// 适用于印刷文档识别、网络图片识别、广告图文字识别、街景店招牌识别、菜单识别、视频标题识别、头像文字识别等场景。
+    /// 产品优势：支持自动识别语言类型，可返回文本框坐标信息，对于倾斜文本支持自动旋转纠正。
+    /// 通用印刷体识别不同版本的差异如下：
+    /// <table style="width:715px">
+    ///       <thead>
+    ///         <tr>
+    ///           <th style="width:150px"></th>
+    ///           <th style="width:200px">【荐】通用印刷体识别</th>
+    ///           <th ><a href="https://cloud.tencent.com/document/product/866/34937">【荐】通用印刷体识别（高精度版）</a></th>
+    ///           <th><a href="https://cloud.tencent.com/document/product/866/37831">通用印刷体识别（精简版）</a></th>
+    ///         </tr>
+    ///       </thead>
+    ///       <tbody>
+    ///         <tr>
+    ///           <td> 适用场景</td>
+    ///           <td>适用于所有通用场景的印刷体识别</td>
+    ///           <td>适用于文字较多、长串数字、小字、模糊字、倾斜文本等困难场景</td>
+    ///           <td>适用于快速文本识别场景，准召率有一定损失，价格更优惠</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>识别准确率</td>
+    ///           <td>96%</td>
+    ///           <td>99%</td>
+    ///           <td>91%</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>价格</td>
+    ///           <td>中</td>
+    ///           <td>高</td>
+    ///           <td>低</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>支持的语言</td>
+    ///           <td>中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语</td>
+    ///           <td>中文、英文、中英文</td>
+    ///           <td>中文、英文、中英文</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>自动语言检测</td>
+    ///           <td>支持</td>
+    ///           <td>支持</td>
+    ///           <td>支持</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>返回文本行坐标</td>
+    ///           <td>支持</td>
+    ///           <td>支持</td>
+    ///           <td>支持</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>自动旋转纠正</td>
+    ///           <td>支持旋转识别，返回角度信息</td>
+    ///           <td>支持旋转识别，返回角度信息</td>
+    ///           <td>支持旋转识别，返回角度信息</td>
+    ///         </tr>
+    ///       </tbody>
+    ///     </table>
+    /// 默认接口请求频率限制：20次/秒。
+    @inlinable
+    public func generalBasicOCR(imageBase64: String? = nil, imageUrl: String? = nil, scene: String? = nil, languageType: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, isWords: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GeneralBasicOCRResponse > {
+        self.generalBasicOCR(GeneralBasicOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, scene: scene, languageType: languageType, isPdf: isPdf, pdfPageNumber: pdfPageNumber, isWords: isWords), logger: logger, on: eventLoop)
+    }
+    
+    /// 通用印刷体识别
+    ///
+    /// 本接口支持图像整体文字的检测和识别。可以识别中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语，阿拉伯语20种语言，且各种语言均支持与英文混合的文字识别。
+    /// 适用于印刷文档识别、网络图片识别、广告图文字识别、街景店招牌识别、菜单识别、视频标题识别、头像文字识别等场景。
+    /// 产品优势：支持自动识别语言类型，可返回文本框坐标信息，对于倾斜文本支持自动旋转纠正。
+    /// 通用印刷体识别不同版本的差异如下：
+    /// <table style="width:715px">
+    ///       <thead>
+    ///         <tr>
+    ///           <th style="width:150px"></th>
+    ///           <th style="width:200px">【荐】通用印刷体识别</th>
+    ///           <th ><a href="https://cloud.tencent.com/document/product/866/34937">【荐】通用印刷体识别（高精度版）</a></th>
+    ///           <th><a href="https://cloud.tencent.com/document/product/866/37831">通用印刷体识别（精简版）</a></th>
+    ///         </tr>
+    ///       </thead>
+    ///       <tbody>
+    ///         <tr>
+    ///           <td> 适用场景</td>
+    ///           <td>适用于所有通用场景的印刷体识别</td>
+    ///           <td>适用于文字较多、长串数字、小字、模糊字、倾斜文本等困难场景</td>
+    ///           <td>适用于快速文本识别场景，准召率有一定损失，价格更优惠</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>识别准确率</td>
+    ///           <td>96%</td>
+    ///           <td>99%</td>
+    ///           <td>91%</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>价格</td>
+    ///           <td>中</td>
+    ///           <td>高</td>
+    ///           <td>低</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>支持的语言</td>
+    ///           <td>中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语</td>
+    ///           <td>中文、英文、中英文</td>
+    ///           <td>中文、英文、中英文</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>自动语言检测</td>
+    ///           <td>支持</td>
+    ///           <td>支持</td>
+    ///           <td>支持</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>返回文本行坐标</td>
+    ///           <td>支持</td>
+    ///           <td>支持</td>
+    ///           <td>支持</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>自动旋转纠正</td>
+    ///           <td>支持旋转识别，返回角度信息</td>
+    ///           <td>支持旋转识别，返回角度信息</td>
+    ///           <td>支持旋转识别，返回角度信息</td>
+    ///         </tr>
+    ///       </tbody>
+    ///     </table>
+    /// 默认接口请求频率限制：20次/秒。
+    @inlinable
+    public func generalBasicOCR(imageBase64: String? = nil, imageUrl: String? = nil, scene: String? = nil, languageType: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, isWords: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralBasicOCRResponse {
+        try await self.generalBasicOCR(GeneralBasicOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, scene: scene, languageType: languageType, isPdf: isPdf, pdfPageNumber: pdfPageNumber, isWords: isWords), logger: logger, on: eventLoop)
+    }
 }

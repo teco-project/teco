@@ -56,4 +56,20 @@ extension Tke {
     public func describeVersions(_ input: DescribeVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionsResponse {
         try await self.client.execute(action: "DescribeVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 集群版本信息
+    ///
+    /// 获取集群版本信息
+    @inlinable
+    public func describeVersions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVersionsResponse > {
+        self.describeVersions(DescribeVersionsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 集群版本信息
+    ///
+    /// 获取集群版本信息
+    @inlinable
+    public func describeVersions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionsResponse {
+        try await self.describeVersions(DescribeVersionsRequest(), logger: logger, on: eventLoop)
+    }
 }

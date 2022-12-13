@@ -127,4 +127,20 @@ extension Ssm {
     public func describeSecret(_ input: DescribeSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretResponse {
         try await self.client.execute(action: "DescribeSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取凭据详细信息
+    ///
+    /// 获取凭据的详细属性信息。
+    @inlinable
+    public func describeSecret(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecretResponse > {
+        self.describeSecret(DescribeSecretRequest(secretName: secretName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取凭据详细信息
+    ///
+    /// 获取凭据的详细属性信息。
+    @inlinable
+    public func describeSecret(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretResponse {
+        try await self.describeSecret(DescribeSecretRequest(secretName: secretName), logger: logger, on: eventLoop)
+    }
 }

@@ -66,4 +66,22 @@ extension Tcex {
     public func describeInvocationResult(_ input: DescribeInvocationResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationResultResponse {
         try await self.client.execute(action: "DescribeInvocationResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询服务调用结果
+    ///
+    /// 产品控制台已经下线
+    /// 获取服务调用结果。和InvokeService接口配置合适，其InvokeId参数为InvokeService接口返回的RequestId。
+    @inlinable
+    public func describeInvocationResult(invokeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvocationResultResponse > {
+        self.describeInvocationResult(DescribeInvocationResultRequest(invokeId: invokeId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务调用结果
+    ///
+    /// 产品控制台已经下线
+    /// 获取服务调用结果。和InvokeService接口配置合适，其InvokeId参数为InvokeService接口返回的RequestId。
+    @inlinable
+    public func describeInvocationResult(invokeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationResultResponse {
+        try await self.describeInvocationResult(DescribeInvocationResultRequest(invokeId: invokeId), logger: logger, on: eventLoop)
+    }
 }

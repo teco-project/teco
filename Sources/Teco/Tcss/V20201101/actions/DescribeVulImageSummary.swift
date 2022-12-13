@@ -78,4 +78,16 @@ extension Tcss {
     public func describeVulImageSummary(_ input: DescribeVulImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulImageSummaryResponse {
         try await self.client.execute(action: "DescribeVulImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询漏洞镜像统计
+    @inlinable
+    public func describeVulImageSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulImageSummaryResponse > {
+        self.describeVulImageSummary(DescribeVulImageSummaryRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞镜像统计
+    @inlinable
+    public func describeVulImageSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulImageSummaryResponse {
+        try await self.describeVulImageSummary(DescribeVulImageSummaryRequest(), logger: logger, on: eventLoop)
+    }
 }

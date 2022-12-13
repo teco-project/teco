@@ -68,4 +68,20 @@ extension Dasb {
     public func describeResources(_ input: DescribeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesResponse {
         try await self.client.execute(action: "DescribeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询堡垒机服务信息
+    ///
+    /// 查询用户购买的堡垒机服务信息，包括资源ID、授权点数、VPC、过期时间等。
+    @inlinable
+    public func describeResources(apCode: String? = nil, vpcId: String? = nil, resourceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesResponse > {
+        self.describeResources(DescribeResourcesRequest(apCode: apCode, vpcId: vpcId, resourceIds: resourceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询堡垒机服务信息
+    ///
+    /// 查询用户购买的堡垒机服务信息，包括资源ID、授权点数、VPC、过期时间等。
+    @inlinable
+    public func describeResources(apCode: String? = nil, vpcId: String? = nil, resourceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesResponse {
+        try await self.describeResources(DescribeResourcesRequest(apCode: apCode, vpcId: vpcId, resourceIds: resourceIds), logger: logger, on: eventLoop)
+    }
 }

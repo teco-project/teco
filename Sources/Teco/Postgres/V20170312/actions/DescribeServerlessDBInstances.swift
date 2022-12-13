@@ -83,4 +83,20 @@ extension Postgres {
     public func describeServerlessDBInstances(_ input: DescribeServerlessDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServerlessDBInstancesResponse {
         try await self.client.execute(action: "DescribeServerlessDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询ServerlessDB实例列表
+    ///
+    /// 用于查询一个或多个serverlessDB实例的详细信息
+    @inlinable
+    public func describeServerlessDBInstances(filter: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServerlessDBInstancesResponse > {
+        self.describeServerlessDBInstances(DescribeServerlessDBInstancesRequest(filter: filter, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询ServerlessDB实例列表
+    ///
+    /// 用于查询一个或多个serverlessDB实例的详细信息
+    @inlinable
+    public func describeServerlessDBInstances(filter: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServerlessDBInstancesResponse {
+        try await self.describeServerlessDBInstances(DescribeServerlessDBInstancesRequest(filter: filter, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    }
 }

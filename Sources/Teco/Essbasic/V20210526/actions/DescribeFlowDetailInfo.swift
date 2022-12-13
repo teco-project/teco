@@ -30,7 +30,7 @@ extension Essbasic {
         /// 合同组编号（备注：该参数和合同(流程)编号数组必须二选一）
         public let flowGroupId: String?
         
-        public init (agent: Agent, flowIds: [String]? = nil, `operator`: UserInfo? = nil, flowGroupId: String? = nil) {
+        public init (agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, flowGroupId: String? = nil) {
             self.agent = agent
             self.flowIds = flowIds
             self.`operator` = `operator`
@@ -92,5 +92,21 @@ extension Essbasic {
     @inlinable
     public func describeFlowDetailInfo(_ input: DescribeFlowDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowDetailInfoResponse {
         try await self.client.execute(action: "DescribeFlowDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 查询合同(签署流程)的详细信息
+    ///
+    /// 此接口（DescribeFlowDetailInfo）用于查询合同(签署流程)的详细信息。
+    @inlinable
+    public func describeFlowDetailInfo(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, flowGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowDetailInfoResponse > {
+        self.describeFlowDetailInfo(DescribeFlowDetailInfoRequest(agent: agent, flowIds: flowIds, operator: `operator`, flowGroupId: flowGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询合同(签署流程)的详细信息
+    ///
+    /// 此接口（DescribeFlowDetailInfo）用于查询合同(签署流程)的详细信息。
+    @inlinable
+    public func describeFlowDetailInfo(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, flowGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowDetailInfoResponse {
+        try await self.describeFlowDetailInfo(DescribeFlowDetailInfoRequest(agent: agent, flowIds: flowIds, operator: `operator`, flowGroupId: flowGroupId), logger: logger, on: eventLoop)
     }
 }

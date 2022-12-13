@@ -68,4 +68,20 @@ extension Iotexplorer {
     public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
         try await self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新建项目
+    ///
+    /// 为用户提供新建项目的能力，用于集中管理产品和应用。
+    @inlinable
+    public func createProject(projectName: String, projectDesc: String, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProjectResponse > {
+        self.createProject(CreateProjectRequest(projectName: projectName, projectDesc: projectDesc, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 新建项目
+    ///
+    /// 为用户提供新建项目的能力，用于集中管理产品和应用。
+    @inlinable
+    public func createProject(projectName: String, projectDesc: String, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
+        try await self.createProject(CreateProjectRequest(projectName: projectName, projectDesc: projectDesc, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

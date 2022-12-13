@@ -51,4 +51,16 @@ extension Ecm {
     public func describeInstanceTypeConfig(_ input: DescribeInstanceTypeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypeConfigResponse {
         try await self.client.execute(action: "DescribeInstanceTypeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取机型配置列表
+    @inlinable
+    public func describeInstanceTypeConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceTypeConfigResponse > {
+        self.describeInstanceTypeConfig(DescribeInstanceTypeConfigRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取机型配置列表
+    @inlinable
+    public func describeInstanceTypeConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypeConfigResponse {
+        try await self.describeInstanceTypeConfig(DescribeInstanceTypeConfigRequest(), logger: logger, on: eventLoop)
+    }
 }

@@ -68,4 +68,16 @@ extension Tdcpg {
     public func describeClusterBackups(_ input: DescribeClusterBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterBackupsResponse {
         try await self.client.execute(action: "DescribeClusterBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询集群的备份集
+    @inlinable
+    public func describeClusterBackups(clusterId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterBackupsResponse > {
+        self.describeClusterBackups(DescribeClusterBackupsRequest(clusterId: clusterId, pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群的备份集
+    @inlinable
+    public func describeClusterBackups(clusterId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterBackupsResponse {
+        try await self.describeClusterBackups(DescribeClusterBackupsRequest(clusterId: clusterId, pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
+    }
 }

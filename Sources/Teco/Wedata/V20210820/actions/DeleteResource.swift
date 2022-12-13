@@ -64,4 +64,20 @@ extension Wedata {
     public func deleteResource(_ input: DeleteResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceResponse {
         try await self.client.execute(action: "DeleteResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除资源
+    ///
+    /// 资源管理删除资源
+    @inlinable
+    public func deleteResource(projectId: String? = nil, resourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourceResponse > {
+        self.deleteResource(DeleteResourceRequest(projectId: projectId, resourceId: resourceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除资源
+    ///
+    /// 资源管理删除资源
+    @inlinable
+    public func deleteResource(projectId: String? = nil, resourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceResponse {
+        try await self.deleteResource(DeleteResourceRequest(projectId: projectId, resourceId: resourceId), logger: logger, on: eventLoop)
+    }
 }

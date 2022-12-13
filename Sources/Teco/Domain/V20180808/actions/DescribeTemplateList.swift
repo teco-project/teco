@@ -82,4 +82,20 @@ extension Domain {
     public func describeTemplateList(_ input: DescribeTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateListResponse {
         try await self.client.execute(action: "DescribeTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 信息模板列表
+    ///
+    /// 本接口 (DescribeTemplateList) 用于获取信息模板列表。
+    @inlinable
+    public func describeTemplateList(offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, status: String? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateListResponse > {
+        self.describeTemplateList(DescribeTemplateListRequest(offset: offset, limit: limit, type: type, status: status, keyword: keyword), logger: logger, on: eventLoop)
+    }
+    
+    /// 信息模板列表
+    ///
+    /// 本接口 (DescribeTemplateList) 用于获取信息模板列表。
+    @inlinable
+    public func describeTemplateList(offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, status: String? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateListResponse {
+        try await self.describeTemplateList(DescribeTemplateListRequest(offset: offset, limit: limit, type: type, status: status, keyword: keyword), logger: logger, on: eventLoop)
+    }
 }

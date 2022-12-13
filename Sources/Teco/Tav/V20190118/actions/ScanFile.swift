@@ -76,4 +76,20 @@ extension Tav {
     public func scanFile(_ input: ScanFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanFileResponse {
         try await self.client.execute(action: "ScanFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 文件上传扫描
+    ///
+    /// tav文件上传扫描
+    @inlinable
+    public func scanFile(key: String, sample: String, md5: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanFileResponse > {
+        self.scanFile(ScanFileRequest(key: key, sample: sample, md5: md5), logger: logger, on: eventLoop)
+    }
+    
+    /// 文件上传扫描
+    ///
+    /// tav文件上传扫描
+    @inlinable
+    public func scanFile(key: String, sample: String, md5: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanFileResponse {
+        try await self.scanFile(ScanFileRequest(key: key, sample: sample, md5: md5), logger: logger, on: eventLoop)
+    }
 }

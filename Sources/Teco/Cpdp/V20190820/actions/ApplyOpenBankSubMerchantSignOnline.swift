@@ -87,4 +87,20 @@ extension Cpdp {
     public func applyOpenBankSubMerchantSignOnline(_ input: ApplyOpenBankSubMerchantSignOnlineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOpenBankSubMerchantSignOnlineResponse {
         try await self.client.execute(action: "ApplyOpenBankSubMerchantSignOnline", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-子商户在线签约
+    ///
+    /// 子商户在线签约
+    @inlinable
+    public func applyOpenBankSubMerchantSignOnline(channelMerchantId: String, channelName: String, outSubMerchantId: String? = nil, channelSubMerchantId: String? = nil, notifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyOpenBankSubMerchantSignOnlineResponse > {
+        self.applyOpenBankSubMerchantSignOnline(ApplyOpenBankSubMerchantSignOnlineRequest(channelMerchantId: channelMerchantId, channelName: channelName, outSubMerchantId: outSubMerchantId, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-子商户在线签约
+    ///
+    /// 子商户在线签约
+    @inlinable
+    public func applyOpenBankSubMerchantSignOnline(channelMerchantId: String, channelName: String, outSubMerchantId: String? = nil, channelSubMerchantId: String? = nil, notifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOpenBankSubMerchantSignOnlineResponse {
+        try await self.applyOpenBankSubMerchantSignOnline(ApplyOpenBankSubMerchantSignOnlineRequest(channelMerchantId: channelMerchantId, channelName: channelName, outSubMerchantId: outSubMerchantId, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl), logger: logger, on: eventLoop)
+    }
 }

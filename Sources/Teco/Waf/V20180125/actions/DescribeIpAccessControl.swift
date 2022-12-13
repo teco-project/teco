@@ -110,4 +110,16 @@ extension Waf {
     public func describeIpAccessControl(_ input: DescribeIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpAccessControlResponse {
         try await self.client.execute(action: "DescribeIpAccessControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// Waf ip黑白名单查询
+    @inlinable
+    public func describeIpAccessControl(domain: String, count: UInt64, actionType: UInt64? = nil, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, offSet: UInt64? = nil, limit: UInt64? = nil, source: String? = nil, sort: String? = nil, ip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpAccessControlResponse > {
+        self.describeIpAccessControl(DescribeIpAccessControlRequest(domain: domain, count: count, actionType: actionType, vtsMin: vtsMin, vtsMax: vtsMax, ctsMin: ctsMin, ctsMax: ctsMax, offSet: offSet, limit: limit, source: source, sort: sort, ip: ip), logger: logger, on: eventLoop)
+    }
+    
+    /// Waf ip黑白名单查询
+    @inlinable
+    public func describeIpAccessControl(domain: String, count: UInt64, actionType: UInt64? = nil, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, offSet: UInt64? = nil, limit: UInt64? = nil, source: String? = nil, sort: String? = nil, ip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpAccessControlResponse {
+        try await self.describeIpAccessControl(DescribeIpAccessControlRequest(domain: domain, count: count, actionType: actionType, vtsMin: vtsMin, vtsMax: vtsMax, ctsMin: ctsMin, ctsMax: ctsMax, offSet: offSet, limit: limit, source: source, sort: sort, ip: ip), logger: logger, on: eventLoop)
+    }
 }

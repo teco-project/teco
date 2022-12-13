@@ -73,4 +73,20 @@ extension Cwp {
     public func describeOpenPortStatistics(_ input: DescribeOpenPortStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortStatisticsResponse {
         try await self.client.execute(action: "DescribeOpenPortStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取端口统计列表
+    ///
+    /// 本接口 (DescribeOpenPortStatistics) 用于获取端口统计列表。
+    @inlinable
+    public func describeOpenPortStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOpenPortStatisticsResponse > {
+        self.describeOpenPortStatistics(DescribeOpenPortStatisticsRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取端口统计列表
+    ///
+    /// 本接口 (DescribeOpenPortStatistics) 用于获取端口统计列表。
+    @inlinable
+    public func describeOpenPortStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortStatisticsResponse {
+        try await self.describeOpenPortStatistics(DescribeOpenPortStatisticsRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

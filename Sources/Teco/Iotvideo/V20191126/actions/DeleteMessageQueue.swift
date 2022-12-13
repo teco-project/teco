@@ -54,4 +54,20 @@ extension Iotvideo {
     public func deleteMessageQueue(_ input: DeleteMessageQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageQueueResponse {
         try await self.client.execute(action: "DeleteMessageQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除产品转发消息配置
+    ///
+    /// 本接口（DeleteMessageQueue）用于删除物联网智能视频产品的转发消息配置信息。
+    @inlinable
+    public func deleteMessageQueue(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMessageQueueResponse > {
+        self.deleteMessageQueue(DeleteMessageQueueRequest(productId: productId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除产品转发消息配置
+    ///
+    /// 本接口（DeleteMessageQueue）用于删除物联网智能视频产品的转发消息配置信息。
+    @inlinable
+    public func deleteMessageQueue(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageQueueResponse {
+        try await self.deleteMessageQueue(DeleteMessageQueueRequest(productId: productId), logger: logger, on: eventLoop)
+    }
 }

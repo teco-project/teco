@@ -60,4 +60,16 @@ extension Bm {
     public func bindPsaTag(_ input: BindPsaTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPsaTagResponse {
         try await self.client.execute(action: "BindPsaTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 为预授权规则绑定标签
+    @inlinable
+    public func bindPsaTag(psaId: String, tagKey: String, tagValue: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindPsaTagResponse > {
+        self.bindPsaTag(BindPsaTagRequest(psaId: psaId, tagKey: tagKey, tagValue: tagValue), logger: logger, on: eventLoop)
+    }
+    
+    /// 为预授权规则绑定标签
+    @inlinable
+    public func bindPsaTag(psaId: String, tagKey: String, tagValue: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPsaTagResponse {
+        try await self.bindPsaTag(BindPsaTagRequest(psaId: psaId, tagKey: tagKey, tagValue: tagValue), logger: logger, on: eventLoop)
+    }
 }

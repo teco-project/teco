@@ -75,4 +75,16 @@ extension Cam {
     public func getRolePermissionBoundary(_ input: GetRolePermissionBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRolePermissionBoundaryResponse {
         try await self.client.execute(action: "GetRolePermissionBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取角色权限边界
+    @inlinable
+    public func getRolePermissionBoundary(roleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRolePermissionBoundaryResponse > {
+        self.getRolePermissionBoundary(GetRolePermissionBoundaryRequest(roleId: roleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取角色权限边界
+    @inlinable
+    public func getRolePermissionBoundary(roleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRolePermissionBoundaryResponse {
+        try await self.getRolePermissionBoundary(GetRolePermissionBoundaryRequest(roleId: roleId), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Es {
     public func deleteInstance(_ input: DeleteInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
         try await self.client.execute(action: "DeleteInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 销毁ES集群实例
+    ///
+    /// 销毁集群实例 
+    @inlinable
+    public func deleteInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstanceResponse > {
+        self.deleteInstance(DeleteInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁ES集群实例
+    ///
+    /// 销毁集群实例 
+    @inlinable
+    public func deleteInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
+        try await self.deleteInstance(DeleteInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

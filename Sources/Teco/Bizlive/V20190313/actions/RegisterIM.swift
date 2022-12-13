@@ -69,4 +69,16 @@ extension Bizlive {
     public func registerIM(_ input: RegisterIMRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIMResponse {
         try await self.client.execute(action: "RegisterIM", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 注册聊天室
+    @inlinable
+    public func registerIM(nickname: String, userId: String, headImgUrl: String? = nil, level: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterIMResponse > {
+        self.registerIM(RegisterIMRequest(nickname: nickname, userId: userId, headImgUrl: headImgUrl, level: level), logger: logger, on: eventLoop)
+    }
+    
+    /// 注册聊天室
+    @inlinable
+    public func registerIM(nickname: String, userId: String, headImgUrl: String? = nil, level: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIMResponse {
+        try await self.registerIM(RegisterIMRequest(nickname: nickname, userId: userId, headImgUrl: headImgUrl, level: level), logger: logger, on: eventLoop)
+    }
 }

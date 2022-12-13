@@ -59,4 +59,20 @@ extension Vod {
     public func deleteProcedureTemplate(_ input: DeleteProcedureTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProcedureTemplateResponse {
         try await self.client.execute(action: "DeleteProcedureTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除任务流模板
+    ///
+    /// 删除用户自定义的任务流模板。  
+    @inlinable
+    public func deleteProcedureTemplate(name: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProcedureTemplateResponse > {
+        self.deleteProcedureTemplate(DeleteProcedureTemplateRequest(name: name, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除任务流模板
+    ///
+    /// 删除用户自定义的任务流模板。  
+    @inlinable
+    public func deleteProcedureTemplate(name: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProcedureTemplateResponse {
+        try await self.deleteProcedureTemplate(DeleteProcedureTemplateRequest(name: name, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

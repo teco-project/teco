@@ -75,4 +75,16 @@ extension Wedata {
     public func describeMonitorsByPage(_ input: DescribeMonitorsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorsByPageResponse {
         try await self.client.execute(action: "DescribeMonitorsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 分页查询质量监控组
+    @inlinable
+    public func describeMonitorsByPage(projectId: String? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, pageNumber: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorsByPageResponse > {
+        self.describeMonitorsByPage(DescribeMonitorsByPageRequest(projectId: projectId, pageSize: pageSize, filters: filters, orderFields: orderFields, pageNumber: pageNumber), logger: logger, on: eventLoop)
+    }
+    
+    /// 分页查询质量监控组
+    @inlinable
+    public func describeMonitorsByPage(projectId: String? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, pageNumber: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorsByPageResponse {
+        try await self.describeMonitorsByPage(DescribeMonitorsByPageRequest(projectId: projectId, pageSize: pageSize, filters: filters, orderFields: orderFields, pageNumber: pageNumber), logger: logger, on: eventLoop)
+    }
 }

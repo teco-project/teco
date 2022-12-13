@@ -66,4 +66,20 @@ extension Cynosdb {
     public func describeRollbackTimeRange(_ input: DescribeRollbackTimeRangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTimeRangeResponse {
         try await self.client.execute(action: "DescribeRollbackTimeRange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询有效回滚时间范围
+    ///
+    /// 查询指定集群有效回滚时间范围
+    @inlinable
+    public func describeRollbackTimeRange(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRollbackTimeRangeResponse > {
+        self.describeRollbackTimeRange(DescribeRollbackTimeRangeRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询有效回滚时间范围
+    ///
+    /// 查询指定集群有效回滚时间范围
+    @inlinable
+    public func describeRollbackTimeRange(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTimeRangeResponse {
+        try await self.describeRollbackTimeRange(DescribeRollbackTimeRangeRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

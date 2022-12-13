@@ -83,4 +83,20 @@ extension Zj {
     public func pushMmsContent(_ input: PushMmsContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushMmsContentResponse {
         try await self.client.execute(action: "PushMmsContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 推送超级短信内容
+    ///
+    /// 推送超级短信
+    @inlinable
+    public func pushMmsContent(license: String, instanceId: Int64, tel: String, session: String? = nil, dynamicParaKey: [String]? = nil, dynamicParaValue: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PushMmsContentResponse > {
+        self.pushMmsContent(PushMmsContentRequest(license: license, instanceId: instanceId, tel: tel, session: session, dynamicParaKey: dynamicParaKey, dynamicParaValue: dynamicParaValue), logger: logger, on: eventLoop)
+    }
+    
+    /// 推送超级短信内容
+    ///
+    /// 推送超级短信
+    @inlinable
+    public func pushMmsContent(license: String, instanceId: Int64, tel: String, session: String? = nil, dynamicParaKey: [String]? = nil, dynamicParaValue: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushMmsContentResponse {
+        try await self.pushMmsContent(PushMmsContentRequest(license: license, instanceId: instanceId, tel: tel, session: session, dynamicParaKey: dynamicParaKey, dynamicParaValue: dynamicParaValue), logger: logger, on: eventLoop)
+    }
 }

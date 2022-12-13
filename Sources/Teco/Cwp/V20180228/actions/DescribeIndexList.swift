@@ -46,4 +46,16 @@ extension Cwp {
     public func describeIndexList(_ input: DescribeIndexListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexListResponse {
         try await self.client.execute(action: "DescribeIndexList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取索引列表
+    @inlinable
+    public func describeIndexList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIndexListResponse > {
+        self.describeIndexList(DescribeIndexListRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取索引列表
+    @inlinable
+    public func describeIndexList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexListResponse {
+        try await self.describeIndexList(DescribeIndexListRequest(), logger: logger, on: eventLoop)
+    }
 }

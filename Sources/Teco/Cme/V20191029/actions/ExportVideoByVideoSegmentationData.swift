@@ -49,7 +49,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以操作任意智能拆条项目。如果指定操作者，则操作者必须为项目所有。
         public let `operator`: String?
         
-        public init (platform: String, projectId: String, segmentGroupId: String, segmentIds: [String], definition: UInt64, exportDestination: String, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, `operator`: String? = nil) {
+        public init (platform: String, projectId: String, segmentGroupId: String, segmentIds: [String], definition: UInt64, exportDestination: String, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil) {
             self.platform = platform
             self.projectId = projectId
             self.segmentGroupId = segmentGroupId
@@ -102,5 +102,21 @@ extension Cme {
     @inlinable
     public func exportVideoByVideoSegmentationData(_ input: ExportVideoByVideoSegmentationDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoByVideoSegmentationDataResponse {
         try await self.client.execute(action: "ExportVideoByVideoSegmentationData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 使用视频智能拆条数据导出视频
+    ///
+    /// 使用视频智能拆条数据导出视频，将指定的视频拆条片段导出为一个视频(内测中，请勿使用)。
+    @inlinable
+    public func exportVideoByVideoSegmentationData(platform: String, projectId: String, segmentGroupId: String, segmentIds: [String], definition: UInt64, exportDestination: String, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVideoByVideoSegmentationDataResponse > {
+        self.exportVideoByVideoSegmentationData(ExportVideoByVideoSegmentationDataRequest(platform: platform, projectId: projectId, segmentGroupId: segmentGroupId, segmentIds: segmentIds, definition: definition, exportDestination: exportDestination, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 使用视频智能拆条数据导出视频
+    ///
+    /// 使用视频智能拆条数据导出视频，将指定的视频拆条片段导出为一个视频(内测中，请勿使用)。
+    @inlinable
+    public func exportVideoByVideoSegmentationData(platform: String, projectId: String, segmentGroupId: String, segmentIds: [String], definition: UInt64, exportDestination: String, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoByVideoSegmentationDataResponse {
+        try await self.exportVideoByVideoSegmentationData(ExportVideoByVideoSegmentationDataRequest(platform: platform, projectId: projectId, segmentGroupId: segmentGroupId, segmentIds: segmentIds, definition: definition, exportDestination: exportDestination, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

@@ -108,4 +108,16 @@ extension Monitor {
     public func describeAlarmNotices(_ input: DescribeAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticesResponse {
         try await self.client.execute(action: "DescribeAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询通知模板列表
+    @inlinable
+    public func describeAlarmNotices(module: String, pageNumber: Int64, pageSize: Int64, order: String, ownerUid: Int64? = nil, name: String? = nil, receiverType: String? = nil, userIds: [Int64]? = nil, groupIds: [Int64]? = nil, noticeIds: [String]? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmNoticesResponse > {
+        self.describeAlarmNotices(DescribeAlarmNoticesRequest(module: module, pageNumber: pageNumber, pageSize: pageSize, order: order, ownerUid: ownerUid, name: name, receiverType: receiverType, userIds: userIds, groupIds: groupIds, noticeIds: noticeIds, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询通知模板列表
+    @inlinable
+    public func describeAlarmNotices(module: String, pageNumber: Int64, pageSize: Int64, order: String, ownerUid: Int64? = nil, name: String? = nil, receiverType: String? = nil, userIds: [Int64]? = nil, groupIds: [Int64]? = nil, noticeIds: [String]? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticesResponse {
+        try await self.describeAlarmNotices(DescribeAlarmNoticesRequest(module: module, pageNumber: pageNumber, pageSize: pageSize, order: order, ownerUid: ownerUid, name: name, receiverType: receiverType, userIds: userIds, groupIds: groupIds, noticeIds: noticeIds, tags: tags), logger: logger, on: eventLoop)
+    }
 }

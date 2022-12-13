@@ -46,4 +46,16 @@ extension Pts {
     public func describeAvailableMetrics(_ input: DescribeAvailableMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableMetricsResponse {
         try await self.client.execute(action: "DescribeAvailableMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询系统支持的指标
+    @inlinable
+    public func describeAvailableMetrics(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableMetricsResponse > {
+        self.describeAvailableMetrics(DescribeAvailableMetricsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询系统支持的指标
+    @inlinable
+    public func describeAvailableMetrics(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableMetricsResponse {
+        try await self.describeAvailableMetrics(DescribeAvailableMetricsRequest(), logger: logger, on: eventLoop)
+    }
 }

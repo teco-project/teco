@@ -74,4 +74,20 @@ extension Iotvideoindustry {
     public func updateTimeTemplate(_ input: UpdateTimeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTimeTemplateResponse {
         try await self.client.execute(action: "UpdateTimeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新时间模板
+    ///
+    /// 本接口(UpdateTimeTemplate)用于更新时间模板。
+    @inlinable
+    public func updateTimeTemplate(templateId: String, name: String? = nil, isAllWeek: Int64? = nil, timeTemplateSpecs: [TimeTemplateSpec]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateTimeTemplateResponse > {
+        self.updateTimeTemplate(UpdateTimeTemplateRequest(templateId: templateId, name: name, isAllWeek: isAllWeek, timeTemplateSpecs: timeTemplateSpecs), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新时间模板
+    ///
+    /// 本接口(UpdateTimeTemplate)用于更新时间模板。
+    @inlinable
+    public func updateTimeTemplate(templateId: String, name: String? = nil, isAllWeek: Int64? = nil, timeTemplateSpecs: [TimeTemplateSpec]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTimeTemplateResponse {
+        try await self.updateTimeTemplate(UpdateTimeTemplateRequest(templateId: templateId, name: name, isAllWeek: isAllWeek, timeTemplateSpecs: timeTemplateSpecs), logger: logger, on: eventLoop)
+    }
 }

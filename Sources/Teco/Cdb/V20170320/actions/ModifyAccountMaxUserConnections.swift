@@ -68,4 +68,20 @@ extension Cdb {
     public func modifyAccountMaxUserConnections(_ input: ModifyAccountMaxUserConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountMaxUserConnectionsResponse {
         try await self.client.execute(action: "ModifyAccountMaxUserConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改账户最大可用连接数
+    ///
+    /// 本接口(ModifyAccountMaxUserConnections)用于修改云数据库账户最大可用连接数。
+    @inlinable
+    public func modifyAccountMaxUserConnections(accounts: [Account], instanceId: String, maxUserConnections: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountMaxUserConnectionsResponse > {
+        self.modifyAccountMaxUserConnections(ModifyAccountMaxUserConnectionsRequest(accounts: accounts, instanceId: instanceId, maxUserConnections: maxUserConnections), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改账户最大可用连接数
+    ///
+    /// 本接口(ModifyAccountMaxUserConnections)用于修改云数据库账户最大可用连接数。
+    @inlinable
+    public func modifyAccountMaxUserConnections(accounts: [Account], instanceId: String, maxUserConnections: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountMaxUserConnectionsResponse {
+        try await self.modifyAccountMaxUserConnections(ModifyAccountMaxUserConnectionsRequest(accounts: accounts, instanceId: instanceId, maxUserConnections: maxUserConnections), logger: logger, on: eventLoop)
+    }
 }

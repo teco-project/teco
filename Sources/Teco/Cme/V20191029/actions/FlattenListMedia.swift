@@ -35,7 +35,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以平铺查询任意分类下的媒体信息。如果指定操作者，则操作者必须对当前分类有读权限。
         public let `operator`: String?
         
-        public init (platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, `operator`: String? = nil) {
+        public init (platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil) {
             self.platform = platform
             self.classPath = classPath
             self.owner = owner
@@ -86,5 +86,21 @@ extension Cme {
     @inlinable
     public func flattenListMedia(_ input: FlattenListMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlattenListMediaResponse {
         try await self.client.execute(action: "FlattenListMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 平铺浏览媒体
+    ///
+    /// 平铺分类路径下及其子分类下的所有媒体基础信息，返回当前分类及子分类中的所有媒体的基础信息。
+    @inlinable
+    public func flattenListMedia(platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FlattenListMediaResponse > {
+        self.flattenListMedia(FlattenListMediaRequest(platform: platform, classPath: classPath, owner: owner, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 平铺浏览媒体
+    ///
+    /// 平铺分类路径下及其子分类下的所有媒体基础信息，返回当前分类及子分类中的所有媒体的基础信息。
+    @inlinable
+    public func flattenListMedia(platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlattenListMediaResponse {
+        try await self.flattenListMedia(FlattenListMediaRequest(platform: platform, classPath: classPath, owner: owner, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

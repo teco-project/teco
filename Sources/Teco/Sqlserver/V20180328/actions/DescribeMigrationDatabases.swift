@@ -73,4 +73,20 @@ extension Sqlserver {
     public func describeMigrationDatabases(_ input: DescribeMigrationDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationDatabasesResponse {
         try await self.client.execute(action: "DescribeMigrationDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询迁移数据库列表
+    ///
+    /// 本接口（DescribeMigrationDatabases）的作用是查询待迁移数据库列表
+    @inlinable
+    public func describeMigrationDatabases(instanceId: String, userName: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationDatabasesResponse > {
+        self.describeMigrationDatabases(DescribeMigrationDatabasesRequest(instanceId: instanceId, userName: userName, password: password), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询迁移数据库列表
+    ///
+    /// 本接口（DescribeMigrationDatabases）的作用是查询待迁移数据库列表
+    @inlinable
+    public func describeMigrationDatabases(instanceId: String, userName: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationDatabasesResponse {
+        try await self.describeMigrationDatabases(DescribeMigrationDatabasesRequest(instanceId: instanceId, userName: userName, password: password), logger: logger, on: eventLoop)
+    }
 }

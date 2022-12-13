@@ -128,4 +128,20 @@ extension Teo {
     public func describeDDoSAttackData(_ input: DescribeDDoSAttackDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackDataResponse {
         try await self.client.execute(action: "DescribeDDoSAttackData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询DDoS攻击时序数据
+    ///
+    /// 本接口（DescribeDDoSAttackData）用于查询DDoS攻击时序数据。
+    @inlinable
+    public func describeDDoSAttackData(startTime: Date, endTime: Date, metricNames: [String], port: Int64? = nil, attackType: String? = nil, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, protocolType: String? = nil, interval: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSAttackDataResponse > {
+        self.describeDDoSAttackData(DescribeDDoSAttackDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, port: port, attackType: attackType, zoneIds: zoneIds, policyIds: policyIds, protocolType: protocolType, interval: interval, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询DDoS攻击时序数据
+    ///
+    /// 本接口（DescribeDDoSAttackData）用于查询DDoS攻击时序数据。
+    @inlinable
+    public func describeDDoSAttackData(startTime: Date, endTime: Date, metricNames: [String], port: Int64? = nil, attackType: String? = nil, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, protocolType: String? = nil, interval: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackDataResponse {
+        try await self.describeDDoSAttackData(DescribeDDoSAttackDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, port: port, attackType: attackType, zoneIds: zoneIds, policyIds: policyIds, protocolType: protocolType, interval: interval, area: area), logger: logger, on: eventLoop)
+    }
 }

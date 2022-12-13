@@ -73,4 +73,16 @@ extension Tdid {
     public func getAuthoritiesList(_ input: GetAuthoritiesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAuthoritiesListResponse {
         try await self.client.execute(action: "GetAuthoritiesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 权威机构列表
+    @inlinable
+    public func getAuthoritiesList(pageNumber: Int64, pageSize: Int64, did: String? = nil, status: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAuthoritiesListResponse > {
+        self.getAuthoritiesList(GetAuthoritiesListRequest(pageNumber: pageNumber, pageSize: pageSize, did: did, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 权威机构列表
+    @inlinable
+    public func getAuthoritiesList(pageNumber: Int64, pageSize: Int64, did: String? = nil, status: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAuthoritiesListResponse {
+        try await self.getAuthoritiesList(GetAuthoritiesListRequest(pageNumber: pageNumber, pageSize: pageSize, did: did, status: status), logger: logger, on: eventLoop)
+    }
 }

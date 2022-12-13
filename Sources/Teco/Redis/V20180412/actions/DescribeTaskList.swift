@@ -113,4 +113,16 @@ extension Redis {
     public func describeTaskList(_ input: DescribeTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskListResponse {
         try await self.client.execute(action: "DescribeTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询任务列表信息
+    @inlinable
+    public func describeTaskList(instanceId: String? = nil, instanceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, projectIds: [Int64]? = nil, taskTypes: [String]? = nil, beginTime: String? = nil, endTime: String? = nil, taskStatus: [Int64]? = nil, result: [Int64]? = nil, operatorUin: [Int64]? = nil, operateUin: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskListResponse > {
+        self.describeTaskList(DescribeTaskListRequest(instanceId: instanceId, instanceName: instanceName, limit: limit, offset: offset, projectIds: projectIds, taskTypes: taskTypes, beginTime: beginTime, endTime: endTime, taskStatus: taskStatus, result: result, operatorUin: operatorUin, operateUin: operateUin), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务列表信息
+    @inlinable
+    public func describeTaskList(instanceId: String? = nil, instanceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, projectIds: [Int64]? = nil, taskTypes: [String]? = nil, beginTime: String? = nil, endTime: String? = nil, taskStatus: [Int64]? = nil, result: [Int64]? = nil, operatorUin: [Int64]? = nil, operateUin: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskListResponse {
+        try await self.describeTaskList(DescribeTaskListRequest(instanceId: instanceId, instanceName: instanceName, limit: limit, offset: offset, projectIds: projectIds, taskTypes: taskTypes, beginTime: beginTime, endTime: endTime, taskStatus: taskStatus, result: result, operatorUin: operatorUin, operateUin: operateUin), logger: logger, on: eventLoop)
+    }
 }

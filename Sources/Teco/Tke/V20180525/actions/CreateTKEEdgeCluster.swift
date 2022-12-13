@@ -119,4 +119,16 @@ extension Tke {
     public func createTKEEdgeCluster(_ input: CreateTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTKEEdgeClusterResponse {
         try await self.client.execute(action: "CreateTKEEdgeCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建边缘计算集群
+    @inlinable
+    public func createTKEEdgeCluster(k8sVersion: String, vpcId: String, clusterName: String, podCIDR: String, serviceCIDR: String, clusterDesc: String? = nil, clusterAdvancedSettings: EdgeClusterAdvancedSettings? = nil, maxNodePodNum: Int64? = nil, publicLB: EdgeClusterPublicLB? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: Bool? = nil, chargeType: String? = nil, edgeVersion: String? = nil, registryPrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTKEEdgeClusterResponse > {
+        self.createTKEEdgeCluster(CreateTKEEdgeClusterRequest(k8sVersion: k8sVersion, vpcId: vpcId, clusterName: clusterName, podCIDR: podCIDR, serviceCIDR: serviceCIDR, clusterDesc: clusterDesc, clusterAdvancedSettings: clusterAdvancedSettings, maxNodePodNum: maxNodePodNum, publicLB: publicLB, clusterLevel: clusterLevel, autoUpgradeClusterLevel: autoUpgradeClusterLevel, chargeType: chargeType, edgeVersion: edgeVersion, registryPrefix: registryPrefix), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建边缘计算集群
+    @inlinable
+    public func createTKEEdgeCluster(k8sVersion: String, vpcId: String, clusterName: String, podCIDR: String, serviceCIDR: String, clusterDesc: String? = nil, clusterAdvancedSettings: EdgeClusterAdvancedSettings? = nil, maxNodePodNum: Int64? = nil, publicLB: EdgeClusterPublicLB? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: Bool? = nil, chargeType: String? = nil, edgeVersion: String? = nil, registryPrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTKEEdgeClusterResponse {
+        try await self.createTKEEdgeCluster(CreateTKEEdgeClusterRequest(k8sVersion: k8sVersion, vpcId: vpcId, clusterName: clusterName, podCIDR: podCIDR, serviceCIDR: serviceCIDR, clusterDesc: clusterDesc, clusterAdvancedSettings: clusterAdvancedSettings, maxNodePodNum: maxNodePodNum, publicLB: publicLB, clusterLevel: clusterLevel, autoUpgradeClusterLevel: autoUpgradeClusterLevel, chargeType: chargeType, edgeVersion: edgeVersion, registryPrefix: registryPrefix), logger: logger, on: eventLoop)
+    }
 }

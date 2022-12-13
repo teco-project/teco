@@ -75,4 +75,22 @@ extension Cvm {
     public func inquiryPriceRenewInstances(_ input: InquiryPriceRenewInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewInstancesResponse {
         try await self.client.execute(action: "InquiryPriceRenewInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 续费实例询价
+    ///
+    /// 本接口 (InquiryPriceRenewInstances) 用于续费包年包月实例询价。
+    /// * 只支持查询包年包月实例的续费价格。
+    @inlinable
+    public func inquiryPriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, dryRun: Bool? = nil, renewPortableDataDisk: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceRenewInstancesResponse > {
+        self.inquiryPriceRenewInstances(InquiryPriceRenewInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, dryRun: dryRun, renewPortableDataDisk: renewPortableDataDisk), logger: logger, on: eventLoop)
+    }
+    
+    /// 续费实例询价
+    ///
+    /// 本接口 (InquiryPriceRenewInstances) 用于续费包年包月实例询价。
+    /// * 只支持查询包年包月实例的续费价格。
+    @inlinable
+    public func inquiryPriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, dryRun: Bool? = nil, renewPortableDataDisk: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewInstancesResponse {
+        try await self.inquiryPriceRenewInstances(InquiryPriceRenewInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, dryRun: dryRun, renewPortableDataDisk: renewPortableDataDisk), logger: logger, on: eventLoop)
+    }
 }

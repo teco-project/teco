@@ -42,4 +42,16 @@ extension Lcic {
     public func createSupervisor(_ input: CreateSupervisorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSupervisorResponse {
         try await self.client.execute(action: "CreateSupervisor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建巡课
+    @inlinable
+    public func createSupervisor(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSupervisorResponse > {
+        self.createSupervisor(CreateSupervisorRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建巡课
+    @inlinable
+    public func createSupervisor(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSupervisorResponse {
+        try await self.createSupervisor(CreateSupervisorRequest(), logger: logger, on: eventLoop)
+    }
 }

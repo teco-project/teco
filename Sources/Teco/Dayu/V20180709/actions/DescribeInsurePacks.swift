@@ -54,4 +54,16 @@ extension Dayu {
     public func describeInsurePacks(_ input: DescribeInsurePacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInsurePacksResponse {
         try await self.client.execute(action: "DescribeInsurePacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取保险包套餐列表
+    @inlinable
+    public func describeInsurePacks(idList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInsurePacksResponse > {
+        self.describeInsurePacks(DescribeInsurePacksRequest(idList: idList), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取保险包套餐列表
+    @inlinable
+    public func describeInsurePacks(idList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInsurePacksResponse {
+        try await self.describeInsurePacks(DescribeInsurePacksRequest(idList: idList), logger: logger, on: eventLoop)
+    }
 }

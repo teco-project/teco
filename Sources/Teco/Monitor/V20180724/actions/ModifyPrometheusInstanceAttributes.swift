@@ -60,4 +60,16 @@ extension Monitor {
     public func modifyPrometheusInstanceAttributes(_ input: ModifyPrometheusInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusInstanceAttributesResponse {
         try await self.client.execute(action: "ModifyPrometheusInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改 Prometheus 实例相关属性
+    @inlinable
+    public func modifyPrometheusInstanceAttributes(instanceName: String, instanceId: String, dataRetentionTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusInstanceAttributesResponse > {
+        self.modifyPrometheusInstanceAttributes(ModifyPrometheusInstanceAttributesRequest(instanceName: instanceName, instanceId: instanceId, dataRetentionTime: dataRetentionTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改 Prometheus 实例相关属性
+    @inlinable
+    public func modifyPrometheusInstanceAttributes(instanceName: String, instanceId: String, dataRetentionTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusInstanceAttributesResponse {
+        try await self.modifyPrometheusInstanceAttributes(ModifyPrometheusInstanceAttributesRequest(instanceName: instanceName, instanceId: instanceId, dataRetentionTime: dataRetentionTime), logger: logger, on: eventLoop)
+    }
 }

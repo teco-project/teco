@@ -110,4 +110,16 @@ extension Iecp {
     public func describeEdgeUnitApplicationVisualization(_ input: DescribeEdgeUnitApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationVisualizationResponse {
         try await self.client.execute(action: "DescribeEdgeUnitApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取单元可视化配置信息
+    @inlinable
+    public func describeEdgeUnitApplicationVisualization(edgeUnitId: UInt64, applicationId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitApplicationVisualizationResponse > {
+        self.describeEdgeUnitApplicationVisualization(DescribeEdgeUnitApplicationVisualizationRequest(edgeUnitId: edgeUnitId, applicationId: applicationId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取单元可视化配置信息
+    @inlinable
+    public func describeEdgeUnitApplicationVisualization(edgeUnitId: UInt64, applicationId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationVisualizationResponse {
+        try await self.describeEdgeUnitApplicationVisualization(DescribeEdgeUnitApplicationVisualizationRequest(edgeUnitId: edgeUnitId, applicationId: applicationId), logger: logger, on: eventLoop)
+    }
 }

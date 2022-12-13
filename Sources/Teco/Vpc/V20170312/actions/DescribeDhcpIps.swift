@@ -82,4 +82,20 @@ extension Vpc {
     public func describeDhcpIps(_ input: DescribeDhcpIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDhcpIpsResponse {
         try await self.client.execute(action: "DescribeDhcpIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询DhcpIp列表
+    ///
+    /// 本接口（DescribeDhcpIps）用于查询DhcpIp列表
+    @inlinable
+    public func describeDhcpIps(dhcpIpIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDhcpIpsResponse > {
+        self.describeDhcpIps(DescribeDhcpIpsRequest(dhcpIpIds: dhcpIpIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询DhcpIp列表
+    ///
+    /// 本接口（DescribeDhcpIps）用于查询DhcpIp列表
+    @inlinable
+    public func describeDhcpIps(dhcpIpIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDhcpIpsResponse {
+        try await self.describeDhcpIps(DescribeDhcpIpsRequest(dhcpIpIds: dhcpIpIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

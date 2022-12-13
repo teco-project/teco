@@ -64,4 +64,16 @@ extension Tem {
     public func describeDeployApplicationDetail(_ input: DescribeDeployApplicationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeployApplicationDetailResponse {
         try await self.client.execute(action: "DescribeDeployApplicationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取分批发布详情
+    @inlinable
+    public func describeDeployApplicationDetail(applicationId: String? = nil, environmentId: String? = nil, versionId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeployApplicationDetailResponse > {
+        self.describeDeployApplicationDetail(DescribeDeployApplicationDetailRequest(applicationId: applicationId, environmentId: environmentId, versionId: versionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取分批发布详情
+    @inlinable
+    public func describeDeployApplicationDetail(applicationId: String? = nil, environmentId: String? = nil, versionId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeployApplicationDetailResponse {
+        try await self.describeDeployApplicationDetail(DescribeDeployApplicationDetailRequest(applicationId: applicationId, environmentId: environmentId, versionId: versionId), logger: logger, on: eventLoop)
+    }
 }

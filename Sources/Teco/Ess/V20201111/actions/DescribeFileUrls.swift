@@ -55,7 +55,7 @@ extension Ess {
         /// 应用相关信息
         public let agent: Agent?
         
-        public init (`operator`: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, ccToken: String? = nil, scene: String? = nil, agent: Agent? = nil) {
+        public init (operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, ccToken: String? = nil, scene: String? = nil, agent: Agent? = nil) {
             self.`operator` = `operator`
             self.businessType = businessType
             self.businessIds = businessIds
@@ -118,5 +118,23 @@ extension Ess {
     @inlinable
     public func describeFileUrls(_ input: DescribeFileUrlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
         try await self.client.execute(action: "DescribeFileUrls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 查询文件下载URL
+    ///
+    /// 查询文件下载URL
+    /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
+    @inlinable
+    public func describeFileUrls(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, ccToken: String? = nil, scene: String? = nil, agent: Agent? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileUrlsResponse > {
+        self.describeFileUrls(DescribeFileUrlsRequest(operator: `operator`, businessType: businessType, businessIds: businessIds, fileName: fileName, fileType: fileType, offset: offset, limit: limit, urlTtl: urlTtl, ccToken: ccToken, scene: scene, agent: agent), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文件下载URL
+    ///
+    /// 查询文件下载URL
+    /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
+    @inlinable
+    public func describeFileUrls(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, ccToken: String? = nil, scene: String? = nil, agent: Agent? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
+        try await self.describeFileUrls(DescribeFileUrlsRequest(operator: `operator`, businessType: businessType, businessIds: businessIds, fileName: fileName, fileType: fileType, offset: offset, limit: limit, urlTtl: urlTtl, ccToken: ccToken, scene: scene, agent: agent), logger: logger, on: eventLoop)
     }
 }

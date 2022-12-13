@@ -146,4 +146,16 @@ extension Teo {
     public func modifyDnsRecord(_ input: ModifyDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDnsRecordResponse {
         try await self.client.execute(action: "ModifyDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改 DNS 记录
+    @inlinable
+    public func modifyDnsRecord(id: String, zoneId: String, type: String? = nil, name: String? = nil, content: String? = nil, ttl: Int64? = nil, priority: Int64? = nil, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDnsRecordResponse > {
+        self.modifyDnsRecord(ModifyDnsRecordRequest(id: id, zoneId: zoneId, type: type, name: name, content: content, ttl: ttl, priority: priority, mode: mode), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改 DNS 记录
+    @inlinable
+    public func modifyDnsRecord(id: String, zoneId: String, type: String? = nil, name: String? = nil, content: String? = nil, ttl: Int64? = nil, priority: Int64? = nil, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDnsRecordResponse {
+        try await self.modifyDnsRecord(ModifyDnsRecordRequest(id: id, zoneId: zoneId, type: type, name: name, content: content, ttl: ttl, priority: priority, mode: mode), logger: logger, on: eventLoop)
+    }
 }

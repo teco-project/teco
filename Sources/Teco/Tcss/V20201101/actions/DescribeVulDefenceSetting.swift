@@ -73,4 +73,16 @@ extension Tcss {
     public func describeVulDefenceSetting(_ input: DescribeVulDefenceSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceSettingResponse {
         try await self.client.execute(action: "DescribeVulDefenceSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询漏洞防御设置信息
+    @inlinable
+    public func describeVulDefenceSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDefenceSettingResponse > {
+        self.describeVulDefenceSetting(DescribeVulDefenceSettingRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞防御设置信息
+    @inlinable
+    public func describeVulDefenceSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceSettingResponse {
+        try await self.describeVulDefenceSetting(DescribeVulDefenceSettingRequest(), logger: logger, on: eventLoop)
+    }
 }

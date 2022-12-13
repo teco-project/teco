@@ -54,4 +54,20 @@ extension Cdb {
     public func stopDBImportJob(_ input: StopDBImportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopDBImportJobResponse {
         try await self.client.execute(action: "StopDBImportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 终止数据导入任务
+    ///
+    /// 本接口(StopDBImportJob)用于终止数据导入任务。
+    @inlinable
+    public func stopDBImportJob(asyncRequestId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopDBImportJobResponse > {
+        self.stopDBImportJob(StopDBImportJobRequest(asyncRequestId: asyncRequestId), logger: logger, on: eventLoop)
+    }
+    
+    /// 终止数据导入任务
+    ///
+    /// 本接口(StopDBImportJob)用于终止数据导入任务。
+    @inlinable
+    public func stopDBImportJob(asyncRequestId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopDBImportJobResponse {
+        try await self.stopDBImportJob(StopDBImportJobRequest(asyncRequestId: asyncRequestId), logger: logger, on: eventLoop)
+    }
 }

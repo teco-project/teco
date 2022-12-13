@@ -77,4 +77,20 @@ extension Vod {
     public func describeHeadTailTemplates(_ input: DescribeHeadTailTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHeadTailTemplatesResponse {
         try await self.client.execute(action: "DescribeHeadTailTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取片头片尾模板列表
+    ///
+    /// 获取片头片尾模板列表。
+    @inlinable
+    public func describeHeadTailTemplates(subAppId: UInt64? = nil, definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHeadTailTemplatesResponse > {
+        self.describeHeadTailTemplates(DescribeHeadTailTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取片头片尾模板列表
+    ///
+    /// 获取片头片尾模板列表。
+    @inlinable
+    public func describeHeadTailTemplates(subAppId: UInt64? = nil, definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHeadTailTemplatesResponse {
+        try await self.describeHeadTailTemplates(DescribeHeadTailTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

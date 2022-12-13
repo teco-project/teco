@@ -102,4 +102,20 @@ extension Rum {
     public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
         try await self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改项目
+    ///
+    /// 修改 rum 项目信息
+    @inlinable
+    public func modifyProject(id: UInt64, name: String? = nil, url: String? = nil, repo: String? = nil, instanceID: String? = nil, rate: String? = nil, enableURLGroup: UInt64? = nil, type: String? = nil, desc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProjectResponse > {
+        self.modifyProject(ModifyProjectRequest(id: id, name: name, url: url, repo: repo, instanceID: instanceID, rate: rate, enableURLGroup: enableURLGroup, type: type, desc: desc), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改项目
+    ///
+    /// 修改 rum 项目信息
+    @inlinable
+    public func modifyProject(id: UInt64, name: String? = nil, url: String? = nil, repo: String? = nil, instanceID: String? = nil, rate: String? = nil, enableURLGroup: UInt64? = nil, type: String? = nil, desc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
+        try await self.modifyProject(ModifyProjectRequest(id: id, name: name, url: url, repo: repo, instanceID: instanceID, rate: rate, enableURLGroup: enableURLGroup, type: type, desc: desc), logger: logger, on: eventLoop)
+    }
 }

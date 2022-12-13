@@ -75,4 +75,16 @@ extension Tke {
     public func createClusterEndpoint(_ input: CreateClusterEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterEndpointResponse {
         try await self.client.execute(action: "CreateClusterEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建集群访问端口
+    @inlinable
+    public func createClusterEndpoint(clusterId: String, subnetId: String? = nil, isExtranet: Bool? = nil, domain: String? = nil, securityGroup: String? = nil, extensiveParameters: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterEndpointResponse > {
+        self.createClusterEndpoint(CreateClusterEndpointRequest(clusterId: clusterId, subnetId: subnetId, isExtranet: isExtranet, domain: domain, securityGroup: securityGroup, extensiveParameters: extensiveParameters), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群访问端口
+    @inlinable
+    public func createClusterEndpoint(clusterId: String, subnetId: String? = nil, isExtranet: Bool? = nil, domain: String? = nil, securityGroup: String? = nil, extensiveParameters: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterEndpointResponse {
+        try await self.createClusterEndpoint(CreateClusterEndpointRequest(clusterId: clusterId, subnetId: subnetId, isExtranet: isExtranet, domain: domain, securityGroup: securityGroup, extensiveParameters: extensiveParameters), logger: logger, on: eventLoop)
+    }
 }

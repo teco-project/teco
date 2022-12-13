@@ -90,4 +90,16 @@ extension Youmall {
     public func describeZoneFlowGenderAvrStayTimeByZoneId(_ input: DescribeZoneFlowGenderAvrStayTimeByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowGenderAvrStayTimeByZoneIdResponse {
         try await self.client.execute(action: "DescribeZoneFlowGenderAvrStayTimeByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取指定区域不同年龄段男女平均停留时间
+    @inlinable
+    public func describeZoneFlowGenderAvrStayTimeByZoneId(companyId: String, shopId: Int64, zoneId: Int64, startDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneFlowGenderAvrStayTimeByZoneIdResponse > {
+        self.describeZoneFlowGenderAvrStayTimeByZoneId(DescribeZoneFlowGenderAvrStayTimeByZoneIdRequest(companyId: companyId, shopId: shopId, zoneId: zoneId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定区域不同年龄段男女平均停留时间
+    @inlinable
+    public func describeZoneFlowGenderAvrStayTimeByZoneId(companyId: String, shopId: Int64, zoneId: Int64, startDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowGenderAvrStayTimeByZoneIdResponse {
+        try await self.describeZoneFlowGenderAvrStayTimeByZoneId(DescribeZoneFlowGenderAvrStayTimeByZoneIdRequest(companyId: companyId, shopId: shopId, zoneId: zoneId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
 }

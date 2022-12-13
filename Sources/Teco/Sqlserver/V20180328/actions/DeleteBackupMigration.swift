@@ -59,4 +59,20 @@ extension Sqlserver {
     public func deleteBackupMigration(_ input: DeleteBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupMigrationResponse {
         try await self.client.execute(action: "DeleteBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除备份导入任务
+    ///
+    /// 本接口（DeleteBackupMigration）用于删除备份导入任务。
+    @inlinable
+    public func deleteBackupMigration(instanceId: String, backupMigrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBackupMigrationResponse > {
+        self.deleteBackupMigration(DeleteBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除备份导入任务
+    ///
+    /// 本接口（DeleteBackupMigration）用于删除备份导入任务。
+    @inlinable
+    public func deleteBackupMigration(instanceId: String, backupMigrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupMigrationResponse {
+        try await self.deleteBackupMigration(DeleteBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId), logger: logger, on: eventLoop)
+    }
 }

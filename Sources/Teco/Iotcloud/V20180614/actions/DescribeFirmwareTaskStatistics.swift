@@ -70,4 +70,16 @@ extension Iotcloud {
     public func describeFirmwareTaskStatistics(_ input: DescribeFirmwareTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskStatisticsResponse {
         try await self.client.execute(action: "DescribeFirmwareTaskStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询固件升级任务统计信息
+    @inlinable
+    public func describeFirmwareTaskStatistics(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirmwareTaskStatisticsResponse > {
+        self.describeFirmwareTaskStatistics(DescribeFirmwareTaskStatisticsRequest(productID: productID, firmwareVersion: firmwareVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询固件升级任务统计信息
+    @inlinable
+    public func describeFirmwareTaskStatistics(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskStatisticsResponse {
+        try await self.describeFirmwareTaskStatistics(DescribeFirmwareTaskStatisticsRequest(productID: productID, firmwareVersion: firmwareVersion), logger: logger, on: eventLoop)
+    }
 }

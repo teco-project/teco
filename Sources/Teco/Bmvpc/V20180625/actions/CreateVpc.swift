@@ -74,4 +74,16 @@ extension Bmvpc {
     public func createVpc(_ input: CreateVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcResponse {
         try await self.client.execute(action: "CreateVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建黑石私有网络
+    @inlinable
+    public func createVpc(vpcName: String, cidrBlock: String, zone: String, subnetSet: [VpcSubnetCreateInfo]? = nil, enableMonitoring: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpcResponse > {
+        self.createVpc(CreateVpcRequest(vpcName: vpcName, cidrBlock: cidrBlock, zone: zone, subnetSet: subnetSet, enableMonitoring: enableMonitoring), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建黑石私有网络
+    @inlinable
+    public func createVpc(vpcName: String, cidrBlock: String, zone: String, subnetSet: [VpcSubnetCreateInfo]? = nil, enableMonitoring: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcResponse {
+        try await self.createVpc(CreateVpcRequest(vpcName: vpcName, cidrBlock: cidrBlock, zone: zone, subnetSet: subnetSet, enableMonitoring: enableMonitoring), logger: logger, on: eventLoop)
+    }
 }

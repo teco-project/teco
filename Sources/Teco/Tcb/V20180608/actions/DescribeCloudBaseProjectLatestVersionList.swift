@@ -90,4 +90,16 @@ extension Tcb {
     public func describeCloudBaseProjectLatestVersionList(_ input: DescribeCloudBaseProjectLatestVersionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseProjectLatestVersionListResponse {
         try await self.client.execute(action: "DescribeCloudBaseProjectLatestVersionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取云开发项目列表
+    @inlinable
+    public func describeCloudBaseProjectLatestVersionList(offset: Int64, pageSize: Int64, envId: String? = nil, projectName: String? = nil, projectType: String? = nil, tags: [String]? = nil, ciId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseProjectLatestVersionListResponse > {
+        self.describeCloudBaseProjectLatestVersionList(DescribeCloudBaseProjectLatestVersionListRequest(offset: offset, pageSize: pageSize, envId: envId, projectName: projectName, projectType: projectType, tags: tags, ciId: ciId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取云开发项目列表
+    @inlinable
+    public func describeCloudBaseProjectLatestVersionList(offset: Int64, pageSize: Int64, envId: String? = nil, projectName: String? = nil, projectType: String? = nil, tags: [String]? = nil, ciId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseProjectLatestVersionListResponse {
+        try await self.describeCloudBaseProjectLatestVersionList(DescribeCloudBaseProjectLatestVersionListRequest(offset: offset, pageSize: pageSize, envId: envId, projectName: projectName, projectType: projectType, tags: tags, ciId: ciId), logger: logger, on: eventLoop)
+    }
 }

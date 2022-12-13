@@ -54,4 +54,16 @@ extension Cloudaudit {
     public func listCosEnableRegion(_ input: ListCosEnableRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListCosEnableRegionResponse {
         try await self.client.execute(action: "ListCosEnableRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询云审计支持的cos可用区
+    @inlinable
+    public func listCosEnableRegion(websiteType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListCosEnableRegionResponse > {
+        self.listCosEnableRegion(ListCosEnableRegionRequest(websiteType: websiteType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云审计支持的cos可用区
+    @inlinable
+    public func listCosEnableRegion(websiteType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListCosEnableRegionResponse {
+        try await self.listCosEnableRegion(ListCosEnableRegionRequest(websiteType: websiteType), logger: logger, on: eventLoop)
+    }
 }

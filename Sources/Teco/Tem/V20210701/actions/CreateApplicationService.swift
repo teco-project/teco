@@ -70,4 +70,16 @@ extension Tem {
     public func createApplicationService(_ input: CreateApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationServiceResponse {
         try await self.client.execute(action: "CreateApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新增访问方式
+    @inlinable
+    public func createApplicationService(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, service: ServicePortMapping? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationServiceResponse > {
+        self.createApplicationService(CreateApplicationServiceRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, service: service), logger: logger, on: eventLoop)
+    }
+    
+    /// 新增访问方式
+    @inlinable
+    public func createApplicationService(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, service: ServicePortMapping? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationServiceResponse {
+        try await self.createApplicationService(CreateApplicationServiceRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, service: service), logger: logger, on: eventLoop)
+    }
 }

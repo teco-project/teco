@@ -63,4 +63,20 @@ extension Lighthouse {
     public func importKeyPair(_ input: ImportKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyPairResponse {
         try await self.client.execute(action: "ImportKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导入密钥对
+    ///
+    /// 本接口（ImportKeyPair）用于导入用户指定密钥对。
+    @inlinable
+    public func importKeyPair(keyName: String, publicKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportKeyPairResponse > {
+        self.importKeyPair(ImportKeyPairRequest(keyName: keyName, publicKey: publicKey), logger: logger, on: eventLoop)
+    }
+    
+    /// 导入密钥对
+    ///
+    /// 本接口（ImportKeyPair）用于导入用户指定密钥对。
+    @inlinable
+    public func importKeyPair(keyName: String, publicKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyPairResponse {
+        try await self.importKeyPair(ImportKeyPairRequest(keyName: keyName, publicKey: publicKey), logger: logger, on: eventLoop)
+    }
 }

@@ -72,4 +72,20 @@ extension Gme {
     public func modifyCustomizationState(_ input: ModifyCustomizationStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationStateResponse {
         try await self.client.execute(action: "ModifyCustomizationState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改语音消息转文本自学习模型状态
+    ///
+    /// 通过该接口，用户可以修改语音消息转文本自学习模型状态，上下线自学习模型
+    @inlinable
+    public func modifyCustomizationState(modelId: String, toState: Int64, bizId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomizationStateResponse > {
+        self.modifyCustomizationState(ModifyCustomizationStateRequest(modelId: modelId, toState: toState, bizId: bizId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改语音消息转文本自学习模型状态
+    ///
+    /// 通过该接口，用户可以修改语音消息转文本自学习模型状态，上下线自学习模型
+    @inlinable
+    public func modifyCustomizationState(modelId: String, toState: Int64, bizId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationStateResponse {
+        try await self.modifyCustomizationState(ModifyCustomizationStateRequest(modelId: modelId, toState: toState, bizId: bizId), logger: logger, on: eventLoop)
+    }
 }

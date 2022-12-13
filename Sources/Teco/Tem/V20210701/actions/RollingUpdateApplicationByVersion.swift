@@ -99,4 +99,16 @@ extension Tem {
     public func rollingUpdateApplicationByVersion(_ input: RollingUpdateApplicationByVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollingUpdateApplicationByVersionResponse {
         try await self.client.execute(action: "RollingUpdateApplicationByVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新应用部署版本
+    @inlinable
+    public func rollingUpdateApplicationByVersion(applicationId: String, environmentId: String, deployVersion: String, packageName: String? = nil, from: String? = nil, deployStrategyType: String? = nil, totalBatchCount: Int64? = nil, batchInterval: Int64? = nil, betaBatchNum: Int64? = nil, minAvailable: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollingUpdateApplicationByVersionResponse > {
+        self.rollingUpdateApplicationByVersion(RollingUpdateApplicationByVersionRequest(applicationId: applicationId, environmentId: environmentId, deployVersion: deployVersion, packageName: packageName, from: from, deployStrategyType: deployStrategyType, totalBatchCount: totalBatchCount, batchInterval: batchInterval, betaBatchNum: betaBatchNum, minAvailable: minAvailable), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新应用部署版本
+    @inlinable
+    public func rollingUpdateApplicationByVersion(applicationId: String, environmentId: String, deployVersion: String, packageName: String? = nil, from: String? = nil, deployStrategyType: String? = nil, totalBatchCount: Int64? = nil, batchInterval: Int64? = nil, betaBatchNum: Int64? = nil, minAvailable: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollingUpdateApplicationByVersionResponse {
+        try await self.rollingUpdateApplicationByVersion(RollingUpdateApplicationByVersionRequest(applicationId: applicationId, environmentId: environmentId, deployVersion: deployVersion, packageName: packageName, from: from, deployStrategyType: deployStrategyType, totalBatchCount: totalBatchCount, batchInterval: batchInterval, betaBatchNum: betaBatchNum, minAvailable: minAvailable), logger: logger, on: eventLoop)
+    }
 }

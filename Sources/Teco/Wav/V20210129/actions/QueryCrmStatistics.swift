@@ -89,4 +89,20 @@ extension Wav {
     public func queryCrmStatistics(_ input: QueryCrmStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCrmStatisticsResponse {
         try await self.client.execute(action: "QueryCrmStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询CRM统计数据接口
+    ///
+    /// 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据
+    @inlinable
+    public func queryCrmStatistics(beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil, salesId: String? = nil, orgId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCrmStatisticsResponse > {
+        self.queryCrmStatistics(QueryCrmStatisticsRequest(beginTime: beginTime, endTime: endTime, cursor: cursor, limit: limit, salesId: salesId, orgId: orgId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询CRM统计数据接口
+    ///
+    /// 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据
+    @inlinable
+    public func queryCrmStatistics(beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil, salesId: String? = nil, orgId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCrmStatisticsResponse {
+        try await self.queryCrmStatistics(QueryCrmStatisticsRequest(beginTime: beginTime, endTime: endTime, cursor: cursor, limit: limit, salesId: salesId, orgId: orgId), logger: logger, on: eventLoop)
+    }
 }

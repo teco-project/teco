@@ -73,4 +73,16 @@ extension Tcb {
     public func describeEndUsers(_ input: DescribeEndUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEndUsersResponse {
         try await self.client.execute(action: "DescribeEndUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取终端用户列表
+    @inlinable
+    public func describeEndUsers(envId: String, offset: UInt64? = nil, limit: UInt64? = nil, uuIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEndUsersResponse > {
+        self.describeEndUsers(DescribeEndUsersRequest(envId: envId, offset: offset, limit: limit, uuIds: uuIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取终端用户列表
+    @inlinable
+    public func describeEndUsers(envId: String, offset: UInt64? = nil, limit: UInt64? = nil, uuIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEndUsersResponse {
+        try await self.describeEndUsers(DescribeEndUsersRequest(envId: envId, offset: offset, limit: limit, uuIds: uuIds), logger: logger, on: eventLoop)
+    }
 }

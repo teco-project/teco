@@ -58,4 +58,16 @@ extension Tiw {
     public func describeTranscodeCallback(_ input: DescribeTranscodeCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeCallbackResponse {
         try await self.client.execute(action: "DescribeTranscodeCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询文档转码回调地址
+    @inlinable
+    public func describeTranscodeCallback(sdkAppId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTranscodeCallbackResponse > {
+        self.describeTranscodeCallback(DescribeTranscodeCallbackRequest(sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文档转码回调地址
+    @inlinable
+    public func describeTranscodeCallback(sdkAppId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeCallbackResponse {
+        try await self.describeTranscodeCallback(DescribeTranscodeCallbackRequest(sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    }
 }

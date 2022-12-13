@@ -73,4 +73,20 @@ extension Vpc {
     public func describeLocalGateway(_ input: DescribeLocalGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLocalGatewayResponse {
         try await self.client.execute(action: "DescribeLocalGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询本地网关
+    ///
+    /// 该接口用于查询CDC的本地网关。
+    @inlinable
+    public func describeLocalGateway(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLocalGatewayResponse > {
+        self.describeLocalGateway(DescribeLocalGatewayRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询本地网关
+    ///
+    /// 该接口用于查询CDC的本地网关。
+    @inlinable
+    public func describeLocalGateway(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLocalGatewayResponse {
+        try await self.describeLocalGateway(DescribeLocalGatewayRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

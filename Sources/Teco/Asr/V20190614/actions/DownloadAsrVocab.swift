@@ -62,4 +62,20 @@ extension Asr {
     public func downloadAsrVocab(_ input: DownloadAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadAsrVocabResponse {
         try await self.client.execute(action: "DownloadAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 下载热词表
+    ///
+    /// 用户通过本接口进行热词表的下载，获得词表权重文件形式的 base64 值，文件形式为通过 “|” 分割的词和权重，即 word|weight 的形式。
+    @inlinable
+    public func downloadAsrVocab(vocabId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadAsrVocabResponse > {
+        self.downloadAsrVocab(DownloadAsrVocabRequest(vocabId: vocabId), logger: logger, on: eventLoop)
+    }
+    
+    /// 下载热词表
+    ///
+    /// 用户通过本接口进行热词表的下载，获得词表权重文件形式的 base64 值，文件形式为通过 “|” 分割的词和权重，即 word|weight 的形式。
+    @inlinable
+    public func downloadAsrVocab(vocabId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadAsrVocabResponse {
+        try await self.downloadAsrVocab(DownloadAsrVocabRequest(vocabId: vocabId), logger: logger, on: eventLoop)
+    }
 }

@@ -125,4 +125,20 @@ extension Live {
     public func describeBillBandwidthAndFluxList(_ input: DescribeBillBandwidthAndFluxListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillBandwidthAndFluxListResponse {
         try await self.client.execute(action: "DescribeBillBandwidthAndFluxList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 直播播放带宽和流量数据查询
+    ///
+    /// 直播播放带宽和流量数据查询。
+    @inlinable
+    public func describeBillBandwidthAndFluxList(startTime: String, endTime: String, playDomains: [String]? = nil, mainlandOrOversea: String? = nil, granularity: UInt64? = nil, serviceName: String? = nil, regionNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillBandwidthAndFluxListResponse > {
+        self.describeBillBandwidthAndFluxList(DescribeBillBandwidthAndFluxListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, mainlandOrOversea: mainlandOrOversea, granularity: granularity, serviceName: serviceName, regionNames: regionNames), logger: logger, on: eventLoop)
+    }
+    
+    /// 直播播放带宽和流量数据查询
+    ///
+    /// 直播播放带宽和流量数据查询。
+    @inlinable
+    public func describeBillBandwidthAndFluxList(startTime: String, endTime: String, playDomains: [String]? = nil, mainlandOrOversea: String? = nil, granularity: UInt64? = nil, serviceName: String? = nil, regionNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillBandwidthAndFluxListResponse {
+        try await self.describeBillBandwidthAndFluxList(DescribeBillBandwidthAndFluxListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, mainlandOrOversea: mainlandOrOversea, granularity: granularity, serviceName: serviceName, regionNames: regionNames), logger: logger, on: eventLoop)
+    }
 }

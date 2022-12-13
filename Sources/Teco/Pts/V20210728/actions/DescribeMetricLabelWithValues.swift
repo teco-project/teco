@@ -65,4 +65,16 @@ extension Pts {
     public func describeMetricLabelWithValues(_ input: DescribeMetricLabelWithValuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMetricLabelWithValuesResponse {
         try await self.client.execute(action: "DescribeMetricLabelWithValues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询指标所有的label及values值
+    @inlinable
+    public func describeMetricLabelWithValues(jobId: String, projectId: String, scenarioId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMetricLabelWithValuesResponse > {
+        self.describeMetricLabelWithValues(DescribeMetricLabelWithValuesRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询指标所有的label及values值
+    @inlinable
+    public func describeMetricLabelWithValues(jobId: String, projectId: String, scenarioId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMetricLabelWithValuesResponse {
+        try await self.describeMetricLabelWithValues(DescribeMetricLabelWithValuesRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId), logger: logger, on: eventLoop)
+    }
 }

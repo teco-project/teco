@@ -97,4 +97,16 @@ extension Cpdp {
     public func applyOpenBankOrderDetailReceipt(_ input: ApplyOpenBankOrderDetailReceiptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOpenBankOrderDetailReceiptResponse {
         try await self.client.execute(action: "ApplyOpenBankOrderDetailReceipt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-申请单笔交易回单
+    @inlinable
+    public func applyOpenBankOrderDetailReceipt(outApplyId: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, channelOrderId: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyOpenBankOrderDetailReceiptResponse > {
+        self.applyOpenBankOrderDetailReceipt(ApplyOpenBankOrderDetailReceiptRequest(outApplyId: outApplyId, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, channelOrderId: channelOrderId, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-申请单笔交易回单
+    @inlinable
+    public func applyOpenBankOrderDetailReceipt(outApplyId: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, channelOrderId: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOpenBankOrderDetailReceiptResponse {
+        try await self.applyOpenBankOrderDetailReceipt(ApplyOpenBankOrderDetailReceiptRequest(outApplyId: outApplyId, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, channelOrderId: channelOrderId, environment: environment), logger: logger, on: eventLoop)
+    }
 }

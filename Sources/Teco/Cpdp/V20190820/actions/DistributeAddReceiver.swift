@@ -84,4 +84,16 @@ extension Cpdp {
     public func distributeAddReceiver(_ input: DistributeAddReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeAddReceiverResponse {
         try await self.client.execute(action: "DistributeAddReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云支付-分账添加分账接收方接口
+    @inlinable
+    public func distributeAddReceiver(openId: String, openKey: String, merchantNo: String, remark: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DistributeAddReceiverResponse > {
+        self.distributeAddReceiver(DistributeAddReceiverRequest(openId: openId, openKey: openKey, merchantNo: merchantNo, remark: remark, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-分账添加分账接收方接口
+    @inlinable
+    public func distributeAddReceiver(openId: String, openKey: String, merchantNo: String, remark: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeAddReceiverResponse {
+        try await self.distributeAddReceiver(DistributeAddReceiverRequest(openId: openId, openKey: openKey, merchantNo: merchantNo, remark: remark, profile: profile), logger: logger, on: eventLoop)
+    }
 }

@@ -78,4 +78,20 @@ extension Tcss {
     public func describeComplianceAssetDetailInfo(_ input: DescribeComplianceAssetDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetDetailInfoResponse {
         try await self.client.execute(action: "DescribeComplianceAssetDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安全合规查询某个资产的详情
+    ///
+    /// 查询某个资产的详情
+    @inlinable
+    public func describeComplianceAssetDetailInfo(customerAssetId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceAssetDetailInfoResponse > {
+        self.describeComplianceAssetDetailInfo(DescribeComplianceAssetDetailInfoRequest(customerAssetId: customerAssetId), logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规查询某个资产的详情
+    ///
+    /// 查询某个资产的详情
+    @inlinable
+    public func describeComplianceAssetDetailInfo(customerAssetId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetDetailInfoResponse {
+        try await self.describeComplianceAssetDetailInfo(DescribeComplianceAssetDetailInfoRequest(customerAssetId: customerAssetId), logger: logger, on: eventLoop)
+    }
 }

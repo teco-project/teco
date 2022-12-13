@@ -63,4 +63,20 @@ extension Postgres {
     public func removeDBInstanceFromReadOnlyGroup(_ input: RemoveDBInstanceFromReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveDBInstanceFromReadOnlyGroupResponse {
         try await self.client.execute(action: "RemoveDBInstanceFromReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 将只读实例从只读组中移除
+    ///
+    /// 本接口（RemoveDBInstanceFromReadOnlyGroup）用户将只读实例从只读组中移除
+    @inlinable
+    public func removeDBInstanceFromReadOnlyGroup(dbInstanceId: String, readOnlyGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveDBInstanceFromReadOnlyGroupResponse > {
+        self.removeDBInstanceFromReadOnlyGroup(RemoveDBInstanceFromReadOnlyGroupRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 将只读实例从只读组中移除
+    ///
+    /// 本接口（RemoveDBInstanceFromReadOnlyGroup）用户将只读实例从只读组中移除
+    @inlinable
+    public func removeDBInstanceFromReadOnlyGroup(dbInstanceId: String, readOnlyGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveDBInstanceFromReadOnlyGroupResponse {
+        try await self.removeDBInstanceFromReadOnlyGroup(RemoveDBInstanceFromReadOnlyGroupRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId), logger: logger, on: eventLoop)
+    }
 }

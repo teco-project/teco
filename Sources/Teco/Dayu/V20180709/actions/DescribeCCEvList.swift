@@ -115,4 +115,16 @@ extension Dayu {
     public func describeCCEvList(_ input: DescribeCCEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCEvListResponse {
         try await self.client.execute(action: "DescribeCCEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取CC攻击事件列表
+    @inlinable
+    public func describeCCEvList(business: String, startTime: Date, endTime: Date, id: String? = nil, ipList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCEvListResponse > {
+        self.describeCCEvList(DescribeCCEvListRequest(business: business, startTime: startTime, endTime: endTime, id: id, ipList: ipList, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC攻击事件列表
+    @inlinable
+    public func describeCCEvList(business: String, startTime: Date, endTime: Date, id: String? = nil, ipList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCEvListResponse {
+        try await self.describeCCEvList(DescribeCCEvListRequest(business: business, startTime: startTime, endTime: endTime, id: id, ipList: ipList, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

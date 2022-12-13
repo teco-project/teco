@@ -99,4 +99,20 @@ extension Essbasic {
     public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
         try await self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 注册个人用户
+    ///
+    /// 此接口（CreateUser）用于注册腾讯电子签个人用户。
+    @inlinable
+    public func createUser(caller: Caller, openId: String, name: String, idCardType: String, idCardNumber: String, useOpenId: Bool? = nil, email: String? = nil, mobile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserResponse > {
+        self.createUser(CreateUserRequest(caller: caller, openId: openId, name: name, idCardType: idCardType, idCardNumber: idCardNumber, useOpenId: useOpenId, email: email, mobile: mobile), logger: logger, on: eventLoop)
+    }
+    
+    /// 注册个人用户
+    ///
+    /// 此接口（CreateUser）用于注册腾讯电子签个人用户。
+    @inlinable
+    public func createUser(caller: Caller, openId: String, name: String, idCardType: String, idCardNumber: String, useOpenId: Bool? = nil, email: String? = nil, mobile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
+        try await self.createUser(CreateUserRequest(caller: caller, openId: openId, name: name, idCardType: idCardType, idCardNumber: idCardNumber, useOpenId: useOpenId, email: email, mobile: mobile), logger: logger, on: eventLoop)
+    }
 }

@@ -114,4 +114,26 @@ extension Essbasic {
     public func checkBankCardVerification(_ input: CheckBankCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCardVerificationResponse {
         try await self.client.execute(action: "CheckBankCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 银行卡二三四要素检测
+    ///
+    /// 该接口为第三方平台向电子签平台验证银行卡二/三/四要素
+    /// 银行卡二要素(同CheckBankCard2EVerification): bank_card + name
+    /// 银行卡三要素(同CheckBankCard3EVerification): bank_card + name + id_card_number
+    /// 银行卡四要素(同CheckBankCard4EVerification): bank_card + name + id_card_number + mobile
+    @inlinable
+    public func checkBankCardVerification(caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBankCardVerificationResponse > {
+        self.checkBankCardVerification(CheckBankCardVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, mobile: mobile, idCardType: idCardType), logger: logger, on: eventLoop)
+    }
+    
+    /// 银行卡二三四要素检测
+    ///
+    /// 该接口为第三方平台向电子签平台验证银行卡二/三/四要素
+    /// 银行卡二要素(同CheckBankCard2EVerification): bank_card + name
+    /// 银行卡三要素(同CheckBankCard3EVerification): bank_card + name + id_card_number
+    /// 银行卡四要素(同CheckBankCard4EVerification): bank_card + name + id_card_number + mobile
+    @inlinable
+    public func checkBankCardVerification(caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCardVerificationResponse {
+        try await self.checkBankCardVerification(CheckBankCardVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, mobile: mobile, idCardType: idCardType), logger: logger, on: eventLoop)
+    }
 }

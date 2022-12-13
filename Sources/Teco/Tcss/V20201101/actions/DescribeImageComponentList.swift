@@ -84,4 +84,16 @@ extension Tcss {
     public func describeImageComponentList(_ input: DescribeImageComponentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageComponentListResponse {
         try await self.client.execute(action: "DescribeImageComponentList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询本地镜像组件列表
+    @inlinable
+    public func describeImageComponentList(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageComponentListResponse > {
+        self.describeImageComponentList(DescribeImageComponentListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询本地镜像组件列表
+    @inlinable
+    public func describeImageComponentList(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageComponentListResponse {
+        try await self.describeImageComponentList(DescribeImageComponentListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    }
 }

@@ -75,4 +75,16 @@ extension Wedata {
     public func batchDeleteIntegrationTasks(_ input: BatchDeleteIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteIntegrationTasksResponse {
         try await self.client.execute(action: "BatchDeleteIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量删除集成任务
+    @inlinable
+    public func batchDeleteIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDeleteIntegrationTasksResponse > {
+        self.batchDeleteIntegrationTasks(BatchDeleteIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除集成任务
+    @inlinable
+    public func batchDeleteIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteIntegrationTasksResponse {
+        try await self.batchDeleteIntegrationTasks(BatchDeleteIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

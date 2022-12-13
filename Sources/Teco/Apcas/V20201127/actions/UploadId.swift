@@ -68,4 +68,20 @@ extension Apcas {
     public func uploadId(_ input: UploadIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadIdResponse {
         try await self.client.execute(action: "UploadId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 上传群体画像的ID列表
+    ///
+    /// 上传群体画像的ID列表（支持的ID类型：0:imei 7:IDFA 8:MD5(imei)），后台返回生成的画像分析任务ID
+    @inlinable
+    public func uploadId(type: UInt64, taskName: String, idListBase64: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadIdResponse > {
+        self.uploadId(UploadIdRequest(type: type, taskName: taskName, idListBase64: idListBase64), logger: logger, on: eventLoop)
+    }
+    
+    /// 上传群体画像的ID列表
+    ///
+    /// 上传群体画像的ID列表（支持的ID类型：0:imei 7:IDFA 8:MD5(imei)），后台返回生成的画像分析任务ID
+    @inlinable
+    public func uploadId(type: UInt64, taskName: String, idListBase64: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadIdResponse {
+        try await self.uploadId(UploadIdRequest(type: type, taskName: taskName, idListBase64: idListBase64), logger: logger, on: eventLoop)
+    }
 }

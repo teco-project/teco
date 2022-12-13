@@ -29,7 +29,7 @@ extension Essbasic {
         /// 暂未开放
         public let organization: OrganizationInfo?
         
-        public init (agent: Agent, taskId: String, `operator`: UserInfo? = nil, organization: OrganizationInfo? = nil) {
+        public init (agent: Agent, taskId: String, operator: UserInfo? = nil, organization: OrganizationInfo? = nil) {
             self.agent = agent
             self.taskId = taskId
             self.`operator` = `operator`
@@ -97,5 +97,17 @@ extension Essbasic {
     @inlinable
     public func channelGetTaskResultApi(_ input: ChannelGetTaskResultApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelGetTaskResultApiResponse {
         try await self.client.execute(action: "ChannelGetTaskResultApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 渠道版查询转换任务状态
+    @inlinable
+    public func channelGetTaskResultApi(agent: Agent, taskId: String, operator: UserInfo? = nil, organization: OrganizationInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelGetTaskResultApiResponse > {
+        self.channelGetTaskResultApi(ChannelGetTaskResultApiRequest(agent: agent, taskId: taskId, operator: `operator`, organization: organization), logger: logger, on: eventLoop)
+    }
+    
+    /// 渠道版查询转换任务状态
+    @inlinable
+    public func channelGetTaskResultApi(agent: Agent, taskId: String, operator: UserInfo? = nil, organization: OrganizationInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelGetTaskResultApiResponse {
+        try await self.channelGetTaskResultApi(ChannelGetTaskResultApiRequest(agent: agent, taskId: taskId, operator: `operator`, organization: organization), logger: logger, on: eventLoop)
     }
 }

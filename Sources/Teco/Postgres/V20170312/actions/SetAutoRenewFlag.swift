@@ -63,4 +63,20 @@ extension Postgres {
     public func setAutoRenewFlag(_ input: SetAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAutoRenewFlagResponse {
         try await self.client.execute(action: "SetAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置自动续费
+    ///
+    /// 本接口（SetAutoRenewFlag）用于设置自动续费。
+    @inlinable
+    public func setAutoRenewFlag(dbInstanceIdSet: [String], autoRenewFlag: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAutoRenewFlagResponse > {
+        self.setAutoRenewFlag(SetAutoRenewFlagRequest(dbInstanceIdSet: dbInstanceIdSet, autoRenewFlag: autoRenewFlag), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置自动续费
+    ///
+    /// 本接口（SetAutoRenewFlag）用于设置自动续费。
+    @inlinable
+    public func setAutoRenewFlag(dbInstanceIdSet: [String], autoRenewFlag: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAutoRenewFlagResponse {
+        try await self.setAutoRenewFlag(SetAutoRenewFlagRequest(dbInstanceIdSet: dbInstanceIdSet, autoRenewFlag: autoRenewFlag), logger: logger, on: eventLoop)
+    }
 }

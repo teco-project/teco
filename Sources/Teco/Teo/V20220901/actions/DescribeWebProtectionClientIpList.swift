@@ -114,4 +114,20 @@ extension Teo {
     public func describeWebProtectionClientIpList(_ input: DescribeWebProtectionClientIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionClientIpListResponse {
         try await self.client.execute(action: "DescribeWebProtectionClientIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询CC防护攻击源IP信息列表
+    ///
+    /// 本接口（DescribeWebProtectionClientIpList）用于查询CC防护客户端（攻击源）IP信息。
+    @inlinable
+    public func describeWebProtectionClientIpList(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebProtectionClientIpListResponse > {
+        self.describeWebProtectionClientIpList(DescribeWebProtectionClientIpListRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询CC防护攻击源IP信息列表
+    ///
+    /// 本接口（DescribeWebProtectionClientIpList）用于查询CC防护客户端（攻击源）IP信息。
+    @inlinable
+    public func describeWebProtectionClientIpList(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionClientIpListResponse {
+        try await self.describeWebProtectionClientIpList(DescribeWebProtectionClientIpListRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    }
 }

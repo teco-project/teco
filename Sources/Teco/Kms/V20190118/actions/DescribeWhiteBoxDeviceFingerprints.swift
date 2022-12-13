@@ -54,4 +54,16 @@ extension Kms {
     public func describeWhiteBoxDeviceFingerprints(_ input: DescribeWhiteBoxDeviceFingerprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxDeviceFingerprintsResponse {
         try await self.client.execute(action: "DescribeWhiteBoxDeviceFingerprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取指定密钥的设备指纹列表
+    @inlinable
+    public func describeWhiteBoxDeviceFingerprints(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteBoxDeviceFingerprintsResponse > {
+        self.describeWhiteBoxDeviceFingerprints(DescribeWhiteBoxDeviceFingerprintsRequest(keyId: keyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定密钥的设备指纹列表
+    @inlinable
+    public func describeWhiteBoxDeviceFingerprints(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxDeviceFingerprintsResponse {
+        try await self.describeWhiteBoxDeviceFingerprints(DescribeWhiteBoxDeviceFingerprintsRequest(keyId: keyId), logger: logger, on: eventLoop)
+    }
 }

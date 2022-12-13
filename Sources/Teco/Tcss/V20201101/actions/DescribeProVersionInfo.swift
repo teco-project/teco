@@ -80,4 +80,20 @@ extension Tcss {
     public func describeProVersionInfo(_ input: DescribeProVersionInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionInfoResponse {
         try await self.client.execute(action: "DescribeProVersionInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询专业版需购买信息
+    ///
+    /// DescribeProVersionInfo  查询专业版需购买信息
+    @inlinable
+    public func describeProVersionInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProVersionInfoResponse > {
+        self.describeProVersionInfo(DescribeProVersionInfoRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专业版需购买信息
+    ///
+    /// DescribeProVersionInfo  查询专业版需购买信息
+    @inlinable
+    public func describeProVersionInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionInfoResponse {
+        try await self.describeProVersionInfo(DescribeProVersionInfoRequest(), logger: logger, on: eventLoop)
+    }
 }

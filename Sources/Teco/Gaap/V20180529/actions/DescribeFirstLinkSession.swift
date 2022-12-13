@@ -85,4 +85,20 @@ extension Gaap {
     public func describeFirstLinkSession(_ input: DescribeFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirstLinkSessionResponse {
         try await self.client.execute(action: "DescribeFirstLinkSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询接入段加速会话信息
+    ///
+    /// 本接口（DescribeFirstLinkSession）用于查询接入段加速会话状态，包括会话状态，生效时长，加速套餐等信息。
+    @inlinable
+    public func describeFirstLinkSession(sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirstLinkSessionResponse > {
+        self.describeFirstLinkSession(DescribeFirstLinkSessionRequest(sessionId: sessionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询接入段加速会话信息
+    ///
+    /// 本接口（DescribeFirstLinkSession）用于查询接入段加速会话状态，包括会话状态，生效时长，加速套餐等信息。
+    @inlinable
+    public func describeFirstLinkSession(sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirstLinkSessionResponse {
+        try await self.describeFirstLinkSession(DescribeFirstLinkSessionRequest(sessionId: sessionId), logger: logger, on: eventLoop)
+    }
 }

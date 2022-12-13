@@ -74,4 +74,20 @@ extension Redis {
     public func killMasterGroup(_ input: KillMasterGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillMasterGroupResponse {
         try await self.client.execute(action: "KillMasterGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 模拟故障接口
+    ///
+    /// 模拟故障
+    @inlinable
+    public func killMasterGroup(instanceId: String, password: String, shardIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < KillMasterGroupResponse > {
+        self.killMasterGroup(KillMasterGroupRequest(instanceId: instanceId, password: password, shardIds: shardIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 模拟故障接口
+    ///
+    /// 模拟故障
+    @inlinable
+    public func killMasterGroup(instanceId: String, password: String, shardIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillMasterGroupResponse {
+        try await self.killMasterGroup(KillMasterGroupRequest(instanceId: instanceId, password: password, shardIds: shardIds), logger: logger, on: eventLoop)
+    }
 }

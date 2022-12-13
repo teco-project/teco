@@ -55,4 +55,16 @@ extension Tke {
     public func deletePrometheusClusterAgent(_ input: DeletePrometheusClusterAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusClusterAgentResponse {
         try await self.client.execute(action: "DeletePrometheusClusterAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解除TMP实例的集群关联
+    @inlinable
+    public func deletePrometheusClusterAgent(agents: [PrometheusAgentInfo], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusClusterAgentResponse > {
+        self.deletePrometheusClusterAgent(DeletePrometheusClusterAgentRequest(agents: agents, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 解除TMP实例的集群关联
+    @inlinable
+    public func deletePrometheusClusterAgent(agents: [PrometheusAgentInfo], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusClusterAgentResponse {
+        try await self.deletePrometheusClusterAgent(DeletePrometheusClusterAgentRequest(agents: agents, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

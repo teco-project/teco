@@ -67,4 +67,20 @@ extension Iotcloud {
     public func resetDeviceState(_ input: ResetDeviceStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDeviceStateResponse {
         try await self.client.execute(action: "ResetDeviceState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重置设备状态
+    ///
+    /// 重置设备的连接状态 
+    @inlinable
+    public func resetDeviceState(productId: String, deviceNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetDeviceStateResponse > {
+        self.resetDeviceState(ResetDeviceStateRequest(productId: productId, deviceNames: deviceNames), logger: logger, on: eventLoop)
+    }
+    
+    /// 重置设备状态
+    ///
+    /// 重置设备的连接状态 
+    @inlinable
+    public func resetDeviceState(productId: String, deviceNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDeviceStateResponse {
+        try await self.resetDeviceState(ResetDeviceStateRequest(productId: productId, deviceNames: deviceNames), logger: logger, on: eventLoop)
+    }
 }

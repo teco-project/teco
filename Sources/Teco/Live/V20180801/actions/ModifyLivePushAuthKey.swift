@@ -77,4 +77,20 @@ extension Live {
     public func modifyLivePushAuthKey(_ input: ModifyLivePushAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePushAuthKeyResponse {
         try await self.client.execute(action: "ModifyLivePushAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改推流鉴权key
+    ///
+    /// 修改直播推流鉴权key
+    @inlinable
+    public func modifyLivePushAuthKey(domainName: String, enable: Int64? = nil, masterAuthKey: String? = nil, backupAuthKey: String? = nil, authDelta: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLivePushAuthKeyResponse > {
+        self.modifyLivePushAuthKey(ModifyLivePushAuthKeyRequest(domainName: domainName, enable: enable, masterAuthKey: masterAuthKey, backupAuthKey: backupAuthKey, authDelta: authDelta), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改推流鉴权key
+    ///
+    /// 修改直播推流鉴权key
+    @inlinable
+    public func modifyLivePushAuthKey(domainName: String, enable: Int64? = nil, masterAuthKey: String? = nil, backupAuthKey: String? = nil, authDelta: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePushAuthKeyResponse {
+        try await self.modifyLivePushAuthKey(ModifyLivePushAuthKeyRequest(domainName: domainName, enable: enable, masterAuthKey: masterAuthKey, backupAuthKey: backupAuthKey, authDelta: authDelta), logger: logger, on: eventLoop)
+    }
 }

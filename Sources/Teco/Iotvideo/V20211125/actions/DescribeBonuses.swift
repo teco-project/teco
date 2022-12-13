@@ -63,4 +63,16 @@ extension Iotvideo {
     public func describeBonuses(_ input: DescribeBonusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBonusesResponse {
         try await self.client.execute(action: "DescribeBonuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看运营活动资源包列表
+    @inlinable
+    public func describeBonuses(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBonusesResponse > {
+        self.describeBonuses(DescribeBonusesRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看运营活动资源包列表
+    @inlinable
+    public func describeBonuses(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBonusesResponse {
+        try await self.describeBonuses(DescribeBonusesRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

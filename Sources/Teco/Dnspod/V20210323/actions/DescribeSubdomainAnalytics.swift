@@ -91,4 +91,20 @@ extension Dnspod {
     public func describeSubdomainAnalytics(_ input: DescribeSubdomainAnalyticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubdomainAnalyticsResponse {
         try await self.client.execute(action: "DescribeSubdomainAnalytics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 子域名解析量统计
+    ///
+    /// 统计子域名的解析量，帮助您了解流量情况、时间段分布。支持查看近 3 个月内的统计情况。仅付费套餐域名可用。
+    @inlinable
+    public func describeSubdomainAnalytics(domain: String, startDate: String, endDate: String, subdomain: String, dnsFormat: String? = nil, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubdomainAnalyticsResponse > {
+        self.describeSubdomainAnalytics(DescribeSubdomainAnalyticsRequest(domain: domain, startDate: startDate, endDate: endDate, subdomain: subdomain, dnsFormat: dnsFormat, domainId: domainId), logger: logger, on: eventLoop)
+    }
+    
+    /// 子域名解析量统计
+    ///
+    /// 统计子域名的解析量，帮助您了解流量情况、时间段分布。支持查看近 3 个月内的统计情况。仅付费套餐域名可用。
+    @inlinable
+    public func describeSubdomainAnalytics(domain: String, startDate: String, endDate: String, subdomain: String, dnsFormat: String? = nil, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubdomainAnalyticsResponse {
+        try await self.describeSubdomainAnalytics(DescribeSubdomainAnalyticsRequest(domain: domain, startDate: startDate, endDate: endDate, subdomain: subdomain, dnsFormat: dnsFormat, domainId: domainId), logger: logger, on: eventLoop)
+    }
 }

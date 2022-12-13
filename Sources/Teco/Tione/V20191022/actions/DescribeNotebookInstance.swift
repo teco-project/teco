@@ -168,4 +168,20 @@ extension Tione {
     public func describeNotebookInstance(_ input: DescribeNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookInstanceResponse {
         try await self.client.execute(action: "DescribeNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询Notebook实例
+    ///
+    /// 查询Notebook实例详情
+    @inlinable
+    public func describeNotebookInstance(notebookInstanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNotebookInstanceResponse > {
+        self.describeNotebookInstance(DescribeNotebookInstanceRequest(notebookInstanceName: notebookInstanceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Notebook实例
+    ///
+    /// 查询Notebook实例详情
+    @inlinable
+    public func describeNotebookInstance(notebookInstanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookInstanceResponse {
+        try await self.describeNotebookInstance(DescribeNotebookInstanceRequest(notebookInstanceName: notebookInstanceName), logger: logger, on: eventLoop)
+    }
 }

@@ -95,4 +95,24 @@ extension Cdn {
     public func describeIpVisit(_ input: DescribeIpVisitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpVisitResponse {
         try await self.client.execute(action: "DescribeIpVisit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 活跃用户查询
+    ///
+    /// DescribeIpVisit 用于查询 5 分钟活跃用户数，及日活跃用户数明细
+    /// + 5 分钟活跃用户数：根据日志中客户端 IP，5 分钟粒度去重统计
+    /// + 日活跃用户数：根据日志中客户端 IP，按天粒度去重统计
+    @inlinable
+    public func describeIpVisit(startTime: Date, endTime: Date, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpVisitResponse > {
+        self.describeIpVisit(DescribeIpVisitRequest(startTime: startTime, endTime: endTime, domains: domains, project: project, interval: interval), logger: logger, on: eventLoop)
+    }
+    
+    /// 活跃用户查询
+    ///
+    /// DescribeIpVisit 用于查询 5 分钟活跃用户数，及日活跃用户数明细
+    /// + 5 分钟活跃用户数：根据日志中客户端 IP，5 分钟粒度去重统计
+    /// + 日活跃用户数：根据日志中客户端 IP，按天粒度去重统计
+    @inlinable
+    public func describeIpVisit(startTime: Date, endTime: Date, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpVisitResponse {
+        try await self.describeIpVisit(DescribeIpVisitRequest(startTime: startTime, endTime: endTime, domains: domains, project: project, interval: interval), logger: logger, on: eventLoop)
+    }
 }

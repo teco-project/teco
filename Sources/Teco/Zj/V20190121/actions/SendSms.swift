@@ -96,4 +96,16 @@ extension Zj {
     public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
         try await self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 发送短信
+    @inlinable
+    public func sendSms(license: String, phone: [String], templateId: String? = nil, params: [String]? = nil, sign: String? = nil, senderId: String? = nil, smsType: UInt64? = nil, international: UInt64? = nil, content: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendSmsResponse > {
+        self.sendSms(SendSmsRequest(license: license, phone: phone, templateId: templateId, params: params, sign: sign, senderId: senderId, smsType: smsType, international: international, content: content), logger: logger, on: eventLoop)
+    }
+    
+    /// 发送短信
+    @inlinable
+    public func sendSms(license: String, phone: [String], templateId: String? = nil, params: [String]? = nil, sign: String? = nil, senderId: String? = nil, smsType: UInt64? = nil, international: UInt64? = nil, content: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
+        try await self.sendSms(SendSmsRequest(license: license, phone: phone, templateId: templateId, params: params, sign: sign, senderId: senderId, smsType: smsType, international: international, content: content), logger: logger, on: eventLoop)
+    }
 }

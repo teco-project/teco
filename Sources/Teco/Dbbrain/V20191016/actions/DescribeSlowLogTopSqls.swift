@@ -106,4 +106,20 @@ extension Dbbrain {
     public func describeSlowLogTopSqls(_ input: DescribeSlowLogTopSqlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogTopSqlsResponse {
         try await self.client.execute(action: "DescribeSlowLogTopSqls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 按照Sql模板查询指定时间段内的慢日志统计结果
+    ///
+    /// 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
+    @inlinable
+    public func describeSlowLogTopSqls(instanceId: String, startTime: Date, endTime: Date, sortBy: String? = nil, orderBy: String? = nil, limit: Int64? = nil, offset: Int64? = nil, schemaList: [SchemaItem]? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogTopSqlsResponse > {
+        self.describeSlowLogTopSqls(DescribeSlowLogTopSqlsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, sortBy: sortBy, orderBy: orderBy, limit: limit, offset: offset, schemaList: schemaList, product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 按照Sql模板查询指定时间段内的慢日志统计结果
+    ///
+    /// 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
+    @inlinable
+    public func describeSlowLogTopSqls(instanceId: String, startTime: Date, endTime: Date, sortBy: String? = nil, orderBy: String? = nil, limit: Int64? = nil, offset: Int64? = nil, schemaList: [SchemaItem]? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogTopSqlsResponse {
+        try await self.describeSlowLogTopSqls(DescribeSlowLogTopSqlsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, sortBy: sortBy, orderBy: orderBy, limit: limit, offset: offset, schemaList: schemaList, product: product), logger: logger, on: eventLoop)
+    }
 }

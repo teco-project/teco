@@ -50,4 +50,16 @@ extension Ame {
     public func describeKTVSingerCategories(_ input: DescribeKTVSingerCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSingerCategoriesResponse {
         try await self.client.execute(action: "DescribeKTVSingerCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取直播互动曲库歌手分类信息
+    @inlinable
+    public func describeKTVSingerCategories(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVSingerCategoriesResponse > {
+        self.describeKTVSingerCategories(DescribeKTVSingerCategoriesRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取直播互动曲库歌手分类信息
+    @inlinable
+    public func describeKTVSingerCategories(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSingerCategoriesResponse {
+        try await self.describeKTVSingerCategories(DescribeKTVSingerCategoriesRequest(), logger: logger, on: eventLoop)
+    }
 }

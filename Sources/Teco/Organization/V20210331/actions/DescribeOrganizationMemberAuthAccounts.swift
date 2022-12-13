@@ -75,4 +75,16 @@ extension Organization {
     public func describeOrganizationMemberAuthAccounts(_ input: DescribeOrganizationMemberAuthAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthAccountsResponse {
         try await self.client.execute(action: "DescribeOrganizationMemberAuthAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取组织成员被绑定授权关系的子账号列表
+    @inlinable
+    public func describeOrganizationMemberAuthAccounts(offset: Int64, limit: Int64, memberUin: Int64, policyId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationMemberAuthAccountsResponse > {
+        self.describeOrganizationMemberAuthAccounts(DescribeOrganizationMemberAuthAccountsRequest(offset: offset, limit: limit, memberUin: memberUin, policyId: policyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取组织成员被绑定授权关系的子账号列表
+    @inlinable
+    public func describeOrganizationMemberAuthAccounts(offset: Int64, limit: Int64, memberUin: Int64, policyId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthAccountsResponse {
+        try await self.describeOrganizationMemberAuthAccounts(DescribeOrganizationMemberAuthAccountsRequest(offset: offset, limit: limit, memberUin: memberUin, policyId: policyId), logger: logger, on: eventLoop)
+    }
 }

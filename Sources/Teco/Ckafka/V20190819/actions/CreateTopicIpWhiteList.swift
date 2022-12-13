@@ -68,4 +68,20 @@ extension Ckafka {
     public func createTopicIpWhiteList(_ input: CreateTopicIpWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicIpWhiteListResponse {
         try await self.client.execute(action: "CreateTopicIpWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建主题IP白名单
+    ///
+    /// 创建主题ip白名单
+    @inlinable
+    public func createTopicIpWhiteList(instanceId: String, topicName: String, ipWhiteList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicIpWhiteListResponse > {
+        self.createTopicIpWhiteList(CreateTopicIpWhiteListRequest(instanceId: instanceId, topicName: topicName, ipWhiteList: ipWhiteList), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建主题IP白名单
+    ///
+    /// 创建主题ip白名单
+    @inlinable
+    public func createTopicIpWhiteList(instanceId: String, topicName: String, ipWhiteList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicIpWhiteListResponse {
+        try await self.createTopicIpWhiteList(CreateTopicIpWhiteListRequest(instanceId: instanceId, topicName: topicName, ipWhiteList: ipWhiteList), logger: logger, on: eventLoop)
+    }
 }

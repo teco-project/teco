@@ -80,4 +80,16 @@ extension Tcss {
     public func describeVulDefenceHost(_ input: DescribeVulDefenceHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceHostResponse {
         try await self.client.execute(action: "DescribeVulDefenceHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询漏洞防御的主机列表
+    @inlinable
+    public func describeVulDefenceHost(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDefenceHostResponse > {
+        self.describeVulDefenceHost(DescribeVulDefenceHostRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞防御的主机列表
+    @inlinable
+    public func describeVulDefenceHost(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceHostResponse {
+        try await self.describeVulDefenceHost(DescribeVulDefenceHostRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

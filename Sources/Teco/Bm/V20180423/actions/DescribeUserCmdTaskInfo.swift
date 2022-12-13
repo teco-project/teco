@@ -83,4 +83,16 @@ extension Bm {
     public func describeUserCmdTaskInfo(_ input: DescribeUserCmdTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdTaskInfoResponse {
         try await self.client.execute(action: "DescribeUserCmdTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取自定义脚本任务详细信息
+    @inlinable
+    public func describeUserCmdTaskInfo(taskId: String, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, order: UInt64? = nil, searchKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserCmdTaskInfoResponse > {
+        self.describeUserCmdTaskInfo(DescribeUserCmdTaskInfoRequest(taskId: taskId, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取自定义脚本任务详细信息
+    @inlinable
+    public func describeUserCmdTaskInfo(taskId: String, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, order: UInt64? = nil, searchKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdTaskInfoResponse {
+        try await self.describeUserCmdTaskInfo(DescribeUserCmdTaskInfoRequest(taskId: taskId, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey), logger: logger, on: eventLoop)
+    }
 }

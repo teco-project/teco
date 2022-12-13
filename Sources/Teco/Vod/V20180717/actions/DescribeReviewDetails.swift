@@ -82,4 +82,26 @@ extension Vod {
     public func describeReviewDetails(_ input: DescribeReviewDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReviewDetailsResponse {
         try await self.client.execute(action: "DescribeReviewDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询内容智能识别详情
+    ///
+    /// <b>本接口已不推荐使用，用 [DescribeMediaProcessUsageData](/document/product/266/41464) 替代</b>
+    /// 该接口返回查询时间范围内每天使用的视频内容智能识别时长数据，单位： 秒。
+    /// 1. 可以查询最近365天内的视频内容智能识别时长统计数据。
+    /// 2. 查询时间跨度不超过90天。
+    @inlinable
+    public func describeReviewDetails(startTime: String, endTime: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReviewDetailsResponse > {
+        self.describeReviewDetails(DescribeReviewDetailsRequest(startTime: startTime, endTime: endTime, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询内容智能识别详情
+    ///
+    /// <b>本接口已不推荐使用，用 [DescribeMediaProcessUsageData](/document/product/266/41464) 替代</b>
+    /// 该接口返回查询时间范围内每天使用的视频内容智能识别时长数据，单位： 秒。
+    /// 1. 可以查询最近365天内的视频内容智能识别时长统计数据。
+    /// 2. 查询时间跨度不超过90天。
+    @inlinable
+    public func describeReviewDetails(startTime: String, endTime: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReviewDetailsResponse {
+        try await self.describeReviewDetails(DescribeReviewDetailsRequest(startTime: startTime, endTime: endTime, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

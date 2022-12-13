@@ -86,4 +86,16 @@ extension Cpdp {
     public func modifyFlexPayeeAccountRightStatus(_ input: ModifyFlexPayeeAccountRightStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlexPayeeAccountRightStatusResponse {
         try await self.client.execute(action: "ModifyFlexPayeeAccountRightStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 灵云V2-收款用户账户权益状态修改
+    @inlinable
+    public func modifyFlexPayeeAccountRightStatus(payeeId: String, accountRightType: String, accountRightStatus: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyFlexPayeeAccountRightStatusResponse > {
+        self.modifyFlexPayeeAccountRightStatus(ModifyFlexPayeeAccountRightStatusRequest(payeeId: payeeId, accountRightType: accountRightType, accountRightStatus: accountRightStatus, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云V2-收款用户账户权益状态修改
+    @inlinable
+    public func modifyFlexPayeeAccountRightStatus(payeeId: String, accountRightType: String, accountRightStatus: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlexPayeeAccountRightStatusResponse {
+        try await self.modifyFlexPayeeAccountRightStatus(ModifyFlexPayeeAccountRightStatusRequest(payeeId: payeeId, accountRightType: accountRightType, accountRightStatus: accountRightStatus, environment: environment), logger: logger, on: eventLoop)
+    }
 }

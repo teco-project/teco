@@ -138,4 +138,16 @@ extension Bma {
     public func describeCRWorkInfo(_ input: DescribeCRWorkInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRWorkInfoResponse {
         try await self.client.execute(action: "DescribeCRWorkInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询作品基本信息
+    @inlinable
+    public func describeCRWorkInfo(workId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCRWorkInfoResponse > {
+        self.describeCRWorkInfo(DescribeCRWorkInfoRequest(workId: workId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询作品基本信息
+    @inlinable
+    public func describeCRWorkInfo(workId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRWorkInfoResponse {
+        try await self.describeCRWorkInfo(DescribeCRWorkInfoRequest(workId: workId), logger: logger, on: eventLoop)
+    }
 }

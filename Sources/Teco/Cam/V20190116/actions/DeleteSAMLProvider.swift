@@ -50,4 +50,16 @@ extension Cam {
     public func deleteSAMLProvider(_ input: DeleteSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSAMLProviderResponse {
         try await self.client.execute(action: "DeleteSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除SAML身份提供商
+    @inlinable
+    public func deleteSAMLProvider(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSAMLProviderResponse > {
+        self.deleteSAMLProvider(DeleteSAMLProviderRequest(name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除SAML身份提供商
+    @inlinable
+    public func deleteSAMLProvider(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSAMLProviderResponse {
+        try await self.deleteSAMLProvider(DeleteSAMLProviderRequest(name: name), logger: logger, on: eventLoop)
+    }
 }

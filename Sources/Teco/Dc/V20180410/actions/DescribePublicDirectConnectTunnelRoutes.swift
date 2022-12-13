@@ -79,4 +79,20 @@ extension Dc {
     public func describePublicDirectConnectTunnelRoutes(_ input: DescribePublicDirectConnectTunnelRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicDirectConnectTunnelRoutesResponse {
         try await self.client.execute(action: "DescribePublicDirectConnectTunnelRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询互联网通道路由列表
+    ///
+    /// 本接口（DescribePublicDirectConnectTunnelRoutes）用于查询互联网通道路由列表
+    @inlinable
+    public func describePublicDirectConnectTunnelRoutes(directConnectTunnelId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicDirectConnectTunnelRoutesResponse > {
+        self.describePublicDirectConnectTunnelRoutes(DescribePublicDirectConnectTunnelRoutesRequest(directConnectTunnelId: directConnectTunnelId, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询互联网通道路由列表
+    ///
+    /// 本接口（DescribePublicDirectConnectTunnelRoutes）用于查询互联网通道路由列表
+    @inlinable
+    public func describePublicDirectConnectTunnelRoutes(directConnectTunnelId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicDirectConnectTunnelRoutesResponse {
+        try await self.describePublicDirectConnectTunnelRoutes(DescribePublicDirectConnectTunnelRoutesRequest(directConnectTunnelId: directConnectTunnelId, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

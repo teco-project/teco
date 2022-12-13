@@ -97,4 +97,22 @@ extension Iotvideoindustry {
     public func getVideoListByCon(_ input: GetVideoListByConRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetVideoListByConResponse {
         try await self.client.execute(action: "GetVideoListByCon", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取通道录制文件列表（旧）
+    ///
+    /// 本接口(GetVideoListByCon)用于查询设备的录制文件列表
+    /// 请使用DescribeVideoListByChannel接口
+    @inlinable
+    public func getVideoListByCon(deviceId: String, offset: Int64, limit: Int64, channelId: String? = nil, latestDay: Int64? = nil, date: String? = nil, type: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetVideoListByConResponse > {
+        self.getVideoListByCon(GetVideoListByConRequest(deviceId: deviceId, offset: offset, limit: limit, channelId: channelId, latestDay: latestDay, date: date, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取通道录制文件列表（旧）
+    ///
+    /// 本接口(GetVideoListByCon)用于查询设备的录制文件列表
+    /// 请使用DescribeVideoListByChannel接口
+    @inlinable
+    public func getVideoListByCon(deviceId: String, offset: Int64, limit: Int64, channelId: String? = nil, latestDay: Int64? = nil, date: String? = nil, type: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetVideoListByConResponse {
+        try await self.getVideoListByCon(GetVideoListByConRequest(deviceId: deviceId, offset: offset, limit: limit, channelId: channelId, latestDay: latestDay, date: date, type: type), logger: logger, on: eventLoop)
+    }
 }

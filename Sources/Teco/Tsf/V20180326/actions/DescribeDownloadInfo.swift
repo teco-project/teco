@@ -75,4 +75,22 @@ extension Tsf {
     public func describeDownloadInfo(_ input: DescribeDownloadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDownloadInfoResponse {
         try await self.client.execute(action: "DescribeDownloadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取下载程序包信息
+    ///
+    /// TSF上传的程序包存放在腾讯云对象存储（COS）中，通过该API可以获取从COS下载程序包需要的信息，包括包所在的桶、存储路径、鉴权信息等，之后使用COS API（或SDK）进行下载。
+    /// COS相关文档请查阅：https://cloud.tencent.com/document/product/436
+    @inlinable
+    public func describeDownloadInfo(applicationId: String, pkgId: String, repositoryId: String? = nil, repositoryType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDownloadInfoResponse > {
+        self.describeDownloadInfo(DescribeDownloadInfoRequest(applicationId: applicationId, pkgId: pkgId, repositoryId: repositoryId, repositoryType: repositoryType), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取下载程序包信息
+    ///
+    /// TSF上传的程序包存放在腾讯云对象存储（COS）中，通过该API可以获取从COS下载程序包需要的信息，包括包所在的桶、存储路径、鉴权信息等，之后使用COS API（或SDK）进行下载。
+    /// COS相关文档请查阅：https://cloud.tencent.com/document/product/436
+    @inlinable
+    public func describeDownloadInfo(applicationId: String, pkgId: String, repositoryId: String? = nil, repositoryType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDownloadInfoResponse {
+        try await self.describeDownloadInfo(DescribeDownloadInfoRequest(applicationId: applicationId, pkgId: pkgId, repositoryId: repositoryId, repositoryType: repositoryType), logger: logger, on: eventLoop)
+    }
 }

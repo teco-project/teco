@@ -77,4 +77,16 @@ extension Tcss {
     public func describeSecLogVasInfo(_ input: DescribeSecLogVasInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogVasInfoResponse {
         try await self.client.execute(action: "DescribeSecLogVasInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询安全日志商品信息
+    @inlinable
+    public func describeSecLogVasInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogVasInfoResponse > {
+        self.describeSecLogVasInfo(DescribeSecLogVasInfoRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全日志商品信息
+    @inlinable
+    public func describeSecLogVasInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogVasInfoResponse {
+        try await self.describeSecLogVasInfo(DescribeSecLogVasInfoRequest(), logger: logger, on: eventLoop)
+    }
 }

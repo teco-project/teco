@@ -64,4 +64,16 @@ extension Ssa {
     public func describeComplianceList(_ input: DescribeComplianceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceListResponse {
         try await self.client.execute(action: "DescribeComplianceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 合规管理总览页检查项列表
+    @inlinable
+    public func describeComplianceList(filter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceListResponse > {
+        self.describeComplianceList(DescribeComplianceListRequest(filter: filter), logger: logger, on: eventLoop)
+    }
+    
+    /// 合规管理总览页检查项列表
+    @inlinable
+    public func describeComplianceList(filter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceListResponse {
+        try await self.describeComplianceList(DescribeComplianceListRequest(filter: filter), logger: logger, on: eventLoop)
+    }
 }

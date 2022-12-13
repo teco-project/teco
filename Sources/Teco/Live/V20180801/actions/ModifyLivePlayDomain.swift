@@ -59,4 +59,20 @@ extension Live {
     public func modifyLivePlayDomain(_ input: ModifyLivePlayDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePlayDomainResponse {
         try await self.client.execute(action: "ModifyLivePlayDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改播放域名信息
+    ///
+    /// 修改播放域名信息。
+    @inlinable
+    public func modifyLivePlayDomain(domainName: String, playType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLivePlayDomainResponse > {
+        self.modifyLivePlayDomain(ModifyLivePlayDomainRequest(domainName: domainName, playType: playType), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改播放域名信息
+    ///
+    /// 修改播放域名信息。
+    @inlinable
+    public func modifyLivePlayDomain(domainName: String, playType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePlayDomainResponse {
+        try await self.modifyLivePlayDomain(ModifyLivePlayDomainRequest(domainName: domainName, playType: playType), logger: logger, on: eventLoop)
+    }
 }

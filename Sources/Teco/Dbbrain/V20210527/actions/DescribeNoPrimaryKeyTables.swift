@@ -97,4 +97,20 @@ extension Dbbrain {
     public func describeNoPrimaryKeyTables(_ input: DescribeNoPrimaryKeyTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoPrimaryKeyTablesResponse {
         try await self.client.execute(action: "DescribeNoPrimaryKeyTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例无主键表
+    ///
+    /// 查询实例无主键表。
+    @inlinable
+    public func describeNoPrimaryKeyTables(instanceId: String, date: Date, limit: Int64? = nil, offset: Int64? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNoPrimaryKeyTablesResponse > {
+        self.describeNoPrimaryKeyTables(DescribeNoPrimaryKeyTablesRequest(instanceId: instanceId, date: date, limit: limit, offset: offset, product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例无主键表
+    ///
+    /// 查询实例无主键表。
+    @inlinable
+    public func describeNoPrimaryKeyTables(instanceId: String, date: Date, limit: Int64? = nil, offset: Int64? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoPrimaryKeyTablesResponse {
+        try await self.describeNoPrimaryKeyTables(DescribeNoPrimaryKeyTablesRequest(instanceId: instanceId, date: date, limit: limit, offset: offset, product: product), logger: logger, on: eventLoop)
+    }
 }

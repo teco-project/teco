@@ -63,4 +63,20 @@ extension Rum {
     public func createStarProject(_ input: CreateStarProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStarProjectResponse {
         try await self.client.execute(action: "CreateStarProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加星标项目
+    ///
+    /// 个人用户添加星标项目
+    @inlinable
+    public func createStarProject(instanceID: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStarProjectResponse > {
+        self.createStarProject(CreateStarProjectRequest(instanceID: instanceID, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加星标项目
+    ///
+    /// 个人用户添加星标项目
+    @inlinable
+    public func createStarProject(instanceID: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStarProjectResponse {
+        try await self.createStarProject(CreateStarProjectRequest(instanceID: instanceID, id: id), logger: logger, on: eventLoop)
+    }
 }

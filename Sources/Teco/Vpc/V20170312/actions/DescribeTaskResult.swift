@@ -67,4 +67,20 @@ extension Vpc {
     public func describeTaskResult(_ input: DescribeTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultResponse {
         try await self.client.execute(action: "DescribeTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询异步任务执行结果
+    ///
+    /// 查询EIP异步任务执行结果
+    @inlinable
+    public func describeTaskResult(taskId: UInt64? = nil, dealName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskResultResponse > {
+        self.describeTaskResult(DescribeTaskResultRequest(taskId: taskId, dealName: dealName), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询异步任务执行结果
+    ///
+    /// 查询EIP异步任务执行结果
+    @inlinable
+    public func describeTaskResult(taskId: UInt64? = nil, dealName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultResponse {
+        try await self.describeTaskResult(DescribeTaskResultRequest(taskId: taskId, dealName: dealName), logger: logger, on: eventLoop)
+    }
 }

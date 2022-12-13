@@ -115,4 +115,16 @@ extension Cdn {
     public func describeCcData(_ input: DescribeCcDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcDataResponse {
         try await self.client.execute(action: "DescribeCcData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// CC统计数据查询
+    @inlinable
+    public func describeCcData(startTime: String, endTime: String, interval: String? = nil, domain: String? = nil, actionName: String? = nil, domains: [String]? = nil, source: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCcDataResponse > {
+        self.describeCcData(DescribeCcDataRequest(startTime: startTime, endTime: endTime, interval: interval, domain: domain, actionName: actionName, domains: domains, source: source, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// CC统计数据查询
+    @inlinable
+    public func describeCcData(startTime: String, endTime: String, interval: String? = nil, domain: String? = nil, actionName: String? = nil, domains: [String]? = nil, source: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcDataResponse {
+        try await self.describeCcData(DescribeCcDataRequest(startTime: startTime, endTime: endTime, interval: interval, domain: domain, actionName: actionName, domains: domains, source: source, area: area), logger: logger, on: eventLoop)
+    }
 }

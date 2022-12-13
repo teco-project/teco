@@ -56,4 +56,20 @@ extension Live {
     public func deletePullStreamConfig(_ input: DeletePullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePullStreamConfigResponse {
         try await self.client.execute(action: "DeletePullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除拉流配置(该接口已下线,请使用新接口 DeleteLivePullStreamTask)
+    ///
+    /// 删除直播拉流配置。该接口已下线,请使用新接口 DeleteLivePullStreamTask。
+    @inlinable
+    public func deletePullStreamConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePullStreamConfigResponse > {
+        self.deletePullStreamConfig(DeletePullStreamConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除拉流配置(该接口已下线,请使用新接口 DeleteLivePullStreamTask)
+    ///
+    /// 删除直播拉流配置。该接口已下线,请使用新接口 DeleteLivePullStreamTask。
+    @inlinable
+    public func deletePullStreamConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePullStreamConfigResponse {
+        try await self.deletePullStreamConfig(DeletePullStreamConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    }
 }

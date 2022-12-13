@@ -55,4 +55,16 @@ extension Wedata {
     public func deleteInLongAgent(_ input: DeleteInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInLongAgentResponse {
         try await self.client.execute(action: "DeleteInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除采集器
+    @inlinable
+    public func deleteInLongAgent(agentId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInLongAgentResponse > {
+        self.deleteInLongAgent(DeleteInLongAgentRequest(agentId: agentId, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除采集器
+    @inlinable
+    public func deleteInLongAgent(agentId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInLongAgentResponse {
+        try await self.deleteInLongAgent(DeleteInLongAgentRequest(agentId: agentId, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

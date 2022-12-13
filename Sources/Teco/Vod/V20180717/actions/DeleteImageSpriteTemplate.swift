@@ -59,4 +59,20 @@ extension Vod {
     public func deleteImageSpriteTemplate(_ input: DeleteImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageSpriteTemplateResponse {
         try await self.client.execute(action: "DeleteImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除雪碧图模板
+    ///
+    /// 删除雪碧图模板。
+    @inlinable
+    public func deleteImageSpriteTemplate(definition: UInt64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageSpriteTemplateResponse > {
+        self.deleteImageSpriteTemplate(DeleteImageSpriteTemplateRequest(definition: definition, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除雪碧图模板
+    ///
+    /// 删除雪碧图模板。
+    @inlinable
+    public func deleteImageSpriteTemplate(definition: UInt64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageSpriteTemplateResponse {
+        try await self.deleteImageSpriteTemplate(DeleteImageSpriteTemplateRequest(definition: definition, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

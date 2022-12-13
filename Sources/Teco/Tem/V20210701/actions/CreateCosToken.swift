@@ -75,4 +75,16 @@ extension Tem {
     public func createCosToken(_ input: CreateCosTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCosTokenResponse {
         try await self.client.execute(action: "CreateCosToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 生成Cos临时秘钥
+    @inlinable
+    public func createCosToken(applicationId: String, pkgName: String, optType: Int64, sourceChannel: Int64? = nil, timeVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCosTokenResponse > {
+        self.createCosToken(CreateCosTokenRequest(applicationId: applicationId, pkgName: pkgName, optType: optType, sourceChannel: sourceChannel, timeVersion: timeVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 生成Cos临时秘钥
+    @inlinable
+    public func createCosToken(applicationId: String, pkgName: String, optType: Int64, sourceChannel: Int64? = nil, timeVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCosTokenResponse {
+        try await self.createCosToken(CreateCosTokenRequest(applicationId: applicationId, pkgName: pkgName, optType: optType, sourceChannel: sourceChannel, timeVersion: timeVersion), logger: logger, on: eventLoop)
+    }
 }

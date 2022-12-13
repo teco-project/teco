@@ -60,4 +60,16 @@ extension Tse {
     public func updateEngineInternetAccess(_ input: UpdateEngineInternetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEngineInternetAccessResponse {
         try await self.client.execute(action: "UpdateEngineInternetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改引擎公网访问配置
+    @inlinable
+    public func updateEngineInternetAccess(instanceId: String, engineType: String, enableClientInternetAccess: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateEngineInternetAccessResponse > {
+        self.updateEngineInternetAccess(UpdateEngineInternetAccessRequest(instanceId: instanceId, engineType: engineType, enableClientInternetAccess: enableClientInternetAccess), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改引擎公网访问配置
+    @inlinable
+    public func updateEngineInternetAccess(instanceId: String, engineType: String, enableClientInternetAccess: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEngineInternetAccessResponse {
+        try await self.updateEngineInternetAccess(UpdateEngineInternetAccessRequest(instanceId: instanceId, engineType: engineType, enableClientInternetAccess: enableClientInternetAccess), logger: logger, on: eventLoop)
+    }
 }

@@ -98,4 +98,16 @@ extension Mongodb {
     public func describeBackupDownloadTask(_ input: DescribeBackupDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupDownloadTaskResponse {
         try await self.client.execute(action: "DescribeBackupDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询备份下载任务信息
+    @inlinable
+    public func describeBackupDownloadTask(instanceId: String, backupName: String? = nil, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, status: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupDownloadTaskResponse > {
+        self.describeBackupDownloadTask(DescribeBackupDownloadTaskRequest(instanceId: instanceId, backupName: backupName, startTime: startTime, endTime: endTime, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询备份下载任务信息
+    @inlinable
+    public func describeBackupDownloadTask(instanceId: String, backupName: String? = nil, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, status: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupDownloadTaskResponse {
+        try await self.describeBackupDownloadTask(DescribeBackupDownloadTaskRequest(instanceId: instanceId, backupName: backupName, startTime: startTime, endTime: endTime, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, status: status), logger: logger, on: eventLoop)
+    }
 }

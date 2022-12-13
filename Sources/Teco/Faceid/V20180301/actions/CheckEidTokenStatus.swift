@@ -62,4 +62,20 @@ extension Faceid {
     public func checkEidTokenStatus(_ input: CheckEidTokenStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckEidTokenStatusResponse {
         try await self.client.execute(action: "CheckEidTokenStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取E证通Token状态
+    ///
+    /// 用于轮询E证通H5场景EidToken验证状态。
+    @inlinable
+    public func checkEidTokenStatus(eidToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckEidTokenStatusResponse > {
+        self.checkEidTokenStatus(CheckEidTokenStatusRequest(eidToken: eidToken), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取E证通Token状态
+    ///
+    /// 用于轮询E证通H5场景EidToken验证状态。
+    @inlinable
+    public func checkEidTokenStatus(eidToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckEidTokenStatusResponse {
+        try await self.checkEidTokenStatus(CheckEidTokenStatusRequest(eidToken: eidToken), logger: logger, on: eventLoop)
+    }
 }

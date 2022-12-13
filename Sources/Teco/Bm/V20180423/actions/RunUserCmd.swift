@@ -78,4 +78,16 @@ extension Bm {
     public func runUserCmd(_ input: RunUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunUserCmdResponse {
         try await self.client.execute(action: "RunUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行自定义脚本
+    @inlinable
+    public func runUserCmd(cmdId: String, userName: String, password: String, instanceIds: [String], cmdParam: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunUserCmdResponse > {
+        self.runUserCmd(RunUserCmdRequest(cmdId: cmdId, userName: userName, password: password, instanceIds: instanceIds, cmdParam: cmdParam), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行自定义脚本
+    @inlinable
+    public func runUserCmd(cmdId: String, userName: String, password: String, instanceIds: [String], cmdParam: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunUserCmdResponse {
+        try await self.runUserCmd(RunUserCmdRequest(cmdId: cmdId, userName: userName, password: password, instanceIds: instanceIds, cmdParam: cmdParam), logger: logger, on: eventLoop)
+    }
 }

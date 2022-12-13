@@ -55,4 +55,20 @@ extension Dc {
     public func describeInternetAddressStatistics(_ input: DescribeInternetAddressStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressStatisticsResponse {
         try await self.client.execute(action: "DescribeInternetAddressStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取用户互联网公网地址统计信息
+    ///
+    /// 获取用户互联网公网地址分配统计信息
+    @inlinable
+    public func describeInternetAddressStatistics(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternetAddressStatisticsResponse > {
+        self.describeInternetAddressStatistics(DescribeInternetAddressStatisticsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户互联网公网地址统计信息
+    ///
+    /// 获取用户互联网公网地址分配统计信息
+    @inlinable
+    public func describeInternetAddressStatistics(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressStatisticsResponse {
+        try await self.describeInternetAddressStatistics(DescribeInternetAddressStatisticsRequest(), logger: logger, on: eventLoop)
+    }
 }

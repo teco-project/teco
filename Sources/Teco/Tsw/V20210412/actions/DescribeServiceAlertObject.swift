@@ -42,4 +42,16 @@ extension Tsw {
     public func describeServiceAlertObject(_ input: DescribeServiceAlertObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceAlertObjectResponse {
         try await self.client.execute(action: "DescribeServiceAlertObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取告警对象-服务告警表
+    @inlinable
+    public func describeServiceAlertObject(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceAlertObjectResponse > {
+        self.describeServiceAlertObject(DescribeServiceAlertObjectRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取告警对象-服务告警表
+    @inlinable
+    public func describeServiceAlertObject(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceAlertObjectResponse {
+        try await self.describeServiceAlertObject(DescribeServiceAlertObjectRequest(), logger: logger, on: eventLoop)
+    }
 }

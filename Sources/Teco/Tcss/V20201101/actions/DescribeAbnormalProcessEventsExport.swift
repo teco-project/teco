@@ -84,4 +84,20 @@ extension Tcss {
     public func describeAbnormalProcessEventsExport(_ input: DescribeAbnormalProcessEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessEventsExportResponse {
         try await self.client.execute(action: "DescribeAbnormalProcessEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行时异常进程列表导出
+    ///
+    /// 查询运行时异常进程事件列表信息导出
+    @inlinable
+    public func describeAbnormalProcessEventsExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalProcessEventsExportResponse > {
+        self.describeAbnormalProcessEventsExport(DescribeAbnormalProcessEventsExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时异常进程列表导出
+    ///
+    /// 查询运行时异常进程事件列表信息导出
+    @inlinable
+    public func describeAbnormalProcessEventsExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessEventsExportResponse {
+        try await self.describeAbnormalProcessEventsExport(DescribeAbnormalProcessEventsExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

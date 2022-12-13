@@ -62,4 +62,20 @@ extension Gaap {
     public func describeGroupAndStatisticsProxy(_ input: DescribeGroupAndStatisticsProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupAndStatisticsProxyResponse {
         try await self.client.execute(action: "DescribeGroupAndStatisticsProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询统计通道组和通道信息
+    ///
+    /// 该接口为内部接口，用于查询可以获取统计数据的通道组和通道信息
+    @inlinable
+    public func describeGroupAndStatisticsProxy(projectId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupAndStatisticsProxyResponse > {
+        self.describeGroupAndStatisticsProxy(DescribeGroupAndStatisticsProxyRequest(projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询统计通道组和通道信息
+    ///
+    /// 该接口为内部接口，用于查询可以获取统计数据的通道组和通道信息
+    @inlinable
+    public func describeGroupAndStatisticsProxy(projectId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupAndStatisticsProxyResponse {
+        try await self.describeGroupAndStatisticsProxy(DescribeGroupAndStatisticsProxyRequest(projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

@@ -71,4 +71,22 @@ extension Apigateway {
     public func describeUsagePlanSecretIds(_ input: DescribeUsagePlanSecretIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlanSecretIdsResponse {
         try await self.client.execute(action: "DescribeUsagePlanSecretIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询使用计划绑定密钥列表
+    ///
+    /// 本接口（DescribeUsagePlanSecretIds）用于查询使用计划绑定的密钥列表。
+    /// 在 API 网关中，一个使用计划可绑定多个密钥对，可使用本接口查询使用计划绑定的密钥列表。
+    @inlinable
+    public func describeUsagePlanSecretIds(usagePlanId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsagePlanSecretIdsResponse > {
+        self.describeUsagePlanSecretIds(DescribeUsagePlanSecretIdsRequest(usagePlanId: usagePlanId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询使用计划绑定密钥列表
+    ///
+    /// 本接口（DescribeUsagePlanSecretIds）用于查询使用计划绑定的密钥列表。
+    /// 在 API 网关中，一个使用计划可绑定多个密钥对，可使用本接口查询使用计划绑定的密钥列表。
+    @inlinable
+    public func describeUsagePlanSecretIds(usagePlanId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlanSecretIdsResponse {
+        try await self.describeUsagePlanSecretIds(DescribeUsagePlanSecretIdsRequest(usagePlanId: usagePlanId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

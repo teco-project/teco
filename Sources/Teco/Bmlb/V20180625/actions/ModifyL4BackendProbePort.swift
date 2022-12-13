@@ -83,4 +83,20 @@ extension Bmlb {
     public func modifyL4BackendProbePort(_ input: ModifyL4BackendProbePortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4BackendProbePortResponse {
         try await self.client.execute(action: "ModifyL4BackendProbePort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改黑石负载均衡四层监听器后端探测端口
+    ///
+    /// 修改黑石负载均衡四层监听器后端探测端口。
+    @inlinable
+    public func modifyL4BackendProbePort(loadBalancerId: String, listenerId: String, instanceId: String, port: Int64, probePort: Int64, bindType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL4BackendProbePortResponse > {
+        self.modifyL4BackendProbePort(ModifyL4BackendProbePortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, instanceId: instanceId, port: port, probePort: probePort, bindType: bindType), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改黑石负载均衡四层监听器后端探测端口
+    ///
+    /// 修改黑石负载均衡四层监听器后端探测端口。
+    @inlinable
+    public func modifyL4BackendProbePort(loadBalancerId: String, listenerId: String, instanceId: String, port: Int64, probePort: Int64, bindType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4BackendProbePortResponse {
+        try await self.modifyL4BackendProbePort(ModifyL4BackendProbePortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, instanceId: instanceId, port: port, probePort: probePort, bindType: bindType), logger: logger, on: eventLoop)
+    }
 }

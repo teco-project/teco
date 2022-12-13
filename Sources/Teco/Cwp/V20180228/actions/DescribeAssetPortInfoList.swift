@@ -96,4 +96,16 @@ extension Cwp {
     public func describeAssetPortInfoList(_ input: DescribeAssetPortInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetPortInfoListResponse {
         try await self.client.execute(action: "DescribeAssetPortInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取资产管理端口列表
+    @inlinable
+    public func describeAssetPortInfoList(quuid: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetPortInfoListResponse > {
+        self.describeAssetPortInfoList(DescribeAssetPortInfoListRequest(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资产管理端口列表
+    @inlinable
+    public func describeAssetPortInfoList(quuid: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetPortInfoListResponse {
+        try await self.describeAssetPortInfoList(DescribeAssetPortInfoListRequest(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

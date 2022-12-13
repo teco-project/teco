@@ -75,4 +75,16 @@ extension Cfw {
     public func describeRuleOverview(_ input: DescribeRuleOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleOverviewResponse {
         try await self.client.execute(action: "DescribeRuleOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询规则列表概况
+    @inlinable
+    public func describeRuleOverview(direction: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleOverviewResponse > {
+        self.describeRuleOverview(DescribeRuleOverviewRequest(direction: direction), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询规则列表概况
+    @inlinable
+    public func describeRuleOverview(direction: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleOverviewResponse {
+        try await self.describeRuleOverview(DescribeRuleOverviewRequest(direction: direction), logger: logger, on: eventLoop)
+    }
 }

@@ -72,4 +72,20 @@ extension Scf {
     public func getFunctionAddress(_ input: GetFunctionAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionAddressResponse {
         try await self.client.execute(action: "GetFunctionAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取函数代码下载地址
+    ///
+    /// 该接口用于获取函数代码包的下载地址。
+    @inlinable
+    public func getFunctionAddress(functionName: String, qualifier: String? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFunctionAddressResponse > {
+        self.getFunctionAddress(GetFunctionAddressRequest(functionName: functionName, qualifier: qualifier, namespace: namespace), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取函数代码下载地址
+    ///
+    /// 该接口用于获取函数代码包的下载地址。
+    @inlinable
+    public func getFunctionAddress(functionName: String, qualifier: String? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionAddressResponse {
+        try await self.getFunctionAddress(GetFunctionAddressRequest(functionName: functionName, qualifier: qualifier, namespace: namespace), logger: logger, on: eventLoop)
+    }
 }

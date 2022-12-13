@@ -82,4 +82,20 @@ extension Dbbrain {
     public func describeSqlFilters(_ input: DescribeSqlFiltersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlFiltersResponse {
         try await self.client.execute(action: "DescribeSqlFilters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例SQL限流任务列表
+    ///
+    /// 查询实例SQL限流任务列表。
+    @inlinable
+    public func describeSqlFilters(instanceId: String, filterIds: [Int64]? = nil, statuses: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSqlFiltersResponse > {
+        self.describeSqlFilters(DescribeSqlFiltersRequest(instanceId: instanceId, filterIds: filterIds, statuses: statuses, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例SQL限流任务列表
+    ///
+    /// 查询实例SQL限流任务列表。
+    @inlinable
+    public func describeSqlFilters(instanceId: String, filterIds: [Int64]? = nil, statuses: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlFiltersResponse {
+        try await self.describeSqlFilters(DescribeSqlFiltersRequest(instanceId: instanceId, filterIds: filterIds, statuses: statuses, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

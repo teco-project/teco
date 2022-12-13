@@ -50,4 +50,16 @@ extension Tcss {
     public func createNetworkFirewallClusterRefresh(_ input: CreateNetworkFirewallClusterRefreshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallClusterRefreshResponse {
         try await self.client.execute(action: "CreateNetworkFirewallClusterRefresh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 容器网络集群下发刷新任务
+    @inlinable
+    public func createNetworkFirewallClusterRefresh(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkFirewallClusterRefreshResponse > {
+        self.createNetworkFirewallClusterRefresh(CreateNetworkFirewallClusterRefreshRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络集群下发刷新任务
+    @inlinable
+    public func createNetworkFirewallClusterRefresh(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallClusterRefreshResponse {
+        try await self.createNetworkFirewallClusterRefresh(CreateNetworkFirewallClusterRefreshRequest(), logger: logger, on: eventLoop)
+    }
 }

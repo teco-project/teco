@@ -62,4 +62,20 @@ extension Gaap {
     public func describeRealServersStatus(_ input: DescribeRealServersStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealServersStatusResponse {
         try await self.client.execute(action: "DescribeRealServersStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询源站绑定状态
+    ///
+    /// 本接口（DescribeRealServersStatus）用于查询源站是否已被规则或者监听器绑定
+    @inlinable
+    public func describeRealServersStatus(realServerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealServersStatusResponse > {
+        self.describeRealServersStatus(DescribeRealServersStatusRequest(realServerIds: realServerIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询源站绑定状态
+    ///
+    /// 本接口（DescribeRealServersStatus）用于查询源站是否已被规则或者监听器绑定
+    @inlinable
+    public func describeRealServersStatus(realServerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealServersStatusResponse {
+        try await self.describeRealServersStatus(DescribeRealServersStatusRequest(realServerIds: realServerIds), logger: logger, on: eventLoop)
+    }
 }

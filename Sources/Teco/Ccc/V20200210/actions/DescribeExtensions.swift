@@ -83,4 +83,16 @@ extension Ccc {
     public func describeExtensions(_ input: DescribeExtensionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionsResponse {
         try await self.client.execute(action: "DescribeExtensions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询话机列表信息
+    @inlinable
+    public func describeExtensions(sdkAppId: UInt64, pageNumber: Int64, extensionIds: [String]? = nil, pageSize: Int64? = nil, fuzzingKeyWord: String? = nil, isNeedStatus: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExtensionsResponse > {
+        self.describeExtensions(DescribeExtensionsRequest(sdkAppId: sdkAppId, pageNumber: pageNumber, extensionIds: extensionIds, pageSize: pageSize, fuzzingKeyWord: fuzzingKeyWord, isNeedStatus: isNeedStatus), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询话机列表信息
+    @inlinable
+    public func describeExtensions(sdkAppId: UInt64, pageNumber: Int64, extensionIds: [String]? = nil, pageSize: Int64? = nil, fuzzingKeyWord: String? = nil, isNeedStatus: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionsResponse {
+        try await self.describeExtensions(DescribeExtensionsRequest(sdkAppId: sdkAppId, pageNumber: pageNumber, extensionIds: extensionIds, pageSize: pageSize, fuzzingKeyWord: fuzzingKeyWord, isNeedStatus: isNeedStatus), logger: logger, on: eventLoop)
+    }
 }

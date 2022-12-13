@@ -63,4 +63,20 @@ extension Iot {
     public func getDevice(_ input: GetDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceResponse {
         try await self.client.execute(action: "GetDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备信息
+    ///
+    /// 提供查询某个设备详细信息的能力。
+    @inlinable
+    public func getDevice(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceResponse > {
+        self.getDevice(GetDeviceRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备信息
+    ///
+    /// 提供查询某个设备详细信息的能力。
+    @inlinable
+    public func getDevice(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceResponse {
+        try await self.getDevice(GetDeviceRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
 }

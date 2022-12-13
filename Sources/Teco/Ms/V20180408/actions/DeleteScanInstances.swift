@@ -58,4 +58,20 @@ extension Ms {
     public func deleteScanInstances(_ input: DeleteScanInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanInstancesResponse {
         try await self.client.execute(action: "DeleteScanInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量删除提交过的app扫描信息
+    ///
+    /// 删除一个或者多个app扫描信息
+    @inlinable
+    public func deleteScanInstances(appSids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScanInstancesResponse > {
+        self.deleteScanInstances(DeleteScanInstancesRequest(appSids: appSids), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除提交过的app扫描信息
+    ///
+    /// 删除一个或者多个app扫描信息
+    @inlinable
+    public func deleteScanInstances(appSids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanInstancesResponse {
+        try await self.deleteScanInstances(DeleteScanInstancesRequest(appSids: appSids), logger: logger, on: eventLoop)
+    }
 }

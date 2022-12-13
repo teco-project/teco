@@ -50,4 +50,16 @@ extension Dasb {
     public func deleteDeviceGroups(_ input: DeleteDeviceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupsResponse {
         try await self.client.execute(action: "DeleteDeviceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除资产组
+    @inlinable
+    public func deleteDeviceGroups(idSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceGroupsResponse > {
+        self.deleteDeviceGroups(DeleteDeviceGroupsRequest(idSet: idSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除资产组
+    @inlinable
+    public func deleteDeviceGroups(idSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupsResponse {
+        try await self.deleteDeviceGroups(DeleteDeviceGroupsRequest(idSet: idSet), logger: logger, on: eventLoop)
+    }
 }

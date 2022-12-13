@@ -71,4 +71,20 @@ extension Mna {
     public func updateDevice(_ input: UpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceResponse {
         try await self.client.execute(action: "UpdateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新设备
+    ///
+    /// 更新设备信息
+    @inlinable
+    public func updateDevice(deviceId: String, deviceName: String? = nil, remark: String? = nil, updateNetInfo: [UpdateNetInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDeviceResponse > {
+        self.updateDevice(UpdateDeviceRequest(deviceId: deviceId, deviceName: deviceName, remark: remark, updateNetInfo: updateNetInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新设备
+    ///
+    /// 更新设备信息
+    @inlinable
+    public func updateDevice(deviceId: String, deviceName: String? = nil, remark: String? = nil, updateNetInfo: [UpdateNetInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceResponse {
+        try await self.updateDevice(UpdateDeviceRequest(deviceId: deviceId, deviceName: deviceName, remark: remark, updateNetInfo: updateNetInfo), logger: logger, on: eventLoop)
+    }
 }

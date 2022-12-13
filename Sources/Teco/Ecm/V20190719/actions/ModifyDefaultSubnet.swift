@@ -69,4 +69,20 @@ extension Ecm {
     public func modifyDefaultSubnet(_ input: ModifyDefaultSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDefaultSubnetResponse {
         try await self.client.execute(action: "ModifyDefaultSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改默认子网
+    ///
+    /// 修改在一个可用区下创建实例时使用的默认子网（创建实例时，未填写VPC参数时使用的sunbetId）
+    @inlinable
+    public func modifyDefaultSubnet(ecmRegion: String, zone: String, vpcId: String, subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDefaultSubnetResponse > {
+        self.modifyDefaultSubnet(ModifyDefaultSubnetRequest(ecmRegion: ecmRegion, zone: zone, vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改默认子网
+    ///
+    /// 修改在一个可用区下创建实例时使用的默认子网（创建实例时，未填写VPC参数时使用的sunbetId）
+    @inlinable
+    public func modifyDefaultSubnet(ecmRegion: String, zone: String, vpcId: String, subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDefaultSubnetResponse {
+        try await self.modifyDefaultSubnet(ModifyDefaultSubnetRequest(ecmRegion: ecmRegion, zone: zone, vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    }
 }

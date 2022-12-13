@@ -63,4 +63,16 @@ extension Tag {
     public func addProject(_ input: AddProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddProjectResponse {
         try await self.client.execute(action: "AddProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建项目
+    @inlinable
+    public func addProject(projectName: String, info: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddProjectResponse > {
+        self.addProject(AddProjectRequest(projectName: projectName, info: info), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建项目
+    @inlinable
+    public func addProject(projectName: String, info: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddProjectResponse {
+        try await self.addProject(AddProjectRequest(projectName: projectName, info: info), logger: logger, on: eventLoop)
+    }
 }

@@ -65,4 +65,16 @@ extension Es {
     public func updateJdk(_ input: UpdateJdkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateJdkResponse {
         try await self.client.execute(action: "UpdateJdk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新实例Jdk配置
+    @inlinable
+    public func updateJdk(instanceId: String, jdk: String? = nil, gc: String? = nil, forceRestart: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateJdkResponse > {
+        self.updateJdk(UpdateJdkRequest(instanceId: instanceId, jdk: jdk, gc: gc, forceRestart: forceRestart), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新实例Jdk配置
+    @inlinable
+    public func updateJdk(instanceId: String, jdk: String? = nil, gc: String? = nil, forceRestart: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateJdkResponse {
+        try await self.updateJdk(UpdateJdkRequest(instanceId: instanceId, jdk: jdk, gc: gc, forceRestart: forceRestart), logger: logger, on: eventLoop)
+    }
 }

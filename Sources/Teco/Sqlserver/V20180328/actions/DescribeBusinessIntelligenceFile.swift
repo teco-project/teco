@@ -97,4 +97,20 @@ extension Sqlserver {
     public func describeBusinessIntelligenceFile(_ input: DescribeBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessIntelligenceFileResponse {
         try await self.client.execute(action: "DescribeBusinessIntelligenceFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询商业智能服务需要的文件
+    ///
+    /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
+    @inlinable
+    public func describeBusinessIntelligenceFile(instanceId: String, fileName: String? = nil, statusSet: [Int64]? = nil, fileType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBusinessIntelligenceFileResponse > {
+        self.describeBusinessIntelligenceFile(DescribeBusinessIntelligenceFileRequest(instanceId: instanceId, fileName: fileName, statusSet: statusSet, fileType: fileType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询商业智能服务需要的文件
+    ///
+    /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
+    @inlinable
+    public func describeBusinessIntelligenceFile(instanceId: String, fileName: String? = nil, statusSet: [Int64]? = nil, fileType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessIntelligenceFileResponse {
+        try await self.describeBusinessIntelligenceFile(DescribeBusinessIntelligenceFileRequest(instanceId: instanceId, fileName: fileName, statusSet: statusSet, fileType: fileType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    }
 }

@@ -67,4 +67,16 @@ extension Rum {
     public func describeError(_ input: DescribeErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeErrorResponse {
         try await self.client.execute(action: "DescribeError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取首页错误信息
+    @inlinable
+    public func describeError(date: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeErrorResponse > {
+        self.describeError(DescribeErrorRequest(date: date, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取首页错误信息
+    @inlinable
+    public func describeError(date: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeErrorResponse {
+        try await self.describeError(DescribeErrorRequest(date: date, id: id), logger: logger, on: eventLoop)
+    }
 }

@@ -80,4 +80,20 @@ extension Mps {
     public func describeWorkflows(_ input: DescribeWorkflowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkflowsResponse {
         try await self.client.execute(action: "DescribeWorkflows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取工作流列表
+    ///
+    /// 根据工作流 ID，获取工作流详情列表。
+    @inlinable
+    public func describeWorkflows(workflowIds: [Int64]? = nil, status: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkflowsResponse > {
+        self.describeWorkflows(DescribeWorkflowsRequest(workflowIds: workflowIds, status: status, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取工作流列表
+    ///
+    /// 根据工作流 ID，获取工作流详情列表。
+    @inlinable
+    public func describeWorkflows(workflowIds: [Int64]? = nil, status: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkflowsResponse {
+        try await self.describeWorkflows(DescribeWorkflowsRequest(workflowIds: workflowIds, status: status, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

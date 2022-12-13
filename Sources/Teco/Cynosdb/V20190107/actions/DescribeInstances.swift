@@ -108,4 +108,20 @@ extension Cynosdb {
     public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
         try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例列表
+    ///
+    /// 本接口(DescribeInstances)用于查询实例列表。
+    @inlinable
+    public func describeInstances(limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil, dbType: String? = nil, status: String? = nil, instanceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+        self.describeInstances(DescribeInstancesRequest(limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, filters: filters, dbType: dbType, status: status, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例列表
+    ///
+    /// 本接口(DescribeInstances)用于查询实例列表。
+    @inlinable
+    public func describeInstances(limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil, dbType: String? = nil, status: String? = nil, instanceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
+        try await self.describeInstances(DescribeInstancesRequest(limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, filters: filters, dbType: dbType, status: status, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

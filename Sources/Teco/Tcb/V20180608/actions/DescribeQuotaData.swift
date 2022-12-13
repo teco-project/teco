@@ -104,4 +104,20 @@ extension Tcb {
     public func describeQuotaData(_ input: DescribeQuotaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaDataResponse {
         try await self.client.execute(action: "DescribeQuotaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询环境的配额使用量
+    ///
+    /// 查询指定指标的配额使用量
+    @inlinable
+    public func describeQuotaData(envId: String, metricName: String, resourceID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQuotaDataResponse > {
+        self.describeQuotaData(DescribeQuotaDataRequest(envId: envId, metricName: metricName, resourceID: resourceID), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询环境的配额使用量
+    ///
+    /// 查询指定指标的配额使用量
+    @inlinable
+    public func describeQuotaData(envId: String, metricName: String, resourceID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaDataResponse {
+        try await self.describeQuotaData(DescribeQuotaDataRequest(envId: envId, metricName: metricName, resourceID: resourceID), logger: logger, on: eventLoop)
+    }
 }

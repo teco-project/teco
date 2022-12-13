@@ -97,4 +97,20 @@ extension Rum {
     public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
         try await self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建项目
+    ///
+    /// 创建项目（归属于某个团队）
+    @inlinable
+    public func createProject(name: String, instanceID: String, rate: String, enableURLGroup: UInt64, type: String, repo: String? = nil, url: String? = nil, desc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProjectResponse > {
+        self.createProject(CreateProjectRequest(name: name, instanceID: instanceID, rate: rate, enableURLGroup: enableURLGroup, type: type, repo: repo, url: url, desc: desc), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建项目
+    ///
+    /// 创建项目（归属于某个团队）
+    @inlinable
+    public func createProject(name: String, instanceID: String, rate: String, enableURLGroup: UInt64, type: String, repo: String? = nil, url: String? = nil, desc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
+        try await self.createProject(CreateProjectRequest(name: name, instanceID: instanceID, rate: rate, enableURLGroup: enableURLGroup, type: type, repo: repo, url: url, desc: desc), logger: logger, on: eventLoop)
+    }
 }

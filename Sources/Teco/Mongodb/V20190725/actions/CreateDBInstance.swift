@@ -202,4 +202,20 @@ extension Mongodb {
     public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceResponse {
         try await self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建云数据库实例（包年包月）
+    ///
+    /// 本接口(CreateDBInstance)用于创建包年包月的MongoDB云数据库实例。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
+    @inlinable
+    public func createDBInstance(nodeNum: UInt64, memory: UInt64, volume: UInt64, mongoVersion: String, goodsNum: UInt64, zone: String, period: UInt64, machineCode: String, clusterType: String, replicateSetNum: UInt64, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, password: String? = nil, tags: [TagInfo]? = nil, autoRenewFlag: UInt64? = nil, autoVoucher: UInt64? = nil, clone: Int64? = nil, father: String? = nil, securityGroup: [String]? = nil, restoreTime: String? = nil, instanceName: String? = nil, availabilityZoneList: [String]? = nil, mongosCpu: UInt64? = nil, mongosMemory: UInt64? = nil, mongosNodeNum: UInt64? = nil, readonlyNodeNum: UInt64? = nil, readonlyNodeAvailabilityZoneList: [String]? = nil, hiddenZone: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstanceResponse > {
+        self.createDBInstance(CreateDBInstanceRequest(nodeNum: nodeNum, memory: memory, volume: volume, mongoVersion: mongoVersion, goodsNum: goodsNum, zone: zone, period: period, machineCode: machineCode, clusterType: clusterType, replicateSetNum: replicateSetNum, projectId: projectId, vpcId: vpcId, subnetId: subnetId, password: password, tags: tags, autoRenewFlag: autoRenewFlag, autoVoucher: autoVoucher, clone: clone, father: father, securityGroup: securityGroup, restoreTime: restoreTime, instanceName: instanceName, availabilityZoneList: availabilityZoneList, mongosCpu: mongosCpu, mongosMemory: mongosMemory, mongosNodeNum: mongosNodeNum, readonlyNodeNum: readonlyNodeNum, readonlyNodeAvailabilityZoneList: readonlyNodeAvailabilityZoneList, hiddenZone: hiddenZone), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云数据库实例（包年包月）
+    ///
+    /// 本接口(CreateDBInstance)用于创建包年包月的MongoDB云数据库实例。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
+    @inlinable
+    public func createDBInstance(nodeNum: UInt64, memory: UInt64, volume: UInt64, mongoVersion: String, goodsNum: UInt64, zone: String, period: UInt64, machineCode: String, clusterType: String, replicateSetNum: UInt64, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, password: String? = nil, tags: [TagInfo]? = nil, autoRenewFlag: UInt64? = nil, autoVoucher: UInt64? = nil, clone: Int64? = nil, father: String? = nil, securityGroup: [String]? = nil, restoreTime: String? = nil, instanceName: String? = nil, availabilityZoneList: [String]? = nil, mongosCpu: UInt64? = nil, mongosMemory: UInt64? = nil, mongosNodeNum: UInt64? = nil, readonlyNodeNum: UInt64? = nil, readonlyNodeAvailabilityZoneList: [String]? = nil, hiddenZone: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceResponse {
+        try await self.createDBInstance(CreateDBInstanceRequest(nodeNum: nodeNum, memory: memory, volume: volume, mongoVersion: mongoVersion, goodsNum: goodsNum, zone: zone, period: period, machineCode: machineCode, clusterType: clusterType, replicateSetNum: replicateSetNum, projectId: projectId, vpcId: vpcId, subnetId: subnetId, password: password, tags: tags, autoRenewFlag: autoRenewFlag, autoVoucher: autoVoucher, clone: clone, father: father, securityGroup: securityGroup, restoreTime: restoreTime, instanceName: instanceName, availabilityZoneList: availabilityZoneList, mongosCpu: mongosCpu, mongosMemory: mongosMemory, mongosNodeNum: mongosNodeNum, readonlyNodeNum: readonlyNodeNum, readonlyNodeAvailabilityZoneList: readonlyNodeAvailabilityZoneList, hiddenZone: hiddenZone), logger: logger, on: eventLoop)
+    }
 }

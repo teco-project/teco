@@ -60,4 +60,16 @@ extension Iecp {
     public func createNamespace(_ input: CreateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
         try await self.client.execute(action: "CreateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建命名空间
+    @inlinable
+    public func createNamespace(edgeUnitID: UInt64, namespace: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNamespaceResponse > {
+        self.createNamespace(CreateNamespaceRequest(edgeUnitID: edgeUnitID, namespace: namespace, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建命名空间
+    @inlinable
+    public func createNamespace(edgeUnitID: UInt64, namespace: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
+        try await self.createNamespace(CreateNamespaceRequest(edgeUnitID: edgeUnitID, namespace: namespace, description: description), logger: logger, on: eventLoop)
+    }
 }

@@ -89,4 +89,16 @@ extension Cpdp {
     public func addFlexIdInfo(_ input: AddFlexIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddFlexIdInfoResponse {
         try await self.client.execute(action: "AddFlexIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 灵云V2-补充证件信息
+    @inlinable
+    public func addFlexIdInfo(idType: Int64, idNo: String, payeeId: String, environment: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddFlexIdInfoResponse > {
+        self.addFlexIdInfo(AddFlexIdInfoRequest(idType: idType, idNo: idNo, payeeId: payeeId, environment: environment, name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云V2-补充证件信息
+    @inlinable
+    public func addFlexIdInfo(idType: Int64, idNo: String, payeeId: String, environment: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddFlexIdInfoResponse {
+        try await self.addFlexIdInfo(AddFlexIdInfoRequest(idType: idType, idNo: idNo, payeeId: payeeId, environment: environment, name: name), logger: logger, on: eventLoop)
+    }
 }

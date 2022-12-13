@@ -64,4 +64,20 @@ extension Iotvideo {
     public func createGencode(_ input: CreateGencodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGencodeResponse {
         try await self.client.execute(action: "CreateGencode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 生成设备物模型源代码
+    ///
+    /// 本接口（CreateGencode）用于生成设备物模型源代码
+    @inlinable
+    public func createGencode(productId: String, revision: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGencodeResponse > {
+        self.createGencode(CreateGencodeRequest(productId: productId, revision: revision), logger: logger, on: eventLoop)
+    }
+    
+    /// 生成设备物模型源代码
+    ///
+    /// 本接口（CreateGencode）用于生成设备物模型源代码
+    @inlinable
+    public func createGencode(productId: String, revision: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGencodeResponse {
+        try await self.createGencode(CreateGencodeRequest(productId: productId, revision: revision), logger: logger, on: eventLoop)
+    }
 }

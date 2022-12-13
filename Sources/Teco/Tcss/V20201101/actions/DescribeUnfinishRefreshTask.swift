@@ -50,4 +50,16 @@ extension Tcss {
     public func describeUnfinishRefreshTask(_ input: DescribeUnfinishRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnfinishRefreshTaskResponse {
         try await self.client.execute(action: "DescribeUnfinishRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询未完成的刷新资产任务信息
+    @inlinable
+    public func describeUnfinishRefreshTask(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnfinishRefreshTaskResponse > {
+        self.describeUnfinishRefreshTask(DescribeUnfinishRefreshTaskRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询未完成的刷新资产任务信息
+    @inlinable
+    public func describeUnfinishRefreshTask(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnfinishRefreshTaskResponse {
+        try await self.describeUnfinishRefreshTask(DescribeUnfinishRefreshTaskRequest(), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Bma {
     public func modifyCRBlockStatus(_ input: ModifyCRBlockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRBlockStatusResponse {
         try await self.client.execute(action: "ModifyCRBlockStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 协查处置申请
+    @inlinable
+    public func modifyCRBlockStatus(tortId: Int64, blockUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRBlockStatusResponse > {
+        self.modifyCRBlockStatus(ModifyCRBlockStatusRequest(tortId: tortId, blockUrl: blockUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 协查处置申请
+    @inlinable
+    public func modifyCRBlockStatus(tortId: Int64, blockUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRBlockStatusResponse {
+        try await self.modifyCRBlockStatus(ModifyCRBlockStatusRequest(tortId: tortId, blockUrl: blockUrl), logger: logger, on: eventLoop)
+    }
 }

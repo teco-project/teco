@@ -74,4 +74,16 @@ extension Tsf {
     public func describeGatewayApis(_ input: DescribeGatewayApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayApisResponse {
         try await self.client.execute(action: "DescribeGatewayApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询API分组下的Api列表信息
+    @inlinable
+    public func describeGatewayApis(groupId: String, offset: Int64, limit: Int64, searchWord: String? = nil, gatewayDeployGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewayApisResponse > {
+        self.describeGatewayApis(DescribeGatewayApisRequest(groupId: groupId, offset: offset, limit: limit, searchWord: searchWord, gatewayDeployGroupId: gatewayDeployGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询API分组下的Api列表信息
+    @inlinable
+    public func describeGatewayApis(groupId: String, offset: Int64, limit: Int64, searchWord: String? = nil, gatewayDeployGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayApisResponse {
+        try await self.describeGatewayApis(DescribeGatewayApisRequest(groupId: groupId, offset: offset, limit: limit, searchWord: searchWord, gatewayDeployGroupId: gatewayDeployGroupId), logger: logger, on: eventLoop)
+    }
 }

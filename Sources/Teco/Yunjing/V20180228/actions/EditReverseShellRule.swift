@@ -80,4 +80,16 @@ extension Yunjing {
     public func editReverseShellRule(_ input: EditReverseShellRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditReverseShellRuleResponse {
         try await self.client.execute(action: "EditReverseShellRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 编辑反弹Shell规则
+    @inlinable
+    public func editReverseShellRule(id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, destIp: String? = nil, destPort: String? = nil, processName: String? = nil, isGlobal: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditReverseShellRuleResponse > {
+        self.editReverseShellRule(EditReverseShellRuleRequest(id: id, uuid: uuid, hostip: hostip, destIp: destIp, destPort: destPort, processName: processName, isGlobal: isGlobal), logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑反弹Shell规则
+    @inlinable
+    public func editReverseShellRule(id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, destIp: String? = nil, destPort: String? = nil, processName: String? = nil, isGlobal: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditReverseShellRuleResponse {
+        try await self.editReverseShellRule(EditReverseShellRuleRequest(id: id, uuid: uuid, hostip: hostip, destIp: destIp, destPort: destPort, processName: processName, isGlobal: isGlobal), logger: logger, on: eventLoop)
+    }
 }

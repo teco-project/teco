@@ -74,4 +74,20 @@ extension Ckafka {
     public func describeRegion(_ input: DescribeRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionResponse {
         try await self.client.execute(action: "DescribeRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 枚举地域
+    ///
+    /// 枚举地域,只支持广州地域
+    @inlinable
+    public func describeRegion(offset: Int64? = nil, limit: Int64? = nil, business: String? = nil, cdcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionResponse > {
+        self.describeRegion(DescribeRegionRequest(offset: offset, limit: limit, business: business, cdcId: cdcId), logger: logger, on: eventLoop)
+    }
+    
+    /// 枚举地域
+    ///
+    /// 枚举地域,只支持广州地域
+    @inlinable
+    public func describeRegion(offset: Int64? = nil, limit: Int64? = nil, business: String? = nil, cdcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionResponse {
+        try await self.describeRegion(DescribeRegionRequest(offset: offset, limit: limit, business: business, cdcId: cdcId), logger: logger, on: eventLoop)
+    }
 }

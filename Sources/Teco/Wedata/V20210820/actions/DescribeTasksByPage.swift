@@ -76,4 +76,22 @@ extension Wedata {
     public func describeTasksByPage(_ input: DescribeTasksByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksByPageResponse {
         try await self.client.execute(action: "DescribeTasksByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 根据工作流分页查询任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 根据工作流分页查询任务
+    @inlinable
+    public func describeTasksByPage(projectId: String, workflowId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksByPageResponse > {
+        self.describeTasksByPage(DescribeTasksByPageRequest(projectId: projectId, workflowId: workflowId, pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
+    }
+    
+    /// 根据工作流分页查询任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 根据工作流分页查询任务
+    @inlinable
+    public func describeTasksByPage(projectId: String, workflowId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksByPageResponse {
+        try await self.describeTasksByPage(DescribeTasksByPageRequest(projectId: projectId, workflowId: workflowId, pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
+    }
 }

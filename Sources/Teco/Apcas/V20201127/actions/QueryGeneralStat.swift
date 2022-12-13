@@ -58,4 +58,20 @@ extension Apcas {
     public func queryGeneralStat(_ input: QueryGeneralStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryGeneralStatResponse {
         try await self.client.execute(action: "QueryGeneralStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 总统计数据
+    ///
+    /// 获取日/月/周/总调用量统计数据
+    @inlinable
+    public func queryGeneralStat(type: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryGeneralStatResponse > {
+        self.queryGeneralStat(QueryGeneralStatRequest(type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 总统计数据
+    ///
+    /// 获取日/月/周/总调用量统计数据
+    @inlinable
+    public func queryGeneralStat(type: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryGeneralStatResponse {
+        try await self.queryGeneralStat(QueryGeneralStatRequest(type: type), logger: logger, on: eventLoop)
+    }
 }

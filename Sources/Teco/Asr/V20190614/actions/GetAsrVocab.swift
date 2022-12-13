@@ -86,4 +86,20 @@ extension Asr {
     public func getAsrVocab(_ input: GetAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsrVocabResponse {
         try await self.client.execute(action: "GetAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取热词表
+    ///
+    /// 用户根据词表的ID可以获取对应的热词表信息
+    @inlinable
+    public func getAsrVocab(vocabId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAsrVocabResponse > {
+        self.getAsrVocab(GetAsrVocabRequest(vocabId: vocabId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取热词表
+    ///
+    /// 用户根据词表的ID可以获取对应的热词表信息
+    @inlinable
+    public func getAsrVocab(vocabId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsrVocabResponse {
+        try await self.getAsrVocab(GetAsrVocabRequest(vocabId: vocabId), logger: logger, on: eventLoop)
+    }
 }

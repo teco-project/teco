@@ -74,4 +74,20 @@ extension Bda {
     public func detectBodyJoints(_ input: DetectBodyJointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectBodyJointsResponse {
         try await self.client.execute(action: "DetectBodyJoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 人体关键点分析
+    ///
+    /// 检测图片中人体的14个关键点。建议用于人体图像清晰、无遮挡的场景。支持一张图片中存在多个人体的识别。
+    @inlinable
+    public func detectBodyJoints(image: String? = nil, url: String? = nil, localBodySwitch: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectBodyJointsResponse > {
+        self.detectBodyJoints(DetectBodyJointsRequest(image: image, url: url, localBodySwitch: localBodySwitch), logger: logger, on: eventLoop)
+    }
+    
+    /// 人体关键点分析
+    ///
+    /// 检测图片中人体的14个关键点。建议用于人体图像清晰、无遮挡的场景。支持一张图片中存在多个人体的识别。
+    @inlinable
+    public func detectBodyJoints(image: String? = nil, url: String? = nil, localBodySwitch: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectBodyJointsResponse {
+        try await self.detectBodyJoints(DetectBodyJointsRequest(image: image, url: url, localBodySwitch: localBodySwitch), logger: logger, on: eventLoop)
+    }
 }

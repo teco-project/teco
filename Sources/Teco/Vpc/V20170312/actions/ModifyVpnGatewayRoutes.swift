@@ -64,4 +64,20 @@ extension Vpc {
     public func modifyVpnGatewayRoutes(_ input: ModifyVpnGatewayRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnGatewayRoutesResponse {
         try await self.client.execute(action: "ModifyVpnGatewayRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改VPN路由状态
+    ///
+    /// 修改VPN路由是否启用
+    @inlinable
+    public func modifyVpnGatewayRoutes(vpnGatewayId: String, routes: [VpnGatewayRouteModify], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpnGatewayRoutesResponse > {
+        self.modifyVpnGatewayRoutes(ModifyVpnGatewayRoutesRequest(vpnGatewayId: vpnGatewayId, routes: routes), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改VPN路由状态
+    ///
+    /// 修改VPN路由是否启用
+    @inlinable
+    public func modifyVpnGatewayRoutes(vpnGatewayId: String, routes: [VpnGatewayRouteModify], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnGatewayRoutesResponse {
+        try await self.modifyVpnGatewayRoutes(ModifyVpnGatewayRoutesRequest(vpnGatewayId: vpnGatewayId, routes: routes), logger: logger, on: eventLoop)
+    }
 }

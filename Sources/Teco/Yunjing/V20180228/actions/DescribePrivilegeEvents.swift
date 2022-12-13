@@ -69,4 +69,16 @@ extension Yunjing {
     public func describePrivilegeEvents(_ input: DescribePrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivilegeEventsResponse {
         try await self.client.execute(action: "DescribePrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取本地提权事件列表
+    @inlinable
+    public func describePrivilegeEvents(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivilegeEventsResponse > {
+        self.describePrivilegeEvents(DescribePrivilegeEventsRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取本地提权事件列表
+    @inlinable
+    public func describePrivilegeEvents(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivilegeEventsResponse {
+        try await self.describePrivilegeEvents(DescribePrivilegeEventsRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

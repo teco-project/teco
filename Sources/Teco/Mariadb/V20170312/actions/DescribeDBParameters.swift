@@ -62,4 +62,20 @@ extension Mariadb {
     public func describeDBParameters(_ input: DescribeDBParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBParametersResponse {
         try await self.client.execute(action: "DescribeDBParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看数据库参数
+    ///
+    /// 本接口(DescribeDBParameters)用于获取数据库的当前参数设置。
+    @inlinable
+    public func describeDBParameters(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBParametersResponse > {
+        self.describeDBParameters(DescribeDBParametersRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看数据库参数
+    ///
+    /// 本接口(DescribeDBParameters)用于获取数据库的当前参数设置。
+    @inlinable
+    public func describeDBParameters(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBParametersResponse {
+        try await self.describeDBParameters(DescribeDBParametersRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

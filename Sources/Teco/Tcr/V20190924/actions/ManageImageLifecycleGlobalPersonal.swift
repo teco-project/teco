@@ -59,4 +59,20 @@ extension Tcr {
     public func manageImageLifecycleGlobalPersonal(_ input: ManageImageLifecycleGlobalPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageImageLifecycleGlobalPersonalResponse {
         try await self.client.execute(action: "ManageImageLifecycleGlobalPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置个人版全局镜像版本自动清理策略
+    ///
+    /// 用于设置个人版全局镜像版本自动清理策略
+    @inlinable
+    public func manageImageLifecycleGlobalPersonal(type: String, val: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageImageLifecycleGlobalPersonalResponse > {
+        self.manageImageLifecycleGlobalPersonal(ManageImageLifecycleGlobalPersonalRequest(type: type, val: val), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置个人版全局镜像版本自动清理策略
+    ///
+    /// 用于设置个人版全局镜像版本自动清理策略
+    @inlinable
+    public func manageImageLifecycleGlobalPersonal(type: String, val: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageImageLifecycleGlobalPersonalResponse {
+        try await self.manageImageLifecycleGlobalPersonal(ManageImageLifecycleGlobalPersonalRequest(type: type, val: val), logger: logger, on: eventLoop)
+    }
 }

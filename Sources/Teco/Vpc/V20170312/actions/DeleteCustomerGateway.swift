@@ -54,4 +54,20 @@ extension Vpc {
     public func deleteCustomerGateway(_ input: DeleteCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomerGatewayResponse {
         try await self.client.execute(action: "DeleteCustomerGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除对端网关
+    ///
+    /// 本接口（DeleteCustomerGateway）用于删除对端网关。
+    @inlinable
+    public func deleteCustomerGateway(customerGatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomerGatewayResponse > {
+        self.deleteCustomerGateway(DeleteCustomerGatewayRequest(customerGatewayId: customerGatewayId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除对端网关
+    ///
+    /// 本接口（DeleteCustomerGateway）用于删除对端网关。
+    @inlinable
+    public func deleteCustomerGateway(customerGatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomerGatewayResponse {
+        try await self.deleteCustomerGateway(DeleteCustomerGatewayRequest(customerGatewayId: customerGatewayId), logger: logger, on: eventLoop)
+    }
 }

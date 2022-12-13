@@ -89,4 +89,16 @@ extension Cpdp {
     public func distributeAccreditTlinx(_ input: DistributeAccreditTlinxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeAccreditTlinxResponse {
         try await self.client.execute(action: "DistributeAccreditTlinx", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云支付-分账授权申请接口
+    @inlinable
+    public func distributeAccreditTlinx(openId: String, openKey: String, authType: String, percent: String? = nil, fullName: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DistributeAccreditTlinxResponse > {
+        self.distributeAccreditTlinx(DistributeAccreditTlinxRequest(openId: openId, openKey: openKey, authType: authType, percent: percent, fullName: fullName, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-分账授权申请接口
+    @inlinable
+    public func distributeAccreditTlinx(openId: String, openKey: String, authType: String, percent: String? = nil, fullName: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeAccreditTlinxResponse {
+        try await self.distributeAccreditTlinx(DistributeAccreditTlinxRequest(openId: openId, openKey: openKey, authType: authType, percent: percent, fullName: fullName, profile: profile), logger: logger, on: eventLoop)
+    }
 }

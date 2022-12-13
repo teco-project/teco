@@ -65,4 +65,16 @@ extension Wedata {
     public func describeDataBases(_ input: DescribeDataBasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataBasesResponse {
         try await self.client.execute(action: "DescribeDataBases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询数据来源列表
+    @inlinable
+    public func describeDataBases(projectId: String? = nil, datasourceId: String? = nil, dsTypes: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataBasesResponse > {
+        self.describeDataBases(DescribeDataBasesRequest(projectId: projectId, datasourceId: datasourceId, dsTypes: dsTypes), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据来源列表
+    @inlinable
+    public func describeDataBases(projectId: String? = nil, datasourceId: String? = nil, dsTypes: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataBasesResponse {
+        try await self.describeDataBases(DescribeDataBasesRequest(projectId: projectId, datasourceId: datasourceId, dsTypes: dsTypes), logger: logger, on: eventLoop)
+    }
 }

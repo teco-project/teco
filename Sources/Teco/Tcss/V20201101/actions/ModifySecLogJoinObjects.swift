@@ -63,4 +63,16 @@ extension Tcss {
     public func modifySecLogJoinObjects(_ input: ModifySecLogJoinObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinObjectsResponse {
         try await self.client.execute(action: "ModifySecLogJoinObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改安全日志接入对象
+    @inlinable
+    public func modifySecLogJoinObjects(logType: String, bindList: [String]? = nil, unBindList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogJoinObjectsResponse > {
+        self.modifySecLogJoinObjects(ModifySecLogJoinObjectsRequest(logType: logType, bindList: bindList, unBindList: unBindList), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改安全日志接入对象
+    @inlinable
+    public func modifySecLogJoinObjects(logType: String, bindList: [String]? = nil, unBindList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinObjectsResponse {
+        try await self.modifySecLogJoinObjects(ModifySecLogJoinObjectsRequest(logType: logType, bindList: bindList, unBindList: unBindList), logger: logger, on: eventLoop)
+    }
 }

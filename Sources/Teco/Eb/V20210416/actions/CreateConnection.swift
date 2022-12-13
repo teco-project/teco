@@ -79,4 +79,16 @@ extension Eb {
     public func createConnection(_ input: CreateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectionResponse {
         try await self.client.execute(action: "CreateConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建事件连接器
+    @inlinable
+    public func createConnection(connectionDescription: ConnectionDescription, eventBusId: String, connectionName: String, description: String? = nil, enable: Bool? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConnectionResponse > {
+        self.createConnection(CreateConnectionRequest(connectionDescription: connectionDescription, eventBusId: eventBusId, connectionName: connectionName, description: description, enable: enable, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建事件连接器
+    @inlinable
+    public func createConnection(connectionDescription: ConnectionDescription, eventBusId: String, connectionName: String, description: String? = nil, enable: Bool? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectionResponse {
+        try await self.createConnection(CreateConnectionRequest(connectionDescription: connectionDescription, eventBusId: eventBusId, connectionName: connectionName, description: description, enable: enable, type: type), logger: logger, on: eventLoop)
+    }
 }

@@ -139,4 +139,20 @@ extension Cpdp {
     public func applyWithdrawal(_ input: ApplyWithdrawalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyWithdrawalResponse {
         try await self.client.execute(action: "ApplyWithdrawal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 聚鑫-提现
+    ///
+    /// 商户提现
+    @inlinable
+    public func applyWithdrawal(midasAppId: String, subAppId: String, settleAcctNo: String, settleAcctName: String, currencyType: String, currencyUnit: Int64, currencyAmt: String, tranWebName: String, idType: String, idCode: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, commissionAmount: String? = nil, withdrawOrderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyWithdrawalResponse > {
+        self.applyWithdrawal(ApplyWithdrawalRequest(midasAppId: midasAppId, subAppId: subAppId, settleAcctNo: settleAcctNo, settleAcctName: settleAcctName, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, tranWebName: tranWebName, idType: idType, idCode: idCode, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment, commissionAmount: commissionAmount, withdrawOrderId: withdrawOrderId), logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-提现
+    ///
+    /// 商户提现
+    @inlinable
+    public func applyWithdrawal(midasAppId: String, subAppId: String, settleAcctNo: String, settleAcctName: String, currencyType: String, currencyUnit: Int64, currencyAmt: String, tranWebName: String, idType: String, idCode: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, commissionAmount: String? = nil, withdrawOrderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyWithdrawalResponse {
+        try await self.applyWithdrawal(ApplyWithdrawalRequest(midasAppId: midasAppId, subAppId: subAppId, settleAcctNo: settleAcctNo, settleAcctName: settleAcctName, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, tranWebName: tranWebName, idType: idType, idCode: idCode, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment, commissionAmount: commissionAmount, withdrawOrderId: withdrawOrderId), logger: logger, on: eventLoop)
+    }
 }

@@ -69,4 +69,16 @@ extension Cwp {
     public func describeBanWhiteList(_ input: DescribeBanWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanWhiteListResponse {
         try await self.client.execute(action: "DescribeBanWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取阻断白名单列表
+    @inlinable
+    public func describeBanWhiteList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBanWhiteListResponse > {
+        self.describeBanWhiteList(DescribeBanWhiteListRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取阻断白名单列表
+    @inlinable
+    public func describeBanWhiteList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanWhiteListResponse {
+        try await self.describeBanWhiteList(DescribeBanWhiteListRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

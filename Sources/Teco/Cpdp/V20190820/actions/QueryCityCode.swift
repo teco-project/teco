@@ -74,4 +74,16 @@ extension Cpdp {
     public func queryCityCode(_ input: QueryCityCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCityCodeResponse {
         try await self.client.execute(action: "QueryCityCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云支付-查询城市编码接口
+    @inlinable
+    public func queryCityCode(openId: String, openKey: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCityCodeResponse > {
+        self.queryCityCode(QueryCityCodeRequest(openId: openId, openKey: openKey, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-查询城市编码接口
+    @inlinable
+    public func queryCityCode(openId: String, openKey: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCityCodeResponse {
+        try await self.queryCityCode(QueryCityCodeRequest(openId: openId, openKey: openKey, profile: profile), logger: logger, on: eventLoop)
+    }
 }

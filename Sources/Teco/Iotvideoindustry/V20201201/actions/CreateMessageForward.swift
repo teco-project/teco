@@ -85,4 +85,16 @@ extension Iotvideoindustry {
     public func createMessageForward(_ input: CreateMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageForwardResponse {
         try await self.client.execute(action: "CreateMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建消息转发配置
+    @inlinable
+    public func createMessageForward(regionId: String, regionName: String, instance: String, instanceName: String, messageType: String, topicId: String, topicName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMessageForwardResponse > {
+        self.createMessageForward(CreateMessageForwardRequest(regionId: regionId, regionName: regionName, instance: instance, instanceName: instanceName, messageType: messageType, topicId: topicId, topicName: topicName), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建消息转发配置
+    @inlinable
+    public func createMessageForward(regionId: String, regionName: String, instance: String, instanceName: String, messageType: String, topicId: String, topicName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageForwardResponse {
+        try await self.createMessageForward(CreateMessageForwardRequest(regionId: regionId, regionName: regionName, instance: instance, instanceName: instanceName, messageType: messageType, topicId: topicId, topicName: topicName), logger: logger, on: eventLoop)
+    }
 }

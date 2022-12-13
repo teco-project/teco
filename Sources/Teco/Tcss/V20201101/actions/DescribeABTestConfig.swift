@@ -54,4 +54,16 @@ extension Tcss {
     public func describeABTestConfig(_ input: DescribeABTestConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeABTestConfigResponse {
         try await self.client.execute(action: "DescribeABTestConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取用户当前灰度配置
+    @inlinable
+    public func describeABTestConfig(projectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeABTestConfigResponse > {
+        self.describeABTestConfig(DescribeABTestConfigRequest(projectName: projectName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户当前灰度配置
+    @inlinable
+    public func describeABTestConfig(projectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeABTestConfigResponse {
+        try await self.describeABTestConfig(DescribeABTestConfigRequest(projectName: projectName), logger: logger, on: eventLoop)
+    }
 }

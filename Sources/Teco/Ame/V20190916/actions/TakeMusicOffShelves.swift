@@ -67,4 +67,20 @@ extension Ame {
     public func takeMusicOffShelves(_ input: TakeMusicOffShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TakeMusicOffShelvesResponse {
         try await self.client.execute(action: "TakeMusicOffShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 下架歌曲
+    ///
+    /// 根据资源方所传MusicId进行将歌曲进行下架，多个MusicId使用逗号隔开
+    @inlinable
+    public func takeMusicOffShelves(takeMusicOffShelves: [TakeMusicOffShelves], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TakeMusicOffShelvesResponse > {
+        self.takeMusicOffShelves(TakeMusicOffShelvesRequest(takeMusicOffShelves: takeMusicOffShelves), logger: logger, on: eventLoop)
+    }
+    
+    /// 下架歌曲
+    ///
+    /// 根据资源方所传MusicId进行将歌曲进行下架，多个MusicId使用逗号隔开
+    @inlinable
+    public func takeMusicOffShelves(takeMusicOffShelves: [TakeMusicOffShelves], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TakeMusicOffShelvesResponse {
+        try await self.takeMusicOffShelves(TakeMusicOffShelvesRequest(takeMusicOffShelves: takeMusicOffShelves), logger: logger, on: eventLoop)
+    }
 }

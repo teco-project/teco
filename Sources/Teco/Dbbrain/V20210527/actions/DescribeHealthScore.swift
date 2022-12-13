@@ -71,4 +71,20 @@ extension Dbbrain {
     public func describeHealthScore(_ input: DescribeHealthScoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHealthScoreResponse {
         try await self.client.execute(action: "DescribeHealthScore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取健康得分
+    ///
+    /// 根据实例ID获取指定时间段（30分钟）的健康得分，以及异常扣分项。
+    @inlinable
+    public func describeHealthScore(instanceId: String, time: Date, product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHealthScoreResponse > {
+        self.describeHealthScore(DescribeHealthScoreRequest(instanceId: instanceId, time: time, product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取健康得分
+    ///
+    /// 根据实例ID获取指定时间段（30分钟）的健康得分，以及异常扣分项。
+    @inlinable
+    public func describeHealthScore(instanceId: String, time: Date, product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHealthScoreResponse {
+        try await self.describeHealthScore(DescribeHealthScoreRequest(instanceId: instanceId, time: time, product: product), logger: logger, on: eventLoop)
+    }
 }

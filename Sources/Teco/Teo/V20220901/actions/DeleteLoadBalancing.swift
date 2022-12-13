@@ -55,4 +55,16 @@ extension Teo {
     public func deleteLoadBalancing(_ input: DeleteLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancingResponse {
         try await self.client.execute(action: "DeleteLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除负载均衡
+    @inlinable
+    public func deleteLoadBalancing(zoneId: String, loadBalancingId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoadBalancingResponse > {
+        self.deleteLoadBalancing(DeleteLoadBalancingRequest(zoneId: zoneId, loadBalancingId: loadBalancingId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除负载均衡
+    @inlinable
+    public func deleteLoadBalancing(zoneId: String, loadBalancingId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancingResponse {
+        try await self.deleteLoadBalancing(DeleteLoadBalancingRequest(zoneId: zoneId, loadBalancingId: loadBalancingId), logger: logger, on: eventLoop)
+    }
 }

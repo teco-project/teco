@@ -132,4 +132,20 @@ extension Mongodb {
     public func createDBInstanceHour(_ input: CreateDBInstanceHourRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceHourResponse {
         try await self.client.execute(action: "CreateDBInstanceHour", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建云数据库实例（按量计费）
+    ///
+    /// 本接口(CreateDBInstanceHour)用于创建按量计费的MongoDB云数据库实例（包括主实例、灾备实例和只读实例），可通过传入实例规格、实例类型、MongoDB版本、购买时长和数量等信息创建云数据库实例。
+    @inlinable
+    public func createDBInstanceHour(memory: UInt64, volume: UInt64, replicateSetNum: UInt64, secondaryNum: UInt64, engineVersion: String, machine: String, goodsNum: UInt64, zone: String, instanceRole: String, instanceType: String, encrypt: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, securityGroup: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstanceHourResponse > {
+        self.createDBInstanceHour(CreateDBInstanceHourRequest(memory: memory, volume: volume, replicateSetNum: replicateSetNum, secondaryNum: secondaryNum, engineVersion: engineVersion, machine: machine, goodsNum: goodsNum, zone: zone, instanceRole: instanceRole, instanceType: instanceType, encrypt: encrypt, vpcId: vpcId, subnetId: subnetId, projectId: projectId, securityGroup: securityGroup), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云数据库实例（按量计费）
+    ///
+    /// 本接口(CreateDBInstanceHour)用于创建按量计费的MongoDB云数据库实例（包括主实例、灾备实例和只读实例），可通过传入实例规格、实例类型、MongoDB版本、购买时长和数量等信息创建云数据库实例。
+    @inlinable
+    public func createDBInstanceHour(memory: UInt64, volume: UInt64, replicateSetNum: UInt64, secondaryNum: UInt64, engineVersion: String, machine: String, goodsNum: UInt64, zone: String, instanceRole: String, instanceType: String, encrypt: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, securityGroup: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceHourResponse {
+        try await self.createDBInstanceHour(CreateDBInstanceHourRequest(memory: memory, volume: volume, replicateSetNum: replicateSetNum, secondaryNum: secondaryNum, engineVersion: engineVersion, machine: machine, goodsNum: goodsNum, zone: zone, instanceRole: instanceRole, instanceType: instanceType, encrypt: encrypt, vpcId: vpcId, subnetId: subnetId, projectId: projectId, securityGroup: securityGroup), logger: logger, on: eventLoop)
+    }
 }

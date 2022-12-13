@@ -154,4 +154,20 @@ extension Thpc {
     public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
         try await self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建集群
+    ///
+    /// 本接口 (CreateCluster) 用于创建并启动集群。
+    @inlinable
+    public func createCluster(placement: Placement, managerNode: ManagerNode? = nil, managerNodeCount: Int64? = nil, computeNode: ComputeNode? = nil, computeNodeCount: Int64? = nil, schedulerType: String? = nil, imageId: String? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, dryRun: Bool? = nil, accountType: String? = nil, clusterName: String? = nil, storageOption: StorageOption? = nil, loginNode: LoginNode? = nil, loginNodeCount: Int64? = nil, tags: [Tag]? = nil, autoScalingType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterResponse > {
+        self.createCluster(CreateClusterRequest(placement: placement, managerNode: managerNode, managerNodeCount: managerNodeCount, computeNode: computeNode, computeNodeCount: computeNodeCount, schedulerType: schedulerType, imageId: imageId, virtualPrivateCloud: virtualPrivateCloud, loginSettings: loginSettings, securityGroupIds: securityGroupIds, clientToken: clientToken, dryRun: dryRun, accountType: accountType, clusterName: clusterName, storageOption: storageOption, loginNode: loginNode, loginNodeCount: loginNodeCount, tags: tags, autoScalingType: autoScalingType), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群
+    ///
+    /// 本接口 (CreateCluster) 用于创建并启动集群。
+    @inlinable
+    public func createCluster(placement: Placement, managerNode: ManagerNode? = nil, managerNodeCount: Int64? = nil, computeNode: ComputeNode? = nil, computeNodeCount: Int64? = nil, schedulerType: String? = nil, imageId: String? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, dryRun: Bool? = nil, accountType: String? = nil, clusterName: String? = nil, storageOption: StorageOption? = nil, loginNode: LoginNode? = nil, loginNodeCount: Int64? = nil, tags: [Tag]? = nil, autoScalingType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
+        try await self.createCluster(CreateClusterRequest(placement: placement, managerNode: managerNode, managerNodeCount: managerNodeCount, computeNode: computeNode, computeNodeCount: computeNodeCount, schedulerType: schedulerType, imageId: imageId, virtualPrivateCloud: virtualPrivateCloud, loginSettings: loginSettings, securityGroupIds: securityGroupIds, clientToken: clientToken, dryRun: dryRun, accountType: accountType, clusterName: clusterName, storageOption: storageOption, loginNode: loginNode, loginNodeCount: loginNodeCount, tags: tags, autoScalingType: autoScalingType), logger: logger, on: eventLoop)
+    }
 }

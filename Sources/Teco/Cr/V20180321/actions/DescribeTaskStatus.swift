@@ -82,4 +82,20 @@ extension Cr {
     public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
         try await self.client.execute(action: "DescribeTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取任务状态
+    ///
+    /// 根据上传文件接口的输出参数DataResId，获取相关上传结果。
+    @inlinable
+    public func describeTaskStatus(module: String, operation: String, taskId: String, instId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskStatusResponse > {
+        self.describeTaskStatus(DescribeTaskStatusRequest(module: module, operation: operation, taskId: taskId, instId: instId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取任务状态
+    ///
+    /// 根据上传文件接口的输出参数DataResId，获取相关上传结果。
+    @inlinable
+    public func describeTaskStatus(module: String, operation: String, taskId: String, instId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
+        try await self.describeTaskStatus(DescribeTaskStatusRequest(module: module, operation: operation, taskId: taskId, instId: instId), logger: logger, on: eventLoop)
+    }
 }

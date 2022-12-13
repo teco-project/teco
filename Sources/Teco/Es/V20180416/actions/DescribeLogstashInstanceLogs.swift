@@ -102,4 +102,20 @@ extension Es {
     public func describeLogstashInstanceLogs(_ input: DescribeLogstashInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashInstanceLogsResponse {
         try await self.client.execute(action: "DescribeLogstashInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询Logstash实例日志
+    ///
+    /// 查询用户该地域下符合条件的Logstash实例的日志
+    @inlinable
+    public func describeLogstashInstanceLogs(instanceId: String, logType: UInt64? = nil, searchKey: String? = nil, startTime: String? = nil, endTime: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderByType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogstashInstanceLogsResponse > {
+        self.describeLogstashInstanceLogs(DescribeLogstashInstanceLogsRequest(instanceId: instanceId, logType: logType, searchKey: searchKey, startTime: startTime, endTime: endTime, offset: offset, limit: limit, orderByType: orderByType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Logstash实例日志
+    ///
+    /// 查询用户该地域下符合条件的Logstash实例的日志
+    @inlinable
+    public func describeLogstashInstanceLogs(instanceId: String, logType: UInt64? = nil, searchKey: String? = nil, startTime: String? = nil, endTime: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderByType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashInstanceLogsResponse {
+        try await self.describeLogstashInstanceLogs(DescribeLogstashInstanceLogsRequest(instanceId: instanceId, logType: logType, searchKey: searchKey, startTime: startTime, endTime: endTime, offset: offset, limit: limit, orderByType: orderByType), logger: logger, on: eventLoop)
+    }
 }

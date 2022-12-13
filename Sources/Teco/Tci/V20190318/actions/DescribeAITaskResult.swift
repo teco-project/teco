@@ -80,4 +80,16 @@ extension Tci {
     public func describeAITaskResult(_ input: DescribeAITaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAITaskResultResponse {
         try await self.client.execute(action: "DescribeAITaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取标准化接口任务结果
+    @inlinable
+    public func describeAITaskResult(taskId: Int64, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAITaskResultResponse > {
+        self.describeAITaskResult(DescribeAITaskResultRequest(taskId: taskId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取标准化接口任务结果
+    @inlinable
+    public func describeAITaskResult(taskId: Int64, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAITaskResultResponse {
+        try await self.describeAITaskResult(DescribeAITaskResultRequest(taskId: taskId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Ie {
     public func stopMediaProcessTask(_ input: StopMediaProcessTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMediaProcessTaskResponse {
         try await self.client.execute(action: "StopMediaProcessTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停止编辑处理任务
+    ///
+    /// 用于停止正在进行中的编辑处理任务。
+    @inlinable
+    public func stopMediaProcessTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopMediaProcessTaskResponse > {
+        self.stopMediaProcessTask(StopMediaProcessTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 停止编辑处理任务
+    ///
+    /// 用于停止正在进行中的编辑处理任务。
+    @inlinable
+    public func stopMediaProcessTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMediaProcessTaskResponse {
+        try await self.stopMediaProcessTask(StopMediaProcessTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

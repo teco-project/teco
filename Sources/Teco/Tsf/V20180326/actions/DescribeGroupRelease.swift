@@ -59,4 +59,20 @@ extension Tsf {
     public func describeGroupRelease(_ input: DescribeGroupReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupReleaseResponse {
         try await self.client.execute(action: "DescribeGroupRelease", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询部署组发布信息
+    ///
+    /// 查询部署组相关的发布信息
+    @inlinable
+    public func describeGroupRelease(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupReleaseResponse > {
+        self.describeGroupRelease(DescribeGroupReleaseRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询部署组发布信息
+    ///
+    /// 查询部署组相关的发布信息
+    @inlinable
+    public func describeGroupRelease(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupReleaseResponse {
+        try await self.describeGroupRelease(DescribeGroupReleaseRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

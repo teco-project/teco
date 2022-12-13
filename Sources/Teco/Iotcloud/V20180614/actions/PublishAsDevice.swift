@@ -69,4 +69,20 @@ extension Iotcloud {
     public func publishAsDevice(_ input: PublishAsDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishAsDeviceResponse {
         try await self.client.execute(action: "PublishAsDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 模拟lora设备发送消息
+    ///
+    /// 模拟lora类型的设备端向服务器端发送消息
+    @inlinable
+    public func publishAsDevice(productId: String, deviceName: String, port: UInt64, payload: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishAsDeviceResponse > {
+        self.publishAsDevice(PublishAsDeviceRequest(productId: productId, deviceName: deviceName, port: port, payload: payload), logger: logger, on: eventLoop)
+    }
+    
+    /// 模拟lora设备发送消息
+    ///
+    /// 模拟lora类型的设备端向服务器端发送消息
+    @inlinable
+    public func publishAsDevice(productId: String, deviceName: String, port: UInt64, payload: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishAsDeviceResponse {
+        try await self.publishAsDevice(PublishAsDeviceRequest(productId: productId, deviceName: deviceName, port: port, payload: payload), logger: logger, on: eventLoop)
+    }
 }

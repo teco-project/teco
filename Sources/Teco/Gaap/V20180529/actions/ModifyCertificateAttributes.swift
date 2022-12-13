@@ -59,4 +59,20 @@ extension Gaap {
     public func modifyCertificateAttributes(_ input: ModifyCertificateAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAttributesResponse {
         try await self.client.execute(action: "ModifyCertificateAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改证书属性
+    ///
+    /// 本接口（ModifyCertificateAttributes）用于修改证书，包括证书名字以及证书内容。
+    @inlinable
+    public func modifyCertificateAttributes(certificateId: String, certificateAlias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCertificateAttributesResponse > {
+        self.modifyCertificateAttributes(ModifyCertificateAttributesRequest(certificateId: certificateId, certificateAlias: certificateAlias), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改证书属性
+    ///
+    /// 本接口（ModifyCertificateAttributes）用于修改证书，包括证书名字以及证书内容。
+    @inlinable
+    public func modifyCertificateAttributes(certificateId: String, certificateAlias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAttributesResponse {
+        try await self.modifyCertificateAttributes(ModifyCertificateAttributesRequest(certificateId: certificateId, certificateAlias: certificateAlias), logger: logger, on: eventLoop)
+    }
 }

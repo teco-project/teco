@@ -60,7 +60,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以查询一切用户项目信息。如果指定操作者，则操作者必须为项目所有者。
         public let `operator`: String?
         
-        public init (platform: String, projectIds: [String]? = nil, aspectRatioSet: [String]? = nil, categorySet: [String]? = nil, modes: [String]? = nil, sort: SortBy? = nil, owner: Entity? = nil, offset: UInt64? = nil, limit: UInt64? = nil, `operator`: String? = nil) {
+        public init (platform: String, projectIds: [String]? = nil, aspectRatioSet: [String]? = nil, categorySet: [String]? = nil, modes: [String]? = nil, sort: SortBy? = nil, owner: Entity? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil) {
             self.platform = platform
             self.projectIds = projectIds
             self.aspectRatioSet = aspectRatioSet
@@ -119,5 +119,21 @@ extension Cme {
     @inlinable
     public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
         try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 获取项目列表
+    ///
+    /// 支持根据多种条件过滤出项目列表。
+    @inlinable
+    public func describeProjects(platform: String, projectIds: [String]? = nil, aspectRatioSet: [String]? = nil, categorySet: [String]? = nil, modes: [String]? = nil, sort: SortBy? = nil, owner: Entity? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
+        self.describeProjects(DescribeProjectsRequest(platform: platform, projectIds: projectIds, aspectRatioSet: aspectRatioSet, categorySet: categorySet, modes: modes, sort: sort, owner: owner, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取项目列表
+    ///
+    /// 支持根据多种条件过滤出项目列表。
+    @inlinable
+    public func describeProjects(platform: String, projectIds: [String]? = nil, aspectRatioSet: [String]? = nil, categorySet: [String]? = nil, modes: [String]? = nil, sort: SortBy? = nil, owner: Entity? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
+        try await self.describeProjects(DescribeProjectsRequest(platform: platform, projectIds: projectIds, aspectRatioSet: aspectRatioSet, categorySet: categorySet, modes: modes, sort: sort, owner: owner, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

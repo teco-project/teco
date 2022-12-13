@@ -114,4 +114,20 @@ extension Tke {
     public func createClusterRelease(_ input: CreateClusterReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterReleaseResponse {
         try await self.client.execute(action: "CreateClusterRelease", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 集群安装应用
+    ///
+    /// 在应用市场中给集群创建应用
+    @inlinable
+    public func createClusterRelease(clusterId: String, name: String, namespace: String, chart: String, values: ReleaseValues? = nil, chartFrom: String? = nil, chartVersion: String? = nil, chartRepoURL: String? = nil, username: String? = nil, password: String? = nil, chartNamespace: String? = nil, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterReleaseResponse > {
+        self.createClusterRelease(CreateClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, chart: chart, values: values, chartFrom: chartFrom, chartVersion: chartVersion, chartRepoURL: chartRepoURL, username: username, password: password, chartNamespace: chartNamespace, clusterType: clusterType), logger: logger, on: eventLoop)
+    }
+    
+    /// 集群安装应用
+    ///
+    /// 在应用市场中给集群创建应用
+    @inlinable
+    public func createClusterRelease(clusterId: String, name: String, namespace: String, chart: String, values: ReleaseValues? = nil, chartFrom: String? = nil, chartVersion: String? = nil, chartRepoURL: String? = nil, username: String? = nil, password: String? = nil, chartNamespace: String? = nil, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterReleaseResponse {
+        try await self.createClusterRelease(CreateClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, chart: chart, values: values, chartFrom: chartFrom, chartVersion: chartVersion, chartRepoURL: chartRepoURL, username: username, password: password, chartNamespace: chartNamespace, clusterType: clusterType), logger: logger, on: eventLoop)
+    }
 }

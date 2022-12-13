@@ -84,4 +84,20 @@ extension Iotvideoindustry {
     public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
         try await self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建设备
+    ///
+    /// 本接口(CreateDevice) 用于创建设备。
+    @inlinable
+    public func createDevice(nickName: String, passWord: String, deviceType: Int64? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeviceResponse > {
+        self.createDevice(CreateDeviceRequest(nickName: nickName, passWord: passWord, deviceType: deviceType, groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建设备
+    ///
+    /// 本接口(CreateDevice) 用于创建设备。
+    @inlinable
+    public func createDevice(nickName: String, passWord: String, deviceType: Int64? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
+        try await self.createDevice(CreateDeviceRequest(nickName: nickName, passWord: passWord, deviceType: deviceType, groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

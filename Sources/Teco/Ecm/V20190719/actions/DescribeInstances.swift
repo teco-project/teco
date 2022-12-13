@@ -104,4 +104,20 @@ extension Ecm {
     public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
         try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取实例相关信息
+    ///
+    /// 获取实例的相关信息。
+    @inlinable
+    public func describeInstances(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+        self.describeInstances(DescribeInstancesRequest(filters: filters, offset: offset, limit: limit, orderByField: orderByField, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例相关信息
+    ///
+    /// 获取实例的相关信息。
+    @inlinable
+    public func describeInstances(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
+        try await self.describeInstances(DescribeInstancesRequest(filters: filters, offset: offset, limit: limit, orderByField: orderByField, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    }
 }

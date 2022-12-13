@@ -100,4 +100,16 @@ extension Cwp {
     public func describeAssetWebAppList(_ input: DescribeAssetWebAppListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebAppListResponse {
         try await self.client.execute(action: "DescribeAssetWebAppList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取资产管理Web应用列表
+    @inlinable
+    public func describeAssetWebAppList(quuid: String? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetWebAppListResponse > {
+        self.describeAssetWebAppList(DescribeAssetWebAppListRequest(quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资产管理Web应用列表
+    @inlinable
+    public func describeAssetWebAppList(quuid: String? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebAppListResponse {
+        try await self.describeAssetWebAppList(DescribeAssetWebAppListRequest(quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

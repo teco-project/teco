@@ -78,4 +78,16 @@ extension Wedata {
     public func describeRealTimeTaskSpeed(_ input: DescribeRealTimeTaskSpeedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskSpeedResponse {
         try await self.client.execute(action: "DescribeRealTimeTaskSpeed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 实时任务同步速度趋势
+    @inlinable
+    public func describeRealTimeTaskSpeed(taskId: String, startTime: UInt64, endTime: UInt64, granularity: UInt64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealTimeTaskSpeedResponse > {
+        self.describeRealTimeTaskSpeed(DescribeRealTimeTaskSpeedRequest(taskId: taskId, startTime: startTime, endTime: endTime, granularity: granularity, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 实时任务同步速度趋势
+    @inlinable
+    public func describeRealTimeTaskSpeed(taskId: String, startTime: UInt64, endTime: UInt64, granularity: UInt64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskSpeedResponse {
+        try await self.describeRealTimeTaskSpeed(DescribeRealTimeTaskSpeedRequest(taskId: taskId, startTime: startTime, endTime: endTime, granularity: granularity, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

@@ -99,4 +99,20 @@ extension Iai {
     public func analyzeDenseLandmarks(_ input: AnalyzeDenseLandmarksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AnalyzeDenseLandmarksResponse {
         try await self.client.execute(action: "AnalyzeDenseLandmarks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 稠密关键点
+    ///
+    /// 对请求图片进行五官定位（也称人脸关键点定位），获得人脸的精准信息，返回多达888点关键信息，对五官和脸部轮廓进行精确定位。
+    @inlinable
+    public func analyzeDenseLandmarks(mode: UInt64? = nil, image: String? = nil, url: String? = nil, faceModelVersion: String? = nil, needRotateDetection: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AnalyzeDenseLandmarksResponse > {
+        self.analyzeDenseLandmarks(AnalyzeDenseLandmarksRequest(mode: mode, image: image, url: url, faceModelVersion: faceModelVersion, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    }
+    
+    /// 稠密关键点
+    ///
+    /// 对请求图片进行五官定位（也称人脸关键点定位），获得人脸的精准信息，返回多达888点关键信息，对五官和脸部轮廓进行精确定位。
+    @inlinable
+    public func analyzeDenseLandmarks(mode: UInt64? = nil, image: String? = nil, url: String? = nil, faceModelVersion: String? = nil, needRotateDetection: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AnalyzeDenseLandmarksResponse {
+        try await self.analyzeDenseLandmarks(AnalyzeDenseLandmarksRequest(mode: mode, image: image, url: url, faceModelVersion: faceModelVersion, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    }
 }

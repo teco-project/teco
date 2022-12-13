@@ -71,4 +71,16 @@ extension Teo {
     public func describeLoadBalancing(_ input: DescribeLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancingResponse {
         try await self.client.execute(action: "DescribeLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取负载均衡列表
+    @inlinable
+    public func describeLoadBalancing(offset: UInt64, limit: UInt64, filters: [AdvancedFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancingResponse > {
+        self.describeLoadBalancing(DescribeLoadBalancingRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取负载均衡列表
+    @inlinable
+    public func describeLoadBalancing(offset: UInt64, limit: UInt64, filters: [AdvancedFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancingResponse {
+        try await self.describeLoadBalancing(DescribeLoadBalancingRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

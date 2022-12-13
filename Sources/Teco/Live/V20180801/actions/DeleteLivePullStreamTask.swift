@@ -23,7 +23,7 @@ extension Live {
         /// 操作人姓名。
         public let `operator`: String
         
-        public init (taskId: String, `operator`: String) {
+        public init (taskId: String, operator: String) {
             self.taskId = taskId
             self.`operator` = `operator`
         }
@@ -64,5 +64,27 @@ extension Live {
     @inlinable
     public func deleteLivePullStreamTask(_ input: DeleteLivePullStreamTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLivePullStreamTaskResponse {
         try await self.client.execute(action: "DeleteLivePullStreamTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 删除直播拉流任务
+    ///
+    /// 删除接口 CreateLivePullStreamTask 创建的拉流任务。
+    /// 注意：
+    /// 1. 入参中的 TaskId 为 CreateLivePullStreamTask 接口创建时返回的TaskId。
+    /// 2. 也可通过 DescribeLivePullStreamTasks 进行查询创建的任务。
+    @inlinable
+    public func deleteLivePullStreamTask(taskId: String, operator: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLivePullStreamTaskResponse > {
+        self.deleteLivePullStreamTask(DeleteLivePullStreamTaskRequest(taskId: taskId, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除直播拉流任务
+    ///
+    /// 删除接口 CreateLivePullStreamTask 创建的拉流任务。
+    /// 注意：
+    /// 1. 入参中的 TaskId 为 CreateLivePullStreamTask 接口创建时返回的TaskId。
+    /// 2. 也可通过 DescribeLivePullStreamTasks 进行查询创建的任务。
+    @inlinable
+    public func deleteLivePullStreamTask(taskId: String, operator: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLivePullStreamTaskResponse {
+        try await self.deleteLivePullStreamTask(DeleteLivePullStreamTaskRequest(taskId: taskId, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

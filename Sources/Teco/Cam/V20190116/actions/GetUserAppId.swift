@@ -54,4 +54,16 @@ extension Cam {
     public func getUserAppId(_ input: GetUserAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserAppIdResponse {
         try await self.client.execute(action: "GetUserAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取用户AppId
+    @inlinable
+    public func getUserAppId(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUserAppIdResponse > {
+        self.getUserAppId(GetUserAppIdRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户AppId
+    @inlinable
+    public func getUserAppId(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserAppIdResponse {
+        try await self.getUserAppId(GetUserAppIdRequest(), logger: logger, on: eventLoop)
+    }
 }

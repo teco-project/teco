@@ -70,4 +70,16 @@ extension Tdmq {
     public func modifyRocketMQTopic(_ input: ModifyRocketMQTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQTopicResponse {
         try await self.client.execute(action: "ModifyRocketMQTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新RocketMQ主题信息
+    @inlinable
+    public func modifyRocketMQTopic(clusterId: String, namespaceId: String, topic: String, remark: String, partitionNum: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRocketMQTopicResponse > {
+        self.modifyRocketMQTopic(ModifyRocketMQTopicRequest(clusterId: clusterId, namespaceId: namespaceId, topic: topic, remark: remark, partitionNum: partitionNum), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新RocketMQ主题信息
+    @inlinable
+    public func modifyRocketMQTopic(clusterId: String, namespaceId: String, topic: String, remark: String, partitionNum: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQTopicResponse {
+        try await self.modifyRocketMQTopic(ModifyRocketMQTopicRequest(clusterId: clusterId, namespaceId: namespaceId, topic: topic, remark: remark, partitionNum: partitionNum), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Iotvideoindustry {
     public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
         try await self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量查询分组信息
+    ///
+    /// 本接口(DescribeGroups)用于批量查询分组信息。
+    @inlinable
+    public func describeGroups(groupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupsResponse > {
+        self.describeGroups(DescribeGroupsRequest(groupIds: groupIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量查询分组信息
+    ///
+    /// 本接口(DescribeGroups)用于批量查询分组信息。
+    @inlinable
+    public func describeGroups(groupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
+        try await self.describeGroups(DescribeGroupsRequest(groupIds: groupIds), logger: logger, on: eventLoop)
+    }
 }

@@ -105,4 +105,16 @@ extension Es {
     public func describeIndexList(_ input: DescribeIndexListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexListResponse {
         try await self.client.execute(action: "DescribeIndexList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取索引列表
+    @inlinable
+    public func describeIndexList(indexType: String, instanceId: String? = nil, indexName: String? = nil, username: String? = nil, password: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, indexStatusList: [String]? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIndexListResponse > {
+        self.describeIndexList(DescribeIndexListRequest(indexType: indexType, instanceId: instanceId, indexName: indexName, username: username, password: password, offset: offset, limit: limit, orderBy: orderBy, indexStatusList: indexStatusList, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取索引列表
+    @inlinable
+    public func describeIndexList(indexType: String, instanceId: String? = nil, indexName: String? = nil, username: String? = nil, password: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, indexStatusList: [String]? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexListResponse {
+        try await self.describeIndexList(DescribeIndexListRequest(indexType: indexType, instanceId: instanceId, indexName: indexName, username: username, password: password, offset: offset, limit: limit, orderBy: orderBy, indexStatusList: indexStatusList, order: order), logger: logger, on: eventLoop)
+    }
 }

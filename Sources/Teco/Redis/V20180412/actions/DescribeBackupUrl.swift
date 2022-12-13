@@ -77,4 +77,20 @@ extension Redis {
     public func describeBackupUrl(_ input: DescribeBackupUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupUrlResponse {
         try await self.client.execute(action: "DescribeBackupUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询备份Rdb下载地址
+    ///
+    /// 本接口（DescribeBackupUrl）用于查询备份 Rdb 文件的下载地址。
+    @inlinable
+    public func describeBackupUrl(instanceId: String, backupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupUrlResponse > {
+        self.describeBackupUrl(DescribeBackupUrlRequest(instanceId: instanceId, backupId: backupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询备份Rdb下载地址
+    ///
+    /// 本接口（DescribeBackupUrl）用于查询备份 Rdb 文件的下载地址。
+    @inlinable
+    public func describeBackupUrl(instanceId: String, backupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupUrlResponse {
+        try await self.describeBackupUrl(DescribeBackupUrlRequest(instanceId: instanceId, backupId: backupId), logger: logger, on: eventLoop)
+    }
 }

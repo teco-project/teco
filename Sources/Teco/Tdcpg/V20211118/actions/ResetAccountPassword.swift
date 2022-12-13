@@ -60,4 +60,16 @@ extension Tdcpg {
     public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
         try await self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重置数据库账号密码
+    @inlinable
+    public func resetAccountPassword(clusterId: String, accountName: String, accountPassword: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetAccountPasswordResponse > {
+        self.resetAccountPassword(ResetAccountPasswordRequest(clusterId: clusterId, accountName: accountName, accountPassword: accountPassword), logger: logger, on: eventLoop)
+    }
+    
+    /// 重置数据库账号密码
+    @inlinable
+    public func resetAccountPassword(clusterId: String, accountName: String, accountPassword: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
+        try await self.resetAccountPassword(ResetAccountPasswordRequest(clusterId: clusterId, accountName: accountName, accountPassword: accountPassword), logger: logger, on: eventLoop)
+    }
 }

@@ -109,4 +109,20 @@ extension Cpdp {
     public func queryBalance(_ input: QueryBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBalanceResponse {
         try await self.client.execute(action: "QueryBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 聚鑫-余额查询
+    ///
+    /// 子商户余额查询
+    @inlinable
+    public func queryBalance(midasAppId: String, subAppId: String, queryFlag: String, pageOffset: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBalanceResponse > {
+        self.queryBalance(QueryBalanceRequest(midasAppId: midasAppId, subAppId: subAppId, queryFlag: queryFlag, pageOffset: pageOffset, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-余额查询
+    ///
+    /// 子商户余额查询
+    @inlinable
+    public func queryBalance(midasAppId: String, subAppId: String, queryFlag: String, pageOffset: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBalanceResponse {
+        try await self.queryBalance(QueryBalanceRequest(midasAppId: midasAppId, subAppId: subAppId, queryFlag: queryFlag, pageOffset: pageOffset, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
 }

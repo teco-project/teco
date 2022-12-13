@@ -151,4 +151,22 @@ extension Monitor {
     public func describeAlarmHistories(_ input: DescribeAlarmHistoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmHistoriesResponse {
         try await self.client.execute(action: "DescribeAlarmHistories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询告警历史
+    ///
+    /// 查询告警历史
+    /// 请注意，**如果使用子用户进行告警历史的查询，只能查询到被授权项目下的告警历史**，或不区分项目的产品的告警历史。如何对子账户授予项目的权限，请参考 [访问管理-项目与标签](https://cloud.tencent.com/document/product/598/32738)。
+    @inlinable
+    public func describeAlarmHistories(module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, order: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, monitorTypes: [String]? = nil, alarmObject: String? = nil, alarmStatus: [String]? = nil, projectIds: [Int64]? = nil, instanceGroupIds: [Int64]? = nil, namespaces: [MonitorTypeNamespace]? = nil, metricNames: [String]? = nil, policyName: String? = nil, content: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmHistoriesResponse > {
+        self.describeAlarmHistories(DescribeAlarmHistoriesRequest(module: module, pageNumber: pageNumber, pageSize: pageSize, order: order, startTime: startTime, endTime: endTime, monitorTypes: monitorTypes, alarmObject: alarmObject, alarmStatus: alarmStatus, projectIds: projectIds, instanceGroupIds: instanceGroupIds, namespaces: namespaces, metricNames: metricNames, policyName: policyName, content: content, receiverUids: receiverUids, receiverGroups: receiverGroups, policyIds: policyIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询告警历史
+    ///
+    /// 查询告警历史
+    /// 请注意，**如果使用子用户进行告警历史的查询，只能查询到被授权项目下的告警历史**，或不区分项目的产品的告警历史。如何对子账户授予项目的权限，请参考 [访问管理-项目与标签](https://cloud.tencent.com/document/product/598/32738)。
+    @inlinable
+    public func describeAlarmHistories(module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, order: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, monitorTypes: [String]? = nil, alarmObject: String? = nil, alarmStatus: [String]? = nil, projectIds: [Int64]? = nil, instanceGroupIds: [Int64]? = nil, namespaces: [MonitorTypeNamespace]? = nil, metricNames: [String]? = nil, policyName: String? = nil, content: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmHistoriesResponse {
+        try await self.describeAlarmHistories(DescribeAlarmHistoriesRequest(module: module, pageNumber: pageNumber, pageSize: pageSize, order: order, startTime: startTime, endTime: endTime, monitorTypes: monitorTypes, alarmObject: alarmObject, alarmStatus: alarmStatus, projectIds: projectIds, instanceGroupIds: instanceGroupIds, namespaces: namespaces, metricNames: metricNames, policyName: policyName, content: content, receiverUids: receiverUids, receiverGroups: receiverGroups, policyIds: policyIds), logger: logger, on: eventLoop)
+    }
 }

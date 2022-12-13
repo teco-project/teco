@@ -58,4 +58,16 @@ extension Dcdb {
     public func activeHourDCDBInstance(_ input: ActiveHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActiveHourDCDBInstanceResponse {
         try await self.client.execute(action: "ActiveHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解隔离DCDB后付费实例
+    @inlinable
+    public func activeHourDCDBInstance(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActiveHourDCDBInstanceResponse > {
+        self.activeHourDCDBInstance(ActiveHourDCDBInstanceRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 解隔离DCDB后付费实例
+    @inlinable
+    public func activeHourDCDBInstance(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActiveHourDCDBInstanceResponse {
+        try await self.activeHourDCDBInstance(ActiveHourDCDBInstanceRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

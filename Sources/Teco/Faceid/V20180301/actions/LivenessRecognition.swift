@@ -120,4 +120,20 @@ extension Faceid {
     public func livenessRecognition(_ input: LivenessRecognitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessRecognitionResponse {
         try await self.client.execute(action: "LivenessRecognition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 活体人脸核身
+    ///
+    /// 传入视频和身份信息，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与权威库的证件照是否属于同一个人。
+    @inlinable
+    public func livenessRecognition(idCard: String, name: String, livenessType: String, videoBase64: String? = nil, videoUrl: String? = nil, validateData: String? = nil, optional: String? = nil, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LivenessRecognitionResponse > {
+        self.livenessRecognition(LivenessRecognitionRequest(idCard: idCard, name: name, livenessType: livenessType, videoBase64: videoBase64, videoUrl: videoUrl, validateData: validateData, optional: optional, encryption: encryption), logger: logger, on: eventLoop)
+    }
+    
+    /// 活体人脸核身
+    ///
+    /// 传入视频和身份信息，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与权威库的证件照是否属于同一个人。
+    @inlinable
+    public func livenessRecognition(idCard: String, name: String, livenessType: String, videoBase64: String? = nil, videoUrl: String? = nil, validateData: String? = nil, optional: String? = nil, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessRecognitionResponse {
+        try await self.livenessRecognition(LivenessRecognitionRequest(idCard: idCard, name: name, livenessType: livenessType, videoBase64: videoBase64, videoUrl: videoUrl, validateData: validateData, optional: optional, encryption: encryption), logger: logger, on: eventLoop)
+    }
 }

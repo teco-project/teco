@@ -62,4 +62,20 @@ extension Iotvideo {
     public func createTaskFileUrl(_ input: CreateTaskFileUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFileUrlResponse {
         try await self.client.execute(action: "CreateTaskFileUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取任务文件上传链接
+    ///
+    /// 本接口（CreateTaskFileUrl）用于获取产品级任务文件上传链接
+    @inlinable
+    public func createTaskFileUrl(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskFileUrlResponse > {
+        self.createTaskFileUrl(CreateTaskFileUrlRequest(productId: productId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取任务文件上传链接
+    ///
+    /// 本接口（CreateTaskFileUrl）用于获取产品级任务文件上传链接
+    @inlinable
+    public func createTaskFileUrl(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFileUrlResponse {
+        try await self.createTaskFileUrl(CreateTaskFileUrlRequest(productId: productId), logger: logger, on: eventLoop)
+    }
 }

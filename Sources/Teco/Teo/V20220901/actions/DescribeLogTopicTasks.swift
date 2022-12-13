@@ -73,4 +73,20 @@ extension Teo {
     public func describeLogTopicTasks(_ input: DescribeLogTopicTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogTopicTasksResponse {
         try await self.client.execute(action: "DescribeLogTopicTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取推送任务列表
+    ///
+    /// 本接口（DescribeLogTopicTasks）用于获取日志推送任务列表。
+    @inlinable
+    public func describeLogTopicTasks(zoneId: String, limit: UInt64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogTopicTasksResponse > {
+        self.describeLogTopicTasks(DescribeLogTopicTasksRequest(zoneId: zoneId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取推送任务列表
+    ///
+    /// 本接口（DescribeLogTopicTasks）用于获取日志推送任务列表。
+    @inlinable
+    public func describeLogTopicTasks(zoneId: String, limit: UInt64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogTopicTasksResponse {
+        try await self.describeLogTopicTasks(DescribeLogTopicTasksRequest(zoneId: zoneId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

@@ -69,4 +69,16 @@ extension Dc {
     public func describeAccessPoints(_ input: DescribeAccessPointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessPointsResponse {
         try await self.client.execute(action: "DescribeAccessPoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询物理专线接入点
+    @inlinable
+    public func describeAccessPoints(regionId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessPointsResponse > {
+        self.describeAccessPoints(DescribeAccessPointsRequest(regionId: regionId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询物理专线接入点
+    @inlinable
+    public func describeAccessPoints(regionId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessPointsResponse {
+        try await self.describeAccessPoints(DescribeAccessPointsRequest(regionId: regionId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

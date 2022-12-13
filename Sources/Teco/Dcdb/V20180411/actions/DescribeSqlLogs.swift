@@ -88,4 +88,20 @@ extension Dcdb {
     public func describeSqlLogs(_ input: DescribeSqlLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlLogsResponse {
         try await self.client.execute(action: "DescribeSqlLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取SQL日志
+    ///
+    /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
+    @inlinable
+    public func describeSqlLogs(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSqlLogsResponse > {
+        self.describeSqlLogs(DescribeSqlLogsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取SQL日志
+    ///
+    /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
+    @inlinable
+    public func describeSqlLogs(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlLogsResponse {
+        try await self.describeSqlLogs(DescribeSqlLogsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

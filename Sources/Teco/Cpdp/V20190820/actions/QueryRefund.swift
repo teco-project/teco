@@ -136,4 +136,20 @@ extension Cpdp {
     public func queryRefund(_ input: QueryRefundRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRefundResponse {
         try await self.client.execute(action: "QueryRefund", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 聚鑫-查询退款接口
+    ///
+    /// 提交退款申请后，通过调用该接口查询退款状态。退款可能有一定延时，用微信零钱支付的退款约20分钟内到账，银行卡支付的退款约3个工作日后到账。
+    @inlinable
+    public func queryRefund(userId: String, refundId: String, midasAppId: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryRefundResponse > {
+        self.queryRefund(QueryRefundRequest(userId: userId, refundId: refundId, midasAppId: midasAppId, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-查询退款接口
+    ///
+    /// 提交退款申请后，通过调用该接口查询退款状态。退款可能有一定延时，用微信零钱支付的退款约20分钟内到账，银行卡支付的退款约3个工作日后到账。
+    @inlinable
+    public func queryRefund(userId: String, refundId: String, midasAppId: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRefundResponse {
+        try await self.queryRefund(QueryRefundRequest(userId: userId, refundId: refundId, midasAppId: midasAppId, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
 }

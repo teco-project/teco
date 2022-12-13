@@ -63,4 +63,20 @@ extension Mariadb {
     public func describeFileDownloadUrl(_ input: DescribeFileDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileDownloadUrlResponse {
         try await self.client.execute(action: "DescribeFileDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取备份或日志的下载连接
+    ///
+    /// 本接口(DescribeFileDownloadUrl)用于获取数据库指定备份或日志文件的下载连接。
+    @inlinable
+    public func describeFileDownloadUrl(instanceId: String, filePath: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileDownloadUrlResponse > {
+        self.describeFileDownloadUrl(DescribeFileDownloadUrlRequest(instanceId: instanceId, filePath: filePath), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取备份或日志的下载连接
+    ///
+    /// 本接口(DescribeFileDownloadUrl)用于获取数据库指定备份或日志文件的下载连接。
+    @inlinable
+    public func describeFileDownloadUrl(instanceId: String, filePath: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileDownloadUrlResponse {
+        try await self.describeFileDownloadUrl(DescribeFileDownloadUrlRequest(instanceId: instanceId, filePath: filePath), logger: logger, on: eventLoop)
+    }
 }

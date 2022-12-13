@@ -67,4 +67,20 @@ extension Ms {
     public func describeScanResults(_ input: DescribeScanResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanResultsResponse {
         try await self.client.execute(action: "DescribeScanResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量查询扫描结果
+    ///
+    /// 用户通过CreateScanInstances接口提交应用进行风险批量扫描后，用此接口批量获取风险详细信息,包含漏洞信息，广告信息，插件信息和病毒信息
+    @inlinable
+    public func describeScanResults(itemId: String, appMd5s: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanResultsResponse > {
+        self.describeScanResults(DescribeScanResultsRequest(itemId: itemId, appMd5s: appMd5s), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量查询扫描结果
+    ///
+    /// 用户通过CreateScanInstances接口提交应用进行风险批量扫描后，用此接口批量获取风险详细信息,包含漏洞信息，广告信息，插件信息和病毒信息
+    @inlinable
+    public func describeScanResults(itemId: String, appMd5s: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanResultsResponse {
+        try await self.describeScanResults(DescribeScanResultsRequest(itemId: itemId, appMd5s: appMd5s), logger: logger, on: eventLoop)
+    }
 }

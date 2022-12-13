@@ -76,4 +76,22 @@ extension Ba {
     public func syncIcpOrderWebInfo(_ input: SyncIcpOrderWebInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncIcpOrderWebInfoResponse {
         try await self.client.execute(action: "SyncIcpOrderWebInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 同步备案ICP订单网站信息
+    ///
+    /// 将备案ICP订单下的一个网站信息 同步给订单下其他网站，需要被同步的网站被检查通过(isCheck:true)；
+    /// 只有指定的网站信息字段能被同步
+    @inlinable
+    public func syncIcpOrderWebInfo(icpOrderId: String, sourceWebId: String, targetWebIds: [String], syncFields: [String], checkSamePerson: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncIcpOrderWebInfoResponse > {
+        self.syncIcpOrderWebInfo(SyncIcpOrderWebInfoRequest(icpOrderId: icpOrderId, sourceWebId: sourceWebId, targetWebIds: targetWebIds, syncFields: syncFields, checkSamePerson: checkSamePerson), logger: logger, on: eventLoop)
+    }
+    
+    /// 同步备案ICP订单网站信息
+    ///
+    /// 将备案ICP订单下的一个网站信息 同步给订单下其他网站，需要被同步的网站被检查通过(isCheck:true)；
+    /// 只有指定的网站信息字段能被同步
+    @inlinable
+    public func syncIcpOrderWebInfo(icpOrderId: String, sourceWebId: String, targetWebIds: [String], syncFields: [String], checkSamePerson: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncIcpOrderWebInfoResponse {
+        try await self.syncIcpOrderWebInfo(SyncIcpOrderWebInfoRequest(icpOrderId: icpOrderId, sourceWebId: sourceWebId, targetWebIds: targetWebIds, syncFields: syncFields, checkSamePerson: checkSamePerson), logger: logger, on: eventLoop)
+    }
 }

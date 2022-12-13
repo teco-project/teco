@@ -55,4 +55,20 @@ extension Live {
     public func cancelCommonMixStream(_ input: CancelCommonMixStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCommonMixStreamResponse {
         try await self.client.execute(action: "CancelCommonMixStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 取消通用混流
+    ///
+    /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
+    @inlinable
+    public func cancelCommonMixStream(mixStreamSessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelCommonMixStreamResponse > {
+        self.cancelCommonMixStream(CancelCommonMixStreamRequest(mixStreamSessionId: mixStreamSessionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 取消通用混流
+    ///
+    /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
+    @inlinable
+    public func cancelCommonMixStream(mixStreamSessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCommonMixStreamResponse {
+        try await self.cancelCommonMixStream(CancelCommonMixStreamRequest(mixStreamSessionId: mixStreamSessionId), logger: logger, on: eventLoop)
+    }
 }

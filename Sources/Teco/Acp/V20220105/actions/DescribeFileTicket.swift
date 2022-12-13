@@ -77,4 +77,20 @@ extension Acp {
     public func describeFileTicket(_ input: DescribeFileTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileTicketResponse {
         try await self.client.execute(action: "DescribeFileTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取应用合规文件上传凭证接口
+    ///
+    /// 获取应用合规文件上传凭证，用于上传诊断文件
+    @inlinable
+    public func describeFileTicket(source: Int64, platform: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileTicketResponse > {
+        self.describeFileTicket(DescribeFileTicketRequest(source: source, platform: platform), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用合规文件上传凭证接口
+    ///
+    /// 获取应用合规文件上传凭证，用于上传诊断文件
+    @inlinable
+    public func describeFileTicket(source: Int64, platform: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileTicketResponse {
+        try await self.describeFileTicket(DescribeFileTicketRequest(source: source, platform: platform), logger: logger, on: eventLoop)
+    }
 }

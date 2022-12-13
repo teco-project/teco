@@ -87,4 +87,20 @@ extension Mmps {
     public func createFlySecMiniAppScanTaskRepeat(_ input: CreateFlySecMiniAppScanTaskRepeatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlySecMiniAppScanTaskRepeatResponse {
         try await self.client.execute(action: "CreateFlySecMiniAppScanTaskRepeat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重新提交诊断任务
+    ///
+    /// 重新提交基础诊断任务
+    @inlinable
+    public func createFlySecMiniAppScanTaskRepeat(miniAppID: String, mode: Int64, orgTaskID: String, miniAppTestAccount: String? = nil, miniAppTestPwd: String? = nil, scanVersion: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlySecMiniAppScanTaskRepeatResponse > {
+        self.createFlySecMiniAppScanTaskRepeat(CreateFlySecMiniAppScanTaskRepeatRequest(miniAppID: miniAppID, mode: mode, orgTaskID: orgTaskID, miniAppTestAccount: miniAppTestAccount, miniAppTestPwd: miniAppTestPwd, scanVersion: scanVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 重新提交诊断任务
+    ///
+    /// 重新提交基础诊断任务
+    @inlinable
+    public func createFlySecMiniAppScanTaskRepeat(miniAppID: String, mode: Int64, orgTaskID: String, miniAppTestAccount: String? = nil, miniAppTestPwd: String? = nil, scanVersion: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlySecMiniAppScanTaskRepeatResponse {
+        try await self.createFlySecMiniAppScanTaskRepeat(CreateFlySecMiniAppScanTaskRepeatRequest(miniAppID: miniAppID, mode: mode, orgTaskID: orgTaskID, miniAppTestAccount: miniAppTestAccount, miniAppTestPwd: miniAppTestPwd, scanVersion: scanVersion), logger: logger, on: eventLoop)
+    }
 }

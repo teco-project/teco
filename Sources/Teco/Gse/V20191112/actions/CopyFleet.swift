@@ -162,4 +162,22 @@ extension Gse {
     public func copyFleet(_ input: CopyFleetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyFleetResponse {
         try await self.client.execute(action: "CopyFleet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 复制服务器舰队
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（CopyFleet）用于复制服务器舰队。
+    @inlinable
+    public func copyFleet(fleetId: String, copyNumber: Int64, assetId: String? = nil, description: String? = nil, inboundPermissions: [InboundPermission]? = nil, instanceType: String? = nil, fleetType: String? = nil, name: String? = nil, newGameServerSessionProtectionPolicy: String? = nil, resourceCreationLimitPolicy: ResourceCreationLimitPolicy? = nil, runtimeConfiguration: RuntimeConfiguration? = nil, gameServerSessionProtectionTimeLimit: Int64? = nil, selectedScalingType: String? = nil, selectedCcnType: String? = nil, tags: [Tag]? = nil, systemDiskInfo: DiskInfo? = nil, dataDiskInfo: [DiskInfo]? = nil, selectedTimerType: String? = nil, ccnInfos: [CcnInfo]? = nil, internetMaxBandwidthOut: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyFleetResponse > {
+        self.copyFleet(CopyFleetRequest(fleetId: fleetId, copyNumber: copyNumber, assetId: assetId, description: description, inboundPermissions: inboundPermissions, instanceType: instanceType, fleetType: fleetType, name: name, newGameServerSessionProtectionPolicy: newGameServerSessionProtectionPolicy, resourceCreationLimitPolicy: resourceCreationLimitPolicy, runtimeConfiguration: runtimeConfiguration, gameServerSessionProtectionTimeLimit: gameServerSessionProtectionTimeLimit, selectedScalingType: selectedScalingType, selectedCcnType: selectedCcnType, tags: tags, systemDiskInfo: systemDiskInfo, dataDiskInfo: dataDiskInfo, selectedTimerType: selectedTimerType, ccnInfos: ccnInfos, internetMaxBandwidthOut: internetMaxBandwidthOut), logger: logger, on: eventLoop)
+    }
+    
+    /// 复制服务器舰队
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（CopyFleet）用于复制服务器舰队。
+    @inlinable
+    public func copyFleet(fleetId: String, copyNumber: Int64, assetId: String? = nil, description: String? = nil, inboundPermissions: [InboundPermission]? = nil, instanceType: String? = nil, fleetType: String? = nil, name: String? = nil, newGameServerSessionProtectionPolicy: String? = nil, resourceCreationLimitPolicy: ResourceCreationLimitPolicy? = nil, runtimeConfiguration: RuntimeConfiguration? = nil, gameServerSessionProtectionTimeLimit: Int64? = nil, selectedScalingType: String? = nil, selectedCcnType: String? = nil, tags: [Tag]? = nil, systemDiskInfo: DiskInfo? = nil, dataDiskInfo: [DiskInfo]? = nil, selectedTimerType: String? = nil, ccnInfos: [CcnInfo]? = nil, internetMaxBandwidthOut: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyFleetResponse {
+        try await self.copyFleet(CopyFleetRequest(fleetId: fleetId, copyNumber: copyNumber, assetId: assetId, description: description, inboundPermissions: inboundPermissions, instanceType: instanceType, fleetType: fleetType, name: name, newGameServerSessionProtectionPolicy: newGameServerSessionProtectionPolicy, resourceCreationLimitPolicy: resourceCreationLimitPolicy, runtimeConfiguration: runtimeConfiguration, gameServerSessionProtectionTimeLimit: gameServerSessionProtectionTimeLimit, selectedScalingType: selectedScalingType, selectedCcnType: selectedCcnType, tags: tags, systemDiskInfo: systemDiskInfo, dataDiskInfo: dataDiskInfo, selectedTimerType: selectedTimerType, ccnInfos: ccnInfos, internetMaxBandwidthOut: internetMaxBandwidthOut), logger: logger, on: eventLoop)
+    }
 }

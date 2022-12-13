@@ -83,4 +83,24 @@ extension Cbs {
     public func modifyAutoSnapshotPolicyAttribute(_ input: ModifyAutoSnapshotPolicyAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoSnapshotPolicyAttributeResponse {
         try await self.client.execute(action: "ModifyAutoSnapshotPolicyAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改定期快照策略信息
+    ///
+    /// 本接口（ModifyAutoSnapshotPolicyAttribute）用于修改定期快照策略属性。
+    /// * 可通过该接口修改定期快照策略的执行策略、名称、是否激活等属性。
+    /// * 修改保留天数时必须保证不与是否永久保留属性冲突，否则整个操作失败，以特定的错误码返回。
+    @inlinable
+    public func modifyAutoSnapshotPolicyAttribute(autoSnapshotPolicyId: String, isActivated: Bool? = nil, isPermanent: Bool? = nil, autoSnapshotPolicyName: String? = nil, policy: [Policy]? = nil, retentionDays: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAutoSnapshotPolicyAttributeResponse > {
+        self.modifyAutoSnapshotPolicyAttribute(ModifyAutoSnapshotPolicyAttributeRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, isActivated: isActivated, isPermanent: isPermanent, autoSnapshotPolicyName: autoSnapshotPolicyName, policy: policy, retentionDays: retentionDays), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改定期快照策略信息
+    ///
+    /// 本接口（ModifyAutoSnapshotPolicyAttribute）用于修改定期快照策略属性。
+    /// * 可通过该接口修改定期快照策略的执行策略、名称、是否激活等属性。
+    /// * 修改保留天数时必须保证不与是否永久保留属性冲突，否则整个操作失败，以特定的错误码返回。
+    @inlinable
+    public func modifyAutoSnapshotPolicyAttribute(autoSnapshotPolicyId: String, isActivated: Bool? = nil, isPermanent: Bool? = nil, autoSnapshotPolicyName: String? = nil, policy: [Policy]? = nil, retentionDays: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoSnapshotPolicyAttributeResponse {
+        try await self.modifyAutoSnapshotPolicyAttribute(ModifyAutoSnapshotPolicyAttributeRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, isActivated: isActivated, isPermanent: isPermanent, autoSnapshotPolicyName: autoSnapshotPolicyName, policy: policy, retentionDays: retentionDays), logger: logger, on: eventLoop)
+    }
 }

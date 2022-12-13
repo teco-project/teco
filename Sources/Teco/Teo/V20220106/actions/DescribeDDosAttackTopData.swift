@@ -127,4 +127,16 @@ extension Teo {
     public func describeDDosAttackTopData(_ input: DescribeDDosAttackTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosAttackTopDataResponse {
         try await self.client.execute(action: "DescribeDDosAttackTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询DDos攻击Top数据
+    @inlinable
+    public func describeDDosAttackTopData(startTime: Date, endTime: Date, metricName: String, limit: Int64, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, port: Int64? = nil, protocolType: String? = nil, attackType: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDosAttackTopDataResponse > {
+        self.describeDDosAttackTopData(DescribeDDosAttackTopDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, zoneIds: zoneIds, policyIds: policyIds, port: port, protocolType: protocolType, attackType: attackType, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询DDos攻击Top数据
+    @inlinable
+    public func describeDDosAttackTopData(startTime: Date, endTime: Date, metricName: String, limit: Int64, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, port: Int64? = nil, protocolType: String? = nil, attackType: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosAttackTopDataResponse {
+        try await self.describeDDosAttackTopData(DescribeDDosAttackTopDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, zoneIds: zoneIds, policyIds: policyIds, port: port, protocolType: protocolType, attackType: attackType, area: area), logger: logger, on: eventLoop)
+    }
 }

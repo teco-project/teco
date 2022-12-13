@@ -100,4 +100,16 @@ extension Cfw {
     public func createNatFwInstanceWithDomain(_ input: CreateNatFwInstanceWithDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatFwInstanceWithDomainResponse {
         try await self.client.execute(action: "CreateNatFwInstanceWithDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建防火墙实例和接入域名（Region参数必填）
+    @inlinable
+    public func createNatFwInstanceWithDomain(name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, isCreateDomain: Int64? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNatFwInstanceWithDomainResponse > {
+        self.createNatFwInstanceWithDomain(CreateNatFwInstanceWithDomainRequest(name: name, width: width, mode: mode, newModeItems: newModeItems, natGwList: natGwList, zone: zone, zoneBak: zoneBak, crossAZone: crossAZone, isCreateDomain: isCreateDomain, domain: domain), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建防火墙实例和接入域名（Region参数必填）
+    @inlinable
+    public func createNatFwInstanceWithDomain(name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, isCreateDomain: Int64? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatFwInstanceWithDomainResponse {
+        try await self.createNatFwInstanceWithDomain(CreateNatFwInstanceWithDomainRequest(name: name, width: width, mode: mode, newModeItems: newModeItems, natGwList: natGwList, zone: zone, zoneBak: zoneBak, crossAZone: crossAZone, isCreateDomain: isCreateDomain, domain: domain), logger: logger, on: eventLoop)
+    }
 }

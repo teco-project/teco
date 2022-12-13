@@ -84,4 +84,16 @@ extension Gaap {
     public func createDomainErrorPageInfo(_ input: CreateDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainErrorPageInfoResponse {
         try await self.client.execute(action: "CreateDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 定制域名指定错误码的错误响应
+    @inlinable
+    public func createDomainErrorPageInfo(listenerId: String, domain: String, errorNos: [Int64], body: String, newErrorNo: Int64? = nil, clearHeaders: [String]? = nil, setHeaders: [HttpHeaderParam]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainErrorPageInfoResponse > {
+        self.createDomainErrorPageInfo(CreateDomainErrorPageInfoRequest(listenerId: listenerId, domain: domain, errorNos: errorNos, body: body, newErrorNo: newErrorNo, clearHeaders: clearHeaders, setHeaders: setHeaders), logger: logger, on: eventLoop)
+    }
+    
+    /// 定制域名指定错误码的错误响应
+    @inlinable
+    public func createDomainErrorPageInfo(listenerId: String, domain: String, errorNos: [Int64], body: String, newErrorNo: Int64? = nil, clearHeaders: [String]? = nil, setHeaders: [HttpHeaderParam]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainErrorPageInfoResponse {
+        try await self.createDomainErrorPageInfo(CreateDomainErrorPageInfoRequest(listenerId: listenerId, domain: domain, errorNos: errorNos, body: body, newErrorNo: newErrorNo, clearHeaders: clearHeaders, setHeaders: setHeaders), logger: logger, on: eventLoop)
+    }
 }

@@ -82,4 +82,20 @@ extension Cwp {
     public func describeScanVulSetting(_ input: DescribeScanVulSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanVulSettingResponse {
         try await self.client.execute(action: "DescribeScanVulSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 定期检测配置查询
+    ///
+    /// 查询定期检测的配置
+    @inlinable
+    public func describeScanVulSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanVulSettingResponse > {
+        self.describeScanVulSetting(DescribeScanVulSettingRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 定期检测配置查询
+    ///
+    /// 查询定期检测的配置
+    @inlinable
+    public func describeScanVulSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanVulSettingResponse {
+        try await self.describeScanVulSetting(DescribeScanVulSettingRequest(), logger: logger, on: eventLoop)
+    }
 }

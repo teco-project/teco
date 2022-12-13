@@ -68,4 +68,16 @@ extension Tcss {
     public func describeVulIgnoreRegistryImageList(_ input: DescribeVulIgnoreRegistryImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulIgnoreRegistryImageListResponse {
         try await self.client.execute(action: "DescribeVulIgnoreRegistryImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询漏洞扫描忽略的仓库镜像列表
+    @inlinable
+    public func describeVulIgnoreRegistryImageList(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulIgnoreRegistryImageListResponse > {
+        self.describeVulIgnoreRegistryImageList(DescribeVulIgnoreRegistryImageListRequest(pocID: pocID, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞扫描忽略的仓库镜像列表
+    @inlinable
+    public func describeVulIgnoreRegistryImageList(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulIgnoreRegistryImageListResponse {
+        try await self.describeVulIgnoreRegistryImageList(DescribeVulIgnoreRegistryImageListRequest(pocID: pocID, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

@@ -84,4 +84,16 @@ extension Tci {
     public func submitConversationTask(_ input: SubmitConversationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitConversationTaskResponse {
         try await self.client.execute(action: "SubmitConversationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 对话任务分析接口
+    @inlinable
+    public func submitConversationTask(lang: Int64, studentUrl: String, teacherUrl: String, voiceEncodeType: Int64, voiceFileType: Int64, functions: Function? = nil, vocabLibNameList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitConversationTaskResponse > {
+        self.submitConversationTask(SubmitConversationTaskRequest(lang: lang, studentUrl: studentUrl, teacherUrl: teacherUrl, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType, functions: functions, vocabLibNameList: vocabLibNameList), logger: logger, on: eventLoop)
+    }
+    
+    /// 对话任务分析接口
+    @inlinable
+    public func submitConversationTask(lang: Int64, studentUrl: String, teacherUrl: String, voiceEncodeType: Int64, voiceFileType: Int64, functions: Function? = nil, vocabLibNameList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitConversationTaskResponse {
+        try await self.submitConversationTask(SubmitConversationTaskRequest(lang: lang, studentUrl: studentUrl, teacherUrl: teacherUrl, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType, functions: functions, vocabLibNameList: vocabLibNameList), logger: logger, on: eventLoop)
+    }
 }

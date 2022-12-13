@@ -72,4 +72,16 @@ extension Iotvideo {
     public func createAnonymousAccessToken(_ input: CreateAnonymousAccessTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnonymousAccessTokenResponse {
         try await self.client.execute(action: "CreateAnonymousAccessToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建匿名访问Token
+    @inlinable
+    public func createAnonymousAccessToken(ttlMinutes: Int64, tid: String? = nil, oldAccessToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAnonymousAccessTokenResponse > {
+        self.createAnonymousAccessToken(CreateAnonymousAccessTokenRequest(ttlMinutes: ttlMinutes, tid: tid, oldAccessToken: oldAccessToken), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建匿名访问Token
+    @inlinable
+    public func createAnonymousAccessToken(ttlMinutes: Int64, tid: String? = nil, oldAccessToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnonymousAccessTokenResponse {
+        try await self.createAnonymousAccessToken(CreateAnonymousAccessTokenRequest(ttlMinutes: ttlMinutes, tid: tid, oldAccessToken: oldAccessToken), logger: logger, on: eventLoop)
+    }
 }

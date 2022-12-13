@@ -68,4 +68,20 @@ extension Sqlserver {
     public func describeBackupUploadSize(_ input: DescribeBackupUploadSizeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupUploadSizeResponse {
         try await self.client.execute(action: "DescribeBackupUploadSize", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询上传的备份文件大小
+    ///
+    /// 本接口（DescribeBackupUploadSize）用于查询上传的备份文件大小。在备份上传类型是COS_UPLOAD(备份放在业务的对象存储上)时有效。
+    @inlinable
+    public func describeBackupUploadSize(instanceId: String, backupMigrationId: String, incrementalMigrationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupUploadSizeResponse > {
+        self.describeBackupUploadSize(DescribeBackupUploadSizeRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询上传的备份文件大小
+    ///
+    /// 本接口（DescribeBackupUploadSize）用于查询上传的备份文件大小。在备份上传类型是COS_UPLOAD(备份放在业务的对象存储上)时有效。
+    @inlinable
+    public func describeBackupUploadSize(instanceId: String, backupMigrationId: String, incrementalMigrationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupUploadSizeResponse {
+        try await self.describeBackupUploadSize(DescribeBackupUploadSizeRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), logger: logger, on: eventLoop)
+    }
 }

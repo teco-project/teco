@@ -72,4 +72,20 @@ extension Vod {
     public func createWordSamples(_ input: CreateWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordSamplesResponse {
         try await self.client.execute(action: "CreateWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建关键词样本
+    ///
+    /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
+    @inlinable
+    public func createWordSamples(usages: [String], words: [AiSampleWordInfo], subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWordSamplesResponse > {
+        self.createWordSamples(CreateWordSamplesRequest(usages: usages, words: words, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建关键词样本
+    ///
+    /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
+    @inlinable
+    public func createWordSamples(usages: [String], words: [AiSampleWordInfo], subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordSamplesResponse {
+        try await self.createWordSamples(CreateWordSamplesRequest(usages: usages, words: words, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

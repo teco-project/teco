@@ -59,4 +59,16 @@ extension Zj {
     public func deleteMmsInstance(_ input: DeleteMmsInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMmsInstanceResponse {
         try await self.client.execute(action: "DeleteMmsInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除超级短信样例
+    @inlinable
+    public func deleteMmsInstance(license: String, instanceId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMmsInstanceResponse > {
+        self.deleteMmsInstance(DeleteMmsInstanceRequest(license: license, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除超级短信样例
+    @inlinable
+    public func deleteMmsInstance(license: String, instanceId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMmsInstanceResponse {
+        try await self.deleteMmsInstance(DeleteMmsInstanceRequest(license: license, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

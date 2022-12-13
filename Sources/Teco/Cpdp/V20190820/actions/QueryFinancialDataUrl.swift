@@ -70,4 +70,16 @@ extension Cpdp {
     public func queryFinancialDataUrl(_ input: QueryFinancialDataUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFinancialDataUrlResponse {
         try await self.client.execute(action: "QueryFinancialDataUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 财税-查询金融数据文件下载链接
+    @inlinable
+    public func queryFinancialDataUrl(endTime: String, startTime: String, dataType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFinancialDataUrlResponse > {
+        self.queryFinancialDataUrl(QueryFinancialDataUrlRequest(endTime: endTime, startTime: startTime, dataType: dataType), logger: logger, on: eventLoop)
+    }
+    
+    /// 财税-查询金融数据文件下载链接
+    @inlinable
+    public func queryFinancialDataUrl(endTime: String, startTime: String, dataType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFinancialDataUrlResponse {
+        try await self.queryFinancialDataUrl(QueryFinancialDataUrlRequest(endTime: endTime, startTime: startTime, dataType: dataType), logger: logger, on: eventLoop)
+    }
 }

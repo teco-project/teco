@@ -82,4 +82,16 @@ extension Tcss {
     public func describeAssetImageRegistryVulListExport(_ input: DescribeAssetImageRegistryVulListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryVulListExportResponse {
         try await self.client.execute(action: "DescribeAssetImageRegistryVulListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 镜像仓库漏洞列表导出
+    @inlinable
+    public func describeAssetImageRegistryVulListExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, id: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryVulListExportResponse > {
+        self.describeAssetImageRegistryVulListExport(DescribeAssetImageRegistryVulListExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库漏洞列表导出
+    @inlinable
+    public func describeAssetImageRegistryVulListExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, id: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryVulListExportResponse {
+        try await self.describeAssetImageRegistryVulListExport(DescribeAssetImageRegistryVulListExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id), logger: logger, on: eventLoop)
+    }
 }

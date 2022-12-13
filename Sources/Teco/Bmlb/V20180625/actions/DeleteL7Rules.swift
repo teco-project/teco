@@ -73,4 +73,20 @@ extension Bmlb {
     public func deleteL7Rules(_ input: DeleteL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteL7RulesResponse {
         try await self.client.execute(action: "DeleteL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除黑石负载均衡七层转发规则
+    ///
+    /// 删除黑石负载均衡七层转发规则。
+    @inlinable
+    public func deleteL7Rules(loadBalancerId: String, listenerId: String, domainId: String, locationIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteL7RulesResponse > {
+        self.deleteL7Rules(DeleteL7RulesRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationIds: locationIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除黑石负载均衡七层转发规则
+    ///
+    /// 删除黑石负载均衡七层转发规则。
+    @inlinable
+    public func deleteL7Rules(loadBalancerId: String, listenerId: String, domainId: String, locationIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteL7RulesResponse {
+        try await self.deleteL7Rules(DeleteL7RulesRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationIds: locationIds), logger: logger, on: eventLoop)
+    }
 }

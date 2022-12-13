@@ -23,7 +23,7 @@ extension Ess {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo?
         
-        public init (flowId: String, `operator`: UserInfo? = nil) {
+        public init (flowId: String, operator: UserInfo? = nil) {
             self.flowId = flowId
             self.`operator` = `operator`
         }
@@ -67,5 +67,21 @@ extension Ess {
     @inlinable
     public func verifyPdf(_ input: VerifyPdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPdfResponse {
         try await self.client.execute(action: "VerifyPdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 合同文件验签
+    ///
+    /// 验证合同文件
+    @inlinable
+    public func verifyPdf(flowId: String, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyPdfResponse > {
+        self.verifyPdf(VerifyPdfRequest(flowId: flowId, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 合同文件验签
+    ///
+    /// 验证合同文件
+    @inlinable
+    public func verifyPdf(flowId: String, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPdfResponse {
+        try await self.verifyPdf(VerifyPdfRequest(flowId: flowId, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

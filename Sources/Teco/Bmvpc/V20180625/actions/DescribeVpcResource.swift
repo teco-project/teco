@@ -87,4 +87,16 @@ extension Bmvpc {
     public func describeVpcResource(_ input: DescribeVpcResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResourceResponse {
         try await self.client.execute(action: "DescribeVpcResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询黑石私有网络关联资源
+    @inlinable
+    public func describeVpcResource(vpcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcResourceResponse > {
+        self.describeVpcResource(DescribeVpcResourceRequest(vpcIds: vpcIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询黑石私有网络关联资源
+    @inlinable
+    public func describeVpcResource(vpcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResourceResponse {
+        try await self.describeVpcResource(DescribeVpcResourceRequest(vpcIds: vpcIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    }
 }

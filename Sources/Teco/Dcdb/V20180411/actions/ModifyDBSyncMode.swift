@@ -63,4 +63,20 @@ extension Dcdb {
     public func modifyDBSyncMode(_ input: ModifyDBSyncModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBSyncModeResponse {
         try await self.client.execute(action: "ModifyDBSyncMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改同步模式
+    ///
+    /// 本接口（ModifyDBSyncMode）用于修改云数据库实例的同步模式。
+    @inlinable
+    public func modifyDBSyncMode(instanceId: String, syncMode: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBSyncModeResponse > {
+        self.modifyDBSyncMode(ModifyDBSyncModeRequest(instanceId: instanceId, syncMode: syncMode), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改同步模式
+    ///
+    /// 本接口（ModifyDBSyncMode）用于修改云数据库实例的同步模式。
+    @inlinable
+    public func modifyDBSyncMode(instanceId: String, syncMode: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBSyncModeResponse {
+        try await self.modifyDBSyncMode(ModifyDBSyncModeRequest(instanceId: instanceId, syncMode: syncMode), logger: logger, on: eventLoop)
+    }
 }

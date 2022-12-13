@@ -85,4 +85,16 @@ extension Cam {
     public func updateUser(_ input: UpdateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserResponse {
         try await self.client.execute(action: "UpdateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新子用户
+    @inlinable
+    public func updateUser(name: String, remark: String? = nil, consoleLogin: UInt64? = nil, password: String? = nil, needResetPassword: UInt64? = nil, phoneNum: String? = nil, countryCode: String? = nil, email: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateUserResponse > {
+        self.updateUser(UpdateUserRequest(name: name, remark: remark, consoleLogin: consoleLogin, password: password, needResetPassword: needResetPassword, phoneNum: phoneNum, countryCode: countryCode, email: email), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新子用户
+    @inlinable
+    public func updateUser(name: String, remark: String? = nil, consoleLogin: UInt64? = nil, password: String? = nil, needResetPassword: UInt64? = nil, phoneNum: String? = nil, countryCode: String? = nil, email: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserResponse {
+        try await self.updateUser(UpdateUserRequest(name: name, remark: remark, consoleLogin: consoleLogin, password: password, needResetPassword: needResetPassword, phoneNum: phoneNum, countryCode: countryCode, email: email), logger: logger, on: eventLoop)
+    }
 }

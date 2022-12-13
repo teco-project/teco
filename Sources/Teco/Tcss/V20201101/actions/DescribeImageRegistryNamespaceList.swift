@@ -68,4 +68,16 @@ extension Tcss {
     public func describeImageRegistryNamespaceList(_ input: DescribeImageRegistryNamespaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRegistryNamespaceListResponse {
         try await self.client.execute(action: "DescribeImageRegistryNamespaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询用户镜像仓库下的项目名称列表
+    @inlinable
+    public func describeImageRegistryNamespaceList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageRegistryNamespaceListResponse > {
+        self.describeImageRegistryNamespaceList(DescribeImageRegistryNamespaceListRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户镜像仓库下的项目名称列表
+    @inlinable
+    public func describeImageRegistryNamespaceList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRegistryNamespaceListResponse {
+        try await self.describeImageRegistryNamespaceList(DescribeImageRegistryNamespaceListRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

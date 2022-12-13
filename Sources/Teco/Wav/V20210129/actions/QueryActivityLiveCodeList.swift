@@ -69,4 +69,20 @@ extension Wav {
     public func queryActivityLiveCodeList(_ input: QueryActivityLiveCodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryActivityLiveCodeListResponse {
         try await self.client.execute(action: "QueryActivityLiveCodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询活动活码列表接口
+    ///
+    /// 根据游标拉取活动活码列表信息
+    @inlinable
+    public func queryActivityLiveCodeList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryActivityLiveCodeListResponse > {
+        self.queryActivityLiveCodeList(QueryActivityLiveCodeListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询活动活码列表接口
+    ///
+    /// 根据游标拉取活动活码列表信息
+    @inlinable
+    public func queryActivityLiveCodeList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryActivityLiveCodeListResponse {
+        try await self.queryActivityLiveCodeList(QueryActivityLiveCodeListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    }
 }

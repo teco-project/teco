@@ -59,4 +59,20 @@ extension Tke {
     public func describeEdgeLogSwitches(_ input: DescribeEdgeLogSwitchesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeLogSwitchesResponse {
         try await self.client.execute(action: "DescribeEdgeLogSwitches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询边缘集群日志开关列表
+    ///
+    /// 获取事件、审计和日志的状态接口
+    @inlinable
+    public func describeEdgeLogSwitches(clusterIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeLogSwitchesResponse > {
+        self.describeEdgeLogSwitches(DescribeEdgeLogSwitchesRequest(clusterIds: clusterIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘集群日志开关列表
+    ///
+    /// 获取事件、审计和日志的状态接口
+    @inlinable
+    public func describeEdgeLogSwitches(clusterIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeLogSwitchesResponse {
+        try await self.describeEdgeLogSwitches(DescribeEdgeLogSwitchesRequest(clusterIds: clusterIds), logger: logger, on: eventLoop)
+    }
 }

@@ -75,4 +75,16 @@ extension Ssa {
     public func describeMappingResults(_ input: DescribeMappingResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMappingResultsResponse {
         try await self.client.execute(action: "DescribeMappingResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取测绘列表
+    @inlinable
+    public func describeMappingResults(filter: [AssetQueryFilter]? = nil, sorter: [QuerySort]? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMappingResultsResponse > {
+        self.describeMappingResults(DescribeMappingResultsRequest(filter: filter, sorter: sorter, pageIndex: pageIndex, pageSize: pageSize), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取测绘列表
+    @inlinable
+    public func describeMappingResults(filter: [AssetQueryFilter]? = nil, sorter: [QuerySort]? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMappingResultsResponse {
+        try await self.describeMappingResults(DescribeMappingResultsRequest(filter: filter, sorter: sorter, pageIndex: pageIndex, pageSize: pageSize), logger: logger, on: eventLoop)
+    }
 }

@@ -108,4 +108,20 @@ extension Cls {
     public func createShipper(_ input: CreateShipperRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateShipperResponse {
         try await self.client.execute(action: "CreateShipper", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建投递规则
+    ///
+    /// 创建新的投递规则，【！！！注意】使用此接口，需要检查是否配置了投递COS的角色和权限。如果没有配置，请参考文档投递权限查看和配置https://cloud.tencent.com/document/product/614/71623。
+    @inlinable
+    public func createShipper(topicId: String, bucket: String, prefix: String, shipperName: String, interval: UInt64? = nil, maxSize: UInt64? = nil, filterRules: [FilterRuleInfo]? = nil, partition: String? = nil, compress: CompressInfo? = nil, content: ContentInfo? = nil, filenameMode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateShipperResponse > {
+        self.createShipper(CreateShipperRequest(topicId: topicId, bucket: bucket, prefix: prefix, shipperName: shipperName, interval: interval, maxSize: maxSize, filterRules: filterRules, partition: partition, compress: compress, content: content, filenameMode: filenameMode), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建投递规则
+    ///
+    /// 创建新的投递规则，【！！！注意】使用此接口，需要检查是否配置了投递COS的角色和权限。如果没有配置，请参考文档投递权限查看和配置https://cloud.tencent.com/document/product/614/71623。
+    @inlinable
+    public func createShipper(topicId: String, bucket: String, prefix: String, shipperName: String, interval: UInt64? = nil, maxSize: UInt64? = nil, filterRules: [FilterRuleInfo]? = nil, partition: String? = nil, compress: CompressInfo? = nil, content: ContentInfo? = nil, filenameMode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateShipperResponse {
+        try await self.createShipper(CreateShipperRequest(topicId: topicId, bucket: bucket, prefix: prefix, shipperName: shipperName, interval: interval, maxSize: maxSize, filterRules: filterRules, partition: partition, compress: compress, content: content, filenameMode: filenameMode), logger: logger, on: eventLoop)
+    }
 }

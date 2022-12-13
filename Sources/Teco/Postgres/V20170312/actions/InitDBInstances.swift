@@ -73,4 +73,20 @@ extension Postgres {
     public func initDBInstances(_ input: InitDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDBInstancesResponse {
         try await self.client.execute(action: "InitDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 初始化实例
+    ///
+    /// 本接口 (InitDBInstances) 用于初始化云数据库PostgreSQL实例。
+    @inlinable
+    public func initDBInstances(dbInstanceIdSet: [String], adminName: String, adminPassword: String, charset: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InitDBInstancesResponse > {
+        self.initDBInstances(InitDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet, adminName: adminName, adminPassword: adminPassword, charset: charset), logger: logger, on: eventLoop)
+    }
+    
+    /// 初始化实例
+    ///
+    /// 本接口 (InitDBInstances) 用于初始化云数据库PostgreSQL实例。
+    @inlinable
+    public func initDBInstances(dbInstanceIdSet: [String], adminName: String, adminPassword: String, charset: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDBInstancesResponse {
+        try await self.initDBInstances(InitDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet, adminName: adminName, adminPassword: adminPassword, charset: charset), logger: logger, on: eventLoop)
+    }
 }

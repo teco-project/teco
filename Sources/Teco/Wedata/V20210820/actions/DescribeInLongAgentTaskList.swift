@@ -59,4 +59,16 @@ extension Wedata {
     public func describeInLongAgentTaskList(_ input: DescribeInLongAgentTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentTaskListResponse {
         try await self.client.execute(action: "DescribeInLongAgentTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询采集器关联的任务列表
+    @inlinable
+    public func describeInLongAgentTaskList(agentId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInLongAgentTaskListResponse > {
+        self.describeInLongAgentTaskList(DescribeInLongAgentTaskListRequest(agentId: agentId, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询采集器关联的任务列表
+    @inlinable
+    public func describeInLongAgentTaskList(agentId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentTaskListResponse {
+        try await self.describeInLongAgentTaskList(DescribeInLongAgentTaskListRequest(agentId: agentId, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

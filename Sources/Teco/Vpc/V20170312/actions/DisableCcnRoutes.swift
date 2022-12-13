@@ -59,4 +59,20 @@ extension Vpc {
     public func disableCcnRoutes(_ input: DisableCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCcnRoutesResponse {
         try await self.client.execute(action: "DisableCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 禁用云联网路由
+    ///
+    /// 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由
+    @inlinable
+    public func disableCcnRoutes(ccnId: String, routeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableCcnRoutesResponse > {
+        self.disableCcnRoutes(DisableCcnRoutesRequest(ccnId: ccnId, routeIds: routeIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 禁用云联网路由
+    ///
+    /// 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由
+    @inlinable
+    public func disableCcnRoutes(ccnId: String, routeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCcnRoutesResponse {
+        try await self.disableCcnRoutes(DisableCcnRoutesRequest(ccnId: ccnId, routeIds: routeIds), logger: logger, on: eventLoop)
+    }
 }

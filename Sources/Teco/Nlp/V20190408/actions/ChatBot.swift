@@ -72,4 +72,20 @@ extension Nlp {
     public func chatBot(_ input: ChatBotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChatBotResponse {
         try await self.client.execute(action: "ChatBot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 闲聊
+    ///
+    /// 闲聊服务基于腾讯领先的NLP引擎能力、数据运算能力和千亿级互联网语料数据的支持，同时集成了广泛的知识问答能力，可实现上百种自定义属性配置，以及儿童语言风格及说话方式，从而让聊天变得更睿智、简单和有趣。
+    @inlinable
+    public func chatBot(query: String, openId: String? = nil, flag: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChatBotResponse > {
+        self.chatBot(ChatBotRequest(query: query, openId: openId, flag: flag), logger: logger, on: eventLoop)
+    }
+    
+    /// 闲聊
+    ///
+    /// 闲聊服务基于腾讯领先的NLP引擎能力、数据运算能力和千亿级互联网语料数据的支持，同时集成了广泛的知识问答能力，可实现上百种自定义属性配置，以及儿童语言风格及说话方式，从而让聊天变得更睿智、简单和有趣。
+    @inlinable
+    public func chatBot(query: String, openId: String? = nil, flag: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChatBotResponse {
+        try await self.chatBot(ChatBotRequest(query: query, openId: openId, flag: flag), logger: logger, on: eventLoop)
+    }
 }

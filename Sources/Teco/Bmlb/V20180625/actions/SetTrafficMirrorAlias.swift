@@ -59,4 +59,20 @@ extension Bmlb {
     public func setTrafficMirrorAlias(_ input: SetTrafficMirrorAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTrafficMirrorAliasResponse {
         try await self.client.execute(action: "SetTrafficMirrorAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置流量镜像的别名
+    ///
+    /// 设置流量镜像的别名。
+    @inlinable
+    public func setTrafficMirrorAlias(trafficMirrorId: String, alias: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTrafficMirrorAliasResponse > {
+        self.setTrafficMirrorAlias(SetTrafficMirrorAliasRequest(trafficMirrorId: trafficMirrorId, alias: alias), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置流量镜像的别名
+    ///
+    /// 设置流量镜像的别名。
+    @inlinable
+    public func setTrafficMirrorAlias(trafficMirrorId: String, alias: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTrafficMirrorAliasResponse {
+        try await self.setTrafficMirrorAlias(SetTrafficMirrorAliasRequest(trafficMirrorId: trafficMirrorId, alias: alias), logger: logger, on: eventLoop)
+    }
 }

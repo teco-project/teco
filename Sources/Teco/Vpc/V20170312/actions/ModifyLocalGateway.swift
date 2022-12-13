@@ -69,4 +69,20 @@ extension Vpc {
     public func modifyLocalGateway(_ input: ModifyLocalGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLocalGatewayResponse {
         try await self.client.execute(action: "ModifyLocalGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改本地网关
+    ///
+    /// 该接口用于修改CDC的本地网关。
+    @inlinable
+    public func modifyLocalGateway(localGatewayName: String, cdcId: String, localGatewayId: String, vpcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLocalGatewayResponse > {
+        self.modifyLocalGateway(ModifyLocalGatewayRequest(localGatewayName: localGatewayName, cdcId: cdcId, localGatewayId: localGatewayId, vpcId: vpcId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改本地网关
+    ///
+    /// 该接口用于修改CDC的本地网关。
+    @inlinable
+    public func modifyLocalGateway(localGatewayName: String, cdcId: String, localGatewayId: String, vpcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLocalGatewayResponse {
+        try await self.modifyLocalGateway(ModifyLocalGatewayRequest(localGatewayName: localGatewayName, cdcId: cdcId, localGatewayId: localGatewayId, vpcId: vpcId), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,16 @@ extension Monitor {
     public func deleteExporterIntegration(_ input: DeleteExporterIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExporterIntegrationResponse {
         try await self.client.execute(action: "DeleteExporterIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除 exporter 集成
+    @inlinable
+    public func deleteExporterIntegration(instanceId: String, kind: String, name: String, kubeType: Int64? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteExporterIntegrationResponse > {
+        self.deleteExporterIntegration(DeleteExporterIntegrationRequest(instanceId: instanceId, kind: kind, name: name, kubeType: kubeType, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除 exporter 集成
+    @inlinable
+    public func deleteExporterIntegration(instanceId: String, kind: String, name: String, kubeType: Int64? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExporterIntegrationResponse {
+        try await self.deleteExporterIntegration(DeleteExporterIntegrationRequest(instanceId: instanceId, kind: kind, name: name, kubeType: kubeType, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

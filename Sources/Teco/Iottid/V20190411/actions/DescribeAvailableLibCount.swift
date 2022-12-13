@@ -58,4 +58,20 @@ extension Iottid {
     public func describeAvailableLibCount(_ input: DescribeAvailableLibCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableLibCountResponse {
         try await self.client.execute(action: "DescribeAvailableLibCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询可空发的白盒密钥数量
+    ///
+    /// 查询指定订单的可空发的白盒密钥数量
+    @inlinable
+    public func describeAvailableLibCount(orderId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableLibCountResponse > {
+        self.describeAvailableLibCount(DescribeAvailableLibCountRequest(orderId: orderId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询可空发的白盒密钥数量
+    ///
+    /// 查询指定订单的可空发的白盒密钥数量
+    @inlinable
+    public func describeAvailableLibCount(orderId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableLibCountResponse {
+        try await self.describeAvailableLibCount(DescribeAvailableLibCountRequest(orderId: orderId), logger: logger, on: eventLoop)
+    }
 }

@@ -61,4 +61,22 @@ extension Vod {
     public func deleteClass(_ input: DeleteClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClassResponse {
         try await self.client.execute(action: "DeleteClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除分类
+    ///
+    /// * 仅当待删分类无子分类且无媒体关联情况下，可删除分类；
+    /// * 否则，请先执行[删除媒体](/document/product/266/31764)及子分类，再删除该分类；
+    @inlinable
+    public func deleteClass(classId: Int64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClassResponse > {
+        self.deleteClass(DeleteClassRequest(classId: classId, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除分类
+    ///
+    /// * 仅当待删分类无子分类且无媒体关联情况下，可删除分类；
+    /// * 否则，请先执行[删除媒体](/document/product/266/31764)及子分类，再删除该分类；
+    @inlinable
+    public func deleteClass(classId: Int64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClassResponse {
+        try await self.deleteClass(DeleteClassRequest(classId: classId, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

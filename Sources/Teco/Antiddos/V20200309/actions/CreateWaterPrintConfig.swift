@@ -55,4 +55,16 @@ extension Antiddos {
     public func createWaterPrintConfig(_ input: CreateWaterPrintConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWaterPrintConfigResponse {
         try await self.client.execute(action: "CreateWaterPrintConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加DDoS防护的水印防护配置
+    @inlinable
+    public func createWaterPrintConfig(instanceId: String, waterPrintConfig: WaterPrintConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWaterPrintConfigResponse > {
+        self.createWaterPrintConfig(CreateWaterPrintConfigRequest(instanceId: instanceId, waterPrintConfig: waterPrintConfig), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加DDoS防护的水印防护配置
+    @inlinable
+    public func createWaterPrintConfig(instanceId: String, waterPrintConfig: WaterPrintConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWaterPrintConfigResponse {
+        try await self.createWaterPrintConfig(CreateWaterPrintConfigRequest(instanceId: instanceId, waterPrintConfig: waterPrintConfig), logger: logger, on: eventLoop)
+    }
 }

@@ -46,4 +46,20 @@ extension Tcb {
     public func describeCloudBaseRunVersionRsByCondition(_ input: DescribeCloudBaseRunVersionRsByConditionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunVersionRsByConditionResponse {
         try await self.client.execute(action: "DescribeCloudBaseRunVersionRsByCondition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取云托管详情
+    ///
+    /// DescribeCloudBaseRunVersionRsByCondition 获取云托管详情
+    @inlinable
+    public func describeCloudBaseRunVersionRsByCondition(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunVersionRsByConditionResponse > {
+        self.describeCloudBaseRunVersionRsByCondition(DescribeCloudBaseRunVersionRsByConditionRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取云托管详情
+    ///
+    /// DescribeCloudBaseRunVersionRsByCondition 获取云托管详情
+    @inlinable
+    public func describeCloudBaseRunVersionRsByCondition(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunVersionRsByConditionResponse {
+        try await self.describeCloudBaseRunVersionRsByCondition(DescribeCloudBaseRunVersionRsByConditionRequest(), logger: logger, on: eventLoop)
+    }
 }

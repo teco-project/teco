@@ -67,4 +67,20 @@ extension Tcaplusdb {
     public func modifySnapshots(_ input: ModifySnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsResponse {
         try await self.client.execute(action: "ModifySnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改表格快照
+    ///
+    /// 修改表格快照的过期时间
+    @inlinable
+    public func modifySnapshots(clusterId: String, selectedTables: [SnapshotInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySnapshotsResponse > {
+        self.modifySnapshots(ModifySnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改表格快照
+    ///
+    /// 修改表格快照的过期时间
+    @inlinable
+    public func modifySnapshots(clusterId: String, selectedTables: [SnapshotInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsResponse {
+        try await self.modifySnapshots(ModifySnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    }
 }

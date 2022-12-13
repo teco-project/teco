@@ -46,4 +46,16 @@ extension Cloudaudit {
     public func inquireAuditCredit(_ input: InquireAuditCreditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquireAuditCreditResponse {
         try await self.client.execute(action: "InquireAuditCredit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询用户可创建跟踪集的数量
+    @inlinable
+    public func inquireAuditCredit(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquireAuditCreditResponse > {
+        self.inquireAuditCredit(InquireAuditCreditRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户可创建跟踪集的数量
+    @inlinable
+    public func inquireAuditCredit(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquireAuditCreditResponse {
+        try await self.inquireAuditCredit(InquireAuditCreditRequest(), logger: logger, on: eventLoop)
+    }
 }

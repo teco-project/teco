@@ -66,4 +66,20 @@ extension Tci {
     public func describeHighlightResult(_ input: DescribeHighlightResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHighlightResultResponse {
         try await self.client.execute(action: "DescribeHighlightResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 视频精彩集锦结果查询接口
+    ///
+    /// 视频精彩集锦结果查询接口，异步查询客户提交的请求的结果。
+    @inlinable
+    public func describeHighlightResult(jobId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHighlightResultResponse > {
+        self.describeHighlightResult(DescribeHighlightResultRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
+    
+    /// 视频精彩集锦结果查询接口
+    ///
+    /// 视频精彩集锦结果查询接口，异步查询客户提交的请求的结果。
+    @inlinable
+    public func describeHighlightResult(jobId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHighlightResultResponse {
+        try await self.describeHighlightResult(DescribeHighlightResultRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
 }

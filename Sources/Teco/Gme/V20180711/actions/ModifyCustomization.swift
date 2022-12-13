@@ -72,4 +72,20 @@ extension Gme {
     public func modifyCustomization(_ input: ModifyCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationResponse {
         try await self.client.execute(action: "ModifyCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新语音消息转文本自学习模型
+    ///
+    /// 用户通过该接口可以更新语音消息转文本自学习模型。
+    @inlinable
+    public func modifyCustomization(bizId: Int64, textUrl: String, modelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomizationResponse > {
+        self.modifyCustomization(ModifyCustomizationRequest(bizId: bizId, textUrl: textUrl, modelId: modelId), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新语音消息转文本自学习模型
+    ///
+    /// 用户通过该接口可以更新语音消息转文本自学习模型。
+    @inlinable
+    public func modifyCustomization(bizId: Int64, textUrl: String, modelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationResponse {
+        try await self.modifyCustomization(ModifyCustomizationRequest(bizId: bizId, textUrl: textUrl, modelId: modelId), logger: logger, on: eventLoop)
+    }
 }

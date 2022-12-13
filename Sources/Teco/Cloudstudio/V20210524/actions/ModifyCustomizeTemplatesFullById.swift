@@ -64,4 +64,16 @@ extension Cloudstudio {
     public func modifyCustomizeTemplatesFullById(_ input: ModifyCustomizeTemplatesFullByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplatesFullByIdResponse {
         try await self.client.execute(action: "ModifyCustomizeTemplatesFullById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 全量修改自定义模板，不忽略空
+    @inlinable
+    public func modifyCustomizeTemplatesFullById(cloudStudioSessionTeam: String, id: Int64, userDefinedTemplateParams: UserDefinedTemplateParams, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomizeTemplatesFullByIdResponse > {
+        self.modifyCustomizeTemplatesFullById(ModifyCustomizeTemplatesFullByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id, userDefinedTemplateParams: userDefinedTemplateParams), logger: logger, on: eventLoop)
+    }
+    
+    /// 全量修改自定义模板，不忽略空
+    @inlinable
+    public func modifyCustomizeTemplatesFullById(cloudStudioSessionTeam: String, id: Int64, userDefinedTemplateParams: UserDefinedTemplateParams, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplatesFullByIdResponse {
+        try await self.modifyCustomizeTemplatesFullById(ModifyCustomizeTemplatesFullByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id, userDefinedTemplateParams: userDefinedTemplateParams), logger: logger, on: eventLoop)
+    }
 }

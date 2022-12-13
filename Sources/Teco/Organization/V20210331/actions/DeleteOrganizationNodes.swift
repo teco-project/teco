@@ -50,4 +50,16 @@ extension Organization {
     public func deleteOrganizationNodes(_ input: DeleteOrganizationNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationNodesResponse {
         try await self.client.execute(action: "DeleteOrganizationNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量删除企业组织节点
+    @inlinable
+    public func deleteOrganizationNodes(nodeId: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOrganizationNodesResponse > {
+        self.deleteOrganizationNodes(DeleteOrganizationNodesRequest(nodeId: nodeId), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除企业组织节点
+    @inlinable
+    public func deleteOrganizationNodes(nodeId: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationNodesResponse {
+        try await self.deleteOrganizationNodes(DeleteOrganizationNodesRequest(nodeId: nodeId), logger: logger, on: eventLoop)
+    }
 }

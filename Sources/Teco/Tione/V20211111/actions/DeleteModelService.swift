@@ -54,4 +54,20 @@ extension Tione {
     public func deleteModelService(_ input: DeleteModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelServiceResponse {
         try await self.client.execute(action: "DeleteModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除模型服务
+    ///
+    /// 根据服务id删除模型服务
+    @inlinable
+    public func deleteModelService(serviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModelServiceResponse > {
+        self.deleteModelService(DeleteModelServiceRequest(serviceId: serviceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除模型服务
+    ///
+    /// 根据服务id删除模型服务
+    @inlinable
+    public func deleteModelService(serviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelServiceResponse {
+        try await self.deleteModelService(DeleteModelServiceRequest(serviceId: serviceId), logger: logger, on: eventLoop)
+    }
 }

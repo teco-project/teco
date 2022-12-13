@@ -50,4 +50,20 @@ extension Sslpod {
     public func describeDomainTags(_ input: DescribeDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainTagsResponse {
         try await self.client.execute(action: "DescribeDomainTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取账号的tags
+    ///
+    /// 获取账号下所有tag
+    @inlinable
+    public func describeDomainTags(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainTagsResponse > {
+        self.describeDomainTags(DescribeDomainTagsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取账号的tags
+    ///
+    /// 获取账号下所有tag
+    @inlinable
+    public func describeDomainTags(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainTagsResponse {
+        try await self.describeDomainTags(DescribeDomainTagsRequest(), logger: logger, on: eventLoop)
+    }
 }

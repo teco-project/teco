@@ -131,4 +131,20 @@ extension Billing {
     public func describeBillResourceSummary(_ input: DescribeBillResourceSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillResourceSummaryResponse {
         try await self.client.execute(action: "DescribeBillResourceSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询账单资源汇总数据
+    ///
+    /// 查询账单资源汇总数据 
+    @inlinable
+    public func describeBillResourceSummary(offset: UInt64, limit: UInt64, month: String, periodType: String? = nil, needRecordNum: Int64? = nil, actionType: String? = nil, resourceId: String? = nil, payMode: String? = nil, businessCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillResourceSummaryResponse > {
+        self.describeBillResourceSummary(DescribeBillResourceSummaryRequest(offset: offset, limit: limit, month: month, periodType: periodType, needRecordNum: needRecordNum, actionType: actionType, resourceId: resourceId, payMode: payMode, businessCode: businessCode), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账单资源汇总数据
+    ///
+    /// 查询账单资源汇总数据 
+    @inlinable
+    public func describeBillResourceSummary(offset: UInt64, limit: UInt64, month: String, periodType: String? = nil, needRecordNum: Int64? = nil, actionType: String? = nil, resourceId: String? = nil, payMode: String? = nil, businessCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillResourceSummaryResponse {
+        try await self.describeBillResourceSummary(DescribeBillResourceSummaryRequest(offset: offset, limit: limit, month: month, periodType: periodType, needRecordNum: needRecordNum, actionType: actionType, resourceId: resourceId, payMode: payMode, businessCode: businessCode), logger: logger, on: eventLoop)
+    }
 }

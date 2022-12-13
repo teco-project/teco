@@ -104,4 +104,44 @@ extension Vod {
     public func modifyMediaStorageClass(_ input: ModifyMediaStorageClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMediaStorageClassResponse {
         try await self.client.execute(action: "ModifyMediaStorageClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改媒体文件存储类型
+    ///
+    /// 修改媒体文件的存储类型。
+    /// 当媒体文件的存储类型为标准存储时，可以修改为以下类型：
+    /// <li>低频存储</li>
+    /// <li>归档存储</li>
+    /// <li>深度归档存储</li>
+    /// 当媒体文件的当前存储类型为低频存储时，可以修改为以下类型：
+    /// <li>标准存储</li>
+    /// <li>归档存储</li>
+    /// <li>深度归档存储</li>
+    /// 当媒体文件的当前存储类型为归档存储时，可以修改为以下类型：
+    /// <li>标准存储</li>
+    /// 当媒体文件的当前存储类型为深度归档存储时，可以修改为以下类型：
+    /// <li>标准存储</li>
+    @inlinable
+    public func modifyMediaStorageClass(fileIds: [String], storageClass: String, subAppId: UInt64? = nil, restoreTier: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMediaStorageClassResponse > {
+        self.modifyMediaStorageClass(ModifyMediaStorageClassRequest(fileIds: fileIds, storageClass: storageClass, subAppId: subAppId, restoreTier: restoreTier), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改媒体文件存储类型
+    ///
+    /// 修改媒体文件的存储类型。
+    /// 当媒体文件的存储类型为标准存储时，可以修改为以下类型：
+    /// <li>低频存储</li>
+    /// <li>归档存储</li>
+    /// <li>深度归档存储</li>
+    /// 当媒体文件的当前存储类型为低频存储时，可以修改为以下类型：
+    /// <li>标准存储</li>
+    /// <li>归档存储</li>
+    /// <li>深度归档存储</li>
+    /// 当媒体文件的当前存储类型为归档存储时，可以修改为以下类型：
+    /// <li>标准存储</li>
+    /// 当媒体文件的当前存储类型为深度归档存储时，可以修改为以下类型：
+    /// <li>标准存储</li>
+    @inlinable
+    public func modifyMediaStorageClass(fileIds: [String], storageClass: String, subAppId: UInt64? = nil, restoreTier: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMediaStorageClassResponse {
+        try await self.modifyMediaStorageClass(ModifyMediaStorageClassRequest(fileIds: fileIds, storageClass: storageClass, subAppId: subAppId, restoreTier: restoreTier), logger: logger, on: eventLoop)
+    }
 }

@@ -107,4 +107,20 @@ extension Vod {
     public func createContentReviewTemplate(_ input: CreateContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContentReviewTemplateResponse {
         try await self.client.execute(action: "CreateContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建音视频内容审核模板
+    ///
+    /// 创建用户自定义音视频内容审核模板，数量上限：50。
+    @inlinable
+    public func createContentReviewTemplate(reviewWallSwitch: String, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, pornConfigure: PornConfigureInfo? = nil, terrorismConfigure: TerrorismConfigureInfo? = nil, politicalConfigure: PoliticalConfigureInfo? = nil, prohibitedConfigure: ProhibitedConfigureInfo? = nil, userDefineConfigure: UserDefineConfigureInfo? = nil, screenshotInterval: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateContentReviewTemplateResponse > {
+        self.createContentReviewTemplate(CreateContentReviewTemplateRequest(reviewWallSwitch: reviewWallSwitch, subAppId: subAppId, name: name, comment: comment, pornConfigure: pornConfigure, terrorismConfigure: terrorismConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure, screenshotInterval: screenshotInterval), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建音视频内容审核模板
+    ///
+    /// 创建用户自定义音视频内容审核模板，数量上限：50。
+    @inlinable
+    public func createContentReviewTemplate(reviewWallSwitch: String, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, pornConfigure: PornConfigureInfo? = nil, terrorismConfigure: TerrorismConfigureInfo? = nil, politicalConfigure: PoliticalConfigureInfo? = nil, prohibitedConfigure: ProhibitedConfigureInfo? = nil, userDefineConfigure: UserDefineConfigureInfo? = nil, screenshotInterval: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContentReviewTemplateResponse {
+        try await self.createContentReviewTemplate(CreateContentReviewTemplateRequest(reviewWallSwitch: reviewWallSwitch, subAppId: subAppId, name: name, comment: comment, pornConfigure: pornConfigure, terrorismConfigure: terrorismConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure, screenshotInterval: screenshotInterval), logger: logger, on: eventLoop)
+    }
 }

@@ -92,4 +92,22 @@ extension Essbasic {
     public func createSignUrl(_ input: CreateSignUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignUrlResponse {
         try await self.client.execute(action: "CreateSignUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 生成签署URL
+    ///
+    /// 此接口（CreateSignUrl）用于生成指定用户的签署URL。
+    /// 注：调用此接口前，请确保您已提前调用了发送流程接口（SendFlow）指定相关签署方。
+    @inlinable
+    public func createSignUrl(caller: Caller, userId: String, deadline: Int64, catalogId: String? = nil, flowId: String? = nil, signUrlType: String? = nil, signId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSignUrlResponse > {
+        self.createSignUrl(CreateSignUrlRequest(caller: caller, userId: userId, deadline: deadline, catalogId: catalogId, flowId: flowId, signUrlType: signUrlType, signId: signId), logger: logger, on: eventLoop)
+    }
+    
+    /// 生成签署URL
+    ///
+    /// 此接口（CreateSignUrl）用于生成指定用户的签署URL。
+    /// 注：调用此接口前，请确保您已提前调用了发送流程接口（SendFlow）指定相关签署方。
+    @inlinable
+    public func createSignUrl(caller: Caller, userId: String, deadline: Int64, catalogId: String? = nil, flowId: String? = nil, signUrlType: String? = nil, signId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignUrlResponse {
+        try await self.createSignUrl(CreateSignUrlRequest(caller: caller, userId: userId, deadline: deadline, catalogId: catalogId, flowId: flowId, signUrlType: signUrlType, signId: signId), logger: logger, on: eventLoop)
+    }
 }

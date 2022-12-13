@@ -117,4 +117,20 @@ extension Teo {
     public func describeBotTopData(_ input: DescribeBotTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotTopDataResponse {
         try await self.client.execute(action: "DescribeBotTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询Bot攻击Top数据
+    ///
+    /// 本接口（DescribeBotTopData）查询Bot攻击TopN数据。
+    @inlinable
+    public func describeBotTopData(startTime: Date, endTime: Date, metricName: String, zoneIds: [String]? = nil, domains: [String]? = nil, limit: Int64? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBotTopDataResponse > {
+        self.describeBotTopData(DescribeBotTopDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, zoneIds: zoneIds, domains: domains, limit: limit, interval: interval, queryCondition: queryCondition, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Bot攻击Top数据
+    ///
+    /// 本接口（DescribeBotTopData）查询Bot攻击TopN数据。
+    @inlinable
+    public func describeBotTopData(startTime: Date, endTime: Date, metricName: String, zoneIds: [String]? = nil, domains: [String]? = nil, limit: Int64? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotTopDataResponse {
+        try await self.describeBotTopData(DescribeBotTopDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, zoneIds: zoneIds, domains: domains, limit: limit, interval: interval, queryCondition: queryCondition, area: area), logger: logger, on: eventLoop)
+    }
 }

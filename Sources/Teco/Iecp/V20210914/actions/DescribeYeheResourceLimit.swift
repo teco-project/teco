@@ -67,4 +67,16 @@ extension Iecp {
     public func describeYeheResourceLimit(_ input: DescribeYeheResourceLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeYeheResourceLimitResponse {
         try await self.client.execute(action: "DescribeYeheResourceLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询用户的资源限制
+    @inlinable
+    public func describeYeheResourceLimit(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeYeheResourceLimitResponse > {
+        self.describeYeheResourceLimit(DescribeYeheResourceLimitRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户的资源限制
+    @inlinable
+    public func describeYeheResourceLimit(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeYeheResourceLimitResponse {
+        try await self.describeYeheResourceLimit(DescribeYeheResourceLimitRequest(), logger: logger, on: eventLoop)
+    }
 }

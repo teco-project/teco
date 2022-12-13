@@ -71,4 +71,16 @@ extension Tke {
     public func describePrometheusOverviews(_ input: DescribePrometheusOverviewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusOverviewsResponse {
         try await self.client.execute(action: "DescribePrometheusOverviews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取实例列表
+    @inlinable
+    public func describePrometheusOverviews(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusOverviewsResponse > {
+        self.describePrometheusOverviews(DescribePrometheusOverviewsRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例列表
+    @inlinable
+    public func describePrometheusOverviews(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusOverviewsResponse {
+        try await self.describePrometheusOverviews(DescribePrometheusOverviewsRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

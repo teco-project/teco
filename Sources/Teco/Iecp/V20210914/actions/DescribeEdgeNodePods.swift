@@ -70,4 +70,16 @@ extension Iecp {
     public func describeEdgeNodePods(_ input: DescribeEdgeNodePodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodePodsResponse {
         try await self.client.execute(action: "DescribeEdgeNodePods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询节点Pod列表
+    @inlinable
+    public func describeEdgeNodePods(edgeUnitId: UInt64, nodeId: UInt64, namespace: String? = nil, podNamePattern: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeNodePodsResponse > {
+        self.describeEdgeNodePods(DescribeEdgeNodePodsRequest(edgeUnitId: edgeUnitId, nodeId: nodeId, namespace: namespace, podNamePattern: podNamePattern), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询节点Pod列表
+    @inlinable
+    public func describeEdgeNodePods(edgeUnitId: UInt64, nodeId: UInt64, namespace: String? = nil, podNamePattern: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodePodsResponse {
+        try await self.describeEdgeNodePods(DescribeEdgeNodePodsRequest(edgeUnitId: edgeUnitId, nodeId: nodeId, namespace: namespace, podNamePattern: podNamePattern), logger: logger, on: eventLoop)
+    }
 }

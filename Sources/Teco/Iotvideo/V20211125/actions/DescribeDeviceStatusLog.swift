@@ -95,4 +95,16 @@ extension Iotvideo {
     public func describeDeviceStatusLog(_ input: DescribeDeviceStatusLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceStatusLogResponse {
         try await self.client.execute(action: "DescribeDeviceStatusLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备上下线日志
+    @inlinable
+    public func describeDeviceStatusLog(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: Int64? = nil, context: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceStatusLogResponse > {
+        self.describeDeviceStatusLog(DescribeDeviceStatusLogRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, limit: limit, context: context), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备上下线日志
+    @inlinable
+    public func describeDeviceStatusLog(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: Int64? = nil, context: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceStatusLogResponse {
+        try await self.describeDeviceStatusLog(DescribeDeviceStatusLogRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, limit: limit, context: context), logger: logger, on: eventLoop)
+    }
 }

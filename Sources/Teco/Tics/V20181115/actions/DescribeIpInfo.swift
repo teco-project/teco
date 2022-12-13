@@ -103,4 +103,20 @@ extension Tics {
     public func describeIpInfo(_ input: DescribeIpInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpInfoResponse {
         try await self.client.execute(action: "DescribeIpInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询IP信誉
+    ///
+    /// 提供IP相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。
+    @inlinable
+    public func describeIpInfo(key: String, option: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpInfoResponse > {
+        self.describeIpInfo(DescribeIpInfoRequest(key: key, option: option), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询IP信誉
+    ///
+    /// 提供IP相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。
+    @inlinable
+    public func describeIpInfo(key: String, option: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpInfoResponse {
+        try await self.describeIpInfo(DescribeIpInfoRequest(key: key, option: option), logger: logger, on: eventLoop)
+    }
 }

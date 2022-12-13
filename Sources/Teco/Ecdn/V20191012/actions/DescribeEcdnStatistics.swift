@@ -123,4 +123,34 @@ extension Ecdn {
     public func describeEcdnStatistics(_ input: DescribeEcdnStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEcdnStatisticsResponse {
         try await self.client.execute(action: "DescribeEcdnStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 访问数据查询
+    ///
+    /// DescribeEcdnStatistics用于查询 ECDN 实时访问监控数据，支持以下指标查询：
+    /// + 流量（单位为 byte）
+    /// + 带宽（单位为 bps）
+    /// + 请求数（单位为 次）
+    /// + 状态码 2xx 汇总及各 2 开头状态码明细（单位为 个）
+    /// + 状态码 3xx 汇总及各 3 开头状态码明细（单位为 个）
+    /// + 状态码 4xx 汇总及各 4 开头状态码明细（单位为 个）
+    /// + 状态码 5xx 汇总及各 5 开头状态码明细（单位为 个）
+    @inlinable
+    public func describeEcdnStatistics(startTime: Date, endTime: Date, metrics: [String], interval: Int64, domains: [String]? = nil, projects: [Int64]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEcdnStatisticsResponse > {
+        self.describeEcdnStatistics(DescribeEcdnStatisticsRequest(startTime: startTime, endTime: endTime, metrics: metrics, interval: interval, domains: domains, projects: projects, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 访问数据查询
+    ///
+    /// DescribeEcdnStatistics用于查询 ECDN 实时访问监控数据，支持以下指标查询：
+    /// + 流量（单位为 byte）
+    /// + 带宽（单位为 bps）
+    /// + 请求数（单位为 次）
+    /// + 状态码 2xx 汇总及各 2 开头状态码明细（单位为 个）
+    /// + 状态码 3xx 汇总及各 3 开头状态码明细（单位为 个）
+    /// + 状态码 4xx 汇总及各 4 开头状态码明细（单位为 个）
+    /// + 状态码 5xx 汇总及各 5 开头状态码明细（单位为 个）
+    @inlinable
+    public func describeEcdnStatistics(startTime: Date, endTime: Date, metrics: [String], interval: Int64, domains: [String]? = nil, projects: [Int64]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEcdnStatisticsResponse {
+        try await self.describeEcdnStatistics(DescribeEcdnStatisticsRequest(startTime: startTime, endTime: endTime, metrics: metrics, interval: interval, domains: domains, projects: projects, area: area), logger: logger, on: eventLoop)
+    }
 }

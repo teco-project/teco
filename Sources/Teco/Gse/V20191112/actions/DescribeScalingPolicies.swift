@@ -81,4 +81,22 @@ extension Gse {
     public func describeScalingPolicies(_ input: DescribeScalingPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScalingPoliciesResponse {
         try await self.client.execute(action: "DescribeScalingPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询扩缩容配置
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeScalingPolicies）用于查询服务器舰队的动态扩缩容策略列表。
+    @inlinable
+    public func describeScalingPolicies(fleetId: String? = nil, statusFilter: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScalingPoliciesResponse > {
+        self.describeScalingPolicies(DescribeScalingPoliciesRequest(fleetId: fleetId, statusFilter: statusFilter, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询扩缩容配置
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeScalingPolicies）用于查询服务器舰队的动态扩缩容策略列表。
+    @inlinable
+    public func describeScalingPolicies(fleetId: String? = nil, statusFilter: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScalingPoliciesResponse {
+        try await self.describeScalingPolicies(DescribeScalingPoliciesRequest(fleetId: fleetId, statusFilter: statusFilter, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

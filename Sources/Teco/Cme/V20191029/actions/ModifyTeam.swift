@@ -29,7 +29,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以修改所有团队的信息。如果指定操作者，则操作者必须为团队管理员或者所有者。
         public let `operator`: String?
         
-        public init (platform: String, teamId: String, name: String? = nil, `operator`: String? = nil) {
+        public init (platform: String, teamId: String, name: String? = nil, operator: String? = nil) {
             self.platform = platform
             self.teamId = teamId
             self.name = name
@@ -70,5 +70,23 @@ extension Cme {
     @inlinable
     public func modifyTeam(_ input: ModifyTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTeamResponse {
         try await self.client.execute(action: "ModifyTeam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 修改团队信息
+    ///
+    /// 修改团队信息，目前支持修改的操作有：
+    /// <li>修改团队名称。</li>
+    @inlinable
+    public func modifyTeam(platform: String, teamId: String, name: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTeamResponse > {
+        self.modifyTeam(ModifyTeamRequest(platform: platform, teamId: teamId, name: name, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改团队信息
+    ///
+    /// 修改团队信息，目前支持修改的操作有：
+    /// <li>修改团队名称。</li>
+    @inlinable
+    public func modifyTeam(platform: String, teamId: String, name: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTeamResponse {
+        try await self.modifyTeam(ModifyTeamRequest(platform: platform, teamId: teamId, name: name, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

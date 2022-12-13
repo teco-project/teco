@@ -70,4 +70,20 @@ extension Zj {
     public func describeSmsTemplateList(_ input: DescribeSmsTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsTemplateListResponse {
         try await self.client.execute(action: "DescribeSmsTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 短信模板查询接口
+    ///
+    /// 获取模板信息
+    @inlinable
+    public func describeSmsTemplateList(license: String, templateIdSet: [UInt64], international: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmsTemplateListResponse > {
+        self.describeSmsTemplateList(DescribeSmsTemplateListRequest(license: license, templateIdSet: templateIdSet, international: international), logger: logger, on: eventLoop)
+    }
+    
+    /// 短信模板查询接口
+    ///
+    /// 获取模板信息
+    @inlinable
+    public func describeSmsTemplateList(license: String, templateIdSet: [UInt64], international: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsTemplateListResponse {
+        try await self.describeSmsTemplateList(DescribeSmsTemplateListRequest(license: license, templateIdSet: templateIdSet, international: international), logger: logger, on: eventLoop)
+    }
 }

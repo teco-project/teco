@@ -70,4 +70,20 @@ extension Gaap {
     public func modifyProxiesProject(_ input: ModifyProxiesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxiesProjectResponse {
         try await self.client.execute(action: "ModifyProxiesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改通道所属项目
+    ///
+    /// 本接口（ModifyProxiesProject）用于修改通道所属项目。
+    @inlinable
+    public func modifyProxiesProject(projectId: Int64, instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProxiesProjectResponse > {
+        self.modifyProxiesProject(ModifyProxiesProjectRequest(projectId: projectId, instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改通道所属项目
+    ///
+    /// 本接口（ModifyProxiesProject）用于修改通道所属项目。
+    @inlinable
+    public func modifyProxiesProject(projectId: Int64, instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxiesProjectResponse {
+        try await self.modifyProxiesProject(ModifyProxiesProjectRequest(projectId: projectId, instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds), logger: logger, on: eventLoop)
+    }
 }

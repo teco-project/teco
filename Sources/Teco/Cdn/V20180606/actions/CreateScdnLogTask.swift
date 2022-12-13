@@ -145,4 +145,20 @@ extension Cdn {
     public func createScdnLogTask(_ input: CreateScdnLogTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScdnLogTaskResponse {
         try await self.client.execute(action: "CreateScdnLogTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建事件日志任务
+    ///
+    /// CreateScdnLogTask 用于创建事件日志任务
+    @inlinable
+    public func createScdnLogTask(mode: String, startTime: Date, endTime: Date, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, ip: String? = nil, domains: [String]? = nil, attackTypes: [String]? = nil, conditions: [ScdnEventLogConditions]? = nil, source: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScdnLogTaskResponse > {
+        self.createScdnLogTask(CreateScdnLogTaskRequest(mode: mode, startTime: startTime, endTime: endTime, domain: domain, attackType: attackType, defenceMode: defenceMode, ip: ip, domains: domains, attackTypes: attackTypes, conditions: conditions, source: source, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建事件日志任务
+    ///
+    /// CreateScdnLogTask 用于创建事件日志任务
+    @inlinable
+    public func createScdnLogTask(mode: String, startTime: Date, endTime: Date, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, ip: String? = nil, domains: [String]? = nil, attackTypes: [String]? = nil, conditions: [ScdnEventLogConditions]? = nil, source: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScdnLogTaskResponse {
+        try await self.createScdnLogTask(CreateScdnLogTaskRequest(mode: mode, startTime: startTime, endTime: endTime, domain: domain, attackType: attackType, defenceMode: defenceMode, ip: ip, domains: domains, attackTypes: attackTypes, conditions: conditions, source: source, area: area), logger: logger, on: eventLoop)
+    }
 }

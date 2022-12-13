@@ -69,4 +69,16 @@ extension Tse {
     public func describeCloudNativeAPIGatewayNodes(_ input: DescribeCloudNativeAPIGatewayNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudNativeAPIGatewayNodesResponse {
         try await self.client.execute(action: "DescribeCloudNativeAPIGatewayNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取云原生网关节点列表
+    @inlinable
+    public func describeCloudNativeAPIGatewayNodes(gatewayId: String, groupId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudNativeAPIGatewayNodesResponse > {
+        self.describeCloudNativeAPIGatewayNodes(DescribeCloudNativeAPIGatewayNodesRequest(gatewayId: gatewayId, groupId: groupId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取云原生网关节点列表
+    @inlinable
+    public func describeCloudNativeAPIGatewayNodes(gatewayId: String, groupId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudNativeAPIGatewayNodesResponse {
+        try await self.describeCloudNativeAPIGatewayNodes(DescribeCloudNativeAPIGatewayNodesRequest(gatewayId: gatewayId, groupId: groupId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

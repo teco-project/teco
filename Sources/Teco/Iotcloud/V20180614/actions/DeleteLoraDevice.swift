@@ -59,4 +59,20 @@ extension Iotcloud {
     public func deleteLoraDevice(_ input: DeleteLoraDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoraDeviceResponse {
         try await self.client.execute(action: "DeleteLoraDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除lora设备
+    ///
+    /// 删除lora类型的设备
+    @inlinable
+    public func deleteLoraDevice(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoraDeviceResponse > {
+        self.deleteLoraDevice(DeleteLoraDeviceRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除lora设备
+    ///
+    /// 删除lora类型的设备
+    @inlinable
+    public func deleteLoraDevice(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoraDeviceResponse {
+        try await self.deleteLoraDevice(DeleteLoraDeviceRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
 }

@@ -105,4 +105,20 @@ extension Iot {
     public func getDebugLog(_ input: GetDebugLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDebugLogResponse {
         try await self.client.execute(action: "GetDebugLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取调试日志
+    ///
+    /// 获取设备的调试日志，用于定位问题
+    @inlinable
+    public func getDebugLog(productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDebugLogResponse > {
+        self.getDebugLog(GetDebugLogRequest(productId: productId, deviceNames: deviceNames, startTime: startTime, endTime: endTime, size: size, order: order, scrollId: scrollId, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取调试日志
+    ///
+    /// 获取设备的调试日志，用于定位问题
+    @inlinable
+    public func getDebugLog(productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDebugLogResponse {
+        try await self.getDebugLog(GetDebugLogRequest(productId: productId, deviceNames: deviceNames, startTime: startTime, endTime: endTime, size: size, order: order, scrollId: scrollId, type: type), logger: logger, on: eventLoop)
+    }
 }

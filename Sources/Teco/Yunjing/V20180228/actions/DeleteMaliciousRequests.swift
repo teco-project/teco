@@ -54,4 +54,20 @@ extension Yunjing {
     public func deleteMaliciousRequests(_ input: DeleteMaliciousRequestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMaliciousRequestsResponse {
         try await self.client.execute(action: "DeleteMaliciousRequests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除恶意请求记录
+    ///
+    /// 本接口 (DeleteMaliciousRequests) 用于删除恶意请求记录。
+    @inlinable
+    public func deleteMaliciousRequests(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMaliciousRequestsResponse > {
+        self.deleteMaliciousRequests(DeleteMaliciousRequestsRequest(ids: ids), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除恶意请求记录
+    ///
+    /// 本接口 (DeleteMaliciousRequests) 用于删除恶意请求记录。
+    @inlinable
+    public func deleteMaliciousRequests(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMaliciousRequestsResponse {
+        try await self.deleteMaliciousRequests(DeleteMaliciousRequestsRequest(ids: ids), logger: logger, on: eventLoop)
+    }
 }

@@ -70,4 +70,16 @@ extension Cfw {
     public func modifySequenceRules(_ input: ModifySequenceRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySequenceRulesResponse {
         try await self.client.execute(action: "ModifySequenceRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改规则执行顺序
+    @inlinable
+    public func modifySequenceRules(edgeId: String? = nil, data: [SequenceData]? = nil, area: String? = nil, direction: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySequenceRulesResponse > {
+        self.modifySequenceRules(ModifySequenceRulesRequest(edgeId: edgeId, data: data, area: area, direction: direction), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改规则执行顺序
+    @inlinable
+    public func modifySequenceRules(edgeId: String? = nil, data: [SequenceData]? = nil, area: String? = nil, direction: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySequenceRulesResponse {
+        try await self.modifySequenceRules(ModifySequenceRulesRequest(edgeId: edgeId, data: data, area: area, direction: direction), logger: logger, on: eventLoop)
+    }
 }

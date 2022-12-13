@@ -63,4 +63,20 @@ extension Cynosdb {
     public func describeBackupDownloadUrl(_ input: DescribeBackupDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupDownloadUrlResponse {
         try await self.client.execute(action: "DescribeBackupDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询备份下载地址
+    ///
+    /// 此接口（DescribeBackupDownloadUrl）用于查询集群备份文件下载地址。
+    @inlinable
+    public func describeBackupDownloadUrl(clusterId: String, backupId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupDownloadUrlResponse > {
+        self.describeBackupDownloadUrl(DescribeBackupDownloadUrlRequest(clusterId: clusterId, backupId: backupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询备份下载地址
+    ///
+    /// 此接口（DescribeBackupDownloadUrl）用于查询集群备份文件下载地址。
+    @inlinable
+    public func describeBackupDownloadUrl(clusterId: String, backupId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupDownloadUrlResponse {
+        try await self.describeBackupDownloadUrl(DescribeBackupDownloadUrlRequest(clusterId: clusterId, backupId: backupId), logger: logger, on: eventLoop)
+    }
 }

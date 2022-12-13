@@ -69,4 +69,16 @@ extension Cwp {
     public func exportVulList(_ input: ExportVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulListResponse {
         try await self.client.execute(action: "ExportVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 漏洞管理-导出漏洞列表
+    @inlinable
+    public func exportVulList(filters: [Filter]? = nil, ifDetail: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVulListResponse > {
+        self.exportVulList(ExportVulListRequest(filters: filters, ifDetail: ifDetail), logger: logger, on: eventLoop)
+    }
+    
+    /// 漏洞管理-导出漏洞列表
+    @inlinable
+    public func exportVulList(filters: [Filter]? = nil, ifDetail: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulListResponse {
+        try await self.exportVulList(ExportVulListRequest(filters: filters, ifDetail: ifDetail), logger: logger, on: eventLoop)
+    }
 }

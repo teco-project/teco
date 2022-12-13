@@ -62,4 +62,16 @@ extension Cynosdb {
     public func describeMaintainPeriod(_ input: DescribeMaintainPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintainPeriodResponse {
         try await self.client.execute(action: "DescribeMaintainPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例维护时间窗
+    @inlinable
+    public func describeMaintainPeriod(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMaintainPeriodResponse > {
+        self.describeMaintainPeriod(DescribeMaintainPeriodRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例维护时间窗
+    @inlinable
+    public func describeMaintainPeriod(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintainPeriodResponse {
+        try await self.describeMaintainPeriod(DescribeMaintainPeriodRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Dts {
     public func offlineIsolatedSubscribe(_ input: OfflineIsolatedSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineIsolatedSubscribeResponse {
         try await self.client.execute(action: "OfflineIsolatedSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 下线已隔离的数据订阅实例
+    ///
+    /// 本接口（OfflineIsolatedSubscribe）用于下线已隔离的数据订阅实例
+    @inlinable
+    public func offlineIsolatedSubscribe(subscribeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OfflineIsolatedSubscribeResponse > {
+        self.offlineIsolatedSubscribe(OfflineIsolatedSubscribeRequest(subscribeId: subscribeId), logger: logger, on: eventLoop)
+    }
+    
+    /// 下线已隔离的数据订阅实例
+    ///
+    /// 本接口（OfflineIsolatedSubscribe）用于下线已隔离的数据订阅实例
+    @inlinable
+    public func offlineIsolatedSubscribe(subscribeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineIsolatedSubscribeResponse {
+        try await self.offlineIsolatedSubscribe(OfflineIsolatedSubscribeRequest(subscribeId: subscribeId), logger: logger, on: eventLoop)
+    }
 }

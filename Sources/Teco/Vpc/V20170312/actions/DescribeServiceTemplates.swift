@@ -75,4 +75,20 @@ extension Vpc {
     public func describeServiceTemplates(_ input: DescribeServiceTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceTemplatesResponse {
         try await self.client.execute(action: "DescribeServiceTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询协议端口模板
+    ///
+    /// 本接口（DescribeServiceTemplates）用于查询协议端口模板
+    @inlinable
+    public func describeServiceTemplates(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceTemplatesResponse > {
+        self.describeServiceTemplates(DescribeServiceTemplatesRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询协议端口模板
+    ///
+    /// 本接口（DescribeServiceTemplates）用于查询协议端口模板
+    @inlinable
+    public func describeServiceTemplates(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceTemplatesResponse {
+        try await self.describeServiceTemplates(DescribeServiceTemplatesRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

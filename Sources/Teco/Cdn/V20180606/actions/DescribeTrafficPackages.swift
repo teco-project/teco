@@ -90,4 +90,20 @@ extension Cdn {
     public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficPackagesResponse {
         try await self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 流量包查询
+    ///
+    /// DescribeTrafficPackages 用于查询 CDN 流量包详情。
+    @inlinable
+    public func describeTrafficPackages(offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficPackagesResponse > {
+        self.describeTrafficPackages(DescribeTrafficPackagesRequest(offset: offset, limit: limit, sortBy: sortBy), logger: logger, on: eventLoop)
+    }
+    
+    /// 流量包查询
+    ///
+    /// DescribeTrafficPackages 用于查询 CDN 流量包详情。
+    @inlinable
+    public func describeTrafficPackages(offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficPackagesResponse {
+        try await self.describeTrafficPackages(DescribeTrafficPackagesRequest(offset: offset, limit: limit, sortBy: sortBy), logger: logger, on: eventLoop)
+    }
 }

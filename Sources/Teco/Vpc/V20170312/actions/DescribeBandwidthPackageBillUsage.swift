@@ -58,4 +58,20 @@ extension Vpc {
     public func describeBandwidthPackageBillUsage(_ input: DescribeBandwidthPackageBillUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackageBillUsageResponse {
         try await self.client.execute(action: "DescribeBandwidthPackageBillUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询后付费共享带宽包当前的用量
+    ///
+    /// 本接口 (DescribeBandwidthPackageBillUsage) 用于查询后付费共享带宽包当前的计费用量.
+    @inlinable
+    public func describeBandwidthPackageBillUsage(bandwidthPackageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBandwidthPackageBillUsageResponse > {
+        self.describeBandwidthPackageBillUsage(DescribeBandwidthPackageBillUsageRequest(bandwidthPackageId: bandwidthPackageId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询后付费共享带宽包当前的用量
+    ///
+    /// 本接口 (DescribeBandwidthPackageBillUsage) 用于查询后付费共享带宽包当前的计费用量.
+    @inlinable
+    public func describeBandwidthPackageBillUsage(bandwidthPackageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackageBillUsageResponse {
+        try await self.describeBandwidthPackageBillUsage(DescribeBandwidthPackageBillUsageRequest(bandwidthPackageId: bandwidthPackageId), logger: logger, on: eventLoop)
+    }
 }

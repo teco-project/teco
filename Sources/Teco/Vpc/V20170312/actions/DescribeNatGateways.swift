@@ -81,4 +81,20 @@ extension Vpc {
     public func describeNatGateways(_ input: DescribeNatGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewaysResponse {
         try await self.client.execute(action: "DescribeNatGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询NAT网关
+    ///
+    /// 本接口（DescribeNatGateways）用于查询 NAT 网关。
+    @inlinable
+    public func describeNatGateways(natGatewayIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatGatewaysResponse > {
+        self.describeNatGateways(DescribeNatGatewaysRequest(natGatewayIds: natGatewayIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询NAT网关
+    ///
+    /// 本接口（DescribeNatGateways）用于查询 NAT 网关。
+    @inlinable
+    public func describeNatGateways(natGatewayIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewaysResponse {
+        try await self.describeNatGateways(DescribeNatGatewaysRequest(natGatewayIds: natGatewayIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

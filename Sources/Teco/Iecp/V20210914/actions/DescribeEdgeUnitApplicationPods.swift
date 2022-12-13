@@ -60,4 +60,16 @@ extension Iecp {
     public func describeEdgeUnitApplicationPods(_ input: DescribeEdgeUnitApplicationPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationPodsResponse {
         try await self.client.execute(action: "DescribeEdgeUnitApplicationPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取应用下Pod状态
+    @inlinable
+    public func describeEdgeUnitApplicationPods(edgeUnitId: UInt64, applicationId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitApplicationPodsResponse > {
+        self.describeEdgeUnitApplicationPods(DescribeEdgeUnitApplicationPodsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用下Pod状态
+    @inlinable
+    public func describeEdgeUnitApplicationPods(edgeUnitId: UInt64, applicationId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationPodsResponse {
+        try await self.describeEdgeUnitApplicationPods(DescribeEdgeUnitApplicationPodsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId), logger: logger, on: eventLoop)
+    }
 }

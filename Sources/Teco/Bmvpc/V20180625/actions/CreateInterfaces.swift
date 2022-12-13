@@ -64,4 +64,16 @@ extension Bmvpc {
     public func createInterfaces(_ input: CreateInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInterfacesResponse {
         try await self.client.execute(action: "CreateInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 物理机加入子网
+    @inlinable
+    public func createInterfaces(instanceIds: [String], vpcId: String, subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInterfacesResponse > {
+        self.createInterfaces(CreateInterfacesRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    }
+    
+    /// 物理机加入子网
+    @inlinable
+    public func createInterfaces(instanceIds: [String], vpcId: String, subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInterfacesResponse {
+        try await self.createInterfaces(CreateInterfacesRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    }
 }

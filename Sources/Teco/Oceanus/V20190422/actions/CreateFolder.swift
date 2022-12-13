@@ -73,4 +73,20 @@ extension Oceanus {
     public func createFolder(_ input: CreateFolderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFolderResponse {
         try await self.client.execute(action: "CreateFolder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建文件夹
+    ///
+    /// 作业列表页面新建文件夹请求
+    @inlinable
+    public func createFolder(folderName: String, parentId: String, folderType: Int64? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFolderResponse > {
+        self.createFolder(CreateFolderRequest(folderName: folderName, parentId: parentId, folderType: folderType, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建文件夹
+    ///
+    /// 作业列表页面新建文件夹请求
+    @inlinable
+    public func createFolder(folderName: String, parentId: String, folderType: Int64? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFolderResponse {
+        try await self.createFolder(CreateFolderRequest(folderName: folderName, parentId: parentId, folderType: folderType, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    }
 }

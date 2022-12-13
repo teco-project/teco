@@ -67,4 +67,20 @@ extension Iot {
     public func getProducts(_ input: GetProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProductsResponse {
         try await self.client.execute(action: "GetProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取产品列表
+    ///
+    /// 获取用户在物联网套件所创建的所有产品信息。
+    @inlinable
+    public func getProducts(offset: UInt64? = nil, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetProductsResponse > {
+        self.getProducts(GetProductsRequest(offset: offset, length: length), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取产品列表
+    ///
+    /// 获取用户在物联网套件所创建的所有产品信息。
+    @inlinable
+    public func getProducts(offset: UInt64? = nil, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProductsResponse {
+        try await self.getProducts(GetProductsRequest(offset: offset, length: length), logger: logger, on: eventLoop)
+    }
 }

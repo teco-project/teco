@@ -80,4 +80,20 @@ extension Cwp {
     public func describeBaselineList(_ input: DescribeBaselineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineListResponse {
         try await self.client.execute(action: "DescribeBaselineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询基线列表
+    ///
+    /// 查询基线列表信息
+    @inlinable
+    public func describeBaselineList(limit: UInt64, offset: UInt64, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineListResponse > {
+        self.describeBaselineList(DescribeBaselineListRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询基线列表
+    ///
+    /// 查询基线列表信息
+    @inlinable
+    public func describeBaselineList(limit: UInt64, offset: UInt64, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineListResponse {
+        try await self.describeBaselineList(DescribeBaselineListRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

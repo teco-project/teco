@@ -114,4 +114,20 @@ extension Tics {
     public func describeThreatInfo(_ input: DescribeThreatInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeThreatInfoResponse {
         try await self.client.execute(action: "DescribeThreatInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询威胁情报
+    ///
+    /// 提供IP和域名相关威胁情报信息查询，这些信息可以辅助检测失陷主机、帮助SIEM/SOC等系统做研判决策、帮助运营团队对设备报警的编排处理。
+    @inlinable
+    public func describeThreatInfo(key: String, type: String, option: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeThreatInfoResponse > {
+        self.describeThreatInfo(DescribeThreatInfoRequest(key: key, type: type, option: option), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询威胁情报
+    ///
+    /// 提供IP和域名相关威胁情报信息查询，这些信息可以辅助检测失陷主机、帮助SIEM/SOC等系统做研判决策、帮助运营团队对设备报警的编排处理。
+    @inlinable
+    public func describeThreatInfo(key: String, type: String, option: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeThreatInfoResponse {
+        try await self.describeThreatInfo(DescribeThreatInfoRequest(key: key, type: type, option: option), logger: logger, on: eventLoop)
+    }
 }

@@ -87,4 +87,16 @@ extension Cynosdb {
     public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
         try await self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询集群列表
+    @inlinable
+    public func describeClusters(dbType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClustersResponse > {
+        self.describeClusters(DescribeClustersRequest(dbType: dbType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群列表
+    @inlinable
+    public func describeClusters(dbType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
+        try await self.describeClusters(DescribeClustersRequest(dbType: dbType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, filters: filters), logger: logger, on: eventLoop)
+    }
 }

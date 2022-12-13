@@ -96,4 +96,20 @@ extension As {
     public func createScheduledAction(_ input: CreateScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScheduledActionResponse {
         try await self.client.execute(action: "CreateScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建定时任务
+    ///
+    /// 本接口（CreateScheduledAction）用于创建定时任务。
+    @inlinable
+    public func createScheduledAction(autoScalingGroupId: String, scheduledActionName: String, maxSize: UInt64, minSize: UInt64, desiredCapacity: UInt64, startTime: Date, endTime: Date? = nil, recurrence: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScheduledActionResponse > {
+        self.createScheduledAction(CreateScheduledActionRequest(autoScalingGroupId: autoScalingGroupId, scheduledActionName: scheduledActionName, maxSize: maxSize, minSize: minSize, desiredCapacity: desiredCapacity, startTime: startTime, endTime: endTime, recurrence: recurrence), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建定时任务
+    ///
+    /// 本接口（CreateScheduledAction）用于创建定时任务。
+    @inlinable
+    public func createScheduledAction(autoScalingGroupId: String, scheduledActionName: String, maxSize: UInt64, minSize: UInt64, desiredCapacity: UInt64, startTime: Date, endTime: Date? = nil, recurrence: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScheduledActionResponse {
+        try await self.createScheduledAction(CreateScheduledActionRequest(autoScalingGroupId: autoScalingGroupId, scheduledActionName: scheduledActionName, maxSize: maxSize, minSize: minSize, desiredCapacity: desiredCapacity, startTime: startTime, endTime: endTime, recurrence: recurrence), logger: logger, on: eventLoop)
+    }
 }

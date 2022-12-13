@@ -64,4 +64,20 @@ extension Nlp {
     public func autoSummarization(_ input: AutoSummarizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AutoSummarizationResponse {
         try await self.client.execute(action: "AutoSummarization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 自动摘要
+    ///
+    /// 利用人工智能算法，自动抽取文本中的关键信息并生成指定长度的文本摘要。可用于新闻标题生成、科技文献摘要生成和商品评论摘要等。
+    @inlinable
+    public func autoSummarization(text: String, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AutoSummarizationResponse > {
+        self.autoSummarization(AutoSummarizationRequest(text: text, length: length), logger: logger, on: eventLoop)
+    }
+    
+    /// 自动摘要
+    ///
+    /// 利用人工智能算法，自动抽取文本中的关键信息并生成指定长度的文本摘要。可用于新闻标题生成、科技文献摘要生成和商品评论摘要等。
+    @inlinable
+    public func autoSummarization(text: String, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AutoSummarizationResponse {
+        try await self.autoSummarization(AutoSummarizationRequest(text: text, length: length), logger: logger, on: eventLoop)
+    }
 }

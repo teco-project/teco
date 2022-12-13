@@ -110,4 +110,22 @@ extension Monitor {
     public func updateAlertRule(_ input: UpdateAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAlertRuleResponse {
         try await self.client.execute(action: "UpdateAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新报警规则
+    ///
+    /// 更新 Prometheus 的报警规则。
+    /// 请注意，**告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description**，，请参考 [Prometheus Rule更多配置请参考](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)。
+    @inlinable
+    public func updateAlertRule(ruleId: String, instanceId: String, ruleState: Int64, ruleName: String, expr: String, duration: String, receivers: [String], labels: [PrometheusRuleKV]? = nil, annotations: [PrometheusRuleKV]? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAlertRuleResponse > {
+        self.updateAlertRule(UpdateAlertRuleRequest(ruleId: ruleId, instanceId: instanceId, ruleState: ruleState, ruleName: ruleName, expr: expr, duration: duration, receivers: receivers, labels: labels, annotations: annotations, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新报警规则
+    ///
+    /// 更新 Prometheus 的报警规则。
+    /// 请注意，**告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description**，，请参考 [Prometheus Rule更多配置请参考](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)。
+    @inlinable
+    public func updateAlertRule(ruleId: String, instanceId: String, ruleState: Int64, ruleName: String, expr: String, duration: String, receivers: [String], labels: [PrometheusRuleKV]? = nil, annotations: [PrometheusRuleKV]? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAlertRuleResponse {
+        try await self.updateAlertRule(UpdateAlertRuleRequest(ruleId: ruleId, instanceId: instanceId, ruleState: ruleState, ruleName: ruleName, expr: expr, duration: duration, receivers: receivers, labels: labels, annotations: annotations, type: type), logger: logger, on: eventLoop)
+    }
 }

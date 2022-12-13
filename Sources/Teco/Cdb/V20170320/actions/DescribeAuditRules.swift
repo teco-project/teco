@@ -78,4 +78,20 @@ extension Cdb {
     public func describeAuditRules(_ input: DescribeAuditRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditRulesResponse {
         try await self.client.execute(action: "DescribeAuditRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询审计规则
+    ///
+    /// 本接口(DescribeAuditRules)用于查询用户在当前地域的审计规则。
+    @inlinable
+    public func describeAuditRules(ruleId: String? = nil, ruleName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditRulesResponse > {
+        self.describeAuditRules(DescribeAuditRulesRequest(ruleId: ruleId, ruleName: ruleName, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询审计规则
+    ///
+    /// 本接口(DescribeAuditRules)用于查询用户在当前地域的审计规则。
+    @inlinable
+    public func describeAuditRules(ruleId: String? = nil, ruleName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditRulesResponse {
+        try await self.describeAuditRules(DescribeAuditRulesRequest(ruleId: ruleId, ruleName: ruleName, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

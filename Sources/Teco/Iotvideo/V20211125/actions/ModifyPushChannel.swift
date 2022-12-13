@@ -80,4 +80,16 @@ extension Iotvideo {
     public func modifyPushChannel(_ input: ModifyPushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPushChannelResponse {
         try await self.client.execute(action: "ModifyPushChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新推送通道
+    @inlinable
+    public func modifyPushChannel(productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPushChannelResponse > {
+        self.modifyPushChannel(ModifyPushChannelRequest(productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新推送通道
+    @inlinable
+    public func modifyPushChannel(productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPushChannelResponse {
+        try await self.modifyPushChannel(ModifyPushChannelRequest(productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic), logger: logger, on: eventLoop)
+    }
 }

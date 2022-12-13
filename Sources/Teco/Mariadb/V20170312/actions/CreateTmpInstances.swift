@@ -63,4 +63,20 @@ extension Mariadb {
     public func createTmpInstances(_ input: CreateTmpInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTmpInstancesResponse {
         try await self.client.execute(action: "CreateTmpInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建临时实例
+    ///
+    /// 本接口（CreateTmpInstances）用于创建临时实例。
+    @inlinable
+    public func createTmpInstances(instanceIds: [String], rollbackTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTmpInstancesResponse > {
+        self.createTmpInstances(CreateTmpInstancesRequest(instanceIds: instanceIds, rollbackTime: rollbackTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建临时实例
+    ///
+    /// 本接口（CreateTmpInstances）用于创建临时实例。
+    @inlinable
+    public func createTmpInstances(instanceIds: [String], rollbackTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTmpInstancesResponse {
+        try await self.createTmpInstances(CreateTmpInstancesRequest(instanceIds: instanceIds, rollbackTime: rollbackTime), logger: logger, on: eventLoop)
+    }
 }

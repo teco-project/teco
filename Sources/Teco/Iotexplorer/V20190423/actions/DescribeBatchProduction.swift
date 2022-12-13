@@ -83,4 +83,20 @@ extension Iotexplorer {
     public func describeBatchProduction(_ input: DescribeBatchProductionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchProductionResponse {
         try await self.client.execute(action: "DescribeBatchProduction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取量产详情
+    ///
+    /// 获取量产详情信息。
+    @inlinable
+    public func describeBatchProduction(productId: String, batchProductionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchProductionResponse > {
+        self.describeBatchProduction(DescribeBatchProductionRequest(productId: productId, batchProductionId: batchProductionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取量产详情
+    ///
+    /// 获取量产详情信息。
+    @inlinable
+    public func describeBatchProduction(productId: String, batchProductionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchProductionResponse {
+        try await self.describeBatchProduction(DescribeBatchProductionRequest(productId: productId, batchProductionId: batchProductionId), logger: logger, on: eventLoop)
+    }
 }

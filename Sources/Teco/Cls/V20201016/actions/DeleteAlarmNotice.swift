@@ -54,4 +54,20 @@ extension Cls {
     public func deleteAlarmNotice(_ input: DeleteAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticeResponse {
         try await self.client.execute(action: "DeleteAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除通知渠道组
+    ///
+    /// 该接口用于删除通知渠道组
+    @inlinable
+    public func deleteAlarmNotice(alarmNoticeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAlarmNoticeResponse > {
+        self.deleteAlarmNotice(DeleteAlarmNoticeRequest(alarmNoticeId: alarmNoticeId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除通知渠道组
+    ///
+    /// 该接口用于删除通知渠道组
+    @inlinable
+    public func deleteAlarmNotice(alarmNoticeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticeResponse {
+        try await self.deleteAlarmNotice(DeleteAlarmNoticeRequest(alarmNoticeId: alarmNoticeId), logger: logger, on: eventLoop)
+    }
 }

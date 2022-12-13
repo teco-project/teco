@@ -65,4 +65,16 @@ extension Trp {
     public func modifyCustomRuleStatus(_ input: ModifyCustomRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomRuleStatusResponse {
         try await self.client.execute(action: "ModifyCustomRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新自定义码规则状态
+    @inlinable
+    public func modifyCustomRuleStatus(customId: String, status: Int64, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomRuleStatusResponse > {
+        self.modifyCustomRuleStatus(ModifyCustomRuleStatusRequest(customId: customId, status: status, corpId: corpId), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新自定义码规则状态
+    @inlinable
+    public func modifyCustomRuleStatus(customId: String, status: Int64, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomRuleStatusResponse {
+        try await self.modifyCustomRuleStatus(ModifyCustomRuleStatusRequest(customId: customId, status: status, corpId: corpId), logger: logger, on: eventLoop)
+    }
 }

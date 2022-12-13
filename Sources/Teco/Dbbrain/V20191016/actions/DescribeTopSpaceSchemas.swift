@@ -77,4 +77,20 @@ extension Dbbrain {
     public func describeTopSpaceSchemas(_ input: DescribeTopSpaceSchemasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopSpaceSchemasResponse {
         try await self.client.execute(action: "DescribeTopSpaceSchemas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取Top库的空间统计信息
+    ///
+    /// 获取实例Top库的实时空间统计信息，默认返回按大小排序。
+    @inlinable
+    public func describeTopSpaceSchemas(instanceId: String, limit: Int64? = nil, sortBy: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopSpaceSchemasResponse > {
+        self.describeTopSpaceSchemas(DescribeTopSpaceSchemasRequest(instanceId: instanceId, limit: limit, sortBy: sortBy, product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Top库的空间统计信息
+    ///
+    /// 获取实例Top库的实时空间统计信息，默认返回按大小排序。
+    @inlinable
+    public func describeTopSpaceSchemas(instanceId: String, limit: Int64? = nil, sortBy: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopSpaceSchemasResponse {
+        try await self.describeTopSpaceSchemas(DescribeTopSpaceSchemasRequest(instanceId: instanceId, limit: limit, sortBy: sortBy, product: product), logger: logger, on: eventLoop)
+    }
 }

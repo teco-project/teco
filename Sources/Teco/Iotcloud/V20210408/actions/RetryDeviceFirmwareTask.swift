@@ -65,4 +65,16 @@ extension Iotcloud {
     public func retryDeviceFirmwareTask(_ input: RetryDeviceFirmwareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RetryDeviceFirmwareTaskResponse {
         try await self.client.execute(action: "RetryDeviceFirmwareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重试设备升级任务
+    @inlinable
+    public func retryDeviceFirmwareTask(productId: String, deviceName: String, firmwareVersion: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RetryDeviceFirmwareTaskResponse > {
+        self.retryDeviceFirmwareTask(RetryDeviceFirmwareTaskRequest(productId: productId, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 重试设备升级任务
+    @inlinable
+    public func retryDeviceFirmwareTask(productId: String, deviceName: String, firmwareVersion: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RetryDeviceFirmwareTaskResponse {
+        try await self.retryDeviceFirmwareTask(RetryDeviceFirmwareTaskRequest(productId: productId, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

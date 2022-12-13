@@ -59,4 +59,20 @@ extension Tke {
     public func deleteEKSContainerInstances(_ input: DeleteEKSContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEKSContainerInstancesResponse {
         try await self.client.execute(action: "DeleteEKSContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除容器实例
+    ///
+    /// 删除容器实例，可批量删除
+    @inlinable
+    public func deleteEKSContainerInstances(eksCiIds: [String], releaseAutoCreatedEip: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEKSContainerInstancesResponse > {
+        self.deleteEKSContainerInstances(DeleteEKSContainerInstancesRequest(eksCiIds: eksCiIds, releaseAutoCreatedEip: releaseAutoCreatedEip), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除容器实例
+    ///
+    /// 删除容器实例，可批量删除
+    @inlinable
+    public func deleteEKSContainerInstances(eksCiIds: [String], releaseAutoCreatedEip: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEKSContainerInstancesResponse {
+        try await self.deleteEKSContainerInstances(DeleteEKSContainerInstancesRequest(eksCiIds: eksCiIds, releaseAutoCreatedEip: releaseAutoCreatedEip), logger: logger, on: eventLoop)
+    }
 }

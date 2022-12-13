@@ -63,4 +63,20 @@ extension Domain {
     public func modifyDomainDNSBatch(_ input: ModifyDomainDNSBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainDNSBatchResponse {
         try await self.client.execute(action: "ModifyDomainDNSBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量域名 DNS 修改
+    ///
+    /// 本接口 ( ModifyDomainDNSBatch) 用于批量域名 DNS 修改 。
+    @inlinable
+    public func modifyDomainDNSBatch(domains: [String], dns: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainDNSBatchResponse > {
+        self.modifyDomainDNSBatch(ModifyDomainDNSBatchRequest(domains: domains, dns: dns), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量域名 DNS 修改
+    ///
+    /// 本接口 ( ModifyDomainDNSBatch) 用于批量域名 DNS 修改 。
+    @inlinable
+    public func modifyDomainDNSBatch(domains: [String], dns: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainDNSBatchResponse {
+        try await self.modifyDomainDNSBatch(ModifyDomainDNSBatchRequest(domains: domains, dns: dns), logger: logger, on: eventLoop)
+    }
 }

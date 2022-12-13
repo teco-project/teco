@@ -70,4 +70,20 @@ extension Cdn {
     public func describeMapInfo(_ input: DescribeMapInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMapInfoResponse {
         try await self.client.execute(action: "DescribeMapInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 省份运营商映射查询
+    ///
+    /// DescribeMapInfo 用于查询省份对应的 ID，运营商对应的 ID 信息。
+    @inlinable
+    public func describeMapInfo(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMapInfoResponse > {
+        self.describeMapInfo(DescribeMapInfoRequest(name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 省份运营商映射查询
+    ///
+    /// DescribeMapInfo 用于查询省份对应的 ID，运营商对应的 ID 信息。
+    @inlinable
+    public func describeMapInfo(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMapInfoResponse {
+        try await self.describeMapInfo(DescribeMapInfoRequest(name: name), logger: logger, on: eventLoop)
+    }
 }

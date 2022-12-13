@@ -98,4 +98,20 @@ extension Cwp {
     public func describeAssetMachineList(_ input: DescribeAssetMachineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetMachineListResponse {
         try await self.client.execute(action: "DescribeAssetMachineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取资源监控列表
+    ///
+    /// 获取资产指纹页面的资源监控列表
+    @inlinable
+    public func describeAssetMachineList(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetMachineListResponse > {
+        self.describeAssetMachineList(DescribeAssetMachineListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资源监控列表
+    ///
+    /// 获取资产指纹页面的资源监控列表
+    @inlinable
+    public func describeAssetMachineList(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetMachineListResponse {
+        try await self.describeAssetMachineList(DescribeAssetMachineListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,16 @@ extension Ckafka {
     public func deleteDatahubTopic(_ input: DeleteDatahubTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDatahubTopicResponse {
         try await self.client.execute(action: "DeleteDatahubTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除Datahub主题
+    @inlinable
+    public func deleteDatahubTopic(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDatahubTopicResponse > {
+        self.deleteDatahubTopic(DeleteDatahubTopicRequest(name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Datahub主题
+    @inlinable
+    public func deleteDatahubTopic(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDatahubTopicResponse {
+        try await self.deleteDatahubTopic(DeleteDatahubTopicRequest(name: name), logger: logger, on: eventLoop)
+    }
 }

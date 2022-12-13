@@ -64,4 +64,20 @@ extension Ecm {
     public func describeMonthPeakNetwork(_ input: DescribeMonthPeakNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonthPeakNetworkResponse {
         try await self.client.execute(action: "DescribeMonthPeakNetwork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取客户节点上的出入月峰和计费带宽
+    ///
+    /// 获取客户节点上的出入带宽月峰和计费带宽信息
+    @inlinable
+    public func describeMonthPeakNetwork(month: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonthPeakNetworkResponse > {
+        self.describeMonthPeakNetwork(DescribeMonthPeakNetworkRequest(month: month, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取客户节点上的出入月峰和计费带宽
+    ///
+    /// 获取客户节点上的出入带宽月峰和计费带宽信息
+    @inlinable
+    public func describeMonthPeakNetwork(month: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonthPeakNetworkResponse {
+        try await self.describeMonthPeakNetwork(DescribeMonthPeakNetworkRequest(month: month, filters: filters), logger: logger, on: eventLoop)
+    }
 }

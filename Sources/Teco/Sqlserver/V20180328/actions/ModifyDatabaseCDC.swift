@@ -68,4 +68,20 @@ extension Sqlserver {
     public func modifyDatabaseCDC(_ input: ModifyDatabaseCDCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseCDCResponse {
         try await self.client.execute(action: "ModifyDatabaseCDC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开启&关闭数据库CDC
+    ///
+    /// 本接口(ModifyDatabaseCDC)用于开启、关闭数据库数据变更捕获(CDC)
+    @inlinable
+    public func modifyDatabaseCDC(dbNames: [String], modifyType: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDatabaseCDCResponse > {
+        self.modifyDatabaseCDC(ModifyDatabaseCDCRequest(dbNames: dbNames, modifyType: modifyType, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 开启&关闭数据库CDC
+    ///
+    /// 本接口(ModifyDatabaseCDC)用于开启、关闭数据库数据变更捕获(CDC)
+    @inlinable
+    public func modifyDatabaseCDC(dbNames: [String], modifyType: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseCDCResponse {
+        try await self.modifyDatabaseCDC(ModifyDatabaseCDCRequest(dbNames: dbNames, modifyType: modifyType, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

@@ -75,4 +75,16 @@ extension Wedata {
     public func commitExportTask(_ input: CommitExportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitExportTaskResponse {
         try await self.client.execute(action: "CommitExportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 提交数据导出任务
+    @inlinable
+    public func commitExportTask(projectId: String? = nil, ruleExecId: UInt64? = nil, exportType: UInt64? = nil, executorGroupId: String? = nil, queueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommitExportTaskResponse > {
+        self.commitExportTask(CommitExportTaskRequest(projectId: projectId, ruleExecId: ruleExecId, exportType: exportType, executorGroupId: executorGroupId, queueName: queueName), logger: logger, on: eventLoop)
+    }
+    
+    /// 提交数据导出任务
+    @inlinable
+    public func commitExportTask(projectId: String? = nil, ruleExecId: UInt64? = nil, exportType: UInt64? = nil, executorGroupId: String? = nil, queueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitExportTaskResponse {
+        try await self.commitExportTask(CommitExportTaskRequest(projectId: projectId, ruleExecId: ruleExecId, exportType: exportType, executorGroupId: executorGroupId, queueName: queueName), logger: logger, on: eventLoop)
+    }
 }

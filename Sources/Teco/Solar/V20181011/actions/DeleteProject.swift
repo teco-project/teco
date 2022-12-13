@@ -50,4 +50,16 @@ extension Solar {
     public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
         try await self.client.execute(action: "DeleteProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除项目
+    @inlinable
+    public func deleteProject(projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProjectResponse > {
+        self.deleteProject(DeleteProjectRequest(projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除项目
+    @inlinable
+    public func deleteProject(projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
+        try await self.deleteProject(DeleteProjectRequest(projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

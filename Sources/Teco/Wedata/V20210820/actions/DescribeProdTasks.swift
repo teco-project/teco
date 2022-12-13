@@ -74,4 +74,20 @@ extension Wedata {
     public func describeProdTasks(_ input: DescribeProdTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProdTasksResponse {
         try await self.client.execute(action: "DescribeProdTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取生产调度任务列表
+    ///
+    /// 数据质量获取生产调度任务列表
+    @inlinable
+    public func describeProdTasks(projectId: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProdTasksResponse > {
+        self.describeProdTasks(DescribeProdTasksRequest(projectId: projectId, pageSize: pageSize, pageNumber: pageNumber, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取生产调度任务列表
+    ///
+    /// 数据质量获取生产调度任务列表
+    @inlinable
+    public func describeProdTasks(projectId: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProdTasksResponse {
+        try await self.describeProdTasks(DescribeProdTasksRequest(projectId: projectId, pageSize: pageSize, pageNumber: pageNumber, filters: filters), logger: logger, on: eventLoop)
+    }
 }

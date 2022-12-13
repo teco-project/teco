@@ -50,4 +50,16 @@ extension Cwp {
     public func cancelIgnoreVul(_ input: CancelIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelIgnoreVulResponse {
         try await self.client.execute(action: "CancelIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 取消漏洞忽略
+    @inlinable
+    public func cancelIgnoreVul(eventIds: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelIgnoreVulResponse > {
+        self.cancelIgnoreVul(CancelIgnoreVulRequest(eventIds: eventIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 取消漏洞忽略
+    @inlinable
+    public func cancelIgnoreVul(eventIds: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelIgnoreVulResponse {
+        try await self.cancelIgnoreVul(CancelIgnoreVulRequest(eventIds: eventIds), logger: logger, on: eventLoop)
+    }
 }

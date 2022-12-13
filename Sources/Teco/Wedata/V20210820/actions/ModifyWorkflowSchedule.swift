@@ -125,4 +125,22 @@ extension Wedata {
     public func modifyWorkflowSchedule(_ input: ModifyWorkflowScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowScheduleResponse {
         try await self.client.execute(action: "ModifyWorkflowSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新工作流调度【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 更新工作流调度
+    @inlinable
+    public func modifyWorkflowSchedule(projectId: String, workflowId: String, delayTime: Int64, startupTime: Int64, selfDepend: Int64, cycleType: Int64, cycleStep: Int64, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, dependencyWorkflow: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWorkflowScheduleResponse > {
+        self.modifyWorkflowSchedule(ModifyWorkflowScheduleRequest(projectId: projectId, workflowId: workflowId, delayTime: delayTime, startupTime: startupTime, selfDepend: selfDepend, cycleType: cycleType, cycleStep: cycleStep, startTime: startTime, endTime: endTime, taskAction: taskAction, crontabExpression: crontabExpression, executionStartTime: executionStartTime, executionEndTime: executionEndTime, dependencyWorkflow: dependencyWorkflow), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新工作流调度【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 更新工作流调度
+    @inlinable
+    public func modifyWorkflowSchedule(projectId: String, workflowId: String, delayTime: Int64, startupTime: Int64, selfDepend: Int64, cycleType: Int64, cycleStep: Int64, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, dependencyWorkflow: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowScheduleResponse {
+        try await self.modifyWorkflowSchedule(ModifyWorkflowScheduleRequest(projectId: projectId, workflowId: workflowId, delayTime: delayTime, startupTime: startupTime, selfDepend: selfDepend, cycleType: cycleType, cycleStep: cycleStep, startTime: startTime, endTime: endTime, taskAction: taskAction, crontabExpression: crontabExpression, executionStartTime: executionStartTime, executionEndTime: executionEndTime, dependencyWorkflow: dependencyWorkflow), logger: logger, on: eventLoop)
+    }
 }

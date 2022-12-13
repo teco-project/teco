@@ -105,4 +105,16 @@ extension Iotvideo {
     public func describeDeviceEventHistory(_ input: DescribeDeviceEventHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceEventHistoryResponse {
         try await self.client.execute(action: "DescribeDeviceEventHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备的历史事件
+    @inlinable
+    public func describeDeviceEventHistory(productId: String, deviceName: String, type: String? = nil, startTime: UInt64? = nil, endTime: UInt64? = nil, context: String? = nil, size: UInt64? = nil, eventId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceEventHistoryResponse > {
+        self.describeDeviceEventHistory(DescribeDeviceEventHistoryRequest(productId: productId, deviceName: deviceName, type: type, startTime: startTime, endTime: endTime, context: context, size: size, eventId: eventId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备的历史事件
+    @inlinable
+    public func describeDeviceEventHistory(productId: String, deviceName: String, type: String? = nil, startTime: UInt64? = nil, endTime: UInt64? = nil, context: String? = nil, size: UInt64? = nil, eventId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceEventHistoryResponse {
+        try await self.describeDeviceEventHistory(DescribeDeviceEventHistoryRequest(productId: productId, deviceName: deviceName, type: type, startTime: startTime, endTime: endTime, context: context, size: size, eventId: eventId), logger: logger, on: eventLoop)
+    }
 }

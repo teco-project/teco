@@ -82,4 +82,20 @@ extension Dbbrain {
     public func createSecurityAuditLogExportTask(_ input: CreateSecurityAuditLogExportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityAuditLogExportTaskResponse {
         try await self.client.execute(action: "CreateSecurityAuditLogExportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建安全审计日志导出任务
+    ///
+    /// 创建安全审计日志导出任务。
+    @inlinable
+    public func createSecurityAuditLogExportTask(secAuditGroupId: String, startTime: Date, endTime: Date, product: String, dangerLevels: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityAuditLogExportTaskResponse > {
+        self.createSecurityAuditLogExportTask(CreateSecurityAuditLogExportTaskRequest(secAuditGroupId: secAuditGroupId, startTime: startTime, endTime: endTime, product: product, dangerLevels: dangerLevels), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建安全审计日志导出任务
+    ///
+    /// 创建安全审计日志导出任务。
+    @inlinable
+    public func createSecurityAuditLogExportTask(secAuditGroupId: String, startTime: Date, endTime: Date, product: String, dangerLevels: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityAuditLogExportTaskResponse {
+        try await self.createSecurityAuditLogExportTask(CreateSecurityAuditLogExportTaskRequest(secAuditGroupId: secAuditGroupId, startTime: startTime, endTime: endTime, product: product, dangerLevels: dangerLevels), logger: logger, on: eventLoop)
+    }
 }

@@ -69,4 +69,16 @@ extension Eb {
     public func createTarget(_ input: CreateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTargetResponse {
         try await self.client.execute(action: "CreateTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建事件目标
+    @inlinable
+    public func createTarget(eventBusId: String, type: String, targetDescription: TargetDescription, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTargetResponse > {
+        self.createTarget(CreateTargetRequest(eventBusId: eventBusId, type: type, targetDescription: targetDescription, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建事件目标
+    @inlinable
+    public func createTarget(eventBusId: String, type: String, targetDescription: TargetDescription, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTargetResponse {
+        try await self.createTarget(CreateTargetRequest(eventBusId: eventBusId, type: type, targetDescription: targetDescription, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
 }

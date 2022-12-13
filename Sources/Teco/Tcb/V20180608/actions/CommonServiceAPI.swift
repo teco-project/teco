@@ -64,4 +64,16 @@ extension Tcb {
     public func commonServiceAPI(_ input: CommonServiceAPIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommonServiceAPIResponse {
         try await self.client.execute(action: "CommonServiceAPI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// TCB云API统一入口
+    @inlinable
+    public func commonServiceAPI(service: String, jsonData: String? = nil, apiRole: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommonServiceAPIResponse > {
+        self.commonServiceAPI(CommonServiceAPIRequest(service: service, jsonData: jsonData, apiRole: apiRole), logger: logger, on: eventLoop)
+    }
+    
+    /// TCB云API统一入口
+    @inlinable
+    public func commonServiceAPI(service: String, jsonData: String? = nil, apiRole: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommonServiceAPIResponse {
+        try await self.commonServiceAPI(CommonServiceAPIRequest(service: service, jsonData: jsonData, apiRole: apiRole), logger: logger, on: eventLoop)
+    }
 }

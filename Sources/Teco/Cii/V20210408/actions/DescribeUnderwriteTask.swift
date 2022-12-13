@@ -85,4 +85,20 @@ extension Cii {
     public func describeUnderwriteTask(_ input: DescribeUnderwriteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnderwriteTaskResponse {
         try await self.client.execute(action: "DescribeUnderwriteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询核保任务数据
+    ///
+    /// 本接口(DescribeUnderwriteTask)用于查询核保任务结果
+    @inlinable
+    public func describeUnderwriteTask(underwriteTaskId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnderwriteTaskResponse > {
+        self.describeUnderwriteTask(DescribeUnderwriteTaskRequest(underwriteTaskId: underwriteTaskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询核保任务数据
+    ///
+    /// 本接口(DescribeUnderwriteTask)用于查询核保任务结果
+    @inlinable
+    public func describeUnderwriteTask(underwriteTaskId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnderwriteTaskResponse {
+        try await self.describeUnderwriteTask(DescribeUnderwriteTaskRequest(underwriteTaskId: underwriteTaskId), logger: logger, on: eventLoop)
+    }
 }

@@ -64,4 +64,20 @@ extension Iotvideo {
     public func deleteBinding(_ input: DeleteBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBindingResponse {
         try await self.client.execute(action: "DeleteBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 终端用户解绑设备
+    ///
+    /// 本接口（DeleteBinding）用于终端用户和设备进行解绑定。
+    @inlinable
+    public func deleteBinding(accessId: String, tid: String, role: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBindingResponse > {
+        self.deleteBinding(DeleteBindingRequest(accessId: accessId, tid: tid, role: role), logger: logger, on: eventLoop)
+    }
+    
+    /// 终端用户解绑设备
+    ///
+    /// 本接口（DeleteBinding）用于终端用户和设备进行解绑定。
+    @inlinable
+    public func deleteBinding(accessId: String, tid: String, role: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBindingResponse {
+        try await self.deleteBinding(DeleteBindingRequest(accessId: accessId, tid: tid, role: role), logger: logger, on: eventLoop)
+    }
 }

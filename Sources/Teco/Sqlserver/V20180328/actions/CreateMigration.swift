@@ -88,4 +88,20 @@ extension Sqlserver {
     public func createMigration(_ input: CreateMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrationResponse {
         try await self.client.execute(action: "CreateMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建迁移任务
+    ///
+    /// 本接口（CreateMigration）作用是创建一个迁移任务
+    @inlinable
+    public func createMigration(migrateName: String, migrateType: UInt64, sourceType: UInt64, source: MigrateSource, target: MigrateTarget, migrateDBSet: [MigrateDB]? = nil, renameRestore: [RenameRestoreDatabase]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMigrationResponse > {
+        self.createMigration(CreateMigrationRequest(migrateName: migrateName, migrateType: migrateType, sourceType: sourceType, source: source, target: target, migrateDBSet: migrateDBSet, renameRestore: renameRestore), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建迁移任务
+    ///
+    /// 本接口（CreateMigration）作用是创建一个迁移任务
+    @inlinable
+    public func createMigration(migrateName: String, migrateType: UInt64, sourceType: UInt64, source: MigrateSource, target: MigrateTarget, migrateDBSet: [MigrateDB]? = nil, renameRestore: [RenameRestoreDatabase]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrationResponse {
+        try await self.createMigration(CreateMigrationRequest(migrateName: migrateName, migrateType: migrateType, sourceType: sourceType, source: source, target: target, migrateDBSet: migrateDBSet, renameRestore: renameRestore), logger: logger, on: eventLoop)
+    }
 }

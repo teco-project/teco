@@ -55,4 +55,16 @@ extension Iotvideo {
     public func reportAliveDevice(_ input: ReportAliveDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportAliveDeviceResponse {
         try await self.client.execute(action: "ReportAliveDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 上报活跃设备
+    @inlinable
+    public func reportAliveDevice(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportAliveDeviceResponse > {
+        self.reportAliveDevice(ReportAliveDeviceRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 上报活跃设备
+    @inlinable
+    public func reportAliveDevice(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportAliveDeviceResponse {
+        try await self.reportAliveDevice(ReportAliveDeviceRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
 }

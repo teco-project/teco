@@ -89,4 +89,20 @@ extension Dbbrain {
     public func describeSqlTemplate(_ input: DescribeSqlTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlTemplateResponse {
         try await self.client.execute(action: "DescribeSqlTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询SQL模板
+    ///
+    /// 查询SQL模板。
+    @inlinable
+    public func describeSqlTemplate(instanceId: String, schema: String, sqlText: String, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSqlTemplateResponse > {
+        self.describeSqlTemplate(DescribeSqlTemplateRequest(instanceId: instanceId, schema: schema, sqlText: sqlText, product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询SQL模板
+    ///
+    /// 查询SQL模板。
+    @inlinable
+    public func describeSqlTemplate(instanceId: String, schema: String, sqlText: String, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlTemplateResponse {
+        try await self.describeSqlTemplate(DescribeSqlTemplateRequest(instanceId: instanceId, schema: schema, sqlText: sqlText, product: product), logger: logger, on: eventLoop)
+    }
 }

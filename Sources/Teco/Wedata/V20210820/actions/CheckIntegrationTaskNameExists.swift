@@ -73,4 +73,16 @@ extension Wedata {
     public func checkIntegrationTaskNameExists(_ input: CheckIntegrationTaskNameExistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIntegrationTaskNameExistsResponse {
         try await self.client.execute(action: "CheckIntegrationTaskNameExists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 判断集成任务名称是否存在
+    @inlinable
+    public func checkIntegrationTaskNameExists(taskName: String, projectId: String, taskId: String? = nil, syncType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckIntegrationTaskNameExistsResponse > {
+        self.checkIntegrationTaskNameExists(CheckIntegrationTaskNameExistsRequest(taskName: taskName, projectId: projectId, taskId: taskId, syncType: syncType), logger: logger, on: eventLoop)
+    }
+    
+    /// 判断集成任务名称是否存在
+    @inlinable
+    public func checkIntegrationTaskNameExists(taskName: String, projectId: String, taskId: String? = nil, syncType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIntegrationTaskNameExistsResponse {
+        try await self.checkIntegrationTaskNameExists(CheckIntegrationTaskNameExistsRequest(taskName: taskName, projectId: projectId, taskId: taskId, syncType: syncType), logger: logger, on: eventLoop)
+    }
 }

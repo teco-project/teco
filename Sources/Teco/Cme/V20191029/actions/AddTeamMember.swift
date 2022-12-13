@@ -29,7 +29,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以向任意团队中添加成员。如果指定操作者，则操作者必须为管理员或者团队所有者。
         public let `operator`: String?
         
-        public init (platform: String, teamId: String, teamMembers: [AddMemberInfo], `operator`: String? = nil) {
+        public init (platform: String, teamId: String, teamMembers: [AddMemberInfo], operator: String? = nil) {
             self.platform = platform
             self.teamId = teamId
             self.teamMembers = teamMembers
@@ -68,5 +68,21 @@ extension Cme {
     @inlinable
     public func addTeamMember(_ input: AddTeamMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTeamMemberResponse {
         try await self.client.execute(action: "AddTeamMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 添加团队成员
+    ///
+    /// 向一个团队中添加团队成员，并且指定成员的角色。
+    @inlinable
+    public func addTeamMember(platform: String, teamId: String, teamMembers: [AddMemberInfo], operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddTeamMemberResponse > {
+        self.addTeamMember(AddTeamMemberRequest(platform: platform, teamId: teamId, teamMembers: teamMembers, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加团队成员
+    ///
+    /// 向一个团队中添加团队成员，并且指定成员的角色。
+    @inlinable
+    public func addTeamMember(platform: String, teamId: String, teamMembers: [AddMemberInfo], operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTeamMemberResponse {
+        try await self.addTeamMember(AddTeamMemberRequest(platform: platform, teamId: teamId, teamMembers: teamMembers, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

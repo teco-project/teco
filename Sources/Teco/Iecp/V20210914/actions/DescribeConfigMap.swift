@@ -85,4 +85,16 @@ extension Iecp {
     public func describeConfigMap(_ input: DescribeConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapResponse {
         try await self.client.execute(action: "DescribeConfigMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取ConfigMap详情
+    @inlinable
+    public func describeConfigMap(edgeUnitID: UInt64, configMapName: String, configMapNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigMapResponse > {
+        self.describeConfigMap(DescribeConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapNamespace: configMapNamespace), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取ConfigMap详情
+    @inlinable
+    public func describeConfigMap(edgeUnitID: UInt64, configMapName: String, configMapNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapResponse {
+        try await self.describeConfigMap(DescribeConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapNamespace: configMapNamespace), logger: logger, on: eventLoop)
+    }
 }

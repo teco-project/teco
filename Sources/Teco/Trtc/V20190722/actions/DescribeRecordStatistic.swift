@@ -81,4 +81,28 @@ extension Trtc {
     public func describeRecordStatistic(_ input: DescribeRecordStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordStatisticResponse {
         try await self.client.execute(action: "DescribeRecordStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询云端录制计费时长（旧）
+    ///
+    /// 查询云端录制计费时长。
+    /// - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
+    /// - 单次查询统计区间最多不能超过31天。
+    /// - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
+    /// - 日结后付费将于次日上午推送账单，建议次日上午9点以后再来查询前一天的用量。
+    @inlinable
+    public func describeRecordStatistic(startTime: Date, endTime: Date, sdkAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordStatisticResponse > {
+        self.describeRecordStatistic(DescribeRecordStatisticRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云端录制计费时长（旧）
+    ///
+    /// 查询云端录制计费时长。
+    /// - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
+    /// - 单次查询统计区间最多不能超过31天。
+    /// - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
+    /// - 日结后付费将于次日上午推送账单，建议次日上午9点以后再来查询前一天的用量。
+    @inlinable
+    public func describeRecordStatistic(startTime: Date, endTime: Date, sdkAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordStatisticResponse {
+        try await self.describeRecordStatistic(DescribeRecordStatisticRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    }
 }

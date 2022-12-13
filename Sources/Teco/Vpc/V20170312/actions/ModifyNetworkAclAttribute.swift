@@ -59,4 +59,20 @@ extension Vpc {
     public func modifyNetworkAclAttribute(_ input: ModifyNetworkAclAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclAttributeResponse {
         try await self.client.execute(action: "ModifyNetworkAclAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改网络ACL属性
+    ///
+    /// 本接口（ModifyNetworkAclAttribute）用于修改网络ACL属性。
+    @inlinable
+    public func modifyNetworkAclAttribute(networkAclId: String, networkAclName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetworkAclAttributeResponse > {
+        self.modifyNetworkAclAttribute(ModifyNetworkAclAttributeRequest(networkAclId: networkAclId, networkAclName: networkAclName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改网络ACL属性
+    ///
+    /// 本接口（ModifyNetworkAclAttribute）用于修改网络ACL属性。
+    @inlinable
+    public func modifyNetworkAclAttribute(networkAclId: String, networkAclName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclAttributeResponse {
+        try await self.modifyNetworkAclAttribute(ModifyNetworkAclAttributeRequest(networkAclId: networkAclId, networkAclName: networkAclName), logger: logger, on: eventLoop)
+    }
 }

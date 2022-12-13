@@ -88,4 +88,20 @@ extension Cvm {
     public func exportImages(_ input: ExportImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportImagesResponse {
         try await self.client.execute(action: "ExportImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导出自定义镜像
+    ///
+    /// 提供导出自定义镜像到指定COS存储桶的能力
+    @inlinable
+    public func exportImages(bucketName: String, imageIds: [String]? = nil, exportFormat: String? = nil, fileNamePrefixList: [String]? = nil, onlyExportRootDisk: Bool? = nil, dryRun: Bool? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportImagesResponse > {
+        self.exportImages(ExportImagesRequest(bucketName: bucketName, imageIds: imageIds, exportFormat: exportFormat, fileNamePrefixList: fileNamePrefixList, onlyExportRootDisk: onlyExportRootDisk, dryRun: dryRun, roleName: roleName), logger: logger, on: eventLoop)
+    }
+    
+    /// 导出自定义镜像
+    ///
+    /// 提供导出自定义镜像到指定COS存储桶的能力
+    @inlinable
+    public func exportImages(bucketName: String, imageIds: [String]? = nil, exportFormat: String? = nil, fileNamePrefixList: [String]? = nil, onlyExportRootDisk: Bool? = nil, dryRun: Bool? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportImagesResponse {
+        try await self.exportImages(ExportImagesRequest(bucketName: bucketName, imageIds: imageIds, exportFormat: exportFormat, fileNamePrefixList: fileNamePrefixList, onlyExportRootDisk: onlyExportRootDisk, dryRun: dryRun, roleName: roleName), logger: logger, on: eventLoop)
+    }
 }

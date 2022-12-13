@@ -56,4 +56,22 @@ extension Dc {
     public func deleteDirectConnect(_ input: DeleteDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectResponse {
         try await self.client.execute(action: "DeleteDirectConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除物理专线
+    ///
+    /// 删除物理专线。
+    /// 只能删除处于已连接状态的物理专线。
+    @inlinable
+    public func deleteDirectConnect(directConnectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDirectConnectResponse > {
+        self.deleteDirectConnect(DeleteDirectConnectRequest(directConnectId: directConnectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除物理专线
+    ///
+    /// 删除物理专线。
+    /// 只能删除处于已连接状态的物理专线。
+    @inlinable
+    public func deleteDirectConnect(directConnectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectResponse {
+        try await self.deleteDirectConnect(DeleteDirectConnectRequest(directConnectId: directConnectId), logger: logger, on: eventLoop)
+    }
 }

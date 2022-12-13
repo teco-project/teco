@@ -89,4 +89,20 @@ extension Tms {
     public func accountTipoffAccess(_ input: AccountTipoffAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AccountTipoffAccessResponse {
         try await self.client.execute(action: "AccountTipoffAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 账号举报接口
+    ///
+    /// 举报恶意账号
+    @inlinable
+    public func accountTipoffAccess(reportedAccount: String, reportedAccountType: Int64, evilType: Int64, senderAccount: String? = nil, senderAccountType: Int64? = nil, senderIP: String? = nil, evilContent: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AccountTipoffAccessResponse > {
+        self.accountTipoffAccess(AccountTipoffAccessRequest(reportedAccount: reportedAccount, reportedAccountType: reportedAccountType, evilType: evilType, senderAccount: senderAccount, senderAccountType: senderAccountType, senderIP: senderIP, evilContent: evilContent), logger: logger, on: eventLoop)
+    }
+    
+    /// 账号举报接口
+    ///
+    /// 举报恶意账号
+    @inlinable
+    public func accountTipoffAccess(reportedAccount: String, reportedAccountType: Int64, evilType: Int64, senderAccount: String? = nil, senderAccountType: Int64? = nil, senderIP: String? = nil, evilContent: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AccountTipoffAccessResponse {
+        try await self.accountTipoffAccess(AccountTipoffAccessRequest(reportedAccount: reportedAccount, reportedAccountType: reportedAccountType, evilType: evilType, senderAccount: senderAccount, senderAccountType: senderAccountType, senderIP: senderIP, evilContent: evilContent), logger: logger, on: eventLoop)
+    }
 }

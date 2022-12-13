@@ -85,4 +85,16 @@ extension Tsf {
     public func describeFileConfigs(_ input: DescribeFileConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileConfigsResponse {
         try await self.client.execute(action: "DescribeFileConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询文件配置项列表
+    @inlinable
+    public func describeFileConfigs(configId: String? = nil, configIdList: [String]? = nil, configName: String? = nil, applicationId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, configVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileConfigsResponse > {
+        self.describeFileConfigs(DescribeFileConfigsRequest(configId: configId, configIdList: configIdList, configName: configName, applicationId: applicationId, offset: offset, limit: limit, configVersion: configVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文件配置项列表
+    @inlinable
+    public func describeFileConfigs(configId: String? = nil, configIdList: [String]? = nil, configName: String? = nil, applicationId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, configVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileConfigsResponse {
+        try await self.describeFileConfigs(DescribeFileConfigsRequest(configId: configId, configIdList: configIdList, configName: configName, applicationId: applicationId, offset: offset, limit: limit, configVersion: configVersion), logger: logger, on: eventLoop)
+    }
 }

@@ -64,4 +64,20 @@ extension Tcr {
     public func deleteImmutableTagRules(_ input: DeleteImmutableTagRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImmutableTagRulesResponse {
         try await self.client.execute(action: "DeleteImmutableTagRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除镜像不可变规则
+    ///
+    ///  删除镜像不可变规则
+    @inlinable
+    public func deleteImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImmutableTagRulesResponse > {
+        self.deleteImmutableTagRules(DeleteImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除镜像不可变规则
+    ///
+    ///  删除镜像不可变规则
+    @inlinable
+    public func deleteImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImmutableTagRulesResponse {
+        try await self.deleteImmutableTagRules(DeleteImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
 }

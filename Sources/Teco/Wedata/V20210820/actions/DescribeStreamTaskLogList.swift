@@ -100,4 +100,16 @@ extension Wedata {
     public func describeStreamTaskLogList(_ input: DescribeStreamTaskLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamTaskLogListResponse {
         try await self.client.execute(action: "DescribeStreamTaskLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实时任务日志列表
+    @inlinable
+    public func describeStreamTaskLogList(projectId: String, taskId: String, jobId: String, endTime: UInt64, startTime: UInt64, container: String? = nil, limit: UInt64? = nil, orderType: String? = nil, runningOrderId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamTaskLogListResponse > {
+        self.describeStreamTaskLogList(DescribeStreamTaskLogListRequest(projectId: projectId, taskId: taskId, jobId: jobId, endTime: endTime, startTime: startTime, container: container, limit: limit, orderType: orderType, runningOrderId: runningOrderId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实时任务日志列表
+    @inlinable
+    public func describeStreamTaskLogList(projectId: String, taskId: String, jobId: String, endTime: UInt64, startTime: UInt64, container: String? = nil, limit: UInt64? = nil, orderType: String? = nil, runningOrderId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamTaskLogListResponse {
+        try await self.describeStreamTaskLogList(DescribeStreamTaskLogListRequest(projectId: projectId, taskId: taskId, jobId: jobId, endTime: endTime, startTime: startTime, container: container, limit: limit, orderType: orderType, runningOrderId: runningOrderId), logger: logger, on: eventLoop)
+    }
 }

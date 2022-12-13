@@ -127,4 +127,20 @@ extension Vod {
     public func modifyImageSpriteTemplate(_ input: ModifyImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageSpriteTemplateResponse {
         try await self.client.execute(action: "ModifyImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改雪碧图模板
+    ///
+    /// 修改用户自定义雪碧图模板。
+    @inlinable
+    public func modifyImageSpriteTemplate(definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, sampleType: String? = nil, sampleInterval: UInt64? = nil, rowCount: UInt64? = nil, columnCount: UInt64? = nil, fillType: String? = nil, comment: String? = nil, format: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyImageSpriteTemplateResponse > {
+        self.modifyImageSpriteTemplate(ModifyImageSpriteTemplateRequest(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, sampleType: sampleType, sampleInterval: sampleInterval, rowCount: rowCount, columnCount: columnCount, fillType: fillType, comment: comment, format: format), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改雪碧图模板
+    ///
+    /// 修改用户自定义雪碧图模板。
+    @inlinable
+    public func modifyImageSpriteTemplate(definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, sampleType: String? = nil, sampleInterval: UInt64? = nil, rowCount: UInt64? = nil, columnCount: UInt64? = nil, fillType: String? = nil, comment: String? = nil, format: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageSpriteTemplateResponse {
+        try await self.modifyImageSpriteTemplate(ModifyImageSpriteTemplateRequest(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, sampleType: sampleType, sampleInterval: sampleInterval, rowCount: rowCount, columnCount: columnCount, fillType: fillType, comment: comment, format: format), logger: logger, on: eventLoop)
+    }
 }

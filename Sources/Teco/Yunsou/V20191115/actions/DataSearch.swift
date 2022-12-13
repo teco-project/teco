@@ -168,4 +168,20 @@ extension Yunsou {
     public func dataSearch(_ input: DataSearchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DataSearchResponse {
         try await self.client.execute(action: "DataSearch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 数据检索接口
+    ///
+    /// 用于检索云搜中的数据。
+    @inlinable
+    public func dataSearch(resourceId: UInt64, searchQuery: String? = nil, pageId: UInt64? = nil, numPerPage: UInt64? = nil, searchId: String? = nil, queryEncode: UInt64? = nil, rankType: UInt64? = nil, numFilter: String? = nil, clFilter: String? = nil, extra: String? = nil, sourceId: UInt64? = nil, secondSearch: UInt64? = nil, maxDocReturn: UInt64? = nil, isSmartbox: UInt64? = nil, enableAbsHighlight: UInt64? = nil, qcBid: UInt64? = nil, groupBy: String? = nil, distinct: String? = nil, l4RankExpression: String? = nil, matchValue: String? = nil, longitude: Float? = nil, latitude: Float? = nil, multiFilter: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DataSearchResponse > {
+        self.dataSearch(DataSearchRequest(resourceId: resourceId, searchQuery: searchQuery, pageId: pageId, numPerPage: numPerPage, searchId: searchId, queryEncode: queryEncode, rankType: rankType, numFilter: numFilter, clFilter: clFilter, extra: extra, sourceId: sourceId, secondSearch: secondSearch, maxDocReturn: maxDocReturn, isSmartbox: isSmartbox, enableAbsHighlight: enableAbsHighlight, qcBid: qcBid, groupBy: groupBy, distinct: distinct, l4RankExpression: l4RankExpression, matchValue: matchValue, longitude: longitude, latitude: latitude, multiFilter: multiFilter), logger: logger, on: eventLoop)
+    }
+    
+    /// 数据检索接口
+    ///
+    /// 用于检索云搜中的数据。
+    @inlinable
+    public func dataSearch(resourceId: UInt64, searchQuery: String? = nil, pageId: UInt64? = nil, numPerPage: UInt64? = nil, searchId: String? = nil, queryEncode: UInt64? = nil, rankType: UInt64? = nil, numFilter: String? = nil, clFilter: String? = nil, extra: String? = nil, sourceId: UInt64? = nil, secondSearch: UInt64? = nil, maxDocReturn: UInt64? = nil, isSmartbox: UInt64? = nil, enableAbsHighlight: UInt64? = nil, qcBid: UInt64? = nil, groupBy: String? = nil, distinct: String? = nil, l4RankExpression: String? = nil, matchValue: String? = nil, longitude: Float? = nil, latitude: Float? = nil, multiFilter: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DataSearchResponse {
+        try await self.dataSearch(DataSearchRequest(resourceId: resourceId, searchQuery: searchQuery, pageId: pageId, numPerPage: numPerPage, searchId: searchId, queryEncode: queryEncode, rankType: rankType, numFilter: numFilter, clFilter: clFilter, extra: extra, sourceId: sourceId, secondSearch: secondSearch, maxDocReturn: maxDocReturn, isSmartbox: isSmartbox, enableAbsHighlight: enableAbsHighlight, qcBid: qcBid, groupBy: groupBy, distinct: distinct, l4RankExpression: l4RankExpression, matchValue: matchValue, longitude: longitude, latitude: latitude, multiFilter: multiFilter), logger: logger, on: eventLoop)
+    }
 }

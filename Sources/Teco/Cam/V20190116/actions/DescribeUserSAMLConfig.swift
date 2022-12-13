@@ -50,4 +50,16 @@ extension Cam {
     public func describeUserSAMLConfig(_ input: DescribeUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSAMLConfigResponse {
         try await self.client.execute(action: "DescribeUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询用户SAML配置
+    @inlinable
+    public func describeUserSAMLConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserSAMLConfigResponse > {
+        self.describeUserSAMLConfig(DescribeUserSAMLConfigRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户SAML配置
+    @inlinable
+    public func describeUserSAMLConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSAMLConfigResponse {
+        try await self.describeUserSAMLConfig(DescribeUserSAMLConfigRequest(), logger: logger, on: eventLoop)
+    }
 }

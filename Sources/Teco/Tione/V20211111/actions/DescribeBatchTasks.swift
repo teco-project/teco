@@ -94,4 +94,20 @@ extension Tione {
     public func describeBatchTasks(_ input: DescribeBatchTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTasksResponse {
         try await self.client.execute(action: "DescribeBatchTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 跑批任务列表
+    ///
+    /// 批量预测任务列表信息
+    @inlinable
+    public func describeBatchTasks(filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchTasksResponse > {
+        self.describeBatchTasks(DescribeBatchTasksRequest(filters: filters, tagFilters: tagFilters, offset: offset, limit: limit, order: order, orderField: orderField), logger: logger, on: eventLoop)
+    }
+    
+    /// 跑批任务列表
+    ///
+    /// 批量预测任务列表信息
+    @inlinable
+    public func describeBatchTasks(filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTasksResponse {
+        try await self.describeBatchTasks(DescribeBatchTasksRequest(filters: filters, tagFilters: tagFilters, offset: offset, limit: limit, order: order, orderField: orderField), logger: logger, on: eventLoop)
+    }
 }

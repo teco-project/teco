@@ -69,4 +69,20 @@ extension Lighthouse {
     public func describeGeneralResourceQuotas(_ input: DescribeGeneralResourceQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralResourceQuotasResponse {
         try await self.client.execute(action: "DescribeGeneralResourceQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询通用资源配额信息
+    ///
+    /// 本接口（DescribeGeneralResourceQuotas）用于查询通用资源配额信息。
+    @inlinable
+    public func describeGeneralResourceQuotas(resourceNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGeneralResourceQuotasResponse > {
+        self.describeGeneralResourceQuotas(DescribeGeneralResourceQuotasRequest(resourceNames: resourceNames), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询通用资源配额信息
+    ///
+    /// 本接口（DescribeGeneralResourceQuotas）用于查询通用资源配额信息。
+    @inlinable
+    public func describeGeneralResourceQuotas(resourceNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralResourceQuotasResponse {
+        try await self.describeGeneralResourceQuotas(DescribeGeneralResourceQuotasRequest(resourceNames: resourceNames), logger: logger, on: eventLoop)
+    }
 }

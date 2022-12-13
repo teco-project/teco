@@ -70,4 +70,16 @@ extension Iotcloud {
     public func describePushResourceTaskStatistics(_ input: DescribePushResourceTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushResourceTaskStatisticsResponse {
         try await self.client.execute(action: "DescribePushResourceTaskStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询推送资源任务统计信息
+    @inlinable
+    public func describePushResourceTaskStatistics(productID: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePushResourceTaskStatisticsResponse > {
+        self.describePushResourceTaskStatistics(DescribePushResourceTaskStatisticsRequest(productID: productID, name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询推送资源任务统计信息
+    @inlinable
+    public func describePushResourceTaskStatistics(productID: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushResourceTaskStatisticsResponse {
+        try await self.describePushResourceTaskStatistics(DescribePushResourceTaskStatisticsRequest(productID: productID, name: name), logger: logger, on: eventLoop)
+    }
 }

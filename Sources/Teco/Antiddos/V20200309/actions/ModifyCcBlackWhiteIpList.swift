@@ -65,4 +65,16 @@ extension Antiddos {
     public func modifyCcBlackWhiteIpList(_ input: ModifyCcBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcBlackWhiteIpListResponse {
         try await self.client.execute(action: "ModifyCcBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改CC四层黑白名单
+    @inlinable
+    public func modifyCcBlackWhiteIpList(instanceId: String, ipList: [IpSegment], type: String, policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCcBlackWhiteIpListResponse > {
+        self.modifyCcBlackWhiteIpList(ModifyCcBlackWhiteIpListRequest(instanceId: instanceId, ipList: ipList, type: type, policyId: policyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CC四层黑白名单
+    @inlinable
+    public func modifyCcBlackWhiteIpList(instanceId: String, ipList: [IpSegment], type: String, policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcBlackWhiteIpListResponse {
+        try await self.modifyCcBlackWhiteIpList(ModifyCcBlackWhiteIpListRequest(instanceId: instanceId, ipList: ipList, type: type, policyId: policyId), logger: logger, on: eventLoop)
+    }
 }

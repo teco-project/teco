@@ -79,4 +79,16 @@ extension Teo {
     public func describeSecurityRuleId(_ input: DescribeSecurityRuleIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityRuleIdResponse {
         try await self.client.execute(action: "DescribeSecurityRuleId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询安全规则详情
+    @inlinable
+    public func describeSecurityRuleId(ruleType: String, entity: String? = nil, ruleIdList: [Int64]? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityRuleIdResponse > {
+        self.describeSecurityRuleId(DescribeSecurityRuleIdRequest(ruleType: ruleType, entity: entity, ruleIdList: ruleIdList, domains: domains), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全规则详情
+    @inlinable
+    public func describeSecurityRuleId(ruleType: String, entity: String? = nil, ruleIdList: [Int64]? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityRuleIdResponse {
+        try await self.describeSecurityRuleId(DescribeSecurityRuleIdRequest(ruleType: ruleType, entity: entity, ruleIdList: ruleIdList, domains: domains), logger: logger, on: eventLoop)
+    }
 }

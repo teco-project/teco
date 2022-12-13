@@ -96,4 +96,16 @@ extension Cpdp {
     public func createAnchor(_ input: CreateAnchorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnchorResponse {
         try await self.client.execute(action: "CreateAnchor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 直播平台-主播入驻
+    @inlinable
+    public func createAnchor(anchorUid: String, anchorName: String, anchorPhone: String, anchorEmail: String, anchorAddress: String, anchorIdNo: String, anchorType: String, anchorExtendInfo: [AnchorExtendInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAnchorResponse > {
+        self.createAnchor(CreateAnchorRequest(anchorUid: anchorUid, anchorName: anchorName, anchorPhone: anchorPhone, anchorEmail: anchorEmail, anchorAddress: anchorAddress, anchorIdNo: anchorIdNo, anchorType: anchorType, anchorExtendInfo: anchorExtendInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 直播平台-主播入驻
+    @inlinable
+    public func createAnchor(anchorUid: String, anchorName: String, anchorPhone: String, anchorEmail: String, anchorAddress: String, anchorIdNo: String, anchorType: String, anchorExtendInfo: [AnchorExtendInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnchorResponse {
+        try await self.createAnchor(CreateAnchorRequest(anchorUid: anchorUid, anchorName: anchorName, anchorPhone: anchorPhone, anchorEmail: anchorEmail, anchorAddress: anchorAddress, anchorIdNo: anchorIdNo, anchorType: anchorType, anchorExtendInfo: anchorExtendInfo), logger: logger, on: eventLoop)
+    }
 }

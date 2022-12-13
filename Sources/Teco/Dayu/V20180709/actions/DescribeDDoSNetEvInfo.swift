@@ -133,4 +133,16 @@ extension Dayu {
     public func describeDDoSNetEvInfo(_ input: DescribeDDoSNetEvInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetEvInfoResponse {
         try await self.client.execute(action: "DescribeDDoSNetEvInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取高防IP专业版资源的DDoS攻击事件详情
+    @inlinable
+    public func describeDDoSNetEvInfo(business: String, id: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSNetEvInfoResponse > {
+        self.describeDDoSNetEvInfo(DescribeDDoSNetEvInfoRequest(business: business, id: id, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取高防IP专业版资源的DDoS攻击事件详情
+    @inlinable
+    public func describeDDoSNetEvInfo(business: String, id: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetEvInfoResponse {
+        try await self.describeDDoSNetEvInfo(DescribeDDoSNetEvInfoRequest(business: business, id: id, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

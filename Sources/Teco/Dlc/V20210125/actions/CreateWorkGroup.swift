@@ -69,4 +69,16 @@ extension Dlc {
     public func createWorkGroup(_ input: CreateWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkGroupResponse {
         try await self.client.execute(action: "CreateWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建工作组
+    @inlinable
+    public func createWorkGroup(workGroupName: String, workGroupDescription: String? = nil, policySet: [Policy]? = nil, userIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkGroupResponse > {
+        self.createWorkGroup(CreateWorkGroupRequest(workGroupName: workGroupName, workGroupDescription: workGroupDescription, policySet: policySet, userIds: userIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建工作组
+    @inlinable
+    public func createWorkGroup(workGroupName: String, workGroupDescription: String? = nil, policySet: [Policy]? = nil, userIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkGroupResponse {
+        try await self.createWorkGroup(CreateWorkGroupRequest(workGroupName: workGroupName, workGroupDescription: workGroupDescription, policySet: policySet, userIds: userIds), logger: logger, on: eventLoop)
+    }
 }

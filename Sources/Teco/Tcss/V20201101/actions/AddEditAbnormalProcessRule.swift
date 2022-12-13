@@ -59,4 +59,20 @@ extension Tcss {
     public func addEditAbnormalProcessRule(_ input: AddEditAbnormalProcessRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditAbnormalProcessRuleResponse {
         try await self.client.execute(action: "AddEditAbnormalProcessRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加编辑异常进程策略
+    ///
+    /// 添加编辑运行时异常进程策略
+    @inlinable
+    public func addEditAbnormalProcessRule(ruleInfo: AbnormalProcessRuleInfo, eventId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddEditAbnormalProcessRuleResponse > {
+        self.addEditAbnormalProcessRule(AddEditAbnormalProcessRuleRequest(ruleInfo: ruleInfo, eventId: eventId), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加编辑异常进程策略
+    ///
+    /// 添加编辑运行时异常进程策略
+    @inlinable
+    public func addEditAbnormalProcessRule(ruleInfo: AbnormalProcessRuleInfo, eventId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditAbnormalProcessRuleResponse {
+        try await self.addEditAbnormalProcessRule(AddEditAbnormalProcessRuleRequest(ruleInfo: ruleInfo, eventId: eventId), logger: logger, on: eventLoop)
+    }
 }

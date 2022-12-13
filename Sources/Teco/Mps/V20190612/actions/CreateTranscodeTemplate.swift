@@ -104,4 +104,20 @@ extension Mps {
     public func createTranscodeTemplate(_ input: CreateTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTranscodeTemplateResponse {
         try await self.client.execute(action: "CreateTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建转码模板
+    ///
+    /// 创建用户自定义转码模板，数量上限：1000。
+    @inlinable
+    public func createTranscodeTemplate(container: String, name: String? = nil, comment: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoTemplate: VideoTemplateInfo? = nil, audioTemplate: AudioTemplateInfo? = nil, tehdConfig: TEHDConfig? = nil, enhanceConfig: EnhanceConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTranscodeTemplateResponse > {
+        self.createTranscodeTemplate(CreateTranscodeTemplateRequest(container: container, name: name, comment: comment, removeVideo: removeVideo, removeAudio: removeAudio, videoTemplate: videoTemplate, audioTemplate: audioTemplate, tehdConfig: tehdConfig, enhanceConfig: enhanceConfig), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建转码模板
+    ///
+    /// 创建用户自定义转码模板，数量上限：1000。
+    @inlinable
+    public func createTranscodeTemplate(container: String, name: String? = nil, comment: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoTemplate: VideoTemplateInfo? = nil, audioTemplate: AudioTemplateInfo? = nil, tehdConfig: TEHDConfig? = nil, enhanceConfig: EnhanceConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTranscodeTemplateResponse {
+        try await self.createTranscodeTemplate(CreateTranscodeTemplateRequest(container: container, name: name, comment: comment, removeVideo: removeVideo, removeAudio: removeAudio, videoTemplate: videoTemplate, audioTemplate: audioTemplate, tehdConfig: tehdConfig, enhanceConfig: enhanceConfig), logger: logger, on: eventLoop)
+    }
 }

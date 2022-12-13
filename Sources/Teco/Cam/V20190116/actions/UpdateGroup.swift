@@ -60,4 +60,16 @@ extension Cam {
     public func updateGroup(_ input: UpdateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGroupResponse {
         try await self.client.execute(action: "UpdateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新用户组
+    @inlinable
+    public func updateGroup(groupId: UInt64, groupName: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGroupResponse > {
+        self.updateGroup(UpdateGroupRequest(groupId: groupId, groupName: groupName, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新用户组
+    @inlinable
+    public func updateGroup(groupId: UInt64, groupName: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGroupResponse {
+        try await self.updateGroup(UpdateGroupRequest(groupId: groupId, groupName: groupName, remark: remark), logger: logger, on: eventLoop)
+    }
 }

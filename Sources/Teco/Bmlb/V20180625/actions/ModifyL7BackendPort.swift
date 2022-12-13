@@ -93,4 +93,20 @@ extension Bmlb {
     public func modifyL7BackendPort(_ input: ModifyL7BackendPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7BackendPortResponse {
         try await self.client.execute(action: "ModifyL7BackendPort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改黑石负载均衡七层转发路径后端实例端口
+    ///
+    /// 修改黑石负载均衡七层转发路径后端实例端口。
+    @inlinable
+    public func modifyL7BackendPort(loadBalancerId: String, listenerId: String, domainId: String, locationId: String, instanceId: String, port: Int64, newPort: Int64, bindType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL7BackendPortResponse > {
+        self.modifyL7BackendPort(ModifyL7BackendPortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, instanceId: instanceId, port: port, newPort: newPort, bindType: bindType), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改黑石负载均衡七层转发路径后端实例端口
+    ///
+    /// 修改黑石负载均衡七层转发路径后端实例端口。
+    @inlinable
+    public func modifyL7BackendPort(loadBalancerId: String, listenerId: String, domainId: String, locationId: String, instanceId: String, port: Int64, newPort: Int64, bindType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7BackendPortResponse {
+        try await self.modifyL7BackendPort(ModifyL7BackendPortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, instanceId: instanceId, port: port, newPort: newPort, bindType: bindType), logger: logger, on: eventLoop)
+    }
 }

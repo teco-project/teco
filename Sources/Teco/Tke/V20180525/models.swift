@@ -1368,7 +1368,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let constraint: String?
         
-        public init (name: String? = nil, type: String? = nil, usage: String? = nil, `default`: String? = nil, constraint: String? = nil) {
+        public init (name: String? = nil, type: String? = nil, usage: String? = nil, default: String? = nil, constraint: String? = nil) {
             self.name = name
             self.type = type
             self.usage = usage
@@ -3284,7 +3284,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleState: Int64?
         
-        public init (name: String, rule: String, labels: [Label], template: String, `for`: String, describe: String? = nil, annotations: [Label]? = nil, ruleState: Int64? = nil) {
+        public init (name: String, rule: String, labels: [Label], template: String, for: String, describe: String? = nil, annotations: [Label]? = nil, ruleState: Int64? = nil) {
             self.name = name
             self.rule = rule
             self.labels = labels
@@ -4852,7 +4852,7 @@ extension Tke {
         /// 要匹配的污点效果
         public let effect: String?
         
-        public init (key: String? = nil, `operator`: String? = nil, effect: String? = nil) {
+        public init (key: String? = nil, operator: String? = nil, effect: String? = nil) {
             self.key = key
             self.`operator` = `operator`
             self.effect = effect

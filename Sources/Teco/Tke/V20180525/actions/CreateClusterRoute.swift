@@ -60,4 +60,16 @@ extension Tke {
     public func createClusterRoute(_ input: CreateClusterRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterRouteResponse {
         try await self.client.execute(action: "CreateClusterRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建集群路由
+    @inlinable
+    public func createClusterRoute(routeTableName: String, destinationCidrBlock: String, gatewayIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterRouteResponse > {
+        self.createClusterRoute(CreateClusterRouteRequest(routeTableName: routeTableName, destinationCidrBlock: destinationCidrBlock, gatewayIp: gatewayIp), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群路由
+    @inlinable
+    public func createClusterRoute(routeTableName: String, destinationCidrBlock: String, gatewayIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterRouteResponse {
+        try await self.createClusterRoute(CreateClusterRouteRequest(routeTableName: routeTableName, destinationCidrBlock: destinationCidrBlock, gatewayIp: gatewayIp), logger: logger, on: eventLoop)
+    }
 }

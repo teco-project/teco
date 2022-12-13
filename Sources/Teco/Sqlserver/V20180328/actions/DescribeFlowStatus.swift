@@ -58,4 +58,20 @@ extension Sqlserver {
     public func describeFlowStatus(_ input: DescribeFlowStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowStatusResponse {
         try await self.client.execute(action: "DescribeFlowStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询流程状态
+    ///
+    /// 本接口(DescribeFlowStatus)用于查询流程状态。
+    @inlinable
+    public func describeFlowStatus(flowId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowStatusResponse > {
+        self.describeFlowStatus(DescribeFlowStatusRequest(flowId: flowId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流程状态
+    ///
+    /// 本接口(DescribeFlowStatus)用于查询流程状态。
+    @inlinable
+    public func describeFlowStatus(flowId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowStatusResponse {
+        try await self.describeFlowStatus(DescribeFlowStatusRequest(flowId: flowId), logger: logger, on: eventLoop)
+    }
 }

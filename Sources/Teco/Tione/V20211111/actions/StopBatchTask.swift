@@ -50,4 +50,16 @@ extension Tione {
     public func stopBatchTask(_ input: StopBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopBatchTaskResponse {
         try await self.client.execute(action: "StopBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停止跑批任务
+    @inlinable
+    public func stopBatchTask(batchTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopBatchTaskResponse > {
+        self.stopBatchTask(StopBatchTaskRequest(batchTaskId: batchTaskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 停止跑批任务
+    @inlinable
+    public func stopBatchTask(batchTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopBatchTaskResponse {
+        try await self.stopBatchTask(StopBatchTaskRequest(batchTaskId: batchTaskId), logger: logger, on: eventLoop)
+    }
 }

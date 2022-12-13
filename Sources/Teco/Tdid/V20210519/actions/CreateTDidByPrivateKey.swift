@@ -64,4 +64,16 @@ extension Tdid {
     public func createTDidByPrivateKey(_ input: CreateTDidByPrivateKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPrivateKeyResponse {
         try await self.client.execute(action: "CreateTDidByPrivateKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新建DID根据私钥生成Tdid
+    @inlinable
+    public func createTDidByPrivateKey(clusterId: String, groupId: UInt64, privateKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTDidByPrivateKeyResponse > {
+        self.createTDidByPrivateKey(CreateTDidByPrivateKeyRequest(clusterId: clusterId, groupId: groupId, privateKey: privateKey), logger: logger, on: eventLoop)
+    }
+    
+    /// 新建DID根据私钥生成Tdid
+    @inlinable
+    public func createTDidByPrivateKey(clusterId: String, groupId: UInt64, privateKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPrivateKeyResponse {
+        try await self.createTDidByPrivateKey(CreateTDidByPrivateKeyRequest(clusterId: clusterId, groupId: groupId, privateKey: privateKey), logger: logger, on: eventLoop)
+    }
 }

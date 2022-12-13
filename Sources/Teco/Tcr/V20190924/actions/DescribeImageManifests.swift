@@ -73,4 +73,16 @@ extension Tcr {
     public func describeImageManifests(_ input: DescribeImageManifestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageManifestsResponse {
         try await self.client.execute(action: "DescribeImageManifests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询容器镜像Manifest信息
+    @inlinable
+    public func describeImageManifests(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageManifestsResponse > {
+        self.describeImageManifests(DescribeImageManifestsRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器镜像Manifest信息
+    @inlinable
+    public func describeImageManifests(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageManifestsResponse {
+        try await self.describeImageManifests(DescribeImageManifestsRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion), logger: logger, on: eventLoop)
+    }
 }

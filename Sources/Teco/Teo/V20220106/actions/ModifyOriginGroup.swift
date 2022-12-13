@@ -85,4 +85,16 @@ extension Teo {
     public func modifyOriginGroup(_ input: ModifyOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOriginGroupResponse {
         try await self.client.execute(action: "ModifyOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 源站组修改
+    @inlinable
+    public func modifyOriginGroup(originId: String, originName: String, type: String, record: [OriginRecord], zoneId: String, originType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyOriginGroupResponse > {
+        self.modifyOriginGroup(ModifyOriginGroupRequest(originId: originId, originName: originName, type: type, record: record, zoneId: zoneId, originType: originType), logger: logger, on: eventLoop)
+    }
+    
+    /// 源站组修改
+    @inlinable
+    public func modifyOriginGroup(originId: String, originName: String, type: String, record: [OriginRecord], zoneId: String, originType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOriginGroupResponse {
+        try await self.modifyOriginGroup(ModifyOriginGroupRequest(originId: originId, originName: originName, type: type, record: record, zoneId: zoneId, originType: originType), logger: logger, on: eventLoop)
+    }
 }

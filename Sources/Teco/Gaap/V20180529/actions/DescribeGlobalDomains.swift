@@ -79,4 +79,16 @@ extension Gaap {
     public func describeGlobalDomains(_ input: DescribeGlobalDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGlobalDomainsResponse {
         try await self.client.execute(action: "DescribeGlobalDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询域名列表
+    @inlinable
+    public func describeGlobalDomains(projectId: Int64, offset: UInt64, limit: UInt64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGlobalDomainsResponse > {
+        self.describeGlobalDomains(DescribeGlobalDomainsRequest(projectId: projectId, offset: offset, limit: limit, filters: filters, tagSet: tagSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询域名列表
+    @inlinable
+    public func describeGlobalDomains(projectId: Int64, offset: UInt64, limit: UInt64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGlobalDomainsResponse {
+        try await self.describeGlobalDomains(DescribeGlobalDomainsRequest(projectId: projectId, offset: offset, limit: limit, filters: filters, tagSet: tagSet), logger: logger, on: eventLoop)
+    }
 }

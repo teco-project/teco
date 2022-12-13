@@ -78,4 +78,20 @@ extension Zj {
     public func getCrowdPackList(_ input: GetCrowdPackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCrowdPackListResponse {
         try await self.client.execute(action: "GetCrowdPackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取人群包列表
+    ///
+    /// 获取人群包列表接口
+    @inlinable
+    public func getCrowdPackList(license: String, offset: Int64, limit: Int64, name: String? = nil, status: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCrowdPackListResponse > {
+        self.getCrowdPackList(GetCrowdPackListRequest(license: license, offset: offset, limit: limit, name: name, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取人群包列表
+    ///
+    /// 获取人群包列表接口
+    @inlinable
+    public func getCrowdPackList(license: String, offset: Int64, limit: Int64, name: String? = nil, status: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCrowdPackListResponse {
+        try await self.getCrowdPackList(GetCrowdPackListRequest(license: license, offset: offset, limit: limit, name: name, status: status), logger: logger, on: eventLoop)
+    }
 }

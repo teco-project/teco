@@ -50,4 +50,20 @@ extension Vpc {
     public func describeAccountAttributes(_ input: DescribeAccountAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountAttributesResponse {
         try await self.client.execute(action: "DescribeAccountAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询账户属性
+    ///
+    /// 本接口（DescribeAccountAttributes）用于查询用户账号私有属性。
+    @inlinable
+    public func describeAccountAttributes(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountAttributesResponse > {
+        self.describeAccountAttributes(DescribeAccountAttributesRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账户属性
+    ///
+    /// 本接口（DescribeAccountAttributes）用于查询用户账号私有属性。
+    @inlinable
+    public func describeAccountAttributes(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountAttributesResponse {
+        try await self.describeAccountAttributes(DescribeAccountAttributesRequest(), logger: logger, on: eventLoop)
+    }
 }

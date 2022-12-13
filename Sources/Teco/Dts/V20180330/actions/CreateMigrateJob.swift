@@ -119,4 +119,22 @@ extension Dts {
     public func createMigrateJob(_ input: CreateMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrateJobResponse {
         try await self.client.execute(action: "CreateMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建数据迁移任务
+    ///
+    /// 本接口（CreateMigrateJob）用于创建数据迁移任务。
+    /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
+    @inlinable
+    public func createMigrateJob(jobName: String, migrateOption: MigrateOption, srcDatabaseType: String, srcAccessType: String, srcInfo: SrcInfo, dstDatabaseType: String, dstAccessType: String, dstInfo: DstInfo, databaseInfo: String? = nil, tags: [TagItem]? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMigrateJobResponse > {
+        self.createMigrateJob(CreateMigrateJobRequest(jobName: jobName, migrateOption: migrateOption, srcDatabaseType: srcDatabaseType, srcAccessType: srcAccessType, srcInfo: srcInfo, dstDatabaseType: dstDatabaseType, dstAccessType: dstAccessType, dstInfo: dstInfo, databaseInfo: databaseInfo, tags: tags, srcNodeType: srcNodeType, srcInfoMulti: srcInfoMulti), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建数据迁移任务
+    ///
+    /// 本接口（CreateMigrateJob）用于创建数据迁移任务。
+    /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
+    @inlinable
+    public func createMigrateJob(jobName: String, migrateOption: MigrateOption, srcDatabaseType: String, srcAccessType: String, srcInfo: SrcInfo, dstDatabaseType: String, dstAccessType: String, dstInfo: DstInfo, databaseInfo: String? = nil, tags: [TagItem]? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrateJobResponse {
+        try await self.createMigrateJob(CreateMigrateJobRequest(jobName: jobName, migrateOption: migrateOption, srcDatabaseType: srcDatabaseType, srcAccessType: srcAccessType, srcInfo: srcInfo, dstDatabaseType: dstDatabaseType, dstAccessType: dstAccessType, dstInfo: dstInfo, databaseInfo: databaseInfo, tags: tags, srcNodeType: srcNodeType, srcInfoMulti: srcInfoMulti), logger: logger, on: eventLoop)
+    }
 }

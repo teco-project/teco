@@ -84,4 +84,16 @@ extension Iotvideo {
     public func describeAIModelChannel(_ input: DescribeAIModelChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelChannelResponse {
         try await self.client.execute(action: "DescribeAIModelChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看AI推理结果推送配置
+    @inlinable
+    public func describeAIModelChannel(modelId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAIModelChannelResponse > {
+        self.describeAIModelChannel(DescribeAIModelChannelRequest(modelId: modelId, productId: productId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看AI推理结果推送配置
+    @inlinable
+    public func describeAIModelChannel(modelId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelChannelResponse {
+        try await self.describeAIModelChannel(DescribeAIModelChannelRequest(modelId: modelId, productId: productId), logger: logger, on: eventLoop)
+    }
 }

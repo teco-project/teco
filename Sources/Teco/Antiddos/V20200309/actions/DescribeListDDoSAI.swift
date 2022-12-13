@@ -73,4 +73,16 @@ extension Antiddos {
     public func describeListDDoSAI(_ input: DescribeListDDoSAIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListDDoSAIResponse {
         try await self.client.execute(action: "DescribeListDDoSAI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取DDoS防护的AI防护开关列表
+    @inlinable
+    public func describeListDDoSAI(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListDDoSAIResponse > {
+        self.describeListDDoSAI(DescribeListDDoSAIRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS防护的AI防护开关列表
+    @inlinable
+    public func describeListDDoSAI(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListDDoSAIResponse {
+        try await self.describeListDDoSAI(DescribeListDDoSAIRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), logger: logger, on: eventLoop)
+    }
 }

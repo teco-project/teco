@@ -59,4 +59,20 @@ extension Eiam {
     public func listAuthorizedApplicationsToOrgNode(_ input: ListAuthorizedApplicationsToOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuthorizedApplicationsToOrgNodeResponse {
         try await self.client.execute(action: "ListAuthorizedApplicationsToOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取机构节点被授权访问的应用列表
+    ///
+    /// 通过机构节点ID获得被授权访问的应用列表。
+    @inlinable
+    public func listAuthorizedApplicationsToOrgNode(orgNodeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAuthorizedApplicationsToOrgNodeResponse > {
+        self.listAuthorizedApplicationsToOrgNode(ListAuthorizedApplicationsToOrgNodeRequest(orgNodeId: orgNodeId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取机构节点被授权访问的应用列表
+    ///
+    /// 通过机构节点ID获得被授权访问的应用列表。
+    @inlinable
+    public func listAuthorizedApplicationsToOrgNode(orgNodeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuthorizedApplicationsToOrgNodeResponse {
+        try await self.listAuthorizedApplicationsToOrgNode(ListAuthorizedApplicationsToOrgNodeRequest(orgNodeId: orgNodeId), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Cls {
     public func deleteConsumer(_ input: DeleteConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConsumerResponse {
         try await self.client.execute(action: "DeleteConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除投递配置
+    ///
+    /// 本接口用于删除投递配置
+    @inlinable
+    public func deleteConsumer(topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConsumerResponse > {
+        self.deleteConsumer(DeleteConsumerRequest(topicId: topicId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除投递配置
+    ///
+    /// 本接口用于删除投递配置
+    @inlinable
+    public func deleteConsumer(topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConsumerResponse {
+        try await self.deleteConsumer(DeleteConsumerRequest(topicId: topicId), logger: logger, on: eventLoop)
+    }
 }

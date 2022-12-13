@@ -54,4 +54,20 @@ extension Kms {
     public func enableKeyRotation(_ input: EnableKeyRotationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeyRotationResponse {
         try await self.client.execute(action: "EnableKeyRotation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开启密钥轮换
+    ///
+    /// 对指定的CMK开启密钥轮换功能。
+    @inlinable
+    public func enableKeyRotation(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableKeyRotationResponse > {
+        self.enableKeyRotation(EnableKeyRotationRequest(keyId: keyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 开启密钥轮换
+    ///
+    /// 对指定的CMK开启密钥轮换功能。
+    @inlinable
+    public func enableKeyRotation(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeyRotationResponse {
+        try await self.enableKeyRotation(EnableKeyRotationRequest(keyId: keyId), logger: logger, on: eventLoop)
+    }
 }

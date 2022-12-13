@@ -69,4 +69,16 @@ extension Tsf {
     public func describeGroupGateways(_ input: DescribeGroupGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupGatewaysResponse {
         try await self.client.execute(action: "DescribeGroupGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询某个网关绑定的API 分组信息列表
+    @inlinable
+    public func describeGroupGateways(gatewayDeployGroupId: String, offset: Int64, limit: Int64, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupGatewaysResponse > {
+        self.describeGroupGateways(DescribeGroupGatewaysRequest(gatewayDeployGroupId: gatewayDeployGroupId, offset: offset, limit: limit, searchWord: searchWord), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询某个网关绑定的API 分组信息列表
+    @inlinable
+    public func describeGroupGateways(gatewayDeployGroupId: String, offset: Int64, limit: Int64, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupGatewaysResponse {
+        try await self.describeGroupGateways(DescribeGroupGatewaysRequest(gatewayDeployGroupId: gatewayDeployGroupId, offset: offset, limit: limit, searchWord: searchWord), logger: logger, on: eventLoop)
+    }
 }

@@ -79,4 +79,20 @@ extension Tke {
     public func deletePrometheusConfig(_ input: DeletePrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusConfigResponse {
         try await self.client.execute(action: "DeletePrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除Prometheus配置
+    ///
+    /// 删除Prometheus配置，如果目标不存在，将返回成功
+    @inlinable
+    public func deletePrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [String]? = nil, podMonitors: [String]? = nil, rawJobs: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusConfigResponse > {
+        self.deletePrometheusConfig(DeletePrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Prometheus配置
+    ///
+    /// 删除Prometheus配置，如果目标不存在，将返回成功
+    @inlinable
+    public func deletePrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [String]? = nil, podMonitors: [String]? = nil, rawJobs: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusConfigResponse {
+        try await self.deletePrometheusConfig(DeletePrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), logger: logger, on: eventLoop)
+    }
 }

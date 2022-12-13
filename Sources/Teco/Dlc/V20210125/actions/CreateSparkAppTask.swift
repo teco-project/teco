@@ -63,4 +63,16 @@ extension Dlc {
     public func createSparkAppTask(_ input: CreateSparkAppTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSparkAppTaskResponse {
         try await self.client.execute(action: "CreateSparkAppTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建spark任务
+    @inlinable
+    public func createSparkAppTask(jobName: String, cmdArgs: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSparkAppTaskResponse > {
+        self.createSparkAppTask(CreateSparkAppTaskRequest(jobName: jobName, cmdArgs: cmdArgs), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建spark任务
+    @inlinable
+    public func createSparkAppTask(jobName: String, cmdArgs: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSparkAppTaskResponse {
+        try await self.createSparkAppTask(CreateSparkAppTaskRequest(jobName: jobName, cmdArgs: cmdArgs), logger: logger, on: eventLoop)
+    }
 }

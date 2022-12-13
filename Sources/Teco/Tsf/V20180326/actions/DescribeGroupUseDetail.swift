@@ -78,4 +78,16 @@ extension Tsf {
     public func describeGroupUseDetail(_ input: DescribeGroupUseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupUseDetailResponse {
         try await self.client.execute(action: "DescribeGroupUseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询网关分组监控明细数据
+    @inlinable
+    public func describeGroupUseDetail(gatewayDeployGroupId: String, groupId: String, startTime: Date, endTime: Date, count: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupUseDetailResponse > {
+        self.describeGroupUseDetail(DescribeGroupUseDetailRequest(gatewayDeployGroupId: gatewayDeployGroupId, groupId: groupId, startTime: startTime, endTime: endTime, count: count), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网关分组监控明细数据
+    @inlinable
+    public func describeGroupUseDetail(gatewayDeployGroupId: String, groupId: String, startTime: Date, endTime: Date, count: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupUseDetailResponse {
+        try await self.describeGroupUseDetail(DescribeGroupUseDetailRequest(gatewayDeployGroupId: gatewayDeployGroupId, groupId: groupId, startTime: startTime, endTime: endTime, count: count), logger: logger, on: eventLoop)
+    }
 }

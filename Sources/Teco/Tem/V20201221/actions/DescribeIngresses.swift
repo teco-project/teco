@@ -70,4 +70,16 @@ extension Tem {
     public func describeIngresses(_ input: DescribeIngressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIngressesResponse {
         try await self.client.execute(action: "DescribeIngresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询 Ingress 规则列表
+    @inlinable
+    public func describeIngresses(namespaceId: String? = nil, eksNamespace: String? = nil, sourceChannel: Int64? = nil, names: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIngressesResponse > {
+        self.describeIngresses(DescribeIngressesRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, sourceChannel: sourceChannel, names: names), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询 Ingress 规则列表
+    @inlinable
+    public func describeIngresses(namespaceId: String? = nil, eksNamespace: String? = nil, sourceChannel: Int64? = nil, names: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIngressesResponse {
+        try await self.describeIngresses(DescribeIngressesRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, sourceChannel: sourceChannel, names: names), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,20 @@ extension Iot {
     public func updateProduct(_ input: UpdateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductResponse {
         try await self.client.execute(action: "UpdateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新产品信息
+    ///
+    /// 提供修改产品信息及数据模板的能力。
+    @inlinable
+    public func updateProduct(productId: String, name: String? = nil, description: String? = nil, dataTemplate: [DataTemplate]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProductResponse > {
+        self.updateProduct(UpdateProductRequest(productId: productId, name: name, description: description, dataTemplate: dataTemplate), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新产品信息
+    ///
+    /// 提供修改产品信息及数据模板的能力。
+    @inlinable
+    public func updateProduct(productId: String, name: String? = nil, description: String? = nil, dataTemplate: [DataTemplate]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductResponse {
+        try await self.updateProduct(UpdateProductRequest(productId: productId, name: name, description: description, dataTemplate: dataTemplate), logger: logger, on: eventLoop)
+    }
 }

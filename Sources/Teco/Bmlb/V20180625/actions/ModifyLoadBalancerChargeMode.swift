@@ -60,4 +60,16 @@ extension Bmlb {
     public func modifyLoadBalancerChargeMode(_ input: ModifyLoadBalancerChargeModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerChargeModeResponse {
         try await self.client.execute(action: "ModifyLoadBalancerChargeMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更改黑石负载均衡的计费方式
+    @inlinable
+    public func modifyLoadBalancerChargeMode(loadBalancerId: String, payMode: String, listenerSet: [ModifyLoadBalancerChargeModeListener]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancerChargeModeResponse > {
+        self.modifyLoadBalancerChargeMode(ModifyLoadBalancerChargeModeRequest(loadBalancerId: loadBalancerId, payMode: payMode, listenerSet: listenerSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 更改黑石负载均衡的计费方式
+    @inlinable
+    public func modifyLoadBalancerChargeMode(loadBalancerId: String, payMode: String, listenerSet: [ModifyLoadBalancerChargeModeListener]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerChargeModeResponse {
+        try await self.modifyLoadBalancerChargeMode(ModifyLoadBalancerChargeModeRequest(loadBalancerId: loadBalancerId, payMode: payMode, listenerSet: listenerSet), logger: logger, on: eventLoop)
+    }
 }

@@ -58,4 +58,20 @@ extension Tsf {
     public func bindPlugin(_ input: BindPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPluginResponse {
         try await self.client.execute(action: "BindPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量绑定插件
+    ///
+    /// 插件与网关分组/API批量绑定
+    @inlinable
+    public func bindPlugin(pluginInstanceList: [GatewayPluginBoundParam], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindPluginResponse > {
+        self.bindPlugin(BindPluginRequest(pluginInstanceList: pluginInstanceList), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量绑定插件
+    ///
+    /// 插件与网关分组/API批量绑定
+    @inlinable
+    public func bindPlugin(pluginInstanceList: [GatewayPluginBoundParam], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPluginResponse {
+        try await self.bindPlugin(BindPluginRequest(pluginInstanceList: pluginInstanceList), logger: logger, on: eventLoop)
+    }
 }

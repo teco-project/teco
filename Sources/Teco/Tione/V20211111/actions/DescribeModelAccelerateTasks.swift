@@ -87,4 +87,16 @@ extension Tione {
     public func describeModelAccelerateTasks(_ input: DescribeModelAccelerateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelAccelerateTasksResponse {
         try await self.client.execute(action: "DescribeModelAccelerateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询模型加速任务列表
+    @inlinable
+    public func describeModelAccelerateTasks(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelAccelerateTasksResponse > {
+        self.describeModelAccelerateTasks(DescribeModelAccelerateTasksRequest(filters: filters, orderField: orderField, order: order, offset: offset, limit: limit, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询模型加速任务列表
+    @inlinable
+    public func describeModelAccelerateTasks(filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelAccelerateTasksResponse {
+        try await self.describeModelAccelerateTasks(DescribeModelAccelerateTasksRequest(filters: filters, orderField: orderField, order: order, offset: offset, limit: limit, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    }
 }

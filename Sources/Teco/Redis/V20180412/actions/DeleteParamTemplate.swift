@@ -50,4 +50,16 @@ extension Redis {
     public func deleteParamTemplate(_ input: DeleteParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteParamTemplateResponse {
         try await self.client.execute(action: "DeleteParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除参数模板
+    @inlinable
+    public func deleteParamTemplate(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteParamTemplateResponse > {
+        self.deleteParamTemplate(DeleteParamTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除参数模板
+    @inlinable
+    public func deleteParamTemplate(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteParamTemplateResponse {
+        try await self.deleteParamTemplate(DeleteParamTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
 }

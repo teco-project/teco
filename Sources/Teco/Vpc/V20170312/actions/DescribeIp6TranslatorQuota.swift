@@ -55,4 +55,16 @@ extension Vpc {
     public func describeIp6TranslatorQuota(_ input: DescribeIp6TranslatorQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIp6TranslatorQuotaResponse {
         try await self.client.execute(action: "DescribeIp6TranslatorQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询账户在指定地域IPV6转换实例和规则的配额
+    @inlinable
+    public func describeIp6TranslatorQuota(ip6TranslatorIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIp6TranslatorQuotaResponse > {
+        self.describeIp6TranslatorQuota(DescribeIp6TranslatorQuotaRequest(ip6TranslatorIds: ip6TranslatorIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账户在指定地域IPV6转换实例和规则的配额
+    @inlinable
+    public func describeIp6TranslatorQuota(ip6TranslatorIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIp6TranslatorQuotaResponse {
+        try await self.describeIp6TranslatorQuota(DescribeIp6TranslatorQuotaRequest(ip6TranslatorIds: ip6TranslatorIds), logger: logger, on: eventLoop)
+    }
 }

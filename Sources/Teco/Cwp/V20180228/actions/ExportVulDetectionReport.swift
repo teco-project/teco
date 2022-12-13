@@ -77,4 +77,20 @@ extension Cwp {
     public func exportVulDetectionReport(_ input: ExportVulDetectionReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulDetectionReportResponse {
         try await self.client.execute(action: "ExportVulDetectionReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导出漏洞检测报告
+    ///
+    /// 导出漏洞检测报告。
+    @inlinable
+    public func exportVulDetectionReport(taskId: UInt64, filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVulDetectionReportResponse > {
+        self.exportVulDetectionReport(ExportVulDetectionReportRequest(taskId: taskId, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 导出漏洞检测报告
+    ///
+    /// 导出漏洞检测报告。
+    @inlinable
+    public func exportVulDetectionReport(taskId: UInt64, filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulDetectionReportResponse {
+        try await self.exportVulDetectionReport(ExportVulDetectionReportRequest(taskId: taskId, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

@@ -61,4 +61,20 @@ extension Teo {
     public func modifyZoneCnameSpeedUp(_ input: ModifyZoneCnameSpeedUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneCnameSpeedUpResponse {
         try await self.client.execute(action: "ModifyZoneCnameSpeedUp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改 CNAME 加速状态
+    ///
+    /// 开启，关闭 CNAME 加速。
+    @inlinable
+    public func modifyZoneCnameSpeedUp(zoneId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyZoneCnameSpeedUpResponse > {
+        self.modifyZoneCnameSpeedUp(ModifyZoneCnameSpeedUpRequest(zoneId: zoneId, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改 CNAME 加速状态
+    ///
+    /// 开启，关闭 CNAME 加速。
+    @inlinable
+    public func modifyZoneCnameSpeedUp(zoneId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneCnameSpeedUpResponse {
+        try await self.modifyZoneCnameSpeedUp(ModifyZoneCnameSpeedUpRequest(zoneId: zoneId, status: status), logger: logger, on: eventLoop)
+    }
 }

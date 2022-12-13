@@ -74,4 +74,20 @@ extension Dts {
     public func describeCompareTasks(_ input: DescribeCompareTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompareTasksResponse {
         try await self.client.execute(action: "DescribeCompareTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询一致性校验任务列表
+    ///
+    /// 查询一致性校验任务列表，调用该接口后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态。
+    @inlinable
+    public func describeCompareTasks(jobId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCompareTasksResponse > {
+        self.describeCompareTasks(DescribeCompareTasksRequest(jobId: jobId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询一致性校验任务列表
+    ///
+    /// 查询一致性校验任务列表，调用该接口后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态。
+    @inlinable
+    public func describeCompareTasks(jobId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompareTasksResponse {
+        try await self.describeCompareTasks(DescribeCompareTasksRequest(jobId: jobId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

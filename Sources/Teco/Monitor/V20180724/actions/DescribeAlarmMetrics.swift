@@ -64,4 +64,16 @@ extension Monitor {
     public func describeAlarmMetrics(_ input: DescribeAlarmMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmMetricsResponse {
         try await self.client.execute(action: "DescribeAlarmMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询告警指标列表
+    @inlinable
+    public func describeAlarmMetrics(module: String, monitorType: String, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmMetricsResponse > {
+        self.describeAlarmMetrics(DescribeAlarmMetricsRequest(module: module, monitorType: monitorType, namespace: namespace), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询告警指标列表
+    @inlinable
+    public func describeAlarmMetrics(module: String, monitorType: String, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmMetricsResponse {
+        try await self.describeAlarmMetrics(DescribeAlarmMetricsRequest(module: module, monitorType: monitorType, namespace: namespace), logger: logger, on: eventLoop)
+    }
 }

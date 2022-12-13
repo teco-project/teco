@@ -54,4 +54,16 @@ extension Cdc {
     public func describeDedicatedSupportedZones(_ input: DescribeDedicatedSupportedZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedSupportedZonesResponse {
         try await self.client.execute(action: "DescribeDedicatedSupportedZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询专用集群支持的可用区列表
+    @inlinable
+    public func describeDedicatedSupportedZones(regions: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedSupportedZonesResponse > {
+        self.describeDedicatedSupportedZones(DescribeDedicatedSupportedZonesRequest(regions: regions), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专用集群支持的可用区列表
+    @inlinable
+    public func describeDedicatedSupportedZones(regions: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedSupportedZonesResponse {
+        try await self.describeDedicatedSupportedZones(DescribeDedicatedSupportedZonesRequest(regions: regions), logger: logger, on: eventLoop)
+    }
 }

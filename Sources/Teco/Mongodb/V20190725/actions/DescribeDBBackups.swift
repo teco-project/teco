@@ -77,4 +77,20 @@ extension Mongodb {
     public func describeDBBackups(_ input: DescribeDBBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBBackupsResponse {
         try await self.client.execute(action: "DescribeDBBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例备份列表
+    ///
+    /// 本接口（DescribeDBBackups）用于查询实例备份列表，目前只支持查询7天内的备份记录。
+    @inlinable
+    public func describeDBBackups(instanceId: String, backupMethod: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBBackupsResponse > {
+        self.describeDBBackups(DescribeDBBackupsRequest(instanceId: instanceId, backupMethod: backupMethod, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例备份列表
+    ///
+    /// 本接口（DescribeDBBackups）用于查询实例备份列表，目前只支持查询7天内的备份记录。
+    @inlinable
+    public func describeDBBackups(instanceId: String, backupMethod: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBBackupsResponse {
+        try await self.describeDBBackups(DescribeDBBackupsRequest(instanceId: instanceId, backupMethod: backupMethod, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

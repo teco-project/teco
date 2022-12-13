@@ -124,4 +124,22 @@ extension Apm {
     public func describeGeneralMetricData(_ input: DescribeGeneralMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralMetricDataResponse {
         try await self.client.execute(action: "DescribeGeneralMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取指标数据通用接口
+    ///
+    /// 获取指标数据通用接口。用户根据需要上送请求参数，返回对应的指标数据。
+    /// 接口调用频率限制为：20次/秒，1200次/分钟。单请求的数据点数限制为1440个。
+    @inlinable
+    public func describeGeneralMetricData(filters: [GeneralFilter], metrics: [String], instanceId: String, viewName: String, groupBy: [String]? = nil, startTime: Int64? = nil, endTime: Int64? = nil, period: Int64? = nil, orderBy: OrderBy? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGeneralMetricDataResponse > {
+        self.describeGeneralMetricData(DescribeGeneralMetricDataRequest(filters: filters, metrics: metrics, instanceId: instanceId, viewName: viewName, groupBy: groupBy, startTime: startTime, endTime: endTime, period: period, orderBy: orderBy, pageSize: pageSize), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指标数据通用接口
+    ///
+    /// 获取指标数据通用接口。用户根据需要上送请求参数，返回对应的指标数据。
+    /// 接口调用频率限制为：20次/秒，1200次/分钟。单请求的数据点数限制为1440个。
+    @inlinable
+    public func describeGeneralMetricData(filters: [GeneralFilter], metrics: [String], instanceId: String, viewName: String, groupBy: [String]? = nil, startTime: Int64? = nil, endTime: Int64? = nil, period: Int64? = nil, orderBy: OrderBy? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralMetricDataResponse {
+        try await self.describeGeneralMetricData(DescribeGeneralMetricDataRequest(filters: filters, metrics: metrics, instanceId: instanceId, viewName: viewName, groupBy: groupBy, startTime: startTime, endTime: endTime, period: period, orderBy: orderBy, pageSize: pageSize), logger: logger, on: eventLoop)
+    }
 }

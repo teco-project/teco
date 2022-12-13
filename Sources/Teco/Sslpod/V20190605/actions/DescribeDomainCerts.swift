@@ -58,4 +58,20 @@ extension Sslpod {
     public func describeDomainCerts(_ input: DescribeDomainCertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainCertsResponse {
         try await self.client.execute(action: "DescribeDomainCerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取域名证书
+    ///
+    /// 获取域名关联证书
+    @inlinable
+    public func describeDomainCerts(domainId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainCertsResponse > {
+        self.describeDomainCerts(DescribeDomainCertsRequest(domainId: domainId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取域名证书
+    ///
+    /// 获取域名关联证书
+    @inlinable
+    public func describeDomainCerts(domainId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainCertsResponse {
+        try await self.describeDomainCerts(DescribeDomainCertsRequest(domainId: domainId), logger: logger, on: eventLoop)
+    }
 }

@@ -90,4 +90,16 @@ extension Eiam {
     public func listUserGroupsOfUser(_ input: ListUserGroupsOfUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserGroupsOfUserResponse {
         try await self.client.execute(action: "ListUserGroupsOfUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取用户所在的用户组列表
+    @inlinable
+    public func listUserGroupsOfUser(userId: String, searchCondition: UserGroupInformationSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUserGroupsOfUserResponse > {
+        self.listUserGroupsOfUser(ListUserGroupsOfUserRequest(userId: userId, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户所在的用户组列表
+    @inlinable
+    public func listUserGroupsOfUser(userId: String, searchCondition: UserGroupInformationSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserGroupsOfUserResponse {
+        try await self.listUserGroupsOfUser(ListUserGroupsOfUserRequest(userId: userId, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,16 @@ extension Ccc {
     public func describeTelSession(_ input: DescribeTelSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelSessionResponse {
         try await self.client.execute(action: "DescribeTelSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取 PSTN 会话信息
+    @inlinable
+    public func describeTelSession(sdkAppId: Int64, sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTelSessionResponse > {
+        self.describeTelSession(DescribeTelSessionRequest(sdkAppId: sdkAppId, sessionId: sessionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取 PSTN 会话信息
+    @inlinable
+    public func describeTelSession(sdkAppId: Int64, sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelSessionResponse {
+        try await self.describeTelSession(DescribeTelSessionRequest(sdkAppId: sdkAppId, sessionId: sessionId), logger: logger, on: eventLoop)
+    }
 }

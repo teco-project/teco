@@ -92,4 +92,20 @@ extension Teo {
     public func createSecurityDropPage(_ input: CreateSecurityDropPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityDropPageResponse {
         try await self.client.execute(action: "CreateSecurityDropPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建自定义拦截页面
+    ///
+    /// 创建自定义拦截页面。
+    @inlinable
+    public func createSecurityDropPage(zoneId: String, entity: String, name: String, content: String, type: String, module: String, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityDropPageResponse > {
+        self.createSecurityDropPage(CreateSecurityDropPageRequest(zoneId: zoneId, entity: entity, name: name, content: content, type: type, module: module, templateId: templateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建自定义拦截页面
+    ///
+    /// 创建自定义拦截页面。
+    @inlinable
+    public func createSecurityDropPage(zoneId: String, entity: String, name: String, content: String, type: String, module: String, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityDropPageResponse {
+        try await self.createSecurityDropPage(CreateSecurityDropPageRequest(zoneId: zoneId, entity: entity, name: name, content: content, type: type, module: module, templateId: templateId), logger: logger, on: eventLoop)
+    }
 }

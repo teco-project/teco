@@ -62,4 +62,20 @@ extension Sqlserver {
     public func describeCrossRegionZone(_ input: DescribeCrossRegionZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossRegionZoneResponse {
         try await self.client.execute(action: "DescribeCrossRegionZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询备机的容灾地域和可用区
+    ///
+    /// 本接口(DescribeCrossRegionZone)根据主实例查询备机的容灾地域和可用区。
+    @inlinable
+    public func describeCrossRegionZone(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCrossRegionZoneResponse > {
+        self.describeCrossRegionZone(DescribeCrossRegionZoneRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询备机的容灾地域和可用区
+    ///
+    /// 本接口(DescribeCrossRegionZone)根据主实例查询备机的容灾地域和可用区。
+    @inlinable
+    public func describeCrossRegionZone(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossRegionZoneResponse {
+        try await self.describeCrossRegionZone(DescribeCrossRegionZoneRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

@@ -74,4 +74,20 @@ extension Tke {
     public func describeClusterReleaseDetails(_ input: DescribeClusterReleaseDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterReleaseDetailsResponse {
         try await self.client.execute(action: "DescribeClusterReleaseDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询集群已安装应用详情
+    ///
+    /// 查询通过应用市场安装的某个应用详情
+    @inlinable
+    public func describeClusterReleaseDetails(clusterId: String, name: String, namespace: String, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterReleaseDetailsResponse > {
+        self.describeClusterReleaseDetails(DescribeClusterReleaseDetailsRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群已安装应用详情
+    ///
+    /// 查询通过应用市场安装的某个应用详情
+    @inlinable
+    public func describeClusterReleaseDetails(clusterId: String, name: String, namespace: String, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterReleaseDetailsResponse {
+        try await self.describeClusterReleaseDetails(DescribeClusterReleaseDetailsRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType), logger: logger, on: eventLoop)
+    }
 }

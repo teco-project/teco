@@ -104,4 +104,20 @@ extension Tci {
     public func submitCheckAttendanceTaskPlus(_ input: SubmitCheckAttendanceTaskPlusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCheckAttendanceTaskPlusResponse {
         try await self.client.execute(action: "SubmitCheckAttendanceTaskPlus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 提交高级人员考勤任务
+    ///
+    /// 支持多路视频流，提交高级人员考勤任务
+    @inlinable
+    public func submitCheckAttendanceTaskPlus(fileContent: [String], fileType: String, libraryIds: [String], attendanceThreshold: Float? = nil, enableStranger: Bool? = nil, endTime: Int64? = nil, noticeUrl: String? = nil, startTime: Int64? = nil, threshold: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitCheckAttendanceTaskPlusResponse > {
+        self.submitCheckAttendanceTaskPlus(SubmitCheckAttendanceTaskPlusRequest(fileContent: fileContent, fileType: fileType, libraryIds: libraryIds, attendanceThreshold: attendanceThreshold, enableStranger: enableStranger, endTime: endTime, noticeUrl: noticeUrl, startTime: startTime, threshold: threshold), logger: logger, on: eventLoop)
+    }
+    
+    /// 提交高级人员考勤任务
+    ///
+    /// 支持多路视频流，提交高级人员考勤任务
+    @inlinable
+    public func submitCheckAttendanceTaskPlus(fileContent: [String], fileType: String, libraryIds: [String], attendanceThreshold: Float? = nil, enableStranger: Bool? = nil, endTime: Int64? = nil, noticeUrl: String? = nil, startTime: Int64? = nil, threshold: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCheckAttendanceTaskPlusResponse {
+        try await self.submitCheckAttendanceTaskPlus(SubmitCheckAttendanceTaskPlusRequest(fileContent: fileContent, fileType: fileType, libraryIds: libraryIds, attendanceThreshold: attendanceThreshold, enableStranger: enableStranger, endTime: endTime, noticeUrl: noticeUrl, startTime: startTime, threshold: threshold), logger: logger, on: eventLoop)
+    }
 }

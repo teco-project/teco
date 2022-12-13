@@ -56,4 +56,22 @@ extension Gse {
     public func deleteGameServerSessionQueue(_ input: DeleteGameServerSessionQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGameServerSessionQueueResponse {
         try await self.client.execute(action: "DeleteGameServerSessionQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除游戏服务器会话队列
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DeleteGameServerSessionQueue）用于删除游戏服务器会话队列。
+    @inlinable
+    public func deleteGameServerSessionQueue(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteGameServerSessionQueueResponse > {
+        self.deleteGameServerSessionQueue(DeleteGameServerSessionQueueRequest(name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除游戏服务器会话队列
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DeleteGameServerSessionQueue）用于删除游戏服务器会话队列。
+    @inlinable
+    public func deleteGameServerSessionQueue(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGameServerSessionQueueResponse {
+        try await self.deleteGameServerSessionQueue(DeleteGameServerSessionQueueRequest(name: name), logger: logger, on: eventLoop)
+    }
 }

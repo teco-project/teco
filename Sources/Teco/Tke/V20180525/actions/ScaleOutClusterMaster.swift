@@ -70,4 +70,16 @@ extension Tke {
     public func scaleOutClusterMaster(_ input: ScaleOutClusterMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutClusterMasterResponse {
         try await self.client.execute(action: "ScaleOutClusterMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 扩容独立集群master节点
+    @inlinable
+    public func scaleOutClusterMaster(clusterId: String, runInstancesForNode: [RunInstancesForNode]? = nil, existedInstancesForNode: [ExistedInstancesForNode]? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, extraArgs: ClusterExtraArgs? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScaleOutClusterMasterResponse > {
+        self.scaleOutClusterMaster(ScaleOutClusterMasterRequest(clusterId: clusterId, runInstancesForNode: runInstancesForNode, existedInstancesForNode: existedInstancesForNode, instanceAdvancedSettings: instanceAdvancedSettings, extraArgs: extraArgs), logger: logger, on: eventLoop)
+    }
+    
+    /// 扩容独立集群master节点
+    @inlinable
+    public func scaleOutClusterMaster(clusterId: String, runInstancesForNode: [RunInstancesForNode]? = nil, existedInstancesForNode: [ExistedInstancesForNode]? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, extraArgs: ClusterExtraArgs? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutClusterMasterResponse {
+        try await self.scaleOutClusterMaster(ScaleOutClusterMasterRequest(clusterId: clusterId, runInstancesForNode: runInstancesForNode, existedInstancesForNode: existedInstancesForNode, instanceAdvancedSettings: instanceAdvancedSettings, extraArgs: extraArgs), logger: logger, on: eventLoop)
+    }
 }

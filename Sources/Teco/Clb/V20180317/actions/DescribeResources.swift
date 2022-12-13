@@ -74,4 +74,20 @@ extension Clb {
     public func describeResources(_ input: DescribeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesResponse {
         try await self.client.execute(action: "DescribeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询用户在当前地域支持可用区列表和资源列表
+    ///
+    /// 查询用户在当前地域支持可用区列表和资源列表。
+    @inlinable
+    public func describeResources(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesResponse > {
+        self.describeResources(DescribeResourcesRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户在当前地域支持可用区列表和资源列表
+    ///
+    /// 查询用户在当前地域支持可用区列表和资源列表。
+    @inlinable
+    public func describeResources(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesResponse {
+        try await self.describeResources(DescribeResourcesRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

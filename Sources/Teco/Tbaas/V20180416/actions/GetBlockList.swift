@@ -102,4 +102,20 @@ extension Tbaas {
     public func getBlockList(_ input: GetBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBlockListResponse {
         try await self.client.execute(action: "GetBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询区块列表
+    ///
+    /// 查看当前网络下的所有区块列表，分页展示
+    @inlinable
+    public func getBlockList(module: String, operation: String, channelId: UInt64, groupId: UInt64, channelName: String, groupName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBlockListResponse > {
+        self.getBlockList(GetBlockListRequest(module: module, operation: operation, channelId: channelId, groupId: groupId, channelName: channelName, groupName: groupName, clusterId: clusterId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询区块列表
+    ///
+    /// 查看当前网络下的所有区块列表，分页展示
+    @inlinable
+    public func getBlockList(module: String, operation: String, channelId: UInt64, groupId: UInt64, channelName: String, groupName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBlockListResponse {
+        try await self.getBlockList(GetBlockListRequest(module: module, operation: operation, channelId: channelId, groupId: groupId, channelName: channelName, groupName: groupName, clusterId: clusterId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -58,4 +58,16 @@ extension Mariadb {
     public func activateHourDBInstance(_ input: ActivateHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateHourDBInstanceResponse {
         try await self.client.execute(action: "ActivateHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解隔离后付费实例
+    @inlinable
+    public func activateHourDBInstance(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActivateHourDBInstanceResponse > {
+        self.activateHourDBInstance(ActivateHourDBInstanceRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 解隔离后付费实例
+    @inlinable
+    public func activateHourDBInstance(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateHourDBInstanceResponse {
+        try await self.activateHourDBInstance(ActivateHourDBInstanceRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

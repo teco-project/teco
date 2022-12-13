@@ -112,4 +112,16 @@ extension Pts {
     public func describeJobs(_ input: DescribeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobsResponse {
         try await self.client.execute(action: "DescribeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询任务列表
+    @inlinable
+    public func describeJobs(scenarioIds: [String], projectIds: [String], offset: Int64? = nil, limit: Int64? = nil, jobIds: [String]? = nil, orderBy: String? = nil, ascend: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, debug: Bool? = nil, status: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobsResponse > {
+        self.describeJobs(DescribeJobsRequest(scenarioIds: scenarioIds, projectIds: projectIds, offset: offset, limit: limit, jobIds: jobIds, orderBy: orderBy, ascend: ascend, startTime: startTime, endTime: endTime, debug: debug, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务列表
+    @inlinable
+    public func describeJobs(scenarioIds: [String], projectIds: [String], offset: Int64? = nil, limit: Int64? = nil, jobIds: [String]? = nil, orderBy: String? = nil, ascend: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, debug: Bool? = nil, status: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobsResponse {
+        try await self.describeJobs(DescribeJobsRequest(scenarioIds: scenarioIds, projectIds: projectIds, offset: offset, limit: limit, jobIds: jobIds, orderBy: orderBy, ascend: ascend, startTime: startTime, endTime: endTime, debug: debug, status: status), logger: logger, on: eventLoop)
+    }
 }

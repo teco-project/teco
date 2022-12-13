@@ -95,4 +95,16 @@ extension Tsf {
     public func describeApiGroups(_ input: DescribeApiGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiGroupsResponse {
         try await self.client.execute(action: "DescribeApiGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询API 分组信息列表
+    @inlinable
+    public func describeApiGroups(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupType: String? = nil, authType: String? = nil, status: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, gatewayInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiGroupsResponse > {
+        self.describeApiGroups(DescribeApiGroupsRequest(searchWord: searchWord, offset: offset, limit: limit, groupType: groupType, authType: authType, status: status, orderBy: orderBy, orderType: orderType, gatewayInstanceId: gatewayInstanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询API 分组信息列表
+    @inlinable
+    public func describeApiGroups(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupType: String? = nil, authType: String? = nil, status: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, gatewayInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiGroupsResponse {
+        try await self.describeApiGroups(DescribeApiGroupsRequest(searchWord: searchWord, offset: offset, limit: limit, groupType: groupType, authType: authType, status: status, orderBy: orderBy, orderType: orderType, gatewayInstanceId: gatewayInstanceId), logger: logger, on: eventLoop)
+    }
 }

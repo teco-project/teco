@@ -94,4 +94,16 @@ extension Cpdp {
     public func distributeQuery(_ input: DistributeQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeQueryResponse {
         try await self.client.execute(action: "DistributeQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云支付-分账结果查询接口
+    @inlinable
+    public func distributeQuery(openId: String, openKey: String, type: String, outDistributeNo: String? = nil, distributeNo: String? = nil, orderNo: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DistributeQueryResponse > {
+        self.distributeQuery(DistributeQueryRequest(openId: openId, openKey: openKey, type: type, outDistributeNo: outDistributeNo, distributeNo: distributeNo, orderNo: orderNo, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-分账结果查询接口
+    @inlinable
+    public func distributeQuery(openId: String, openKey: String, type: String, outDistributeNo: String? = nil, distributeNo: String? = nil, orderNo: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeQueryResponse {
+        try await self.distributeQuery(DistributeQueryRequest(openId: openId, openKey: openKey, type: type, outDistributeNo: outDistributeNo, distributeNo: distributeNo, orderNo: orderNo, profile: profile), logger: logger, on: eventLoop)
+    }
 }

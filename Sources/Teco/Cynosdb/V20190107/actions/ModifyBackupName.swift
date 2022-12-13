@@ -64,4 +64,20 @@ extension Cynosdb {
     public func modifyBackupName(_ input: ModifyBackupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupNameResponse {
         try await self.client.execute(action: "ModifyBackupName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改备份文件备注名
+    ///
+    /// 此接口（ModifyBackupName）用于修改备份文件备注名。
+    @inlinable
+    public func modifyBackupName(clusterId: String, backupId: Int64, backupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupNameResponse > {
+        self.modifyBackupName(ModifyBackupNameRequest(clusterId: clusterId, backupId: backupId, backupName: backupName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改备份文件备注名
+    ///
+    /// 此接口（ModifyBackupName）用于修改备份文件备注名。
+    @inlinable
+    public func modifyBackupName(clusterId: String, backupId: Int64, backupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupNameResponse {
+        try await self.modifyBackupName(ModifyBackupNameRequest(clusterId: clusterId, backupId: backupId, backupName: backupName), logger: logger, on: eventLoop)
+    }
 }

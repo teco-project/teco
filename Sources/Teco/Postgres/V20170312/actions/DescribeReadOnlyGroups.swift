@@ -78,4 +78,20 @@ extension Postgres {
     public func describeReadOnlyGroups(_ input: DescribeReadOnlyGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupsResponse {
         try await self.client.execute(action: "DescribeReadOnlyGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询只读组信息
+    ///
+    /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
+    @inlinable
+    public func describeReadOnlyGroups(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReadOnlyGroupsResponse > {
+        self.describeReadOnlyGroups(DescribeReadOnlyGroupsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询只读组信息
+    ///
+    /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
+    @inlinable
+    public func describeReadOnlyGroups(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupsResponse {
+        try await self.describeReadOnlyGroups(DescribeReadOnlyGroupsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    }
 }

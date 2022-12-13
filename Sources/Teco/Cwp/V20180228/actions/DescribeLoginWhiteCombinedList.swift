@@ -73,4 +73,16 @@ extension Cwp {
     public func describeLoginWhiteCombinedList(_ input: DescribeLoginWhiteCombinedListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoginWhiteCombinedListResponse {
         try await self.client.execute(action: "DescribeLoginWhiteCombinedList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取异地登录白名单合并后列表
+    @inlinable
+    public func describeLoginWhiteCombinedList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoginWhiteCombinedListResponse > {
+        self.describeLoginWhiteCombinedList(DescribeLoginWhiteCombinedListRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取异地登录白名单合并后列表
+    @inlinable
+    public func describeLoginWhiteCombinedList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoginWhiteCombinedListResponse {
+        try await self.describeLoginWhiteCombinedList(DescribeLoginWhiteCombinedListRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

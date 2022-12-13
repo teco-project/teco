@@ -69,4 +69,16 @@ extension Wedata {
     public func modifyTaskName(_ input: ModifyTaskNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskNameResponse {
         try await self.client.execute(action: "ModifyTaskName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重命名任务（任务编辑）
+    @inlinable
+    public func modifyTaskName(taskName: String, taskId: String, projectId: String, notes: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskNameResponse > {
+        self.modifyTaskName(ModifyTaskNameRequest(taskName: taskName, taskId: taskId, projectId: projectId, notes: notes), logger: logger, on: eventLoop)
+    }
+    
+    /// 重命名任务（任务编辑）
+    @inlinable
+    public func modifyTaskName(taskName: String, taskId: String, projectId: String, notes: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskNameResponse {
+        try await self.modifyTaskName(ModifyTaskNameRequest(taskName: taskName, taskId: taskId, projectId: projectId, notes: notes), logger: logger, on: eventLoop)
+    }
 }

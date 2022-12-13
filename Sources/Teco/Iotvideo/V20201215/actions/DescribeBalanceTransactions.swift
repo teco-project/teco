@@ -73,4 +73,16 @@ extension Iotvideo {
     public func describeBalanceTransactions(_ input: DescribeBalanceTransactionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBalanceTransactionsResponse {
         try await self.client.execute(action: "DescribeBalanceTransactions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 拉取账户流水
+    @inlinable
+    public func describeBalanceTransactions(accountType: UInt64, offset: UInt64, limit: UInt64, operation: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBalanceTransactionsResponse > {
+        self.describeBalanceTransactions(DescribeBalanceTransactionsRequest(accountType: accountType, offset: offset, limit: limit, operation: operation), logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取账户流水
+    @inlinable
+    public func describeBalanceTransactions(accountType: UInt64, offset: UInt64, limit: UInt64, operation: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBalanceTransactionsResponse {
+        try await self.describeBalanceTransactions(DescribeBalanceTransactionsRequest(accountType: accountType, offset: offset, limit: limit, operation: operation), logger: logger, on: eventLoop)
+    }
 }

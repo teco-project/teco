@@ -92,4 +92,20 @@ extension Faceid {
     public func phoneVerificationCUCC(_ input: PhoneVerificationCUCCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PhoneVerificationCUCCResponse {
         try await self.client.execute(action: "PhoneVerificationCUCC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 手机号三要素核验（联通）
+    ///
+    /// 本接口用于校验中国联通手机号、姓名和身份证号的真实性和一致性。中国联通支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
+    @inlinable
+    public func phoneVerificationCUCC(idCard: String, name: String, phone: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PhoneVerificationCUCCResponse > {
+        self.phoneVerificationCUCC(PhoneVerificationCUCCRequest(idCard: idCard, name: name, phone: phone, encryption: encryption), logger: logger, on: eventLoop)
+    }
+    
+    /// 手机号三要素核验（联通）
+    ///
+    /// 本接口用于校验中国联通手机号、姓名和身份证号的真实性和一致性。中国联通支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
+    @inlinable
+    public func phoneVerificationCUCC(idCard: String, name: String, phone: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PhoneVerificationCUCCResponse {
+        try await self.phoneVerificationCUCC(PhoneVerificationCUCCRequest(idCard: idCard, name: name, phone: phone, encryption: encryption), logger: logger, on: eventLoop)
+    }
 }

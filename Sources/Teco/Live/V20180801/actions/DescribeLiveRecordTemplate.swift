@@ -58,4 +58,20 @@ extension Live {
     public func describeLiveRecordTemplate(_ input: DescribeLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordTemplateResponse {
         try await self.client.execute(action: "DescribeLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取单个录制模板
+    ///
+    /// 获取单个录制模板。
+    @inlinable
+    public func describeLiveRecordTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordTemplateResponse > {
+        self.describeLiveRecordTemplate(DescribeLiveRecordTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取单个录制模板
+    ///
+    /// 获取单个录制模板。
+    @inlinable
+    public func describeLiveRecordTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordTemplateResponse {
+        try await self.describeLiveRecordTemplate(DescribeLiveRecordTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
 }

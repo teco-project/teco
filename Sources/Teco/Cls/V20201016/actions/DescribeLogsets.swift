@@ -88,4 +88,20 @@ extension Cls {
     public func describeLogsets(_ input: DescribeLogsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsetsResponse {
         try await self.client.execute(action: "DescribeLogsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取日志集列表
+    ///
+    /// 本接口用于获取日志集信息列表。
+    @inlinable
+    public func describeLogsets(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogsetsResponse > {
+        self.describeLogsets(DescribeLogsetsRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志集列表
+    ///
+    /// 本接口用于获取日志集信息列表。
+    @inlinable
+    public func describeLogsets(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsetsResponse {
+        try await self.describeLogsets(DescribeLogsetsRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

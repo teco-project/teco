@@ -86,4 +86,20 @@ extension Sts {
     public func assumeRoleWithSAML(_ input: AssumeRoleWithSAMLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithSAMLResponse {
         try await self.client.execute(action: "AssumeRoleWithSAML", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 根据 SAML 断言申请角色临时凭证
+    ///
+    /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时凭证。
+    @inlinable
+    public func assumeRoleWithSAML(samlAssertion: String, principalArn: String, roleArn: String, roleSessionName: String, durationSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssumeRoleWithSAMLResponse > {
+        self.assumeRoleWithSAML(AssumeRoleWithSAMLRequest(samlAssertion: samlAssertion, principalArn: principalArn, roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds), logger: logger, on: eventLoop)
+    }
+    
+    /// 根据 SAML 断言申请角色临时凭证
+    ///
+    /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时凭证。
+    @inlinable
+    public func assumeRoleWithSAML(samlAssertion: String, principalArn: String, roleArn: String, roleSessionName: String, durationSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithSAMLResponse {
+        try await self.assumeRoleWithSAML(AssumeRoleWithSAMLRequest(samlAssertion: samlAssertion, principalArn: principalArn, roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds), logger: logger, on: eventLoop)
+    }
 }

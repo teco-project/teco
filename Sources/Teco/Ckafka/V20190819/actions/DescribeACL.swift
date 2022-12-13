@@ -79,4 +79,16 @@ extension Ckafka {
     public func describeACL(_ input: DescribeACLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeACLResponse {
         try await self.client.execute(action: "DescribeACL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 枚举ACL
+    @inlinable
+    public func describeACL(instanceId: String, resourceType: Int64, resourceName: String, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeACLResponse > {
+        self.describeACL(DescribeACLRequest(instanceId: instanceId, resourceType: resourceType, resourceName: resourceName, offset: offset, limit: limit, searchWord: searchWord), logger: logger, on: eventLoop)
+    }
+    
+    /// 枚举ACL
+    @inlinable
+    public func describeACL(instanceId: String, resourceType: Int64, resourceName: String, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeACLResponse {
+        try await self.describeACL(DescribeACLRequest(instanceId: instanceId, resourceType: resourceType, resourceName: resourceName, offset: offset, limit: limit, searchWord: searchWord), logger: logger, on: eventLoop)
+    }
 }

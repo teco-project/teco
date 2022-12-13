@@ -65,4 +65,16 @@ extension Tcss {
     public func createAssetImageRegistryScanTaskOneKey(_ input: CreateAssetImageRegistryScanTaskOneKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageRegistryScanTaskOneKeyResponse {
         try await self.client.execute(action: "CreateAssetImageRegistryScanTaskOneKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 镜像仓库创建镜像一键扫描任务
+    @inlinable
+    public func createAssetImageRegistryScanTaskOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssetImageRegistryScanTaskOneKeyResponse > {
+        self.createAssetImageRegistryScanTaskOneKey(CreateAssetImageRegistryScanTaskOneKeyRequest(all: all, images: images, scanType: scanType, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库创建镜像一键扫描任务
+    @inlinable
+    public func createAssetImageRegistryScanTaskOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageRegistryScanTaskOneKeyResponse {
+        try await self.createAssetImageRegistryScanTaskOneKey(CreateAssetImageRegistryScanTaskOneKeyRequest(all: all, images: images, scanType: scanType, id: id), logger: logger, on: eventLoop)
+    }
 }

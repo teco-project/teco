@@ -75,4 +75,16 @@ extension Trp {
     public func describeCodePacks(_ input: DescribeCodePacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodePacksResponse {
         try await self.client.execute(action: "DescribeCodePacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询码包列表
+    @inlinable
+    public func describeCodePacks(pageSize: UInt64? = nil, pageNumber: UInt64? = nil, keyword: String? = nil, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodePacksResponse > {
+        self.describeCodePacks(DescribeCodePacksRequest(pageSize: pageSize, pageNumber: pageNumber, keyword: keyword, corpId: corpId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询码包列表
+    @inlinable
+    public func describeCodePacks(pageSize: UInt64? = nil, pageNumber: UInt64? = nil, keyword: String? = nil, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodePacksResponse {
+        try await self.describeCodePacks(DescribeCodePacksRequest(pageSize: pageSize, pageNumber: pageNumber, keyword: keyword, corpId: corpId), logger: logger, on: eventLoop)
+    }
 }

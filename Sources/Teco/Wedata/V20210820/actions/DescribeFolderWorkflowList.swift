@@ -81,4 +81,22 @@ extension Wedata {
     public func describeFolderWorkflowList(_ input: DescribeFolderWorkflowListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFolderWorkflowListResponse {
         try await self.client.execute(action: "DescribeFolderWorkflowList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 拉取文件夹下的工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 拉取文件夹下的工作流
+    @inlinable
+    public func describeFolderWorkflowList(projectId: String, parentsFolderId: String, keyWords: String? = nil, pageNumber: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFolderWorkflowListResponse > {
+        self.describeFolderWorkflowList(DescribeFolderWorkflowListRequest(projectId: projectId, parentsFolderId: parentsFolderId, keyWords: keyWords, pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取文件夹下的工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 拉取文件夹下的工作流
+    @inlinable
+    public func describeFolderWorkflowList(projectId: String, parentsFolderId: String, keyWords: String? = nil, pageNumber: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFolderWorkflowListResponse {
+        try await self.describeFolderWorkflowList(DescribeFolderWorkflowListRequest(projectId: projectId, parentsFolderId: parentsFolderId, keyWords: keyWords, pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
+    }
 }

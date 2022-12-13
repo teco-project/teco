@@ -54,4 +54,16 @@ extension Iotexplorer {
     public func describeProject(_ input: DescribeProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectResponse {
         try await self.client.execute(action: "DescribeProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询项目详情
+    @inlinable
+    public func describeProject(projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectResponse > {
+        self.describeProject(DescribeProjectRequest(projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询项目详情
+    @inlinable
+    public func describeProject(projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectResponse {
+        try await self.describeProject(DescribeProjectRequest(projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

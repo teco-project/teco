@@ -72,4 +72,20 @@ extension Ccc {
     public func describePSTNActiveSessionList(_ input: DescribePSTNActiveSessionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePSTNActiveSessionListResponse {
         try await self.client.execute(action: "DescribePSTNActiveSessionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取 PSTN 活动会话列表
+    ///
+    /// 获取当前正在通话的会话列表
+    @inlinable
+    public func describePSTNActiveSessionList(sdkAppId: Int64, offset: Int64, limit: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePSTNActiveSessionListResponse > {
+        self.describePSTNActiveSessionList(DescribePSTNActiveSessionListRequest(sdkAppId: sdkAppId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取 PSTN 活动会话列表
+    ///
+    /// 获取当前正在通话的会话列表
+    @inlinable
+    public func describePSTNActiveSessionList(sdkAppId: Int64, offset: Int64, limit: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePSTNActiveSessionListResponse {
+        try await self.describePSTNActiveSessionList(DescribePSTNActiveSessionListRequest(sdkAppId: sdkAppId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

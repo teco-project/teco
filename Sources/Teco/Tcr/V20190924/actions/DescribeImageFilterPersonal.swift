@@ -63,4 +63,20 @@ extension Tcr {
     public func describeImageFilterPersonal(_ input: DescribeImageFilterPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageFilterPersonalResponse {
         try await self.client.execute(action: "DescribeImageFilterPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询个人版中与指定tag镜像内容相同的tag列表
+    ///
+    /// 用于在个人版中查询与指定tag镜像内容相同的tag列表
+    @inlinable
+    public func describeImageFilterPersonal(repoName: String, tag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageFilterPersonalResponse > {
+        self.describeImageFilterPersonal(DescribeImageFilterPersonalRequest(repoName: repoName, tag: tag), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询个人版中与指定tag镜像内容相同的tag列表
+    ///
+    /// 用于在个人版中查询与指定tag镜像内容相同的tag列表
+    @inlinable
+    public func describeImageFilterPersonal(repoName: String, tag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageFilterPersonalResponse {
+        try await self.describeImageFilterPersonal(DescribeImageFilterPersonalRequest(repoName: repoName, tag: tag), logger: logger, on: eventLoop)
+    }
 }

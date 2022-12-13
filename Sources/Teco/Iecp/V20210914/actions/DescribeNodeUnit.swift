@@ -84,4 +84,16 @@ extension Iecp {
     public func describeNodeUnit(_ input: DescribeNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeUnitResponse {
         try await self.client.execute(action: "DescribeNodeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询边缘单元NodeUnit列表
+    @inlinable
+    public func describeNodeUnit(edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, limit: Int64? = nil, offset: Int64? = nil, nameFilter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodeUnitResponse > {
+        self.describeNodeUnit(DescribeNodeUnitRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, limit: limit, offset: offset, nameFilter: nameFilter), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘单元NodeUnit列表
+    @inlinable
+    public func describeNodeUnit(edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, limit: Int64? = nil, offset: Int64? = nil, nameFilter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeUnitResponse {
+        try await self.describeNodeUnit(DescribeNodeUnitRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, limit: limit, offset: offset, nameFilter: nameFilter), logger: logger, on: eventLoop)
+    }
 }

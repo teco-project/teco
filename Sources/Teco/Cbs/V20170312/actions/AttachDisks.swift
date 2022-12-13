@@ -75,4 +75,26 @@ extension Cbs {
     public func attachDisks(_ input: AttachDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachDisksResponse {
         try await self.client.execute(action: "AttachDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 挂载云硬盘
+    ///
+    /// 本接口（AttachDisks）用于挂载云硬盘。
+    ///  
+    /// * 支持批量操作，将多块云盘挂载到同一云主机。如果多个云盘中存在不允许挂载的云盘，则操作不执行，返回特定的错误码。
+    /// * 本接口为异步接口，当挂载云盘的请求成功返回时，表示后台已发起挂载云盘的操作，可通过接口[DescribeDisks](/document/product/362/16315)来查询对应云盘的状态，如果云盘的状态由“ATTACHING”变为“ATTACHED”，则为挂载成功。
+    @inlinable
+    public func attachDisks(instanceId: String, diskIds: [String], deleteWithInstance: Bool? = nil, attachMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachDisksResponse > {
+        self.attachDisks(AttachDisksRequest(instanceId: instanceId, diskIds: diskIds, deleteWithInstance: deleteWithInstance, attachMode: attachMode), logger: logger, on: eventLoop)
+    }
+    
+    /// 挂载云硬盘
+    ///
+    /// 本接口（AttachDisks）用于挂载云硬盘。
+    ///  
+    /// * 支持批量操作，将多块云盘挂载到同一云主机。如果多个云盘中存在不允许挂载的云盘，则操作不执行，返回特定的错误码。
+    /// * 本接口为异步接口，当挂载云盘的请求成功返回时，表示后台已发起挂载云盘的操作，可通过接口[DescribeDisks](/document/product/362/16315)来查询对应云盘的状态，如果云盘的状态由“ATTACHING”变为“ATTACHED”，则为挂载成功。
+    @inlinable
+    public func attachDisks(instanceId: String, diskIds: [String], deleteWithInstance: Bool? = nil, attachMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachDisksResponse {
+        try await self.attachDisks(AttachDisksRequest(instanceId: instanceId, diskIds: diskIds, deleteWithInstance: deleteWithInstance, attachMode: attachMode), logger: logger, on: eventLoop)
+    }
 }

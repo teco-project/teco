@@ -59,4 +59,20 @@ extension Tke {
     public func modifyPrometheusTemplate(_ input: ModifyPrometheusTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusTemplateResponse {
         try await self.client.execute(action: "ModifyPrometheusTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改模板
+    ///
+    /// 修改模板内容
+    @inlinable
+    public func modifyPrometheusTemplate(templateId: String, template: PrometheusTemplateModify, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusTemplateResponse > {
+        self.modifyPrometheusTemplate(ModifyPrometheusTemplateRequest(templateId: templateId, template: template), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改模板
+    ///
+    /// 修改模板内容
+    @inlinable
+    public func modifyPrometheusTemplate(templateId: String, template: PrometheusTemplateModify, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusTemplateResponse {
+        try await self.modifyPrometheusTemplate(ModifyPrometheusTemplateRequest(templateId: templateId, template: template), logger: logger, on: eventLoop)
+    }
 }

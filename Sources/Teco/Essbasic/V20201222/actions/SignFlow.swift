@@ -104,4 +104,20 @@ extension Essbasic {
     public func signFlow(_ input: SignFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignFlowResponse {
         try await self.client.execute(action: "SignFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 签署流程
+    ///
+    /// 此接口（SignFlow）可用于对流程文件进行签署。
+    @inlinable
+    public func signFlow(caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, signSeals: [SignSeal], approveMessage: String? = nil, signId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SignFlowResponse > {
+        self.signFlow(SignFlowRequest(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, signSeals: signSeals, approveMessage: approveMessage, signId: signId), logger: logger, on: eventLoop)
+    }
+    
+    /// 签署流程
+    ///
+    /// 此接口（SignFlow）可用于对流程文件进行签署。
+    @inlinable
+    public func signFlow(caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, signSeals: [SignSeal], approveMessage: String? = nil, signId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignFlowResponse {
+        try await self.signFlow(SignFlowRequest(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, signSeals: signSeals, approveMessage: approveMessage, signId: signId), logger: logger, on: eventLoop)
+    }
 }

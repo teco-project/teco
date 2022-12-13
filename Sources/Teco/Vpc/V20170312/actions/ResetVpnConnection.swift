@@ -59,4 +59,20 @@ extension Vpc {
     public func resetVpnConnection(_ input: ResetVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetVpnConnectionResponse {
         try await self.client.execute(action: "ResetVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重置VPN通道
+    ///
+    /// 本接口(ResetVpnConnection)用于重置VPN通道。
+    @inlinable
+    public func resetVpnConnection(vpnGatewayId: String, vpnConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetVpnConnectionResponse > {
+        self.resetVpnConnection(ResetVpnConnectionRequest(vpnGatewayId: vpnGatewayId, vpnConnectionId: vpnConnectionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 重置VPN通道
+    ///
+    /// 本接口(ResetVpnConnection)用于重置VPN通道。
+    @inlinable
+    public func resetVpnConnection(vpnGatewayId: String, vpnConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetVpnConnectionResponse {
+        try await self.resetVpnConnection(ResetVpnConnectionRequest(vpnGatewayId: vpnGatewayId, vpnConnectionId: vpnConnectionId), logger: logger, on: eventLoop)
+    }
 }

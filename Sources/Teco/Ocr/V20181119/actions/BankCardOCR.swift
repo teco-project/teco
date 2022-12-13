@@ -139,4 +139,22 @@ extension Ocr {
     public func bankCardOCR(_ input: BankCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCardOCRResponse {
         try await self.client.execute(action: "BankCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 银行卡识别
+    ///
+    /// 本接口支持对中国大陆主流银行卡正反面关键字段的检测与识别，包括卡号、卡类型、卡名字、银行信息、有效期。支持竖排异形卡识别、多角度旋转图片识别。支持对复印件、翻拍件、边框遮挡的银行卡进行告警，可应用于各种银行卡信息有效性校验场景，如金融行业身份认证、第三方支付绑卡等场景。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func bankCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, retBorderCutImage: Bool? = nil, retCardNoImage: Bool? = nil, enableCopyCheck: Bool? = nil, enableReshootCheck: Bool? = nil, enableBorderCheck: Bool? = nil, enableQualityValue: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BankCardOCRResponse > {
+        self.bankCardOCR(BankCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, retBorderCutImage: retBorderCutImage, retCardNoImage: retCardNoImage, enableCopyCheck: enableCopyCheck, enableReshootCheck: enableReshootCheck, enableBorderCheck: enableBorderCheck, enableQualityValue: enableQualityValue), logger: logger, on: eventLoop)
+    }
+    
+    /// 银行卡识别
+    ///
+    /// 本接口支持对中国大陆主流银行卡正反面关键字段的检测与识别，包括卡号、卡类型、卡名字、银行信息、有效期。支持竖排异形卡识别、多角度旋转图片识别。支持对复印件、翻拍件、边框遮挡的银行卡进行告警，可应用于各种银行卡信息有效性校验场景，如金融行业身份认证、第三方支付绑卡等场景。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func bankCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, retBorderCutImage: Bool? = nil, retCardNoImage: Bool? = nil, enableCopyCheck: Bool? = nil, enableReshootCheck: Bool? = nil, enableBorderCheck: Bool? = nil, enableQualityValue: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCardOCRResponse {
+        try await self.bankCardOCR(BankCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, retBorderCutImage: retBorderCutImage, retCardNoImage: retCardNoImage, enableCopyCheck: enableCopyCheck, enableReshootCheck: enableReshootCheck, enableBorderCheck: enableBorderCheck, enableQualityValue: enableQualityValue), logger: logger, on: eventLoop)
+    }
 }

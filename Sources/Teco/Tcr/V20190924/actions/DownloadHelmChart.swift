@@ -101,4 +101,20 @@ extension Tcr {
     public func downloadHelmChart(_ input: DownloadHelmChartRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadHelmChartResponse {
         try await self.client.execute(action: "DownloadHelmChart", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 下载Helm Chart
+    ///
+    /// 用于在TCR中下载helm chart
+    @inlinable
+    public func downloadHelmChart(registryId: String, namespaceName: String, chartName: String, chartVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadHelmChartResponse > {
+        self.downloadHelmChart(DownloadHelmChartRequest(registryId: registryId, namespaceName: namespaceName, chartName: chartName, chartVersion: chartVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 下载Helm Chart
+    ///
+    /// 用于在TCR中下载helm chart
+    @inlinable
+    public func downloadHelmChart(registryId: String, namespaceName: String, chartName: String, chartVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadHelmChartResponse {
+        try await self.downloadHelmChart(DownloadHelmChartRequest(registryId: registryId, namespaceName: namespaceName, chartName: chartName, chartVersion: chartVersion), logger: logger, on: eventLoop)
+    }
 }

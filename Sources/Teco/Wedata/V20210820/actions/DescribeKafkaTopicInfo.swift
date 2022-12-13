@@ -55,4 +55,16 @@ extension Wedata {
     public func describeKafkaTopicInfo(_ input: DescribeKafkaTopicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKafkaTopicInfoResponse {
         try await self.client.execute(action: "DescribeKafkaTopicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取kafka的topic信息
+    @inlinable
+    public func describeKafkaTopicInfo(datasourceId: String, type: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKafkaTopicInfoResponse > {
+        self.describeKafkaTopicInfo(DescribeKafkaTopicInfoRequest(datasourceId: datasourceId, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取kafka的topic信息
+    @inlinable
+    public func describeKafkaTopicInfo(datasourceId: String, type: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKafkaTopicInfoResponse {
+        try await self.describeKafkaTopicInfo(DescribeKafkaTopicInfoRequest(datasourceId: datasourceId, type: type), logger: logger, on: eventLoop)
+    }
 }

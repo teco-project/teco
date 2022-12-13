@@ -114,4 +114,20 @@ extension Live {
     public func describeTopClientIpSumInfoList(_ input: DescribeTopClientIpSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopClientIpSumInfoListResponse {
         try await self.client.execute(action: "DescribeTopClientIpSumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询某段时间top n客户端ip汇总信息
+    ///
+    /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
+    @inlinable
+    public func describeTopClientIpSumInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, orderParam: String? = nil, mainlandOrOversea: String? = nil, outLanguage: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopClientIpSumInfoListResponse > {
+        self.describeTopClientIpSumInfoList(DescribeTopClientIpSumInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, orderParam: orderParam, mainlandOrOversea: mainlandOrOversea, outLanguage: outLanguage), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询某段时间top n客户端ip汇总信息
+    ///
+    /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
+    @inlinable
+    public func describeTopClientIpSumInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, orderParam: String? = nil, mainlandOrOversea: String? = nil, outLanguage: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopClientIpSumInfoListResponse {
+        try await self.describeTopClientIpSumInfoList(DescribeTopClientIpSumInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, orderParam: orderParam, mainlandOrOversea: mainlandOrOversea, outLanguage: outLanguage), logger: logger, on: eventLoop)
+    }
 }

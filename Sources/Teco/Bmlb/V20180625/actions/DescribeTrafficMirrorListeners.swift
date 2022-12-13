@@ -107,4 +107,20 @@ extension Bmlb {
     public func describeTrafficMirrorListeners(_ input: DescribeTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorListenersResponse {
         try await self.client.execute(action: "DescribeTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取流量镜像的监听器列表信息
+    ///
+    /// 获取流量镜像的监听器列表信息。
+    @inlinable
+    public func describeTrafficMirrorListeners(trafficMirrorId: String, offset: Int64? = nil, limit: Int64? = nil, searchLoadBalancerIds: [String]? = nil, searchLoadBalancerNames: [String]? = nil, searchVips: [String]? = nil, searchListenerIds: [String]? = nil, searchListenerNames: [String]? = nil, searchProtocols: [String]? = nil, searchLoadBalancerPorts: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficMirrorListenersResponse > {
+        self.describeTrafficMirrorListeners(DescribeTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, offset: offset, limit: limit, searchLoadBalancerIds: searchLoadBalancerIds, searchLoadBalancerNames: searchLoadBalancerNames, searchVips: searchVips, searchListenerIds: searchListenerIds, searchListenerNames: searchListenerNames, searchProtocols: searchProtocols, searchLoadBalancerPorts: searchLoadBalancerPorts), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取流量镜像的监听器列表信息
+    ///
+    /// 获取流量镜像的监听器列表信息。
+    @inlinable
+    public func describeTrafficMirrorListeners(trafficMirrorId: String, offset: Int64? = nil, limit: Int64? = nil, searchLoadBalancerIds: [String]? = nil, searchLoadBalancerNames: [String]? = nil, searchVips: [String]? = nil, searchListenerIds: [String]? = nil, searchListenerNames: [String]? = nil, searchProtocols: [String]? = nil, searchLoadBalancerPorts: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorListenersResponse {
+        try await self.describeTrafficMirrorListeners(DescribeTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, offset: offset, limit: limit, searchLoadBalancerIds: searchLoadBalancerIds, searchLoadBalancerNames: searchLoadBalancerNames, searchVips: searchVips, searchListenerIds: searchListenerIds, searchListenerNames: searchListenerNames, searchProtocols: searchProtocols, searchLoadBalancerPorts: searchLoadBalancerPorts), logger: logger, on: eventLoop)
+    }
 }

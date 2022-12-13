@@ -54,4 +54,16 @@ extension Ba {
     public func createWeappQRUrl(_ input: CreateWeappQRUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWeappQRUrlResponse {
         try await self.client.execute(action: "CreateWeappQRUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建渠道备案小程序二维码
+    @inlinable
+    public func createWeappQRUrl(sessionKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWeappQRUrlResponse > {
+        self.createWeappQRUrl(CreateWeappQRUrlRequest(sessionKey: sessionKey), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建渠道备案小程序二维码
+    @inlinable
+    public func createWeappQRUrl(sessionKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWeappQRUrlResponse {
+        try await self.createWeappQRUrl(CreateWeappQRUrlRequest(sessionKey: sessionKey), logger: logger, on: eventLoop)
+    }
 }

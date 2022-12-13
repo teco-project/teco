@@ -54,4 +54,20 @@ extension Cdb {
     public func deleteDeployGroups(_ input: DeleteDeployGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeployGroupsResponse {
         try await self.client.execute(action: "DeleteDeployGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除置放群组
+    ///
+    /// 根据置放群组ID删除置放群组（置放群组中有资源存在时不能删除该置放群组）
+    @inlinable
+    public func deleteDeployGroups(deployGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeployGroupsResponse > {
+        self.deleteDeployGroups(DeleteDeployGroupsRequest(deployGroupIds: deployGroupIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除置放群组
+    ///
+    /// 根据置放群组ID删除置放群组（置放群组中有资源存在时不能删除该置放群组）
+    @inlinable
+    public func deleteDeployGroups(deployGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeployGroupsResponse {
+        try await self.deleteDeployGroups(DeleteDeployGroupsRequest(deployGroupIds: deployGroupIds), logger: logger, on: eventLoop)
+    }
 }

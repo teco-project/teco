@@ -56,4 +56,22 @@ extension Vpc {
     public func haVipDisassociateAddressIp(_ input: HaVipDisassociateAddressIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HaVipDisassociateAddressIpResponse {
         try await self.client.execute(action: "HaVipDisassociateAddressIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// HAVIP解绑EIP
+    ///
+    /// 本接口（HaVipDisassociateAddressIp）用于将高可用虚拟IP（HAVIP）已绑定的弹性公网IP（EIP）解除绑定。<br />
+    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
+    @inlinable
+    public func haVipDisassociateAddressIp(haVipId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < HaVipDisassociateAddressIpResponse > {
+        self.haVipDisassociateAddressIp(HaVipDisassociateAddressIpRequest(haVipId: haVipId), logger: logger, on: eventLoop)
+    }
+    
+    /// HAVIP解绑EIP
+    ///
+    /// 本接口（HaVipDisassociateAddressIp）用于将高可用虚拟IP（HAVIP）已绑定的弹性公网IP（EIP）解除绑定。<br />
+    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
+    @inlinable
+    public func haVipDisassociateAddressIp(haVipId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HaVipDisassociateAddressIpResponse {
+        try await self.haVipDisassociateAddressIp(HaVipDisassociateAddressIpRequest(haVipId: haVipId), logger: logger, on: eventLoop)
+    }
 }

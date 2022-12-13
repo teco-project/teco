@@ -60,4 +60,16 @@ extension Tsf {
     public func expandGroup(_ input: ExpandGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpandGroupResponse {
         try await self.client.execute(action: "ExpandGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 虚拟机部署组添加实例
+    @inlinable
+    public func expandGroup(groupId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExpandGroupResponse > {
+        self.expandGroup(ExpandGroupRequest(groupId: groupId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 虚拟机部署组添加实例
+    @inlinable
+    public func expandGroup(groupId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpandGroupResponse {
+        try await self.expandGroup(ExpandGroupRequest(groupId: groupId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
+    }
 }

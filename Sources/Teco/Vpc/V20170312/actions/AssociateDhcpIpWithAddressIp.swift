@@ -63,4 +63,24 @@ extension Vpc {
     public func associateDhcpIpWithAddressIp(_ input: AssociateDhcpIpWithAddressIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDhcpIpWithAddressIpResponse {
         try await self.client.execute(action: "AssociateDhcpIpWithAddressIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// DhcpIp绑定EIP
+    ///
+    /// 本接口（AssociateDhcpIpWithAddressIp）用于DhcpIp绑定弹性公网IP（EIP）。<br />
+    /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
+    /// >
+    @inlinable
+    public func associateDhcpIpWithAddressIp(dhcpIpId: String, addressIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateDhcpIpWithAddressIpResponse > {
+        self.associateDhcpIpWithAddressIp(AssociateDhcpIpWithAddressIpRequest(dhcpIpId: dhcpIpId, addressIp: addressIp), logger: logger, on: eventLoop)
+    }
+    
+    /// DhcpIp绑定EIP
+    ///
+    /// 本接口（AssociateDhcpIpWithAddressIp）用于DhcpIp绑定弹性公网IP（EIP）。<br />
+    /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
+    /// >
+    @inlinable
+    public func associateDhcpIpWithAddressIp(dhcpIpId: String, addressIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDhcpIpWithAddressIpResponse {
+        try await self.associateDhcpIpWithAddressIp(AssociateDhcpIpWithAddressIpRequest(dhcpIpId: dhcpIpId, addressIp: addressIp), logger: logger, on: eventLoop)
+    }
 }

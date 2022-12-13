@@ -97,4 +97,16 @@ extension Cfw {
     public func describeSecurityGroupList(_ input: DescribeSecurityGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupListResponse {
         try await self.client.execute(action: "DescribeSecurityGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询安全组规则列表
+    @inlinable
+    public func describeSecurityGroupList(direction: UInt64, area: String, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, status: String? = nil, filter: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupListResponse > {
+        self.describeSecurityGroupList(DescribeSecurityGroupListRequest(direction: direction, area: area, searchValue: searchValue, limit: limit, offset: offset, status: status, filter: filter), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全组规则列表
+    @inlinable
+    public func describeSecurityGroupList(direction: UInt64, area: String, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, status: String? = nil, filter: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupListResponse {
+        try await self.describeSecurityGroupList(DescribeSecurityGroupListRequest(direction: direction, area: area, searchValue: searchValue, limit: limit, offset: offset, status: status, filter: filter), logger: logger, on: eventLoop)
+    }
 }

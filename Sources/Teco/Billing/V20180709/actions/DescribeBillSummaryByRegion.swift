@@ -69,4 +69,16 @@ extension Billing {
     public func describeBillSummaryByRegion(_ input: DescribeBillSummaryByRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByRegionResponse {
         try await self.client.execute(action: "DescribeBillSummaryByRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取按地域汇总费用分布
+    @inlinable
+    public func describeBillSummaryByRegion(beginTime: String, endTime: String, payerUin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillSummaryByRegionResponse > {
+        self.describeBillSummaryByRegion(DescribeBillSummaryByRegionRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取按地域汇总费用分布
+    @inlinable
+    public func describeBillSummaryByRegion(beginTime: String, endTime: String, payerUin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByRegionResponse {
+        try await self.describeBillSummaryByRegion(DescribeBillSummaryByRegionRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,20 @@ extension Sqlserver {
     public func createPublishSubscribe(_ input: CreatePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePublishSubscribeResponse {
         try await self.client.execute(action: "CreatePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建发布订阅
+    ///
+    /// 本接口（CreatePublishSubscribe）用于创建两个数据库之间的发布订阅关系。作为订阅者，不能再充当发布者，作为发布者可以有多个订阅者实例。
+    @inlinable
+    public func createPublishSubscribe(publishInstanceId: String, subscribeInstanceId: String, databaseTupleSet: [DatabaseTuple], publishSubscribeName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePublishSubscribeResponse > {
+        self.createPublishSubscribe(CreatePublishSubscribeRequest(publishInstanceId: publishInstanceId, subscribeInstanceId: subscribeInstanceId, databaseTupleSet: databaseTupleSet, publishSubscribeName: publishSubscribeName), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建发布订阅
+    ///
+    /// 本接口（CreatePublishSubscribe）用于创建两个数据库之间的发布订阅关系。作为订阅者，不能再充当发布者，作为发布者可以有多个订阅者实例。
+    @inlinable
+    public func createPublishSubscribe(publishInstanceId: String, subscribeInstanceId: String, databaseTupleSet: [DatabaseTuple], publishSubscribeName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePublishSubscribeResponse {
+        try await self.createPublishSubscribe(CreatePublishSubscribeRequest(publishInstanceId: publishInstanceId, subscribeInstanceId: subscribeInstanceId, databaseTupleSet: databaseTupleSet, publishSubscribeName: publishSubscribeName), logger: logger, on: eventLoop)
+    }
 }

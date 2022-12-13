@@ -1114,7 +1114,7 @@ extension Waf {
         /// Nginx的服务器ID
         public let nginxServerId: String
         
-        public init (port: String, `protocol`: String, upstreamPort: String, upstreamProtocol: String, nginxServerId: String) {
+        public init (port: String, protocol: String, upstreamPort: String, upstreamProtocol: String, nginxServerId: String) {
             self.port = port
             self.`protocol` = `protocol`
             self.upstreamPort = upstreamPort

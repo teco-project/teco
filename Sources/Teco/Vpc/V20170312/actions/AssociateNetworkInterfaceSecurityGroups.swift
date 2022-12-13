@@ -59,4 +59,20 @@ extension Vpc {
     public func associateNetworkInterfaceSecurityGroups(_ input: AssociateNetworkInterfaceSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateNetworkInterfaceSecurityGroupsResponse {
         try await self.client.execute(action: "AssociateNetworkInterfaceSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 弹性网卡绑定安全组
+    ///
+    /// 本接口（AssociateNetworkInterfaceSecurityGroups）用于弹性网卡绑定安全组（SecurityGroup）。
+    @inlinable
+    public func associateNetworkInterfaceSecurityGroups(networkInterfaceIds: [String], securityGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateNetworkInterfaceSecurityGroupsResponse > {
+        self.associateNetworkInterfaceSecurityGroups(AssociateNetworkInterfaceSecurityGroupsRequest(networkInterfaceIds: networkInterfaceIds, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 弹性网卡绑定安全组
+    ///
+    /// 本接口（AssociateNetworkInterfaceSecurityGroups）用于弹性网卡绑定安全组（SecurityGroup）。
+    @inlinable
+    public func associateNetworkInterfaceSecurityGroups(networkInterfaceIds: [String], securityGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateNetworkInterfaceSecurityGroupsResponse {
+        try await self.associateNetworkInterfaceSecurityGroups(AssociateNetworkInterfaceSecurityGroupsRequest(networkInterfaceIds: networkInterfaceIds, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    }
 }

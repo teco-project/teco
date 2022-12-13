@@ -87,4 +87,16 @@ extension Dayu {
     public func describeActionLog(_ input: DescribeActionLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeActionLogResponse {
         try await self.client.execute(action: "DescribeActionLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取操作日志
+    @inlinable
+    public func describeActionLog(startTime: Date, endTime: Date, business: String? = nil, filter: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeActionLogResponse > {
+        self.describeActionLog(DescribeActionLogRequest(startTime: startTime, endTime: endTime, business: business, filter: filter, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取操作日志
+    @inlinable
+    public func describeActionLog(startTime: Date, endTime: Date, business: String? = nil, filter: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeActionLogResponse {
+        try await self.describeActionLog(DescribeActionLogRequest(startTime: startTime, endTime: endTime, business: business, filter: filter, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

@@ -65,4 +65,16 @@ extension Ckafka {
     public func cancelAuthorizationToken(_ input: CancelAuthorizationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorizationTokenResponse {
         try await self.client.execute(action: "CancelAuthorizationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 取消授权token
+    @inlinable
+    public func cancelAuthorizationToken(instanceId: String, user: String, tokens: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelAuthorizationTokenResponse > {
+        self.cancelAuthorizationToken(CancelAuthorizationTokenRequest(instanceId: instanceId, user: user, tokens: tokens), logger: logger, on: eventLoop)
+    }
+    
+    /// 取消授权token
+    @inlinable
+    public func cancelAuthorizationToken(instanceId: String, user: String, tokens: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorizationTokenResponse {
+        try await self.cancelAuthorizationToken(CancelAuthorizationTokenRequest(instanceId: instanceId, user: user, tokens: tokens), logger: logger, on: eventLoop)
+    }
 }

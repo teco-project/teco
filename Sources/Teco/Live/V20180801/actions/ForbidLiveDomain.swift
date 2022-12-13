@@ -54,4 +54,20 @@ extension Live {
     public func forbidLiveDomain(_ input: ForbidLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveDomainResponse {
         try await self.client.execute(action: "ForbidLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 禁用域名
+    ///
+    /// 停止使用某个直播域名。
+    @inlinable
+    public func forbidLiveDomain(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ForbidLiveDomainResponse > {
+        self.forbidLiveDomain(ForbidLiveDomainRequest(domainName: domainName), logger: logger, on: eventLoop)
+    }
+    
+    /// 禁用域名
+    ///
+    /// 停止使用某个直播域名。
+    @inlinable
+    public func forbidLiveDomain(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveDomainResponse {
+        try await self.forbidLiveDomain(ForbidLiveDomainRequest(domainName: domainName), logger: logger, on: eventLoop)
+    }
 }

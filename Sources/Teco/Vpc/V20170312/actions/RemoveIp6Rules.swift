@@ -61,4 +61,22 @@ extension Vpc {
     public func removeIp6Rules(_ input: RemoveIp6RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveIp6RulesResponse {
         try await self.client.execute(action: "RemoveIp6Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除IPV6转换规则
+    ///
+    /// 1. 该接口用于删除IPV6转换规则
+    /// 2. 支持批量删除同一个转换实例下的多个转换规则
+    @inlinable
+    public func removeIp6Rules(ip6TranslatorId: String, ip6RuleIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveIp6RulesResponse > {
+        self.removeIp6Rules(RemoveIp6RulesRequest(ip6TranslatorId: ip6TranslatorId, ip6RuleIds: ip6RuleIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除IPV6转换规则
+    ///
+    /// 1. 该接口用于删除IPV6转换规则
+    /// 2. 支持批量删除同一个转换实例下的多个转换规则
+    @inlinable
+    public func removeIp6Rules(ip6TranslatorId: String, ip6RuleIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveIp6RulesResponse {
+        try await self.removeIp6Rules(RemoveIp6RulesRequest(ip6TranslatorId: ip6TranslatorId, ip6RuleIds: ip6RuleIds), logger: logger, on: eventLoop)
+    }
 }

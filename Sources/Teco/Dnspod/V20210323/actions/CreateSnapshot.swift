@@ -55,4 +55,16 @@ extension Dnspod {
     public func createSnapshot(_ input: CreateSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotResponse {
         try await self.client.execute(action: "CreateSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建快照
+    @inlinable
+    public func createSnapshot(domain: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSnapshotResponse > {
+        self.createSnapshot(CreateSnapshotRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建快照
+    @inlinable
+    public func createSnapshot(domain: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotResponse {
+        try await self.createSnapshot(CreateSnapshotRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
+    }
 }

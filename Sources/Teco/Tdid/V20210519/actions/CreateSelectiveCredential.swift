@@ -59,4 +59,16 @@ extension Tdid {
     public func createSelectiveCredential(_ input: CreateSelectiveCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSelectiveCredentialResponse {
         try await self.client.execute(action: "CreateSelectiveCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建选择性批露凭证
+    @inlinable
+    public func createSelectiveCredential(functionArg: VerifyFunctionArg, policyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSelectiveCredentialResponse > {
+        self.createSelectiveCredential(CreateSelectiveCredentialRequest(functionArg: functionArg, policyId: policyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建选择性批露凭证
+    @inlinable
+    public func createSelectiveCredential(functionArg: VerifyFunctionArg, policyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSelectiveCredentialResponse {
+        try await self.createSelectiveCredential(CreateSelectiveCredentialRequest(functionArg: functionArg, policyId: policyId), logger: logger, on: eventLoop)
+    }
 }

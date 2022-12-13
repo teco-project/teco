@@ -54,4 +54,16 @@ extension Kms {
     public func listAlgorithms(_ input: ListAlgorithmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAlgorithmsResponse {
         try await self.client.execute(action: "ListAlgorithms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 列出当前Region支持的加密方式
+    @inlinable
+    public func listAlgorithms(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAlgorithmsResponse > {
+        self.listAlgorithms(ListAlgorithmsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 列出当前Region支持的加密方式
+    @inlinable
+    public func listAlgorithms(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAlgorithmsResponse {
+        try await self.listAlgorithms(ListAlgorithmsRequest(), logger: logger, on: eventLoop)
+    }
 }

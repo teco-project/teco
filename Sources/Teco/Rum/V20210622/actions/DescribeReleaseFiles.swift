@@ -59,4 +59,16 @@ extension Rum {
     public func describeReleaseFiles(_ input: DescribeReleaseFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFilesResponse {
         try await self.client.execute(action: "DescribeReleaseFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取项目对应sourcemap文件列表
+    @inlinable
+    public func describeReleaseFiles(projectID: Int64, fileVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReleaseFilesResponse > {
+        self.describeReleaseFiles(DescribeReleaseFilesRequest(projectID: projectID, fileVersion: fileVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取项目对应sourcemap文件列表
+    @inlinable
+    public func describeReleaseFiles(projectID: Int64, fileVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFilesResponse {
+        try await self.describeReleaseFiles(DescribeReleaseFilesRequest(projectID: projectID, fileVersion: fileVersion), logger: logger, on: eventLoop)
+    }
 }

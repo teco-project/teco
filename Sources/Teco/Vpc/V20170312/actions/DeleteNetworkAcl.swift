@@ -54,4 +54,20 @@ extension Vpc {
     public func deleteNetworkAcl(_ input: DeleteNetworkAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkAclResponse {
         try await self.client.execute(action: "DeleteNetworkAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除网络ACL
+    ///
+    /// 本接口（DeleteNetworkAcl）用于删除网络ACL。
+    @inlinable
+    public func deleteNetworkAcl(networkAclId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetworkAclResponse > {
+        self.deleteNetworkAcl(DeleteNetworkAclRequest(networkAclId: networkAclId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除网络ACL
+    ///
+    /// 本接口（DeleteNetworkAcl）用于删除网络ACL。
+    @inlinable
+    public func deleteNetworkAcl(networkAclId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkAclResponse {
+        try await self.deleteNetworkAcl(DeleteNetworkAclRequest(networkAclId: networkAclId), logger: logger, on: eventLoop)
+    }
 }

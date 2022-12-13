@@ -59,4 +59,20 @@ extension Antiddos {
     public func disassociateDDoSEipAddress(_ input: DisassociateDDoSEipAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDDoSEipAddressResponse {
         try await self.client.execute(action: "DisassociateDDoSEipAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解绑高防弹性公网IP
+    ///
+    /// 本接口 (DisassociateDDoSEipAddress) 用于解绑高防弹性公网IP。
+    @inlinable
+    public func disassociateDDoSEipAddress(instanceId: String, eip: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateDDoSEipAddressResponse > {
+        self.disassociateDDoSEipAddress(DisassociateDDoSEipAddressRequest(instanceId: instanceId, eip: eip), logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑高防弹性公网IP
+    ///
+    /// 本接口 (DisassociateDDoSEipAddress) 用于解绑高防弹性公网IP。
+    @inlinable
+    public func disassociateDDoSEipAddress(instanceId: String, eip: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDDoSEipAddressResponse {
+        try await self.disassociateDDoSEipAddress(DisassociateDDoSEipAddressRequest(instanceId: instanceId, eip: eip), logger: logger, on: eventLoop)
+    }
 }

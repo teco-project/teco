@@ -124,4 +124,16 @@ extension Tem {
     public func createApplication(_ input: CreateApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationResponse {
         try await self.client.execute(action: "CreateApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建应用
+    @inlinable
+    public func createApplication(applicationName: String, description: String, useDefaultImageService: Int64? = nil, repoType: Int64? = nil, instanceId: String? = nil, repoServer: String? = nil, repoName: String? = nil, sourceChannel: Int64? = nil, subnetList: [String]? = nil, codingLanguage: String? = nil, deployMode: String? = nil, enableTracing: Int64? = nil, useDefaultImageServiceParameters: UseDefaultRepoParameters? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationResponse > {
+        self.createApplication(CreateApplicationRequest(applicationName: applicationName, description: description, useDefaultImageService: useDefaultImageService, repoType: repoType, instanceId: instanceId, repoServer: repoServer, repoName: repoName, sourceChannel: sourceChannel, subnetList: subnetList, codingLanguage: codingLanguage, deployMode: deployMode, enableTracing: enableTracing, useDefaultImageServiceParameters: useDefaultImageServiceParameters, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建应用
+    @inlinable
+    public func createApplication(applicationName: String, description: String, useDefaultImageService: Int64? = nil, repoType: Int64? = nil, instanceId: String? = nil, repoServer: String? = nil, repoName: String? = nil, sourceChannel: Int64? = nil, subnetList: [String]? = nil, codingLanguage: String? = nil, deployMode: String? = nil, enableTracing: Int64? = nil, useDefaultImageServiceParameters: UseDefaultRepoParameters? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationResponse {
+        try await self.createApplication(CreateApplicationRequest(applicationName: applicationName, description: description, useDefaultImageService: useDefaultImageService, repoType: repoType, instanceId: instanceId, repoServer: repoServer, repoName: repoName, sourceChannel: sourceChannel, subnetList: subnetList, codingLanguage: codingLanguage, deployMode: deployMode, enableTracing: enableTracing, useDefaultImageServiceParameters: useDefaultImageServiceParameters, tags: tags), logger: logger, on: eventLoop)
+    }
 }

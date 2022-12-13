@@ -78,4 +78,16 @@ extension Cam {
     public func describeOIDCConfig(_ input: DescribeOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOIDCConfigResponse {
         try await self.client.execute(action: "DescribeOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询角色OIDC配置
+    @inlinable
+    public func describeOIDCConfig(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOIDCConfigResponse > {
+        self.describeOIDCConfig(DescribeOIDCConfigRequest(name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询角色OIDC配置
+    @inlinable
+    public func describeOIDCConfig(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOIDCConfigResponse {
+        try await self.describeOIDCConfig(DescribeOIDCConfigRequest(name: name), logger: logger, on: eventLoop)
+    }
 }

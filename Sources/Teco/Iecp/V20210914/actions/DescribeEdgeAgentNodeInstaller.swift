@@ -60,4 +60,16 @@ extension Iecp {
     public func describeEdgeAgentNodeInstaller(_ input: DescribeEdgeAgentNodeInstallerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeAgentNodeInstallerResponse {
         try await self.client.execute(action: "DescribeEdgeAgentNodeInstaller", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取节点安装信息
+    @inlinable
+    public func describeEdgeAgentNodeInstaller(edgeUnitId: UInt64, nodeId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeAgentNodeInstallerResponse > {
+        self.describeEdgeAgentNodeInstaller(DescribeEdgeAgentNodeInstallerRequest(edgeUnitId: edgeUnitId, nodeId: nodeId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取节点安装信息
+    @inlinable
+    public func describeEdgeAgentNodeInstaller(edgeUnitId: UInt64, nodeId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeAgentNodeInstallerResponse {
+        try await self.describeEdgeAgentNodeInstaller(DescribeEdgeAgentNodeInstallerRequest(edgeUnitId: edgeUnitId, nodeId: nodeId), logger: logger, on: eventLoop)
+    }
 }

@@ -78,4 +78,16 @@ extension Solar {
     public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
         try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 项目列表展示
+    @inlinable
+    public func describeProjects(pageNo: UInt64, pageSize: UInt64, searchWord: String? = nil, filters: Filters? = nil, projectStatus: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
+        self.describeProjects(DescribeProjectsRequest(pageNo: pageNo, pageSize: pageSize, searchWord: searchWord, filters: filters, projectStatus: projectStatus), logger: logger, on: eventLoop)
+    }
+    
+    /// 项目列表展示
+    @inlinable
+    public func describeProjects(pageNo: UInt64, pageSize: UInt64, searchWord: String? = nil, filters: Filters? = nil, projectStatus: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
+        try await self.describeProjects(DescribeProjectsRequest(pageNo: pageNo, pageSize: pageSize, searchWord: searchWord, filters: filters, projectStatus: projectStatus), logger: logger, on: eventLoop)
+    }
 }

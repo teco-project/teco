@@ -89,4 +89,20 @@ extension Tics {
     public func describeFileInfo(_ input: DescribeFileInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileInfoResponse {
         try await self.client.execute(action: "DescribeFileInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询文件信誉
+    ///
+    /// 提供文件相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。
+    @inlinable
+    public func describeFileInfo(key: String, option: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileInfoResponse > {
+        self.describeFileInfo(DescribeFileInfoRequest(key: key, option: option), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文件信誉
+    ///
+    /// 提供文件相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。
+    @inlinable
+    public func describeFileInfo(key: String, option: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileInfoResponse {
+        try await self.describeFileInfo(DescribeFileInfoRequest(key: key, option: option), logger: logger, on: eventLoop)
+    }
 }

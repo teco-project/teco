@@ -147,4 +147,16 @@ extension Billing {
     public func describeBillDetail(_ input: DescribeBillDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillDetailResponse {
         try await self.client.execute(action: "DescribeBillDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询账单明细数据
+    @inlinable
+    public func describeBillDetail(offset: UInt64, limit: UInt64, periodType: String? = nil, month: String? = nil, beginTime: String? = nil, endTime: String? = nil, needRecordNum: Int64? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, actionType: String? = nil, projectId: Int64? = nil, businessCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillDetailResponse > {
+        self.describeBillDetail(DescribeBillDetailRequest(offset: offset, limit: limit, periodType: periodType, month: month, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, productCode: productCode, payMode: payMode, resourceId: resourceId, actionType: actionType, projectId: projectId, businessCode: businessCode), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账单明细数据
+    @inlinable
+    public func describeBillDetail(offset: UInt64, limit: UInt64, periodType: String? = nil, month: String? = nil, beginTime: String? = nil, endTime: String? = nil, needRecordNum: Int64? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, actionType: String? = nil, projectId: Int64? = nil, businessCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillDetailResponse {
+        try await self.describeBillDetail(DescribeBillDetailRequest(offset: offset, limit: limit, periodType: periodType, month: month, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, productCode: productCode, payMode: payMode, resourceId: resourceId, actionType: actionType, projectId: projectId, businessCode: businessCode), logger: logger, on: eventLoop)
+    }
 }

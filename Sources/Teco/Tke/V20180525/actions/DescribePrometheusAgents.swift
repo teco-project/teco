@@ -68,4 +68,16 @@ extension Tke {
     public func describePrometheusAgents(_ input: DescribePrometheusAgentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAgentsResponse {
         try await self.client.execute(action: "DescribePrometheusAgents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取被关联集群列表
+    @inlinable
+    public func describePrometheusAgents(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusAgentsResponse > {
+        self.describePrometheusAgents(DescribePrometheusAgentsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取被关联集群列表
+    @inlinable
+    public func describePrometheusAgents(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAgentsResponse {
+        try await self.describePrometheusAgents(DescribePrometheusAgentsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

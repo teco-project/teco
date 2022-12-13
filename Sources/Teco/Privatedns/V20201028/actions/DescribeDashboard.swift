@@ -58,4 +58,16 @@ extension Privatedns {
     public func describeDashboard(_ input: DescribeDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDashboardResponse {
         try await self.client.execute(action: "DescribeDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取私有域解析概览
+    @inlinable
+    public func describeDashboard(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDashboardResponse > {
+        self.describeDashboard(DescribeDashboardRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取私有域解析概览
+    @inlinable
+    public func describeDashboard(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDashboardResponse {
+        try await self.describeDashboard(DescribeDashboardRequest(), logger: logger, on: eventLoop)
+    }
 }

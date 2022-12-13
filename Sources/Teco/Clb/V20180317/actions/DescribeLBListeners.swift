@@ -58,4 +58,20 @@ extension Clb {
     public func describeLBListeners(_ input: DescribeLBListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLBListenersResponse {
         try await self.client.execute(action: "DescribeLBListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询后端云主机或弹性网卡绑定的负载均衡
+    ///
+    /// 查询后端云主机或弹性网卡绑定的负载均衡，支持弹性网卡和cvm查询。
+    @inlinable
+    public func describeLBListeners(backends: [LbRsItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLBListenersResponse > {
+        self.describeLBListeners(DescribeLBListenersRequest(backends: backends), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询后端云主机或弹性网卡绑定的负载均衡
+    ///
+    /// 查询后端云主机或弹性网卡绑定的负载均衡，支持弹性网卡和cvm查询。
+    @inlinable
+    public func describeLBListeners(backends: [LbRsItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLBListenersResponse {
+        try await self.describeLBListeners(DescribeLBListenersRequest(backends: backends), logger: logger, on: eventLoop)
+    }
 }

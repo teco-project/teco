@@ -54,4 +54,16 @@ extension Ecm {
     public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupPoliciesResponse {
         try await self.client.execute(action: "DescribeSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询安全组规则
+    @inlinable
+    public func describeSecurityGroupPolicies(securityGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupPoliciesResponse > {
+        self.describeSecurityGroupPolicies(DescribeSecurityGroupPoliciesRequest(securityGroupId: securityGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全组规则
+    @inlinable
+    public func describeSecurityGroupPolicies(securityGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupPoliciesResponse {
+        try await self.describeSecurityGroupPolicies(DescribeSecurityGroupPoliciesRequest(securityGroupId: securityGroupId), logger: logger, on: eventLoop)
+    }
 }

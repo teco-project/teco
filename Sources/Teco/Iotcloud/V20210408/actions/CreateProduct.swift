@@ -76,4 +76,20 @@ extension Iotcloud {
     public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
         try await self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建产品
+    ///
+    /// 本接口（CreateProduct）用于创建一个新的物联网通信产品 
+    @inlinable
+    public func createProduct(productName: String, productProperties: ProductProperties? = nil, skey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProductResponse > {
+        self.createProduct(CreateProductRequest(productName: productName, productProperties: productProperties, skey: skey), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建产品
+    ///
+    /// 本接口（CreateProduct）用于创建一个新的物联网通信产品 
+    @inlinable
+    public func createProduct(productName: String, productProperties: ProductProperties? = nil, skey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
+        try await self.createProduct(CreateProductRequest(productName: productName, productProperties: productProperties, skey: skey), logger: logger, on: eventLoop)
+    }
 }

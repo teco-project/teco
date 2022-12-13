@@ -87,4 +87,16 @@ extension Tsf {
     public func describeInvocationMetricDataCurve(_ input: DescribeInvocationMetricDataCurveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataCurveResponse {
         try await self.client.execute(action: "DescribeInvocationMetricDataCurve", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询调用指标数据变化曲线
+    @inlinable
+    public func describeInvocationMetricDataCurve(startTime: Date? = nil, endTime: Date? = nil, period: Int64? = nil, metricDimensions: [MetricDimension]? = nil, metrics: [Metric]? = nil, kind: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvocationMetricDataCurveResponse > {
+        self.describeInvocationMetricDataCurve(DescribeInvocationMetricDataCurveRequest(startTime: startTime, endTime: endTime, period: period, metricDimensions: metricDimensions, metrics: metrics, kind: kind, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询调用指标数据变化曲线
+    @inlinable
+    public func describeInvocationMetricDataCurve(startTime: Date? = nil, endTime: Date? = nil, period: Int64? = nil, metricDimensions: [MetricDimension]? = nil, metrics: [Metric]? = nil, kind: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataCurveResponse {
+        try await self.describeInvocationMetricDataCurve(DescribeInvocationMetricDataCurveRequest(startTime: startTime, endTime: endTime, period: period, metricDimensions: metricDimensions, metrics: metrics, kind: kind, type: type), logger: logger, on: eventLoop)
+    }
 }

@@ -82,4 +82,20 @@ extension Tat {
     public func describeInvocationTasks(_ input: DescribeInvocationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationTasksResponse {
         try await self.client.execute(action: "DescribeInvocationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询执行任务
+    ///
+    /// 此接口用于查询执行任务详情。
+    @inlinable
+    public func describeInvocationTasks(invocationTaskIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, hideOutput: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvocationTasksResponse > {
+        self.describeInvocationTasks(DescribeInvocationTasksRequest(invocationTaskIds: invocationTaskIds, filters: filters, limit: limit, offset: offset, hideOutput: hideOutput), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询执行任务
+    ///
+    /// 此接口用于查询执行任务详情。
+    @inlinable
+    public func describeInvocationTasks(invocationTaskIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, hideOutput: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationTasksResponse {
+        try await self.describeInvocationTasks(DescribeInvocationTasksRequest(invocationTaskIds: invocationTaskIds, filters: filters, limit: limit, offset: offset, hideOutput: hideOutput), logger: logger, on: eventLoop)
+    }
 }

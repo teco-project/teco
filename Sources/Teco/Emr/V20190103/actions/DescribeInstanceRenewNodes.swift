@@ -64,4 +64,16 @@ extension Emr {
     public func describeInstanceRenewNodes(_ input: DescribeInstanceRenewNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceRenewNodesResponse {
         try await self.client.execute(action: "DescribeInstanceRenewNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询待续费节点信息
+    @inlinable
+    public func describeInstanceRenewNodes(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceRenewNodesResponse > {
+        self.describeInstanceRenewNodes(DescribeInstanceRenewNodesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询待续费节点信息
+    @inlinable
+    public func describeInstanceRenewNodes(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceRenewNodesResponse {
+        try await self.describeInstanceRenewNodes(DescribeInstanceRenewNodesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

@@ -68,4 +68,20 @@ extension Fmu {
     public func getModelList(_ input: GetModelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetModelListResponse {
         try await self.client.execute(action: "GetModelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询唇色素材
+    ///
+    /// 查询已注册的唇色素材。
+    @inlinable
+    public func getModelList(offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetModelListResponse > {
+        self.getModelList(GetModelListRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询唇色素材
+    ///
+    /// 查询已注册的唇色素材。
+    @inlinable
+    public func getModelList(offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetModelListResponse {
+        try await self.getModelList(GetModelListRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

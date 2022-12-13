@@ -104,4 +104,20 @@ extension Cpdp {
     public func checkAmount(_ input: CheckAmountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAmountResponse {
         try await self.client.execute(action: "CheckAmount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云鉴-验证鉴权金额
+    ///
+    /// 验证鉴权金额。此接口可受理BindRelateAcctSmallAmount接口发起的转账金额（往账鉴权方式）的验证处理。若所回填的验证金额验证通过，则会绑定原申请中的银行账户作为提现账户。通过此接口也可以查得BindRelateAcctSmallAmount接口发起的来账鉴权方式的申请的当前状态。
+    @inlinable
+    public func checkAmount(mrchCode: String, tranNetMemberCode: String, takeCashAcctNo: String, authAmt: String, ccy: String, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckAmountResponse > {
+        self.checkAmount(CheckAmountRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, takeCashAcctNo: takeCashAcctNo, authAmt: authAmt, ccy: ccy, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-验证鉴权金额
+    ///
+    /// 验证鉴权金额。此接口可受理BindRelateAcctSmallAmount接口发起的转账金额（往账鉴权方式）的验证处理。若所回填的验证金额验证通过，则会绑定原申请中的银行账户作为提现账户。通过此接口也可以查得BindRelateAcctSmallAmount接口发起的来账鉴权方式的申请的当前状态。
+    @inlinable
+    public func checkAmount(mrchCode: String, tranNetMemberCode: String, takeCashAcctNo: String, authAmt: String, ccy: String, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAmountResponse {
+        try await self.checkAmount(CheckAmountRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, takeCashAcctNo: takeCashAcctNo, authAmt: authAmt, ccy: ccy, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    }
 }

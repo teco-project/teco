@@ -160,4 +160,16 @@ extension Dlc {
     public func createSparkApp(_ input: CreateSparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSparkAppResponse {
         try await self.client.execute(action: "CreateSparkApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建spark应用
+    @inlinable
+    public func createSparkApp(appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSparkAppResponse > {
+        self.createSparkApp(CreateSparkAppRequest(appName: appName, appType: appType, dataEngine: dataEngine, appFile: appFile, roleArn: roleArn, appDriverSize: appDriverSize, appExecutorSize: appExecutorSize, appExecutorNums: appExecutorNums, eni: eni, isLocal: isLocal, mainClass: mainClass, appConf: appConf, isLocalJars: isLocalJars, appJars: appJars, isLocalFiles: isLocalFiles, appFiles: appFiles, cmdArgs: cmdArgs, maxRetries: maxRetries, dataSource: dataSource, isLocalPythonFiles: isLocalPythonFiles, appPythonFiles: appPythonFiles, isLocalArchives: isLocalArchives, appArchives: appArchives), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建spark应用
+    @inlinable
+    public func createSparkApp(appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSparkAppResponse {
+        try await self.createSparkApp(CreateSparkAppRequest(appName: appName, appType: appType, dataEngine: dataEngine, appFile: appFile, roleArn: roleArn, appDriverSize: appDriverSize, appExecutorSize: appExecutorSize, appExecutorNums: appExecutorNums, eni: eni, isLocal: isLocal, mainClass: mainClass, appConf: appConf, isLocalJars: isLocalJars, appJars: appJars, isLocalFiles: isLocalFiles, appFiles: appFiles, cmdArgs: cmdArgs, maxRetries: maxRetries, dataSource: dataSource, isLocalPythonFiles: isLocalPythonFiles, appPythonFiles: appPythonFiles, isLocalArchives: isLocalArchives, appArchives: appArchives), logger: logger, on: eventLoop)
+    }
 }

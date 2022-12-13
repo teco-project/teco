@@ -50,4 +50,16 @@ extension Tdmq {
     public func deleteCmqQueue(_ input: DeleteCmqQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCmqQueueResponse {
         try await self.client.execute(action: "DeleteCmqQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除cmq队列
+    @inlinable
+    public func deleteCmqQueue(queueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCmqQueueResponse > {
+        self.deleteCmqQueue(DeleteCmqQueueRequest(queueName: queueName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除cmq队列
+    @inlinable
+    public func deleteCmqQueue(queueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCmqQueueResponse {
+        try await self.deleteCmqQueue(DeleteCmqQueueRequest(queueName: queueName), logger: logger, on: eventLoop)
+    }
 }

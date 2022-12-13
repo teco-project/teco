@@ -53,7 +53,7 @@ extension Teo {
         /// 模板Id。当使用模板Id时可不填ZoneId和Entity，否则必须填写ZoneId和Entity。
         public let templateId: String?
         
-        public init (zoneId: String? = nil, entity: String? = nil, `switch`: String? = nil, level: String? = nil, mode: String? = nil, wafRules: WafRule? = nil, aiRule: AiRule? = nil, wafGroups: [WafGroup]? = nil, templateId: String? = nil) {
+        public init (zoneId: String? = nil, entity: String? = nil, switch: String? = nil, level: String? = nil, mode: String? = nil, wafRules: WafRule? = nil, aiRule: AiRule? = nil, wafGroups: [WafGroup]? = nil, templateId: String? = nil) {
             self.zoneId = zoneId
             self.entity = entity
             self.`switch` = `switch`
@@ -98,5 +98,17 @@ extension Teo {
     @inlinable
     public func modifySecurityWafGroupPolicy(_ input: ModifySecurityWafGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityWafGroupPolicyResponse {
         try await self.client.execute(action: "ModifySecurityWafGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 修改安全配置托管规则
+    @inlinable
+    public func modifySecurityWafGroupPolicy(zoneId: String? = nil, entity: String? = nil, switch: String? = nil, level: String? = nil, mode: String? = nil, wafRules: WafRule? = nil, aiRule: AiRule? = nil, wafGroups: [WafGroup]? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityWafGroupPolicyResponse > {
+        self.modifySecurityWafGroupPolicy(ModifySecurityWafGroupPolicyRequest(zoneId: zoneId, entity: entity, switch: `switch`, level: level, mode: mode, wafRules: wafRules, aiRule: aiRule, wafGroups: wafGroups, templateId: templateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改安全配置托管规则
+    @inlinable
+    public func modifySecurityWafGroupPolicy(zoneId: String? = nil, entity: String? = nil, switch: String? = nil, level: String? = nil, mode: String? = nil, wafRules: WafRule? = nil, aiRule: AiRule? = nil, wafGroups: [WafGroup]? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityWafGroupPolicyResponse {
+        try await self.modifySecurityWafGroupPolicy(ModifySecurityWafGroupPolicyRequest(zoneId: zoneId, entity: entity, switch: `switch`, level: level, mode: mode, wafRules: wafRules, aiRule: aiRule, wafGroups: wafGroups, templateId: templateId), logger: logger, on: eventLoop)
     }
 }

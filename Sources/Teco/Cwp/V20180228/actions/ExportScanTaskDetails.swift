@@ -68,4 +68,20 @@ extension Cwp {
     public func exportScanTaskDetails(_ input: ExportScanTaskDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportScanTaskDetailsResponse {
         try await self.client.execute(action: "ExportScanTaskDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导出扫描任务详情
+    ///
+    /// 根据任务id导出指定扫描任务详情 
+    @inlinable
+    public func exportScanTaskDetails(taskId: UInt64, moduleType: String, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportScanTaskDetailsResponse > {
+        self.exportScanTaskDetails(ExportScanTaskDetailsRequest(taskId: taskId, moduleType: moduleType, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 导出扫描任务详情
+    ///
+    /// 根据任务id导出指定扫描任务详情 
+    @inlinable
+    public func exportScanTaskDetails(taskId: UInt64, moduleType: String, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportScanTaskDetailsResponse {
+        try await self.exportScanTaskDetails(ExportScanTaskDetailsRequest(taskId: taskId, moduleType: moduleType, filters: filters), logger: logger, on: eventLoop)
+    }
 }

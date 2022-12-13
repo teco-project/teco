@@ -128,4 +128,16 @@ extension Tione {
     public func updateNotebookInstance(_ input: UpdateNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateNotebookInstanceResponse {
         try await self.client.execute(action: "UpdateNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新Notebook实例
+    @inlinable
+    public func updateNotebookInstance(notebookInstanceName: String, roleArn: String? = nil, rootAccess: String? = nil, volumeSizeInGB: UInt64? = nil, instanceType: String? = nil, lifecycleScriptsName: String? = nil, disassociateLifecycleScript: Bool? = nil, defaultCodeRepository: String? = nil, additionalCodeRepositories: [String]? = nil, disassociateDefaultCodeRepository: Bool? = nil, disassociateAdditionalCodeRepositories: Bool? = nil, clsAccess: String? = nil, autoStopping: String? = nil, stoppingCondition: StoppingCondition? = nil, clsConfig: ClsConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateNotebookInstanceResponse > {
+        self.updateNotebookInstance(UpdateNotebookInstanceRequest(notebookInstanceName: notebookInstanceName, roleArn: roleArn, rootAccess: rootAccess, volumeSizeInGB: volumeSizeInGB, instanceType: instanceType, lifecycleScriptsName: lifecycleScriptsName, disassociateLifecycleScript: disassociateLifecycleScript, defaultCodeRepository: defaultCodeRepository, additionalCodeRepositories: additionalCodeRepositories, disassociateDefaultCodeRepository: disassociateDefaultCodeRepository, disassociateAdditionalCodeRepositories: disassociateAdditionalCodeRepositories, clsAccess: clsAccess, autoStopping: autoStopping, stoppingCondition: stoppingCondition, clsConfig: clsConfig), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新Notebook实例
+    @inlinable
+    public func updateNotebookInstance(notebookInstanceName: String, roleArn: String? = nil, rootAccess: String? = nil, volumeSizeInGB: UInt64? = nil, instanceType: String? = nil, lifecycleScriptsName: String? = nil, disassociateLifecycleScript: Bool? = nil, defaultCodeRepository: String? = nil, additionalCodeRepositories: [String]? = nil, disassociateDefaultCodeRepository: Bool? = nil, disassociateAdditionalCodeRepositories: Bool? = nil, clsAccess: String? = nil, autoStopping: String? = nil, stoppingCondition: StoppingCondition? = nil, clsConfig: ClsConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateNotebookInstanceResponse {
+        try await self.updateNotebookInstance(UpdateNotebookInstanceRequest(notebookInstanceName: notebookInstanceName, roleArn: roleArn, rootAccess: rootAccess, volumeSizeInGB: volumeSizeInGB, instanceType: instanceType, lifecycleScriptsName: lifecycleScriptsName, disassociateLifecycleScript: disassociateLifecycleScript, defaultCodeRepository: defaultCodeRepository, additionalCodeRepositories: additionalCodeRepositories, disassociateDefaultCodeRepository: disassociateDefaultCodeRepository, disassociateAdditionalCodeRepositories: disassociateAdditionalCodeRepositories, clsAccess: clsAccess, autoStopping: autoStopping, stoppingCondition: stoppingCondition, clsConfig: clsConfig), logger: logger, on: eventLoop)
+    }
 }

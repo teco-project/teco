@@ -64,4 +64,16 @@ extension Tdid {
     public func getCredentialIssueTrend(_ input: GetCredentialIssueTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialIssueTrendResponse {
         try await self.client.execute(action: "GetCredentialIssueTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 凭证颁发趋势
+    @inlinable
+    public func getCredentialIssueTrend(startTime: String, endTime: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCredentialIssueTrendResponse > {
+        self.getCredentialIssueTrend(GetCredentialIssueTrendRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 凭证颁发趋势
+    @inlinable
+    public func getCredentialIssueTrend(startTime: String, endTime: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialIssueTrendResponse {
+        try await self.getCredentialIssueTrend(GetCredentialIssueTrendRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

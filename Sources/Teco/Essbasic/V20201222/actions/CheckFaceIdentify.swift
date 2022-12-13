@@ -115,4 +115,20 @@ extension Essbasic {
     public func checkFaceIdentify(_ input: CheckFaceIdentifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckFaceIdentifyResponse {
         try await self.client.execute(action: "CheckFaceIdentify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 检测人脸核身结果
+    ///
+    /// 该接口为第三方平台向电子签平台检测慧眼或腾讯电子签小程序人脸核身结果
+    @inlinable
+    public func checkFaceIdentify(caller: Caller, verifyChannel: String, verifyResult: String, name: String? = nil, idCardNumber: String? = nil, getPhoto: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckFaceIdentifyResponse > {
+        self.checkFaceIdentify(CheckFaceIdentifyRequest(caller: caller, verifyChannel: verifyChannel, verifyResult: verifyResult, name: name, idCardNumber: idCardNumber, getPhoto: getPhoto), logger: logger, on: eventLoop)
+    }
+    
+    /// 检测人脸核身结果
+    ///
+    /// 该接口为第三方平台向电子签平台检测慧眼或腾讯电子签小程序人脸核身结果
+    @inlinable
+    public func checkFaceIdentify(caller: Caller, verifyChannel: String, verifyResult: String, name: String? = nil, idCardNumber: String? = nil, getPhoto: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckFaceIdentifyResponse {
+        try await self.checkFaceIdentify(CheckFaceIdentifyRequest(caller: caller, verifyChannel: verifyChannel, verifyResult: verifyResult, name: name, idCardNumber: idCardNumber, getPhoto: getPhoto), logger: logger, on: eventLoop)
+    }
 }

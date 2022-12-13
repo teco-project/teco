@@ -1739,7 +1739,7 @@ extension Vpc {
         /// IPV4端口号，可在0~65535范围取值
         public let vport: Int64
         
-        public init (vport6: Int64, `protocol`: String, vip: String, vport: Int64) {
+        public init (vport6: Int64, protocol: String, vip: String, vport: Int64) {
             self.vport6 = vport6
             self.`protocol` = `protocol`
             self.vip = vip
@@ -2388,7 +2388,7 @@ extension Vpc {
         /// 规则描述，最大长度100。
         public let description: String?
         
-        public init (modifyTime: String, `protocol`: String? = nil, port: String? = nil, cidrBlock: String? = nil, ipv6CidrBlock: String? = nil, action: String? = nil, description: String? = nil) {
+        public init (modifyTime: String, protocol: String? = nil, port: String? = nil, cidrBlock: String? = nil, ipv6CidrBlock: String? = nil, action: String? = nil, description: String? = nil) {
             self.modifyTime = modifyTime
             self.`protocol` = `protocol`
             self.port = port
@@ -2482,7 +2482,7 @@ extension Vpc {
         /// 方向，INGRESS或EGRESS，用于DescribeNetworkAclQuintupleEntries的出参。
         public let networkAclDirection: String?
         
-        public init (`protocol`: String? = nil, description: String? = nil, sourcePort: String? = nil, sourceCidr: String? = nil, destinationPort: String? = nil, destinationCidr: String? = nil, action: String? = nil, networkAclQuintupleEntryId: String? = nil, priority: Int64? = nil, createTime: String? = nil, networkAclDirection: String? = nil) {
+        public init (protocol: String? = nil, description: String? = nil, sourcePort: String? = nil, sourceCidr: String? = nil, destinationPort: String? = nil, destinationCidr: String? = nil, action: String? = nil, networkAclQuintupleEntryId: String? = nil, priority: Int64? = nil, createTime: String? = nil, networkAclDirection: String? = nil) {
             self.`protocol` = `protocol`
             self.description = description
             self.sourcePort = sourcePort
@@ -3283,7 +3283,7 @@ extension Vpc {
         /// 安全组最近修改时间。
         public let modifyTime: String?
         
-        public init (policyIndex: Int64? = nil, `protocol`: String? = nil, port: String? = nil, serviceTemplate: ServiceTemplateSpecification? = nil, cidrBlock: String? = nil, ipv6CidrBlock: String? = nil, securityGroupId: String? = nil, addressTemplate: AddressTemplateSpecification? = nil, action: String? = nil, policyDescription: String? = nil, modifyTime: String? = nil) {
+        public init (policyIndex: Int64? = nil, protocol: String? = nil, port: String? = nil, serviceTemplate: ServiceTemplateSpecification? = nil, cidrBlock: String? = nil, ipv6CidrBlock: String? = nil, securityGroupId: String? = nil, addressTemplate: AddressTemplateSpecification? = nil, action: String? = nil, policyDescription: String? = nil, modifyTime: String? = nil) {
             self.policyIndex = policyIndex
             self.`protocol` = `protocol`
             self.port = port

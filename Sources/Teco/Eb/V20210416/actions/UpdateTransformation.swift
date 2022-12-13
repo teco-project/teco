@@ -69,4 +69,20 @@ extension Eb {
     public func updateTransformation(_ input: UpdateTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTransformationResponse {
         try await self.client.execute(action: "UpdateTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新转换器
+    ///
+    /// 用于更新转换器
+    @inlinable
+    public func updateTransformation(eventBusId: String, ruleId: String, transformationId: String, transformations: [Transformation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateTransformationResponse > {
+        self.updateTransformation(UpdateTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId, transformations: transformations), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新转换器
+    ///
+    /// 用于更新转换器
+    @inlinable
+    public func updateTransformation(eventBusId: String, ruleId: String, transformationId: String, transformations: [Transformation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTransformationResponse {
+        try await self.updateTransformation(UpdateTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId, transformations: transformations), logger: logger, on: eventLoop)
+    }
 }

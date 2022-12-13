@@ -54,4 +54,16 @@ extension Bmvpc {
     public func deleteVpcPeerConnection(_ input: DeleteVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcPeerConnectionResponse {
         try await self.client.execute(action: "DeleteVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除黑石对等连接
+    @inlinable
+    public func deleteVpcPeerConnection(vpcPeerConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpcPeerConnectionResponse > {
+        self.deleteVpcPeerConnection(DeleteVpcPeerConnectionRequest(vpcPeerConnectionId: vpcPeerConnectionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除黑石对等连接
+    @inlinable
+    public func deleteVpcPeerConnection(vpcPeerConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcPeerConnectionResponse {
+        try await self.deleteVpcPeerConnection(DeleteVpcPeerConnectionRequest(vpcPeerConnectionId: vpcPeerConnectionId), logger: logger, on: eventLoop)
+    }
 }

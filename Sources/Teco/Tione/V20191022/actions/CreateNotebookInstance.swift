@@ -130,4 +130,16 @@ extension Tione {
     public func createNotebookInstance(_ input: CreateNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookInstanceResponse {
         try await self.client.execute(action: "CreateNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建Notebook实例
+    @inlinable
+    public func createNotebookInstance(notebookInstanceName: String, instanceType: String, volumeSizeInGB: UInt64, directInternetAccess: String? = nil, rootAccess: String? = nil, subnetId: String? = nil, lifecycleScriptsName: String? = nil, defaultCodeRepository: String? = nil, additionalCodeRepositories: [String]? = nil, clsAccess: String? = nil, stoppingCondition: StoppingCondition? = nil, autoStopping: String? = nil, clsConfig: ClsConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNotebookInstanceResponse > {
+        self.createNotebookInstance(CreateNotebookInstanceRequest(notebookInstanceName: notebookInstanceName, instanceType: instanceType, volumeSizeInGB: volumeSizeInGB, directInternetAccess: directInternetAccess, rootAccess: rootAccess, subnetId: subnetId, lifecycleScriptsName: lifecycleScriptsName, defaultCodeRepository: defaultCodeRepository, additionalCodeRepositories: additionalCodeRepositories, clsAccess: clsAccess, stoppingCondition: stoppingCondition, autoStopping: autoStopping, clsConfig: clsConfig), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建Notebook实例
+    @inlinable
+    public func createNotebookInstance(notebookInstanceName: String, instanceType: String, volumeSizeInGB: UInt64, directInternetAccess: String? = nil, rootAccess: String? = nil, subnetId: String? = nil, lifecycleScriptsName: String? = nil, defaultCodeRepository: String? = nil, additionalCodeRepositories: [String]? = nil, clsAccess: String? = nil, stoppingCondition: StoppingCondition? = nil, autoStopping: String? = nil, clsConfig: ClsConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookInstanceResponse {
+        try await self.createNotebookInstance(CreateNotebookInstanceRequest(notebookInstanceName: notebookInstanceName, instanceType: instanceType, volumeSizeInGB: volumeSizeInGB, directInternetAccess: directInternetAccess, rootAccess: rootAccess, subnetId: subnetId, lifecycleScriptsName: lifecycleScriptsName, defaultCodeRepository: defaultCodeRepository, additionalCodeRepositories: additionalCodeRepositories, clsAccess: clsAccess, stoppingCondition: stoppingCondition, autoStopping: autoStopping, clsConfig: clsConfig), logger: logger, on: eventLoop)
+    }
 }

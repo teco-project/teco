@@ -84,4 +84,16 @@ extension Tcss {
     public func describeNetworkFirewallPolicyList(_ input: DescribeNetworkFirewallPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPolicyListResponse {
         try await self.client.execute(action: "DescribeNetworkFirewallPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询集群网络策略列表
+    @inlinable
+    public func describeNetworkFirewallPolicyList(clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallPolicyListResponse > {
+        self.describeNetworkFirewallPolicyList(DescribeNetworkFirewallPolicyListRequest(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群网络策略列表
+    @inlinable
+    public func describeNetworkFirewallPolicyList(clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPolicyListResponse {
+        try await self.describeNetworkFirewallPolicyList(DescribeNetworkFirewallPolicyListRequest(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    }
 }

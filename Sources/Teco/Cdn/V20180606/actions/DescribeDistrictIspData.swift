@@ -63,7 +63,7 @@ extension Cdn {
         /// 5min：5 分钟粒度，支持近 60 天内的数据查询，每次查询时间区间不超过3 小时，可返回 5 分钟粒度明细数据
         public let interval: String?
         
-        public init (domains: [String], startTime: Date, endTime: Date, metric: String, districts: [Int64]? = nil, isps: [Int64]? = nil, `protocol`: String? = nil, ipProtocol: String? = nil, interval: String? = nil) {
+        public init (domains: [String], startTime: Date, endTime: Date, metric: String, districts: [Int64]? = nil, isps: [Int64]? = nil, protocol: String? = nil, ipProtocol: String? = nil, interval: String? = nil) {
             self.domains = domains
             self.startTime = startTime
             self.endTime = endTime
@@ -119,5 +119,23 @@ extension Cdn {
     @inlinable
     public func describeDistrictIspData(_ input: DescribeDistrictIspDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDistrictIspDataResponse {
         try await self.client.execute(action: "DescribeDistrictIspData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 地区运营商明细查询
+    ///
+    /// 查询指定域名的区域、运营商明细数据
+    /// 注意事项：接口尚未全量开放，未在内测名单中的账号不支持调用
+    @inlinable
+    public func describeDistrictIspData(domains: [String], startTime: Date, endTime: Date, metric: String, districts: [Int64]? = nil, isps: [Int64]? = nil, protocol: String? = nil, ipProtocol: String? = nil, interval: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDistrictIspDataResponse > {
+        self.describeDistrictIspData(DescribeDistrictIspDataRequest(domains: domains, startTime: startTime, endTime: endTime, metric: metric, districts: districts, isps: isps, protocol: `protocol`, ipProtocol: ipProtocol, interval: interval), logger: logger, on: eventLoop)
+    }
+    
+    /// 地区运营商明细查询
+    ///
+    /// 查询指定域名的区域、运营商明细数据
+    /// 注意事项：接口尚未全量开放，未在内测名单中的账号不支持调用
+    @inlinable
+    public func describeDistrictIspData(domains: [String], startTime: Date, endTime: Date, metric: String, districts: [Int64]? = nil, isps: [Int64]? = nil, protocol: String? = nil, ipProtocol: String? = nil, interval: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDistrictIspDataResponse {
+        try await self.describeDistrictIspData(DescribeDistrictIspDataRequest(domains: domains, startTime: startTime, endTime: endTime, metric: metric, districts: districts, isps: isps, protocol: `protocol`, ipProtocol: ipProtocol, interval: interval), logger: logger, on: eventLoop)
     }
 }

@@ -69,4 +69,20 @@ extension Ccc {
     public func createStaff(_ input: CreateStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStaffResponse {
         try await self.client.execute(action: "CreateStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建客服账号
+    ///
+    /// 创建客服账号。
+    @inlinable
+    public func createStaff(sdkAppId: Int64, staffs: [SeatUserInfo], sendPassword: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStaffResponse > {
+        self.createStaff(CreateStaffRequest(sdkAppId: sdkAppId, staffs: staffs, sendPassword: sendPassword), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建客服账号
+    ///
+    /// 创建客服账号。
+    @inlinable
+    public func createStaff(sdkAppId: Int64, staffs: [SeatUserInfo], sendPassword: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStaffResponse {
+        try await self.createStaff(CreateStaffRequest(sdkAppId: sdkAppId, staffs: staffs, sendPassword: sendPassword), logger: logger, on: eventLoop)
+    }
 }

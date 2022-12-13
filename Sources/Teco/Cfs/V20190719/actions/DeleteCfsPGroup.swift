@@ -62,4 +62,20 @@ extension Cfs {
     public func deleteCfsPGroup(_ input: DeleteCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsPGroupResponse {
         try await self.client.execute(action: "DeleteCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除权限组
+    ///
+    /// 本接口（DeleteCfsPGroup）用于删除权限组。
+    @inlinable
+    public func deleteCfsPGroup(pGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCfsPGroupResponse > {
+        self.deleteCfsPGroup(DeleteCfsPGroupRequest(pGroupId: pGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除权限组
+    ///
+    /// 本接口（DeleteCfsPGroup）用于删除权限组。
+    @inlinable
+    public func deleteCfsPGroup(pGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsPGroupResponse {
+        try await self.deleteCfsPGroup(DeleteCfsPGroupRequest(pGroupId: pGroupId), logger: logger, on: eventLoop)
+    }
 }

@@ -78,4 +78,16 @@ extension Dasb {
     public func describeUserGroups(_ input: DescribeUserGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserGroupsResponse {
         try await self.client.execute(action: "DescribeUserGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询用户组列表
+    @inlinable
+    public func describeUserGroups(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, departmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserGroupsResponse > {
+        self.describeUserGroups(DescribeUserGroupsRequest(idSet: idSet, name: name, offset: offset, limit: limit, departmentId: departmentId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户组列表
+    @inlinable
+    public func describeUserGroups(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, departmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserGroupsResponse {
+        try await self.describeUserGroups(DescribeUserGroupsRequest(idSet: idSet, name: name, offset: offset, limit: limit, departmentId: departmentId), logger: logger, on: eventLoop)
+    }
 }

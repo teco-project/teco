@@ -68,4 +68,20 @@ extension Tke {
     public func describeClusterCommonNames(_ input: DescribeClusterCommonNamesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterCommonNamesResponse {
         try await self.client.execute(action: "DescribeClusterCommonNames", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取集群子账户CommonName映射关系
+    ///
+    /// 获取指定子账户在RBAC授权模式中对应kube-apiserver客户端证书的CommonName字段，如果没有客户端证书，将会签发一个，此接口有最大传入子账户数量上限，当前为50
+    @inlinable
+    public func describeClusterCommonNames(clusterId: String, subaccountUins: [String]? = nil, roleIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterCommonNamesResponse > {
+        self.describeClusterCommonNames(DescribeClusterCommonNamesRequest(clusterId: clusterId, subaccountUins: subaccountUins, roleIds: roleIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群子账户CommonName映射关系
+    ///
+    /// 获取指定子账户在RBAC授权模式中对应kube-apiserver客户端证书的CommonName字段，如果没有客户端证书，将会签发一个，此接口有最大传入子账户数量上限，当前为50
+    @inlinable
+    public func describeClusterCommonNames(clusterId: String, subaccountUins: [String]? = nil, roleIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterCommonNamesResponse {
+        try await self.describeClusterCommonNames(DescribeClusterCommonNamesRequest(clusterId: clusterId, subaccountUins: subaccountUins, roleIds: roleIds), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,20 @@ extension Iot {
     public func appUpdateDevice(_ input: AppUpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppUpdateDeviceResponse {
         try await self.client.execute(action: "AppUpdateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改设备别名
+    ///
+    /// 修改设备别名，便于用户个性化定义设备的名称
+    @inlinable
+    public func appUpdateDevice(accessToken: String, productId: String, deviceName: String, aliasName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppUpdateDeviceResponse > {
+        self.appUpdateDevice(AppUpdateDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName, aliasName: aliasName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改设备别名
+    ///
+    /// 修改设备别名，便于用户个性化定义设备的名称
+    @inlinable
+    public func appUpdateDevice(accessToken: String, productId: String, deviceName: String, aliasName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppUpdateDeviceResponse {
+        try await self.appUpdateDevice(AppUpdateDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName, aliasName: aliasName), logger: logger, on: eventLoop)
+    }
 }

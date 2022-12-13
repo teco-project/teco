@@ -59,4 +59,20 @@ extension Pts {
     public func restartCronJobs(_ input: RestartCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartCronJobsResponse {
         try await self.client.execute(action: "RestartCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重启定时任务
+    ///
+    /// 重启状态为已中止的定时任务
+    @inlinable
+    public func restartCronJobs(projectId: String, cronJobIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartCronJobsResponse > {
+        self.restartCronJobs(RestartCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 重启定时任务
+    ///
+    /// 重启状态为已中止的定时任务
+    @inlinable
+    public func restartCronJobs(projectId: String, cronJobIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartCronJobsResponse {
+        try await self.restartCronJobs(RestartCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds), logger: logger, on: eventLoop)
+    }
 }

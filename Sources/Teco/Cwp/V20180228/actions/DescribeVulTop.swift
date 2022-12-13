@@ -69,4 +69,20 @@ extension Cwp {
     public func describeVulTop(_ input: DescribeVulTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTopResponse {
         try await self.client.execute(action: "DescribeVulTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取漏洞top统计
+    ///
+    /// 漏洞top统计
+    @inlinable
+    public func describeVulTop(top: UInt64, vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulTopResponse > {
+        self.describeVulTop(DescribeVulTopRequest(top: top, vulCategory: vulCategory, isFollowVul: isFollowVul), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取漏洞top统计
+    ///
+    /// 漏洞top统计
+    @inlinable
+    public func describeVulTop(top: UInt64, vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTopResponse {
+        try await self.describeVulTop(DescribeVulTopRequest(top: top, vulCategory: vulCategory, isFollowVul: isFollowVul), logger: logger, on: eventLoop)
+    }
 }

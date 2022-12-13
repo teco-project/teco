@@ -78,4 +78,20 @@ extension Thpc {
     public func setAutoScalingConfiguration(_ input: SetAutoScalingConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAutoScalingConfigurationResponse {
         try await self.client.execute(action: "SetAutoScalingConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置弹性伸缩配置信息
+    ///
+    /// 本接口(SetAutoScalingConfiguration)用于为集群设置集群弹性伸缩配置信息。
+    @inlinable
+    public func setAutoScalingConfiguration(clusterId: String, expansionBusyTime: Int64? = nil, shrinkIdleTime: Int64? = nil, queueConfigs: [QueueConfig]? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAutoScalingConfigurationResponse > {
+        self.setAutoScalingConfiguration(SetAutoScalingConfigurationRequest(clusterId: clusterId, expansionBusyTime: expansionBusyTime, shrinkIdleTime: shrinkIdleTime, queueConfigs: queueConfigs, dryRun: dryRun), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置弹性伸缩配置信息
+    ///
+    /// 本接口(SetAutoScalingConfiguration)用于为集群设置集群弹性伸缩配置信息。
+    @inlinable
+    public func setAutoScalingConfiguration(clusterId: String, expansionBusyTime: Int64? = nil, shrinkIdleTime: Int64? = nil, queueConfigs: [QueueConfig]? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAutoScalingConfigurationResponse {
+        try await self.setAutoScalingConfiguration(SetAutoScalingConfigurationRequest(clusterId: clusterId, expansionBusyTime: expansionBusyTime, shrinkIdleTime: shrinkIdleTime, queueConfigs: queueConfigs, dryRun: dryRun), logger: logger, on: eventLoop)
+    }
 }

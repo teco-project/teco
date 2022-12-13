@@ -73,4 +73,20 @@ extension Cdb {
     public func modifyAccountHost(_ input: ModifyAccountHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountHostResponse {
         try await self.client.execute(action: "ModifyAccountHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改云数据库实例账号的主机
+    ///
+    /// 本接口(ModifyAccountHost)用于修改云数据库账户的主机。
+    @inlinable
+    public func modifyAccountHost(instanceId: String, user: String, host: String, newHost: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountHostResponse > {
+        self.modifyAccountHost(ModifyAccountHostRequest(instanceId: instanceId, user: user, host: host, newHost: newHost), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云数据库实例账号的主机
+    ///
+    /// 本接口(ModifyAccountHost)用于修改云数据库账户的主机。
+    @inlinable
+    public func modifyAccountHost(instanceId: String, user: String, host: String, newHost: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountHostResponse {
+        try await self.modifyAccountHost(ModifyAccountHostRequest(instanceId: instanceId, user: user, host: host, newHost: newHost), logger: logger, on: eventLoop)
+    }
 }

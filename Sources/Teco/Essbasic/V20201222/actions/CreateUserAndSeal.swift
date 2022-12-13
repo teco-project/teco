@@ -116,4 +116,26 @@ extension Essbasic {
     public func createUserAndSeal(_ input: CreateUserAndSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserAndSealResponse {
         try await self.client.execute(action: "CreateUserAndSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 注册实名个人用户并生成签名
+    ///
+    /// 第三方应用可通过此接口（CreateUserAndSeal）注册腾讯电子签实名个人用户，同时系统将为该用户自动生成一个默认电子签名图片。
+    /// 注意：
+    /// 1. 在后续的签署流程中，若未指定签署使用的印章ID，则默认调用自动生成的签名图片进行签署。
+    /// 2. 此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
+    @inlinable
+    public func createUserAndSeal(caller: Caller, openId: String, name: String, idCardType: String, idCardNumber: String, sourceIp: String, mobile: String? = nil, email: String? = nil, sealName: String? = nil, useOpenId: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserAndSealResponse > {
+        self.createUserAndSeal(CreateUserAndSealRequest(caller: caller, openId: openId, name: name, idCardType: idCardType, idCardNumber: idCardNumber, sourceIp: sourceIp, mobile: mobile, email: email, sealName: sealName, useOpenId: useOpenId), logger: logger, on: eventLoop)
+    }
+    
+    /// 注册实名个人用户并生成签名
+    ///
+    /// 第三方应用可通过此接口（CreateUserAndSeal）注册腾讯电子签实名个人用户，同时系统将为该用户自动生成一个默认电子签名图片。
+    /// 注意：
+    /// 1. 在后续的签署流程中，若未指定签署使用的印章ID，则默认调用自动生成的签名图片进行签署。
+    /// 2. 此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
+    @inlinable
+    public func createUserAndSeal(caller: Caller, openId: String, name: String, idCardType: String, idCardNumber: String, sourceIp: String, mobile: String? = nil, email: String? = nil, sealName: String? = nil, useOpenId: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserAndSealResponse {
+        try await self.createUserAndSeal(CreateUserAndSealRequest(caller: caller, openId: openId, name: name, idCardType: idCardType, idCardNumber: idCardNumber, sourceIp: sourceIp, mobile: mobile, email: email, sealName: sealName, useOpenId: useOpenId), logger: logger, on: eventLoop)
+    }
 }

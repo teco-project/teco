@@ -110,4 +110,22 @@ extension Tiems {
     public func updateService(_ input: UpdateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateServiceResponse {
         try await self.client.execute(action: "UpdateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新服务
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 更新服务
+    @inlinable
+    public func updateService(serviceId: String, scaler: Scaler? = nil, serviceConfigId: String? = nil, scaleMode: String? = nil, serviceAction: String? = nil, description: String? = nil, gpuType: String? = nil, cpu: UInt64? = nil, memory: UInt64? = nil, gpu: UInt64? = nil, logTopicId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateServiceResponse > {
+        self.updateService(UpdateServiceRequest(serviceId: serviceId, scaler: scaler, serviceConfigId: serviceConfigId, scaleMode: scaleMode, serviceAction: serviceAction, description: description, gpuType: gpuType, cpu: cpu, memory: memory, gpu: gpu, logTopicId: logTopicId), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新服务
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 更新服务
+    @inlinable
+    public func updateService(serviceId: String, scaler: Scaler? = nil, serviceConfigId: String? = nil, scaleMode: String? = nil, serviceAction: String? = nil, description: String? = nil, gpuType: String? = nil, cpu: UInt64? = nil, memory: UInt64? = nil, gpu: UInt64? = nil, logTopicId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateServiceResponse {
+        try await self.updateService(UpdateServiceRequest(serviceId: serviceId, scaler: scaler, serviceConfigId: serviceConfigId, scaleMode: scaleMode, serviceAction: serviceAction, description: description, gpuType: gpuType, cpu: cpu, memory: memory, gpu: gpu, logTopicId: logTopicId), logger: logger, on: eventLoop)
+    }
 }

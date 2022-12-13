@@ -82,4 +82,20 @@ extension Cme {
     public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
         try await self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改项目
+    ///
+    /// 修改项目信息。
+    @inlinable
+    public func modifyProject(platform: String, projectId: String, name: String? = nil, aspectRatio: String? = nil, owner: Entity? = nil, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProjectResponse > {
+        self.modifyProject(ModifyProjectRequest(platform: platform, projectId: projectId, name: name, aspectRatio: aspectRatio, owner: owner, mode: mode), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改项目
+    ///
+    /// 修改项目信息。
+    @inlinable
+    public func modifyProject(platform: String, projectId: String, name: String? = nil, aspectRatio: String? = nil, owner: Entity? = nil, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
+        try await self.modifyProject(ModifyProjectRequest(platform: platform, projectId: projectId, name: name, aspectRatio: aspectRatio, owner: owner, mode: mode), logger: logger, on: eventLoop)
+    }
 }

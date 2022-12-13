@@ -74,4 +74,20 @@ extension Cdn {
     public func describeCertDomains(_ input: DescribeCertDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertDomainsResponse {
         try await self.client.execute(action: "DescribeCertDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取SSL证书中的可用域名
+    ///
+    /// DescribeCertDomains 用于校验SSL证书并提取证书中包含的域名。
+    @inlinable
+    public func describeCertDomains(cert: String? = nil, certId: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertDomainsResponse > {
+        self.describeCertDomains(DescribeCertDomainsRequest(cert: cert, certId: certId, product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取SSL证书中的可用域名
+    ///
+    /// DescribeCertDomains 用于校验SSL证书并提取证书中包含的域名。
+    @inlinable
+    public func describeCertDomains(cert: String? = nil, certId: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertDomainsResponse {
+        try await self.describeCertDomains(DescribeCertDomainsRequest(cert: cert, certId: certId, product: product), logger: logger, on: eventLoop)
+    }
 }

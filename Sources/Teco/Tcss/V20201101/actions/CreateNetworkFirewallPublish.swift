@@ -63,4 +63,16 @@ extension Tcss {
     public func createNetworkFirewallPublish(_ input: CreateNetworkFirewallPublishRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallPublishResponse {
         try await self.client.execute(action: "CreateNetworkFirewallPublish", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 容器网络创建网络策略发布任务
+    @inlinable
+    public func createNetworkFirewallPublish(clusterId: String, id: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkFirewallPublishResponse > {
+        self.createNetworkFirewallPublish(CreateNetworkFirewallPublishRequest(clusterId: clusterId, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络创建网络策略发布任务
+    @inlinable
+    public func createNetworkFirewallPublish(clusterId: String, id: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallPublishResponse {
+        try await self.createNetworkFirewallPublish(CreateNetworkFirewallPublishRequest(clusterId: clusterId, id: id), logger: logger, on: eventLoop)
+    }
 }

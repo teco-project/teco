@@ -46,4 +46,16 @@ extension Bm {
     public func describeRepairTaskConstant(_ input: DescribeRepairTaskConstantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepairTaskConstantResponse {
         try await self.client.execute(action: "DescribeRepairTaskConstant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 维修任务配置获取
+    @inlinable
+    public func describeRepairTaskConstant(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRepairTaskConstantResponse > {
+        self.describeRepairTaskConstant(DescribeRepairTaskConstantRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 维修任务配置获取
+    @inlinable
+    public func describeRepairTaskConstant(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepairTaskConstantResponse {
+        try await self.describeRepairTaskConstant(DescribeRepairTaskConstantRequest(), logger: logger, on: eventLoop)
+    }
 }

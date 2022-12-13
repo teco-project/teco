@@ -122,4 +122,22 @@ extension Ocr {
     public func bizLicenseOCR(_ input: BizLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BizLicenseOCRResponse {
         try await self.client.execute(action: "BizLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 营业执照识别
+    ///
+    /// 本接口支持快速精准识别营业执照上的字段，包括统一社会信用代码、公司名称、经营场所、主体类型、法定代表人、注册资金、组成形式、成立日期、营业期限和经营范围等字段。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func bizLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BizLicenseOCRResponse > {
+        self.bizLicenseOCR(BizLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 营业执照识别
+    ///
+    /// 本接口支持快速精准识别营业执照上的字段，包括统一社会信用代码、公司名称、经营场所、主体类型、法定代表人、注册资金、组成形式、成立日期、营业期限和经营范围等字段。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func bizLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BizLicenseOCRResponse {
+        try await self.bizLicenseOCR(BizLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
 }

@@ -109,4 +109,32 @@ extension Tci {
     public func submitFullBodyClassTask(_ input: SubmitFullBodyClassTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitFullBodyClassTaskResponse {
         try await self.client.execute(action: "SubmitFullBodyClassTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 提交传统课堂授课任务
+    ///
+    /// **传统课堂授课任务**：在此场景中，老师为站立授课，有白板或投影供老师展示课程内容，摄像头可以拍摄到老师的半身或者全身。拍摄视频为一路全局画面，且背景不动，要求画面稳定清晰。通过此接口可分析老师授课的行为及语音，以支持AI评教。  
+    ///   
+    /// **提供的功能接口有：**老师人脸识别、老师表情识别、老师肢体动作识别、语音识别。  可分析的指标维度包括：身份识别、正脸、侧脸、人脸坐标、人脸尺寸、高兴、中性、高兴、中性、惊讶、厌恶、恐惧、愤怒、蔑视、悲伤、正面讲解、写板书、指黑板、语音转文字、发音时长、非发音时长、音量、语速、指定关键词的使用等
+    ///   
+    /// **对场景的要求为：**真实场景老师1人出现在画面中，全局画面且背景不动；人脸上下角度在20度以内，左右角度在15度以内，歪头角度在15度以内；光照均匀，无遮挡，人脸清晰可见；像素最好在 100X100 像素以上，但是图像整体质量不能超过1080p。
+    ///     
+    /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
+    @inlinable
+    public func submitFullBodyClassTask(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitFullBodyClassTaskResponse > {
+        self.submitFullBodyClassTask(SubmitFullBodyClassTaskRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), logger: logger, on: eventLoop)
+    }
+    
+    /// 提交传统课堂授课任务
+    ///
+    /// **传统课堂授课任务**：在此场景中，老师为站立授课，有白板或投影供老师展示课程内容，摄像头可以拍摄到老师的半身或者全身。拍摄视频为一路全局画面，且背景不动，要求画面稳定清晰。通过此接口可分析老师授课的行为及语音，以支持AI评教。  
+    ///   
+    /// **提供的功能接口有：**老师人脸识别、老师表情识别、老师肢体动作识别、语音识别。  可分析的指标维度包括：身份识别、正脸、侧脸、人脸坐标、人脸尺寸、高兴、中性、高兴、中性、惊讶、厌恶、恐惧、愤怒、蔑视、悲伤、正面讲解、写板书、指黑板、语音转文字、发音时长、非发音时长、音量、语速、指定关键词的使用等
+    ///   
+    /// **对场景的要求为：**真实场景老师1人出现在画面中，全局画面且背景不动；人脸上下角度在20度以内，左右角度在15度以内，歪头角度在15度以内；光照均匀，无遮挡，人脸清晰可见；像素最好在 100X100 像素以上，但是图像整体质量不能超过1080p。
+    ///     
+    /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
+    @inlinable
+    public func submitFullBodyClassTask(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitFullBodyClassTaskResponse {
+        try await self.submitFullBodyClassTask(SubmitFullBodyClassTaskRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), logger: logger, on: eventLoop)
+    }
 }

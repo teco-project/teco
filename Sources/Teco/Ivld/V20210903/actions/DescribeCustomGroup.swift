@@ -54,4 +54,20 @@ extension Ivld {
     public func describeCustomGroup(_ input: DescribeCustomGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomGroupResponse {
         try await self.client.execute(action: "DescribeCustomGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 描述自定义人物库
+    ///
+    /// 描述自定义人物库信息，当前库大小(库中有多少人脸)，以及库中的存储桶
+    @inlinable
+    public func describeCustomGroup(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomGroupResponse > {
+        self.describeCustomGroup(DescribeCustomGroupRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 描述自定义人物库
+    ///
+    /// 描述自定义人物库信息，当前库大小(库中有多少人脸)，以及库中的存储桶
+    @inlinable
+    public func describeCustomGroup(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomGroupResponse {
+        try await self.describeCustomGroup(DescribeCustomGroupRequest(), logger: logger, on: eventLoop)
+    }
 }

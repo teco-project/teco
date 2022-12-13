@@ -86,4 +86,20 @@ extension Iotcloud {
     public func describeGatewayBindDevices(_ input: DescribeGatewayBindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayBindDevicesResponse {
         try await self.client.execute(action: "DescribeGatewayBindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取网关绑定的子设备列表
+    ///
+    /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表 
+    @inlinable
+    public func describeGatewayBindDevices(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, productId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewayBindDevicesResponse > {
+        self.describeGatewayBindDevices(DescribeGatewayBindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit, productId: productId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取网关绑定的子设备列表
+    ///
+    /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表 
+    @inlinable
+    public func describeGatewayBindDevices(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, productId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayBindDevicesResponse {
+        try await self.describeGatewayBindDevices(DescribeGatewayBindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit, productId: productId), logger: logger, on: eventLoop)
+    }
 }

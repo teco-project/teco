@@ -59,4 +59,20 @@ extension Wss {
     public func deleteCert(_ input: DeleteCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCertResponse {
         try await self.client.execute(action: "DeleteCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除证书
+    ///
+    /// 本接口（DeleteCert）用于删除证书。
+    @inlinable
+    public func deleteCert(id: String, moduleType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCertResponse > {
+        self.deleteCert(DeleteCertRequest(id: id, moduleType: moduleType), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除证书
+    ///
+    /// 本接口（DeleteCert）用于删除证书。
+    @inlinable
+    public func deleteCert(id: String, moduleType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCertResponse {
+        try await self.deleteCert(DeleteCertRequest(id: id, moduleType: moduleType), logger: logger, on: eventLoop)
+    }
 }

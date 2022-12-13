@@ -58,4 +58,20 @@ extension Tdmq {
     public func describeClusterDetail(_ input: DescribeClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterDetailResponse {
         try await self.client.execute(action: "DescribeClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取集群详情
+    ///
+    /// 获取集群的详细信息
+    @inlinable
+    public func describeClusterDetail(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterDetailResponse > {
+        self.describeClusterDetail(DescribeClusterDetailRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群详情
+    ///
+    /// 获取集群的详细信息
+    @inlinable
+    public func describeClusterDetail(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterDetailResponse {
+        try await self.describeClusterDetail(DescribeClusterDetailRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

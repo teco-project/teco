@@ -82,4 +82,20 @@ extension Tcss {
     public func describeAssetImageScanStatus(_ input: DescribeAssetImageScanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanStatusResponse {
         try await self.client.execute(action: "DescribeAssetImageScanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询镜像扫描状态
+    ///
+    /// 容器安全查询镜像扫描状态
+    @inlinable
+    public func describeAssetImageScanStatus(taskID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageScanStatusResponse > {
+        self.describeAssetImageScanStatus(DescribeAssetImageScanStatusRequest(taskID: taskID), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像扫描状态
+    ///
+    /// 容器安全查询镜像扫描状态
+    @inlinable
+    public func describeAssetImageScanStatus(taskID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanStatusResponse {
+        try await self.describeAssetImageScanStatus(DescribeAssetImageScanStatusRequest(taskID: taskID), logger: logger, on: eventLoop)
+    }
 }

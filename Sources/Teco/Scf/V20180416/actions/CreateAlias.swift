@@ -81,4 +81,22 @@ extension Scf {
     public func createAlias(_ input: CreateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAliasResponse {
         try await self.client.execute(action: "CreateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建函数版本别名
+    ///
+    /// 为某个函数版本创建一个别名，您可以使用别名来标记特定的函数版本，如DEV/RELEASE版本，也可以随时修改别名指向的版本。
+    /// 一个别名必须指向一个主版本，此外还可以同时指向一个附加版本。调用函数时指定特定的别名，则请求会被发送到别名指向的版本上，您可以配置请求发送到主版本和附加版本的比例。
+    @inlinable
+    public func createAlias(name: String, functionName: String, functionVersion: String, namespace: String? = nil, routingConfig: RoutingConfig? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAliasResponse > {
+        self.createAlias(CreateAliasRequest(name: name, functionName: functionName, functionVersion: functionVersion, namespace: namespace, routingConfig: routingConfig, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建函数版本别名
+    ///
+    /// 为某个函数版本创建一个别名，您可以使用别名来标记特定的函数版本，如DEV/RELEASE版本，也可以随时修改别名指向的版本。
+    /// 一个别名必须指向一个主版本，此外还可以同时指向一个附加版本。调用函数时指定特定的别名，则请求会被发送到别名指向的版本上，您可以配置请求发送到主版本和附加版本的比例。
+    @inlinable
+    public func createAlias(name: String, functionName: String, functionVersion: String, namespace: String? = nil, routingConfig: RoutingConfig? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAliasResponse {
+        try await self.createAlias(CreateAliasRequest(name: name, functionName: functionName, functionVersion: functionVersion, namespace: namespace, routingConfig: routingConfig, description: description), logger: logger, on: eventLoop)
+    }
 }

@@ -58,4 +58,20 @@ extension Sqlserver {
     public func describeDBCharsets(_ input: DescribeDBCharsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBCharsetsResponse {
         try await self.client.execute(action: "DescribeDBCharsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询数据库字符集
+    ///
+    /// 本接口（DescribeDBCharsets）用于查询实例支持的数据库字符集。
+    @inlinable
+    public func describeDBCharsets(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBCharsetsResponse > {
+        self.describeDBCharsets(DescribeDBCharsetsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库字符集
+    ///
+    /// 本接口（DescribeDBCharsets）用于查询实例支持的数据库字符集。
+    @inlinable
+    public func describeDBCharsets(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBCharsetsResponse {
+        try await self.describeDBCharsets(DescribeDBCharsetsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

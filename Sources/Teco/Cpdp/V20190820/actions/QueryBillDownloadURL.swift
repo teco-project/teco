@@ -80,4 +80,20 @@ extension Cpdp {
     public func queryBillDownloadURL(_ input: QueryBillDownloadURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBillDownloadURLResponse {
         try await self.client.execute(action: "QueryBillDownloadURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 智能代发-单笔代发转账对账单下载接口
+    ///
+    /// 获取单笔代发转账对账单下载URL
+    @inlinable
+    public func queryBillDownloadURL(merchantId: String, transferType: Int64, billDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBillDownloadURLResponse > {
+        self.queryBillDownloadURL(QueryBillDownloadURLRequest(merchantId: merchantId, transferType: transferType, billDate: billDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 智能代发-单笔代发转账对账单下载接口
+    ///
+    /// 获取单笔代发转账对账单下载URL
+    @inlinable
+    public func queryBillDownloadURL(merchantId: String, transferType: Int64, billDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBillDownloadURLResponse {
+        try await self.queryBillDownloadURL(QueryBillDownloadURLRequest(merchantId: merchantId, transferType: transferType, billDate: billDate), logger: logger, on: eventLoop)
+    }
 }

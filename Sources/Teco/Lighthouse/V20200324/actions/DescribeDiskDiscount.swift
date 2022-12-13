@@ -72,4 +72,20 @@ extension Lighthouse {
     public func describeDiskDiscount(_ input: DescribeDiskDiscountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskDiscountResponse {
         try await self.client.execute(action: "DescribeDiskDiscount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询云硬盘折扣信息
+    ///
+    /// 本接口(DescribeDiskDiscount)用于查询云硬盘折扣信息。
+    @inlinable
+    public func describeDiskDiscount(diskType: String, diskSize: Int64, diskBackupQuota: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiskDiscountResponse > {
+        self.describeDiskDiscount(DescribeDiskDiscountRequest(diskType: diskType, diskSize: diskSize, diskBackupQuota: diskBackupQuota), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云硬盘折扣信息
+    ///
+    /// 本接口(DescribeDiskDiscount)用于查询云硬盘折扣信息。
+    @inlinable
+    public func describeDiskDiscount(diskType: String, diskSize: Int64, diskBackupQuota: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskDiscountResponse {
+        try await self.describeDiskDiscount(DescribeDiskDiscountRequest(diskType: diskType, diskSize: diskSize, diskBackupQuota: diskBackupQuota), logger: logger, on: eventLoop)
+    }
 }

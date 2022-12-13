@@ -78,4 +78,20 @@ extension Iai {
     public func getGroupInfo(_ input: GetGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupInfoResponse {
         try await self.client.execute(action: "GetGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取人员库信息
+    ///
+    /// 获取人员库信息。
+    @inlinable
+    public func getGroupInfo(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGroupInfoResponse > {
+        self.getGroupInfo(GetGroupInfoRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取人员库信息
+    ///
+    /// 获取人员库信息。
+    @inlinable
+    public func getGroupInfo(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupInfoResponse {
+        try await self.getGroupInfo(GetGroupInfoRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

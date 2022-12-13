@@ -65,4 +65,16 @@ extension Dayu {
     public func modifyDDoSThreshold(_ input: ModifyDDoSThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSThresholdResponse {
         try await self.client.execute(action: "ModifyDDoSThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改DDoS清洗阈值
+    @inlinable
+    public func modifyDDoSThreshold(business: String, id: String, threshold: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSThresholdResponse > {
+        self.modifyDDoSThreshold(ModifyDDoSThresholdRequest(business: business, id: id, threshold: threshold), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改DDoS清洗阈值
+    @inlinable
+    public func modifyDDoSThreshold(business: String, id: String, threshold: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSThresholdResponse {
+        try await self.modifyDDoSThreshold(ModifyDDoSThresholdRequest(business: business, id: id, threshold: threshold), logger: logger, on: eventLoop)
+    }
 }

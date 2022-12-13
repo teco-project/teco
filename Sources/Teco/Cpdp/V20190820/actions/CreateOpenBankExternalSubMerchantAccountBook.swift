@@ -103,4 +103,20 @@ extension Cpdp {
     public func createOpenBankExternalSubMerchantAccountBook(_ input: CreateOpenBankExternalSubMerchantAccountBookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankExternalSubMerchantAccountBookResponse {
         try await self.client.execute(action: "CreateOpenBankExternalSubMerchantAccountBook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-子商户电子记账本创建接口
+    ///
+    /// 第三方子商户电子记账本创建接口
+    @inlinable
+    public func createOpenBankExternalSubMerchantAccountBook(outAccountBookId: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankExternalSubMerchantAccountBookResponse > {
+        self.createOpenBankExternalSubMerchantAccountBook(CreateOpenBankExternalSubMerchantAccountBookRequest(outAccountBookId: outAccountBookId, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-子商户电子记账本创建接口
+    ///
+    /// 第三方子商户电子记账本创建接口
+    @inlinable
+    public func createOpenBankExternalSubMerchantAccountBook(outAccountBookId: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankExternalSubMerchantAccountBookResponse {
+        try await self.createOpenBankExternalSubMerchantAccountBook(CreateOpenBankExternalSubMerchantAccountBookRequest(outAccountBookId: outAccountBookId, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, environment: environment), logger: logger, on: eventLoop)
+    }
 }

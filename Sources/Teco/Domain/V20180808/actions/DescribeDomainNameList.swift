@@ -68,4 +68,20 @@ extension Domain {
     public func describeDomainNameList(_ input: DescribeDomainNameListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainNameListResponse {
         try await self.client.execute(action: "DescribeDomainNameList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 我的域名列表
+    ///
+    /// 本接口 (  DescribeDomainNameList ) 我的域名列表。
+    @inlinable
+    public func describeDomainNameList(offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainNameListResponse > {
+        self.describeDomainNameList(DescribeDomainNameListRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 我的域名列表
+    ///
+    /// 本接口 (  DescribeDomainNameList ) 我的域名列表。
+    @inlinable
+    public func describeDomainNameList(offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainNameListResponse {
+        try await self.describeDomainNameList(DescribeDomainNameListRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

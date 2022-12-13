@@ -58,4 +58,20 @@ extension Vpc {
     public func deleteVpnGatewaySslServer(_ input: DeleteVpnGatewaySslServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewaySslServerResponse {
         try await self.client.execute(action: "DeleteVpnGatewaySslServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除SSL-VPN-SERVER
+    ///
+    /// 删除SSL-VPN-SERVER 实例
+    @inlinable
+    public func deleteVpnGatewaySslServer(sslVpnServerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnGatewaySslServerResponse > {
+        self.deleteVpnGatewaySslServer(DeleteVpnGatewaySslServerRequest(sslVpnServerId: sslVpnServerId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除SSL-VPN-SERVER
+    ///
+    /// 删除SSL-VPN-SERVER 实例
+    @inlinable
+    public func deleteVpnGatewaySslServer(sslVpnServerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewaySslServerResponse {
+        try await self.deleteVpnGatewaySslServer(DeleteVpnGatewaySslServerRequest(sslVpnServerId: sslVpnServerId), logger: logger, on: eventLoop)
+    }
 }

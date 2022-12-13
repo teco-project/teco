@@ -79,4 +79,20 @@ extension Eiam {
     public func listUserGroups(_ input: ListUserGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserGroupsResponse {
         try await self.client.execute(action: "ListUserGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取用户组列表信息
+    ///
+    /// 获取用户组列表信息（包含查询条件）。
+    @inlinable
+    public func listUserGroups(searchCondition: UserGroupInfoSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUserGroupsResponse > {
+        self.listUserGroups(ListUserGroupsRequest(searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户组列表信息
+    ///
+    /// 获取用户组列表信息（包含查询条件）。
+    @inlinable
+    public func listUserGroups(searchCondition: UserGroupInfoSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserGroupsResponse {
+        try await self.listUserGroups(ListUserGroupsRequest(searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

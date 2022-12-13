@@ -79,4 +79,20 @@ extension Postgres {
     public func createDBInstanceNetworkAccess(_ input: CreateDBInstanceNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceNetworkAccessResponse {
         try await self.client.execute(action: "CreateDBInstanceNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加实例网络
+    ///
+    /// 可对实例进行网络的添加操作。
+    @inlinable
+    public func createDBInstanceNetworkAccess(dbInstanceId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstanceNetworkAccessResponse > {
+        self.createDBInstanceNetworkAccess(CreateDBInstanceNetworkAccessRequest(dbInstanceId: dbInstanceId, vpcId: vpcId, subnetId: subnetId, isAssignVip: isAssignVip, vip: vip), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加实例网络
+    ///
+    /// 可对实例进行网络的添加操作。
+    @inlinable
+    public func createDBInstanceNetworkAccess(dbInstanceId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceNetworkAccessResponse {
+        try await self.createDBInstanceNetworkAccess(CreateDBInstanceNetworkAccessRequest(dbInstanceId: dbInstanceId, vpcId: vpcId, subnetId: subnetId, isAssignVip: isAssignVip, vip: vip), logger: logger, on: eventLoop)
+    }
 }

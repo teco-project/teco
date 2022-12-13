@@ -73,4 +73,16 @@ extension Antiddos {
     public func describeListBlackWhiteIpList(_ input: DescribeListBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBlackWhiteIpListResponse {
         try await self.client.execute(action: "DescribeListBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取DDoS防护的IP黑白名单列表
+    @inlinable
+    public func describeListBlackWhiteIpList(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListBlackWhiteIpListResponse > {
+        self.describeListBlackWhiteIpList(DescribeListBlackWhiteIpListRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS防护的IP黑白名单列表
+    @inlinable
+    public func describeListBlackWhiteIpList(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBlackWhiteIpListResponse {
+        try await self.describeListBlackWhiteIpList(DescribeListBlackWhiteIpListRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), logger: logger, on: eventLoop)
+    }
 }

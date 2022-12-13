@@ -54,4 +54,20 @@ extension Kms {
     public func deleteWhiteBoxKey(_ input: DeleteWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWhiteBoxKeyResponse {
         try await self.client.execute(action: "DeleteWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除白盒密钥
+    ///
+    /// 删除白盒密钥, 注意：必须先禁用后，才可以删除。
+    @inlinable
+    public func deleteWhiteBoxKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWhiteBoxKeyResponse > {
+        self.deleteWhiteBoxKey(DeleteWhiteBoxKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除白盒密钥
+    ///
+    /// 删除白盒密钥, 注意：必须先禁用后，才可以删除。
+    @inlinable
+    public func deleteWhiteBoxKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWhiteBoxKeyResponse {
+        try await self.deleteWhiteBoxKey(DeleteWhiteBoxKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
+    }
 }

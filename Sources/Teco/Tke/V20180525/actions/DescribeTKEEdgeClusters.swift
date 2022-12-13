@@ -74,4 +74,16 @@ extension Tke {
     public func describeTKEEdgeClusters(_ input: DescribeTKEEdgeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeClustersResponse {
         try await self.client.execute(action: "DescribeTKEEdgeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询边缘集群列表
+    @inlinable
+    public func describeTKEEdgeClusters(clusterIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTKEEdgeClustersResponse > {
+        self.describeTKEEdgeClusters(DescribeTKEEdgeClustersRequest(clusterIds: clusterIds, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘集群列表
+    @inlinable
+    public func describeTKEEdgeClusters(clusterIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeClustersResponse {
+        try await self.describeTKEEdgeClusters(DescribeTKEEdgeClustersRequest(clusterIds: clusterIds, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

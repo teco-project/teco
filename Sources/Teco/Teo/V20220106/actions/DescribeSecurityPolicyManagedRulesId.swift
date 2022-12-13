@@ -62,4 +62,16 @@ extension Teo {
     public func describeSecurityPolicyManagedRulesId(_ input: DescribeSecurityPolicyManagedRulesIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyManagedRulesIdResponse {
         try await self.client.execute(action: "DescribeSecurityPolicyManagedRulesId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 规则id查询门神规则详情
+    @inlinable
+    public func describeSecurityPolicyManagedRulesId(ruleId: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPolicyManagedRulesIdResponse > {
+        self.describeSecurityPolicyManagedRulesId(DescribeSecurityPolicyManagedRulesIdRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 规则id查询门神规则详情
+    @inlinable
+    public func describeSecurityPolicyManagedRulesId(ruleId: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyManagedRulesIdResponse {
+        try await self.describeSecurityPolicyManagedRulesId(DescribeSecurityPolicyManagedRulesIdRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    }
 }

@@ -98,4 +98,20 @@ extension Billing {
     public func describeAccountBalance(_ input: DescribeAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountBalanceResponse {
         try await self.client.execute(action: "DescribeAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取账户余额
+    ///
+    /// 获取云账户余额信息。
+    @inlinable
+    public func describeAccountBalance(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountBalanceResponse > {
+        self.describeAccountBalance(DescribeAccountBalanceRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取账户余额
+    ///
+    /// 获取云账户余额信息。
+    @inlinable
+    public func describeAccountBalance(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountBalanceResponse {
+        try await self.describeAccountBalance(DescribeAccountBalanceRequest(), logger: logger, on: eventLoop)
+    }
 }

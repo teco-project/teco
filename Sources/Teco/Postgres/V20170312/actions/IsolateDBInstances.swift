@@ -54,4 +54,20 @@ extension Postgres {
     public func isolateDBInstances(_ input: IsolateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDBInstancesResponse {
         try await self.client.execute(action: "IsolateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 隔离实例
+    ///
+    /// 本接口（IsolateDBInstances）用于隔离实例
+    @inlinable
+    public func isolateDBInstances(dbInstanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateDBInstancesResponse > {
+        self.isolateDBInstances(IsolateDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 隔离实例
+    ///
+    /// 本接口（IsolateDBInstances）用于隔离实例
+    @inlinable
+    public func isolateDBInstances(dbInstanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDBInstancesResponse {
+        try await self.isolateDBInstances(IsolateDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet), logger: logger, on: eventLoop)
+    }
 }

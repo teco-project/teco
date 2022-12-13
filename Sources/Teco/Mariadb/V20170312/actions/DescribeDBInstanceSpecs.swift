@@ -50,4 +50,20 @@ extension Mariadb {
     public func describeDBInstanceSpecs(_ input: DescribeDBInstanceSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceSpecsResponse {
         try await self.client.execute(action: "DescribeDBInstanceSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询云数据库可售卖规格
+    ///
+    /// 本接口(DescribeDBInstanceSpecs)用于查询可创建的云数据库可售卖的规格配置。
+    @inlinable
+    public func describeDBInstanceSpecs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceSpecsResponse > {
+        self.describeDBInstanceSpecs(DescribeDBInstanceSpecsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云数据库可售卖规格
+    ///
+    /// 本接口(DescribeDBInstanceSpecs)用于查询可创建的云数据库可售卖的规格配置。
+    @inlinable
+    public func describeDBInstanceSpecs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceSpecsResponse {
+        try await self.describeDBInstanceSpecs(DescribeDBInstanceSpecsRequest(), logger: logger, on: eventLoop)
+    }
 }

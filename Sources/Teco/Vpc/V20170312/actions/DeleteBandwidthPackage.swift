@@ -54,4 +54,20 @@ extension Vpc {
     public func deleteBandwidthPackage(_ input: DeleteBandwidthPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBandwidthPackageResponse {
         try await self.client.execute(action: "DeleteBandwidthPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除共享带宽包
+    ///
+    /// 接口支持删除共享带宽包，包括[设备带宽包](https://cloud.tencent.com/document/product/684/15246#.E8.AE.BE.E5.A4.87.E5.B8.A6.E5.AE.BD.E5.8C.85)和[IP带宽包](https://cloud.tencent.com/document/product/684/15246#ip-.E5.B8.A6.E5.AE.BD.E5.8C.85)
+    @inlinable
+    public func deleteBandwidthPackage(bandwidthPackageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBandwidthPackageResponse > {
+        self.deleteBandwidthPackage(DeleteBandwidthPackageRequest(bandwidthPackageId: bandwidthPackageId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除共享带宽包
+    ///
+    /// 接口支持删除共享带宽包，包括[设备带宽包](https://cloud.tencent.com/document/product/684/15246#.E8.AE.BE.E5.A4.87.E5.B8.A6.E5.AE.BD.E5.8C.85)和[IP带宽包](https://cloud.tencent.com/document/product/684/15246#ip-.E5.B8.A6.E5.AE.BD.E5.8C.85)
+    @inlinable
+    public func deleteBandwidthPackage(bandwidthPackageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBandwidthPackageResponse {
+        try await self.deleteBandwidthPackage(DeleteBandwidthPackageRequest(bandwidthPackageId: bandwidthPackageId), logger: logger, on: eventLoop)
+    }
 }

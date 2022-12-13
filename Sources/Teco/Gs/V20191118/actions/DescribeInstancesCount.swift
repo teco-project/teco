@@ -68,4 +68,16 @@ extension Gs {
     public func describeInstancesCount(_ input: DescribeInstancesCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesCountResponse {
         try await self.client.execute(action: "DescribeInstancesCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取并发总数和运行数
+    @inlinable
+    public func describeInstancesCount(gameId: String? = nil, groupId: String? = nil, gameRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesCountResponse > {
+        self.describeInstancesCount(DescribeInstancesCountRequest(gameId: gameId, groupId: groupId, gameRegion: gameRegion), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取并发总数和运行数
+    @inlinable
+    public func describeInstancesCount(gameId: String? = nil, groupId: String? = nil, gameRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesCountResponse {
+        try await self.describeInstancesCount(DescribeInstancesCountRequest(gameId: gameId, groupId: groupId, gameRegion: gameRegion), logger: logger, on: eventLoop)
+    }
 }

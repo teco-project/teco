@@ -77,4 +77,20 @@ extension Vod {
     public func modifyWordSample(_ input: ModifyWordSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWordSampleResponse {
         try await self.client.execute(action: "ModifyWordSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改关键词样本
+    ///
+    /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
+    @inlinable
+    public func modifyWordSample(keyword: String, subAppId: UInt64? = nil, usages: [String]? = nil, tagOperationInfo: AiSampleTagOperation? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWordSampleResponse > {
+        self.modifyWordSample(ModifyWordSampleRequest(keyword: keyword, subAppId: subAppId, usages: usages, tagOperationInfo: tagOperationInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改关键词样本
+    ///
+    /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
+    @inlinable
+    public func modifyWordSample(keyword: String, subAppId: UInt64? = nil, usages: [String]? = nil, tagOperationInfo: AiSampleTagOperation? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWordSampleResponse {
+        try await self.modifyWordSample(ModifyWordSampleRequest(keyword: keyword, subAppId: subAppId, usages: usages, tagOperationInfo: tagOperationInfo), logger: logger, on: eventLoop)
+    }
 }

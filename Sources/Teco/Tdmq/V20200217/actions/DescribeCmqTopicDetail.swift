@@ -54,4 +54,16 @@ extension Tdmq {
     public func describeCmqTopicDetail(_ input: DescribeCmqTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqTopicDetailResponse {
         try await self.client.execute(action: "DescribeCmqTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询cmq主题详情
+    @inlinable
+    public func describeCmqTopicDetail(topicName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCmqTopicDetailResponse > {
+        self.describeCmqTopicDetail(DescribeCmqTopicDetailRequest(topicName: topicName), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询cmq主题详情
+    @inlinable
+    public func describeCmqTopicDetail(topicName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqTopicDetailResponse {
+        try await self.describeCmqTopicDetail(DescribeCmqTopicDetailRequest(topicName: topicName), logger: logger, on: eventLoop)
+    }
 }

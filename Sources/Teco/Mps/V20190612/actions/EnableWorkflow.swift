@@ -54,4 +54,20 @@ extension Mps {
     public func enableWorkflow(_ input: EnableWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableWorkflowResponse {
         try await self.client.execute(action: "EnableWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启用工作流
+    ///
+    /// 启用工作流。
+    @inlinable
+    public func enableWorkflow(workflowId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableWorkflowResponse > {
+        self.enableWorkflow(EnableWorkflowRequest(workflowId: workflowId), logger: logger, on: eventLoop)
+    }
+    
+    /// 启用工作流
+    ///
+    /// 启用工作流。
+    @inlinable
+    public func enableWorkflow(workflowId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableWorkflowResponse {
+        try await self.enableWorkflow(EnableWorkflowRequest(workflowId: workflowId), logger: logger, on: eventLoop)
+    }
 }

@@ -81,4 +81,22 @@ extension Ocr {
     public func bankSlipOCR(_ input: BankSlipOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankSlipOCRResponse {
         try await self.client.execute(action: "BankSlipOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 银行回单识别
+    ///
+    /// 本接口支持银行回单全字段的识别，包括付款开户行、收款开户行、付款账号、收款账号、回单类型、回单编号、币种、流水号、凭证号码、交易机构、交易金额、手续费、日期等字段信息。
+    ///            
+    @inlinable
+    public func bankSlipOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BankSlipOCRResponse > {
+        self.bankSlipOCR(BankSlipOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), logger: logger, on: eventLoop)
+    }
+    
+    /// 银行回单识别
+    ///
+    /// 本接口支持银行回单全字段的识别，包括付款开户行、收款开户行、付款账号、收款账号、回单类型、回单编号、币种、流水号、凭证号码、交易机构、交易金额、手续费、日期等字段信息。
+    ///            
+    @inlinable
+    public func bankSlipOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankSlipOCRResponse {
+        try await self.bankSlipOCR(BankSlipOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), logger: logger, on: eventLoop)
+    }
 }

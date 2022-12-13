@@ -84,4 +84,16 @@ extension Redis {
     public func modifyInstanceAccount(_ input: ModifyInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAccountResponse {
         try await self.client.execute(action: "ModifyInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改实例子账号
+    @inlinable
+    public func modifyInstanceAccount(instanceId: String, accountName: String, accountPassword: String? = nil, remark: String? = nil, readonlyPolicy: [String]? = nil, privilege: String? = nil, noAuth: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceAccountResponse > {
+        self.modifyInstanceAccount(ModifyInstanceAccountRequest(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, remark: remark, readonlyPolicy: readonlyPolicy, privilege: privilege, noAuth: noAuth), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例子账号
+    @inlinable
+    public func modifyInstanceAccount(instanceId: String, accountName: String, accountPassword: String? = nil, remark: String? = nil, readonlyPolicy: [String]? = nil, privilege: String? = nil, noAuth: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAccountResponse {
+        try await self.modifyInstanceAccount(ModifyInstanceAccountRequest(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, remark: remark, readonlyPolicy: readonlyPolicy, privilege: privilege, noAuth: noAuth), logger: logger, on: eventLoop)
+    }
 }

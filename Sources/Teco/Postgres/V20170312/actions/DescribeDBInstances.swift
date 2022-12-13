@@ -87,4 +87,20 @@ extension Postgres {
     public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
         try await self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例列表
+    ///
+    /// 本接口 (DescribeDBInstances) 用于查询一个或多个实例的详细信息。
+    @inlinable
+    public func describeDBInstances(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstancesResponse > {
+        self.describeDBInstances(DescribeDBInstancesRequest(filters: filters, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例列表
+    ///
+    /// 本接口 (DescribeDBInstances) 用于查询一个或多个实例的详细信息。
+    @inlinable
+    public func describeDBInstances(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
+        try await self.describeDBInstances(DescribeDBInstancesRequest(filters: filters, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    }
 }

@@ -50,4 +50,16 @@ extension Tdid {
     public func recognizeAuthorityIssuer(_ input: RecognizeAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeAuthorityIssuerResponse {
         try await self.client.execute(action: "RecognizeAuthorityIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 认证权威机构
+    @inlinable
+    public func recognizeAuthorityIssuer(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeAuthorityIssuerResponse > {
+        self.recognizeAuthorityIssuer(RecognizeAuthorityIssuerRequest(did: did), logger: logger, on: eventLoop)
+    }
+    
+    /// 认证权威机构
+    @inlinable
+    public func recognizeAuthorityIssuer(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeAuthorityIssuerResponse {
+        try await self.recognizeAuthorityIssuer(RecognizeAuthorityIssuerRequest(did: did), logger: logger, on: eventLoop)
+    }
 }

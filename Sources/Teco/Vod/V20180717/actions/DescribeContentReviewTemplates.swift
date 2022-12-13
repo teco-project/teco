@@ -77,4 +77,20 @@ extension Vod {
     public func describeContentReviewTemplates(_ input: DescribeContentReviewTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContentReviewTemplatesResponse {
         try await self.client.execute(action: "DescribeContentReviewTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取音视频内容审核模板列表
+    ///
+    /// 根据音视频内容审核模板唯一标识，获取音视频内容审核模板详情列表。返回结果包含符合条件的所有用户自定义模板及[系统预置内容审核模板](https://cloud.tencent.com/document/product/266/33476#.E9.A2.84.E7.BD.AE.E8.A7.86.E9.A2.91.E5.86.85.E5.AE.B9.E5.AE.A1.E6.A0.B8.E6.A8.A1.E6.9D.BF)。
+    @inlinable
+    public func describeContentReviewTemplates(subAppId: UInt64? = nil, definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContentReviewTemplatesResponse > {
+        self.describeContentReviewTemplates(DescribeContentReviewTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取音视频内容审核模板列表
+    ///
+    /// 根据音视频内容审核模板唯一标识，获取音视频内容审核模板详情列表。返回结果包含符合条件的所有用户自定义模板及[系统预置内容审核模板](https://cloud.tencent.com/document/product/266/33476#.E9.A2.84.E7.BD.AE.E8.A7.86.E9.A2.91.E5.86.85.E5.AE.B9.E5.AE.A1.E6.A0.B8.E6.A8.A1.E6.9D.BF)。
+    @inlinable
+    public func describeContentReviewTemplates(subAppId: UInt64? = nil, definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContentReviewTemplatesResponse {
+        try await self.describeContentReviewTemplates(DescribeContentReviewTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

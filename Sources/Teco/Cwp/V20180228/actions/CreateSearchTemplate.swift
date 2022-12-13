@@ -54,4 +54,16 @@ extension Cwp {
     public func createSearchTemplate(_ input: CreateSearchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchTemplateResponse {
         try await self.client.execute(action: "CreateSearchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加检索模板
+    @inlinable
+    public func createSearchTemplate(searchTemplate: SearchTemplate, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSearchTemplateResponse > {
+        self.createSearchTemplate(CreateSearchTemplateRequest(searchTemplate: searchTemplate), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加检索模板
+    @inlinable
+    public func createSearchTemplate(searchTemplate: SearchTemplate, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchTemplateResponse {
+        try await self.createSearchTemplate(CreateSearchTemplateRequest(searchTemplate: searchTemplate), logger: logger, on: eventLoop)
+    }
 }

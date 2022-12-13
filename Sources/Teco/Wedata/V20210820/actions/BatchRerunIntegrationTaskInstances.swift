@@ -67,4 +67,16 @@ extension Wedata {
     public func batchRerunIntegrationTaskInstances(_ input: BatchRerunIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRerunIntegrationTaskInstancesResponse {
         try await self.client.execute(action: "BatchRerunIntegrationTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量重跑集成任务实例
+    @inlinable
+    public func batchRerunIntegrationTaskInstances(instances: [SchedulerTaskInstanceInfo], projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchRerunIntegrationTaskInstancesResponse > {
+        self.batchRerunIntegrationTaskInstances(BatchRerunIntegrationTaskInstancesRequest(instances: instances, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量重跑集成任务实例
+    @inlinable
+    public func batchRerunIntegrationTaskInstances(instances: [SchedulerTaskInstanceInfo], projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRerunIntegrationTaskInstancesResponse {
+        try await self.batchRerunIntegrationTaskInstances(BatchRerunIntegrationTaskInstancesRequest(instances: instances, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

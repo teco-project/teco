@@ -69,4 +69,20 @@ extension Tdmq {
     public func modifyEnvironmentRole(_ input: ModifyEnvironmentRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentRoleResponse {
         try await self.client.execute(action: "ModifyEnvironmentRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改环境角色授权
+    ///
+    /// 修改环境角色授权。
+    @inlinable
+    public func modifyEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEnvironmentRoleResponse > {
+        self.modifyEnvironmentRole(ModifyEnvironmentRoleRequest(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改环境角色授权
+    ///
+    /// 修改环境角色授权。
+    @inlinable
+    public func modifyEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentRoleResponse {
+        try await self.modifyEnvironmentRole(ModifyEnvironmentRoleRequest(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

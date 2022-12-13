@@ -78,4 +78,20 @@ extension Mongodb {
     public func inquirePriceModifyDBInstanceSpec(_ input: InquirePriceModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceModifyDBInstanceSpecResponse {
         try await self.client.execute(action: "InquirePriceModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 变更配置询价
+    ///
+    /// 本接口 (InquirePriceModifyDBInstanceSpec) 用于调整实例的配置询价。
+    @inlinable
+    public func inquirePriceModifyDBInstanceSpec(instanceId: String, memory: Int64, volume: Int64, nodeNum: Int64? = nil, replicateSetNum: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceModifyDBInstanceSpecResponse > {
+        self.inquirePriceModifyDBInstanceSpec(InquirePriceModifyDBInstanceSpecRequest(instanceId: instanceId, memory: memory, volume: volume, nodeNum: nodeNum, replicateSetNum: replicateSetNum), logger: logger, on: eventLoop)
+    }
+    
+    /// 变更配置询价
+    ///
+    /// 本接口 (InquirePriceModifyDBInstanceSpec) 用于调整实例的配置询价。
+    @inlinable
+    public func inquirePriceModifyDBInstanceSpec(instanceId: String, memory: Int64, volume: Int64, nodeNum: Int64? = nil, replicateSetNum: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceModifyDBInstanceSpecResponse {
+        try await self.inquirePriceModifyDBInstanceSpec(InquirePriceModifyDBInstanceSpecRequest(instanceId: instanceId, memory: memory, volume: volume, nodeNum: nodeNum, replicateSetNum: replicateSetNum), logger: logger, on: eventLoop)
+    }
 }

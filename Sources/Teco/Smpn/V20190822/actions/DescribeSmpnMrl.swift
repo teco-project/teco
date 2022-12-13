@@ -63,4 +63,20 @@ extension Smpn {
     public func describeSmpnMrl(_ input: DescribeSmpnMrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnMrlResponse {
         try await self.client.execute(action: "DescribeSmpnMrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 恶意标记等级
+    ///
+    /// 查询号码恶意标记等级
+    @inlinable
+    public func describeSmpnMrl(requestData: MRLRequest, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmpnMrlResponse > {
+        self.describeSmpnMrl(DescribeSmpnMrlRequest(requestData: requestData, resourceId: resourceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 恶意标记等级
+    ///
+    /// 查询号码恶意标记等级
+    @inlinable
+    public func describeSmpnMrl(requestData: MRLRequest, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnMrlResponse {
+        try await self.describeSmpnMrl(DescribeSmpnMrlRequest(requestData: requestData, resourceId: resourceId), logger: logger, on: eventLoop)
+    }
 }

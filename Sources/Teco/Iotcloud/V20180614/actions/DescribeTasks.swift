@@ -67,4 +67,20 @@ extension Iotcloud {
     public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
         try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取任务列表
+    ///
+    /// 本接口（DescribeTasks）用于查询已创建的任务列表，任务保留一个月 
+    @inlinable
+    public func describeTasks(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
+        self.describeTasks(DescribeTasksRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取任务列表
+    ///
+    /// 本接口（DescribeTasks）用于查询已创建的任务列表，任务保留一个月 
+    @inlinable
+    public func describeTasks(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
+        try await self.describeTasks(DescribeTasksRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

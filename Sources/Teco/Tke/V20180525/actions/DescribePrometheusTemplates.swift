@@ -76,4 +76,20 @@ extension Tke {
     public func describePrometheusTemplates(_ input: DescribePrometheusTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTemplatesResponse {
         try await self.client.execute(action: "DescribePrometheusTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 模板列表
+    ///
+    /// 拉取模板列表，默认模板将总是在最前面
+    @inlinable
+    public func describePrometheusTemplates(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusTemplatesResponse > {
+        self.describePrometheusTemplates(DescribePrometheusTemplatesRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 模板列表
+    ///
+    /// 拉取模板列表，默认模板将总是在最前面
+    @inlinable
+    public func describePrometheusTemplates(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTemplatesResponse {
+        try await self.describePrometheusTemplates(DescribePrometheusTemplatesRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

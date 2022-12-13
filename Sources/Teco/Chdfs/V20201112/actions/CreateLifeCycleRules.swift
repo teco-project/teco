@@ -59,4 +59,20 @@ extension Chdfs {
     public func createLifeCycleRules(_ input: CreateLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLifeCycleRulesResponse {
         try await self.client.execute(action: "CreateLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量创建生命周期规则
+    ///
+    /// 批量创建生命周期规则，生命周期规则ID和创建时间无需填写。
+    @inlinable
+    public func createLifeCycleRules(fileSystemId: String, lifeCycleRules: [LifeCycleRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLifeCycleRulesResponse > {
+        self.createLifeCycleRules(CreateLifeCycleRulesRequest(fileSystemId: fileSystemId, lifeCycleRules: lifeCycleRules), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量创建生命周期规则
+    ///
+    /// 批量创建生命周期规则，生命周期规则ID和创建时间无需填写。
+    @inlinable
+    public func createLifeCycleRules(fileSystemId: String, lifeCycleRules: [LifeCycleRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLifeCycleRulesResponse {
+        try await self.createLifeCycleRules(CreateLifeCycleRulesRequest(fileSystemId: fileSystemId, lifeCycleRules: lifeCycleRules), logger: logger, on: eventLoop)
+    }
 }

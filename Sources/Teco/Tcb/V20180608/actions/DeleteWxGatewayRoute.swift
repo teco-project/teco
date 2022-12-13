@@ -55,4 +55,16 @@ extension Tcb {
     public func deleteWxGatewayRoute(_ input: DeleteWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWxGatewayRouteResponse {
         try await self.client.execute(action: "DeleteWxGatewayRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除安全网关路由
+    @inlinable
+    public func deleteWxGatewayRoute(envId: String, gatewayRouteName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWxGatewayRouteResponse > {
+        self.deleteWxGatewayRoute(DeleteWxGatewayRouteRequest(envId: envId, gatewayRouteName: gatewayRouteName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除安全网关路由
+    @inlinable
+    public func deleteWxGatewayRoute(envId: String, gatewayRouteName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWxGatewayRouteResponse {
+        try await self.deleteWxGatewayRoute(DeleteWxGatewayRouteRequest(envId: envId, gatewayRouteName: gatewayRouteName), logger: logger, on: eventLoop)
+    }
 }

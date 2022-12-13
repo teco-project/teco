@@ -144,7 +144,7 @@ extension Irp {
         /// json字符串，用于行为数据的扩展
         public let `extension`: String?
         
-        public init (itemId: String, behaviorType: Int64, behaviorValue: String, behaviorTimestamp: Int64, sceneId: String, userIdList: [UserIdInfo], recTraceId: String, source: String, itemType: Int64? = nil, appId: String? = nil, videoPlayDuration: Int64? = nil, referrerItemId: String? = nil, country: String? = nil, province: String? = nil, city: String? = nil, district: String? = nil, ip: String? = nil, network: String? = nil, platform: String? = nil, appVersion: String? = nil, osVersion: String? = nil, deviceModel: String? = nil, `extension`: String? = nil) {
+        public init (itemId: String, behaviorType: Int64, behaviorValue: String, behaviorTimestamp: Int64, sceneId: String, userIdList: [UserIdInfo], recTraceId: String, source: String, itemType: Int64? = nil, appId: String? = nil, videoPlayDuration: Int64? = nil, referrerItemId: String? = nil, country: String? = nil, province: String? = nil, city: String? = nil, district: String? = nil, ip: String? = nil, network: String? = nil, platform: String? = nil, appVersion: String? = nil, osVersion: String? = nil, deviceModel: String? = nil, extension: String? = nil) {
             self.itemId = itemId
             self.behaviorType = behaviorType
             self.behaviorValue = behaviorValue
@@ -298,7 +298,7 @@ extension Irp {
         /// json字符串，用于物料数据的扩展
         public let `extension`: String?
         
-        public init (itemId: String, itemType: UInt64, status: UInt64, publishTimestamp: Int64, sourceId: Int64? = nil, title: String? = nil, content: String? = nil, author: String? = nil, authorId: String? = nil, keyword: String? = nil, desc: String? = nil, picUrlList: [String]? = nil, videoUrlList: [String]? = nil, videoDuration: Int64? = nil, categoryLevel: Int64? = nil, categoryPath: String? = nil, country: String? = nil, province: String? = nil, city: String? = nil, district: String? = nil, expireTimestamp: Int64? = nil, topic: String? = nil, authorFans: Int64? = nil, authorLevel: String? = nil, collectCnt: Int64? = nil, praiseCnt: Int64? = nil, commentCnt: Int64? = nil, shareCnt: Int64? = nil, rewardCnt: Int64? = nil, score: Float? = nil, poolIdList: [String]? = nil, tagInfoList: [TagInfo]? = nil, `extension`: String? = nil) {
+        public init (itemId: String, itemType: UInt64, status: UInt64, publishTimestamp: Int64, sourceId: Int64? = nil, title: String? = nil, content: String? = nil, author: String? = nil, authorId: String? = nil, keyword: String? = nil, desc: String? = nil, picUrlList: [String]? = nil, videoUrlList: [String]? = nil, videoDuration: Int64? = nil, categoryLevel: Int64? = nil, categoryPath: String? = nil, country: String? = nil, province: String? = nil, city: String? = nil, district: String? = nil, expireTimestamp: Int64? = nil, topic: String? = nil, authorFans: Int64? = nil, authorLevel: String? = nil, collectCnt: Int64? = nil, praiseCnt: Int64? = nil, commentCnt: Int64? = nil, shareCnt: Int64? = nil, rewardCnt: Int64? = nil, score: Float? = nil, poolIdList: [String]? = nil, tagInfoList: [TagInfo]? = nil, extension: String? = nil) {
             self.itemId = itemId
             self.itemType = itemType
             self.status = status
@@ -451,7 +451,7 @@ extension Irp {
         /// 设备AndroidId信息
         public let androidId: String?
         
-        public init (userIdList: [UserIdInfo], appId: String? = nil, age: Int64? = nil, gender: Int64? = nil, degree: String? = nil, school: String? = nil, occupation: String? = nil, industry: String? = nil, residentCountry: String? = nil, residentProvince: String? = nil, residentCity: String? = nil, residentDistrict: String? = nil, phoneMd5: String? = nil, phoneImei: String? = nil, idfa: String? = nil, registerTimestamp: Int64? = nil, membershipLevel: String? = nil, lastLoginTimestamp: Int64? = nil, lastLoginIp: String? = nil, lastModifyTimestamp: Int64? = nil, tagInfoList: [TagInfo]? = nil, authorInfoList: [AuthorInfo]? = nil, dislikeInfoList: [DislikeInfo]? = nil, `extension`: String? = nil, oaid: String? = nil, androidId: String? = nil) {
+        public init (userIdList: [UserIdInfo], appId: String? = nil, age: Int64? = nil, gender: Int64? = nil, degree: String? = nil, school: String? = nil, occupation: String? = nil, industry: String? = nil, residentCountry: String? = nil, residentProvince: String? = nil, residentCity: String? = nil, residentDistrict: String? = nil, phoneMd5: String? = nil, phoneImei: String? = nil, idfa: String? = nil, registerTimestamp: Int64? = nil, membershipLevel: String? = nil, lastLoginTimestamp: Int64? = nil, lastLoginIp: String? = nil, lastModifyTimestamp: Int64? = nil, tagInfoList: [TagInfo]? = nil, authorInfoList: [AuthorInfo]? = nil, dislikeInfoList: [DislikeInfo]? = nil, extension: String? = nil, oaid: String? = nil, androidId: String? = nil) {
             self.userIdList = userIdList
             self.appId = appId
             self.age = age

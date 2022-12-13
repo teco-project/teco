@@ -85,4 +85,22 @@ extension Essbasic {
     public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
         try await self.client.execute(action: "ModifyUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新个人用户信息
+    ///
+    /// 此接口（ModifyUser）用于更新个人用户信息。
+    /// 注：若修改用户姓名，需要重新通过个人用户实名接口（VerifyUser）进行重新实名。
+    @inlinable
+    public func modifyUser(caller: Caller, openId: String? = nil, userId: String? = nil, mobile: String? = nil, email: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserResponse > {
+        self.modifyUser(ModifyUserRequest(caller: caller, openId: openId, userId: userId, mobile: mobile, email: email, name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新个人用户信息
+    ///
+    /// 此接口（ModifyUser）用于更新个人用户信息。
+    /// 注：若修改用户姓名，需要重新通过个人用户实名接口（VerifyUser）进行重新实名。
+    @inlinable
+    public func modifyUser(caller: Caller, openId: String? = nil, userId: String? = nil, mobile: String? = nil, email: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
+        try await self.modifyUser(ModifyUserRequest(caller: caller, openId: openId, userId: userId, mobile: mobile, email: email, name: name), logger: logger, on: eventLoop)
+    }
 }

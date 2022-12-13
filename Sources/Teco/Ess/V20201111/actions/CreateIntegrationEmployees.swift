@@ -23,7 +23,7 @@ extension Ess {
         /// 待创建员工的信息，Mobile和DisplayName必填
         public let employees: [Staff]
         
-        public init (`operator`: UserInfo, employees: [Staff]) {
+        public init (operator: UserInfo, employees: [Staff]) {
             self.`operator` = `operator`
             self.employees = employees
         }
@@ -58,5 +58,17 @@ extension Ess {
     @inlinable
     public func createIntegrationEmployees(_ input: CreateIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationEmployeesResponse {
         try await self.client.execute(action: "CreateIntegrationEmployees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 创建员工
+    @inlinable
+    public func createIntegrationEmployees(operator: UserInfo, employees: [Staff], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIntegrationEmployeesResponse > {
+        self.createIntegrationEmployees(CreateIntegrationEmployeesRequest(operator: `operator`, employees: employees), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建员工
+    @inlinable
+    public func createIntegrationEmployees(operator: UserInfo, employees: [Staff], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationEmployeesResponse {
+        try await self.createIntegrationEmployees(CreateIntegrationEmployeesRequest(operator: `operator`, employees: employees), logger: logger, on: eventLoop)
     }
 }

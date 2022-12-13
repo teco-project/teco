@@ -47,4 +47,16 @@ extension Tsw {
     public func describeAgentShell(_ input: DescribeAgentShellRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentShellResponse {
         try await self.client.execute(action: "DescribeAgentShell", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取服务接入信息
+    @inlinable
+    public func describeAgentShell(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentShellResponse > {
+        self.describeAgentShell(DescribeAgentShellRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取服务接入信息
+    @inlinable
+    public func describeAgentShell(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentShellResponse {
+        try await self.describeAgentShell(DescribeAgentShellRequest(), logger: logger, on: eventLoop)
+    }
 }

@@ -77,4 +77,16 @@ extension Tcss {
     public func createEscapeWhiteListExportJob(_ input: CreateEscapeWhiteListExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEscapeWhiteListExportJobResponse {
         try await self.client.execute(action: "CreateEscapeWhiteListExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建逃逸白名单导出任务
+    @inlinable
+    public func createEscapeWhiteListExportJob(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEscapeWhiteListExportJobResponse > {
+        self.createEscapeWhiteListExportJob(CreateEscapeWhiteListExportJobRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建逃逸白名单导出任务
+    @inlinable
+    public func createEscapeWhiteListExportJob(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEscapeWhiteListExportJobResponse {
+        try await self.createEscapeWhiteListExportJob(CreateEscapeWhiteListExportJobRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

@@ -74,4 +74,20 @@ extension Ocr {
     public func enterpriseLicenseOCR(_ input: EnterpriseLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnterpriseLicenseOCRResponse {
         try await self.client.execute(action: "EnterpriseLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 企业证照识别
+    ///
+    /// 本接口支持智能化识别各类企业登记证书、许可证书、企业执照、三证合一类证书，结构化输出统一社会信用代码、公司名称、法定代表人、公司地址、注册资金、企业类型、经营范围等关键字段。
+    @inlinable
+    public func enterpriseLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnterpriseLicenseOCRResponse > {
+        self.enterpriseLicenseOCR(EnterpriseLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 企业证照识别
+    ///
+    /// 本接口支持智能化识别各类企业登记证书、许可证书、企业执照、三证合一类证书，结构化输出统一社会信用代码、公司名称、法定代表人、公司地址、注册资金、企业类型、经营范围等关键字段。
+    @inlinable
+    public func enterpriseLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnterpriseLicenseOCRResponse {
+        try await self.enterpriseLicenseOCR(EnterpriseLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
 }

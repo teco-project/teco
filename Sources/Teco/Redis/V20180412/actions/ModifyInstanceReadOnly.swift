@@ -59,4 +59,16 @@ extension Redis {
     public func modifyInstanceReadOnly(_ input: ModifyInstanceReadOnlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceReadOnlyResponse {
         try await self.client.execute(action: "ModifyInstanceReadOnly", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置实例输入模式
+    @inlinable
+    public func modifyInstanceReadOnly(instanceId: String, inputMode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceReadOnlyResponse > {
+        self.modifyInstanceReadOnly(ModifyInstanceReadOnlyRequest(instanceId: instanceId, inputMode: inputMode), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置实例输入模式
+    @inlinable
+    public func modifyInstanceReadOnly(instanceId: String, inputMode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceReadOnlyResponse {
+        try await self.modifyInstanceReadOnly(ModifyInstanceReadOnlyRequest(instanceId: instanceId, inputMode: inputMode), logger: logger, on: eventLoop)
+    }
 }

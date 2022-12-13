@@ -64,4 +64,20 @@ extension Cfs {
     public func deleteUserQuota(_ input: DeleteUserQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserQuotaResponse {
         try await self.client.execute(action: "DeleteUserQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除文件系统配额
+    ///
+    /// 指定条件删除文件系统配额
+    @inlinable
+    public func deleteUserQuota(fileSystemId: String, userType: String, userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserQuotaResponse > {
+        self.deleteUserQuota(DeleteUserQuotaRequest(fileSystemId: fileSystemId, userType: userType, userId: userId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除文件系统配额
+    ///
+    /// 指定条件删除文件系统配额
+    @inlinable
+    public func deleteUserQuota(fileSystemId: String, userType: String, userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserQuotaResponse {
+        try await self.deleteUserQuota(DeleteUserQuotaRequest(fileSystemId: fileSystemId, userType: userType, userId: userId), logger: logger, on: eventLoop)
+    }
 }

@@ -62,4 +62,16 @@ extension Bmeip {
     public func describeEipQuota(_ input: DescribeEipQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipQuotaResponse {
         try await self.client.execute(action: "DescribeEipQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询黑石EIP 限额
+    @inlinable
+    public func describeEipQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEipQuotaResponse > {
+        self.describeEipQuota(DescribeEipQuotaRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询黑石EIP 限额
+    @inlinable
+    public func describeEipQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipQuotaResponse {
+        try await self.describeEipQuota(DescribeEipQuotaRequest(), logger: logger, on: eventLoop)
+    }
 }

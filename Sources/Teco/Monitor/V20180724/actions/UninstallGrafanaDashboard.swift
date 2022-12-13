@@ -72,4 +72,16 @@ extension Monitor {
     public func uninstallGrafanaDashboard(_ input: UninstallGrafanaDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaDashboardResponse {
         try await self.client.execute(action: "UninstallGrafanaDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除 Grafana Dashboard
+    @inlinable
+    public func uninstallGrafanaDashboard(instanceId: String, integrationCodes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UninstallGrafanaDashboardResponse > {
+        self.uninstallGrafanaDashboard(UninstallGrafanaDashboardRequest(instanceId: instanceId, integrationCodes: integrationCodes), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除 Grafana Dashboard
+    @inlinable
+    public func uninstallGrafanaDashboard(instanceId: String, integrationCodes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaDashboardResponse {
+        try await self.uninstallGrafanaDashboard(UninstallGrafanaDashboardRequest(instanceId: instanceId, integrationCodes: integrationCodes), logger: logger, on: eventLoop)
+    }
 }

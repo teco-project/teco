@@ -104,4 +104,16 @@ extension Cpdp {
     public func applyFlexPayment(_ input: ApplyFlexPaymentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyFlexPaymentResponse {
         try await self.client.execute(action: "ApplyFlexPayment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 灵云V2-付款
+    @inlinable
+    public func applyFlexPayment(payeeId: String, incomeType: String, amountBeforeTax: String, outOrderId: String, fundingAccountInfo: FlexFundingAccountInfo, remark: String? = nil, environment: String? = nil, notifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyFlexPaymentResponse > {
+        self.applyFlexPayment(ApplyFlexPaymentRequest(payeeId: payeeId, incomeType: incomeType, amountBeforeTax: amountBeforeTax, outOrderId: outOrderId, fundingAccountInfo: fundingAccountInfo, remark: remark, environment: environment, notifyUrl: notifyUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云V2-付款
+    @inlinable
+    public func applyFlexPayment(payeeId: String, incomeType: String, amountBeforeTax: String, outOrderId: String, fundingAccountInfo: FlexFundingAccountInfo, remark: String? = nil, environment: String? = nil, notifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyFlexPaymentResponse {
+        try await self.applyFlexPayment(ApplyFlexPaymentRequest(payeeId: payeeId, incomeType: incomeType, amountBeforeTax: amountBeforeTax, outOrderId: outOrderId, fundingAccountInfo: fundingAccountInfo, remark: remark, environment: environment, notifyUrl: notifyUrl), logger: logger, on: eventLoop)
+    }
 }

@@ -70,4 +70,16 @@ extension Eb {
     public func updateConnection(_ input: UpdateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateConnectionResponse {
         try await self.client.execute(action: "UpdateConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新事件连接器
+    @inlinable
+    public func updateConnection(connectionId: String, eventBusId: String, enable: Bool? = nil, description: String? = nil, connectionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateConnectionResponse > {
+        self.updateConnection(UpdateConnectionRequest(connectionId: connectionId, eventBusId: eventBusId, enable: enable, description: description, connectionName: connectionName), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新事件连接器
+    @inlinable
+    public func updateConnection(connectionId: String, eventBusId: String, enable: Bool? = nil, description: String? = nil, connectionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateConnectionResponse {
+        try await self.updateConnection(UpdateConnectionRequest(connectionId: connectionId, eventBusId: eventBusId, enable: enable, description: description, connectionName: connectionName), logger: logger, on: eventLoop)
+    }
 }

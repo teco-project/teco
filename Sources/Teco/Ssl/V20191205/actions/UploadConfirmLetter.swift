@@ -67,4 +67,20 @@ extension Ssl {
     public func uploadConfirmLetter(_ input: UploadConfirmLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadConfirmLetterResponse {
         try await self.client.execute(action: "UploadConfirmLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 上传证书确认函
+    ///
+    /// 本接口（UploadConfirmLetter）用于上传证书确认函。
+    @inlinable
+    public func uploadConfirmLetter(certificateId: String, confirmLetter: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadConfirmLetterResponse > {
+        self.uploadConfirmLetter(UploadConfirmLetterRequest(certificateId: certificateId, confirmLetter: confirmLetter), logger: logger, on: eventLoop)
+    }
+    
+    /// 上传证书确认函
+    ///
+    /// 本接口（UploadConfirmLetter）用于上传证书确认函。
+    @inlinable
+    public func uploadConfirmLetter(certificateId: String, confirmLetter: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadConfirmLetterResponse {
+        try await self.uploadConfirmLetter(UploadConfirmLetterRequest(certificateId: certificateId, confirmLetter: confirmLetter), logger: logger, on: eventLoop)
+    }
 }

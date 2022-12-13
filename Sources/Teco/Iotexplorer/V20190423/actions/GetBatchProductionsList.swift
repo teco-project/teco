@@ -73,4 +73,20 @@ extension Iotexplorer {
     public func getBatchProductionsList(_ input: GetBatchProductionsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBatchProductionsListResponse {
         try await self.client.execute(action: "GetBatchProductionsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 列出量产数据列表
+    ///
+    /// 列出量产数据列表信息。
+    @inlinable
+    public func getBatchProductionsList(projectId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBatchProductionsListResponse > {
+        self.getBatchProductionsList(GetBatchProductionsListRequest(projectId: projectId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 列出量产数据列表
+    ///
+    /// 列出量产数据列表信息。
+    @inlinable
+    public func getBatchProductionsList(projectId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBatchProductionsListResponse {
+        try await self.getBatchProductionsList(GetBatchProductionsListRequest(projectId: projectId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

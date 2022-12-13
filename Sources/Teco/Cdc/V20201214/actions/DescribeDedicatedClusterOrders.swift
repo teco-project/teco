@@ -83,4 +83,16 @@ extension Cdc {
     public func describeDedicatedClusterOrders(_ input: DescribeDedicatedClusterOrdersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterOrdersResponse {
         try await self.client.execute(action: "DescribeDedicatedClusterOrders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询专用集群订单列表
+    @inlinable
+    public func describeDedicatedClusterOrders(dedicatedClusterIds: [String]? = nil, dedicatedClusterOrderIds: String? = nil, offset: Int64? = nil, limit: Int64? = nil, status: String? = nil, actionType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterOrdersResponse > {
+        self.describeDedicatedClusterOrders(DescribeDedicatedClusterOrdersRequest(dedicatedClusterIds: dedicatedClusterIds, dedicatedClusterOrderIds: dedicatedClusterOrderIds, offset: offset, limit: limit, status: status, actionType: actionType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专用集群订单列表
+    @inlinable
+    public func describeDedicatedClusterOrders(dedicatedClusterIds: [String]? = nil, dedicatedClusterOrderIds: String? = nil, offset: Int64? = nil, limit: Int64? = nil, status: String? = nil, actionType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterOrdersResponse {
+        try await self.describeDedicatedClusterOrders(DescribeDedicatedClusterOrdersRequest(dedicatedClusterIds: dedicatedClusterIds, dedicatedClusterOrderIds: dedicatedClusterOrderIds, offset: offset, limit: limit, status: status, actionType: actionType), logger: logger, on: eventLoop)
+    }
 }

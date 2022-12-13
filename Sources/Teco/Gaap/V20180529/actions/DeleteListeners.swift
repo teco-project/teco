@@ -81,4 +81,20 @@ extension Gaap {
     public func deleteListeners(_ input: DeleteListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenersResponse {
         try await self.client.execute(action: "DeleteListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除通道监听器
+    ///
+    /// 该接口（DeleteListeners）用于批量删除通道或通道组的监听器，包括4/7层监听器。
+    @inlinable
+    public func deleteListeners(listenerIds: [String], force: UInt64, groupId: String? = nil, proxyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteListenersResponse > {
+        self.deleteListeners(DeleteListenersRequest(listenerIds: listenerIds, force: force, groupId: groupId, proxyId: proxyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除通道监听器
+    ///
+    /// 该接口（DeleteListeners）用于批量删除通道或通道组的监听器，包括4/7层监听器。
+    @inlinable
+    public func deleteListeners(listenerIds: [String], force: UInt64, groupId: String? = nil, proxyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenersResponse {
+        try await self.deleteListeners(DeleteListenersRequest(listenerIds: listenerIds, force: force, groupId: groupId, proxyId: proxyId), logger: logger, on: eventLoop)
+    }
 }

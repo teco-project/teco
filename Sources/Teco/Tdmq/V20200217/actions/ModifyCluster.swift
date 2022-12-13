@@ -69,4 +69,16 @@ extension Tdmq {
     public func modifyCluster(_ input: ModifyClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterResponse {
         try await self.client.execute(action: "ModifyCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新集群信息
+    @inlinable
+    public func modifyCluster(clusterId: String, clusterName: String? = nil, remark: String? = nil, publicAccessEnabled: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterResponse > {
+        self.modifyCluster(ModifyClusterRequest(clusterId: clusterId, clusterName: clusterName, remark: remark, publicAccessEnabled: publicAccessEnabled), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新集群信息
+    @inlinable
+    public func modifyCluster(clusterId: String, clusterName: String? = nil, remark: String? = nil, publicAccessEnabled: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterResponse {
+        try await self.modifyCluster(ModifyClusterRequest(clusterId: clusterId, clusterName: clusterName, remark: remark, publicAccessEnabled: publicAccessEnabled), logger: logger, on: eventLoop)
+    }
 }

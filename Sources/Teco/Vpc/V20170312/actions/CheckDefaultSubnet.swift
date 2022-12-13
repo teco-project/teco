@@ -58,4 +58,20 @@ extension Vpc {
     public func checkDefaultSubnet(_ input: CheckDefaultSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDefaultSubnetResponse {
         try await self.client.execute(action: "CheckDefaultSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 预判是否可建默认子网
+    ///
+    /// 本接口（CheckDefaultSubnet）用于预判是否可建默认子网。
+    @inlinable
+    public func checkDefaultSubnet(zone: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckDefaultSubnetResponse > {
+        self.checkDefaultSubnet(CheckDefaultSubnetRequest(zone: zone), logger: logger, on: eventLoop)
+    }
+    
+    /// 预判是否可建默认子网
+    ///
+    /// 本接口（CheckDefaultSubnet）用于预判是否可建默认子网。
+    @inlinable
+    public func checkDefaultSubnet(zone: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDefaultSubnetResponse {
+        try await self.checkDefaultSubnet(CheckDefaultSubnetRequest(zone: zone), logger: logger, on: eventLoop)
+    }
 }

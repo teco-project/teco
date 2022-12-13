@@ -108,4 +108,20 @@ extension Teo {
     public func describeTopL7CacheData(_ input: DescribeTopL7CacheDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopL7CacheDataResponse {
         try await self.client.execute(action: "DescribeTopL7CacheData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 七层缓存分析类top流量数据接口
+    ///
+    /// 七层查询缓存分析top类流量数据
+    @inlinable
+    public func describeTopL7CacheData(startTime: Date, endTime: Date, metricName: String, limit: Int64, interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopL7CacheDataResponse > {
+        self.describeTopL7CacheData(DescribeTopL7CacheDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, interval: interval, zoneIds: zoneIds, filters: filters, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 七层缓存分析类top流量数据接口
+    ///
+    /// 七层查询缓存分析top类流量数据
+    @inlinable
+    public func describeTopL7CacheData(startTime: Date, endTime: Date, metricName: String, limit: Int64, interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopL7CacheDataResponse {
+        try await self.describeTopL7CacheData(DescribeTopL7CacheDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, interval: interval, zoneIds: zoneIds, filters: filters, area: area), logger: logger, on: eventLoop)
+    }
 }

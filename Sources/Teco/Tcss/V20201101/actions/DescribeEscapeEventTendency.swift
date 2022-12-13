@@ -63,4 +63,16 @@ extension Tcss {
     public func describeEscapeEventTendency(_ input: DescribeEscapeEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventTendencyResponse {
         try await self.client.execute(action: "DescribeEscapeEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询待处理逃逸事件趋势
+    @inlinable
+    public func describeEscapeEventTendency(endTime: Date, startTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeEventTendencyResponse > {
+        self.describeEscapeEventTendency(DescribeEscapeEventTendencyRequest(endTime: endTime, startTime: startTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询待处理逃逸事件趋势
+    @inlinable
+    public func describeEscapeEventTendency(endTime: Date, startTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventTendencyResponse {
+        try await self.describeEscapeEventTendency(DescribeEscapeEventTendencyRequest(endTime: endTime, startTime: startTime), logger: logger, on: eventLoop)
+    }
 }

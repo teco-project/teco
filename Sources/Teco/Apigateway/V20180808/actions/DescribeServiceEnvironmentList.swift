@@ -69,4 +69,20 @@ extension Apigateway {
     public func describeServiceEnvironmentList(_ input: DescribeServiceEnvironmentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceEnvironmentListResponse {
         try await self.client.execute(action: "DescribeServiceEnvironmentList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询服务环境列表
+    ///
+    /// 本接口（DescribeServiceEnvironmentList）用于查询一个服务的环境列表，可查询到此服务下所有环境及其状态。
+    @inlinable
+    public func describeServiceEnvironmentList(serviceId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceEnvironmentListResponse > {
+        self.describeServiceEnvironmentList(DescribeServiceEnvironmentListRequest(serviceId: serviceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务环境列表
+    ///
+    /// 本接口（DescribeServiceEnvironmentList）用于查询一个服务的环境列表，可查询到此服务下所有环境及其状态。
+    @inlinable
+    public func describeServiceEnvironmentList(serviceId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceEnvironmentListResponse {
+        try await self.describeServiceEnvironmentList(DescribeServiceEnvironmentListRequest(serviceId: serviceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

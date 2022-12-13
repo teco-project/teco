@@ -74,4 +74,20 @@ extension Postgres {
     public func deleteReadOnlyGroupNetworkAccess(_ input: DeleteReadOnlyGroupNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReadOnlyGroupNetworkAccessResponse {
         try await self.client.execute(action: "DeleteReadOnlyGroupNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除RO组网络
+    ///
+    /// 可对RO组进行网络的删除操作。
+    @inlinable
+    public func deleteReadOnlyGroupNetworkAccess(readOnlyGroupId: String, vpcId: String, subnetId: String, vip: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReadOnlyGroupNetworkAccessResponse > {
+        self.deleteReadOnlyGroupNetworkAccess(DeleteReadOnlyGroupNetworkAccessRequest(readOnlyGroupId: readOnlyGroupId, vpcId: vpcId, subnetId: subnetId, vip: vip), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除RO组网络
+    ///
+    /// 可对RO组进行网络的删除操作。
+    @inlinable
+    public func deleteReadOnlyGroupNetworkAccess(readOnlyGroupId: String, vpcId: String, subnetId: String, vip: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReadOnlyGroupNetworkAccessResponse {
+        try await self.deleteReadOnlyGroupNetworkAccess(DeleteReadOnlyGroupNetworkAccessRequest(readOnlyGroupId: readOnlyGroupId, vpcId: vpcId, subnetId: subnetId, vip: vip), logger: logger, on: eventLoop)
+    }
 }

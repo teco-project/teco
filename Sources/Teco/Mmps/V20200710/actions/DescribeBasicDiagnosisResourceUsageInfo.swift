@@ -70,4 +70,20 @@ extension Mmps {
     public func describeBasicDiagnosisResourceUsageInfo(_ input: DescribeBasicDiagnosisResourceUsageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDiagnosisResourceUsageInfoResponse {
         try await self.client.execute(action: "DescribeBasicDiagnosisResourceUsageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询基础诊断资源使用情况
+    ///
+    /// 查询翼扬安全基础诊断资源使用情况
+    @inlinable
+    public func describeBasicDiagnosisResourceUsageInfo(mode: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicDiagnosisResourceUsageInfoResponse > {
+        self.describeBasicDiagnosisResourceUsageInfo(DescribeBasicDiagnosisResourceUsageInfoRequest(mode: mode), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询基础诊断资源使用情况
+    ///
+    /// 查询翼扬安全基础诊断资源使用情况
+    @inlinable
+    public func describeBasicDiagnosisResourceUsageInfo(mode: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDiagnosisResourceUsageInfoResponse {
+        try await self.describeBasicDiagnosisResourceUsageInfo(DescribeBasicDiagnosisResourceUsageInfoRequest(mode: mode), logger: logger, on: eventLoop)
+    }
 }

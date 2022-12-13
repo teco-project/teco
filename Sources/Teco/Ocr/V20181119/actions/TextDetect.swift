@@ -70,4 +70,20 @@ extension Ocr {
     public func textDetect(_ input: TextDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextDetectResponse {
         try await self.client.execute(action: "TextDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 快速文本检测
+    ///
+    /// 本接口通过检测图片中的文字信息特征，快速判断图片中有无文字并返回判断结果，帮助用户过滤无文字的图片。
+    @inlinable
+    public func textDetect(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextDetectResponse > {
+        self.textDetect(TextDetectRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 快速文本检测
+    ///
+    /// 本接口通过检测图片中的文字信息特征，快速判断图片中有无文字并返回判断结果，帮助用户过滤无文字的图片。
+    @inlinable
+    public func textDetect(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextDetectResponse {
+        try await self.textDetect(TextDetectRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
 }

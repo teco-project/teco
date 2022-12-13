@@ -74,4 +74,20 @@ extension Cdn {
     public func listScdnDomains(_ input: ListScdnDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnDomainsResponse {
         try await self.client.execute(action: "ListScdnDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询SCDN域名列表
+    ///
+    /// ListScdnDomains 用于查询 SCDN 安全加速域名列表，及域名基本配置信息
+    @inlinable
+    public func listScdnDomains(offset: Int64? = nil, limit: Int64? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListScdnDomainsResponse > {
+        self.listScdnDomains(ListScdnDomainsRequest(offset: offset, limit: limit, domain: domain), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询SCDN域名列表
+    ///
+    /// ListScdnDomains 用于查询 SCDN 安全加速域名列表，及域名基本配置信息
+    @inlinable
+    public func listScdnDomains(offset: Int64? = nil, limit: Int64? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnDomainsResponse {
+        try await self.listScdnDomains(ListScdnDomainsRequest(offset: offset, limit: limit, domain: domain), logger: logger, on: eventLoop)
+    }
 }

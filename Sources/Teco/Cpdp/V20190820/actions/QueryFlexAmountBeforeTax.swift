@@ -84,4 +84,16 @@ extension Cpdp {
     public func queryFlexAmountBeforeTax(_ input: QueryFlexAmountBeforeTaxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexAmountBeforeTaxResponse {
         try await self.client.execute(action: "QueryFlexAmountBeforeTax", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 灵云V2-查询税前金额
+    @inlinable
+    public func queryFlexAmountBeforeTax(payeeId: String, incomeType: String, amountAfterTax: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFlexAmountBeforeTaxResponse > {
+        self.queryFlexAmountBeforeTax(QueryFlexAmountBeforeTaxRequest(payeeId: payeeId, incomeType: incomeType, amountAfterTax: amountAfterTax, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云V2-查询税前金额
+    @inlinable
+    public func queryFlexAmountBeforeTax(payeeId: String, incomeType: String, amountAfterTax: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexAmountBeforeTaxResponse {
+        try await self.queryFlexAmountBeforeTax(QueryFlexAmountBeforeTaxRequest(payeeId: payeeId, incomeType: incomeType, amountAfterTax: amountAfterTax, environment: environment), logger: logger, on: eventLoop)
+    }
 }

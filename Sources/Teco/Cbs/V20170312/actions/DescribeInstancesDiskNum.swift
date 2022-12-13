@@ -60,4 +60,22 @@ extension Cbs {
     public func describeInstancesDiskNum(_ input: DescribeInstancesDiskNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDiskNumResponse {
         try await self.client.execute(action: "DescribeInstancesDiskNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例关联的云硬盘数量
+    ///
+    /// 本接口（DescribeInstancesDiskNum）用于查询实例已挂载云硬盘数量。
+    /// * 支持批量操作，当传入多个云服务器实例ID，返回结果会分别列出每个云服务器挂载的云硬盘数量。
+    @inlinable
+    public func describeInstancesDiskNum(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesDiskNumResponse > {
+        self.describeInstancesDiskNum(DescribeInstancesDiskNumRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例关联的云硬盘数量
+    ///
+    /// 本接口（DescribeInstancesDiskNum）用于查询实例已挂载云硬盘数量。
+    /// * 支持批量操作，当传入多个云服务器实例ID，返回结果会分别列出每个云服务器挂载的云硬盘数量。
+    @inlinable
+    public func describeInstancesDiskNum(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDiskNumResponse {
+        try await self.describeInstancesDiskNum(DescribeInstancesDiskNumRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

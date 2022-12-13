@@ -95,4 +95,22 @@ extension Cbs {
     public func inquiryPriceCreateDisks(_ input: InquiryPriceCreateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateDisksResponse {
         try await self.client.execute(action: "InquiryPriceCreateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建云硬盘询价
+    ///
+    /// 本接口（InquiryPriceCreateDisks）用于创建云硬盘询价。
+    /// * 支持查询创建多块云硬盘的价格，此时返回结果为总价格。
+    @inlinable
+    public func inquiryPriceCreateDisks(diskChargeType: String, diskType: String, diskSize: UInt64, projectId: UInt64? = nil, diskCount: UInt64? = nil, throughputPerformance: UInt64? = nil, diskChargePrepaid: DiskChargePrepaid? = nil, diskBackupQuota: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateDisksResponse > {
+        self.inquiryPriceCreateDisks(InquiryPriceCreateDisksRequest(diskChargeType: diskChargeType, diskType: diskType, diskSize: diskSize, projectId: projectId, diskCount: diskCount, throughputPerformance: throughputPerformance, diskChargePrepaid: diskChargePrepaid, diskBackupQuota: diskBackupQuota), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云硬盘询价
+    ///
+    /// 本接口（InquiryPriceCreateDisks）用于创建云硬盘询价。
+    /// * 支持查询创建多块云硬盘的价格，此时返回结果为总价格。
+    @inlinable
+    public func inquiryPriceCreateDisks(diskChargeType: String, diskType: String, diskSize: UInt64, projectId: UInt64? = nil, diskCount: UInt64? = nil, throughputPerformance: UInt64? = nil, diskChargePrepaid: DiskChargePrepaid? = nil, diskBackupQuota: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateDisksResponse {
+        try await self.inquiryPriceCreateDisks(InquiryPriceCreateDisksRequest(diskChargeType: diskChargeType, diskType: diskType, diskSize: diskSize, projectId: projectId, diskCount: diskCount, throughputPerformance: throughputPerformance, diskChargePrepaid: diskChargePrepaid, diskBackupQuota: diskBackupQuota), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,16 @@ extension Bm {
     public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
         try await self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询地域以及可用区
+    @inlinable
+    public func describeRegions(regionId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionsResponse > {
+        self.describeRegions(DescribeRegionsRequest(regionId: regionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询地域以及可用区
+    @inlinable
+    public func describeRegions(regionId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
+        try await self.describeRegions(DescribeRegionsRequest(regionId: regionId), logger: logger, on: eventLoop)
+    }
 }

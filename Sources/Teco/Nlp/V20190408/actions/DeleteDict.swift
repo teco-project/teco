@@ -54,4 +54,20 @@ extension Nlp {
     public func deleteDict(_ input: DeleteDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDictResponse {
         try await self.client.execute(action: "DeleteDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除自定义词库
+    ///
+    /// 删除自定义词库，会附带相应删除词库包含的所有词条。
+    @inlinable
+    public func deleteDict(dictId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDictResponse > {
+        self.deleteDict(DeleteDictRequest(dictId: dictId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除自定义词库
+    ///
+    /// 删除自定义词库，会附带相应删除词库包含的所有词条。
+    @inlinable
+    public func deleteDict(dictId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDictResponse {
+        try await self.deleteDict(DeleteDictRequest(dictId: dictId), logger: logger, on: eventLoop)
+    }
 }

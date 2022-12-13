@@ -88,4 +88,20 @@ extension Iotcloud {
     public func describeDeviceResources(_ input: DescribeDeviceResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceResourcesResponse {
         try await self.client.execute(action: "DescribeDeviceResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备资源列表
+    ///
+    /// 本接口（DescribeDeviceResources）用于查询设备资源列表。 
+    @inlinable
+    public func describeDeviceResources(offset: UInt64, limit: UInt64, productID: String? = nil, deviceName: String? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceResourcesResponse > {
+        self.describeDeviceResources(DescribeDeviceResourcesRequest(offset: offset, limit: limit, productID: productID, deviceName: deviceName, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备资源列表
+    ///
+    /// 本接口（DescribeDeviceResources）用于查询设备资源列表。 
+    @inlinable
+    public func describeDeviceResources(offset: UInt64, limit: UInt64, productID: String? = nil, deviceName: String? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceResourcesResponse {
+        try await self.describeDeviceResources(DescribeDeviceResourcesRequest(offset: offset, limit: limit, productID: productID, deviceName: deviceName, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

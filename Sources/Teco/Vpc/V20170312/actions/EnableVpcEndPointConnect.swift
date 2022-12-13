@@ -64,4 +64,20 @@ extension Vpc {
     public func enableVpcEndPointConnect(_ input: EnableVpcEndPointConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcEndPointConnectResponse {
         try await self.client.execute(action: "EnableVpcEndPointConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 是否接受终端节点连接请求
+    ///
+    /// 是否接受终端节点连接请求。
+    @inlinable
+    public func enableVpcEndPointConnect(endPointServiceId: String, endPointId: [String], acceptFlag: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableVpcEndPointConnectResponse > {
+        self.enableVpcEndPointConnect(EnableVpcEndPointConnectRequest(endPointServiceId: endPointServiceId, endPointId: endPointId, acceptFlag: acceptFlag), logger: logger, on: eventLoop)
+    }
+    
+    /// 是否接受终端节点连接请求
+    ///
+    /// 是否接受终端节点连接请求。
+    @inlinable
+    public func enableVpcEndPointConnect(endPointServiceId: String, endPointId: [String], acceptFlag: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcEndPointConnectResponse {
+        try await self.enableVpcEndPointConnect(EnableVpcEndPointConnectRequest(endPointServiceId: endPointServiceId, endPointId: endPointId, acceptFlag: acceptFlag), logger: logger, on: eventLoop)
+    }
 }

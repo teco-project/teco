@@ -85,4 +85,16 @@ extension Tsf {
     public func createPublicConfig(_ input: CreatePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePublicConfigResponse {
         try await self.client.execute(action: "CreatePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建公共配置项
+    @inlinable
+    public func createPublicConfig(configName: String, configVersion: String, configValue: String, configVersionDesc: String? = nil, configType: String? = nil, encodeWithBase64: Bool? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePublicConfigResponse > {
+        self.createPublicConfig(CreatePublicConfigRequest(configName: configName, configVersion: configVersion, configValue: configValue, configVersionDesc: configVersionDesc, configType: configType, encodeWithBase64: encodeWithBase64, programIdList: programIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建公共配置项
+    @inlinable
+    public func createPublicConfig(configName: String, configVersion: String, configValue: String, configVersionDesc: String? = nil, configType: String? = nil, encodeWithBase64: Bool? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePublicConfigResponse {
+        try await self.createPublicConfig(CreatePublicConfigRequest(configName: configName, configVersion: configVersion, configValue: configValue, configVersionDesc: configVersionDesc, configType: configType, encodeWithBase64: encodeWithBase64, programIdList: programIdList), logger: logger, on: eventLoop)
+    }
 }

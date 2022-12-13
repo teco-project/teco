@@ -89,4 +89,16 @@ extension Tem {
     public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
         try await self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取运行服务列表
+    @inlinable
+    public func describeApplications(environmentId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil, applicationId: String? = nil, keyword: String? = nil, filters: [QueryFilter]? = nil, sortInfo: SortType? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationsResponse > {
+        self.describeApplications(DescribeApplicationsRequest(environmentId: environmentId, limit: limit, offset: offset, sourceChannel: sourceChannel, applicationId: applicationId, keyword: keyword, filters: filters, sortInfo: sortInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取运行服务列表
+    @inlinable
+    public func describeApplications(environmentId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil, applicationId: String? = nil, keyword: String? = nil, filters: [QueryFilter]? = nil, sortInfo: SortType? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
+        try await self.describeApplications(DescribeApplicationsRequest(environmentId: environmentId, limit: limit, offset: offset, sourceChannel: sourceChannel, applicationId: applicationId, keyword: keyword, filters: filters, sortInfo: sortInfo), logger: logger, on: eventLoop)
+    }
 }

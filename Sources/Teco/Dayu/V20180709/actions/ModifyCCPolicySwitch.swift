@@ -29,7 +29,7 @@ extension Dayu {
         /// 开关状态
         public let `switch`: UInt64
         
-        public init (business: String, id: String, setId: String, `switch`: UInt64) {
+        public init (business: String, id: String, setId: String, switch: UInt64) {
             self.business = business
             self.id = id
             self.setId = setId
@@ -68,5 +68,17 @@ extension Dayu {
     @inlinable
     public func modifyCCPolicySwitch(_ input: ModifyCCPolicySwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCPolicySwitchResponse {
         try await self.client.execute(action: "ModifyCCPolicySwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 修改CC自定义策略开关
+    @inlinable
+    public func modifyCCPolicySwitch(business: String, id: String, setId: String, switch: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCPolicySwitchResponse > {
+        self.modifyCCPolicySwitch(ModifyCCPolicySwitchRequest(business: business, id: id, setId: setId, switch: `switch`), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CC自定义策略开关
+    @inlinable
+    public func modifyCCPolicySwitch(business: String, id: String, setId: String, switch: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCPolicySwitchResponse {
+        try await self.modifyCCPolicySwitch(ModifyCCPolicySwitchRequest(business: business, id: id, setId: setId, switch: `switch`), logger: logger, on: eventLoop)
     }
 }

@@ -47,7 +47,7 @@ extension Essbasic {
         /// 是否获取模板的PDF文件链接-渠道版需要开启白名单时才能使用。
         public let withPdfUrl: Bool?
         
-        public init (agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, `operator`: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil) {
+        public init (agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, operator: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil) {
             self.agent = agent
             self.templateId = templateId
             self.contentType = contentType
@@ -114,5 +114,21 @@ extension Essbasic {
     @inlinable
     public func describeTemplates(_ input: DescribeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplatesResponse {
         try await self.client.execute(action: "DescribeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 查询模板信息列表
+    ///
+    /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
+    @inlinable
+    public func describeTemplates(agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, operator: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplatesResponse > {
+        self.describeTemplates(DescribeTemplatesRequest(agent: agent, templateId: templateId, contentType: contentType, limit: limit, offset: offset, queryAllComponents: queryAllComponents, templateName: templateName, operator: `operator`, withPreviewUrl: withPreviewUrl, withPdfUrl: withPdfUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询模板信息列表
+    ///
+    /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
+    @inlinable
+    public func describeTemplates(agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, operator: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplatesResponse {
+        try await self.describeTemplates(DescribeTemplatesRequest(agent: agent, templateId: templateId, contentType: contentType, limit: limit, offset: offset, queryAllComponents: queryAllComponents, templateName: templateName, operator: `operator`, withPreviewUrl: withPreviewUrl, withPdfUrl: withPdfUrl), logger: logger, on: eventLoop)
     }
 }

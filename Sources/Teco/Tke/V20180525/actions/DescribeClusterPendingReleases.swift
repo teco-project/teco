@@ -89,4 +89,20 @@ extension Tke {
     public func describeClusterPendingReleases(_ input: DescribeClusterPendingReleasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterPendingReleasesResponse {
         try await self.client.execute(action: "DescribeClusterPendingReleases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询集群安装中的应用列表
+    ///
+    /// 在应用市场中查询正在安装中的应用列表
+    @inlinable
+    public func describeClusterPendingReleases(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterPendingReleasesResponse > {
+        self.describeClusterPendingReleases(DescribeClusterPendingReleasesRequest(clusterId: clusterId, limit: limit, offset: offset, clusterType: clusterType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群安装中的应用列表
+    ///
+    /// 在应用市场中查询正在安装中的应用列表
+    @inlinable
+    public func describeClusterPendingReleases(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterPendingReleasesResponse {
+        try await self.describeClusterPendingReleases(DescribeClusterPendingReleasesRequest(clusterId: clusterId, limit: limit, offset: offset, clusterType: clusterType), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,20 @@ extension Cls {
     public func addMachineGroupInfo(_ input: AddMachineGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddMachineGroupInfoResponse {
         try await self.client.execute(action: "AddMachineGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加机器组信息
+    ///
+    /// 用于添加机器组信息
+    @inlinable
+    public func addMachineGroupInfo(groupId: String, machineGroupType: MachineGroupTypeInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddMachineGroupInfoResponse > {
+        self.addMachineGroupInfo(AddMachineGroupInfoRequest(groupId: groupId, machineGroupType: machineGroupType), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加机器组信息
+    ///
+    /// 用于添加机器组信息
+    @inlinable
+    public func addMachineGroupInfo(groupId: String, machineGroupType: MachineGroupTypeInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddMachineGroupInfoResponse {
+        try await self.addMachineGroupInfo(AddMachineGroupInfoRequest(groupId: groupId, machineGroupType: machineGroupType), logger: logger, on: eventLoop)
+    }
 }

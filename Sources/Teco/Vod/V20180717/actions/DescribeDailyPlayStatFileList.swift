@@ -82,4 +82,34 @@ extension Vod {
     public func describeDailyPlayStatFileList(_ input: DescribeDailyPlayStatFileListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDailyPlayStatFileListResponse {
         try await self.client.execute(action: "DescribeDailyPlayStatFileList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询播放统计文件下载列表
+    ///
+    /// 该接口用于查询播放统计文件的下载地址。
+    /// * 可以查询最近一年的播放统计文件下载地址，查询的起始日期和结束日期的时间跨度不超过90天。
+    /// * 云点播每天对前一天的 CDN 请求日志进行分析处理，生成播放统计文件。
+    /// * 播放统计文件内容包含媒体文件的播放次数、播放流量等统计信息。
+    /// * 播放次数统计说明：
+    ///     1. HLS 文件：访问M3U8 文件时统计播放次数；访问TS 文件不统计播放次数。
+    ///     2. 其它文件（如 MP4 文件）：播放请求带有 range 参数且 range 的 start 参数不等于0时不统计播放次数，其它情况统计播放次数。
+    /// * 播放设备的统计：播放请求带了 UserAgent 参数，并且 UserAgent 包含 Android 或者 iPhone 等标识，会统计为移动端播放次数，否则统计为 PC 端播放次数。
+    @inlinable
+    public func describeDailyPlayStatFileList(startTime: String, endTime: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDailyPlayStatFileListResponse > {
+        self.describeDailyPlayStatFileList(DescribeDailyPlayStatFileListRequest(startTime: startTime, endTime: endTime, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询播放统计文件下载列表
+    ///
+    /// 该接口用于查询播放统计文件的下载地址。
+    /// * 可以查询最近一年的播放统计文件下载地址，查询的起始日期和结束日期的时间跨度不超过90天。
+    /// * 云点播每天对前一天的 CDN 请求日志进行分析处理，生成播放统计文件。
+    /// * 播放统计文件内容包含媒体文件的播放次数、播放流量等统计信息。
+    /// * 播放次数统计说明：
+    ///     1. HLS 文件：访问M3U8 文件时统计播放次数；访问TS 文件不统计播放次数。
+    ///     2. 其它文件（如 MP4 文件）：播放请求带有 range 参数且 range 的 start 参数不等于0时不统计播放次数，其它情况统计播放次数。
+    /// * 播放设备的统计：播放请求带了 UserAgent 参数，并且 UserAgent 包含 Android 或者 iPhone 等标识，会统计为移动端播放次数，否则统计为 PC 端播放次数。
+    @inlinable
+    public func describeDailyPlayStatFileList(startTime: String, endTime: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDailyPlayStatFileListResponse {
+        try await self.describeDailyPlayStatFileList(DescribeDailyPlayStatFileListRequest(startTime: startTime, endTime: endTime, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

@@ -108,4 +108,16 @@ extension Teo {
     public func describeDDosAttackSourceEvent(_ input: DescribeDDosAttackSourceEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosAttackSourceEventResponse {
         try await self.client.execute(action: "DescribeDDosAttackSourceEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询DDos攻击源信息
+    @inlinable
+    public func describeDDosAttackSourceEvent(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, protocolType: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDosAttackSourceEventResponse > {
+        self.describeDDosAttackSourceEvent(DescribeDDosAttackSourceEventRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, policyIds: policyIds, zoneIds: zoneIds, protocolType: protocolType, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询DDos攻击源信息
+    @inlinable
+    public func describeDDosAttackSourceEvent(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, protocolType: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosAttackSourceEventResponse {
+        try await self.describeDDosAttackSourceEvent(DescribeDDosAttackSourceEventRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, policyIds: policyIds, zoneIds: zoneIds, protocolType: protocolType, area: area), logger: logger, on: eventLoop)
+    }
 }

@@ -113,4 +113,20 @@ extension Pts {
     public func describeScenarioWithJobs(_ input: DescribeScenarioWithJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScenarioWithJobsResponse {
         try await self.client.execute(action: "DescribeScenarioWithJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询场景及对应的任务
+    ///
+    /// 查询场景配置并附带已经执行的任务内容
+    @inlinable
+    public func describeScenarioWithJobs(offset: Int64? = nil, limit: Int64? = nil, projectIds: [String]? = nil, scenarioIds: [String]? = nil, scenarioName: String? = nil, scenarioStatus: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil, scenarioRelatedJobsParams: ScenarioRelatedJobsParams? = nil, ignoreScript: Bool? = nil, ignoreDataset: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScenarioWithJobsResponse > {
+        self.describeScenarioWithJobs(DescribeScenarioWithJobsRequest(offset: offset, limit: limit, projectIds: projectIds, scenarioIds: scenarioIds, scenarioName: scenarioName, scenarioStatus: scenarioStatus, orderBy: orderBy, ascend: ascend, scenarioRelatedJobsParams: scenarioRelatedJobsParams, ignoreScript: ignoreScript, ignoreDataset: ignoreDataset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询场景及对应的任务
+    ///
+    /// 查询场景配置并附带已经执行的任务内容
+    @inlinable
+    public func describeScenarioWithJobs(offset: Int64? = nil, limit: Int64? = nil, projectIds: [String]? = nil, scenarioIds: [String]? = nil, scenarioName: String? = nil, scenarioStatus: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil, scenarioRelatedJobsParams: ScenarioRelatedJobsParams? = nil, ignoreScript: Bool? = nil, ignoreDataset: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScenarioWithJobsResponse {
+        try await self.describeScenarioWithJobs(DescribeScenarioWithJobsRequest(offset: offset, limit: limit, projectIds: projectIds, scenarioIds: scenarioIds, scenarioName: scenarioName, scenarioStatus: scenarioStatus, orderBy: orderBy, ascend: ascend, scenarioRelatedJobsParams: scenarioRelatedJobsParams, ignoreScript: ignoreScript, ignoreDataset: ignoreDataset), logger: logger, on: eventLoop)
+    }
 }

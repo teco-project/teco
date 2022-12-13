@@ -50,4 +50,16 @@ extension Tcss {
     public func modifyK8sApiAbnormalRuleInfo(_ input: ModifyK8sApiAbnormalRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyK8sApiAbnormalRuleInfoResponse {
         try await self.client.execute(action: "ModifyK8sApiAbnormalRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改k8sapi异常规则信息
+    @inlinable
+    public func modifyK8sApiAbnormalRuleInfo(ruleInfo: K8sApiAbnormalRuleInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyK8sApiAbnormalRuleInfoResponse > {
+        self.modifyK8sApiAbnormalRuleInfo(ModifyK8sApiAbnormalRuleInfoRequest(ruleInfo: ruleInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改k8sapi异常规则信息
+    @inlinable
+    public func modifyK8sApiAbnormalRuleInfo(ruleInfo: K8sApiAbnormalRuleInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyK8sApiAbnormalRuleInfoResponse {
+        try await self.modifyK8sApiAbnormalRuleInfo(ModifyK8sApiAbnormalRuleInfoRequest(ruleInfo: ruleInfo), logger: logger, on: eventLoop)
+    }
 }

@@ -64,4 +64,20 @@ extension Iot {
     public func appResetPassword(_ input: AppResetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppResetPasswordResponse {
         try await self.client.execute(action: "AppResetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重置用户密码
+    ///
+    /// 重置APP用户密码
+    @inlinable
+    public func appResetPassword(accessToken: String, oldPassword: String, newPassword: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppResetPasswordResponse > {
+        self.appResetPassword(AppResetPasswordRequest(accessToken: accessToken, oldPassword: oldPassword, newPassword: newPassword), logger: logger, on: eventLoop)
+    }
+    
+    /// 重置用户密码
+    ///
+    /// 重置APP用户密码
+    @inlinable
+    public func appResetPassword(accessToken: String, oldPassword: String, newPassword: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppResetPasswordResponse {
+        try await self.appResetPassword(AppResetPasswordRequest(accessToken: accessToken, oldPassword: oldPassword, newPassword: newPassword), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Tsf {
     public func deleteRepository(_ input: DeleteRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryResponse {
         try await self.client.execute(action: "DeleteRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除仓库
+    @inlinable
+    public func deleteRepository(repositoryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRepositoryResponse > {
+        self.deleteRepository(DeleteRepositoryRequest(repositoryId: repositoryId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除仓库
+    @inlinable
+    public func deleteRepository(repositoryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryResponse {
+        try await self.deleteRepository(DeleteRepositoryRequest(repositoryId: repositoryId), logger: logger, on: eventLoop)
+    }
 }

@@ -84,4 +84,20 @@ extension Vod {
     public func describeImageProcessingTemplates(_ input: DescribeImageProcessingTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageProcessingTemplatesResponse {
         try await self.client.execute(action: "DescribeImageProcessingTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取图片即时处理模板列表
+    ///
+    /// 获取图片处理模板列表，支持根据条件，分页查询。
+    @inlinable
+    public func describeImageProcessingTemplates(subAppId: UInt64? = nil, definitions: [UInt64]? = nil, type: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageProcessingTemplatesResponse > {
+        self.describeImageProcessingTemplates(DescribeImageProcessingTemplatesRequest(subAppId: subAppId, definitions: definitions, type: type, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取图片即时处理模板列表
+    ///
+    /// 获取图片处理模板列表，支持根据条件，分页查询。
+    @inlinable
+    public func describeImageProcessingTemplates(subAppId: UInt64? = nil, definitions: [UInt64]? = nil, type: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageProcessingTemplatesResponse {
+        try await self.describeImageProcessingTemplates(DescribeImageProcessingTemplatesRequest(subAppId: subAppId, definitions: definitions, type: type, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

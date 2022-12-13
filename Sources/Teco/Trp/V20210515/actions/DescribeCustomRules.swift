@@ -85,4 +85,16 @@ extension Trp {
     public func describeCustomRules(_ input: DescribeCustomRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomRulesResponse {
         try await self.client.execute(action: "DescribeCustomRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查自定义码规则列表
+    @inlinable
+    public func describeCustomRules(keyword: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, corpId: UInt64? = nil, status: Int64? = nil, merchantId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomRulesResponse > {
+        self.describeCustomRules(DescribeCustomRulesRequest(keyword: keyword, pageSize: pageSize, pageNumber: pageNumber, corpId: corpId, status: status, merchantId: merchantId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查自定义码规则列表
+    @inlinable
+    public func describeCustomRules(keyword: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, corpId: UInt64? = nil, status: Int64? = nil, merchantId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomRulesResponse {
+        try await self.describeCustomRules(DescribeCustomRulesRequest(keyword: keyword, pageSize: pageSize, pageNumber: pageNumber, corpId: corpId, status: status, merchantId: merchantId), logger: logger, on: eventLoop)
+    }
 }

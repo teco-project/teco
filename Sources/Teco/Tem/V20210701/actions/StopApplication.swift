@@ -64,4 +64,16 @@ extension Tem {
     public func stopApplication(_ input: StopApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopApplicationResponse {
         try await self.client.execute(action: "StopApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 服务停止
+    @inlinable
+    public func stopApplication(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopApplicationResponse > {
+        self.stopApplication(StopApplicationRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId), logger: logger, on: eventLoop)
+    }
+    
+    /// 服务停止
+    @inlinable
+    public func stopApplication(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopApplicationResponse {
+        try await self.stopApplication(StopApplicationRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId), logger: logger, on: eventLoop)
+    }
 }

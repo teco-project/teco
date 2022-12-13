@@ -109,4 +109,20 @@ extension Live {
     public func describeCallbackRecordsList(_ input: DescribeCallbackRecordsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallbackRecordsListResponse {
         try await self.client.execute(action: "DescribeCallbackRecordsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 回调事件查询
+    ///
+    /// 用于查询回调事件。
+    @inlinable
+    public func describeCallbackRecordsList(startTime: String, endTime: String, streamName: String, pageNum: UInt64, pageSize: UInt64, eventType: UInt64? = nil, resultCode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallbackRecordsListResponse > {
+        self.describeCallbackRecordsList(DescribeCallbackRecordsListRequest(startTime: startTime, endTime: endTime, streamName: streamName, pageNum: pageNum, pageSize: pageSize, eventType: eventType, resultCode: resultCode), logger: logger, on: eventLoop)
+    }
+    
+    /// 回调事件查询
+    ///
+    /// 用于查询回调事件。
+    @inlinable
+    public func describeCallbackRecordsList(startTime: String, endTime: String, streamName: String, pageNum: UInt64, pageSize: UInt64, eventType: UInt64? = nil, resultCode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallbackRecordsListResponse {
+        try await self.describeCallbackRecordsList(DescribeCallbackRecordsListRequest(startTime: startTime, endTime: endTime, streamName: streamName, pageNum: pageNum, pageSize: pageSize, eventType: eventType, resultCode: resultCode), logger: logger, on: eventLoop)
+    }
 }

@@ -78,4 +78,16 @@ extension Tcaplusdb {
     public func describeTableGroups(_ input: DescribeTableGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableGroupsResponse {
         try await self.client.execute(action: "DescribeTableGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询表格组列表
+    @inlinable
+    public func describeTableGroups(clusterId: String, tableGroupIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableGroupsResponse > {
+        self.describeTableGroups(DescribeTableGroupsRequest(clusterId: clusterId, tableGroupIds: tableGroupIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询表格组列表
+    @inlinable
+    public func describeTableGroups(clusterId: String, tableGroupIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableGroupsResponse {
+        try await self.describeTableGroups(DescribeTableGroupsRequest(clusterId: clusterId, tableGroupIds: tableGroupIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

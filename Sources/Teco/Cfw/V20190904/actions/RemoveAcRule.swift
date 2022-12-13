@@ -64,4 +64,16 @@ extension Cfw {
     public func removeAcRule(_ input: RemoveAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAcRuleResponse {
         try await self.client.execute(action: "RemoveAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除互联网边界规则
+    @inlinable
+    public func removeAcRule(ruleUuid: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveAcRuleResponse > {
+        self.removeAcRule(RemoveAcRuleRequest(ruleUuid: ruleUuid), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除互联网边界规则
+    @inlinable
+    public func removeAcRule(ruleUuid: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAcRuleResponse {
+        try await self.removeAcRule(RemoveAcRuleRequest(ruleUuid: ruleUuid), logger: logger, on: eventLoop)
+    }
 }

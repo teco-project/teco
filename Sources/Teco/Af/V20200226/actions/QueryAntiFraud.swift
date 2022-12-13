@@ -198,4 +198,24 @@ extension Af {
     public func queryAntiFraud(_ input: QueryAntiFraudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAntiFraudResponse {
         try await self.client.execute(action: "QueryAntiFraud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 借贷反欺诈
+    ///
+    /// 天御反欺诈服务，主要应用于银行、证券、保险、消费金融等金融行业客户，通过腾讯的大数据风控能力，
+    /// 可以准确识别恶意用户信息，解决客户在支付、活动、理财，风控等业务环节遇到的欺诈威胁，降低企业
+    /// 的损失。
+    @inlinable
+    public func queryAntiFraud(phoneNumber: String? = nil, idNumber: String? = nil, bankCardNumber: String? = nil, userIp: String? = nil, imei: String? = nil, idfa: String? = nil, scene: String? = nil, name: String? = nil, emailAddress: String? = nil, address: String? = nil, mac: String? = nil, imsi: String? = nil, accountType: String? = nil, uid: String? = nil, appIdU: String? = nil, wifiMac: String? = nil, wifiSSID: String? = nil, wifiBSSID: String? = nil, businessId: String? = nil, idCryptoType: String? = nil, phoneCryptoType: String? = nil, nameCryptoType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAntiFraudResponse > {
+        self.queryAntiFraud(QueryAntiFraudRequest(phoneNumber: phoneNumber, idNumber: idNumber, bankCardNumber: bankCardNumber, userIp: userIp, imei: imei, idfa: idfa, scene: scene, name: name, emailAddress: emailAddress, address: address, mac: mac, imsi: imsi, accountType: accountType, uid: uid, appIdU: appIdU, wifiMac: wifiMac, wifiSSID: wifiSSID, wifiBSSID: wifiBSSID, businessId: businessId, idCryptoType: idCryptoType, phoneCryptoType: phoneCryptoType, nameCryptoType: nameCryptoType), logger: logger, on: eventLoop)
+    }
+    
+    /// 借贷反欺诈
+    ///
+    /// 天御反欺诈服务，主要应用于银行、证券、保险、消费金融等金融行业客户，通过腾讯的大数据风控能力，
+    /// 可以准确识别恶意用户信息，解决客户在支付、活动、理财，风控等业务环节遇到的欺诈威胁，降低企业
+    /// 的损失。
+    @inlinable
+    public func queryAntiFraud(phoneNumber: String? = nil, idNumber: String? = nil, bankCardNumber: String? = nil, userIp: String? = nil, imei: String? = nil, idfa: String? = nil, scene: String? = nil, name: String? = nil, emailAddress: String? = nil, address: String? = nil, mac: String? = nil, imsi: String? = nil, accountType: String? = nil, uid: String? = nil, appIdU: String? = nil, wifiMac: String? = nil, wifiSSID: String? = nil, wifiBSSID: String? = nil, businessId: String? = nil, idCryptoType: String? = nil, phoneCryptoType: String? = nil, nameCryptoType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAntiFraudResponse {
+        try await self.queryAntiFraud(QueryAntiFraudRequest(phoneNumber: phoneNumber, idNumber: idNumber, bankCardNumber: bankCardNumber, userIp: userIp, imei: imei, idfa: idfa, scene: scene, name: name, emailAddress: emailAddress, address: address, mac: mac, imsi: imsi, accountType: accountType, uid: uid, appIdU: appIdU, wifiMac: wifiMac, wifiSSID: wifiSSID, wifiBSSID: wifiBSSID, businessId: businessId, idCryptoType: idCryptoType, phoneCryptoType: phoneCryptoType, nameCryptoType: nameCryptoType), logger: logger, on: eventLoop)
+    }
 }

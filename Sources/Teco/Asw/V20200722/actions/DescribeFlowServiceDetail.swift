@@ -105,4 +105,20 @@ extension Asw {
     public func describeFlowServiceDetail(_ input: DescribeFlowServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowServiceDetailResponse {
         try await self.client.execute(action: "DescribeFlowServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询状态机详情
+    ///
+    /// 查询该用户指定状态机下的详情数据。
+    @inlinable
+    public func describeFlowServiceDetail(flowServiceResource: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowServiceDetailResponse > {
+        self.describeFlowServiceDetail(DescribeFlowServiceDetailRequest(flowServiceResource: flowServiceResource), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询状态机详情
+    ///
+    /// 查询该用户指定状态机下的详情数据。
+    @inlinable
+    public func describeFlowServiceDetail(flowServiceResource: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowServiceDetailResponse {
+        try await self.describeFlowServiceDetail(DescribeFlowServiceDetailRequest(flowServiceResource: flowServiceResource), logger: logger, on: eventLoop)
+    }
 }

@@ -77,4 +77,20 @@ extension Cws {
     public func describeSites(_ input: DescribeSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesResponse {
         try await self.client.execute(action: "DescribeSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看站点列表
+    ///
+    /// 本接口 (DescribeSites) 用于查询一个或多个站点的详细信息。
+    @inlinable
+    public func describeSites(siteIds: [UInt64]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSitesResponse > {
+        self.describeSites(DescribeSitesRequest(siteIds: siteIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看站点列表
+    ///
+    /// 本接口 (DescribeSites) 用于查询一个或多个站点的详细信息。
+    @inlinable
+    public func describeSites(siteIds: [UInt64]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesResponse {
+        try await self.describeSites(DescribeSitesRequest(siteIds: siteIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

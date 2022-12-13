@@ -72,4 +72,28 @@ extension Cvm {
     public func disassociateInstancesKeyPairs(_ input: DisassociateInstancesKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateInstancesKeyPairsResponse {
         try await self.client.execute(action: "DisassociateInstancesKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解绑密钥对
+    ///
+    /// 本接口 (DisassociateInstancesKeyPairs) 用于解除实例的密钥绑定关系。
+    /// * 只支持[`STOPPED`](https://cloud.tencent.com/document/product/213/15753#InstanceStatus)状态的`Linux`操作系统的实例。
+    /// * 解绑密钥后，实例可以通过原来设置的密码登录。
+    /// * 如果原来没有设置密码，解绑后将无法使用 `SSH` 登录。可以调用 [ResetInstancesPassword](https://cloud.tencent.com/document/api/213/15736) 接口来设置登录密码。
+    /// * 支持批量操作。每次请求批量实例的上限为100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
+    @inlinable
+    public func disassociateInstancesKeyPairs(instanceIds: [String], keyIds: [String], forceStop: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateInstancesKeyPairsResponse > {
+        self.disassociateInstancesKeyPairs(DisassociateInstancesKeyPairsRequest(instanceIds: instanceIds, keyIds: keyIds, forceStop: forceStop), logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑密钥对
+    ///
+    /// 本接口 (DisassociateInstancesKeyPairs) 用于解除实例的密钥绑定关系。
+    /// * 只支持[`STOPPED`](https://cloud.tencent.com/document/product/213/15753#InstanceStatus)状态的`Linux`操作系统的实例。
+    /// * 解绑密钥后，实例可以通过原来设置的密码登录。
+    /// * 如果原来没有设置密码，解绑后将无法使用 `SSH` 登录。可以调用 [ResetInstancesPassword](https://cloud.tencent.com/document/api/213/15736) 接口来设置登录密码。
+    /// * 支持批量操作。每次请求批量实例的上限为100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
+    @inlinable
+    public func disassociateInstancesKeyPairs(instanceIds: [String], keyIds: [String], forceStop: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateInstancesKeyPairsResponse {
+        try await self.disassociateInstancesKeyPairs(DisassociateInstancesKeyPairsRequest(instanceIds: instanceIds, keyIds: keyIds, forceStop: forceStop), logger: logger, on: eventLoop)
+    }
 }

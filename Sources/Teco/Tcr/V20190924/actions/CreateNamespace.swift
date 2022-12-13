@@ -69,4 +69,20 @@ extension Tcr {
     public func createNamespace(_ input: CreateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
         try await self.client.execute(action: "CreateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建命名空间
+    ///
+    /// 用于在企业版中创建命名空间
+    @inlinable
+    public func createNamespace(registryId: String, namespaceName: String, isPublic: Bool, tagSpecification: TagSpecification? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNamespaceResponse > {
+        self.createNamespace(CreateNamespaceRequest(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建命名空间
+    ///
+    /// 用于在企业版中创建命名空间
+    @inlinable
+    public func createNamespace(registryId: String, namespaceName: String, isPublic: Bool, tagSpecification: TagSpecification? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
+        try await self.createNamespace(CreateNamespaceRequest(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    }
 }

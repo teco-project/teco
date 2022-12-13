@@ -62,4 +62,20 @@ extension Mariadb {
     public func describeLogFileRetentionPeriod(_ input: DescribeLogFileRetentionPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogFileRetentionPeriodResponse {
         try await self.client.execute(action: "DescribeLogFileRetentionPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看备份日志备份天数
+    ///
+    /// 本接口(DescribeLogFileRetentionPeriod)用于查看数据库备份日志的备份天数的设置情况。
+    @inlinable
+    public func describeLogFileRetentionPeriod(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogFileRetentionPeriodResponse > {
+        self.describeLogFileRetentionPeriod(DescribeLogFileRetentionPeriodRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看备份日志备份天数
+    ///
+    /// 本接口(DescribeLogFileRetentionPeriod)用于查看数据库备份日志的备份天数的设置情况。
+    @inlinable
+    public func describeLogFileRetentionPeriod(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogFileRetentionPeriodResponse {
+        try await self.describeLogFileRetentionPeriod(DescribeLogFileRetentionPeriodRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

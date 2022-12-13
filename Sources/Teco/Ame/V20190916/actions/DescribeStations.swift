@@ -80,4 +80,20 @@ extension Ame {
     public func describeStations(_ input: DescribeStationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStationsResponse {
         try await self.client.execute(action: "DescribeStations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取分类内容（Station）列表
+    ///
+    /// 该服务后续会停用，不再建议使用
+    @inlinable
+    public func describeStations(limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStationsResponse > {
+        self.describeStations(DescribeStationsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取分类内容（Station）列表
+    ///
+    /// 该服务后续会停用，不再建议使用
+    @inlinable
+    public func describeStations(limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStationsResponse {
+        try await self.describeStations(DescribeStationsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Kms {
     public func disableKey(_ input: DisableKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeyResponse {
         try await self.client.execute(action: "DisableKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 禁用主密钥
+    ///
+    /// 本接口用于禁用一个主密钥，处于禁用状态的Key无法用于加密、解密操作。
+    @inlinable
+    public func disableKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableKeyResponse > {
+        self.disableKey(DisableKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 禁用主密钥
+    ///
+    /// 本接口用于禁用一个主密钥，处于禁用状态的Key无法用于加密、解密操作。
+    @inlinable
+    public func disableKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeyResponse {
+        try await self.disableKey(DisableKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
+    }
 }

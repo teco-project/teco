@@ -85,4 +85,16 @@ extension Pts {
     public func describeFiles(_ input: DescribeFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFilesResponse {
         try await self.client.execute(action: "DescribeFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询文件列表
+    @inlinable
+    public func describeFiles(projectIds: [String], fileIds: [String]? = nil, fileName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, kind: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFilesResponse > {
+        self.describeFiles(DescribeFilesRequest(projectIds: projectIds, fileIds: fileIds, fileName: fileName, offset: offset, limit: limit, kind: kind), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文件列表
+    @inlinable
+    public func describeFiles(projectIds: [String], fileIds: [String]? = nil, fileName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, kind: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFilesResponse {
+        try await self.describeFiles(DescribeFilesRequest(projectIds: projectIds, fileIds: fileIds, fileName: fileName, offset: offset, limit: limit, kind: kind), logger: logger, on: eventLoop)
+    }
 }

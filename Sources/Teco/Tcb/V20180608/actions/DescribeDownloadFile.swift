@@ -65,4 +65,16 @@ extension Tcb {
     public func describeDownloadFile(_ input: DescribeDownloadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDownloadFileResponse {
         try await self.client.execute(action: "DescribeDownloadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取下载文件信息
+    @inlinable
+    public func describeDownloadFile(codeUri: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDownloadFileResponse > {
+        self.describeDownloadFile(DescribeDownloadFileRequest(codeUri: codeUri), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取下载文件信息
+    @inlinable
+    public func describeDownloadFile(codeUri: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDownloadFileResponse {
+        try await self.describeDownloadFile(DescribeDownloadFileRequest(codeUri: codeUri), logger: logger, on: eventLoop)
+    }
 }

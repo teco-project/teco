@@ -68,4 +68,16 @@ extension Tdid {
     public func getCptList(_ input: GetCptListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptListResponse {
         try await self.client.execute(action: "GetCptList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 凭证模版列表
+    @inlinable
+    public func getCptList(displayStart: UInt64, displayLength: UInt64, cptType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCptListResponse > {
+        self.getCptList(GetCptListRequest(displayStart: displayStart, displayLength: displayLength, cptType: cptType), logger: logger, on: eventLoop)
+    }
+    
+    /// 凭证模版列表
+    @inlinable
+    public func getCptList(displayStart: UInt64, displayLength: UInt64, cptType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptListResponse {
+        try await self.getCptList(GetCptListRequest(displayStart: displayStart, displayLength: displayLength, cptType: cptType), logger: logger, on: eventLoop)
+    }
 }

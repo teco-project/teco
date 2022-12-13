@@ -55,4 +55,16 @@ extension Bmeip {
     public func modifyEipName(_ input: ModifyEipNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipNameResponse {
         try await self.client.execute(action: "ModifyEipName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新黑石EIP名称
+    @inlinable
+    public func modifyEipName(eipId: String, eipName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEipNameResponse > {
+        self.modifyEipName(ModifyEipNameRequest(eipId: eipId, eipName: eipName), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新黑石EIP名称
+    @inlinable
+    public func modifyEipName(eipId: String, eipName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipNameResponse {
+        try await self.modifyEipName(ModifyEipNameRequest(eipId: eipId, eipName: eipName), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,16 @@ extension Ivld {
     public func describeCustomPersons(_ input: DescribeCustomPersonsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomPersonsResponse {
         try await self.client.execute(action: "DescribeCustomPersons", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量描述自定义人物
+    @inlinable
+    public func describeCustomPersons(pageNumber: Int64, pageSize: Int64, sortBy: SortBy? = nil, filter: CustomPersonFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomPersonsResponse > {
+        self.describeCustomPersons(DescribeCustomPersonsRequest(pageNumber: pageNumber, pageSize: pageSize, sortBy: sortBy, filter: filter), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量描述自定义人物
+    @inlinable
+    public func describeCustomPersons(pageNumber: Int64, pageSize: Int64, sortBy: SortBy? = nil, filter: CustomPersonFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomPersonsResponse {
+        try await self.describeCustomPersons(DescribeCustomPersonsRequest(pageNumber: pageNumber, pageSize: pageSize, sortBy: sortBy, filter: filter), logger: logger, on: eventLoop)
+    }
 }

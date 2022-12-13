@@ -50,4 +50,20 @@ extension Cwp {
     public func describeMachineOsList(_ input: DescribeMachineOsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineOsListResponse {
         try await self.client.execute(action: "DescribeMachineOsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询机器操作系统列表
+    ///
+    /// 查询可筛选操作系统列表.
+    @inlinable
+    public func describeMachineOsList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineOsListResponse > {
+        self.describeMachineOsList(DescribeMachineOsListRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询机器操作系统列表
+    ///
+    /// 查询可筛选操作系统列表.
+    @inlinable
+    public func describeMachineOsList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineOsListResponse {
+        try await self.describeMachineOsList(DescribeMachineOsListRequest(), logger: logger, on: eventLoop)
+    }
 }

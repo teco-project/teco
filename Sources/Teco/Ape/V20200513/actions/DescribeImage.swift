@@ -110,4 +110,20 @@ extension Ape {
     public func describeImage(_ input: DescribeImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageResponse {
         try await self.client.execute(action: "DescribeImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询图片详情
+    ///
+    /// 根据ID查询一张图片的详细信息
+    @inlinable
+    public func describeImage(imageId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageResponse > {
+        self.describeImage(DescribeImageRequest(imageId: imageId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询图片详情
+    ///
+    /// 根据ID查询一张图片的详细信息
+    @inlinable
+    public func describeImage(imageId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageResponse {
+        try await self.describeImage(DescribeImageRequest(imageId: imageId), logger: logger, on: eventLoop)
+    }
 }

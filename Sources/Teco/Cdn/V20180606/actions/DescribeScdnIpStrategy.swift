@@ -84,4 +84,20 @@ extension Cdn {
     public func describeScdnIpStrategy(_ input: DescribeScdnIpStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnIpStrategyResponse {
         try await self.client.execute(action: "DescribeScdnIpStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询SCDN安全防护IP白名单
+    ///
+    /// 查询在SCDN IP安全策略
+    @inlinable
+    public func describeScdnIpStrategy(offset: Int64? = nil, limit: Int64? = nil, filters: [ScdnIpStrategyFilter]? = nil, order: String? = nil, sequence: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnIpStrategyResponse > {
+        self.describeScdnIpStrategy(DescribeScdnIpStrategyRequest(offset: offset, limit: limit, filters: filters, order: order, sequence: sequence), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询SCDN安全防护IP白名单
+    ///
+    /// 查询在SCDN IP安全策略
+    @inlinable
+    public func describeScdnIpStrategy(offset: Int64? = nil, limit: Int64? = nil, filters: [ScdnIpStrategyFilter]? = nil, order: String? = nil, sequence: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnIpStrategyResponse {
+        try await self.describeScdnIpStrategy(DescribeScdnIpStrategyRequest(offset: offset, limit: limit, filters: filters, order: order, sequence: sequence), logger: logger, on: eventLoop)
+    }
 }

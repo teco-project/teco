@@ -54,4 +54,20 @@ extension Ses {
     public func deleteEmailAddress(_ input: DeleteEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailAddressResponse {
         try await self.client.execute(action: "DeleteEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除发信地址
+    ///
+    /// 删除发信人地址
+    @inlinable
+    public func deleteEmailAddress(emailAddress: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEmailAddressResponse > {
+        self.deleteEmailAddress(DeleteEmailAddressRequest(emailAddress: emailAddress), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除发信地址
+    ///
+    /// 删除发信人地址
+    @inlinable
+    public func deleteEmailAddress(emailAddress: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailAddressResponse {
+        try await self.deleteEmailAddress(DeleteEmailAddressRequest(emailAddress: emailAddress), logger: logger, on: eventLoop)
+    }
 }

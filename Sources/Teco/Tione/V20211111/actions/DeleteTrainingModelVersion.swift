@@ -55,4 +55,16 @@ extension Tione {
     public func deleteTrainingModelVersion(_ input: DeleteTrainingModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingModelVersionResponse {
         try await self.client.execute(action: "DeleteTrainingModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除模型版本
+    @inlinable
+    public func deleteTrainingModelVersion(trainingModelVersionId: String, enableDeleteCos: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTrainingModelVersionResponse > {
+        self.deleteTrainingModelVersion(DeleteTrainingModelVersionRequest(trainingModelVersionId: trainingModelVersionId, enableDeleteCos: enableDeleteCos), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除模型版本
+    @inlinable
+    public func deleteTrainingModelVersion(trainingModelVersionId: String, enableDeleteCos: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingModelVersionResponse {
+        try await self.deleteTrainingModelVersion(DeleteTrainingModelVersionRequest(trainingModelVersionId: trainingModelVersionId, enableDeleteCos: enableDeleteCos), logger: logger, on: eventLoop)
+    }
 }

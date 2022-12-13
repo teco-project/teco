@@ -59,4 +59,20 @@ extension Iotvideo {
     public func describeModelDataRet(_ input: DescribeModelDataRetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelDataRetResponse {
         try await self.client.execute(action: "DescribeModelDataRet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取物模型操作结果
+    ///
+    /// 本接口（DescribeModelDataRet）用于根据TaskId获取对设备物模型操作最终响应的结果。
+    @inlinable
+    public func describeModelDataRet(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelDataRetResponse > {
+        self.describeModelDataRet(DescribeModelDataRetRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取物模型操作结果
+    ///
+    /// 本接口（DescribeModelDataRet）用于根据TaskId获取对设备物模型操作最终响应的结果。
+    @inlinable
+    public func describeModelDataRet(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelDataRetResponse {
+        try await self.describeModelDataRet(DescribeModelDataRetRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,20 @@ extension Apigateway {
     public func importOpenApi(_ input: ImportOpenApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportOpenApiResponse {
         try await self.client.execute(action: "ImportOpenApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导入OpenAPI
+    ///
+    /// 本接口（ImportOpenApi）用于将OpenAPI规范定义的API导入到API网关。 
+    @inlinable
+    public func importOpenApi(serviceId: String, content: String, encodeType: String? = nil, contentVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportOpenApiResponse > {
+        self.importOpenApi(ImportOpenApiRequest(serviceId: serviceId, content: content, encodeType: encodeType, contentVersion: contentVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 导入OpenAPI
+    ///
+    /// 本接口（ImportOpenApi）用于将OpenAPI规范定义的API导入到API网关。 
+    @inlinable
+    public func importOpenApi(serviceId: String, content: String, encodeType: String? = nil, contentVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportOpenApiResponse {
+        try await self.importOpenApi(ImportOpenApiRequest(serviceId: serviceId, content: content, encodeType: encodeType, contentVersion: contentVersion), logger: logger, on: eventLoop)
+    }
 }

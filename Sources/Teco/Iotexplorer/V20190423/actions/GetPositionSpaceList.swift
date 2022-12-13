@@ -70,4 +70,16 @@ extension Iotexplorer {
     public func getPositionSpaceList(_ input: GetPositionSpaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPositionSpaceListResponse {
         try await self.client.execute(action: "GetPositionSpaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取位置空间列表
+    @inlinable
+    public func getPositionSpaceList(projectId: String, offset: Int64, limit: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPositionSpaceListResponse > {
+        self.getPositionSpaceList(GetPositionSpaceListRequest(projectId: projectId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取位置空间列表
+    @inlinable
+    public func getPositionSpaceList(projectId: String, offset: Int64, limit: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPositionSpaceListResponse {
+        try await self.getPositionSpaceList(GetPositionSpaceListRequest(projectId: projectId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

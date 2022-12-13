@@ -64,4 +64,20 @@ extension Ecm {
     public func resetInstancesMaxBandwidth(_ input: ResetInstancesMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesMaxBandwidthResponse {
         try await self.client.execute(action: "ResetInstancesMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重置实例的最大带宽上限
+    ///
+    /// 重置实例的最大带宽上限。
+    @inlinable
+    public func resetInstancesMaxBandwidth(instanceIdSet: [String], maxBandwidthOut: Int64, maxBandwidthIn: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetInstancesMaxBandwidthResponse > {
+        self.resetInstancesMaxBandwidth(ResetInstancesMaxBandwidthRequest(instanceIdSet: instanceIdSet, maxBandwidthOut: maxBandwidthOut, maxBandwidthIn: maxBandwidthIn), logger: logger, on: eventLoop)
+    }
+    
+    /// 重置实例的最大带宽上限
+    ///
+    /// 重置实例的最大带宽上限。
+    @inlinable
+    public func resetInstancesMaxBandwidth(instanceIdSet: [String], maxBandwidthOut: Int64, maxBandwidthIn: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesMaxBandwidthResponse {
+        try await self.resetInstancesMaxBandwidth(ResetInstancesMaxBandwidthRequest(instanceIdSet: instanceIdSet, maxBandwidthOut: maxBandwidthOut, maxBandwidthIn: maxBandwidthIn), logger: logger, on: eventLoop)
+    }
 }

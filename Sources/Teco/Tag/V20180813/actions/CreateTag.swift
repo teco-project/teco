@@ -59,4 +59,20 @@ extension Tag {
     public func createTag(_ input: CreateTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagResponse {
         try await self.client.execute(action: "CreateTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建标签
+    ///
+    /// 本接口用于创建一对标签键和标签值
+    @inlinable
+    public func createTag(tagKey: String, tagValue: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTagResponse > {
+        self.createTag(CreateTagRequest(tagKey: tagKey, tagValue: tagValue), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建标签
+    ///
+    /// 本接口用于创建一对标签键和标签值
+    @inlinable
+    public func createTag(tagKey: String, tagValue: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagResponse {
+        try await self.createTag(CreateTagRequest(tagKey: tagKey, tagValue: tagValue), logger: logger, on: eventLoop)
+    }
 }

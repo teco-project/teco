@@ -947,7 +947,7 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceName: String?
         
-        public init (database: String, catalog: String, table: String, operation: String, policyType: String? = nil, function: String? = nil, view: String? = nil, column: String? = nil, dataEngine: String? = nil, reAuth: Bool? = nil, source: String? = nil, mode: String? = nil, `operator`: String? = nil, createTime: String? = nil, sourceId: Int64? = nil, sourceName: String? = nil) {
+        public init (database: String, catalog: String, table: String, operation: String, policyType: String? = nil, function: String? = nil, view: String? = nil, column: String? = nil, dataEngine: String? = nil, reAuth: Bool? = nil, source: String? = nil, mode: String? = nil, operator: String? = nil, createTime: String? = nil, sourceId: Int64? = nil, sourceName: String? = nil) {
             self.database = database
             self.catalog = catalog
             self.table = table

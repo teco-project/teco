@@ -78,4 +78,20 @@ extension Yunjing {
     public func describeHistoryAccounts(_ input: DescribeHistoryAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHistoryAccountsResponse {
         try await self.client.execute(action: "DescribeHistoryAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取帐号变更历史列表
+    ///
+    /// 本接口 (DescribeHistoryAccounts) 用于获取帐号变更历史列表数据。
+    @inlinable
+    public func describeHistoryAccounts(uuid: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHistoryAccountsResponse > {
+        self.describeHistoryAccounts(DescribeHistoryAccountsRequest(uuid: uuid, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取帐号变更历史列表
+    ///
+    /// 本接口 (DescribeHistoryAccounts) 用于获取帐号变更历史列表数据。
+    @inlinable
+    public func describeHistoryAccounts(uuid: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHistoryAccountsResponse {
+        try await self.describeHistoryAccounts(DescribeHistoryAccountsRequest(uuid: uuid, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

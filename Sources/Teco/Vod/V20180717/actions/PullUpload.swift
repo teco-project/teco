@@ -118,4 +118,20 @@ extension Vod {
     public func pullUpload(_ input: PullUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullUploadResponse {
         try await self.client.execute(action: "PullUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 拉取上传
+    ///
+    /// 该接口用于将一个网络上的视频拉取到云点播平台。
+    @inlinable
+    public func pullUpload(mediaUrl: String, subAppId: UInt64? = nil, mediaName: String? = nil, coverUrl: String? = nil, procedure: String? = nil, expireTime: Date? = nil, storageRegion: String? = nil, classId: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, sourceContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PullUploadResponse > {
+        self.pullUpload(PullUploadRequest(mediaUrl: mediaUrl, subAppId: subAppId, mediaName: mediaName, coverUrl: coverUrl, procedure: procedure, expireTime: expireTime, storageRegion: storageRegion, classId: classId, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo, sourceContext: sourceContext), logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取上传
+    ///
+    /// 该接口用于将一个网络上的视频拉取到云点播平台。
+    @inlinable
+    public func pullUpload(mediaUrl: String, subAppId: UInt64? = nil, mediaName: String? = nil, coverUrl: String? = nil, procedure: String? = nil, expireTime: Date? = nil, storageRegion: String? = nil, classId: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, sourceContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullUploadResponse {
+        try await self.pullUpload(PullUploadRequest(mediaUrl: mediaUrl, subAppId: subAppId, mediaName: mediaName, coverUrl: coverUrl, procedure: procedure, expireTime: expireTime, storageRegion: storageRegion, classId: classId, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo, sourceContext: sourceContext), logger: logger, on: eventLoop)
+    }
 }

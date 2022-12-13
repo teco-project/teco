@@ -61,4 +61,22 @@ extension Tcss {
     public func deleteComplianceAssetPolicySetFromWhitelist(_ input: DeleteComplianceAssetPolicySetFromWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteComplianceAssetPolicySetFromWhitelistResponse {
         try await self.client.execute(action: "DeleteComplianceAssetPolicySetFromWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除安全合规忽略项， 资产+检测项列表
+    ///
+    /// 移除安全合规忽略(资产+检测项)列表，不显示指定的检查项包含的资产内容
+    /// 参考的AddCompliancePolicyAssetSetToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
+    @inlinable
+    public func deleteComplianceAssetPolicySetFromWhitelist(assetItemId: UInt64, customerPolicyItemIdSet: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteComplianceAssetPolicySetFromWhitelistResponse > {
+        self.deleteComplianceAssetPolicySetFromWhitelist(DeleteComplianceAssetPolicySetFromWhitelistRequest(assetItemId: assetItemId, customerPolicyItemIdSet: customerPolicyItemIdSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除安全合规忽略项， 资产+检测项列表
+    ///
+    /// 移除安全合规忽略(资产+检测项)列表，不显示指定的检查项包含的资产内容
+    /// 参考的AddCompliancePolicyAssetSetToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
+    @inlinable
+    public func deleteComplianceAssetPolicySetFromWhitelist(assetItemId: UInt64, customerPolicyItemIdSet: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteComplianceAssetPolicySetFromWhitelistResponse {
+        try await self.deleteComplianceAssetPolicySetFromWhitelist(DeleteComplianceAssetPolicySetFromWhitelistRequest(assetItemId: assetItemId, customerPolicyItemIdSet: customerPolicyItemIdSet), logger: logger, on: eventLoop)
+    }
 }

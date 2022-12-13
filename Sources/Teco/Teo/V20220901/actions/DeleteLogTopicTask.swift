@@ -59,4 +59,20 @@ extension Teo {
     public func deleteLogTopicTask(_ input: DeleteLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogTopicTaskResponse {
         try await self.client.execute(action: "DeleteLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除推送任务
+    ///
+    /// 本接口（DeleteLogTopicTask）用于删除日志推送任务。
+    @inlinable
+    public func deleteLogTopicTask(topicId: String, logSetRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLogTopicTaskResponse > {
+        self.deleteLogTopicTask(DeleteLogTopicTaskRequest(topicId: topicId, logSetRegion: logSetRegion), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除推送任务
+    ///
+    /// 本接口（DeleteLogTopicTask）用于删除日志推送任务。
+    @inlinable
+    public func deleteLogTopicTask(topicId: String, logSetRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogTopicTaskResponse {
+        try await self.deleteLogTopicTask(DeleteLogTopicTaskRequest(topicId: topicId, logSetRegion: logSetRegion), logger: logger, on: eventLoop)
+    }
 }

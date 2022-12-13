@@ -91,4 +91,16 @@ extension Cr {
     public func queryBlackListData(_ input: QueryBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBlackListDataResponse {
         try await self.client.execute(action: "QueryBlackListData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看黑名单数据列表
+    @inlinable
+    public func queryBlackListData(module: String, operation: String, offset: Int64? = nil, limit: Int64? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, blackValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBlackListDataResponse > {
+        self.queryBlackListData(QueryBlackListDataRequest(module: module, operation: operation, offset: offset, limit: limit, startBizDate: startBizDate, endBizDate: endBizDate, blackValue: blackValue), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看黑名单数据列表
+    @inlinable
+    public func queryBlackListData(module: String, operation: String, offset: Int64? = nil, limit: Int64? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, blackValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBlackListDataResponse {
+        try await self.queryBlackListData(QueryBlackListDataRequest(module: module, operation: operation, offset: offset, limit: limit, startBizDate: startBizDate, endBizDate: endBizDate, blackValue: blackValue), logger: logger, on: eventLoop)
+    }
 }

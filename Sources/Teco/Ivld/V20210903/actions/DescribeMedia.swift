@@ -61,4 +61,22 @@ extension Ivld {
     public func describeMedia(_ input: DescribeMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaResponse {
         try await self.client.execute(action: "DescribeMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 描述媒资文件
+    ///
+    /// 描述媒资文件信息，包括媒资状态，分辨率，帧率等。
+    /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
+    @inlinable
+    public func describeMedia(mediaId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMediaResponse > {
+        self.describeMedia(DescribeMediaRequest(mediaId: mediaId), logger: logger, on: eventLoop)
+    }
+    
+    /// 描述媒资文件
+    ///
+    /// 描述媒资文件信息，包括媒资状态，分辨率，帧率等。
+    /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
+    @inlinable
+    public func describeMedia(mediaId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaResponse {
+        try await self.describeMedia(DescribeMediaRequest(mediaId: mediaId), logger: logger, on: eventLoop)
+    }
 }

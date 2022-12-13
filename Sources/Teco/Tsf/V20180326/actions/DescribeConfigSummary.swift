@@ -94,4 +94,16 @@ extension Tsf {
     public func describeConfigSummary(_ input: DescribeConfigSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigSummaryResponse {
         try await self.client.execute(action: "DescribeConfigSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询配置汇总列表
+    @inlinable
+    public func describeConfigSummary(applicationId: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderType: Int64? = nil, configTagList: [String]? = nil, disableProgramAuthCheck: Bool? = nil, configIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigSummaryResponse > {
+        self.describeConfigSummary(DescribeConfigSummaryRequest(applicationId: applicationId, searchWord: searchWord, offset: offset, limit: limit, orderBy: orderBy, orderType: orderType, configTagList: configTagList, disableProgramAuthCheck: disableProgramAuthCheck, configIdList: configIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询配置汇总列表
+    @inlinable
+    public func describeConfigSummary(applicationId: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderType: Int64? = nil, configTagList: [String]? = nil, disableProgramAuthCheck: Bool? = nil, configIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigSummaryResponse {
+        try await self.describeConfigSummary(DescribeConfigSummaryRequest(applicationId: applicationId, searchWord: searchWord, offset: offset, limit: limit, orderBy: orderBy, orderType: orderType, configTagList: configTagList, disableProgramAuthCheck: disableProgramAuthCheck, configIdList: configIdList), logger: logger, on: eventLoop)
+    }
 }

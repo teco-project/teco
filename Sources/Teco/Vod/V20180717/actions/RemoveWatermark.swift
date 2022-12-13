@@ -79,4 +79,16 @@ extension Vod {
     public func removeWatermark(_ input: RemoveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveWatermarkResponse {
         try await self.client.execute(action: "RemoveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 智能去除水印
+    @inlinable
+    public func removeWatermark(fileId: String, subAppId: UInt64? = nil, sessionId: String? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveWatermarkResponse > {
+        self.removeWatermark(RemoveWatermarkRequest(fileId: fileId, subAppId: subAppId, sessionId: sessionId, sessionContext: sessionContext, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode), logger: logger, on: eventLoop)
+    }
+    
+    /// 智能去除水印
+    @inlinable
+    public func removeWatermark(fileId: String, subAppId: UInt64? = nil, sessionId: String? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveWatermarkResponse {
+        try await self.removeWatermark(RemoveWatermarkRequest(fileId: fileId, subAppId: subAppId, sessionId: sessionId, sessionContext: sessionContext, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode), logger: logger, on: eventLoop)
+    }
 }

@@ -2722,7 +2722,7 @@ extension Vod {
         /// <font color='red'>注意：此字段已废弃，建议使用 SubtitleFormats。</font>
         public let subtitleFormat: String?
         
-        public init (`switch`: String, subtitleFormats: [String]? = nil, subtitleFormat: String? = nil) {
+        public init (switch: String, subtitleFormats: [String]? = nil, subtitleFormat: String? = nil) {
             self.`switch` = `switch`
             self.subtitleFormats = subtitleFormats
             self.subtitleFormat = subtitleFormat
@@ -2751,7 +2751,7 @@ extension Vod {
         /// <font color='red'>注意：此字段已废弃，建议使用 SubtitleFormatsOperation。</font>
         public let subtitleFormat: String?
         
-        public init (`switch`: String? = nil, subtitleFormatsOperation: SubtitleFormatsOperation? = nil, subtitleFormat: String? = nil) {
+        public init (switch: String? = nil, subtitleFormatsOperation: SubtitleFormatsOperation? = nil, subtitleFormat: String? = nil) {
             self.`switch` = `switch`
             self.subtitleFormatsOperation = subtitleFormatsOperation
             self.subtitleFormat = subtitleFormat
@@ -2775,7 +2775,7 @@ extension Vod {
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
         
-        public init (`switch`: String, labelSet: [String]? = nil) {
+        public init (switch: String, labelSet: [String]? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
         }
@@ -2797,7 +2797,7 @@ extension Vod {
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
         
-        public init (`switch`: String? = nil, labelSet: [String]? = nil) {
+        public init (switch: String? = nil, labelSet: [String]? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
         }
@@ -3065,7 +3065,7 @@ extension Vod {
         /// <li>OFF：关闭智能分类任务。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -3081,7 +3081,7 @@ extension Vod {
         /// <li>OFF：关闭智能分类任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String? = nil) {
+        public init (switch: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -3528,7 +3528,7 @@ extension Vod {
         /// <li>OFF：关闭智能封面任务。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -3544,7 +3544,7 @@ extension Vod {
         /// <li>OFF：关闭智能封面任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String? = nil) {
+        public init (switch: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -4274,7 +4274,7 @@ extension Vod {
         /// 默认值：All，使用系统默认人物库及用户自定义人物库。
         public let faceLibrary: String?
         
-        public init (`switch`: String, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
+        public init (switch: String, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
             self.`switch` = `switch`
             self.score = score
             self.defaultLibraryLabelSet = defaultLibraryLabelSet
@@ -4317,7 +4317,7 @@ extension Vod {
         /// <li>All：同时使用默认人物库和用户自定义人物库。</li>
         public let faceLibrary: String?
         
-        public init (`switch`: String? = nil, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
+        public init (switch: String? = nil, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
             self.`switch` = `switch`
             self.score = score
             self.defaultLibraryLabelSet = defaultLibraryLabelSet
@@ -4396,7 +4396,7 @@ extension Vod {
         /// 截帧间隔，单位为秒，当不填时，默认截帧间隔为 1 秒，最小值为 0.5 秒。
         public let screenshotInterval: Float?
         
-        public init (`switch`: String = "OFF", screenshotInterval: Float? = nil) {
+        public init (switch: String = "OFF", screenshotInterval: Float? = nil) {
             self.`switch` = `switch`
             self.screenshotInterval = screenshotInterval
         }
@@ -4417,7 +4417,7 @@ extension Vod {
         /// 截帧间隔，单位为秒，最小值为 0.5 秒。
         public let screenshotInterval: Float?
         
-        public init (`switch`: String? = nil, screenshotInterval: Float? = nil) {
+        public init (switch: String? = nil, screenshotInterval: Float? = nil) {
             self.`switch` = `switch`
             self.screenshotInterval = screenshotInterval
         }
@@ -4435,7 +4435,7 @@ extension Vod {
         /// <li>OFF：关闭智能视频片头片尾识别任务。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -4451,7 +4451,7 @@ extension Vod {
         /// <li>OFF：关闭智能视频片头片尾识别任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String? = nil) {
+        public init (switch: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -4534,7 +4534,7 @@ extension Vod {
         /// <li>OFF：关闭智能精彩片段任务。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -4550,7 +4550,7 @@ extension Vod {
         /// <li>OFF：关闭智能精彩片段任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String? = nil) {
+        public init (switch: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -6639,7 +6639,7 @@ extension Vod {
         /// 默认值： All，同时使用默认物体库和用户自定义物体库。
         public let objectLibrary: String?
         
-        public init (`switch`: String = "OFF", objectLibrary: String? = nil) {
+        public init (switch: String = "OFF", objectLibrary: String? = nil) {
             self.`switch` = `switch`
             self.objectLibrary = objectLibrary
         }
@@ -6663,7 +6663,7 @@ extension Vod {
         /// <li>All：同时使用默认物体库和用户自定义物体库。</li>
         public let objectLibrary: String?
         
-        public init (`switch`: String? = nil, objectLibrary: String? = nil) {
+        public init (switch: String? = nil, objectLibrary: String? = nil) {
             self.`switch` = `switch`
             self.objectLibrary = objectLibrary
         }
@@ -6681,7 +6681,7 @@ extension Vod {
         /// <li>OFF：关闭智能文本全文识别任务。</li>
         public let `switch`: String
         
-        public init (`switch`: String = "OFF") {
+        public init (switch: String = "OFF") {
             self.`switch` = `switch`
         }
         
@@ -6697,7 +6697,7 @@ extension Vod {
         /// <li>OFF：关闭智能文本全文识别任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String? = nil) {
+        public init (switch: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -6717,7 +6717,7 @@ extension Vod {
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
         
-        public init (`switch`: String, labelSet: [String]? = nil) {
+        public init (switch: String, labelSet: [String]? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
         }
@@ -6739,7 +6739,7 @@ extension Vod {
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
         
-        public init (`switch`: String? = nil, labelSet: [String]? = nil) {
+        public init (switch: String? = nil, labelSet: [String]? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
         }
@@ -6941,7 +6941,7 @@ extension Vod {
         /// 判定涉嫌违规的分数阈值，当音视频审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
         public let blockConfidence: Int64?
         
-        public init (`switch`: String, reviewConfidence: Int64? = nil, blockConfidence: Int64? = nil) {
+        public init (switch: String, reviewConfidence: Int64? = nil, blockConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.reviewConfidence = reviewConfidence
             self.blockConfidence = blockConfidence
@@ -6967,7 +6967,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当音视频审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7080,7 +7080,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 95 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -7119,7 +7119,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -7147,7 +7147,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7173,7 +7173,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7199,7 +7199,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7225,7 +7225,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7334,7 +7334,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 0 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -7369,7 +7369,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -7397,7 +7397,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7423,7 +7423,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7686,7 +7686,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7712,7 +7712,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7778,7 +7778,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7804,7 +7804,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -8508,7 +8508,7 @@ extension Vod {
         /// <li>OFF：关闭智能视频拆条识别任务。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -8524,7 +8524,7 @@ extension Vod {
         /// <li>OFF：关闭智能视频拆条识别任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String? = nil) {
+        public init (switch: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -9219,7 +9219,7 @@ extension Vod {
         /// <li>OFF：关闭智能标签任务。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -9235,7 +9235,7 @@ extension Vod {
         /// <li>OFF：关闭智能标签任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String? = nil) {
+        public init (switch: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -9518,7 +9518,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 80 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -9558,7 +9558,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -9586,7 +9586,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -9612,7 +9612,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -9723,7 +9723,7 @@ extension Vod {
         /// 该字段已废弃，请勿使用。
         public let definition: UInt64?
         
-        public init (`switch`: String? = nil, definition: UInt64? = nil) {
+        public init (switch: String? = nil, definition: UInt64? = nil) {
             self.`switch` = `switch`
             self.definition = definition
         }
@@ -10044,7 +10044,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -10076,7 +10076,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -10159,7 +10159,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 95 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -10191,7 +10191,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当音视频审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -10223,7 +10223,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -10255,7 +10255,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence

@@ -84,4 +84,16 @@ extension Cpdp {
     public func downloadOrgFile(_ input: DownloadOrgFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadOrgFileResponse {
         try await self.client.execute(action: "DownloadOrgFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云支付-下载机构文件接口
+    @inlinable
+    public func downloadOrgFile(openId: String, openKey: String, storage: String? = nil, filePath: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadOrgFileResponse > {
+        self.downloadOrgFile(DownloadOrgFileRequest(openId: openId, openKey: openKey, storage: storage, filePath: filePath, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-下载机构文件接口
+    @inlinable
+    public func downloadOrgFile(openId: String, openKey: String, storage: String? = nil, filePath: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadOrgFileResponse {
+        try await self.downloadOrgFile(DownloadOrgFileRequest(openId: openId, openKey: openKey, storage: storage, filePath: filePath, profile: profile), logger: logger, on: eventLoop)
+    }
 }

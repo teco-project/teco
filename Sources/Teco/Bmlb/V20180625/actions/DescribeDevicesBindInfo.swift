@@ -63,4 +63,20 @@ extension Bmlb {
     public func describeDevicesBindInfo(_ input: DescribeDevicesBindInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesBindInfoResponse {
         try await self.client.execute(action: "DescribeDevicesBindInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情
+    ///
+    /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情。
+    @inlinable
+    public func describeDevicesBindInfo(vpcId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicesBindInfoResponse > {
+        self.describeDevicesBindInfo(DescribeDevicesBindInfoRequest(vpcId: vpcId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情
+    ///
+    /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情。
+    @inlinable
+    public func describeDevicesBindInfo(vpcId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesBindInfoResponse {
+        try await self.describeDevicesBindInfo(DescribeDevicesBindInfoRequest(vpcId: vpcId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

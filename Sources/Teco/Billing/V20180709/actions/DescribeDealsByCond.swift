@@ -113,4 +113,20 @@ extension Billing {
     public func describeDealsByCond(_ input: DescribeDealsByCondRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDealsByCondResponse {
         try await self.client.execute(action: "DescribeDealsByCond", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询订单数据
+    ///
+    /// 查询订单
+    @inlinable
+    public func describeDealsByCond(startTime: Date, endTime: Date, limit: Int64, offset: Int64? = nil, status: Int64? = nil, orderId: String? = nil, bigDealId: String? = nil, resourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDealsByCondResponse > {
+        self.describeDealsByCond(DescribeDealsByCondRequest(startTime: startTime, endTime: endTime, limit: limit, offset: offset, status: status, orderId: orderId, bigDealId: bigDealId, resourceId: resourceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询订单数据
+    ///
+    /// 查询订单
+    @inlinable
+    public func describeDealsByCond(startTime: Date, endTime: Date, limit: Int64, offset: Int64? = nil, status: Int64? = nil, orderId: String? = nil, bigDealId: String? = nil, resourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDealsByCondResponse {
+        try await self.describeDealsByCond(DescribeDealsByCondRequest(startTime: startTime, endTime: endTime, limit: limit, offset: offset, status: status, orderId: orderId, bigDealId: bigDealId, resourceId: resourceId), logger: logger, on: eventLoop)
+    }
 }

@@ -76,4 +76,22 @@ extension Gse {
     public func updateBucketCORSOpt(_ input: UpdateBucketCORSOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBucketCORSOptResponse {
         try await self.client.execute(action: "UpdateBucketCORSOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置cos跨域访问
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（UpdateBucketCORSOpt）用于设置cos跨域访问。
+    @inlinable
+    public func updateBucketCORSOpt(allowedOrigins: [String], allowedMethods: [String], allowedHeaders: [String]? = nil, maxAgeSeconds: Int64? = nil, exposeHeaders: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateBucketCORSOptResponse > {
+        self.updateBucketCORSOpt(UpdateBucketCORSOptRequest(allowedOrigins: allowedOrigins, allowedMethods: allowedMethods, allowedHeaders: allowedHeaders, maxAgeSeconds: maxAgeSeconds, exposeHeaders: exposeHeaders), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置cos跨域访问
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（UpdateBucketCORSOpt）用于设置cos跨域访问。
+    @inlinable
+    public func updateBucketCORSOpt(allowedOrigins: [String], allowedMethods: [String], allowedHeaders: [String]? = nil, maxAgeSeconds: Int64? = nil, exposeHeaders: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBucketCORSOptResponse {
+        try await self.updateBucketCORSOpt(UpdateBucketCORSOptRequest(allowedOrigins: allowedOrigins, allowedMethods: allowedMethods, allowedHeaders: allowedHeaders, maxAgeSeconds: maxAgeSeconds, exposeHeaders: exposeHeaders), logger: logger, on: eventLoop)
+    }
 }

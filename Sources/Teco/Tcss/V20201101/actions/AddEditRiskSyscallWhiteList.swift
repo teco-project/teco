@@ -59,4 +59,20 @@ extension Tcss {
     public func addEditRiskSyscallWhiteList(_ input: AddEditRiskSyscallWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditRiskSyscallWhiteListResponse {
         try await self.client.execute(action: "AddEditRiskSyscallWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加编辑高危系统调用白名单
+    ///
+    /// 添加编辑运行时高危系统调用白名单
+    @inlinable
+    public func addEditRiskSyscallWhiteList(eventId: String? = nil, whiteListInfo: RiskSyscallWhiteListInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddEditRiskSyscallWhiteListResponse > {
+        self.addEditRiskSyscallWhiteList(AddEditRiskSyscallWhiteListRequest(eventId: eventId, whiteListInfo: whiteListInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加编辑高危系统调用白名单
+    ///
+    /// 添加编辑运行时高危系统调用白名单
+    @inlinable
+    public func addEditRiskSyscallWhiteList(eventId: String? = nil, whiteListInfo: RiskSyscallWhiteListInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditRiskSyscallWhiteListResponse {
+        try await self.addEditRiskSyscallWhiteList(AddEditRiskSyscallWhiteListRequest(eventId: eventId, whiteListInfo: whiteListInfo), logger: logger, on: eventLoop)
+    }
 }

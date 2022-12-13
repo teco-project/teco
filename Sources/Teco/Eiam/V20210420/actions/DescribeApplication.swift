@@ -134,4 +134,20 @@ extension Eiam {
     public func describeApplication(_ input: DescribeApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationResponse {
         try await self.client.execute(action: "DescribeApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取应用信息
+    ///
+    /// 获取一个应用的信息。
+    @inlinable
+    public func describeApplication(applicationId: String? = nil, clientId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationResponse > {
+        self.describeApplication(DescribeApplicationRequest(applicationId: applicationId, clientId: clientId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用信息
+    ///
+    /// 获取一个应用的信息。
+    @inlinable
+    public func describeApplication(applicationId: String? = nil, clientId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationResponse {
+        try await self.describeApplication(DescribeApplicationRequest(applicationId: applicationId, clientId: clientId), logger: logger, on: eventLoop)
+    }
 }

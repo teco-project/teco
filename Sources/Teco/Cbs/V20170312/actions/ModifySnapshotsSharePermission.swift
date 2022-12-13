@@ -74,4 +74,30 @@ extension Cbs {
     public func modifySnapshotsSharePermission(_ input: ModifySnapshotsSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsSharePermissionResponse {
         try await self.client.execute(action: "ModifySnapshotsSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改快照分享信息
+    ///
+    /// 本接口（ModifySnapshotsSharePermission）用于修改快照分享信息。
+    /// 分享快照后，被分享账户可以通过该快照创建云硬盘。
+    /// * 每个快照最多可分享给50个账户。
+    /// * 分享快照无法更改名称，描述，仅可用于创建云硬盘。
+    /// * 只支持分享到对方账户相同地域。
+    /// * 仅支持分享数据盘快照。
+    @inlinable
+    public func modifySnapshotsSharePermission(accountIds: [String], permission: String, snapshotIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySnapshotsSharePermissionResponse > {
+        self.modifySnapshotsSharePermission(ModifySnapshotsSharePermissionRequest(accountIds: accountIds, permission: permission, snapshotIds: snapshotIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改快照分享信息
+    ///
+    /// 本接口（ModifySnapshotsSharePermission）用于修改快照分享信息。
+    /// 分享快照后，被分享账户可以通过该快照创建云硬盘。
+    /// * 每个快照最多可分享给50个账户。
+    /// * 分享快照无法更改名称，描述，仅可用于创建云硬盘。
+    /// * 只支持分享到对方账户相同地域。
+    /// * 仅支持分享数据盘快照。
+    @inlinable
+    public func modifySnapshotsSharePermission(accountIds: [String], permission: String, snapshotIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsSharePermissionResponse {
+        try await self.modifySnapshotsSharePermission(ModifySnapshotsSharePermissionRequest(accountIds: accountIds, permission: permission, snapshotIds: snapshotIds), logger: logger, on: eventLoop)
+    }
 }

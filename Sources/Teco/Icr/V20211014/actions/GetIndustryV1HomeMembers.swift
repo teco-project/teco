@@ -69,4 +69,20 @@ extension Icr {
     public func getIndustryV1HomeMembers(_ input: GetIndustryV1HomeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetIndustryV1HomeMembersResponse {
         try await self.client.execute(action: "GetIndustryV1HomeMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取成员列表
+    ///
+    /// 获取成员列表接口
+    @inlinable
+    public func getIndustryV1HomeMembers(payload: GetIndustryV1HomeMembersReqPayload, metadata: ReqMetadata? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetIndustryV1HomeMembersResponse > {
+        self.getIndustryV1HomeMembers(GetIndustryV1HomeMembersRequest(payload: payload, metadata: metadata), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取成员列表
+    ///
+    /// 获取成员列表接口
+    @inlinable
+    public func getIndustryV1HomeMembers(payload: GetIndustryV1HomeMembersReqPayload, metadata: ReqMetadata? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetIndustryV1HomeMembersResponse {
+        try await self.getIndustryV1HomeMembers(GetIndustryV1HomeMembersRequest(payload: payload, metadata: metadata), logger: logger, on: eventLoop)
+    }
 }

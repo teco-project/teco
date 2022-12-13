@@ -91,4 +91,20 @@ extension Bda {
     public func detectBody(_ input: DetectBodyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectBodyResponse {
         try await self.client.execute(action: "DetectBody", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 人体检测与属性分析
+    ///
+    /// 检测给定图片中的人体（Body）的位置信息及属性信息。
+    @inlinable
+    public func detectBody(image: String? = nil, maxBodyNum: UInt64? = nil, url: String? = nil, attributesOptions: AttributesOptions? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectBodyResponse > {
+        self.detectBody(DetectBodyRequest(image: image, maxBodyNum: maxBodyNum, url: url, attributesOptions: attributesOptions), logger: logger, on: eventLoop)
+    }
+    
+    /// 人体检测与属性分析
+    ///
+    /// 检测给定图片中的人体（Body）的位置信息及属性信息。
+    @inlinable
+    public func detectBody(image: String? = nil, maxBodyNum: UInt64? = nil, url: String? = nil, attributesOptions: AttributesOptions? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectBodyResponse {
+        try await self.detectBody(DetectBodyRequest(image: image, maxBodyNum: maxBodyNum, url: url, attributesOptions: attributesOptions), logger: logger, on: eventLoop)
+    }
 }

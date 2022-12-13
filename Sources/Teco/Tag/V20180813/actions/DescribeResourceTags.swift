@@ -102,4 +102,16 @@ extension Tag {
     public func describeResourceTags(_ input: DescribeResourceTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsResponse {
         try await self.client.execute(action: "DescribeResourceTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询资源关联标签
+    @inlinable
+    public func describeResourceTags(createUin: UInt64? = nil, resourceRegion: String? = nil, serviceType: String? = nil, resourcePrefix: String? = nil, resourceId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, cosResourceId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceTagsResponse > {
+        self.describeResourceTags(DescribeResourceTagsRequest(createUin: createUin, resourceRegion: resourceRegion, serviceType: serviceType, resourcePrefix: resourcePrefix, resourceId: resourceId, offset: offset, limit: limit, cosResourceId: cosResourceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资源关联标签
+    @inlinable
+    public func describeResourceTags(createUin: UInt64? = nil, resourceRegion: String? = nil, serviceType: String? = nil, resourcePrefix: String? = nil, resourceId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, cosResourceId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsResponse {
+        try await self.describeResourceTags(DescribeResourceTagsRequest(createUin: createUin, resourceRegion: resourceRegion, serviceType: serviceType, resourcePrefix: resourcePrefix, resourceId: resourceId, offset: offset, limit: limit, cosResourceId: cosResourceId), logger: logger, on: eventLoop)
+    }
 }

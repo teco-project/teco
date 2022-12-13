@@ -70,4 +70,28 @@ extension Nlp {
     public func wordEmbedding(_ input: WordEmbeddingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WordEmbeddingResponse {
         try await self.client.execute(action: "WordEmbedding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 词向量
+    ///
+    /// 词向量接口能够将输入的词语映射成一个固定维度的词向量，用来表示这个词语的语义特征。词向量是很多自然语言处理技术的基础，能够显著提高它们的效果。
+    /// 该词向量服务由腾讯知文自然语言处理团队联合腾讯AI Lab共同打造。使用的词向量基于千亿级大规模互联网语料并采用AI Lab自研的DSG算法训练而成，开源的词向量包含800多万中文词汇，在覆盖率、新鲜度及准确性等三方面性能突出。
+    /// 腾讯AI Lab词向量相关资料：
+    /// https://ai.tencent.com/ailab/zh/news/detial?id=22
+    /// https://ai.tencent.com/ailab/nlp/zh/embedding.html
+    @inlinable
+    public func wordEmbedding(text: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < WordEmbeddingResponse > {
+        self.wordEmbedding(WordEmbeddingRequest(text: text), logger: logger, on: eventLoop)
+    }
+    
+    /// 词向量
+    ///
+    /// 词向量接口能够将输入的词语映射成一个固定维度的词向量，用来表示这个词语的语义特征。词向量是很多自然语言处理技术的基础，能够显著提高它们的效果。
+    /// 该词向量服务由腾讯知文自然语言处理团队联合腾讯AI Lab共同打造。使用的词向量基于千亿级大规模互联网语料并采用AI Lab自研的DSG算法训练而成，开源的词向量包含800多万中文词汇，在覆盖率、新鲜度及准确性等三方面性能突出。
+    /// 腾讯AI Lab词向量相关资料：
+    /// https://ai.tencent.com/ailab/zh/news/detial?id=22
+    /// https://ai.tencent.com/ailab/nlp/zh/embedding.html
+    @inlinable
+    public func wordEmbedding(text: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WordEmbeddingResponse {
+        try await self.wordEmbedding(WordEmbeddingRequest(text: text), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Vpc {
     public func createNatGatewayDestinationIpPortTranslationNatRule(_ input: CreateNatGatewayDestinationIpPortTranslationNatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewayDestinationIpPortTranslationNatRuleResponse {
         try await self.client.execute(action: "CreateNatGatewayDestinationIpPortTranslationNatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建NAT网关端口转发规则
+    ///
+    /// 本接口(CreateNatGatewayDestinationIpPortTranslationNatRule)用于创建NAT网关端口转发规则。
+    @inlinable
+    public func createNatGatewayDestinationIpPortTranslationNatRule(natGatewayId: String, destinationIpPortTranslationNatRules: [DestinationIpPortTranslationNatRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNatGatewayDestinationIpPortTranslationNatRuleResponse > {
+        self.createNatGatewayDestinationIpPortTranslationNatRule(CreateNatGatewayDestinationIpPortTranslationNatRuleRequest(natGatewayId: natGatewayId, destinationIpPortTranslationNatRules: destinationIpPortTranslationNatRules), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建NAT网关端口转发规则
+    ///
+    /// 本接口(CreateNatGatewayDestinationIpPortTranslationNatRule)用于创建NAT网关端口转发规则。
+    @inlinable
+    public func createNatGatewayDestinationIpPortTranslationNatRule(natGatewayId: String, destinationIpPortTranslationNatRules: [DestinationIpPortTranslationNatRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewayDestinationIpPortTranslationNatRuleResponse {
+        try await self.createNatGatewayDestinationIpPortTranslationNatRule(CreateNatGatewayDestinationIpPortTranslationNatRuleRequest(natGatewayId: natGatewayId, destinationIpPortTranslationNatRules: destinationIpPortTranslationNatRules), logger: logger, on: eventLoop)
+    }
 }

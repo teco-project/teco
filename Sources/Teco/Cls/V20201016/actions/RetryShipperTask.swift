@@ -55,4 +55,16 @@ extension Cls {
     public func retryShipperTask(_ input: RetryShipperTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RetryShipperTaskResponse {
         try await self.client.execute(action: "RetryShipperTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重试失败的投递任务
+    @inlinable
+    public func retryShipperTask(shipperId: String, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RetryShipperTaskResponse > {
+        self.retryShipperTask(RetryShipperTaskRequest(shipperId: shipperId, taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 重试失败的投递任务
+    @inlinable
+    public func retryShipperTask(shipperId: String, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RetryShipperTaskResponse {
+        try await self.retryShipperTask(RetryShipperTaskRequest(shipperId: shipperId, taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

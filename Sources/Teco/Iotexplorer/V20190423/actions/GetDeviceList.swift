@@ -89,4 +89,20 @@ extension Iotexplorer {
     public func getDeviceList(_ input: GetDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceListResponse {
         try await self.client.execute(action: "GetDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取产品的设备列表
+    ///
+    /// 用于查询某个产品下的设备列表
+    @inlinable
+    public func getDeviceList(productId: String, offset: Int64? = nil, limit: Int64? = nil, firmwareVersion: String? = nil, deviceName: String? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceListResponse > {
+        self.getDeviceList(GetDeviceListRequest(productId: productId, offset: offset, limit: limit, firmwareVersion: firmwareVersion, deviceName: deviceName, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取产品的设备列表
+    ///
+    /// 用于查询某个产品下的设备列表
+    @inlinable
+    public func getDeviceList(productId: String, offset: Int64? = nil, limit: Int64? = nil, firmwareVersion: String? = nil, deviceName: String? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceListResponse {
+        try await self.getDeviceList(GetDeviceListRequest(productId: productId, offset: offset, limit: limit, firmwareVersion: firmwareVersion, deviceName: deviceName, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

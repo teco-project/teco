@@ -62,4 +62,16 @@ extension Tione {
     public func startNotebookInstance(_ input: StartNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartNotebookInstanceResponse {
         try await self.client.execute(action: "StartNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启动Notebook实例
+    @inlinable
+    public func startNotebookInstance(notebookInstanceName: String, autoStopping: String? = nil, stoppingCondition: StoppingCondition? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartNotebookInstanceResponse > {
+        self.startNotebookInstance(StartNotebookInstanceRequest(notebookInstanceName: notebookInstanceName, autoStopping: autoStopping, stoppingCondition: stoppingCondition), logger: logger, on: eventLoop)
+    }
+    
+    /// 启动Notebook实例
+    @inlinable
+    public func startNotebookInstance(notebookInstanceName: String, autoStopping: String? = nil, stoppingCondition: StoppingCondition? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartNotebookInstanceResponse {
+        try await self.startNotebookInstance(StartNotebookInstanceRequest(notebookInstanceName: notebookInstanceName, autoStopping: autoStopping, stoppingCondition: stoppingCondition), logger: logger, on: eventLoop)
+    }
 }

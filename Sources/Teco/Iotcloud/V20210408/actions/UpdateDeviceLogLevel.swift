@@ -64,4 +64,20 @@ extension Iotcloud {
     public func updateDeviceLogLevel(_ input: UpdateDeviceLogLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceLogLevelResponse {
         try await self.client.execute(action: "UpdateDeviceLogLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新设备日志级别
+    ///
+    /// 设置设备上报的日志级别  
+    @inlinable
+    public func updateDeviceLogLevel(productId: String, deviceName: String, logLevel: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDeviceLogLevelResponse > {
+        self.updateDeviceLogLevel(UpdateDeviceLogLevelRequest(productId: productId, deviceName: deviceName, logLevel: logLevel), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新设备日志级别
+    ///
+    /// 设置设备上报的日志级别  
+    @inlinable
+    public func updateDeviceLogLevel(productId: String, deviceName: String, logLevel: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceLogLevelResponse {
+        try await self.updateDeviceLogLevel(UpdateDeviceLogLevelRequest(productId: productId, deviceName: deviceName, logLevel: logLevel), logger: logger, on: eventLoop)
+    }
 }

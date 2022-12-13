@@ -108,4 +108,20 @@ extension Cpdp {
     public func refundTlinxOrder(_ input: RefundTlinxOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundTlinxOrderResponse {
         try await self.client.execute(action: "RefundTlinxOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云支付-订单退款接口
+    ///
+    /// 云支付订单退款接口
+    @inlinable
+    public func refundTlinxOrder(openId: String, openKey: String, developerNo: String, refundOutNo: String, refundOrderName: String, refundAmount: String, shopPassword: String, remark: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RefundTlinxOrderResponse > {
+        self.refundTlinxOrder(RefundTlinxOrderRequest(openId: openId, openKey: openKey, developerNo: developerNo, refundOutNo: refundOutNo, refundOrderName: refundOrderName, refundAmount: refundAmount, shopPassword: shopPassword, remark: remark, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-订单退款接口
+    ///
+    /// 云支付订单退款接口
+    @inlinable
+    public func refundTlinxOrder(openId: String, openKey: String, developerNo: String, refundOutNo: String, refundOrderName: String, refundAmount: String, shopPassword: String, remark: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundTlinxOrderResponse {
+        try await self.refundTlinxOrder(RefundTlinxOrderRequest(openId: openId, openKey: openKey, developerNo: developerNo, refundOutNo: refundOutNo, refundOrderName: refundOrderName, refundAmount: refundAmount, shopPassword: shopPassword, remark: remark, profile: profile), logger: logger, on: eventLoop)
+    }
 }

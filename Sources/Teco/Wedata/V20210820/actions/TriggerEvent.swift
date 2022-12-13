@@ -76,4 +76,22 @@ extension Wedata {
     public func triggerEvent(_ input: TriggerEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TriggerEventResponse {
         try await self.client.execute(action: "TriggerEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 触发事件【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 触发事件
+    @inlinable
+    public func triggerEvent(projectId: String, name: String, dimension: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TriggerEventResponse > {
+        self.triggerEvent(TriggerEventRequest(projectId: projectId, name: name, dimension: dimension, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 触发事件【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 触发事件
+    @inlinable
+    public func triggerEvent(projectId: String, name: String, dimension: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TriggerEventResponse {
+        try await self.triggerEvent(TriggerEventRequest(projectId: projectId, name: name, dimension: dimension, description: description), logger: logger, on: eventLoop)
+    }
 }

@@ -112,4 +112,24 @@ extension Live {
     public func createLiveCallbackTemplate(_ input: CreateLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveCallbackTemplateResponse {
         try await self.client.execute(action: "CreateLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建回调模板
+    ///
+    /// 创建回调模板，成功返回模板id后，需要调用[CreateLiveCallbackRule](/document/product/267/32638)接口将模板 ID 绑定到域名/路径使用。
+    /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
+    /// 注意：至少填写一个回调 URL。
+    @inlinable
+    public func createLiveCallbackTemplate(templateName: String, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, streamMixNotifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveCallbackTemplateResponse > {
+        self.createLiveCallbackTemplate(CreateLiveCallbackTemplateRequest(templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, streamMixNotifyUrl: streamMixNotifyUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建回调模板
+    ///
+    /// 创建回调模板，成功返回模板id后，需要调用[CreateLiveCallbackRule](/document/product/267/32638)接口将模板 ID 绑定到域名/路径使用。
+    /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
+    /// 注意：至少填写一个回调 URL。
+    @inlinable
+    public func createLiveCallbackTemplate(templateName: String, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, streamMixNotifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveCallbackTemplateResponse {
+        try await self.createLiveCallbackTemplate(CreateLiveCallbackTemplateRequest(templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, streamMixNotifyUrl: streamMixNotifyUrl), logger: logger, on: eventLoop)
+    }
 }

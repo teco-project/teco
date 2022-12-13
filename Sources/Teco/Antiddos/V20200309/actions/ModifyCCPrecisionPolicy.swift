@@ -65,4 +65,16 @@ extension Antiddos {
     public func modifyCCPrecisionPolicy(_ input: ModifyCCPrecisionPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCPrecisionPolicyResponse {
         try await self.client.execute(action: "ModifyCCPrecisionPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改CC精准防护策略
+    @inlinable
+    public func modifyCCPrecisionPolicy(instanceId: String, policyId: String, policyAction: String, policyList: [CCPrecisionPlyRecord], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCPrecisionPolicyResponse > {
+        self.modifyCCPrecisionPolicy(ModifyCCPrecisionPolicyRequest(instanceId: instanceId, policyId: policyId, policyAction: policyAction, policyList: policyList), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CC精准防护策略
+    @inlinable
+    public func modifyCCPrecisionPolicy(instanceId: String, policyId: String, policyAction: String, policyList: [CCPrecisionPlyRecord], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCPrecisionPolicyResponse {
+        try await self.modifyCCPrecisionPolicy(ModifyCCPrecisionPolicyRequest(instanceId: instanceId, policyId: policyId, policyAction: policyAction, policyList: policyList), logger: logger, on: eventLoop)
+    }
 }

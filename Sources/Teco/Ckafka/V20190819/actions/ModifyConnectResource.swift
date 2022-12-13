@@ -119,4 +119,16 @@ extension Ckafka {
     public func modifyConnectResource(_ input: ModifyConnectResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConnectResourceResponse {
         try await self.client.execute(action: "ModifyConnectResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 编辑Datahub连接源
+    @inlinable
+    public func modifyConnectResource(resourceId: String, resourceName: String? = nil, description: String? = nil, type: String? = nil, dtsConnectParam: DtsModifyConnectParam? = nil, mongoDBConnectParam: MongoDBModifyConnectParam? = nil, esConnectParam: EsModifyConnectParam? = nil, clickHouseConnectParam: ClickHouseModifyConnectParam? = nil, mySQLConnectParam: MySQLModifyConnectParam? = nil, postgreSQLConnectParam: PostgreSQLModifyConnectParam? = nil, mariaDBConnectParam: MariaDBModifyConnectParam? = nil, sqlServerConnectParam: SQLServerModifyConnectParam? = nil, ctsdbConnectParam: CtsdbModifyConnectParam? = nil, dorisConnectParam: DorisModifyConnectParam? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConnectResourceResponse > {
+        self.modifyConnectResource(ModifyConnectResourceRequest(resourceId: resourceId, resourceName: resourceName, description: description, type: type, dtsConnectParam: dtsConnectParam, mongoDBConnectParam: mongoDBConnectParam, esConnectParam: esConnectParam, clickHouseConnectParam: clickHouseConnectParam, mySQLConnectParam: mySQLConnectParam, postgreSQLConnectParam: postgreSQLConnectParam, mariaDBConnectParam: mariaDBConnectParam, sqlServerConnectParam: sqlServerConnectParam, ctsdbConnectParam: ctsdbConnectParam, dorisConnectParam: dorisConnectParam), logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑Datahub连接源
+    @inlinable
+    public func modifyConnectResource(resourceId: String, resourceName: String? = nil, description: String? = nil, type: String? = nil, dtsConnectParam: DtsModifyConnectParam? = nil, mongoDBConnectParam: MongoDBModifyConnectParam? = nil, esConnectParam: EsModifyConnectParam? = nil, clickHouseConnectParam: ClickHouseModifyConnectParam? = nil, mySQLConnectParam: MySQLModifyConnectParam? = nil, postgreSQLConnectParam: PostgreSQLModifyConnectParam? = nil, mariaDBConnectParam: MariaDBModifyConnectParam? = nil, sqlServerConnectParam: SQLServerModifyConnectParam? = nil, ctsdbConnectParam: CtsdbModifyConnectParam? = nil, dorisConnectParam: DorisModifyConnectParam? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConnectResourceResponse {
+        try await self.modifyConnectResource(ModifyConnectResourceRequest(resourceId: resourceId, resourceName: resourceName, description: description, type: type, dtsConnectParam: dtsConnectParam, mongoDBConnectParam: mongoDBConnectParam, esConnectParam: esConnectParam, clickHouseConnectParam: clickHouseConnectParam, mySQLConnectParam: mySQLConnectParam, postgreSQLConnectParam: postgreSQLConnectParam, mariaDBConnectParam: mariaDBConnectParam, sqlServerConnectParam: sqlServerConnectParam, ctsdbConnectParam: ctsdbConnectParam, dorisConnectParam: dorisConnectParam), logger: logger, on: eventLoop)
+    }
 }

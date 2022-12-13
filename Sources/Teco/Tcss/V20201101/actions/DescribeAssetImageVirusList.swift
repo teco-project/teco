@@ -98,4 +98,20 @@ extension Tcss {
     public func describeAssetImageVirusList(_ input: DescribeAssetImageVirusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVirusListResponse {
         try await self.client.execute(action: "DescribeAssetImageVirusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询镜像病毒列表
+    ///
+    /// 容器安全查询镜像病毒列表
+    @inlinable
+    public func describeAssetImageVirusList(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageVirusListResponse > {
+        self.describeAssetImageVirusList(DescribeAssetImageVirusListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像病毒列表
+    ///
+    /// 容器安全查询镜像病毒列表
+    @inlinable
+    public func describeAssetImageVirusList(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVirusListResponse {
+        try await self.describeAssetImageVirusList(DescribeAssetImageVirusListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

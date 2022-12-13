@@ -42,7 +42,7 @@ extension Ess {
         /// 打开智能添加填写区(默认开启，打开:"OPEN" 关闭："CLOSE")
         public let intelligentStatus: String?
         
-        public init (`operator`: UserInfo, resourceId: String, flowName: String, unordered: Bool? = nil, deadline: Int64? = nil, userFlowTypeId: String? = nil, approvers: [FlowCreateApprover]? = nil, intelligentStatus: String? = nil) {
+        public init (operator: UserInfo, resourceId: String, flowName: String, unordered: Bool? = nil, deadline: Int64? = nil, userFlowTypeId: String? = nil, approvers: [FlowCreateApprover]? = nil, intelligentStatus: String? = nil) {
             self.`operator` = `operator`
             self.resourceId = resourceId
             self.flowName = flowName
@@ -97,5 +97,25 @@ extension Ess {
     @inlinable
     public func createPrepareFlow(_ input: CreatePrepareFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrepareFlowResponse {
         try await self.client.execute(action: "CreatePrepareFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 创建快速发起流程
+    ///
+    /// 创建快速发起流程
+    /// 适用场景：用户通过API 合同文件及签署信息，并可通过我们返回的URL在页面完成签署控件等信息的编辑与确认，快速发起合同.
+    /// 注：该接口文件的resourceId 是通过上传文件之后获取的。
+    @inlinable
+    public func createPrepareFlow(operator: UserInfo, resourceId: String, flowName: String, unordered: Bool? = nil, deadline: Int64? = nil, userFlowTypeId: String? = nil, approvers: [FlowCreateApprover]? = nil, intelligentStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrepareFlowResponse > {
+        self.createPrepareFlow(CreatePrepareFlowRequest(operator: `operator`, resourceId: resourceId, flowName: flowName, unordered: unordered, deadline: deadline, userFlowTypeId: userFlowTypeId, approvers: approvers, intelligentStatus: intelligentStatus), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建快速发起流程
+    ///
+    /// 创建快速发起流程
+    /// 适用场景：用户通过API 合同文件及签署信息，并可通过我们返回的URL在页面完成签署控件等信息的编辑与确认，快速发起合同.
+    /// 注：该接口文件的resourceId 是通过上传文件之后获取的。
+    @inlinable
+    public func createPrepareFlow(operator: UserInfo, resourceId: String, flowName: String, unordered: Bool? = nil, deadline: Int64? = nil, userFlowTypeId: String? = nil, approvers: [FlowCreateApprover]? = nil, intelligentStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrepareFlowResponse {
+        try await self.createPrepareFlow(CreatePrepareFlowRequest(operator: `operator`, resourceId: resourceId, flowName: flowName, unordered: unordered, deadline: deadline, userFlowTypeId: userFlowTypeId, approvers: approvers, intelligentStatus: intelligentStatus), logger: logger, on: eventLoop)
     }
 }

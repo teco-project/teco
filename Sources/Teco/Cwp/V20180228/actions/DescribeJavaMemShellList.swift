@@ -69,4 +69,16 @@ extension Cwp {
     public func describeJavaMemShellList(_ input: DescribeJavaMemShellListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJavaMemShellListResponse {
         try await self.client.execute(action: "DescribeJavaMemShellList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询java内存马事件列表
+    @inlinable
+    public func describeJavaMemShellList(filters: [Filters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJavaMemShellListResponse > {
+        self.describeJavaMemShellList(DescribeJavaMemShellListRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询java内存马事件列表
+    @inlinable
+    public func describeJavaMemShellList(filters: [Filters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJavaMemShellListResponse {
+        try await self.describeJavaMemShellList(DescribeJavaMemShellListRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

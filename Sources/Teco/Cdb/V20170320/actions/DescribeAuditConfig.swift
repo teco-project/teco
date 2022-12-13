@@ -72,4 +72,20 @@ extension Cdb {
     public func describeAuditConfig(_ input: DescribeAuditConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditConfigResponse {
         try await self.client.execute(action: "DescribeAuditConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询审计服务配置
+    ///
+    /// 本接口(DescribeAuditConfig)用于查询云数据库审计策略的服务配置，包括审计日志保存时长等。
+    @inlinable
+    public func describeAuditConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditConfigResponse > {
+        self.describeAuditConfig(DescribeAuditConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询审计服务配置
+    ///
+    /// 本接口(DescribeAuditConfig)用于查询云数据库审计策略的服务配置，包括审计日志保存时长等。
+    @inlinable
+    public func describeAuditConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditConfigResponse {
+        try await self.describeAuditConfig(DescribeAuditConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

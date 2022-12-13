@@ -72,4 +72,20 @@ extension Ims {
     public func describeImageStat(_ input: DescribeImageStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageStatResponse {
         try await self.client.execute(action: "DescribeImageStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 识别统计
+    ///
+    /// 控制台识别统计
+    @inlinable
+    public func describeImageStat(auditType: Int64, filters: [Filters], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageStatResponse > {
+        self.describeImageStat(DescribeImageStatRequest(auditType: auditType, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 识别统计
+    ///
+    /// 控制台识别统计
+    @inlinable
+    public func describeImageStat(auditType: Int64, filters: [Filters], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageStatResponse {
+        try await self.describeImageStat(DescribeImageStatRequest(auditType: auditType, filters: filters), logger: logger, on: eventLoop)
+    }
 }

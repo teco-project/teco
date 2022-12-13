@@ -96,4 +96,20 @@ extension Live {
     public func addLiveDomain(_ input: AddLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLiveDomainResponse {
         try await self.client.execute(action: "AddLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加域名
+    ///
+    /// 添加域名，一次只能提交一个域名。域名必须已备案。
+    @inlinable
+    public func addLiveDomain(domainName: String, domainType: UInt64, playType: UInt64? = nil, isDelayLive: Int64? = nil, isMiniProgramLive: Int64? = nil, verifyOwnerType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddLiveDomainResponse > {
+        self.addLiveDomain(AddLiveDomainRequest(domainName: domainName, domainType: domainType, playType: playType, isDelayLive: isDelayLive, isMiniProgramLive: isMiniProgramLive, verifyOwnerType: verifyOwnerType), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加域名
+    ///
+    /// 添加域名，一次只能提交一个域名。域名必须已备案。
+    @inlinable
+    public func addLiveDomain(domainName: String, domainType: UInt64, playType: UInt64? = nil, isDelayLive: Int64? = nil, isMiniProgramLive: Int64? = nil, verifyOwnerType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLiveDomainResponse {
+        try await self.addLiveDomain(AddLiveDomainRequest(domainName: domainName, domainType: domainType, playType: playType, isDelayLive: isDelayLive, isMiniProgramLive: isMiniProgramLive, verifyOwnerType: verifyOwnerType), logger: logger, on: eventLoop)
+    }
 }

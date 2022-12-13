@@ -67,4 +67,20 @@ extension Cwp {
     public func describeSecurityDynamics(_ input: DescribeSecurityDynamicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityDynamicsResponse {
         try await self.client.execute(action: "DescribeSecurityDynamics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取安全事件动态消息
+    ///
+    /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件动态消息数据。
+    @inlinable
+    public func describeSecurityDynamics(limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityDynamicsResponse > {
+        self.describeSecurityDynamics(DescribeSecurityDynamicsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取安全事件动态消息
+    ///
+    /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件动态消息数据。
+    @inlinable
+    public func describeSecurityDynamics(limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityDynamicsResponse {
+        try await self.describeSecurityDynamics(DescribeSecurityDynamicsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

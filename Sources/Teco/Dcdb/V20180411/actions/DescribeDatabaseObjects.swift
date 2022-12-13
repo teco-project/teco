@@ -83,4 +83,20 @@ extension Dcdb {
     public func describeDatabaseObjects(_ input: DescribeDatabaseObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseObjectsResponse {
         try await self.client.execute(action: "DescribeDatabaseObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询数据库对象列表
+    ///
+    /// 本接口（DescribeDatabaseObjects）用于查询云数据库实例的数据库中的对象列表，包含表、存储过程、视图和函数。
+    @inlinable
+    public func describeDatabaseObjects(instanceId: String, dbName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatabaseObjectsResponse > {
+        self.describeDatabaseObjects(DescribeDatabaseObjectsRequest(instanceId: instanceId, dbName: dbName), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库对象列表
+    ///
+    /// 本接口（DescribeDatabaseObjects）用于查询云数据库实例的数据库中的对象列表，包含表、存储过程、视图和函数。
+    @inlinable
+    public func describeDatabaseObjects(instanceId: String, dbName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseObjectsResponse {
+        try await self.describeDatabaseObjects(DescribeDatabaseObjectsRequest(instanceId: instanceId, dbName: dbName), logger: logger, on: eventLoop)
+    }
 }

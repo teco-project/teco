@@ -55,4 +55,16 @@ extension Bm {
     public func setOutBandVpnAuthPassword(_ input: SetOutBandVpnAuthPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetOutBandVpnAuthPasswordResponse {
         try await self.client.execute(action: "SetOutBandVpnAuthPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置带外VPN认证用户密码
+    @inlinable
+    public func setOutBandVpnAuthPassword(password: String, operate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetOutBandVpnAuthPasswordResponse > {
+        self.setOutBandVpnAuthPassword(SetOutBandVpnAuthPasswordRequest(password: password, operate: operate), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置带外VPN认证用户密码
+    @inlinable
+    public func setOutBandVpnAuthPassword(password: String, operate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetOutBandVpnAuthPasswordResponse {
+        try await self.setOutBandVpnAuthPassword(SetOutBandVpnAuthPasswordRequest(password: password, operate: operate), logger: logger, on: eventLoop)
+    }
 }

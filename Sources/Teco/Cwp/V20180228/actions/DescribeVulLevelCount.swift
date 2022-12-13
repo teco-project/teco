@@ -64,4 +64,20 @@ extension Cwp {
     public func describeVulLevelCount(_ input: DescribeVulLevelCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelCountResponse {
         try await self.client.execute(action: "DescribeVulLevelCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询漏洞数量等级分布统计
+    ///
+    /// 漏洞数量等级分布统计
+    @inlinable
+    public func describeVulLevelCount(vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulLevelCountResponse > {
+        self.describeVulLevelCount(DescribeVulLevelCountRequest(vulCategory: vulCategory, isFollowVul: isFollowVul), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞数量等级分布统计
+    ///
+    /// 漏洞数量等级分布统计
+    @inlinable
+    public func describeVulLevelCount(vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelCountResponse {
+        try await self.describeVulLevelCount(DescribeVulLevelCountRequest(vulCategory: vulCategory, isFollowVul: isFollowVul), logger: logger, on: eventLoop)
+    }
 }

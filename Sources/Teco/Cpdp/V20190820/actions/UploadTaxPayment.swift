@@ -60,4 +60,16 @@ extension Cpdp {
     public func uploadTaxPayment(_ input: UploadTaxPaymentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadTaxPaymentResponse {
         try await self.client.execute(action: "UploadTaxPayment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 直播平台-上传代理商完税证明
+    @inlinable
+    public func uploadTaxPayment(channel: Int64, taxId: String, fileUrl: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadTaxPaymentResponse > {
+        self.uploadTaxPayment(UploadTaxPaymentRequest(channel: channel, taxId: taxId, fileUrl: fileUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 直播平台-上传代理商完税证明
+    @inlinable
+    public func uploadTaxPayment(channel: Int64, taxId: String, fileUrl: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadTaxPaymentResponse {
+        try await self.uploadTaxPayment(UploadTaxPaymentRequest(channel: channel, taxId: taxId, fileUrl: fileUrl), logger: logger, on: eventLoop)
+    }
 }

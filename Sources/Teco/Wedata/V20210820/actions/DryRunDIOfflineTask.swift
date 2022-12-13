@@ -85,4 +85,16 @@ extension Wedata {
     public func dryRunDIOfflineTask(_ input: DryRunDIOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DryRunDIOfflineTaskResponse {
         try await self.client.execute(action: "DryRunDIOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 调试运行集成任务
+    @inlinable
+    public func dryRunDIOfflineTask(taskId: String, projectId: String, resourceGroup: String? = nil, taskTypeId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DryRunDIOfflineTaskResponse > {
+        self.dryRunDIOfflineTask(DryRunDIOfflineTaskRequest(taskId: taskId, projectId: projectId, resourceGroup: resourceGroup, taskTypeId: taskTypeId), logger: logger, on: eventLoop)
+    }
+    
+    /// 调试运行集成任务
+    @inlinable
+    public func dryRunDIOfflineTask(taskId: String, projectId: String, resourceGroup: String? = nil, taskTypeId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DryRunDIOfflineTaskResponse {
+        try await self.dryRunDIOfflineTask(DryRunDIOfflineTaskRequest(taskId: taskId, projectId: projectId, resourceGroup: resourceGroup, taskTypeId: taskTypeId), logger: logger, on: eventLoop)
+    }
 }

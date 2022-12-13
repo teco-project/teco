@@ -105,4 +105,16 @@ extension Dayu {
     public func describeDDoSNetEvList(_ input: DescribeDDoSNetEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetEvListResponse {
         try await self.client.execute(action: "DescribeDDoSNetEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取高防IP专业版资源的DDoS攻击事件列表
+    @inlinable
+    public func describeDDoSNetEvList(business: String, id: String, startTime: Date, endTime: Date, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSNetEvListResponse > {
+        self.describeDDoSNetEvList(DescribeDDoSNetEvListRequest(business: business, id: id, startTime: startTime, endTime: endTime, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取高防IP专业版资源的DDoS攻击事件列表
+    @inlinable
+    public func describeDDoSNetEvList(business: String, id: String, startTime: Date, endTime: Date, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetEvListResponse {
+        try await self.describeDDoSNetEvList(DescribeDDoSNetEvListRequest(business: business, id: id, startTime: startTime, endTime: endTime, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

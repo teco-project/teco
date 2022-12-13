@@ -65,4 +65,16 @@ extension Tcb {
     public func describeSpecialCostItems(_ input: DescribeSpecialCostItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecialCostItemsResponse {
         try await self.client.execute(action: "DescribeSpecialCostItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询环境1分钱抵扣信息
+    @inlinable
+    public func describeSpecialCostItems(envId: String? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpecialCostItemsResponse > {
+        self.describeSpecialCostItems(DescribeSpecialCostItemsRequest(envId: envId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询环境1分钱抵扣信息
+    @inlinable
+    public func describeSpecialCostItems(envId: String? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecialCostItemsResponse {
+        try await self.describeSpecialCostItems(DescribeSpecialCostItemsRequest(envId: envId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

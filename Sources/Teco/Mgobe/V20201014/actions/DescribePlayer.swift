@@ -70,4 +70,22 @@ extension Mgobe {
     public func describePlayer(_ input: DescribePlayerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayerResponse {
         try await self.client.execute(action: "DescribePlayer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询玩家信息
+    ///
+    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
+    /// 该接口用于查询玩家信息。支持两种用法，当OpenId不传的时候，PlayerId必传，传入PlayerId可以查询当前PlayerId的玩家信息，当OpenId传入的时候，PlayerId可不传，按照OpenId查询玩家信息。
+    @inlinable
+    public func describePlayer(gameId: String, openId: String? = nil, playerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePlayerResponse > {
+        self.describePlayer(DescribePlayerRequest(gameId: gameId, openId: openId, playerId: playerId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询玩家信息
+    ///
+    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
+    /// 该接口用于查询玩家信息。支持两种用法，当OpenId不传的时候，PlayerId必传，传入PlayerId可以查询当前PlayerId的玩家信息，当OpenId传入的时候，PlayerId可不传，按照OpenId查询玩家信息。
+    @inlinable
+    public func describePlayer(gameId: String, openId: String? = nil, playerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayerResponse {
+        try await self.describePlayer(DescribePlayerRequest(gameId: gameId, openId: openId, playerId: playerId), logger: logger, on: eventLoop)
+    }
 }

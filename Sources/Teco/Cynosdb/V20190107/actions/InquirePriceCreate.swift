@@ -107,4 +107,20 @@ extension Cynosdb {
     public func inquirePriceCreate(_ input: InquirePriceCreateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateResponse {
         try await self.client.execute(action: "InquirePriceCreate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新购集群询价
+    ///
+    /// 查询新购集群价格
+    @inlinable
+    public func inquirePriceCreate(zone: String, goodsNum: Int64, instancePayMode: String, storagePayMode: String, cpu: Int64? = nil, memory: Int64? = nil, ccu: Float? = nil, storageLimit: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceCreateResponse > {
+        self.inquirePriceCreate(InquirePriceCreateRequest(zone: zone, goodsNum: goodsNum, instancePayMode: instancePayMode, storagePayMode: storagePayMode, cpu: cpu, memory: memory, ccu: ccu, storageLimit: storageLimit, timeSpan: timeSpan, timeUnit: timeUnit), logger: logger, on: eventLoop)
+    }
+    
+    /// 新购集群询价
+    ///
+    /// 查询新购集群价格
+    @inlinable
+    public func inquirePriceCreate(zone: String, goodsNum: Int64, instancePayMode: String, storagePayMode: String, cpu: Int64? = nil, memory: Int64? = nil, ccu: Float? = nil, storageLimit: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateResponse {
+        try await self.inquirePriceCreate(InquirePriceCreateRequest(zone: zone, goodsNum: goodsNum, instancePayMode: instancePayMode, storagePayMode: storagePayMode, cpu: cpu, memory: memory, ccu: ccu, storageLimit: storageLimit, timeSpan: timeSpan, timeUnit: timeUnit), logger: logger, on: eventLoop)
+    }
 }

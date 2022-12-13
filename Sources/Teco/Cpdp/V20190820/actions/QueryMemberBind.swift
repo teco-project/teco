@@ -123,4 +123,22 @@ extension Cpdp {
     public func queryMemberBind(_ input: QueryMemberBindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMemberBindResponse {
         try await self.client.execute(action: "QueryMemberBind", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云鉴-会员绑定信息查询
+    ///
+    /// 会员绑定信息查询。查询标志为“单个会员”的情况下，返回该会员的有效的绑定账户信息。
+    /// 查询标志为“全部会员”的情况下，返回市场下的全部的有效的绑定账户信息。查询标志为“单个会员的证件信息”的情况下，返回市场下的指定的会员的留存在电商见证宝系统的证件信息。
+    @inlinable
+    public func queryMemberBind(mrchCode: String, queryFlag: String, pageNum: String, subAcctNo: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMemberBindResponse > {
+        self.queryMemberBind(QueryMemberBindRequest(mrchCode: mrchCode, queryFlag: queryFlag, pageNum: pageNum, subAcctNo: subAcctNo, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-会员绑定信息查询
+    ///
+    /// 会员绑定信息查询。查询标志为“单个会员”的情况下，返回该会员的有效的绑定账户信息。
+    /// 查询标志为“全部会员”的情况下，返回市场下的全部的有效的绑定账户信息。查询标志为“单个会员的证件信息”的情况下，返回市场下的指定的会员的留存在电商见证宝系统的证件信息。
+    @inlinable
+    public func queryMemberBind(mrchCode: String, queryFlag: String, pageNum: String, subAcctNo: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMemberBindResponse {
+        try await self.queryMemberBind(QueryMemberBindRequest(mrchCode: mrchCode, queryFlag: queryFlag, pageNum: pageNum, subAcctNo: subAcctNo, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    }
 }

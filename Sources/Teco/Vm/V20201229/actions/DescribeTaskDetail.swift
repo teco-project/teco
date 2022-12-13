@@ -150,4 +150,22 @@ extension Vm {
     public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
         try await self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看任务详情
+    ///
+    /// 通过查看任务详情 DescribeTaskDetail 接口，可主动轮询获取检测结果详情。<br>
+    /// 默认接口请求频率限制：**200次/秒**。
+    @inlinable
+    public func describeTaskDetail(taskId: String, showAllSegments: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
+        self.describeTaskDetail(DescribeTaskDetailRequest(taskId: taskId, showAllSegments: showAllSegments), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看任务详情
+    ///
+    /// 通过查看任务详情 DescribeTaskDetail 接口，可主动轮询获取检测结果详情。<br>
+    /// 默认接口请求频率限制：**200次/秒**。
+    @inlinable
+    public func describeTaskDetail(taskId: String, showAllSegments: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
+        try await self.describeTaskDetail(DescribeTaskDetailRequest(taskId: taskId, showAllSegments: showAllSegments), logger: logger, on: eventLoop)
+    }
 }

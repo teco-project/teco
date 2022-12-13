@@ -88,4 +88,20 @@ extension Mmps {
     public func createFlySecMiniAppProfessionalScanTask(_ input: CreateFlySecMiniAppProfessionalScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlySecMiniAppProfessionalScanTaskResponse {
         try await self.client.execute(action: "CreateFlySecMiniAppProfessionalScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 提交深度诊断任务
+    ///
+    /// 创建小程序安全深度诊断任务
+    @inlinable
+    public func createFlySecMiniAppProfessionalScanTask(miniAppID: String, miniAppName: String, mode: Int64, corpName: String, mobile: String, email: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlySecMiniAppProfessionalScanTaskResponse > {
+        self.createFlySecMiniAppProfessionalScanTask(CreateFlySecMiniAppProfessionalScanTaskRequest(miniAppID: miniAppID, miniAppName: miniAppName, mode: mode, corpName: corpName, mobile: mobile, email: email, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 提交深度诊断任务
+    ///
+    /// 创建小程序安全深度诊断任务
+    @inlinable
+    public func createFlySecMiniAppProfessionalScanTask(miniAppID: String, miniAppName: String, mode: Int64, corpName: String, mobile: String, email: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlySecMiniAppProfessionalScanTaskResponse {
+        try await self.createFlySecMiniAppProfessionalScanTask(CreateFlySecMiniAppProfessionalScanTaskRequest(miniAppID: miniAppID, miniAppName: miniAppName, mode: mode, corpName: corpName, mobile: mobile, email: email, remark: remark), logger: logger, on: eventLoop)
+    }
 }

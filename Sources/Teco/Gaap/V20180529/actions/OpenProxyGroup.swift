@@ -62,4 +62,20 @@ extension Gaap {
     public func openProxyGroup(_ input: OpenProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProxyGroupResponse {
         try await self.client.execute(action: "OpenProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开启通道组
+    ///
+    /// 该接口（OpenProxyGroup）用于开启一条通道组中的所有通道
+    @inlinable
+    public func openProxyGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenProxyGroupResponse > {
+        self.openProxyGroup(OpenProxyGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 开启通道组
+    ///
+    /// 该接口（OpenProxyGroup）用于开启一条通道组中的所有通道
+    @inlinable
+    public func openProxyGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProxyGroupResponse {
+        try await self.openProxyGroup(OpenProxyGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

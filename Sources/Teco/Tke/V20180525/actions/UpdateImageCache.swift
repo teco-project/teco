@@ -84,4 +84,20 @@ extension Tke {
     public func updateImageCache(_ input: UpdateImageCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageCacheResponse {
         try await self.client.execute(action: "UpdateImageCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新镜像缓存
+    ///
+    /// 更新镜像缓存接口
+    @inlinable
+    public func updateImageCache(imageCacheId: String, imageCacheName: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, images: [String]? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, securityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateImageCacheResponse > {
+        self.updateImageCache(UpdateImageCacheRequest(imageCacheId: imageCacheId, imageCacheName: imageCacheName, imageRegistryCredentials: imageRegistryCredentials, images: images, imageCacheSize: imageCacheSize, retentionDays: retentionDays, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新镜像缓存
+    ///
+    /// 更新镜像缓存接口
+    @inlinable
+    public func updateImageCache(imageCacheId: String, imageCacheName: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, images: [String]? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, securityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageCacheResponse {
+        try await self.updateImageCache(UpdateImageCacheRequest(imageCacheId: imageCacheId, imageCacheName: imageCacheName, imageRegistryCredentials: imageRegistryCredentials, images: images, imageCacheSize: imageCacheSize, retentionDays: retentionDays, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    }
 }

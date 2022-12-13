@@ -95,4 +95,20 @@ extension Live {
     public func modifyLiveCallbackTemplate(_ input: ModifyLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveCallbackTemplateResponse {
         try await self.client.execute(action: "ModifyLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改回调模板
+    ///
+    /// 修改回调模板。
+    @inlinable
+    public func modifyLiveCallbackTemplate(templateId: Int64, templateName: String? = nil, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLiveCallbackTemplateResponse > {
+        self.modifyLiveCallbackTemplate(ModifyLiveCallbackTemplateRequest(templateId: templateId, templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改回调模板
+    ///
+    /// 修改回调模板。
+    @inlinable
+    public func modifyLiveCallbackTemplate(templateId: Int64, templateName: String? = nil, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveCallbackTemplateResponse {
+        try await self.modifyLiveCallbackTemplate(ModifyLiveCallbackTemplateRequest(templateId: templateId, templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey), logger: logger, on: eventLoop)
+    }
 }

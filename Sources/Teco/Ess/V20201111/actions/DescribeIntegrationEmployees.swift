@@ -30,7 +30,7 @@ extension Ess {
         /// 偏移量，默认为0，最大为20000
         public let offset: Int64?
         
-        public init (`operator`: UserInfo, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil) {
+        public init (operator: UserInfo, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil) {
             self.`operator` = `operator`
             self.limit = limit
             self.filters = filters
@@ -87,5 +87,21 @@ extension Ess {
     @inlinable
     public func describeIntegrationEmployees(_ input: DescribeIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationEmployeesResponse {
         try await self.client.execute(action: "DescribeIntegrationEmployees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 查询员工信息
+    ///
+    /// 查询员工信息，每次返回的数据量最大为20
+    @inlinable
+    public func describeIntegrationEmployees(operator: UserInfo, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationEmployeesResponse > {
+        self.describeIntegrationEmployees(DescribeIntegrationEmployeesRequest(operator: `operator`, limit: limit, filters: filters, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询员工信息
+    ///
+    /// 查询员工信息，每次返回的数据量最大为20
+    @inlinable
+    public func describeIntegrationEmployees(operator: UserInfo, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationEmployeesResponse {
+        try await self.describeIntegrationEmployees(DescribeIntegrationEmployeesRequest(operator: `operator`, limit: limit, filters: filters, offset: offset), logger: logger, on: eventLoop)
     }
 }

@@ -109,4 +109,20 @@ extension Tsf {
     public func describeSimpleNamespaces(_ input: DescribeSimpleNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleNamespacesResponse {
         try await self.client.execute(action: "DescribeSimpleNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询简单命名空间列表
+    ///
+    /// 查询简单命名空间列表 
+    @inlinable
+    public func describeSimpleNamespaces(namespaceIdList: [String]? = nil, clusterId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, namespaceId: String? = nil, namespaceResourceTypeList: [String]? = nil, searchWord: String? = nil, namespaceTypeList: [String]? = nil, namespaceName: String? = nil, isDefault: String? = nil, disableProgramAuthCheck: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSimpleNamespacesResponse > {
+        self.describeSimpleNamespaces(DescribeSimpleNamespacesRequest(namespaceIdList: namespaceIdList, clusterId: clusterId, limit: limit, offset: offset, namespaceId: namespaceId, namespaceResourceTypeList: namespaceResourceTypeList, searchWord: searchWord, namespaceTypeList: namespaceTypeList, namespaceName: namespaceName, isDefault: isDefault, disableProgramAuthCheck: disableProgramAuthCheck), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询简单命名空间列表
+    ///
+    /// 查询简单命名空间列表 
+    @inlinable
+    public func describeSimpleNamespaces(namespaceIdList: [String]? = nil, clusterId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, namespaceId: String? = nil, namespaceResourceTypeList: [String]? = nil, searchWord: String? = nil, namespaceTypeList: [String]? = nil, namespaceName: String? = nil, isDefault: String? = nil, disableProgramAuthCheck: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleNamespacesResponse {
+        try await self.describeSimpleNamespaces(DescribeSimpleNamespacesRequest(namespaceIdList: namespaceIdList, clusterId: clusterId, limit: limit, offset: offset, namespaceId: namespaceId, namespaceResourceTypeList: namespaceResourceTypeList, searchWord: searchWord, namespaceTypeList: namespaceTypeList, namespaceName: namespaceName, isDefault: isDefault, disableProgramAuthCheck: disableProgramAuthCheck), logger: logger, on: eventLoop)
+    }
 }

@@ -53,4 +53,22 @@ extension Asr {
     public func describeAsyncRecognitionTasks(_ input: DescribeAsyncRecognitionTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRecognitionTasksResponse {
         try await self.client.execute(action: "DescribeAsyncRecognitionTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 语音流异步识别任务列表
+    ///
+    /// 本接口用于查询当前在运行的语音流异步识别任务列表。
+    /// <br>•   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
+    @inlinable
+    public func describeAsyncRecognitionTasks(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAsyncRecognitionTasksResponse > {
+        self.describeAsyncRecognitionTasks(DescribeAsyncRecognitionTasksRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 语音流异步识别任务列表
+    ///
+    /// 本接口用于查询当前在运行的语音流异步识别任务列表。
+    /// <br>•   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
+    @inlinable
+    public func describeAsyncRecognitionTasks(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRecognitionTasksResponse {
+        try await self.describeAsyncRecognitionTasks(DescribeAsyncRecognitionTasksRequest(), logger: logger, on: eventLoop)
+    }
 }

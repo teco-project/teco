@@ -63,4 +63,20 @@ extension Sqlserver {
     public func modifyDBInstanceProject(_ input: ModifyDBInstanceProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceProjectResponse {
         try await self.client.execute(action: "ModifyDBInstanceProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改数据库实例所属项目
+    ///
+    /// 本接口（ModifyDBInstanceProject）用于修改数据库实例所属项目。
+    @inlinable
+    public func modifyDBInstanceProject(instanceIdSet: [String], projectId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceProjectResponse > {
+        self.modifyDBInstanceProject(ModifyDBInstanceProjectRequest(instanceIdSet: instanceIdSet, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改数据库实例所属项目
+    ///
+    /// 本接口（ModifyDBInstanceProject）用于修改数据库实例所属项目。
+    @inlinable
+    public func modifyDBInstanceProject(instanceIdSet: [String], projectId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceProjectResponse {
+        try await self.modifyDBInstanceProject(ModifyDBInstanceProjectRequest(instanceIdSet: instanceIdSet, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

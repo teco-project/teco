@@ -59,4 +59,16 @@ extension Iecp {
     public func createMessageRoute(_ input: CreateMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageRouteResponse {
         try await self.client.execute(action: "CreateMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建消息路由
+    @inlinable
+    public func createMessageRoute(routeName: String, descript: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMessageRouteResponse > {
+        self.createMessageRoute(CreateMessageRouteRequest(routeName: routeName, descript: descript), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建消息路由
+    @inlinable
+    public func createMessageRoute(routeName: String, descript: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageRouteResponse {
+        try await self.createMessageRoute(CreateMessageRouteRequest(routeName: routeName, descript: descript), logger: logger, on: eventLoop)
+    }
 }

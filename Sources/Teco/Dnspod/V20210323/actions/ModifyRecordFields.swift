@@ -69,4 +69,16 @@ extension Dnspod {
     public func modifyRecordFields(_ input: ModifyRecordFieldsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordFieldsResponse {
         try await self.client.execute(action: "ModifyRecordFields", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改记录可选字段
+    @inlinable
+    public func modifyRecordFields(domain: String, recordId: UInt64, fieldList: [KeyValue], domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordFieldsResponse > {
+        self.modifyRecordFields(ModifyRecordFieldsRequest(domain: domain, recordId: recordId, fieldList: fieldList, domainId: domainId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改记录可选字段
+    @inlinable
+    public func modifyRecordFields(domain: String, recordId: UInt64, fieldList: [KeyValue], domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordFieldsResponse {
+        try await self.modifyRecordFields(ModifyRecordFieldsRequest(domain: domain, recordId: recordId, fieldList: fieldList, domainId: domainId), logger: logger, on: eventLoop)
+    }
 }

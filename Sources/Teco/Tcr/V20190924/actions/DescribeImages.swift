@@ -97,4 +97,20 @@ extension Tcr {
     public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
         try await self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询容器镜像信息
+    ///
+    /// 查询镜像版本列表或指定容器镜像信息
+    @inlinable
+    public func describeImages(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String? = nil, limit: Int64? = nil, offset: Int64? = nil, digest: String? = nil, exactMatch: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
+        self.describeImages(DescribeImagesRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion, limit: limit, offset: offset, digest: digest, exactMatch: exactMatch), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器镜像信息
+    ///
+    /// 查询镜像版本列表或指定容器镜像信息
+    @inlinable
+    public func describeImages(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String? = nil, limit: Int64? = nil, offset: Int64? = nil, digest: String? = nil, exactMatch: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
+        try await self.describeImages(DescribeImagesRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion, limit: limit, offset: offset, digest: digest, exactMatch: exactMatch), logger: logger, on: eventLoop)
+    }
 }

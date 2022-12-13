@@ -109,4 +109,20 @@ extension Teo {
     public func describeSingleL7AnalysisData(_ input: DescribeSingleL7AnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSingleL7AnalysisDataResponse {
         try await self.client.execute(action: "DescribeSingleL7AnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询七层数据分析类单值数据
+    ///
+    /// 本接口（DescribeSingleL7AnalysisData）用于查询七层数据分析类单值流量数据列表。
+    @inlinable
+    public func describeSingleL7AnalysisData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, filters: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSingleL7AnalysisDataResponse > {
+        self.describeSingleL7AnalysisData(DescribeSingleL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, filters: filters, interval: interval, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询七层数据分析类单值数据
+    ///
+    /// 本接口（DescribeSingleL7AnalysisData）用于查询七层数据分析类单值流量数据列表。
+    @inlinable
+    public func describeSingleL7AnalysisData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, filters: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSingleL7AnalysisDataResponse {
+        try await self.describeSingleL7AnalysisData(DescribeSingleL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, filters: filters, interval: interval, area: area), logger: logger, on: eventLoop)
+    }
 }

@@ -89,4 +89,20 @@ extension Cdb {
     public func upgradeCDBProxy(_ input: UpgradeCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyResponse {
         try await self.client.execute(action: "UpgradeCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 升级数据库代理配置
+    ///
+    /// 调整数据库代理配置
+    @inlinable
+    public func upgradeCDBProxy(instanceId: String, proxyGroupId: String, proxyCount: Int64, cpu: Int64, mem: Int64, reloadBalance: String, upgradeTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeCDBProxyResponse > {
+        self.upgradeCDBProxy(UpgradeCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, proxyCount: proxyCount, cpu: cpu, mem: mem, reloadBalance: reloadBalance, upgradeTime: upgradeTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 升级数据库代理配置
+    ///
+    /// 调整数据库代理配置
+    @inlinable
+    public func upgradeCDBProxy(instanceId: String, proxyGroupId: String, proxyCount: Int64, cpu: Int64, mem: Int64, reloadBalance: String, upgradeTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyResponse {
+        try await self.upgradeCDBProxy(UpgradeCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, proxyCount: proxyCount, cpu: cpu, mem: mem, reloadBalance: reloadBalance, upgradeTime: upgradeTime), logger: logger, on: eventLoop)
+    }
 }

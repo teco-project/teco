@@ -68,4 +68,20 @@ extension Wedata {
     public func describeTrendStat(_ input: DescribeTrendStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrendStatResponse {
         try await self.client.execute(action: "DescribeTrendStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 数据质量概览页面趋势接口
+    ///
+    /// 数据质量概览页面趋势变化接口
+    @inlinable
+    public func describeTrendStat(projectId: String, beginDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrendStatResponse > {
+        self.describeTrendStat(DescribeTrendStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 数据质量概览页面趋势接口
+    ///
+    /// 数据质量概览页面趋势变化接口
+    @inlinable
+    public func describeTrendStat(projectId: String, beginDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrendStatResponse {
+        try await self.describeTrendStat(DescribeTrendStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
 }

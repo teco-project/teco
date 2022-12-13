@@ -103,4 +103,20 @@ extension Youmall {
     public func modifyPersonFeatureInfo(_ input: ModifyPersonFeatureInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonFeatureInfoResponse {
         try await self.client.execute(action: "ModifyPersonFeatureInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改顾客特征信息
+    ///
+    /// 支持修改黑白名单类型的顾客特征
+    @inlinable
+    public func modifyPersonFeatureInfo(companyId: String, personId: Int64, picture: String, pictureName: String, personType: Int64, shopId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonFeatureInfoResponse > {
+        self.modifyPersonFeatureInfo(ModifyPersonFeatureInfoRequest(companyId: companyId, personId: personId, picture: picture, pictureName: pictureName, personType: personType, shopId: shopId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改顾客特征信息
+    ///
+    /// 支持修改黑白名单类型的顾客特征
+    @inlinable
+    public func modifyPersonFeatureInfo(companyId: String, personId: Int64, picture: String, pictureName: String, personType: Int64, shopId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonFeatureInfoResponse {
+        try await self.modifyPersonFeatureInfo(ModifyPersonFeatureInfoRequest(companyId: companyId, personId: personId, picture: picture, pictureName: pictureName, personType: personType, shopId: shopId), logger: logger, on: eventLoop)
+    }
 }

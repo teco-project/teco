@@ -55,4 +55,16 @@ extension Tiw {
     public func resumeOnlineRecord(_ input: ResumeOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeOnlineRecordResponse {
         try await self.client.execute(action: "ResumeOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 恢复实时录制
+    @inlinable
+    public func resumeOnlineRecord(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeOnlineRecordResponse > {
+        self.resumeOnlineRecord(ResumeOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复实时录制
+    @inlinable
+    public func resumeOnlineRecord(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeOnlineRecordResponse {
+        try await self.resumeOnlineRecord(ResumeOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

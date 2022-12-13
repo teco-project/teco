@@ -54,4 +54,16 @@ extension Monitor {
     public func describeDNSConfig(_ input: DescribeDNSConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDNSConfigResponse {
         try await self.client.execute(action: "DescribeDNSConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 列出 Grafana DNS 配置
+    @inlinable
+    public func describeDNSConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDNSConfigResponse > {
+        self.describeDNSConfig(DescribeDNSConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 列出 Grafana DNS 配置
+    @inlinable
+    public func describeDNSConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDNSConfigResponse {
+        try await self.describeDNSConfig(DescribeDNSConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

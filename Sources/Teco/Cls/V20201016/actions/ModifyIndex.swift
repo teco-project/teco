@@ -74,4 +74,20 @@ extension Cls {
     public func modifyIndex(_ input: ModifyIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIndexResponse {
         try await self.client.execute(action: "ModifyIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改索引
+    ///
+    /// 本接口用于修改索引配置
+    @inlinable
+    public func modifyIndex(topicId: String, status: Bool? = nil, rule: RuleInfo? = nil, includeInternalFields: Bool? = nil, metadataFlag: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIndexResponse > {
+        self.modifyIndex(ModifyIndexRequest(topicId: topicId, status: status, rule: rule, includeInternalFields: includeInternalFields, metadataFlag: metadataFlag), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改索引
+    ///
+    /// 本接口用于修改索引配置
+    @inlinable
+    public func modifyIndex(topicId: String, status: Bool? = nil, rule: RuleInfo? = nil, includeInternalFields: Bool? = nil, metadataFlag: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIndexResponse {
+        try await self.modifyIndex(ModifyIndexRequest(topicId: topicId, status: status, rule: rule, includeInternalFields: includeInternalFields, metadataFlag: metadataFlag), logger: logger, on: eventLoop)
+    }
 }

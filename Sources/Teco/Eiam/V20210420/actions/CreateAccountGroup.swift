@@ -65,4 +65,16 @@ extension Eiam {
     public func createAccountGroup(_ input: CreateAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountGroupResponse {
         try await self.client.execute(action: "CreateAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建账号组
+    @inlinable
+    public func createAccountGroup(applicationId: String, groupName: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccountGroupResponse > {
+        self.createAccountGroup(CreateAccountGroupRequest(applicationId: applicationId, groupName: groupName, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建账号组
+    @inlinable
+    public func createAccountGroup(applicationId: String, groupName: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountGroupResponse {
+        try await self.createAccountGroup(CreateAccountGroupRequest(applicationId: applicationId, groupName: groupName, description: description), logger: logger, on: eventLoop)
+    }
 }

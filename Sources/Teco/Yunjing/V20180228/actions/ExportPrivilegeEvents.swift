@@ -46,4 +46,16 @@ extension Yunjing {
     public func exportPrivilegeEvents(_ input: ExportPrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportPrivilegeEventsResponse {
         try await self.client.execute(action: "ExportPrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导出本地提权事件
+    @inlinable
+    public func exportPrivilegeEvents(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportPrivilegeEventsResponse > {
+        self.exportPrivilegeEvents(ExportPrivilegeEventsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 导出本地提权事件
+    @inlinable
+    public func exportPrivilegeEvents(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportPrivilegeEventsResponse {
+        try await self.exportPrivilegeEvents(ExportPrivilegeEventsRequest(), logger: logger, on: eventLoop)
+    }
 }

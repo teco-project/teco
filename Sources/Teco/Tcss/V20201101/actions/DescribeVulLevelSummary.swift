@@ -66,4 +66,16 @@ extension Tcss {
     public func describeVulLevelSummary(_ input: DescribeVulLevelSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelSummaryResponse {
         try await self.client.execute(action: "DescribeVulLevelSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询漏洞各威胁等级统计数
+    @inlinable
+    public func describeVulLevelSummary(categoryType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulLevelSummaryResponse > {
+        self.describeVulLevelSummary(DescribeVulLevelSummaryRequest(categoryType: categoryType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞各威胁等级统计数
+    @inlinable
+    public func describeVulLevelSummary(categoryType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelSummaryResponse {
+        try await self.describeVulLevelSummary(DescribeVulLevelSummaryRequest(categoryType: categoryType), logger: logger, on: eventLoop)
+    }
 }

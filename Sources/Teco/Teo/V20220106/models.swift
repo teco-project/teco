@@ -31,7 +31,7 @@ extension Teo {
         /// 匹配内容
         public let matchContent: String
         
-        public init (matchFrom: String, matchParam: String, `operator`: String, matchContent: String) {
+        public init (matchFrom: String, matchParam: String, operator: String, matchContent: String) {
             self.matchFrom = matchFrom
             self.matchParam = matchParam
             self.`operator` = `operator`
@@ -150,7 +150,7 @@ extension Teo {
         /// 自定义-用户规则。
         public let userRules: [ACLUserRule]
         
-        public init (`switch`: String, userRules: [ACLUserRule]) {
+        public init (switch: String, userRules: [ACLUserRule]) {
             self.`switch` = `switch`
             self.userRules = userRules
         }
@@ -379,7 +379,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intelligenceRule: IntelligenceRule?
         
-        public init (`switch`: String? = nil, managedRule: BotManagedRule? = nil, uaBotRule: BotManagedRule? = nil, ispBotRule: BotManagedRule? = nil, portraitRule: BotPortraitRule? = nil, intelligenceRule: IntelligenceRule? = nil) {
+        public init (switch: String? = nil, managedRule: BotManagedRule? = nil, uaBotRule: BotManagedRule? = nil, ispBotRule: BotManagedRule? = nil, portraitRule: BotPortraitRule? = nil, intelligenceRule: IntelligenceRule? = nil) {
             self.`switch` = `switch`
             self.managedRule = managedRule
             self.uaBotRule = uaBotRule
@@ -674,7 +674,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transManagedIds: [Int64]?
         
-        public init (`switch`: String? = nil, ruleID: Int64? = nil, algManagedIds: [Int64]? = nil, capManagedIds: [Int64]? = nil, monManagedIds: [Int64]? = nil, dropManagedIds: [Int64]? = nil, managedIds: [Int64]? = nil, transManagedIds: [Int64]? = nil) {
+        public init (switch: String? = nil, ruleID: Int64? = nil, algManagedIds: [Int64]? = nil, capManagedIds: [Int64]? = nil, monManagedIds: [Int64]? = nil, dropManagedIds: [Int64]? = nil, managedIds: [Int64]? = nil, transManagedIds: [Int64]? = nil) {
             self.`switch` = `switch`
             self.ruleID = ruleID
             self.algManagedIds = algManagedIds
@@ -889,7 +889,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ignoreCacheControl: String?
         
-        public init (`switch`: String, cacheTime: Int64? = nil, ignoreCacheControl: String? = nil) {
+        public init (switch: String, cacheTime: Int64? = nil, ignoreCacheControl: String? = nil) {
             self.`switch` = `switch`
             self.cacheTime = cacheTime
             self.ignoreCacheControl = ignoreCacheControl
@@ -909,7 +909,7 @@ extension Teo {
         /// <li>off：关闭。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -925,7 +925,7 @@ extension Teo {
         /// <li>off：关闭。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -976,7 +976,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let percent: Int64?
         
-        public init (`switch`: String, percent: Int64? = nil) {
+        public init (switch: String, percent: Int64? = nil) {
             self.`switch` = `switch`
             self.percent = percent
         }
@@ -1050,7 +1050,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headerName: String?
         
-        public init (`switch`: String, headerName: String? = nil) {
+        public init (switch: String, headerName: String? = nil) {
             self.`switch` = `switch`
             self.headerName = headerName
         }
@@ -1096,7 +1096,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let algorithms: [String]?
         
-        public init (`switch`: String, algorithms: [String]? = nil) {
+        public init (switch: String, algorithms: [String]? = nil) {
             self.`switch` = `switch`
             self.algorithms = algorithms
         }
@@ -1138,7 +1138,7 @@ extension Teo {
         /// <li>1 ：系统默认配置 。</li>
         public let `default`: Int64?
         
-        public init (dportEnd: Int64? = nil, dportStart: Int64? = nil, sportEnd: Int64? = nil, sportStart: Int64? = nil, `protocol`: String? = nil, action: String? = nil, `default`: Int64? = nil) {
+        public init (dportEnd: Int64? = nil, dportStart: Int64? = nil, sportEnd: Int64? = nil, sportStart: Int64? = nil, protocol: String? = nil, action: String? = nil, default: Int64? = nil) {
             self.dportEnd = dportEnd
             self.dportStart = dportStart
             self.sportEnd = sportEnd
@@ -1292,7 +1292,7 @@ extension Teo {
         /// 开关
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -1388,7 +1388,7 @@ extension Teo {
         /// 多特征关系，仅配置【特征1】时填 none，存在【特征2】配置可不填。
         public let matchLogic: String?
         
-        public init (action: String? = nil, `protocol`: String? = nil, dportStart: Int64? = nil, dportEnd: Int64? = nil, packetMin: Int64? = nil, packetMax: Int64? = nil, sportStart: Int64? = nil, sportEnd: Int64? = nil, matchType: String? = nil, isNot: Int64? = nil, offset: Int64? = nil, depth: Int64? = nil, matchBegin: String? = nil, str: String? = nil, matchType2: String? = nil, isNot2: Int64? = nil, offset2: Int64? = nil, depth2: Int64? = nil, matchBegin2: String? = nil, str2: String? = nil, matchLogic: String? = nil) {
+        public init (action: String? = nil, protocol: String? = nil, dportStart: Int64? = nil, dportEnd: Int64? = nil, packetMin: Int64? = nil, packetMax: Int64? = nil, sportStart: Int64? = nil, sportEnd: Int64? = nil, matchType: String? = nil, isNot: Int64? = nil, offset: Int64? = nil, depth: Int64? = nil, matchBegin: String? = nil, str: String? = nil, matchType2: String? = nil, isNot2: Int64? = nil, offset2: Int64? = nil, depth2: Int64? = nil, matchBegin2: String? = nil, str2: String? = nil, matchLogic: String? = nil) {
             self.action = action
             self.`protocol` = `protocol`
             self.dportStart = dportStart
@@ -1447,7 +1447,7 @@ extension Teo {
         /// 地域信息，ID参考[DescribeSecurityPolicyRegions](https://tcloud4api.woa.com/document/product/1657/76031?!preview&!document=1)。
         public let regionId: [Int64]?
         
-        public init (`switch`: String? = nil, regionId: [Int64]? = nil) {
+        public init (switch: String? = nil, regionId: [Int64]? = nil) {
             self.`switch` = `switch`
             self.regionId = regionId
         }
@@ -1781,7 +1781,7 @@ extension Teo {
         /// <li>on ：配置端口过滤规则，需填写Acl参数。</li>默认值为on。
         public let `switch`: String?
         
-        public init (acl: [DDoSAcl]? = nil, `switch`: String? = nil) {
+        public init (acl: [DDoSAcl]? = nil, switch: String? = nil) {
             self.acl = acl
             self.`switch` = `switch`
         }
@@ -1802,7 +1802,7 @@ extension Teo {
         /// <li>on ：配置黑白名单，需填写UserAllowBlockIp参数。</li>默认值为on。
         public let `switch`: String?
         
-        public init (userAllowBlockIp: [DDoSUserAllowBlockIP]? = nil, `switch`: String? = nil) {
+        public init (userAllowBlockIp: [DDoSUserAllowBlockIP]? = nil, switch: String? = nil) {
             self.userAllowBlockIp = userAllowBlockIp
             self.`switch` = `switch`
         }
@@ -1823,7 +1823,7 @@ extension Teo {
         /// <li>on ：配置特征过滤规则，需填写 PacketFilter 参数。</li>默认值为on。
         public let `switch`: String?
         
-        public init (packetFilter: [DDoSFeaturesFilter]? = nil, `switch`: String? = nil) {
+        public init (packetFilter: [DDoSFeaturesFilter]? = nil, switch: String? = nil) {
             self.packetFilter = packetFilter
             self.`switch` = `switch`
         }
@@ -1874,7 +1874,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ddosSpeedLimit: DdosSpeedLimit?
         
-        public init (ddosStatusInfo: DDoSStatusInfo? = nil, ddosGeoIp: DDoSGeoIp? = nil, ddosAllowBlock: DdosAllowBlock? = nil, ddosAntiPly: DDoSAntiPly? = nil, ddosPacketFilter: DdosPacketFilter? = nil, ddosAcl: DdosAcls? = nil, `switch`: String? = nil, udpShardOpen: String? = nil, ddosSpeedLimit: DdosSpeedLimit? = nil) {
+        public init (ddosStatusInfo: DDoSStatusInfo? = nil, ddosGeoIp: DDoSGeoIp? = nil, ddosAllowBlock: DdosAllowBlock? = nil, ddosAntiPly: DDoSAntiPly? = nil, ddosPacketFilter: DdosPacketFilter? = nil, ddosAcl: DdosAcls? = nil, switch: String? = nil, udpShardOpen: String? = nil, ddosSpeedLimit: DdosSpeedLimit? = nil) {
             self.ddosStatusInfo = ddosStatusInfo
             self.ddosGeoIp = ddosGeoIp
             self.ddosAllowBlock = ddosAllowBlock
@@ -2224,7 +2224,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let acl: DropPageDetail?
         
-        public init (`switch`: String, waf: DropPageDetail, acl: DropPageDetail) {
+        public init (switch: String, waf: DropPageDetail, acl: DropPageDetail) {
             self.`switch` = `switch`
             self.waf = waf
             self.acl = acl
@@ -2279,7 +2279,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userRules: [ExceptUserRule]?
         
-        public init (`switch`: String? = nil, userRules: [ExceptUserRule]? = nil) {
+        public init (switch: String? = nil, userRules: [ExceptUserRule]? = nil) {
             self.`switch` = `switch`
             self.userRules = userRules
         }
@@ -2367,7 +2367,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let matchContent: String?
         
-        public init (matchFrom: String? = nil, matchParam: String? = nil, `operator`: String? = nil, matchContent: String? = nil) {
+        public init (matchFrom: String? = nil, matchParam: String? = nil, operator: String? = nil, matchContent: String? = nil) {
             self.matchFrom = matchFrom
             self.matchParam = matchParam
             self.`operator` = `operator`
@@ -2425,7 +2425,7 @@ extension Teo {
         /// 筛选维度值
         public let value: [String]
         
-        public init (key: String, `operator`: String, value: [String]) {
+        public init (key: String, operator: String, value: [String]) {
             self.key = key
             self.`operator` = `operator`
             self.value = value
@@ -2451,7 +2451,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectStatusCode: Int64?
         
-        public init (`switch`: String, redirectStatusCode: Int64? = nil) {
+        public init (switch: String, redirectStatusCode: Int64? = nil) {
             self.`switch` = `switch`
             self.redirectStatusCode = redirectStatusCode
         }
@@ -2554,7 +2554,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let preload: String?
         
-        public init (`switch`: String, maxAge: Int64? = nil, includeSubDomains: String? = nil, preload: String? = nil) {
+        public init (switch: String, maxAge: Int64? = nil, includeSubDomains: String? = nil, preload: String? = nil) {
             self.`switch` = `switch`
             self.maxAge = maxAge
             self.includeSubDomains = includeSubDomains
@@ -2622,7 +2622,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [IntelligenceRuleItem]?
         
-        public init (`switch`: String? = nil, items: [IntelligenceRuleItem]? = nil) {
+        public init (switch: String? = nil, items: [IntelligenceRuleItem]? = nil) {
             self.`switch` = `switch`
             self.items = items
         }
@@ -2675,7 +2675,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rules: [IpTableRule]?
         
-        public init (`switch`: String? = nil, rules: [IpTableRule]? = nil) {
+        public init (switch: String? = nil, rules: [IpTableRule]? = nil) {
             self.`switch` = `switch`
             self.rules = rules
         }
@@ -2739,7 +2739,7 @@ extension Teo {
         /// <li>off：关闭Ipv6访问功能。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -2921,7 +2921,7 @@ extension Teo {
         /// <li>off：关闭。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -3103,7 +3103,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proto: String?
         
-        public init (record: String, area: [String], weight: UInt64, port: UInt64, recordId: String? = nil, `private`: Bool? = nil, privateParameter: [OriginRecordPrivateParameter]? = nil, proto: String? = nil) {
+        public init (record: String, area: [String], weight: UInt64, port: UInt64, recordId: String? = nil, private: Bool? = nil, privateParameter: [OriginRecordPrivateParameter]? = nil, proto: String? = nil) {
             self.record = record
             self.area = area
             self.weight = weight
@@ -3246,7 +3246,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxSize: Int64?
         
-        public init (`switch`: String, maxSize: Int64? = nil) {
+        public init (switch: String, maxSize: Int64? = nil) {
             self.`switch` = `switch`
             self.maxSize = maxSize
         }
@@ -3276,7 +3276,7 @@ extension Teo {
         /// 筛选条件的值。
         public let value: [String]
         
-        public init (key: String, `operator`: String, value: [String]) {
+        public init (key: String, operator: String, value: [String]) {
             self.key = key
             self.`operator` = `operator`
             self.value = value
@@ -3306,7 +3306,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: [String]?
         
-        public init (`switch`: String, action: String? = nil, value: [String]? = nil) {
+        public init (switch: String, action: String? = nil, value: [String]? = nil) {
             self.`switch` = `switch`
             self.action = action
             self.value = value
@@ -3326,7 +3326,7 @@ extension Teo {
         /// <li>off：关闭。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -3353,7 +3353,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intelligence: RateLimitIntelligence?
         
-        public init (`switch`: String, userRules: [RateLimitUserRule], template: RateLimitTemplate? = nil, intelligence: RateLimitIntelligence? = nil) {
+        public init (switch: String, userRules: [RateLimitUserRule], template: RateLimitTemplate? = nil, intelligence: RateLimitIntelligence? = nil) {
             self.`switch` = `switch`
             self.userRules = userRules
             self.template = template
@@ -3382,7 +3382,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: String?
         
-        public init (`switch`: String? = nil, action: String? = nil) {
+        public init (switch: String? = nil, action: String? = nil) {
             self.`switch` = `switch`
             self.action = action
         }
@@ -3791,7 +3791,7 @@ extension Teo {
         /// <li> URL Full：当前站点下完整 URL 请求，必须包含 HTTP 协议，Host 和 路径，例如：https://www.maxx55.cn/example。</li>
         public let values: [String]
         
-        public init (`operator`: String, target: String, values: [String]) {
+        public init (operator: String, target: String, values: [String]) {
             self.`operator` = `operator`
             self.target = target
             self.values = values
@@ -4375,7 +4375,7 @@ extension Teo {
         /// <li>off：关闭。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -4597,7 +4597,7 @@ extension Teo {
         /// <li>off：关闭。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -4616,7 +4616,7 @@ extension Teo {
         /// 自定义 ns 列表
         public let servers: [String]?
         
-        public init (`switch`: String, servers: [String]? = nil) {
+        public init (switch: String, servers: [String]? = nil) {
             self.`switch` = `switch`
             self.servers = servers
         }
@@ -4668,7 +4668,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aiRule: AiRule?
         
-        public init (`switch`: String, level: String, mode: String, wafRules: WafRule, aiRule: AiRule? = nil) {
+        public init (switch: String, level: String, mode: String, wafRules: WafRule, aiRule: AiRule? = nil) {
             self.`switch` = `switch`
             self.level = level
             self.mode = mode
@@ -4697,7 +4697,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let observeRuleIDs: [Int64]?
         
-        public init (`switch`: String, blockRuleIDs: [Int64], observeRuleIDs: [Int64]? = nil) {
+        public init (switch: String, blockRuleIDs: [Int64], observeRuleIDs: [Int64]? = nil) {
             self.`switch` = `switch`
             self.blockRuleIDs = blockRuleIDs
             self.observeRuleIDs = observeRuleIDs
@@ -4878,7 +4878,7 @@ extension Teo {
         /// 超时时间，单位为秒，最大超时时间120秒。
         public let timeout: Int64?
         
-        public init (`switch`: String, timeout: Int64? = nil) {
+        public init (switch: String, timeout: Int64? = nil) {
             self.`switch` = `switch`
             self.timeout = timeout
         }

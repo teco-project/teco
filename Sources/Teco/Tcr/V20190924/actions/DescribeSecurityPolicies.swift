@@ -55,4 +55,16 @@ extension Tcr {
     public func describeSecurityPolicies(_ input: DescribeSecurityPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPoliciesResponse {
         try await self.client.execute(action: "DescribeSecurityPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例公网访问白名单策略
+    @inlinable
+    public func describeSecurityPolicies(registryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPoliciesResponse > {
+        self.describeSecurityPolicies(DescribeSecurityPoliciesRequest(registryId: registryId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例公网访问白名单策略
+    @inlinable
+    public func describeSecurityPolicies(registryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPoliciesResponse {
+        try await self.describeSecurityPolicies(DescribeSecurityPoliciesRequest(registryId: registryId), logger: logger, on: eventLoop)
+    }
 }

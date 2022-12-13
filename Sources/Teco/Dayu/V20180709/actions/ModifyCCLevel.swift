@@ -32,7 +32,7 @@ extension Dayu {
         /// 表示7层转发规则ID（通过获取7层转发规则接口可以获取规则ID）；
         public let ruleId: String
         
-        public init (business: String, id: String, level: String, `protocol`: String, ruleId: String) {
+        public init (business: String, id: String, level: String, protocol: String, ruleId: String) {
             self.business = business
             self.id = id
             self.level = level
@@ -73,5 +73,17 @@ extension Dayu {
     @inlinable
     public func modifyCCLevel(_ input: ModifyCCLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCLevelResponse {
         try await self.client.execute(action: "ModifyCCLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 修改CC防护等级
+    @inlinable
+    public func modifyCCLevel(business: String, id: String, level: String, protocol: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCLevelResponse > {
+        self.modifyCCLevel(ModifyCCLevelRequest(business: business, id: id, level: level, protocol: `protocol`, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CC防护等级
+    @inlinable
+    public func modifyCCLevel(business: String, id: String, level: String, protocol: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCLevelResponse {
+        try await self.modifyCCLevel(ModifyCCLevelRequest(business: business, id: id, level: level, protocol: `protocol`, ruleId: ruleId), logger: logger, on: eventLoop)
     }
 }

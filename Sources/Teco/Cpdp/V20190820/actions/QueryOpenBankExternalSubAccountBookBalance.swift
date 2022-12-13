@@ -108,4 +108,20 @@ extension Cpdp {
     public func queryOpenBankExternalSubAccountBookBalance(_ input: QueryOpenBankExternalSubAccountBookBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankExternalSubAccountBookBalanceResponse {
         try await self.client.execute(action: "QueryOpenBankExternalSubAccountBookBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-子商户电子记账本余额查询
+    ///
+    /// 第三方子商户电子记账本余额查询接口
+    @inlinable
+    public func queryOpenBankExternalSubAccountBookBalance(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, outAccountBookId: String? = nil, channelAccountBookId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankExternalSubAccountBookBalanceResponse > {
+        self.queryOpenBankExternalSubAccountBookBalance(QueryOpenBankExternalSubAccountBookBalanceRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, outAccountBookId: outAccountBookId, channelAccountBookId: channelAccountBookId, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-子商户电子记账本余额查询
+    ///
+    /// 第三方子商户电子记账本余额查询接口
+    @inlinable
+    public func queryOpenBankExternalSubAccountBookBalance(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, outAccountBookId: String? = nil, channelAccountBookId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankExternalSubAccountBookBalanceResponse {
+        try await self.queryOpenBankExternalSubAccountBookBalance(QueryOpenBankExternalSubAccountBookBalanceRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, outAccountBookId: outAccountBookId, channelAccountBookId: channelAccountBookId, environment: environment), logger: logger, on: eventLoop)
+    }
 }

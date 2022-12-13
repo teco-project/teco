@@ -78,4 +78,20 @@ extension Cvm {
     public func purchaseReservedInstancesOffering(_ input: PurchaseReservedInstancesOfferingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurchaseReservedInstancesOfferingResponse {
         try await self.client.execute(action: "PurchaseReservedInstancesOffering", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 购买预留实例
+    ///
+    /// 本接口(PurchaseReservedInstancesOffering)用于用户购买一个或者多个指定配置的预留实例
+    @inlinable
+    public func purchaseReservedInstancesOffering(instanceCount: Int64, reservedInstancesOfferingId: String, dryRun: Bool? = nil, clientToken: String? = nil, reservedInstanceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PurchaseReservedInstancesOfferingResponse > {
+        self.purchaseReservedInstancesOffering(PurchaseReservedInstancesOfferingRequest(instanceCount: instanceCount, reservedInstancesOfferingId: reservedInstancesOfferingId, dryRun: dryRun, clientToken: clientToken, reservedInstanceName: reservedInstanceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 购买预留实例
+    ///
+    /// 本接口(PurchaseReservedInstancesOffering)用于用户购买一个或者多个指定配置的预留实例
+    @inlinable
+    public func purchaseReservedInstancesOffering(instanceCount: Int64, reservedInstancesOfferingId: String, dryRun: Bool? = nil, clientToken: String? = nil, reservedInstanceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurchaseReservedInstancesOfferingResponse {
+        try await self.purchaseReservedInstancesOffering(PurchaseReservedInstancesOfferingRequest(instanceCount: instanceCount, reservedInstancesOfferingId: reservedInstancesOfferingId, dryRun: dryRun, clientToken: clientToken, reservedInstanceName: reservedInstanceName), logger: logger, on: eventLoop)
+    }
 }

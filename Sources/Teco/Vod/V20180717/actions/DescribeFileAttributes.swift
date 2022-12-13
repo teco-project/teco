@@ -87,4 +87,24 @@ extension Vod {
     public func describeFileAttributes(_ input: DescribeFileAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileAttributesResponse {
         try await self.client.execute(action: "DescribeFileAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取文件属性
+    ///
+    /// 用于异步获取文件属性。
+    /// - 当前仅支持获取源文件的 Md5。
+    /// - 对输入文件为 HLS 或 DASH 的情况，仅获取索引文件的属性。
+    @inlinable
+    public func describeFileAttributes(fileId: String, subAppId: UInt64? = nil, sessionId: String? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileAttributesResponse > {
+        self.describeFileAttributes(DescribeFileAttributesRequest(fileId: fileId, subAppId: subAppId, sessionId: sessionId, sessionContext: sessionContext, tasksPriority: tasksPriority, extInfo: extInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取文件属性
+    ///
+    /// 用于异步获取文件属性。
+    /// - 当前仅支持获取源文件的 Md5。
+    /// - 对输入文件为 HLS 或 DASH 的情况，仅获取索引文件的属性。
+    @inlinable
+    public func describeFileAttributes(fileId: String, subAppId: UInt64? = nil, sessionId: String? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileAttributesResponse {
+        try await self.describeFileAttributes(DescribeFileAttributesRequest(fileId: fileId, subAppId: subAppId, sessionId: sessionId, sessionContext: sessionContext, tasksPriority: tasksPriority, extInfo: extInfo), logger: logger, on: eventLoop)
+    }
 }

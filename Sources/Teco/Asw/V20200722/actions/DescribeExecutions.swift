@@ -74,4 +74,20 @@ extension Asw {
     public func describeExecutions(_ input: DescribeExecutionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionsResponse {
         try await self.client.execute(action: "DescribeExecutions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询状态机执行列表
+    ///
+    /// 对状态机的执行历史进行描述.
+    @inlinable
+    public func describeExecutions(stateMachineResourceName: String, pageSize: Int64, pageIndex: Int64, filterExecutionStatus: String? = nil, filterExecutionResourceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExecutionsResponse > {
+        self.describeExecutions(DescribeExecutionsRequest(stateMachineResourceName: stateMachineResourceName, pageSize: pageSize, pageIndex: pageIndex, filterExecutionStatus: filterExecutionStatus, filterExecutionResourceName: filterExecutionResourceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询状态机执行列表
+    ///
+    /// 对状态机的执行历史进行描述.
+    @inlinable
+    public func describeExecutions(stateMachineResourceName: String, pageSize: Int64, pageIndex: Int64, filterExecutionStatus: String? = nil, filterExecutionResourceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionsResponse {
+        try await self.describeExecutions(DescribeExecutionsRequest(stateMachineResourceName: stateMachineResourceName, pageSize: pageSize, pageIndex: pageIndex, filterExecutionStatus: filterExecutionStatus, filterExecutionResourceName: filterExecutionResourceName), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,20 @@ extension Essbasic {
     public func describeFaceIdResults(_ input: DescribeFaceIdResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdResultsResponse {
         try await self.client.execute(action: "DescribeFaceIdResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取慧眼人脸核身结果
+    ///
+    /// 该接口为第三方平台向电子签平台获取慧眼人脸核身结果
+    @inlinable
+    public func describeFaceIdResults(caller: Caller, wbAppId: String, orderNumbers: [String], fileType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFaceIdResultsResponse > {
+        self.describeFaceIdResults(DescribeFaceIdResultsRequest(caller: caller, wbAppId: wbAppId, orderNumbers: orderNumbers, fileType: fileType), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取慧眼人脸核身结果
+    ///
+    /// 该接口为第三方平台向电子签平台获取慧眼人脸核身结果
+    @inlinable
+    public func describeFaceIdResults(caller: Caller, wbAppId: String, orderNumbers: [String], fileType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdResultsResponse {
+        try await self.describeFaceIdResults(DescribeFaceIdResultsRequest(caller: caller, wbAppId: wbAppId, orderNumbers: orderNumbers, fileType: fileType), logger: logger, on: eventLoop)
+    }
 }

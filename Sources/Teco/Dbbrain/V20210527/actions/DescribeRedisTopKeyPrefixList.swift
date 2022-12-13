@@ -80,4 +80,20 @@ extension Dbbrain {
     public func describeRedisTopKeyPrefixList(_ input: DescribeRedisTopKeyPrefixListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRedisTopKeyPrefixListResponse {
         try await self.client.execute(action: "DescribeRedisTopKeyPrefixList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询redis实例top key前缀列表
+    ///
+    /// 查询redis实例top key前缀列表。
+    @inlinable
+    public func describeRedisTopKeyPrefixList(instanceId: String, date: Date, product: String, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRedisTopKeyPrefixListResponse > {
+        self.describeRedisTopKeyPrefixList(DescribeRedisTopKeyPrefixListRequest(instanceId: instanceId, date: date, product: product, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询redis实例top key前缀列表
+    ///
+    /// 查询redis实例top key前缀列表。
+    @inlinable
+    public func describeRedisTopKeyPrefixList(instanceId: String, date: Date, product: String, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRedisTopKeyPrefixListResponse {
+        try await self.describeRedisTopKeyPrefixList(DescribeRedisTopKeyPrefixListRequest(instanceId: instanceId, date: date, product: product, limit: limit), logger: logger, on: eventLoop)
+    }
 }

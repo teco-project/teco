@@ -156,4 +156,20 @@ extension Ocr {
     public func trainTicketOCR(_ input: TrainTicketOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TrainTicketOCRResponse {
         try await self.client.execute(action: "TrainTicketOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 火车票识别
+    ///
+    /// 本接口支持火车票全字段的识别，包括编号、票价、姓名、座位号、出发时间、出发站、到达站、车次、席别、发票类型及序列号等。
+    @inlinable
+    public func trainTicketOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TrainTicketOCRResponse > {
+        self.trainTicketOCR(TrainTicketOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), logger: logger, on: eventLoop)
+    }
+    
+    /// 火车票识别
+    ///
+    /// 本接口支持火车票全字段的识别，包括编号、票价、姓名、座位号、出发时间、出发站、到达站、车次、席别、发票类型及序列号等。
+    @inlinable
+    public func trainTicketOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TrainTicketOCRResponse {
+        try await self.trainTicketOCR(TrainTicketOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), logger: logger, on: eventLoop)
+    }
 }

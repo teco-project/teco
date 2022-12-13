@@ -77,4 +77,16 @@ extension Cpdp {
     public func addFlexPhoneNo(_ input: AddFlexPhoneNoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddFlexPhoneNoResponse {
         try await self.client.execute(action: "AddFlexPhoneNo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 灵云V2-补充手机号信息
+    @inlinable
+    public func addFlexPhoneNo(phoneNo: String, payeeId: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddFlexPhoneNoResponse > {
+        self.addFlexPhoneNo(AddFlexPhoneNoRequest(phoneNo: phoneNo, payeeId: payeeId, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云V2-补充手机号信息
+    @inlinable
+    public func addFlexPhoneNo(phoneNo: String, payeeId: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddFlexPhoneNoResponse {
+        try await self.addFlexPhoneNo(AddFlexPhoneNoRequest(phoneNo: phoneNo, payeeId: payeeId, environment: environment), logger: logger, on: eventLoop)
+    }
 }

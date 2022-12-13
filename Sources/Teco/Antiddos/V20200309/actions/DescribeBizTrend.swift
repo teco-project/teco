@@ -102,4 +102,16 @@ extension Antiddos {
     public func describeBizTrend(_ input: DescribeBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizTrendResponse {
         try await self.client.execute(action: "DescribeBizTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取业务流量曲线
+    @inlinable
+    public func describeBizTrend(statistics: String, business: String, period: UInt64, startTime: Date, endTime: Date, id: String, metricName: String, domain: String? = nil, protoInfo: [ProtocolPort]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBizTrendResponse > {
+        self.describeBizTrend(DescribeBizTrendRequest(statistics: statistics, business: business, period: period, startTime: startTime, endTime: endTime, id: id, metricName: metricName, domain: domain, protoInfo: protoInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取业务流量曲线
+    @inlinable
+    public func describeBizTrend(statistics: String, business: String, period: UInt64, startTime: Date, endTime: Date, id: String, metricName: String, domain: String? = nil, protoInfo: [ProtocolPort]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizTrendResponse {
+        try await self.describeBizTrend(DescribeBizTrendRequest(statistics: statistics, business: business, period: period, startTime: startTime, endTime: endTime, id: id, metricName: metricName, domain: domain, protoInfo: protoInfo), logger: logger, on: eventLoop)
+    }
 }

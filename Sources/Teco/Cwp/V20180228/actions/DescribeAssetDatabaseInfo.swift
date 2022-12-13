@@ -64,4 +64,16 @@ extension Cwp {
     public func describeAssetDatabaseInfo(_ input: DescribeAssetDatabaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDatabaseInfoResponse {
         try await self.client.execute(action: "DescribeAssetDatabaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取资产管理数据库详情
+    @inlinable
+    public func describeAssetDatabaseInfo(quuid: String, uuid: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetDatabaseInfoResponse > {
+        self.describeAssetDatabaseInfo(DescribeAssetDatabaseInfoRequest(quuid: quuid, uuid: uuid, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资产管理数据库详情
+    @inlinable
+    public func describeAssetDatabaseInfo(quuid: String, uuid: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDatabaseInfoResponse {
+        try await self.describeAssetDatabaseInfo(DescribeAssetDatabaseInfoRequest(quuid: quuid, uuid: uuid, id: id), logger: logger, on: eventLoop)
+    }
 }

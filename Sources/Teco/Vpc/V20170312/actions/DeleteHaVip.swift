@@ -56,4 +56,22 @@ extension Vpc {
     public func deleteHaVip(_ input: DeleteHaVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHaVipResponse {
         try await self.client.execute(action: "DeleteHaVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除HAVIP
+    ///
+    /// 本接口（DeleteHaVip）用于删除高可用虚拟IP（HAVIP）。<br />
+    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
+    @inlinable
+    public func deleteHaVip(haVipId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteHaVipResponse > {
+        self.deleteHaVip(DeleteHaVipRequest(haVipId: haVipId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除HAVIP
+    ///
+    /// 本接口（DeleteHaVip）用于删除高可用虚拟IP（HAVIP）。<br />
+    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
+    @inlinable
+    public func deleteHaVip(haVipId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHaVipResponse {
+        try await self.deleteHaVip(DeleteHaVipRequest(haVipId: haVipId), logger: logger, on: eventLoop)
+    }
 }

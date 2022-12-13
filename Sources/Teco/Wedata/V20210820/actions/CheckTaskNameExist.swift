@@ -64,4 +64,16 @@ extension Wedata {
     public func checkTaskNameExist(_ input: CheckTaskNameExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTaskNameExistResponse {
         try await self.client.execute(action: "CheckTaskNameExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 离线任务重名校验
+    @inlinable
+    public func checkTaskNameExist(projectId: String, typeId: Int64, taskName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckTaskNameExistResponse > {
+        self.checkTaskNameExist(CheckTaskNameExistRequest(projectId: projectId, typeId: typeId, taskName: taskName), logger: logger, on: eventLoop)
+    }
+    
+    /// 离线任务重名校验
+    @inlinable
+    public func checkTaskNameExist(projectId: String, typeId: Int64, taskName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTaskNameExistResponse {
+        try await self.checkTaskNameExist(CheckTaskNameExistRequest(projectId: projectId, typeId: typeId, taskName: taskName), logger: logger, on: eventLoop)
+    }
 }

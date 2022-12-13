@@ -68,4 +68,20 @@ extension Youmall {
     public func describeNetworkInfo(_ input: DescribeNetworkInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkInfoResponse {
         try await self.client.execute(action: "DescribeNetworkInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询设备最新网络状态
+    ///
+    /// 返回当前门店最新网络状态数据
+    @inlinable
+    public func describeNetworkInfo(time: Int64, companyId: String, shopId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkInfoResponse > {
+        self.describeNetworkInfo(DescribeNetworkInfoRequest(time: time, companyId: companyId, shopId: shopId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备最新网络状态
+    ///
+    /// 返回当前门店最新网络状态数据
+    @inlinable
+    public func describeNetworkInfo(time: Int64, companyId: String, shopId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkInfoResponse {
+        try await self.describeNetworkInfo(DescribeNetworkInfoRequest(time: time, companyId: companyId, shopId: shopId), logger: logger, on: eventLoop)
+    }
 }

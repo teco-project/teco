@@ -73,4 +73,16 @@ extension Tcr {
     public func describeWebhookTrigger(_ input: DescribeWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebhookTriggerResponse {
         try await self.client.execute(action: "DescribeWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询触发器
+    @inlinable
+    public func describeWebhookTrigger(registryId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebhookTriggerResponse > {
+        self.describeWebhookTrigger(DescribeWebhookTriggerRequest(registryId: registryId, limit: limit, offset: offset, namespace: namespace), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询触发器
+    @inlinable
+    public func describeWebhookTrigger(registryId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebhookTriggerResponse {
+        try await self.describeWebhookTrigger(DescribeWebhookTriggerRequest(registryId: registryId, limit: limit, offset: offset, namespace: namespace), logger: logger, on: eventLoop)
+    }
 }

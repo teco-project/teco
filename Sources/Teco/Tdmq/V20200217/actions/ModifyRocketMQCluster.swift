@@ -60,4 +60,16 @@ extension Tdmq {
     public func modifyRocketMQCluster(_ input: ModifyRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQClusterResponse {
         try await self.client.execute(action: "ModifyRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新RocketMQ集群信息
+    @inlinable
+    public func modifyRocketMQCluster(clusterId: String, clusterName: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRocketMQClusterResponse > {
+        self.modifyRocketMQCluster(ModifyRocketMQClusterRequest(clusterId: clusterId, clusterName: clusterName, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新RocketMQ集群信息
+    @inlinable
+    public func modifyRocketMQCluster(clusterId: String, clusterName: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQClusterResponse {
+        try await self.modifyRocketMQCluster(ModifyRocketMQClusterRequest(clusterId: clusterId, clusterName: clusterName, remark: remark), logger: logger, on: eventLoop)
+    }
 }

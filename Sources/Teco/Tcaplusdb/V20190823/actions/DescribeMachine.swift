@@ -58,4 +58,20 @@ extension Tcaplusdb {
     public func describeMachine(_ input: DescribeMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineResponse {
         try await self.client.execute(action: "DescribeMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询独占集群剩余机器
+    ///
+    /// 查询独占集群可以申请的剩余机器
+    @inlinable
+    public func describeMachine(ipv6Enable: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineResponse > {
+        self.describeMachine(DescribeMachineRequest(ipv6Enable: ipv6Enable), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询独占集群剩余机器
+    ///
+    /// 查询独占集群可以申请的剩余机器
+    @inlinable
+    public func describeMachine(ipv6Enable: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineResponse {
+        try await self.describeMachine(DescribeMachineRequest(ipv6Enable: ipv6Enable), logger: logger, on: eventLoop)
+    }
 }

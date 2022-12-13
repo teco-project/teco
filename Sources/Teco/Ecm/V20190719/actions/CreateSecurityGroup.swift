@@ -64,4 +64,16 @@ extension Ecm {
     public func createSecurityGroup(_ input: CreateSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupResponse {
         try await self.client.execute(action: "CreateSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建安全组
+    @inlinable
+    public func createSecurityGroup(groupName: String, groupDescription: String, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityGroupResponse > {
+        self.createSecurityGroup(CreateSecurityGroupRequest(groupName: groupName, groupDescription: groupDescription, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建安全组
+    @inlinable
+    public func createSecurityGroup(groupName: String, groupDescription: String, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupResponse {
+        try await self.createSecurityGroup(CreateSecurityGroupRequest(groupName: groupName, groupDescription: groupDescription, tags: tags), logger: logger, on: eventLoop)
+    }
 }

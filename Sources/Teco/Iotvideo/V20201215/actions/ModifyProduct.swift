@@ -60,4 +60,16 @@ extension Iotvideo {
     public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
         try await self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改产品信息
+    @inlinable
+    public func modifyProduct(productId: String, productName: String? = nil, productDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProductResponse > {
+        self.modifyProduct(ModifyProductRequest(productId: productId, productName: productName, productDescription: productDescription), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改产品信息
+    @inlinable
+    public func modifyProduct(productId: String, productName: String? = nil, productDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
+        try await self.modifyProduct(ModifyProductRequest(productId: productId, productName: productName, productDescription: productDescription), logger: logger, on: eventLoop)
+    }
 }

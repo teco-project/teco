@@ -92,4 +92,20 @@ extension Cpdp {
     public func unBindAcct(_ input: UnBindAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindAcctResponse {
         try await self.client.execute(action: "UnBindAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 聚鑫-解绑银行卡
+    ///
+    /// 商户解除绑定的提现银行卡
+    @inlinable
+    public func unBindAcct(midasAppId: String, subAppId: String, settleAcctNo: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindAcctResponse > {
+        self.unBindAcct(UnBindAcctRequest(midasAppId: midasAppId, subAppId: subAppId, settleAcctNo: settleAcctNo, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-解绑银行卡
+    ///
+    /// 商户解除绑定的提现银行卡
+    @inlinable
+    public func unBindAcct(midasAppId: String, subAppId: String, settleAcctNo: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindAcctResponse {
+        try await self.unBindAcct(UnBindAcctRequest(midasAppId: midasAppId, subAppId: subAppId, settleAcctNo: settleAcctNo, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
 }

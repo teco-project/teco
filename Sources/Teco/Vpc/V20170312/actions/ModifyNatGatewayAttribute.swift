@@ -74,4 +74,20 @@ extension Vpc {
     public func modifyNatGatewayAttribute(_ input: ModifyNatGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatGatewayAttributeResponse {
         try await self.client.execute(action: "ModifyNatGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改NAT网关的属性
+    ///
+    /// 本接口（ModifyNatGatewayAttribute）用于修改NAT网关的属性。
+    @inlinable
+    public func modifyNatGatewayAttribute(natGatewayId: String, natGatewayName: String? = nil, internetMaxBandwidthOut: UInt64? = nil, modifySecurityGroup: Bool? = nil, securityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNatGatewayAttributeResponse > {
+        self.modifyNatGatewayAttribute(ModifyNatGatewayAttributeRequest(natGatewayId: natGatewayId, natGatewayName: natGatewayName, internetMaxBandwidthOut: internetMaxBandwidthOut, modifySecurityGroup: modifySecurityGroup, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改NAT网关的属性
+    ///
+    /// 本接口（ModifyNatGatewayAttribute）用于修改NAT网关的属性。
+    @inlinable
+    public func modifyNatGatewayAttribute(natGatewayId: String, natGatewayName: String? = nil, internetMaxBandwidthOut: UInt64? = nil, modifySecurityGroup: Bool? = nil, securityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatGatewayAttributeResponse {
+        try await self.modifyNatGatewayAttribute(ModifyNatGatewayAttributeRequest(natGatewayId: natGatewayId, natGatewayName: natGatewayName, internetMaxBandwidthOut: internetMaxBandwidthOut, modifySecurityGroup: modifySecurityGroup, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    }
 }

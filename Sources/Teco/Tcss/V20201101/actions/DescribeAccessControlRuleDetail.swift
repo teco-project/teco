@@ -69,4 +69,16 @@ extension Tcss {
     public func describeAccessControlRuleDetail(_ input: DescribeAccessControlRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlRuleDetailResponse {
         try await self.client.execute(action: "DescribeAccessControlRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询运行时访问控制策略详细信息
+    @inlinable
+    public func describeAccessControlRuleDetail(ruleId: String? = nil, imageId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessControlRuleDetailResponse > {
+        self.describeAccessControlRuleDetail(DescribeAccessControlRuleDetailRequest(ruleId: ruleId, imageId: imageId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询运行时访问控制策略详细信息
+    @inlinable
+    public func describeAccessControlRuleDetail(ruleId: String? = nil, imageId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlRuleDetailResponse {
+        try await self.describeAccessControlRuleDetail(DescribeAccessControlRuleDetailRequest(ruleId: ruleId, imageId: imageId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

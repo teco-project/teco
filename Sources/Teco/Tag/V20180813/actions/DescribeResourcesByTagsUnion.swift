@@ -101,4 +101,16 @@ extension Tag {
     public func describeResourcesByTagsUnion(_ input: DescribeResourcesByTagsUnionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByTagsUnionResponse {
         try await self.client.execute(action: "DescribeResourcesByTagsUnion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 通过标签查询资源列表并集
+    @inlinable
+    public func describeResourcesByTagsUnion(tagFilters: [TagFilter], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, resourcePrefix: String? = nil, resourceId: String? = nil, resourceRegion: String? = nil, serviceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesByTagsUnionResponse > {
+        self.describeResourcesByTagsUnion(DescribeResourcesByTagsUnionRequest(tagFilters: tagFilters, createUin: createUin, offset: offset, limit: limit, resourcePrefix: resourcePrefix, resourceId: resourceId, resourceRegion: resourceRegion, serviceType: serviceType), logger: logger, on: eventLoop)
+    }
+    
+    /// 通过标签查询资源列表并集
+    @inlinable
+    public func describeResourcesByTagsUnion(tagFilters: [TagFilter], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, resourcePrefix: String? = nil, resourceId: String? = nil, resourceRegion: String? = nil, serviceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByTagsUnionResponse {
+        try await self.describeResourcesByTagsUnion(DescribeResourcesByTagsUnionRequest(tagFilters: tagFilters, createUin: createUin, offset: offset, limit: limit, resourcePrefix: resourcePrefix, resourceId: resourceId, resourceRegion: resourceRegion, serviceType: serviceType), logger: logger, on: eventLoop)
+    }
 }

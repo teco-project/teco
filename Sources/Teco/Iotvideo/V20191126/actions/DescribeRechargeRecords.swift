@@ -74,4 +74,20 @@ extension Iotvideo {
     public func describeRechargeRecords(_ input: DescribeRechargeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRechargeRecordsResponse {
         try await self.client.execute(action: "DescribeRechargeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询充值记录
+    ///
+    /// 客户可通过本接口获取充值记录信息, 一次最多返回50条记录。
+    @inlinable
+    public func describeRechargeRecords(accountType: Int64, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRechargeRecordsResponse > {
+        self.describeRechargeRecords(DescribeRechargeRecordsRequest(accountType: accountType, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询充值记录
+    ///
+    /// 客户可通过本接口获取充值记录信息, 一次最多返回50条记录。
+    @inlinable
+    public func describeRechargeRecords(accountType: Int64, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRechargeRecordsResponse {
+        try await self.describeRechargeRecords(DescribeRechargeRecordsRequest(accountType: accountType, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

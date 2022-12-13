@@ -50,4 +50,16 @@ extension Tcss {
     public func describeInspectionReport(_ input: DescribeInspectionReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInspectionReportResponse {
         try await self.client.execute(action: "DescribeInspectionReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询检查报告
+    @inlinable
+    public func describeInspectionReport(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInspectionReportResponse > {
+        self.describeInspectionReport(DescribeInspectionReportRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询检查报告
+    @inlinable
+    public func describeInspectionReport(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInspectionReportResponse {
+        try await self.describeInspectionReport(DescribeInspectionReportRequest(), logger: logger, on: eventLoop)
+    }
 }

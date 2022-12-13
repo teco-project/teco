@@ -59,4 +59,20 @@ extension Ecm {
     public func deleteListener(_ input: DeleteListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenerResponse {
         try await self.client.execute(action: "DeleteListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除负载均衡监听器
+    ///
+    /// 删除负载均衡监听器。
+    @inlinable
+    public func deleteListener(loadBalancerId: String, listenerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteListenerResponse > {
+        self.deleteListener(DeleteListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除负载均衡监听器
+    ///
+    /// 删除负载均衡监听器。
+    @inlinable
+    public func deleteListener(loadBalancerId: String, listenerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenerResponse {
+        try await self.deleteListener(DeleteListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId), logger: logger, on: eventLoop)
+    }
 }

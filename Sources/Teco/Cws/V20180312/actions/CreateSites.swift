@@ -67,4 +67,20 @@ extension Cws {
     public func createSites(_ input: CreateSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSitesResponse {
         try await self.client.execute(action: "CreateSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新增站点
+    ///
+    /// 本接口（CreateSites）用于新增一个或多个站点。
+    @inlinable
+    public func createSites(urls: [String], userAgent: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSitesResponse > {
+        self.createSites(CreateSitesRequest(urls: urls, userAgent: userAgent), logger: logger, on: eventLoop)
+    }
+    
+    /// 新增站点
+    ///
+    /// 本接口（CreateSites）用于新增一个或多个站点。
+    @inlinable
+    public func createSites(urls: [String], userAgent: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSitesResponse {
+        try await self.createSites(CreateSitesRequest(urls: urls, userAgent: userAgent), logger: logger, on: eventLoop)
+    }
 }

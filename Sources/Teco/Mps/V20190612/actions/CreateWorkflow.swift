@@ -123,4 +123,40 @@ extension Mps {
     public func createWorkflow(_ input: CreateWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkflowResponse {
         try await self.client.execute(action: "CreateWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建工作流
+    ///
+    /// 对 COS 中指定 Bucket 的目录下上传的媒体文件，设置处理规则，包括：
+    /// 1. 视频转码（带水印）；
+    /// 2. 视频转动图；
+    /// 3. 对视频按指定时间点截图；
+    /// 4. 对视频采样截图；
+    /// 5. 对视频截图雪碧图；
+    /// 6. 对视频转自适应码流；
+    /// 7. 智能内容审核（鉴黄、敏感信息检测）；
+    /// 8. 智能内容分析（标签、分类、封面、按帧标签）；
+    /// 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词）。
+    /// 注意：创建工作流成功后是禁用状态，需要手动启用。
+    @inlinable
+    public func createWorkflow(workflowName: String, trigger: WorkflowTrigger, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, taskPriority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkflowResponse > {
+        self.createWorkflow(CreateWorkflowRequest(workflowName: workflowName, trigger: trigger, outputStorage: outputStorage, outputDir: outputDir, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, taskNotifyConfig: taskNotifyConfig, taskPriority: taskPriority), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建工作流
+    ///
+    /// 对 COS 中指定 Bucket 的目录下上传的媒体文件，设置处理规则，包括：
+    /// 1. 视频转码（带水印）；
+    /// 2. 视频转动图；
+    /// 3. 对视频按指定时间点截图；
+    /// 4. 对视频采样截图；
+    /// 5. 对视频截图雪碧图；
+    /// 6. 对视频转自适应码流；
+    /// 7. 智能内容审核（鉴黄、敏感信息检测）；
+    /// 8. 智能内容分析（标签、分类、封面、按帧标签）；
+    /// 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词）。
+    /// 注意：创建工作流成功后是禁用状态，需要手动启用。
+    @inlinable
+    public func createWorkflow(workflowName: String, trigger: WorkflowTrigger, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, taskPriority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkflowResponse {
+        try await self.createWorkflow(CreateWorkflowRequest(workflowName: workflowName, trigger: trigger, outputStorage: outputStorage, outputDir: outputDir, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, taskNotifyConfig: taskNotifyConfig, taskPriority: taskPriority), logger: logger, on: eventLoop)
+    }
 }

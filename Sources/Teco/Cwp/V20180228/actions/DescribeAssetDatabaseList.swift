@@ -103,4 +103,16 @@ extension Cwp {
     public func describeAssetDatabaseList(_ input: DescribeAssetDatabaseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDatabaseListResponse {
         try await self.client.execute(action: "DescribeAssetDatabaseList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询资产管理数据库列表
+    @inlinable
+    public func describeAssetDatabaseList(quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetDatabaseListResponse > {
+        self.describeAssetDatabaseList(DescribeAssetDatabaseListRequest(quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资产管理数据库列表
+    @inlinable
+    public func describeAssetDatabaseList(quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDatabaseListResponse {
+        try await self.describeAssetDatabaseList(DescribeAssetDatabaseListRequest(quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

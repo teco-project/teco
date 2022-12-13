@@ -59,4 +59,20 @@ extension Tke {
     public func createPrometheusClusterAgent(_ input: CreatePrometheusClusterAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusClusterAgentResponse {
         try await self.client.execute(action: "CreatePrometheusClusterAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 2.0实例关联集群
+    ///
+    /// 与云监控融合的2.0实例关联集群
+    @inlinable
+    public func createPrometheusClusterAgent(instanceId: String, agents: [PrometheusClusterAgentBasic], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusClusterAgentResponse > {
+        self.createPrometheusClusterAgent(CreatePrometheusClusterAgentRequest(instanceId: instanceId, agents: agents), logger: logger, on: eventLoop)
+    }
+    
+    /// 2.0实例关联集群
+    ///
+    /// 与云监控融合的2.0实例关联集群
+    @inlinable
+    public func createPrometheusClusterAgent(instanceId: String, agents: [PrometheusClusterAgentBasic], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusClusterAgentResponse {
+        try await self.createPrometheusClusterAgent(CreatePrometheusClusterAgentRequest(instanceId: instanceId, agents: agents), logger: logger, on: eventLoop)
+    }
 }

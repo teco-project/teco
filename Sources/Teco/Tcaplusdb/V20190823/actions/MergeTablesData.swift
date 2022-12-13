@@ -63,4 +63,20 @@ extension Tcaplusdb {
     public func mergeTablesData(_ input: MergeTablesDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MergeTablesDataResponse {
         try await self.client.execute(action: "MergeTablesData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 合服
+    ///
+    /// 合并指定表格
+    @inlinable
+    public func mergeTablesData(selectedTables: [MergeTablesInfo], isOnlyCompare: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MergeTablesDataResponse > {
+        self.mergeTablesData(MergeTablesDataRequest(selectedTables: selectedTables, isOnlyCompare: isOnlyCompare), logger: logger, on: eventLoop)
+    }
+    
+    /// 合服
+    ///
+    /// 合并指定表格
+    @inlinable
+    public func mergeTablesData(selectedTables: [MergeTablesInfo], isOnlyCompare: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MergeTablesDataResponse {
+        try await self.mergeTablesData(MergeTablesDataRequest(selectedTables: selectedTables, isOnlyCompare: isOnlyCompare), logger: logger, on: eventLoop)
+    }
 }

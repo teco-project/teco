@@ -74,4 +74,20 @@ extension Apigateway {
     public func unBindIPStrategy(_ input: UnBindIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindIPStrategyResponse {
         try await self.client.execute(action: "UnBindIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 服务解绑IP策略
+    ///
+    /// 本接口（UnBindIPStrategy）用于服务解绑IP策略。
+    @inlinable
+    public func unBindIPStrategy(serviceId: String, strategyId: String, environmentName: String, unBindApiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindIPStrategyResponse > {
+        self.unBindIPStrategy(UnBindIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, unBindApiIds: unBindApiIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 服务解绑IP策略
+    ///
+    /// 本接口（UnBindIPStrategy）用于服务解绑IP策略。
+    @inlinable
+    public func unBindIPStrategy(serviceId: String, strategyId: String, environmentName: String, unBindApiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindIPStrategyResponse {
+        try await self.unBindIPStrategy(UnBindIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, unBindApiIds: unBindApiIds), logger: logger, on: eventLoop)
+    }
 }

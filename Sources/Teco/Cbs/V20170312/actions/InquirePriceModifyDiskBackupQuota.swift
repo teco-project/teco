@@ -63,4 +63,20 @@ extension Cbs {
     public func inquirePriceModifyDiskBackupQuota(_ input: InquirePriceModifyDiskBackupQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceModifyDiskBackupQuotaResponse {
         try await self.client.execute(action: "InquirePriceModifyDiskBackupQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改云硬盘备份点配额询价
+    ///
+    /// 本接口（InquirePricePriceModifyDiskBackupQuota）用于修改云硬盘备份点配额询价。
+    @inlinable
+    public func inquirePriceModifyDiskBackupQuota(diskId: String, diskBackupQuota: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceModifyDiskBackupQuotaResponse > {
+        self.inquirePriceModifyDiskBackupQuota(InquirePriceModifyDiskBackupQuotaRequest(diskId: diskId, diskBackupQuota: diskBackupQuota), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云硬盘备份点配额询价
+    ///
+    /// 本接口（InquirePricePriceModifyDiskBackupQuota）用于修改云硬盘备份点配额询价。
+    @inlinable
+    public func inquirePriceModifyDiskBackupQuota(diskId: String, diskBackupQuota: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceModifyDiskBackupQuotaResponse {
+        try await self.inquirePriceModifyDiskBackupQuota(InquirePriceModifyDiskBackupQuotaRequest(diskId: diskId, diskBackupQuota: diskBackupQuota), logger: logger, on: eventLoop)
+    }
 }

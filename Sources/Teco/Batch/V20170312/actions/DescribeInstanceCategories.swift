@@ -50,4 +50,20 @@ extension Batch {
     public func describeInstanceCategories(_ input: DescribeInstanceCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceCategoriesResponse {
         try await self.client.execute(action: "DescribeInstanceCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例分类信息
+    ///
+    /// 目前对CVM现有实例族分类，每一类包含若干实例族。该接口用于查询实例分类信息。
+    @inlinable
+    public func describeInstanceCategories(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceCategoriesResponse > {
+        self.describeInstanceCategories(DescribeInstanceCategoriesRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例分类信息
+    ///
+    /// 目前对CVM现有实例族分类，每一类包含若干实例族。该接口用于查询实例分类信息。
+    @inlinable
+    public func describeInstanceCategories(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceCategoriesResponse {
+        try await self.describeInstanceCategories(DescribeInstanceCategoriesRequest(), logger: logger, on: eventLoop)
+    }
 }

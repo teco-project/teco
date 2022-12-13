@@ -54,4 +54,20 @@ extension Bm {
     public func modifyPayModePre2Post(_ input: ModifyPayModePre2PostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPayModePre2PostResponse {
         try await self.client.execute(action: "ModifyPayModePre2Post", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 将设备从预付费转换为后付费
+    ///
+    /// 将设备的预付费模式修改为后付费计费模式，支持批量转换。（前提是客户要加入黑石物理机后付费计费的白名单，申请黑石物理机后付费可以联系腾讯云客服）
+    @inlinable
+    public func modifyPayModePre2Post(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPayModePre2PostResponse > {
+        self.modifyPayModePre2Post(ModifyPayModePre2PostRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 将设备从预付费转换为后付费
+    ///
+    /// 将设备的预付费模式修改为后付费计费模式，支持批量转换。（前提是客户要加入黑石物理机后付费计费的白名单，申请黑石物理机后付费可以联系腾讯云客服）
+    @inlinable
+    public func modifyPayModePre2Post(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPayModePre2PostResponse {
+        try await self.modifyPayModePre2Post(ModifyPayModePre2PostRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

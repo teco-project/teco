@@ -54,4 +54,16 @@ extension Cam {
     public func getSecurityLastUsed(_ input: GetSecurityLastUsedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSecurityLastUsedResponse {
         try await self.client.execute(action: "GetSecurityLastUsed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取密钥最近使用情况
+    @inlinable
+    public func getSecurityLastUsed(secretIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSecurityLastUsedResponse > {
+        self.getSecurityLastUsed(GetSecurityLastUsedRequest(secretIdList: secretIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取密钥最近使用情况
+    @inlinable
+    public func getSecurityLastUsed(secretIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSecurityLastUsedResponse {
+        try await self.getSecurityLastUsed(GetSecurityLastUsedRequest(secretIdList: secretIdList), logger: logger, on: eventLoop)
+    }
 }

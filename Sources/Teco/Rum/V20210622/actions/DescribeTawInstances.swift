@@ -98,4 +98,16 @@ extension Rum {
     public func describeTawInstances(_ input: DescribeTawInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTawInstancesResponse {
         try await self.client.execute(action: "DescribeTawInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例信息
+    @inlinable
+    public func describeTawInstances(chargeStatuses: [Int64]? = nil, chargeTypes: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, areaIds: [Int64]? = nil, instanceStatuses: [Int64]? = nil, instanceIds: [String]? = nil, filters: [Filter]? = nil, isDemo: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTawInstancesResponse > {
+        self.describeTawInstances(DescribeTawInstancesRequest(chargeStatuses: chargeStatuses, chargeTypes: chargeTypes, limit: limit, offset: offset, areaIds: areaIds, instanceStatuses: instanceStatuses, instanceIds: instanceIds, filters: filters, isDemo: isDemo), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例信息
+    @inlinable
+    public func describeTawInstances(chargeStatuses: [Int64]? = nil, chargeTypes: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, areaIds: [Int64]? = nil, instanceStatuses: [Int64]? = nil, instanceIds: [String]? = nil, filters: [Filter]? = nil, isDemo: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTawInstancesResponse {
+        try await self.describeTawInstances(DescribeTawInstancesRequest(chargeStatuses: chargeStatuses, chargeTypes: chargeTypes, limit: limit, offset: offset, areaIds: areaIds, instanceStatuses: instanceStatuses, instanceIds: instanceIds, filters: filters, isDemo: isDemo), logger: logger, on: eventLoop)
+    }
 }

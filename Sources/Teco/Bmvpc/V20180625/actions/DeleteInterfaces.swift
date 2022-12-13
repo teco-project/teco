@@ -63,4 +63,20 @@ extension Bmvpc {
     public func deleteInterfaces(_ input: DeleteInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInterfacesResponse {
         try await self.client.execute(action: "DeleteInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 物理机移除子网(批量接口)
+    ///
+    /// 物理机移除子网批量接口，传入一台物理机和多个子网，批量移除这些子网。异步接口，接口返回TaskId。
+    @inlinable
+    public func deleteInterfaces(instanceId: String, subnetIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInterfacesResponse > {
+        self.deleteInterfaces(DeleteInterfacesRequest(instanceId: instanceId, subnetIds: subnetIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 物理机移除子网(批量接口)
+    ///
+    /// 物理机移除子网批量接口，传入一台物理机和多个子网，批量移除这些子网。异步接口，接口返回TaskId。
+    @inlinable
+    public func deleteInterfaces(instanceId: String, subnetIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInterfacesResponse {
+        try await self.deleteInterfaces(DeleteInterfacesRequest(instanceId: instanceId, subnetIds: subnetIds), logger: logger, on: eventLoop)
+    }
 }

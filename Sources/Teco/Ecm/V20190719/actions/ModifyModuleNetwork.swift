@@ -60,4 +60,16 @@ extension Ecm {
     public func modifyModuleNetwork(_ input: ModifyModuleNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleNetworkResponse {
         try await self.client.execute(action: "ModifyModuleNetwork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改模块默认带宽上限
+    @inlinable
+    public func modifyModuleNetwork(moduleId: String, defaultBandwidth: Int64, defaultBandwidthIn: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleNetworkResponse > {
+        self.modifyModuleNetwork(ModifyModuleNetworkRequest(moduleId: moduleId, defaultBandwidth: defaultBandwidth, defaultBandwidthIn: defaultBandwidthIn), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改模块默认带宽上限
+    @inlinable
+    public func modifyModuleNetwork(moduleId: String, defaultBandwidth: Int64, defaultBandwidthIn: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleNetworkResponse {
+        try await self.modifyModuleNetwork(ModifyModuleNetworkRequest(moduleId: moduleId, defaultBandwidth: defaultBandwidth, defaultBandwidthIn: defaultBandwidthIn), logger: logger, on: eventLoop)
+    }
 }

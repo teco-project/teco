@@ -106,4 +106,20 @@ extension Dayu {
     public func describeTransmitStatis(_ input: DescribeTransmitStatisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTransmitStatisResponse {
         try await self.client.execute(action: "DescribeTransmitStatis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取业务转发统计数据
+    ///
+    /// 获取业务转发统计数据，支持转发流量和转发包速率
+    @inlinable
+    public func describeTransmitStatis(business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, ipList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTransmitStatisResponse > {
+        self.describeTransmitStatis(DescribeTransmitStatisRequest(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime, ipList: ipList), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取业务转发统计数据
+    ///
+    /// 获取业务转发统计数据，支持转发流量和转发包速率
+    @inlinable
+    public func describeTransmitStatis(business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, ipList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTransmitStatisResponse {
+        try await self.describeTransmitStatis(DescribeTransmitStatisRequest(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime, ipList: ipList), logger: logger, on: eventLoop)
+    }
 }

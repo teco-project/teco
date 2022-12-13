@@ -93,4 +93,16 @@ extension Tcb {
     public func describeEnvDealRegion(_ input: DescribeEnvDealRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvDealRegionResponse {
         try await self.client.execute(action: "DescribeEnvDealRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取环境下单地域
+    @inlinable
+    public func describeEnvDealRegion(envId: String, dealType: String, dealAction: String, dealRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvDealRegionResponse > {
+        self.describeEnvDealRegion(DescribeEnvDealRegionRequest(envId: envId, dealType: dealType, dealAction: dealAction, dealRegion: dealRegion), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取环境下单地域
+    @inlinable
+    public func describeEnvDealRegion(envId: String, dealType: String, dealAction: String, dealRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvDealRegionResponse {
+        try await self.describeEnvDealRegion(DescribeEnvDealRegionRequest(envId: envId, dealType: dealType, dealAction: dealAction, dealRegion: dealRegion), logger: logger, on: eventLoop)
+    }
 }

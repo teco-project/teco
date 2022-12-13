@@ -69,4 +69,20 @@ extension Cdb {
     public func modifyTimeWindow(_ input: ModifyTimeWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTimeWindowResponse {
         try await self.client.execute(action: "ModifyTimeWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新维护时间窗口
+    ///
+    /// 本接口(ModifyTimeWindow)用于更新云数据库实例的维护时间窗口。
+    @inlinable
+    public func modifyTimeWindow(instanceId: String, timeRanges: [String], weekdays: [String]? = nil, maxDelayTime: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTimeWindowResponse > {
+        self.modifyTimeWindow(ModifyTimeWindowRequest(instanceId: instanceId, timeRanges: timeRanges, weekdays: weekdays, maxDelayTime: maxDelayTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新维护时间窗口
+    ///
+    /// 本接口(ModifyTimeWindow)用于更新云数据库实例的维护时间窗口。
+    @inlinable
+    public func modifyTimeWindow(instanceId: String, timeRanges: [String], weekdays: [String]? = nil, maxDelayTime: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTimeWindowResponse {
+        try await self.modifyTimeWindow(ModifyTimeWindowRequest(instanceId: instanceId, timeRanges: timeRanges, weekdays: weekdays, maxDelayTime: maxDelayTime), logger: logger, on: eventLoop)
+    }
 }

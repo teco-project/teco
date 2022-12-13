@@ -69,4 +69,16 @@ extension Tcaplusdb {
     public func modifyClusterMachine(_ input: ModifyClusterMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterMachineResponse {
         try await self.client.execute(action: "ModifyClusterMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改独占集群机器
+    @inlinable
+    public func modifyClusterMachine(clusterId: String, serverList: [MachineInfo], proxyList: [MachineInfo], clusterType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterMachineResponse > {
+        self.modifyClusterMachine(ModifyClusterMachineRequest(clusterId: clusterId, serverList: serverList, proxyList: proxyList, clusterType: clusterType), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改独占集群机器
+    @inlinable
+    public func modifyClusterMachine(clusterId: String, serverList: [MachineInfo], proxyList: [MachineInfo], clusterType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterMachineResponse {
+        try await self.modifyClusterMachine(ModifyClusterMachineRequest(clusterId: clusterId, serverList: serverList, proxyList: proxyList, clusterType: clusterType), logger: logger, on: eventLoop)
+    }
 }

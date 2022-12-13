@@ -102,4 +102,16 @@ extension Pts {
     public func updateCronJob(_ input: UpdateCronJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCronJobResponse {
         try await self.client.execute(action: "UpdateCronJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新定时任务
+    @inlinable
+    public func updateCronJob(projectId: String, cronJobId: String, note: String, cronExpression: String, frequencyType: Int64, name: String, scenarioId: String, scenarioName: String, jobOwner: String, endTime: Date? = nil, noticeId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCronJobResponse > {
+        self.updateCronJob(UpdateCronJobRequest(projectId: projectId, cronJobId: cronJobId, note: note, cronExpression: cronExpression, frequencyType: frequencyType, name: name, scenarioId: scenarioId, scenarioName: scenarioName, jobOwner: jobOwner, endTime: endTime, noticeId: noticeId), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新定时任务
+    @inlinable
+    public func updateCronJob(projectId: String, cronJobId: String, note: String, cronExpression: String, frequencyType: Int64, name: String, scenarioId: String, scenarioName: String, jobOwner: String, endTime: Date? = nil, noticeId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCronJobResponse {
+        try await self.updateCronJob(UpdateCronJobRequest(projectId: projectId, cronJobId: cronJobId, note: note, cronExpression: cronExpression, frequencyType: frequencyType, name: name, scenarioId: scenarioId, scenarioName: scenarioName, jobOwner: jobOwner, endTime: endTime, noticeId: noticeId), logger: logger, on: eventLoop)
+    }
 }

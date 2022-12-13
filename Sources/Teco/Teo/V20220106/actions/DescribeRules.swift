@@ -67,4 +67,20 @@ extension Teo {
     public func describeRules(_ input: DescribeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesResponse {
         try await self.client.execute(action: "DescribeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询规则引擎规则
+    ///
+    /// 查询规则引擎规则。
+    @inlinable
+    public func describeRules(zoneId: String, filters: [RuleFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesResponse > {
+        self.describeRules(DescribeRulesRequest(zoneId: zoneId, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询规则引擎规则
+    ///
+    /// 查询规则引擎规则。
+    @inlinable
+    public func describeRules(zoneId: String, filters: [RuleFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesResponse {
+        try await self.describeRules(DescribeRulesRequest(zoneId: zoneId, filters: filters), logger: logger, on: eventLoop)
+    }
 }

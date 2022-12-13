@@ -78,4 +78,20 @@ extension Cpdp {
     public func refundOrder(_ input: RefundOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundOrderResponse {
         try await self.client.execute(action: "RefundOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云鉴-消费订单退款接口
+    ///
+    /// 云鉴-消费订单退款的接口
+    @inlinable
+    public func refundOrder(merchantAppId: String, orderNo: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RefundOrderResponse > {
+        self.refundOrder(RefundOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo), logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-消费订单退款接口
+    ///
+    /// 云鉴-消费订单退款的接口
+    @inlinable
+    public func refundOrder(merchantAppId: String, orderNo: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundOrderResponse {
+        try await self.refundOrder(RefundOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo), logger: logger, on: eventLoop)
+    }
 }

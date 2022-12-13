@@ -84,4 +84,20 @@ extension Pts {
     public func describeSampleQuery(_ input: DescribeSampleQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleQueryResponse {
         try await self.client.execute(action: "DescribeSampleQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询指标
+    ///
+    /// 查询指标，返回固定时间点指标内容
+    @inlinable
+    public func describeSampleQuery(jobId: String, scenarioId: String, metric: String, aggregation: String, projectId: String, labels: [Label]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSampleQueryResponse > {
+        self.describeSampleQuery(DescribeSampleQueryRequest(jobId: jobId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, projectId: projectId, labels: labels), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询指标
+    ///
+    /// 查询指标，返回固定时间点指标内容
+    @inlinable
+    public func describeSampleQuery(jobId: String, scenarioId: String, metric: String, aggregation: String, projectId: String, labels: [Label]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleQueryResponse {
+        try await self.describeSampleQuery(DescribeSampleQueryRequest(jobId: jobId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, projectId: projectId, labels: labels), logger: logger, on: eventLoop)
+    }
 }

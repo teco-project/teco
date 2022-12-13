@@ -55,4 +55,16 @@ extension Dasb {
     public func bindDeviceResource(_ input: BindDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDeviceResourceResponse {
         try await self.client.execute(action: "BindDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改资产绑定的堡垒机服务
+    @inlinable
+    public func bindDeviceResource(deviceIdSet: [UInt64], resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindDeviceResourceResponse > {
+        self.bindDeviceResource(BindDeviceResourceRequest(deviceIdSet: deviceIdSet, resourceId: resourceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改资产绑定的堡垒机服务
+    @inlinable
+    public func bindDeviceResource(deviceIdSet: [UInt64], resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDeviceResourceResponse {
+        try await self.bindDeviceResource(BindDeviceResourceRequest(deviceIdSet: deviceIdSet, resourceId: resourceId), logger: logger, on: eventLoop)
+    }
 }

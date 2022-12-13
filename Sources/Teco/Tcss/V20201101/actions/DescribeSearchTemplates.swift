@@ -63,4 +63,16 @@ extension Tcss {
     public func describeSearchTemplates(_ input: DescribeSearchTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchTemplatesResponse {
         try await self.client.execute(action: "DescribeSearchTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取快速检索列表
+    @inlinable
+    public func describeSearchTemplates(offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSearchTemplatesResponse > {
+        self.describeSearchTemplates(DescribeSearchTemplatesRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取快速检索列表
+    @inlinable
+    public func describeSearchTemplates(offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchTemplatesResponse {
+        try await self.describeSearchTemplates(DescribeSearchTemplatesRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

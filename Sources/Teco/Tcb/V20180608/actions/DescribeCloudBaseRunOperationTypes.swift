@@ -69,4 +69,20 @@ extension Tcb {
     public func describeCloudBaseRunOperationTypes(_ input: DescribeCloudBaseRunOperationTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunOperationTypesResponse {
         try await self.client.execute(action: "DescribeCloudBaseRunOperationTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询操作类型接口
+    ///
+    /// 查询服务、版本和操作类型
+    @inlinable
+    public func describeCloudBaseRunOperationTypes(envId: String, serverName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunOperationTypesResponse > {
+        self.describeCloudBaseRunOperationTypes(DescribeCloudBaseRunOperationTypesRequest(envId: envId, serverName: serverName), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询操作类型接口
+    ///
+    /// 查询服务、版本和操作类型
+    @inlinable
+    public func describeCloudBaseRunOperationTypes(envId: String, serverName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunOperationTypesResponse {
+        try await self.describeCloudBaseRunOperationTypes(DescribeCloudBaseRunOperationTypesRequest(envId: envId, serverName: serverName), logger: logger, on: eventLoop)
+    }
 }

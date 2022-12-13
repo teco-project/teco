@@ -129,4 +129,16 @@ extension Tsf {
     public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
         try await self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建集群
+    @inlinable
+    public func createCluster(clusterName: String, clusterType: String, vpcId: String, clusterCIDR: String? = nil, clusterDesc: String? = nil, tsfRegionId: String? = nil, tsfZoneId: String? = nil, subnetId: String? = nil, clusterVersion: String? = nil, maxNodePodNum: UInt64? = nil, maxClusterServiceNum: UInt64? = nil, programId: String? = nil, kuberneteApiServer: String? = nil, kuberneteNativeType: String? = nil, kuberneteNativeSecret: String? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterResponse > {
+        self.createCluster(CreateClusterRequest(clusterName: clusterName, clusterType: clusterType, vpcId: vpcId, clusterCIDR: clusterCIDR, clusterDesc: clusterDesc, tsfRegionId: tsfRegionId, tsfZoneId: tsfZoneId, subnetId: subnetId, clusterVersion: clusterVersion, maxNodePodNum: maxNodePodNum, maxClusterServiceNum: maxClusterServiceNum, programId: programId, kuberneteApiServer: kuberneteApiServer, kuberneteNativeType: kuberneteNativeType, kuberneteNativeSecret: kuberneteNativeSecret, programIdList: programIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群
+    @inlinable
+    public func createCluster(clusterName: String, clusterType: String, vpcId: String, clusterCIDR: String? = nil, clusterDesc: String? = nil, tsfRegionId: String? = nil, tsfZoneId: String? = nil, subnetId: String? = nil, clusterVersion: String? = nil, maxNodePodNum: UInt64? = nil, maxClusterServiceNum: UInt64? = nil, programId: String? = nil, kuberneteApiServer: String? = nil, kuberneteNativeType: String? = nil, kuberneteNativeSecret: String? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
+        try await self.createCluster(CreateClusterRequest(clusterName: clusterName, clusterType: clusterType, vpcId: vpcId, clusterCIDR: clusterCIDR, clusterDesc: clusterDesc, tsfRegionId: tsfRegionId, tsfZoneId: tsfZoneId, subnetId: subnetId, clusterVersion: clusterVersion, maxNodePodNum: maxNodePodNum, maxClusterServiceNum: maxClusterServiceNum, programId: programId, kuberneteApiServer: kuberneteApiServer, kuberneteNativeType: kuberneteNativeType, kuberneteNativeSecret: kuberneteNativeSecret, programIdList: programIdList), logger: logger, on: eventLoop)
+    }
 }

@@ -74,4 +74,30 @@ extension Cvm {
     public func modifyInstanceDiskType(_ input: ModifyInstanceDiskTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceDiskTypeResponse {
         try await self.client.execute(action: "ModifyInstanceDiskType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改实例的硬盘介质
+    ///
+    /// 本接口 (ModifyInstanceDiskType) 用于修改实例硬盘介质类型。
+    /// * 只支持实例的本地系统盘、本地数据盘转化成指定云硬盘介质。
+    /// * 只支持实例在关机状态下转换成指定云硬盘介质。
+    /// * 不支持竞价实例类型。
+    /// * 若实例同时存在本地系统盘和本地数据盘，需同时调整系统盘和数据盘的介质类型，不支持单独针对本地系统盘或本地数据盘修改介质类型。
+    /// * 修改前请确保账户余额充足。可通过[`DescribeAccountBalance`](https://cloud.tencent.com/document/product/378/4397)接口查询账户余额。
+    @inlinable
+    public func modifyInstanceDiskType(instanceId: String, dataDisks: [DataDisk]? = nil, systemDisk: SystemDisk? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceDiskTypeResponse > {
+        self.modifyInstanceDiskType(ModifyInstanceDiskTypeRequest(instanceId: instanceId, dataDisks: dataDisks, systemDisk: systemDisk), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例的硬盘介质
+    ///
+    /// 本接口 (ModifyInstanceDiskType) 用于修改实例硬盘介质类型。
+    /// * 只支持实例的本地系统盘、本地数据盘转化成指定云硬盘介质。
+    /// * 只支持实例在关机状态下转换成指定云硬盘介质。
+    /// * 不支持竞价实例类型。
+    /// * 若实例同时存在本地系统盘和本地数据盘，需同时调整系统盘和数据盘的介质类型，不支持单独针对本地系统盘或本地数据盘修改介质类型。
+    /// * 修改前请确保账户余额充足。可通过[`DescribeAccountBalance`](https://cloud.tencent.com/document/product/378/4397)接口查询账户余额。
+    @inlinable
+    public func modifyInstanceDiskType(instanceId: String, dataDisks: [DataDisk]? = nil, systemDisk: SystemDisk? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceDiskTypeResponse {
+        try await self.modifyInstanceDiskType(ModifyInstanceDiskTypeRequest(instanceId: instanceId, dataDisks: dataDisks, systemDisk: systemDisk), logger: logger, on: eventLoop)
+    }
 }

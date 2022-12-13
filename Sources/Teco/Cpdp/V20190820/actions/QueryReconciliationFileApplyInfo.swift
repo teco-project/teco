@@ -74,4 +74,16 @@ extension Cpdp {
     public func queryReconciliationFileApplyInfo(_ input: QueryReconciliationFileApplyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryReconciliationFileApplyInfoResponse {
         try await self.client.execute(action: "QueryReconciliationFileApplyInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 聚鑫-查询对账文件申请结果
+    @inlinable
+    public func queryReconciliationFileApplyInfo(applyFileId: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryReconciliationFileApplyInfoResponse > {
+        self.queryReconciliationFileApplyInfo(QueryReconciliationFileApplyInfoRequest(applyFileId: applyFileId, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-查询对账文件申请结果
+    @inlinable
+    public func queryReconciliationFileApplyInfo(applyFileId: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryReconciliationFileApplyInfoResponse {
+        try await self.queryReconciliationFileApplyInfo(QueryReconciliationFileApplyInfoRequest(applyFileId: applyFileId, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
 }

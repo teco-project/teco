@@ -75,4 +75,16 @@ extension Wedata {
     public func describeRuleTablesByPage(_ input: DescribeRuleTablesByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleTablesByPageResponse {
         try await self.client.execute(action: "DescribeRuleTablesByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取表列表
+    @inlinable
+    public func describeRuleTablesByPage(projectId: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleTablesByPageResponse > {
+        self.describeRuleTablesByPage(DescribeRuleTablesByPageRequest(projectId: projectId, pageSize: pageSize, pageNumber: pageNumber, filters: filters, orderFields: orderFields), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取表列表
+    @inlinable
+    public func describeRuleTablesByPage(projectId: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleTablesByPageResponse {
+        try await self.describeRuleTablesByPage(DescribeRuleTablesByPageRequest(projectId: projectId, pageSize: pageSize, pageNumber: pageNumber, filters: filters, orderFields: orderFields), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,20 @@ extension Chdfs {
     public func createAccessGroup(_ input: CreateAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessGroupResponse {
         try await self.client.execute(action: "CreateAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建权限组
+    ///
+    /// 创建权限组。
+    @inlinable
+    public func createAccessGroup(accessGroupName: String, vpcType: UInt64, vpcId: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccessGroupResponse > {
+        self.createAccessGroup(CreateAccessGroupRequest(accessGroupName: accessGroupName, vpcType: vpcType, vpcId: vpcId, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建权限组
+    ///
+    /// 创建权限组。
+    @inlinable
+    public func createAccessGroup(accessGroupName: String, vpcType: UInt64, vpcId: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessGroupResponse {
+        try await self.createAccessGroup(CreateAccessGroupRequest(accessGroupName: accessGroupName, vpcType: vpcType, vpcId: vpcId, description: description), logger: logger, on: eventLoop)
+    }
 }

@@ -124,4 +124,20 @@ extension Ssl {
     public func describeCertificates(_ input: DescribeCertificatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificatesResponse {
         try await self.client.execute(action: "DescribeCertificates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取证书列表
+    ///
+    /// 本接口（DescribeCertificates）用于获取证书列表。
+    @inlinable
+    public func describeCertificates(offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, certificateType: String? = nil, projectId: UInt64? = nil, expirationSort: String? = nil, certificateStatus: [UInt64]? = nil, deployable: UInt64? = nil, upload: Int64? = nil, renew: Int64? = nil, filterSource: String? = nil, isSM: Int64? = nil, filterExpiring: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertificatesResponse > {
+        self.describeCertificates(DescribeCertificatesRequest(offset: offset, limit: limit, searchKey: searchKey, certificateType: certificateType, projectId: projectId, expirationSort: expirationSort, certificateStatus: certificateStatus, deployable: deployable, upload: upload, renew: renew, filterSource: filterSource, isSM: isSM, filterExpiring: filterExpiring), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取证书列表
+    ///
+    /// 本接口（DescribeCertificates）用于获取证书列表。
+    @inlinable
+    public func describeCertificates(offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, certificateType: String? = nil, projectId: UInt64? = nil, expirationSort: String? = nil, certificateStatus: [UInt64]? = nil, deployable: UInt64? = nil, upload: Int64? = nil, renew: Int64? = nil, filterSource: String? = nil, isSM: Int64? = nil, filterExpiring: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificatesResponse {
+        try await self.describeCertificates(DescribeCertificatesRequest(offset: offset, limit: limit, searchKey: searchKey, certificateType: certificateType, projectId: projectId, expirationSort: expirationSort, certificateStatus: certificateStatus, deployable: deployable, upload: upload, renew: renew, filterSource: filterSource, isSM: isSM, filterExpiring: filterExpiring), logger: logger, on: eventLoop)
+    }
 }

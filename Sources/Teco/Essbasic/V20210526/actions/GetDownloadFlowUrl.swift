@@ -26,7 +26,7 @@ extension Essbasic {
         /// 操作者的信息
         public let `operator`: UserInfo?
         
-        public init (agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil, `operator`: UserInfo? = nil) {
+        public init (agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.downLoadFlows = downLoadFlows
             self.`operator` = `operator`
@@ -69,5 +69,23 @@ extension Essbasic {
     @inlinable
     public func getDownloadFlowUrl(_ input: GetDownloadFlowUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDownloadFlowUrlResponse {
         try await self.client.execute(action: "GetDownloadFlowUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 获取合同（流程）批量下载链接
+    ///
+    /// 此接口（GetDownloadFlowUrl）用于创建电子签批量下载地址，让合作企业进入控制台直接下载，支持客户合同（流程）按照自定义文件夹形式 分类下载。
+    /// 当前接口限制最多合同（流程）50个.
+    @inlinable
+    public func getDownloadFlowUrl(agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDownloadFlowUrlResponse > {
+        self.getDownloadFlowUrl(GetDownloadFlowUrlRequest(agent: agent, downLoadFlows: downLoadFlows, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取合同（流程）批量下载链接
+    ///
+    /// 此接口（GetDownloadFlowUrl）用于创建电子签批量下载地址，让合作企业进入控制台直接下载，支持客户合同（流程）按照自定义文件夹形式 分类下载。
+    /// 当前接口限制最多合同（流程）50个.
+    @inlinable
+    public func getDownloadFlowUrl(agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDownloadFlowUrlResponse {
+        try await self.getDownloadFlowUrl(GetDownloadFlowUrlRequest(agent: agent, downLoadFlows: downLoadFlows, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

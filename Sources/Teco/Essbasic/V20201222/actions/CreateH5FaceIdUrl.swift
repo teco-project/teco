@@ -98,4 +98,20 @@ extension Essbasic {
     public func createH5FaceIdUrl(_ input: CreateH5FaceIdUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateH5FaceIdUrlResponse {
         try await self.client.execute(action: "CreateH5FaceIdUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取慧眼H5人脸核身Url
+    ///
+    /// 该接口为第三方平台向电子签平台获取慧眼H5人脸核身Url
+    @inlinable
+    public func createH5FaceIdUrl(caller: Caller, wbAppId: String? = nil, name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, jumpUrl: String? = nil, jumpType: String? = nil, openFrom: String? = nil, redirectType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateH5FaceIdUrlResponse > {
+        self.createH5FaceIdUrl(CreateH5FaceIdUrlRequest(caller: caller, wbAppId: wbAppId, name: name, idCardType: idCardType, idCardNumber: idCardNumber, jumpUrl: jumpUrl, jumpType: jumpType, openFrom: openFrom, redirectType: redirectType), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取慧眼H5人脸核身Url
+    ///
+    /// 该接口为第三方平台向电子签平台获取慧眼H5人脸核身Url
+    @inlinable
+    public func createH5FaceIdUrl(caller: Caller, wbAppId: String? = nil, name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, jumpUrl: String? = nil, jumpType: String? = nil, openFrom: String? = nil, redirectType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateH5FaceIdUrlResponse {
+        try await self.createH5FaceIdUrl(CreateH5FaceIdUrlRequest(caller: caller, wbAppId: wbAppId, name: name, idCardType: idCardType, idCardNumber: idCardNumber, jumpUrl: jumpUrl, jumpType: jumpType, openFrom: openFrom, redirectType: redirectType), logger: logger, on: eventLoop)
+    }
 }

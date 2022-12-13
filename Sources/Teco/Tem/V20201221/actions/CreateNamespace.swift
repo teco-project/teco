@@ -89,4 +89,20 @@ extension Tem {
     public func createNamespace(_ input: CreateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
         try await self.client.execute(action: "CreateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建命名空间
+    ///
+    /// 创建环境
+    @inlinable
+    public func createNamespace(namespaceName: String, vpc: String, subnetIds: [String], description: String? = nil, k8sVersion: String? = nil, sourceChannel: Int64? = nil, enableTswTraceService: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNamespaceResponse > {
+        self.createNamespace(CreateNamespaceRequest(namespaceName: namespaceName, vpc: vpc, subnetIds: subnetIds, description: description, k8sVersion: k8sVersion, sourceChannel: sourceChannel, enableTswTraceService: enableTswTraceService), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建命名空间
+    ///
+    /// 创建环境
+    @inlinable
+    public func createNamespace(namespaceName: String, vpc: String, subnetIds: [String], description: String? = nil, k8sVersion: String? = nil, sourceChannel: Int64? = nil, enableTswTraceService: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
+        try await self.createNamespace(CreateNamespaceRequest(namespaceName: namespaceName, vpc: vpc, subnetIds: subnetIds, description: description, k8sVersion: k8sVersion, sourceChannel: sourceChannel, enableTswTraceService: enableTswTraceService), logger: logger, on: eventLoop)
+    }
 }

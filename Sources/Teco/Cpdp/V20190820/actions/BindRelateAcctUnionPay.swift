@@ -139,4 +139,28 @@ extension Cpdp {
     public func bindRelateAcctUnionPay(_ input: BindRelateAcctUnionPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRelateAcctUnionPayResponse {
         try await self.client.execute(action: "BindRelateAcctUnionPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云鉴-会员绑定提现账户-银联鉴权
+    ///
+    /// 会员绑定提现账户-银联鉴权。用于会员申请绑定提现账户，申请后银行前往银联验证卡信息：姓名、证件、卡号、银行预留手机是否相符，相符则发送给会员手机动态验证码并返回成功，不相符则返回失败。
+    /// 平台接收到银行返回成功后，进入输入动态验证码的页面，有效期120秒，若120秒未输入，客户可点击重新发送动态验证码，这个步骤重新调用该接口即可。
+    /// 平安银行的账户，大小额行号和超级网银号都不用送。
+    /// 超级网银号：单笔转账金额不超过5万，不限制笔数，只用选XX银行，不用具体到支行，可实时知道对方是否收款成功。
+    /// 大小额联行号：单笔转账可超过5万，需具体到支行，不能实时知道对方是否收款成功。金额超过5万的，在工作日的8点30-17点间才会成功。
+    @inlinable
+    public func bindRelateAcctUnionPay(tranNetMemberCode: String, memberName: String, memberGlobalType: String, memberGlobalId: String, memberAcctNo: String, bankType: String, acctOpenBranchName: String, mobile: String, mrchCode: String, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindRelateAcctUnionPayResponse > {
+        self.bindRelateAcctUnionPay(BindRelateAcctUnionPayRequest(tranNetMemberCode: tranNetMemberCode, memberName: memberName, memberGlobalType: memberGlobalType, memberGlobalId: memberGlobalId, memberAcctNo: memberAcctNo, bankType: bankType, acctOpenBranchName: acctOpenBranchName, mobile: mobile, mrchCode: mrchCode, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-会员绑定提现账户-银联鉴权
+    ///
+    /// 会员绑定提现账户-银联鉴权。用于会员申请绑定提现账户，申请后银行前往银联验证卡信息：姓名、证件、卡号、银行预留手机是否相符，相符则发送给会员手机动态验证码并返回成功，不相符则返回失败。
+    /// 平台接收到银行返回成功后，进入输入动态验证码的页面，有效期120秒，若120秒未输入，客户可点击重新发送动态验证码，这个步骤重新调用该接口即可。
+    /// 平安银行的账户，大小额行号和超级网银号都不用送。
+    /// 超级网银号：单笔转账金额不超过5万，不限制笔数，只用选XX银行，不用具体到支行，可实时知道对方是否收款成功。
+    /// 大小额联行号：单笔转账可超过5万，需具体到支行，不能实时知道对方是否收款成功。金额超过5万的，在工作日的8点30-17点间才会成功。
+    @inlinable
+    public func bindRelateAcctUnionPay(tranNetMemberCode: String, memberName: String, memberGlobalType: String, memberGlobalId: String, memberAcctNo: String, bankType: String, acctOpenBranchName: String, mobile: String, mrchCode: String, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRelateAcctUnionPayResponse {
+        try await self.bindRelateAcctUnionPay(BindRelateAcctUnionPayRequest(tranNetMemberCode: tranNetMemberCode, memberName: memberName, memberGlobalType: memberGlobalType, memberGlobalId: memberGlobalId, memberAcctNo: memberAcctNo, bankType: bankType, acctOpenBranchName: acctOpenBranchName, mobile: mobile, mrchCode: mrchCode, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    }
 }

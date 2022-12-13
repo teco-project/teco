@@ -76,4 +76,20 @@ extension Habo {
     public func startAnalyse(_ input: StartAnalyseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartAnalyseResponse {
         try await self.client.execute(action: "StartAnalyse", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 分析样本
+    ///
+    /// 上传样本到哈勃进行分析，异步生成分析日志。
+    @inlinable
+    public func startAnalyse(pk: String, md5: String, dlUrl: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartAnalyseResponse > {
+        self.startAnalyse(StartAnalyseRequest(pk: pk, md5: md5, dlUrl: dlUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 分析样本
+    ///
+    /// 上传样本到哈勃进行分析，异步生成分析日志。
+    @inlinable
+    public func startAnalyse(pk: String, md5: String, dlUrl: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartAnalyseResponse {
+        try await self.startAnalyse(StartAnalyseRequest(pk: pk, md5: md5, dlUrl: dlUrl), logger: logger, on: eventLoop)
+    }
 }

@@ -72,4 +72,20 @@ extension Thpc {
     public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
         try await self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询集群列表
+    ///
+    /// 本接口（DescribeClusters）用于查询集群列表。
+    @inlinable
+    public func describeClusters(clusterIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClustersResponse > {
+        self.describeClusters(DescribeClustersRequest(clusterIds: clusterIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群列表
+    ///
+    /// 本接口（DescribeClusters）用于查询集群列表。
+    @inlinable
+    public func describeClusters(clusterIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
+        try await self.describeClusters(DescribeClustersRequest(clusterIds: clusterIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

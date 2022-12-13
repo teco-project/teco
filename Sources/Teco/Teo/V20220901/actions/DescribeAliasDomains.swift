@@ -78,4 +78,20 @@ extension Teo {
     public func describeAliasDomains(_ input: DescribeAliasDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAliasDomainsResponse {
         try await self.client.execute(action: "DescribeAliasDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询别称域名信息列表
+    ///
+    /// 查询别称域名信息列表。
+    @inlinable
+    public func describeAliasDomains(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAliasDomainsResponse > {
+        self.describeAliasDomains(DescribeAliasDomainsRequest(zoneId: zoneId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询别称域名信息列表
+    ///
+    /// 查询别称域名信息列表。
+    @inlinable
+    public func describeAliasDomains(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAliasDomainsResponse {
+        try await self.describeAliasDomains(DescribeAliasDomainsRequest(zoneId: zoneId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

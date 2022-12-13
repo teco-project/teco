@@ -82,4 +82,20 @@ extension Ft {
     public func faceCartoonPic(_ input: FaceCartoonPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceCartoonPicResponse {
         try await self.client.execute(action: "FaceCartoonPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 人像动漫化
+    ///
+    /// 输入一张人脸照片，生成个性化的二次元动漫形象，可用于打造个性头像、趣味活动、特效类应用等场景，提升社交娱乐的体验。
+    @inlinable
+    public func faceCartoonPic(image: String? = nil, url: String? = nil, rspImgType: String? = nil, disableGlobalEffect: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FaceCartoonPicResponse > {
+        self.faceCartoonPic(FaceCartoonPicRequest(image: image, url: url, rspImgType: rspImgType, disableGlobalEffect: disableGlobalEffect), logger: logger, on: eventLoop)
+    }
+    
+    /// 人像动漫化
+    ///
+    /// 输入一张人脸照片，生成个性化的二次元动漫形象，可用于打造个性头像、趣味活动、特效类应用等场景，提升社交娱乐的体验。
+    @inlinable
+    public func faceCartoonPic(image: String? = nil, url: String? = nil, rspImgType: String? = nil, disableGlobalEffect: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceCartoonPicResponse {
+        try await self.faceCartoonPic(FaceCartoonPicRequest(image: image, url: url, rspImgType: rspImgType, disableGlobalEffect: disableGlobalEffect), logger: logger, on: eventLoop)
+    }
 }

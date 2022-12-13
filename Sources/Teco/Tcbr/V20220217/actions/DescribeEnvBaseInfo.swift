@@ -54,4 +54,16 @@ extension Tcbr {
     public func describeEnvBaseInfo(_ input: DescribeEnvBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvBaseInfoResponse {
         try await self.client.execute(action: "DescribeEnvBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询环境基础信息
+    @inlinable
+    public func describeEnvBaseInfo(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvBaseInfoResponse > {
+        self.describeEnvBaseInfo(DescribeEnvBaseInfoRequest(envId: envId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询环境基础信息
+    @inlinable
+    public func describeEnvBaseInfo(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvBaseInfoResponse {
+        try await self.describeEnvBaseInfo(DescribeEnvBaseInfoRequest(envId: envId), logger: logger, on: eventLoop)
+    }
 }

@@ -93,4 +93,16 @@ extension Tcaplusdb {
     public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
         try await self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取审批管理的申请单
+    @inlinable
+    public func describeApplications(clusterId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, censorStatus: Int64? = nil, tableGroupId: String? = nil, tableName: String? = nil, applicant: String? = nil, applyType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationsResponse > {
+        self.describeApplications(DescribeApplicationsRequest(clusterId: clusterId, limit: limit, offset: offset, censorStatus: censorStatus, tableGroupId: tableGroupId, tableName: tableName, applicant: applicant, applyType: applyType), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取审批管理的申请单
+    @inlinable
+    public func describeApplications(clusterId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, censorStatus: Int64? = nil, tableGroupId: String? = nil, tableName: String? = nil, applicant: String? = nil, applyType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
+        try await self.describeApplications(DescribeApplicationsRequest(clusterId: clusterId, limit: limit, offset: offset, censorStatus: censorStatus, tableGroupId: tableGroupId, tableName: tableName, applicant: applicant, applyType: applyType), logger: logger, on: eventLoop)
+    }
 }

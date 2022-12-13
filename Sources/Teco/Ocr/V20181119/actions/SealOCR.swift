@@ -77,4 +77,20 @@ extension Ocr {
     public func sealOCR(_ input: SealOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SealOCRResponse {
         try await self.client.execute(action: "SealOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 印章识别
+    ///
+    /// 本接口支持各类印章识别，包括发票章，财务章等，适用于公文，票据等场景。
+    @inlinable
+    public func sealOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SealOCRResponse > {
+        self.sealOCR(SealOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 印章识别
+    ///
+    /// 本接口支持各类印章识别，包括发票章，财务章等，适用于公文，票据等场景。
+    @inlinable
+    public func sealOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SealOCRResponse {
+        try await self.sealOCR(SealOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
 }

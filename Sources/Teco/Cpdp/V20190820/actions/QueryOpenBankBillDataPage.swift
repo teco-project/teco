@@ -110,4 +110,16 @@ extension Cpdp {
     public func queryOpenBankBillDataPage(_ input: QueryOpenBankBillDataPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBillDataPageResponse {
         try await self.client.execute(action: "QueryOpenBankBillDataPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-分页查询对账单数据
+    @inlinable
+    public func queryOpenBankBillDataPage(channelMerchantId: String, billDate: String, channelName: String, pageNo: UInt64, pageSize: UInt64, billType: String? = nil, paymentMethod: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankBillDataPageResponse > {
+        self.queryOpenBankBillDataPage(QueryOpenBankBillDataPageRequest(channelMerchantId: channelMerchantId, billDate: billDate, channelName: channelName, pageNo: pageNo, pageSize: pageSize, billType: billType, paymentMethod: paymentMethod, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-分页查询对账单数据
+    @inlinable
+    public func queryOpenBankBillDataPage(channelMerchantId: String, billDate: String, channelName: String, pageNo: UInt64, pageSize: UInt64, billType: String? = nil, paymentMethod: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBillDataPageResponse {
+        try await self.queryOpenBankBillDataPage(QueryOpenBankBillDataPageRequest(channelMerchantId: channelMerchantId, billDate: billDate, channelName: channelName, pageNo: pageNo, pageSize: pageSize, billType: billType, paymentMethod: paymentMethod, environment: environment), logger: logger, on: eventLoop)
+    }
 }

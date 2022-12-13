@@ -71,4 +71,22 @@ extension Apigateway {
     public func describeServiceReleaseVersion(_ input: DescribeServiceReleaseVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceReleaseVersionResponse {
         try await self.client.execute(action: "DescribeServiceReleaseVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询服务已发布的版本
+    ///
+    /// 本接口（DescribeServiceReleaseVersion）查询一个服务下面所有已经发布的版本列表。
+    /// 用户在发布服务时，常有多个版本发布，可使用本接口查询已发布的版本。
+    @inlinable
+    public func describeServiceReleaseVersion(serviceId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceReleaseVersionResponse > {
+        self.describeServiceReleaseVersion(DescribeServiceReleaseVersionRequest(serviceId: serviceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务已发布的版本
+    ///
+    /// 本接口（DescribeServiceReleaseVersion）查询一个服务下面所有已经发布的版本列表。
+    /// 用户在发布服务时，常有多个版本发布，可使用本接口查询已发布的版本。
+    @inlinable
+    public func describeServiceReleaseVersion(serviceId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceReleaseVersionResponse {
+        try await self.describeServiceReleaseVersion(DescribeServiceReleaseVersionRequest(serviceId: serviceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

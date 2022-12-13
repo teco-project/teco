@@ -87,4 +87,16 @@ extension Redis {
     public func describeInstanceNodeInfo(_ input: DescribeInstanceNodeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceNodeInfoResponse {
         try await self.client.execute(action: "DescribeInstanceNodeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例节点信息
+    @inlinable
+    public func describeInstanceNodeInfo(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceNodeInfoResponse > {
+        self.describeInstanceNodeInfo(DescribeInstanceNodeInfoRequest(instanceId: instanceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例节点信息
+    @inlinable
+    public func describeInstanceNodeInfo(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceNodeInfoResponse {
+        try await self.describeInstanceNodeInfo(DescribeInstanceNodeInfoRequest(instanceId: instanceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

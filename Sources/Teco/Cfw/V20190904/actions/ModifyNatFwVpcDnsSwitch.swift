@@ -60,4 +60,16 @@ extension Cfw {
     public func modifyNatFwVpcDnsSwitch(_ input: ModifyNatFwVpcDnsSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatFwVpcDnsSwitchResponse {
         try await self.client.execute(action: "ModifyNatFwVpcDnsSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// nat 防火墙VPC DNS 开关切换
+    @inlinable
+    public func modifyNatFwVpcDnsSwitch(natFwInsId: String, dnsVpcSwitchLst: [DnsVpcSwitch], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNatFwVpcDnsSwitchResponse > {
+        self.modifyNatFwVpcDnsSwitch(ModifyNatFwVpcDnsSwitchRequest(natFwInsId: natFwInsId, dnsVpcSwitchLst: dnsVpcSwitchLst), logger: logger, on: eventLoop)
+    }
+    
+    /// nat 防火墙VPC DNS 开关切换
+    @inlinable
+    public func modifyNatFwVpcDnsSwitch(natFwInsId: String, dnsVpcSwitchLst: [DnsVpcSwitch], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatFwVpcDnsSwitchResponse {
+        try await self.modifyNatFwVpcDnsSwitch(ModifyNatFwVpcDnsSwitchRequest(natFwInsId: natFwInsId, dnsVpcSwitchLst: dnsVpcSwitchLst), logger: logger, on: eventLoop)
+    }
 }

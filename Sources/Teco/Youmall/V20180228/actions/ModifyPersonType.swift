@@ -73,4 +73,16 @@ extension Youmall {
     public func modifyPersonType(_ input: ModifyPersonTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTypeResponse {
         try await self.client.execute(action: "ModifyPersonType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改顾客身份类型接口
+    @inlinable
+    public func modifyPersonType(companyId: String, shopId: UInt64, personId: UInt64, personType: UInt64, personSubType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonTypeResponse > {
+        self.modifyPersonType(ModifyPersonTypeRequest(companyId: companyId, shopId: shopId, personId: personId, personType: personType, personSubType: personSubType), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改顾客身份类型接口
+    @inlinable
+    public func modifyPersonType(companyId: String, shopId: UInt64, personId: UInt64, personType: UInt64, personSubType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTypeResponse {
+        try await self.modifyPersonType(ModifyPersonTypeRequest(companyId: companyId, shopId: shopId, personId: personId, personType: personType, personSubType: personSubType), logger: logger, on: eventLoop)
+    }
 }

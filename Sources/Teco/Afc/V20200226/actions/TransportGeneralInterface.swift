@@ -59,4 +59,20 @@ extension Afc {
     public func transportGeneralInterface(_ input: TransportGeneralInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransportGeneralInterfaceResponse {
         try await self.client.execute(action: "TransportGeneralInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 信鸽取数平台接口
+    ///
+    /// 天御信鸽取数平台接口
+    @inlinable
+    public func transportGeneralInterface(businessSecurityData: TransportGeneralInterfaceInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransportGeneralInterfaceResponse > {
+        self.transportGeneralInterface(TransportGeneralInterfaceRequest(businessSecurityData: businessSecurityData), logger: logger, on: eventLoop)
+    }
+    
+    /// 信鸽取数平台接口
+    ///
+    /// 天御信鸽取数平台接口
+    @inlinable
+    public func transportGeneralInterface(businessSecurityData: TransportGeneralInterfaceInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransportGeneralInterfaceResponse {
+        try await self.transportGeneralInterface(TransportGeneralInterfaceRequest(businessSecurityData: businessSecurityData), logger: logger, on: eventLoop)
+    }
 }

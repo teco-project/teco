@@ -60,4 +60,16 @@ extension Tdmq {
     public func deleteAMQPExchange(_ input: DeleteAMQPExchangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPExchangeResponse {
         try await self.client.execute(action: "DeleteAMQPExchange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除Amqp交换机
+    @inlinable
+    public func deleteAMQPExchange(clusterId: String, vHostId: String, exchange: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAMQPExchangeResponse > {
+        self.deleteAMQPExchange(DeleteAMQPExchangeRequest(clusterId: clusterId, vHostId: vHostId, exchange: exchange), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Amqp交换机
+    @inlinable
+    public func deleteAMQPExchange(clusterId: String, vHostId: String, exchange: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPExchangeResponse {
+        try await self.deleteAMQPExchange(DeleteAMQPExchangeRequest(clusterId: clusterId, vHostId: vHostId, exchange: exchange), logger: logger, on: eventLoop)
+    }
 }

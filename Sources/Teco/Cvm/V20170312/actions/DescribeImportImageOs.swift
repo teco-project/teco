@@ -54,4 +54,20 @@ extension Cvm {
     public func describeImportImageOs(_ input: DescribeImportImageOsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImportImageOsResponse {
         try await self.client.execute(action: "DescribeImportImageOs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询外部导入镜像支持的OS列表
+    ///
+    /// 查看可以导入的镜像操作系统信息。
+    @inlinable
+    public func describeImportImageOs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImportImageOsResponse > {
+        self.describeImportImageOs(DescribeImportImageOsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询外部导入镜像支持的OS列表
+    ///
+    /// 查看可以导入的镜像操作系统信息。
+    @inlinable
+    public func describeImportImageOs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImportImageOsResponse {
+        try await self.describeImportImageOs(DescribeImportImageOsRequest(), logger: logger, on: eventLoop)
+    }
 }

@@ -93,4 +93,20 @@ extension Tiw {
     public func describeQualityMetrics(_ input: DescribeQualityMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityMetricsResponse {
         try await self.client.execute(action: "DescribeQualityMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询质量数据
+    ///
+    /// 查询互动白板质量数据
+    @inlinable
+    public func describeQualityMetrics(sdkAppId: Int64, startTime: Int64, endTime: Int64, metric: String, interval: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQualityMetricsResponse > {
+        self.describeQualityMetrics(DescribeQualityMetricsRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, metric: metric, interval: interval), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询质量数据
+    ///
+    /// 查询互动白板质量数据
+    @inlinable
+    public func describeQualityMetrics(sdkAppId: Int64, startTime: Int64, endTime: Int64, metric: String, interval: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityMetricsResponse {
+        try await self.describeQualityMetrics(DescribeQualityMetricsRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, metric: metric, interval: interval), logger: logger, on: eventLoop)
+    }
 }

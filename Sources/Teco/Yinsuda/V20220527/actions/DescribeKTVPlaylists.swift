@@ -85,4 +85,20 @@ extension Yinsuda {
     public func describeKTVPlaylists(_ input: DescribeKTVPlaylistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistsResponse {
         try await self.client.execute(action: "DescribeKTVPlaylists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取推荐歌单列表
+    ///
+    /// 获取歌单列表。
+    @inlinable
+    public func describeKTVPlaylists(appName: String, userId: String, types: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVPlaylistsResponse > {
+        self.describeKTVPlaylists(DescribeKTVPlaylistsRequest(appName: appName, userId: userId, types: types, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取推荐歌单列表
+    ///
+    /// 获取歌单列表。
+    @inlinable
+    public func describeKTVPlaylists(appName: String, userId: String, types: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistsResponse {
+        try await self.describeKTVPlaylists(DescribeKTVPlaylistsRequest(appName: appName, userId: userId, types: types, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

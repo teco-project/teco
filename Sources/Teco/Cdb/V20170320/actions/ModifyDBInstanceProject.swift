@@ -59,4 +59,20 @@ extension Cdb {
     public func modifyDBInstanceProject(_ input: ModifyDBInstanceProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceProjectResponse {
         try await self.client.execute(action: "ModifyDBInstanceProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改云数据库实例的所属项目
+    ///
+    /// 本接口(ModifyDBInstanceProject)用于修改云数据库实例的所属项目。
+    @inlinable
+    public func modifyDBInstanceProject(instanceIds: [String], newProjectId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceProjectResponse > {
+        self.modifyDBInstanceProject(ModifyDBInstanceProjectRequest(instanceIds: instanceIds, newProjectId: newProjectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云数据库实例的所属项目
+    ///
+    /// 本接口(ModifyDBInstanceProject)用于修改云数据库实例的所属项目。
+    @inlinable
+    public func modifyDBInstanceProject(instanceIds: [String], newProjectId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceProjectResponse {
+        try await self.modifyDBInstanceProject(ModifyDBInstanceProjectRequest(instanceIds: instanceIds, newProjectId: newProjectId), logger: logger, on: eventLoop)
+    }
 }

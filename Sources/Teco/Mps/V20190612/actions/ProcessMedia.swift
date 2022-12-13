@@ -136,4 +136,38 @@ extension Mps {
     public func processMedia(_ input: ProcessMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaResponse {
         try await self.client.execute(action: "ProcessMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 发起媒体处理
+    ///
+    /// 对 URL视频链接 或 COS 中的媒体文件发起处理任务，功能包括：
+    /// 1. 视频转码（普通转码、极速高清转码、音视频增强）；
+    /// 2. 视频转动图；
+    /// 3. 对视频按指定时间点截图；
+    /// 4. 对视频采样截图；
+    /// 5. 对视频截图雪碧图；
+    /// 6. 对视频转自适应码流；
+    /// 7. 智能内容审核（鉴黄、敏感信息检测）；
+    /// 8. 智能内容分析（标签、分类、封面、按帧标签、拆条、集锦、片头片尾）；
+    /// 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音翻译、物体识别）。
+    @inlinable
+    public func processMedia(inputInfo: MediaInputInfo, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil, scheduleId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ProcessMediaResponse > {
+        self.processMedia(ProcessMediaRequest(inputInfo: inputInfo, outputStorage: outputStorage, outputDir: outputDir, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, taskNotifyConfig: taskNotifyConfig, tasksPriority: tasksPriority, sessionId: sessionId, sessionContext: sessionContext, scheduleId: scheduleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 发起媒体处理
+    ///
+    /// 对 URL视频链接 或 COS 中的媒体文件发起处理任务，功能包括：
+    /// 1. 视频转码（普通转码、极速高清转码、音视频增强）；
+    /// 2. 视频转动图；
+    /// 3. 对视频按指定时间点截图；
+    /// 4. 对视频采样截图；
+    /// 5. 对视频截图雪碧图；
+    /// 6. 对视频转自适应码流；
+    /// 7. 智能内容审核（鉴黄、敏感信息检测）；
+    /// 8. 智能内容分析（标签、分类、封面、按帧标签、拆条、集锦、片头片尾）；
+    /// 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音翻译、物体识别）。
+    @inlinable
+    public func processMedia(inputInfo: MediaInputInfo, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil, scheduleId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaResponse {
+        try await self.processMedia(ProcessMediaRequest(inputInfo: inputInfo, outputStorage: outputStorage, outputDir: outputDir, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, taskNotifyConfig: taskNotifyConfig, tasksPriority: tasksPriority, sessionId: sessionId, sessionContext: sessionContext, scheduleId: scheduleId), logger: logger, on: eventLoop)
+    }
 }

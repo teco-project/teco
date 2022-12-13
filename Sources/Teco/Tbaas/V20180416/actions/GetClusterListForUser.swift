@@ -77,4 +77,20 @@ extension Tbaas {
     public func getClusterListForUser(_ input: GetClusterListForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterListForUserResponse {
         try await self.client.execute(action: "GetClusterListForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取网络列表
+    ///
+    /// 获取该用户的网络列表。网络信息中包含组织信息，但仅包含该用户所在组织的信息。
+    @inlinable
+    public func getClusterListForUser(module: String, operation: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetClusterListForUserResponse > {
+        self.getClusterListForUser(GetClusterListForUserRequest(module: module, operation: operation, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取网络列表
+    ///
+    /// 获取该用户的网络列表。网络信息中包含组织信息，但仅包含该用户所在组织的信息。
+    @inlinable
+    public func getClusterListForUser(module: String, operation: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterListForUserResponse {
+        try await self.getClusterListForUser(GetClusterListForUserRequest(module: module, operation: operation, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

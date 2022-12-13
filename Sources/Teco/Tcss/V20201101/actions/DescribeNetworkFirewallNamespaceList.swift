@@ -84,4 +84,16 @@ extension Tcss {
     public func describeNetworkFirewallNamespaceList(_ input: DescribeNetworkFirewallNamespaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallNamespaceListResponse {
         try await self.client.execute(action: "DescribeNetworkFirewallNamespaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询集群网络空间列表
+    @inlinable
+    public func describeNetworkFirewallNamespaceList(clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallNamespaceListResponse > {
+        self.describeNetworkFirewallNamespaceList(DescribeNetworkFirewallNamespaceListRequest(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群网络空间列表
+    @inlinable
+    public func describeNetworkFirewallNamespaceList(clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallNamespaceListResponse {
+        try await self.describeNetworkFirewallNamespaceList(DescribeNetworkFirewallNamespaceListRequest(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    }
 }

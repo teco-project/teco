@@ -116,4 +116,16 @@ extension Teo {
     public func describeWebManagedRulesLog(_ input: DescribeWebManagedRulesLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesLogResponse {
         try await self.client.execute(action: "DescribeWebManagedRulesLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询waf攻击日志
+    @inlinable
+    public func describeWebManagedRulesLog(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zoneIds: [String]? = nil, domains: [String]? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebManagedRulesLogResponse > {
+        self.describeWebManagedRulesLog(DescribeWebManagedRulesLogRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询waf攻击日志
+    @inlinable
+    public func describeWebManagedRulesLog(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zoneIds: [String]? = nil, domains: [String]? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesLogResponse {
+        try await self.describeWebManagedRulesLog(DescribeWebManagedRulesLogRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, area: area), logger: logger, on: eventLoop)
+    }
 }

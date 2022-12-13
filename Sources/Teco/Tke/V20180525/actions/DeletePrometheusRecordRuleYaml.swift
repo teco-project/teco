@@ -55,4 +55,16 @@ extension Tke {
     public func deletePrometheusRecordRuleYaml(_ input: DeletePrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusRecordRuleYamlResponse {
         try await self.client.execute(action: "DeletePrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除聚合实例
+    @inlinable
+    public func deletePrometheusRecordRuleYaml(instanceId: String, names: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusRecordRuleYamlResponse > {
+        self.deletePrometheusRecordRuleYaml(DeletePrometheusRecordRuleYamlRequest(instanceId: instanceId, names: names), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除聚合实例
+    @inlinable
+    public func deletePrometheusRecordRuleYaml(instanceId: String, names: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusRecordRuleYamlResponse {
+        try await self.deletePrometheusRecordRuleYaml(DeletePrometheusRecordRuleYamlRequest(instanceId: instanceId, names: names), logger: logger, on: eventLoop)
+    }
 }

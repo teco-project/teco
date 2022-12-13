@@ -58,4 +58,16 @@ extension Cwp {
     public func exportBashEvents(_ input: ExportBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBashEventsResponse {
         try await self.client.execute(action: "ExportBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导出高危命令事件
+    @inlinable
+    public func exportBashEvents(filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBashEventsResponse > {
+        self.exportBashEvents(ExportBashEventsRequest(filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 导出高危命令事件
+    @inlinable
+    public func exportBashEvents(filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBashEventsResponse {
+        try await self.exportBashEvents(ExportBashEventsRequest(filters: filters), logger: logger, on: eventLoop)
+    }
 }

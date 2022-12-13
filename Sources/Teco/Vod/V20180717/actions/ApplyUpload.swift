@@ -135,4 +135,24 @@ extension Vod {
     public func applyUpload(_ input: ApplyUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyUploadResponse {
         try await self.client.execute(action: "ApplyUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 申请上传
+    ///
+    /// * 我们强烈建议您使用云点播提供的 [服务端上传 SDK](/document/product/266/9759#1.-.E5.8F.91.E8.B5.B7.E4.B8.8A.E4.BC.A0) 来上传文件。直接调用 API 进行上传的难度和工作量都显著大于使用 SDK。
+    /// * 该接口用于申请媒体文件（和封面文件）的上传，获取文件上传到云点播的元信息（包括上传路径、上传签名等），用于后续上传接口。
+    /// * 上传流程请参考 [服务端上传综述](/document/product/266/9759)。
+    @inlinable
+    public func applyUpload(mediaType: String, subAppId: UInt64? = nil, mediaName: String? = nil, coverType: String? = nil, procedure: String? = nil, expireTime: Date? = nil, storageRegion: String? = nil, classId: Int64? = nil, sourceContext: String? = nil, sessionContext: String? = nil, extInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyUploadResponse > {
+        self.applyUpload(ApplyUploadRequest(mediaType: mediaType, subAppId: subAppId, mediaName: mediaName, coverType: coverType, procedure: procedure, expireTime: expireTime, storageRegion: storageRegion, classId: classId, sourceContext: sourceContext, sessionContext: sessionContext, extInfo: extInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 申请上传
+    ///
+    /// * 我们强烈建议您使用云点播提供的 [服务端上传 SDK](/document/product/266/9759#1.-.E5.8F.91.E8.B5.B7.E4.B8.8A.E4.BC.A0) 来上传文件。直接调用 API 进行上传的难度和工作量都显著大于使用 SDK。
+    /// * 该接口用于申请媒体文件（和封面文件）的上传，获取文件上传到云点播的元信息（包括上传路径、上传签名等），用于后续上传接口。
+    /// * 上传流程请参考 [服务端上传综述](/document/product/266/9759)。
+    @inlinable
+    public func applyUpload(mediaType: String, subAppId: UInt64? = nil, mediaName: String? = nil, coverType: String? = nil, procedure: String? = nil, expireTime: Date? = nil, storageRegion: String? = nil, classId: Int64? = nil, sourceContext: String? = nil, sessionContext: String? = nil, extInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyUploadResponse {
+        try await self.applyUpload(ApplyUploadRequest(mediaType: mediaType, subAppId: subAppId, mediaName: mediaName, coverType: coverType, procedure: procedure, expireTime: expireTime, storageRegion: storageRegion, classId: classId, sourceContext: sourceContext, sessionContext: sessionContext, extInfo: extInfo), logger: logger, on: eventLoop)
+    }
 }

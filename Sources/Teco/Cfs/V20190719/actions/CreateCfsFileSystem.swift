@@ -59,7 +59,7 @@ extension Cfs {
         /// 文件系统容量，turbo系列必填，单位为GiB。 turbo标准型单位GB，起售40TiB，即40960 GiB；扩容步长20TiB，即20480 GiB。turbo性能型起售20TiB，即20480 GiB；扩容步长10TiB，10240 GiB。
         public let capacity: UInt64?
         
-        public init (zone: String, netInterface: String, pGroupId: String, `protocol`: String? = nil, storageType: String? = nil, vpcId: String? = nil, subnetId: String? = nil, mountIP: String? = nil, fsName: String? = nil, resourceTags: [TagInfo]? = nil, clientToken: String? = nil, ccnId: String? = nil, cidrBlock: String? = nil, capacity: UInt64? = nil) {
+        public init (zone: String, netInterface: String, pGroupId: String, protocol: String? = nil, storageType: String? = nil, vpcId: String? = nil, subnetId: String? = nil, mountIP: String? = nil, fsName: String? = nil, resourceTags: [TagInfo]? = nil, clientToken: String? = nil, ccnId: String? = nil, cidrBlock: String? = nil, capacity: UInt64? = nil) {
             self.zone = zone
             self.netInterface = netInterface
             self.pGroupId = pGroupId
@@ -150,5 +150,21 @@ extension Cfs {
     @inlinable
     public func createCfsFileSystem(_ input: CreateCfsFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsFileSystemResponse {
         try await self.client.execute(action: "CreateCfsFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 创建文件系统
+    ///
+    /// 用于添加新文件系统
+    @inlinable
+    public func createCfsFileSystem(zone: String, netInterface: String, pGroupId: String, protocol: String? = nil, storageType: String? = nil, vpcId: String? = nil, subnetId: String? = nil, mountIP: String? = nil, fsName: String? = nil, resourceTags: [TagInfo]? = nil, clientToken: String? = nil, ccnId: String? = nil, cidrBlock: String? = nil, capacity: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCfsFileSystemResponse > {
+        self.createCfsFileSystem(CreateCfsFileSystemRequest(zone: zone, netInterface: netInterface, pGroupId: pGroupId, protocol: `protocol`, storageType: storageType, vpcId: vpcId, subnetId: subnetId, mountIP: mountIP, fsName: fsName, resourceTags: resourceTags, clientToken: clientToken, ccnId: ccnId, cidrBlock: cidrBlock, capacity: capacity), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建文件系统
+    ///
+    /// 用于添加新文件系统
+    @inlinable
+    public func createCfsFileSystem(zone: String, netInterface: String, pGroupId: String, protocol: String? = nil, storageType: String? = nil, vpcId: String? = nil, subnetId: String? = nil, mountIP: String? = nil, fsName: String? = nil, resourceTags: [TagInfo]? = nil, clientToken: String? = nil, ccnId: String? = nil, cidrBlock: String? = nil, capacity: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsFileSystemResponse {
+        try await self.createCfsFileSystem(CreateCfsFileSystemRequest(zone: zone, netInterface: netInterface, pGroupId: pGroupId, protocol: `protocol`, storageType: storageType, vpcId: vpcId, subnetId: subnetId, mountIP: mountIP, fsName: fsName, resourceTags: resourceTags, clientToken: clientToken, ccnId: ccnId, cidrBlock: cidrBlock, capacity: capacity), logger: logger, on: eventLoop)
     }
 }

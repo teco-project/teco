@@ -102,4 +102,16 @@ extension Cwp {
     public func describeAssetWebFrameList(_ input: DescribeAssetWebFrameListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebFrameListResponse {
         try await self.client.execute(action: "DescribeAssetWebFrameList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取资产管理Web框架列表
+    @inlinable
+    public func describeAssetWebFrameList(quuid: String? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetWebFrameListResponse > {
+        self.describeAssetWebFrameList(DescribeAssetWebFrameListRequest(quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资产管理Web框架列表
+    @inlinable
+    public func describeAssetWebFrameList(quuid: String? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebFrameListResponse {
+        try await self.describeAssetWebFrameList(DescribeAssetWebFrameListRequest(quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

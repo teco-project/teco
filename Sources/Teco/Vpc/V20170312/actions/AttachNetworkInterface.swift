@@ -76,4 +76,32 @@ extension Vpc {
     public func attachNetworkInterface(_ input: AttachNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachNetworkInterfaceResponse {
         try await self.client.execute(action: "AttachNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 弹性网卡绑定云服务器
+    ///
+    /// 本接口（AttachNetworkInterface）用于弹性网卡绑定云服务器。
+    /// * 一个弹性网卡请至少绑定一个安全组，如需绑定请参见<a href="https://cloud.tencent.com/document/product/215/43132">弹性网卡绑定安全组</a>。
+    /// * 一个云服务器可以绑定多个弹性网卡，但只能绑定一个主网卡。更多限制信息详见<a href="https://cloud.tencent.com/document/product/576/18527">弹性网卡使用限制</a>。
+    /// * 一个弹性网卡只能同时绑定一个云服务器。
+    /// * 只有运行中或者已关机状态的云服务器才能绑定弹性网卡，查看云服务器状态详见<a href="https://cloud.tencent.com/document/api/213/9452#InstanceStatus">腾讯云服务器信息</a>。
+    /// * 弹性网卡绑定的云服务器必须是私有网络的，而且云服务器所在可用区必须和弹性网卡子网的可用区相同。
+    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
+    @inlinable
+    public func attachNetworkInterface(networkInterfaceId: String, instanceId: String, attachType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachNetworkInterfaceResponse > {
+        self.attachNetworkInterface(AttachNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, instanceId: instanceId, attachType: attachType), logger: logger, on: eventLoop)
+    }
+    
+    /// 弹性网卡绑定云服务器
+    ///
+    /// 本接口（AttachNetworkInterface）用于弹性网卡绑定云服务器。
+    /// * 一个弹性网卡请至少绑定一个安全组，如需绑定请参见<a href="https://cloud.tencent.com/document/product/215/43132">弹性网卡绑定安全组</a>。
+    /// * 一个云服务器可以绑定多个弹性网卡，但只能绑定一个主网卡。更多限制信息详见<a href="https://cloud.tencent.com/document/product/576/18527">弹性网卡使用限制</a>。
+    /// * 一个弹性网卡只能同时绑定一个云服务器。
+    /// * 只有运行中或者已关机状态的云服务器才能绑定弹性网卡，查看云服务器状态详见<a href="https://cloud.tencent.com/document/api/213/9452#InstanceStatus">腾讯云服务器信息</a>。
+    /// * 弹性网卡绑定的云服务器必须是私有网络的，而且云服务器所在可用区必须和弹性网卡子网的可用区相同。
+    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
+    @inlinable
+    public func attachNetworkInterface(networkInterfaceId: String, instanceId: String, attachType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachNetworkInterfaceResponse {
+        try await self.attachNetworkInterface(AttachNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, instanceId: instanceId, attachType: attachType), logger: logger, on: eventLoop)
+    }
 }

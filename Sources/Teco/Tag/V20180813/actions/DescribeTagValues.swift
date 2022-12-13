@@ -85,4 +85,20 @@ extension Tag {
     public func describeTagValues(_ input: DescribeTagValuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagValuesResponse {
         try await self.client.execute(action: "DescribeTagValues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询标签值
+    ///
+    /// 用于查询已建立的标签列表中的标签值。
+    @inlinable
+    public func describeTagValues(tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagValuesResponse > {
+        self.describeTagValues(DescribeTagValuesRequest(tagKeys: tagKeys, createUin: createUin, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询标签值
+    ///
+    /// 用于查询已建立的标签列表中的标签值。
+    @inlinable
+    public func describeTagValues(tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagValuesResponse {
+        try await self.describeTagValues(DescribeTagValuesRequest(tagKeys: tagKeys, createUin: createUin, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

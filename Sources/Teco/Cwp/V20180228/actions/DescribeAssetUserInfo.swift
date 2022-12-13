@@ -64,4 +64,16 @@ extension Cwp {
     public func describeAssetUserInfo(_ input: DescribeAssetUserInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetUserInfoResponse {
         try await self.client.execute(action: "DescribeAssetUserInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取主机账号详情
+    @inlinable
+    public func describeAssetUserInfo(quuid: String, uuid: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetUserInfoResponse > {
+        self.describeAssetUserInfo(DescribeAssetUserInfoRequest(quuid: quuid, uuid: uuid, name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取主机账号详情
+    @inlinable
+    public func describeAssetUserInfo(quuid: String, uuid: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetUserInfoResponse {
+        try await self.describeAssetUserInfo(DescribeAssetUserInfoRequest(quuid: quuid, uuid: uuid, name: name), logger: logger, on: eventLoop)
+    }
 }

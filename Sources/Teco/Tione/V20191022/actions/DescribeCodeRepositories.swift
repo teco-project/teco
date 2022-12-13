@@ -78,4 +78,16 @@ extension Tione {
     public func describeCodeRepositories(_ input: DescribeCodeRepositoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodeRepositoriesResponse {
         try await self.client.execute(action: "DescribeCodeRepositories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询存储库列表
+    @inlinable
+    public func describeCodeRepositories(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, sortOrder: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodeRepositoriesResponse > {
+        self.describeCodeRepositories(DescribeCodeRepositoriesRequest(offset: offset, limit: limit, filters: filters, sortOrder: sortOrder), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询存储库列表
+    @inlinable
+    public func describeCodeRepositories(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, sortOrder: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodeRepositoriesResponse {
+        try await self.describeCodeRepositories(DescribeCodeRepositoriesRequest(offset: offset, limit: limit, filters: filters, sortOrder: sortOrder), logger: logger, on: eventLoop)
+    }
 }

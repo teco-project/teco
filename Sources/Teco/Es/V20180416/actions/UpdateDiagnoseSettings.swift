@@ -60,4 +60,16 @@ extension Es {
     public func updateDiagnoseSettings(_ input: UpdateDiagnoseSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDiagnoseSettingsResponse {
         try await self.client.execute(action: "UpdateDiagnoseSettings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新智能运维配置
+    @inlinable
+    public func updateDiagnoseSettings(instanceId: String, status: Int64? = nil, cronTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDiagnoseSettingsResponse > {
+        self.updateDiagnoseSettings(UpdateDiagnoseSettingsRequest(instanceId: instanceId, status: status, cronTime: cronTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新智能运维配置
+    @inlinable
+    public func updateDiagnoseSettings(instanceId: String, status: Int64? = nil, cronTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDiagnoseSettingsResponse {
+        try await self.updateDiagnoseSettings(UpdateDiagnoseSettingsRequest(instanceId: instanceId, status: status, cronTime: cronTime), logger: logger, on: eventLoop)
+    }
 }

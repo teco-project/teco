@@ -63,4 +63,20 @@ extension Smpn {
     public func describeSmpnChp(_ input: DescribeSmpnChpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnChpResponse {
         try await self.client.execute(action: "DescribeSmpnChp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 终端骚扰保护
+    ///
+    /// 查询号码的标记和标记次数
+    @inlinable
+    public func describeSmpnChp(resourceId: String, requestData: CHPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmpnChpResponse > {
+        self.describeSmpnChp(DescribeSmpnChpRequest(resourceId: resourceId, requestData: requestData), logger: logger, on: eventLoop)
+    }
+    
+    /// 终端骚扰保护
+    ///
+    /// 查询号码的标记和标记次数
+    @inlinable
+    public func describeSmpnChp(resourceId: String, requestData: CHPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnChpResponse {
+        try await self.describeSmpnChp(DescribeSmpnChpRequest(resourceId: resourceId, requestData: requestData), logger: logger, on: eventLoop)
+    }
 }

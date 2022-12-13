@@ -59,4 +59,20 @@ extension Vod {
     public func describeAllClass(_ input: DescribeAllClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllClassResponse {
         try await self.client.execute(action: "DescribeAllClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取所有分类
+    ///
+    /// * 获得用户的所有分类信息。
+    @inlinable
+    public func describeAllClass(subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllClassResponse > {
+        self.describeAllClass(DescribeAllClassRequest(subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取所有分类
+    ///
+    /// * 获得用户的所有分类信息。
+    @inlinable
+    public func describeAllClass(subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllClassResponse {
+        try await self.describeAllClass(DescribeAllClassRequest(subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

@@ -84,4 +84,20 @@ extension Tcss {
     public func describeEscapeEventsExport(_ input: DescribeEscapeEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventsExportResponse {
         try await self.client.execute(action: "DescribeEscapeEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询容器逃逸事件列表导出
+    ///
+    /// DescribeEscapeEventsExport  查询容器逃逸事件列表导出
+    @inlinable
+    public func describeEscapeEventsExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeEventsExportResponse > {
+        self.describeEscapeEventsExport(DescribeEscapeEventsExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器逃逸事件列表导出
+    ///
+    /// DescribeEscapeEventsExport  查询容器逃逸事件列表导出
+    @inlinable
+    public func describeEscapeEventsExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventsExportResponse {
+        try await self.describeEscapeEventsExport(DescribeEscapeEventsExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

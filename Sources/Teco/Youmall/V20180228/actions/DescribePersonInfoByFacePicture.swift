@@ -95,4 +95,20 @@ extension Youmall {
     public func describePersonInfoByFacePicture(_ input: DescribePersonInfoByFacePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonInfoByFacePictureResponse {
         try await self.client.execute(action: "DescribePersonInfoByFacePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 图片检索身份接口
+    ///
+    /// 通过上传人脸图片检索系统face id、顾客身份信息及底图
+    @inlinable
+    public func describePersonInfoByFacePicture(companyId: String, shopId: Int64, picture: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonInfoByFacePictureResponse > {
+        self.describePersonInfoByFacePicture(DescribePersonInfoByFacePictureRequest(companyId: companyId, shopId: shopId, picture: picture), logger: logger, on: eventLoop)
+    }
+    
+    /// 图片检索身份接口
+    ///
+    /// 通过上传人脸图片检索系统face id、顾客身份信息及底图
+    @inlinable
+    public func describePersonInfoByFacePicture(companyId: String, shopId: Int64, picture: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonInfoByFacePictureResponse {
+        try await self.describePersonInfoByFacePicture(DescribePersonInfoByFacePictureRequest(companyId: companyId, shopId: shopId, picture: picture), logger: logger, on: eventLoop)
+    }
 }

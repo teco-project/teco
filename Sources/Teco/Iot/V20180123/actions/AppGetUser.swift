@@ -54,4 +54,16 @@ extension Iot {
     public func appGetUser(_ input: AppGetUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetUserResponse {
         try await self.client.execute(action: "AppGetUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取用户信息
+    @inlinable
+    public func appGetUser(accessToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppGetUserResponse > {
+        self.appGetUser(AppGetUserRequest(accessToken: accessToken), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户信息
+    @inlinable
+    public func appGetUser(accessToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetUserResponse {
+        try await self.appGetUser(AppGetUserRequest(accessToken: accessToken), logger: logger, on: eventLoop)
+    }
 }

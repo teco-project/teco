@@ -73,4 +73,20 @@ extension Apigateway {
     public func attachPlugin(_ input: AttachPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachPluginResponse {
         try await self.client.execute(action: "AttachPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 插件绑定API
+    ///
+    /// 绑定插件到API上。
+    @inlinable
+    public func attachPlugin(pluginId: String, serviceId: String, environmentName: String, apiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachPluginResponse > {
+        self.attachPlugin(AttachPluginRequest(pluginId: pluginId, serviceId: serviceId, environmentName: environmentName, apiIds: apiIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 插件绑定API
+    ///
+    /// 绑定插件到API上。
+    @inlinable
+    public func attachPlugin(pluginId: String, serviceId: String, environmentName: String, apiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachPluginResponse {
+        try await self.attachPlugin(AttachPluginRequest(pluginId: pluginId, serviceId: serviceId, environmentName: environmentName, apiIds: apiIds), logger: logger, on: eventLoop)
+    }
 }

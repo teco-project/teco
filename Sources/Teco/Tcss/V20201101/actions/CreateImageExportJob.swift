@@ -87,4 +87,16 @@ extension Tcss {
     public func createImageExportJob(_ input: CreateImageExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageExportJobResponse {
         try await self.client.execute(action: "CreateImageExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建镜像导出任务
+    @inlinable
+    public func createImageExportJob(filters: [RunTimeFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, by: String? = nil, order: String? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageExportJobResponse > {
+        self.createImageExportJob(CreateImageExportJobRequest(filters: filters, offset: offset, limit: limit, by: by, order: order, exportField: exportField), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建镜像导出任务
+    @inlinable
+    public func createImageExportJob(filters: [RunTimeFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, by: String? = nil, order: String? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageExportJobResponse {
+        try await self.createImageExportJob(CreateImageExportJobRequest(filters: filters, offset: offset, limit: limit, by: by, order: order, exportField: exportField), logger: logger, on: eventLoop)
+    }
 }

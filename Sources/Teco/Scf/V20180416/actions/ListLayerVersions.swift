@@ -63,4 +63,20 @@ extension Scf {
     public func listLayerVersions(_ input: ListLayerVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLayerVersionsResponse {
         try await self.client.execute(action: "ListLayerVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取层版本列表
+    ///
+    /// 返回指定层的全部版本的信息
+    @inlinable
+    public func listLayerVersions(layerName: String, compatibleRuntime: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListLayerVersionsResponse > {
+        self.listLayerVersions(ListLayerVersionsRequest(layerName: layerName, compatibleRuntime: compatibleRuntime), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取层版本列表
+    ///
+    /// 返回指定层的全部版本的信息
+    @inlinable
+    public func listLayerVersions(layerName: String, compatibleRuntime: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLayerVersionsResponse {
+        try await self.listLayerVersions(ListLayerVersionsRequest(layerName: layerName, compatibleRuntime: compatibleRuntime), logger: logger, on: eventLoop)
+    }
 }

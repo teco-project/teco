@@ -83,4 +83,20 @@ extension Apigateway {
     public func describePlugins(_ input: DescribePluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginsResponse {
         try await self.client.execute(action: "DescribePlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询插件列表和详情
+    ///
+    /// 展示插件列表和详情，支持分页，支持按照插件类型查询，支持按照插件ID批量查询，支持按照插件名称查询。
+    @inlinable
+    public func describePlugins(pluginIds: [String]? = nil, pluginName: String? = nil, pluginType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePluginsResponse > {
+        self.describePlugins(DescribePluginsRequest(pluginIds: pluginIds, pluginName: pluginName, pluginType: pluginType, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询插件列表和详情
+    ///
+    /// 展示插件列表和详情，支持分页，支持按照插件类型查询，支持按照插件ID批量查询，支持按照插件名称查询。
+    @inlinable
+    public func describePlugins(pluginIds: [String]? = nil, pluginName: String? = nil, pluginType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginsResponse {
+        try await self.describePlugins(DescribePluginsRequest(pluginIds: pluginIds, pluginName: pluginName, pluginType: pluginType, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

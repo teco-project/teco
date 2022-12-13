@@ -59,4 +59,20 @@ extension Iotvideo {
     public func modifyModelDefinition(_ input: ModifyModelDefinitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelDefinitionResponse {
         try await self.client.execute(action: "ModifyModelDefinition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改产品数据模板
+    ///
+    /// 提供修改产品的数据模板的能力
+    @inlinable
+    public func modifyModelDefinition(productId: String, modelSchema: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModelDefinitionResponse > {
+        self.modifyModelDefinition(ModifyModelDefinitionRequest(productId: productId, modelSchema: modelSchema), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改产品数据模板
+    ///
+    /// 提供修改产品的数据模板的能力
+    @inlinable
+    public func modifyModelDefinition(productId: String, modelSchema: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelDefinitionResponse {
+        try await self.modifyModelDefinition(ModifyModelDefinitionRequest(productId: productId, modelSchema: modelSchema), logger: logger, on: eventLoop)
+    }
 }

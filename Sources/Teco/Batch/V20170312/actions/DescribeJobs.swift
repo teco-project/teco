@@ -85,4 +85,20 @@ extension Batch {
     public func describeJobs(_ input: DescribeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobsResponse {
         try await self.client.execute(action: "DescribeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看作业列表
+    ///
+    /// 用于查询若干个作业的概览信息
+    @inlinable
+    public func describeJobs(jobIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobsResponse > {
+        self.describeJobs(DescribeJobsRequest(jobIds: jobIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看作业列表
+    ///
+    /// 用于查询若干个作业的概览信息
+    @inlinable
+    public func describeJobs(jobIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobsResponse {
+        try await self.describeJobs(DescribeJobsRequest(jobIds: jobIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

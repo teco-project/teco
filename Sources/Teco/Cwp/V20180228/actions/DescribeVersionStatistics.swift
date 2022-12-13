@@ -58,4 +58,20 @@ extension Cwp {
     public func describeVersionStatistics(_ input: DescribeVersionStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionStatisticsResponse {
         try await self.client.execute(action: "DescribeVersionStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取专业版和基础版机器数
+    ///
+    /// 用于统计专业版和基础版机器数。
+    @inlinable
+    public func describeVersionStatistics(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVersionStatisticsResponse > {
+        self.describeVersionStatistics(DescribeVersionStatisticsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取专业版和基础版机器数
+    ///
+    /// 用于统计专业版和基础版机器数。
+    @inlinable
+    public func describeVersionStatistics(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionStatisticsResponse {
+        try await self.describeVersionStatistics(DescribeVersionStatisticsRequest(), logger: logger, on: eventLoop)
+    }
 }

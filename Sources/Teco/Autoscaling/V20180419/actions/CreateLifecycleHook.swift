@@ -132,4 +132,54 @@ extension As {
     public func createLifecycleHook(_ input: CreateLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLifecycleHookResponse {
         try await self.client.execute(action: "CreateLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建生命周期挂钩
+    ///
+    /// 本接口（CreateLifecycleHook）用于创建生命周期挂钩。
+    /// * 您可以为生命周期挂钩配置消息通知或执行自动化助手命令。
+    /// 如果您配置了通知消息，弹性伸缩会通知您的TDMQ消息队列，通知内容形如：
+    /// ```
+    /// {
+    /// 	"Service": "Tencent Cloud Auto Scaling",
+    /// 	"Time": "2019-03-14T10:15:11Z",
+    /// 	"AppId": "1251783334",
+    /// 	"ActivityId": "asa-fznnvrja",
+    /// 	"AutoScalingGroupId": "asg-rrrrtttt",
+    /// 	"LifecycleHookId": "ash-xxxxyyyy",
+    /// 	"LifecycleHookName": "my-hook",
+    /// 	"LifecycleActionToken": "3080e1c9-0efe-4dd7-ad3b-90cd6618298f",
+    /// 	"InstanceId": "ins-aaaabbbb",
+    /// 	"LifecycleTransition": "INSTANCE_LAUNCHING",
+    /// 	"NotificationMetadata": ""
+    /// }
+    /// ```
+    @inlinable
+    public func createLifecycleHook(autoScalingGroupId: String, lifecycleHookName: String, lifecycleTransition: String, defaultResult: String? = nil, heartbeatTimeout: Int64? = nil, notificationMetadata: String? = nil, notificationTarget: NotificationTarget? = nil, lifecycleTransitionType: String? = nil, lifecycleCommand: LifecycleCommand? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLifecycleHookResponse > {
+        self.createLifecycleHook(CreateLifecycleHookRequest(autoScalingGroupId: autoScalingGroupId, lifecycleHookName: lifecycleHookName, lifecycleTransition: lifecycleTransition, defaultResult: defaultResult, heartbeatTimeout: heartbeatTimeout, notificationMetadata: notificationMetadata, notificationTarget: notificationTarget, lifecycleTransitionType: lifecycleTransitionType, lifecycleCommand: lifecycleCommand), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建生命周期挂钩
+    ///
+    /// 本接口（CreateLifecycleHook）用于创建生命周期挂钩。
+    /// * 您可以为生命周期挂钩配置消息通知或执行自动化助手命令。
+    /// 如果您配置了通知消息，弹性伸缩会通知您的TDMQ消息队列，通知内容形如：
+    /// ```
+    /// {
+    /// 	"Service": "Tencent Cloud Auto Scaling",
+    /// 	"Time": "2019-03-14T10:15:11Z",
+    /// 	"AppId": "1251783334",
+    /// 	"ActivityId": "asa-fznnvrja",
+    /// 	"AutoScalingGroupId": "asg-rrrrtttt",
+    /// 	"LifecycleHookId": "ash-xxxxyyyy",
+    /// 	"LifecycleHookName": "my-hook",
+    /// 	"LifecycleActionToken": "3080e1c9-0efe-4dd7-ad3b-90cd6618298f",
+    /// 	"InstanceId": "ins-aaaabbbb",
+    /// 	"LifecycleTransition": "INSTANCE_LAUNCHING",
+    /// 	"NotificationMetadata": ""
+    /// }
+    /// ```
+    @inlinable
+    public func createLifecycleHook(autoScalingGroupId: String, lifecycleHookName: String, lifecycleTransition: String, defaultResult: String? = nil, heartbeatTimeout: Int64? = nil, notificationMetadata: String? = nil, notificationTarget: NotificationTarget? = nil, lifecycleTransitionType: String? = nil, lifecycleCommand: LifecycleCommand? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLifecycleHookResponse {
+        try await self.createLifecycleHook(CreateLifecycleHookRequest(autoScalingGroupId: autoScalingGroupId, lifecycleHookName: lifecycleHookName, lifecycleTransition: lifecycleTransition, defaultResult: defaultResult, heartbeatTimeout: heartbeatTimeout, notificationMetadata: notificationMetadata, notificationTarget: notificationTarget, lifecycleTransitionType: lifecycleTransitionType, lifecycleCommand: lifecycleCommand), logger: logger, on: eventLoop)
+    }
 }

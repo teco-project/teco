@@ -54,4 +54,20 @@ extension Tcss {
     public func modifyEscapeRule(_ input: ModifyEscapeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeRuleResponse {
         try await self.client.execute(action: "ModifyEscapeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改容器逃逸扫描规则信息
+    ///
+    /// ModifyEscapeRule  修改容器逃逸扫描规则信息
+    @inlinable
+    public func modifyEscapeRule(ruleSet: [EscapeRuleEnabled], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEscapeRuleResponse > {
+        self.modifyEscapeRule(ModifyEscapeRuleRequest(ruleSet: ruleSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改容器逃逸扫描规则信息
+    ///
+    /// ModifyEscapeRule  修改容器逃逸扫描规则信息
+    @inlinable
+    public func modifyEscapeRule(ruleSet: [EscapeRuleEnabled], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeRuleResponse {
+        try await self.modifyEscapeRule(ModifyEscapeRuleRequest(ruleSet: ruleSet), logger: logger, on: eventLoop)
+    }
 }

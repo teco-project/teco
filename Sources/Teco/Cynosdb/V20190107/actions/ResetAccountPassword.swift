@@ -69,4 +69,20 @@ extension Cynosdb {
     public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
         try await self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重置数据库账号密码
+    ///
+    /// 本接口(ResetAccountPassword)用于重置实例的数据库账号密码。
+    @inlinable
+    public func resetAccountPassword(accountName: String, accountPassword: String, clusterId: String, host: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetAccountPasswordResponse > {
+        self.resetAccountPassword(ResetAccountPasswordRequest(accountName: accountName, accountPassword: accountPassword, clusterId: clusterId, host: host), logger: logger, on: eventLoop)
+    }
+    
+    /// 重置数据库账号密码
+    ///
+    /// 本接口(ResetAccountPassword)用于重置实例的数据库账号密码。
+    @inlinable
+    public func resetAccountPassword(accountName: String, accountPassword: String, clusterId: String, host: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
+        try await self.resetAccountPassword(ResetAccountPasswordRequest(accountName: accountName, accountPassword: accountPassword, clusterId: clusterId, host: host), logger: logger, on: eventLoop)
+    }
 }

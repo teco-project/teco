@@ -54,4 +54,20 @@ extension Dts {
     public func resumeSyncJob(_ input: ResumeSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeSyncJobResponse {
         try await self.client.execute(action: "ResumeSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重试同步任务
+    ///
+    /// 重试同步任务，部分可恢复报错情况下，可通过该接口重试同步任务，可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
+    @inlinable
+    public func resumeSyncJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeSyncJobResponse > {
+        self.resumeSyncJob(ResumeSyncJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
+    
+    /// 重试同步任务
+    ///
+    /// 重试同步任务，部分可恢复报错情况下，可通过该接口重试同步任务，可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
+    @inlinable
+    public func resumeSyncJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeSyncJobResponse {
+        try await self.resumeSyncJob(ResumeSyncJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
 }

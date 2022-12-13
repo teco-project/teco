@@ -169,4 +169,20 @@ extension Dts {
     public func describeSubscribeConf(_ input: DescribeSubscribeConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscribeConfResponse {
         try await self.client.execute(action: "DescribeSubscribeConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询订阅实例配置
+    ///
+    /// 本接口（DescribeSubscribeConf）用于查询订阅实例配置
+    @inlinable
+    public func describeSubscribeConf(subscribeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubscribeConfResponse > {
+        self.describeSubscribeConf(DescribeSubscribeConfRequest(subscribeId: subscribeId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询订阅实例配置
+    ///
+    /// 本接口（DescribeSubscribeConf）用于查询订阅实例配置
+    @inlinable
+    public func describeSubscribeConf(subscribeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscribeConfResponse {
+        try await self.describeSubscribeConf(DescribeSubscribeConfRequest(subscribeId: subscribeId), logger: logger, on: eventLoop)
+    }
 }

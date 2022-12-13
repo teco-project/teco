@@ -54,4 +54,16 @@ extension Tcss {
     public func describeVulTopRanking(_ input: DescribeVulTopRankingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTopRankingResponse {
         try await self.client.execute(action: "DescribeVulTopRanking", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询漏洞Top排名列表
+    @inlinable
+    public func describeVulTopRanking(categoryType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulTopRankingResponse > {
+        self.describeVulTopRanking(DescribeVulTopRankingRequest(categoryType: categoryType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞Top排名列表
+    @inlinable
+    public func describeVulTopRanking(categoryType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTopRankingResponse {
+        try await self.describeVulTopRanking(DescribeVulTopRankingRequest(categoryType: categoryType), logger: logger, on: eventLoop)
+    }
 }

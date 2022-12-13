@@ -63,4 +63,20 @@ extension Lighthouse {
     public func createInstanceSnapshot(_ input: CreateInstanceSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceSnapshotResponse {
         try await self.client.execute(action: "CreateInstanceSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建实例快照
+    ///
+    /// 本接口（CreateInstanceSnapshot）用于创建指定实例的系统盘快照。
+    @inlinable
+    public func createInstanceSnapshot(instanceId: String, snapshotName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceSnapshotResponse > {
+        self.createInstanceSnapshot(CreateInstanceSnapshotRequest(instanceId: instanceId, snapshotName: snapshotName), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例快照
+    ///
+    /// 本接口（CreateInstanceSnapshot）用于创建指定实例的系统盘快照。
+    @inlinable
+    public func createInstanceSnapshot(instanceId: String, snapshotName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceSnapshotResponse {
+        try await self.createInstanceSnapshot(CreateInstanceSnapshotRequest(instanceId: instanceId, snapshotName: snapshotName), logger: logger, on: eventLoop)
+    }
 }

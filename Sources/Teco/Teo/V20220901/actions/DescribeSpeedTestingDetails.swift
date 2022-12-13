@@ -58,4 +58,20 @@ extension Teo {
     public func describeSpeedTestingDetails(_ input: DescribeSpeedTestingDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpeedTestingDetailsResponse {
         try await self.client.execute(action: "DescribeSpeedTestingDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询拨测分地区数据
+    ///
+    /// 用于查询拨测分地区数据
+    @inlinable
+    public func describeSpeedTestingDetails(zoneId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpeedTestingDetailsResponse > {
+        self.describeSpeedTestingDetails(DescribeSpeedTestingDetailsRequest(zoneId: zoneId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询拨测分地区数据
+    ///
+    /// 用于查询拨测分地区数据
+    @inlinable
+    public func describeSpeedTestingDetails(zoneId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpeedTestingDetailsResponse {
+        try await self.describeSpeedTestingDetails(DescribeSpeedTestingDetailsRequest(zoneId: zoneId), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Cdwch {
     public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceShardsResponse {
         try await self.client.execute(action: "DescribeInstanceShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取实例shard信息列表
+    @inlinable
+    public func describeInstanceShards(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceShardsResponse > {
+        self.describeInstanceShards(DescribeInstanceShardsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例shard信息列表
+    @inlinable
+    public func describeInstanceShards(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceShardsResponse {
+        try await self.describeInstanceShards(DescribeInstanceShardsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

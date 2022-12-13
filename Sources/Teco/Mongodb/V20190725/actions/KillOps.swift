@@ -59,4 +59,20 @@ extension Mongodb {
     public func killOps(_ input: KillOpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillOpsResponse {
         try await self.client.execute(action: "KillOps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 终止数据库实例特定操作
+    ///
+    /// 本接口(KillOps)用于终止MongoDB云数据库实例上执行的特定操作。
+    @inlinable
+    public func killOps(instanceId: String, operations: [Operation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < KillOpsResponse > {
+        self.killOps(KillOpsRequest(instanceId: instanceId, operations: operations), logger: logger, on: eventLoop)
+    }
+    
+    /// 终止数据库实例特定操作
+    ///
+    /// 本接口(KillOps)用于终止MongoDB云数据库实例上执行的特定操作。
+    @inlinable
+    public func killOps(instanceId: String, operations: [Operation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillOpsResponse {
+        try await self.killOps(KillOpsRequest(instanceId: instanceId, operations: operations), logger: logger, on: eventLoop)
+    }
 }

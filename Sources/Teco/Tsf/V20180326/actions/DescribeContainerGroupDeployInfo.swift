@@ -59,4 +59,20 @@ extension Tsf {
     public func describeContainerGroupDeployInfo(_ input: DescribeContainerGroupDeployInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupDeployInfoResponse {
         try await self.client.execute(action: "DescribeContainerGroupDeployInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取部署组详情
+    ///
+    ///  获取部署组详情
+    @inlinable
+    public func describeContainerGroupDeployInfo(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerGroupDeployInfoResponse > {
+        self.describeContainerGroupDeployInfo(DescribeContainerGroupDeployInfoRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取部署组详情
+    ///
+    ///  获取部署组详情
+    @inlinable
+    public func describeContainerGroupDeployInfo(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupDeployInfoResponse {
+        try await self.describeContainerGroupDeployInfo(DescribeContainerGroupDeployInfoRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

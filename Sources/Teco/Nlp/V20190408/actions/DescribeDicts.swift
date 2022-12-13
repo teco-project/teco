@@ -68,4 +68,20 @@ extension Nlp {
     public func describeDicts(_ input: DescribeDictsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDictsResponse {
         try await self.client.execute(action: "DescribeDicts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询词库列表
+    ///
+    /// 返回属于当前用户的所有自定义词库列表。
+    @inlinable
+    public func describeDicts(limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDictsResponse > {
+        self.describeDicts(DescribeDictsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询词库列表
+    ///
+    /// 返回属于当前用户的所有自定义词库列表。
+    @inlinable
+    public func describeDicts(limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDictsResponse {
+        try await self.describeDicts(DescribeDictsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

@@ -63,4 +63,22 @@ extension Gse {
     public func describeRuntimeConfiguration(_ input: DescribeRuntimeConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuntimeConfigurationResponse {
         try await self.client.execute(action: "DescribeRuntimeConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取服务器舰队运行配置
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeRuntimeConfiguration）用于获取服务器舰队运行配置。
+    @inlinable
+    public func describeRuntimeConfiguration(fleetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuntimeConfigurationResponse > {
+        self.describeRuntimeConfiguration(DescribeRuntimeConfigurationRequest(fleetId: fleetId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取服务器舰队运行配置
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeRuntimeConfiguration）用于获取服务器舰队运行配置。
+    @inlinable
+    public func describeRuntimeConfiguration(fleetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuntimeConfigurationResponse {
+        try await self.describeRuntimeConfiguration(DescribeRuntimeConfigurationRequest(fleetId: fleetId), logger: logger, on: eventLoop)
+    }
 }

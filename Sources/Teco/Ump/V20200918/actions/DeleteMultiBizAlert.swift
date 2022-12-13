@@ -82,4 +82,20 @@ extension Ump {
     public func deleteMultiBizAlert(_ input: DeleteMultiBizAlertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMultiBizAlertResponse {
         try await self.client.execute(action: "DeleteMultiBizAlert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 多经点位消警
+    ///
+    /// 集团广场的多经点位消警
+    @inlinable
+    public func deleteMultiBizAlert(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, actionType: Int64, image: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMultiBizAlertResponse > {
+        self.deleteMultiBizAlert(DeleteMultiBizAlertRequest(groupCode: groupCode, mallId: mallId, zoneId: zoneId, cameraId: cameraId, actionType: actionType, image: image), logger: logger, on: eventLoop)
+    }
+    
+    /// 多经点位消警
+    ///
+    /// 集团广场的多经点位消警
+    @inlinable
+    public func deleteMultiBizAlert(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, actionType: Int64, image: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMultiBizAlertResponse {
+        try await self.deleteMultiBizAlert(DeleteMultiBizAlertRequest(groupCode: groupCode, mallId: mallId, zoneId: zoneId, cameraId: cameraId, actionType: actionType, image: image), logger: logger, on: eventLoop)
+    }
 }

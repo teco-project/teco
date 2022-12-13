@@ -54,4 +54,20 @@ extension Iotexplorer {
     public func deleteStudioProduct(_ input: DeleteStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStudioProductResponse {
         try await self.client.execute(action: "DeleteStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除产品
+    ///
+    /// 提供删除某个项目下产品的能力
+    @inlinable
+    public func deleteStudioProduct(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStudioProductResponse > {
+        self.deleteStudioProduct(DeleteStudioProductRequest(productId: productId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除产品
+    ///
+    /// 提供删除某个项目下产品的能力
+    @inlinable
+    public func deleteStudioProduct(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStudioProductResponse {
+        try await self.deleteStudioProduct(DeleteStudioProductRequest(productId: productId), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,16 @@ extension Tcb {
     public func describeAuthDomains(_ input: DescribeAuthDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthDomainsResponse {
         try await self.client.execute(action: "DescribeAuthDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取安全域名列表
+    @inlinable
+    public func describeAuthDomains(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuthDomainsResponse > {
+        self.describeAuthDomains(DescribeAuthDomainsRequest(envId: envId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取安全域名列表
+    @inlinable
+    public func describeAuthDomains(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthDomainsResponse {
+        try await self.describeAuthDomains(DescribeAuthDomainsRequest(envId: envId), logger: logger, on: eventLoop)
+    }
 }

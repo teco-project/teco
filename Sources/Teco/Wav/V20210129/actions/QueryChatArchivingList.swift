@@ -69,4 +69,20 @@ extension Wav {
     public func queryChatArchivingList(_ input: QueryChatArchivingListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChatArchivingListResponse {
         try await self.client.execute(action: "QueryChatArchivingList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询会话存档列表接口
+    ///
+    /// 根据游标拉取会话存档列表信息
+    @inlinable
+    public func queryChatArchivingList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryChatArchivingListResponse > {
+        self.queryChatArchivingList(QueryChatArchivingListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询会话存档列表接口
+    ///
+    /// 根据游标拉取会话存档列表信息
+    @inlinable
+    public func queryChatArchivingList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChatArchivingListResponse {
+        try await self.queryChatArchivingList(QueryChatArchivingListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    }
 }

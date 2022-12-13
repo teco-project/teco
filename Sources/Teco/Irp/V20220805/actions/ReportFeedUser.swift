@@ -59,4 +59,20 @@ extension Irp {
     public func reportFeedUser(_ input: ReportFeedUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedUserResponse {
         try await self.client.execute(action: "ReportFeedUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 上报信息流用户信息
+    ///
+    /// 上报信息流用户信息，请务必确认用户的唯一性，并在请求推荐结果时指定用户的唯一标识信息（UserId），否则将无法进行千人千面的推荐
+    @inlinable
+    public func reportFeedUser(instanceId: String, feedUserList: [FeedUserInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportFeedUserResponse > {
+        self.reportFeedUser(ReportFeedUserRequest(instanceId: instanceId, feedUserList: feedUserList), logger: logger, on: eventLoop)
+    }
+    
+    /// 上报信息流用户信息
+    ///
+    /// 上报信息流用户信息，请务必确认用户的唯一性，并在请求推荐结果时指定用户的唯一标识信息（UserId），否则将无法进行千人千面的推荐
+    @inlinable
+    public func reportFeedUser(instanceId: String, feedUserList: [FeedUserInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedUserResponse {
+        try await self.reportFeedUser(ReportFeedUserRequest(instanceId: instanceId, feedUserList: feedUserList), logger: logger, on: eventLoop)
+    }
 }

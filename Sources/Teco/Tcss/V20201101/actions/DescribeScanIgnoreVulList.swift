@@ -80,4 +80,16 @@ extension Tcss {
     public func describeScanIgnoreVulList(_ input: DescribeScanIgnoreVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanIgnoreVulListResponse {
         try await self.client.execute(action: "DescribeScanIgnoreVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询扫描忽略的漏洞列表
+    @inlinable
+    public func describeScanIgnoreVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanIgnoreVulListResponse > {
+        self.describeScanIgnoreVulList(DescribeScanIgnoreVulListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询扫描忽略的漏洞列表
+    @inlinable
+    public func describeScanIgnoreVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanIgnoreVulListResponse {
+        try await self.describeScanIgnoreVulList(DescribeScanIgnoreVulListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

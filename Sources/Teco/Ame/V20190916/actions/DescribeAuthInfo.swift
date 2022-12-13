@@ -72,4 +72,20 @@ extension Ame {
     public func describeAuthInfo(_ input: DescribeAuthInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthInfoResponse {
         try await self.client.execute(action: "DescribeAuthInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取授权项目列表
+    ///
+    /// 获取授权项目信息列表
+    @inlinable
+    public func describeAuthInfo(offset: Int64? = nil, limit: Int64? = nil, key: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuthInfoResponse > {
+        self.describeAuthInfo(DescribeAuthInfoRequest(offset: offset, limit: limit, key: key), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取授权项目列表
+    ///
+    /// 获取授权项目信息列表
+    @inlinable
+    public func describeAuthInfo(offset: Int64? = nil, limit: Int64? = nil, key: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthInfoResponse {
+        try await self.describeAuthInfo(DescribeAuthInfoRequest(offset: offset, limit: limit, key: key), logger: logger, on: eventLoop)
+    }
 }

@@ -72,4 +72,20 @@ extension Youmall {
     public func describePerson(_ input: DescribePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
         try await self.client.execute(action: "DescribePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询客户信息
+    ///
+    /// 查询指定某一卖场的用户信息
+    @inlinable
+    public func describePerson(mallId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonResponse > {
+        self.describePerson(DescribePersonRequest(mallId: mallId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询客户信息
+    ///
+    /// 查询指定某一卖场的用户信息
+    @inlinable
+    public func describePerson(mallId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
+        try await self.describePerson(DescribePersonRequest(mallId: mallId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

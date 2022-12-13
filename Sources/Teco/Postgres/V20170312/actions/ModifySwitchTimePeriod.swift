@@ -59,4 +59,20 @@ extension Postgres {
     public func modifySwitchTimePeriod(_ input: ModifySwitchTimePeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySwitchTimePeriodResponse {
         try await self.client.execute(action: "ModifySwitchTimePeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改变更配置切换时间
+    ///
+    /// 当升级完成后，对处于等待切换状态下的实例，强制实例立即切换。
+    @inlinable
+    public func modifySwitchTimePeriod(dbInstanceId: String, switchTag: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySwitchTimePeriodResponse > {
+        self.modifySwitchTimePeriod(ModifySwitchTimePeriodRequest(dbInstanceId: dbInstanceId, switchTag: switchTag), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改变更配置切换时间
+    ///
+    /// 当升级完成后，对处于等待切换状态下的实例，强制实例立即切换。
+    @inlinable
+    public func modifySwitchTimePeriod(dbInstanceId: String, switchTag: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySwitchTimePeriodResponse {
+        try await self.modifySwitchTimePeriod(ModifySwitchTimePeriodRequest(dbInstanceId: dbInstanceId, switchTag: switchTag), logger: logger, on: eventLoop)
+    }
 }

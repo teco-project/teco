@@ -82,4 +82,20 @@ extension Cws {
     public func createMonitors(_ input: CreateMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMonitorsResponse {
         try await self.client.execute(action: "CreateMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新增监测任务
+    ///
+    /// 本接口（CreateMonitors）用于新增一个或多个站点的监测任务。
+    @inlinable
+    public func createMonitors(urls: [String], name: String, scannerType: String, crontab: UInt64, rateLimit: UInt64, firstScanStartTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMonitorsResponse > {
+        self.createMonitors(CreateMonitorsRequest(urls: urls, name: name, scannerType: scannerType, crontab: crontab, rateLimit: rateLimit, firstScanStartTime: firstScanStartTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 新增监测任务
+    ///
+    /// 本接口（CreateMonitors）用于新增一个或多个站点的监测任务。
+    @inlinable
+    public func createMonitors(urls: [String], name: String, scannerType: String, crontab: UInt64, rateLimit: UInt64, firstScanStartTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMonitorsResponse {
+        try await self.createMonitors(CreateMonitorsRequest(urls: urls, name: name, scannerType: scannerType, crontab: crontab, rateLimit: rateLimit, firstScanStartTime: firstScanStartTime), logger: logger, on: eventLoop)
+    }
 }

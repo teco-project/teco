@@ -59,4 +59,20 @@ extension Mongodb {
     public func describeClientConnections(_ input: DescribeClientConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientConnectionsResponse {
         try await self.client.execute(action: "DescribeClientConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例客户端连接信息
+    ///
+    /// 本接口(DescribeClientConnections)用于查询实例客户端连接信息，包括连接IP和连接数量。目前只支持3.2版本的MongoDB实例。
+    @inlinable
+    public func describeClientConnections(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientConnectionsResponse > {
+        self.describeClientConnections(DescribeClientConnectionsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例客户端连接信息
+    ///
+    /// 本接口(DescribeClientConnections)用于查询实例客户端连接信息，包括连接IP和连接数量。目前只支持3.2版本的MongoDB实例。
+    @inlinable
+    public func describeClientConnections(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientConnectionsResponse {
+        try await self.describeClientConnections(DescribeClientConnectionsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

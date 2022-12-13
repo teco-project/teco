@@ -90,4 +90,16 @@ extension Wedata {
     public func modifyRuleGroupSubscription(_ input: ModifyRuleGroupSubscriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleGroupSubscriptionResponse {
         try await self.client.execute(action: "ModifyRuleGroupSubscription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新规则组订阅信息
+    @inlinable
+    public func modifyRuleGroupSubscription(ruleGroupId: UInt64? = nil, receivers: [SubscribeReceiver]? = nil, subscribeType: [UInt64]? = nil, projectId: String? = nil, databaseId: String? = nil, datasourceId: String? = nil, tableId: String? = nil, webHooks: [SubscribeWebHook]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRuleGroupSubscriptionResponse > {
+        self.modifyRuleGroupSubscription(ModifyRuleGroupSubscriptionRequest(ruleGroupId: ruleGroupId, receivers: receivers, subscribeType: subscribeType, projectId: projectId, databaseId: databaseId, datasourceId: datasourceId, tableId: tableId, webHooks: webHooks), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新规则组订阅信息
+    @inlinable
+    public func modifyRuleGroupSubscription(ruleGroupId: UInt64? = nil, receivers: [SubscribeReceiver]? = nil, subscribeType: [UInt64]? = nil, projectId: String? = nil, databaseId: String? = nil, datasourceId: String? = nil, tableId: String? = nil, webHooks: [SubscribeWebHook]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleGroupSubscriptionResponse {
+        try await self.modifyRuleGroupSubscription(ModifyRuleGroupSubscriptionRequest(ruleGroupId: ruleGroupId, receivers: receivers, subscribeType: subscribeType, projectId: projectId, databaseId: databaseId, datasourceId: datasourceId, tableId: tableId, webHooks: webHooks), logger: logger, on: eventLoop)
+    }
 }

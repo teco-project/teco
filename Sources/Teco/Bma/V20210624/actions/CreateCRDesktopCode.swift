@@ -55,4 +55,16 @@ extension Bma {
     public func createCRDesktopCode(_ input: CreateCRDesktopCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRDesktopCodeResponse {
         try await self.client.execute(action: "CreateCRDesktopCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新建过程取证码
+    @inlinable
+    public func createCRDesktopCode(tortId: Int64, desktopCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRDesktopCodeResponse > {
+        self.createCRDesktopCode(CreateCRDesktopCodeRequest(tortId: tortId, desktopCode: desktopCode), logger: logger, on: eventLoop)
+    }
+    
+    /// 新建过程取证码
+    @inlinable
+    public func createCRDesktopCode(tortId: Int64, desktopCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRDesktopCodeResponse {
+        try await self.createCRDesktopCode(CreateCRDesktopCodeRequest(tortId: tortId, desktopCode: desktopCode), logger: logger, on: eventLoop)
+    }
 }

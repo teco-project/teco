@@ -98,4 +98,16 @@ extension Npp {
     public func describeCallBackStatus(_ input: DescribeCallBackStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallBackStatusResponse {
         try await self.client.execute(action: "DescribeCallBackStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 回拨通话状态获取
+    @inlinable
+    public func describeCallBackStatus(bizAppId: String, callId: String, src: String? = nil, dst: String? = nil, callStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallBackStatusResponse > {
+        self.describeCallBackStatus(DescribeCallBackStatusRequest(bizAppId: bizAppId, callId: callId, src: src, dst: dst, callStatus: callStatus), logger: logger, on: eventLoop)
+    }
+    
+    /// 回拨通话状态获取
+    @inlinable
+    public func describeCallBackStatus(bizAppId: String, callId: String, src: String? = nil, dst: String? = nil, callStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallBackStatusResponse {
+        try await self.describeCallBackStatus(DescribeCallBackStatusRequest(bizAppId: bizAppId, callId: callId, src: src, dst: dst, callStatus: callStatus), logger: logger, on: eventLoop)
+    }
 }

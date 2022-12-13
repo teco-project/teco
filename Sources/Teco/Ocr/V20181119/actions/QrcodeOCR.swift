@@ -69,4 +69,20 @@ extension Ocr {
     public func qrcodeOCR(_ input: QrcodeOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QrcodeOCRResponse {
         try await self.client.execute(action: "QrcodeOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 二维码和条形码识别
+    ///
+    /// 本接口支持条形码和二维码的识别（包括 DataMatrix 和 PDF417）。
+    @inlinable
+    public func qrcodeOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QrcodeOCRResponse > {
+        self.qrcodeOCR(QrcodeOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 二维码和条形码识别
+    ///
+    /// 本接口支持条形码和二维码的识别（包括 DataMatrix 和 PDF417）。
+    @inlinable
+    public func qrcodeOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QrcodeOCRResponse {
+        try await self.qrcodeOCR(QrcodeOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
 }

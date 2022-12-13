@@ -98,4 +98,16 @@ extension Dasb {
     public func describeAcls(_ input: DescribeAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAclsResponse {
         try await self.client.execute(action: "DescribeAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询访问权限列表
+    @inlinable
+    public func describeAcls(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, exact: Bool? = nil, authorizedUserIdSet: [UInt64]? = nil, authorizedDeviceIdSet: [UInt64]? = nil, status: UInt64? = nil, departmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAclsResponse > {
+        self.describeAcls(DescribeAclsRequest(idSet: idSet, name: name, offset: offset, limit: limit, exact: exact, authorizedUserIdSet: authorizedUserIdSet, authorizedDeviceIdSet: authorizedDeviceIdSet, status: status, departmentId: departmentId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询访问权限列表
+    @inlinable
+    public func describeAcls(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, exact: Bool? = nil, authorizedUserIdSet: [UInt64]? = nil, authorizedDeviceIdSet: [UInt64]? = nil, status: UInt64? = nil, departmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAclsResponse {
+        try await self.describeAcls(DescribeAclsRequest(idSet: idSet, name: name, offset: offset, limit: limit, exact: exact, authorizedUserIdSet: authorizedUserIdSet, authorizedDeviceIdSet: authorizedDeviceIdSet, status: status, departmentId: departmentId), logger: logger, on: eventLoop)
+    }
 }

@@ -58,4 +58,20 @@ extension Postgres {
     public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
         try await self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 拉取数据库列表
+    ///
+    /// 接口（DescribeDatabases）用来拉取数据库列表
+    @inlinable
+    public func describeDatabases(dbInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatabasesResponse > {
+        self.describeDatabases(DescribeDatabasesRequest(dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取数据库列表
+    ///
+    /// 接口（DescribeDatabases）用来拉取数据库列表
+    @inlinable
+    public func describeDatabases(dbInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
+        try await self.describeDatabases(DescribeDatabasesRequest(dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
+    }
 }

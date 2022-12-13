@@ -55,4 +55,16 @@ extension Ecm {
     public func modifyModuleSecurityGroups(_ input: ModifyModuleSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleSecurityGroupsResponse {
         try await self.client.execute(action: "ModifyModuleSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改模块默认安全组
+    @inlinable
+    public func modifyModuleSecurityGroups(securityGroupIdSet: [String], moduleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleSecurityGroupsResponse > {
+        self.modifyModuleSecurityGroups(ModifyModuleSecurityGroupsRequest(securityGroupIdSet: securityGroupIdSet, moduleId: moduleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改模块默认安全组
+    @inlinable
+    public func modifyModuleSecurityGroups(securityGroupIdSet: [String], moduleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleSecurityGroupsResponse {
+        try await self.modifyModuleSecurityGroups(ModifyModuleSecurityGroupsRequest(securityGroupIdSet: securityGroupIdSet, moduleId: moduleId), logger: logger, on: eventLoop)
+    }
 }

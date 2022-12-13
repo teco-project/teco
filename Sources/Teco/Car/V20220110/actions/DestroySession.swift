@@ -50,4 +50,16 @@ extension Car {
     public func destroySession(_ input: DestroySessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroySessionResponse {
         try await self.client.execute(action: "DestroySession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 销毁会话
+    @inlinable
+    public func destroySession(userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroySessionResponse > {
+        self.destroySession(DestroySessionRequest(userId: userId), logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁会话
+    @inlinable
+    public func destroySession(userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroySessionResponse {
+        try await self.destroySession(DestroySessionRequest(userId: userId), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Tione {
     public func deleteNotebookLifecycleScript(_ input: DeleteNotebookLifecycleScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotebookLifecycleScriptResponse {
         try await self.client.execute(action: "DeleteNotebookLifecycleScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除Notebook生命周期脚本
+    @inlinable
+    public func deleteNotebookLifecycleScript(notebookLifecycleScriptsName: String, forcible: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNotebookLifecycleScriptResponse > {
+        self.deleteNotebookLifecycleScript(DeleteNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName, forcible: forcible), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Notebook生命周期脚本
+    @inlinable
+    public func deleteNotebookLifecycleScript(notebookLifecycleScriptsName: String, forcible: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotebookLifecycleScriptResponse {
+        try await self.deleteNotebookLifecycleScript(DeleteNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName, forcible: forcible), logger: logger, on: eventLoop)
+    }
 }

@@ -69,4 +69,16 @@ extension Tem {
     public func deleteIngress(_ input: DeleteIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIngressResponse {
         try await self.client.execute(action: "DeleteIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除 Ingress 规则
+    @inlinable
+    public func deleteIngress(environmentId: String, clusterNamespace: String, ingressName: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIngressResponse > {
+        self.deleteIngress(DeleteIngressRequest(environmentId: environmentId, clusterNamespace: clusterNamespace, ingressName: ingressName, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除 Ingress 规则
+    @inlinable
+    public func deleteIngress(environmentId: String, clusterNamespace: String, ingressName: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIngressResponse {
+        try await self.deleteIngress(DeleteIngressRequest(environmentId: environmentId, clusterNamespace: clusterNamespace, ingressName: ingressName, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    }
 }

@@ -58,4 +58,20 @@ extension Batch {
     public func describeCpmOsInfo(_ input: DescribeCpmOsInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCpmOsInfoResponse {
         try await self.client.execute(action: "DescribeCpmOsInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询批量计算黑石操作系统信息
+    ///
+    /// 创建黑石计算环境时，查询批量计算环境支持的黑石操作系统信息
+    @inlinable
+    public func describeCpmOsInfo(deviceClassCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCpmOsInfoResponse > {
+        self.describeCpmOsInfo(DescribeCpmOsInfoRequest(deviceClassCode: deviceClassCode), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询批量计算黑石操作系统信息
+    ///
+    /// 创建黑石计算环境时，查询批量计算环境支持的黑石操作系统信息
+    @inlinable
+    public func describeCpmOsInfo(deviceClassCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCpmOsInfoResponse {
+        try await self.describeCpmOsInfo(DescribeCpmOsInfoRequest(deviceClassCode: deviceClassCode), logger: logger, on: eventLoop)
+    }
 }

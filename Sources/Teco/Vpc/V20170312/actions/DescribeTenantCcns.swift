@@ -50,4 +50,24 @@ extension Vpc {
     public func describeTenantCcns(_ input: DescribeTenantCcnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTenantCcnsResponse {
         try await self.client.execute(action: "DescribeTenantCcns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询租户云联网实例
+    ///
+    /// 本接口（DescribeTenantCcns）用于获取要锁定的云联网实例列表。
+    /// 该接口一般用来封禁出口限速的云联网实例, 目前联通内部运营系统通过云API调用, 因为出口限速无法按地域间封禁, 只能按更粗的云联网实例粒度封禁, 如果是地域间限速, 一般可以通过更细的限速实例粒度封禁（DescribeCrossBorderCcnRegionBandwidthLimits）
+    /// 如有需要, 可以封禁任意云联网实例, 可接入到内部运营系统
+    @inlinable
+    public func describeTenantCcns(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTenantCcnsResponse > {
+        self.describeTenantCcns(DescribeTenantCcnsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询租户云联网实例
+    ///
+    /// 本接口（DescribeTenantCcns）用于获取要锁定的云联网实例列表。
+    /// 该接口一般用来封禁出口限速的云联网实例, 目前联通内部运营系统通过云API调用, 因为出口限速无法按地域间封禁, 只能按更粗的云联网实例粒度封禁, 如果是地域间限速, 一般可以通过更细的限速实例粒度封禁（DescribeCrossBorderCcnRegionBandwidthLimits）
+    /// 如有需要, 可以封禁任意云联网实例, 可接入到内部运营系统
+    @inlinable
+    public func describeTenantCcns(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTenantCcnsResponse {
+        try await self.describeTenantCcns(DescribeTenantCcnsRequest(), logger: logger, on: eventLoop)
+    }
 }

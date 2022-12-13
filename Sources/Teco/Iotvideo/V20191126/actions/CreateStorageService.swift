@@ -138,4 +138,16 @@ extension Iotvideo {
     public func createStorageService(_ input: CreateStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStorageServiceResponse {
         try await self.client.execute(action: "CreateStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 购买云存服务
+    @inlinable
+    public func createStorageService(pkgId: String, tid: String, orderCount: Int64, storageRegion: String, chnNum: Int64? = nil, accessId: String? = nil, enableTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStorageServiceResponse > {
+        self.createStorageService(CreateStorageServiceRequest(pkgId: pkgId, tid: tid, orderCount: orderCount, storageRegion: storageRegion, chnNum: chnNum, accessId: accessId, enableTime: enableTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 购买云存服务
+    @inlinable
+    public func createStorageService(pkgId: String, tid: String, orderCount: Int64, storageRegion: String, chnNum: Int64? = nil, accessId: String? = nil, enableTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStorageServiceResponse {
+        try await self.createStorageService(CreateStorageServiceRequest(pkgId: pkgId, tid: tid, orderCount: orderCount, storageRegion: storageRegion, chnNum: chnNum, accessId: accessId, enableTime: enableTime), logger: logger, on: eventLoop)
+    }
 }

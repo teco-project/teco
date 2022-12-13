@@ -80,4 +80,16 @@ extension Dlc {
     public func describeDMSDatabase(_ input: DescribeDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSDatabaseResponse {
         try await self.client.execute(action: "DescribeDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// DMS元数据获取库
+    @inlinable
+    public func describeDMSDatabase(name: String? = nil, schemaName: String? = nil, pattern: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDMSDatabaseResponse > {
+        self.describeDMSDatabase(DescribeDMSDatabaseRequest(name: name, schemaName: schemaName, pattern: pattern), logger: logger, on: eventLoop)
+    }
+    
+    /// DMS元数据获取库
+    @inlinable
+    public func describeDMSDatabase(name: String? = nil, schemaName: String? = nil, pattern: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSDatabaseResponse {
+        try await self.describeDMSDatabase(DescribeDMSDatabaseRequest(name: name, schemaName: schemaName, pattern: pattern), logger: logger, on: eventLoop)
+    }
 }

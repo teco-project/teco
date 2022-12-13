@@ -83,4 +83,20 @@ extension Dcdb {
     public func cloneAccount(_ input: CloneAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneAccountResponse {
         try await self.client.execute(action: "CloneAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 克隆实例账户
+    ///
+    /// 本接口（CloneAccount）用于克隆实例账户。
+    @inlinable
+    public func cloneAccount(instanceId: String, srcUser: String, srcHost: String, dstUser: String, dstHost: String, dstDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloneAccountResponse > {
+        self.cloneAccount(CloneAccountRequest(instanceId: instanceId, srcUser: srcUser, srcHost: srcHost, dstUser: dstUser, dstHost: dstHost, dstDesc: dstDesc), logger: logger, on: eventLoop)
+    }
+    
+    /// 克隆实例账户
+    ///
+    /// 本接口（CloneAccount）用于克隆实例账户。
+    @inlinable
+    public func cloneAccount(instanceId: String, srcUser: String, srcHost: String, dstUser: String, dstHost: String, dstDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneAccountResponse {
+        try await self.cloneAccount(CloneAccountRequest(instanceId: instanceId, srcUser: srcUser, srcHost: srcHost, dstUser: dstUser, dstHost: dstHost, dstDesc: dstDesc), logger: logger, on: eventLoop)
+    }
 }

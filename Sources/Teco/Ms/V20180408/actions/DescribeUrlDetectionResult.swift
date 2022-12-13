@@ -118,4 +118,20 @@ extension Ms {
     public func describeUrlDetectionResult(_ input: DescribeUrlDetectionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUrlDetectionResultResponse {
         try await self.client.execute(action: "DescribeUrlDetectionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 移动安全-查询网址检测结果服务
+    ///
+    /// 移动安全-网址检测服务
+    @inlinable
+    public func describeUrlDetectionResult(url: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUrlDetectionResultResponse > {
+        self.describeUrlDetectionResult(DescribeUrlDetectionResultRequest(url: url), logger: logger, on: eventLoop)
+    }
+    
+    /// 移动安全-查询网址检测结果服务
+    ///
+    /// 移动安全-网址检测服务
+    @inlinable
+    public func describeUrlDetectionResult(url: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUrlDetectionResultResponse {
+        try await self.describeUrlDetectionResult(DescribeUrlDetectionResultRequest(url: url), logger: logger, on: eventLoop)
+    }
 }

@@ -65,4 +65,16 @@ extension Tcss {
     public func createVirusScanAgain(_ input: CreateVirusScanAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanAgainResponse {
         try await self.client.execute(action: "CreateVirusScanAgain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行时文件查杀重新检测
+    @inlinable
+    public func createVirusScanAgain(taskId: String, containerIds: [String]? = nil, timeoutAll: Bool? = nil, timeout: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVirusScanAgainResponse > {
+        self.createVirusScanAgain(CreateVirusScanAgainRequest(taskId: taskId, containerIds: containerIds, timeoutAll: timeoutAll, timeout: timeout), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时文件查杀重新检测
+    @inlinable
+    public func createVirusScanAgain(taskId: String, containerIds: [String]? = nil, timeoutAll: Bool? = nil, timeout: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanAgainResponse {
+        try await self.createVirusScanAgain(CreateVirusScanAgainRequest(taskId: taskId, containerIds: containerIds, timeoutAll: timeoutAll, timeout: timeout), logger: logger, on: eventLoop)
+    }
 }

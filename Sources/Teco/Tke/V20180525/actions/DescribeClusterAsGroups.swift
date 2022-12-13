@@ -73,4 +73,16 @@ extension Tke {
     public func describeClusterAsGroups(_ input: DescribeClusterAsGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterAsGroupsResponse {
         try await self.client.execute(action: "DescribeClusterAsGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 集群关联的伸缩组列表
+    @inlinable
+    public func describeClusterAsGroups(clusterId: String, autoScalingGroupIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterAsGroupsResponse > {
+        self.describeClusterAsGroups(DescribeClusterAsGroupsRequest(clusterId: clusterId, autoScalingGroupIds: autoScalingGroupIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 集群关联的伸缩组列表
+    @inlinable
+    public func describeClusterAsGroups(clusterId: String, autoScalingGroupIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterAsGroupsResponse {
+        try await self.describeClusterAsGroups(DescribeClusterAsGroupsRequest(clusterId: clusterId, autoScalingGroupIds: autoScalingGroupIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

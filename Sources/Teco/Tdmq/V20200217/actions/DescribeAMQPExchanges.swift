@@ -88,4 +88,16 @@ extension Tdmq {
     public func describeAMQPExchanges(_ input: DescribeAMQPExchangesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPExchangesResponse {
         try await self.client.execute(action: "DescribeAMQPExchanges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取AMQP Exchange列表
+    @inlinable
+    public func describeAMQPExchanges(offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, filterType: [String]? = nil, filterName: String? = nil, filterInternal: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAMQPExchangesResponse > {
+        self.describeAMQPExchanges(DescribeAMQPExchangesRequest(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, filterType: filterType, filterName: filterName, filterInternal: filterInternal), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取AMQP Exchange列表
+    @inlinable
+    public func describeAMQPExchanges(offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, filterType: [String]? = nil, filterName: String? = nil, filterInternal: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPExchangesResponse {
+        try await self.describeAMQPExchanges(DescribeAMQPExchangesRequest(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, filterType: filterType, filterName: filterName, filterInternal: filterInternal), logger: logger, on: eventLoop)
+    }
 }

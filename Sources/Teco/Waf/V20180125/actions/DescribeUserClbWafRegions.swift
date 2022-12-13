@@ -51,4 +51,20 @@ extension Waf {
     public func describeUserClbWafRegions(_ input: DescribeUserClbWafRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserClbWafRegionsResponse {
         try await self.client.execute(action: "DescribeUserClbWafRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取对客户已经开放的负载均衡型WAF(clb-waf)的地域
+    ///
+    /// 在负载均衡型WAF的添加、编辑域名配置的时候，需要展示负载均衡型WAF（clb-waf)支持的地域列表，通过DescribeUserClbWafRegions既可以获得当前对客户已经开放的地域列表
+    @inlinable
+    public func describeUserClbWafRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserClbWafRegionsResponse > {
+        self.describeUserClbWafRegions(DescribeUserClbWafRegionsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取对客户已经开放的负载均衡型WAF(clb-waf)的地域
+    ///
+    /// 在负载均衡型WAF的添加、编辑域名配置的时候，需要展示负载均衡型WAF（clb-waf)支持的地域列表，通过DescribeUserClbWafRegions既可以获得当前对客户已经开放的地域列表
+    @inlinable
+    public func describeUserClbWafRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserClbWafRegionsResponse {
+        try await self.describeUserClbWafRegions(DescribeUserClbWafRegionsRequest(), logger: logger, on: eventLoop)
+    }
 }

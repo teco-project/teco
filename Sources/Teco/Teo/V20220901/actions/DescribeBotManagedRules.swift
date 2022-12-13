@@ -90,4 +90,16 @@ extension Teo {
     public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
         try await self.client.execute(action: "DescribeBotManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询Bot托管规则
+    @inlinable
+    public func describeBotManagedRules(offset: Int64, limit: Int64, zoneId: String? = nil, entity: String? = nil, ruleType: String? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBotManagedRulesResponse > {
+        self.describeBotManagedRules(DescribeBotManagedRulesRequest(offset: offset, limit: limit, zoneId: zoneId, entity: entity, ruleType: ruleType, templateId: templateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Bot托管规则
+    @inlinable
+    public func describeBotManagedRules(offset: Int64, limit: Int64, zoneId: String? = nil, entity: String? = nil, ruleType: String? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
+        try await self.describeBotManagedRules(DescribeBotManagedRulesRequest(offset: offset, limit: limit, zoneId: zoneId, entity: entity, ruleType: ruleType, templateId: templateId), logger: logger, on: eventLoop)
+    }
 }

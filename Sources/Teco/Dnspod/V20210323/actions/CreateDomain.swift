@@ -64,4 +64,16 @@ extension Dnspod {
     public func createDomain(_ input: CreateDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
         try await self.client.execute(action: "CreateDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加域名
+    @inlinable
+    public func createDomain(domain: String, groupId: UInt64? = nil, isMark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainResponse > {
+        self.createDomain(CreateDomainRequest(domain: domain, groupId: groupId, isMark: isMark), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加域名
+    @inlinable
+    public func createDomain(domain: String, groupId: UInt64? = nil, isMark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
+        try await self.createDomain(CreateDomainRequest(domain: domain, groupId: groupId, isMark: isMark), logger: logger, on: eventLoop)
+    }
 }

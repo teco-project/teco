@@ -54,4 +54,20 @@ extension Yunjing {
     public func deletePrivilegeEvents(_ input: DeletePrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeEventsResponse {
         try await self.client.execute(action: "DeletePrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除本地提权事件
+    ///
+    /// 根据Ids删除本地提权
+    @inlinable
+    public func deletePrivilegeEvents(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrivilegeEventsResponse > {
+        self.deletePrivilegeEvents(DeletePrivilegeEventsRequest(ids: ids), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除本地提权事件
+    ///
+    /// 根据Ids删除本地提权
+    @inlinable
+    public func deletePrivilegeEvents(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeEventsResponse {
+        try await self.deletePrivilegeEvents(DeletePrivilegeEventsRequest(ids: ids), logger: logger, on: eventLoop)
+    }
 }

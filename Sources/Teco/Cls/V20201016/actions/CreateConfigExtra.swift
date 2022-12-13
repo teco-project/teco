@@ -138,4 +138,20 @@ extension Cls {
     public func createConfigExtra(_ input: CreateConfigExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigExtraResponse {
         try await self.client.execute(action: "CreateConfigExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建特殊采集配置任务
+    ///
+    /// 本接口用于创建特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
+    @inlinable
+    public func createConfigExtra(name: String, topicId: String, type: String, logType: String, configFlag: String, logsetId: String, logsetName: String, topicName: String, hostFile: HostFileInfo? = nil, containerFile: ContainerFileInfo? = nil, containerStdout: ContainerStdoutInfo? = nil, logFormat: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, groupId: String? = nil, groupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConfigExtraResponse > {
+        self.createConfigExtra(CreateConfigExtraRequest(name: name, topicId: topicId, type: type, logType: logType, configFlag: configFlag, logsetId: logsetId, logsetName: logsetName, topicName: topicName, hostFile: hostFile, containerFile: containerFile, containerStdout: containerStdout, logFormat: logFormat, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule, groupId: groupId, groupIds: groupIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建特殊采集配置任务
+    ///
+    /// 本接口用于创建特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
+    @inlinable
+    public func createConfigExtra(name: String, topicId: String, type: String, logType: String, configFlag: String, logsetId: String, logsetName: String, topicName: String, hostFile: HostFileInfo? = nil, containerFile: ContainerFileInfo? = nil, containerStdout: ContainerStdoutInfo? = nil, logFormat: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, groupId: String? = nil, groupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigExtraResponse {
+        try await self.createConfigExtra(CreateConfigExtraRequest(name: name, topicId: topicId, type: type, logType: logType, configFlag: configFlag, logsetId: logsetId, logsetName: logsetName, topicName: topicName, hostFile: hostFile, containerFile: containerFile, containerStdout: containerStdout, logFormat: logFormat, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule, groupId: groupId, groupIds: groupIds), logger: logger, on: eventLoop)
+    }
 }

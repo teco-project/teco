@@ -73,4 +73,16 @@ extension Ciam {
     public func createFileExportUserJob(_ input: CreateFileExportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileExportUserJobResponse {
         try await self.client.execute(action: "CreateFileExportUserJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新建文件导出用户任务
+    @inlinable
+    public func createFileExportUserJob(userStoreId: String, format: String? = nil, filters: [Filter]? = nil, exportPropertyMaps: [ExportPropertyMap]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileExportUserJobResponse > {
+        self.createFileExportUserJob(CreateFileExportUserJobRequest(userStoreId: userStoreId, format: format, filters: filters, exportPropertyMaps: exportPropertyMaps), logger: logger, on: eventLoop)
+    }
+    
+    /// 新建文件导出用户任务
+    @inlinable
+    public func createFileExportUserJob(userStoreId: String, format: String? = nil, filters: [Filter]? = nil, exportPropertyMaps: [ExportPropertyMap]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileExportUserJobResponse {
+        try await self.createFileExportUserJob(CreateFileExportUserJobRequest(userStoreId: userStoreId, format: format, filters: filters, exportPropertyMaps: exportPropertyMaps), logger: logger, on: eventLoop)
+    }
 }

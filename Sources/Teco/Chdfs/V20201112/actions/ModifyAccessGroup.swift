@@ -64,4 +64,20 @@ extension Chdfs {
     public func modifyAccessGroup(_ input: ModifyAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessGroupResponse {
         try await self.client.execute(action: "ModifyAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改权限组属性
+    ///
+    /// 修改权限组属性。
+    @inlinable
+    public func modifyAccessGroup(accessGroupId: String, accessGroupName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccessGroupResponse > {
+        self.modifyAccessGroup(ModifyAccessGroupRequest(accessGroupId: accessGroupId, accessGroupName: accessGroupName, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改权限组属性
+    ///
+    /// 修改权限组属性。
+    @inlinable
+    public func modifyAccessGroup(accessGroupId: String, accessGroupName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessGroupResponse {
+        try await self.modifyAccessGroup(ModifyAccessGroupRequest(accessGroupId: accessGroupId, accessGroupName: accessGroupName, description: description), logger: logger, on: eventLoop)
+    }
 }

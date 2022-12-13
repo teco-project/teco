@@ -56,4 +56,16 @@ extension Tsf {
     public func startContainerGroup(_ input: StartContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartContainerGroupResponse {
         try await self.client.execute(action: "StartContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启动容器部署组
+    @inlinable
+    public func startContainerGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartContainerGroupResponse > {
+        self.startContainerGroup(StartContainerGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 启动容器部署组
+    @inlinable
+    public func startContainerGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartContainerGroupResponse {
+        try await self.startContainerGroup(StartContainerGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

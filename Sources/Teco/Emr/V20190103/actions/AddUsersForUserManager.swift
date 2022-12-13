@@ -71,4 +71,22 @@ extension Emr {
     public func addUsersForUserManager(_ input: AddUsersForUserManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUsersForUserManagerResponse {
         try await self.client.execute(action: "AddUsersForUserManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新增用户列表
+    ///
+    /// 该接口支持安装了OpenLdap组件的集群。
+    /// 新增用户列表（用户管理）。
+    @inlinable
+    public func addUsersForUserManager(instanceId: String, userManagerUserList: [UserInfoForUserManager], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUsersForUserManagerResponse > {
+        self.addUsersForUserManager(AddUsersForUserManagerRequest(instanceId: instanceId, userManagerUserList: userManagerUserList), logger: logger, on: eventLoop)
+    }
+    
+    /// 新增用户列表
+    ///
+    /// 该接口支持安装了OpenLdap组件的集群。
+    /// 新增用户列表（用户管理）。
+    @inlinable
+    public func addUsersForUserManager(instanceId: String, userManagerUserList: [UserInfoForUserManager], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUsersForUserManagerResponse {
+        try await self.addUsersForUserManager(AddUsersForUserManagerRequest(instanceId: instanceId, userManagerUserList: userManagerUserList), logger: logger, on: eventLoop)
+    }
 }

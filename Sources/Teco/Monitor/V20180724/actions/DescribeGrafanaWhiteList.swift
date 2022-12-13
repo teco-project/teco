@@ -54,4 +54,16 @@ extension Monitor {
     public func describeGrafanaWhiteList(_ input: DescribeGrafanaWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaWhiteListResponse {
         try await self.client.execute(action: "DescribeGrafanaWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 列出 Grafana 白名单
+    @inlinable
+    public func describeGrafanaWhiteList(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaWhiteListResponse > {
+        self.describeGrafanaWhiteList(DescribeGrafanaWhiteListRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 列出 Grafana 白名单
+    @inlinable
+    public func describeGrafanaWhiteList(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaWhiteListResponse {
+        try await self.describeGrafanaWhiteList(DescribeGrafanaWhiteListRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

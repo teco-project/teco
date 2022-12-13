@@ -50,4 +50,16 @@ extension Cls {
     public func deleteConfig(_ input: DeleteConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigResponse {
         try await self.client.execute(action: "DeleteConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除采集规则配置
+    @inlinable
+    public func deleteConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConfigResponse > {
+        self.deleteConfig(DeleteConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除采集规则配置
+    @inlinable
+    public func deleteConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigResponse {
+        try await self.deleteConfig(DeleteConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    }
 }

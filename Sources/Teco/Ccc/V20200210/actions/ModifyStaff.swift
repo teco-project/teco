@@ -85,4 +85,16 @@ extension Ccc {
     public func modifyStaff(_ input: ModifyStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStaffResponse {
         try await self.client.execute(action: "ModifyStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改客服账号
+    @inlinable
+    public func modifyStaff(sdkAppId: UInt64, email: String, name: String? = nil, phone: String? = nil, nick: String? = nil, skillGroupIds: [Int64]? = nil, useMobileCallOut: Bool? = nil, useMobileAccept: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyStaffResponse > {
+        self.modifyStaff(ModifyStaffRequest(sdkAppId: sdkAppId, email: email, name: name, phone: phone, nick: nick, skillGroupIds: skillGroupIds, useMobileCallOut: useMobileCallOut, useMobileAccept: useMobileAccept), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改客服账号
+    @inlinable
+    public func modifyStaff(sdkAppId: UInt64, email: String, name: String? = nil, phone: String? = nil, nick: String? = nil, skillGroupIds: [Int64]? = nil, useMobileCallOut: Bool? = nil, useMobileAccept: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStaffResponse {
+        try await self.modifyStaff(ModifyStaffRequest(sdkAppId: sdkAppId, email: email, name: name, phone: phone, nick: nick, skillGroupIds: skillGroupIds, useMobileCallOut: useMobileCallOut, useMobileAccept: useMobileAccept), logger: logger, on: eventLoop)
+    }
 }

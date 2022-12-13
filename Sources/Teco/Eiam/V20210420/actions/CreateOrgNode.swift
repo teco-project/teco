@@ -74,4 +74,20 @@ extension Eiam {
     public func createOrgNode(_ input: CreateOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrgNodeResponse {
         try await self.client.execute(action: "CreateOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新建机构节点
+    ///
+    /// 新建一个机构节点
+    @inlinable
+    public func createOrgNode(displayName: String, parentOrgNodeId: String? = nil, description: String? = nil, customizedOrgNodeId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrgNodeResponse > {
+        self.createOrgNode(CreateOrgNodeRequest(displayName: displayName, parentOrgNodeId: parentOrgNodeId, description: description, customizedOrgNodeId: customizedOrgNodeId), logger: logger, on: eventLoop)
+    }
+    
+    /// 新建机构节点
+    ///
+    /// 新建一个机构节点
+    @inlinable
+    public func createOrgNode(displayName: String, parentOrgNodeId: String? = nil, description: String? = nil, customizedOrgNodeId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrgNodeResponse {
+        try await self.createOrgNode(CreateOrgNodeRequest(displayName: displayName, parentOrgNodeId: parentOrgNodeId, description: description, customizedOrgNodeId: customizedOrgNodeId), logger: logger, on: eventLoop)
+    }
 }

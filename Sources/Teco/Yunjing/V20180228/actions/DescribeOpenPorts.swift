@@ -85,4 +85,20 @@ extension Yunjing {
     public func describeOpenPorts(_ input: DescribeOpenPortsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortsResponse {
         try await self.client.execute(action: "DescribeOpenPorts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取端口列表
+    ///
+    /// 本接口 (DescribeOpenPorts) 用于获取端口列表数据。
+    @inlinable
+    public func describeOpenPorts(uuid: String? = nil, port: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOpenPortsResponse > {
+        self.describeOpenPorts(DescribeOpenPortsRequest(uuid: uuid, port: port, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取端口列表
+    ///
+    /// 本接口 (DescribeOpenPorts) 用于获取端口列表数据。
+    @inlinable
+    public func describeOpenPorts(uuid: String? = nil, port: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortsResponse {
+        try await self.describeOpenPorts(DescribeOpenPortsRequest(uuid: uuid, port: port, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

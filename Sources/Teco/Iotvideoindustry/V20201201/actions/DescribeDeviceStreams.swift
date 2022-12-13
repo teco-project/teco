@@ -70,4 +70,22 @@ extension Iotvideoindustry {
     public func describeDeviceStreams(_ input: DescribeDeviceStreamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceStreamsResponse {
         try await self.client.execute(action: "DescribeDeviceStreams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备实时流地址（旧）
+    ///
+    /// 本接口(DescribeDeviceStreams)用于获取设备实时流地址。
+    /// 请使用DescribeChannelStreamURL接口
+    @inlinable
+    public func describeDeviceStreams(deviceId: String, expireTime: UInt64, channelId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceStreamsResponse > {
+        self.describeDeviceStreams(DescribeDeviceStreamsRequest(deviceId: deviceId, expireTime: expireTime, channelId: channelId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备实时流地址（旧）
+    ///
+    /// 本接口(DescribeDeviceStreams)用于获取设备实时流地址。
+    /// 请使用DescribeChannelStreamURL接口
+    @inlinable
+    public func describeDeviceStreams(deviceId: String, expireTime: UInt64, channelId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceStreamsResponse {
+        try await self.describeDeviceStreams(DescribeDeviceStreamsRequest(deviceId: deviceId, expireTime: expireTime, channelId: channelId), logger: logger, on: eventLoop)
+    }
 }

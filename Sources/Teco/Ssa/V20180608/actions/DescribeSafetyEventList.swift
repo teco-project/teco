@@ -95,4 +95,16 @@ extension Ssa {
     public func describeSafetyEventList(_ input: DescribeSafetyEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafetyEventListResponse {
         try await self.client.execute(action: "DescribeSafetyEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取安全事件列表
+    @inlinable
+    public func describeSafetyEventList(filter: String, limit: UInt64, offset: UInt64, order: String? = nil, by: String? = nil, startTime: Date? = nil, endTime: Date? = nil, isFilterResponseTime: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSafetyEventListResponse > {
+        self.describeSafetyEventList(DescribeSafetyEventListRequest(filter: filter, limit: limit, offset: offset, order: order, by: by, startTime: startTime, endTime: endTime, isFilterResponseTime: isFilterResponseTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取安全事件列表
+    @inlinable
+    public func describeSafetyEventList(filter: String, limit: UInt64, offset: UInt64, order: String? = nil, by: String? = nil, startTime: Date? = nil, endTime: Date? = nil, isFilterResponseTime: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafetyEventListResponse {
+        try await self.describeSafetyEventList(DescribeSafetyEventListRequest(filter: filter, limit: limit, offset: offset, order: order, by: by, startTime: startTime, endTime: endTime, isFilterResponseTime: isFilterResponseTime), logger: logger, on: eventLoop)
+    }
 }

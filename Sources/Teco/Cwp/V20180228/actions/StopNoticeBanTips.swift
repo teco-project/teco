@@ -42,4 +42,16 @@ extension Cwp {
     public func stopNoticeBanTips(_ input: StopNoticeBanTipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopNoticeBanTipsResponse {
         try await self.client.execute(action: "StopNoticeBanTips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 不再提醒爆破阻断提示弹窗
+    @inlinable
+    public func stopNoticeBanTips(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopNoticeBanTipsResponse > {
+        self.stopNoticeBanTips(StopNoticeBanTipsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 不再提醒爆破阻断提示弹窗
+    @inlinable
+    public func stopNoticeBanTips(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopNoticeBanTipsResponse {
+        try await self.stopNoticeBanTips(StopNoticeBanTipsRequest(), logger: logger, on: eventLoop)
+    }
 }

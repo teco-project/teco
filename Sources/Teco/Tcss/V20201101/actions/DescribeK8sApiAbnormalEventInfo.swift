@@ -54,4 +54,16 @@ extension Tcss {
     public func describeK8sApiAbnormalEventInfo(_ input: DescribeK8sApiAbnormalEventInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalEventInfoResponse {
         try await self.client.execute(action: "DescribeK8sApiAbnormalEventInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询k8s api 异常事件详情
+    @inlinable
+    public func describeK8sApiAbnormalEventInfo(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeK8sApiAbnormalEventInfoResponse > {
+        self.describeK8sApiAbnormalEventInfo(DescribeK8sApiAbnormalEventInfoRequest(id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询k8s api 异常事件详情
+    @inlinable
+    public func describeK8sApiAbnormalEventInfo(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalEventInfoResponse {
+        try await self.describeK8sApiAbnormalEventInfo(DescribeK8sApiAbnormalEventInfoRequest(id: id), logger: logger, on: eventLoop)
+    }
 }

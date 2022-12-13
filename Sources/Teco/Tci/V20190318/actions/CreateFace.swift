@@ -69,4 +69,16 @@ extension Tci {
     public func createFace(_ input: CreateFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceResponse {
         try await self.client.execute(action: "CreateFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建人脸
+    @inlinable
+    public func createFace(personId: String, images: [String]? = nil, libraryId: String? = nil, urls: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFaceResponse > {
+        self.createFace(CreateFaceRequest(personId: personId, images: images, libraryId: libraryId, urls: urls), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建人脸
+    @inlinable
+    public func createFace(personId: String, images: [String]? = nil, libraryId: String? = nil, urls: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceResponse {
+        try await self.createFace(CreateFaceRequest(personId: personId, images: images, libraryId: libraryId, urls: urls), logger: logger, on: eventLoop)
+    }
 }

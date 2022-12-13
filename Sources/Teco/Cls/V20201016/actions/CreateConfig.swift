@@ -84,4 +84,16 @@ extension Cls {
     public func createConfig(_ input: CreateConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigResponse {
         try await self.client.execute(action: "CreateConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建采集规则配置
+    @inlinable
+    public func createConfig(name: String, output: String, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConfigResponse > {
+        self.createConfig(CreateConfigRequest(name: name, output: output, path: path, logType: logType, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建采集规则配置
+    @inlinable
+    public func createConfig(name: String, output: String, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigResponse {
+        try await self.createConfig(CreateConfigRequest(name: name, output: output, path: path, logType: logType, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule), logger: logger, on: eventLoop)
+    }
 }

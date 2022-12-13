@@ -169,4 +169,20 @@ extension Ssa {
     public func describeVulDetail(_ input: DescribeVulDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDetailResponse {
         try await self.client.execute(action: "DescribeVulDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 漏洞列表-漏洞详情
+    ///
+    /// 漏洞列表页，获取漏洞详情信息
+    @inlinable
+    public func describeVulDetail(uniqId: String, source: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDetailResponse > {
+        self.describeVulDetail(DescribeVulDetailRequest(uniqId: uniqId, source: source), logger: logger, on: eventLoop)
+    }
+    
+    /// 漏洞列表-漏洞详情
+    ///
+    /// 漏洞列表页，获取漏洞详情信息
+    @inlinable
+    public func describeVulDetail(uniqId: String, source: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDetailResponse {
+        try await self.describeVulDetail(DescribeVulDetailRequest(uniqId: uniqId, source: source), logger: logger, on: eventLoop)
+    }
 }

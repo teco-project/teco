@@ -76,4 +76,20 @@ extension Bma {
     public func describeCRMonitors(_ input: DescribeCRMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRMonitorsResponse {
         try await self.client.execute(action: "DescribeCRMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询监测列表
+    ///
+    /// 版权保护-查询监测列表接口
+    @inlinable
+    public func describeCRMonitors(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCRMonitorsResponse > {
+        self.describeCRMonitors(DescribeCRMonitorsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询监测列表
+    ///
+    /// 版权保护-查询监测列表接口
+    @inlinable
+    public func describeCRMonitors(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRMonitorsResponse {
+        try await self.describeCRMonitors(DescribeCRMonitorsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber), logger: logger, on: eventLoop)
+    }
 }

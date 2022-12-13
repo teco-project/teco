@@ -86,4 +86,16 @@ extension Ecm {
     public func describeBaseOverview(_ input: DescribeBaseOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseOverviewResponse {
         try await self.client.execute(action: "DescribeBaseOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取概览页统计的基本数据
+    @inlinable
+    public func describeBaseOverview(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaseOverviewResponse > {
+        self.describeBaseOverview(DescribeBaseOverviewRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取概览页统计的基本数据
+    @inlinable
+    public func describeBaseOverview(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseOverviewResponse {
+        try await self.describeBaseOverview(DescribeBaseOverviewRequest(), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,20 @@ extension Ckafka {
     public func batchCreateAcl(_ input: BatchCreateAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchCreateAclResponse {
         try await self.client.execute(action: "BatchCreateAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量添加 ACL 策略
+    ///
+    /// 批量添加ACL策略
+    @inlinable
+    public func batchCreateAcl(instanceId: String, resourceType: Int64, resourceNames: [String], ruleList: [AclRuleInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchCreateAclResponse > {
+        self.batchCreateAcl(BatchCreateAclRequest(instanceId: instanceId, resourceType: resourceType, resourceNames: resourceNames, ruleList: ruleList), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量添加 ACL 策略
+    ///
+    /// 批量添加ACL策略
+    @inlinable
+    public func batchCreateAcl(instanceId: String, resourceType: Int64, resourceNames: [String], ruleList: [AclRuleInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchCreateAclResponse {
+        try await self.batchCreateAcl(BatchCreateAclRequest(instanceId: instanceId, resourceType: resourceType, resourceNames: resourceNames, ruleList: ruleList), logger: logger, on: eventLoop)
+    }
 }

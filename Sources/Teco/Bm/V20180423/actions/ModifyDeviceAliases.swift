@@ -50,4 +50,16 @@ extension Bm {
     public func modifyDeviceAliases(_ input: ModifyDeviceAliasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceAliasesResponse {
         try await self.client.execute(action: "ModifyDeviceAliases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改服务器名称
+    @inlinable
+    public func modifyDeviceAliases(deviceAliases: [DeviceAlias], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceAliasesResponse > {
+        self.modifyDeviceAliases(ModifyDeviceAliasesRequest(deviceAliases: deviceAliases), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改服务器名称
+    @inlinable
+    public func modifyDeviceAliases(deviceAliases: [DeviceAlias], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceAliasesResponse {
+        try await self.modifyDeviceAliases(ModifyDeviceAliasesRequest(deviceAliases: deviceAliases), logger: logger, on: eventLoop)
+    }
 }

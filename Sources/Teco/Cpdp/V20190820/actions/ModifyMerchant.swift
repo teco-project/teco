@@ -64,4 +64,20 @@ extension Cpdp {
     public func modifyMerchant(_ input: ModifyMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMerchantResponse {
         try await self.client.execute(action: "ModifyMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云鉴-商户信息修改接口
+    ///
+    /// 云鉴-商户信息修改的接口
+    @inlinable
+    public func modifyMerchant(merchantAppId: String, merchantName: String, businessPayFlag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMerchantResponse > {
+        self.modifyMerchant(ModifyMerchantRequest(merchantAppId: merchantAppId, merchantName: merchantName, businessPayFlag: businessPayFlag), logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-商户信息修改接口
+    ///
+    /// 云鉴-商户信息修改的接口
+    @inlinable
+    public func modifyMerchant(merchantAppId: String, merchantName: String, businessPayFlag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMerchantResponse {
+        try await self.modifyMerchant(ModifyMerchantRequest(merchantAppId: merchantAppId, merchantName: merchantName, businessPayFlag: businessPayFlag), logger: logger, on: eventLoop)
+    }
 }

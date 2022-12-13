@@ -118,4 +118,20 @@ extension Tmt {
     public func textTranslateBatch(_ input: TextTranslateBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextTranslateBatchResponse {
         try await self.client.execute(action: "TextTranslateBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量文本翻译
+    ///
+    /// 文本翻译的批量接口
+    @inlinable
+    public func textTranslateBatch(source: String, target: String, projectId: Int64, sourceTextList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextTranslateBatchResponse > {
+        self.textTranslateBatch(TextTranslateBatchRequest(source: source, target: target, projectId: projectId, sourceTextList: sourceTextList), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量文本翻译
+    ///
+    /// 文本翻译的批量接口
+    @inlinable
+    public func textTranslateBatch(source: String, target: String, projectId: Int64, sourceTextList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextTranslateBatchResponse {
+        try await self.textTranslateBatch(TextTranslateBatchRequest(source: source, target: target, projectId: projectId, sourceTextList: sourceTextList), logger: logger, on: eventLoop)
+    }
 }

@@ -57,4 +57,20 @@ extension Vpc {
     public func disableGatewayFlowMonitor(_ input: DisableGatewayFlowMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableGatewayFlowMonitorResponse {
         try await self.client.execute(action: "DisableGatewayFlowMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 关闭网关流量监控
+    ///
+    /// 本接口（DisableGatewayFlowMonitor）用于关闭网关流量监控。
+    @inlinable
+    public func disableGatewayFlowMonitor(gatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableGatewayFlowMonitorResponse > {
+        self.disableGatewayFlowMonitor(DisableGatewayFlowMonitorRequest(gatewayId: gatewayId), logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭网关流量监控
+    ///
+    /// 本接口（DisableGatewayFlowMonitor）用于关闭网关流量监控。
+    @inlinable
+    public func disableGatewayFlowMonitor(gatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableGatewayFlowMonitorResponse {
+        try await self.disableGatewayFlowMonitor(DisableGatewayFlowMonitorRequest(gatewayId: gatewayId), logger: logger, on: eventLoop)
+    }
 }

@@ -79,4 +79,20 @@ extension Tcss {
     public func describeContainerSecEventSummary(_ input: DescribeContainerSecEventSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerSecEventSummaryResponse {
         try await self.client.execute(action: "DescribeContainerSecEventSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询容器安全未处理事件概览
+    ///
+    /// 查询容器安全未处理事件信息
+    @inlinable
+    public func describeContainerSecEventSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerSecEventSummaryResponse > {
+        self.describeContainerSecEventSummary(DescribeContainerSecEventSummaryRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器安全未处理事件概览
+    ///
+    /// 查询容器安全未处理事件信息
+    @inlinable
+    public func describeContainerSecEventSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerSecEventSummaryResponse {
+        try await self.describeContainerSecEventSummary(DescribeContainerSecEventSummaryRequest(), logger: logger, on: eventLoop)
+    }
 }

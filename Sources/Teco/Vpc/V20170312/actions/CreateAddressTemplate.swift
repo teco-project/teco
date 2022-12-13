@@ -68,4 +68,20 @@ extension Vpc {
     public func createAddressTemplate(_ input: CreateAddressTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAddressTemplateResponse {
         try await self.client.execute(action: "CreateAddressTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建IP地址模板
+    ///
+    /// 本接口（CreateAddressTemplate）用于创建IP地址模板。
+    @inlinable
+    public func createAddressTemplate(addressTemplateName: String, addresses: [String]? = nil, addressesExtra: [AddressInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAddressTemplateResponse > {
+        self.createAddressTemplate(CreateAddressTemplateRequest(addressTemplateName: addressTemplateName, addresses: addresses, addressesExtra: addressesExtra), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建IP地址模板
+    ///
+    /// 本接口（CreateAddressTemplate）用于创建IP地址模板。
+    @inlinable
+    public func createAddressTemplate(addressTemplateName: String, addresses: [String]? = nil, addressesExtra: [AddressInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAddressTemplateResponse {
+        try await self.createAddressTemplate(CreateAddressTemplateRequest(addressTemplateName: addressTemplateName, addresses: addresses, addressesExtra: addressesExtra), logger: logger, on: eventLoop)
+    }
 }

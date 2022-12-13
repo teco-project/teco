@@ -110,4 +110,16 @@ extension Apigateway {
     public func modifyUpstream(_ input: ModifyUpstreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUpstreamResponse {
         try await self.client.execute(action: "ModifyUpstream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改后端通道
+    @inlinable
+    public func modifyUpstream(upstreamId: String, upstreamName: String? = nil, upstreamDescription: String? = nil, scheme: String? = nil, upstreamType: String? = nil, algorithm: String? = nil, uniqVpcId: String? = nil, retries: UInt64? = nil, upstreamHost: String? = nil, nodes: [UpstreamNode]? = nil, healthChecker: UpstreamHealthChecker? = nil, k8sService: [K8sService]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUpstreamResponse > {
+        self.modifyUpstream(ModifyUpstreamRequest(upstreamId: upstreamId, upstreamName: upstreamName, upstreamDescription: upstreamDescription, scheme: scheme, upstreamType: upstreamType, algorithm: algorithm, uniqVpcId: uniqVpcId, retries: retries, upstreamHost: upstreamHost, nodes: nodes, healthChecker: healthChecker, k8sService: k8sService), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改后端通道
+    @inlinable
+    public func modifyUpstream(upstreamId: String, upstreamName: String? = nil, upstreamDescription: String? = nil, scheme: String? = nil, upstreamType: String? = nil, algorithm: String? = nil, uniqVpcId: String? = nil, retries: UInt64? = nil, upstreamHost: String? = nil, nodes: [UpstreamNode]? = nil, healthChecker: UpstreamHealthChecker? = nil, k8sService: [K8sService]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUpstreamResponse {
+        try await self.modifyUpstream(ModifyUpstreamRequest(upstreamId: upstreamId, upstreamName: upstreamName, upstreamDescription: upstreamDescription, scheme: scheme, upstreamType: upstreamType, algorithm: algorithm, uniqVpcId: uniqVpcId, retries: retries, upstreamHost: upstreamHost, nodes: nodes, healthChecker: healthChecker, k8sService: k8sService), logger: logger, on: eventLoop)
+    }
 }

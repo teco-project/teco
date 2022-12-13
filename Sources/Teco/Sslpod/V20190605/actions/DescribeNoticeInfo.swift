@@ -50,4 +50,20 @@ extension Sslpod {
     public func describeNoticeInfo(_ input: DescribeNoticeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoticeInfoResponse {
         try await self.client.execute(action: "DescribeNoticeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 通知额度信息
+    ///
+    /// 获取通知额度信息
+    @inlinable
+    public func describeNoticeInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNoticeInfoResponse > {
+        self.describeNoticeInfo(DescribeNoticeInfoRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 通知额度信息
+    ///
+    /// 获取通知额度信息
+    @inlinable
+    public func describeNoticeInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoticeInfoResponse {
+        try await self.describeNoticeInfo(DescribeNoticeInfoRequest(), logger: logger, on: eventLoop)
+    }
 }

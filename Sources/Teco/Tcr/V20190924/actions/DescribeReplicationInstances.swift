@@ -69,4 +69,16 @@ extension Tcr {
     public func describeReplicationInstances(_ input: DescribeReplicationInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationInstancesResponse {
         try await self.client.execute(action: "DescribeReplicationInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询从实例列表
+    @inlinable
+    public func describeReplicationInstances(registryId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReplicationInstancesResponse > {
+        self.describeReplicationInstances(DescribeReplicationInstancesRequest(registryId: registryId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询从实例列表
+    @inlinable
+    public func describeReplicationInstances(registryId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationInstancesResponse {
+        try await self.describeReplicationInstances(DescribeReplicationInstancesRequest(registryId: registryId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

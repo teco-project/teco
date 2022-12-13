@@ -79,4 +79,20 @@ extension Mps {
     public func describeAnimatedGraphicsTemplates(_ input: DescribeAnimatedGraphicsTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAnimatedGraphicsTemplatesResponse {
         try await self.client.execute(action: "DescribeAnimatedGraphicsTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取转动图模板列表
+    ///
+    /// 查询转动图模板列表，支持根据条件，分页查询。
+    @inlinable
+    public func describeAnimatedGraphicsTemplates(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAnimatedGraphicsTemplatesResponse > {
+        self.describeAnimatedGraphicsTemplates(DescribeAnimatedGraphicsTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取转动图模板列表
+    ///
+    /// 查询转动图模板列表，支持根据条件，分页查询。
+    @inlinable
+    public func describeAnimatedGraphicsTemplates(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAnimatedGraphicsTemplatesResponse {
+        try await self.describeAnimatedGraphicsTemplates(DescribeAnimatedGraphicsTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
+    }
 }

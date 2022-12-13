@@ -65,4 +65,16 @@ extension Cmq {
     public func modifyTopicAttribute(_ input: ModifyTopicAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicAttributeResponse {
         try await self.client.execute(action: "ModifyTopicAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改主题属性
+    @inlinable
+    public func modifyTopicAttribute(topicName: String, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTopicAttributeResponse > {
+        self.modifyTopicAttribute(ModifyTopicAttributeRequest(topicName: topicName, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, trace: trace), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改主题属性
+    @inlinable
+    public func modifyTopicAttribute(topicName: String, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicAttributeResponse {
+        try await self.modifyTopicAttribute(ModifyTopicAttributeRequest(topicName: topicName, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, trace: trace), logger: logger, on: eventLoop)
+    }
 }

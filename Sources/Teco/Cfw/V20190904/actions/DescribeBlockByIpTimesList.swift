@@ -93,4 +93,20 @@ extension Cfw {
     public func describeBlockByIpTimesList(_ input: DescribeBlockByIpTimesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockByIpTimesListResponse {
         try await self.client.execute(action: "DescribeBlockByIpTimesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 告警中心阻断IP折线图
+    ///
+    /// DescribeBlockByIpTimesList 告警中心阻断IP折线图
+    @inlinable
+    public func describeBlockByIpTimesList(startTime: String, endTime: String, ip: String, zone: String? = nil, direction: String? = nil, source: String? = nil, edgeId: String? = nil, logSource: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBlockByIpTimesListResponse > {
+        self.describeBlockByIpTimesList(DescribeBlockByIpTimesListRequest(startTime: startTime, endTime: endTime, ip: ip, zone: zone, direction: direction, source: source, edgeId: edgeId, logSource: logSource), logger: logger, on: eventLoop)
+    }
+    
+    /// 告警中心阻断IP折线图
+    ///
+    /// DescribeBlockByIpTimesList 告警中心阻断IP折线图
+    @inlinable
+    public func describeBlockByIpTimesList(startTime: String, endTime: String, ip: String, zone: String? = nil, direction: String? = nil, source: String? = nil, edgeId: String? = nil, logSource: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockByIpTimesListResponse {
+        try await self.describeBlockByIpTimesList(DescribeBlockByIpTimesListRequest(startTime: startTime, endTime: endTime, ip: ip, zone: zone, direction: direction, source: source, edgeId: edgeId, logSource: logSource), logger: logger, on: eventLoop)
+    }
 }

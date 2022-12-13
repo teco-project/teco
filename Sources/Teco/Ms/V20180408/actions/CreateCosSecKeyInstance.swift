@@ -91,4 +91,20 @@ extension Ms {
     public func createCosSecKeyInstance(_ input: CreateCosSecKeyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCosSecKeyInstanceResponse {
         try await self.client.execute(action: "CreateCosSecKeyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取云COS临时密钥
+    ///
+    /// 获取云COS文件存储临时密钥，密钥仅限于临时上传文件，有访问限制和时效性。
+    @inlinable
+    public func createCosSecKeyInstance(cosRegion: String? = nil, duration: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCosSecKeyInstanceResponse > {
+        self.createCosSecKeyInstance(CreateCosSecKeyInstanceRequest(cosRegion: cosRegion, duration: duration), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取云COS临时密钥
+    ///
+    /// 获取云COS文件存储临时密钥，密钥仅限于临时上传文件，有访问限制和时效性。
+    @inlinable
+    public func createCosSecKeyInstance(cosRegion: String? = nil, duration: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCosSecKeyInstanceResponse {
+        try await self.createCosSecKeyInstance(CreateCosSecKeyInstanceRequest(cosRegion: cosRegion, duration: duration), logger: logger, on: eventLoop)
+    }
 }

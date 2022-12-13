@@ -75,4 +75,16 @@ extension Iecp {
     public func createUpdateNodeUnit(_ input: CreateUpdateNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUpdateNodeUnitResponse {
         try await self.client.execute(action: "CreateUpdateNodeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建或更新边缘单元NodeUnit
+    @inlinable
+    public func createUpdateNodeUnit(edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, nodeUnitName: String? = nil, nodes: [String]? = nil, nodeUnitTemplateIDs: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUpdateNodeUnitResponse > {
+        self.createUpdateNodeUnit(CreateUpdateNodeUnitRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, nodeUnitName: nodeUnitName, nodes: nodes, nodeUnitTemplateIDs: nodeUnitTemplateIDs), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建或更新边缘单元NodeUnit
+    @inlinable
+    public func createUpdateNodeUnit(edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, nodeUnitName: String? = nil, nodes: [String]? = nil, nodeUnitTemplateIDs: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUpdateNodeUnitResponse {
+        try await self.createUpdateNodeUnit(CreateUpdateNodeUnitRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, nodeUnitName: nodeUnitName, nodes: nodes, nodeUnitTemplateIDs: nodeUnitTemplateIDs), logger: logger, on: eventLoop)
+    }
 }

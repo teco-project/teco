@@ -85,4 +85,20 @@ extension Iotvideo {
     public func describeFirmwareTaskDevices(_ input: DescribeFirmwareTaskDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskDevicesResponse {
         try await self.client.execute(action: "DescribeFirmwareTaskDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询固件升级任务的设备列表
+    ///
+    /// 本接口用于查询固件升级任务的设备列表
+    @inlinable
+    public func describeFirmwareTaskDevices(productID: String, firmwareVersion: String? = nil, filters: [SearchKeyword]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirmwareTaskDevicesResponse > {
+        self.describeFirmwareTaskDevices(DescribeFirmwareTaskDevicesRequest(productID: productID, firmwareVersion: firmwareVersion, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询固件升级任务的设备列表
+    ///
+    /// 本接口用于查询固件升级任务的设备列表
+    @inlinable
+    public func describeFirmwareTaskDevices(productID: String, firmwareVersion: String? = nil, filters: [SearchKeyword]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskDevicesResponse {
+        try await self.describeFirmwareTaskDevices(DescribeFirmwareTaskDevicesRequest(productID: productID, firmwareVersion: firmwareVersion, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

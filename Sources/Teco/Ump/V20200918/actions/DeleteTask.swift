@@ -64,4 +64,20 @@ extension Ump {
     public func deleteTask(_ input: DeleteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskResponse {
         try await self.client.execute(action: "DeleteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除任务
+    ///
+    /// 删除集团广场对应的任务
+    @inlinable
+    public func deleteTask(groupCode: String, mallId: UInt64, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTaskResponse > {
+        self.deleteTask(DeleteTaskRequest(groupCode: groupCode, mallId: mallId, taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除任务
+    ///
+    /// 删除集团广场对应的任务
+    @inlinable
+    public func deleteTask(groupCode: String, mallId: UInt64, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskResponse {
+        try await self.deleteTask(DeleteTaskRequest(groupCode: groupCode, mallId: mallId, taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

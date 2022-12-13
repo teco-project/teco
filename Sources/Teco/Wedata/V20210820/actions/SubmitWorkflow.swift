@@ -75,4 +75,22 @@ extension Wedata {
     public func submitWorkflow(_ input: SubmitWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitWorkflowResponse {
         try await self.client.execute(action: "SubmitWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 提交工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 提交工作流
+    @inlinable
+    public func submitWorkflow(projectId: String, workflowId: String, versionRemark: String, startScheduling: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitWorkflowResponse > {
+        self.submitWorkflow(SubmitWorkflowRequest(projectId: projectId, workflowId: workflowId, versionRemark: versionRemark, startScheduling: startScheduling), logger: logger, on: eventLoop)
+    }
+    
+    /// 提交工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 提交工作流
+    @inlinable
+    public func submitWorkflow(projectId: String, workflowId: String, versionRemark: String, startScheduling: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitWorkflowResponse {
+        try await self.submitWorkflow(SubmitWorkflowRequest(projectId: projectId, workflowId: workflowId, versionRemark: versionRemark, startScheduling: startScheduling), logger: logger, on: eventLoop)
+    }
 }

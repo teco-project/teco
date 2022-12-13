@@ -94,4 +94,16 @@ extension Dlc {
     public func describeSparkAppTasks(_ input: DescribeSparkAppTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppTasksResponse {
         try await self.client.execute(action: "DescribeSparkAppTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询spark应用的运行任务实例列表
+    @inlinable
+    public func describeSparkAppTasks(jobId: String, offset: Int64? = nil, limit: Int64? = nil, taskId: String? = nil, startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSparkAppTasksResponse > {
+        self.describeSparkAppTasks(DescribeSparkAppTasksRequest(jobId: jobId, offset: offset, limit: limit, taskId: taskId, startTime: startTime, endTime: endTime, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询spark应用的运行任务实例列表
+    @inlinable
+    public func describeSparkAppTasks(jobId: String, offset: Int64? = nil, limit: Int64? = nil, taskId: String? = nil, startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppTasksResponse {
+        try await self.describeSparkAppTasks(DescribeSparkAppTasksRequest(jobId: jobId, offset: offset, limit: limit, taskId: taskId, startTime: startTime, endTime: endTime, filters: filters), logger: logger, on: eventLoop)
+    }
 }

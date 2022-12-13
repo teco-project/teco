@@ -60,4 +60,16 @@ extension Redis {
     public func upgradeVersionToMultiAvailabilityZones(_ input: UpgradeVersionToMultiAvailabilityZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeVersionToMultiAvailabilityZonesResponse {
         try await self.client.execute(action: "UpgradeVersionToMultiAvailabilityZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 升级实例支持多AZ
+    @inlinable
+    public func upgradeVersionToMultiAvailabilityZones(instanceId: String, upgradeProxyAndRedisServer: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeVersionToMultiAvailabilityZonesResponse > {
+        self.upgradeVersionToMultiAvailabilityZones(UpgradeVersionToMultiAvailabilityZonesRequest(instanceId: instanceId, upgradeProxyAndRedisServer: upgradeProxyAndRedisServer), logger: logger, on: eventLoop)
+    }
+    
+    /// 升级实例支持多AZ
+    @inlinable
+    public func upgradeVersionToMultiAvailabilityZones(instanceId: String, upgradeProxyAndRedisServer: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeVersionToMultiAvailabilityZonesResponse {
+        try await self.upgradeVersionToMultiAvailabilityZones(UpgradeVersionToMultiAvailabilityZonesRequest(instanceId: instanceId, upgradeProxyAndRedisServer: upgradeProxyAndRedisServer), logger: logger, on: eventLoop)
+    }
 }

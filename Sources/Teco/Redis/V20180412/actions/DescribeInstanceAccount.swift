@@ -70,4 +70,16 @@ extension Redis {
     public func describeInstanceAccount(_ input: DescribeInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAccountResponse {
         try await self.client.execute(action: "DescribeInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看实例子账号信息
+    @inlinable
+    public func describeInstanceAccount(instanceId: String, limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceAccountResponse > {
+        self.describeInstanceAccount(DescribeInstanceAccountRequest(instanceId: instanceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看实例子账号信息
+    @inlinable
+    public func describeInstanceAccount(instanceId: String, limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAccountResponse {
+        try await self.describeInstanceAccount(DescribeInstanceAccountRequest(instanceId: instanceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

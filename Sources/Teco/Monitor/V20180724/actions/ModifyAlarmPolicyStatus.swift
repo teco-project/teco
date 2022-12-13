@@ -60,4 +60,16 @@ extension Monitor {
     public func modifyAlarmPolicyStatus(_ input: ModifyAlarmPolicyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyStatusResponse {
         try await self.client.execute(action: "ModifyAlarmPolicyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启停告警策略
+    @inlinable
+    public func modifyAlarmPolicyStatus(module: String, policyId: String, enable: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmPolicyStatusResponse > {
+        self.modifyAlarmPolicyStatus(ModifyAlarmPolicyStatusRequest(module: module, policyId: policyId, enable: enable), logger: logger, on: eventLoop)
+    }
+    
+    /// 启停告警策略
+    @inlinable
+    public func modifyAlarmPolicyStatus(module: String, policyId: String, enable: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyStatusResponse {
+        try await self.modifyAlarmPolicyStatus(ModifyAlarmPolicyStatusRequest(module: module, policyId: policyId, enable: enable), logger: logger, on: eventLoop)
+    }
 }

@@ -105,4 +105,16 @@ extension Pts {
     public func createFile(_ input: CreateFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileResponse {
         try await self.client.execute(action: "CreateFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建文件
+    @inlinable
+    public func createFile(fileId: String, projectId: String, kind: Int64, name: String, size: Int64, type: String, lineCount: Int64? = nil, headLines: [String]? = nil, tailLines: [String]? = nil, headerInFile: Bool? = nil, headerColumns: [String]? = nil, fileInfos: [FileInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileResponse > {
+        self.createFile(CreateFileRequest(fileId: fileId, projectId: projectId, kind: kind, name: name, size: size, type: type, lineCount: lineCount, headLines: headLines, tailLines: tailLines, headerInFile: headerInFile, headerColumns: headerColumns, fileInfos: fileInfos), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建文件
+    @inlinable
+    public func createFile(fileId: String, projectId: String, kind: Int64, name: String, size: Int64, type: String, lineCount: Int64? = nil, headLines: [String]? = nil, tailLines: [String]? = nil, headerInFile: Bool? = nil, headerColumns: [String]? = nil, fileInfos: [FileInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileResponse {
+        try await self.createFile(CreateFileRequest(fileId: fileId, projectId: projectId, kind: kind, name: name, size: size, type: type, lineCount: lineCount, headLines: headLines, tailLines: tailLines, headerInFile: headerInFile, headerColumns: headerColumns, fileInfos: fileInfos), logger: logger, on: eventLoop)
+    }
 }

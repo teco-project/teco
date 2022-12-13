@@ -72,4 +72,16 @@ extension Teo {
     public func describeSecurityPolicy(_ input: DescribeSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyResponse {
         try await self.client.execute(action: "DescribeSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询安全防护配置详情
+    @inlinable
+    public func describeSecurityPolicy(zoneId: String, entity: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPolicyResponse > {
+        self.describeSecurityPolicy(DescribeSecurityPolicyRequest(zoneId: zoneId, entity: entity), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全防护配置详情
+    @inlinable
+    public func describeSecurityPolicy(zoneId: String, entity: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyResponse {
+        try await self.describeSecurityPolicy(DescribeSecurityPolicyRequest(zoneId: zoneId, entity: entity), logger: logger, on: eventLoop)
+    }
 }

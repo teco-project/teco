@@ -55,4 +55,16 @@ extension Antiddos {
     public func deleteCCRequestLimitPolicy(_ input: DeleteCCRequestLimitPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCRequestLimitPolicyResponse {
         try await self.client.execute(action: "DeleteCCRequestLimitPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除CC频率限制策略
+    @inlinable
+    public func deleteCCRequestLimitPolicy(instanceId: String, policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCCRequestLimitPolicyResponse > {
+        self.deleteCCRequestLimitPolicy(DeleteCCRequestLimitPolicyRequest(instanceId: instanceId, policyId: policyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除CC频率限制策略
+    @inlinable
+    public func deleteCCRequestLimitPolicy(instanceId: String, policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCRequestLimitPolicyResponse {
+        try await self.deleteCCRequestLimitPolicy(DeleteCCRequestLimitPolicyRequest(instanceId: instanceId, policyId: policyId), logger: logger, on: eventLoop)
+    }
 }

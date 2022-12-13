@@ -58,4 +58,20 @@ extension Cdb {
     public func describeDBInstanceGTID(_ input: DescribeDBInstanceGTIDRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceGTIDResponse {
         try await self.client.execute(action: "DescribeDBInstanceGTID", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询云数据实例的GTID是否开通
+    ///
+    /// 本接口(DescribeDBInstanceGTID)用于查询云数据库实例是否开通了 GTID，不支持版本为 5.5 以及以下的实例。
+    @inlinable
+    public func describeDBInstanceGTID(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceGTIDResponse > {
+        self.describeDBInstanceGTID(DescribeDBInstanceGTIDRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云数据实例的GTID是否开通
+    ///
+    /// 本接口(DescribeDBInstanceGTID)用于查询云数据库实例是否开通了 GTID，不支持版本为 5.5 以及以下的实例。
+    @inlinable
+    public func describeDBInstanceGTID(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceGTIDResponse {
+        try await self.describeDBInstanceGTID(DescribeDBInstanceGTIDRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

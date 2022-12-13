@@ -59,4 +59,20 @@ extension Chdfs {
     public func createRestoreTasks(_ input: CreateRestoreTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRestoreTasksResponse {
         try await self.client.execute(action: "CreateRestoreTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量创建回热任务
+    ///
+    /// 批量创建回热任务，回热任务ID、状态和创建时间无需填写。
+    @inlinable
+    public func createRestoreTasks(fileSystemId: String, restoreTasks: [RestoreTask], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRestoreTasksResponse > {
+        self.createRestoreTasks(CreateRestoreTasksRequest(fileSystemId: fileSystemId, restoreTasks: restoreTasks), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量创建回热任务
+    ///
+    /// 批量创建回热任务，回热任务ID、状态和创建时间无需填写。
+    @inlinable
+    public func createRestoreTasks(fileSystemId: String, restoreTasks: [RestoreTask], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRestoreTasksResponse {
+        try await self.createRestoreTasks(CreateRestoreTasksRequest(fileSystemId: fileSystemId, restoreTasks: restoreTasks), logger: logger, on: eventLoop)
+    }
 }

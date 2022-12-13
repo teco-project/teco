@@ -79,4 +79,20 @@ extension Mps {
     public func describeAIAnalysisTemplates(_ input: DescribeAIAnalysisTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIAnalysisTemplatesResponse {
         try await self.client.execute(action: "DescribeAIAnalysisTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取内容分析模板列表
+    ///
+    /// 根据内容分析模板唯一标识，获取内容分析模板详情列表。返回结果包含符合条件的所有用户自定义内容分析模板及系统预置视频内容分析模板
+    @inlinable
+    public func describeAIAnalysisTemplates(definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAIAnalysisTemplatesResponse > {
+        self.describeAIAnalysisTemplates(DescribeAIAnalysisTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取内容分析模板列表
+    ///
+    /// 根据内容分析模板唯一标识，获取内容分析模板详情列表。返回结果包含符合条件的所有用户自定义内容分析模板及系统预置视频内容分析模板
+    @inlinable
+    public func describeAIAnalysisTemplates(definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIAnalysisTemplatesResponse {
+        try await self.describeAIAnalysisTemplates(DescribeAIAnalysisTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
+    }
 }

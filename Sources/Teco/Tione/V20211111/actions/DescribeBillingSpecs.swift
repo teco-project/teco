@@ -68,4 +68,20 @@ extension Tione {
     public func describeBillingSpecs(_ input: DescribeBillingSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingSpecsResponse {
         try await self.client.execute(action: "DescribeBillingSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询计费项列表
+    ///
+    /// 本接口(DescribeBillingSpecs)用于查询计费项列表
+    @inlinable
+    public func describeBillingSpecs(taskType: String, chargeType: String, resourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillingSpecsResponse > {
+        self.describeBillingSpecs(DescribeBillingSpecsRequest(taskType: taskType, chargeType: chargeType, resourceType: resourceType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询计费项列表
+    ///
+    /// 本接口(DescribeBillingSpecs)用于查询计费项列表
+    @inlinable
+    public func describeBillingSpecs(taskType: String, chargeType: String, resourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingSpecsResponse {
+        try await self.describeBillingSpecs(DescribeBillingSpecsRequest(taskType: taskType, chargeType: chargeType, resourceType: resourceType), logger: logger, on: eventLoop)
+    }
 }

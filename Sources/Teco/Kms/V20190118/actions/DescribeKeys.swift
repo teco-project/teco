@@ -59,4 +59,20 @@ extension Kms {
     public func describeKeys(_ input: DescribeKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeysResponse {
         try await self.client.execute(action: "DescribeKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取多个主密钥属性
+    ///
+    /// 该接口用于批量获取主密钥属性信息。
+    @inlinable
+    public func describeKeys(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeysResponse > {
+        self.describeKeys(DescribeKeysRequest(keyIds: keyIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取多个主密钥属性
+    ///
+    /// 该接口用于批量获取主密钥属性信息。
+    @inlinable
+    public func describeKeys(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeysResponse {
+        try await self.describeKeys(DescribeKeysRequest(keyIds: keyIds), logger: logger, on: eventLoop)
+    }
 }

@@ -103,4 +103,24 @@ extension Vod {
     public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
         try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取任务列表
+    ///
+    /// * 该接口用于查询任务列表；
+    /// * 当列表数据比较多时，单次接口调用无法拉取整个列表，可通过 ScrollToken 参数，分批拉取；
+    /// * 只能查询到最近三天（72 小时）内的任务。
+    @inlinable
+    public func describeTasks(subAppId: UInt64? = nil, status: String? = nil, fileId: String? = nil, createTime: TimeRange? = nil, finishTime: TimeRange? = nil, sort: SortBy? = nil, limit: UInt64? = nil, scrollToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
+        self.describeTasks(DescribeTasksRequest(subAppId: subAppId, status: status, fileId: fileId, createTime: createTime, finishTime: finishTime, sort: sort, limit: limit, scrollToken: scrollToken), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取任务列表
+    ///
+    /// * 该接口用于查询任务列表；
+    /// * 当列表数据比较多时，单次接口调用无法拉取整个列表，可通过 ScrollToken 参数，分批拉取；
+    /// * 只能查询到最近三天（72 小时）内的任务。
+    @inlinable
+    public func describeTasks(subAppId: UInt64? = nil, status: String? = nil, fileId: String? = nil, createTime: TimeRange? = nil, finishTime: TimeRange? = nil, sort: SortBy? = nil, limit: UInt64? = nil, scrollToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
+        try await self.describeTasks(DescribeTasksRequest(subAppId: subAppId, status: status, fileId: fileId, createTime: createTime, finishTime: finishTime, sort: sort, limit: limit, scrollToken: scrollToken), logger: logger, on: eventLoop)
+    }
 }

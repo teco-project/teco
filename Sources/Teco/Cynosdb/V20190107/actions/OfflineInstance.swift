@@ -59,4 +59,16 @@ extension Cynosdb {
     public func offlineInstance(_ input: OfflineInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineInstanceResponse {
         try await self.client.execute(action: "OfflineInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 下线实例
+    @inlinable
+    public func offlineInstance(clusterId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OfflineInstanceResponse > {
+        self.offlineInstance(OfflineInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 下线实例
+    @inlinable
+    public func offlineInstance(clusterId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineInstanceResponse {
+        try await self.offlineInstance(OfflineInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
+    }
 }

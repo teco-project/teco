@@ -89,4 +89,20 @@ extension Wedata {
     public func describeTableQualityDetails(_ input: DescribeTableQualityDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableQualityDetailsResponse {
         try await self.client.execute(action: "DescribeTableQualityDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询表质量详情
+    ///
+    /// 质量报告-查询表质量详情
+    @inlinable
+    public func describeTableQualityDetails(statisticsDate: Int64, projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, datasourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableQualityDetailsResponse > {
+        self.describeTableQualityDetails(DescribeTableQualityDetailsRequest(statisticsDate: statisticsDate, projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, datasourceId: datasourceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询表质量详情
+    ///
+    /// 质量报告-查询表质量详情
+    @inlinable
+    public func describeTableQualityDetails(statisticsDate: Int64, projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, datasourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableQualityDetailsResponse {
+        try await self.describeTableQualityDetails(DescribeTableQualityDetailsRequest(statisticsDate: statisticsDate, projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, datasourceId: datasourceId), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,16 @@ extension Privatedns {
     public func describeAccountVpcList(_ input: DescribeAccountVpcListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountVpcListResponse {
         try await self.client.execute(action: "DescribeAccountVpcList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取私有域解析账号的VPC列表
+    @inlinable
+    public func describeAccountVpcList(accountUin: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountVpcListResponse > {
+        self.describeAccountVpcList(DescribeAccountVpcListRequest(accountUin: accountUin, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取私有域解析账号的VPC列表
+    @inlinable
+    public func describeAccountVpcList(accountUin: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountVpcListResponse {
+        try await self.describeAccountVpcList(DescribeAccountVpcListRequest(accountUin: accountUin, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

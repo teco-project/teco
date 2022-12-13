@@ -58,4 +58,20 @@ extension Lighthouse {
     public func describeInstancesDeniedActions(_ input: DescribeInstancesDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDeniedActionsResponse {
         try await self.client.execute(action: "DescribeInstancesDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看实例操作限制列表
+    ///
+    /// 本接口（DescribeInstancesDeniedActions）用于查询一个或多个实例的操作限制列表信息。
+    @inlinable
+    public func describeInstancesDeniedActions(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesDeniedActionsResponse > {
+        self.describeInstancesDeniedActions(DescribeInstancesDeniedActionsRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看实例操作限制列表
+    ///
+    /// 本接口（DescribeInstancesDeniedActions）用于查询一个或多个实例的操作限制列表信息。
+    @inlinable
+    public func describeInstancesDeniedActions(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDeniedActionsResponse {
+        try await self.describeInstancesDeniedActions(DescribeInstancesDeniedActionsRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

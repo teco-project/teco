@@ -109,4 +109,20 @@ extension Cr {
     public func describeCreditResult(_ input: DescribeCreditResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCreditResultResponse {
         try await self.client.execute(action: "DescribeCreditResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取信审结果
+    ///
+    /// 根据信审任务ID和请求日期，获取相关信审结果。
+    @inlinable
+    public func describeCreditResult(module: String, operation: String, instId: String, productId: String, caseId: String, requestDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCreditResultResponse > {
+        self.describeCreditResult(DescribeCreditResultRequest(module: module, operation: operation, instId: instId, productId: productId, caseId: caseId, requestDate: requestDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取信审结果
+    ///
+    /// 根据信审任务ID和请求日期，获取相关信审结果。
+    @inlinable
+    public func describeCreditResult(module: String, operation: String, instId: String, productId: String, caseId: String, requestDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCreditResultResponse {
+        try await self.describeCreditResult(DescribeCreditResultRequest(module: module, operation: operation, instId: instId, productId: productId, caseId: caseId, requestDate: requestDate), logger: logger, on: eventLoop)
+    }
 }

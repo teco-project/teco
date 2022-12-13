@@ -73,4 +73,20 @@ extension Mongodb {
     public func upgradeDBInstanceHour(_ input: UpgradeDBInstanceHourRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceHourResponse {
         try await self.client.execute(action: "UpgradeDBInstanceHour", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 升级云数据库实例（按量计费）
+    ///
+    /// 本接口(UpgradeDBInstanceHour)用于升级按量计费的MongoDB云数据库实例，可以扩容内存、存储以及oplog
+    @inlinable
+    public func upgradeDBInstanceHour(instanceId: String, memory: UInt64, volume: UInt64, oplogSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeDBInstanceHourResponse > {
+        self.upgradeDBInstanceHour(UpgradeDBInstanceHourRequest(instanceId: instanceId, memory: memory, volume: volume, oplogSize: oplogSize), logger: logger, on: eventLoop)
+    }
+    
+    /// 升级云数据库实例（按量计费）
+    ///
+    /// 本接口(UpgradeDBInstanceHour)用于升级按量计费的MongoDB云数据库实例，可以扩容内存、存储以及oplog
+    @inlinable
+    public func upgradeDBInstanceHour(instanceId: String, memory: UInt64, volume: UInt64, oplogSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceHourResponse {
+        try await self.upgradeDBInstanceHour(UpgradeDBInstanceHourRequest(instanceId: instanceId, memory: memory, volume: volume, oplogSize: oplogSize), logger: logger, on: eventLoop)
+    }
 }

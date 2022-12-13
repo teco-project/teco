@@ -64,4 +64,20 @@ extension Tag {
     public func updateResourceTagValue(_ input: UpdateResourceTagValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateResourceTagValueResponse {
         try await self.client.execute(action: "UpdateResourceTagValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改资源标签值
+    ///
+    /// 本接口用于修改资源已关联的标签值（标签键不变）
+    @inlinable
+    public func updateResourceTagValue(tagKey: String, tagValue: String, resource: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateResourceTagValueResponse > {
+        self.updateResourceTagValue(UpdateResourceTagValueRequest(tagKey: tagKey, tagValue: tagValue, resource: resource), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改资源标签值
+    ///
+    /// 本接口用于修改资源已关联的标签值（标签键不变）
+    @inlinable
+    public func updateResourceTagValue(tagKey: String, tagValue: String, resource: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateResourceTagValueResponse {
+        try await self.updateResourceTagValue(UpdateResourceTagValueRequest(tagKey: tagKey, tagValue: tagValue, resource: resource), logger: logger, on: eventLoop)
+    }
 }

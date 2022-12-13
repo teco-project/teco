@@ -65,4 +65,20 @@ extension Cdwch {
     public func actionAlterCkUser(_ input: ActionAlterCkUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActionAlterCkUserResponse {
         try await self.client.execute(action: "ActionAlterCkUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新增、修改ck用户接口
+    ///
+    /// 新增和修改用户接口
+    @inlinable
+    public func actionAlterCkUser(userInfo: CkUserAlterInfo, apiType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActionAlterCkUserResponse > {
+        self.actionAlterCkUser(ActionAlterCkUserRequest(userInfo: userInfo, apiType: apiType), logger: logger, on: eventLoop)
+    }
+    
+    /// 新增、修改ck用户接口
+    ///
+    /// 新增和修改用户接口
+    @inlinable
+    public func actionAlterCkUser(userInfo: CkUserAlterInfo, apiType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActionAlterCkUserResponse {
+        try await self.actionAlterCkUser(ActionAlterCkUserRequest(userInfo: userInfo, apiType: apiType), logger: logger, on: eventLoop)
+    }
 }

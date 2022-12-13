@@ -64,4 +64,20 @@ extension Scf {
     public func deleteAlias(_ input: DeleteAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasResponse {
         try await self.client.execute(action: "DeleteAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除别名
+    ///
+    /// 删除一个函数版本的别名
+    @inlinable
+    public func deleteAlias(functionName: String, name: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAliasResponse > {
+        self.deleteAlias(DeleteAliasRequest(functionName: functionName, name: name, namespace: namespace), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除别名
+    ///
+    /// 删除一个函数版本的别名
+    @inlinable
+    public func deleteAlias(functionName: String, name: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasResponse {
+        try await self.deleteAlias(DeleteAliasRequest(functionName: functionName, name: name, namespace: namespace), logger: logger, on: eventLoop)
+    }
 }

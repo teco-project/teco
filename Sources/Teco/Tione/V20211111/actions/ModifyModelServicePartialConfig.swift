@@ -68,4 +68,20 @@ extension Tione {
     public func modifyModelServicePartialConfig(_ input: ModifyModelServicePartialConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelServicePartialConfigResponse {
         try await self.client.execute(action: "ModifyModelServicePartialConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 增量修改模型服务
+    ///
+    /// 增量更新在线推理服务的部分配置，不更新的配置项不需要传入
+    @inlinable
+    public func modifyModelServicePartialConfig(serviceId: String, scheduledAction: ScheduledAction? = nil, serviceLimit: ServiceLimit? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModelServicePartialConfigResponse > {
+        self.modifyModelServicePartialConfig(ModifyModelServicePartialConfigRequest(serviceId: serviceId, scheduledAction: scheduledAction, serviceLimit: serviceLimit), logger: logger, on: eventLoop)
+    }
+    
+    /// 增量修改模型服务
+    ///
+    /// 增量更新在线推理服务的部分配置，不更新的配置项不需要传入
+    @inlinable
+    public func modifyModelServicePartialConfig(serviceId: String, scheduledAction: ScheduledAction? = nil, serviceLimit: ServiceLimit? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelServicePartialConfigResponse {
+        try await self.modifyModelServicePartialConfig(ModifyModelServicePartialConfigRequest(serviceId: serviceId, scheduledAction: scheduledAction, serviceLimit: serviceLimit), logger: logger, on: eventLoop)
+    }
 }

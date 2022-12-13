@@ -54,4 +54,16 @@ extension Tsf {
     public func redoTask(_ input: RedoTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskResponse {
         try await self.client.execute(action: "RedoTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重新执行任务
+    @inlinable
+    public func redoTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RedoTaskResponse > {
+        self.redoTask(RedoTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 重新执行任务
+    @inlinable
+    public func redoTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskResponse {
+        try await self.redoTask(RedoTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

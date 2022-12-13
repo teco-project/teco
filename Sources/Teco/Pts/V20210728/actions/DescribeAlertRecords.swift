@@ -99,4 +99,20 @@ extension Pts {
     public func describeAlertRecords(_ input: DescribeAlertRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertRecordsResponse {
         try await self.client.execute(action: "DescribeAlertRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询告警历史
+    ///
+    /// 返回告警历史项的列表
+    @inlinable
+    public func describeAlertRecords(projectIds: [String], scenarioIds: [String]? = nil, jobIds: [String]? = nil, ascend: Bool? = nil, orderBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, scenarioNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlertRecordsResponse > {
+        self.describeAlertRecords(DescribeAlertRecordsRequest(projectIds: projectIds, scenarioIds: scenarioIds, jobIds: jobIds, ascend: ascend, orderBy: orderBy, offset: offset, limit: limit, scenarioNames: scenarioNames), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询告警历史
+    ///
+    /// 返回告警历史项的列表
+    @inlinable
+    public func describeAlertRecords(projectIds: [String], scenarioIds: [String]? = nil, jobIds: [String]? = nil, ascend: Bool? = nil, orderBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, scenarioNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertRecordsResponse {
+        try await self.describeAlertRecords(DescribeAlertRecordsRequest(projectIds: projectIds, scenarioIds: scenarioIds, jobIds: jobIds, ascend: ascend, orderBy: orderBy, offset: offset, limit: limit, scenarioNames: scenarioNames), logger: logger, on: eventLoop)
+    }
 }

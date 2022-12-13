@@ -105,4 +105,16 @@ extension Iecp {
     public func modifyEdgeUnitApplicationVisualization(_ input: ModifyEdgeUnitApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitApplicationVisualizationResponse {
         try await self.client.execute(action: "ModifyEdgeUnitApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 可视化修改应用配置
+    @inlinable
+    public func modifyEdgeUnitApplicationVisualization(edgeUnitId: UInt64, applicationId: UInt64, basicConfig: ApplicationBasicConfig, volumes: [Volume]? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, service: Service? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeUnitApplicationVisualizationResponse > {
+        self.modifyEdgeUnitApplicationVisualization(ModifyEdgeUnitApplicationVisualizationRequest(edgeUnitId: edgeUnitId, applicationId: applicationId, basicConfig: basicConfig, volumes: volumes, initContainers: initContainers, containers: containers, service: service, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler), logger: logger, on: eventLoop)
+    }
+    
+    /// 可视化修改应用配置
+    @inlinable
+    public func modifyEdgeUnitApplicationVisualization(edgeUnitId: UInt64, applicationId: UInt64, basicConfig: ApplicationBasicConfig, volumes: [Volume]? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, service: Service? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitApplicationVisualizationResponse {
+        try await self.modifyEdgeUnitApplicationVisualization(ModifyEdgeUnitApplicationVisualizationRequest(edgeUnitId: edgeUnitId, applicationId: applicationId, basicConfig: basicConfig, volumes: volumes, initContainers: initContainers, containers: containers, service: service, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler), logger: logger, on: eventLoop)
+    }
 }

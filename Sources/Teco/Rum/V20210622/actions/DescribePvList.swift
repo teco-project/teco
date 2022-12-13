@@ -74,4 +74,20 @@ extension Rum {
     public func describePvList(_ input: DescribePvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePvListResponse {
         try await self.client.execute(action: "DescribePvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取PV列表
+    ///
+    /// 获取项目下的PV列表
+    @inlinable
+    public func describePvList(projectId: Int64, endTime: String, startTime: String, dimension: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePvListResponse > {
+        self.describePvList(DescribePvListRequest(projectId: projectId, endTime: endTime, startTime: startTime, dimension: dimension), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取PV列表
+    ///
+    /// 获取项目下的PV列表
+    @inlinable
+    public func describePvList(projectId: Int64, endTime: String, startTime: String, dimension: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePvListResponse {
+        try await self.describePvList(DescribePvListRequest(projectId: projectId, endTime: endTime, startTime: startTime, dimension: dimension), logger: logger, on: eventLoop)
+    }
 }

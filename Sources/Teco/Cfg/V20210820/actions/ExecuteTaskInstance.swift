@@ -79,4 +79,20 @@ extension Cfg {
     public func executeTaskInstance(_ input: ExecuteTaskInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskInstanceResponse {
         try await self.client.execute(action: "ExecuteTaskInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 执行任务动作实例
+    ///
+    /// 触发混沌演练任务的动作，对于实例进行演练操作
+    @inlinable
+    public func executeTaskInstance(taskId: UInt64, taskActionId: UInt64, taskInstanceIds: [UInt64], isOperateAll: Bool, actionType: UInt64, taskGroupId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteTaskInstanceResponse > {
+        self.executeTaskInstance(ExecuteTaskInstanceRequest(taskId: taskId, taskActionId: taskActionId, taskInstanceIds: taskInstanceIds, isOperateAll: isOperateAll, actionType: actionType, taskGroupId: taskGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 执行任务动作实例
+    ///
+    /// 触发混沌演练任务的动作，对于实例进行演练操作
+    @inlinable
+    public func executeTaskInstance(taskId: UInt64, taskActionId: UInt64, taskInstanceIds: [UInt64], isOperateAll: Bool, actionType: UInt64, taskGroupId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskInstanceResponse {
+        try await self.executeTaskInstance(ExecuteTaskInstanceRequest(taskId: taskId, taskActionId: taskActionId, taskInstanceIds: taskInstanceIds, isOperateAll: isOperateAll, actionType: actionType, taskGroupId: taskGroupId), logger: logger, on: eventLoop)
+    }
 }

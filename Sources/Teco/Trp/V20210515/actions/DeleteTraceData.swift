@@ -64,4 +64,20 @@ extension Trp {
     public func deleteTraceData(_ input: DeleteTraceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTraceDataResponse {
         try await self.client.execute(action: "DeleteTraceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除溯源信息
+    ///
+    /// 删除溯源信息，如果已经上链则不可删除
+    @inlinable
+    public func deleteTraceData(traceId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTraceDataResponse > {
+        self.deleteTraceData(DeleteTraceDataRequest(traceId: traceId, corpId: corpId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除溯源信息
+    ///
+    /// 删除溯源信息，如果已经上链则不可删除
+    @inlinable
+    public func deleteTraceData(traceId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTraceDataResponse {
+        try await self.deleteTraceData(DeleteTraceDataRequest(traceId: traceId, corpId: corpId), logger: logger, on: eventLoop)
+    }
 }

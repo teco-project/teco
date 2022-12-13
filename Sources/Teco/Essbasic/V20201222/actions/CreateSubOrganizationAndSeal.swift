@@ -194,4 +194,26 @@ extension Essbasic {
     public func createSubOrganizationAndSeal(_ input: CreateSubOrganizationAndSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubOrganizationAndSealResponse {
         try await self.client.execute(action: "CreateSubOrganizationAndSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 注册实名子机构并生成印章
+    ///
+    /// 此接口（CreateSubOrganizationAndSeal）用于注册子机构，同时系统将为该子企业自动生成一个默认电子印章图片。
+    /// 注意：
+    /// 1. 在后续的签署流程中，若未指定签署使用的印章ID，则默认调用自动生成的印章图片进行签署。
+    /// 2. 此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
+    @inlinable
+    public func createSubOrganizationAndSeal(caller: Caller, name: String, idCardType: String, idCardNumber: String, organizationType: String, legalName: String, legalIdCardType: String, legalIdCardNumber: String, verifyClientIp: String, email: String? = nil, idCardFileType: String? = nil, bizLicenseFile: String? = nil, bizLicenseFileName: String? = nil, legalMobile: String? = nil, contactName: String? = nil, verifyServerIp: String? = nil, contactAddress: Address? = nil, sealName: String? = nil, sealType: String? = nil, sealHorizontalText: String? = nil, openId: String? = nil, useOpenId: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubOrganizationAndSealResponse > {
+        self.createSubOrganizationAndSeal(CreateSubOrganizationAndSealRequest(caller: caller, name: name, idCardType: idCardType, idCardNumber: idCardNumber, organizationType: organizationType, legalName: legalName, legalIdCardType: legalIdCardType, legalIdCardNumber: legalIdCardNumber, verifyClientIp: verifyClientIp, email: email, idCardFileType: idCardFileType, bizLicenseFile: bizLicenseFile, bizLicenseFileName: bizLicenseFileName, legalMobile: legalMobile, contactName: contactName, verifyServerIp: verifyServerIp, contactAddress: contactAddress, sealName: sealName, sealType: sealType, sealHorizontalText: sealHorizontalText, openId: openId, useOpenId: useOpenId), logger: logger, on: eventLoop)
+    }
+    
+    /// 注册实名子机构并生成印章
+    ///
+    /// 此接口（CreateSubOrganizationAndSeal）用于注册子机构，同时系统将为该子企业自动生成一个默认电子印章图片。
+    /// 注意：
+    /// 1. 在后续的签署流程中，若未指定签署使用的印章ID，则默认调用自动生成的印章图片进行签署。
+    /// 2. 此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
+    @inlinable
+    public func createSubOrganizationAndSeal(caller: Caller, name: String, idCardType: String, idCardNumber: String, organizationType: String, legalName: String, legalIdCardType: String, legalIdCardNumber: String, verifyClientIp: String, email: String? = nil, idCardFileType: String? = nil, bizLicenseFile: String? = nil, bizLicenseFileName: String? = nil, legalMobile: String? = nil, contactName: String? = nil, verifyServerIp: String? = nil, contactAddress: Address? = nil, sealName: String? = nil, sealType: String? = nil, sealHorizontalText: String? = nil, openId: String? = nil, useOpenId: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubOrganizationAndSealResponse {
+        try await self.createSubOrganizationAndSeal(CreateSubOrganizationAndSealRequest(caller: caller, name: name, idCardType: idCardType, idCardNumber: idCardNumber, organizationType: organizationType, legalName: legalName, legalIdCardType: legalIdCardType, legalIdCardNumber: legalIdCardNumber, verifyClientIp: verifyClientIp, email: email, idCardFileType: idCardFileType, bizLicenseFile: bizLicenseFile, bizLicenseFileName: bizLicenseFileName, legalMobile: legalMobile, contactName: contactName, verifyServerIp: verifyServerIp, contactAddress: contactAddress, sealName: sealName, sealType: sealType, sealHorizontalText: sealHorizontalText, openId: openId, useOpenId: useOpenId), logger: logger, on: eventLoop)
+    }
 }

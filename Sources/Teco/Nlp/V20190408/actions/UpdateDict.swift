@@ -64,4 +64,20 @@ extension Nlp {
     public func updateDict(_ input: UpdateDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDictResponse {
         try await self.client.execute(action: "UpdateDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改自定义词库
+    ///
+    /// 修改自定义词库元数据信息，包括名称、描述。
+    @inlinable
+    public func updateDict(dictId: String, description: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDictResponse > {
+        self.updateDict(UpdateDictRequest(dictId: dictId, description: description, name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改自定义词库
+    ///
+    /// 修改自定义词库元数据信息，包括名称、描述。
+    @inlinable
+    public func updateDict(dictId: String, description: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDictResponse {
+        try await self.updateDict(UpdateDictRequest(dictId: dictId, description: description, name: name), logger: logger, on: eventLoop)
+    }
 }

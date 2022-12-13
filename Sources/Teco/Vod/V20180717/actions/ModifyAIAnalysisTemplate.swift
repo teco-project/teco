@@ -98,4 +98,22 @@ extension Vod {
     public func modifyAIAnalysisTemplate(_ input: ModifyAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIAnalysisTemplateResponse {
         try await self.client.execute(action: "ModifyAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改音视频内容分析模板
+    ///
+    /// 修改用户自定义音视频内容分析模板。
+    /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
+    @inlinable
+    public func modifyAIAnalysisTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfoForUpdate? = nil, tagConfigure: TagConfigureInfoForUpdate? = nil, coverConfigure: CoverConfigureInfoForUpdate? = nil, frameTagConfigure: FrameTagConfigureInfoForUpdate? = nil, highlightConfigure: HighlightsConfigureInfoForUpdate? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAIAnalysisTemplateResponse > {
+        self.modifyAIAnalysisTemplate(ModifyAIAnalysisTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure, highlightConfigure: highlightConfigure), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改音视频内容分析模板
+    ///
+    /// 修改用户自定义音视频内容分析模板。
+    /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
+    @inlinable
+    public func modifyAIAnalysisTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfoForUpdate? = nil, tagConfigure: TagConfigureInfoForUpdate? = nil, coverConfigure: CoverConfigureInfoForUpdate? = nil, frameTagConfigure: FrameTagConfigureInfoForUpdate? = nil, highlightConfigure: HighlightsConfigureInfoForUpdate? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIAnalysisTemplateResponse {
+        try await self.modifyAIAnalysisTemplate(ModifyAIAnalysisTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure, highlightConfigure: highlightConfigure), logger: logger, on: eventLoop)
+    }
 }

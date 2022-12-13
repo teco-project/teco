@@ -116,4 +116,16 @@ extension Tsf {
     public func searchStdoutLog(_ input: SearchStdoutLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchStdoutLogResponse {
         try await self.client.execute(action: "SearchStdoutLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 标准输出日志搜索
+    @inlinable
+    public func searchStdoutLog(instanceId: String? = nil, limit: Int64? = nil, searchWords: [String]? = nil, startTime: Date? = nil, groupId: String? = nil, endTime: Date? = nil, offset: Int64? = nil, orderBy: String? = nil, orderType: String? = nil, searchWordType: String? = nil, batchType: String? = nil, scrollId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchStdoutLogResponse > {
+        self.searchStdoutLog(SearchStdoutLogRequest(instanceId: instanceId, limit: limit, searchWords: searchWords, startTime: startTime, groupId: groupId, endTime: endTime, offset: offset, orderBy: orderBy, orderType: orderType, searchWordType: searchWordType, batchType: batchType, scrollId: scrollId), logger: logger, on: eventLoop)
+    }
+    
+    /// 标准输出日志搜索
+    @inlinable
+    public func searchStdoutLog(instanceId: String? = nil, limit: Int64? = nil, searchWords: [String]? = nil, startTime: Date? = nil, groupId: String? = nil, endTime: Date? = nil, offset: Int64? = nil, orderBy: String? = nil, orderType: String? = nil, searchWordType: String? = nil, batchType: String? = nil, scrollId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchStdoutLogResponse {
+        try await self.searchStdoutLog(SearchStdoutLogRequest(instanceId: instanceId, limit: limit, searchWords: searchWords, startTime: startTime, groupId: groupId, endTime: endTime, offset: offset, orderBy: orderBy, orderType: orderType, searchWordType: searchWordType, batchType: batchType, scrollId: scrollId), logger: logger, on: eventLoop)
+    }
 }

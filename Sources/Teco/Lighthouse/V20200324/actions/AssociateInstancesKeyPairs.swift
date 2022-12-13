@@ -71,4 +71,32 @@ extension Lighthouse {
     public func associateInstancesKeyPairs(_ input: AssociateInstancesKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateInstancesKeyPairsResponse {
         try await self.client.execute(action: "AssociateInstancesKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 绑定密钥对
+    ///
+    /// 本接口（AssociateInstancesKeyPairs）用于绑定用户指定密钥对到实例。
+    /// * 只支持 [RUNNING, STOPPED] 状态的 LINUX_UNIX 操作系统的实例。处于 RUNNING 状态的实例会强制关机，然后绑定。
+    /// * 将密钥的公钥写入到实例的 SSH 配置当中，用户就可以通过该密钥的私钥来登录实例。
+    /// * 如果实例原来绑定过密钥，那么原来的密钥将失效。
+    /// * 如果实例原来是通过密码登录，绑定密钥后无法使用密码登录。
+    /// * 支持批量操作。每次请求批量实例的上限为 100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
+    /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
+    @inlinable
+    public func associateInstancesKeyPairs(keyIds: [String], instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateInstancesKeyPairsResponse > {
+        self.associateInstancesKeyPairs(AssociateInstancesKeyPairsRequest(keyIds: keyIds, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定密钥对
+    ///
+    /// 本接口（AssociateInstancesKeyPairs）用于绑定用户指定密钥对到实例。
+    /// * 只支持 [RUNNING, STOPPED] 状态的 LINUX_UNIX 操作系统的实例。处于 RUNNING 状态的实例会强制关机，然后绑定。
+    /// * 将密钥的公钥写入到实例的 SSH 配置当中，用户就可以通过该密钥的私钥来登录实例。
+    /// * 如果实例原来绑定过密钥，那么原来的密钥将失效。
+    /// * 如果实例原来是通过密码登录，绑定密钥后无法使用密码登录。
+    /// * 支持批量操作。每次请求批量实例的上限为 100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
+    /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
+    @inlinable
+    public func associateInstancesKeyPairs(keyIds: [String], instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateInstancesKeyPairsResponse {
+        try await self.associateInstancesKeyPairs(AssociateInstancesKeyPairsRequest(keyIds: keyIds, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

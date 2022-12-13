@@ -99,4 +99,20 @@ extension Youmall {
     public func describeZoneTrafficInfo(_ input: DescribeZoneTrafficInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneTrafficInfoResponse {
         try await self.client.execute(action: "DescribeZoneTrafficInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取区域客流人次及停留时间
+    ///
+    /// 按天提供查询日期范围内，客户指定门店下的所有区域（优Mall部署时已配置区域）的累计客流人次和平均停留时间。支持的时间范围：过去365天，含当天。
+    @inlinable
+    public func describeZoneTrafficInfo(companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneTrafficInfoResponse > {
+        self.describeZoneTrafficInfo(DescribeZoneTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取区域客流人次及停留时间
+    ///
+    /// 按天提供查询日期范围内，客户指定门店下的所有区域（优Mall部署时已配置区域）的累计客流人次和平均停留时间。支持的时间范围：过去365天，含当天。
+    @inlinable
+    public func describeZoneTrafficInfo(companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneTrafficInfoResponse {
+        try await self.describeZoneTrafficInfo(DescribeZoneTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

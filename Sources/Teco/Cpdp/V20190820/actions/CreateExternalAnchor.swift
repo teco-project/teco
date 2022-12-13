@@ -88,4 +88,16 @@ extension Cpdp {
     public func createExternalAnchor(_ input: CreateExternalAnchorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExternalAnchorResponse {
         try await self.client.execute(action: "CreateExternalAnchor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 灵云-主播入驻
+    @inlinable
+    public func createExternalAnchor(uid: String, name: String, idNo: String, idCardFront: String? = nil, idCardReverse: String? = nil, agentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateExternalAnchorResponse > {
+        self.createExternalAnchor(CreateExternalAnchorRequest(uid: uid, name: name, idNo: idNo, idCardFront: idCardFront, idCardReverse: idCardReverse, agentId: agentId), logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云-主播入驻
+    @inlinable
+    public func createExternalAnchor(uid: String, name: String, idNo: String, idCardFront: String? = nil, idCardReverse: String? = nil, agentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExternalAnchorResponse {
+        try await self.createExternalAnchor(CreateExternalAnchorRequest(uid: uid, name: name, idNo: idNo, idCardFront: idCardFront, idCardReverse: idCardReverse, agentId: agentId), logger: logger, on: eventLoop)
+    }
 }

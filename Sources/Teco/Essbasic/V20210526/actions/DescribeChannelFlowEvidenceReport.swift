@@ -26,7 +26,7 @@ extension Essbasic {
         /// 操作者的信息
         public let `operator`: UserInfo?
         
-        public init (reportId: String, agent: Agent, `operator`: UserInfo? = nil) {
+        public init (reportId: String, agent: Agent, operator: UserInfo? = nil) {
             self.reportId = reportId
             self.agent = agent
             self.`operator` = `operator`
@@ -74,5 +74,21 @@ extension Essbasic {
     @inlinable
     public func describeChannelFlowEvidenceReport(_ input: DescribeChannelFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelFlowEvidenceReportResponse {
         try await self.client.execute(action: "DescribeChannelFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 查询出证报告
+    ///
+    /// 查询出证报告，返回报告 URL。
+    @inlinable
+    public func describeChannelFlowEvidenceReport(reportId: String, agent: Agent, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChannelFlowEvidenceReportResponse > {
+        self.describeChannelFlowEvidenceReport(DescribeChannelFlowEvidenceReportRequest(reportId: reportId, agent: agent, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询出证报告
+    ///
+    /// 查询出证报告，返回报告 URL。
+    @inlinable
+    public func describeChannelFlowEvidenceReport(reportId: String, agent: Agent, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelFlowEvidenceReportResponse {
+        try await self.describeChannelFlowEvidenceReport(DescribeChannelFlowEvidenceReportRequest(reportId: reportId, agent: agent, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

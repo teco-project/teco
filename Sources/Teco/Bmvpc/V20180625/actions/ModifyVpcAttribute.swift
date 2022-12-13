@@ -64,4 +64,20 @@ extension Bmvpc {
     public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
         try await self.client.execute(action: "ModifyVpcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改黑石VPC属性
+    ///
+    /// 本接口（ModifyVpcAttribute）用于修改VPC的标识名称和控制VPC的监控起停。
+    @inlinable
+    public func modifyVpcAttribute(vpcId: String, vpcName: String? = nil, enableMonitor: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpcAttributeResponse > {
+        self.modifyVpcAttribute(ModifyVpcAttributeRequest(vpcId: vpcId, vpcName: vpcName, enableMonitor: enableMonitor), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改黑石VPC属性
+    ///
+    /// 本接口（ModifyVpcAttribute）用于修改VPC的标识名称和控制VPC的监控起停。
+    @inlinable
+    public func modifyVpcAttribute(vpcId: String, vpcName: String? = nil, enableMonitor: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
+        try await self.modifyVpcAttribute(ModifyVpcAttributeRequest(vpcId: vpcId, vpcName: vpcName, enableMonitor: enableMonitor), logger: logger, on: eventLoop)
+    }
 }

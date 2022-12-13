@@ -94,4 +94,20 @@ extension Iotexplorer {
     public func getProjectList(_ input: GetProjectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProjectListResponse {
         try await self.client.execute(action: "GetProjectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取项目列表
+    ///
+    /// 提供查询用户所创建的项目列表查询功能。
+    @inlinable
+    public func getProjectList(offset: Int64? = nil, limit: Int64? = nil, instanceId: String? = nil, projectId: String? = nil, productId: String? = nil, includes: [String]? = nil, projectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetProjectListResponse > {
+        self.getProjectList(GetProjectListRequest(offset: offset, limit: limit, instanceId: instanceId, projectId: projectId, productId: productId, includes: includes, projectName: projectName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取项目列表
+    ///
+    /// 提供查询用户所创建的项目列表查询功能。
+    @inlinable
+    public func getProjectList(offset: Int64? = nil, limit: Int64? = nil, instanceId: String? = nil, projectId: String? = nil, productId: String? = nil, includes: [String]? = nil, projectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProjectListResponse {
+        try await self.getProjectList(GetProjectListRequest(offset: offset, limit: limit, instanceId: instanceId, projectId: projectId, productId: productId, includes: includes, projectName: projectName), logger: logger, on: eventLoop)
+    }
 }

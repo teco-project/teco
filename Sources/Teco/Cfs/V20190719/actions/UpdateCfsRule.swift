@@ -103,4 +103,20 @@ extension Cfs {
     public func updateCfsRule(_ input: UpdateCfsRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsRuleResponse {
         try await self.client.execute(action: "UpdateCfsRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新权限组规则
+    ///
+    /// 本接口（UpdateCfsRule）用于更新权限规则。
+    @inlinable
+    public func updateCfsRule(pGroupId: String, ruleId: String, authClientIp: String? = nil, rwPermission: String? = nil, userPermission: String? = nil, priority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCfsRuleResponse > {
+        self.updateCfsRule(UpdateCfsRuleRequest(pGroupId: pGroupId, ruleId: ruleId, authClientIp: authClientIp, rwPermission: rwPermission, userPermission: userPermission, priority: priority), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新权限组规则
+    ///
+    /// 本接口（UpdateCfsRule）用于更新权限规则。
+    @inlinable
+    public func updateCfsRule(pGroupId: String, ruleId: String, authClientIp: String? = nil, rwPermission: String? = nil, userPermission: String? = nil, priority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsRuleResponse {
+        try await self.updateCfsRule(UpdateCfsRuleRequest(pGroupId: pGroupId, ruleId: ruleId, authClientIp: authClientIp, rwPermission: rwPermission, userPermission: userPermission, priority: priority), logger: logger, on: eventLoop)
+    }
 }

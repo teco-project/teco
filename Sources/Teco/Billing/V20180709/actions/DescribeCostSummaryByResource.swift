@@ -109,4 +109,16 @@ extension Billing {
     public func describeCostSummaryByResource(_ input: DescribeCostSummaryByResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByResourceResponse {
         try await self.client.execute(action: "DescribeCostSummaryByResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取按资源汇总消耗详情
+    @inlinable
+    public func describeCostSummaryByResource(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, needConditionValue: UInt64? = nil, conditions: Conditions? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCostSummaryByResourceResponse > {
+        self.describeCostSummaryByResource(DescribeCostSummaryByResourceRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum, needConditionValue: needConditionValue, conditions: conditions), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取按资源汇总消耗详情
+    @inlinable
+    public func describeCostSummaryByResource(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, needConditionValue: UInt64? = nil, conditions: Conditions? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByResourceResponse {
+        try await self.describeCostSummaryByResource(DescribeCostSummaryByResourceRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum, needConditionValue: needConditionValue, conditions: conditions), logger: logger, on: eventLoop)
+    }
 }

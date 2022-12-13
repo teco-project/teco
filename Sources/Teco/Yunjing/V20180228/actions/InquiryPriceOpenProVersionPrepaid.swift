@@ -67,4 +67,20 @@ extension Yunjing {
     public func inquiryPriceOpenProVersionPrepaid(_ input: InquiryPriceOpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceOpenProVersionPrepaidResponse {
         try await self.client.execute(action: "InquiryPriceOpenProVersionPrepaid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开通专业版询价(预付费)
+    ///
+    /// 本接口 (InquiryPriceOpenProVersionPrepaid) 用于开通专业版询价(预付费)。
+    @inlinable
+    public func inquiryPriceOpenProVersionPrepaid(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceOpenProVersionPrepaidResponse > {
+        self.inquiryPriceOpenProVersionPrepaid(InquiryPriceOpenProVersionPrepaidRequest(chargePrepaid: chargePrepaid, machines: machines), logger: logger, on: eventLoop)
+    }
+    
+    /// 开通专业版询价(预付费)
+    ///
+    /// 本接口 (InquiryPriceOpenProVersionPrepaid) 用于开通专业版询价(预付费)。
+    @inlinable
+    public func inquiryPriceOpenProVersionPrepaid(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceOpenProVersionPrepaidResponse {
+        try await self.inquiryPriceOpenProVersionPrepaid(InquiryPriceOpenProVersionPrepaidRequest(chargePrepaid: chargePrepaid, machines: machines), logger: logger, on: eventLoop)
+    }
 }

@@ -41,7 +41,7 @@ extension Apigateway {
         /// 是否将HTTP请求强制跳转 HTTPS，默认为false。参数为 true时，API网关会将所有使用该自定义域名的 HTTP 协议的请求重定向至 HTTPS 协议进行转发。
         public let isForcedHttps: Bool?
         
-        public init (serviceId: String, subDomain: String, isDefaultMapping: Bool, certificateId: String? = nil, `protocol`: String? = nil, pathMappingSet: [PathMapping]? = nil, netType: String? = nil, isForcedHttps: Bool? = nil) {
+        public init (serviceId: String, subDomain: String, isDefaultMapping: Bool, certificateId: String? = nil, protocol: String? = nil, pathMappingSet: [PathMapping]? = nil, netType: String? = nil, isForcedHttps: Bool? = nil) {
             self.serviceId = serviceId
             self.subDomain = subDomain
             self.isDefaultMapping = isDefaultMapping
@@ -92,5 +92,21 @@ extension Apigateway {
     @inlinable
     public func modifySubDomain(_ input: ModifySubDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubDomainResponse {
         try await self.client.execute(action: "ModifySubDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 服务修改自定义域名
+    ///
+    /// 本接口（ModifySubDomain）用于修改服务的自定义域名设置中的路径映射，可以修改绑定自定义域名之前的路径映射规则。
+    @inlinable
+    public func modifySubDomain(serviceId: String, subDomain: String, isDefaultMapping: Bool, certificateId: String? = nil, protocol: String? = nil, pathMappingSet: [PathMapping]? = nil, netType: String? = nil, isForcedHttps: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubDomainResponse > {
+        self.modifySubDomain(ModifySubDomainRequest(serviceId: serviceId, subDomain: subDomain, isDefaultMapping: isDefaultMapping, certificateId: certificateId, protocol: `protocol`, pathMappingSet: pathMappingSet, netType: netType, isForcedHttps: isForcedHttps), logger: logger, on: eventLoop)
+    }
+    
+    /// 服务修改自定义域名
+    ///
+    /// 本接口（ModifySubDomain）用于修改服务的自定义域名设置中的路径映射，可以修改绑定自定义域名之前的路径映射规则。
+    @inlinable
+    public func modifySubDomain(serviceId: String, subDomain: String, isDefaultMapping: Bool, certificateId: String? = nil, protocol: String? = nil, pathMappingSet: [PathMapping]? = nil, netType: String? = nil, isForcedHttps: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubDomainResponse {
+        try await self.modifySubDomain(ModifySubDomainRequest(serviceId: serviceId, subDomain: subDomain, isDefaultMapping: isDefaultMapping, certificateId: certificateId, protocol: `protocol`, pathMappingSet: pathMappingSet, netType: netType, isForcedHttps: isForcedHttps), logger: logger, on: eventLoop)
     }
 }

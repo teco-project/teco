@@ -52,4 +52,20 @@ extension Eis {
     public func listDeployableRuntimesMC(_ input: ListDeployableRuntimesMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDeployableRuntimesMCResponse {
         try await self.client.execute(action: "ListDeployableRuntimesMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取可部署运行时列表
+    ///
+    /// 返回用户可用的运行时列表，发布应用时返回的运行时环境，仅shared和private运行时，无sandbox运行时，并且只有running/scaling状态的
+    @inlinable
+    public func listDeployableRuntimesMC(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListDeployableRuntimesMCResponse > {
+        self.listDeployableRuntimesMC(ListDeployableRuntimesMCRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取可部署运行时列表
+    ///
+    /// 返回用户可用的运行时列表，发布应用时返回的运行时环境，仅shared和private运行时，无sandbox运行时，并且只有running/scaling状态的
+    @inlinable
+    public func listDeployableRuntimesMC(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDeployableRuntimesMCResponse {
+        try await self.listDeployableRuntimesMC(ListDeployableRuntimesMCRequest(), logger: logger, on: eventLoop)
+    }
 }

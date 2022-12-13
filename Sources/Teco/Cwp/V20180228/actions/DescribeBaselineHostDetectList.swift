@@ -86,4 +86,16 @@ extension Cwp {
     public func describeBaselineHostDetectList(_ input: DescribeBaselineHostDetectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineHostDetectListResponse {
         try await self.client.execute(action: "DescribeBaselineHostDetectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取基线检测主机列表
+    @inlinable
+    public func describeBaselineHostDetectList(filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineHostDetectListResponse > {
+        self.describeBaselineHostDetectList(DescribeBaselineHostDetectListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取基线检测主机列表
+    @inlinable
+    public func describeBaselineHostDetectList(filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineHostDetectListResponse {
+        try await self.describeBaselineHostDetectList(DescribeBaselineHostDetectListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

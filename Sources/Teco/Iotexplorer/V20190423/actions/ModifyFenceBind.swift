@@ -55,4 +55,16 @@ extension Iotexplorer {
     public func modifyFenceBind(_ input: ModifyFenceBindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFenceBindResponse {
         try await self.client.execute(action: "ModifyFenceBind", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新围栏绑定信息
+    @inlinable
+    public func modifyFenceBind(fenceId: Int64, items: [FenceBindProductItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyFenceBindResponse > {
+        self.modifyFenceBind(ModifyFenceBindRequest(fenceId: fenceId, items: items), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新围栏绑定信息
+    @inlinable
+    public func modifyFenceBind(fenceId: Int64, items: [FenceBindProductItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFenceBindResponse {
+        try await self.modifyFenceBind(ModifyFenceBindRequest(fenceId: fenceId, items: items), logger: logger, on: eventLoop)
+    }
 }

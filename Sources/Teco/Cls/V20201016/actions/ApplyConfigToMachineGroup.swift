@@ -55,4 +55,16 @@ extension Cls {
     public func applyConfigToMachineGroup(_ input: ApplyConfigToMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConfigToMachineGroupResponse {
         try await self.client.execute(action: "ApplyConfigToMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 应用采集配置到指定机器组
+    @inlinable
+    public func applyConfigToMachineGroup(configId: String, groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyConfigToMachineGroupResponse > {
+        self.applyConfigToMachineGroup(ApplyConfigToMachineGroupRequest(configId: configId, groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 应用采集配置到指定机器组
+    @inlinable
+    public func applyConfigToMachineGroup(configId: String, groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConfigToMachineGroupResponse {
+        try await self.applyConfigToMachineGroup(ApplyConfigToMachineGroupRequest(configId: configId, groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

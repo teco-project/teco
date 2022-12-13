@@ -63,4 +63,20 @@ extension Cynosdb {
     public func describeBinlogDownloadUrl(_ input: DescribeBinlogDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogDownloadUrlResponse {
         try await self.client.execute(action: "DescribeBinlogDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询Binlog下载地址
+    ///
+    /// 此接口（DescribeBinlogDownloadUrl）用于查询Binlog的下载地址。
+    @inlinable
+    public func describeBinlogDownloadUrl(clusterId: String, binlogId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBinlogDownloadUrlResponse > {
+        self.describeBinlogDownloadUrl(DescribeBinlogDownloadUrlRequest(clusterId: clusterId, binlogId: binlogId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Binlog下载地址
+    ///
+    /// 此接口（DescribeBinlogDownloadUrl）用于查询Binlog的下载地址。
+    @inlinable
+    public func describeBinlogDownloadUrl(clusterId: String, binlogId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogDownloadUrlResponse {
+        try await self.describeBinlogDownloadUrl(DescribeBinlogDownloadUrlRequest(clusterId: clusterId, binlogId: binlogId), logger: logger, on: eventLoop)
+    }
 }

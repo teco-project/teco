@@ -70,4 +70,16 @@ extension Dnspod {
     public func describeRecordLineList(_ input: DescribeRecordLineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordLineListResponse {
         try await self.client.execute(action: "DescribeRecordLineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取等级允许的线路
+    @inlinable
+    public func describeRecordLineList(domain: String, domainGrade: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordLineListResponse > {
+        self.describeRecordLineList(DescribeRecordLineListRequest(domain: domain, domainGrade: domainGrade, domainId: domainId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取等级允许的线路
+    @inlinable
+    public func describeRecordLineList(domain: String, domainGrade: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordLineListResponse {
+        try await self.describeRecordLineList(DescribeRecordLineListRequest(domain: domain, domainGrade: domainGrade, domainId: domainId), logger: logger, on: eventLoop)
+    }
 }

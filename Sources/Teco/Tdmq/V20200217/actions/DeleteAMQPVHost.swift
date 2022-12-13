@@ -55,4 +55,16 @@ extension Tdmq {
     public func deleteAMQPVHost(_ input: DeleteAMQPVHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPVHostResponse {
         try await self.client.execute(action: "DeleteAMQPVHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除Vhost
+    @inlinable
+    public func deleteAMQPVHost(clusterId: String, vHostId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAMQPVHostResponse > {
+        self.deleteAMQPVHost(DeleteAMQPVHostRequest(clusterId: clusterId, vHostId: vHostId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Vhost
+    @inlinable
+    public func deleteAMQPVHost(clusterId: String, vHostId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPVHostResponse {
+        try await self.deleteAMQPVHost(DeleteAMQPVHostRequest(clusterId: clusterId, vHostId: vHostId), logger: logger, on: eventLoop)
+    }
 }

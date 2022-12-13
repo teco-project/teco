@@ -85,4 +85,16 @@ extension Essbasic {
     public func generateOrganizationSeal(_ input: GenerateOrganizationSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateOrganizationSealResponse {
         try await self.client.execute(action: "GenerateOrganizationSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 生成企业电子印章
+    @inlinable
+    public func generateOrganizationSeal(caller: Caller, sealType: String, sourceIp: String, sealName: String? = nil, sealHorizontalText: String? = nil, isDefault: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateOrganizationSealResponse > {
+        self.generateOrganizationSeal(GenerateOrganizationSealRequest(caller: caller, sealType: sealType, sourceIp: sourceIp, sealName: sealName, sealHorizontalText: sealHorizontalText, isDefault: isDefault), logger: logger, on: eventLoop)
+    }
+    
+    /// 生成企业电子印章
+    @inlinable
+    public func generateOrganizationSeal(caller: Caller, sealType: String, sourceIp: String, sealName: String? = nil, sealHorizontalText: String? = nil, isDefault: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateOrganizationSealResponse {
+        try await self.generateOrganizationSeal(GenerateOrganizationSealRequest(caller: caller, sealType: sealType, sourceIp: sourceIp, sealName: sealName, sealHorizontalText: sealHorizontalText, isDefault: isDefault), logger: logger, on: eventLoop)
+    }
 }

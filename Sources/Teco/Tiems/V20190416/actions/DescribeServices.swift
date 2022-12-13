@@ -84,4 +84,22 @@ extension Tiems {
     public func describeServices(_ input: DescribeServicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServicesResponse {
         try await self.client.execute(action: "DescribeServices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 描述服务
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 描述服务
+    @inlinable
+    public func describeServices(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServicesResponse > {
+        self.describeServices(DescribeServicesRequest(filters: filters, offset: offset, limit: limit, order: order, orderField: orderField), logger: logger, on: eventLoop)
+    }
+    
+    /// 描述服务
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 描述服务
+    @inlinable
+    public func describeServices(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServicesResponse {
+        try await self.describeServices(DescribeServicesRequest(filters: filters, offset: offset, limit: limit, order: order, orderField: orderField), logger: logger, on: eventLoop)
+    }
 }

@@ -90,4 +90,22 @@ extension Live {
     public func describeStreamPlayInfoList(_ input: DescribeStreamPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPlayInfoListResponse {
         try await self.client.execute(action: "DescribeStreamPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询流的播放信息列表
+    ///
+    /// 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据，数据延迟4分钟左右。
+    /// 注意：按AppName查询请先联系工单申请，开通后配置生效预计需要5个工作日左右，具体时间以最终回复为准。
+    @inlinable
+    public func describeStreamPlayInfoList(startTime: String, endTime: String, playDomain: String? = nil, streamName: String? = nil, appName: String? = nil, serviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamPlayInfoListResponse > {
+        self.describeStreamPlayInfoList(DescribeStreamPlayInfoListRequest(startTime: startTime, endTime: endTime, playDomain: playDomain, streamName: streamName, appName: appName, serviceName: serviceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流的播放信息列表
+    ///
+    /// 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据，数据延迟4分钟左右。
+    /// 注意：按AppName查询请先联系工单申请，开通后配置生效预计需要5个工作日左右，具体时间以最终回复为准。
+    @inlinable
+    public func describeStreamPlayInfoList(startTime: String, endTime: String, playDomain: String? = nil, streamName: String? = nil, appName: String? = nil, serviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPlayInfoListResponse {
+        try await self.describeStreamPlayInfoList(DescribeStreamPlayInfoListRequest(startTime: startTime, endTime: endTime, playDomain: playDomain, streamName: streamName, appName: appName, serviceName: serviceName), logger: logger, on: eventLoop)
+    }
 }

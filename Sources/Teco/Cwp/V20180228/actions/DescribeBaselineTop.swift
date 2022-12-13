@@ -64,4 +64,20 @@ extension Cwp {
     public func describeBaselineTop(_ input: DescribeBaselineTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineTopResponse {
         try await self.client.execute(action: "DescribeBaselineTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 基线检测项TOP
+    ///
+    /// 根据策略id查询基线检测项TOP
+    @inlinable
+    public func describeBaselineTop(top: UInt64, strategyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineTopResponse > {
+        self.describeBaselineTop(DescribeBaselineTopRequest(top: top, strategyId: strategyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 基线检测项TOP
+    ///
+    /// 根据策略id查询基线检测项TOP
+    @inlinable
+    public func describeBaselineTop(top: UInt64, strategyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineTopResponse {
+        try await self.describeBaselineTop(DescribeBaselineTopRequest(top: top, strategyId: strategyId), logger: logger, on: eventLoop)
+    }
 }

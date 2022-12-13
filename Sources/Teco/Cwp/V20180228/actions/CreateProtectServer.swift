@@ -55,4 +55,16 @@ extension Cwp {
     public func createProtectServer(_ input: CreateProtectServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtectServerResponse {
         try await self.client.execute(action: "CreateProtectServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加网站防护服务器
+    @inlinable
+    public func createProtectServer(protectDir: String, protectHostConfig: [ProtectHostConfig], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProtectServerResponse > {
+        self.createProtectServer(CreateProtectServerRequest(protectDir: protectDir, protectHostConfig: protectHostConfig), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加网站防护服务器
+    @inlinable
+    public func createProtectServer(protectDir: String, protectHostConfig: [ProtectHostConfig], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtectServerResponse {
+        try await self.createProtectServer(CreateProtectServerRequest(protectDir: protectDir, protectHostConfig: protectHostConfig), logger: logger, on: eventLoop)
+    }
 }

@@ -63,4 +63,20 @@ extension Postgres {
     public func openDBExtranetAccess(_ input: OpenDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenDBExtranetAccessResponse {
         try await self.client.execute(action: "OpenDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开通外网
+    ///
+    /// 本接口（OpenDBExtranetAccess）用于开通外网。
+    @inlinable
+    public func openDBExtranetAccess(dbInstanceId: String, isIpv6: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenDBExtranetAccessResponse > {
+        self.openDBExtranetAccess(OpenDBExtranetAccessRequest(dbInstanceId: dbInstanceId, isIpv6: isIpv6), logger: logger, on: eventLoop)
+    }
+    
+    /// 开通外网
+    ///
+    /// 本接口（OpenDBExtranetAccess）用于开通外网。
+    @inlinable
+    public func openDBExtranetAccess(dbInstanceId: String, isIpv6: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenDBExtranetAccessResponse {
+        try await self.openDBExtranetAccess(OpenDBExtranetAccessRequest(dbInstanceId: dbInstanceId, isIpv6: isIpv6), logger: logger, on: eventLoop)
+    }
 }

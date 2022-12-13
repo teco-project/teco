@@ -64,4 +64,20 @@ extension Vpc {
     public func createAssistantCidr(_ input: CreateAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssistantCidrResponse {
         try await self.client.execute(action: "CreateAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建辅助CIDR
+    ///
+    /// 本接口(CreateAssistantCidr)用于批量创建辅助CIDR。
+    @inlinable
+    public func createAssistantCidr(vpcId: String, cidrBlocks: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssistantCidrResponse > {
+        self.createAssistantCidr(CreateAssistantCidrRequest(vpcId: vpcId, cidrBlocks: cidrBlocks), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建辅助CIDR
+    ///
+    /// 本接口(CreateAssistantCidr)用于批量创建辅助CIDR。
+    @inlinable
+    public func createAssistantCidr(vpcId: String, cidrBlocks: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssistantCidrResponse {
+        try await self.createAssistantCidr(CreateAssistantCidrRequest(vpcId: vpcId, cidrBlocks: cidrBlocks), logger: logger, on: eventLoop)
+    }
 }

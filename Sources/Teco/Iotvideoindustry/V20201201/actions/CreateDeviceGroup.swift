@@ -74,4 +74,20 @@ extension Iotvideoindustry {
     public func createDeviceGroup(_ input: CreateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceGroupResponse {
         try await self.client.execute(action: "CreateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建分组
+    ///
+    /// 本接口(CreateDeviceGroup) 用于创建设备管理分组。
+    @inlinable
+    public func createDeviceGroup(groupName: String, parentId: String, groupDescribe: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeviceGroupResponse > {
+        self.createDeviceGroup(CreateDeviceGroupRequest(groupName: groupName, parentId: parentId, groupDescribe: groupDescribe), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建分组
+    ///
+    /// 本接口(CreateDeviceGroup) 用于创建设备管理分组。
+    @inlinable
+    public func createDeviceGroup(groupName: String, parentId: String, groupDescribe: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceGroupResponse {
+        try await self.createDeviceGroup(CreateDeviceGroupRequest(groupName: groupName, parentId: parentId, groupDescribe: groupDescribe), logger: logger, on: eventLoop)
+    }
 }

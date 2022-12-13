@@ -59,4 +59,20 @@ extension Tia {
     public func deleteJob(_ input: DeleteJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteJobResponse {
         try await self.client.execute(action: "DeleteJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除Job
+    ///
+    /// 删除训练任务
+    @inlinable
+    public func deleteJob(name: String, cluster: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteJobResponse > {
+        self.deleteJob(DeleteJobRequest(name: name, cluster: cluster), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Job
+    ///
+    /// 删除训练任务
+    @inlinable
+    public func deleteJob(name: String, cluster: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteJobResponse {
+        try await self.deleteJob(DeleteJobRequest(name: name, cluster: cluster), logger: logger, on: eventLoop)
+    }
 }

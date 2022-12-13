@@ -55,4 +55,16 @@ extension Antiddos {
     public func switchWaterPrintConfig(_ input: SwitchWaterPrintConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchWaterPrintConfigResponse {
         try await self.client.execute(action: "SwitchWaterPrintConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开启或关闭DDoS防护的水印防护配置
+    @inlinable
+    public func switchWaterPrintConfig(instanceId: String, openStatus: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchWaterPrintConfigResponse > {
+        self.switchWaterPrintConfig(SwitchWaterPrintConfigRequest(instanceId: instanceId, openStatus: openStatus), logger: logger, on: eventLoop)
+    }
+    
+    /// 开启或关闭DDoS防护的水印防护配置
+    @inlinable
+    public func switchWaterPrintConfig(instanceId: String, openStatus: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchWaterPrintConfigResponse {
+        try await self.switchWaterPrintConfig(SwitchWaterPrintConfigRequest(instanceId: instanceId, openStatus: openStatus), logger: logger, on: eventLoop)
+    }
 }

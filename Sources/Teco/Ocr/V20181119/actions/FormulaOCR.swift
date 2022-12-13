@@ -74,4 +74,20 @@ extension Ocr {
     public func formulaOCR(_ input: FormulaOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FormulaOCRResponse {
         try await self.client.execute(action: "FormulaOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 数学公式识别
+    ///
+    /// 本接口支持识别主流初高中数学符号和公式，返回公式的 Latex 格式文本。
+    @inlinable
+    public func formulaOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FormulaOCRResponse > {
+        self.formulaOCR(FormulaOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 数学公式识别
+    ///
+    /// 本接口支持识别主流初高中数学符号和公式，返回公式的 Latex 格式文本。
+    @inlinable
+    public func formulaOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FormulaOCRResponse {
+        try await self.formulaOCR(FormulaOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
 }

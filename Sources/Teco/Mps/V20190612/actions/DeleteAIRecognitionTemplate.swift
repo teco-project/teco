@@ -54,4 +54,20 @@ extension Mps {
     public func deleteAIRecognitionTemplate(_ input: DeleteAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIRecognitionTemplateResponse {
         try await self.client.execute(action: "DeleteAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除内容识别模板
+    ///
+    /// 删除用户自定义内容识别模板。
+    @inlinable
+    public func deleteAIRecognitionTemplate(definition: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAIRecognitionTemplateResponse > {
+        self.deleteAIRecognitionTemplate(DeleteAIRecognitionTemplateRequest(definition: definition), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除内容识别模板
+    ///
+    /// 删除用户自定义内容识别模板。
+    @inlinable
+    public func deleteAIRecognitionTemplate(definition: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIRecognitionTemplateResponse {
+        try await self.deleteAIRecognitionTemplate(DeleteAIRecognitionTemplateRequest(definition: definition), logger: logger, on: eventLoop)
+    }
 }

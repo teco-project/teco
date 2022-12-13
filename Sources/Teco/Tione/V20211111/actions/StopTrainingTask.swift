@@ -50,4 +50,16 @@ extension Tione {
     public func stopTrainingTask(_ input: StopTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTrainingTaskResponse {
         try await self.client.execute(action: "StopTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停止模型训练任务
+    @inlinable
+    public func stopTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopTrainingTaskResponse > {
+        self.stopTrainingTask(StopTrainingTaskRequest(id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 停止模型训练任务
+    @inlinable
+    public func stopTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTrainingTaskResponse {
+        try await self.stopTrainingTask(StopTrainingTaskRequest(id: id), logger: logger, on: eventLoop)
+    }
 }

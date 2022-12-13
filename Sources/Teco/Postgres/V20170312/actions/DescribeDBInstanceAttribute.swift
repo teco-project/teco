@@ -58,4 +58,20 @@ extension Postgres {
     public func describeDBInstanceAttribute(_ input: DescribeDBInstanceAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceAttributeResponse {
         try await self.client.execute(action: "DescribeDBInstanceAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例详情
+    ///
+    /// 本接口 (DescribeDBInstanceAttribute) 用于查询某个实例的详情信息。
+    @inlinable
+    public func describeDBInstanceAttribute(dbInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceAttributeResponse > {
+        self.describeDBInstanceAttribute(DescribeDBInstanceAttributeRequest(dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例详情
+    ///
+    /// 本接口 (DescribeDBInstanceAttribute) 用于查询某个实例的详情信息。
+    @inlinable
+    public func describeDBInstanceAttribute(dbInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceAttributeResponse {
+        try await self.describeDBInstanceAttribute(DescribeDBInstanceAttributeRequest(dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
+    }
 }

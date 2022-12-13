@@ -65,4 +65,22 @@ extension Vpc {
     public func describeVpcPrivateIpAddresses(_ input: DescribeVpcPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcPrivateIpAddressesResponse {
         try await self.client.execute(action: "DescribeVpcPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询VPC内网IP信息
+    ///
+    /// 本接口（DescribeVpcPrivateIpAddresses）用于查询VPC内网IP信息。<br />
+    /// 只能查询已使用的IP信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
+    @inlinable
+    public func describeVpcPrivateIpAddresses(vpcId: String, privateIpAddresses: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcPrivateIpAddressesResponse > {
+        self.describeVpcPrivateIpAddresses(DescribeVpcPrivateIpAddressesRequest(vpcId: vpcId, privateIpAddresses: privateIpAddresses), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询VPC内网IP信息
+    ///
+    /// 本接口（DescribeVpcPrivateIpAddresses）用于查询VPC内网IP信息。<br />
+    /// 只能查询已使用的IP信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
+    @inlinable
+    public func describeVpcPrivateIpAddresses(vpcId: String, privateIpAddresses: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcPrivateIpAddressesResponse {
+        try await self.describeVpcPrivateIpAddresses(DescribeVpcPrivateIpAddressesRequest(vpcId: vpcId, privateIpAddresses: privateIpAddresses), logger: logger, on: eventLoop)
+    }
 }

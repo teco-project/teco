@@ -64,4 +64,20 @@ extension Lighthouse {
     public func attachDisks(_ input: AttachDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachDisksResponse {
         try await self.client.execute(action: "AttachDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 挂载云硬盘
+    ///
+    /// 本接口（AttachDisks）用于挂载一个或多个云硬盘。
+    @inlinable
+    public func attachDisks(diskIds: [String], instanceId: String, renewFlag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachDisksResponse > {
+        self.attachDisks(AttachDisksRequest(diskIds: diskIds, instanceId: instanceId, renewFlag: renewFlag), logger: logger, on: eventLoop)
+    }
+    
+    /// 挂载云硬盘
+    ///
+    /// 本接口（AttachDisks）用于挂载一个或多个云硬盘。
+    @inlinable
+    public func attachDisks(diskIds: [String], instanceId: String, renewFlag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachDisksResponse {
+        try await self.attachDisks(AttachDisksRequest(diskIds: diskIds, instanceId: instanceId, renewFlag: renewFlag), logger: logger, on: eventLoop)
+    }
 }

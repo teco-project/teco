@@ -55,4 +55,20 @@ extension Cdn {
     public func deleteCdnDomain(_ input: DeleteCdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCdnDomainResponse {
         try await self.client.execute(action: "DeleteCdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除加速域名
+    ///
+    /// DeleteCdnDomain 用于删除指定加速域名
+    @inlinable
+    public func deleteCdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCdnDomainResponse > {
+        self.deleteCdnDomain(DeleteCdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除加速域名
+    ///
+    /// DeleteCdnDomain 用于删除指定加速域名
+    @inlinable
+    public func deleteCdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCdnDomainResponse {
+        try await self.deleteCdnDomain(DeleteCdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
+    }
 }

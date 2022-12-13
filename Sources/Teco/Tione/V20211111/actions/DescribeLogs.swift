@@ -108,4 +108,20 @@ extension Tione {
     public func describeLogs(_ input: DescribeLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
         try await self.client.execute(action: "DescribeLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取日志
+    ///
+    /// 获取训练、推理、Notebook服务的日志
+    @inlinable
+    public func describeLogs(service: String, podName: String, startTime: String? = nil, endTime: String? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, context: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogsResponse > {
+        self.describeLogs(DescribeLogsRequest(service: service, podName: podName, startTime: startTime, endTime: endTime, limit: limit, order: order, orderField: orderField, context: context, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志
+    ///
+    /// 获取训练、推理、Notebook服务的日志
+    @inlinable
+    public func describeLogs(service: String, podName: String, startTime: String? = nil, endTime: String? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, context: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
+        try await self.describeLogs(DescribeLogsRequest(service: service, podName: podName, startTime: startTime, endTime: endTime, limit: limit, order: order, orderField: orderField, context: context, filters: filters), logger: logger, on: eventLoop)
+    }
 }

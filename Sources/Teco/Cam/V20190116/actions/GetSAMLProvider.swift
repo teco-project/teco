@@ -74,4 +74,16 @@ extension Cam {
     public func getSAMLProvider(_ input: GetSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSAMLProviderResponse {
         try await self.client.execute(action: "GetSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询SAML身份提供商详情
+    @inlinable
+    public func getSAMLProvider(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSAMLProviderResponse > {
+        self.getSAMLProvider(GetSAMLProviderRequest(name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询SAML身份提供商详情
+    @inlinable
+    public func getSAMLProvider(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSAMLProviderResponse {
+        try await self.getSAMLProvider(GetSAMLProviderRequest(name: name), logger: logger, on: eventLoop)
+    }
 }

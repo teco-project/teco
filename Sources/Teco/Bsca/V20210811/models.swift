@@ -340,7 +340,7 @@ extension Bsca {
         /// 组件版本号
         public let version: String?
         
-        public init (name: String, `protocol`: String? = nil, namespace: String? = nil, qualifiers: [Qualifier]? = nil, subpath: String? = nil, version: String? = nil) {
+        public init (name: String, protocol: String? = nil, namespace: String? = nil, qualifiers: [Qualifier]? = nil, subpath: String? = nil, version: String? = nil) {
             self.name = name
             self.`protocol` = `protocol`
             self.namespace = namespace

@@ -58,4 +58,20 @@ extension Teo {
     public func reclaimZone(_ input: ReclaimZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReclaimZoneResponse {
         try await self.client.execute(action: "ReclaimZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 找回站点
+    ///
+    /// 站点被其他用户接入后，验证了站点所有权之后，可以找回该站点
+    @inlinable
+    public func reclaimZone(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReclaimZoneResponse > {
+        self.reclaimZone(ReclaimZoneRequest(name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 找回站点
+    ///
+    /// 站点被其他用户接入后，验证了站点所有权之后，可以找回该站点
+    @inlinable
+    public func reclaimZone(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReclaimZoneResponse {
+        try await self.reclaimZone(ReclaimZoneRequest(name: name), logger: logger, on: eventLoop)
+    }
 }

@@ -64,7 +64,7 @@ extension Dayu {
         /// 可选字段，当协议取值HTTPS时，必填
         public let domain: String?
         
-        public init (business: String, threshold: UInt64, id: String? = nil, `protocol`: String? = nil, ruleId: String? = nil, basicIp: String? = nil, basicRegion: String? = nil, basicBizType: String? = nil, basicDeviceType: String? = nil, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil, domain: String? = nil) {
+        public init (business: String, threshold: UInt64, id: String? = nil, protocol: String? = nil, ruleId: String? = nil, basicIp: String? = nil, basicRegion: String? = nil, basicBizType: String? = nil, basicDeviceType: String? = nil, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil, domain: String? = nil) {
             self.business = business
             self.threshold = threshold
             self.id = id
@@ -119,5 +119,17 @@ extension Dayu {
     @inlinable
     public func modifyCCThreshold(_ input: ModifyCCThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCThresholdResponse {
         try await self.client.execute(action: "ModifyCCThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 修改CC的防护阈值
+    @inlinable
+    public func modifyCCThreshold(business: String, threshold: UInt64, id: String? = nil, protocol: String? = nil, ruleId: String? = nil, basicIp: String? = nil, basicRegion: String? = nil, basicBizType: String? = nil, basicDeviceType: String? = nil, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCThresholdResponse > {
+        self.modifyCCThreshold(ModifyCCThresholdRequest(business: business, threshold: threshold, id: id, protocol: `protocol`, ruleId: ruleId, basicIp: basicIp, basicRegion: basicRegion, basicBizType: basicBizType, basicDeviceType: basicDeviceType, basicIpInstance: basicIpInstance, basicIspCode: basicIspCode, domain: domain), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CC的防护阈值
+    @inlinable
+    public func modifyCCThreshold(business: String, threshold: UInt64, id: String? = nil, protocol: String? = nil, ruleId: String? = nil, basicIp: String? = nil, basicRegion: String? = nil, basicBizType: String? = nil, basicDeviceType: String? = nil, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCThresholdResponse {
+        try await self.modifyCCThreshold(ModifyCCThresholdRequest(business: business, threshold: threshold, id: id, protocol: `protocol`, ruleId: ruleId, basicIp: basicIp, basicRegion: basicRegion, basicBizType: basicBizType, basicDeviceType: basicDeviceType, basicIpInstance: basicIpInstance, basicIspCode: basicIspCode, domain: domain), logger: logger, on: eventLoop)
     }
 }

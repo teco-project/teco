@@ -43,7 +43,7 @@ extension Live {
         /// 扩展字段，暂无定义。默认为空。
         public let `extension`: String?
         
-        public init (streamName: String, domainName: String, appName: String, endTime: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, templateId: UInt64? = nil, `extension`: String? = nil) {
+        public init (streamName: String, domainName: String, appName: String, endTime: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, templateId: UInt64? = nil, extension: String? = nil) {
             self.streamName = streamName
             self.domainName = domainName
             self.appName = appName
@@ -112,5 +112,39 @@ extension Live {
     @inlinable
     public func createRecordTask(_ input: CreateRecordTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordTaskResponse {
         try await self.client.execute(action: "CreateRecordTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 创建录制任务（新）
+    ///
+    /// 创建一个在指定时间启动、结束的录制任务，并使用指定录制模板ID对应的配置进行录制。
+    /// - 使用前提
+    /// 1. 录制文件存放于点播平台，所以用户如需使用录制功能，需首先自行开通点播服务。
+    /// 2. 录制文件存放后相关费用（含存储以及下行播放流量）按照点播平台计费方式收取，具体请参考 [对应文档](https://cloud.tencent.com/document/product/266/2837)。
+    /// - 注意事项
+    /// 1. 断流会结束当前录制并生成录制文件。在结束时间到达之前任务仍然有效，期间只要正常推流都会正常录制，与是否多次推、断流无关。
+    /// 2. 使用上避免创建时间段相互重叠的录制任务。若同一条流当前存在多个时段重叠的任务，为避免重复录制系统将启动最多3个录制任务。
+    /// 3. 创建的录制任务记录在平台侧只保留3个月。
+    /// 4. 当前录制任务管理API（[CreateRecordTask](https://cloud.tencent.com/document/product/267/45983)/[StopRecordTask](https://cloud.tencent.com/document/product/267/45981)/[DeleteRecordTask](https://cloud.tencent.com/document/product/267/45982)）与旧API（CreateLiveRecord/StopLiveRecord/DeleteLiveRecord）不兼容，两套接口不能混用。
+    /// 5. 避免 创建录制任务 与 推流 操作同时进行，可能导致因录制任务未生效而引起任务延迟启动问题，两者操作间隔建议大于3秒。
+    @inlinable
+    public func createRecordTask(streamName: String, domainName: String, appName: String, endTime: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, templateId: UInt64? = nil, extension: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRecordTaskResponse > {
+        self.createRecordTask(CreateRecordTaskRequest(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, startTime: startTime, streamType: streamType, templateId: templateId, extension: `extension`), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建录制任务（新）
+    ///
+    /// 创建一个在指定时间启动、结束的录制任务，并使用指定录制模板ID对应的配置进行录制。
+    /// - 使用前提
+    /// 1. 录制文件存放于点播平台，所以用户如需使用录制功能，需首先自行开通点播服务。
+    /// 2. 录制文件存放后相关费用（含存储以及下行播放流量）按照点播平台计费方式收取，具体请参考 [对应文档](https://cloud.tencent.com/document/product/266/2837)。
+    /// - 注意事项
+    /// 1. 断流会结束当前录制并生成录制文件。在结束时间到达之前任务仍然有效，期间只要正常推流都会正常录制，与是否多次推、断流无关。
+    /// 2. 使用上避免创建时间段相互重叠的录制任务。若同一条流当前存在多个时段重叠的任务，为避免重复录制系统将启动最多3个录制任务。
+    /// 3. 创建的录制任务记录在平台侧只保留3个月。
+    /// 4. 当前录制任务管理API（[CreateRecordTask](https://cloud.tencent.com/document/product/267/45983)/[StopRecordTask](https://cloud.tencent.com/document/product/267/45981)/[DeleteRecordTask](https://cloud.tencent.com/document/product/267/45982)）与旧API（CreateLiveRecord/StopLiveRecord/DeleteLiveRecord）不兼容，两套接口不能混用。
+    /// 5. 避免 创建录制任务 与 推流 操作同时进行，可能导致因录制任务未生效而引起任务延迟启动问题，两者操作间隔建议大于3秒。
+    @inlinable
+    public func createRecordTask(streamName: String, domainName: String, appName: String, endTime: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, templateId: UInt64? = nil, extension: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordTaskResponse {
+        try await self.createRecordTask(CreateRecordTaskRequest(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, startTime: startTime, streamType: streamType, templateId: templateId, extension: `extension`), logger: logger, on: eventLoop)
     }
 }

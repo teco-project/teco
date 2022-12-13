@@ -78,4 +78,20 @@ extension Cfw {
     public func describeTLogIpList(_ input: DescribeTLogIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTLogIpListResponse {
         try await self.client.execute(action: "DescribeTLogIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 告警中心IP柱形图
+    ///
+    /// DescribeTLogIpList告警中心IP柱形图
+    @inlinable
+    public func describeTLogIpList(startTime: String, endTime: String, queryType: String, top: Int64, searchValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTLogIpListResponse > {
+        self.describeTLogIpList(DescribeTLogIpListRequest(startTime: startTime, endTime: endTime, queryType: queryType, top: top, searchValue: searchValue), logger: logger, on: eventLoop)
+    }
+    
+    /// 告警中心IP柱形图
+    ///
+    /// DescribeTLogIpList告警中心IP柱形图
+    @inlinable
+    public func describeTLogIpList(startTime: String, endTime: String, queryType: String, top: Int64, searchValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTLogIpListResponse {
+        try await self.describeTLogIpList(DescribeTLogIpListRequest(startTime: startTime, endTime: endTime, queryType: queryType, top: top, searchValue: searchValue), logger: logger, on: eventLoop)
+    }
 }

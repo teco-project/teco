@@ -55,4 +55,16 @@ extension Tsf {
     public func revocationPublicConfig(_ input: RevocationPublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevocationPublicConfigResponse {
         try await self.client.execute(action: "RevocationPublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 撤回已发布的公共配置
+    @inlinable
+    public func revocationPublicConfig(configReleaseId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevocationPublicConfigResponse > {
+        self.revocationPublicConfig(RevocationPublicConfigRequest(configReleaseId: configReleaseId), logger: logger, on: eventLoop)
+    }
+    
+    /// 撤回已发布的公共配置
+    @inlinable
+    public func revocationPublicConfig(configReleaseId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevocationPublicConfigResponse {
+        try await self.revocationPublicConfig(RevocationPublicConfigRequest(configReleaseId: configReleaseId), logger: logger, on: eventLoop)
+    }
 }

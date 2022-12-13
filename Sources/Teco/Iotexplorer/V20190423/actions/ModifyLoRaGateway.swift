@@ -89,4 +89,16 @@ extension Iotexplorer {
     public func modifyLoRaGateway(_ input: ModifyLoRaGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoRaGatewayResponse {
         try await self.client.execute(action: "ModifyLoRaGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改 LoRa 网关信息
+    @inlinable
+    public func modifyLoRaGateway(description: String, gatewayId: String, location: LoRaGatewayLocation, name: String, isPublic: Bool? = nil, position: String? = nil, positionDetails: String? = nil, frequencyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoRaGatewayResponse > {
+        self.modifyLoRaGateway(ModifyLoRaGatewayRequest(description: description, gatewayId: gatewayId, location: location, name: name, isPublic: isPublic, position: position, positionDetails: positionDetails, frequencyId: frequencyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改 LoRa 网关信息
+    @inlinable
+    public func modifyLoRaGateway(description: String, gatewayId: String, location: LoRaGatewayLocation, name: String, isPublic: Bool? = nil, position: String? = nil, positionDetails: String? = nil, frequencyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoRaGatewayResponse {
+        try await self.modifyLoRaGateway(ModifyLoRaGatewayRequest(description: description, gatewayId: gatewayId, location: location, name: name, isPublic: isPublic, position: position, positionDetails: positionDetails, frequencyId: frequencyId), logger: logger, on: eventLoop)
+    }
 }

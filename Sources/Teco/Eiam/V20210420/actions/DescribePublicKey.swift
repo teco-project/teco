@@ -69,4 +69,20 @@ extension Eiam {
     public func describePublicKey(_ input: DescribePublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicKeyResponse {
         try await self.client.execute(action: "DescribePublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取JWT公钥信息
+    ///
+    /// 获取JWT公钥信息。
+    @inlinable
+    public func describePublicKey(applicationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicKeyResponse > {
+        self.describePublicKey(DescribePublicKeyRequest(applicationId: applicationId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取JWT公钥信息
+    ///
+    /// 获取JWT公钥信息。
+    @inlinable
+    public func describePublicKey(applicationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicKeyResponse {
+        try await self.describePublicKey(DescribePublicKeyRequest(applicationId: applicationId), logger: logger, on: eventLoop)
+    }
 }

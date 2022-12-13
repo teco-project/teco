@@ -62,4 +62,20 @@ extension Btoe {
     public func getDepositCert(_ input: GetDepositCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositCertResponse {
         try await self.client.execute(action: "GetDepositCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// BTOE存证电子凭证查询
+    ///
+    /// 用户通过存证编码向BTOE查询存证电子凭证信息。
+    @inlinable
+    public func getDepositCert(evidenceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDepositCertResponse > {
+        self.getDepositCert(GetDepositCertRequest(evidenceId: evidenceId), logger: logger, on: eventLoop)
+    }
+    
+    /// BTOE存证电子凭证查询
+    ///
+    /// 用户通过存证编码向BTOE查询存证电子凭证信息。
+    @inlinable
+    public func getDepositCert(evidenceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositCertResponse {
+        try await self.getDepositCert(GetDepositCertRequest(evidenceId: evidenceId), logger: logger, on: eventLoop)
+    }
 }

@@ -84,4 +84,20 @@ extension Gaap {
     public func createFirstLinkSession(_ input: CreateFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFirstLinkSessionResponse {
         try await self.client.execute(action: "CreateFirstLinkSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建接入段加速会话
+    ///
+    /// 本接口（CreateFirstLinkSession）用于创建接入段加速会话，创建有可能成功，也可能失败，需要通过返回码来进行判断。
+    @inlinable
+    public func createFirstLinkSession(templateId: String, srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, deviceInfo: DeviceInfo? = nil, capacity: Capacity? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFirstLinkSessionResponse > {
+        self.createFirstLinkSession(CreateFirstLinkSessionRequest(templateId: templateId, srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, deviceInfo: deviceInfo, capacity: capacity), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建接入段加速会话
+    ///
+    /// 本接口（CreateFirstLinkSession）用于创建接入段加速会话，创建有可能成功，也可能失败，需要通过返回码来进行判断。
+    @inlinable
+    public func createFirstLinkSession(templateId: String, srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, deviceInfo: DeviceInfo? = nil, capacity: Capacity? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFirstLinkSessionResponse {
+        try await self.createFirstLinkSession(CreateFirstLinkSessionRequest(templateId: templateId, srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, deviceInfo: deviceInfo, capacity: capacity), logger: logger, on: eventLoop)
+    }
 }

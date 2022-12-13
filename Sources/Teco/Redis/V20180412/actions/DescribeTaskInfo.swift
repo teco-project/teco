@@ -74,4 +74,20 @@ extension Redis {
     public func describeTaskInfo(_ input: DescribeTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInfoResponse {
         try await self.client.execute(action: "DescribeTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// Redis查询任务结果
+    ///
+    /// 用于查询任务结果
+    @inlinable
+    public func describeTaskInfo(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskInfoResponse > {
+        self.describeTaskInfo(DescribeTaskInfoRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// Redis查询任务结果
+    ///
+    /// 用于查询任务结果
+    @inlinable
+    public func describeTaskInfo(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInfoResponse {
+        try await self.describeTaskInfo(DescribeTaskInfoRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

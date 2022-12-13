@@ -77,4 +77,20 @@ extension Dayu {
     public func modifyDDoSAIStatus(_ input: ModifyDDoSAIStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSAIStatusResponse {
         try await self.client.execute(action: "ModifyDDoSAIStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改DDoS的AI防护状态
+    ///
+    /// 读取或修改DDoS的AI防护状态
+    @inlinable
+    public func modifyDDoSAIStatus(business: String, id: String, method: String, dDoSAI: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSAIStatusResponse > {
+        self.modifyDDoSAIStatus(ModifyDDoSAIStatusRequest(business: business, id: id, method: method, dDoSAI: dDoSAI), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改DDoS的AI防护状态
+    ///
+    /// 读取或修改DDoS的AI防护状态
+    @inlinable
+    public func modifyDDoSAIStatus(business: String, id: String, method: String, dDoSAI: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSAIStatusResponse {
+        try await self.modifyDDoSAIStatus(ModifyDDoSAIStatusRequest(business: business, id: id, method: method, dDoSAI: dDoSAI), logger: logger, on: eventLoop)
+    }
 }

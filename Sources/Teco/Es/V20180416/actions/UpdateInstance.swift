@@ -248,4 +248,34 @@ extension Es {
     public func updateInstance(_ input: UpdateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateInstanceResponse {
         try await self.client.execute(action: "UpdateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新ES集群实例
+    ///
+    /// 对集群进行节点规格变更，修改实例名称，修改配置，重置密码， 添加Kibana黑白名单等操作。参数中InstanceId为必传参数，ForceRestart为选填参数，剩余参数传递组合及含义如下：
+    /// - InstanceName：修改实例名称(仅用于标识实例)
+    /// - NodeInfoList: 修改节点配置（节点横向扩缩容，纵向扩缩容，增加主节点，增加冷节点等）
+    /// - EsConfig：修改集群配置
+    /// - Password：修改默认用户elastic的密码
+    /// - EsAcl：修改访问控制列表
+    /// - CosBackUp: 设置集群COS自动备份信息
+    /// 以上参数组合只能传递一种，多传或少传均会导致请求失败
+    @inlinable
+    public func updateInstance(instanceId: String, instanceName: String? = nil, nodeNum: UInt64? = nil, esConfig: String? = nil, password: String? = nil, esAcl: EsAcl? = nil, diskSize: UInt64? = nil, nodeType: String? = nil, masterNodeNum: UInt64? = nil, masterNodeType: String? = nil, masterNodeDiskSize: UInt64? = nil, forceRestart: Bool? = nil, cosBackup: CosBackup? = nil, nodeInfoList: [NodeInfo]? = nil, publicAccess: String? = nil, esPublicAcl: EsPublicAcl? = nil, kibanaPublicAccess: String? = nil, kibanaPrivateAccess: String? = nil, basicSecurityType: Int64? = nil, kibanaPrivatePort: UInt64? = nil, scaleType: Int64? = nil, multiZoneInfo: [ZoneDetail]? = nil, sceneType: Int64? = nil, kibanaConfig: String? = nil, webNodeTypeInfo: WebNodeTypeInfo? = nil, switchPrivateLink: String? = nil, enableCerebro: Bool? = nil, cerebroPublicAccess: String? = nil, cerebroPrivateAccess: String? = nil, esConfigSet: EsConfigSetInfo? = nil, operationDuration: OperationDurationUpdated? = nil, kibanaAlteringPublicAccess: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateInstanceResponse > {
+        self.updateInstance(UpdateInstanceRequest(instanceId: instanceId, instanceName: instanceName, nodeNum: nodeNum, esConfig: esConfig, password: password, esAcl: esAcl, diskSize: diskSize, nodeType: nodeType, masterNodeNum: masterNodeNum, masterNodeType: masterNodeType, masterNodeDiskSize: masterNodeDiskSize, forceRestart: forceRestart, cosBackup: cosBackup, nodeInfoList: nodeInfoList, publicAccess: publicAccess, esPublicAcl: esPublicAcl, kibanaPublicAccess: kibanaPublicAccess, kibanaPrivateAccess: kibanaPrivateAccess, basicSecurityType: basicSecurityType, kibanaPrivatePort: kibanaPrivatePort, scaleType: scaleType, multiZoneInfo: multiZoneInfo, sceneType: sceneType, kibanaConfig: kibanaConfig, webNodeTypeInfo: webNodeTypeInfo, switchPrivateLink: switchPrivateLink, enableCerebro: enableCerebro, cerebroPublicAccess: cerebroPublicAccess, cerebroPrivateAccess: cerebroPrivateAccess, esConfigSet: esConfigSet, operationDuration: operationDuration, kibanaAlteringPublicAccess: kibanaAlteringPublicAccess), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新ES集群实例
+    ///
+    /// 对集群进行节点规格变更，修改实例名称，修改配置，重置密码， 添加Kibana黑白名单等操作。参数中InstanceId为必传参数，ForceRestart为选填参数，剩余参数传递组合及含义如下：
+    /// - InstanceName：修改实例名称(仅用于标识实例)
+    /// - NodeInfoList: 修改节点配置（节点横向扩缩容，纵向扩缩容，增加主节点，增加冷节点等）
+    /// - EsConfig：修改集群配置
+    /// - Password：修改默认用户elastic的密码
+    /// - EsAcl：修改访问控制列表
+    /// - CosBackUp: 设置集群COS自动备份信息
+    /// 以上参数组合只能传递一种，多传或少传均会导致请求失败
+    @inlinable
+    public func updateInstance(instanceId: String, instanceName: String? = nil, nodeNum: UInt64? = nil, esConfig: String? = nil, password: String? = nil, esAcl: EsAcl? = nil, diskSize: UInt64? = nil, nodeType: String? = nil, masterNodeNum: UInt64? = nil, masterNodeType: String? = nil, masterNodeDiskSize: UInt64? = nil, forceRestart: Bool? = nil, cosBackup: CosBackup? = nil, nodeInfoList: [NodeInfo]? = nil, publicAccess: String? = nil, esPublicAcl: EsPublicAcl? = nil, kibanaPublicAccess: String? = nil, kibanaPrivateAccess: String? = nil, basicSecurityType: Int64? = nil, kibanaPrivatePort: UInt64? = nil, scaleType: Int64? = nil, multiZoneInfo: [ZoneDetail]? = nil, sceneType: Int64? = nil, kibanaConfig: String? = nil, webNodeTypeInfo: WebNodeTypeInfo? = nil, switchPrivateLink: String? = nil, enableCerebro: Bool? = nil, cerebroPublicAccess: String? = nil, cerebroPrivateAccess: String? = nil, esConfigSet: EsConfigSetInfo? = nil, operationDuration: OperationDurationUpdated? = nil, kibanaAlteringPublicAccess: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateInstanceResponse {
+        try await self.updateInstance(UpdateInstanceRequest(instanceId: instanceId, instanceName: instanceName, nodeNum: nodeNum, esConfig: esConfig, password: password, esAcl: esAcl, diskSize: diskSize, nodeType: nodeType, masterNodeNum: masterNodeNum, masterNodeType: masterNodeType, masterNodeDiskSize: masterNodeDiskSize, forceRestart: forceRestart, cosBackup: cosBackup, nodeInfoList: nodeInfoList, publicAccess: publicAccess, esPublicAcl: esPublicAcl, kibanaPublicAccess: kibanaPublicAccess, kibanaPrivateAccess: kibanaPrivateAccess, basicSecurityType: basicSecurityType, kibanaPrivatePort: kibanaPrivatePort, scaleType: scaleType, multiZoneInfo: multiZoneInfo, sceneType: sceneType, kibanaConfig: kibanaConfig, webNodeTypeInfo: webNodeTypeInfo, switchPrivateLink: switchPrivateLink, enableCerebro: enableCerebro, cerebroPublicAccess: cerebroPublicAccess, cerebroPrivateAccess: cerebroPrivateAccess, esConfigSet: esConfigSet, operationDuration: operationDuration, kibanaAlteringPublicAccess: kibanaAlteringPublicAccess), logger: logger, on: eventLoop)
+    }
 }

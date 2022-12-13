@@ -59,4 +59,16 @@ extension Wedata {
     public func createTaskAlarmRegular(_ input: CreateTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskAlarmRegularResponse {
         try await self.client.execute(action: "CreateTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建任务告警规则
+    @inlinable
+    public func createTaskAlarmRegular(taskAlarmInfo: TaskAlarmInfo, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskAlarmRegularResponse > {
+        self.createTaskAlarmRegular(CreateTaskAlarmRegularRequest(taskAlarmInfo: taskAlarmInfo, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建任务告警规则
+    @inlinable
+    public func createTaskAlarmRegular(taskAlarmInfo: TaskAlarmInfo, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskAlarmRegularResponse {
+        try await self.createTaskAlarmRegular(CreateTaskAlarmRegularRequest(taskAlarmInfo: taskAlarmInfo, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

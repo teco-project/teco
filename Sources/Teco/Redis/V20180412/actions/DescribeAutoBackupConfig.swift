@@ -74,4 +74,20 @@ extension Redis {
     public func describeAutoBackupConfig(_ input: DescribeAutoBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoBackupConfigResponse {
         try await self.client.execute(action: "DescribeAutoBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取自动备份配置
+    ///
+    /// 获取备份配置
+    @inlinable
+    public func describeAutoBackupConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoBackupConfigResponse > {
+        self.describeAutoBackupConfig(DescribeAutoBackupConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取自动备份配置
+    ///
+    /// 获取备份配置
+    @inlinable
+    public func describeAutoBackupConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoBackupConfigResponse {
+        try await self.describeAutoBackupConfig(DescribeAutoBackupConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,16 @@ extension Waf {
     public func modifyWafAutoDenyStatus(_ input: ModifyWafAutoDenyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafAutoDenyStatusResponse {
         try await self.client.execute(action: "ModifyWafAutoDenyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 配置WAF自动封禁模块状态
+    @inlinable
+    public func modifyWafAutoDenyStatus(wafAutoDenyDetails: AutoDenyDetail, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWafAutoDenyStatusResponse > {
+        self.modifyWafAutoDenyStatus(ModifyWafAutoDenyStatusRequest(wafAutoDenyDetails: wafAutoDenyDetails), logger: logger, on: eventLoop)
+    }
+    
+    /// 配置WAF自动封禁模块状态
+    @inlinable
+    public func modifyWafAutoDenyStatus(wafAutoDenyDetails: AutoDenyDetail, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafAutoDenyStatusResponse {
+        try await self.modifyWafAutoDenyStatus(ModifyWafAutoDenyStatusRequest(wafAutoDenyDetails: wafAutoDenyDetails), logger: logger, on: eventLoop)
+    }
 }

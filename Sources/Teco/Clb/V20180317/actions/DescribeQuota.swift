@@ -50,4 +50,20 @@ extension Clb {
     public func describeQuota(_ input: DescribeQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaResponse {
         try await self.client.execute(action: "DescribeQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询配额
+    ///
+    /// 查询用户当前地域下的各项配额
+    @inlinable
+    public func describeQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQuotaResponse > {
+        self.describeQuota(DescribeQuotaRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询配额
+    ///
+    /// 查询用户当前地域下的各项配额
+    @inlinable
+    public func describeQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaResponse {
+        try await self.describeQuota(DescribeQuotaRequest(), logger: logger, on: eventLoop)
+    }
 }

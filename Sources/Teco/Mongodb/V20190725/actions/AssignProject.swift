@@ -63,4 +63,20 @@ extension Mongodb {
     public func assignProject(_ input: AssignProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignProjectResponse {
         try await self.client.execute(action: "AssignProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 指定云数据库实例的所属项目
+    ///
+    /// 本接口(AssignProject)用于指定云数据库实例的所属项目。
+    @inlinable
+    public func assignProject(instanceIds: [String], projectId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssignProjectResponse > {
+        self.assignProject(AssignProjectRequest(instanceIds: instanceIds, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 指定云数据库实例的所属项目
+    ///
+    /// 本接口(AssignProject)用于指定云数据库实例的所属项目。
+    @inlinable
+    public func assignProject(instanceIds: [String], projectId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignProjectResponse {
+        try await self.assignProject(AssignProjectRequest(instanceIds: instanceIds, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

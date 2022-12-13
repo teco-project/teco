@@ -64,4 +64,16 @@ extension Af {
     public func getAntiFraud(_ input: GetAntiFraudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAntiFraudResponse {
         try await self.client.execute(action: "GetAntiFraud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 反欺诈评分接口
+    @inlinable
+    public func getAntiFraud(businessSecurityData: AntiFraudFilter? = nil, businessCryptoData: AntiFraudCryptoFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAntiFraudResponse > {
+        self.getAntiFraud(GetAntiFraudRequest(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData), logger: logger, on: eventLoop)
+    }
+    
+    /// 反欺诈评分接口
+    @inlinable
+    public func getAntiFraud(businessSecurityData: AntiFraudFilter? = nil, businessCryptoData: AntiFraudCryptoFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAntiFraudResponse {
+        try await self.getAntiFraud(GetAntiFraudRequest(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,16 @@ extension Iotexplorer {
     public func describeDevicePositionList(_ input: DescribeDevicePositionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePositionListResponse {
         try await self.client.execute(action: "DescribeDevicePositionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备位置列表
+    @inlinable
+    public func describeDevicePositionList(productIdList: [String], coordinateType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePositionListResponse > {
+        self.describeDevicePositionList(DescribeDevicePositionListRequest(productIdList: productIdList, coordinateType: coordinateType, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备位置列表
+    @inlinable
+    public func describeDevicePositionList(productIdList: [String], coordinateType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePositionListResponse {
+        try await self.describeDevicePositionList(DescribeDevicePositionListRequest(productIdList: productIdList, coordinateType: coordinateType, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -86,4 +86,22 @@ extension Clb {
     public func modifyTargetWeight(_ input: ModifyTargetWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetWeightResponse {
         try await self.client.execute(action: "ModifyTargetWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改监听器绑定的后端机器的转发权重
+    ///
+    /// ModifyTargetWeight 接口用于修改负载均衡绑定的后端服务的转发权重。
+    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func modifyTargetWeight(loadBalancerId: String, listenerId: String, locationId: String? = nil, domain: String? = nil, url: String? = nil, targets: [Target]? = nil, weight: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTargetWeightResponse > {
+        self.modifyTargetWeight(ModifyTargetWeightRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, locationId: locationId, domain: domain, url: url, targets: targets, weight: weight), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改监听器绑定的后端机器的转发权重
+    ///
+    /// ModifyTargetWeight 接口用于修改负载均衡绑定的后端服务的转发权重。
+    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func modifyTargetWeight(loadBalancerId: String, listenerId: String, locationId: String? = nil, domain: String? = nil, url: String? = nil, targets: [Target]? = nil, weight: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetWeightResponse {
+        try await self.modifyTargetWeight(ModifyTargetWeightRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, locationId: locationId, domain: domain, url: url, targets: targets, weight: weight), logger: logger, on: eventLoop)
+    }
 }

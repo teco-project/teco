@@ -79,4 +79,24 @@ extension Tiia {
     public func detectMisbehavior(_ input: DetectMisbehaviorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectMisbehaviorResponse {
         try await self.client.execute(action: "DetectMisbehavior", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 不良行为识别
+    ///
+    /// 可以识别输入的图片中是否包含不良行为，例如打架斗殴、赌博、抽烟等，可以应用于广告图、直播截图、短视频截图等审核，减少不良行为对平台内容质量的影响，维护健康向上的互联网环境。
+    /// >     
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func detectMisbehavior(imageUrl: String? = nil, imageBase64: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectMisbehaviorResponse > {
+        self.detectMisbehavior(DetectMisbehaviorRequest(imageUrl: imageUrl, imageBase64: imageBase64), logger: logger, on: eventLoop)
+    }
+    
+    /// 不良行为识别
+    ///
+    /// 可以识别输入的图片中是否包含不良行为，例如打架斗殴、赌博、抽烟等，可以应用于广告图、直播截图、短视频截图等审核，减少不良行为对平台内容质量的影响，维护健康向上的互联网环境。
+    /// >     
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func detectMisbehavior(imageUrl: String? = nil, imageBase64: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectMisbehaviorResponse {
+        try await self.detectMisbehavior(DetectMisbehaviorRequest(imageUrl: imageUrl, imageBase64: imageBase64), logger: logger, on: eventLoop)
+    }
 }

@@ -127,4 +127,16 @@ extension Cpdp {
     public func transferSinglePay(_ input: TransferSinglePayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferSinglePayResponse {
         try await self.client.execute(action: "TransferSinglePay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 智能代发-单笔代发转账接口
+    @inlinable
+    public func transferSinglePay(merchantId: String, merchantAppId: String, transferType: Int64, orderId: String, transferAmount: Int64, payeeId: String, payeeName: String? = nil, payeeExtends: String? = nil, reqReserved: String? = nil, remark: String? = nil, notifyUrl: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransferSinglePayResponse > {
+        self.transferSinglePay(TransferSinglePayRequest(merchantId: merchantId, merchantAppId: merchantAppId, transferType: transferType, orderId: orderId, transferAmount: transferAmount, payeeId: payeeId, payeeName: payeeName, payeeExtends: payeeExtends, reqReserved: reqReserved, remark: remark, notifyUrl: notifyUrl, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 智能代发-单笔代发转账接口
+    @inlinable
+    public func transferSinglePay(merchantId: String, merchantAppId: String, transferType: Int64, orderId: String, transferAmount: Int64, payeeId: String, payeeName: String? = nil, payeeExtends: String? = nil, reqReserved: String? = nil, remark: String? = nil, notifyUrl: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferSinglePayResponse {
+        try await self.transferSinglePay(TransferSinglePayRequest(merchantId: merchantId, merchantAppId: merchantAppId, transferType: transferType, orderId: orderId, transferAmount: transferAmount, payeeId: payeeId, payeeName: payeeName, payeeExtends: payeeExtends, reqReserved: reqReserved, remark: remark, notifyUrl: notifyUrl, profile: profile), logger: logger, on: eventLoop)
+    }
 }

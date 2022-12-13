@@ -68,4 +68,20 @@ extension Domain {
     public func describeBatchOperationLogs(_ input: DescribeBatchOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchOperationLogsResponse {
         try await self.client.execute(action: "DescribeBatchOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量操作日志列表
+    ///
+    /// 本接口 ( DescribeBatchOperationLogs ) 用于获取批量操作日志 。
+    @inlinable
+    public func describeBatchOperationLogs(offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchOperationLogsResponse > {
+        self.describeBatchOperationLogs(DescribeBatchOperationLogsRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量操作日志列表
+    ///
+    /// 本接口 ( DescribeBatchOperationLogs ) 用于获取批量操作日志 。
+    @inlinable
+    public func describeBatchOperationLogs(offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchOperationLogsResponse {
+        try await self.describeBatchOperationLogs(DescribeBatchOperationLogsRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

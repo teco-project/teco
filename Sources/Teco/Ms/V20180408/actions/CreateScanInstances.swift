@@ -79,4 +79,20 @@ extension Ms {
     public func createScanInstances(_ input: CreateScanInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScanInstancesResponse {
         try await self.client.execute(action: "CreateScanInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量提交安全扫描
+    ///
+    /// 用户通过该接口批量提交应用进行应用扫描，扫描后需通过DescribeScanResults接口查询扫描结果
+    @inlinable
+    public func createScanInstances(appInfos: [AppInfo], scanInfo: ScanInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScanInstancesResponse > {
+        self.createScanInstances(CreateScanInstancesRequest(appInfos: appInfos, scanInfo: scanInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量提交安全扫描
+    ///
+    /// 用户通过该接口批量提交应用进行应用扫描，扫描后需通过DescribeScanResults接口查询扫描结果
+    @inlinable
+    public func createScanInstances(appInfos: [AppInfo], scanInfo: ScanInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScanInstancesResponse {
+        try await self.createScanInstances(CreateScanInstancesRequest(appInfos: appInfos, scanInfo: scanInfo), logger: logger, on: eventLoop)
+    }
 }

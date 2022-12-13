@@ -59,4 +59,20 @@ extension Teo {
     public func deleteAliasDomain(_ input: DeleteAliasDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasDomainResponse {
         try await self.client.execute(action: "DeleteAliasDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除别称域名
+    ///
+    /// 删除别称域名。
+    @inlinable
+    public func deleteAliasDomain(zoneId: String, aliasNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAliasDomainResponse > {
+        self.deleteAliasDomain(DeleteAliasDomainRequest(zoneId: zoneId, aliasNames: aliasNames), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除别称域名
+    ///
+    /// 删除别称域名。
+    @inlinable
+    public func deleteAliasDomain(zoneId: String, aliasNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasDomainResponse {
+        try await self.deleteAliasDomain(DeleteAliasDomainRequest(zoneId: zoneId, aliasNames: aliasNames), logger: logger, on: eventLoop)
+    }
 }

@@ -102,4 +102,20 @@ extension Cdn {
     public func describePayType(_ input: DescribePayTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePayTypeResponse {
         try await self.client.execute(action: "DescribePayType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询计费方式
+    ///
+    /// DescribePayType 用于查询用户的计费类型，计费周期等信息。
+    @inlinable
+    public func describePayType(area: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePayTypeResponse > {
+        self.describePayType(DescribePayTypeRequest(area: area, product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询计费方式
+    ///
+    /// DescribePayType 用于查询用户的计费类型，计费周期等信息。
+    @inlinable
+    public func describePayType(area: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePayTypeResponse {
+        try await self.describePayType(DescribePayTypeRequest(area: area, product: product), logger: logger, on: eventLoop)
+    }
 }

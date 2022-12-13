@@ -60,4 +60,16 @@ extension Tke {
     public func addNodeToNodePool(_ input: AddNodeToNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNodeToNodePoolResponse {
         try await self.client.execute(action: "AddNodeToNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 将集群内节点移入节点池
+    @inlinable
+    public func addNodeToNodePool(clusterId: String, nodePoolId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddNodeToNodePoolResponse > {
+        self.addNodeToNodePool(AddNodeToNodePoolRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 将集群内节点移入节点池
+    @inlinable
+    public func addNodeToNodePool(clusterId: String, nodePoolId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNodeToNodePoolResponse {
+        try await self.addNodeToNodePool(AddNodeToNodePoolRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

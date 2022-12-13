@@ -54,4 +54,16 @@ extension Tcm {
     public func describeMesh(_ input: DescribeMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMeshResponse {
         try await self.client.execute(action: "DescribeMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询网格详情
+    @inlinable
+    public func describeMesh(meshId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMeshResponse > {
+        self.describeMesh(DescribeMeshRequest(meshId: meshId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网格详情
+    @inlinable
+    public func describeMesh(meshId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMeshResponse {
+        try await self.describeMesh(DescribeMeshRequest(meshId: meshId), logger: logger, on: eventLoop)
+    }
 }

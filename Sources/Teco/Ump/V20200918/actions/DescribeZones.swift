@@ -63,4 +63,20 @@ extension Ump {
     public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
         try await self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取点位列表
+    ///
+    /// 获取集团广场的点位列表
+    @inlinable
+    public func describeZones(groupCode: String, mallId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZonesResponse > {
+        self.describeZones(DescribeZonesRequest(groupCode: groupCode, mallId: mallId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取点位列表
+    ///
+    /// 获取集团广场的点位列表
+    @inlinable
+    public func describeZones(groupCode: String, mallId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
+        try await self.describeZones(DescribeZonesRequest(groupCode: groupCode, mallId: mallId), logger: logger, on: eventLoop)
+    }
 }

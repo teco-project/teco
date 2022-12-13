@@ -59,4 +59,20 @@ extension Tsf {
     public func shrinkGroup(_ input: ShrinkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShrinkGroupResponse {
         try await self.client.execute(action: "ShrinkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 缩容虚拟机部署组
+    ///
+    /// 下线部署组所有机器实例
+    @inlinable
+    public func shrinkGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ShrinkGroupResponse > {
+        self.shrinkGroup(ShrinkGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 缩容虚拟机部署组
+    ///
+    /// 下线部署组所有机器实例
+    @inlinable
+    public func shrinkGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShrinkGroupResponse {
+        try await self.shrinkGroup(ShrinkGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

@@ -50,4 +50,16 @@ extension Monitor {
     public func resumeGrafanaInstance(_ input: ResumeGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeGrafanaInstanceResponse {
         try await self.client.execute(action: "ResumeGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 恢复 Grafana 实例
+    @inlinable
+    public func resumeGrafanaInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeGrafanaInstanceResponse > {
+        self.resumeGrafanaInstance(ResumeGrafanaInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复 Grafana 实例
+    @inlinable
+    public func resumeGrafanaInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeGrafanaInstanceResponse {
+        try await self.resumeGrafanaInstance(ResumeGrafanaInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

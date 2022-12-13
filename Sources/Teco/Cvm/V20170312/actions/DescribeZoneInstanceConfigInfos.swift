@@ -72,4 +72,20 @@ extension Cvm {
     public func describeZoneInstanceConfigInfos(_ input: DescribeZoneInstanceConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneInstanceConfigInfosResponse {
         try await self.client.execute(action: "DescribeZoneInstanceConfigInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取可用区机型配置信息
+    ///
+    /// 本接口(DescribeZoneInstanceConfigInfos) 获取可用区的机型信息。
+    @inlinable
+    public func describeZoneInstanceConfigInfos(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneInstanceConfigInfosResponse > {
+        self.describeZoneInstanceConfigInfos(DescribeZoneInstanceConfigInfosRequest(filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取可用区机型配置信息
+    ///
+    /// 本接口(DescribeZoneInstanceConfigInfos) 获取可用区的机型信息。
+    @inlinable
+    public func describeZoneInstanceConfigInfos(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneInstanceConfigInfosResponse {
+        try await self.describeZoneInstanceConfigInfos(DescribeZoneInstanceConfigInfosRequest(filters: filters), logger: logger, on: eventLoop)
+    }
 }

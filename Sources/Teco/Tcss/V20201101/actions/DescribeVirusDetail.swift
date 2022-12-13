@@ -304,4 +304,16 @@ extension Tcss {
     public func describeVirusDetail(_ input: DescribeVirusDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusDetailResponse {
         try await self.client.execute(action: "DescribeVirusDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行时查询木马文件信息
+    @inlinable
+    public func describeVirusDetail(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusDetailResponse > {
+        self.describeVirusDetail(DescribeVirusDetailRequest(id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时查询木马文件信息
+    @inlinable
+    public func describeVirusDetail(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusDetailResponse {
+        try await self.describeVirusDetail(DescribeVirusDetailRequest(id: id), logger: logger, on: eventLoop)
+    }
 }

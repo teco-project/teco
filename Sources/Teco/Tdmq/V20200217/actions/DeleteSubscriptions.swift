@@ -69,4 +69,16 @@ extension Tdmq {
     public func deleteSubscriptions(_ input: DeleteSubscriptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubscriptionsResponse {
         try await self.client.execute(action: "DeleteSubscriptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除订阅关系
+    @inlinable
+    public func deleteSubscriptions(subscriptionTopicSets: [SubscriptionTopic], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSubscriptionsResponse > {
+        self.deleteSubscriptions(DeleteSubscriptionsRequest(subscriptionTopicSets: subscriptionTopicSets, clusterId: clusterId, environmentId: environmentId, force: force), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除订阅关系
+    @inlinable
+    public func deleteSubscriptions(subscriptionTopicSets: [SubscriptionTopic], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubscriptionsResponse {
+        try await self.deleteSubscriptions(DeleteSubscriptionsRequest(subscriptionTopicSets: subscriptionTopicSets, clusterId: clusterId, environmentId: environmentId, force: force), logger: logger, on: eventLoop)
+    }
 }

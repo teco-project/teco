@@ -132,4 +132,16 @@ extension Iecp {
     public func describeIotDevice(_ input: DescribeIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDeviceResponse {
         try await self.client.execute(action: "DescribeIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备信息
+    @inlinable
+    public func describeIotDevice(deviceId: Int64? = nil, productID: String? = nil, deviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIotDeviceResponse > {
+        self.describeIotDevice(DescribeIotDeviceRequest(deviceId: deviceId, productID: productID, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备信息
+    @inlinable
+    public func describeIotDevice(deviceId: Int64? = nil, productID: String? = nil, deviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDeviceResponse {
+        try await self.describeIotDevice(DescribeIotDeviceRequest(deviceId: deviceId, productID: productID, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
 }

@@ -77,4 +77,16 @@ extension Faceid {
     public func checkBankCardInformation(_ input: CheckBankCardInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCardInformationResponse {
         try await self.client.execute(action: "CheckBankCardInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 银行卡基础信息查询
+    @inlinable
+    public func checkBankCardInformation(bankCard: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBankCardInformationResponse > {
+        self.checkBankCardInformation(CheckBankCardInformationRequest(bankCard: bankCard, encryption: encryption), logger: logger, on: eventLoop)
+    }
+    
+    /// 银行卡基础信息查询
+    @inlinable
+    public func checkBankCardInformation(bankCard: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCardInformationResponse {
+        try await self.checkBankCardInformation(CheckBankCardInformationRequest(bankCard: bankCard, encryption: encryption), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Iotvideoindustry {
     public func getTimeTemplateById(_ input: GetTimeTemplateByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTimeTemplateByIdResponse {
         try await self.client.execute(action: "GetTimeTemplateById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 根据模板ID获取时间模板
+    ///
+    /// 本接口(GetTimeTemplateById)用于根据模板ID获取时间模板详情。
+    @inlinable
+    public func getTimeTemplateById(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTimeTemplateByIdResponse > {
+        self.getTimeTemplateById(GetTimeTemplateByIdRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 根据模板ID获取时间模板
+    ///
+    /// 本接口(GetTimeTemplateById)用于根据模板ID获取时间模板详情。
+    @inlinable
+    public func getTimeTemplateById(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTimeTemplateByIdResponse {
+        try await self.getTimeTemplateById(GetTimeTemplateByIdRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
 }

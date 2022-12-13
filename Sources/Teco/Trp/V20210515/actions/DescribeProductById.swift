@@ -60,4 +60,16 @@ extension Trp {
     public func describeProductById(_ input: DescribeProductByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductByIdResponse {
         try await self.client.execute(action: "DescribeProductById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询商品信息
+    @inlinable
+    public func describeProductById(productId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductByIdResponse > {
+        self.describeProductById(DescribeProductByIdRequest(productId: productId, corpId: corpId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询商品信息
+    @inlinable
+    public func describeProductById(productId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductByIdResponse {
+        try await self.describeProductById(DescribeProductByIdRequest(productId: productId, corpId: corpId), logger: logger, on: eventLoop)
+    }
 }

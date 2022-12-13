@@ -62,4 +62,20 @@ extension Dcdb {
     public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
         try await self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询数据库列表
+    ///
+    /// 本接口（DescribeDatabases）用于查询云数据库实例的数据库列表。
+    @inlinable
+    public func describeDatabases(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatabasesResponse > {
+        self.describeDatabases(DescribeDatabasesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库列表
+    ///
+    /// 本接口（DescribeDatabases）用于查询云数据库实例的数据库列表。
+    @inlinable
+    public func describeDatabases(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
+        try await self.describeDatabases(DescribeDatabasesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

@@ -84,4 +84,22 @@ extension Gse {
     public func describeAssets(_ input: DescribeAssetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsResponse {
         try await self.client.execute(action: "DescribeAssets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 拉取生成包列表
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeAssets）用于获取生成包列表。
+    @inlinable
+    public func describeAssets(assetRegion: String, offset: Int64, limit: Int64, filter: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetsResponse > {
+        self.describeAssets(DescribeAssetsRequest(assetRegion: assetRegion, offset: offset, limit: limit, filter: filter, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取生成包列表
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeAssets）用于获取生成包列表。
+    @inlinable
+    public func describeAssets(assetRegion: String, offset: Int64, limit: Int64, filter: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsResponse {
+        try await self.describeAssets(DescribeAssetsRequest(assetRegion: assetRegion, offset: offset, limit: limit, filter: filter, filters: filters), logger: logger, on: eventLoop)
+    }
 }

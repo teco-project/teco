@@ -66,4 +66,22 @@ extension Essbasic {
     public func cancelFlow(_ input: CancelFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelFlowResponse {
         try await self.client.execute(action: "CancelFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 撤销流程
+    ///
+    /// 此接口（CancelFlow）用于撤销正在进行中的流程。
+    /// 注：已归档流程不可完成撤销动作。
+    @inlinable
+    public func cancelFlow(caller: Caller, flowId: String, cancelMessage: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelFlowResponse > {
+        self.cancelFlow(CancelFlowRequest(caller: caller, flowId: flowId, cancelMessage: cancelMessage), logger: logger, on: eventLoop)
+    }
+    
+    /// 撤销流程
+    ///
+    /// 此接口（CancelFlow）用于撤销正在进行中的流程。
+    /// 注：已归档流程不可完成撤销动作。
+    @inlinable
+    public func cancelFlow(caller: Caller, flowId: String, cancelMessage: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelFlowResponse {
+        try await self.cancelFlow(CancelFlowRequest(caller: caller, flowId: flowId, cancelMessage: cancelMessage), logger: logger, on: eventLoop)
+    }
 }

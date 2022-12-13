@@ -81,4 +81,24 @@ extension Cme {
     public func describePlatforms(_ input: DescribePlatformsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlatformsResponse {
         try await self.client.execute(action: "DescribePlatforms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取平台列表
+    ///
+    /// <li>支持获取所创建的所有平台列表信息；</li>
+    /// <li>支持获取指定的平台列表信息。</li>
+    /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
+    @inlinable
+    public func describePlatforms(platforms: [String]? = nil, licenseIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePlatformsResponse > {
+        self.describePlatforms(DescribePlatformsRequest(platforms: platforms, licenseIds: licenseIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取平台列表
+    ///
+    /// <li>支持获取所创建的所有平台列表信息；</li>
+    /// <li>支持获取指定的平台列表信息。</li>
+    /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
+    @inlinable
+    public func describePlatforms(platforms: [String]? = nil, licenseIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlatformsResponse {
+        try await self.describePlatforms(DescribePlatformsRequest(platforms: platforms, licenseIds: licenseIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

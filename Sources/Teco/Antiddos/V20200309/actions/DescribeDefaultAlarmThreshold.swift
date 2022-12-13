@@ -65,4 +65,16 @@ extension Antiddos {
     public func describeDefaultAlarmThreshold(_ input: DescribeDefaultAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultAlarmThresholdResponse {
         try await self.client.execute(action: "DescribeDefaultAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取单IP默认告警阈值配置
+    @inlinable
+    public func describeDefaultAlarmThreshold(instanceType: String, filterAlarmType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDefaultAlarmThresholdResponse > {
+        self.describeDefaultAlarmThreshold(DescribeDefaultAlarmThresholdRequest(instanceType: instanceType, filterAlarmType: filterAlarmType), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取单IP默认告警阈值配置
+    @inlinable
+    public func describeDefaultAlarmThreshold(instanceType: String, filterAlarmType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultAlarmThresholdResponse {
+        try await self.describeDefaultAlarmThreshold(DescribeDefaultAlarmThresholdRequest(instanceType: instanceType, filterAlarmType: filterAlarmType), logger: logger, on: eventLoop)
+    }
 }

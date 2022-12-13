@@ -77,4 +77,20 @@ extension Cdb {
     public func describeParamTemplates(_ input: DescribeParamTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamTemplatesResponse {
         try await self.client.execute(action: "DescribeParamTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询参数模板列表
+    ///
+    /// 该接口（DescribeParamTemplates）查询参数模板列表，全地域公共参数Region均为ap-guangzhou。
+    @inlinable
+    public func describeParamTemplates(engineVersions: [String]? = nil, engineTypes: [String]? = nil, templateNames: [String]? = nil, templateIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeParamTemplatesResponse > {
+        self.describeParamTemplates(DescribeParamTemplatesRequest(engineVersions: engineVersions, engineTypes: engineTypes, templateNames: templateNames, templateIds: templateIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询参数模板列表
+    ///
+    /// 该接口（DescribeParamTemplates）查询参数模板列表，全地域公共参数Region均为ap-guangzhou。
+    @inlinable
+    public func describeParamTemplates(engineVersions: [String]? = nil, engineTypes: [String]? = nil, templateNames: [String]? = nil, templateIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamTemplatesResponse {
+        try await self.describeParamTemplates(DescribeParamTemplatesRequest(engineVersions: engineVersions, engineTypes: engineTypes, templateNames: templateNames, templateIds: templateIds), logger: logger, on: eventLoop)
+    }
 }

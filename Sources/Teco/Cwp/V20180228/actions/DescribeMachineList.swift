@@ -91,4 +91,20 @@ extension Cwp {
     public func describeMachineList(_ input: DescribeMachineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineListResponse {
         try await self.client.execute(action: "DescribeMachineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 网页防篡改获取区域主机列表
+    ///
+    /// 用于网页防篡改获取区域主机列表。
+    @inlinable
+    public func describeMachineList(machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineListResponse > {
+        self.describeMachineList(DescribeMachineListRequest(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 网页防篡改获取区域主机列表
+    ///
+    /// 用于网页防篡改获取区域主机列表。
+    @inlinable
+    public func describeMachineList(machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineListResponse {
+        try await self.describeMachineList(DescribeMachineListRequest(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

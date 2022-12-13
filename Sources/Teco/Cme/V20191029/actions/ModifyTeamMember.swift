@@ -37,7 +37,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以个改任意团队成员的信息。如果指定操作者，则操作者必须为团队的管理员或者所有者。
         public let `operator`: String?
         
-        public init (platform: String, teamId: String, memberId: String, remark: String? = nil, role: String? = nil, `operator`: String? = nil) {
+        public init (platform: String, teamId: String, memberId: String, remark: String? = nil, role: String? = nil, operator: String? = nil) {
             self.platform = platform
             self.teamId = teamId
             self.memberId = memberId
@@ -80,5 +80,21 @@ extension Cme {
     @inlinable
     public func modifyTeamMember(_ input: ModifyTeamMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTeamMemberResponse {
         try await self.client.execute(action: "ModifyTeamMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 修改团队成员
+    ///
+    /// 修改团队成员信息，包括成员备注、角色等。
+    @inlinable
+    public func modifyTeamMember(platform: String, teamId: String, memberId: String, remark: String? = nil, role: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTeamMemberResponse > {
+        self.modifyTeamMember(ModifyTeamMemberRequest(platform: platform, teamId: teamId, memberId: memberId, remark: remark, role: role, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改团队成员
+    ///
+    /// 修改团队成员信息，包括成员备注、角色等。
+    @inlinable
+    public func modifyTeamMember(platform: String, teamId: String, memberId: String, remark: String? = nil, role: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTeamMemberResponse {
+        try await self.modifyTeamMember(ModifyTeamMemberRequest(platform: platform, teamId: teamId, memberId: memberId, remark: remark, role: role, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

@@ -73,4 +73,20 @@ extension Ckafka {
     public func fetchMessageByOffset(_ input: FetchMessageByOffsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchMessageByOffsetResponse {
         try await self.client.execute(action: "FetchMessageByOffset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询消息
+    ///
+    /// 根据指定offset位置的消息
+    @inlinable
+    public func fetchMessageByOffset(instanceId: String, topic: String, partition: Int64, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FetchMessageByOffsetResponse > {
+        self.fetchMessageByOffset(FetchMessageByOffsetRequest(instanceId: instanceId, topic: topic, partition: partition, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询消息
+    ///
+    /// 根据指定offset位置的消息
+    @inlinable
+    public func fetchMessageByOffset(instanceId: String, topic: String, partition: Int64, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchMessageByOffsetResponse {
+        try await self.fetchMessageByOffset(FetchMessageByOffsetRequest(instanceId: instanceId, topic: topic, partition: partition, offset: offset), logger: logger, on: eventLoop)
+    }
 }

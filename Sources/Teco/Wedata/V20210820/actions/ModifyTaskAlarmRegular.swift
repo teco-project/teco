@@ -65,4 +65,16 @@ extension Wedata {
     public func modifyTaskAlarmRegular(_ input: ModifyTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskAlarmRegularResponse {
         try await self.client.execute(action: "ModifyTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改任务告警规则
+    @inlinable
+    public func modifyTaskAlarmRegular(id: String, taskAlarmInfo: TaskAlarmInfo, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskAlarmRegularResponse > {
+        self.modifyTaskAlarmRegular(ModifyTaskAlarmRegularRequest(id: id, taskAlarmInfo: taskAlarmInfo, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改任务告警规则
+    @inlinable
+    public func modifyTaskAlarmRegular(id: String, taskAlarmInfo: TaskAlarmInfo, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskAlarmRegularResponse {
+        try await self.modifyTaskAlarmRegular(ModifyTaskAlarmRegularRequest(id: id, taskAlarmInfo: taskAlarmInfo, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

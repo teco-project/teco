@@ -58,4 +58,16 @@ extension Antiddos {
     public func createDDoSAI(_ input: CreateDDoSAIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSAIResponse {
         try await self.client.execute(action: "CreateDDoSAI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置DDoS防护的AI防护开关
+    @inlinable
+    public func createDDoSAI(instanceIdList: [String], dDoSAI: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDDoSAIResponse > {
+        self.createDDoSAI(CreateDDoSAIRequest(instanceIdList: instanceIdList, dDoSAI: dDoSAI), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置DDoS防护的AI防护开关
+    @inlinable
+    public func createDDoSAI(instanceIdList: [String], dDoSAI: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSAIResponse {
+        try await self.createDDoSAI(CreateDDoSAIRequest(instanceIdList: instanceIdList, dDoSAI: dDoSAI), logger: logger, on: eventLoop)
+    }
 }

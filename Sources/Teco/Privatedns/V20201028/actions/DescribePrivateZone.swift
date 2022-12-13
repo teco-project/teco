@@ -54,4 +54,16 @@ extension Privatedns {
     public func describePrivateZone(_ input: DescribePrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateZoneResponse {
         try await self.client.execute(action: "DescribePrivateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取私有域信息
+    @inlinable
+    public func describePrivateZone(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateZoneResponse > {
+        self.describePrivateZone(DescribePrivateZoneRequest(zoneId: zoneId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取私有域信息
+    @inlinable
+    public func describePrivateZone(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateZoneResponse {
+        try await self.describePrivateZone(DescribePrivateZoneRequest(zoneId: zoneId), logger: logger, on: eventLoop)
+    }
 }

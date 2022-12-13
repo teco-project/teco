@@ -63,4 +63,20 @@ extension Teo {
     public func describeRateLimitIntelligenceRule(_ input: DescribeRateLimitIntelligenceRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRateLimitIntelligenceRuleResponse {
         try await self.client.execute(action: "DescribeRateLimitIntelligenceRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询速率限制智能客户端过滤规则
+    ///
+    /// 查询速率限制智能客户端过滤学习出来的规则
+    @inlinable
+    public func describeRateLimitIntelligenceRule(zoneId: String, entity: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRateLimitIntelligenceRuleResponse > {
+        self.describeRateLimitIntelligenceRule(DescribeRateLimitIntelligenceRuleRequest(zoneId: zoneId, entity: entity), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询速率限制智能客户端过滤规则
+    ///
+    /// 查询速率限制智能客户端过滤学习出来的规则
+    @inlinable
+    public func describeRateLimitIntelligenceRule(zoneId: String, entity: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRateLimitIntelligenceRuleResponse {
+        try await self.describeRateLimitIntelligenceRule(DescribeRateLimitIntelligenceRuleRequest(zoneId: zoneId, entity: entity), logger: logger, on: eventLoop)
+    }
 }

@@ -82,4 +82,20 @@ extension Cpdp {
     public func downloadReconciliationUrl(_ input: DownloadReconciliationUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadReconciliationUrlResponse {
         try await self.client.execute(action: "DownloadReconciliationUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 灵云-对账中心账单下载接口
+    ///
+    /// 获取对账中心账单下载地址的接口
+    @inlinable
+    public func downloadReconciliationUrl(mainAppId: String, appCode: String, billDate: String, subAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadReconciliationUrlResponse > {
+        self.downloadReconciliationUrl(DownloadReconciliationUrlRequest(mainAppId: mainAppId, appCode: appCode, billDate: billDate, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云-对账中心账单下载接口
+    ///
+    /// 获取对账中心账单下载地址的接口
+    @inlinable
+    public func downloadReconciliationUrl(mainAppId: String, appCode: String, billDate: String, subAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadReconciliationUrlResponse {
+        try await self.downloadReconciliationUrl(DownloadReconciliationUrlRequest(mainAppId: mainAppId, appCode: appCode, billDate: billDate, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

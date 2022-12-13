@@ -73,4 +73,16 @@ extension Antiddos {
     public func describeCCThresholdList(_ input: DescribeCCThresholdListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCThresholdListResponse {
         try await self.client.execute(action: "DescribeCCThresholdList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取CC清洗阈值列表
+    @inlinable
+    public func describeCCThresholdList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCThresholdListResponse > {
+        self.describeCCThresholdList(DescribeCCThresholdListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC清洗阈值列表
+    @inlinable
+    public func describeCCThresholdList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCThresholdListResponse {
+        try await self.describeCCThresholdList(DescribeCCThresholdListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

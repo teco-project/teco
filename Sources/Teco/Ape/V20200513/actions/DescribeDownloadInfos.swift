@@ -85,4 +85,20 @@ extension Ape {
     public func describeDownloadInfos(_ input: DescribeDownloadInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDownloadInfosResponse {
         try await self.client.execute(action: "DescribeDownloadInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取图片下载记录
+    ///
+    /// 获取用户图片下载记录
+    @inlinable
+    public func describeDownloadInfos(limit: Int64? = nil, offset: Int64? = nil, beginTime: Date? = nil, endTime: Date? = nil, imageIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDownloadInfosResponse > {
+        self.describeDownloadInfos(DescribeDownloadInfosRequest(limit: limit, offset: offset, beginTime: beginTime, endTime: endTime, imageIds: imageIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取图片下载记录
+    ///
+    /// 获取用户图片下载记录
+    @inlinable
+    public func describeDownloadInfos(limit: Int64? = nil, offset: Int64? = nil, beginTime: Date? = nil, endTime: Date? = nil, imageIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDownloadInfosResponse {
+        try await self.describeDownloadInfos(DescribeDownloadInfosRequest(limit: limit, offset: offset, beginTime: beginTime, endTime: endTime, imageIds: imageIds), logger: logger, on: eventLoop)
+    }
 }

@@ -72,4 +72,20 @@ extension Cpdp {
     public func closeCloudOrder(_ input: CloseCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseCloudOrderResponse {
         try await self.client.execute(action: "CloseCloudOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 聚鑫V2-关闭订单
+    ///
+    /// 通过此接口关闭此前已创建的订单。关闭后，用户将无法继续付款，仅能关闭创建后未支付的订单。
+    @inlinable
+    public func closeCloudOrder(midasAppId: String, userId: String, outTradeNo: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseCloudOrderResponse > {
+        self.closeCloudOrder(CloseCloudOrderRequest(midasAppId: midasAppId, userId: userId, outTradeNo: outTradeNo, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫V2-关闭订单
+    ///
+    /// 通过此接口关闭此前已创建的订单。关闭后，用户将无法继续付款，仅能关闭创建后未支付的订单。
+    @inlinable
+    public func closeCloudOrder(midasAppId: String, userId: String, outTradeNo: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseCloudOrderResponse {
+        try await self.closeCloudOrder(CloseCloudOrderRequest(midasAppId: midasAppId, userId: userId, outTradeNo: outTradeNo, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
 }

@@ -100,4 +100,20 @@ extension Dcdb {
     public func describeDCDBUpgradePrice(_ input: DescribeDCDBUpgradePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBUpgradePriceResponse {
         try await self.client.execute(action: "DescribeDCDBUpgradePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询变配分布式数据库实例价格
+    ///
+    /// 本接口（DescribeDCDBUpgradePrice）用于查询变配分布式数据库实例价格。
+    @inlinable
+    public func describeDCDBUpgradePrice(instanceId: String, upgradeType: String, addShardConfig: AddShardConfig? = nil, expandShardConfig: ExpandShardConfig? = nil, splitShardConfig: SplitShardConfig? = nil, amountUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDCDBUpgradePriceResponse > {
+        self.describeDCDBUpgradePrice(DescribeDCDBUpgradePriceRequest(instanceId: instanceId, upgradeType: upgradeType, addShardConfig: addShardConfig, expandShardConfig: expandShardConfig, splitShardConfig: splitShardConfig, amountUnit: amountUnit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询变配分布式数据库实例价格
+    ///
+    /// 本接口（DescribeDCDBUpgradePrice）用于查询变配分布式数据库实例价格。
+    @inlinable
+    public func describeDCDBUpgradePrice(instanceId: String, upgradeType: String, addShardConfig: AddShardConfig? = nil, expandShardConfig: ExpandShardConfig? = nil, splitShardConfig: SplitShardConfig? = nil, amountUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBUpgradePriceResponse {
+        try await self.describeDCDBUpgradePrice(DescribeDCDBUpgradePriceRequest(instanceId: instanceId, upgradeType: upgradeType, addShardConfig: addShardConfig, expandShardConfig: expandShardConfig, splitShardConfig: splitShardConfig, amountUnit: amountUnit), logger: logger, on: eventLoop)
+    }
 }

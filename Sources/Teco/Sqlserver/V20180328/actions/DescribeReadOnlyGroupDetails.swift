@@ -115,4 +115,20 @@ extension Sqlserver {
     public func describeReadOnlyGroupDetails(_ input: DescribeReadOnlyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupDetailsResponse {
         try await self.client.execute(action: "DescribeReadOnlyGroupDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询只读组详情
+    ///
+    /// 本接口（DescribeReadOnlyGroupDetails）用于查询只读组详情。
+    @inlinable
+    public func describeReadOnlyGroupDetails(instanceId: String, readOnlyGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReadOnlyGroupDetailsResponse > {
+        self.describeReadOnlyGroupDetails(DescribeReadOnlyGroupDetailsRequest(instanceId: instanceId, readOnlyGroupId: readOnlyGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询只读组详情
+    ///
+    /// 本接口（DescribeReadOnlyGroupDetails）用于查询只读组详情。
+    @inlinable
+    public func describeReadOnlyGroupDetails(instanceId: String, readOnlyGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupDetailsResponse {
+        try await self.describeReadOnlyGroupDetails(DescribeReadOnlyGroupDetailsRequest(instanceId: instanceId, readOnlyGroupId: readOnlyGroupId), logger: logger, on: eventLoop)
+    }
 }

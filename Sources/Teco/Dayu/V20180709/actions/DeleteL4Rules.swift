@@ -68,4 +68,20 @@ extension Dayu {
     public func deleteL4Rules(_ input: DeleteL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteL4RulesResponse {
         try await self.client.execute(action: "DeleteL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除L4转发规则
+    ///
+    /// 删除四层转发规则
+    @inlinable
+    public func deleteL4Rules(business: String, id: String, ruleIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteL4RulesResponse > {
+        self.deleteL4Rules(DeleteL4RulesRequest(business: business, id: id, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除L4转发规则
+    ///
+    /// 删除四层转发规则
+    @inlinable
+    public func deleteL4Rules(business: String, id: String, ruleIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteL4RulesResponse {
+        try await self.deleteL4Rules(DeleteL4RulesRequest(business: business, id: id, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
+    }
 }

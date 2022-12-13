@@ -87,4 +87,20 @@ extension Gme {
     public func describeApplicationList(_ input: DescribeApplicationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationListResponse {
         try await self.client.execute(action: "DescribeApplicationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询某账号下的应用列表
+    ///
+    /// 本接口(DescribeApplicationList)用于查询自己账号下的应用列表
+    @inlinable
+    public func describeApplicationList(projectId: Int64, pageNo: UInt64, pageSize: UInt64, searchText: String, tagSet: [Tag]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationListResponse > {
+        self.describeApplicationList(DescribeApplicationListRequest(projectId: projectId, pageNo: pageNo, pageSize: pageSize, searchText: searchText, tagSet: tagSet, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询某账号下的应用列表
+    ///
+    /// 本接口(DescribeApplicationList)用于查询自己账号下的应用列表
+    @inlinable
+    public func describeApplicationList(projectId: Int64, pageNo: UInt64, pageSize: UInt64, searchText: String, tagSet: [Tag]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationListResponse {
+        try await self.describeApplicationList(DescribeApplicationListRequest(projectId: projectId, pageNo: pageNo, pageSize: pageSize, searchText: searchText, tagSet: tagSet, filters: filters), logger: logger, on: eventLoop)
+    }
 }

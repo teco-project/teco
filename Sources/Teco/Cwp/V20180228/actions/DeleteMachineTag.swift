@@ -50,4 +50,16 @@ extension Cwp {
     public func deleteMachineTag(_ input: DeleteMachineTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineTagResponse {
         try await self.client.execute(action: "DeleteMachineTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除服务器关联的标签
+    @inlinable
+    public func deleteMachineTag(rid: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMachineTagResponse > {
+        self.deleteMachineTag(DeleteMachineTagRequest(rid: rid), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除服务器关联的标签
+    @inlinable
+    public func deleteMachineTag(rid: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineTagResponse {
+        try await self.deleteMachineTag(DeleteMachineTagRequest(rid: rid), logger: logger, on: eventLoop)
+    }
 }

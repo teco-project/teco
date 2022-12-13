@@ -64,4 +64,16 @@ extension Dlc {
     public func describeSparkAppJob(_ input: DescribeSparkAppJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppJobResponse {
         try await self.client.execute(action: "DescribeSparkAppJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询具体的spark应用
+    @inlinable
+    public func describeSparkAppJob(jobId: String? = nil, jobName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSparkAppJobResponse > {
+        self.describeSparkAppJob(DescribeSparkAppJobRequest(jobId: jobId, jobName: jobName), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询具体的spark应用
+    @inlinable
+    public func describeSparkAppJob(jobId: String? = nil, jobName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppJobResponse {
+        try await self.describeSparkAppJob(DescribeSparkAppJobRequest(jobId: jobId, jobName: jobName), logger: logger, on: eventLoop)
+    }
 }

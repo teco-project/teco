@@ -62,4 +62,20 @@ extension Mariadb {
     public func destroyDBInstance(_ input: DestroyDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyDBInstanceResponse {
         try await self.client.execute(action: "DestroyDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 销毁已隔离的包年包月实例
+    ///
+    /// 本接口(DestroyDBInstance)用于销毁已隔离的包年包月实例。
+    @inlinable
+    public func destroyDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyDBInstanceResponse > {
+        self.destroyDBInstance(DestroyDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁已隔离的包年包月实例
+    ///
+    /// 本接口(DestroyDBInstance)用于销毁已隔离的包年包月实例。
+    @inlinable
+    public func destroyDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyDBInstanceResponse {
+        try await self.destroyDBInstance(DestroyDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

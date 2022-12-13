@@ -67,4 +67,20 @@ extension Vpc {
     public func replaceRoutes(_ input: ReplaceRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRoutesResponse {
         try await self.client.execute(action: "ReplaceRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 替换路由策略
+    ///
+    /// 本接口（ReplaceRoutes）根据路由策略ID（RouteId）修改指定的路由策略（Route），支持批量修改。
+    @inlinable
+    public func replaceRoutes(routeTableId: String, routes: [Route], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceRoutesResponse > {
+        self.replaceRoutes(ReplaceRoutesRequest(routeTableId: routeTableId, routes: routes), logger: logger, on: eventLoop)
+    }
+    
+    /// 替换路由策略
+    ///
+    /// 本接口（ReplaceRoutes）根据路由策略ID（RouteId）修改指定的路由策略（Route），支持批量修改。
+    @inlinable
+    public func replaceRoutes(routeTableId: String, routes: [Route], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRoutesResponse {
+        try await self.replaceRoutes(ReplaceRoutesRequest(routeTableId: routeTableId, routes: routes), logger: logger, on: eventLoop)
+    }
 }

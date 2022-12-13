@@ -74,4 +74,16 @@ extension Cpdp {
     public func distributeQueryReceiver(_ input: DistributeQueryReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeQueryReceiverResponse {
         try await self.client.execute(action: "DistributeQueryReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云支付-查询已添加分账接收方接口
+    @inlinable
+    public func distributeQueryReceiver(openId: String, openKey: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DistributeQueryReceiverResponse > {
+        self.distributeQueryReceiver(DistributeQueryReceiverRequest(openId: openId, openKey: openKey, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-查询已添加分账接收方接口
+    @inlinable
+    public func distributeQueryReceiver(openId: String, openKey: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeQueryReceiverResponse {
+        try await self.distributeQueryReceiver(DistributeQueryReceiverRequest(openId: openId, openKey: openKey, profile: profile), logger: logger, on: eventLoop)
+    }
 }

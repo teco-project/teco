@@ -60,4 +60,16 @@ extension Tdmq {
     public func deleteAMQPRouteRelation(_ input: DeleteAMQPRouteRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPRouteRelationResponse {
         try await self.client.execute(action: "DeleteAMQPRouteRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除Amqp路由关系
+    @inlinable
+    public func deleteAMQPRouteRelation(clusterId: String, vHostId: String, routeRelationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAMQPRouteRelationResponse > {
+        self.deleteAMQPRouteRelation(DeleteAMQPRouteRelationRequest(clusterId: clusterId, vHostId: vHostId, routeRelationId: routeRelationId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Amqp路由关系
+    @inlinable
+    public func deleteAMQPRouteRelation(clusterId: String, vHostId: String, routeRelationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPRouteRelationResponse {
+        try await self.deleteAMQPRouteRelation(DeleteAMQPRouteRelationRequest(clusterId: clusterId, vHostId: vHostId, routeRelationId: routeRelationId), logger: logger, on: eventLoop)
+    }
 }

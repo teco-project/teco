@@ -54,4 +54,20 @@ extension Cls {
     public func deleteConfigExtra(_ input: DeleteConfigExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigExtraResponse {
         try await self.client.execute(action: "DeleteConfigExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除特殊采集规则配置
+    ///
+    /// 本接口用于删除特殊采集规则配置，特殊采集配置应用于自建K8S环境的采集Agent
+    @inlinable
+    public func deleteConfigExtra(configExtraId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConfigExtraResponse > {
+        self.deleteConfigExtra(DeleteConfigExtraRequest(configExtraId: configExtraId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除特殊采集规则配置
+    ///
+    /// 本接口用于删除特殊采集规则配置，特殊采集配置应用于自建K8S环境的采集Agent
+    @inlinable
+    public func deleteConfigExtra(configExtraId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigExtraResponse {
+        try await self.deleteConfigExtra(DeleteConfigExtraRequest(configExtraId: configExtraId), logger: logger, on: eventLoop)
+    }
 }

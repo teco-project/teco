@@ -62,4 +62,20 @@ extension Gaap {
     public func bindRuleRealServers(_ input: BindRuleRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRuleRealServersResponse {
         try await self.client.execute(action: "BindRuleRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 转发规则绑定源站
+    ///
+    /// 该接口用于7层监听器的转发规则绑定源站。注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。
+    @inlinable
+    public func bindRuleRealServers(ruleId: String, realServerBindSet: [RealServerBindSetReq]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindRuleRealServersResponse > {
+        self.bindRuleRealServers(BindRuleRealServersRequest(ruleId: ruleId, realServerBindSet: realServerBindSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 转发规则绑定源站
+    ///
+    /// 该接口用于7层监听器的转发规则绑定源站。注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。
+    @inlinable
+    public func bindRuleRealServers(ruleId: String, realServerBindSet: [RealServerBindSetReq]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRuleRealServersResponse {
+        try await self.bindRuleRealServers(BindRuleRealServersRequest(ruleId: ruleId, realServerBindSet: realServerBindSet), logger: logger, on: eventLoop)
+    }
 }

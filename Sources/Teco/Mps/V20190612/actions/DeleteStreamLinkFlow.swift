@@ -54,4 +54,20 @@ extension Mps {
     public func deleteStreamLinkFlow(_ input: DeleteStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStreamLinkFlowResponse {
         try await self.client.execute(action: "DeleteStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除媒体传输流
+    ///
+    /// 删除媒体传输的传输流配置。
+    @inlinable
+    public func deleteStreamLinkFlow(flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStreamLinkFlowResponse > {
+        self.deleteStreamLinkFlow(DeleteStreamLinkFlowRequest(flowId: flowId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除媒体传输流
+    ///
+    /// 删除媒体传输的传输流配置。
+    @inlinable
+    public func deleteStreamLinkFlow(flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStreamLinkFlowResponse {
+        try await self.deleteStreamLinkFlow(DeleteStreamLinkFlowRequest(flowId: flowId), logger: logger, on: eventLoop)
+    }
 }

@@ -145,4 +145,32 @@ extension Cme {
     public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
         try await self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建项目
+    ///
+    /// 创建多媒体创作引擎项目，目前支持的项目类型有：
+    /// <li>视频剪辑项目：用于普通视频剪辑；</li>
+    /// <li>直播剪辑项目：用于直播流剪辑；</li>
+    /// <li>导播台项目：用于云导播台；</li>
+    /// <li>视频拆条：用于视频拆条；</li>
+    /// <li>录制回放项目：用于直播录制回放；</li>
+    /// <li>云转推项目：用于直播云转推。</li>
+    @inlinable
+    public func createProject(platform: String, name: String, owner: Entity, category: String, mode: String? = nil, aspectRatio: String? = nil, description: String? = nil, switcherProjectInput: SwitcherProjectInput? = nil, liveStreamClipProjectInput: LiveStreamClipProjectInput? = nil, videoEditProjectInput: VideoEditProjectInput? = nil, videoSegmentationProjectInput: VideoSegmentationProjectInput? = nil, streamConnectProjectInput: StreamConnectProjectInput? = nil, recordReplayProjectInput: RecordReplayProjectInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProjectResponse > {
+        self.createProject(CreateProjectRequest(platform: platform, name: name, owner: owner, category: category, mode: mode, aspectRatio: aspectRatio, description: description, switcherProjectInput: switcherProjectInput, liveStreamClipProjectInput: liveStreamClipProjectInput, videoEditProjectInput: videoEditProjectInput, videoSegmentationProjectInput: videoSegmentationProjectInput, streamConnectProjectInput: streamConnectProjectInput, recordReplayProjectInput: recordReplayProjectInput), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建项目
+    ///
+    /// 创建多媒体创作引擎项目，目前支持的项目类型有：
+    /// <li>视频剪辑项目：用于普通视频剪辑；</li>
+    /// <li>直播剪辑项目：用于直播流剪辑；</li>
+    /// <li>导播台项目：用于云导播台；</li>
+    /// <li>视频拆条：用于视频拆条；</li>
+    /// <li>录制回放项目：用于直播录制回放；</li>
+    /// <li>云转推项目：用于直播云转推。</li>
+    @inlinable
+    public func createProject(platform: String, name: String, owner: Entity, category: String, mode: String? = nil, aspectRatio: String? = nil, description: String? = nil, switcherProjectInput: SwitcherProjectInput? = nil, liveStreamClipProjectInput: LiveStreamClipProjectInput? = nil, videoEditProjectInput: VideoEditProjectInput? = nil, videoSegmentationProjectInput: VideoSegmentationProjectInput? = nil, streamConnectProjectInput: StreamConnectProjectInput? = nil, recordReplayProjectInput: RecordReplayProjectInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
+        try await self.createProject(CreateProjectRequest(platform: platform, name: name, owner: owner, category: category, mode: mode, aspectRatio: aspectRatio, description: description, switcherProjectInput: switcherProjectInput, liveStreamClipProjectInput: liveStreamClipProjectInput, videoEditProjectInput: videoEditProjectInput, videoSegmentationProjectInput: videoSegmentationProjectInput, streamConnectProjectInput: streamConnectProjectInput, recordReplayProjectInput: recordReplayProjectInput), logger: logger, on: eventLoop)
+    }
 }

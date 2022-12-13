@@ -65,4 +65,16 @@ extension Redis {
     public func modifyParamTemplate(_ input: ModifyParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyParamTemplateResponse {
         try await self.client.execute(action: "ModifyParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改参数模板
+    @inlinable
+    public func modifyParamTemplate(templateId: String, name: String? = nil, description: String? = nil, paramList: [InstanceParam]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyParamTemplateResponse > {
+        self.modifyParamTemplate(ModifyParamTemplateRequest(templateId: templateId, name: name, description: description, paramList: paramList), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改参数模板
+    @inlinable
+    public func modifyParamTemplate(templateId: String, name: String? = nil, description: String? = nil, paramList: [InstanceParam]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyParamTemplateResponse {
+        try await self.modifyParamTemplate(ModifyParamTemplateRequest(templateId: templateId, name: name, description: description, paramList: paramList), logger: logger, on: eventLoop)
+    }
 }

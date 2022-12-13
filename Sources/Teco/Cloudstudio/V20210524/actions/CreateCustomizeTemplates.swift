@@ -60,4 +60,16 @@ extension Cloudstudio {
     public func createCustomizeTemplates(_ input: CreateCustomizeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomizeTemplatesResponse {
         try await self.client.execute(action: "CreateCustomizeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加自定义模板
+    @inlinable
+    public func createCustomizeTemplates(cloudStudioSessionTeam: String, userDefinedTemplateParams: UserDefinedTemplateParams, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomizeTemplatesResponse > {
+        self.createCustomizeTemplates(CreateCustomizeTemplatesRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, userDefinedTemplateParams: userDefinedTemplateParams), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加自定义模板
+    @inlinable
+    public func createCustomizeTemplates(cloudStudioSessionTeam: String, userDefinedTemplateParams: UserDefinedTemplateParams, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomizeTemplatesResponse {
+        try await self.createCustomizeTemplates(CreateCustomizeTemplatesRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, userDefinedTemplateParams: userDefinedTemplateParams), logger: logger, on: eventLoop)
+    }
 }

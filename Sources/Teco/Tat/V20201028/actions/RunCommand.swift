@@ -161,4 +161,30 @@ extension Tat {
     public func runCommand(_ input: RunCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunCommandResponse {
         try await self.client.execute(action: "RunCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 执行命令
+    ///
+    /// 执行命令，调用成功返回执行活动ID（inv-xxxxxxxx），每个执行活动内部有一个或多个执行任务（invt-xxxxxxxx），每个执行任务代表命令在一台 CVM 或一台 Lighthouse 上的执行记录。
+    /// * 如果指定实例未安装 agent，或 agent 不在线，返回失败
+    /// * 如果命令类型与 agent 运行环境不符，返回失败
+    /// * 指定的实例需要处于 VPC 网络
+    /// * 指定的实例需要处于 `RUNNING` 状态
+    /// * 不可同时指定 CVM 和 Lighthouse
+    @inlinable
+    public func runCommand(content: String, instanceIds: [String], commandName: String? = nil, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, saveCommand: Bool? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, parameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunCommandResponse > {
+        self.runCommand(RunCommandRequest(content: content, instanceIds: instanceIds, commandName: commandName, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, saveCommand: saveCommand, enableParameter: enableParameter, defaultParameters: defaultParameters, parameters: parameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), logger: logger, on: eventLoop)
+    }
+    
+    /// 执行命令
+    ///
+    /// 执行命令，调用成功返回执行活动ID（inv-xxxxxxxx），每个执行活动内部有一个或多个执行任务（invt-xxxxxxxx），每个执行任务代表命令在一台 CVM 或一台 Lighthouse 上的执行记录。
+    /// * 如果指定实例未安装 agent，或 agent 不在线，返回失败
+    /// * 如果命令类型与 agent 运行环境不符，返回失败
+    /// * 指定的实例需要处于 VPC 网络
+    /// * 指定的实例需要处于 `RUNNING` 状态
+    /// * 不可同时指定 CVM 和 Lighthouse
+    @inlinable
+    public func runCommand(content: String, instanceIds: [String], commandName: String? = nil, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, saveCommand: Bool? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, parameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunCommandResponse {
+        try await self.runCommand(RunCommandRequest(content: content, instanceIds: instanceIds, commandName: commandName, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, saveCommand: saveCommand, enableParameter: enableParameter, defaultParameters: defaultParameters, parameters: parameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), logger: logger, on: eventLoop)
+    }
 }

@@ -72,4 +72,20 @@ extension Teo {
     public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
         try await self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询用户站点信息列表
+    ///
+    /// 用户查询用户站点信息列表，支持分页
+    @inlinable
+    public func describeZones(offset: Int64? = nil, limit: Int64? = nil, filters: [ZoneFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZonesResponse > {
+        self.describeZones(DescribeZonesRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户站点信息列表
+    ///
+    /// 用户查询用户站点信息列表，支持分页
+    @inlinable
+    public func describeZones(offset: Int64? = nil, limit: Int64? = nil, filters: [ZoneFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
+        try await self.describeZones(DescribeZonesRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

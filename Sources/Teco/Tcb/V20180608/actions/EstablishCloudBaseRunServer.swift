@@ -115,4 +115,16 @@ extension Tcb {
     public func establishCloudBaseRunServer(_ input: EstablishCloudBaseRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstablishCloudBaseRunServerResponse {
         try await self.client.execute(action: "EstablishCloudBaseRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建云应用服务
+    @inlinable
+    public func establishCloudBaseRunServer(envId: String, serviceName: String, isPublic: Bool, imageRepo: String? = nil, remark: String? = nil, esInfo: CloudBaseEsInfo? = nil, logType: String? = nil, operatorRemark: String? = nil, source: String? = nil, vpcInfo: CloudBaseRunVpcInfo? = nil, publicAccess: Int64? = nil, openAccessTypes: [String]? = nil, isCreatePath: Int64? = nil, serverPath: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EstablishCloudBaseRunServerResponse > {
+        self.establishCloudBaseRunServer(EstablishCloudBaseRunServerRequest(envId: envId, serviceName: serviceName, isPublic: isPublic, imageRepo: imageRepo, remark: remark, esInfo: esInfo, logType: logType, operatorRemark: operatorRemark, source: source, vpcInfo: vpcInfo, publicAccess: publicAccess, openAccessTypes: openAccessTypes, isCreatePath: isCreatePath, serverPath: serverPath), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云应用服务
+    @inlinable
+    public func establishCloudBaseRunServer(envId: String, serviceName: String, isPublic: Bool, imageRepo: String? = nil, remark: String? = nil, esInfo: CloudBaseEsInfo? = nil, logType: String? = nil, operatorRemark: String? = nil, source: String? = nil, vpcInfo: CloudBaseRunVpcInfo? = nil, publicAccess: Int64? = nil, openAccessTypes: [String]? = nil, isCreatePath: Int64? = nil, serverPath: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstablishCloudBaseRunServerResponse {
+        try await self.establishCloudBaseRunServer(EstablishCloudBaseRunServerRequest(envId: envId, serviceName: serviceName, isPublic: isPublic, imageRepo: imageRepo, remark: remark, esInfo: esInfo, logType: logType, operatorRemark: operatorRemark, source: source, vpcInfo: vpcInfo, publicAccess: publicAccess, openAccessTypes: openAccessTypes, isCreatePath: isCreatePath, serverPath: serverPath), logger: logger, on: eventLoop)
+    }
 }

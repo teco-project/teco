@@ -207,4 +207,136 @@ extension Ocr {
     public func generalAccurateOCR(_ input: GeneralAccurateOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralAccurateOCRResponse {
         try await self.client.execute(action: "GeneralAccurateOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 通用印刷体识别（高精度版）
+    ///
+    /// 本接口支持图像整体文字的检测和识别。支持中文、英文、中英文、数字和特殊字符号的识别，并返回文字框位置和文字内容。
+    /// 适用于文字较多、版式复杂、对识别准召率要求较高的场景，如试卷试题、网络图片、街景店招牌、法律卷宗等场景。
+    /// 产品优势：与通用印刷体识别相比，提供更高精度的文字识别服务，在文字较多、长串数字、小字、模糊字、倾斜文本等困难场景下，高精度版的准确率和召回率更高。
+    /// 通用印刷体识别不同版本的差异如下：
+    /// <table style="width:715px">
+    ///       <thead>
+    ///         <tr>
+    ///           <th style="width:150px"></th>
+    ///           <th >【荐】通用印刷体识别（高精度版）</th>
+    ///           <th style="width:200px"><a href="https://cloud.tencent.com/document/product/866/33526">【荐】通用印刷体识别</a></th>
+    ///           <th><a href="https://cloud.tencent.com/document/product/866/37831">通用印刷体识别（精简版）</a></th>
+    ///         </tr>
+    ///       </thead>
+    ///       <tbody>
+    ///         <tr>
+    ///           <td> 适用场景</td>
+    ///           <td>适用于文字较多、长串数字、小字、模糊字、倾斜文本等困难场景</td>
+    ///           <td>适用于所有通用场景的印刷体识别</td>
+    ///           <td>适用于快速文本识别场景，准召率有一定损失，价格更优惠</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>识别准确率</td>
+    ///           <td>99%</td>
+    ///           <td>96%</td>
+    ///           <td>91%</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>价格</td>
+    ///           <td>高</td>
+    ///           <td>中</td>
+    ///           <td>低</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>支持的语言</td>
+    ///           <td>中文、英文、中英文</td>
+    ///           <td>中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语</td>  
+    ///           <td>中文、英文、中英文</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>自动语言检测</td>
+    ///           <td>支持</td>
+    ///           <td>支持</td>  
+    ///           <td>支持</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>返回文本行坐标</td>
+    ///           <td>支持</td>
+    ///           <td>支持</td>
+    ///           <td>支持</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>自动旋转纠正</td>
+    ///           <td>支持旋转识别，返回角度信息</td>
+    ///           <td>支持旋转识别，返回角度信息</td>
+    ///           <td>支持旋转识别，返回角度信息</td>
+    ///         </tr>
+    ///       </tbody>
+    ///     </table>
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func generalAccurateOCR(imageBase64: String? = nil, imageUrl: String? = nil, isWords: Bool? = nil, enableDetectSplit: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GeneralAccurateOCRResponse > {
+        self.generalAccurateOCR(GeneralAccurateOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isWords: isWords, enableDetectSplit: enableDetectSplit, isPdf: isPdf, pdfPageNumber: pdfPageNumber), logger: logger, on: eventLoop)
+    }
+    
+    /// 通用印刷体识别（高精度版）
+    ///
+    /// 本接口支持图像整体文字的检测和识别。支持中文、英文、中英文、数字和特殊字符号的识别，并返回文字框位置和文字内容。
+    /// 适用于文字较多、版式复杂、对识别准召率要求较高的场景，如试卷试题、网络图片、街景店招牌、法律卷宗等场景。
+    /// 产品优势：与通用印刷体识别相比，提供更高精度的文字识别服务，在文字较多、长串数字、小字、模糊字、倾斜文本等困难场景下，高精度版的准确率和召回率更高。
+    /// 通用印刷体识别不同版本的差异如下：
+    /// <table style="width:715px">
+    ///       <thead>
+    ///         <tr>
+    ///           <th style="width:150px"></th>
+    ///           <th >【荐】通用印刷体识别（高精度版）</th>
+    ///           <th style="width:200px"><a href="https://cloud.tencent.com/document/product/866/33526">【荐】通用印刷体识别</a></th>
+    ///           <th><a href="https://cloud.tencent.com/document/product/866/37831">通用印刷体识别（精简版）</a></th>
+    ///         </tr>
+    ///       </thead>
+    ///       <tbody>
+    ///         <tr>
+    ///           <td> 适用场景</td>
+    ///           <td>适用于文字较多、长串数字、小字、模糊字、倾斜文本等困难场景</td>
+    ///           <td>适用于所有通用场景的印刷体识别</td>
+    ///           <td>适用于快速文本识别场景，准召率有一定损失，价格更优惠</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>识别准确率</td>
+    ///           <td>99%</td>
+    ///           <td>96%</td>
+    ///           <td>91%</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>价格</td>
+    ///           <td>高</td>
+    ///           <td>中</td>
+    ///           <td>低</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>支持的语言</td>
+    ///           <td>中文、英文、中英文</td>
+    ///           <td>中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语</td>  
+    ///           <td>中文、英文、中英文</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>自动语言检测</td>
+    ///           <td>支持</td>
+    ///           <td>支持</td>  
+    ///           <td>支持</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>返回文本行坐标</td>
+    ///           <td>支持</td>
+    ///           <td>支持</td>
+    ///           <td>支持</td>
+    ///         </tr>
+    ///         <tr>
+    ///           <td>自动旋转纠正</td>
+    ///           <td>支持旋转识别，返回角度信息</td>
+    ///           <td>支持旋转识别，返回角度信息</td>
+    ///           <td>支持旋转识别，返回角度信息</td>
+    ///         </tr>
+    ///       </tbody>
+    ///     </table>
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func generalAccurateOCR(imageBase64: String? = nil, imageUrl: String? = nil, isWords: Bool? = nil, enableDetectSplit: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralAccurateOCRResponse {
+        try await self.generalAccurateOCR(GeneralAccurateOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isWords: isWords, enableDetectSplit: enableDetectSplit, isPdf: isPdf, pdfPageNumber: pdfPageNumber), logger: logger, on: eventLoop)
+    }
 }

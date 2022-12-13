@@ -75,4 +75,20 @@ extension Teo {
     public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
         try await self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建规则引擎规则
+    ///
+    /// 规则引擎创建规则。
+    @inlinable
+    public func createRule(zoneId: String, ruleName: String, status: String, rules: [RuleItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRuleResponse > {
+        self.createRule(CreateRuleRequest(zoneId: zoneId, ruleName: ruleName, status: status, rules: rules), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建规则引擎规则
+    ///
+    /// 规则引擎创建规则。
+    @inlinable
+    public func createRule(zoneId: String, ruleName: String, status: String, rules: [RuleItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
+        try await self.createRule(CreateRuleRequest(zoneId: zoneId, ruleName: ruleName, status: status, rules: rules), logger: logger, on: eventLoop)
+    }
 }

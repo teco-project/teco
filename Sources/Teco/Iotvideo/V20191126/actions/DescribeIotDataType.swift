@@ -59,4 +59,20 @@ extension Iotvideo {
     public func describeIotDataType(_ input: DescribeIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDataTypeResponse {
         try await self.client.execute(action: "DescribeIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询自定义物模型数据类型
+    ///
+    /// 本接口（DescribeIotDataType）用于查询自定义的物模型数据类型。
+    @inlinable
+    public func describeIotDataType(typeId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIotDataTypeResponse > {
+        self.describeIotDataType(DescribeIotDataTypeRequest(typeId: typeId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询自定义物模型数据类型
+    ///
+    /// 本接口（DescribeIotDataType）用于查询自定义的物模型数据类型。
+    @inlinable
+    public func describeIotDataType(typeId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDataTypeResponse {
+        try await self.describeIotDataType(DescribeIotDataTypeRequest(typeId: typeId), logger: logger, on: eventLoop)
+    }
 }

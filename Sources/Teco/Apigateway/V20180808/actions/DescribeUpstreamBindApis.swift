@@ -69,4 +69,16 @@ extension Apigateway {
     public func describeUpstreamBindApis(_ input: DescribeUpstreamBindApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpstreamBindApisResponse {
         try await self.client.execute(action: "DescribeUpstreamBindApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询后端通道所绑定的API列表
+    @inlinable
+    public func describeUpstreamBindApis(limit: UInt64, offset: UInt64, upstreamId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUpstreamBindApisResponse > {
+        self.describeUpstreamBindApis(DescribeUpstreamBindApisRequest(limit: limit, offset: offset, upstreamId: upstreamId, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询后端通道所绑定的API列表
+    @inlinable
+    public func describeUpstreamBindApis(limit: UInt64, offset: UInt64, upstreamId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpstreamBindApisResponse {
+        try await self.describeUpstreamBindApis(DescribeUpstreamBindApisRequest(limit: limit, offset: offset, upstreamId: upstreamId, filters: filters), logger: logger, on: eventLoop)
+    }
 }

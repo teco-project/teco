@@ -70,4 +70,20 @@ extension Iotcloud {
     public func describeProduct(_ input: DescribeProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductResponse {
         try await self.client.execute(action: "DescribeProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看产品详情
+    ///
+    /// 本接口（DescribeProduct）用于查看产品详情
+    @inlinable
+    public func describeProduct(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductResponse > {
+        self.describeProduct(DescribeProductRequest(productId: productId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看产品详情
+    ///
+    /// 本接口（DescribeProduct）用于查看产品详情
+    @inlinable
+    public func describeProduct(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductResponse {
+        try await self.describeProduct(DescribeProductRequest(productId: productId), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Cfs {
     public func deleteMountTarget(_ input: DeleteMountTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMountTargetResponse {
         try await self.client.execute(action: "DeleteMountTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除挂载点
+    ///
+    /// 本接口（DeleteMountTarget）用于删除挂载点
+    @inlinable
+    public func deleteMountTarget(fileSystemId: String, mountTargetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMountTargetResponse > {
+        self.deleteMountTarget(DeleteMountTargetRequest(fileSystemId: fileSystemId, mountTargetId: mountTargetId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除挂载点
+    ///
+    /// 本接口（DeleteMountTarget）用于删除挂载点
+    @inlinable
+    public func deleteMountTarget(fileSystemId: String, mountTargetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMountTargetResponse {
+        try await self.deleteMountTarget(DeleteMountTargetRequest(fileSystemId: fileSystemId, mountTargetId: mountTargetId), logger: logger, on: eventLoop)
+    }
 }

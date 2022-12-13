@@ -26,7 +26,7 @@ extension Essbasic {
         /// 操作者的信息
         public let `operator`: UserInfo?
         
-        public init (flowId: String, agent: Agent? = nil, `operator`: UserInfo? = nil) {
+        public init (flowId: String, agent: Agent? = nil, operator: UserInfo? = nil) {
             self.flowId = flowId
             self.agent = agent
             self.`operator` = `operator`
@@ -68,5 +68,17 @@ extension Essbasic {
     @inlinable
     public func channelVerifyPdf(_ input: ChannelVerifyPdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelVerifyPdfResponse {
         try await self.client.execute(action: "ChannelVerifyPdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 合同文件验签
+    @inlinable
+    public func channelVerifyPdf(flowId: String, agent: Agent? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelVerifyPdfResponse > {
+        self.channelVerifyPdf(ChannelVerifyPdfRequest(flowId: flowId, agent: agent, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 合同文件验签
+    @inlinable
+    public func channelVerifyPdf(flowId: String, agent: Agent? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelVerifyPdfResponse {
+        try await self.channelVerifyPdf(ChannelVerifyPdfRequest(flowId: flowId, agent: agent, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

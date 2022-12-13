@@ -63,4 +63,20 @@ extension Cdn {
     public func createDiagnoseUrl(_ input: CreateDiagnoseUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDiagnoseUrlResponse {
         try await self.client.execute(action: "CreateDiagnoseUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加诊断URL
+    ///
+    /// CreateDiagnoseUrl 用于添加域名诊断任务URL
+    @inlinable
+    public func createDiagnoseUrl(url: String, origin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDiagnoseUrlResponse > {
+        self.createDiagnoseUrl(CreateDiagnoseUrlRequest(url: url, origin: origin), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加诊断URL
+    ///
+    /// CreateDiagnoseUrl 用于添加域名诊断任务URL
+    @inlinable
+    public func createDiagnoseUrl(url: String, origin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDiagnoseUrlResponse {
+        try await self.createDiagnoseUrl(CreateDiagnoseUrlRequest(url: url, origin: origin), logger: logger, on: eventLoop)
+    }
 }

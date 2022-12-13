@@ -59,4 +59,20 @@ extension Live {
     public func describeLiveTranscodeTemplate(_ input: DescribeLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTemplateResponse {
         try await self.client.execute(action: "DescribeLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取单个转码模板
+    ///
+    /// 获取单个转码模板。
+    @inlinable
+    public func describeLiveTranscodeTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveTranscodeTemplateResponse > {
+        self.describeLiveTranscodeTemplate(DescribeLiveTranscodeTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取单个转码模板
+    ///
+    /// 获取单个转码模板。
+    @inlinable
+    public func describeLiveTranscodeTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTemplateResponse {
+        try await self.describeLiveTranscodeTemplate(DescribeLiveTranscodeTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
 }

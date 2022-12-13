@@ -72,4 +72,20 @@ extension Cfs {
     public func describeCfsFileSystems(_ input: DescribeCfsFileSystemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsFileSystemsResponse {
         try await self.client.execute(action: "DescribeCfsFileSystems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询文件系统
+    ///
+    /// 本接口（DescribeCfsFileSystems）用于查询文件系统
+    @inlinable
+    public func describeCfsFileSystems(fileSystemId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfsFileSystemsResponse > {
+        self.describeCfsFileSystems(DescribeCfsFileSystemsRequest(fileSystemId: fileSystemId, vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文件系统
+    ///
+    /// 本接口（DescribeCfsFileSystems）用于查询文件系统
+    @inlinable
+    public func describeCfsFileSystems(fileSystemId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsFileSystemsResponse {
+        try await self.describeCfsFileSystems(DescribeCfsFileSystemsRequest(fileSystemId: fileSystemId, vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    }
 }

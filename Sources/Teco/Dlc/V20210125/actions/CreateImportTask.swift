@@ -73,4 +73,20 @@ extension Dlc {
     public func createImportTask(_ input: CreateImportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImportTaskResponse {
         try await self.client.execute(action: "CreateImportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建导入任务
+    ///
+    /// 该接口（CreateImportTask）用于创建导入任务
+    @inlinable
+    public func createImportTask(inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImportTaskResponse > {
+        self.createImportTask(CreateImportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建导入任务
+    ///
+    /// 该接口（CreateImportTask）用于创建导入任务
+    @inlinable
+    public func createImportTask(inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImportTaskResponse {
+        try await self.createImportTask(CreateImportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType), logger: logger, on: eventLoop)
+    }
 }

@@ -75,4 +75,16 @@ extension Solar {
     public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
         try await self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改项目
+    @inlinable
+    public func modifyProject(projectId: String, projectName: String, projectBudget: String, projectOrg: String, projectIntroduction: String, projectOrgId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProjectResponse > {
+        self.modifyProject(ModifyProjectRequest(projectId: projectId, projectName: projectName, projectBudget: projectBudget, projectOrg: projectOrg, projectIntroduction: projectIntroduction, projectOrgId: projectOrgId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改项目
+    @inlinable
+    public func modifyProject(projectId: String, projectName: String, projectBudget: String, projectOrg: String, projectIntroduction: String, projectOrgId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
+        try await self.modifyProject(ModifyProjectRequest(projectId: projectId, projectName: projectName, projectBudget: projectBudget, projectOrg: projectOrg, projectIntroduction: projectIntroduction, projectOrgId: projectOrgId), logger: logger, on: eventLoop)
+    }
 }

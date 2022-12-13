@@ -138,4 +138,20 @@ extension Bmlb {
     public func modifyL4Listener(_ input: ModifyL4ListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4ListenerResponse {
         try await self.client.execute(action: "ModifyL4Listener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改黑石负载均衡四层监听器
+    ///
+    /// 修改黑石负载均衡四层监听器。
+    @inlinable
+    public func modifyL4Listener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, bandwidth: Int64? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil, balanceMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL4ListenerResponse > {
+        self.modifyL4Listener(ModifyL4ListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sessionExpire: sessionExpire, healthSwitch: healthSwitch, timeOut: timeOut, intervalTime: intervalTime, healthNum: healthNum, unhealthNum: unhealthNum, bandwidth: bandwidth, customHealthSwitch: customHealthSwitch, inputType: inputType, lineSeparatorType: lineSeparatorType, healthRequest: healthRequest, healthResponse: healthResponse, toaFlag: toaFlag, balanceMode: balanceMode), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改黑石负载均衡四层监听器
+    ///
+    /// 修改黑石负载均衡四层监听器。
+    @inlinable
+    public func modifyL4Listener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, bandwidth: Int64? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil, balanceMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4ListenerResponse {
+        try await self.modifyL4Listener(ModifyL4ListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sessionExpire: sessionExpire, healthSwitch: healthSwitch, timeOut: timeOut, intervalTime: intervalTime, healthNum: healthNum, unhealthNum: unhealthNum, bandwidth: bandwidth, customHealthSwitch: customHealthSwitch, inputType: inputType, lineSeparatorType: lineSeparatorType, healthRequest: healthRequest, healthResponse: healthResponse, toaFlag: toaFlag, balanceMode: balanceMode), logger: logger, on: eventLoop)
+    }
 }

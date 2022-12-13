@@ -135,4 +135,16 @@ extension Dts {
     public func describeMigrationJobs(_ input: DescribeMigrationJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationJobsResponse {
         try await self.client.execute(action: "DescribeMigrationJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询数据迁移任务列表
+    @inlinable
+    public func describeMigrationJobs(jobId: String? = nil, jobName: String? = nil, status: [String]? = nil, srcInstanceId: String? = nil, srcRegion: String? = nil, srcDatabaseType: [String]? = nil, srcAccessType: [String]? = nil, dstInstanceId: String? = nil, dstRegion: String? = nil, dstDatabaseType: [String]? = nil, dstAccessType: [String]? = nil, runMode: String? = nil, orderSeq: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationJobsResponse > {
+        self.describeMigrationJobs(DescribeMigrationJobsRequest(jobId: jobId, jobName: jobName, status: status, srcInstanceId: srcInstanceId, srcRegion: srcRegion, srcDatabaseType: srcDatabaseType, srcAccessType: srcAccessType, dstInstanceId: dstInstanceId, dstRegion: dstRegion, dstDatabaseType: dstDatabaseType, dstAccessType: dstAccessType, runMode: runMode, orderSeq: orderSeq, limit: limit, offset: offset, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据迁移任务列表
+    @inlinable
+    public func describeMigrationJobs(jobId: String? = nil, jobName: String? = nil, status: [String]? = nil, srcInstanceId: String? = nil, srcRegion: String? = nil, srcDatabaseType: [String]? = nil, srcAccessType: [String]? = nil, dstInstanceId: String? = nil, dstRegion: String? = nil, dstDatabaseType: [String]? = nil, dstAccessType: [String]? = nil, runMode: String? = nil, orderSeq: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationJobsResponse {
+        try await self.describeMigrationJobs(DescribeMigrationJobsRequest(jobId: jobId, jobName: jobName, status: status, srcInstanceId: srcInstanceId, srcRegion: srcRegion, srcDatabaseType: srcDatabaseType, srcAccessType: srcAccessType, dstInstanceId: dstInstanceId, dstRegion: dstRegion, dstDatabaseType: dstDatabaseType, dstAccessType: dstAccessType, runMode: runMode, orderSeq: orderSeq, limit: limit, offset: offset, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    }
 }

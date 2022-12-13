@@ -84,4 +84,20 @@ extension Ocr {
     public func vatRollInvoiceOCR(_ input: VatRollInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VatRollInvoiceOCRResponse {
         try await self.client.execute(action: "VatRollInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 增值税发票（卷票）识别
+    ///
+    /// 本接口支持对增值税发票（卷票）的发票代码、发票号码、日期、校验码、合计金额（小写）等关键字段的识别。
+    @inlinable
+    public func vatRollInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VatRollInvoiceOCRResponse > {
+        self.vatRollInvoiceOCR(VatRollInvoiceOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), logger: logger, on: eventLoop)
+    }
+    
+    /// 增值税发票（卷票）识别
+    ///
+    /// 本接口支持对增值税发票（卷票）的发票代码、发票号码、日期、校验码、合计金额（小写）等关键字段的识别。
+    @inlinable
+    public func vatRollInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VatRollInvoiceOCRResponse {
+        try await self.vatRollInvoiceOCR(VatRollInvoiceOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), logger: logger, on: eventLoop)
+    }
 }

@@ -109,4 +109,20 @@ extension Cdn {
     public func listTopClsLogData(_ input: ListTopClsLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopClsLogDataResponse {
         try await self.client.execute(action: "ListTopClsLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 通过CLS日志计算Top信息
+    ///
+    /// 通过CLS日志计算Top信息。支持近7天的日志数据。
+    @inlinable
+    public func listTopClsLogData(logsetId: String, topicIds: String, startTime: String, endTime: String, domain: String, url: String, channel: String? = nil, limit: UInt64? = nil, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopClsLogDataResponse > {
+        self.listTopClsLogData(ListTopClsLogDataRequest(logsetId: logsetId, topicIds: topicIds, startTime: startTime, endTime: endTime, domain: domain, url: url, channel: channel, limit: limit, sort: sort), logger: logger, on: eventLoop)
+    }
+    
+    /// 通过CLS日志计算Top信息
+    ///
+    /// 通过CLS日志计算Top信息。支持近7天的日志数据。
+    @inlinable
+    public func listTopClsLogData(logsetId: String, topicIds: String, startTime: String, endTime: String, domain: String, url: String, channel: String? = nil, limit: UInt64? = nil, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopClsLogDataResponse {
+        try await self.listTopClsLogData(ListTopClsLogDataRequest(logsetId: logsetId, topicIds: topicIds, startTime: startTime, endTime: endTime, domain: domain, url: url, channel: channel, limit: limit, sort: sort), logger: logger, on: eventLoop)
+    }
 }

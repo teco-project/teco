@@ -101,4 +101,20 @@ extension Cpdp {
     public func queryReconciliationDocument(_ input: QueryReconciliationDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryReconciliationDocumentResponse {
         try await self.client.execute(action: "QueryReconciliationDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云鉴-查询对账文件信息
+    ///
+    /// 查询对账文件信息。平台调用该接口获取需下载对账文件的文件名称以及密钥。 平台获取到信息后， 可以再调用OPENAPI的文件下载功能。
+    @inlinable
+    public func queryReconciliationDocument(mrchCode: String, fileType: String, fileDate: String, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryReconciliationDocumentResponse > {
+        self.queryReconciliationDocument(QueryReconciliationDocumentRequest(mrchCode: mrchCode, fileType: fileType, fileDate: fileDate, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-查询对账文件信息
+    ///
+    /// 查询对账文件信息。平台调用该接口获取需下载对账文件的文件名称以及密钥。 平台获取到信息后， 可以再调用OPENAPI的文件下载功能。
+    @inlinable
+    public func queryReconciliationDocument(mrchCode: String, fileType: String, fileDate: String, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryReconciliationDocumentResponse {
+        try await self.queryReconciliationDocument(QueryReconciliationDocumentRequest(mrchCode: mrchCode, fileType: fileType, fileDate: fileDate, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    }
 }

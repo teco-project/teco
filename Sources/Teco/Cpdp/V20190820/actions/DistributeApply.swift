@@ -99,4 +99,16 @@ extension Cpdp {
     public func distributeApply(_ input: DistributeApplyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeApplyResponse {
         try await self.client.execute(action: "DistributeApply", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云支付-分账请求接口
+    @inlinable
+    public func distributeApply(openId: String, openKey: String, outDistributeNo: String, details: [MultiApplyDetail], developerNo: String? = nil, orderNo: String? = nil, remark: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DistributeApplyResponse > {
+        self.distributeApply(DistributeApplyRequest(openId: openId, openKey: openKey, outDistributeNo: outDistributeNo, details: details, developerNo: developerNo, orderNo: orderNo, remark: remark, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-分账请求接口
+    @inlinable
+    public func distributeApply(openId: String, openKey: String, outDistributeNo: String, details: [MultiApplyDetail], developerNo: String? = nil, orderNo: String? = nil, remark: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeApplyResponse {
+        try await self.distributeApply(DistributeApplyRequest(openId: openId, openKey: openKey, outDistributeNo: outDistributeNo, details: details, developerNo: developerNo, orderNo: orderNo, remark: remark, profile: profile), logger: logger, on: eventLoop)
+    }
 }

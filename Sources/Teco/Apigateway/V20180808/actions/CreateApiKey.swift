@@ -74,4 +74,20 @@ extension Apigateway {
     public func createApiKey(_ input: CreateApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiKeyResponse {
         try await self.client.execute(action: "CreateApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建密钥
+    ///
+    /// 本接口（CreateApiKey）用于创建一对新的 API 密钥。
+    @inlinable
+    public func createApiKey(secretName: String, accessKeyType: String? = nil, accessKeyId: String? = nil, accessKeySecret: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApiKeyResponse > {
+        self.createApiKey(CreateApiKeyRequest(secretName: secretName, accessKeyType: accessKeyType, accessKeyId: accessKeyId, accessKeySecret: accessKeySecret), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建密钥
+    ///
+    /// 本接口（CreateApiKey）用于创建一对新的 API 密钥。
+    @inlinable
+    public func createApiKey(secretName: String, accessKeyType: String? = nil, accessKeyId: String? = nil, accessKeySecret: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiKeyResponse {
+        try await self.createApiKey(CreateApiKeyRequest(secretName: secretName, accessKeyType: accessKeyType, accessKeyId: accessKeyId, accessKeySecret: accessKeySecret), logger: logger, on: eventLoop)
+    }
 }

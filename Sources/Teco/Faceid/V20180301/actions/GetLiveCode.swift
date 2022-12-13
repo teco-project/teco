@@ -50,4 +50,20 @@ extension Faceid {
     public func getLiveCode(_ input: GetLiveCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLiveCodeResponse {
         try await self.client.execute(action: "GetLiveCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取数字验证码
+    ///
+    /// 使用数字活体检测模式前，需调用本接口获取数字验证码。
+    @inlinable
+    public func getLiveCode(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLiveCodeResponse > {
+        self.getLiveCode(GetLiveCodeRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取数字验证码
+    ///
+    /// 使用数字活体检测模式前，需调用本接口获取数字验证码。
+    @inlinable
+    public func getLiveCode(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLiveCodeResponse {
+        try await self.getLiveCode(GetLiveCodeRequest(), logger: logger, on: eventLoop)
+    }
 }

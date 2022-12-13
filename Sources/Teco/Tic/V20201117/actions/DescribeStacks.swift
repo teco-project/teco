@@ -76,4 +76,24 @@ extension Tic {
     public func describeStacks(_ input: DescribeStacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStacksResponse {
         try await self.client.execute(action: "DescribeStacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询资源栈列表
+    ///
+    /// 本接口（DescribeStacks）用于查询一个或多个资源栈的详细信息。
+    /// - 可以根据资源栈ID来查询感兴趣的资源栈信息
+    /// - 若参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的资源栈
+    @inlinable
+    public func describeStacks(stackIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStacksResponse > {
+        self.describeStacks(DescribeStacksRequest(stackIds: stackIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资源栈列表
+    ///
+    /// 本接口（DescribeStacks）用于查询一个或多个资源栈的详细信息。
+    /// - 可以根据资源栈ID来查询感兴趣的资源栈信息
+    /// - 若参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的资源栈
+    @inlinable
+    public func describeStacks(stackIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStacksResponse {
+        try await self.describeStacks(DescribeStacksRequest(stackIds: stackIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

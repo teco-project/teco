@@ -79,4 +79,20 @@ extension Tdmq {
     public func resetRocketMQConsumerOffSet(_ input: ResetRocketMQConsumerOffSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRocketMQConsumerOffSetResponse {
         try await self.client.execute(action: "ResetRocketMQConsumerOffSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重置RocketMQ消费位点
+    ///
+    /// 重置指定Group的消费位点到指定时间戳
+    @inlinable
+    public func resetRocketMQConsumerOffSet(clusterId: String, namespaceId: String, groupId: String, topic: String, type: UInt64, resetTimestamp: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetRocketMQConsumerOffSetResponse > {
+        self.resetRocketMQConsumerOffSet(ResetRocketMQConsumerOffSetRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, topic: topic, type: type, resetTimestamp: resetTimestamp), logger: logger, on: eventLoop)
+    }
+    
+    /// 重置RocketMQ消费位点
+    ///
+    /// 重置指定Group的消费位点到指定时间戳
+    @inlinable
+    public func resetRocketMQConsumerOffSet(clusterId: String, namespaceId: String, groupId: String, topic: String, type: UInt64, resetTimestamp: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRocketMQConsumerOffSetResponse {
+        try await self.resetRocketMQConsumerOffSet(ResetRocketMQConsumerOffSetRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, topic: topic, type: type, resetTimestamp: resetTimestamp), logger: logger, on: eventLoop)
+    }
 }

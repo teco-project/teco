@@ -50,4 +50,20 @@ extension Dcdb {
     public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
         try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询项目列表
+    ///
+    /// 本接口（DescribeProjects）用于查询项目列表
+    @inlinable
+    public func describeProjects(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
+        self.describeProjects(DescribeProjectsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询项目列表
+    ///
+    /// 本接口（DescribeProjects）用于查询项目列表
+    @inlinable
+    public func describeProjects(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
+        try await self.describeProjects(DescribeProjectsRequest(), logger: logger, on: eventLoop)
+    }
 }

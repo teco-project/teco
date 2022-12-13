@@ -64,4 +64,20 @@ extension Lighthouse {
     public func modifyBlueprintAttribute(_ input: ModifyBlueprintAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlueprintAttributeResponse {
         try await self.client.execute(action: "ModifyBlueprintAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改镜像属性
+    ///
+    /// 本接口 (ModifyBlueprintAttribute) 用于修改镜像属性。
+    @inlinable
+    public func modifyBlueprintAttribute(blueprintId: String, blueprintName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBlueprintAttributeResponse > {
+        self.modifyBlueprintAttribute(ModifyBlueprintAttributeRequest(blueprintId: blueprintId, blueprintName: blueprintName, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改镜像属性
+    ///
+    /// 本接口 (ModifyBlueprintAttribute) 用于修改镜像属性。
+    @inlinable
+    public func modifyBlueprintAttribute(blueprintId: String, blueprintName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlueprintAttributeResponse {
+        try await self.modifyBlueprintAttribute(ModifyBlueprintAttributeRequest(blueprintId: blueprintId, blueprintName: blueprintName, description: description), logger: logger, on: eventLoop)
+    }
 }

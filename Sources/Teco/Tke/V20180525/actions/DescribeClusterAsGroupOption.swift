@@ -55,4 +55,16 @@ extension Tke {
     public func describeClusterAsGroupOption(_ input: DescribeClusterAsGroupOptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterAsGroupOptionResponse {
         try await self.client.execute(action: "DescribeClusterAsGroupOption", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 集群弹性伸缩配置
+    @inlinable
+    public func describeClusterAsGroupOption(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterAsGroupOptionResponse > {
+        self.describeClusterAsGroupOption(DescribeClusterAsGroupOptionRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 集群弹性伸缩配置
+    @inlinable
+    public func describeClusterAsGroupOption(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterAsGroupOptionResponse {
+        try await self.describeClusterAsGroupOption(DescribeClusterAsGroupOptionRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

@@ -58,4 +58,20 @@ extension Bda {
     public func getSummaryInfo(_ input: GetSummaryInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSummaryInfoResponse {
         try await self.client.execute(action: "GetSummaryInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取人体库汇总信息
+    ///
+    /// 获取人体库汇总信息。
+    @inlinable
+    public func getSummaryInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSummaryInfoResponse > {
+        self.getSummaryInfo(GetSummaryInfoRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取人体库汇总信息
+    ///
+    /// 获取人体库汇总信息。
+    @inlinable
+    public func getSummaryInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSummaryInfoResponse {
+        try await self.getSummaryInfo(GetSummaryInfoRequest(), logger: logger, on: eventLoop)
+    }
 }

@@ -114,4 +114,20 @@ extension Yunjing {
     public func describeWeeklyReportInfo(_ input: DescribeWeeklyReportInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportInfoResponse {
         try await self.client.execute(action: "DescribeWeeklyReportInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取专业周报详情
+    ///
+    /// 本接口 (DescribeWeeklyReportInfo) 用于获取专业周报详情数据。
+    @inlinable
+    public func describeWeeklyReportInfo(beginDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWeeklyReportInfoResponse > {
+        self.describeWeeklyReportInfo(DescribeWeeklyReportInfoRequest(beginDate: beginDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取专业周报详情
+    ///
+    /// 本接口 (DescribeWeeklyReportInfo) 用于获取专业周报详情数据。
+    @inlinable
+    public func describeWeeklyReportInfo(beginDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportInfoResponse {
+        try await self.describeWeeklyReportInfo(DescribeWeeklyReportInfoRequest(beginDate: beginDate), logger: logger, on: eventLoop)
+    }
 }

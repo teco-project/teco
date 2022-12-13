@@ -76,4 +76,22 @@ extension Ds {
     public func checkVcode(_ input: CheckVcodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckVcodeResponse {
         try await self.client.execute(action: "CheckVcode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 检测验证码
+    ///
+    /// 检测验证码接口。此接口用于企业电子合同平台通过给用户发送短信验证码，以短信授权方式签署合同。此接口配合发送验证码接口使用。
+    /// 用户在企业电子合同平台输入收到的验证码后，由企业电子合同平台调用该接口向腾讯云提交确认受托签署合同验证码命令。验证码验证正确时，本次合同签署的授权成功。
+    @inlinable
+    public func checkVcode(module: String, operation: String, accountResId: String, contractResId: String, verifyCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckVcodeResponse > {
+        self.checkVcode(CheckVcodeRequest(module: module, operation: operation, accountResId: accountResId, contractResId: contractResId, verifyCode: verifyCode), logger: logger, on: eventLoop)
+    }
+    
+    /// 检测验证码
+    ///
+    /// 检测验证码接口。此接口用于企业电子合同平台通过给用户发送短信验证码，以短信授权方式签署合同。此接口配合发送验证码接口使用。
+    /// 用户在企业电子合同平台输入收到的验证码后，由企业电子合同平台调用该接口向腾讯云提交确认受托签署合同验证码命令。验证码验证正确时，本次合同签署的授权成功。
+    @inlinable
+    public func checkVcode(module: String, operation: String, accountResId: String, contractResId: String, verifyCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckVcodeResponse {
+        try await self.checkVcode(CheckVcodeRequest(module: module, operation: operation, accountResId: accountResId, contractResId: contractResId, verifyCode: verifyCode), logger: logger, on: eventLoop)
+    }
 }

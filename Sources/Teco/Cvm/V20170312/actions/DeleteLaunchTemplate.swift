@@ -54,4 +54,20 @@ extension Cvm {
     public func deleteLaunchTemplate(_ input: DeleteLaunchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchTemplateResponse {
         try await self.client.execute(action: "DeleteLaunchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除实例启动模板
+    ///
+    /// 本接口（DeleteLaunchTemplate）用于删除一个实例启动模板。
+    @inlinable
+    public func deleteLaunchTemplate(launchTemplateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLaunchTemplateResponse > {
+        self.deleteLaunchTemplate(DeleteLaunchTemplateRequest(launchTemplateId: launchTemplateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除实例启动模板
+    ///
+    /// 本接口（DeleteLaunchTemplate）用于删除一个实例启动模板。
+    @inlinable
+    public func deleteLaunchTemplate(launchTemplateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchTemplateResponse {
+        try await self.deleteLaunchTemplate(DeleteLaunchTemplateRequest(launchTemplateId: launchTemplateId), logger: logger, on: eventLoop)
+    }
 }

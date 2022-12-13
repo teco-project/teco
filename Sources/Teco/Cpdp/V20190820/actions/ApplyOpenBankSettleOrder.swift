@@ -108,4 +108,16 @@ extension Cpdp {
     public func applyOpenBankSettleOrder(_ input: ApplyOpenBankSettleOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOpenBankSettleOrderResponse {
         try await self.client.execute(action: "ApplyOpenBankSettleOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-结算申请接口
+    @inlinable
+    public func applyOpenBankSettleOrder(channelMerchantId: String, outSettleId: String, settleAmount: Int64, channelName: String, channelSubMerchantId: String? = nil, settleDetail: String? = nil, notifyUrl: String? = nil, remark: String? = nil, externalSettleData: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyOpenBankSettleOrderResponse > {
+        self.applyOpenBankSettleOrder(ApplyOpenBankSettleOrderRequest(channelMerchantId: channelMerchantId, outSettleId: outSettleId, settleAmount: settleAmount, channelName: channelName, channelSubMerchantId: channelSubMerchantId, settleDetail: settleDetail, notifyUrl: notifyUrl, remark: remark, externalSettleData: externalSettleData, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-结算申请接口
+    @inlinable
+    public func applyOpenBankSettleOrder(channelMerchantId: String, outSettleId: String, settleAmount: Int64, channelName: String, channelSubMerchantId: String? = nil, settleDetail: String? = nil, notifyUrl: String? = nil, remark: String? = nil, externalSettleData: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOpenBankSettleOrderResponse {
+        try await self.applyOpenBankSettleOrder(ApplyOpenBankSettleOrderRequest(channelMerchantId: channelMerchantId, outSettleId: outSettleId, settleAmount: settleAmount, channelName: channelName, channelSubMerchantId: channelSubMerchantId, settleDetail: settleDetail, notifyUrl: notifyUrl, remark: remark, externalSettleData: externalSettleData, environment: environment), logger: logger, on: eventLoop)
+    }
 }

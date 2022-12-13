@@ -76,4 +76,20 @@ extension Tag {
     public func getTags(_ input: GetTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTagsResponse {
         try await self.client.execute(action: "GetTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取标签列表
+    ///
+    /// 用于获取已建立的标签列表。
+    @inlinable
+    public func getTags(paginationToken: String? = nil, maxResults: UInt64? = nil, tagKeys: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTagsResponse > {
+        self.getTags(GetTagsRequest(paginationToken: paginationToken, maxResults: maxResults, tagKeys: tagKeys), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取标签列表
+    ///
+    /// 用于获取已建立的标签列表。
+    @inlinable
+    public func getTags(paginationToken: String? = nil, maxResults: UInt64? = nil, tagKeys: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTagsResponse {
+        try await self.getTags(GetTagsRequest(paginationToken: paginationToken, maxResults: maxResults, tagKeys: tagKeys), logger: logger, on: eventLoop)
+    }
 }

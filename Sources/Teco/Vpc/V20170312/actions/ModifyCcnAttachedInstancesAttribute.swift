@@ -59,4 +59,20 @@ extension Vpc {
     public func modifyCcnAttachedInstancesAttribute(_ input: ModifyCcnAttachedInstancesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttachedInstancesAttributeResponse {
         try await self.client.execute(action: "ModifyCcnAttachedInstancesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改CCN关联实例属性
+    ///
+    /// 修改CCN关联实例属性，目前仅修改备注description
+    @inlinable
+    public func modifyCcnAttachedInstancesAttribute(ccnId: String, instances: [CcnInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCcnAttachedInstancesAttributeResponse > {
+        self.modifyCcnAttachedInstancesAttribute(ModifyCcnAttachedInstancesAttributeRequest(ccnId: ccnId, instances: instances), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CCN关联实例属性
+    ///
+    /// 修改CCN关联实例属性，目前仅修改备注description
+    @inlinable
+    public func modifyCcnAttachedInstancesAttribute(ccnId: String, instances: [CcnInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttachedInstancesAttributeResponse {
+        try await self.modifyCcnAttachedInstancesAttribute(ModifyCcnAttachedInstancesAttributeRequest(ccnId: ccnId, instances: instances), logger: logger, on: eventLoop)
+    }
 }

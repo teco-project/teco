@@ -58,4 +58,20 @@ extension Ssl {
     public func deleteCertificate(_ input: DeleteCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCertificateResponse {
         try await self.client.execute(action: "DeleteCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除证书
+    ///
+    /// 本接口（DeleteCertificate）用于删除证书。
+    @inlinable
+    public func deleteCertificate(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCertificateResponse > {
+        self.deleteCertificate(DeleteCertificateRequest(certificateId: certificateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除证书
+    ///
+    /// 本接口（DeleteCertificate）用于删除证书。
+    @inlinable
+    public func deleteCertificate(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCertificateResponse {
+        try await self.deleteCertificate(DeleteCertificateRequest(certificateId: certificateId), logger: logger, on: eventLoop)
+    }
 }

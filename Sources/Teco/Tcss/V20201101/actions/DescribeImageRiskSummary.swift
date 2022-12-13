@@ -54,4 +54,16 @@ extension Tcss {
     public func describeImageRiskSummary(_ input: DescribeImageRiskSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRiskSummaryResponse {
         try await self.client.execute(action: "DescribeImageRiskSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询本地镜像风险概览
+    @inlinable
+    public func describeImageRiskSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageRiskSummaryResponse > {
+        self.describeImageRiskSummary(DescribeImageRiskSummaryRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询本地镜像风险概览
+    @inlinable
+    public func describeImageRiskSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRiskSummaryResponse {
+        try await self.describeImageRiskSummary(DescribeImageRiskSummaryRequest(), logger: logger, on: eventLoop)
+    }
 }

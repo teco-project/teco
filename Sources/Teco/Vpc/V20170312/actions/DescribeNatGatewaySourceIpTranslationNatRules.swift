@@ -81,4 +81,20 @@ extension Vpc {
     public func describeNatGatewaySourceIpTranslationNatRules(_ input: DescribeNatGatewaySourceIpTranslationNatRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewaySourceIpTranslationNatRulesResponse {
         try await self.client.execute(action: "DescribeNatGatewaySourceIpTranslationNatRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询NAT网关SNAT转发规则
+    ///
+    /// 本接口（DescribeNatGatewaySourceIpTranslationNatRules）用于查询NAT网关SNAT转发规则对象数组。
+    @inlinable
+    public func describeNatGatewaySourceIpTranslationNatRules(natGatewayId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatGatewaySourceIpTranslationNatRulesResponse > {
+        self.describeNatGatewaySourceIpTranslationNatRules(DescribeNatGatewaySourceIpTranslationNatRulesRequest(natGatewayId: natGatewayId, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询NAT网关SNAT转发规则
+    ///
+    /// 本接口（DescribeNatGatewaySourceIpTranslationNatRules）用于查询NAT网关SNAT转发规则对象数组。
+    @inlinable
+    public func describeNatGatewaySourceIpTranslationNatRules(natGatewayId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewaySourceIpTranslationNatRulesResponse {
+        try await self.describeNatGatewaySourceIpTranslationNatRules(DescribeNatGatewaySourceIpTranslationNatRulesRequest(natGatewayId: natGatewayId, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

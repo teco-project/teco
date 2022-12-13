@@ -69,4 +69,16 @@ extension Yunjing {
     public func describeReverseShellRules(_ input: DescribeReverseShellRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellRulesResponse {
         try await self.client.execute(action: "DescribeReverseShellRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取反弹Shell规则列表
+    @inlinable
+    public func describeReverseShellRules(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReverseShellRulesResponse > {
+        self.describeReverseShellRules(DescribeReverseShellRulesRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取反弹Shell规则列表
+    @inlinable
+    public func describeReverseShellRules(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellRulesResponse {
+        try await self.describeReverseShellRules(DescribeReverseShellRulesRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

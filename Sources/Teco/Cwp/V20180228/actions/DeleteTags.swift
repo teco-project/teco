@@ -50,4 +50,16 @@ extension Cwp {
     public func deleteTags(_ input: DeleteTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagsResponse {
         try await self.client.execute(action: "DeleteTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除标签
+    @inlinable
+    public func deleteTags(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTagsResponse > {
+        self.deleteTags(DeleteTagsRequest(ids: ids), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除标签
+    @inlinable
+    public func deleteTags(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagsResponse {
+        try await self.deleteTags(DeleteTagsRequest(ids: ids), logger: logger, on: eventLoop)
+    }
 }

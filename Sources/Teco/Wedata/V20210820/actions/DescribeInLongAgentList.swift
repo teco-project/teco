@@ -110,4 +110,16 @@ extension Wedata {
     public func describeInLongAgentList(_ input: DescribeInLongAgentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentListResponse {
         try await self.client.execute(action: "DescribeInLongAgentList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取采集器列表
+    @inlinable
+    public func describeInLongAgentList(projectId: String, agentId: String? = nil, agentName: String? = nil, agentType: UInt64? = nil, status: String? = nil, vpcId: String? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, like: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInLongAgentListResponse > {
+        self.describeInLongAgentList(DescribeInLongAgentListRequest(projectId: projectId, agentId: agentId, agentName: agentName, agentType: agentType, status: status, vpcId: vpcId, pageIndex: pageIndex, pageSize: pageSize, like: like), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取采集器列表
+    @inlinable
+    public func describeInLongAgentList(projectId: String, agentId: String? = nil, agentName: String? = nil, agentType: UInt64? = nil, status: String? = nil, vpcId: String? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, like: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentListResponse {
+        try await self.describeInLongAgentList(DescribeInLongAgentListRequest(projectId: projectId, agentId: agentId, agentName: agentName, agentType: agentType, status: status, vpcId: vpcId, pageIndex: pageIndex, pageSize: pageSize, like: like), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,16 @@ extension Antiddos {
     public func describeDDoSConnectLimitList(_ input: DescribeDDoSConnectLimitListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSConnectLimitListResponse {
         try await self.client.execute(action: "DescribeDDoSConnectLimitList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取DDoS连接抑制配置列表
+    @inlinable
+    public func describeDDoSConnectLimitList(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSConnectLimitListResponse > {
+        self.describeDDoSConnectLimitList(DescribeDDoSConnectLimitListRequest(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS连接抑制配置列表
+    @inlinable
+    public func describeDDoSConnectLimitList(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSConnectLimitListResponse {
+        try await self.describeDDoSConnectLimitList(DescribeDDoSConnectLimitListRequest(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId), logger: logger, on: eventLoop)
+    }
 }

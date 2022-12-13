@@ -70,4 +70,16 @@ extension Iecp {
     public func deleteNodeUnit(_ input: DeleteNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNodeUnitResponse {
         try await self.client.execute(action: "DeleteNodeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除边缘单元NodeUnit
+    @inlinable
+    public func deleteNodeUnit(edgeUnitId: UInt64, nodeGroupName: String, nodeUnitName: String, namespace: String? = nil, nodes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNodeUnitResponse > {
+        self.deleteNodeUnit(DeleteNodeUnitRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, nodeUnitName: nodeUnitName, namespace: namespace, nodes: nodes), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除边缘单元NodeUnit
+    @inlinable
+    public func deleteNodeUnit(edgeUnitId: UInt64, nodeGroupName: String, nodeUnitName: String, namespace: String? = nil, nodes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNodeUnitResponse {
+        try await self.deleteNodeUnit(DeleteNodeUnitRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, nodeUnitName: nodeUnitName, namespace: namespace, nodes: nodes), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Iotvideo {
     public func deleteTraceIds(_ input: DeleteTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTraceIdsResponse {
         try await self.client.execute(action: "DeleteTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 将设备从白名单删除
+    ///
+    /// 本接口（DeleteTraceIds）用于将设备从日志跟踪白名单中删除，该接口可批量操作，最多支持同时操作100台设备。
+    @inlinable
+    public func deleteTraceIds(tids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTraceIdsResponse > {
+        self.deleteTraceIds(DeleteTraceIdsRequest(tids: tids), logger: logger, on: eventLoop)
+    }
+    
+    /// 将设备从白名单删除
+    ///
+    /// 本接口（DeleteTraceIds）用于将设备从日志跟踪白名单中删除，该接口可批量操作，最多支持同时操作100台设备。
+    @inlinable
+    public func deleteTraceIds(tids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTraceIdsResponse {
+        try await self.deleteTraceIds(DeleteTraceIdsRequest(tids: tids), logger: logger, on: eventLoop)
+    }
 }

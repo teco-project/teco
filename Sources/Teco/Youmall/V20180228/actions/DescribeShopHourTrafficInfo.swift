@@ -99,4 +99,20 @@ extension Youmall {
     public func describeShopHourTrafficInfo(_ input: DescribeShopHourTrafficInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopHourTrafficInfoResponse {
         try await self.client.execute(action: "DescribeShopHourTrafficInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取每小时客流人数
+    ///
+    /// 按小时提供查询日期范围内门店的每天每小时累计客流人数数据，支持的时间范围：过去365天，含当天。
+    @inlinable
+    public func describeShopHourTrafficInfo(companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShopHourTrafficInfoResponse > {
+        self.describeShopHourTrafficInfo(DescribeShopHourTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取每小时客流人数
+    ///
+    /// 按小时提供查询日期范围内门店的每天每小时累计客流人数数据，支持的时间范围：过去365天，含当天。
+    @inlinable
+    public func describeShopHourTrafficInfo(companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopHourTrafficInfoResponse {
+        try await self.describeShopHourTrafficInfo(DescribeShopHourTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

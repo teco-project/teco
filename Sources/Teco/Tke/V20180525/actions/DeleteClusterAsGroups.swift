@@ -60,4 +60,16 @@ extension Tke {
     public func deleteClusterAsGroups(_ input: DeleteClusterAsGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterAsGroupsResponse {
         try await self.client.execute(action: "DeleteClusterAsGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除集群伸缩组
+    @inlinable
+    public func deleteClusterAsGroups(clusterId: String, autoScalingGroupIds: [String], keepInstance: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterAsGroupsResponse > {
+        self.deleteClusterAsGroups(DeleteClusterAsGroupsRequest(clusterId: clusterId, autoScalingGroupIds: autoScalingGroupIds, keepInstance: keepInstance), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除集群伸缩组
+    @inlinable
+    public func deleteClusterAsGroups(clusterId: String, autoScalingGroupIds: [String], keepInstance: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterAsGroupsResponse {
+        try await self.deleteClusterAsGroups(DeleteClusterAsGroupsRequest(clusterId: clusterId, autoScalingGroupIds: autoScalingGroupIds, keepInstance: keepInstance), logger: logger, on: eventLoop)
+    }
 }

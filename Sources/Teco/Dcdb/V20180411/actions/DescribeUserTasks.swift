@@ -97,4 +97,20 @@ extension Dcdb {
     public func describeUserTasks(_ input: DescribeUserTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserTasksResponse {
         try await self.client.execute(action: "DescribeUserTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 拉取用户任务列表
+    ///
+    /// 本接口（DescribeUserTasks）用于拉取用户任务列表
+    @inlinable
+    public func describeUserTasks(statuses: [Int64]? = nil, instanceIds: [String]? = nil, flowTypes: [Int64]? = nil, startTime: String? = nil, endTime: String? = nil, uTaskIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserTasksResponse > {
+        self.describeUserTasks(DescribeUserTasksRequest(statuses: statuses, instanceIds: instanceIds, flowTypes: flowTypes, startTime: startTime, endTime: endTime, uTaskIds: uTaskIds, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取用户任务列表
+    ///
+    /// 本接口（DescribeUserTasks）用于拉取用户任务列表
+    @inlinable
+    public func describeUserTasks(statuses: [Int64]? = nil, instanceIds: [String]? = nil, flowTypes: [Int64]? = nil, startTime: String? = nil, endTime: String? = nil, uTaskIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserTasksResponse {
+        try await self.describeUserTasks(DescribeUserTasksRequest(statuses: statuses, instanceIds: instanceIds, flowTypes: flowTypes, startTime: startTime, endTime: endTime, uTaskIds: uTaskIds, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

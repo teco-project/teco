@@ -64,4 +64,20 @@ extension Vpc {
     public func resetAttachCcnInstances(_ input: ResetAttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAttachCcnInstancesResponse {
         try await self.client.execute(action: "ResetAttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重新申请关联实例
+    ///
+    /// 本接口（ResetAttachCcnInstances）用于跨账号关联实例申请过期时，重新申请关联操作。
+    @inlinable
+    public func resetAttachCcnInstances(ccnId: String, ccnUin: String, instances: [CcnInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetAttachCcnInstancesResponse > {
+        self.resetAttachCcnInstances(ResetAttachCcnInstancesRequest(ccnId: ccnId, ccnUin: ccnUin, instances: instances), logger: logger, on: eventLoop)
+    }
+    
+    /// 重新申请关联实例
+    ///
+    /// 本接口（ResetAttachCcnInstances）用于跨账号关联实例申请过期时，重新申请关联操作。
+    @inlinable
+    public func resetAttachCcnInstances(ccnId: String, ccnUin: String, instances: [CcnInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAttachCcnInstancesResponse {
+        try await self.resetAttachCcnInstances(ResetAttachCcnInstancesRequest(ccnId: ccnId, ccnUin: ccnUin, instances: instances), logger: logger, on: eventLoop)
+    }
 }

@@ -69,4 +69,20 @@ extension Iotexplorer {
     public func modifyTopicPolicy(_ input: ModifyTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicPolicyResponse {
         try await self.client.execute(action: "ModifyTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新Topic
+    ///
+    /// 本接口（UpdateTopicPolicy）用于更新Topic信息 
+    @inlinable
+    public func modifyTopicPolicy(productId: String, topicName: String, newTopicName: String, privilege: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTopicPolicyResponse > {
+        self.modifyTopicPolicy(ModifyTopicPolicyRequest(productId: productId, topicName: topicName, newTopicName: newTopicName, privilege: privilege), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新Topic
+    ///
+    /// 本接口（UpdateTopicPolicy）用于更新Topic信息 
+    @inlinable
+    public func modifyTopicPolicy(productId: String, topicName: String, newTopicName: String, privilege: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicPolicyResponse {
+        try await self.modifyTopicPolicy(ModifyTopicPolicyRequest(productId: productId, topicName: topicName, newTopicName: newTopicName, privilege: privilege), logger: logger, on: eventLoop)
+    }
 }

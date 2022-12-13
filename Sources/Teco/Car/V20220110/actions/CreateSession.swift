@@ -71,4 +71,16 @@ extension Car {
     public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
         try await self.client.execute(action: "CreateSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建会话
+    @inlinable
+    public func createSession(userId: String, userIp: String, clientSession: String, runMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSessionResponse > {
+        self.createSession(CreateSessionRequest(userId: userId, userIp: userIp, clientSession: clientSession, runMode: runMode), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建会话
+    @inlinable
+    public func createSession(userId: String, userIp: String, clientSession: String, runMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
+        try await self.createSession(CreateSessionRequest(userId: userId, userIp: userIp, clientSession: clientSession, runMode: runMode), logger: logger, on: eventLoop)
+    }
 }

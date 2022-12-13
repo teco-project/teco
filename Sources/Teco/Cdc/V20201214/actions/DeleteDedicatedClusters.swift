@@ -50,4 +50,16 @@ extension Cdc {
     public func deleteDedicatedClusters(_ input: DeleteDedicatedClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDedicatedClustersResponse {
         try await self.client.execute(action: "DeleteDedicatedClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除专用集群
+    @inlinable
+    public func deleteDedicatedClusters(dedicatedClusterIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDedicatedClustersResponse > {
+        self.deleteDedicatedClusters(DeleteDedicatedClustersRequest(dedicatedClusterIds: dedicatedClusterIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除专用集群
+    @inlinable
+    public func deleteDedicatedClusters(dedicatedClusterIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDedicatedClustersResponse {
+        try await self.deleteDedicatedClusters(DeleteDedicatedClustersRequest(dedicatedClusterIds: dedicatedClusterIds), logger: logger, on: eventLoop)
+    }
 }

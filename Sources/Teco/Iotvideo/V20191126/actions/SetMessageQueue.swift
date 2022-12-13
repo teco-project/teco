@@ -86,4 +86,20 @@ extension Iotvideo {
     public func setMessageQueue(_ input: SetMessageQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetMessageQueueResponse {
         try await self.client.execute(action: "SetMessageQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 配置产品转发消息队列
+    ///
+    /// 本接口（SetMessageQueue）用于配置物联网智能视频产品的转发消息队列。
+    @inlinable
+    public func setMessageQueue(productId: String, msgQueueType: UInt64, msgType: String, topic: String, instance: String, msgRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetMessageQueueResponse > {
+        self.setMessageQueue(SetMessageQueueRequest(productId: productId, msgQueueType: msgQueueType, msgType: msgType, topic: topic, instance: instance, msgRegion: msgRegion), logger: logger, on: eventLoop)
+    }
+    
+    /// 配置产品转发消息队列
+    ///
+    /// 本接口（SetMessageQueue）用于配置物联网智能视频产品的转发消息队列。
+    @inlinable
+    public func setMessageQueue(productId: String, msgQueueType: UInt64, msgType: String, topic: String, instance: String, msgRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetMessageQueueResponse {
+        try await self.setMessageQueue(SetMessageQueueRequest(productId: productId, msgQueueType: msgQueueType, msgType: msgType, topic: topic, instance: instance, msgRegion: msgRegion), logger: logger, on: eventLoop)
+    }
 }

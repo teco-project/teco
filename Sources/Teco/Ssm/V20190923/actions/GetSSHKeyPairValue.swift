@@ -85,4 +85,20 @@ extension Ssm {
     public func getSSHKeyPairValue(_ input: GetSSHKeyPairValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSSHKeyPairValueResponse {
         try await self.client.execute(action: "GetSSHKeyPairValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取SSH密钥对凭据明文
+    ///
+    /// 获取SSH密钥对凭据明文信息。
+    @inlinable
+    public func getSSHKeyPairValue(secretName: String? = nil, sshKeyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSSHKeyPairValueResponse > {
+        self.getSSHKeyPairValue(GetSSHKeyPairValueRequest(secretName: secretName, sshKeyId: sshKeyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取SSH密钥对凭据明文
+    ///
+    /// 获取SSH密钥对凭据明文信息。
+    @inlinable
+    public func getSSHKeyPairValue(secretName: String? = nil, sshKeyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSSHKeyPairValueResponse {
+        try await self.getSSHKeyPairValue(GetSSHKeyPairValueRequest(secretName: secretName, sshKeyId: sshKeyId), logger: logger, on: eventLoop)
+    }
 }

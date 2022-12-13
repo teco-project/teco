@@ -64,4 +64,20 @@ extension Gaap {
     public func modifyGroupDomainConfig(_ input: ModifyGroupDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupDomainConfigResponse {
         try await self.client.execute(action: "ModifyGroupDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 配置通道组就近接入域名（废弃）
+    ///
+    /// 本接口（ModifyGroupDomainConfig）用于配置通道组就近接入域名。
+    @inlinable
+    public func modifyGroupDomainConfig(groupId: String, defaultDnsIp: String, accessRegionList: [AccessRegionDomainConf]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGroupDomainConfigResponse > {
+        self.modifyGroupDomainConfig(ModifyGroupDomainConfigRequest(groupId: groupId, defaultDnsIp: defaultDnsIp, accessRegionList: accessRegionList), logger: logger, on: eventLoop)
+    }
+    
+    /// 配置通道组就近接入域名（废弃）
+    ///
+    /// 本接口（ModifyGroupDomainConfig）用于配置通道组就近接入域名。
+    @inlinable
+    public func modifyGroupDomainConfig(groupId: String, defaultDnsIp: String, accessRegionList: [AccessRegionDomainConf]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupDomainConfigResponse {
+        try await self.modifyGroupDomainConfig(ModifyGroupDomainConfigRequest(groupId: groupId, defaultDnsIp: defaultDnsIp, accessRegionList: accessRegionList), logger: logger, on: eventLoop)
+    }
 }

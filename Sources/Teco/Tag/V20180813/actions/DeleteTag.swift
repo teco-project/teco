@@ -59,4 +59,20 @@ extension Tag {
     public func deleteTag(_ input: DeleteTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagResponse {
         try await self.client.execute(action: "DeleteTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除标签
+    ///
+    /// 本接口用于删除一对标签键和标签值
+    @inlinable
+    public func deleteTag(tagKey: String, tagValue: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTagResponse > {
+        self.deleteTag(DeleteTagRequest(tagKey: tagKey, tagValue: tagValue), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除标签
+    ///
+    /// 本接口用于删除一对标签键和标签值
+    @inlinable
+    public func deleteTag(tagKey: String, tagValue: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagResponse {
+        try await self.deleteTag(DeleteTagRequest(tagKey: tagKey, tagValue: tagValue), logger: logger, on: eventLoop)
+    }
 }

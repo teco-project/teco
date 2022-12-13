@@ -76,4 +76,20 @@ extension Cdb {
     public func describeTagsOfInstanceIds(_ input: DescribeTagsOfInstanceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsOfInstanceIdsResponse {
         try await self.client.execute(action: "DescribeTagsOfInstanceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取实例绑定的标签
+    ///
+    /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
+    @inlinable
+    public func describeTagsOfInstanceIds(instanceIds: [String], offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagsOfInstanceIdsResponse > {
+        self.describeTagsOfInstanceIds(DescribeTagsOfInstanceIdsRequest(instanceIds: instanceIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例绑定的标签
+    ///
+    /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
+    @inlinable
+    public func describeTagsOfInstanceIds(instanceIds: [String], offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsOfInstanceIdsResponse {
+        try await self.describeTagsOfInstanceIds(DescribeTagsOfInstanceIdsRequest(instanceIds: instanceIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

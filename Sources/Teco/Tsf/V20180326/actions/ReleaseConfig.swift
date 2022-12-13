@@ -64,4 +64,16 @@ extension Tsf {
     public func releaseConfig(_ input: ReleaseConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseConfigResponse {
         try await self.client.execute(action: "ReleaseConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 发布配置
+    @inlinable
+    public func releaseConfig(configId: String, groupId: String, releaseDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseConfigResponse > {
+        self.releaseConfig(ReleaseConfigRequest(configId: configId, groupId: groupId, releaseDesc: releaseDesc), logger: logger, on: eventLoop)
+    }
+    
+    /// 发布配置
+    @inlinable
+    public func releaseConfig(configId: String, groupId: String, releaseDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseConfigResponse {
+        try await self.releaseConfig(ReleaseConfigRequest(configId: configId, groupId: groupId, releaseDesc: releaseDesc), logger: logger, on: eventLoop)
+    }
 }

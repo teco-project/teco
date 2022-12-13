@@ -100,4 +100,20 @@ extension Vpc {
     public func createNetDetect(_ input: CreateNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetDetectResponse {
         try await self.client.execute(action: "CreateNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建网络探测
+    ///
+    /// 本接口(CreateNetDetect)用于创建网络探测。
+    @inlinable
+    public func createNetDetect(vpcId: String, subnetId: String, netDetectName: String, detectDestinationIp: [String], nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetDetectResponse > {
+        self.createNetDetect(CreateNetDetectRequest(vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建网络探测
+    ///
+    /// 本接口(CreateNetDetect)用于创建网络探测。
+    @inlinable
+    public func createNetDetect(vpcId: String, subnetId: String, netDetectName: String, detectDestinationIp: [String], nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetDetectResponse {
+        try await self.createNetDetect(CreateNetDetectRequest(vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription), logger: logger, on: eventLoop)
+    }
 }

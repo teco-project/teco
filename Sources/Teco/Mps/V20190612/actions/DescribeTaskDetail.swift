@@ -122,4 +122,20 @@ extension Mps {
     public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
         try await self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询任务详情
+    ///
+    /// 通过任务 ID 查询任务的执行状态和结果的详细信息（最多可以查询3天之内提交的任务）。
+    @inlinable
+    public func describeTaskDetail(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
+        self.describeTaskDetail(DescribeTaskDetailRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务详情
+    ///
+    /// 通过任务 ID 查询任务的执行状态和结果的详细信息（最多可以查询3天之内提交的任务）。
+    @inlinable
+    public func describeTaskDetail(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
+        try await self.describeTaskDetail(DescribeTaskDetailRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

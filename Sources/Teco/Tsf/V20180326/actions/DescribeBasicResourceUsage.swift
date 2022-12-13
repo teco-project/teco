@@ -59,4 +59,20 @@ extension Tsf {
     public func describeBasicResourceUsage(_ input: DescribeBasicResourceUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicResourceUsageResponse {
         try await self.client.execute(action: "DescribeBasicResourceUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// TSF基本资源信息概览
+    ///
+    /// TSF基本资源信息概览接口
+    @inlinable
+    public func describeBasicResourceUsage(all: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicResourceUsageResponse > {
+        self.describeBasicResourceUsage(DescribeBasicResourceUsageRequest(all: all), logger: logger, on: eventLoop)
+    }
+    
+    /// TSF基本资源信息概览
+    ///
+    /// TSF基本资源信息概览接口
+    @inlinable
+    public func describeBasicResourceUsage(all: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicResourceUsageResponse {
+        try await self.describeBasicResourceUsage(DescribeBasicResourceUsageRequest(all: all), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Cfw {
     public func deleteResourceGroup(_ input: DeleteResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceGroupResponse {
         try await self.client.execute(action: "DeleteResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 资产中心资产组删除
+    ///
+    /// DeleteResourceGroup-资产中心资产组删除
+    @inlinable
+    public func deleteResourceGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourceGroupResponse > {
+        self.deleteResourceGroup(DeleteResourceGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 资产中心资产组删除
+    ///
+    /// DeleteResourceGroup-资产中心资产组删除
+    @inlinable
+    public func deleteResourceGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceGroupResponse {
+        try await self.deleteResourceGroup(DeleteResourceGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

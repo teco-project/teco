@@ -55,4 +55,16 @@ extension Tcr {
     public func modifyInstance(_ input: ModifyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {
         try await self.client.execute(action: "ModifyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新实例信息
+    @inlinable
+    public func modifyInstance(registryId: String, registryType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceResponse > {
+        self.modifyInstance(ModifyInstanceRequest(registryId: registryId, registryType: registryType), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新实例信息
+    @inlinable
+    public func modifyInstance(registryId: String, registryType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {
+        try await self.modifyInstance(ModifyInstanceRequest(registryId: registryId, registryType: registryType), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Teo {
     public func modifyRulePriority(_ input: ModifyRulePriorityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRulePriorityResponse {
         try await self.client.execute(action: "ModifyRulePriority", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改规则引擎规则优先级
+    @inlinable
+    public func modifyRulePriority(zoneId: String, ruleIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRulePriorityResponse > {
+        self.modifyRulePriority(ModifyRulePriorityRequest(zoneId: zoneId, ruleIds: ruleIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改规则引擎规则优先级
+    @inlinable
+    public func modifyRulePriority(zoneId: String, ruleIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRulePriorityResponse {
+        try await self.modifyRulePriority(ModifyRulePriorityRequest(zoneId: zoneId, ruleIds: ruleIds), logger: logger, on: eventLoop)
+    }
 }

@@ -83,4 +83,16 @@ extension Tdmq {
     public func describeRocketMQTopics(_ input: DescribeRocketMQTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQTopicsResponse {
         try await self.client.execute(action: "DescribeRocketMQTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取RocketMQ主题列表
+    @inlinable
+    public func describeRocketMQTopics(offset: UInt64, limit: UInt64, clusterId: String, namespaceId: String, filterType: [String]? = nil, filterName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRocketMQTopicsResponse > {
+        self.describeRocketMQTopics(DescribeRocketMQTopicsRequest(offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId, filterType: filterType, filterName: filterName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取RocketMQ主题列表
+    @inlinable
+    public func describeRocketMQTopics(offset: UInt64, limit: UInt64, clusterId: String, namespaceId: String, filterType: [String]? = nil, filterName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQTopicsResponse {
+        try await self.describeRocketMQTopics(DescribeRocketMQTopicsRequest(offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId, filterType: filterType, filterName: filterName), logger: logger, on: eventLoop)
+    }
 }

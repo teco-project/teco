@@ -91,4 +91,16 @@ extension Wedata {
     public func describeRealTimeTaskMetricOverview(_ input: DescribeRealTimeTaskMetricOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskMetricOverviewResponse {
         try await self.client.execute(action: "DescribeRealTimeTaskMetricOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 实时任务运行指标概览
+    @inlinable
+    public func describeRealTimeTaskMetricOverview(taskId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealTimeTaskMetricOverviewResponse > {
+        self.describeRealTimeTaskMetricOverview(DescribeRealTimeTaskMetricOverviewRequest(taskId: taskId, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 实时任务运行指标概览
+    @inlinable
+    public func describeRealTimeTaskMetricOverview(taskId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskMetricOverviewResponse {
+        try await self.describeRealTimeTaskMetricOverview(DescribeRealTimeTaskMetricOverviewRequest(taskId: taskId, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

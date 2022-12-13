@@ -95,4 +95,16 @@ extension Tsf {
     public func updateApiGroup(_ input: UpdateApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiGroupResponse {
         try await self.client.execute(action: "UpdateApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新Api分组
+    @inlinable
+    public func updateApiGroup(groupId: String, groupName: String? = nil, description: String? = nil, authType: String? = nil, groupContext: String? = nil, namespaceNameKey: String? = nil, serviceNameKey: String? = nil, namespaceNameKeyPosition: String? = nil, serviceNameKeyPosition: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateApiGroupResponse > {
+        self.updateApiGroup(UpdateApiGroupRequest(groupId: groupId, groupName: groupName, description: description, authType: authType, groupContext: groupContext, namespaceNameKey: namespaceNameKey, serviceNameKey: serviceNameKey, namespaceNameKeyPosition: namespaceNameKeyPosition, serviceNameKeyPosition: serviceNameKeyPosition), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新Api分组
+    @inlinable
+    public func updateApiGroup(groupId: String, groupName: String? = nil, description: String? = nil, authType: String? = nil, groupContext: String? = nil, namespaceNameKey: String? = nil, serviceNameKey: String? = nil, namespaceNameKeyPosition: String? = nil, serviceNameKeyPosition: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiGroupResponse {
+        try await self.updateApiGroup(UpdateApiGroupRequest(groupId: groupId, groupName: groupName, description: description, authType: authType, groupContext: groupContext, namespaceNameKey: namespaceNameKey, serviceNameKey: serviceNameKey, namespaceNameKeyPosition: namespaceNameKeyPosition, serviceNameKeyPosition: serviceNameKeyPosition), logger: logger, on: eventLoop)
+    }
 }

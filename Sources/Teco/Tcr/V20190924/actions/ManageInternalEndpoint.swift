@@ -79,4 +79,16 @@ extension Tcr {
     public func manageInternalEndpoint(_ input: ManageInternalEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageInternalEndpointResponse {
         try await self.client.execute(action: "ManageInternalEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 管理实例内网访问VPC链接
+    @inlinable
+    public func manageInternalEndpoint(registryId: String, operation: String, vpcId: String, subnetId: String, regionId: UInt64? = nil, regionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageInternalEndpointResponse > {
+        self.manageInternalEndpoint(ManageInternalEndpointRequest(registryId: registryId, operation: operation, vpcId: vpcId, subnetId: subnetId, regionId: regionId, regionName: regionName), logger: logger, on: eventLoop)
+    }
+    
+    /// 管理实例内网访问VPC链接
+    @inlinable
+    public func manageInternalEndpoint(registryId: String, operation: String, vpcId: String, subnetId: String, regionId: UInt64? = nil, regionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageInternalEndpointResponse {
+        try await self.manageInternalEndpoint(ManageInternalEndpointRequest(registryId: registryId, operation: operation, vpcId: vpcId, subnetId: subnetId, regionId: regionId, regionName: regionName), logger: logger, on: eventLoop)
+    }
 }

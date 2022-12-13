@@ -75,4 +75,20 @@ extension Cis {
     public func describeContainerInstances(_ input: DescribeContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerInstancesResponse {
         try await self.client.execute(action: "DescribeContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询容器实例列表
+    ///
+    /// 此接口（DescribeContainerInstances）查询容器实例列表
+    @inlinable
+    public func describeContainerInstances(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerInstancesResponse > {
+        self.describeContainerInstances(DescribeContainerInstancesRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器实例列表
+    ///
+    /// 此接口（DescribeContainerInstances）查询容器实例列表
+    @inlinable
+    public func describeContainerInstances(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerInstancesResponse {
+        try await self.describeContainerInstances(DescribeContainerInstancesRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

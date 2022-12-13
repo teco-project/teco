@@ -80,4 +80,16 @@ extension Tdmq {
     public func createAMQPExchange(_ input: CreateAMQPExchangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPExchangeResponse {
         try await self.client.execute(action: "CreateAMQPExchange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建AMQP Exchange
+    @inlinable
+    public func createAMQPExchange(exchange: String, vHosts: [String], type: String, clusterId: String, remark: String? = nil, alternateExchange: String? = nil, delayedType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAMQPExchangeResponse > {
+        self.createAMQPExchange(CreateAMQPExchangeRequest(exchange: exchange, vHosts: vHosts, type: type, clusterId: clusterId, remark: remark, alternateExchange: alternateExchange, delayedType: delayedType), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建AMQP Exchange
+    @inlinable
+    public func createAMQPExchange(exchange: String, vHosts: [String], type: String, clusterId: String, remark: String? = nil, alternateExchange: String? = nil, delayedType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPExchangeResponse {
+        try await self.createAMQPExchange(CreateAMQPExchangeRequest(exchange: exchange, vHosts: vHosts, type: type, clusterId: clusterId, remark: remark, alternateExchange: alternateExchange, delayedType: delayedType), logger: logger, on: eventLoop)
+    }
 }

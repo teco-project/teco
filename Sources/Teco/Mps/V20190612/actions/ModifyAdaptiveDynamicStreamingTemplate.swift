@@ -87,4 +87,16 @@ extension Mps {
     public func modifyAdaptiveDynamicStreamingTemplate(_ input: ModifyAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAdaptiveDynamicStreamingTemplateResponse {
         try await self.client.execute(action: "ModifyAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改转自适应码流模板
+    @inlinable
+    public func modifyAdaptiveDynamicStreamingTemplate(definition: UInt64, name: String? = nil, format: String? = nil, disableHigherVideoBitrate: UInt64? = nil, disableHigherVideoResolution: UInt64? = nil, streamInfos: [AdaptiveStreamTemplate]? = nil, comment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAdaptiveDynamicStreamingTemplateResponse > {
+        self.modifyAdaptiveDynamicStreamingTemplate(ModifyAdaptiveDynamicStreamingTemplateRequest(definition: definition, name: name, format: format, disableHigherVideoBitrate: disableHigherVideoBitrate, disableHigherVideoResolution: disableHigherVideoResolution, streamInfos: streamInfos, comment: comment), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改转自适应码流模板
+    @inlinable
+    public func modifyAdaptiveDynamicStreamingTemplate(definition: UInt64, name: String? = nil, format: String? = nil, disableHigherVideoBitrate: UInt64? = nil, disableHigherVideoResolution: UInt64? = nil, streamInfos: [AdaptiveStreamTemplate]? = nil, comment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAdaptiveDynamicStreamingTemplateResponse {
+        try await self.modifyAdaptiveDynamicStreamingTemplate(ModifyAdaptiveDynamicStreamingTemplateRequest(definition: definition, name: name, format: format, disableHigherVideoBitrate: disableHigherVideoBitrate, disableHigherVideoResolution: disableHigherVideoResolution, streamInfos: streamInfos, comment: comment), logger: logger, on: eventLoop)
+    }
 }

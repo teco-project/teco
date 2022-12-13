@@ -64,4 +64,16 @@ extension Cynosdb {
     public func modifyClusterParam(_ input: ModifyClusterParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterParamResponse {
         try await self.client.execute(action: "ModifyClusterParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改集群参数
+    @inlinable
+    public func modifyClusterParam(clusterId: String, paramList: [ParamItem], isInMaintainPeriod: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterParamResponse > {
+        self.modifyClusterParam(ModifyClusterParamRequest(clusterId: clusterId, paramList: paramList, isInMaintainPeriod: isInMaintainPeriod), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改集群参数
+    @inlinable
+    public func modifyClusterParam(clusterId: String, paramList: [ParamItem], isInMaintainPeriod: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterParamResponse {
+        try await self.modifyClusterParam(ModifyClusterParamRequest(clusterId: clusterId, paramList: paramList, isInMaintainPeriod: isInMaintainPeriod), logger: logger, on: eventLoop)
+    }
 }

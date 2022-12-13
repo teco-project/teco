@@ -70,4 +70,16 @@ extension Iecp {
     public func createEdgeNodeUnitTemplate(_ input: CreateEdgeNodeUnitTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeUnitTemplateResponse {
         try await self.client.execute(action: "CreateEdgeNodeUnitTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建边缘单元NodeUnit模板
+    @inlinable
+    public func createEdgeNodeUnitTemplate(edgeUnitId: UInt64, name: String, namespace: String? = nil, nodes: [String]? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeNodeUnitTemplateResponse > {
+        self.createEdgeNodeUnitTemplate(CreateEdgeNodeUnitTemplateRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace, nodes: nodes, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建边缘单元NodeUnit模板
+    @inlinable
+    public func createEdgeNodeUnitTemplate(edgeUnitId: UInt64, name: String, namespace: String? = nil, nodes: [String]? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeUnitTemplateResponse {
+        try await self.createEdgeNodeUnitTemplate(CreateEdgeNodeUnitTemplateRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace, nodes: nodes, description: description), logger: logger, on: eventLoop)
+    }
 }

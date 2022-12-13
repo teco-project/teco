@@ -2706,7 +2706,7 @@ extension Ecm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipv6CidrBlock: String?
         
-        public init (policyIndex: Int64? = nil, `protocol`: String? = nil, port: String? = nil, serviceTemplate: ServiceTemplateSpecification? = nil, cidrBlock: String? = nil, securityGroupId: String? = nil, addressTemplate: AddressTemplateSpecification? = nil, action: String? = nil, policyDescription: String? = nil, modifyTime: String? = nil, ipv6CidrBlock: String? = nil) {
+        public init (policyIndex: Int64? = nil, protocol: String? = nil, port: String? = nil, serviceTemplate: ServiceTemplateSpecification? = nil, cidrBlock: String? = nil, securityGroupId: String? = nil, addressTemplate: AddressTemplateSpecification? = nil, action: String? = nil, policyDescription: String? = nil, modifyTime: String? = nil, ipv6CidrBlock: String? = nil) {
             self.policyIndex = policyIndex
             self.`protocol` = `protocol`
             self.port = port

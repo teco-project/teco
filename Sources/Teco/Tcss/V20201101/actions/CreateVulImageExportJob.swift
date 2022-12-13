@@ -91,4 +91,20 @@ extension Tcss {
     public func createVulImageExportJob(_ input: CreateVulImageExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulImageExportJobResponse {
         try await self.client.execute(action: "CreateVulImageExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建导出受漏洞影响的镜像任务
+    ///
+    /// 创建受漏洞影响的镜像导出任务
+    @inlinable
+    public func createVulImageExportJob(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVulImageExportJobResponse > {
+        self.createVulImageExportJob(CreateVulImageExportJobRequest(pocID: pocID, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建导出受漏洞影响的镜像任务
+    ///
+    /// 创建受漏洞影响的镜像导出任务
+    @inlinable
+    public func createVulImageExportJob(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulImageExportJobResponse {
+        try await self.createVulImageExportJob(CreateVulImageExportJobRequest(pocID: pocID, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

@@ -74,4 +74,20 @@ extension Tcss {
     public func describeVulTendency(_ input: DescribeVulTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTendencyResponse {
         try await self.client.execute(action: "DescribeVulTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询漏洞风险趋势
+    ///
+    /// 查询本地镜像、仓库镜像中严重&高危的漏洞趋势
+    @inlinable
+    public func describeVulTendency(startTime: Date, endTime: Date, sphereOfInfluence: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulTendencyResponse > {
+        self.describeVulTendency(DescribeVulTendencyRequest(startTime: startTime, endTime: endTime, sphereOfInfluence: sphereOfInfluence), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞风险趋势
+    ///
+    /// 查询本地镜像、仓库镜像中严重&高危的漏洞趋势
+    @inlinable
+    public func describeVulTendency(startTime: Date, endTime: Date, sphereOfInfluence: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTendencyResponse {
+        try await self.describeVulTendency(DescribeVulTendencyRequest(startTime: startTime, endTime: endTime, sphereOfInfluence: sphereOfInfluence), logger: logger, on: eventLoop)
+    }
 }

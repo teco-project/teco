@@ -68,4 +68,20 @@ extension Vpc {
     public func createCustomerGateway(_ input: CreateCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomerGatewayResponse {
         try await self.client.execute(action: "CreateCustomerGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建对端网关
+    ///
+    /// 本接口（CreateCustomerGateway）用于创建对端网关。
+    @inlinable
+    public func createCustomerGateway(customerGatewayName: String, ipAddress: String, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomerGatewayResponse > {
+        self.createCustomerGateway(CreateCustomerGatewayRequest(customerGatewayName: customerGatewayName, ipAddress: ipAddress, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建对端网关
+    ///
+    /// 本接口（CreateCustomerGateway）用于创建对端网关。
+    @inlinable
+    public func createCustomerGateway(customerGatewayName: String, ipAddress: String, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomerGatewayResponse {
+        try await self.createCustomerGateway(CreateCustomerGatewayRequest(customerGatewayName: customerGatewayName, ipAddress: ipAddress, tags: tags), logger: logger, on: eventLoop)
+    }
 }

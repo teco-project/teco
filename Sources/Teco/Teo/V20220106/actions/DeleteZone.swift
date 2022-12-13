@@ -54,4 +54,16 @@ extension Teo {
     public func deleteZone(_ input: DeleteZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteZoneResponse {
         try await self.client.execute(action: "DeleteZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除站点
+    @inlinable
+    public func deleteZone(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteZoneResponse > {
+        self.deleteZone(DeleteZoneRequest(id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除站点
+    @inlinable
+    public func deleteZone(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteZoneResponse {
+        try await self.deleteZone(DeleteZoneRequest(id: id), logger: logger, on: eventLoop)
+    }
 }

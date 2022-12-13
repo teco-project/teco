@@ -32,7 +32,7 @@ extension Apigateway {
         /// 网络类型列表，用于指定支持的访问类型，INNER为内网访问，OUTER为外网访问。默认为OUTER。
         public let netTypes: [String]?
         
-        public init (serviceId: String, serviceName: String? = nil, serviceDesc: String? = nil, `protocol`: String? = nil, netTypes: [String]? = nil) {
+        public init (serviceId: String, serviceName: String? = nil, serviceDesc: String? = nil, protocol: String? = nil, netTypes: [String]? = nil) {
             self.serviceId = serviceId
             self.serviceName = serviceName
             self.serviceDesc = serviceDesc
@@ -73,5 +73,21 @@ extension Apigateway {
     @inlinable
     public func modifyService(_ input: ModifyServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceResponse {
         try await self.client.execute(action: "ModifyService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 修改服务
+    ///
+    /// 本接口（ModifyService）用于修改服务的相关信息。当服务创建后，服务的名称、描述和服务类型均可被修改。
+    @inlinable
+    public func modifyService(serviceId: String, serviceName: String? = nil, serviceDesc: String? = nil, protocol: String? = nil, netTypes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyServiceResponse > {
+        self.modifyService(ModifyServiceRequest(serviceId: serviceId, serviceName: serviceName, serviceDesc: serviceDesc, protocol: `protocol`, netTypes: netTypes), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改服务
+    ///
+    /// 本接口（ModifyService）用于修改服务的相关信息。当服务创建后，服务的名称、描述和服务类型均可被修改。
+    @inlinable
+    public func modifyService(serviceId: String, serviceName: String? = nil, serviceDesc: String? = nil, protocol: String? = nil, netTypes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceResponse {
+        try await self.modifyService(ModifyServiceRequest(serviceId: serviceId, serviceName: serviceName, serviceDesc: serviceDesc, protocol: `protocol`, netTypes: netTypes), logger: logger, on: eventLoop)
     }
 }

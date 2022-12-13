@@ -67,4 +67,20 @@ extension Monitor {
     public func updateAlertRuleState(_ input: UpdateAlertRuleStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAlertRuleStateResponse {
         try await self.client.execute(action: "UpdateAlertRuleState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新报警策略状态
+    ///
+    /// 更新 Prometheus 报警策略状态
+    @inlinable
+    public func updateAlertRuleState(ruleIds: [String], instanceId: String, ruleState: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAlertRuleStateResponse > {
+        self.updateAlertRuleState(UpdateAlertRuleStateRequest(ruleIds: ruleIds, instanceId: instanceId, ruleState: ruleState), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新报警策略状态
+    ///
+    /// 更新 Prometheus 报警策略状态
+    @inlinable
+    public func updateAlertRuleState(ruleIds: [String], instanceId: String, ruleState: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAlertRuleStateResponse {
+        try await self.updateAlertRuleState(UpdateAlertRuleStateRequest(ruleIds: ruleIds, instanceId: instanceId, ruleState: ruleState), logger: logger, on: eventLoop)
+    }
 }

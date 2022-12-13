@@ -79,4 +79,20 @@ extension Pts {
     public func describeLabelValues(_ input: DescribeLabelValuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLabelValuesResponse {
         try await self.client.execute(action: "DescribeLabelValues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询标签值
+    ///
+    /// 查询标签内容
+    @inlinable
+    public func describeLabelValues(jobId: String, scenarioId: String, metric: String, labelName: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLabelValuesResponse > {
+        self.describeLabelValues(DescribeLabelValuesRequest(jobId: jobId, scenarioId: scenarioId, metric: metric, labelName: labelName, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询标签值
+    ///
+    /// 查询标签内容
+    @inlinable
+    public func describeLabelValues(jobId: String, scenarioId: String, metric: String, labelName: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLabelValuesResponse {
+        try await self.describeLabelValues(DescribeLabelValuesRequest(jobId: jobId, scenarioId: scenarioId, metric: metric, labelName: labelName, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

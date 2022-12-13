@@ -105,4 +105,22 @@ extension Trtc {
     public func updatePublishCdnStream(_ input: UpdatePublishCdnStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePublishCdnStreamResponse {
         try await self.client.execute(action: "UpdatePublishCdnStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新转推任务
+    ///
+    /// 更新转推任务。
+    /// 注：请参见启动转推任务的接口说明和使用说明。
+    @inlinable
+    public func updatePublishCdnStream(sdkAppId: UInt64, taskId: String, sequenceNumber: UInt64, withTranscoding: UInt64, audioParams: McuAudioParams? = nil, videoParams: McuVideoParams? = nil, singleSubscribeParams: SingleSubscribeParams? = nil, publishCdnParams: [McuPublishCdnParam]? = nil, seiParams: McuSeiParams? = nil, feedBackRoomParams: [McuFeedBackRoomParams]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePublishCdnStreamResponse > {
+        self.updatePublishCdnStream(UpdatePublishCdnStreamRequest(sdkAppId: sdkAppId, taskId: taskId, sequenceNumber: sequenceNumber, withTranscoding: withTranscoding, audioParams: audioParams, videoParams: videoParams, singleSubscribeParams: singleSubscribeParams, publishCdnParams: publishCdnParams, seiParams: seiParams, feedBackRoomParams: feedBackRoomParams), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新转推任务
+    ///
+    /// 更新转推任务。
+    /// 注：请参见启动转推任务的接口说明和使用说明。
+    @inlinable
+    public func updatePublishCdnStream(sdkAppId: UInt64, taskId: String, sequenceNumber: UInt64, withTranscoding: UInt64, audioParams: McuAudioParams? = nil, videoParams: McuVideoParams? = nil, singleSubscribeParams: SingleSubscribeParams? = nil, publishCdnParams: [McuPublishCdnParam]? = nil, seiParams: McuSeiParams? = nil, feedBackRoomParams: [McuFeedBackRoomParams]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePublishCdnStreamResponse {
+        try await self.updatePublishCdnStream(UpdatePublishCdnStreamRequest(sdkAppId: sdkAppId, taskId: taskId, sequenceNumber: sequenceNumber, withTranscoding: withTranscoding, audioParams: audioParams, videoParams: videoParams, singleSubscribeParams: singleSubscribeParams, publishCdnParams: publishCdnParams, seiParams: seiParams, feedBackRoomParams: feedBackRoomParams), logger: logger, on: eventLoop)
+    }
 }

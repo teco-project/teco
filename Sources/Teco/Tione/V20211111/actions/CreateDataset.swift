@@ -119,4 +119,16 @@ extension Tione {
     public func createDataset(_ input: CreateDatasetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatasetResponse {
         try await self.client.execute(action: "CreateDataset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建数据集
+    @inlinable
+    public func createDataset(datasetName: String, datasetType: String, storageDataPath: CosPathInfo, storageLabelPath: CosPathInfo, datasetTags: [Tag]? = nil, annotationStatus: String? = nil, annotationType: String? = nil, annotationFormat: String? = nil, schemaInfos: [SchemaInfo]? = nil, isSchemaExisted: Bool? = nil, contentType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDatasetResponse > {
+        self.createDataset(CreateDatasetRequest(datasetName: datasetName, datasetType: datasetType, storageDataPath: storageDataPath, storageLabelPath: storageLabelPath, datasetTags: datasetTags, annotationStatus: annotationStatus, annotationType: annotationType, annotationFormat: annotationFormat, schemaInfos: schemaInfos, isSchemaExisted: isSchemaExisted, contentType: contentType), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建数据集
+    @inlinable
+    public func createDataset(datasetName: String, datasetType: String, storageDataPath: CosPathInfo, storageLabelPath: CosPathInfo, datasetTags: [Tag]? = nil, annotationStatus: String? = nil, annotationType: String? = nil, annotationFormat: String? = nil, schemaInfos: [SchemaInfo]? = nil, isSchemaExisted: Bool? = nil, contentType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatasetResponse {
+        try await self.createDataset(CreateDatasetRequest(datasetName: datasetName, datasetType: datasetType, storageDataPath: storageDataPath, storageLabelPath: storageLabelPath, datasetTags: datasetTags, annotationStatus: annotationStatus, annotationType: annotationType, annotationFormat: annotationFormat, schemaInfos: schemaInfos, isSchemaExisted: isSchemaExisted, contentType: contentType), logger: logger, on: eventLoop)
+    }
 }

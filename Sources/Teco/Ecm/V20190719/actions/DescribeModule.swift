@@ -90,4 +90,16 @@ extension Ecm {
     public func describeModule(_ input: DescribeModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModuleResponse {
         try await self.client.execute(action: "DescribeModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取模块列表
+    @inlinable
+    public func describeModule(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModuleResponse > {
+        self.describeModule(DescribeModuleRequest(filters: filters, offset: offset, limit: limit, orderByField: orderByField, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取模块列表
+    @inlinable
+    public func describeModule(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModuleResponse {
+        try await self.describeModule(DescribeModuleRequest(filters: filters, offset: offset, limit: limit, orderByField: orderByField, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    }
 }

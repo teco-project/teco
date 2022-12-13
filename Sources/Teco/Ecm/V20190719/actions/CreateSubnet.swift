@@ -83,4 +83,20 @@ extension Ecm {
     public func createSubnet(_ input: CreateSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
         try await self.client.execute(action: "CreateSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建子网
+    ///
+    /// 创建子网，若创建成功，则此子网会成为此可用区的默认子网。
+    @inlinable
+    public func createSubnet(vpcId: String, subnetName: String, cidrBlock: String, zone: String, ecmRegion: String, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubnetResponse > {
+        self.createSubnet(CreateSubnetRequest(vpcId: vpcId, subnetName: subnetName, cidrBlock: cidrBlock, zone: zone, ecmRegion: ecmRegion, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建子网
+    ///
+    /// 创建子网，若创建成功，则此子网会成为此可用区的默认子网。
+    @inlinable
+    public func createSubnet(vpcId: String, subnetName: String, cidrBlock: String, zone: String, ecmRegion: String, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
+        try await self.createSubnet(CreateSubnetRequest(vpcId: vpcId, subnetName: subnetName, cidrBlock: cidrBlock, zone: zone, ecmRegion: ecmRegion, tags: tags), logger: logger, on: eventLoop)
+    }
 }

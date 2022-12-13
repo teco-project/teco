@@ -70,4 +70,16 @@ extension Tsf {
     public func describeUnitNamespaces(_ input: DescribeUnitNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnitNamespacesResponse {
         try await self.client.execute(action: "DescribeUnitNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询单元化命名空间列表
+    @inlinable
+    public func describeUnitNamespaces(gatewayInstanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnitNamespacesResponse > {
+        self.describeUnitNamespaces(DescribeUnitNamespacesRequest(gatewayInstanceId: gatewayInstanceId, searchWord: searchWord, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询单元化命名空间列表
+    @inlinable
+    public func describeUnitNamespaces(gatewayInstanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnitNamespacesResponse {
+        try await self.describeUnitNamespaces(DescribeUnitNamespacesRequest(gatewayInstanceId: gatewayInstanceId, searchWord: searchWord, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

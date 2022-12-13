@@ -26,7 +26,7 @@ extension Essbasic {
         /// 用户信息
         public let `operator`: UserInfo?
         
-        public init (agent: Agent, qrCodeId: String, `operator`: UserInfo? = nil) {
+        public init (agent: Agent, qrCodeId: String, operator: UserInfo? = nil) {
             self.agent = agent
             self.qrCodeId = qrCodeId
             self.`operator` = `operator`
@@ -63,5 +63,21 @@ extension Essbasic {
     @inlinable
     public func channelCancelMultiFlowSignQRCode(_ input: ChannelCancelMultiFlowSignQRCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCancelMultiFlowSignQRCodeResponse {
         try await self.client.execute(action: "ChannelCancelMultiFlowSignQRCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 取消一码多扫二维码
+    ///
+    /// 此接口（ChannelCancelMultiFlowSignQRCode）用于取消一码多扫二维码。该接口对传入的二维码ID，若还在有效期内，可以提前失效。
+    @inlinable
+    public func channelCancelMultiFlowSignQRCode(agent: Agent, qrCodeId: String, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCancelMultiFlowSignQRCodeResponse > {
+        self.channelCancelMultiFlowSignQRCode(ChannelCancelMultiFlowSignQRCodeRequest(agent: agent, qrCodeId: qrCodeId, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 取消一码多扫二维码
+    ///
+    /// 此接口（ChannelCancelMultiFlowSignQRCode）用于取消一码多扫二维码。该接口对传入的二维码ID，若还在有效期内，可以提前失效。
+    @inlinable
+    public func channelCancelMultiFlowSignQRCode(agent: Agent, qrCodeId: String, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCancelMultiFlowSignQRCodeResponse {
+        try await self.channelCancelMultiFlowSignQRCode(ChannelCancelMultiFlowSignQRCodeRequest(agent: agent, qrCodeId: qrCodeId, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

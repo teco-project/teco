@@ -100,4 +100,24 @@ extension Cvm {
     public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
         try await self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看镜像列表
+    ///
+    /// 本接口(DescribeImages) 用于查看镜像列表。
+    /// * 可以通过指定镜像ID来查询指定镜像的详细信息，或通过设定过滤器来查询满足过滤条件的镜像的详细信息。
+    /// * 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个镜像信息。
+    @inlinable
+    public func describeImages(imageIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, instanceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
+        self.describeImages(DescribeImagesRequest(imageIds: imageIds, filters: filters, offset: offset, limit: limit, instanceType: instanceType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看镜像列表
+    ///
+    /// 本接口(DescribeImages) 用于查看镜像列表。
+    /// * 可以通过指定镜像ID来查询指定镜像的详细信息，或通过设定过滤器来查询满足过滤条件的镜像的详细信息。
+    /// * 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个镜像信息。
+    @inlinable
+    public func describeImages(imageIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, instanceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
+        try await self.describeImages(DescribeImagesRequest(imageIds: imageIds, filters: filters, offset: offset, limit: limit, instanceType: instanceType), logger: logger, on: eventLoop)
+    }
 }

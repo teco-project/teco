@@ -94,4 +94,16 @@ extension Antiddos {
     public func describeOverviewAttackTrend(_ input: DescribeOverviewAttackTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewAttackTrendResponse {
         try await self.client.execute(action: "DescribeOverviewAttackTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 拉取防护概览攻击趋势
+    @inlinable
+    public func describeOverviewAttackTrend(type: String, dimension: String, period: UInt64, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewAttackTrendResponse > {
+        self.describeOverviewAttackTrend(DescribeOverviewAttackTrendRequest(type: type, dimension: dimension, period: period, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取防护概览攻击趋势
+    @inlinable
+    public func describeOverviewAttackTrend(type: String, dimension: String, period: UInt64, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewAttackTrendResponse {
+        try await self.describeOverviewAttackTrend(DescribeOverviewAttackTrendRequest(type: type, dimension: dimension, period: period, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

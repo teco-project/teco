@@ -60,4 +60,16 @@ extension Organization {
     public func bindOrganizationMemberAuthAccount(_ input: BindOrganizationMemberAuthAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindOrganizationMemberAuthAccountResponse {
         try await self.client.execute(action: "BindOrganizationMemberAuthAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 绑定组织成员和组织管理员子账号的授权关系
+    @inlinable
+    public func bindOrganizationMemberAuthAccount(memberUin: Int64, policyId: Int64, orgSubAccountUins: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindOrganizationMemberAuthAccountResponse > {
+        self.bindOrganizationMemberAuthAccount(BindOrganizationMemberAuthAccountRequest(memberUin: memberUin, policyId: policyId, orgSubAccountUins: orgSubAccountUins), logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定组织成员和组织管理员子账号的授权关系
+    @inlinable
+    public func bindOrganizationMemberAuthAccount(memberUin: Int64, policyId: Int64, orgSubAccountUins: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindOrganizationMemberAuthAccountResponse {
+        try await self.bindOrganizationMemberAuthAccount(BindOrganizationMemberAuthAccountRequest(memberUin: memberUin, policyId: policyId, orgSubAccountUins: orgSubAccountUins), logger: logger, on: eventLoop)
+    }
 }

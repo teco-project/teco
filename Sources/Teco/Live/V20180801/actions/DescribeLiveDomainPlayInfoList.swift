@@ -78,4 +78,20 @@ extension Live {
     public func describeLiveDomainPlayInfoList(_ input: DescribeLiveDomainPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainPlayInfoListResponse {
         try await self.client.execute(action: "DescribeLiveDomainPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实时的域名维度下行播放数据
+    ///
+    /// 查询实时的域名维度下行播放数据，由于数据处理有耗时，接口默认查询4分钟前的准实时数据。
+    @inlinable
+    public func describeLiveDomainPlayInfoList(playDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveDomainPlayInfoListResponse > {
+        self.describeLiveDomainPlayInfoList(DescribeLiveDomainPlayInfoListRequest(playDomains: playDomains), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实时的域名维度下行播放数据
+    ///
+    /// 查询实时的域名维度下行播放数据，由于数据处理有耗时，接口默认查询4分钟前的准实时数据。
+    @inlinable
+    public func describeLiveDomainPlayInfoList(playDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainPlayInfoListResponse {
+        try await self.describeLiveDomainPlayInfoList(DescribeLiveDomainPlayInfoListRequest(playDomains: playDomains), logger: logger, on: eventLoop)
+    }
 }

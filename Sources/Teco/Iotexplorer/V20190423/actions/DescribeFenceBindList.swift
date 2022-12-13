@@ -68,4 +68,16 @@ extension Iotexplorer {
     public func describeFenceBindList(_ input: DescribeFenceBindListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFenceBindListResponse {
         try await self.client.execute(action: "DescribeFenceBindList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取围栏绑定信息列表
+    @inlinable
+    public func describeFenceBindList(fenceId: Int64, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFenceBindListResponse > {
+        self.describeFenceBindList(DescribeFenceBindListRequest(fenceId: fenceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取围栏绑定信息列表
+    @inlinable
+    public func describeFenceBindList(fenceId: Int64, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFenceBindListResponse {
+        try await self.describeFenceBindList(DescribeFenceBindListRequest(fenceId: fenceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

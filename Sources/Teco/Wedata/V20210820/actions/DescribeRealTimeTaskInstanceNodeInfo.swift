@@ -60,4 +60,16 @@ extension Wedata {
     public func describeRealTimeTaskInstanceNodeInfo(_ input: DescribeRealTimeTaskInstanceNodeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskInstanceNodeInfoResponse {
         try await self.client.execute(action: "DescribeRealTimeTaskInstanceNodeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实时任务实例节点信息
+    @inlinable
+    public func describeRealTimeTaskInstanceNodeInfo(taskId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealTimeTaskInstanceNodeInfoResponse > {
+        self.describeRealTimeTaskInstanceNodeInfo(DescribeRealTimeTaskInstanceNodeInfoRequest(taskId: taskId, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实时任务实例节点信息
+    @inlinable
+    public func describeRealTimeTaskInstanceNodeInfo(taskId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskInstanceNodeInfoResponse {
+        try await self.describeRealTimeTaskInstanceNodeInfo(DescribeRealTimeTaskInstanceNodeInfoRequest(taskId: taskId, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

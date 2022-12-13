@@ -90,4 +90,16 @@ extension Redis {
     public func describeInstanceDTSInfo(_ input: DescribeInstanceDTSInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDTSInfoResponse {
         try await self.client.execute(action: "DescribeInstanceDTSInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例DTS信息
+    @inlinable
+    public func describeInstanceDTSInfo(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceDTSInfoResponse > {
+        self.describeInstanceDTSInfo(DescribeInstanceDTSInfoRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例DTS信息
+    @inlinable
+    public func describeInstanceDTSInfo(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDTSInfoResponse {
+        try await self.describeInstanceDTSInfo(DescribeInstanceDTSInfoRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

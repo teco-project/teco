@@ -54,4 +54,16 @@ extension Tsf {
     public func terminateTaskFlowBatch(_ input: TerminateTaskFlowBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateTaskFlowBatchResponse {
         try await self.client.execute(action: "TerminateTaskFlowBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停止一个工作流批次
+    @inlinable
+    public func terminateTaskFlowBatch(flowBatchId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateTaskFlowBatchResponse > {
+        self.terminateTaskFlowBatch(TerminateTaskFlowBatchRequest(flowBatchId: flowBatchId), logger: logger, on: eventLoop)
+    }
+    
+    /// 停止一个工作流批次
+    @inlinable
+    public func terminateTaskFlowBatch(flowBatchId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateTaskFlowBatchResponse {
+        try await self.terminateTaskFlowBatch(TerminateTaskFlowBatchRequest(flowBatchId: flowBatchId), logger: logger, on: eventLoop)
+    }
 }

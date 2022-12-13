@@ -54,4 +54,20 @@ extension Tcr {
     public func deleteRepositoryPersonal(_ input: DeleteRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryPersonalResponse {
         try await self.client.execute(action: "DeleteRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除个人版镜像仓库
+    ///
+    /// 用于个人版镜像仓库中删除
+    @inlinable
+    public func deleteRepositoryPersonal(repoName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRepositoryPersonalResponse > {
+        self.deleteRepositoryPersonal(DeleteRepositoryPersonalRequest(repoName: repoName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除个人版镜像仓库
+    ///
+    /// 用于个人版镜像仓库中删除
+    @inlinable
+    public func deleteRepositoryPersonal(repoName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryPersonalResponse {
+        try await self.deleteRepositoryPersonal(DeleteRepositoryPersonalRequest(repoName: repoName), logger: logger, on: eventLoop)
+    }
 }

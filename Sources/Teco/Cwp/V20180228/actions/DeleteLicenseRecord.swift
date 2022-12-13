@@ -64,4 +64,20 @@ extension Cwp {
     public func deleteLicenseRecord(_ input: DeleteLicenseRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLicenseRecordResponse {
         try await self.client.execute(action: "DeleteLicenseRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除授权记录
+    ///
+    /// 对授权管理-订单列表内已过期的订单进行删除.(删除后的订单不在统计范畴内)
+    @inlinable
+    public func deleteLicenseRecord(licenseId: UInt64, licenseType: UInt64, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLicenseRecordResponse > {
+        self.deleteLicenseRecord(DeleteLicenseRecordRequest(licenseId: licenseId, licenseType: licenseType, resourceId: resourceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除授权记录
+    ///
+    /// 对授权管理-订单列表内已过期的订单进行删除.(删除后的订单不在统计范畴内)
+    @inlinable
+    public func deleteLicenseRecord(licenseId: UInt64, licenseType: UInt64, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLicenseRecordResponse {
+        try await self.deleteLicenseRecord(DeleteLicenseRecordRequest(licenseId: licenseId, licenseType: licenseType, resourceId: resourceId), logger: logger, on: eventLoop)
+    }
 }

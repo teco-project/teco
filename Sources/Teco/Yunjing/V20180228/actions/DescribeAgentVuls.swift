@@ -86,4 +86,20 @@ extension Yunjing {
     public func describeAgentVuls(_ input: DescribeAgentVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentVulsResponse {
         try await self.client.execute(action: "DescribeAgentVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取单台主机的漏洞列表
+    ///
+    /// 本接口 (DescribeAgentVuls) 用于获取单台主机的漏洞列表。
+    @inlinable
+    public func describeAgentVuls(vulType: String, uuid: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentVulsResponse > {
+        self.describeAgentVuls(DescribeAgentVulsRequest(vulType: vulType, uuid: uuid, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取单台主机的漏洞列表
+    ///
+    /// 本接口 (DescribeAgentVuls) 用于获取单台主机的漏洞列表。
+    @inlinable
+    public func describeAgentVuls(vulType: String, uuid: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentVulsResponse {
+        try await self.describeAgentVuls(DescribeAgentVulsRequest(vulType: vulType, uuid: uuid, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,16 @@ extension Tsf {
     public func describeApiRateLimitRules(_ input: DescribeApiRateLimitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiRateLimitRulesResponse {
         try await self.client.execute(action: "DescribeApiRateLimitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询API限流规则
+    @inlinable
+    public func describeApiRateLimitRules(apiId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiRateLimitRulesResponse > {
+        self.describeApiRateLimitRules(DescribeApiRateLimitRulesRequest(apiId: apiId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询API限流规则
+    @inlinable
+    public func describeApiRateLimitRules(apiId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiRateLimitRulesResponse {
+        try await self.describeApiRateLimitRules(DescribeApiRateLimitRulesRequest(apiId: apiId), logger: logger, on: eventLoop)
+    }
 }

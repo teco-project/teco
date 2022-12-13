@@ -72,4 +72,28 @@ extension Cbs {
     public func modifyDisksChargeType(_ input: ModifyDisksChargeTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksChargeTypeResponse {
         try await self.client.execute(action: "ModifyDisksChargeType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改弹性云盘计费模式
+    ///
+    /// 接口请求域名： cbs.tencentcloudapi.com 。
+    /// 本接口 (ModifyDisksChargeType) 用于切换云盘的计费模式。
+    /// 只支持从 POSTPAID_BY_HOUR 计费模式切换为PREPAID计费模式。
+    /// 非弹性云盘不支持此接口，请通过修改实例计费模式接口将实例连同非弹性云盘一起转换。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func modifyDisksChargeType(diskIds: [String], diskChargePrepaid: DiskChargePrepaid? = nil, diskChargePostpaid: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDisksChargeTypeResponse > {
+        self.modifyDisksChargeType(ModifyDisksChargeTypeRequest(diskIds: diskIds, diskChargePrepaid: diskChargePrepaid, diskChargePostpaid: diskChargePostpaid), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改弹性云盘计费模式
+    ///
+    /// 接口请求域名： cbs.tencentcloudapi.com 。
+    /// 本接口 (ModifyDisksChargeType) 用于切换云盘的计费模式。
+    /// 只支持从 POSTPAID_BY_HOUR 计费模式切换为PREPAID计费模式。
+    /// 非弹性云盘不支持此接口，请通过修改实例计费模式接口将实例连同非弹性云盘一起转换。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func modifyDisksChargeType(diskIds: [String], diskChargePrepaid: DiskChargePrepaid? = nil, diskChargePostpaid: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksChargeTypeResponse {
+        try await self.modifyDisksChargeType(ModifyDisksChargeTypeRequest(diskIds: diskIds, diskChargePrepaid: diskChargePrepaid, diskChargePostpaid: diskChargePostpaid), logger: logger, on: eventLoop)
+    }
 }

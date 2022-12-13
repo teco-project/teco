@@ -85,4 +85,24 @@ extension Sms {
     public func callbackStatusStatistics(_ input: CallbackStatusStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CallbackStatusStatisticsResponse {
         try await self.client.execute(action: "CallbackStatusStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 回执数据统计
+    ///
+    /// 统计用户回执的数据。
+    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
+    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
+    @inlinable
+    public func callbackStatusStatistics(beginTime: String, endTime: String, smsSdkAppId: String, limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CallbackStatusStatisticsResponse > {
+        self.callbackStatusStatistics(CallbackStatusStatisticsRequest(beginTime: beginTime, endTime: endTime, smsSdkAppId: smsSdkAppId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 回执数据统计
+    ///
+    /// 统计用户回执的数据。
+    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
+    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
+    @inlinable
+    public func callbackStatusStatistics(beginTime: String, endTime: String, smsSdkAppId: String, limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CallbackStatusStatisticsResponse {
+        try await self.callbackStatusStatistics(CallbackStatusStatisticsRequest(beginTime: beginTime, endTime: endTime, smsSdkAppId: smsSdkAppId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

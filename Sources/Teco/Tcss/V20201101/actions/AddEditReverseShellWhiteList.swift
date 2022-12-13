@@ -59,4 +59,20 @@ extension Tcss {
     public func addEditReverseShellWhiteList(_ input: AddEditReverseShellWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditReverseShellWhiteListResponse {
         try await self.client.execute(action: "AddEditReverseShellWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加编辑反弹shell白名单
+    ///
+    /// 添加编辑运行时反弹shell白名单
+    @inlinable
+    public func addEditReverseShellWhiteList(whiteListInfo: ReverseShellWhiteListInfo, eventId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddEditReverseShellWhiteListResponse > {
+        self.addEditReverseShellWhiteList(AddEditReverseShellWhiteListRequest(whiteListInfo: whiteListInfo, eventId: eventId), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加编辑反弹shell白名单
+    ///
+    /// 添加编辑运行时反弹shell白名单
+    @inlinable
+    public func addEditReverseShellWhiteList(whiteListInfo: ReverseShellWhiteListInfo, eventId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditReverseShellWhiteListResponse {
+        try await self.addEditReverseShellWhiteList(AddEditReverseShellWhiteListRequest(whiteListInfo: whiteListInfo, eventId: eventId), logger: logger, on: eventLoop)
+    }
 }

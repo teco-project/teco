@@ -74,4 +74,16 @@ extension Cfw {
     public func modifyAcRule(_ input: ModifyAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAcRuleResponse {
         try await self.client.execute(action: "ModifyAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改规则
+    @inlinable
+    public func modifyAcRule(data: [RuleInfoData], edgeId: String? = nil, enable: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAcRuleResponse > {
+        self.modifyAcRule(ModifyAcRuleRequest(data: data, edgeId: edgeId, enable: enable, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改规则
+    @inlinable
+    public func modifyAcRule(data: [RuleInfoData], edgeId: String? = nil, enable: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAcRuleResponse {
+        try await self.modifyAcRule(ModifyAcRuleRequest(data: data, edgeId: edgeId, enable: enable, area: area), logger: logger, on: eventLoop)
+    }
 }

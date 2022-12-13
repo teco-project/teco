@@ -51,4 +51,20 @@ extension Advisor {
     public func describeStrategies(_ input: DescribeStrategiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStrategiesResponse {
         try await self.client.execute(action: "DescribeStrategies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询评估项信息
+    ///
+    /// 用于查询评估项的信息
+    @inlinable
+    public func describeStrategies(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStrategiesResponse > {
+        self.describeStrategies(DescribeStrategiesRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询评估项信息
+    ///
+    /// 用于查询评估项的信息
+    @inlinable
+    public func describeStrategies(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStrategiesResponse {
+        try await self.describeStrategies(DescribeStrategiesRequest(), logger: logger, on: eventLoop)
+    }
 }

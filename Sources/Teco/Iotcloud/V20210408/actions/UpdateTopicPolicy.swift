@@ -74,4 +74,20 @@ extension Iotcloud {
     public func updateTopicPolicy(_ input: UpdateTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTopicPolicyResponse {
         try await self.client.execute(action: "UpdateTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新Topic
+    ///
+    /// 本接口（UpdateTopicPolicy）用于更新Topic信息
+    @inlinable
+    public func updateTopicPolicy(productId: String, topicName: String, newTopicName: String, privilege: UInt64, brokerSubscribe: BrokerSubscribe? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateTopicPolicyResponse > {
+        self.updateTopicPolicy(UpdateTopicPolicyRequest(productId: productId, topicName: topicName, newTopicName: newTopicName, privilege: privilege, brokerSubscribe: brokerSubscribe), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新Topic
+    ///
+    /// 本接口（UpdateTopicPolicy）用于更新Topic信息
+    @inlinable
+    public func updateTopicPolicy(productId: String, topicName: String, newTopicName: String, privilege: UInt64, brokerSubscribe: BrokerSubscribe? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTopicPolicyResponse {
+        try await self.updateTopicPolicy(UpdateTopicPolicyRequest(productId: productId, topicName: topicName, newTopicName: newTopicName, privilege: privilege, brokerSubscribe: brokerSubscribe), logger: logger, on: eventLoop)
+    }
 }

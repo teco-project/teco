@@ -63,4 +63,20 @@ extension Ssl {
     public func modifyCertificateAlias(_ input: ModifyCertificateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAliasResponse {
         try await self.client.execute(action: "ModifyCertificateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改证书备注
+    ///
+    /// 用户传入证书id和备注来修改证书备注。
+    @inlinable
+    public func modifyCertificateAlias(certificateId: String, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCertificateAliasResponse > {
+        self.modifyCertificateAlias(ModifyCertificateAliasRequest(certificateId: certificateId, alias: alias), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改证书备注
+    ///
+    /// 用户传入证书id和备注来修改证书备注。
+    @inlinable
+    public func modifyCertificateAlias(certificateId: String, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAliasResponse {
+        try await self.modifyCertificateAlias(ModifyCertificateAliasRequest(certificateId: certificateId, alias: alias), logger: logger, on: eventLoop)
+    }
 }

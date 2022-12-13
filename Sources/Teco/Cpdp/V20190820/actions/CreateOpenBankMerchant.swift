@@ -99,4 +99,16 @@ extension Cpdp {
     public func createOpenBankMerchant(_ input: CreateOpenBankMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankMerchantResponse {
         try await self.client.execute(action: "CreateOpenBankMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-创建商户
+    @inlinable
+    public func createOpenBankMerchant(outMerchantId: String, channelName: String, outMerchantName: String, externalMerchantInfo: String, outMerchantShortName: String? = nil, outMerchantDescription: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankMerchantResponse > {
+        self.createOpenBankMerchant(CreateOpenBankMerchantRequest(outMerchantId: outMerchantId, channelName: channelName, outMerchantName: outMerchantName, externalMerchantInfo: externalMerchantInfo, outMerchantShortName: outMerchantShortName, outMerchantDescription: outMerchantDescription, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-创建商户
+    @inlinable
+    public func createOpenBankMerchant(outMerchantId: String, channelName: String, outMerchantName: String, externalMerchantInfo: String, outMerchantShortName: String? = nil, outMerchantDescription: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankMerchantResponse {
+        try await self.createOpenBankMerchant(CreateOpenBankMerchantRequest(outMerchantId: outMerchantId, channelName: channelName, outMerchantName: outMerchantName, externalMerchantInfo: externalMerchantInfo, outMerchantShortName: outMerchantShortName, outMerchantDescription: outMerchantDescription, environment: environment), logger: logger, on: eventLoop)
+    }
 }

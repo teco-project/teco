@@ -69,4 +69,16 @@ extension Ckafka {
     public func createConsumer(_ input: CreateConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsumerResponse {
         try await self.client.execute(action: "CreateConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建消费者组
+    @inlinable
+    public func createConsumer(instanceId: String, groupName: String, topicName: String? = nil, topicNameList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConsumerResponse > {
+        self.createConsumer(CreateConsumerRequest(instanceId: instanceId, groupName: groupName, topicName: topicName, topicNameList: topicNameList), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建消费者组
+    @inlinable
+    public func createConsumer(instanceId: String, groupName: String, topicName: String? = nil, topicNameList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsumerResponse {
+        try await self.createConsumer(CreateConsumerRequest(instanceId: instanceId, groupName: groupName, topicName: topicName, topicNameList: topicNameList), logger: logger, on: eventLoop)
+    }
 }

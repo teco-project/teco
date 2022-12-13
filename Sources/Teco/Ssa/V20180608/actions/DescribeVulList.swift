@@ -58,4 +58,20 @@ extension Ssa {
     public func describeVulList(_ input: DescribeVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulListResponse {
         try await self.client.execute(action: "DescribeVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 漏洞管理-漏洞列表
+    ///
+    /// 漏洞管理页，获取漏洞列表
+    @inlinable
+    public func describeVulList(params: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulListResponse > {
+        self.describeVulList(DescribeVulListRequest(params: params), logger: logger, on: eventLoop)
+    }
+    
+    /// 漏洞管理-漏洞列表
+    ///
+    /// 漏洞管理页，获取漏洞列表
+    @inlinable
+    public func describeVulList(params: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulListResponse {
+        try await self.describeVulList(DescribeVulListRequest(params: params), logger: logger, on: eventLoop)
+    }
 }

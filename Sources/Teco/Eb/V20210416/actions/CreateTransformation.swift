@@ -68,4 +68,20 @@ extension Eb {
     public func createTransformation(_ input: CreateTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTransformationResponse {
         try await self.client.execute(action: "CreateTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建转换器
+    ///
+    /// 用于创建转换器
+    @inlinable
+    public func createTransformation(eventBusId: String, ruleId: String, transformations: [Transformation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTransformationResponse > {
+        self.createTransformation(CreateTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformations: transformations), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建转换器
+    ///
+    /// 用于创建转换器
+    @inlinable
+    public func createTransformation(eventBusId: String, ruleId: String, transformations: [Transformation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTransformationResponse {
+        try await self.createTransformation(CreateTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformations: transformations), logger: logger, on: eventLoop)
+    }
 }

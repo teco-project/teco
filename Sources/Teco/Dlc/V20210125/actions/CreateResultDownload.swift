@@ -64,4 +64,16 @@ extension Dlc {
     public func createResultDownload(_ input: CreateResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResultDownloadResponse {
         try await self.client.execute(action: "CreateResultDownload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建查询结果下载任务
+    @inlinable
+    public func createResultDownload(taskId: String, format: String, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResultDownloadResponse > {
+        self.createResultDownload(CreateResultDownloadRequest(taskId: taskId, format: format, force: force), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建查询结果下载任务
+    @inlinable
+    public func createResultDownload(taskId: String, format: String, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResultDownloadResponse {
+        try await self.createResultDownload(CreateResultDownloadRequest(taskId: taskId, format: format, force: force), logger: logger, on: eventLoop)
+    }
 }

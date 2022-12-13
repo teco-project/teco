@@ -77,4 +77,20 @@ extension Dbdc {
     public func describeHostList(_ input: DescribeHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostListResponse {
         try await self.client.execute(action: "DescribeHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询主机列表
+    ///
+    /// 本接口用于查询主机列表
+    @inlinable
+    public func describeHostList(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, assignStatus: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostListResponse > {
+        self.describeHostList(DescribeHostListRequest(instanceId: instanceId, limit: limit, offset: offset, assignStatus: assignStatus), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询主机列表
+    ///
+    /// 本接口用于查询主机列表
+    @inlinable
+    public func describeHostList(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, assignStatus: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostListResponse {
+        try await self.describeHostList(DescribeHostListRequest(instanceId: instanceId, limit: limit, offset: offset, assignStatus: assignStatus), logger: logger, on: eventLoop)
+    }
 }

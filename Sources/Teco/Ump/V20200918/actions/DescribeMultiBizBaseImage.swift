@@ -69,4 +69,16 @@ extension Ump {
     public func describeMultiBizBaseImage(_ input: DescribeMultiBizBaseImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiBizBaseImageResponse {
         try await self.client.execute(action: "DescribeMultiBizBaseImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取多经点位底图
+    @inlinable
+    public func describeMultiBizBaseImage(groupCode: String, mallId: UInt64, cameraId: UInt64, zoneId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMultiBizBaseImageResponse > {
+        self.describeMultiBizBaseImage(DescribeMultiBizBaseImageRequest(groupCode: groupCode, mallId: mallId, cameraId: cameraId, zoneId: zoneId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取多经点位底图
+    @inlinable
+    public func describeMultiBizBaseImage(groupCode: String, mallId: UInt64, cameraId: UInt64, zoneId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiBizBaseImageResponse {
+        try await self.describeMultiBizBaseImage(DescribeMultiBizBaseImageRequest(groupCode: groupCode, mallId: mallId, cameraId: cameraId, zoneId: zoneId), logger: logger, on: eventLoop)
+    }
 }

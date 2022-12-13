@@ -63,4 +63,20 @@ extension Mariadb {
     public func switchDBInstanceHA(_ input: SwitchDBInstanceHARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDBInstanceHAResponse {
         try await self.client.execute(action: "SwitchDBInstanceHA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 实例主备切换
+    ///
+    /// 本接口（SwitchDBInstanceHA）用于发起实例主备切换。
+    @inlinable
+    public func switchDBInstanceHA(instanceId: String, zone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchDBInstanceHAResponse > {
+        self.switchDBInstanceHA(SwitchDBInstanceHARequest(instanceId: instanceId, zone: zone), logger: logger, on: eventLoop)
+    }
+    
+    /// 实例主备切换
+    ///
+    /// 本接口（SwitchDBInstanceHA）用于发起实例主备切换。
+    @inlinable
+    public func switchDBInstanceHA(instanceId: String, zone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDBInstanceHAResponse {
+        try await self.switchDBInstanceHA(SwitchDBInstanceHARequest(instanceId: instanceId, zone: zone), logger: logger, on: eventLoop)
+    }
 }

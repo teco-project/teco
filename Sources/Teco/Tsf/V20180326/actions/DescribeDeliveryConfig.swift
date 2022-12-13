@@ -58,4 +58,20 @@ extension Tsf {
     public func describeDeliveryConfig(_ input: DescribeDeliveryConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigResponse {
         try await self.client.execute(action: "DescribeDeliveryConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取单个投递项配置
+    ///
+    /// 获取单个投递项配置信息
+    @inlinable
+    public func describeDeliveryConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeliveryConfigResponse > {
+        self.describeDeliveryConfig(DescribeDeliveryConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取单个投递项配置
+    ///
+    /// 获取单个投递项配置信息
+    @inlinable
+    public func describeDeliveryConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigResponse {
+        try await self.describeDeliveryConfig(DescribeDeliveryConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    }
 }

@@ -84,4 +84,16 @@ extension Ckafka {
     public func createInstancePost(_ input: CreateInstancePostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancePostResponse {
         try await self.client.execute(action: "CreateInstancePost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建按量计费实例
+    @inlinable
+    public func createInstancePost(instanceName: String, bandWidth: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, zoneId: Int64? = nil, clusterId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstancePostResponse > {
+        self.createInstancePost(CreateInstancePostRequest(instanceName: instanceName, bandWidth: bandWidth, vpcId: vpcId, subnetId: subnetId, msgRetentionTime: msgRetentionTime, zoneId: zoneId, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建按量计费实例
+    @inlinable
+    public func createInstancePost(instanceName: String, bandWidth: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, zoneId: Int64? = nil, clusterId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancePostResponse {
+        try await self.createInstancePost(CreateInstancePostRequest(instanceName: instanceName, bandWidth: bandWidth, vpcId: vpcId, subnetId: subnetId, msgRetentionTime: msgRetentionTime, zoneId: zoneId, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

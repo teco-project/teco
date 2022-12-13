@@ -69,4 +69,16 @@ extension Tdid {
     public func createCredential(_ input: CreateCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
         try await self.client.execute(action: "CreateCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建凭证
+    @inlinable
+    public func createCredential(functionArg: FunctionArg, transactionArg: TransactionArg, versionCredential: String, unSigned: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCredentialResponse > {
+        self.createCredential(CreateCredentialRequest(functionArg: functionArg, transactionArg: transactionArg, versionCredential: versionCredential, unSigned: unSigned), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建凭证
+    @inlinable
+    public func createCredential(functionArg: FunctionArg, transactionArg: TransactionArg, versionCredential: String, unSigned: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
+        try await self.createCredential(CreateCredentialRequest(functionArg: functionArg, transactionArg: transactionArg, versionCredential: versionCredential, unSigned: unSigned), logger: logger, on: eventLoop)
+    }
 }

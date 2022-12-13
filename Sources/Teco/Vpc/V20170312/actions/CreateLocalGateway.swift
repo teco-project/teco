@@ -68,4 +68,20 @@ extension Vpc {
     public func createLocalGateway(_ input: CreateLocalGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLocalGatewayResponse {
         try await self.client.execute(action: "CreateLocalGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建本地网关
+    ///
+    /// 该接口用于创建用于CDC的本地网关。
+    @inlinable
+    public func createLocalGateway(localGatewayName: String, vpcId: String, cdcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLocalGatewayResponse > {
+        self.createLocalGateway(CreateLocalGatewayRequest(localGatewayName: localGatewayName, vpcId: vpcId, cdcId: cdcId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建本地网关
+    ///
+    /// 该接口用于创建用于CDC的本地网关。
+    @inlinable
+    public func createLocalGateway(localGatewayName: String, vpcId: String, cdcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLocalGatewayResponse {
+        try await self.createLocalGateway(CreateLocalGatewayRequest(localGatewayName: localGatewayName, vpcId: vpcId, cdcId: cdcId), logger: logger, on: eventLoop)
+    }
 }

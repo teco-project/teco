@@ -108,4 +108,16 @@ extension Memcached {
     public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
         try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取Cmem实例列表
+    @inlinable
+    public func describeInstances(orderBy: String? = nil, searchKeys: [String]? = nil, uniqSubnetIds: [String]? = nil, vips: [String]? = nil, orderType: Int64? = nil, instanceNames: [String]? = nil, uniqVpcIds: [String]? = nil, projectIds: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, instanceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+        self.describeInstances(DescribeInstancesRequest(orderBy: orderBy, searchKeys: searchKeys, uniqSubnetIds: uniqSubnetIds, vips: vips, orderType: orderType, instanceNames: instanceNames, uniqVpcIds: uniqVpcIds, projectIds: projectIds, offset: offset, limit: limit, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Cmem实例列表
+    @inlinable
+    public func describeInstances(orderBy: String? = nil, searchKeys: [String]? = nil, uniqSubnetIds: [String]? = nil, vips: [String]? = nil, orderType: Int64? = nil, instanceNames: [String]? = nil, uniqVpcIds: [String]? = nil, projectIds: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, instanceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
+        try await self.describeInstances(DescribeInstancesRequest(orderBy: orderBy, searchKeys: searchKeys, uniqSubnetIds: uniqSubnetIds, vips: vips, orderType: orderType, instanceNames: instanceNames, uniqVpcIds: uniqVpcIds, projectIds: projectIds, offset: offset, limit: limit, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

@@ -58,4 +58,20 @@ extension Bm {
     public func returnDevices(_ input: ReturnDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReturnDevicesResponse {
         try await self.client.execute(action: "ReturnDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 退回物理机
+    ///
+    /// 退回物理机至回收站，支持批量退还不同计费模式的物理机（包括预付费、后付费、预付费转后付费）
+    @inlinable
+    public func returnDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReturnDevicesResponse > {
+        self.returnDevices(ReturnDevicesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 退回物理机
+    ///
+    /// 退回物理机至回收站，支持批量退还不同计费模式的物理机（包括预付费、后付费、预付费转后付费）
+    @inlinable
+    public func returnDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReturnDevicesResponse {
+        try await self.returnDevices(ReturnDevicesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

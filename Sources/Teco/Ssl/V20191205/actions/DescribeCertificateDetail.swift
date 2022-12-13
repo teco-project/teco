@@ -256,4 +256,20 @@ extension Ssl {
     public func describeCertificateDetail(_ input: DescribeCertificateDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateDetailResponse {
         try await self.client.execute(action: "DescribeCertificateDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取证书详情
+    ///
+    /// 获取证书详情。
+    @inlinable
+    public func describeCertificateDetail(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertificateDetailResponse > {
+        self.describeCertificateDetail(DescribeCertificateDetailRequest(certificateId: certificateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取证书详情
+    ///
+    /// 获取证书详情。
+    @inlinable
+    public func describeCertificateDetail(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateDetailResponse {
+        try await self.describeCertificateDetail(DescribeCertificateDetailRequest(certificateId: certificateId), logger: logger, on: eventLoop)
+    }
 }

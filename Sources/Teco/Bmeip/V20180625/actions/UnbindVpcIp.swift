@@ -64,4 +64,16 @@ extension Bmeip {
     public func unbindVpcIp(_ input: UnbindVpcIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindVpcIpResponse {
         try await self.client.execute(action: "UnbindVpcIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 黑石EIP解绑VPCIP
+    @inlinable
+    public func unbindVpcIp(eipId: String, vpcId: String, vpcIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindVpcIpResponse > {
+        self.unbindVpcIp(UnbindVpcIpRequest(eipId: eipId, vpcId: vpcId, vpcIp: vpcIp), logger: logger, on: eventLoop)
+    }
+    
+    /// 黑石EIP解绑VPCIP
+    @inlinable
+    public func unbindVpcIp(eipId: String, vpcId: String, vpcIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindVpcIpResponse {
+        try await self.unbindVpcIp(UnbindVpcIpRequest(eipId: eipId, vpcId: vpcId, vpcIp: vpcIp), logger: logger, on: eventLoop)
+    }
 }

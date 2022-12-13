@@ -80,4 +80,16 @@ extension Wedata {
     public func describeTableSchemaInfo(_ input: DescribeTableSchemaInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableSchemaInfoResponse {
         try await self.client.execute(action: "DescribeTableSchemaInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取表schema信息
+    @inlinable
+    public func describeTableSchemaInfo(name: String, databaseName: String, msType: String, datasourceId: String, connectionType: String? = nil, schemaName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableSchemaInfoResponse > {
+        self.describeTableSchemaInfo(DescribeTableSchemaInfoRequest(name: name, databaseName: databaseName, msType: msType, datasourceId: datasourceId, connectionType: connectionType, schemaName: schemaName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取表schema信息
+    @inlinable
+    public func describeTableSchemaInfo(name: String, databaseName: String, msType: String, datasourceId: String, connectionType: String? = nil, schemaName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableSchemaInfoResponse {
+        try await self.describeTableSchemaInfo(DescribeTableSchemaInfoRequest(name: name, databaseName: databaseName, msType: msType, datasourceId: datasourceId, connectionType: connectionType, schemaName: schemaName), logger: logger, on: eventLoop)
+    }
 }

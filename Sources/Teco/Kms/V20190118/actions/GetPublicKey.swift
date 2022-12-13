@@ -66,4 +66,20 @@ extension Kms {
     public func getPublicKey(_ input: GetPublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPublicKeyResponse {
         try await self.client.execute(action: "GetPublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取非对称密钥的公钥
+    ///
+    /// 该接口用于获取非对称密钥的公钥信息，可用于本地数据加密或验签。只有处于Enabled状态的非对称密钥才可能获取公钥。
+    @inlinable
+    public func getPublicKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPublicKeyResponse > {
+        self.getPublicKey(GetPublicKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取非对称密钥的公钥
+    ///
+    /// 该接口用于获取非对称密钥的公钥信息，可用于本地数据加密或验签。只有处于Enabled状态的非对称密钥才可能获取公钥。
+    @inlinable
+    public func getPublicKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPublicKeyResponse {
+        try await self.getPublicKey(GetPublicKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Vpc {
     public func deleteVpnConnection(_ input: DeleteVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnConnectionResponse {
         try await self.client.execute(action: "DeleteVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除VPN通道
+    ///
+    /// 本接口(DeleteVpnConnection)用于删除VPN通道。
+    @inlinable
+    public func deleteVpnConnection(vpnGatewayId: String, vpnConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnConnectionResponse > {
+        self.deleteVpnConnection(DeleteVpnConnectionRequest(vpnGatewayId: vpnGatewayId, vpnConnectionId: vpnConnectionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除VPN通道
+    ///
+    /// 本接口(DeleteVpnConnection)用于删除VPN通道。
+    @inlinable
+    public func deleteVpnConnection(vpnGatewayId: String, vpnConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnConnectionResponse {
+        try await self.deleteVpnConnection(DeleteVpnConnectionRequest(vpnGatewayId: vpnGatewayId, vpnConnectionId: vpnConnectionId), logger: logger, on: eventLoop)
+    }
 }

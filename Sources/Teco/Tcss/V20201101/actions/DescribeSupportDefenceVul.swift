@@ -81,4 +81,16 @@ extension Tcss {
     public func describeSupportDefenceVul(_ input: DescribeSupportDefenceVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportDefenceVulResponse {
         try await self.client.execute(action: "DescribeSupportDefenceVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询支持防御的漏洞列表
+    @inlinable
+    public func describeSupportDefenceVul(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSupportDefenceVulResponse > {
+        self.describeSupportDefenceVul(DescribeSupportDefenceVulRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询支持防御的漏洞列表
+    @inlinable
+    public func describeSupportDefenceVul(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportDefenceVulResponse {
+        try await self.describeSupportDefenceVul(DescribeSupportDefenceVulRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

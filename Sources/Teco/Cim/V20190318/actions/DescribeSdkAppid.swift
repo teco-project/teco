@@ -50,4 +50,20 @@ extension Cim {
     public func describeSdkAppid(_ input: DescribeSdkAppidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSdkAppidResponse {
         try await self.client.execute(action: "DescribeSdkAppid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取云通信 IM 的 SDKAppid
+    ///
+    /// 获取云通信IM中腾讯云账号对应的SDKAppID
+    @inlinable
+    public func describeSdkAppid(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSdkAppidResponse > {
+        self.describeSdkAppid(DescribeSdkAppidRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取云通信 IM 的 SDKAppid
+    ///
+    /// 获取云通信IM中腾讯云账号对应的SDKAppID
+    @inlinable
+    public func describeSdkAppid(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSdkAppidResponse {
+        try await self.describeSdkAppid(DescribeSdkAppidRequest(), logger: logger, on: eventLoop)
+    }
 }

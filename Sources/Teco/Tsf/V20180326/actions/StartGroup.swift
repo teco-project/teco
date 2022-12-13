@@ -59,4 +59,20 @@ extension Tsf {
     public func startGroup(_ input: StartGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartGroupResponse {
         try await self.client.execute(action: "StartGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启动虚拟机部署组
+    ///
+    /// 启动分组
+    @inlinable
+    public func startGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartGroupResponse > {
+        self.startGroup(StartGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 启动虚拟机部署组
+    ///
+    /// 启动分组
+    @inlinable
+    public func startGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartGroupResponse {
+        try await self.startGroup(StartGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

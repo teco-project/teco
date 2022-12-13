@@ -58,4 +58,20 @@ extension Tke {
     public func createPrometheusTemp(_ input: CreatePrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusTempResponse {
         try await self.client.execute(action: "CreatePrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新建模板
+    ///
+    /// 创建一个云原生Prometheus模板
+    @inlinable
+    public func createPrometheusTemp(template: PrometheusTemp, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusTempResponse > {
+        self.createPrometheusTemp(CreatePrometheusTempRequest(template: template), logger: logger, on: eventLoop)
+    }
+    
+    /// 新建模板
+    ///
+    /// 创建一个云原生Prometheus模板
+    @inlinable
+    public func createPrometheusTemp(template: PrometheusTemp, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusTempResponse {
+        try await self.createPrometheusTemp(CreatePrometheusTempRequest(template: template), logger: logger, on: eventLoop)
+    }
 }

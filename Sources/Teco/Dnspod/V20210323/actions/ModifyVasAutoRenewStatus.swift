@@ -55,4 +55,16 @@ extension Dnspod {
     public func modifyVasAutoRenewStatus(_ input: ModifyVasAutoRenewStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVasAutoRenewStatusResponse {
         try await self.client.execute(action: "ModifyVasAutoRenewStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 增值服务自动续费设置
+    @inlinable
+    public func modifyVasAutoRenewStatus(resourceId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVasAutoRenewStatusResponse > {
+        self.modifyVasAutoRenewStatus(ModifyVasAutoRenewStatusRequest(resourceId: resourceId, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 增值服务自动续费设置
+    @inlinable
+    public func modifyVasAutoRenewStatus(resourceId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVasAutoRenewStatusResponse {
+        try await self.modifyVasAutoRenewStatus(ModifyVasAutoRenewStatusRequest(resourceId: resourceId, status: status), logger: logger, on: eventLoop)
+    }
 }

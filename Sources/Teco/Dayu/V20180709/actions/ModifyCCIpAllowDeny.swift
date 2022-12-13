@@ -42,7 +42,7 @@ extension Dayu {
         /// 当Method为delete时，不用填写此字段；
         public let ruleId: String?
         
-        public init (business: String, id: String, method: String, type: String, ipList: [String], `protocol`: String? = nil, domain: String? = nil, ruleId: String? = nil) {
+        public init (business: String, id: String, method: String, type: String, ipList: [String], protocol: String? = nil, domain: String? = nil, ruleId: String? = nil) {
             self.business = business
             self.id = id
             self.method = method
@@ -89,5 +89,17 @@ extension Dayu {
     @inlinable
     public func modifyCCIpAllowDeny(_ input: ModifyCCIpAllowDenyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCIpAllowDenyResponse {
         try await self.client.execute(action: "ModifyCCIpAllowDeny", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 添加或删除CC的IP黑白名单
+    @inlinable
+    public func modifyCCIpAllowDeny(business: String, id: String, method: String, type: String, ipList: [String], protocol: String? = nil, domain: String? = nil, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCIpAllowDenyResponse > {
+        self.modifyCCIpAllowDeny(ModifyCCIpAllowDenyRequest(business: business, id: id, method: method, type: type, ipList: ipList, protocol: `protocol`, domain: domain, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加或删除CC的IP黑白名单
+    @inlinable
+    public func modifyCCIpAllowDeny(business: String, id: String, method: String, type: String, ipList: [String], protocol: String? = nil, domain: String? = nil, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCIpAllowDenyResponse {
+        try await self.modifyCCIpAllowDeny(ModifyCCIpAllowDenyRequest(business: business, id: id, method: method, type: type, ipList: ipList, protocol: `protocol`, domain: domain, ruleId: ruleId), logger: logger, on: eventLoop)
     }
 }

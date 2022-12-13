@@ -54,4 +54,20 @@ extension Smh {
     public func deleteLibrary(_ input: DeleteLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLibraryResponse {
         try await self.client.execute(action: "DeleteLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除媒体库
+    ///
+    /// 删除 PaaS 服务媒体库
+    @inlinable
+    public func deleteLibrary(libraryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLibraryResponse > {
+        self.deleteLibrary(DeleteLibraryRequest(libraryId: libraryId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除媒体库
+    ///
+    /// 删除 PaaS 服务媒体库
+    @inlinable
+    public func deleteLibrary(libraryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLibraryResponse {
+        try await self.deleteLibrary(DeleteLibraryRequest(libraryId: libraryId), logger: logger, on: eventLoop)
+    }
 }

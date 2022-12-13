@@ -59,4 +59,20 @@ extension Teo {
     public func deleteRules(_ input: DeleteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRulesResponse {
         try await self.client.execute(action: "DeleteRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量删除规则引擎规则
+    ///
+    /// 批量删除规则引擎规则。
+    @inlinable
+    public func deleteRules(zoneId: String, ruleIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRulesResponse > {
+        self.deleteRules(DeleteRulesRequest(zoneId: zoneId, ruleIds: ruleIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除规则引擎规则
+    ///
+    /// 批量删除规则引擎规则。
+    @inlinable
+    public func deleteRules(zoneId: String, ruleIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRulesResponse {
+        try await self.deleteRules(DeleteRulesRequest(zoneId: zoneId, ruleIds: ruleIds), logger: logger, on: eventLoop)
+    }
 }

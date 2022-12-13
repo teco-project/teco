@@ -136,4 +136,20 @@ extension Iotcloud {
     public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
         try await self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建设备
+    ///
+    /// 本接口（CreateDevice）用于新建一个物联网通信设备。 
+    @inlinable
+    public func createDevice(productId: String, deviceName: String, attribute: Attribute? = nil, definedPsk: String? = nil, isp: UInt64? = nil, imei: String? = nil, loraDevEui: String? = nil, loraMoteType: UInt64? = nil, skey: String? = nil, loraAppKey: String? = nil, tlsCrt: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeviceResponse > {
+        self.createDevice(CreateDeviceRequest(productId: productId, deviceName: deviceName, attribute: attribute, definedPsk: definedPsk, isp: isp, imei: imei, loraDevEui: loraDevEui, loraMoteType: loraMoteType, skey: skey, loraAppKey: loraAppKey, tlsCrt: tlsCrt), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建设备
+    ///
+    /// 本接口（CreateDevice）用于新建一个物联网通信设备。 
+    @inlinable
+    public func createDevice(productId: String, deviceName: String, attribute: Attribute? = nil, definedPsk: String? = nil, isp: UInt64? = nil, imei: String? = nil, loraDevEui: String? = nil, loraMoteType: UInt64? = nil, skey: String? = nil, loraAppKey: String? = nil, tlsCrt: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
+        try await self.createDevice(CreateDeviceRequest(productId: productId, deviceName: deviceName, attribute: attribute, definedPsk: definedPsk, isp: isp, imei: imei, loraDevEui: loraDevEui, loraMoteType: loraMoteType, skey: skey, loraAppKey: loraAppKey, tlsCrt: tlsCrt), logger: logger, on: eventLoop)
+    }
 }

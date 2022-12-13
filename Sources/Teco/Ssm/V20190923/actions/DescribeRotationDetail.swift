@@ -75,4 +75,22 @@ extension Ssm {
     public func describeRotationDetail(_ input: DescribeRotationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRotationDetailResponse {
         try await self.client.execute(action: "DescribeRotationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询凭据轮转详情
+    ///
+    /// 查询凭据轮转策略详情。
+    /// 本接口只适用于云产品凭据。
+    @inlinable
+    public func describeRotationDetail(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRotationDetailResponse > {
+        self.describeRotationDetail(DescribeRotationDetailRequest(secretName: secretName), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询凭据轮转详情
+    ///
+    /// 查询凭据轮转策略详情。
+    /// 本接口只适用于云产品凭据。
+    @inlinable
+    public func describeRotationDetail(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRotationDetailResponse {
+        try await self.describeRotationDetail(DescribeRotationDetailRequest(secretName: secretName), logger: logger, on: eventLoop)
+    }
 }

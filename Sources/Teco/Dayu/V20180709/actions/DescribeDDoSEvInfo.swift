@@ -144,4 +144,16 @@ extension Dayu {
     public func describeDDoSEvInfo(_ input: DescribeDDoSEvInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSEvInfoResponse {
         try await self.client.execute(action: "DescribeDDoSEvInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取DDoS攻击事件详情
+    @inlinable
+    public func describeDDoSEvInfo(business: String, id: String, ip: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSEvInfoResponse > {
+        self.describeDDoSEvInfo(DescribeDDoSEvInfoRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS攻击事件详情
+    @inlinable
+    public func describeDDoSEvInfo(business: String, id: String, ip: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSEvInfoResponse {
+        try await self.describeDDoSEvInfo(DescribeDDoSEvInfoRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

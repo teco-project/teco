@@ -88,4 +88,16 @@ extension Ccc {
     public func describeAutoCalloutTask(_ input: DescribeAutoCalloutTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoCalloutTaskResponse {
         try await self.client.execute(action: "DescribeAutoCalloutTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询自动外呼任务详情
+    @inlinable
+    public func describeAutoCalloutTask(sdkAppId: UInt64, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoCalloutTaskResponse > {
+        self.describeAutoCalloutTask(DescribeAutoCalloutTaskRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询自动外呼任务详情
+    @inlinable
+    public func describeAutoCalloutTask(sdkAppId: UInt64, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoCalloutTaskResponse {
+        try await self.describeAutoCalloutTask(DescribeAutoCalloutTaskRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

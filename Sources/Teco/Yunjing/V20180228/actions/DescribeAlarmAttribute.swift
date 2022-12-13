@@ -70,4 +70,20 @@ extension Yunjing {
     public func describeAlarmAttribute(_ input: DescribeAlarmAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmAttributeResponse {
         try await self.client.execute(action: "DescribeAlarmAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取告警设置
+    ///
+    /// 本接口 (DescribeAlarmAttribute) 用于获取告警设置。
+    @inlinable
+    public func describeAlarmAttribute(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmAttributeResponse > {
+        self.describeAlarmAttribute(DescribeAlarmAttributeRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取告警设置
+    ///
+    /// 本接口 (DescribeAlarmAttribute) 用于获取告警设置。
+    @inlinable
+    public func describeAlarmAttribute(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmAttributeResponse {
+        try await self.describeAlarmAttribute(DescribeAlarmAttributeRequest(), logger: logger, on: eventLoop)
+    }
 }

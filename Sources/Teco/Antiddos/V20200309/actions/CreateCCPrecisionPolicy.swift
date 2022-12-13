@@ -35,7 +35,7 @@ extension Antiddos {
         /// 策略记录
         public let policyList: [CCPrecisionPlyRecord]
         
-        public init (instanceId: String, ip: String, `protocol`: String, domain: String, policyAction: String, policyList: [CCPrecisionPlyRecord]) {
+        public init (instanceId: String, ip: String, protocol: String, domain: String, policyAction: String, policyList: [CCPrecisionPlyRecord]) {
             self.instanceId = instanceId
             self.ip = ip
             self.`protocol` = `protocol`
@@ -74,5 +74,17 @@ extension Antiddos {
     @inlinable
     public func createCCPrecisionPolicy(_ input: CreateCCPrecisionPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCPrecisionPolicyResponse {
         try await self.client.execute(action: "CreateCCPrecisionPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 新增CC精准防护策略
+    @inlinable
+    public func createCCPrecisionPolicy(instanceId: String, ip: String, protocol: String, domain: String, policyAction: String, policyList: [CCPrecisionPlyRecord], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCCPrecisionPolicyResponse > {
+        self.createCCPrecisionPolicy(CreateCCPrecisionPolicyRequest(instanceId: instanceId, ip: ip, protocol: `protocol`, domain: domain, policyAction: policyAction, policyList: policyList), logger: logger, on: eventLoop)
+    }
+    
+    /// 新增CC精准防护策略
+    @inlinable
+    public func createCCPrecisionPolicy(instanceId: String, ip: String, protocol: String, domain: String, policyAction: String, policyList: [CCPrecisionPlyRecord], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCPrecisionPolicyResponse {
+        try await self.createCCPrecisionPolicy(CreateCCPrecisionPolicyRequest(instanceId: instanceId, ip: ip, protocol: `protocol`, domain: domain, policyAction: policyAction, policyList: policyList), logger: logger, on: eventLoop)
     }
 }

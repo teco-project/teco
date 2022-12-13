@@ -69,4 +69,16 @@ extension Cfw {
     public func createSecurityGroupRules(_ input: CreateSecurityGroupRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupRulesResponse {
         try await self.client.execute(action: "CreateSecurityGroupRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建企业安全组规则
+    @inlinable
+    public func createSecurityGroupRules(data: [SecurityGroupListData], direction: UInt64, type: UInt64? = nil, enable: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityGroupRulesResponse > {
+        self.createSecurityGroupRules(CreateSecurityGroupRulesRequest(data: data, direction: direction, type: type, enable: enable), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建企业安全组规则
+    @inlinable
+    public func createSecurityGroupRules(data: [SecurityGroupListData], direction: UInt64, type: UInt64? = nil, enable: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupRulesResponse {
+        try await self.createSecurityGroupRules(CreateSecurityGroupRulesRequest(data: data, direction: direction, type: type, enable: enable), logger: logger, on: eventLoop)
+    }
 }

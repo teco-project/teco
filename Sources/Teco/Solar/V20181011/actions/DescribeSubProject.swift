@@ -95,4 +95,16 @@ extension Solar {
     public func describeSubProject(_ input: DescribeSubProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubProjectResponse {
         try await self.client.execute(action: "DescribeSubProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 子项目详情
+    @inlinable
+    public func describeSubProject(subProjectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubProjectResponse > {
+        self.describeSubProject(DescribeSubProjectRequest(subProjectId: subProjectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 子项目详情
+    @inlinable
+    public func describeSubProject(subProjectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubProjectResponse {
+        try await self.describeSubProject(DescribeSubProjectRequest(subProjectId: subProjectId), logger: logger, on: eventLoop)
+    }
 }

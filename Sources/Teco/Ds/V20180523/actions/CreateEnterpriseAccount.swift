@@ -108,4 +108,20 @@ extension Ds {
     public func createEnterpriseAccount(_ input: CreateEnterpriseAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnterpriseAccountResponse {
         try await self.client.execute(action: "CreateEnterpriseAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 企业开户
+    ///
+    /// 为企业电子合同平台的最终企业用户进行开户。在企业电子合同平台进行操作的企业用户，企业电子合同平台向腾讯云发送企业用户的信息，提交开户命令。腾讯云接到请求后，自动为企业电子合同平台的企业用户生成一张数字证书。
+    @inlinable
+    public func createEnterpriseAccount(module: String, operation: String, name: String, identType: Int64, identNo: String, mobilePhone: String, transactorName: String, transactorIdentType: Int64, transactorIdentNo: String, transactorPhone: String, email: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEnterpriseAccountResponse > {
+        self.createEnterpriseAccount(CreateEnterpriseAccountRequest(module: module, operation: operation, name: name, identType: identType, identNo: identNo, mobilePhone: mobilePhone, transactorName: transactorName, transactorIdentType: transactorIdentType, transactorIdentNo: transactorIdentNo, transactorPhone: transactorPhone, email: email), logger: logger, on: eventLoop)
+    }
+    
+    /// 企业开户
+    ///
+    /// 为企业电子合同平台的最终企业用户进行开户。在企业电子合同平台进行操作的企业用户，企业电子合同平台向腾讯云发送企业用户的信息，提交开户命令。腾讯云接到请求后，自动为企业电子合同平台的企业用户生成一张数字证书。
+    @inlinable
+    public func createEnterpriseAccount(module: String, operation: String, name: String, identType: Int64, identNo: String, mobilePhone: String, transactorName: String, transactorIdentType: Int64, transactorIdentNo: String, transactorPhone: String, email: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnterpriseAccountResponse {
+        try await self.createEnterpriseAccount(CreateEnterpriseAccountRequest(module: module, operation: operation, name: name, identType: identType, identNo: identNo, mobilePhone: mobilePhone, transactorName: transactorName, transactorIdentType: transactorIdentType, transactorIdentNo: transactorIdentNo, transactorPhone: transactorPhone, email: email), logger: logger, on: eventLoop)
+    }
 }

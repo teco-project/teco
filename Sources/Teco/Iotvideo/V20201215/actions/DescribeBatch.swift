@@ -54,4 +54,16 @@ extension Iotvideo {
     public func describeBatch(_ input: DescribeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchResponse {
         try await self.client.execute(action: "DescribeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取批次详情
+    @inlinable
+    public func describeBatch(batchId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchResponse > {
+        self.describeBatch(DescribeBatchRequest(batchId: batchId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取批次详情
+    @inlinable
+    public func describeBatch(batchId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchResponse {
+        try await self.describeBatch(DescribeBatchRequest(batchId: batchId), logger: logger, on: eventLoop)
+    }
 }

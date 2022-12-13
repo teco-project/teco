@@ -74,4 +74,16 @@ extension Pts {
     public func startJob(_ input: StartJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartJobResponse {
         try await self.client.execute(action: "StartJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建并启动任务
+    @inlinable
+    public func startJob(scenarioId: String, jobOwner: String, projectId: String, debug: Bool? = nil, note: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartJobResponse > {
+        self.startJob(StartJobRequest(scenarioId: scenarioId, jobOwner: jobOwner, projectId: projectId, debug: debug, note: note), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建并启动任务
+    @inlinable
+    public func startJob(scenarioId: String, jobOwner: String, projectId: String, debug: Bool? = nil, note: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartJobResponse {
+        try await self.startJob(StartJobRequest(scenarioId: scenarioId, jobOwner: jobOwner, projectId: projectId, debug: debug, note: note), logger: logger, on: eventLoop)
+    }
 }

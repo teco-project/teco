@@ -59,4 +59,20 @@ extension Tdmq {
     public func clearCmqSubscriptionFilterTags(_ input: ClearCmqSubscriptionFilterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearCmqSubscriptionFilterTagsResponse {
         try await self.client.execute(action: "ClearCmqSubscriptionFilterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 清空cmq订阅者消息标签
+    ///
+    /// 清空订阅者消息标签
+    @inlinable
+    public func clearCmqSubscriptionFilterTags(topicName: String, subscriptionName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ClearCmqSubscriptionFilterTagsResponse > {
+        self.clearCmqSubscriptionFilterTags(ClearCmqSubscriptionFilterTagsRequest(topicName: topicName, subscriptionName: subscriptionName), logger: logger, on: eventLoop)
+    }
+    
+    /// 清空cmq订阅者消息标签
+    ///
+    /// 清空订阅者消息标签
+    @inlinable
+    public func clearCmqSubscriptionFilterTags(topicName: String, subscriptionName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearCmqSubscriptionFilterTagsResponse {
+        try await self.clearCmqSubscriptionFilterTags(ClearCmqSubscriptionFilterTagsRequest(topicName: topicName, subscriptionName: subscriptionName), logger: logger, on: eventLoop)
+    }
 }

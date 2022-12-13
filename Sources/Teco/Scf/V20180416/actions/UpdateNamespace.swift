@@ -55,4 +55,16 @@ extension Scf {
     public func updateNamespace(_ input: UpdateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateNamespaceResponse {
         try await self.client.execute(action: "UpdateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新命名空间
+    @inlinable
+    public func updateNamespace(namespace: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateNamespaceResponse > {
+        self.updateNamespace(UpdateNamespaceRequest(namespace: namespace, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新命名空间
+    @inlinable
+    public func updateNamespace(namespace: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateNamespaceResponse {
+        try await self.updateNamespace(UpdateNamespaceRequest(namespace: namespace, description: description), logger: logger, on: eventLoop)
+    }
 }

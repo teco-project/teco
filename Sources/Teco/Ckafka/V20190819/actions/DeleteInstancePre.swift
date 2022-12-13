@@ -54,4 +54,16 @@ extension Ckafka {
     public func deleteInstancePre(_ input: DeleteInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstancePreResponse {
         try await self.client.execute(action: "DeleteInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除预付费实例
+    @inlinable
+    public func deleteInstancePre(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstancePreResponse > {
+        self.deleteInstancePre(DeleteInstancePreRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除预付费实例
+    @inlinable
+    public func deleteInstancePre(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstancePreResponse {
+        try await self.deleteInstancePre(DeleteInstancePreRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

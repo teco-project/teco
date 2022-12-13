@@ -64,4 +64,16 @@ extension Mongodb {
     public func createBackupDBInstance(_ input: CreateBackupDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupDBInstanceResponse {
         try await self.client.execute(action: "CreateBackupDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 备份实例接口
+    @inlinable
+    public func createBackupDBInstance(instanceId: String, backupMethod: Int64, backupRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBackupDBInstanceResponse > {
+        self.createBackupDBInstance(CreateBackupDBInstanceRequest(instanceId: instanceId, backupMethod: backupMethod, backupRemark: backupRemark), logger: logger, on: eventLoop)
+    }
+    
+    /// 备份实例接口
+    @inlinable
+    public func createBackupDBInstance(instanceId: String, backupMethod: Int64, backupRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupDBInstanceResponse {
+        try await self.createBackupDBInstance(CreateBackupDBInstanceRequest(instanceId: instanceId, backupMethod: backupMethod, backupRemark: backupRemark), logger: logger, on: eventLoop)
+    }
 }

@@ -65,4 +65,20 @@ extension Teo {
     public func describeDDoSAttackEventDetail(_ input: DescribeDDoSAttackEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackEventDetailResponse {
         try await self.client.execute(action: "DescribeDDoSAttackEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询DDoS攻击事件详情
+    ///
+    /// 本接口（DescribeDDoSAttackEventDetail）用于查询DDoS攻击事件详情。
+    @inlinable
+    public func describeDDoSAttackEventDetail(eventId: String, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSAttackEventDetailResponse > {
+        self.describeDDoSAttackEventDetail(DescribeDDoSAttackEventDetailRequest(eventId: eventId, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询DDoS攻击事件详情
+    ///
+    /// 本接口（DescribeDDoSAttackEventDetail）用于查询DDoS攻击事件详情。
+    @inlinable
+    public func describeDDoSAttackEventDetail(eventId: String, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackEventDetailResponse {
+        try await self.describeDDoSAttackEventDetail(DescribeDDoSAttackEventDetailRequest(eventId: eventId, area: area), logger: logger, on: eventLoop)
+    }
 }

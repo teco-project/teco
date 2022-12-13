@@ -89,4 +89,16 @@ extension Iecp {
     public func describeNodeUnitTemplateOnNodeGroup(_ input: DescribeNodeUnitTemplateOnNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeUnitTemplateOnNodeGroupResponse {
         try await self.client.execute(action: "DescribeNodeUnitTemplateOnNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询指定NodeGroup下NodeUnit模板列表
+    @inlinable
+    public func describeNodeUnitTemplateOnNodeGroup(edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, nodeUnitNamePattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodeUnitTemplateOnNodeGroupResponse > {
+        self.describeNodeUnitTemplateOnNodeGroup(DescribeNodeUnitTemplateOnNodeGroupRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, nodeUnitNamePattern: nodeUnitNamePattern, offset: offset, limit: limit, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询指定NodeGroup下NodeUnit模板列表
+    @inlinable
+    public func describeNodeUnitTemplateOnNodeGroup(edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, nodeUnitNamePattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeUnitTemplateOnNodeGroupResponse {
+        try await self.describeNodeUnitTemplateOnNodeGroup(DescribeNodeUnitTemplateOnNodeGroupRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, nodeUnitNamePattern: nodeUnitNamePattern, offset: offset, limit: limit, order: order), logger: logger, on: eventLoop)
+    }
 }

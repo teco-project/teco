@@ -50,4 +50,16 @@ extension Tdid {
     public func enableHash(_ input: EnableHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableHashResponse {
         try await self.client.execute(action: "EnableHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启用合约
+    @inlinable
+    public func enableHash(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableHashResponse > {
+        self.enableHash(EnableHashRequest(hash: hash), logger: logger, on: eventLoop)
+    }
+    
+    /// 启用合约
+    @inlinable
+    public func enableHash(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableHashResponse {
+        try await self.enableHash(EnableHashRequest(hash: hash), logger: logger, on: eventLoop)
+    }
 }

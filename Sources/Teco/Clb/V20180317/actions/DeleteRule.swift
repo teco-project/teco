@@ -81,4 +81,22 @@ extension Clb {
     public func deleteRule(_ input: DeleteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
         try await self.client.execute(action: "DeleteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除负载均衡七层监听器的转发规则
+    ///
+    /// DeleteRule 接口用来删除负载均衡实例七层监听器下的转发规则。
+    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func deleteRule(loadBalancerId: String, listenerId: String, locationIds: [String]? = nil, domain: String? = nil, url: String? = nil, newDefaultServerDomain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRuleResponse > {
+        self.deleteRule(DeleteRuleRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, locationIds: locationIds, domain: domain, url: url, newDefaultServerDomain: newDefaultServerDomain), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除负载均衡七层监听器的转发规则
+    ///
+    /// DeleteRule 接口用来删除负载均衡实例七层监听器下的转发规则。
+    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func deleteRule(loadBalancerId: String, listenerId: String, locationIds: [String]? = nil, domain: String? = nil, url: String? = nil, newDefaultServerDomain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
+        try await self.deleteRule(DeleteRuleRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, locationIds: locationIds, domain: domain, url: url, newDefaultServerDomain: newDefaultServerDomain), logger: logger, on: eventLoop)
+    }
 }

@@ -88,4 +88,20 @@ extension Tcss {
     public func describeRiskList(_ input: DescribeRiskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskListResponse {
         try await self.client.execute(action: "DescribeRiskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询集群风险项列表
+    ///
+    /// 查询最近一次任务发现的风险项的信息列表，支持根据特殊字段进行过滤
+    @inlinable
+    public func describeRiskList(clusterId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskListResponse > {
+        self.describeRiskList(DescribeRiskListRequest(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群风险项列表
+    ///
+    /// 查询最近一次任务发现的风险项的信息列表，支持根据特殊字段进行过滤
+    @inlinable
+    public func describeRiskList(clusterId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskListResponse {
+        try await self.describeRiskList(DescribeRiskListRequest(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    }
 }

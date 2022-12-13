@@ -54,4 +54,20 @@ extension Vpc {
     public func deleteAddressTemplateGroup(_ input: DeleteAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAddressTemplateGroupResponse {
         try await self.client.execute(action: "DeleteAddressTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除IP地址模板集合
+    ///
+    /// 本接口（DeleteAddressTemplateGroup）用于删除IP地址模板集合
+    @inlinable
+    public func deleteAddressTemplateGroup(addressTemplateGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAddressTemplateGroupResponse > {
+        self.deleteAddressTemplateGroup(DeleteAddressTemplateGroupRequest(addressTemplateGroupId: addressTemplateGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除IP地址模板集合
+    ///
+    /// 本接口（DeleteAddressTemplateGroup）用于删除IP地址模板集合
+    @inlinable
+    public func deleteAddressTemplateGroup(addressTemplateGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAddressTemplateGroupResponse {
+        try await self.deleteAddressTemplateGroup(DeleteAddressTemplateGroupRequest(addressTemplateGroupId: addressTemplateGroupId), logger: logger, on: eventLoop)
+    }
 }

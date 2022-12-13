@@ -23,7 +23,7 @@ extension Ess {
         /// 签署流程编号
         public let flowId: String
         
-        public init (`operator`: UserInfo, flowId: String) {
+        public init (operator: UserInfo, flowId: String) {
             self.`operator` = `operator`
             self.flowId = flowId
         }
@@ -74,5 +74,21 @@ extension Ess {
     @inlinable
     public func createFlowEvidenceReport(_ input: CreateFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowEvidenceReportResponse {
         try await self.client.execute(action: "CreateFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 创建并返回出证报告
+    ///
+    /// 创建出证报告，返回报告 ID。
+    @inlinable
+    public func createFlowEvidenceReport(operator: UserInfo, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowEvidenceReportResponse > {
+        self.createFlowEvidenceReport(CreateFlowEvidenceReportRequest(operator: `operator`, flowId: flowId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建并返回出证报告
+    ///
+    /// 创建出证报告，返回报告 ID。
+    @inlinable
+    public func createFlowEvidenceReport(operator: UserInfo, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowEvidenceReportResponse {
+        try await self.createFlowEvidenceReport(CreateFlowEvidenceReportRequest(operator: `operator`, flowId: flowId), logger: logger, on: eventLoop)
     }
 }

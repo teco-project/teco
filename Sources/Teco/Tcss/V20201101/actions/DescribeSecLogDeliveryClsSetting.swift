@@ -46,4 +46,16 @@ extension Tcss {
     public func describeSecLogDeliveryClsSetting(_ input: DescribeSecLogDeliveryClsSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogDeliveryClsSettingResponse {
         try await self.client.execute(action: "DescribeSecLogDeliveryClsSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询安全日志投递Cls配置
+    @inlinable
+    public func describeSecLogDeliveryClsSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogDeliveryClsSettingResponse > {
+        self.describeSecLogDeliveryClsSetting(DescribeSecLogDeliveryClsSettingRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全日志投递Cls配置
+    @inlinable
+    public func describeSecLogDeliveryClsSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogDeliveryClsSettingResponse {
+        try await self.describeSecLogDeliveryClsSetting(DescribeSecLogDeliveryClsSettingRequest(), logger: logger, on: eventLoop)
+    }
 }

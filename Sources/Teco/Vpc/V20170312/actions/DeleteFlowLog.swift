@@ -59,4 +59,20 @@ extension Vpc {
     public func deleteFlowLog(_ input: DeleteFlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFlowLogResponse {
         try await self.client.execute(action: "DeleteFlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除流日志
+    ///
+    /// 本接口（DeleteFlowLog）用于删除流日志
+    @inlinable
+    public func deleteFlowLog(flowLogId: String, vpcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFlowLogResponse > {
+        self.deleteFlowLog(DeleteFlowLogRequest(flowLogId: flowLogId, vpcId: vpcId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除流日志
+    ///
+    /// 本接口（DeleteFlowLog）用于删除流日志
+    @inlinable
+    public func deleteFlowLog(flowLogId: String, vpcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFlowLogResponse {
+        try await self.deleteFlowLog(DeleteFlowLogRequest(flowLogId: flowLogId, vpcId: vpcId), logger: logger, on: eventLoop)
+    }
 }

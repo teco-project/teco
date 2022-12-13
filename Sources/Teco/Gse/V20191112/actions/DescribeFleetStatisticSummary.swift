@@ -78,4 +78,22 @@ extension Gse {
     public func describeFleetStatisticSummary(_ input: DescribeFleetStatisticSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetStatisticSummaryResponse {
         try await self.client.execute(action: "DescribeFleetStatisticSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询服务部署统计汇总信息
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeFleetStatisticSummary）用于查询服务部署统计汇总信息。
+    @inlinable
+    public func describeFleetStatisticSummary(fleetId: String? = nil, beginTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFleetStatisticSummaryResponse > {
+        self.describeFleetStatisticSummary(DescribeFleetStatisticSummaryRequest(fleetId: fleetId, beginTime: beginTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务部署统计汇总信息
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeFleetStatisticSummary）用于查询服务部署统计汇总信息。
+    @inlinable
+    public func describeFleetStatisticSummary(fleetId: String? = nil, beginTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetStatisticSummaryResponse {
+        try await self.describeFleetStatisticSummary(DescribeFleetStatisticSummaryRequest(fleetId: fleetId, beginTime: beginTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

@@ -64,4 +64,20 @@ extension Iotcloud {
     public func updateDevicePSK(_ input: UpdateDevicePSKRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicePSKResponse {
         try await self.client.execute(action: "UpdateDevicePSK", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新设备PSK
+    ///
+    /// 本接口（UpdateDevicePSK）用于更新设备的PSK 
+    @inlinable
+    public func updateDevicePSK(productId: String, deviceName: String, psk: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDevicePSKResponse > {
+        self.updateDevicePSK(UpdateDevicePSKRequest(productId: productId, deviceName: deviceName, psk: psk), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新设备PSK
+    ///
+    /// 本接口（UpdateDevicePSK）用于更新设备的PSK 
+    @inlinable
+    public func updateDevicePSK(productId: String, deviceName: String, psk: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicePSKResponse {
+        try await self.updateDevicePSK(UpdateDevicePSKRequest(productId: productId, deviceName: deviceName, psk: psk), logger: logger, on: eventLoop)
+    }
 }

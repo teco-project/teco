@@ -55,4 +55,16 @@ extension Iecp {
     public func setRouteOnOff(_ input: SetRouteOnOffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetRouteOnOffResponse {
         try await self.client.execute(action: "SetRouteOnOff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开关消息路由
+    @inlinable
+    public func setRouteOnOff(routeID: Int64, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetRouteOnOffResponse > {
+        self.setRouteOnOff(SetRouteOnOffRequest(routeID: routeID, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 开关消息路由
+    @inlinable
+    public func setRouteOnOff(routeID: Int64, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetRouteOnOffResponse {
+        try await self.setRouteOnOff(SetRouteOnOffRequest(routeID: routeID, status: status), logger: logger, on: eventLoop)
+    }
 }

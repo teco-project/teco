@@ -83,4 +83,20 @@ extension Mariadb {
     public func describeDBLogFiles(_ input: DescribeDBLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBLogFilesResponse {
         try await self.client.execute(action: "DescribeDBLogFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取日志列表
+    ///
+    /// 本接口(DescribeDBLogFiles)用于获取数据库的各种日志列表，包括冷备、binlog、errlog和slowlog。
+    @inlinable
+    public func describeDBLogFiles(instanceId: String, type: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBLogFilesResponse > {
+        self.describeDBLogFiles(DescribeDBLogFilesRequest(instanceId: instanceId, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志列表
+    ///
+    /// 本接口(DescribeDBLogFiles)用于获取数据库的各种日志列表，包括冷备、binlog、errlog和slowlog。
+    @inlinable
+    public func describeDBLogFiles(instanceId: String, type: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBLogFilesResponse {
+        try await self.describeDBLogFiles(DescribeDBLogFilesRequest(instanceId: instanceId, type: type), logger: logger, on: eventLoop)
+    }
 }

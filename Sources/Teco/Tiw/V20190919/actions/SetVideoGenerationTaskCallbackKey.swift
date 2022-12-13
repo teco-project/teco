@@ -59,4 +59,20 @@ extension Tiw {
     public func setVideoGenerationTaskCallbackKey(_ input: SetVideoGenerationTaskCallbackKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVideoGenerationTaskCallbackKeyResponse {
         try await self.client.execute(action: "SetVideoGenerationTaskCallbackKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置录制视频生成回调密钥
+    ///
+    /// 设置视频生成回调鉴权密钥
+    @inlinable
+    public func setVideoGenerationTaskCallbackKey(sdkAppId: Int64, callbackKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetVideoGenerationTaskCallbackKeyResponse > {
+        self.setVideoGenerationTaskCallbackKey(SetVideoGenerationTaskCallbackKeyRequest(sdkAppId: sdkAppId, callbackKey: callbackKey), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置录制视频生成回调密钥
+    ///
+    /// 设置视频生成回调鉴权密钥
+    @inlinable
+    public func setVideoGenerationTaskCallbackKey(sdkAppId: Int64, callbackKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVideoGenerationTaskCallbackKeyResponse {
+        try await self.setVideoGenerationTaskCallbackKey(SetVideoGenerationTaskCallbackKeyRequest(sdkAppId: sdkAppId, callbackKey: callbackKey), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Tcss {
     public func deleteAccessControlRules(_ input: DeleteAccessControlRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessControlRulesResponse {
         try await self.client.execute(action: "DeleteAccessControlRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除运行时访问控制策略
+    ///
+    /// 删除运行访问控制策略
+    @inlinable
+    public func deleteAccessControlRules(ruleIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccessControlRulesResponse > {
+        self.deleteAccessControlRules(DeleteAccessControlRulesRequest(ruleIdSet: ruleIdSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除运行时访问控制策略
+    ///
+    /// 删除运行访问控制策略
+    @inlinable
+    public func deleteAccessControlRules(ruleIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessControlRulesResponse {
+        try await self.deleteAccessControlRules(DeleteAccessControlRulesRequest(ruleIdSet: ruleIdSet), logger: logger, on: eventLoop)
+    }
 }

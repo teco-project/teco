@@ -74,4 +74,22 @@ extension Bm {
     public func createCustomImage(_ input: CreateCustomImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomImageResponse {
         try await self.client.execute(action: "CreateCustomImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建自定义镜像
+    ///
+    /// 创建自定义镜像<br>
+    /// 每个AppId在每个可用区最多保留20个自定义镜像
+    @inlinable
+    public func createCustomImage(instanceId: String, imageName: String, imageDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomImageResponse > {
+        self.createCustomImage(CreateCustomImageRequest(instanceId: instanceId, imageName: imageName, imageDescription: imageDescription), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建自定义镜像
+    ///
+    /// 创建自定义镜像<br>
+    /// 每个AppId在每个可用区最多保留20个自定义镜像
+    @inlinable
+    public func createCustomImage(instanceId: String, imageName: String, imageDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomImageResponse {
+        try await self.createCustomImage(CreateCustomImageRequest(instanceId: instanceId, imageName: imageName, imageDescription: imageDescription), logger: logger, on: eventLoop)
+    }
 }

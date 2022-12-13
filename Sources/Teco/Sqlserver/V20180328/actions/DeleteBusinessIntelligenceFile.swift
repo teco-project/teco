@@ -59,4 +59,20 @@ extension Sqlserver {
     public func deleteBusinessIntelligenceFile(_ input: DeleteBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBusinessIntelligenceFileResponse {
         try await self.client.execute(action: "DeleteBusinessIntelligenceFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除商业智能文件
+    ///
+    /// 本接口（DeleteBusinessIntelligenceFile）用于删除商业智能文件。
+    @inlinable
+    public func deleteBusinessIntelligenceFile(instanceId: String, fileNameSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBusinessIntelligenceFileResponse > {
+        self.deleteBusinessIntelligenceFile(DeleteBusinessIntelligenceFileRequest(instanceId: instanceId, fileNameSet: fileNameSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除商业智能文件
+    ///
+    /// 本接口（DeleteBusinessIntelligenceFile）用于删除商业智能文件。
+    @inlinable
+    public func deleteBusinessIntelligenceFile(instanceId: String, fileNameSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBusinessIntelligenceFileResponse {
+        try await self.deleteBusinessIntelligenceFile(DeleteBusinessIntelligenceFileRequest(instanceId: instanceId, fileNameSet: fileNameSet), logger: logger, on: eventLoop)
+    }
 }

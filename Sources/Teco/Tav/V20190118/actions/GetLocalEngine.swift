@@ -66,4 +66,20 @@ extension Tav {
     public func getLocalEngine(_ input: GetLocalEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLocalEngineResponse {
         try await self.client.execute(action: "GetLocalEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 本地引擎下载地址获取
+    ///
+    /// 获取TAV本地引擎
+    @inlinable
+    public func getLocalEngine(key: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLocalEngineResponse > {
+        self.getLocalEngine(GetLocalEngineRequest(key: key), logger: logger, on: eventLoop)
+    }
+    
+    /// 本地引擎下载地址获取
+    ///
+    /// 获取TAV本地引擎
+    @inlinable
+    public func getLocalEngine(key: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLocalEngineResponse {
+        try await self.getLocalEngine(GetLocalEngineRequest(key: key), logger: logger, on: eventLoop)
+    }
 }

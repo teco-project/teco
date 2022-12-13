@@ -54,4 +54,20 @@ extension Iotcloud {
     public func getUserResourceInfo(_ input: GetUserResourceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserResourceInfoResponse {
         try await self.client.execute(action: "GetUserResourceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取用户资源信息
+    ///
+    /// 本接口（GetUserResourceInfo）用于查询用户资源使用信息。
+    @inlinable
+    public func getUserResourceInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUserResourceInfoResponse > {
+        self.getUserResourceInfo(GetUserResourceInfoRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户资源信息
+    ///
+    /// 本接口（GetUserResourceInfo）用于查询用户资源使用信息。
+    @inlinable
+    public func getUserResourceInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserResourceInfoResponse {
+        try await self.getUserResourceInfo(GetUserResourceInfoRequest(), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Tke {
     public func modifyClusterAsGroupAttribute(_ input: ModifyClusterAsGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAsGroupAttributeResponse {
         try await self.client.execute(action: "ModifyClusterAsGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改集群伸缩组属性
+    @inlinable
+    public func modifyClusterAsGroupAttribute(clusterId: String, clusterAsGroupAttribute: ClusterAsGroupAttribute? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterAsGroupAttributeResponse > {
+        self.modifyClusterAsGroupAttribute(ModifyClusterAsGroupAttributeRequest(clusterId: clusterId, clusterAsGroupAttribute: clusterAsGroupAttribute), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改集群伸缩组属性
+    @inlinable
+    public func modifyClusterAsGroupAttribute(clusterId: String, clusterAsGroupAttribute: ClusterAsGroupAttribute? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAsGroupAttributeResponse {
+        try await self.modifyClusterAsGroupAttribute(ModifyClusterAsGroupAttributeRequest(clusterId: clusterId, clusterAsGroupAttribute: clusterAsGroupAttribute), logger: logger, on: eventLoop)
+    }
 }

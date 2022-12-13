@@ -73,4 +73,20 @@ extension Tcr {
     public func describeApplicationTriggerPersonal(_ input: DescribeApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationTriggerPersonalResponse {
         try await self.client.execute(action: "DescribeApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询应用更新触发器
+    ///
+    /// 用于查询应用更新触发器
+    @inlinable
+    public func describeApplicationTriggerPersonal(repoName: String? = nil, triggerName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationTriggerPersonalResponse > {
+        self.describeApplicationTriggerPersonal(DescribeApplicationTriggerPersonalRequest(repoName: repoName, triggerName: triggerName, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询应用更新触发器
+    ///
+    /// 用于查询应用更新触发器
+    @inlinable
+    public func describeApplicationTriggerPersonal(repoName: String? = nil, triggerName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationTriggerPersonalResponse {
+        try await self.describeApplicationTriggerPersonal(DescribeApplicationTriggerPersonalRequest(repoName: repoName, triggerName: triggerName, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

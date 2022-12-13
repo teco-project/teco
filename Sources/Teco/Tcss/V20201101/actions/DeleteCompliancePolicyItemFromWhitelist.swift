@@ -54,4 +54,20 @@ extension Tcss {
     public func deleteCompliancePolicyItemFromWhitelist(_ input: DeleteCompliancePolicyItemFromWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCompliancePolicyItemFromWhitelistResponse {
         try await self.client.execute(action: "DeleteCompliancePolicyItemFromWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安全合规取消忽略检测项列表
+    ///
+    /// 从白名单中删除将指定的检测项。
+    @inlinable
+    public func deleteCompliancePolicyItemFromWhitelist(whitelistIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCompliancePolicyItemFromWhitelistResponse > {
+        self.deleteCompliancePolicyItemFromWhitelist(DeleteCompliancePolicyItemFromWhitelistRequest(whitelistIdSet: whitelistIdSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规取消忽略检测项列表
+    ///
+    /// 从白名单中删除将指定的检测项。
+    @inlinable
+    public func deleteCompliancePolicyItemFromWhitelist(whitelistIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCompliancePolicyItemFromWhitelistResponse {
+        try await self.deleteCompliancePolicyItemFromWhitelist(DeleteCompliancePolicyItemFromWhitelistRequest(whitelistIdSet: whitelistIdSet), logger: logger, on: eventLoop)
+    }
 }

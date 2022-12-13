@@ -64,4 +64,20 @@ extension Cvm {
     public func modifyHpcClusterAttribute(_ input: ModifyHpcClusterAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHpcClusterAttributeResponse {
         try await self.client.execute(action: "ModifyHpcClusterAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改高性能计算集群属性
+    ///
+    /// 修改高性能计算集群属性。
+    @inlinable
+    public func modifyHpcClusterAttribute(hpcClusterId: String, name: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyHpcClusterAttributeResponse > {
+        self.modifyHpcClusterAttribute(ModifyHpcClusterAttributeRequest(hpcClusterId: hpcClusterId, name: name, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改高性能计算集群属性
+    ///
+    /// 修改高性能计算集群属性。
+    @inlinable
+    public func modifyHpcClusterAttribute(hpcClusterId: String, name: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHpcClusterAttributeResponse {
+        try await self.modifyHpcClusterAttribute(ModifyHpcClusterAttributeRequest(hpcClusterId: hpcClusterId, name: name, remark: remark), logger: logger, on: eventLoop)
+    }
 }

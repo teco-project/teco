@@ -75,4 +75,16 @@ extension Tsf {
     public func describeLanes(_ input: DescribeLanesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLanesResponse {
         try await self.client.execute(action: "DescribeLanes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询泳道列表
+    @inlinable
+    public func describeLanes(limit: Int64? = nil, offset: Int64? = nil, searchWord: String? = nil, laneIdList: [String]? = nil, disableProgramAuthCheck: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLanesResponse > {
+        self.describeLanes(DescribeLanesRequest(limit: limit, offset: offset, searchWord: searchWord, laneIdList: laneIdList, disableProgramAuthCheck: disableProgramAuthCheck), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询泳道列表
+    @inlinable
+    public func describeLanes(limit: Int64? = nil, offset: Int64? = nil, searchWord: String? = nil, laneIdList: [String]? = nil, disableProgramAuthCheck: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLanesResponse {
+        try await self.describeLanes(DescribeLanesRequest(limit: limit, offset: offset, searchWord: searchWord, laneIdList: laneIdList, disableProgramAuthCheck: disableProgramAuthCheck), logger: logger, on: eventLoop)
+    }
 }

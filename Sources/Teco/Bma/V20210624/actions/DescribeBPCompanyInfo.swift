@@ -82,4 +82,16 @@ extension Bma {
     public func describeBPCompanyInfo(_ input: DescribeBPCompanyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPCompanyInfoResponse {
         try await self.client.execute(action: "DescribeBPCompanyInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询企业信息
+    @inlinable
+    public func describeBPCompanyInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBPCompanyInfoResponse > {
+        self.describeBPCompanyInfo(DescribeBPCompanyInfoRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询企业信息
+    @inlinable
+    public func describeBPCompanyInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPCompanyInfoResponse {
+        try await self.describeBPCompanyInfo(DescribeBPCompanyInfoRequest(), logger: logger, on: eventLoop)
+    }
 }

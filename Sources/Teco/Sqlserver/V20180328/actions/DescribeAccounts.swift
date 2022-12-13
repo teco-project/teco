@@ -91,4 +91,20 @@ extension Sqlserver {
     public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
         try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 拉取实例账户列表
+    ///
+    /// 本接口（DescribeAccounts）用于拉取实例账户列表。
+    @inlinable
+    public func describeAccounts(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
+        self.describeAccounts(DescribeAccountsRequest(instanceId: instanceId, limit: limit, offset: offset, name: name, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取实例账户列表
+    ///
+    /// 本接口（DescribeAccounts）用于拉取实例账户列表。
+    @inlinable
+    public func describeAccounts(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
+        try await self.describeAccounts(DescribeAccountsRequest(instanceId: instanceId, limit: limit, offset: offset, name: name, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    }
 }

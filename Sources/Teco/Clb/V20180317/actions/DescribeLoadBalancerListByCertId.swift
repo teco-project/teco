@@ -58,4 +58,20 @@ extension Clb {
     public func describeLoadBalancerListByCertId(_ input: DescribeLoadBalancerListByCertIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerListByCertIdResponse {
         try await self.client.execute(action: "DescribeLoadBalancerListByCertId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 根据证书ID查询负载均衡
+    ///
+    /// 根据证书ID查询其在一个地域中所关联到负载均衡实例列表
+    @inlinable
+    public func describeLoadBalancerListByCertId(certIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancerListByCertIdResponse > {
+        self.describeLoadBalancerListByCertId(DescribeLoadBalancerListByCertIdRequest(certIds: certIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 根据证书ID查询负载均衡
+    ///
+    /// 根据证书ID查询其在一个地域中所关联到负载均衡实例列表
+    @inlinable
+    public func describeLoadBalancerListByCertId(certIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerListByCertIdResponse {
+        try await self.describeLoadBalancerListByCertId(DescribeLoadBalancerListByCertIdRequest(certIds: certIds), logger: logger, on: eventLoop)
+    }
 }

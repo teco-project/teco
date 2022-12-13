@@ -73,4 +73,16 @@ extension Tdmq {
     public func createRole(_ input: CreateRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoleResponse {
         try await self.client.execute(action: "CreateRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建角色
+    @inlinable
+    public func createRole(roleName: String, remark: String? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRoleResponse > {
+        self.createRole(CreateRoleRequest(roleName: roleName, remark: remark, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建角色
+    @inlinable
+    public func createRole(roleName: String, remark: String? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoleResponse {
+        try await self.createRole(CreateRoleRequest(roleName: roleName, remark: remark, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

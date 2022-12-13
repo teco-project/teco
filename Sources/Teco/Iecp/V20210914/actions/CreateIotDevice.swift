@@ -65,4 +65,16 @@ extension Iecp {
     public func createIotDevice(_ input: CreateIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDeviceResponse {
         try await self.client.execute(action: "CreateIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建子设备
+    @inlinable
+    public func createIotDevice(deviceName: String, productId: String, description: String? = nil, unitID: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIotDeviceResponse > {
+        self.createIotDevice(CreateIotDeviceRequest(deviceName: deviceName, productId: productId, description: description, unitID: unitID), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建子设备
+    @inlinable
+    public func createIotDevice(deviceName: String, productId: String, description: String? = nil, unitID: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDeviceResponse {
+        try await self.createIotDevice(CreateIotDeviceRequest(deviceName: deviceName, productId: productId, description: description, unitID: unitID), logger: logger, on: eventLoop)
+    }
 }

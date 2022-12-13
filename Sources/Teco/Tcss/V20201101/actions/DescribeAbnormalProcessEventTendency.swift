@@ -63,4 +63,16 @@ extension Tcss {
     public func describeAbnormalProcessEventTendency(_ input: DescribeAbnormalProcessEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessEventTendencyResponse {
         try await self.client.execute(action: "DescribeAbnormalProcessEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询待处理异常进程事件趋势
+    @inlinable
+    public func describeAbnormalProcessEventTendency(startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalProcessEventTendencyResponse > {
+        self.describeAbnormalProcessEventTendency(DescribeAbnormalProcessEventTendencyRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询待处理异常进程事件趋势
+    @inlinable
+    public func describeAbnormalProcessEventTendency(startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessEventTendencyResponse {
+        try await self.describeAbnormalProcessEventTendency(DescribeAbnormalProcessEventTendencyRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,20 @@ extension Nlp {
     public func dependencyParsing(_ input: DependencyParsingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DependencyParsingResponse {
         try await self.client.execute(action: "DependencyParsing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 句法依存分析
+    ///
+    /// 句法依存分析接口能够分析出句子中词与词之间的相互依存关系，并揭示其句法结构，包括主谓关系、动宾关系、核心关系等等，可用于提取句子主干、提取句子核心词等，在机器翻译、自动问答、知识抽取等领域都有很好的应用。
+    @inlinable
+    public func dependencyParsing(text: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DependencyParsingResponse > {
+        self.dependencyParsing(DependencyParsingRequest(text: text), logger: logger, on: eventLoop)
+    }
+    
+    /// 句法依存分析
+    ///
+    /// 句法依存分析接口能够分析出句子中词与词之间的相互依存关系，并揭示其句法结构，包括主谓关系、动宾关系、核心关系等等，可用于提取句子主干、提取句子核心词等，在机器翻译、自动问答、知识抽取等领域都有很好的应用。
+    @inlinable
+    public func dependencyParsing(text: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DependencyParsingResponse {
+        try await self.dependencyParsing(DependencyParsingRequest(text: text), logger: logger, on: eventLoop)
+    }
 }

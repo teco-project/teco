@@ -161,4 +161,20 @@ extension Postgres {
     public func createDBInstances(_ input: CreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstancesResponse {
         try await self.client.execute(action: "CreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建实例(旧)
+    ///
+    /// 本接口 (CreateDBInstances) 用于创建一个或者多个PostgreSQL实例,仅发货实例不会进行初始化。
+    @inlinable
+    public func createDBInstances(specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, zone: String, projectId: Int64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, autoRenewFlag: Int64? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, tagList: [Tag]? = nil, securityGroupIds: [String]? = nil, dbMajorVersion: String? = nil, dbKernelVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstancesResponse > {
+        self.createDBInstances(CreateDBInstancesRequest(specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, zone: zone, projectId: projectId, dbVersion: dbVersion, instanceChargeType: instanceChargeType, autoVoucher: autoVoucher, voucherIds: voucherIds, vpcId: vpcId, subnetId: subnetId, autoRenewFlag: autoRenewFlag, activityId: activityId, name: name, needSupportIpv6: needSupportIpv6, tagList: tagList, securityGroupIds: securityGroupIds, dbMajorVersion: dbMajorVersion, dbKernelVersion: dbKernelVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例(旧)
+    ///
+    /// 本接口 (CreateDBInstances) 用于创建一个或者多个PostgreSQL实例,仅发货实例不会进行初始化。
+    @inlinable
+    public func createDBInstances(specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, zone: String, projectId: Int64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, autoRenewFlag: Int64? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, tagList: [Tag]? = nil, securityGroupIds: [String]? = nil, dbMajorVersion: String? = nil, dbKernelVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstancesResponse {
+        try await self.createDBInstances(CreateDBInstancesRequest(specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, zone: zone, projectId: projectId, dbVersion: dbVersion, instanceChargeType: instanceChargeType, autoVoucher: autoVoucher, voucherIds: voucherIds, vpcId: vpcId, subnetId: subnetId, autoRenewFlag: autoRenewFlag, activityId: activityId, name: name, needSupportIpv6: needSupportIpv6, tagList: tagList, securityGroupIds: securityGroupIds, dbMajorVersion: dbMajorVersion, dbKernelVersion: dbKernelVersion), logger: logger, on: eventLoop)
+    }
 }

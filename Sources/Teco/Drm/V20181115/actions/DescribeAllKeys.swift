@@ -87,4 +87,20 @@ extension Drm {
     public func describeAllKeys(_ input: DescribeAllKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllKeysResponse {
         try await self.client.execute(action: "DescribeAllKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询所有加密密钥列表
+    ///
+    /// 本接口用来查询指定DRM类型、ContentType的所有加密密钥
+    @inlinable
+    public func describeAllKeys(drmType: String, rsaPublicKey: String? = nil, contentId: String? = nil, contentType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllKeysResponse > {
+        self.describeAllKeys(DescribeAllKeysRequest(drmType: drmType, rsaPublicKey: rsaPublicKey, contentId: contentId, contentType: contentType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询所有加密密钥列表
+    ///
+    /// 本接口用来查询指定DRM类型、ContentType的所有加密密钥
+    @inlinable
+    public func describeAllKeys(drmType: String, rsaPublicKey: String? = nil, contentId: String? = nil, contentType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllKeysResponse {
+        try await self.describeAllKeys(DescribeAllKeysRequest(drmType: drmType, rsaPublicKey: rsaPublicKey, contentId: contentId, contentType: contentType), logger: logger, on: eventLoop)
+    }
 }

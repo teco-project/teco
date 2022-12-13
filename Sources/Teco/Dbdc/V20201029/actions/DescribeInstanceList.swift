@@ -107,4 +107,20 @@ extension Dbdc {
     public func describeInstanceList(_ input: DescribeInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceListResponse {
         try await self.client.execute(action: "DescribeInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询独享集群实例列表
+    ///
+    /// 本接口用于查询独享集群实例列表
+    @inlinable
+    public func describeInstanceList(limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, sortBy: String? = nil, productId: [Int64]? = nil, instanceId: [String]? = nil, instanceName: [String]? = nil, fenceId: [String]? = nil, status: [Int64]? = nil, clusterId: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceListResponse > {
+        self.describeInstanceList(DescribeInstanceListRequest(limit: limit, offset: offset, orderBy: orderBy, sortBy: sortBy, productId: productId, instanceId: instanceId, instanceName: instanceName, fenceId: fenceId, status: status, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询独享集群实例列表
+    ///
+    /// 本接口用于查询独享集群实例列表
+    @inlinable
+    public func describeInstanceList(limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, sortBy: String? = nil, productId: [Int64]? = nil, instanceId: [String]? = nil, instanceName: [String]? = nil, fenceId: [String]? = nil, status: [Int64]? = nil, clusterId: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceListResponse {
+        try await self.describeInstanceList(DescribeInstanceListRequest(limit: limit, offset: offset, orderBy: orderBy, sortBy: sortBy, productId: productId, instanceId: instanceId, instanceName: instanceName, fenceId: fenceId, status: status, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

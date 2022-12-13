@@ -65,4 +65,16 @@ extension Cwp {
     public func describeVulHostTop(_ input: DescribeVulHostTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulHostTopResponse {
         try await self.client.execute(action: "DescribeVulHostTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取服务器风险top列表
+    @inlinable
+    public func describeVulHostTop(top: UInt64, vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulHostTopResponse > {
+        self.describeVulHostTop(DescribeVulHostTopRequest(top: top, vulCategory: vulCategory, isFollowVul: isFollowVul), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取服务器风险top列表
+    @inlinable
+    public func describeVulHostTop(top: UInt64, vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulHostTopResponse {
+        try await self.describeVulHostTop(DescribeVulHostTopRequest(top: top, vulCategory: vulCategory, isFollowVul: isFollowVul), logger: logger, on: eventLoop)
+    }
 }

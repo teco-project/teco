@@ -84,4 +84,20 @@ extension Eiam {
     public func listApplicationAuthorizations(_ input: ListApplicationAuthorizationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListApplicationAuthorizationsResponse {
         try await self.client.execute(action: "ListApplicationAuthorizations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 应用授权关系列表信息
+    ///
+    /// 应用授权关系列表（含搜索条件匹配）。
+    @inlinable
+    public func listApplicationAuthorizations(entityType: String, searchCondition: AuthorizationInfoSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListApplicationAuthorizationsResponse > {
+        self.listApplicationAuthorizations(ListApplicationAuthorizationsRequest(entityType: entityType, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 应用授权关系列表信息
+    ///
+    /// 应用授权关系列表（含搜索条件匹配）。
+    @inlinable
+    public func listApplicationAuthorizations(entityType: String, searchCondition: AuthorizationInfoSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListApplicationAuthorizationsResponse {
+        try await self.listApplicationAuthorizations(ListApplicationAuthorizationsRequest(entityType: entityType, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

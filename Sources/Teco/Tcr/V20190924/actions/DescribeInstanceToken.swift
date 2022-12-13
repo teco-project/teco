@@ -68,4 +68,16 @@ extension Tcr {
     public func describeInstanceToken(_ input: DescribeInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTokenResponse {
         try await self.client.execute(action: "DescribeInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询长期访问凭证信息
+    @inlinable
+    public func describeInstanceToken(registryId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceTokenResponse > {
+        self.describeInstanceToken(DescribeInstanceTokenRequest(registryId: registryId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询长期访问凭证信息
+    @inlinable
+    public func describeInstanceToken(registryId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTokenResponse {
+        try await self.describeInstanceToken(DescribeInstanceTokenRequest(registryId: registryId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

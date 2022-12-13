@@ -74,4 +74,16 @@ extension Cwp {
     public func describeBashRules(_ input: DescribeBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBashRulesResponse {
         try await self.client.execute(action: "DescribeBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取高危命令规则列表
+    @inlinable
+    public func describeBashRules(type: UInt64, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBashRulesResponse > {
+        self.describeBashRules(DescribeBashRulesRequest(type: type, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取高危命令规则列表
+    @inlinable
+    public func describeBashRules(type: UInt64, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBashRulesResponse {
+        try await self.describeBashRules(DescribeBashRulesRequest(type: type, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

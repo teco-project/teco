@@ -80,4 +80,16 @@ extension Tsf {
     public func createRepository(_ input: CreateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryResponse {
         try await self.client.execute(action: "CreateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建仓库
+    @inlinable
+    public func createRepository(repositoryName: String, repositoryType: String, bucketName: String, bucketRegion: String, directory: String? = nil, repositoryDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRepositoryResponse > {
+        self.createRepository(CreateRepositoryRequest(repositoryName: repositoryName, repositoryType: repositoryType, bucketName: bucketName, bucketRegion: bucketRegion, directory: directory, repositoryDesc: repositoryDesc), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建仓库
+    @inlinable
+    public func createRepository(repositoryName: String, repositoryType: String, bucketName: String, bucketRegion: String, directory: String? = nil, repositoryDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryResponse {
+        try await self.createRepository(CreateRepositoryRequest(repositoryName: repositoryName, repositoryType: repositoryType, bucketName: bucketName, bucketRegion: bucketRegion, directory: directory, repositoryDesc: repositoryDesc), logger: logger, on: eventLoop)
+    }
 }

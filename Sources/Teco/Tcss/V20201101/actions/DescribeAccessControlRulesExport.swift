@@ -84,4 +84,20 @@ extension Tcss {
     public func describeAccessControlRulesExport(_ input: DescribeAccessControlRulesExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlRulesExportResponse {
         try await self.client.execute(action: "DescribeAccessControlRulesExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行时访问控制策略列表导出
+    ///
+    /// 查询运行时访问控制策略列表导出
+    @inlinable
+    public func describeAccessControlRulesExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessControlRulesExportResponse > {
+        self.describeAccessControlRulesExport(DescribeAccessControlRulesExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时访问控制策略列表导出
+    ///
+    /// 查询运行时访问控制策略列表导出
+    @inlinable
+    public func describeAccessControlRulesExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlRulesExportResponse {
+        try await self.describeAccessControlRulesExport(DescribeAccessControlRulesExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

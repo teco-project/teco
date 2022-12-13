@@ -68,4 +68,20 @@ extension Cdn {
     public func listDiagnoseReport(_ input: ListDiagnoseReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDiagnoseReportResponse {
         try await self.client.execute(action: "ListDiagnoseReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取诊断任务列表
+    ///
+    /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
+    @inlinable
+    public func listDiagnoseReport(keyWords: String? = nil, diagnoseLink: String? = nil, origin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListDiagnoseReportResponse > {
+        self.listDiagnoseReport(ListDiagnoseReportRequest(keyWords: keyWords, diagnoseLink: diagnoseLink, origin: origin), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取诊断任务列表
+    ///
+    /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
+    @inlinable
+    public func listDiagnoseReport(keyWords: String? = nil, diagnoseLink: String? = nil, origin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDiagnoseReportResponse {
+        try await self.listDiagnoseReport(ListDiagnoseReportRequest(keyWords: keyWords, diagnoseLink: diagnoseLink, origin: origin), logger: logger, on: eventLoop)
+    }
 }

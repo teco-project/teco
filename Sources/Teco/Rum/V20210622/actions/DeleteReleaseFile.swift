@@ -58,4 +58,20 @@ extension Rum {
     public func deleteReleaseFile(_ input: DeleteReleaseFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReleaseFileResponse {
         try await self.client.execute(action: "DeleteReleaseFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除发布文件
+    ///
+    /// 将对应 sourcemap 文件删除
+    @inlinable
+    public func deleteReleaseFile(id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReleaseFileResponse > {
+        self.deleteReleaseFile(DeleteReleaseFileRequest(id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除发布文件
+    ///
+    /// 将对应 sourcemap 文件删除
+    @inlinable
+    public func deleteReleaseFile(id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReleaseFileResponse {
+        try await self.deleteReleaseFile(DeleteReleaseFileRequest(id: id), logger: logger, on: eventLoop)
+    }
 }

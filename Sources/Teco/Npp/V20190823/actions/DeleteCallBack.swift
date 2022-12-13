@@ -74,4 +74,16 @@ extension Npp {
     public func deleteCallBack(_ input: DeleteCallBackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCallBackResponse {
         try await self.client.execute(action: "DeleteCallBack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 回拨呼叫取消
+    @inlinable
+    public func deleteCallBack(bizAppId: String, callId: String, cancelFlag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCallBackResponse > {
+        self.deleteCallBack(DeleteCallBackRequest(bizAppId: bizAppId, callId: callId, cancelFlag: cancelFlag), logger: logger, on: eventLoop)
+    }
+    
+    /// 回拨呼叫取消
+    @inlinable
+    public func deleteCallBack(bizAppId: String, callId: String, cancelFlag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCallBackResponse {
+        try await self.deleteCallBack(DeleteCallBackRequest(bizAppId: bizAppId, callId: callId, cancelFlag: cancelFlag), logger: logger, on: eventLoop)
+    }
 }

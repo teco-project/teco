@@ -59,4 +59,20 @@ extension Vod {
     public func modifyDefaultStorageRegion(_ input: ModifyDefaultStorageRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDefaultStorageRegionResponse {
         try await self.client.execute(action: "ModifyDefaultStorageRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置默认的存储地域
+    ///
+    /// 该接口用于设置默认的存储地域。上传文件时如果没有指定地域，将上传到默认地域。
+    @inlinable
+    public func modifyDefaultStorageRegion(storageRegion: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDefaultStorageRegionResponse > {
+        self.modifyDefaultStorageRegion(ModifyDefaultStorageRegionRequest(storageRegion: storageRegion, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置默认的存储地域
+    ///
+    /// 该接口用于设置默认的存储地域。上传文件时如果没有指定地域，将上传到默认地域。
+    @inlinable
+    public func modifyDefaultStorageRegion(storageRegion: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDefaultStorageRegionResponse {
+        try await self.modifyDefaultStorageRegion(ModifyDefaultStorageRegionRequest(storageRegion: storageRegion, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

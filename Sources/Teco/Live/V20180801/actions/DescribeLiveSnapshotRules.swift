@@ -46,4 +46,16 @@ extension Live {
     public func describeLiveSnapshotRules(_ input: DescribeLiveSnapshotRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveSnapshotRulesResponse {
         try await self.client.execute(action: "DescribeLiveSnapshotRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取截图规则列表
+    @inlinable
+    public func describeLiveSnapshotRules(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveSnapshotRulesResponse > {
+        self.describeLiveSnapshotRules(DescribeLiveSnapshotRulesRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取截图规则列表
+    @inlinable
+    public func describeLiveSnapshotRules(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveSnapshotRulesResponse {
+        try await self.describeLiveSnapshotRules(DescribeLiveSnapshotRulesRequest(), logger: logger, on: eventLoop)
+    }
 }

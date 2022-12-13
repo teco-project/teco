@@ -62,4 +62,16 @@ extension Dayu {
     public func describeUnBlockStatis(_ input: DescribeUnBlockStatisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnBlockStatisResponse {
         try await self.client.execute(action: "DescribeUnBlockStatis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取黑洞解封次数
+    @inlinable
+    public func describeUnBlockStatis(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnBlockStatisResponse > {
+        self.describeUnBlockStatis(DescribeUnBlockStatisRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取黑洞解封次数
+    @inlinable
+    public func describeUnBlockStatis(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnBlockStatisResponse {
+        try await self.describeUnBlockStatis(DescribeUnBlockStatisRequest(), logger: logger, on: eventLoop)
+    }
 }

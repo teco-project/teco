@@ -1570,7 +1570,7 @@ extension Cynosdb {
         /// 操作符
         public let `operator`: String?
         
-        public init (names: [String], values: [String], exactMatch: Bool? = nil, name: String? = nil, `operator`: String? = nil) {
+        public init (names: [String], values: [String], exactMatch: Bool? = nil, name: String? = nil, operator: String? = nil) {
             self.names = names
             self.values = values
             self.exactMatch = exactMatch

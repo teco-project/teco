@@ -58,4 +58,20 @@ extension Bmlb {
     public func deleteLoadBalancer(_ input: DeleteLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerResponse {
         try await self.client.execute(action: "DeleteLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除用户指定的黑石负载均衡实例
+    ///
+    /// 删除用户指定的黑石负载均衡实例。
+    @inlinable
+    public func deleteLoadBalancer(loadBalancerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoadBalancerResponse > {
+        self.deleteLoadBalancer(DeleteLoadBalancerRequest(loadBalancerId: loadBalancerId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除用户指定的黑石负载均衡实例
+    ///
+    /// 删除用户指定的黑石负载均衡实例。
+    @inlinable
+    public func deleteLoadBalancer(loadBalancerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerResponse {
+        try await self.deleteLoadBalancer(DeleteLoadBalancerRequest(loadBalancerId: loadBalancerId), logger: logger, on: eventLoop)
+    }
 }

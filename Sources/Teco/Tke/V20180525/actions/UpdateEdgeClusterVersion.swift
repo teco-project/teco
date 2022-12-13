@@ -69,4 +69,20 @@ extension Tke {
     public func updateEdgeClusterVersion(_ input: UpdateEdgeClusterVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEdgeClusterVersionResponse {
         try await self.client.execute(action: "UpdateEdgeClusterVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 升级边缘集群
+    ///
+    /// 升级边缘集群组件到指定版本，此版本为TKEEdge专用版本。
+    @inlinable
+    public func updateEdgeClusterVersion(clusterId: String, edgeVersion: String, registryPrefix: String? = nil, skipPreCheck: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateEdgeClusterVersionResponse > {
+        self.updateEdgeClusterVersion(UpdateEdgeClusterVersionRequest(clusterId: clusterId, edgeVersion: edgeVersion, registryPrefix: registryPrefix, skipPreCheck: skipPreCheck), logger: logger, on: eventLoop)
+    }
+    
+    /// 升级边缘集群
+    ///
+    /// 升级边缘集群组件到指定版本，此版本为TKEEdge专用版本。
+    @inlinable
+    public func updateEdgeClusterVersion(clusterId: String, edgeVersion: String, registryPrefix: String? = nil, skipPreCheck: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEdgeClusterVersionResponse {
+        try await self.updateEdgeClusterVersion(UpdateEdgeClusterVersionRequest(clusterId: clusterId, edgeVersion: edgeVersion, registryPrefix: registryPrefix, skipPreCheck: skipPreCheck), logger: logger, on: eventLoop)
+    }
 }

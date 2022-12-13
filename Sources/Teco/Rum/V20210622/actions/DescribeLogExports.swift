@@ -62,4 +62,24 @@ extension Rum {
     public func describeLogExports(_ input: DescribeLogExportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogExportsResponse {
         try await self.client.execute(action: "DescribeLogExports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取日志下载任务列表
+    ///
+    /// 接口请求域名： rum.tencentcloudapi.com 。
+    /// 本接口用于获取日志下载任务列表
+    /// 默认接口请求频率限制：20次/秒
+    @inlinable
+    public func describeLogExports(id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogExportsResponse > {
+        self.describeLogExports(DescribeLogExportsRequest(id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志下载任务列表
+    ///
+    /// 接口请求域名： rum.tencentcloudapi.com 。
+    /// 本接口用于获取日志下载任务列表
+    /// 默认接口请求频率限制：20次/秒
+    @inlinable
+    public func describeLogExports(id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogExportsResponse {
+        try await self.describeLogExports(DescribeLogExportsRequest(id: id), logger: logger, on: eventLoop)
+    }
 }

@@ -143,4 +143,26 @@ extension Live {
     public func describeLiveStreamEventList(_ input: DescribeLiveStreamEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamEventListResponse {
         try await self.client.execute(action: "DescribeLiveStreamEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询推断流事件
+    ///
+    /// 用于查询推断流事件。<br>
+    /// 注意：
+    /// 1. 该接口提供离线推断流记录查询功能，不可作为重要业务场景强依赖接口。
+    /// 2. 该接口可通过使用IsFilter进行过滤，返回推流历史记录。
+    @inlinable
+    public func describeLiveStreamEventList(startTime: String, endTime: String, appName: String? = nil, domainName: String? = nil, streamName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, isFilter: Int64? = nil, isStrict: Int64? = nil, isAsc: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveStreamEventListResponse > {
+        self.describeLiveStreamEventList(DescribeLiveStreamEventListRequest(startTime: startTime, endTime: endTime, appName: appName, domainName: domainName, streamName: streamName, pageNum: pageNum, pageSize: pageSize, isFilter: isFilter, isStrict: isStrict, isAsc: isAsc), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询推断流事件
+    ///
+    /// 用于查询推断流事件。<br>
+    /// 注意：
+    /// 1. 该接口提供离线推断流记录查询功能，不可作为重要业务场景强依赖接口。
+    /// 2. 该接口可通过使用IsFilter进行过滤，返回推流历史记录。
+    @inlinable
+    public func describeLiveStreamEventList(startTime: String, endTime: String, appName: String? = nil, domainName: String? = nil, streamName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, isFilter: Int64? = nil, isStrict: Int64? = nil, isAsc: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamEventListResponse {
+        try await self.describeLiveStreamEventList(DescribeLiveStreamEventListRequest(startTime: startTime, endTime: endTime, appName: appName, domainName: domainName, streamName: streamName, pageNum: pageNum, pageSize: pageSize, isFilter: isFilter, isStrict: isStrict, isAsc: isAsc), logger: logger, on: eventLoop)
+    }
 }

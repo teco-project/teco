@@ -73,4 +73,16 @@ extension Tdmq {
     public func describeRocketMQNamespaces(_ input: DescribeRocketMQNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQNamespacesResponse {
         try await self.client.execute(action: "DescribeRocketMQNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取RocketMQ命名空间列表
+    @inlinable
+    public func describeRocketMQNamespaces(clusterId: String, offset: UInt64, limit: UInt64, nameKeyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRocketMQNamespacesResponse > {
+        self.describeRocketMQNamespaces(DescribeRocketMQNamespacesRequest(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取RocketMQ命名空间列表
+    @inlinable
+    public func describeRocketMQNamespaces(clusterId: String, offset: UInt64, limit: UInt64, nameKeyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQNamespacesResponse {
+        try await self.describeRocketMQNamespaces(DescribeRocketMQNamespacesRequest(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword), logger: logger, on: eventLoop)
+    }
 }

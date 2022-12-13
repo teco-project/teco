@@ -69,4 +69,16 @@ extension Dayu {
     public func createNewL7RulesUpload(_ input: CreateNewL7RulesUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNewL7RulesUploadResponse {
         try await self.client.execute(action: "CreateNewL7RulesUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量上传7层转发规则
+    @inlinable
+    public func createNewL7RulesUpload(business: String, idList: [String], vipList: [String], rules: [L7RuleEntry], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNewL7RulesUploadResponse > {
+        self.createNewL7RulesUpload(CreateNewL7RulesUploadRequest(business: business, idList: idList, vipList: vipList, rules: rules), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量上传7层转发规则
+    @inlinable
+    public func createNewL7RulesUpload(business: String, idList: [String], vipList: [String], rules: [L7RuleEntry], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNewL7RulesUploadResponse {
+        try await self.createNewL7RulesUpload(CreateNewL7RulesUploadRequest(business: business, idList: idList, vipList: vipList, rules: rules), logger: logger, on: eventLoop)
+    }
 }

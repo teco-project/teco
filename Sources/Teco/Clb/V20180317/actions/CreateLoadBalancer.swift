@@ -193,4 +193,24 @@ extension Clb {
     public func createLoadBalancer(_ input: CreateLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerResponse {
         try await self.client.execute(action: "CreateLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 购买负载均衡实例
+    ///
+    /// 本接口(CreateLoadBalancer)用来创建负载均衡实例（本接口只支持购买按量计费的负载均衡，包年包月的负载均衡请通过控制台购买）。为了使用负载均衡服务，您必须购买一个或多个负载均衡实例。成功调用该接口后，会返回负载均衡实例的唯一 ID。负载均衡实例的类型分为：公网、内网。详情可参考产品说明中的产品类型。
+    /// 注意：(1)指定可用区申请负载均衡、跨zone容灾(仅香港支持)【如果您需要体验该功能，请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)】；(2)目前只有北京、上海、广州支持IPv6；(3)一个账号在每个地域的默认购买配额为：公网100个，内网100个。
+    /// 本接口为异步接口，接口成功返回后，可使用 DescribeLoadBalancers 接口查询负载均衡实例的状态（如创建中、正常），以确定是否创建成功。
+    @inlinable
+    public func createLoadBalancer(loadBalancerType: String, forward: Int64? = nil, loadBalancerName: String? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, addressIPVersion: String? = nil, number: UInt64? = nil, masterZoneId: String? = nil, zoneId: String? = nil, internetAccessible: InternetAccessible? = nil, vipIsp: String? = nil, tags: [TagInfo]? = nil, vip: String? = nil, bandwidthPackageId: String? = nil, exclusiveCluster: ExclusiveCluster? = nil, slaType: String? = nil, clientToken: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, clusterTag: String? = nil, slaveZoneId: String? = nil, eipAddressId: String? = nil, loadBalancerPassToTarget: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLoadBalancerResponse > {
+        self.createLoadBalancer(CreateLoadBalancerRequest(loadBalancerType: loadBalancerType, forward: forward, loadBalancerName: loadBalancerName, vpcId: vpcId, subnetId: subnetId, projectId: projectId, addressIPVersion: addressIPVersion, number: number, masterZoneId: masterZoneId, zoneId: zoneId, internetAccessible: internetAccessible, vipIsp: vipIsp, tags: tags, vip: vip, bandwidthPackageId: bandwidthPackageId, exclusiveCluster: exclusiveCluster, slaType: slaType, clientToken: clientToken, snatPro: snatPro, snatIps: snatIps, clusterTag: clusterTag, slaveZoneId: slaveZoneId, eipAddressId: eipAddressId, loadBalancerPassToTarget: loadBalancerPassToTarget), logger: logger, on: eventLoop)
+    }
+    
+    /// 购买负载均衡实例
+    ///
+    /// 本接口(CreateLoadBalancer)用来创建负载均衡实例（本接口只支持购买按量计费的负载均衡，包年包月的负载均衡请通过控制台购买）。为了使用负载均衡服务，您必须购买一个或多个负载均衡实例。成功调用该接口后，会返回负载均衡实例的唯一 ID。负载均衡实例的类型分为：公网、内网。详情可参考产品说明中的产品类型。
+    /// 注意：(1)指定可用区申请负载均衡、跨zone容灾(仅香港支持)【如果您需要体验该功能，请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)】；(2)目前只有北京、上海、广州支持IPv6；(3)一个账号在每个地域的默认购买配额为：公网100个，内网100个。
+    /// 本接口为异步接口，接口成功返回后，可使用 DescribeLoadBalancers 接口查询负载均衡实例的状态（如创建中、正常），以确定是否创建成功。
+    @inlinable
+    public func createLoadBalancer(loadBalancerType: String, forward: Int64? = nil, loadBalancerName: String? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, addressIPVersion: String? = nil, number: UInt64? = nil, masterZoneId: String? = nil, zoneId: String? = nil, internetAccessible: InternetAccessible? = nil, vipIsp: String? = nil, tags: [TagInfo]? = nil, vip: String? = nil, bandwidthPackageId: String? = nil, exclusiveCluster: ExclusiveCluster? = nil, slaType: String? = nil, clientToken: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, clusterTag: String? = nil, slaveZoneId: String? = nil, eipAddressId: String? = nil, loadBalancerPassToTarget: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerResponse {
+        try await self.createLoadBalancer(CreateLoadBalancerRequest(loadBalancerType: loadBalancerType, forward: forward, loadBalancerName: loadBalancerName, vpcId: vpcId, subnetId: subnetId, projectId: projectId, addressIPVersion: addressIPVersion, number: number, masterZoneId: masterZoneId, zoneId: zoneId, internetAccessible: internetAccessible, vipIsp: vipIsp, tags: tags, vip: vip, bandwidthPackageId: bandwidthPackageId, exclusiveCluster: exclusiveCluster, slaType: slaType, clientToken: clientToken, snatPro: snatPro, snatIps: snatIps, clusterTag: clusterTag, slaveZoneId: slaveZoneId, eipAddressId: eipAddressId, loadBalancerPassToTarget: loadBalancerPassToTarget), logger: logger, on: eventLoop)
+    }
 }

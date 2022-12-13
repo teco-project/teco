@@ -63,4 +63,20 @@ extension Tia {
     public func describeJob(_ input: DescribeJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobResponse {
         try await self.client.execute(action: "DescribeJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取Job详情
+    ///
+    /// 获取训练任务详情
+    @inlinable
+    public func describeJob(name: String, cluster: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobResponse > {
+        self.describeJob(DescribeJobRequest(name: name, cluster: cluster), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Job详情
+    ///
+    /// 获取训练任务详情
+    @inlinable
+    public func describeJob(name: String, cluster: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobResponse {
+        try await self.describeJob(DescribeJobRequest(name: name, cluster: cluster), logger: logger, on: eventLoop)
+    }
 }

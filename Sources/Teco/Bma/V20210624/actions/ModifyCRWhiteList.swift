@@ -80,4 +80,16 @@ extension Bma {
     public func modifyCRWhiteList(_ input: ModifyCRWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRWhiteListResponse {
         try await self.client.execute(action: "ModifyCRWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改白名单列表
+    @inlinable
+    public func modifyCRWhiteList(whiteListId: Int64? = nil, platForm: String? = nil, platUrl: String? = nil, authorId: String? = nil, worksId: Int64? = nil, workId: Int64? = nil, whiteSites: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRWhiteListResponse > {
+        self.modifyCRWhiteList(ModifyCRWhiteListRequest(whiteListId: whiteListId, platForm: platForm, platUrl: platUrl, authorId: authorId, worksId: worksId, workId: workId, whiteSites: whiteSites), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改白名单列表
+    @inlinable
+    public func modifyCRWhiteList(whiteListId: Int64? = nil, platForm: String? = nil, platUrl: String? = nil, authorId: String? = nil, worksId: Int64? = nil, workId: Int64? = nil, whiteSites: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRWhiteListResponse {
+        try await self.modifyCRWhiteList(ModifyCRWhiteListRequest(whiteListId: whiteListId, platForm: platForm, platUrl: platUrl, authorId: authorId, worksId: worksId, workId: workId, whiteSites: whiteSites), logger: logger, on: eventLoop)
+    }
 }

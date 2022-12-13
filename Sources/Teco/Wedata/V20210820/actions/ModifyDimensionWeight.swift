@@ -68,4 +68,20 @@ extension Wedata {
     public func modifyDimensionWeight(_ input: ModifyDimensionWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDimensionWeightResponse {
         try await self.client.execute(action: "ModifyDimensionWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改维度权重
+    ///
+    /// 质量报告-修改维度权限
+    @inlinable
+    public func modifyDimensionWeight(weightInfoList: [WeightInfo], projectId: String, refresh: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDimensionWeightResponse > {
+        self.modifyDimensionWeight(ModifyDimensionWeightRequest(weightInfoList: weightInfoList, projectId: projectId, refresh: refresh), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改维度权重
+    ///
+    /// 质量报告-修改维度权限
+    @inlinable
+    public func modifyDimensionWeight(weightInfoList: [WeightInfo], projectId: String, refresh: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDimensionWeightResponse {
+        try await self.modifyDimensionWeight(ModifyDimensionWeightRequest(weightInfoList: weightInfoList, projectId: projectId, refresh: refresh), logger: logger, on: eventLoop)
+    }
 }

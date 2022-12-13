@@ -85,4 +85,26 @@ extension Wedata {
     public func describeRuleGroupsByPage(_ input: DescribeRuleGroupsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupsByPageResponse {
         try await self.client.execute(action: "DescribeRuleGroupsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 分页查询规则组接口
+    ///
+    /// 【过滤条件】
+    /// {表名称TableName,支持模糊匹配}       {表负责人TableOwnerName,支持模糊匹配}      {监控方式MonitorTypes，1.未配置 2.关联生产调度 3.离线周期检测,支持多选}  {订阅人ReceiverUin}
+    /// 【必要字段】
+    /// {数据来源DatasourceId}
+    @inlinable
+    public func describeRuleGroupsByPage(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleGroupsByPageResponse > {
+        self.describeRuleGroupsByPage(DescribeRuleGroupsByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 分页查询规则组接口
+    ///
+    /// 【过滤条件】
+    /// {表名称TableName,支持模糊匹配}       {表负责人TableOwnerName,支持模糊匹配}      {监控方式MonitorTypes，1.未配置 2.关联生产调度 3.离线周期检测,支持多选}  {订阅人ReceiverUin}
+    /// 【必要字段】
+    /// {数据来源DatasourceId}
+    @inlinable
+    public func describeRuleGroupsByPage(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupsByPageResponse {
+        try await self.describeRuleGroupsByPage(DescribeRuleGroupsByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

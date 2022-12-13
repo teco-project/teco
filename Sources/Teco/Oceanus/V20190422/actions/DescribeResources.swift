@@ -79,4 +79,16 @@ extension Oceanus {
     public func describeResources(_ input: DescribeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesResponse {
         try await self.client.execute(action: "DescribeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 描述资源接口
+    @inlinable
+    public func describeResources(resourceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesResponse > {
+        self.describeResources(DescribeResourcesRequest(resourceIds: resourceIds, offset: offset, limit: limit, filters: filters, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 描述资源接口
+    @inlinable
+    public func describeResources(resourceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesResponse {
+        try await self.describeResources(DescribeResourcesRequest(resourceIds: resourceIds, offset: offset, limit: limit, filters: filters, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    }
 }

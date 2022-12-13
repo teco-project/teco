@@ -71,4 +71,22 @@ extension As {
     public func completeLifecycleAction(_ input: CompleteLifecycleActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompleteLifecycleActionResponse {
         try await self.client.execute(action: "CompleteLifecycleAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 完成生命周期动作
+    ///
+    /// 本接口（CompleteLifecycleAction）用于完成生命周期动作。
+    /// * 用户通过调用本接口，指定一个具体的生命周期挂钩的结果（“CONITNUE”或者“ABANDON”）。如果一直不调用本接口，则生命周期挂钩会在超时后按照“DefaultResult”进行处理。
+    @inlinable
+    public func completeLifecycleAction(lifecycleHookId: String, lifecycleActionResult: String, instanceId: String? = nil, lifecycleActionToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CompleteLifecycleActionResponse > {
+        self.completeLifecycleAction(CompleteLifecycleActionRequest(lifecycleHookId: lifecycleHookId, lifecycleActionResult: lifecycleActionResult, instanceId: instanceId, lifecycleActionToken: lifecycleActionToken), logger: logger, on: eventLoop)
+    }
+    
+    /// 完成生命周期动作
+    ///
+    /// 本接口（CompleteLifecycleAction）用于完成生命周期动作。
+    /// * 用户通过调用本接口，指定一个具体的生命周期挂钩的结果（“CONITNUE”或者“ABANDON”）。如果一直不调用本接口，则生命周期挂钩会在超时后按照“DefaultResult”进行处理。
+    @inlinable
+    public func completeLifecycleAction(lifecycleHookId: String, lifecycleActionResult: String, instanceId: String? = nil, lifecycleActionToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompleteLifecycleActionResponse {
+        try await self.completeLifecycleAction(CompleteLifecycleActionRequest(lifecycleHookId: lifecycleHookId, lifecycleActionResult: lifecycleActionResult, instanceId: instanceId, lifecycleActionToken: lifecycleActionToken), logger: logger, on: eventLoop)
+    }
 }

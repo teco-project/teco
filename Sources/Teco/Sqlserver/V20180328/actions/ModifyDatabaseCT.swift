@@ -73,4 +73,20 @@ extension Sqlserver {
     public func modifyDatabaseCT(_ input: ModifyDatabaseCTRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseCTResponse {
         try await self.client.execute(action: "ModifyDatabaseCT", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启用&禁用数据库CT
+    ///
+    /// 本接口(ModifyDatabaseCT)用于启用、禁用数据库数据变更跟踪(CT)
+    @inlinable
+    public func modifyDatabaseCT(dbNames: [String], modifyType: String, instanceId: String, changeRetentionDay: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDatabaseCTResponse > {
+        self.modifyDatabaseCT(ModifyDatabaseCTRequest(dbNames: dbNames, modifyType: modifyType, instanceId: instanceId, changeRetentionDay: changeRetentionDay), logger: logger, on: eventLoop)
+    }
+    
+    /// 启用&禁用数据库CT
+    ///
+    /// 本接口(ModifyDatabaseCT)用于启用、禁用数据库数据变更跟踪(CT)
+    @inlinable
+    public func modifyDatabaseCT(dbNames: [String], modifyType: String, instanceId: String, changeRetentionDay: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseCTResponse {
+        try await self.modifyDatabaseCT(ModifyDatabaseCTRequest(dbNames: dbNames, modifyType: modifyType, instanceId: instanceId, changeRetentionDay: changeRetentionDay), logger: logger, on: eventLoop)
+    }
 }

@@ -114,4 +114,20 @@ extension Teo {
     public func describeWebManagedRulesHitRuleDetail(_ input: DescribeWebManagedRulesHitRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesHitRuleDetailResponse {
         try await self.client.execute(action: "DescribeWebManagedRulesHitRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询Web攻击命中规则详情
+    ///
+    /// 本接口（DescribeWebManagedRulesHitRuleDetail）用于查询WAF攻击命中规则详情。
+    @inlinable
+    public func describeWebManagedRulesHitRuleDetail(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebManagedRulesHitRuleDetailResponse > {
+        self.describeWebManagedRulesHitRuleDetail(DescribeWebManagedRulesHitRuleDetailRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Web攻击命中规则详情
+    ///
+    /// 本接口（DescribeWebManagedRulesHitRuleDetail）用于查询WAF攻击命中规则详情。
+    @inlinable
+    public func describeWebManagedRulesHitRuleDetail(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesHitRuleDetailResponse {
+        try await self.describeWebManagedRulesHitRuleDetail(DescribeWebManagedRulesHitRuleDetailRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    }
 }

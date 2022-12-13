@@ -113,4 +113,16 @@ extension Iotvideo {
     public func describeForwardRule(_ input: DescribeForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeForwardRuleResponse {
         try await self.client.execute(action: "DescribeForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取产品转发规则
+    @inlinable
+    public func describeForwardRule(productID: String, skey: String, queueType: UInt64, consecretid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeForwardRuleResponse > {
+        self.describeForwardRule(DescribeForwardRuleRequest(productID: productID, skey: skey, queueType: queueType, consecretid: consecretid), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取产品转发规则
+    @inlinable
+    public func describeForwardRule(productID: String, skey: String, queueType: UInt64, consecretid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeForwardRuleResponse {
+        try await self.describeForwardRule(DescribeForwardRuleRequest(productID: productID, skey: skey, queueType: queueType, consecretid: consecretid), logger: logger, on: eventLoop)
+    }
 }

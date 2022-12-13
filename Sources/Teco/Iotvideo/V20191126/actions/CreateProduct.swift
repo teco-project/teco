@@ -116,4 +116,20 @@ extension Iotvideo {
     public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
         try await self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建产品
+    ///
+    /// 本接口（CreateProduct）用于创建一个新的物联网智能视频产品。
+    @inlinable
+    public func createProduct(productModel: String, productName: String, productDescription: String, features: [String]? = nil, chipManufactureId: String? = nil, chipId: String? = nil, productRegion: String? = nil, productCate: UInt64? = nil, accessMode: Int64? = nil, os: String? = nil, chipArch: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProductResponse > {
+        self.createProduct(CreateProductRequest(productModel: productModel, productName: productName, productDescription: productDescription, features: features, chipManufactureId: chipManufactureId, chipId: chipId, productRegion: productRegion, productCate: productCate, accessMode: accessMode, os: os, chipArch: chipArch), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建产品
+    ///
+    /// 本接口（CreateProduct）用于创建一个新的物联网智能视频产品。
+    @inlinable
+    public func createProduct(productModel: String, productName: String, productDescription: String, features: [String]? = nil, chipManufactureId: String? = nil, chipId: String? = nil, productRegion: String? = nil, productCate: UInt64? = nil, accessMode: Int64? = nil, os: String? = nil, chipArch: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
+        try await self.createProduct(CreateProductRequest(productModel: productModel, productName: productName, productDescription: productDescription, features: features, chipManufactureId: chipManufactureId, chipId: chipId, productRegion: productRegion, productCate: productCate, accessMode: accessMode, os: os, chipArch: chipArch), logger: logger, on: eventLoop)
+    }
 }

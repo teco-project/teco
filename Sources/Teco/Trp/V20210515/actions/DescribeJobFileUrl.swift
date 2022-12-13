@@ -60,4 +60,16 @@ extension Trp {
     public func describeJobFileUrl(_ input: DescribeJobFileUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobFileUrlResponse {
         try await self.client.execute(action: "DescribeJobFileUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取异步任务的输出地址
+    @inlinable
+    public func describeJobFileUrl(jobId: UInt64, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobFileUrlResponse > {
+        self.describeJobFileUrl(DescribeJobFileUrlRequest(jobId: jobId, corpId: corpId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取异步任务的输出地址
+    @inlinable
+    public func describeJobFileUrl(jobId: UInt64, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobFileUrlResponse {
+        try await self.describeJobFileUrl(DescribeJobFileUrlRequest(jobId: jobId, corpId: corpId), logger: logger, on: eventLoop)
+    }
 }

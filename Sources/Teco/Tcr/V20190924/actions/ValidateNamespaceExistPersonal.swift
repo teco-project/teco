@@ -58,4 +58,20 @@ extension Tcr {
     public func validateNamespaceExistPersonal(_ input: ValidateNamespaceExistPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ValidateNamespaceExistPersonalResponse {
         try await self.client.execute(action: "ValidateNamespaceExistPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 验证个人版命名空间是否存在
+    ///
+    /// 查询个人版用户命名空间是否存在
+    @inlinable
+    public func validateNamespaceExistPersonal(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ValidateNamespaceExistPersonalResponse > {
+        self.validateNamespaceExistPersonal(ValidateNamespaceExistPersonalRequest(namespace: namespace), logger: logger, on: eventLoop)
+    }
+    
+    /// 验证个人版命名空间是否存在
+    ///
+    /// 查询个人版用户命名空间是否存在
+    @inlinable
+    public func validateNamespaceExistPersonal(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ValidateNamespaceExistPersonalResponse {
+        try await self.validateNamespaceExistPersonal(ValidateNamespaceExistPersonalRequest(namespace: namespace), logger: logger, on: eventLoop)
+    }
 }

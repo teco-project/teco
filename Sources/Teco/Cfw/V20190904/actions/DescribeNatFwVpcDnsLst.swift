@@ -80,4 +80,16 @@ extension Cfw {
     public func describeNatFwVpcDnsLst(_ input: DescribeNatFwVpcDnsLstRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwVpcDnsLstResponse {
         try await self.client.execute(action: "DescribeNatFwVpcDnsLst", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 展示当前natfw 实例对应的vpc dns开关
+    @inlinable
+    public func describeNatFwVpcDnsLst(natFwInsId: String, natInsIdFilter: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatFwVpcDnsLstResponse > {
+        self.describeNatFwVpcDnsLst(DescribeNatFwVpcDnsLstRequest(natFwInsId: natFwInsId, natInsIdFilter: natInsIdFilter, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 展示当前natfw 实例对应的vpc dns开关
+    @inlinable
+    public func describeNatFwVpcDnsLst(natFwInsId: String, natInsIdFilter: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwVpcDnsLstResponse {
+        try await self.describeNatFwVpcDnsLst(DescribeNatFwVpcDnsLstRequest(natFwInsId: natFwInsId, natInsIdFilter: natInsIdFilter, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -64,4 +64,20 @@ extension Dbbrain {
     public func deleteSecurityAuditLogExportTasks(_ input: DeleteSecurityAuditLogExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityAuditLogExportTasksResponse {
         try await self.client.execute(action: "DeleteSecurityAuditLogExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除安全审计日志导出任务
+    ///
+    /// 删除安全审计日志导出任务。
+    @inlinable
+    public func deleteSecurityAuditLogExportTasks(secAuditGroupId: String, asyncRequestIds: [UInt64], product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityAuditLogExportTasksResponse > {
+        self.deleteSecurityAuditLogExportTasks(DeleteSecurityAuditLogExportTasksRequest(secAuditGroupId: secAuditGroupId, asyncRequestIds: asyncRequestIds, product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除安全审计日志导出任务
+    ///
+    /// 删除安全审计日志导出任务。
+    @inlinable
+    public func deleteSecurityAuditLogExportTasks(secAuditGroupId: String, asyncRequestIds: [UInt64], product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityAuditLogExportTasksResponse {
+        try await self.deleteSecurityAuditLogExportTasks(DeleteSecurityAuditLogExportTasksRequest(secAuditGroupId: secAuditGroupId, asyncRequestIds: asyncRequestIds, product: product), logger: logger, on: eventLoop)
+    }
 }

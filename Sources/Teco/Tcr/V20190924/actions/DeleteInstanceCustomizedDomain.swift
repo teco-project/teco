@@ -60,4 +60,16 @@ extension Tcr {
     public func deleteInstanceCustomizedDomain(_ input: DeleteInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceCustomizedDomainResponse {
         try await self.client.execute(action: "DeleteInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除自定义域名
+    @inlinable
+    public func deleteInstanceCustomizedDomain(registryId: String, domainName: String, certificateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstanceCustomizedDomainResponse > {
+        self.deleteInstanceCustomizedDomain(DeleteInstanceCustomizedDomainRequest(registryId: registryId, domainName: domainName, certificateId: certificateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除自定义域名
+    @inlinable
+    public func deleteInstanceCustomizedDomain(registryId: String, domainName: String, certificateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceCustomizedDomainResponse {
+        try await self.deleteInstanceCustomizedDomain(DeleteInstanceCustomizedDomainRequest(registryId: registryId, domainName: domainName, certificateId: certificateId), logger: logger, on: eventLoop)
+    }
 }

@@ -63,4 +63,20 @@ extension Ses {
     public func createReceiver(_ input: CreateReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReceiverResponse {
         try await self.client.execute(action: "CreateReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建收件人列表
+    ///
+    /// 创建收件人列表，收件人列表是发送批量邮件的目标邮件地址列表。创建列表后，需要上传收件人邮箱地址。之后创建发送任务，关联列表，便可以实现批量发送邮件的功能
+    @inlinable
+    public func createReceiver(receiversName: String, desc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReceiverResponse > {
+        self.createReceiver(CreateReceiverRequest(receiversName: receiversName, desc: desc), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建收件人列表
+    ///
+    /// 创建收件人列表，收件人列表是发送批量邮件的目标邮件地址列表。创建列表后，需要上传收件人邮箱地址。之后创建发送任务，关联列表，便可以实现批量发送邮件的功能
+    @inlinable
+    public func createReceiver(receiversName: String, desc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReceiverResponse {
+        try await self.createReceiver(CreateReceiverRequest(receiversName: receiversName, desc: desc), logger: logger, on: eventLoop)
+    }
 }

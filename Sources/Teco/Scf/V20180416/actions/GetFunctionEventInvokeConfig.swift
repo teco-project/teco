@@ -68,4 +68,20 @@ extension Scf {
     public func getFunctionEventInvokeConfig(_ input: GetFunctionEventInvokeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionEventInvokeConfigResponse {
         try await self.client.execute(action: "GetFunctionEventInvokeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取函数异步重试配置
+    ///
+    /// 获取函数异步重试配置，包括重试次数和消息保留时间
+    @inlinable
+    public func getFunctionEventInvokeConfig(functionName: String, namespace: String? = nil, qualifier: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFunctionEventInvokeConfigResponse > {
+        self.getFunctionEventInvokeConfig(GetFunctionEventInvokeConfigRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取函数异步重试配置
+    ///
+    /// 获取函数异步重试配置，包括重试次数和消息保留时间
+    @inlinable
+    public func getFunctionEventInvokeConfig(functionName: String, namespace: String? = nil, qualifier: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionEventInvokeConfigResponse {
+        try await self.getFunctionEventInvokeConfig(GetFunctionEventInvokeConfigRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), logger: logger, on: eventLoop)
+    }
 }

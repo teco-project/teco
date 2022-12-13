@@ -122,4 +122,20 @@ extension Mongodb {
     public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceResponse {
         try await self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建云数据库实例（包年包月）
+    ///
+    /// 本接口(CreateDBInstance)用于创建包年包月的MongoDB云数据库实例。
+    @inlinable
+    public func createDBInstance(secondaryNum: UInt64, memory: UInt64, volume: UInt64, mongoVersion: String, machineCode: String, goodsNum: UInt64, zone: String, timeSpan: UInt64, password: String, projectId: UInt64? = nil, securityGroup: [String]? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstanceResponse > {
+        self.createDBInstance(CreateDBInstanceRequest(secondaryNum: secondaryNum, memory: memory, volume: volume, mongoVersion: mongoVersion, machineCode: machineCode, goodsNum: goodsNum, zone: zone, timeSpan: timeSpan, password: password, projectId: projectId, securityGroup: securityGroup, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云数据库实例（包年包月）
+    ///
+    /// 本接口(CreateDBInstance)用于创建包年包月的MongoDB云数据库实例。
+    @inlinable
+    public func createDBInstance(secondaryNum: UInt64, memory: UInt64, volume: UInt64, mongoVersion: String, machineCode: String, goodsNum: UInt64, zone: String, timeSpan: UInt64, password: String, projectId: UInt64? = nil, securityGroup: [String]? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceResponse {
+        try await self.createDBInstance(CreateDBInstanceRequest(secondaryNum: secondaryNum, memory: memory, volume: volume, mongoVersion: mongoVersion, machineCode: machineCode, goodsNum: goodsNum, zone: zone, timeSpan: timeSpan, password: password, projectId: projectId, securityGroup: securityGroup, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId), logger: logger, on: eventLoop)
+    }
 }

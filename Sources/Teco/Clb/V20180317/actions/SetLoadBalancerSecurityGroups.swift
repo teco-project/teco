@@ -63,4 +63,24 @@ extension Clb {
     public func setLoadBalancerSecurityGroups(_ input: SetLoadBalancerSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetLoadBalancerSecurityGroupsResponse {
         try await self.client.execute(action: "SetLoadBalancerSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置负载均衡实例的安全组
+    ///
+    /// SetLoadBalancerSecurityGroups 接口支持对一个公网负载均衡实例执行设置（绑定、解绑）安全组操作。查询一个负载均衡实例目前已绑定的安全组，可使用 DescribeLoadBalancers 接口。本接口是set语义，
+    /// 绑定操作时，入参需要传入负载均衡实例要绑定的所有安全组（已绑定的+新增绑定的）。
+    /// 解绑操作时，入参需要传入负载均衡实例执行解绑后所绑定的所有安全组；如果要解绑所有安全组，可不传此参数，或传入空数组。注意：内网负载均衡不支持绑定安全组。
+    @inlinable
+    public func setLoadBalancerSecurityGroups(loadBalancerId: String, securityGroups: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetLoadBalancerSecurityGroupsResponse > {
+        self.setLoadBalancerSecurityGroups(SetLoadBalancerSecurityGroupsRequest(loadBalancerId: loadBalancerId, securityGroups: securityGroups), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置负载均衡实例的安全组
+    ///
+    /// SetLoadBalancerSecurityGroups 接口支持对一个公网负载均衡实例执行设置（绑定、解绑）安全组操作。查询一个负载均衡实例目前已绑定的安全组，可使用 DescribeLoadBalancers 接口。本接口是set语义，
+    /// 绑定操作时，入参需要传入负载均衡实例要绑定的所有安全组（已绑定的+新增绑定的）。
+    /// 解绑操作时，入参需要传入负载均衡实例执行解绑后所绑定的所有安全组；如果要解绑所有安全组，可不传此参数，或传入空数组。注意：内网负载均衡不支持绑定安全组。
+    @inlinable
+    public func setLoadBalancerSecurityGroups(loadBalancerId: String, securityGroups: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetLoadBalancerSecurityGroupsResponse {
+        try await self.setLoadBalancerSecurityGroups(SetLoadBalancerSecurityGroupsRequest(loadBalancerId: loadBalancerId, securityGroups: securityGroups), logger: logger, on: eventLoop)
+    }
 }

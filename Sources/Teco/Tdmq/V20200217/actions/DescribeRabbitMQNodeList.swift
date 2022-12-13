@@ -69,4 +69,16 @@ extension Tdmq {
     public func describeRabbitMQNodeList(_ input: DescribeRabbitMQNodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQNodeListResponse {
         try await self.client.execute(action: "DescribeRabbitMQNodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// RabbitMQ专享版查询节点列表
+    @inlinable
+    public func describeRabbitMQNodeList(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRabbitMQNodeListResponse > {
+        self.describeRabbitMQNodeList(DescribeRabbitMQNodeListRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// RabbitMQ专享版查询节点列表
+    @inlinable
+    public func describeRabbitMQNodeList(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQNodeListResponse {
+        try await self.describeRabbitMQNodeList(DescribeRabbitMQNodeListRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

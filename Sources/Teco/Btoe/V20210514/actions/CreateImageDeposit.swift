@@ -93,4 +93,20 @@ extension Btoe {
     public func createImageDeposit(_ input: CreateImageDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageDepositResponse {
         try await self.client.execute(action: "CreateImageDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 图片文件存证
+    ///
+    /// 用户通过本接口向BTOE写入待存证的图片原文件或下载URL，BTOE对图片原文件存储后，将其Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。图片类型支持格式：png、jpg、jpeg、bmp、gif、svg；原文件上传大小不超过5 MB，下载URL文件大小不超过10 MB。
+    @inlinable
+    public func createImageDeposit(evidenceName: String, fileContent: String, fileName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageDepositResponse > {
+        self.createImageDeposit(CreateImageDepositRequest(evidenceName: evidenceName, fileContent: fileContent, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), logger: logger, on: eventLoop)
+    }
+    
+    /// 图片文件存证
+    ///
+    /// 用户通过本接口向BTOE写入待存证的图片原文件或下载URL，BTOE对图片原文件存储后，将其Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。图片类型支持格式：png、jpg、jpeg、bmp、gif、svg；原文件上传大小不超过5 MB，下载URL文件大小不超过10 MB。
+    @inlinable
+    public func createImageDeposit(evidenceName: String, fileContent: String, fileName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageDepositResponse {
+        try await self.createImageDeposit(CreateImageDepositRequest(evidenceName: evidenceName, fileContent: fileContent, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), logger: logger, on: eventLoop)
+    }
 }

@@ -64,4 +64,16 @@ extension Cpdp {
     public func queryAgentStatements(_ input: QueryAgentStatementsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAgentStatementsResponse {
         try await self.client.execute(action: "QueryAgentStatements", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 直播平台-查询代理商结算单链接
+    @inlinable
+    public func queryAgentStatements(date: Date, type: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAgentStatementsResponse > {
+        self.queryAgentStatements(QueryAgentStatementsRequest(date: date, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 直播平台-查询代理商结算单链接
+    @inlinable
+    public func queryAgentStatements(date: Date, type: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAgentStatementsResponse {
+        try await self.queryAgentStatements(QueryAgentStatementsRequest(date: date, type: type), logger: logger, on: eventLoop)
+    }
 }

@@ -69,4 +69,16 @@ extension Tsf {
     public func describeMsApiList(_ input: DescribeMsApiListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMsApiListResponse {
         try await self.client.execute(action: "DescribeMsApiList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询服务API列表
+    @inlinable
+    public func describeMsApiList(microserviceId: String, searchWord: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMsApiListResponse > {
+        self.describeMsApiList(DescribeMsApiListRequest(microserviceId: microserviceId, searchWord: searchWord, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务API列表
+    @inlinable
+    public func describeMsApiList(microserviceId: String, searchWord: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMsApiListResponse {
+        try await self.describeMsApiList(DescribeMsApiListRequest(microserviceId: microserviceId, searchWord: searchWord, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

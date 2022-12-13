@@ -87,4 +87,16 @@ extension Tcss {
     public func describeVulScanLocalImageList(_ input: DescribeVulScanLocalImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanLocalImageListResponse {
         try await self.client.execute(action: "DescribeVulScanLocalImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询漏洞扫描任务的本地镜像列表
+    @inlinable
+    public func describeVulScanLocalImageList(taskID: Int64, filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulScanLocalImageListResponse > {
+        self.describeVulScanLocalImageList(DescribeVulScanLocalImageListRequest(taskID: taskID, filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞扫描任务的本地镜像列表
+    @inlinable
+    public func describeVulScanLocalImageList(taskID: Int64, filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanLocalImageListResponse {
+        try await self.describeVulScanLocalImageList(DescribeVulScanLocalImageListRequest(taskID: taskID, filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,16 @@ extension Teo {
     public func createIpTableList(_ input: CreateIpTableListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIpTableListResponse {
         try await self.client.execute(action: "CreateIpTableList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建IP黑白名单列表
+    @inlinable
+    public func createIpTableList(zoneId: String, entity: String, ipTableRules: [IpTableRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIpTableListResponse > {
+        self.createIpTableList(CreateIpTableListRequest(zoneId: zoneId, entity: entity, ipTableRules: ipTableRules), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建IP黑白名单列表
+    @inlinable
+    public func createIpTableList(zoneId: String, entity: String, ipTableRules: [IpTableRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIpTableListResponse {
+        try await self.createIpTableList(CreateIpTableListRequest(zoneId: zoneId, entity: entity, ipTableRules: ipTableRules), logger: logger, on: eventLoop)
+    }
 }

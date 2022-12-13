@@ -54,4 +54,16 @@ extension Ssl {
     public func verifyManager(_ input: VerifyManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyManagerResponse {
         try await self.client.execute(action: "VerifyManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重新核验管理人
+    @inlinable
+    public func verifyManager(managerId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyManagerResponse > {
+        self.verifyManager(VerifyManagerRequest(managerId: managerId), logger: logger, on: eventLoop)
+    }
+    
+    /// 重新核验管理人
+    @inlinable
+    public func verifyManager(managerId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyManagerResponse {
+        try await self.verifyManager(VerifyManagerRequest(managerId: managerId), logger: logger, on: eventLoop)
+    }
 }

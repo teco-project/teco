@@ -75,4 +75,20 @@ extension Cwp {
     public func modifyLicenseUnBinds(_ input: ModifyLicenseUnBindsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLicenseUnBindsResponse {
         try await self.client.execute(action: "ModifyLicenseUnBinds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 授权批量解绑
+    ///
+    /// 设置中心-授权管理 对某个授权批量解绑机器
+    @inlinable
+    public func modifyLicenseUnBinds(resourceId: String, licenseType: UInt64, isAll: Bool? = nil, quuidList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLicenseUnBindsResponse > {
+        self.modifyLicenseUnBinds(ModifyLicenseUnBindsRequest(resourceId: resourceId, licenseType: licenseType, isAll: isAll, quuidList: quuidList), logger: logger, on: eventLoop)
+    }
+    
+    /// 授权批量解绑
+    ///
+    /// 设置中心-授权管理 对某个授权批量解绑机器
+    @inlinable
+    public func modifyLicenseUnBinds(resourceId: String, licenseType: UInt64, isAll: Bool? = nil, quuidList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLicenseUnBindsResponse {
+        try await self.modifyLicenseUnBinds(ModifyLicenseUnBindsRequest(resourceId: resourceId, licenseType: licenseType, isAll: isAll, quuidList: quuidList), logger: logger, on: eventLoop)
+    }
 }

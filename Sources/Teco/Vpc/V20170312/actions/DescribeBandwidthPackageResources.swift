@@ -79,4 +79,20 @@ extension Vpc {
     public func describeBandwidthPackageResources(_ input: DescribeBandwidthPackageResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackageResourcesResponse {
         try await self.client.execute(action: "DescribeBandwidthPackageResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询共享带宽包内的资源
+    ///
+    /// 本接口 (DescribeBandwidthPackageResources) 用于根据共享带宽包唯一ID查询共享带宽包内的资源列表，支持按条件过滤查询结果和分页查询。
+    @inlinable
+    public func describeBandwidthPackageResources(bandwidthPackageId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBandwidthPackageResourcesResponse > {
+        self.describeBandwidthPackageResources(DescribeBandwidthPackageResourcesRequest(bandwidthPackageId: bandwidthPackageId, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询共享带宽包内的资源
+    ///
+    /// 本接口 (DescribeBandwidthPackageResources) 用于根据共享带宽包唯一ID查询共享带宽包内的资源列表，支持按条件过滤查询结果和分页查询。
+    @inlinable
+    public func describeBandwidthPackageResources(bandwidthPackageId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackageResourcesResponse {
+        try await self.describeBandwidthPackageResources(DescribeBandwidthPackageResourcesRequest(bandwidthPackageId: bandwidthPackageId, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

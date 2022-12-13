@@ -98,4 +98,20 @@ extension Teo {
     public func describeDDoSBlockList(_ input: DescribeDDoSBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSBlockListResponse {
         try await self.client.execute(action: "DescribeDDoSBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询DDoS封禁解封列表
+    ///
+    /// 本接口（DescribeDDoSBlockList）用于查询DDoS封禁解封列表。
+    @inlinable
+    public func describeDDoSBlockList(startTime: Date, eventIds: [String], zoneIds: [String]? = nil, policyIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSBlockListResponse > {
+        self.describeDDoSBlockList(DescribeDDoSBlockListRequest(startTime: startTime, eventIds: eventIds, zoneIds: zoneIds, policyIds: policyIds, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询DDoS封禁解封列表
+    ///
+    /// 本接口（DescribeDDoSBlockList）用于查询DDoS封禁解封列表。
+    @inlinable
+    public func describeDDoSBlockList(startTime: Date, eventIds: [String], zoneIds: [String]? = nil, policyIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSBlockListResponse {
+        try await self.describeDDoSBlockList(DescribeDDoSBlockListRequest(startTime: startTime, eventIds: eventIds, zoneIds: zoneIds, policyIds: policyIds, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    }
 }

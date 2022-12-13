@@ -65,4 +65,16 @@ extension Dlc {
     public func describeTaskResult(_ input: DescribeTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultResponse {
         try await self.client.execute(action: "DescribeTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询任务结果
+    @inlinable
+    public func describeTaskResult(taskId: String, nextToken: String? = nil, maxResults: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskResultResponse > {
+        self.describeTaskResult(DescribeTaskResultRequest(taskId: taskId, nextToken: nextToken, maxResults: maxResults), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务结果
+    @inlinable
+    public func describeTaskResult(taskId: String, nextToken: String? = nil, maxResults: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultResponse {
+        try await self.describeTaskResult(DescribeTaskResultRequest(taskId: taskId, nextToken: nextToken, maxResults: maxResults), logger: logger, on: eventLoop)
+    }
 }

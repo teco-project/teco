@@ -88,4 +88,20 @@ extension Tcss {
     public func createAssetImageScanTask(_ input: CreateAssetImageScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageScanTaskResponse {
         try await self.client.execute(action: "CreateAssetImageScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建镜像扫描任务
+    ///
+    /// 容器安全创建镜像扫描任务
+    @inlinable
+    public func createAssetImageScanTask(all: Bool? = nil, images: [String]? = nil, scanVul: Bool? = nil, scanVirus: Bool? = nil, scanRisk: Bool? = nil, filters: [AssetFilters]? = nil, excludeImageIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssetImageScanTaskResponse > {
+        self.createAssetImageScanTask(CreateAssetImageScanTaskRequest(all: all, images: images, scanVul: scanVul, scanVirus: scanVirus, scanRisk: scanRisk, filters: filters, excludeImageIds: excludeImageIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建镜像扫描任务
+    ///
+    /// 容器安全创建镜像扫描任务
+    @inlinable
+    public func createAssetImageScanTask(all: Bool? = nil, images: [String]? = nil, scanVul: Bool? = nil, scanVirus: Bool? = nil, scanRisk: Bool? = nil, filters: [AssetFilters]? = nil, excludeImageIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageScanTaskResponse {
+        try await self.createAssetImageScanTask(CreateAssetImageScanTaskRequest(all: all, images: images, scanVul: scanVul, scanVirus: scanVirus, scanRisk: scanRisk, filters: filters, excludeImageIds: excludeImageIds), logger: logger, on: eventLoop)
+    }
 }

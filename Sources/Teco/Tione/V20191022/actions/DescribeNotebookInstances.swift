@@ -88,4 +88,16 @@ extension Tione {
     public func describeNotebookInstances(_ input: DescribeNotebookInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookInstancesResponse {
         try await self.client.execute(action: "DescribeNotebookInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询Notebook实例列表
+    @inlinable
+    public func describeNotebookInstances(offset: UInt64? = nil, limit: UInt64? = nil, sortOrder: String? = nil, filters: [Filter]? = nil, sortBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNotebookInstancesResponse > {
+        self.describeNotebookInstances(DescribeNotebookInstancesRequest(offset: offset, limit: limit, sortOrder: sortOrder, filters: filters, sortBy: sortBy), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Notebook实例列表
+    @inlinable
+    public func describeNotebookInstances(offset: UInt64? = nil, limit: UInt64? = nil, sortOrder: String? = nil, filters: [Filter]? = nil, sortBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookInstancesResponse {
+        try await self.describeNotebookInstances(DescribeNotebookInstancesRequest(offset: offset, limit: limit, sortOrder: sortOrder, filters: filters, sortBy: sortBy), logger: logger, on: eventLoop)
+    }
 }

@@ -93,4 +93,20 @@ extension Lighthouse {
     public func describeModifyInstanceBundles(_ input: DescribeModifyInstanceBundlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModifyInstanceBundlesResponse {
         try await self.client.execute(action: "DescribeModifyInstanceBundles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例可变更套餐列表
+    ///
+    /// 本接口（DescribeModifyInstanceBundles）用于查询实例可变更套餐列表。
+    @inlinable
+    public func describeModifyInstanceBundles(instanceId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModifyInstanceBundlesResponse > {
+        self.describeModifyInstanceBundles(DescribeModifyInstanceBundlesRequest(instanceId: instanceId, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例可变更套餐列表
+    ///
+    /// 本接口（DescribeModifyInstanceBundles）用于查询实例可变更套餐列表。
+    @inlinable
+    public func describeModifyInstanceBundles(instanceId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModifyInstanceBundlesResponse {
+        try await self.describeModifyInstanceBundles(DescribeModifyInstanceBundlesRequest(instanceId: instanceId, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

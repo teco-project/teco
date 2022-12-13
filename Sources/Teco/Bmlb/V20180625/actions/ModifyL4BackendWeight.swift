@@ -83,4 +83,20 @@ extension Bmlb {
     public func modifyL4BackendWeight(_ input: ModifyL4BackendWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4BackendWeightResponse {
         try await self.client.execute(action: "ModifyL4BackendWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改黑石负载均衡四层监听器后端实例权重
+    ///
+    /// 修改黑石负载均衡四层监听器后端实例权重功能。
+    @inlinable
+    public func modifyL4BackendWeight(loadBalancerId: String, listenerId: String, instanceId: String, weight: Int64, port: Int64, bindType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL4BackendWeightResponse > {
+        self.modifyL4BackendWeight(ModifyL4BackendWeightRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, instanceId: instanceId, weight: weight, port: port, bindType: bindType), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改黑石负载均衡四层监听器后端实例权重
+    ///
+    /// 修改黑石负载均衡四层监听器后端实例权重功能。
+    @inlinable
+    public func modifyL4BackendWeight(loadBalancerId: String, listenerId: String, instanceId: String, weight: Int64, port: Int64, bindType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4BackendWeightResponse {
+        try await self.modifyL4BackendWeight(ModifyL4BackendWeightRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, instanceId: instanceId, weight: weight, port: port, bindType: bindType), logger: logger, on: eventLoop)
+    }
 }

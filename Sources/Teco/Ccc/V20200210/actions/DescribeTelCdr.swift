@@ -103,4 +103,16 @@ extension Ccc {
     public func describeTelCdr(_ input: DescribeTelCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelCdrResponse {
         try await self.client.execute(action: "DescribeTelCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取电话服务记录与录音
+    @inlinable
+    public func describeTelCdr(startTimeStamp: Int64, endTimeStamp: Int64, instanceId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, sdkAppId: Int64? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, phones: [String]? = nil, sessionIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTelCdrResponse > {
+        self.describeTelCdr(DescribeTelCdrRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, instanceId: instanceId, limit: limit, offset: offset, sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, phones: phones, sessionIds: sessionIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取电话服务记录与录音
+    @inlinable
+    public func describeTelCdr(startTimeStamp: Int64, endTimeStamp: Int64, instanceId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, sdkAppId: Int64? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, phones: [String]? = nil, sessionIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelCdrResponse {
+        try await self.describeTelCdr(DescribeTelCdrRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, instanceId: instanceId, limit: limit, offset: offset, sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, phones: phones, sessionIds: sessionIds), logger: logger, on: eventLoop)
+    }
 }

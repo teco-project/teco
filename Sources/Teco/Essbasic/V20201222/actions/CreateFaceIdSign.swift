@@ -63,4 +63,20 @@ extension Essbasic {
     public func createFaceIdSign(_ input: CreateFaceIdSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceIdSignResponse {
         try await self.client.execute(action: "CreateFaceIdSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 生成慧眼API签名
+    ///
+    /// 该接口为第三方平台向电子签平台获取慧眼慧眼API签名
+    @inlinable
+    public func createFaceIdSign(caller: Caller, values: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFaceIdSignResponse > {
+        self.createFaceIdSign(CreateFaceIdSignRequest(caller: caller, values: values), logger: logger, on: eventLoop)
+    }
+    
+    /// 生成慧眼API签名
+    ///
+    /// 该接口为第三方平台向电子签平台获取慧眼慧眼API签名
+    @inlinable
+    public func createFaceIdSign(caller: Caller, values: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceIdSignResponse {
+        try await self.createFaceIdSign(CreateFaceIdSignRequest(caller: caller, values: values), logger: logger, on: eventLoop)
+    }
 }

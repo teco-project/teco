@@ -108,4 +108,16 @@ extension Cwp {
     public func describeAssetInitServiceList(_ input: DescribeAssetInitServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetInitServiceListResponse {
         try await self.client.execute(action: "DescribeAssetInitServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询资产管理启动服务列表
+    @inlinable
+    public func describeAssetInitServiceList(uuid: String? = nil, quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetInitServiceListResponse > {
+        self.describeAssetInitServiceList(DescribeAssetInitServiceListRequest(uuid: uuid, quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资产管理启动服务列表
+    @inlinable
+    public func describeAssetInitServiceList(uuid: String? = nil, quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetInitServiceListResponse {
+        try await self.describeAssetInitServiceList(DescribeAssetInitServiceListRequest(uuid: uuid, quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

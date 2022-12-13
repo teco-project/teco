@@ -50,4 +50,20 @@ extension Gaap {
     public func describeCountryAreaMapping(_ input: DescribeCountryAreaMappingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCountryAreaMappingResponse {
         try await self.client.execute(action: "DescribeCountryAreaMapping", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取国家地区编码映射表
+    ///
+    /// 本接口（DescribeCountryAreaMapping）用于获取国家地区编码映射表。
+    @inlinable
+    public func describeCountryAreaMapping(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCountryAreaMappingResponse > {
+        self.describeCountryAreaMapping(DescribeCountryAreaMappingRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取国家地区编码映射表
+    ///
+    /// 本接口（DescribeCountryAreaMapping）用于获取国家地区编码映射表。
+    @inlinable
+    public func describeCountryAreaMapping(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCountryAreaMappingResponse {
+        try await self.describeCountryAreaMapping(DescribeCountryAreaMappingRequest(), logger: logger, on: eventLoop)
+    }
 }

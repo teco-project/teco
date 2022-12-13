@@ -1736,7 +1736,7 @@ extension Gaap {
         /// 所有端口: ALL
         public let destPortRange: String?
         
-        public init (sourceCidr: String, action: String, aliasName: String? = nil, `protocol`: String? = nil, destPortRange: String? = nil) {
+        public init (sourceCidr: String, action: String, aliasName: String? = nil, protocol: String? = nil, destPortRange: String? = nil) {
             self.sourceCidr = sourceCidr
             self.action = action
             self.aliasName = aliasName

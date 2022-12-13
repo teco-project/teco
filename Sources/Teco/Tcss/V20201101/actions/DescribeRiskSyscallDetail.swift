@@ -75,4 +75,20 @@ extension Tcss {
     public func describeRiskSyscallDetail(_ input: DescribeRiskSyscallDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallDetailResponse {
         try await self.client.execute(action: "DescribeRiskSyscallDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行时高危系统调用事件详细信息
+    ///
+    /// 查询高危系统调用事件详细信息
+    @inlinable
+    public func describeRiskSyscallDetail(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskSyscallDetailResponse > {
+        self.describeRiskSyscallDetail(DescribeRiskSyscallDetailRequest(eventId: eventId), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时高危系统调用事件详细信息
+    ///
+    /// 查询高危系统调用事件详细信息
+    @inlinable
+    public func describeRiskSyscallDetail(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallDetailResponse {
+        try await self.describeRiskSyscallDetail(DescribeRiskSyscallDetailRequest(eventId: eventId), logger: logger, on: eventLoop)
+    }
 }

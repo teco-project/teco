@@ -76,4 +76,16 @@ extension Cwp {
     public func describeImportMachineInfo(_ input: DescribeImportMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImportMachineInfoResponse {
         try await self.client.execute(action: "DescribeImportMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询批量导入机器信息
+    @inlinable
+    public func describeImportMachineInfo(machineList: [String], importType: String, isQueryProMachine: Bool? = nil, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImportMachineInfoResponse > {
+        self.describeImportMachineInfo(DescribeImportMachineInfoRequest(machineList: machineList, importType: importType, isQueryProMachine: isQueryProMachine, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询批量导入机器信息
+    @inlinable
+    public func describeImportMachineInfo(machineList: [String], importType: String, isQueryProMachine: Bool? = nil, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImportMachineInfoResponse {
+        try await self.describeImportMachineInfo(DescribeImportMachineInfoRequest(machineList: machineList, importType: importType, isQueryProMachine: isQueryProMachine, filters: filters), logger: logger, on: eventLoop)
+    }
 }

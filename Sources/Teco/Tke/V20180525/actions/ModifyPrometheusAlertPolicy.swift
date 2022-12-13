@@ -55,4 +55,16 @@ extension Tke {
     public func modifyPrometheusAlertPolicy(_ input: ModifyPrometheusAlertPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAlertPolicyResponse {
         try await self.client.execute(action: "ModifyPrometheusAlertPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改2.0实例告警策略
+    @inlinable
+    public func modifyPrometheusAlertPolicy(instanceId: String, alertRule: PrometheusAlertPolicyItem, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusAlertPolicyResponse > {
+        self.modifyPrometheusAlertPolicy(ModifyPrometheusAlertPolicyRequest(instanceId: instanceId, alertRule: alertRule), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改2.0实例告警策略
+    @inlinable
+    public func modifyPrometheusAlertPolicy(instanceId: String, alertRule: PrometheusAlertPolicyItem, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAlertPolicyResponse {
+        try await self.modifyPrometheusAlertPolicy(ModifyPrometheusAlertPolicyRequest(instanceId: instanceId, alertRule: alertRule), logger: logger, on: eventLoop)
+    }
 }

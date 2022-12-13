@@ -138,4 +138,20 @@ extension Ckafka {
     public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
         try await self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建主题
+    ///
+    /// 创建ckafka主题
+    @inlinable
+    public func createTopic(instanceId: String, topicName: String, partitionNum: Int64, replicaNum: Int64, enableWhiteList: Int64? = nil, ipWhiteList: [String]? = nil, cleanUpPolicy: String? = nil, note: String? = nil, minInsyncReplicas: Int64? = nil, uncleanLeaderElectionEnable: Int64? = nil, retentionMs: Int64? = nil, segmentMs: Int64? = nil, maxMessageBytes: Int64? = nil, enableAclRule: Int64? = nil, aclRuleName: String? = nil, retentionBytes: Int64? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicResponse > {
+        self.createTopic(CreateTopicRequest(instanceId: instanceId, topicName: topicName, partitionNum: partitionNum, replicaNum: replicaNum, enableWhiteList: enableWhiteList, ipWhiteList: ipWhiteList, cleanUpPolicy: cleanUpPolicy, note: note, minInsyncReplicas: minInsyncReplicas, uncleanLeaderElectionEnable: uncleanLeaderElectionEnable, retentionMs: retentionMs, segmentMs: segmentMs, maxMessageBytes: maxMessageBytes, enableAclRule: enableAclRule, aclRuleName: aclRuleName, retentionBytes: retentionBytes, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建主题
+    ///
+    /// 创建ckafka主题
+    @inlinable
+    public func createTopic(instanceId: String, topicName: String, partitionNum: Int64, replicaNum: Int64, enableWhiteList: Int64? = nil, ipWhiteList: [String]? = nil, cleanUpPolicy: String? = nil, note: String? = nil, minInsyncReplicas: Int64? = nil, uncleanLeaderElectionEnable: Int64? = nil, retentionMs: Int64? = nil, segmentMs: Int64? = nil, maxMessageBytes: Int64? = nil, enableAclRule: Int64? = nil, aclRuleName: String? = nil, retentionBytes: Int64? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
+        try await self.createTopic(CreateTopicRequest(instanceId: instanceId, topicName: topicName, partitionNum: partitionNum, replicaNum: replicaNum, enableWhiteList: enableWhiteList, ipWhiteList: ipWhiteList, cleanUpPolicy: cleanUpPolicy, note: note, minInsyncReplicas: minInsyncReplicas, uncleanLeaderElectionEnable: uncleanLeaderElectionEnable, retentionMs: retentionMs, segmentMs: segmentMs, maxMessageBytes: maxMessageBytes, enableAclRule: enableAclRule, aclRuleName: aclRuleName, retentionBytes: retentionBytes, tags: tags), logger: logger, on: eventLoop)
+    }
 }

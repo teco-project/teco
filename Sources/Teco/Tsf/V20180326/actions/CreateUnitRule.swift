@@ -70,4 +70,16 @@ extension Tsf {
     public func createUnitRule(_ input: CreateUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnitRuleResponse {
         try await self.client.execute(action: "CreateUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建单元化规则
+    @inlinable
+    public func createUnitRule(gatewayInstanceId: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUnitRuleResponse > {
+        self.createUnitRule(CreateUnitRuleRequest(gatewayInstanceId: gatewayInstanceId, name: name, description: description, unitRuleItemList: unitRuleItemList), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建单元化规则
+    @inlinable
+    public func createUnitRule(gatewayInstanceId: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnitRuleResponse {
+        try await self.createUnitRule(CreateUnitRuleRequest(gatewayInstanceId: gatewayInstanceId, name: name, description: description, unitRuleItemList: unitRuleItemList), logger: logger, on: eventLoop)
+    }
 }

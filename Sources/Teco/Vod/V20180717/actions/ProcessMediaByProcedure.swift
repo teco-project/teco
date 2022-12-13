@@ -101,4 +101,28 @@ extension Vod {
     public func processMediaByProcedure(_ input: ProcessMediaByProcedureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaByProcedureResponse {
         try await self.client.execute(action: "ProcessMediaByProcedure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 使用任务流模板进行视频处理
+    ///
+    /// 使用任务流模板，对点播中的视频发起处理任务。
+    /// 有两种方式创建任务流模板：
+    /// 1. 在控制台上创建和修改任务流模板；
+    /// 2. 通过任务流模板接口创建任务流模板。
+    /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
+    @inlinable
+    public func processMediaByProcedure(fileId: String, procedureName: String, subAppId: UInt64? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ProcessMediaByProcedureResponse > {
+        self.processMediaByProcedure(ProcessMediaByProcedureRequest(fileId: fileId, procedureName: procedureName, subAppId: subAppId, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 使用任务流模板进行视频处理
+    ///
+    /// 使用任务流模板，对点播中的视频发起处理任务。
+    /// 有两种方式创建任务流模板：
+    /// 1. 在控制台上创建和修改任务流模板；
+    /// 2. 通过任务流模板接口创建任务流模板。
+    /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
+    @inlinable
+    public func processMediaByProcedure(fileId: String, procedureName: String, subAppId: UInt64? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaByProcedureResponse {
+        try await self.processMediaByProcedure(ProcessMediaByProcedureRequest(fileId: fileId, procedureName: procedureName, subAppId: subAppId, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), logger: logger, on: eventLoop)
+    }
 }

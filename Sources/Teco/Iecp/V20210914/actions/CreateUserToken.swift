@@ -54,4 +54,16 @@ extension Iecp {
     public func createUserToken(_ input: CreateUserTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserTokenResponse {
         try await self.client.execute(action: "CreateUserToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建token
+    @inlinable
+    public func createUserToken(second: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserTokenResponse > {
+        self.createUserToken(CreateUserTokenRequest(second: second), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建token
+    @inlinable
+    public func createUserToken(second: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserTokenResponse {
+        try await self.createUserToken(CreateUserTokenRequest(second: second), logger: logger, on: eventLoop)
+    }
 }

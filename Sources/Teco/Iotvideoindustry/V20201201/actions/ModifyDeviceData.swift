@@ -64,4 +64,20 @@ extension Iotvideoindustry {
     public func modifyDeviceData(_ input: ModifyDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceDataResponse {
         try await self.client.execute(action: "ModifyDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 编辑设备信息
+    ///
+    /// 本接口(ModifyDeviceData)用于编辑设备信息。
+    @inlinable
+    public func modifyDeviceData(deviceId: String, nickName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceDataResponse > {
+        self.modifyDeviceData(ModifyDeviceDataRequest(deviceId: deviceId, nickName: nickName), logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑设备信息
+    ///
+    /// 本接口(ModifyDeviceData)用于编辑设备信息。
+    @inlinable
+    public func modifyDeviceData(deviceId: String, nickName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceDataResponse {
+        try await self.modifyDeviceData(ModifyDeviceDataRequest(deviceId: deviceId, nickName: nickName), logger: logger, on: eventLoop)
+    }
 }

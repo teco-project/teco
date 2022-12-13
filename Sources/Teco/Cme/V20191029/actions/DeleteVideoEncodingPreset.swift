@@ -59,4 +59,20 @@ extension Cme {
     public func deleteVideoEncodingPreset(_ input: DeleteVideoEncodingPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVideoEncodingPresetResponse {
         try await self.client.execute(action: "DeleteVideoEncodingPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除视频编码配置
+    ///
+    /// 删除指定 ID 的视频编码配置
+    @inlinable
+    public func deleteVideoEncodingPreset(platform: String, id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVideoEncodingPresetResponse > {
+        self.deleteVideoEncodingPreset(DeleteVideoEncodingPresetRequest(platform: platform, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除视频编码配置
+    ///
+    /// 删除指定 ID 的视频编码配置
+    @inlinable
+    public func deleteVideoEncodingPreset(platform: String, id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVideoEncodingPresetResponse {
+        try await self.deleteVideoEncodingPreset(DeleteVideoEncodingPresetRequest(platform: platform, id: id), logger: logger, on: eventLoop)
+    }
 }

@@ -82,4 +82,20 @@ extension Dc {
     public func describeDirectConnects(_ input: DescribeDirectConnectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectsResponse {
         try await self.client.execute(action: "DescribeDirectConnects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询物理专线列表
+    ///
+    /// 查询物理专线列表。
+    @inlinable
+    public func describeDirectConnects(filters: [Filter]? = nil, directConnectIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDirectConnectsResponse > {
+        self.describeDirectConnects(DescribeDirectConnectsRequest(filters: filters, directConnectIds: directConnectIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询物理专线列表
+    ///
+    /// 查询物理专线列表。
+    @inlinable
+    public func describeDirectConnects(filters: [Filter]? = nil, directConnectIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectsResponse {
+        try await self.describeDirectConnects(DescribeDirectConnectsRequest(filters: filters, directConnectIds: directConnectIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -62,4 +62,20 @@ extension Mariadb {
     public func destroyHourDBInstance(_ input: DestroyHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyHourDBInstanceResponse {
         try await self.client.execute(action: "DestroyHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 销毁按量计费实例
+    ///
+    /// 本接口（DestroyHourDBInstance）用于销毁按量计费实例。
+    @inlinable
+    public func destroyHourDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyHourDBInstanceResponse > {
+        self.destroyHourDBInstance(DestroyHourDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁按量计费实例
+    ///
+    /// 本接口（DestroyHourDBInstance）用于销毁按量计费实例。
+    @inlinable
+    public func destroyHourDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyHourDBInstanceResponse {
+        try await self.destroyHourDBInstance(DestroyHourDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

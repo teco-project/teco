@@ -87,4 +87,20 @@ extension Mmps {
     public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskStatusResponse {
         try await self.client.execute(action: "DescribeScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询隐私合规诊断任务状态
+    ///
+    /// 查询小程序隐私合规诊断任务状态
+    @inlinable
+    public func describeScanTaskStatus(taskType: Int64, source: Int64, taskID: String, platform: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskStatusResponse > {
+        self.describeScanTaskStatus(DescribeScanTaskStatusRequest(taskType: taskType, source: source, taskID: taskID, platform: platform), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询隐私合规诊断任务状态
+    ///
+    /// 查询小程序隐私合规诊断任务状态
+    @inlinable
+    public func describeScanTaskStatus(taskType: Int64, source: Int64, taskID: String, platform: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskStatusResponse {
+        try await self.describeScanTaskStatus(DescribeScanTaskStatusRequest(taskType: taskType, source: source, taskID: taskID, platform: platform), logger: logger, on: eventLoop)
+    }
 }

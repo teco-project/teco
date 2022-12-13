@@ -73,4 +73,20 @@ extension Dcdb {
     public func killSession(_ input: KillSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillSessionResponse {
         try await self.client.execute(action: "KillSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 杀死指定会话
+    ///
+    /// 本接口（KillSession）用于杀死指定会话。
+    @inlinable
+    public func killSession(instanceId: String, sessionId: [Int64], shardId: String? = nil, shardSerialId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < KillSessionResponse > {
+        self.killSession(KillSessionRequest(instanceId: instanceId, sessionId: sessionId, shardId: shardId, shardSerialId: shardSerialId), logger: logger, on: eventLoop)
+    }
+    
+    /// 杀死指定会话
+    ///
+    /// 本接口（KillSession）用于杀死指定会话。
+    @inlinable
+    public func killSession(instanceId: String, sessionId: [Int64], shardId: String? = nil, shardSerialId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillSessionResponse {
+        try await self.killSession(KillSessionRequest(instanceId: instanceId, sessionId: sessionId, shardId: shardId, shardSerialId: shardSerialId), logger: logger, on: eventLoop)
+    }
 }

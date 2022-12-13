@@ -60,4 +60,16 @@ extension Iotvideoindustry {
     public func modifySubscriptionStatus(_ input: ModifySubscriptionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscriptionStatusResponse {
         try await self.client.execute(action: "ModifySubscriptionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 编辑设备订阅状态
+    @inlinable
+    public func modifySubscriptionStatus(deviceId: String, status: Int64, subscriptionItem: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubscriptionStatusResponse > {
+        self.modifySubscriptionStatus(ModifySubscriptionStatusRequest(deviceId: deviceId, status: status, subscriptionItem: subscriptionItem), logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑设备订阅状态
+    @inlinable
+    public func modifySubscriptionStatus(deviceId: String, status: Int64, subscriptionItem: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscriptionStatusResponse {
+        try await self.modifySubscriptionStatus(ModifySubscriptionStatusRequest(deviceId: deviceId, status: status, subscriptionItem: subscriptionItem), logger: logger, on: eventLoop)
+    }
 }

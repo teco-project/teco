@@ -73,4 +73,20 @@ extension Gaap {
     public func addRealServers(_ input: AddRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddRealServersResponse {
         try await self.client.execute(action: "AddRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加源站
+    ///
+    /// 添加源站(服务器)信息，支持IP或域名
+    @inlinable
+    public func addRealServers(projectId: UInt64, realServerIP: [String], realServerName: String, tagSet: [TagPair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddRealServersResponse > {
+        self.addRealServers(AddRealServersRequest(projectId: projectId, realServerIP: realServerIP, realServerName: realServerName, tagSet: tagSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加源站
+    ///
+    /// 添加源站(服务器)信息，支持IP或域名
+    @inlinable
+    public func addRealServers(projectId: UInt64, realServerIP: [String], realServerName: String, tagSet: [TagPair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddRealServersResponse {
+        try await self.addRealServers(AddRealServersRequest(projectId: projectId, realServerIP: realServerIP, realServerName: realServerName, tagSet: tagSet), logger: logger, on: eventLoop)
+    }
 }

@@ -72,4 +72,20 @@ extension Tdmq {
     public func describeRabbitMQVipInstances(_ input: DescribeRabbitMQVipInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQVipInstancesResponse {
         try await self.client.execute(action: "DescribeRabbitMQVipInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询RabbitMQ专享实例列表
+    ///
+    /// 查询用户已购的RabbitMQ专享实例列表
+    @inlinable
+    public func describeRabbitMQVipInstances(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRabbitMQVipInstancesResponse > {
+        self.describeRabbitMQVipInstances(DescribeRabbitMQVipInstancesRequest(filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询RabbitMQ专享实例列表
+    ///
+    /// 查询用户已购的RabbitMQ专享实例列表
+    @inlinable
+    public func describeRabbitMQVipInstances(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQVipInstancesResponse {
+        try await self.describeRabbitMQVipInstances(DescribeRabbitMQVipInstancesRequest(filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

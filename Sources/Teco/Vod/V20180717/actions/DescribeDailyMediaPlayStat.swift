@@ -77,4 +77,24 @@ extension Vod {
     public func describeDailyMediaPlayStat(_ input: DescribeDailyMediaPlayStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDailyMediaPlayStatResponse {
         try await self.client.execute(action: "DescribeDailyMediaPlayStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询媒体文件的播放统计数据
+    ///
+    /// 该接口用于查询指定日期范围内每天的播放统计数据。
+    /// * 可以查询最近一年的播放统计数据。
+    /// * 结束日期和起始日期的时间跨度最大为90天。
+    @inlinable
+    public func describeDailyMediaPlayStat(fileId: String, startDate: String, endDate: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDailyMediaPlayStatResponse > {
+        self.describeDailyMediaPlayStat(DescribeDailyMediaPlayStatRequest(fileId: fileId, startDate: startDate, endDate: endDate, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询媒体文件的播放统计数据
+    ///
+    /// 该接口用于查询指定日期范围内每天的播放统计数据。
+    /// * 可以查询最近一年的播放统计数据。
+    /// * 结束日期和起始日期的时间跨度最大为90天。
+    @inlinable
+    public func describeDailyMediaPlayStat(fileId: String, startDate: String, endDate: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDailyMediaPlayStatResponse {
+        try await self.describeDailyMediaPlayStat(DescribeDailyMediaPlayStatRequest(fileId: fileId, startDate: startDate, endDate: endDate, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

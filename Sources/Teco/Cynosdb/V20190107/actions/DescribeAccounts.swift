@@ -69,4 +69,20 @@ extension Cynosdb {
     public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
         try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询数据库管理账号
+    ///
+    /// 本接口(DescribeAccounts)用于查询数据库管理账号。
+    @inlinable
+    public func describeAccounts(clusterId: String, accountNames: [String]? = nil, dbType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
+        self.describeAccounts(DescribeAccountsRequest(clusterId: clusterId, accountNames: accountNames, dbType: dbType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库管理账号
+    ///
+    /// 本接口(DescribeAccounts)用于查询数据库管理账号。
+    @inlinable
+    public func describeAccounts(clusterId: String, accountNames: [String]? = nil, dbType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
+        try await self.describeAccounts(DescribeAccountsRequest(clusterId: clusterId, accountNames: accountNames, dbType: dbType), logger: logger, on: eventLoop)
+    }
 }

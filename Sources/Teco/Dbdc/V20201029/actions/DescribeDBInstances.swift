@@ -82,4 +82,20 @@ extension Dbdc {
     public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
         try await self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询独享集群内的DB实例列表
+    ///
+    /// 本接口用于查询独享集群内的DB实例列表
+    @inlinable
+    public func describeDBInstances(instanceId: String, hostId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, shardType: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstancesResponse > {
+        self.describeDBInstances(DescribeDBInstancesRequest(instanceId: instanceId, hostId: hostId, limit: limit, offset: offset, shardType: shardType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询独享集群内的DB实例列表
+    ///
+    /// 本接口用于查询独享集群内的DB实例列表
+    @inlinable
+    public func describeDBInstances(instanceId: String, hostId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, shardType: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
+        try await self.describeDBInstances(DescribeDBInstancesRequest(instanceId: instanceId, hostId: hostId, limit: limit, offset: offset, shardType: shardType), logger: logger, on: eventLoop)
+    }
 }

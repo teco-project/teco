@@ -94,4 +94,16 @@ extension Monitor {
     public func describeConditionsTemplateList(_ input: DescribeConditionsTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConditionsTemplateListResponse {
         try await self.client.execute(action: "DescribeConditionsTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取条件模板列表
+    @inlinable
+    public func describeConditionsTemplateList(module: String, viewName: String? = nil, groupName: String? = nil, groupID: String? = nil, limit: Int64? = nil, offset: Int64? = nil, updateTimeOrder: String? = nil, policyCountOrder: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConditionsTemplateListResponse > {
+        self.describeConditionsTemplateList(DescribeConditionsTemplateListRequest(module: module, viewName: viewName, groupName: groupName, groupID: groupID, limit: limit, offset: offset, updateTimeOrder: updateTimeOrder, policyCountOrder: policyCountOrder), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取条件模板列表
+    @inlinable
+    public func describeConditionsTemplateList(module: String, viewName: String? = nil, groupName: String? = nil, groupID: String? = nil, limit: Int64? = nil, offset: Int64? = nil, updateTimeOrder: String? = nil, policyCountOrder: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConditionsTemplateListResponse {
+        try await self.describeConditionsTemplateList(DescribeConditionsTemplateListRequest(module: module, viewName: viewName, groupName: groupName, groupID: groupID, limit: limit, offset: offset, updateTimeOrder: updateTimeOrder, policyCountOrder: policyCountOrder), logger: logger, on: eventLoop)
+    }
 }

@@ -91,4 +91,20 @@ extension Cls {
     public func describeLogContext(_ input: DescribeLogContextRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogContextResponse {
         try await self.client.execute(action: "DescribeLogContext", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 上下文检索
+    ///
+    /// 本接口用于搜索日志上下文附近的内容
+    @inlinable
+    public func describeLogContext(topicId: String, bTime: String, pkgId: String, pkgLogId: Int64, prevLogs: Int64? = nil, nextLogs: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogContextResponse > {
+        self.describeLogContext(DescribeLogContextRequest(topicId: topicId, bTime: bTime, pkgId: pkgId, pkgLogId: pkgLogId, prevLogs: prevLogs, nextLogs: nextLogs), logger: logger, on: eventLoop)
+    }
+    
+    /// 上下文检索
+    ///
+    /// 本接口用于搜索日志上下文附近的内容
+    @inlinable
+    public func describeLogContext(topicId: String, bTime: String, pkgId: String, pkgLogId: Int64, prevLogs: Int64? = nil, nextLogs: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogContextResponse {
+        try await self.describeLogContext(DescribeLogContextRequest(topicId: topicId, bTime: bTime, pkgId: pkgId, pkgLogId: pkgLogId, prevLogs: prevLogs, nextLogs: nextLogs), logger: logger, on: eventLoop)
+    }
 }

@@ -116,4 +116,20 @@ extension Vod {
     public func modifyAIRecognitionTemplate(_ input: ModifyAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIRecognitionTemplateResponse {
         try await self.client.execute(action: "ModifyAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改音视频内容识别模板
+    ///
+    /// 修改用户自定义音视频内容识别模板。
+    @inlinable
+    public func modifyAIRecognitionTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, headTailConfigure: HeadTailConfigureInfoForUpdate? = nil, segmentConfigure: SegmentConfigureInfoForUpdate? = nil, faceConfigure: FaceConfigureInfoForUpdate? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate? = nil, ocrWordsConfigure: OcrWordsConfigureInfoForUpdate? = nil, asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate? = nil, asrWordsConfigure: AsrWordsConfigureInfoForUpdate? = nil, objectConfigure: ObjectConfigureInfoForUpdate? = nil, screenshotInterval: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAIRecognitionTemplateResponse > {
+        self.modifyAIRecognitionTemplate(ModifyAIRecognitionTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, headTailConfigure: headTailConfigure, segmentConfigure: segmentConfigure, faceConfigure: faceConfigure, ocrFullTextConfigure: ocrFullTextConfigure, ocrWordsConfigure: ocrWordsConfigure, asrFullTextConfigure: asrFullTextConfigure, asrWordsConfigure: asrWordsConfigure, objectConfigure: objectConfigure, screenshotInterval: screenshotInterval), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改音视频内容识别模板
+    ///
+    /// 修改用户自定义音视频内容识别模板。
+    @inlinable
+    public func modifyAIRecognitionTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, headTailConfigure: HeadTailConfigureInfoForUpdate? = nil, segmentConfigure: SegmentConfigureInfoForUpdate? = nil, faceConfigure: FaceConfigureInfoForUpdate? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate? = nil, ocrWordsConfigure: OcrWordsConfigureInfoForUpdate? = nil, asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate? = nil, asrWordsConfigure: AsrWordsConfigureInfoForUpdate? = nil, objectConfigure: ObjectConfigureInfoForUpdate? = nil, screenshotInterval: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIRecognitionTemplateResponse {
+        try await self.modifyAIRecognitionTemplate(ModifyAIRecognitionTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, headTailConfigure: headTailConfigure, segmentConfigure: segmentConfigure, faceConfigure: faceConfigure, ocrFullTextConfigure: ocrFullTextConfigure, ocrWordsConfigure: ocrWordsConfigure, asrFullTextConfigure: asrFullTextConfigure, asrWordsConfigure: asrWordsConfigure, objectConfigure: objectConfigure, screenshotInterval: screenshotInterval), logger: logger, on: eventLoop)
+    }
 }

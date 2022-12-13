@@ -54,4 +54,16 @@ extension Cloudaudit {
     public func listCmqEnableRegion(_ input: ListCmqEnableRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListCmqEnableRegionResponse {
         try await self.client.execute(action: "ListCmqEnableRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询云审计支持的cmq的可用区
+    @inlinable
+    public func listCmqEnableRegion(websiteType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListCmqEnableRegionResponse > {
+        self.listCmqEnableRegion(ListCmqEnableRegionRequest(websiteType: websiteType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云审计支持的cmq的可用区
+    @inlinable
+    public func listCmqEnableRegion(websiteType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListCmqEnableRegionResponse {
+        try await self.listCmqEnableRegion(ListCmqEnableRegionRequest(websiteType: websiteType), logger: logger, on: eventLoop)
+    }
 }

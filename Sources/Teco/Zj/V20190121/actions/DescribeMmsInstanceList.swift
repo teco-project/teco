@@ -74,4 +74,16 @@ extension Zj {
     public func describeMmsInstanceList(_ input: DescribeMmsInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMmsInstanceListResponse {
         try await self.client.execute(action: "DescribeMmsInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取彩信实例列表
+    @inlinable
+    public func describeMmsInstanceList(license: String, offset: Int64, limit: Int64, appSubId: String? = nil, title: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMmsInstanceListResponse > {
+        self.describeMmsInstanceList(DescribeMmsInstanceListRequest(license: license, offset: offset, limit: limit, appSubId: appSubId, title: title), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取彩信实例列表
+    @inlinable
+    public func describeMmsInstanceList(license: String, offset: Int64, limit: Int64, appSubId: String? = nil, title: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMmsInstanceListResponse {
+        try await self.describeMmsInstanceList(DescribeMmsInstanceListRequest(license: license, offset: offset, limit: limit, appSubId: appSubId, title: title), logger: logger, on: eventLoop)
+    }
 }

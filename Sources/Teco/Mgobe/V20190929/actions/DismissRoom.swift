@@ -59,4 +59,20 @@ extension Mgobe {
     public func dismissRoom(_ input: DismissRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DismissRoomResponse {
         try await self.client.execute(action: "DismissRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解散房间
+    ///
+    /// 通过game_id、room_id解散房间
+    @inlinable
+    public func dismissRoom(gameId: String, roomId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DismissRoomResponse > {
+        self.dismissRoom(DismissRoomRequest(gameId: gameId, roomId: roomId), logger: logger, on: eventLoop)
+    }
+    
+    /// 解散房间
+    ///
+    /// 通过game_id、room_id解散房间
+    @inlinable
+    public func dismissRoom(gameId: String, roomId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DismissRoomResponse {
+        try await self.dismissRoom(DismissRoomRequest(gameId: gameId, roomId: roomId), logger: logger, on: eventLoop)
+    }
 }

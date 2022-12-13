@@ -75,4 +75,20 @@ extension Live {
     public func describeLogDownloadList(_ input: DescribeLogDownloadListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogDownloadListResponse {
         try await self.client.execute(action: "DescribeLogDownloadList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量获取日志URL
+    ///
+    /// 批量获取日志URL。
+    @inlinable
+    public func describeLogDownloadList(startTime: String, endTime: String, playDomains: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogDownloadListResponse > {
+        self.describeLogDownloadList(DescribeLogDownloadListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量获取日志URL
+    ///
+    /// 批量获取日志URL。
+    @inlinable
+    public func describeLogDownloadList(startTime: String, endTime: String, playDomains: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogDownloadListResponse {
+        try await self.describeLogDownloadList(DescribeLogDownloadListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains), logger: logger, on: eventLoop)
+    }
 }

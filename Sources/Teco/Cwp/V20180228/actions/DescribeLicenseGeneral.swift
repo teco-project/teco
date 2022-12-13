@@ -106,4 +106,20 @@ extension Cwp {
     public func describeLicenseGeneral(_ input: DescribeLicenseGeneralRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseGeneralResponse {
         try await self.client.execute(action: "DescribeLicenseGeneral", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 授权概览信息
+    ///
+    /// 授权管理-授权概览信息
+    @inlinable
+    public func describeLicenseGeneral(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLicenseGeneralResponse > {
+        self.describeLicenseGeneral(DescribeLicenseGeneralRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 授权概览信息
+    ///
+    /// 授权管理-授权概览信息
+    @inlinable
+    public func describeLicenseGeneral(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseGeneralResponse {
+        try await self.describeLicenseGeneral(DescribeLicenseGeneralRequest(), logger: logger, on: eventLoop)
+    }
 }

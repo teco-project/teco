@@ -73,4 +73,20 @@ extension Dcdb {
     public func modifyInstanceVip(_ input: ModifyInstanceVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceVipResponse {
         try await self.client.execute(action: "ModifyInstanceVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改实例Vip
+    ///
+    /// 本接口（ModifyInstanceVip）用于修改实例Vip
+    @inlinable
+    public func modifyInstanceVip(instanceId: String, vip: String, ipv6Flag: UInt64? = nil, vipReleaseDelay: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceVipResponse > {
+        self.modifyInstanceVip(ModifyInstanceVipRequest(instanceId: instanceId, vip: vip, ipv6Flag: ipv6Flag, vipReleaseDelay: vipReleaseDelay), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例Vip
+    ///
+    /// 本接口（ModifyInstanceVip）用于修改实例Vip
+    @inlinable
+    public func modifyInstanceVip(instanceId: String, vip: String, ipv6Flag: UInt64? = nil, vipReleaseDelay: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceVipResponse {
+        try await self.modifyInstanceVip(ModifyInstanceVipRequest(instanceId: instanceId, vip: vip, ipv6Flag: ipv6Flag, vipReleaseDelay: vipReleaseDelay), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Ecm {
     public func disableRoutes(_ input: DisableRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRoutesResponse {
         try await self.client.execute(action: "DisableRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 禁用子网路由
+    ///
+    /// 禁用已启用的子网路由
+    @inlinable
+    public func disableRoutes(routeTableId: String, routeIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableRoutesResponse > {
+        self.disableRoutes(DisableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 禁用子网路由
+    ///
+    /// 禁用已启用的子网路由
+    @inlinable
+    public func disableRoutes(routeTableId: String, routeIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRoutesResponse {
+        try await self.disableRoutes(DisableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds), logger: logger, on: eventLoop)
+    }
 }

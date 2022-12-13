@@ -96,4 +96,20 @@ extension Cii {
     public func createStructureTask(_ input: CreateStructureTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStructureTaskResponse {
         try await self.client.execute(action: "CreateStructureTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新建结构化任务
+    ///
+    /// 基于提供的客户及保单信息，启动结构化识别任务。
+    @inlinable
+    public func createStructureTask(policyId: String, customerId: String, customerName: String, taskType: String, year: String, fileList: [String], insuranceTypes: [String]? = nil, imageList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStructureTaskResponse > {
+        self.createStructureTask(CreateStructureTaskRequest(policyId: policyId, customerId: customerId, customerName: customerName, taskType: taskType, year: year, fileList: fileList, insuranceTypes: insuranceTypes, imageList: imageList), logger: logger, on: eventLoop)
+    }
+    
+    /// 新建结构化任务
+    ///
+    /// 基于提供的客户及保单信息，启动结构化识别任务。
+    @inlinable
+    public func createStructureTask(policyId: String, customerId: String, customerName: String, taskType: String, year: String, fileList: [String], insuranceTypes: [String]? = nil, imageList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStructureTaskResponse {
+        try await self.createStructureTask(CreateStructureTaskRequest(policyId: policyId, customerId: customerId, customerName: customerName, taskType: taskType, year: year, fileList: fileList, insuranceTypes: insuranceTypes, imageList: imageList), logger: logger, on: eventLoop)
+    }
 }

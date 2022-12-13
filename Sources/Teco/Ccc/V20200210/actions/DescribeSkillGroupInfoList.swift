@@ -83,4 +83,16 @@ extension Ccc {
     public func describeSkillGroupInfoList(_ input: DescribeSkillGroupInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSkillGroupInfoListResponse {
         try await self.client.execute(action: "DescribeSkillGroupInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取技能组信息列表
+    @inlinable
+    public func describeSkillGroupInfoList(sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, skillGroupId: Int64? = nil, modifiedTime: Int64? = nil, skillGroupName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSkillGroupInfoListResponse > {
+        self.describeSkillGroupInfoList(DescribeSkillGroupInfoListRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, skillGroupId: skillGroupId, modifiedTime: modifiedTime, skillGroupName: skillGroupName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取技能组信息列表
+    @inlinable
+    public func describeSkillGroupInfoList(sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, skillGroupId: Int64? = nil, modifiedTime: Int64? = nil, skillGroupName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSkillGroupInfoListResponse {
+        try await self.describeSkillGroupInfoList(DescribeSkillGroupInfoListRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, skillGroupId: skillGroupId, modifiedTime: modifiedTime, skillGroupName: skillGroupName), logger: logger, on: eventLoop)
+    }
 }

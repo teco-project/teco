@@ -71,4 +71,22 @@ extension Vod {
     public func modifyVodDomainConfig(_ input: ModifyVodDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVodDomainConfigResponse {
         try await self.client.execute(action: "ModifyVodDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改域名配置
+    ///
+    /// 该接口用于修改域名配置，可以修改域名的防盗链配置。
+    /// 1、域名部署状态为 Online 状态时才允许修改域名的配置。
+    @inlinable
+    public func modifyVodDomainConfig(domain: String, subAppId: UInt64? = nil, refererAuthPolicy: RefererAuthPolicy? = nil, urlSignatureAuthPolicy: UrlSignatureAuthPolicy? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVodDomainConfigResponse > {
+        self.modifyVodDomainConfig(ModifyVodDomainConfigRequest(domain: domain, subAppId: subAppId, refererAuthPolicy: refererAuthPolicy, urlSignatureAuthPolicy: urlSignatureAuthPolicy), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改域名配置
+    ///
+    /// 该接口用于修改域名配置，可以修改域名的防盗链配置。
+    /// 1、域名部署状态为 Online 状态时才允许修改域名的配置。
+    @inlinable
+    public func modifyVodDomainConfig(domain: String, subAppId: UInt64? = nil, refererAuthPolicy: RefererAuthPolicy? = nil, urlSignatureAuthPolicy: UrlSignatureAuthPolicy? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVodDomainConfigResponse {
+        try await self.modifyVodDomainConfig(ModifyVodDomainConfigRequest(domain: domain, subAppId: subAppId, refererAuthPolicy: refererAuthPolicy, urlSignatureAuthPolicy: urlSignatureAuthPolicy), logger: logger, on: eventLoop)
+    }
 }

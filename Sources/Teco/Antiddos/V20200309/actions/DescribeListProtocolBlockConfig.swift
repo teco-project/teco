@@ -73,4 +73,16 @@ extension Antiddos {
     public func describeListProtocolBlockConfig(_ input: DescribeListProtocolBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListProtocolBlockConfigResponse {
         try await self.client.execute(action: "DescribeListProtocolBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取DDoS防护的协议封禁配置列表
+    @inlinable
+    public func describeListProtocolBlockConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListProtocolBlockConfigResponse > {
+        self.describeListProtocolBlockConfig(DescribeListProtocolBlockConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS防护的协议封禁配置列表
+    @inlinable
+    public func describeListProtocolBlockConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListProtocolBlockConfigResponse {
+        try await self.describeListProtocolBlockConfig(DescribeListProtocolBlockConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), logger: logger, on: eventLoop)
+    }
 }

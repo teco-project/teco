@@ -64,4 +64,20 @@ extension Tsf {
     public func removeInstances(_ input: RemoveInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveInstancesResponse {
         try await self.client.execute(action: "RemoveInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 移除云主机
+    ///
+    /// 从 TSF 集群中批量移除云主机节点
+    @inlinable
+    public func removeInstances(clusterId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveInstancesResponse > {
+        self.removeInstances(RemoveInstancesRequest(clusterId: clusterId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 移除云主机
+    ///
+    /// 从 TSF 集群中批量移除云主机节点
+    @inlinable
+    public func removeInstances(clusterId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveInstancesResponse {
+        try await self.removeInstances(RemoveInstancesRequest(clusterId: clusterId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
+    }
 }

@@ -23,7 +23,7 @@ extension Ess {
         /// 出证报告编号
         public let reportId: String
         
-        public init (`operator`: UserInfo, reportId: String) {
+        public init (operator: UserInfo, reportId: String) {
             self.`operator` = `operator`
             self.reportId = reportId
         }
@@ -69,5 +69,21 @@ extension Ess {
     @inlinable
     public func describeFlowEvidenceReport(_ input: DescribeFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowEvidenceReportResponse {
         try await self.client.execute(action: "DescribeFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 查询出证报告
+    ///
+    /// 查询出证报告，返回报告 URL。
+    @inlinable
+    public func describeFlowEvidenceReport(operator: UserInfo, reportId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowEvidenceReportResponse > {
+        self.describeFlowEvidenceReport(DescribeFlowEvidenceReportRequest(operator: `operator`, reportId: reportId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询出证报告
+    ///
+    /// 查询出证报告，返回报告 URL。
+    @inlinable
+    public func describeFlowEvidenceReport(operator: UserInfo, reportId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowEvidenceReportResponse {
+        try await self.describeFlowEvidenceReport(DescribeFlowEvidenceReportRequest(operator: `operator`, reportId: reportId), logger: logger, on: eventLoop)
     }
 }

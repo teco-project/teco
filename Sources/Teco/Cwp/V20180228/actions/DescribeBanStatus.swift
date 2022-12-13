@@ -50,4 +50,16 @@ extension Cwp {
     public func describeBanStatus(_ input: DescribeBanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanStatusResponse {
         try await self.client.execute(action: "DescribeBanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取阻断按钮状态
+    @inlinable
+    public func describeBanStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBanStatusResponse > {
+        self.describeBanStatus(DescribeBanStatusRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取阻断按钮状态
+    @inlinable
+    public func describeBanStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanStatusResponse {
+        try await self.describeBanStatus(DescribeBanStatusRequest(), logger: logger, on: eventLoop)
+    }
 }

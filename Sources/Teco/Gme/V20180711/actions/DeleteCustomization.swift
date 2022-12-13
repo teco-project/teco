@@ -63,4 +63,20 @@ extension Gme {
     public func deleteCustomization(_ input: DeleteCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizationResponse {
         try await self.client.execute(action: "DeleteCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除语音消息转文本自学习模型
+    ///
+    /// 用户通过该接口可以删除语音消息转文本自学习模型
+    @inlinable
+    public func deleteCustomization(modelId: String, bizId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomizationResponse > {
+        self.deleteCustomization(DeleteCustomizationRequest(modelId: modelId, bizId: bizId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除语音消息转文本自学习模型
+    ///
+    /// 用户通过该接口可以删除语音消息转文本自学习模型
+    @inlinable
+    public func deleteCustomization(modelId: String, bizId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizationResponse {
+        try await self.deleteCustomization(DeleteCustomizationRequest(modelId: modelId, bizId: bizId), logger: logger, on: eventLoop)
+    }
 }

@@ -83,4 +83,16 @@ extension Tdmq {
     public func describeNamespaceBundlesOpt(_ input: DescribeNamespaceBundlesOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceBundlesOptResponse {
         try await self.client.execute(action: "DescribeNamespaceBundlesOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运营端获取命名空间bundle列表
+    @inlinable
+    public func describeNamespaceBundlesOpt(clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespaceBundlesOptResponse > {
+        self.describeNamespaceBundlesOpt(DescribeNamespaceBundlesOptRequest(clusterName: clusterName, tenantId: tenantId, namespaceName: namespaceName, needMetrics: needMetrics, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 运营端获取命名空间bundle列表
+    @inlinable
+    public func describeNamespaceBundlesOpt(clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceBundlesOptResponse {
+        try await self.describeNamespaceBundlesOpt(DescribeNamespaceBundlesOptRequest(clusterName: clusterName, tenantId: tenantId, namespaceName: namespaceName, needMetrics: needMetrics, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

@@ -67,4 +67,20 @@ extension Iotcloud {
     public func describeMultiDevTask(_ input: DescribeMultiDevTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiDevTaskResponse {
         try await self.client.execute(action: "DescribeMultiDevTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取创建多设备任务状态
+    ///
+    /// 本接口（DescribeMultiDevTask）用于查询批量创建设备任务的执行状态。
+    @inlinable
+    public func describeMultiDevTask(taskId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMultiDevTaskResponse > {
+        self.describeMultiDevTask(DescribeMultiDevTaskRequest(taskId: taskId, productId: productId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取创建多设备任务状态
+    ///
+    /// 本接口（DescribeMultiDevTask）用于查询批量创建设备任务的执行状态。
+    @inlinable
+    public func describeMultiDevTask(taskId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiDevTaskResponse {
+        try await self.describeMultiDevTask(DescribeMultiDevTaskRequest(taskId: taskId, productId: productId), logger: logger, on: eventLoop)
+    }
 }

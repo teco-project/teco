@@ -55,4 +55,16 @@ extension Lcic {
     public func modifyApp(_ input: ModifyAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppResponse {
         try await self.client.execute(action: "ModifyApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改应用
+    @inlinable
+    public func modifyApp(sdkAppId: UInt64, callback: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAppResponse > {
+        self.modifyApp(ModifyAppRequest(sdkAppId: sdkAppId, callback: callback), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改应用
+    @inlinable
+    public func modifyApp(sdkAppId: UInt64, callback: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppResponse {
+        try await self.modifyApp(ModifyAppRequest(sdkAppId: sdkAppId, callback: callback), logger: logger, on: eventLoop)
+    }
 }

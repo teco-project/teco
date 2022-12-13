@@ -64,4 +64,16 @@ extension Tdid {
     public func deployByName(_ input: DeployByNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployByNameResponse {
         try await self.client.execute(action: "DeployByName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 通过Name部署TDID合约
+    @inlinable
+    public func deployByName(applicationName: String, clusterId: String, groupId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeployByNameResponse > {
+        self.deployByName(DeployByNameRequest(applicationName: applicationName, clusterId: clusterId, groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 通过Name部署TDID合约
+    @inlinable
+    public func deployByName(applicationName: String, clusterId: String, groupId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployByNameResponse {
+        try await self.deployByName(DeployByNameRequest(applicationName: applicationName, clusterId: clusterId, groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

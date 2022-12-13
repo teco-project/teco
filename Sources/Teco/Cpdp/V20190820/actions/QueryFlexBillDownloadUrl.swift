@@ -82,4 +82,16 @@ extension Cpdp {
     public func queryFlexBillDownloadUrl(_ input: QueryFlexBillDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexBillDownloadUrlResponse {
         try await self.client.execute(action: "QueryFlexBillDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 灵云V2-查询对账单文件下载链接
+    @inlinable
+    public func queryFlexBillDownloadUrl(billDate: String, billType: String, serviceProviderId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFlexBillDownloadUrlResponse > {
+        self.queryFlexBillDownloadUrl(QueryFlexBillDownloadUrlRequest(billDate: billDate, billType: billType, serviceProviderId: serviceProviderId, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云V2-查询对账单文件下载链接
+    @inlinable
+    public func queryFlexBillDownloadUrl(billDate: String, billType: String, serviceProviderId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexBillDownloadUrlResponse {
+        try await self.queryFlexBillDownloadUrl(QueryFlexBillDownloadUrlRequest(billDate: billDate, billType: billType, serviceProviderId: serviceProviderId, environment: environment), logger: logger, on: eventLoop)
+    }
 }

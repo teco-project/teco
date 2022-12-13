@@ -69,4 +69,16 @@ extension Tsf {
     public func describePodInstances(_ input: DescribePodInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePodInstancesResponse {
         try await self.client.execute(action: "DescribePodInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取部署组实例列表
+    @inlinable
+    public func describePodInstances(groupId: String, offset: Int64? = nil, limit: Int64? = nil, podNameList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePodInstancesResponse > {
+        self.describePodInstances(DescribePodInstancesRequest(groupId: groupId, offset: offset, limit: limit, podNameList: podNameList), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取部署组实例列表
+    @inlinable
+    public func describePodInstances(groupId: String, offset: Int64? = nil, limit: Int64? = nil, podNameList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePodInstancesResponse {
+        try await self.describePodInstances(DescribePodInstancesRequest(groupId: groupId, offset: offset, limit: limit, podNameList: podNameList), logger: logger, on: eventLoop)
+    }
 }

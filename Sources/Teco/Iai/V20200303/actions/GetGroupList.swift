@@ -68,4 +68,20 @@ extension Iai {
     public func getGroupList(_ input: GetGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupListResponse {
         try await self.client.execute(action: "GetGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取人员库列表
+    ///
+    /// 获取人员库列表。
+    @inlinable
+    public func getGroupList(offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGroupListResponse > {
+        self.getGroupList(GetGroupListRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取人员库列表
+    ///
+    /// 获取人员库列表。
+    @inlinable
+    public func getGroupList(offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupListResponse {
+        try await self.getGroupList(GetGroupListRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

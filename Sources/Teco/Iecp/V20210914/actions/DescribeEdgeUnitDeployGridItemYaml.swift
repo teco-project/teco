@@ -74,4 +74,16 @@ extension Iecp {
     public func describeEdgeUnitDeployGridItemYaml(_ input: DescribeEdgeUnitDeployGridItemYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitDeployGridItemYamlResponse {
         try await self.client.execute(action: "DescribeEdgeUnitDeployGridItemYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询指定Grid下应用的Yaml
+    @inlinable
+    public func describeEdgeUnitDeployGridItemYaml(edgeUnitId: UInt64, workloadKind: String, gridItemName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitDeployGridItemYamlResponse > {
+        self.describeEdgeUnitDeployGridItemYaml(DescribeEdgeUnitDeployGridItemYamlRequest(edgeUnitId: edgeUnitId, workloadKind: workloadKind, gridItemName: gridItemName, namespace: namespace), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询指定Grid下应用的Yaml
+    @inlinable
+    public func describeEdgeUnitDeployGridItemYaml(edgeUnitId: UInt64, workloadKind: String, gridItemName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitDeployGridItemYamlResponse {
+        try await self.describeEdgeUnitDeployGridItemYaml(DescribeEdgeUnitDeployGridItemYamlRequest(edgeUnitId: edgeUnitId, workloadKind: workloadKind, gridItemName: gridItemName, namespace: namespace), logger: logger, on: eventLoop)
+    }
 }

@@ -57,4 +57,16 @@ extension Tsf {
     public func deleteApplication(_ input: DeleteApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationResponse {
         try await self.client.execute(action: "DeleteApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除应用
+    @inlinable
+    public func deleteApplication(applicationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationResponse > {
+        self.deleteApplication(DeleteApplicationRequest(applicationId: applicationId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除应用
+    @inlinable
+    public func deleteApplication(applicationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationResponse {
+        try await self.deleteApplication(DeleteApplicationRequest(applicationId: applicationId), logger: logger, on: eventLoop)
+    }
 }

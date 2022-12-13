@@ -89,4 +89,20 @@ extension Clb {
     public func describeCustomizedConfigList(_ input: DescribeCustomizedConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizedConfigListResponse {
         try await self.client.execute(action: "DescribeCustomizedConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 拉取配置列表
+    ///
+    /// 拉取个性化配置列表，返回用户 AppId 下指定类型的配置。
+    @inlinable
+    public func describeCustomizedConfigList(configType: String, offset: Int64? = nil, limit: Int64? = nil, configName: String? = nil, uconfigIds: [String]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomizedConfigListResponse > {
+        self.describeCustomizedConfigList(DescribeCustomizedConfigListRequest(configType: configType, offset: offset, limit: limit, configName: configName, uconfigIds: uconfigIds, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取配置列表
+    ///
+    /// 拉取个性化配置列表，返回用户 AppId 下指定类型的配置。
+    @inlinable
+    public func describeCustomizedConfigList(configType: String, offset: Int64? = nil, limit: Int64? = nil, configName: String? = nil, uconfigIds: [String]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizedConfigListResponse {
+        try await self.describeCustomizedConfigList(DescribeCustomizedConfigListRequest(configType: configType, offset: offset, limit: limit, configName: configName, uconfigIds: uconfigIds, filters: filters), logger: logger, on: eventLoop)
+    }
 }

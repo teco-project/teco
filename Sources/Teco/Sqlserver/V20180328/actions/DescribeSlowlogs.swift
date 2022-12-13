@@ -86,4 +86,20 @@ extension Sqlserver {
     public func describeSlowlogs(_ input: DescribeSlowlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowlogsResponse {
         try await self.client.execute(action: "DescribeSlowlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取慢查询日志文件信息
+    ///
+    /// 本接口（DescribeSlowlogs）用于获取慢查询日志文件信息
+    @inlinable
+    public func describeSlowlogs(instanceId: String, startTime: Date, endTime: Date, limit: Int64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowlogsResponse > {
+        self.describeSlowlogs(DescribeSlowlogsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取慢查询日志文件信息
+    ///
+    /// 本接口（DescribeSlowlogs）用于获取慢查询日志文件信息
+    @inlinable
+    public func describeSlowlogs(instanceId: String, startTime: Date, endTime: Date, limit: Int64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowlogsResponse {
+        try await self.describeSlowlogs(DescribeSlowlogsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

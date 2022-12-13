@@ -1812,7 +1812,7 @@ extension Apigateway {
         /// 检索值
         public let value: String
         
-        public init (name: String, `operator`: String, value: String) {
+        public init (name: String, operator: String, value: String) {
             self.name = name
             self.`operator` = `operator`
             self.value = value

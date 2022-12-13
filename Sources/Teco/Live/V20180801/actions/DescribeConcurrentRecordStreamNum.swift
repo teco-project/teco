@@ -81,4 +81,20 @@ extension Live {
     public func describeConcurrentRecordStreamNum(_ input: DescribeConcurrentRecordStreamNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConcurrentRecordStreamNumResponse {
         try await self.client.execute(action: "DescribeConcurrentRecordStreamNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询并发录制路数
+    ///
+    /// 查询并发录制路数，对慢直播和普通直播适用。
+    @inlinable
+    public func describeConcurrentRecordStreamNum(liveType: String, startTime: String, endTime: String, mainlandOrOversea: String? = nil, pushDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConcurrentRecordStreamNumResponse > {
+        self.describeConcurrentRecordStreamNum(DescribeConcurrentRecordStreamNumRequest(liveType: liveType, startTime: startTime, endTime: endTime, mainlandOrOversea: mainlandOrOversea, pushDomains: pushDomains), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询并发录制路数
+    ///
+    /// 查询并发录制路数，对慢直播和普通直播适用。
+    @inlinable
+    public func describeConcurrentRecordStreamNum(liveType: String, startTime: String, endTime: String, mainlandOrOversea: String? = nil, pushDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConcurrentRecordStreamNumResponse {
+        try await self.describeConcurrentRecordStreamNum(DescribeConcurrentRecordStreamNumRequest(liveType: liveType, startTime: startTime, endTime: endTime, mainlandOrOversea: mainlandOrOversea, pushDomains: pushDomains), logger: logger, on: eventLoop)
+    }
 }

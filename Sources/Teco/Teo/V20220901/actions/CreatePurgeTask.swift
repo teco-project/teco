@@ -90,4 +90,16 @@ extension Teo {
     public func createPurgeTask(_ input: CreatePurgeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePurgeTaskResponse {
         try await self.client.execute(action: "CreatePurgeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建清除缓存任务
+    @inlinable
+    public func createPurgeTask(zoneId: String, type: String, targets: [String]? = nil, encodeUrl: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePurgeTaskResponse > {
+        self.createPurgeTask(CreatePurgeTaskRequest(zoneId: zoneId, type: type, targets: targets, encodeUrl: encodeUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建清除缓存任务
+    @inlinable
+    public func createPurgeTask(zoneId: String, type: String, targets: [String]? = nil, encodeUrl: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePurgeTaskResponse {
+        try await self.createPurgeTask(CreatePurgeTaskRequest(zoneId: zoneId, type: type, targets: targets, encodeUrl: encodeUrl), logger: logger, on: eventLoop)
+    }
 }

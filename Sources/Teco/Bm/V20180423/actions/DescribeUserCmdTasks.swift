@@ -73,4 +73,16 @@ extension Bm {
     public func describeUserCmdTasks(_ input: DescribeUserCmdTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdTasksResponse {
         try await self.client.execute(action: "DescribeUserCmdTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取自定义脚本任务列表
+    @inlinable
+    public func describeUserCmdTasks(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserCmdTasksResponse > {
+        self.describeUserCmdTasks(DescribeUserCmdTasksRequest(offset: offset, limit: limit, orderField: orderField, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取自定义脚本任务列表
+    @inlinable
+    public func describeUserCmdTasks(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdTasksResponse {
+        try await self.describeUserCmdTasks(DescribeUserCmdTasksRequest(offset: offset, limit: limit, orderField: orderField, order: order), logger: logger, on: eventLoop)
+    }
 }

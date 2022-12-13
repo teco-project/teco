@@ -83,4 +83,24 @@ extension Apigateway {
     public func bindEnvironment(_ input: BindEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEnvironmentResponse {
         try await self.client.execute(action: "BindEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 绑定使用计划到服务或API
+    ///
+    /// 本接口（BindEnvironment）用于绑定使用计划到服务或API。
+    /// 用户在发布服务到某个环境中后，如果 API 需要鉴权，还需要绑定使用计划才能进行调用，此接口用户将使用计划绑定到特定环境。
+    /// 目前支持绑定使用计划到API，但是同一个服务不能同时存在绑定到服务的使用计划和绑定到API的使用计划，所以对已经绑定过服务级别使用计划的环境，请先使用 服务级别使用计划降级 接口进行降级操作。
+    @inlinable
+    public func bindEnvironment(usagePlanIds: [String], bindType: String, environment: String, serviceId: String, apiIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindEnvironmentResponse > {
+        self.bindEnvironment(BindEnvironmentRequest(usagePlanIds: usagePlanIds, bindType: bindType, environment: environment, serviceId: serviceId, apiIds: apiIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定使用计划到服务或API
+    ///
+    /// 本接口（BindEnvironment）用于绑定使用计划到服务或API。
+    /// 用户在发布服务到某个环境中后，如果 API 需要鉴权，还需要绑定使用计划才能进行调用，此接口用户将使用计划绑定到特定环境。
+    /// 目前支持绑定使用计划到API，但是同一个服务不能同时存在绑定到服务的使用计划和绑定到API的使用计划，所以对已经绑定过服务级别使用计划的环境，请先使用 服务级别使用计划降级 接口进行降级操作。
+    @inlinable
+    public func bindEnvironment(usagePlanIds: [String], bindType: String, environment: String, serviceId: String, apiIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEnvironmentResponse {
+        try await self.bindEnvironment(BindEnvironmentRequest(usagePlanIds: usagePlanIds, bindType: bindType, environment: environment, serviceId: serviceId, apiIds: apiIds), logger: logger, on: eventLoop)
+    }
 }

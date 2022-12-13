@@ -112,4 +112,16 @@ extension Teo {
     public func modifyApplicationProxyRule(_ input: ModifyApplicationProxyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyRuleResponse {
         try await self.client.execute(action: "ModifyApplicationProxyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改应用代理规则
+    @inlinable
+    public func modifyApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, originType: String, port: [String], proto: String? = nil, originValue: [String]? = nil, forwardClientIp: String? = nil, sessionPersist: Bool? = nil, originPort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationProxyRuleResponse > {
+        self.modifyApplicationProxyRule(ModifyApplicationProxyRuleRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, originType: originType, port: port, proto: proto, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist, originPort: originPort), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改应用代理规则
+    @inlinable
+    public func modifyApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, originType: String, port: [String], proto: String? = nil, originValue: [String]? = nil, forwardClientIp: String? = nil, sessionPersist: Bool? = nil, originPort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyRuleResponse {
+        try await self.modifyApplicationProxyRule(ModifyApplicationProxyRuleRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, originType: originType, port: port, proto: proto, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist, originPort: originPort), logger: logger, on: eventLoop)
+    }
 }

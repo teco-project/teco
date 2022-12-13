@@ -62,4 +62,20 @@ extension Vpc {
     public func describeProductQuota(_ input: DescribeProductQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductQuotaResponse {
         try await self.client.execute(action: "DescribeProductQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询网络产品配额信息
+    ///
+    /// 本接口用于查询网络产品的配额信息
+    @inlinable
+    public func describeProductQuota(product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductQuotaResponse > {
+        self.describeProductQuota(DescribeProductQuotaRequest(product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网络产品配额信息
+    ///
+    /// 本接口用于查询网络产品的配额信息
+    @inlinable
+    public func describeProductQuota(product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductQuotaResponse {
+        try await self.describeProductQuota(DescribeProductQuotaRequest(product: product), logger: logger, on: eventLoop)
+    }
 }

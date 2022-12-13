@@ -64,4 +64,24 @@ extension Cms {
     public func deleteFileSample(_ input: DeleteFileSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFileSampleResponse {
         try await self.client.execute(action: "DeleteFileSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除图片样本库
+    ///
+    /// 本文档适用于图片内容安全、视频内容安全自定义识别库的管理。
+    /// <br>
+    /// 删除图片样本库，支持批量删除，一次提交不超过20个。
+    @inlinable
+    public func deleteFileSample(ids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFileSampleResponse > {
+        self.deleteFileSample(DeleteFileSampleRequest(ids: ids), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除图片样本库
+    ///
+    /// 本文档适用于图片内容安全、视频内容安全自定义识别库的管理。
+    /// <br>
+    /// 删除图片样本库，支持批量删除，一次提交不超过20个。
+    @inlinable
+    public func deleteFileSample(ids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFileSampleResponse {
+        try await self.deleteFileSample(DeleteFileSampleRequest(ids: ids), logger: logger, on: eventLoop)
+    }
 }

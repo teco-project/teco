@@ -54,4 +54,20 @@ extension Iotvideo {
     public func createIotDataType(_ input: CreateIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDataTypeResponse {
         try await self.client.execute(action: "CreateIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建自定义物模型数据类型
+    ///
+    /// 本接口（CreateIotDataType）用于创建自定义物模型数据类型。
+    @inlinable
+    public func createIotDataType(iotDataType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIotDataTypeResponse > {
+        self.createIotDataType(CreateIotDataTypeRequest(iotDataType: iotDataType), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建自定义物模型数据类型
+    ///
+    /// 本接口（CreateIotDataType）用于创建自定义物模型数据类型。
+    @inlinable
+    public func createIotDataType(iotDataType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDataTypeResponse {
+        try await self.createIotDataType(CreateIotDataTypeRequest(iotDataType: iotDataType), logger: logger, on: eventLoop)
+    }
 }

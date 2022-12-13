@@ -75,4 +75,16 @@ extension Tsf {
     public func createTaskFlow(_ input: CreateTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFlowResponse {
         try await self.client.execute(action: "CreateTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建工作流
+    @inlinable
+    public func createTaskFlow(flowName: String, triggerRule: TaskRule, flowEdges: [TaskFlowEdge], timeOut: UInt64, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskFlowResponse > {
+        self.createTaskFlow(CreateTaskFlowRequest(flowName: flowName, triggerRule: triggerRule, flowEdges: flowEdges, timeOut: timeOut, programIdList: programIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建工作流
+    @inlinable
+    public func createTaskFlow(flowName: String, triggerRule: TaskRule, flowEdges: [TaskFlowEdge], timeOut: UInt64, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFlowResponse {
+        try await self.createTaskFlow(CreateTaskFlowRequest(flowName: flowName, triggerRule: triggerRule, flowEdges: flowEdges, timeOut: timeOut, programIdList: programIdList), logger: logger, on: eventLoop)
+    }
 }

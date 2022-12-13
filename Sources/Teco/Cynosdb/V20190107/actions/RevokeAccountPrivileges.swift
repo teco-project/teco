@@ -65,4 +65,16 @@ extension Cynosdb {
     public func revokeAccountPrivileges(_ input: RevokeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeAccountPrivilegesResponse {
         try await self.client.execute(action: "RevokeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量回收账号权限
+    @inlinable
+    public func revokeAccountPrivileges(clusterId: String, account: InputAccount, dbTablePrivileges: [String], dbTables: [DbTable], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevokeAccountPrivilegesResponse > {
+        self.revokeAccountPrivileges(RevokeAccountPrivilegesRequest(clusterId: clusterId, account: account, dbTablePrivileges: dbTablePrivileges, dbTables: dbTables), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量回收账号权限
+    @inlinable
+    public func revokeAccountPrivileges(clusterId: String, account: InputAccount, dbTablePrivileges: [String], dbTables: [DbTable], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeAccountPrivilegesResponse {
+        try await self.revokeAccountPrivileges(RevokeAccountPrivilegesRequest(clusterId: clusterId, account: account, dbTablePrivileges: dbTablePrivileges, dbTables: dbTables), logger: logger, on: eventLoop)
+    }
 }

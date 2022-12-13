@@ -72,4 +72,16 @@ extension Privatedns {
     public func modifyPrivateZoneVpc(_ input: ModifyPrivateZoneVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneVpcResponse {
         try await self.client.execute(action: "ModifyPrivateZoneVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改私有域关联的VPC
+    @inlinable
+    public func modifyPrivateZoneVpc(zoneId: String, vpcSet: [VpcInfo]? = nil, accountVpcSet: [AccountVpcInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrivateZoneVpcResponse > {
+        self.modifyPrivateZoneVpc(ModifyPrivateZoneVpcRequest(zoneId: zoneId, vpcSet: vpcSet, accountVpcSet: accountVpcSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改私有域关联的VPC
+    @inlinable
+    public func modifyPrivateZoneVpc(zoneId: String, vpcSet: [VpcInfo]? = nil, accountVpcSet: [AccountVpcInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneVpcResponse {
+        try await self.modifyPrivateZoneVpc(ModifyPrivateZoneVpcRequest(zoneId: zoneId, vpcSet: vpcSet, accountVpcSet: accountVpcSet), logger: logger, on: eventLoop)
+    }
 }

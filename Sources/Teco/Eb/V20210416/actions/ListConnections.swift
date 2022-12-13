@@ -78,4 +78,16 @@ extension Eb {
     public func listConnections(_ input: ListConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListConnectionsResponse {
         try await self.client.execute(action: "ListConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取事件连接器列表
+    @inlinable
+    public func listConnections(eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, order: String? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListConnectionsResponse > {
+        self.listConnections(ListConnectionsRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, order: order, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取事件连接器列表
+    @inlinable
+    public func listConnections(eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, order: String? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListConnectionsResponse {
+        try await self.listConnections(ListConnectionsRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, order: order, offset: offset), logger: logger, on: eventLoop)
+    }
 }

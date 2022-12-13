@@ -54,4 +54,16 @@ extension Cam {
     public func getCustomMFATokenInfo(_ input: GetCustomMFATokenInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomMFATokenInfoResponse {
         try await self.client.execute(action: "GetCustomMFATokenInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取自定义多因子Token关联信息
+    @inlinable
+    public func getCustomMFATokenInfo(mfaToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCustomMFATokenInfoResponse > {
+        self.getCustomMFATokenInfo(GetCustomMFATokenInfoRequest(mfaToken: mfaToken), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取自定义多因子Token关联信息
+    @inlinable
+    public func getCustomMFATokenInfo(mfaToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomMFATokenInfoResponse {
+        try await self.getCustomMFATokenInfo(GetCustomMFATokenInfoRequest(mfaToken: mfaToken), logger: logger, on: eventLoop)
+    }
 }

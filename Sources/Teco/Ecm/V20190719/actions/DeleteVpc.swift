@@ -59,4 +59,20 @@ extension Ecm {
     public func deleteVpc(_ input: DeleteVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
         try await self.client.execute(action: "DeleteVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除VPC
+    ///
+    /// 删除私有网络
+    @inlinable
+    public func deleteVpc(vpcId: String, ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpcResponse > {
+        self.deleteVpc(DeleteVpcRequest(vpcId: vpcId, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除VPC
+    ///
+    /// 删除私有网络
+    @inlinable
+    public func deleteVpc(vpcId: String, ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
+        try await self.deleteVpc(DeleteVpcRequest(vpcId: vpcId, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    }
 }

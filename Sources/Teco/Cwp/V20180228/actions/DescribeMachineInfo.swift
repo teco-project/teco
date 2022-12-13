@@ -150,4 +150,20 @@ extension Cwp {
     public func describeMachineInfo(_ input: DescribeMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineInfoResponse {
         try await self.client.execute(action: "DescribeMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取机器详情
+    ///
+    /// 本接口（DescribeMachineInfo）用于获取机器详细信息。
+    @inlinable
+    public func describeMachineInfo(uuid: String? = nil, quuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineInfoResponse > {
+        self.describeMachineInfo(DescribeMachineInfoRequest(uuid: uuid, quuid: quuid), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取机器详情
+    ///
+    /// 本接口（DescribeMachineInfo）用于获取机器详细信息。
+    @inlinable
+    public func describeMachineInfo(uuid: String? = nil, quuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineInfoResponse {
+        try await self.describeMachineInfo(DescribeMachineInfoRequest(uuid: uuid, quuid: quuid), logger: logger, on: eventLoop)
+    }
 }

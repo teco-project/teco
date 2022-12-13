@@ -106,4 +106,16 @@ extension Iotvideo {
     public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
         try await self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建产品
+    @inlinable
+    public func createProduct(productName: String, deviceType: UInt64, productVaildYears: UInt64, features: [String], chipManufactureId: String, chipId: String, productDescription: String, chipOs: String, encryptionType: UInt64? = nil, categoryId: UInt64? = nil, netType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProductResponse > {
+        self.createProduct(CreateProductRequest(productName: productName, deviceType: deviceType, productVaildYears: productVaildYears, features: features, chipManufactureId: chipManufactureId, chipId: chipId, productDescription: productDescription, chipOs: chipOs, encryptionType: encryptionType, categoryId: categoryId, netType: netType), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建产品
+    @inlinable
+    public func createProduct(productName: String, deviceType: UInt64, productVaildYears: UInt64, features: [String], chipManufactureId: String, chipId: String, productDescription: String, chipOs: String, encryptionType: UInt64? = nil, categoryId: UInt64? = nil, netType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
+        try await self.createProduct(CreateProductRequest(productName: productName, deviceType: deviceType, productVaildYears: productVaildYears, features: features, chipManufactureId: chipManufactureId, chipId: chipId, productDescription: productDescription, chipOs: chipOs, encryptionType: encryptionType, categoryId: categoryId, netType: netType), logger: logger, on: eventLoop)
+    }
 }

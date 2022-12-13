@@ -55,4 +55,16 @@ extension Tke {
     public func deleteEdgeClusterInstances(_ input: DeleteEdgeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeClusterInstancesResponse {
         try await self.client.execute(action: "DeleteEdgeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除边缘计算实例
+    @inlinable
+    public func deleteEdgeClusterInstances(clusterId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeClusterInstancesResponse > {
+        self.deleteEdgeClusterInstances(DeleteEdgeClusterInstancesRequest(clusterId: clusterId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除边缘计算实例
+    @inlinable
+    public func deleteEdgeClusterInstances(clusterId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeClusterInstancesResponse {
+        try await self.deleteEdgeClusterInstances(DeleteEdgeClusterInstancesRequest(clusterId: clusterId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

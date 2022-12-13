@@ -63,4 +63,20 @@ extension Gme {
     public func modifyAppStatus(_ input: ModifyAppStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppStatusResponse {
         try await self.client.execute(action: "ModifyAppStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改应用开关状态
+    ///
+    /// 本接口(ModifyAppStatus)用于修改应用总开关状态。
+    @inlinable
+    public func modifyAppStatus(bizId: UInt64, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAppStatusResponse > {
+        self.modifyAppStatus(ModifyAppStatusRequest(bizId: bizId, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改应用开关状态
+    ///
+    /// 本接口(ModifyAppStatus)用于修改应用总开关状态。
+    @inlinable
+    public func modifyAppStatus(bizId: UInt64, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppStatusResponse {
+        try await self.modifyAppStatus(ModifyAppStatusRequest(bizId: bizId, status: status), logger: logger, on: eventLoop)
+    }
 }

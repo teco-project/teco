@@ -111,4 +111,20 @@ extension Teo {
     public func createLogTopicTask(_ input: CreateLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogTopicTaskResponse {
         try await self.client.execute(action: "CreateLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建推送任务
+    ///
+    /// 本接口（CreateLogTopicTask）用于创建日志推送任务。
+    @inlinable
+    public func createLogTopicTask(logSetId: String, logSetRegion: String, topicName: String, taskName: String, zoneId: String, zoneName: String, entityType: String, period: UInt64, entityList: [String]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLogTopicTaskResponse > {
+        self.createLogTopicTask(CreateLogTopicTaskRequest(logSetId: logSetId, logSetRegion: logSetRegion, topicName: topicName, taskName: taskName, zoneId: zoneId, zoneName: zoneName, entityType: entityType, period: period, entityList: entityList, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建推送任务
+    ///
+    /// 本接口（CreateLogTopicTask）用于创建日志推送任务。
+    @inlinable
+    public func createLogTopicTask(logSetId: String, logSetRegion: String, topicName: String, taskName: String, zoneId: String, zoneName: String, entityType: String, period: UInt64, entityList: [String]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogTopicTaskResponse {
+        try await self.createLogTopicTask(CreateLogTopicTaskRequest(logSetId: logSetId, logSetRegion: logSetRegion, topicName: topicName, taskName: taskName, zoneId: zoneId, zoneName: zoneName, entityType: entityType, period: period, entityList: entityList, area: area), logger: logger, on: eventLoop)
+    }
 }

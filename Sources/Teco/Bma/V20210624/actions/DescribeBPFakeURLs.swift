@@ -72,4 +72,16 @@ extension Bma {
     public func describeBPFakeURLs(_ input: DescribeBPFakeURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPFakeURLsResponse {
         try await self.client.execute(action: "DescribeBPFakeURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询仿冒链接
+    @inlinable
+    public func describeBPFakeURLs(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBPFakeURLsResponse > {
+        self.describeBPFakeURLs(DescribeBPFakeURLsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询仿冒链接
+    @inlinable
+    public func describeBPFakeURLs(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPFakeURLsResponse {
+        try await self.describeBPFakeURLs(DescribeBPFakeURLsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber), logger: logger, on: eventLoop)
+    }
 }

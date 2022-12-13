@@ -59,4 +59,20 @@ extension Vod {
     public func deleteWatermarkTemplate(_ input: DeleteWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWatermarkTemplateResponse {
         try await self.client.execute(action: "DeleteWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除水印模板
+    ///
+    /// 删除用户自定义水印模板。
+    @inlinable
+    public func deleteWatermarkTemplate(definition: Int64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWatermarkTemplateResponse > {
+        self.deleteWatermarkTemplate(DeleteWatermarkTemplateRequest(definition: definition, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除水印模板
+    ///
+    /// 删除用户自定义水印模板。
+    @inlinable
+    public func deleteWatermarkTemplate(definition: Int64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWatermarkTemplateResponse {
+        try await self.deleteWatermarkTemplate(DeleteWatermarkTemplateRequest(definition: definition, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

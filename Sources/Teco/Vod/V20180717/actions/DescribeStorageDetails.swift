@@ -110,4 +110,26 @@ extension Vod {
     public func describeStorageDetails(_ input: DescribeStorageDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageDetailsResponse {
         try await self.client.execute(action: "DescribeStorageDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询存储空间数据详情
+    ///
+    /// 该接口返回查询时间范围内使用的点播存储空间，单位：字节。
+    ///     1. 可以查询最近365天内的存储空间数据；
+    ///     2. 查询时间跨度不超过90天；
+    ///     3. 分钟粒度查询跨度不超过7天；
+    @inlinable
+    public func describeStorageDetails(startTime: String, endTime: String, subAppId: UInt64? = nil, interval: String? = nil, storageType: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStorageDetailsResponse > {
+        self.describeStorageDetails(DescribeStorageDetailsRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, interval: interval, storageType: storageType, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询存储空间数据详情
+    ///
+    /// 该接口返回查询时间范围内使用的点播存储空间，单位：字节。
+    ///     1. 可以查询最近365天内的存储空间数据；
+    ///     2. 查询时间跨度不超过90天；
+    ///     3. 分钟粒度查询跨度不超过7天；
+    @inlinable
+    public func describeStorageDetails(startTime: String, endTime: String, subAppId: UInt64? = nil, interval: String? = nil, storageType: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageDetailsResponse {
+        try await self.describeStorageDetails(DescribeStorageDetailsRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, interval: interval, storageType: storageType, area: area), logger: logger, on: eventLoop)
+    }
 }

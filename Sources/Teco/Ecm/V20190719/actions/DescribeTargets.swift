@@ -29,7 +29,7 @@ extension Ecm {
         /// 监听器端口
         public let port: Int64?
         
-        public init (loadBalancerId: String, listenerIds: [String]? = nil, `protocol`: Int64? = nil, port: Int64? = nil) {
+        public init (loadBalancerId: String, listenerIds: [String]? = nil, protocol: Int64? = nil, port: Int64? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerIds = listenerIds
             self.`protocol` = `protocol`
@@ -73,5 +73,21 @@ extension Ecm {
     @inlinable
     public func describeTargets(_ input: DescribeTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetsResponse {
         try await self.client.execute(action: "DescribeTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 查询负载均衡绑定的后端服务列表
+    ///
+    /// 查询负载均衡绑定的后端服务列表。
+    @inlinable
+    public func describeTargets(loadBalancerId: String, listenerIds: [String]? = nil, protocol: Int64? = nil, port: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTargetsResponse > {
+        self.describeTargets(DescribeTargetsRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, port: port), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询负载均衡绑定的后端服务列表
+    ///
+    /// 查询负载均衡绑定的后端服务列表。
+    @inlinable
+    public func describeTargets(loadBalancerId: String, listenerIds: [String]? = nil, protocol: Int64? = nil, port: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetsResponse {
+        try await self.describeTargets(DescribeTargetsRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, port: port), logger: logger, on: eventLoop)
     }
 }

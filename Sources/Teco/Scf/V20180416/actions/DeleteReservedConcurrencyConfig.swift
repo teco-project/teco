@@ -59,4 +59,20 @@ extension Scf {
     public func deleteReservedConcurrencyConfig(_ input: DeleteReservedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReservedConcurrencyConfigResponse {
         try await self.client.execute(action: "DeleteReservedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除函数最大独占配额
+    ///
+    /// 删除函数的最大独占配额配置。
+    @inlinable
+    public func deleteReservedConcurrencyConfig(functionName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReservedConcurrencyConfigResponse > {
+        self.deleteReservedConcurrencyConfig(DeleteReservedConcurrencyConfigRequest(functionName: functionName, namespace: namespace), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除函数最大独占配额
+    ///
+    /// 删除函数的最大独占配额配置。
+    @inlinable
+    public func deleteReservedConcurrencyConfig(functionName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReservedConcurrencyConfigResponse {
+        try await self.deleteReservedConcurrencyConfig(DeleteReservedConcurrencyConfigRequest(functionName: functionName, namespace: namespace), logger: logger, on: eventLoop)
+    }
 }

@@ -51,4 +51,20 @@ extension Ssa {
     public func describeSocCspmCompliance(_ input: DescribeSocCspmComplianceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocCspmComplianceResponse {
         try await self.client.execute(action: "DescribeSocCspmCompliance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 合规详情
+    ///
+    /// 合规详情项
+    @inlinable
+    public func describeSocCspmCompliance(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSocCspmComplianceResponse > {
+        self.describeSocCspmCompliance(DescribeSocCspmComplianceRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 合规详情
+    ///
+    /// 合规详情项
+    @inlinable
+    public func describeSocCspmCompliance(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocCspmComplianceResponse {
+        try await self.describeSocCspmCompliance(DescribeSocCspmComplianceRequest(), logger: logger, on: eventLoop)
+    }
 }

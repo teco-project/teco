@@ -80,4 +80,22 @@ extension Ssm {
     public func putSecretValue(_ input: PutSecretValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutSecretValueResponse {
         try await self.client.execute(action: "PutSecretValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 增加新版本凭据
+    ///
+    /// 该接口在指定名称的凭据下增加新版本的凭据内容，一个凭据下最多可以支持10个版本。只能对处于Enabled 和 Disabled 状态的凭据添加新的版本。
+    /// 本接口仅适用于用户自定义凭据，对云产品凭据不能操作。
+    @inlinable
+    public func putSecretValue(secretName: String, versionId: String, secretBinary: String? = nil, secretString: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutSecretValueResponse > {
+        self.putSecretValue(PutSecretValueRequest(secretName: secretName, versionId: versionId, secretBinary: secretBinary, secretString: secretString), logger: logger, on: eventLoop)
+    }
+    
+    /// 增加新版本凭据
+    ///
+    /// 该接口在指定名称的凭据下增加新版本的凭据内容，一个凭据下最多可以支持10个版本。只能对处于Enabled 和 Disabled 状态的凭据添加新的版本。
+    /// 本接口仅适用于用户自定义凭据，对云产品凭据不能操作。
+    @inlinable
+    public func putSecretValue(secretName: String, versionId: String, secretBinary: String? = nil, secretString: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutSecretValueResponse {
+        try await self.putSecretValue(PutSecretValueRequest(secretName: secretName, versionId: versionId, secretBinary: secretBinary, secretString: secretString), logger: logger, on: eventLoop)
+    }
 }

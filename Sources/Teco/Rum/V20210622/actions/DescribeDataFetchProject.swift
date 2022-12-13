@@ -178,4 +178,20 @@ extension Rum {
     public func describeDataFetchProject(_ input: DescribeDataFetchProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataFetchProjectResponse {
         try await self.client.execute(action: "DescribeDataFetchProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取DescribeDataFetchProject信息（已下线，请使用DescribeDataFetchUrl）
+    ///
+    /// 获取DescribeDataFetchProject信息。已下线，请使用DescribeDataFetchUrl
+    @inlinable
+    public func describeDataFetchProject(startTime: Int64, type: String, endTime: Int64, id: Int64, extSecond: String? = nil, engine: String? = nil, isp: String? = nil, from: String? = nil, level: String? = nil, brand: String? = nil, area: String? = nil, versionNum: String? = nil, platform: String? = nil, extThird: String? = nil, extFirst: String? = nil, netType: String? = nil, device: String? = nil, isAbroad: String? = nil, os: String? = nil, browser: String? = nil, costType: String? = nil, url: String? = nil, env: String? = nil, status: String? = nil, ret: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataFetchProjectResponse > {
+        self.describeDataFetchProject(DescribeDataFetchProjectRequest(startTime: startTime, type: type, endTime: endTime, id: id, extSecond: extSecond, engine: engine, isp: isp, from: from, level: level, brand: brand, area: area, versionNum: versionNum, platform: platform, extThird: extThird, extFirst: extFirst, netType: netType, device: device, isAbroad: isAbroad, os: os, browser: browser, costType: costType, url: url, env: env, status: status, ret: ret), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DescribeDataFetchProject信息（已下线，请使用DescribeDataFetchUrl）
+    ///
+    /// 获取DescribeDataFetchProject信息。已下线，请使用DescribeDataFetchUrl
+    @inlinable
+    public func describeDataFetchProject(startTime: Int64, type: String, endTime: Int64, id: Int64, extSecond: String? = nil, engine: String? = nil, isp: String? = nil, from: String? = nil, level: String? = nil, brand: String? = nil, area: String? = nil, versionNum: String? = nil, platform: String? = nil, extThird: String? = nil, extFirst: String? = nil, netType: String? = nil, device: String? = nil, isAbroad: String? = nil, os: String? = nil, browser: String? = nil, costType: String? = nil, url: String? = nil, env: String? = nil, status: String? = nil, ret: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataFetchProjectResponse {
+        try await self.describeDataFetchProject(DescribeDataFetchProjectRequest(startTime: startTime, type: type, endTime: endTime, id: id, extSecond: extSecond, engine: engine, isp: isp, from: from, level: level, brand: brand, area: area, versionNum: versionNum, platform: platform, extThird: extThird, extFirst: extFirst, netType: netType, device: device, isAbroad: isAbroad, os: os, browser: browser, costType: costType, url: url, env: env, status: status, ret: ret), logger: logger, on: eventLoop)
+    }
 }

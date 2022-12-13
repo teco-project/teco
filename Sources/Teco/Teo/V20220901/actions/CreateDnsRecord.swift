@@ -94,4 +94,16 @@ extension Teo {
     public func createDnsRecord(_ input: CreateDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDnsRecordResponse {
         try await self.client.execute(action: "CreateDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建 DNS 记录
+    @inlinable
+    public func createDnsRecord(zoneId: String, type: String, name: String, content: String, mode: String, ttl: Int64? = nil, priority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDnsRecordResponse > {
+        self.createDnsRecord(CreateDnsRecordRequest(zoneId: zoneId, type: type, name: name, content: content, mode: mode, ttl: ttl, priority: priority), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建 DNS 记录
+    @inlinable
+    public func createDnsRecord(zoneId: String, type: String, name: String, content: String, mode: String, ttl: Int64? = nil, priority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDnsRecordResponse {
+        try await self.createDnsRecord(CreateDnsRecordRequest(zoneId: zoneId, type: type, name: name, content: content, mode: mode, ttl: ttl, priority: priority), logger: logger, on: eventLoop)
+    }
 }

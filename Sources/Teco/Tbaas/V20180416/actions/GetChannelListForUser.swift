@@ -83,4 +83,16 @@ extension Tbaas {
     public func getChannelListForUser(_ input: GetChannelListForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChannelListForUserResponse {
         try await self.client.execute(action: "GetChannelListForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取通道列表
+    @inlinable
+    public func getChannelListForUser(module: String, operation: String, clusterId: String, groupName: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetChannelListForUserResponse > {
+        self.getChannelListForUser(GetChannelListForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取通道列表
+    @inlinable
+    public func getChannelListForUser(module: String, operation: String, clusterId: String, groupName: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChannelListForUserResponse {
+        try await self.getChannelListForUser(GetChannelListForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

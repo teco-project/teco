@@ -29,7 +29,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以查询任意资源的被授权情况。如果指定操作者，则操作者必须对被授权资源有读权限。
         public let `operator`: String?
         
-        public init (platform: String, owner: Entity? = nil, resource: Resource? = nil, `operator`: String? = nil) {
+        public init (platform: String, owner: Entity? = nil, resource: Resource? = nil, operator: String? = nil) {
             self.platform = platform
             self.owner = owner
             self.resource = resource
@@ -77,5 +77,21 @@ extension Cme {
     @inlinable
     public func describeResourceAuthorization(_ input: DescribeResourceAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceAuthorizationResponse {
         try await self.client.execute(action: "DescribeResourceAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 获取资源授权列表
+    ///
+    /// 查询资源被授权的情况。
+    @inlinable
+    public func describeResourceAuthorization(platform: String, owner: Entity? = nil, resource: Resource? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceAuthorizationResponse > {
+        self.describeResourceAuthorization(DescribeResourceAuthorizationRequest(platform: platform, owner: owner, resource: resource, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资源授权列表
+    ///
+    /// 查询资源被授权的情况。
+    @inlinable
+    public func describeResourceAuthorization(platform: String, owner: Entity? = nil, resource: Resource? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceAuthorizationResponse {
+        try await self.describeResourceAuthorization(DescribeResourceAuthorizationRequest(platform: platform, owner: owner, resource: resource, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

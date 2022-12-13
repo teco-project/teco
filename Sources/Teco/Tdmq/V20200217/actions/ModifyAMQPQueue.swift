@@ -80,4 +80,16 @@ extension Tdmq {
     public func modifyAMQPQueue(_ input: ModifyAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPQueueResponse {
         try await self.client.execute(action: "ModifyAMQPQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新Amqp队列
+    @inlinable
+    public func modifyAMQPQueue(clusterId: String, vHostId: String, queue: String, autoDelete: Bool, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAMQPQueueResponse > {
+        self.modifyAMQPQueue(ModifyAMQPQueueRequest(clusterId: clusterId, vHostId: vHostId, queue: queue, autoDelete: autoDelete, remark: remark, deadLetterExchange: deadLetterExchange, deadLetterRoutingKey: deadLetterRoutingKey), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新Amqp队列
+    @inlinable
+    public func modifyAMQPQueue(clusterId: String, vHostId: String, queue: String, autoDelete: Bool, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPQueueResponse {
+        try await self.modifyAMQPQueue(ModifyAMQPQueueRequest(clusterId: clusterId, vHostId: vHostId, queue: queue, autoDelete: autoDelete, remark: remark, deadLetterExchange: deadLetterExchange, deadLetterRoutingKey: deadLetterRoutingKey), logger: logger, on: eventLoop)
+    }
 }

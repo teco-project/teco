@@ -102,4 +102,20 @@ extension Emr {
     public func inquirePriceRenewEmr(_ input: InquirePriceRenewEmrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewEmrResponse {
         try await self.client.execute(action: "InquirePriceRenewEmr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 集群续费询价
+    ///
+    /// 集群续费询价。
+    @inlinable
+    public func inquirePriceRenewEmr(timeSpan: UInt64, instanceId: String, placement: Placement, payMode: Int64, timeUnit: String? = nil, currency: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceRenewEmrResponse > {
+        self.inquirePriceRenewEmr(InquirePriceRenewEmrRequest(timeSpan: timeSpan, instanceId: instanceId, placement: placement, payMode: payMode, timeUnit: timeUnit, currency: currency), logger: logger, on: eventLoop)
+    }
+    
+    /// 集群续费询价
+    ///
+    /// 集群续费询价。
+    @inlinable
+    public func inquirePriceRenewEmr(timeSpan: UInt64, instanceId: String, placement: Placement, payMode: Int64, timeUnit: String? = nil, currency: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewEmrResponse {
+        try await self.inquirePriceRenewEmr(InquirePriceRenewEmrRequest(timeSpan: timeSpan, instanceId: instanceId, placement: placement, payMode: payMode, timeUnit: timeUnit, currency: currency), logger: logger, on: eventLoop)
+    }
 }

@@ -80,4 +80,20 @@ extension Vpc {
     public func describeGatewayFlowQos(_ input: DescribeGatewayFlowQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayFlowQosResponse {
         try await self.client.execute(action: "DescribeGatewayFlowQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询网关来访IP流控带宽
+    ///
+    /// 本接口（DescribeGatewayFlowQos）用于查询网关来访IP流控带宽。
+    @inlinable
+    public func describeGatewayFlowQos(gatewayId: String, ipAddresses: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewayFlowQosResponse > {
+        self.describeGatewayFlowQos(DescribeGatewayFlowQosRequest(gatewayId: gatewayId, ipAddresses: ipAddresses, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网关来访IP流控带宽
+    ///
+    /// 本接口（DescribeGatewayFlowQos）用于查询网关来访IP流控带宽。
+    @inlinable
+    public func describeGatewayFlowQos(gatewayId: String, ipAddresses: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayFlowQosResponse {
+        try await self.describeGatewayFlowQos(DescribeGatewayFlowQosRequest(gatewayId: gatewayId, ipAddresses: ipAddresses, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

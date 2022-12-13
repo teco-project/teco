@@ -70,4 +70,16 @@ extension Tem {
     public func deleteApplicationAutoscaler(_ input: DeleteApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationAutoscalerResponse {
         try await self.client.execute(action: "DeleteApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除应用弹性策略组合
+    @inlinable
+    public func deleteApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscalerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationAutoscalerResponse > {
+        self.deleteApplicationAutoscaler(DeleteApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscalerId: autoscalerId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除应用弹性策略组合
+    @inlinable
+    public func deleteApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscalerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationAutoscalerResponse {
+        try await self.deleteApplicationAutoscaler(DeleteApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscalerId: autoscalerId), logger: logger, on: eventLoop)
+    }
 }

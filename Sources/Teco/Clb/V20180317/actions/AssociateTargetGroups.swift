@@ -56,4 +56,22 @@ extension Clb {
     public func associateTargetGroups(_ input: AssociateTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateTargetGroupsResponse {
         try await self.client.execute(action: "AssociateTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 规则关联目标组
+    ///
+    /// 本接口(AssociateTargetGroups)用来将目标组绑定到负载均衡的监听器（四层协议）或转发规则（七层协议）上。
+    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+    @inlinable
+    public func associateTargetGroups(associations: [TargetGroupAssociation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateTargetGroupsResponse > {
+        self.associateTargetGroups(AssociateTargetGroupsRequest(associations: associations), logger: logger, on: eventLoop)
+    }
+    
+    /// 规则关联目标组
+    ///
+    /// 本接口(AssociateTargetGroups)用来将目标组绑定到负载均衡的监听器（四层协议）或转发规则（七层协议）上。
+    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+    @inlinable
+    public func associateTargetGroups(associations: [TargetGroupAssociation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateTargetGroupsResponse {
+        try await self.associateTargetGroups(AssociateTargetGroupsRequest(associations: associations), logger: logger, on: eventLoop)
+    }
 }

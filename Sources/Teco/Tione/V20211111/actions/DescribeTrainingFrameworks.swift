@@ -46,4 +46,16 @@ extension Tione {
     public func describeTrainingFrameworks(_ input: DescribeTrainingFrameworksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingFrameworksResponse {
         try await self.client.execute(action: "DescribeTrainingFrameworks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 训练框架列表
+    @inlinable
+    public func describeTrainingFrameworks(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingFrameworksResponse > {
+        self.describeTrainingFrameworks(DescribeTrainingFrameworksRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 训练框架列表
+    @inlinable
+    public func describeTrainingFrameworks(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingFrameworksResponse {
+        try await self.describeTrainingFrameworks(DescribeTrainingFrameworksRequest(), logger: logger, on: eventLoop)
+    }
 }

@@ -75,4 +75,20 @@ extension Yunjing {
     public func describeWeeklyReportNonlocalLoginPlaces(_ input: DescribeWeeklyReportNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportNonlocalLoginPlacesResponse {
         try await self.client.execute(action: "DescribeWeeklyReportNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取专业周报异地登录数据
+    ///
+    /// 本接口 (DescribeWeeklyReportNonlocalLoginPlaces) 用于获取专业周报异地登录数据。
+    @inlinable
+    public func describeWeeklyReportNonlocalLoginPlaces(beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWeeklyReportNonlocalLoginPlacesResponse > {
+        self.describeWeeklyReportNonlocalLoginPlaces(DescribeWeeklyReportNonlocalLoginPlacesRequest(beginDate: beginDate, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取专业周报异地登录数据
+    ///
+    /// 本接口 (DescribeWeeklyReportNonlocalLoginPlaces) 用于获取专业周报异地登录数据。
+    @inlinable
+    public func describeWeeklyReportNonlocalLoginPlaces(beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportNonlocalLoginPlacesResponse {
+        try await self.describeWeeklyReportNonlocalLoginPlaces(DescribeWeeklyReportNonlocalLoginPlacesRequest(beginDate: beginDate, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

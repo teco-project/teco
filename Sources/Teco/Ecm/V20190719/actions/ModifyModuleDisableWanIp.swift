@@ -59,4 +59,20 @@ extension Ecm {
     public func modifyModuleDisableWanIp(_ input: ModifyModuleDisableWanIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleDisableWanIpResponse {
         try await self.client.execute(action: "ModifyModuleDisableWanIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改模块是否禁止分配外网ip
+    ///
+    /// 修改模块是否禁止分配外网ip的属性。
+    @inlinable
+    public func modifyModuleDisableWanIp(moduleId: String, disableWanIp: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleDisableWanIpResponse > {
+        self.modifyModuleDisableWanIp(ModifyModuleDisableWanIpRequest(moduleId: moduleId, disableWanIp: disableWanIp), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改模块是否禁止分配外网ip
+    ///
+    /// 修改模块是否禁止分配外网ip的属性。
+    @inlinable
+    public func modifyModuleDisableWanIp(moduleId: String, disableWanIp: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleDisableWanIpResponse {
+        try await self.modifyModuleDisableWanIp(ModifyModuleDisableWanIpRequest(moduleId: moduleId, disableWanIp: disableWanIp), logger: logger, on: eventLoop)
+    }
 }

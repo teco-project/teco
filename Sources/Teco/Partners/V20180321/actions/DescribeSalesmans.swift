@@ -82,4 +82,20 @@ extension Partners {
     public func describeSalesmans(_ input: DescribeSalesmansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSalesmansResponse {
         try await self.client.execute(action: "DescribeSalesmans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 代理商业务员查询接口
+    ///
+    /// 代理商查询名下业务员列表信息
+    @inlinable
+    public func describeSalesmans(offset: UInt64, limit: UInt64, salesName: String? = nil, salesUin: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSalesmansResponse > {
+        self.describeSalesmans(DescribeSalesmansRequest(offset: offset, limit: limit, salesName: salesName, salesUin: salesUin, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    }
+    
+    /// 代理商业务员查询接口
+    ///
+    /// 代理商查询名下业务员列表信息
+    @inlinable
+    public func describeSalesmans(offset: UInt64, limit: UInt64, salesName: String? = nil, salesUin: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSalesmansResponse {
+        try await self.describeSalesmans(DescribeSalesmansRequest(offset: offset, limit: limit, salesName: salesName, salesUin: salesUin, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Iotcloud {
     public func enableTopicRule(_ input: EnableTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableTopicRuleResponse {
         try await self.client.execute(action: "EnableTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启用规则
+    ///
+    /// 本接口（EnableTopicRule）用于启用规则 
+    @inlinable
+    public func enableTopicRule(ruleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableTopicRuleResponse > {
+        self.enableTopicRule(EnableTopicRuleRequest(ruleName: ruleName), logger: logger, on: eventLoop)
+    }
+    
+    /// 启用规则
+    ///
+    /// 本接口（EnableTopicRule）用于启用规则 
+    @inlinable
+    public func enableTopicRule(ruleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableTopicRuleResponse {
+        try await self.enableTopicRule(EnableTopicRuleRequest(ruleName: ruleName), logger: logger, on: eventLoop)
+    }
 }

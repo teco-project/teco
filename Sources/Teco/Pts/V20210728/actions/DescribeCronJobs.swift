@@ -98,4 +98,20 @@ extension Pts {
     public func describeCronJobs(_ input: DescribeCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCronJobsResponse {
         try await self.client.execute(action: "DescribeCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 列出定时任务
+    ///
+    /// 列出定时任务，非必填数组为空就默认全选
+    @inlinable
+    public func describeCronJobs(projectIds: [String], offset: Int64? = nil, limit: Int64? = nil, cronJobIds: [String]? = nil, cronJobName: String? = nil, cronJobStatus: [Int64]? = nil, orderBy: String? = nil, ascend: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCronJobsResponse > {
+        self.describeCronJobs(DescribeCronJobsRequest(projectIds: projectIds, offset: offset, limit: limit, cronJobIds: cronJobIds, cronJobName: cronJobName, cronJobStatus: cronJobStatus, orderBy: orderBy, ascend: ascend), logger: logger, on: eventLoop)
+    }
+    
+    /// 列出定时任务
+    ///
+    /// 列出定时任务，非必填数组为空就默认全选
+    @inlinable
+    public func describeCronJobs(projectIds: [String], offset: Int64? = nil, limit: Int64? = nil, cronJobIds: [String]? = nil, cronJobName: String? = nil, cronJobStatus: [Int64]? = nil, orderBy: String? = nil, ascend: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCronJobsResponse {
+        try await self.describeCronJobs(DescribeCronJobsRequest(projectIds: projectIds, offset: offset, limit: limit, cronJobIds: cronJobIds, cronJobName: cronJobName, cronJobStatus: cronJobStatus, orderBy: orderBy, ascend: ascend), logger: logger, on: eventLoop)
+    }
 }

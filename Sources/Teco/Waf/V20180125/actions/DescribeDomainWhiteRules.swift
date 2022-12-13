@@ -83,4 +83,16 @@ extension Waf {
     public func describeDomainWhiteRules(_ input: DescribeDomainWhiteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainWhiteRulesResponse {
         try await self.client.execute(action: "DescribeDomainWhiteRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取域名的规则白名单
+    @inlinable
+    public func describeDomainWhiteRules(domain: String, url: String? = nil, page: UInt64? = nil, count: UInt64? = nil, sort: String? = nil, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainWhiteRulesResponse > {
+        self.describeDomainWhiteRules(DescribeDomainWhiteRulesRequest(domain: domain, url: url, page: page, count: count, sort: sort, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取域名的规则白名单
+    @inlinable
+    public func describeDomainWhiteRules(domain: String, url: String? = nil, page: UInt64? = nil, count: UInt64? = nil, sort: String? = nil, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainWhiteRulesResponse {
+        try await self.describeDomainWhiteRules(DescribeDomainWhiteRulesRequest(domain: domain, url: url, page: page, count: count, sort: sort, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
 }

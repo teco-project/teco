@@ -54,4 +54,20 @@ extension Dts {
     public func recoverSyncJob(_ input: RecoverSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverSyncJobResponse {
         try await self.client.execute(action: "RecoverSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解除隔离同步任务
+    ///
+    /// 解除隔离同步任务，任务在已隔离状态下可调用该接口解除隔离状态任务，同时可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
+    @inlinable
+    public func recoverSyncJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecoverSyncJobResponse > {
+        self.recoverSyncJob(RecoverSyncJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
+    
+    /// 解除隔离同步任务
+    ///
+    /// 解除隔离同步任务，任务在已隔离状态下可调用该接口解除隔离状态任务，同时可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
+    @inlinable
+    public func recoverSyncJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverSyncJobResponse {
+        try await self.recoverSyncJob(RecoverSyncJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
 }

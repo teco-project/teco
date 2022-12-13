@@ -103,4 +103,20 @@ extension Faceid {
     public func bankCardVerification(_ input: BankCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCardVerificationResponse {
         try await self.client.execute(action: "BankCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 银行卡三要素核验
+    ///
+    /// 本接口用于银行卡号、姓名、开户证件号信息的真实性和一致性。
+    @inlinable
+    public func bankCardVerification(idCard: String, name: String, bankCard: String, certType: Int64? = nil, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BankCardVerificationResponse > {
+        self.bankCardVerification(BankCardVerificationRequest(idCard: idCard, name: name, bankCard: bankCard, certType: certType, encryption: encryption), logger: logger, on: eventLoop)
+    }
+    
+    /// 银行卡三要素核验
+    ///
+    /// 本接口用于银行卡号、姓名、开户证件号信息的真实性和一致性。
+    @inlinable
+    public func bankCardVerification(idCard: String, name: String, bankCard: String, certType: Int64? = nil, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCardVerificationResponse {
+        try await self.bankCardVerification(BankCardVerificationRequest(idCard: idCard, name: name, bankCard: bankCard, certType: certType, encryption: encryption), logger: logger, on: eventLoop)
+    }
 }

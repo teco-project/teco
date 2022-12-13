@@ -54,4 +54,20 @@ extension Ivld {
     public func queryCallback(_ input: QueryCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallbackResponse {
         try await self.client.execute(action: "QueryCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询回调设置
+    ///
+    /// 查询用户回调设置
+    @inlinable
+    public func queryCallback(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCallbackResponse > {
+        self.queryCallback(QueryCallbackRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询回调设置
+    ///
+    /// 查询用户回调设置
+    @inlinable
+    public func queryCallback(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallbackResponse {
+        try await self.queryCallback(QueryCallbackRequest(), logger: logger, on: eventLoop)
+    }
 }

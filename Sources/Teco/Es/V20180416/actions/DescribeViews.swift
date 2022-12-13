@@ -69,4 +69,20 @@ extension Es {
     public func describeViews(_ input: DescribeViewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeViewsResponse {
         try await self.client.execute(action: "DescribeViews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询集群视图
+    ///
+    /// 查询集群各视图数据，包括集群维度、节点维度、Kibana维度
+    @inlinable
+    public func describeViews(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeViewsResponse > {
+        self.describeViews(DescribeViewsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群视图
+    ///
+    /// 查询集群各视图数据，包括集群维度、节点维度、Kibana维度
+    @inlinable
+    public func describeViews(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeViewsResponse {
+        try await self.describeViews(DescribeViewsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

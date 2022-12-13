@@ -95,4 +95,16 @@ extension Teo {
     public func modifyDnsRecord(_ input: ModifyDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDnsRecordResponse {
         try await self.client.execute(action: "ModifyDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改 DNS 记录
+    @inlinable
+    public func modifyDnsRecord(dnsRecordId: String, zoneId: String, dnsRecordType: String? = nil, dnsRecordName: String? = nil, content: String? = nil, ttl: Int64? = nil, priority: Int64? = nil, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDnsRecordResponse > {
+        self.modifyDnsRecord(ModifyDnsRecordRequest(dnsRecordId: dnsRecordId, zoneId: zoneId, dnsRecordType: dnsRecordType, dnsRecordName: dnsRecordName, content: content, ttl: ttl, priority: priority, mode: mode), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改 DNS 记录
+    @inlinable
+    public func modifyDnsRecord(dnsRecordId: String, zoneId: String, dnsRecordType: String? = nil, dnsRecordName: String? = nil, content: String? = nil, ttl: Int64? = nil, priority: Int64? = nil, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDnsRecordResponse {
+        try await self.modifyDnsRecord(ModifyDnsRecordRequest(dnsRecordId: dnsRecordId, zoneId: zoneId, dnsRecordType: dnsRecordType, dnsRecordName: dnsRecordName, content: content, ttl: ttl, priority: priority, mode: mode), logger: logger, on: eventLoop)
+    }
 }

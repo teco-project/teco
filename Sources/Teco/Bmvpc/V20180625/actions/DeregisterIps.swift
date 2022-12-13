@@ -64,4 +64,20 @@ extension Bmvpc {
     public func deregisterIps(_ input: DeregisterIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterIpsResponse {
         try await self.client.execute(action: "DeregisterIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 注销私有网络IP
+    ///
+    /// 注销私有网络IP为空闲
+    @inlinable
+    public func deregisterIps(vpcId: String, ipSet: [String], subnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeregisterIpsResponse > {
+        self.deregisterIps(DeregisterIpsRequest(vpcId: vpcId, ipSet: ipSet, subnetId: subnetId), logger: logger, on: eventLoop)
+    }
+    
+    /// 注销私有网络IP
+    ///
+    /// 注销私有网络IP为空闲
+    @inlinable
+    public func deregisterIps(vpcId: String, ipSet: [String], subnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterIpsResponse {
+        try await self.deregisterIps(DeregisterIpsRequest(vpcId: vpcId, ipSet: ipSet, subnetId: subnetId), logger: logger, on: eventLoop)
+    }
 }

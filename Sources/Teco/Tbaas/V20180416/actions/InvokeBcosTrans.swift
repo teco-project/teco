@@ -88,4 +88,20 @@ extension Tbaas {
     public func invokeBcosTrans(_ input: InvokeBcosTransRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeBcosTransResponse {
         try await self.client.execute(action: "InvokeBcosTrans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 执行Bcos交易
+    ///
+    /// 执行Bcos交易，支持动态部署的合约
+    @inlinable
+    public func invokeBcosTrans(clusterId: String, groupId: Int64, contractAddress: String, abiInfo: String, funcName: String, signUserId: String, funcParam: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeBcosTransResponse > {
+        self.invokeBcosTrans(InvokeBcosTransRequest(clusterId: clusterId, groupId: groupId, contractAddress: contractAddress, abiInfo: abiInfo, funcName: funcName, signUserId: signUserId, funcParam: funcParam), logger: logger, on: eventLoop)
+    }
+    
+    /// 执行Bcos交易
+    ///
+    /// 执行Bcos交易，支持动态部署的合约
+    @inlinable
+    public func invokeBcosTrans(clusterId: String, groupId: Int64, contractAddress: String, abiInfo: String, funcName: String, signUserId: String, funcParam: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeBcosTransResponse {
+        try await self.invokeBcosTrans(InvokeBcosTransRequest(clusterId: clusterId, groupId: groupId, contractAddress: contractAddress, abiInfo: abiInfo, funcName: funcName, signUserId: signUserId, funcParam: funcParam), logger: logger, on: eventLoop)
+    }
 }

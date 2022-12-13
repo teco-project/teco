@@ -91,4 +91,20 @@ extension Monitor {
     public func describeRecordingRules(_ input: DescribeRecordingRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingRulesResponse {
         try await self.client.execute(action: "DescribeRecordingRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询预聚合规则
+    ///
+    /// 根据条件查询 Prometheus 预聚合规则
+    @inlinable
+    public func describeRecordingRules(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, ruleId: String? = nil, ruleState: Int64? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordingRulesResponse > {
+        self.describeRecordingRules(DescribeRecordingRulesRequest(instanceId: instanceId, limit: limit, offset: offset, ruleId: ruleId, ruleState: ruleState, name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询预聚合规则
+    ///
+    /// 根据条件查询 Prometheus 预聚合规则
+    @inlinable
+    public func describeRecordingRules(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, ruleId: String? = nil, ruleState: Int64? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingRulesResponse {
+        try await self.describeRecordingRules(DescribeRecordingRulesRequest(instanceId: instanceId, limit: limit, offset: offset, ruleId: ruleId, ruleState: ruleState, name: name), logger: logger, on: eventLoop)
+    }
 }

@@ -64,4 +64,20 @@ extension Scf {
     public func updateFunctionEventInvokeConfig(_ input: UpdateFunctionEventInvokeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFunctionEventInvokeConfigResponse {
         try await self.client.execute(action: "UpdateFunctionEventInvokeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新函数异步重试配置
+    ///
+    /// 更新函数的异步重试配置，包括重试次数和消息保留时间
+    @inlinable
+    public func updateFunctionEventInvokeConfig(asyncTriggerConfig: AsyncTriggerConfig, functionName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateFunctionEventInvokeConfigResponse > {
+        self.updateFunctionEventInvokeConfig(UpdateFunctionEventInvokeConfigRequest(asyncTriggerConfig: asyncTriggerConfig, functionName: functionName, namespace: namespace), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新函数异步重试配置
+    ///
+    /// 更新函数的异步重试配置，包括重试次数和消息保留时间
+    @inlinable
+    public func updateFunctionEventInvokeConfig(asyncTriggerConfig: AsyncTriggerConfig, functionName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFunctionEventInvokeConfigResponse {
+        try await self.updateFunctionEventInvokeConfig(UpdateFunctionEventInvokeConfigRequest(asyncTriggerConfig: asyncTriggerConfig, functionName: functionName, namespace: namespace), logger: logger, on: eventLoop)
+    }
 }

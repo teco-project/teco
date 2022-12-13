@@ -54,4 +54,20 @@ extension Cws {
     public func describeVulsNumberTimeline(_ input: DescribeVulsNumberTimelineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsNumberTimelineResponse {
         try await self.client.execute(action: "DescribeVulsNumberTimeline", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看漏洞数随时间变化统计信息
+    ///
+    /// 本接口 (DescribeVulsNumberTimeline) 用于查询漏洞数随时间变化统计信息。
+    @inlinable
+    public func describeVulsNumberTimeline(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulsNumberTimelineResponse > {
+        self.describeVulsNumberTimeline(DescribeVulsNumberTimelineRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看漏洞数随时间变化统计信息
+    ///
+    /// 本接口 (DescribeVulsNumberTimeline) 用于查询漏洞数随时间变化统计信息。
+    @inlinable
+    public func describeVulsNumberTimeline(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsNumberTimelineResponse {
+        try await self.describeVulsNumberTimeline(DescribeVulsNumberTimelineRequest(), logger: logger, on: eventLoop)
+    }
 }

@@ -68,4 +68,20 @@ extension Tsf {
     public func updateApiTimeouts(_ input: UpdateApiTimeoutsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiTimeoutsResponse {
         try await self.client.execute(action: "UpdateApiTimeouts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新API超时
+    ///
+    /// 批量更新API超时
+    @inlinable
+    public func updateApiTimeouts(apiIds: [String], usableStatus: String, timeout: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateApiTimeoutsResponse > {
+        self.updateApiTimeouts(UpdateApiTimeoutsRequest(apiIds: apiIds, usableStatus: usableStatus, timeout: timeout), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新API超时
+    ///
+    /// 批量更新API超时
+    @inlinable
+    public func updateApiTimeouts(apiIds: [String], usableStatus: String, timeout: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiTimeoutsResponse {
+        try await self.updateApiTimeouts(UpdateApiTimeoutsRequest(apiIds: apiIds, usableStatus: usableStatus, timeout: timeout), logger: logger, on: eventLoop)
+    }
 }

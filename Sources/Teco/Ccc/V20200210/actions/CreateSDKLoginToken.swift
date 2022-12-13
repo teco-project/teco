@@ -71,4 +71,20 @@ extension Ccc {
     public func createSDKLoginToken(_ input: CreateSDKLoginTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSDKLoginTokenResponse {
         try await self.client.execute(action: "CreateSDKLoginToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建 SDK 登录 Token
+    ///
+    /// 创建 SDK 登录 Token。
+    @inlinable
+    public func createSDKLoginToken(sdkAppId: Int64, seatUserId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSDKLoginTokenResponse > {
+        self.createSDKLoginToken(CreateSDKLoginTokenRequest(sdkAppId: sdkAppId, seatUserId: seatUserId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建 SDK 登录 Token
+    ///
+    /// 创建 SDK 登录 Token。
+    @inlinable
+    public func createSDKLoginToken(sdkAppId: Int64, seatUserId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSDKLoginTokenResponse {
+        try await self.createSDKLoginToken(CreateSDKLoginTokenRequest(sdkAppId: sdkAppId, seatUserId: seatUserId), logger: logger, on: eventLoop)
+    }
 }

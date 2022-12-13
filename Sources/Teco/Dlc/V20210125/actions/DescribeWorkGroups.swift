@@ -83,4 +83,16 @@ extension Dlc {
     public func describeWorkGroups(_ input: DescribeWorkGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkGroupsResponse {
         try await self.client.execute(action: "DescribeWorkGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取工作组列表
+    @inlinable
+    public func describeWorkGroups(workGroupId: Int64? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkGroupsResponse > {
+        self.describeWorkGroups(DescribeWorkGroupsRequest(workGroupId: workGroupId, filters: filters, offset: offset, limit: limit, sortBy: sortBy, sorting: sorting), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取工作组列表
+    @inlinable
+    public func describeWorkGroups(workGroupId: Int64? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkGroupsResponse {
+        try await self.describeWorkGroups(DescribeWorkGroupsRequest(workGroupId: workGroupId, filters: filters, offset: offset, limit: limit, sortBy: sortBy, sorting: sorting), logger: logger, on: eventLoop)
+    }
 }

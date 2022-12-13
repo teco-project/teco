@@ -59,4 +59,20 @@ extension Postgres {
     public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNameResponse {
         try await self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改实例名字
+    ///
+    /// 本接口（ModifyDBInstanceName）用于修改postgresql实例名字。
+    @inlinable
+    public func modifyDBInstanceName(dbInstanceId: String, instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceNameResponse > {
+        self.modifyDBInstanceName(ModifyDBInstanceNameRequest(dbInstanceId: dbInstanceId, instanceName: instanceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例名字
+    ///
+    /// 本接口（ModifyDBInstanceName）用于修改postgresql实例名字。
+    @inlinable
+    public func modifyDBInstanceName(dbInstanceId: String, instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNameResponse {
+        try await self.modifyDBInstanceName(ModifyDBInstanceNameRequest(dbInstanceId: dbInstanceId, instanceName: instanceName), logger: logger, on: eventLoop)
+    }
 }

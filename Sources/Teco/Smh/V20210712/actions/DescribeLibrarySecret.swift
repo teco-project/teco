@@ -62,4 +62,20 @@ extension Smh {
     public func describeLibrarySecret(_ input: DescribeLibrarySecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLibrarySecretResponse {
         try await self.client.execute(action: "DescribeLibrarySecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询媒体库密钥
+    ///
+    /// 查询 PaaS 服务媒体库密钥
+    @inlinable
+    public func describeLibrarySecret(libraryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLibrarySecretResponse > {
+        self.describeLibrarySecret(DescribeLibrarySecretRequest(libraryId: libraryId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询媒体库密钥
+    ///
+    /// 查询 PaaS 服务媒体库密钥
+    @inlinable
+    public func describeLibrarySecret(libraryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLibrarySecretResponse {
+        try await self.describeLibrarySecret(DescribeLibrarySecretRequest(libraryId: libraryId), logger: logger, on: eventLoop)
+    }
 }

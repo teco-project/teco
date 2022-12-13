@@ -94,4 +94,20 @@ extension Tsf {
     public func describeTaskRecords(_ input: DescribeTaskRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskRecordsResponse {
         try await self.client.execute(action: "DescribeTaskRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询任务列表
+    ///
+    /// 翻页查询任务列表
+    @inlinable
+    public func describeTaskRecords(offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, taskState: String? = nil, groupId: String? = nil, taskType: String? = nil, executeType: String? = nil, ids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskRecordsResponse > {
+        self.describeTaskRecords(DescribeTaskRecordsRequest(offset: offset, limit: limit, searchWord: searchWord, taskState: taskState, groupId: groupId, taskType: taskType, executeType: executeType, ids: ids), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务列表
+    ///
+    /// 翻页查询任务列表
+    @inlinable
+    public func describeTaskRecords(offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, taskState: String? = nil, groupId: String? = nil, taskType: String? = nil, executeType: String? = nil, ids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskRecordsResponse {
+        try await self.describeTaskRecords(DescribeTaskRecordsRequest(offset: offset, limit: limit, searchWord: searchWord, taskState: taskState, groupId: groupId, taskType: taskType, executeType: executeType, ids: ids), logger: logger, on: eventLoop)
+    }
 }

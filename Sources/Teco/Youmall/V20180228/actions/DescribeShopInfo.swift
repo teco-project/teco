@@ -67,4 +67,20 @@ extension Youmall {
     public func describeShopInfo(_ input: DescribeShopInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopInfoResponse {
         try await self.client.execute(action: "DescribeShopInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取客户所属门店列表
+    ///
+    /// 根据客户身份标识获取客户下所有的门店信息列表
+    @inlinable
+    public func describeShopInfo(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShopInfoResponse > {
+        self.describeShopInfo(DescribeShopInfoRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取客户所属门店列表
+    ///
+    /// 根据客户身份标识获取客户下所有的门店信息列表
+    @inlinable
+    public func describeShopInfo(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopInfoResponse {
+        try await self.describeShopInfo(DescribeShopInfoRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

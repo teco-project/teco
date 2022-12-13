@@ -67,4 +67,28 @@ extension Mariadb {
     public func modifyRealServerAccessStrategy(_ input: ModifyRealServerAccessStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRealServerAccessStrategyResponse {
         try await self.client.execute(action: "ModifyRealServerAccessStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改RS的访问策略
+    ///
+    /// 本接口(ModifyRealServerAccessStrategy)用于修改云数据库的VPCGW到RS的访问策略。
+    /// **注意**
+    /// - 修改策略后只对新建立的连接生效，老连接不受影响
+    /// - 就近访问只针对实例是跨可用区部署有用，单可用区部署实例就近与否并无作用
+    /// - DB每个Node对应一个proxy，如果开启就近访问，将会把连接集中到对应可用区的proxy上，可能造成热点问题，这种情况下如果是线上业务，请务必根据自己的业务请求量测试符合预期后再进行就近策略变更
+    @inlinable
+    public func modifyRealServerAccessStrategy(instanceId: String, rsAccessStrategy: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRealServerAccessStrategyResponse > {
+        self.modifyRealServerAccessStrategy(ModifyRealServerAccessStrategyRequest(instanceId: instanceId, rsAccessStrategy: rsAccessStrategy), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改RS的访问策略
+    ///
+    /// 本接口(ModifyRealServerAccessStrategy)用于修改云数据库的VPCGW到RS的访问策略。
+    /// **注意**
+    /// - 修改策略后只对新建立的连接生效，老连接不受影响
+    /// - 就近访问只针对实例是跨可用区部署有用，单可用区部署实例就近与否并无作用
+    /// - DB每个Node对应一个proxy，如果开启就近访问，将会把连接集中到对应可用区的proxy上，可能造成热点问题，这种情况下如果是线上业务，请务必根据自己的业务请求量测试符合预期后再进行就近策略变更
+    @inlinable
+    public func modifyRealServerAccessStrategy(instanceId: String, rsAccessStrategy: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRealServerAccessStrategyResponse {
+        try await self.modifyRealServerAccessStrategy(ModifyRealServerAccessStrategyRequest(instanceId: instanceId, rsAccessStrategy: rsAccessStrategy), logger: logger, on: eventLoop)
+    }
 }

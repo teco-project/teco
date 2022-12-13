@@ -63,4 +63,20 @@ extension Dcdb {
     public func openDBExtranetAccess(_ input: OpenDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenDBExtranetAccessResponse {
         try await self.client.execute(action: "OpenDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开通外网访问
+    ///
+    /// 本接口（OpenDBExtranetAccess）用于开通云数据库实例的外网访问。开通外网访问后，您可通过外网域名和端口访问实例，可使用查询实例列表接口获取外网域名和端口信息。
+    @inlinable
+    public func openDBExtranetAccess(instanceId: String, ipv6Flag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenDBExtranetAccessResponse > {
+        self.openDBExtranetAccess(OpenDBExtranetAccessRequest(instanceId: instanceId, ipv6Flag: ipv6Flag), logger: logger, on: eventLoop)
+    }
+    
+    /// 开通外网访问
+    ///
+    /// 本接口（OpenDBExtranetAccess）用于开通云数据库实例的外网访问。开通外网访问后，您可通过外网域名和端口访问实例，可使用查询实例列表接口获取外网域名和端口信息。
+    @inlinable
+    public func openDBExtranetAccess(instanceId: String, ipv6Flag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenDBExtranetAccessResponse {
+        try await self.openDBExtranetAccess(OpenDBExtranetAccessRequest(instanceId: instanceId, ipv6Flag: ipv6Flag), logger: logger, on: eventLoop)
+    }
 }

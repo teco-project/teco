@@ -78,4 +78,16 @@ extension Gme {
     public func describeRealtimeScanConfig(_ input: DescribeRealtimeScanConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealtimeScanConfigResponse {
         try await self.client.execute(action: "DescribeRealtimeScanConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取用户自定义送检信息
+    @inlinable
+    public func describeRealtimeScanConfig(bizId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealtimeScanConfigResponse > {
+        self.describeRealtimeScanConfig(DescribeRealtimeScanConfigRequest(bizId: bizId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户自定义送检信息
+    @inlinable
+    public func describeRealtimeScanConfig(bizId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealtimeScanConfigResponse {
+        try await self.describeRealtimeScanConfig(DescribeRealtimeScanConfigRequest(bizId: bizId), logger: logger, on: eventLoop)
+    }
 }

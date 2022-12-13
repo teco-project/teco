@@ -68,4 +68,20 @@ extension Iotvideoindustry {
     public func modifyRecordingPlan(_ input: ModifyRecordingPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordingPlanResponse {
         try await self.client.execute(action: "ModifyRecordingPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新录制计划
+    ///
+    /// 本接口(ModifyRecordingPlan)用于更新录制计划。
+    @inlinable
+    public func modifyRecordingPlan(planId: String, name: String? = nil, timeTemplateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordingPlanResponse > {
+        self.modifyRecordingPlan(ModifyRecordingPlanRequest(planId: planId, name: name, timeTemplateId: timeTemplateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新录制计划
+    ///
+    /// 本接口(ModifyRecordingPlan)用于更新录制计划。
+    @inlinable
+    public func modifyRecordingPlan(planId: String, name: String? = nil, timeTemplateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordingPlanResponse {
+        try await self.modifyRecordingPlan(ModifyRecordingPlanRequest(planId: planId, name: name, timeTemplateId: timeTemplateId), logger: logger, on: eventLoop)
+    }
 }

@@ -63,4 +63,20 @@ extension Essbasic {
     public func describeCustomFlowIdsByFlowId(_ input: DescribeCustomFlowIdsByFlowIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomFlowIdsByFlowIdResponse {
         try await self.client.execute(action: "DescribeCustomFlowIdsByFlowId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 根据流程id反查自定义流程id
+    ///
+    /// 此接口（DescribeCustomFlowIdsByFlowId）用于根据流程id反查自定义流程id
+    @inlinable
+    public func describeCustomFlowIdsByFlowId(caller: Caller, flowIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomFlowIdsByFlowIdResponse > {
+        self.describeCustomFlowIdsByFlowId(DescribeCustomFlowIdsByFlowIdRequest(caller: caller, flowIds: flowIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 根据流程id反查自定义流程id
+    ///
+    /// 此接口（DescribeCustomFlowIdsByFlowId）用于根据流程id反查自定义流程id
+    @inlinable
+    public func describeCustomFlowIdsByFlowId(caller: Caller, flowIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomFlowIdsByFlowIdResponse {
+        try await self.describeCustomFlowIdsByFlowId(DescribeCustomFlowIdsByFlowIdRequest(caller: caller, flowIds: flowIds), logger: logger, on: eventLoop)
+    }
 }

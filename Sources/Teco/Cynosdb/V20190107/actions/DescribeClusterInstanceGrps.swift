@@ -62,4 +62,20 @@ extension Cynosdb {
     public func describeClusterInstanceGrps(_ input: DescribeClusterInstanceGrpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstanceGrpsResponse {
         try await self.client.execute(action: "DescribeClusterInstanceGrps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例组
+    ///
+    /// 本接口（DescribeClusterInstanceGrps）用于查询实例组
+    @inlinable
+    public func describeClusterInstanceGrps(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterInstanceGrpsResponse > {
+        self.describeClusterInstanceGrps(DescribeClusterInstanceGrpsRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例组
+    ///
+    /// 本接口（DescribeClusterInstanceGrps）用于查询实例组
+    @inlinable
+    public func describeClusterInstanceGrps(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstanceGrpsResponse {
+        try await self.describeClusterInstanceGrps(DescribeClusterInstanceGrpsRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

@@ -70,4 +70,20 @@ extension Partners {
     public func describeAgentClientGrade(_ input: DescribeAgentClientGradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentClientGradeResponse {
         try await self.client.execute(action: "DescribeAgentClientGrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询客户级别
+    ///
+    /// 传入代客uin，查客户级别，客户审核状态，客户实名认证状态
+    @inlinable
+    public func describeAgentClientGrade(clientUin: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentClientGradeResponse > {
+        self.describeAgentClientGrade(DescribeAgentClientGradeRequest(clientUin: clientUin), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询客户级别
+    ///
+    /// 传入代客uin，查客户级别，客户审核状态，客户实名认证状态
+    @inlinable
+    public func describeAgentClientGrade(clientUin: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentClientGradeResponse {
+        try await self.describeAgentClientGrade(DescribeAgentClientGradeRequest(clientUin: clientUin), logger: logger, on: eventLoop)
+    }
 }

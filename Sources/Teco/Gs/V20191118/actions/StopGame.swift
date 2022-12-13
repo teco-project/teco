@@ -55,4 +55,16 @@ extension Gs {
     public func stopGame(_ input: StopGameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameResponse {
         try await self.client.execute(action: "StopGame", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 强制退出游戏
+    @inlinable
+    public func stopGame(userId: String, hostUserId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopGameResponse > {
+        self.stopGame(StopGameRequest(userId: userId, hostUserId: hostUserId), logger: logger, on: eventLoop)
+    }
+    
+    /// 强制退出游戏
+    @inlinable
+    public func stopGame(userId: String, hostUserId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameResponse {
+        try await self.stopGame(StopGameRequest(userId: userId, hostUserId: hostUserId), logger: logger, on: eventLoop)
+    }
 }

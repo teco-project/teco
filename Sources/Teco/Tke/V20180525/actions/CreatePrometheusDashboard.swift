@@ -61,4 +61,16 @@ extension Tke {
     public func createPrometheusDashboard(_ input: CreatePrometheusDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusDashboardResponse {
         try await self.client.execute(action: "CreatePrometheusDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建grafana监控面板
+    @inlinable
+    public func createPrometheusDashboard(instanceId: String, dashboardName: String, contents: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusDashboardResponse > {
+        self.createPrometheusDashboard(CreatePrometheusDashboardRequest(instanceId: instanceId, dashboardName: dashboardName, contents: contents), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建grafana监控面板
+    @inlinable
+    public func createPrometheusDashboard(instanceId: String, dashboardName: String, contents: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusDashboardResponse {
+        try await self.createPrometheusDashboard(CreatePrometheusDashboardRequest(instanceId: instanceId, dashboardName: dashboardName, contents: contents), logger: logger, on: eventLoop)
+    }
 }

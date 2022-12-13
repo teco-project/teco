@@ -157,4 +157,20 @@ extension Vm {
     public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
         try await self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看任务详情
+    ///
+    /// 查看任务详情DescribeTaskDetail 
+    @inlinable
+    public func describeTaskDetail(taskId: String, showAllSegments: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
+        self.describeTaskDetail(DescribeTaskDetailRequest(taskId: taskId, showAllSegments: showAllSegments), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看任务详情
+    ///
+    /// 查看任务详情DescribeTaskDetail 
+    @inlinable
+    public func describeTaskDetail(taskId: String, showAllSegments: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
+        try await self.describeTaskDetail(DescribeTaskDetailRequest(taskId: taskId, showAllSegments: showAllSegments), logger: logger, on: eventLoop)
+    }
 }

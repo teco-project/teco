@@ -63,4 +63,16 @@ extension Tcaplusdb {
     public func setTableDataFlow(_ input: SetTableDataFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTableDataFlowResponse {
         try await self.client.execute(action: "SetTableDataFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新增、修改表格数据订阅
+    @inlinable
+    public func setTableDataFlow(clusterId: String, selectedTables: [SelectedTableWithField], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTableDataFlowResponse > {
+        self.setTableDataFlow(SetTableDataFlowRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    }
+    
+    /// 新增、修改表格数据订阅
+    @inlinable
+    public func setTableDataFlow(clusterId: String, selectedTables: [SelectedTableWithField], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTableDataFlowResponse {
+        try await self.setTableDataFlow(SetTableDataFlowRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    }
 }

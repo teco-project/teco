@@ -108,4 +108,20 @@ extension Gaap {
     public func setAuthentication(_ input: SetAuthenticationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAuthenticationResponse {
         try await self.client.execute(action: "SetAuthentication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 认证高级配置
+    ///
+    /// 本接口（SetAuthentication）用于通道的高级认证配置，包括认证方式选择，以及各种认证方式对应的证书选择。仅支持Version3.0的通道。
+    @inlinable
+    public func setAuthentication(listenerId: String, domain: String, basicAuth: Int64? = nil, gaapAuth: Int64? = nil, realServerAuth: Int64? = nil, basicAuthConfId: String? = nil, gaapCertificateId: String? = nil, realServerCertificateId: String? = nil, realServerCertificateDomain: String? = nil, polyRealServerCertificateIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAuthenticationResponse > {
+        self.setAuthentication(SetAuthenticationRequest(listenerId: listenerId, domain: domain, basicAuth: basicAuth, gaapAuth: gaapAuth, realServerAuth: realServerAuth, basicAuthConfId: basicAuthConfId, gaapCertificateId: gaapCertificateId, realServerCertificateId: realServerCertificateId, realServerCertificateDomain: realServerCertificateDomain, polyRealServerCertificateIds: polyRealServerCertificateIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 认证高级配置
+    ///
+    /// 本接口（SetAuthentication）用于通道的高级认证配置，包括认证方式选择，以及各种认证方式对应的证书选择。仅支持Version3.0的通道。
+    @inlinable
+    public func setAuthentication(listenerId: String, domain: String, basicAuth: Int64? = nil, gaapAuth: Int64? = nil, realServerAuth: Int64? = nil, basicAuthConfId: String? = nil, gaapCertificateId: String? = nil, realServerCertificateId: String? = nil, realServerCertificateDomain: String? = nil, polyRealServerCertificateIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAuthenticationResponse {
+        try await self.setAuthentication(SetAuthenticationRequest(listenerId: listenerId, domain: domain, basicAuth: basicAuth, gaapAuth: gaapAuth, realServerAuth: realServerAuth, basicAuthConfId: basicAuthConfId, gaapCertificateId: gaapCertificateId, realServerCertificateId: realServerCertificateId, realServerCertificateDomain: realServerCertificateDomain, polyRealServerCertificateIds: polyRealServerCertificateIds), logger: logger, on: eventLoop)
+    }
 }

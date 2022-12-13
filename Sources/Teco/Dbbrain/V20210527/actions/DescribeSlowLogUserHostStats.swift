@@ -86,4 +86,20 @@ extension Dbbrain {
     public func describeSlowLogUserHostStats(_ input: DescribeSlowLogUserHostStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogUserHostStatsResponse {
         try await self.client.execute(action: "DescribeSlowLogUserHostStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取慢日志来源地址统计分布图
+    ///
+    /// 获取慢日志来源地址统计分布图。
+    @inlinable
+    public func describeSlowLogUserHostStats(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, md5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogUserHostStatsResponse > {
+        self.describeSlowLogUserHostStats(DescribeSlowLogUserHostStatsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product, md5: md5), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取慢日志来源地址统计分布图
+    ///
+    /// 获取慢日志来源地址统计分布图。
+    @inlinable
+    public func describeSlowLogUserHostStats(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, md5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogUserHostStatsResponse {
+        try await self.describeSlowLogUserHostStats(DescribeSlowLogUserHostStatsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product, md5: md5), logger: logger, on: eventLoop)
+    }
 }

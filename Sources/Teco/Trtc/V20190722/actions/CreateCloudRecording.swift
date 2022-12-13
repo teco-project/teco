@@ -128,4 +128,38 @@ extension Trtc {
     public func createCloudRecording(_ input: CreateCloudRecordingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRecordingResponse {
         try await self.client.execute(action: "CreateCloudRecording", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开始云端录制
+    ///
+    /// 接口说明：
+    /// 启动云端录制功能，完成房间内的音视频录制，并上传到指定的云存储。您可以通过此 API 接口把TRTC 房间中的每一路音视频流做单独的录制有或者多路视频画面混流一路。
+    /// 您可以通过此接口实现如下目标：
+    /// * 指定订阅流参数（RecordParams）来指定需要录制的主播的黑名单或者白名单。
+    /// * 指定第三方存储的参数（StorageParams）来指定上传到您希望的云存储，目前仅支持云点播存储（CloudVod）
+    /// * 指定混流模式下的音视频转码详细参数（MixTranscodeParams），包括视频分辨率、视频码率、视频帧率、以及声音质量等
+    /// * 指定混流模式各路画面的位置和布局或者也可以指定自动模板的方式来配置。
+    /// 关键名词：
+    /// * 单流录制：分别录制房间的订阅UserId的音频和视频。录制服务会实时将录制文件上传至云点播存储。
+    /// * 合流录制：将房间内订阅UserId的音视频混录成一个音视频文件，并将录制文件上传至云点播存储（录制结束后可前往云点播控制台查看录制文件：https://console.cloud.tencent.com/vod/media）。
+    @inlinable
+    public func createCloudRecording(sdkAppId: UInt64, roomId: String, userId: String, userSig: String, recordParams: RecordParams, storageParams: StorageParams, roomIdType: UInt64? = nil, mixTranscodeParams: MixTranscodeParams? = nil, mixLayoutParams: MixLayoutParams? = nil, resourceExpiredHour: UInt64? = nil, privateMapKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloudRecordingResponse > {
+        self.createCloudRecording(CreateCloudRecordingRequest(sdkAppId: sdkAppId, roomId: roomId, userId: userId, userSig: userSig, recordParams: recordParams, storageParams: storageParams, roomIdType: roomIdType, mixTranscodeParams: mixTranscodeParams, mixLayoutParams: mixLayoutParams, resourceExpiredHour: resourceExpiredHour, privateMapKey: privateMapKey), logger: logger, on: eventLoop)
+    }
+    
+    /// 开始云端录制
+    ///
+    /// 接口说明：
+    /// 启动云端录制功能，完成房间内的音视频录制，并上传到指定的云存储。您可以通过此 API 接口把TRTC 房间中的每一路音视频流做单独的录制有或者多路视频画面混流一路。
+    /// 您可以通过此接口实现如下目标：
+    /// * 指定订阅流参数（RecordParams）来指定需要录制的主播的黑名单或者白名单。
+    /// * 指定第三方存储的参数（StorageParams）来指定上传到您希望的云存储，目前仅支持云点播存储（CloudVod）
+    /// * 指定混流模式下的音视频转码详细参数（MixTranscodeParams），包括视频分辨率、视频码率、视频帧率、以及声音质量等
+    /// * 指定混流模式各路画面的位置和布局或者也可以指定自动模板的方式来配置。
+    /// 关键名词：
+    /// * 单流录制：分别录制房间的订阅UserId的音频和视频。录制服务会实时将录制文件上传至云点播存储。
+    /// * 合流录制：将房间内订阅UserId的音视频混录成一个音视频文件，并将录制文件上传至云点播存储（录制结束后可前往云点播控制台查看录制文件：https://console.cloud.tencent.com/vod/media）。
+    @inlinable
+    public func createCloudRecording(sdkAppId: UInt64, roomId: String, userId: String, userSig: String, recordParams: RecordParams, storageParams: StorageParams, roomIdType: UInt64? = nil, mixTranscodeParams: MixTranscodeParams? = nil, mixLayoutParams: MixLayoutParams? = nil, resourceExpiredHour: UInt64? = nil, privateMapKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRecordingResponse {
+        try await self.createCloudRecording(CreateCloudRecordingRequest(sdkAppId: sdkAppId, roomId: roomId, userId: userId, userSig: userSig, recordParams: recordParams, storageParams: storageParams, roomIdType: roomIdType, mixTranscodeParams: mixTranscodeParams, mixLayoutParams: mixLayoutParams, resourceExpiredHour: resourceExpiredHour, privateMapKey: privateMapKey), logger: logger, on: eventLoop)
+    }
 }

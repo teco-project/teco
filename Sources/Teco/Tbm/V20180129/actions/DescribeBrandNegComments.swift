@@ -86,4 +86,20 @@ extension Tbm {
     public func describeBrandNegComments(_ input: DescribeBrandNegCommentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandNegCommentsResponse {
         try await self.client.execute(action: "DescribeBrandNegComments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取品牌用户差评列表
+    ///
+    /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门差评观点列表。
+    @inlinable
+    public func describeBrandNegComments(brandId: String, startDate: Date, endDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBrandNegCommentsResponse > {
+        self.describeBrandNegComments(DescribeBrandNegCommentsRequest(brandId: brandId, startDate: startDate, endDate: endDate, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取品牌用户差评列表
+    ///
+    /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门差评观点列表。
+    @inlinable
+    public func describeBrandNegComments(brandId: String, startDate: Date, endDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandNegCommentsResponse {
+        try await self.describeBrandNegComments(DescribeBrandNegCommentsRequest(brandId: brandId, startDate: startDate, endDate: endDate, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

@@ -143,4 +143,20 @@ extension Gaap {
     public func createUDPListeners(_ input: CreateUDPListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUDPListenersResponse {
         try await self.client.execute(action: "CreateUDPListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建UDP监听器
+    ///
+    /// 该接口（CreateUDPListeners）用于批量创建单通道或者通道组的UDP协议类型的监听器。
+    @inlinable
+    public func createUDPListeners(listenerName: String, ports: [UInt64], scheduler: String, realServerType: String, proxyId: String? = nil, groupId: String? = nil, realServerPorts: [UInt64]? = nil, delayLoop: UInt64? = nil, connectTimeout: UInt64? = nil, healthyThreshold: UInt64? = nil, unhealthyThreshold: UInt64? = nil, failoverSwitch: Int64? = nil, healthCheck: UInt64? = nil, checkType: String? = nil, checkPort: Int64? = nil, contextType: String? = nil, sendContext: String? = nil, recvContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUDPListenersResponse > {
+        self.createUDPListeners(CreateUDPListenersRequest(listenerName: listenerName, ports: ports, scheduler: scheduler, realServerType: realServerType, proxyId: proxyId, groupId: groupId, realServerPorts: realServerPorts, delayLoop: delayLoop, connectTimeout: connectTimeout, healthyThreshold: healthyThreshold, unhealthyThreshold: unhealthyThreshold, failoverSwitch: failoverSwitch, healthCheck: healthCheck, checkType: checkType, checkPort: checkPort, contextType: contextType, sendContext: sendContext, recvContext: recvContext), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建UDP监听器
+    ///
+    /// 该接口（CreateUDPListeners）用于批量创建单通道或者通道组的UDP协议类型的监听器。
+    @inlinable
+    public func createUDPListeners(listenerName: String, ports: [UInt64], scheduler: String, realServerType: String, proxyId: String? = nil, groupId: String? = nil, realServerPorts: [UInt64]? = nil, delayLoop: UInt64? = nil, connectTimeout: UInt64? = nil, healthyThreshold: UInt64? = nil, unhealthyThreshold: UInt64? = nil, failoverSwitch: Int64? = nil, healthCheck: UInt64? = nil, checkType: String? = nil, checkPort: Int64? = nil, contextType: String? = nil, sendContext: String? = nil, recvContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUDPListenersResponse {
+        try await self.createUDPListeners(CreateUDPListenersRequest(listenerName: listenerName, ports: ports, scheduler: scheduler, realServerType: realServerType, proxyId: proxyId, groupId: groupId, realServerPorts: realServerPorts, delayLoop: delayLoop, connectTimeout: connectTimeout, healthyThreshold: healthyThreshold, unhealthyThreshold: unhealthyThreshold, failoverSwitch: failoverSwitch, healthCheck: healthCheck, checkType: checkType, checkPort: checkPort, contextType: contextType, sendContext: sendContext, recvContext: recvContext), logger: logger, on: eventLoop)
+    }
 }

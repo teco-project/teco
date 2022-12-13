@@ -64,4 +64,16 @@ extension Tsf {
     public func operateApplicationTcrBinding(_ input: OperateApplicationTcrBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateApplicationTcrBindingResponse {
         try await self.client.execute(action: "OperateApplicationTcrBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 绑定解绑tcr仓库
+    @inlinable
+    public func operateApplicationTcrBinding(command: String? = nil, applicationId: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OperateApplicationTcrBindingResponse > {
+        self.operateApplicationTcrBinding(OperateApplicationTcrBindingRequest(command: command, applicationId: applicationId, tcrRepoInfo: tcrRepoInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定解绑tcr仓库
+    @inlinable
+    public func operateApplicationTcrBinding(command: String? = nil, applicationId: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateApplicationTcrBindingResponse {
+        try await self.operateApplicationTcrBinding(OperateApplicationTcrBindingRequest(command: command, applicationId: applicationId, tcrRepoInfo: tcrRepoInfo), logger: logger, on: eventLoop)
+    }
 }

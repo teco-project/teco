@@ -50,4 +50,16 @@ extension Dlc {
     public func deleteUsersFromWorkGroup(_ input: DeleteUsersFromWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersFromWorkGroupResponse {
         try await self.client.execute(action: "DeleteUsersFromWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 从工作组中删除用户
+    @inlinable
+    public func deleteUsersFromWorkGroup(addInfo: UserIdSetOfWorkGroupId, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUsersFromWorkGroupResponse > {
+        self.deleteUsersFromWorkGroup(DeleteUsersFromWorkGroupRequest(addInfo: addInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 从工作组中删除用户
+    @inlinable
+    public func deleteUsersFromWorkGroup(addInfo: UserIdSetOfWorkGroupId, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersFromWorkGroupResponse {
+        try await self.deleteUsersFromWorkGroup(DeleteUsersFromWorkGroupRequest(addInfo: addInfo), logger: logger, on: eventLoop)
+    }
 }

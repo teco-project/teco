@@ -109,4 +109,30 @@ extension Iai {
     public func verifyPerson(_ input: VerifyPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPersonResponse {
         try await self.client.execute(action: "VerifyPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 人员验证
+    ///
+    /// 给定一张人脸图片和一个 PersonId，判断图片中的人和 PersonId 对应的人是否为同一人。PersonId 请参考[人员库管理相关接口](https://cloud.tencent.com/document/product/867/32794)。
+    /// 本接口会将该人员（Person）下的所有人脸（Face）进行融合特征处理，即若某个Person下有4张 Face，本接口会将4张 Face 的特征进行融合处理，生成对应这个 Person 的特征，使人员验证（确定待识别的人脸图片是某人员）更加准确。
+    ///  和人脸比对相关接口不同的是，人脸验证相关接口用于判断 “此人是否是此人”，“此人”的信息已存于人员库中，“此人”可能存在多张人脸图片；而人脸比对相关接口用于判断两张人脸的相似度。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
+    @inlinable
+    public func verifyPerson(personId: String, image: String? = nil, url: String? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyPersonResponse > {
+        self.verifyPerson(VerifyPersonRequest(personId: personId, image: image, url: url, qualityControl: qualityControl, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    }
+    
+    /// 人员验证
+    ///
+    /// 给定一张人脸图片和一个 PersonId，判断图片中的人和 PersonId 对应的人是否为同一人。PersonId 请参考[人员库管理相关接口](https://cloud.tencent.com/document/product/867/32794)。
+    /// 本接口会将该人员（Person）下的所有人脸（Face）进行融合特征处理，即若某个Person下有4张 Face，本接口会将4张 Face 的特征进行融合处理，生成对应这个 Person 的特征，使人员验证（确定待识别的人脸图片是某人员）更加准确。
+    ///  和人脸比对相关接口不同的是，人脸验证相关接口用于判断 “此人是否是此人”，“此人”的信息已存于人员库中，“此人”可能存在多张人脸图片；而人脸比对相关接口用于判断两张人脸的相似度。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
+    @inlinable
+    public func verifyPerson(personId: String, image: String? = nil, url: String? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPersonResponse {
+        try await self.verifyPerson(VerifyPersonRequest(personId: personId, image: image, url: url, qualityControl: qualityControl, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    }
 }

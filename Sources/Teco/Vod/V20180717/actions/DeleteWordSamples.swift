@@ -59,4 +59,20 @@ extension Vod {
     public func deleteWordSamples(_ input: DeleteWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWordSamplesResponse {
         try await self.client.execute(action: "DeleteWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除关键词样本
+    ///
+    /// 该接口用于批量删除关键词样本。
+    @inlinable
+    public func deleteWordSamples(keywords: [String], subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWordSamplesResponse > {
+        self.deleteWordSamples(DeleteWordSamplesRequest(keywords: keywords, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除关键词样本
+    ///
+    /// 该接口用于批量删除关键词样本。
+    @inlinable
+    public func deleteWordSamples(keywords: [String], subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWordSamplesResponse {
+        try await self.deleteWordSamples(DeleteWordSamplesRequest(keywords: keywords, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

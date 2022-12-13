@@ -27,7 +27,7 @@ extension Essbasic {
         /// 操作者的信息
         public let `operator`: UserInfo?
         
-        public init (agent: Agent, flowIds: [String]? = nil, `operator`: UserInfo? = nil) {
+        public init (agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.flowIds = flowIds
             self.`operator` = `operator`
@@ -75,5 +75,23 @@ extension Essbasic {
     @inlinable
     public func describeResourceUrlsByFlows(_ input: DescribeResourceUrlsByFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUrlsByFlowsResponse {
         try await self.client.execute(action: "DescribeResourceUrlsByFlows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 根据签署流程信息批量获取资源下载链接
+    ///
+    /// 根据签署流程信息批量获取资源下载链接，可以下载签署中、签署完的合同，需合作企业先进行授权。
+    /// 此接口直接返回下载的资源的url，与接口GetDownloadFlowUrl跳转到控制台的下载方式不同。
+    @inlinable
+    public func describeResourceUrlsByFlows(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceUrlsByFlowsResponse > {
+        self.describeResourceUrlsByFlows(DescribeResourceUrlsByFlowsRequest(agent: agent, flowIds: flowIds, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 根据签署流程信息批量获取资源下载链接
+    ///
+    /// 根据签署流程信息批量获取资源下载链接，可以下载签署中、签署完的合同，需合作企业先进行授权。
+    /// 此接口直接返回下载的资源的url，与接口GetDownloadFlowUrl跳转到控制台的下载方式不同。
+    @inlinable
+    public func describeResourceUrlsByFlows(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUrlsByFlowsResponse {
+        try await self.describeResourceUrlsByFlows(DescribeResourceUrlsByFlowsRequest(agent: agent, flowIds: flowIds, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

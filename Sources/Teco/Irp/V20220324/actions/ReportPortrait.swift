@@ -55,4 +55,16 @@ extension Irp {
     public func reportPortrait(_ input: ReportPortraitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportPortraitResponse {
         try await self.client.execute(action: "ReportPortrait", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 上报用户画像
+    @inlinable
+    public func reportPortrait(bid: String, portraitList: [PortraitInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportPortraitResponse > {
+        self.reportPortrait(ReportPortraitRequest(bid: bid, portraitList: portraitList), logger: logger, on: eventLoop)
+    }
+    
+    /// 上报用户画像
+    @inlinable
+    public func reportPortrait(bid: String, portraitList: [PortraitInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportPortraitResponse {
+        try await self.reportPortrait(ReportPortraitRequest(bid: bid, portraitList: portraitList), logger: logger, on: eventLoop)
+    }
 }

@@ -63,4 +63,20 @@ extension Zj {
     public func getCrowdUploadInfo(_ input: GetCrowdUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCrowdUploadInfoResponse {
         try await self.client.execute(action: "GetCrowdUploadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取短信人群包cos上传信息
+    ///
+    /// 获取短信人群包cos上传需要的信息
+    @inlinable
+    public func getCrowdUploadInfo(license: String, fileName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCrowdUploadInfoResponse > {
+        self.getCrowdUploadInfo(GetCrowdUploadInfoRequest(license: license, fileName: fileName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取短信人群包cos上传信息
+    ///
+    /// 获取短信人群包cos上传需要的信息
+    @inlinable
+    public func getCrowdUploadInfo(license: String, fileName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCrowdUploadInfoResponse {
+        try await self.getCrowdUploadInfo(GetCrowdUploadInfoRequest(license: license, fileName: fileName), logger: logger, on: eventLoop)
+    }
 }

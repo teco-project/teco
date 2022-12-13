@@ -98,4 +98,20 @@ extension Cfs {
     public func createCfsRule(_ input: CreateCfsRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsRuleResponse {
         try await self.client.execute(action: "CreateCfsRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建权限组规则
+    ///
+    /// 本接口（CreateCfsRule）用于创建权限组规则。
+    @inlinable
+    public func createCfsRule(pGroupId: String, authClientIp: String, priority: Int64, rwPermission: String? = nil, userPermission: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCfsRuleResponse > {
+        self.createCfsRule(CreateCfsRuleRequest(pGroupId: pGroupId, authClientIp: authClientIp, priority: priority, rwPermission: rwPermission, userPermission: userPermission), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建权限组规则
+    ///
+    /// 本接口（CreateCfsRule）用于创建权限组规则。
+    @inlinable
+    public func createCfsRule(pGroupId: String, authClientIp: String, priority: Int64, rwPermission: String? = nil, userPermission: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsRuleResponse {
+        try await self.createCfsRule(CreateCfsRuleRequest(pGroupId: pGroupId, authClientIp: authClientIp, priority: priority, rwPermission: rwPermission, userPermission: userPermission), logger: logger, on: eventLoop)
+    }
 }

@@ -117,4 +117,20 @@ extension Acp {
     public func createAppScanTaskRepeat(_ input: CreateAppScanTaskRepeatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskRepeatResponse {
         try await self.client.execute(action: "CreateAppScanTaskRepeat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 应用合规隐私诊断重试任务
+    ///
+    /// App应用合规隐私诊断重试任务
+    @inlinable
+    public func createAppScanTaskRepeat(source: Int64, platform: Int64, taskType: Int64, orgTaskID: String, appPackage: String? = nil, fileID: String? = nil, appDownloadUrl: String? = nil, privacyTextUrl: String? = nil, appName: String? = nil, privacyTextName: String? = nil, appSha1: String? = nil, privacyTextMD5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppScanTaskRepeatResponse > {
+        self.createAppScanTaskRepeat(CreateAppScanTaskRepeatRequest(source: source, platform: platform, taskType: taskType, orgTaskID: orgTaskID, appPackage: appPackage, fileID: fileID, appDownloadUrl: appDownloadUrl, privacyTextUrl: privacyTextUrl, appName: appName, privacyTextName: privacyTextName, appSha1: appSha1, privacyTextMD5: privacyTextMD5), logger: logger, on: eventLoop)
+    }
+    
+    /// 应用合规隐私诊断重试任务
+    ///
+    /// App应用合规隐私诊断重试任务
+    @inlinable
+    public func createAppScanTaskRepeat(source: Int64, platform: Int64, taskType: Int64, orgTaskID: String, appPackage: String? = nil, fileID: String? = nil, appDownloadUrl: String? = nil, privacyTextUrl: String? = nil, appName: String? = nil, privacyTextName: String? = nil, appSha1: String? = nil, privacyTextMD5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskRepeatResponse {
+        try await self.createAppScanTaskRepeat(CreateAppScanTaskRepeatRequest(source: source, platform: platform, taskType: taskType, orgTaskID: orgTaskID, appPackage: appPackage, fileID: fileID, appDownloadUrl: appDownloadUrl, privacyTextUrl: privacyTextUrl, appName: appName, privacyTextName: privacyTextName, appSha1: appSha1, privacyTextMD5: privacyTextMD5), logger: logger, on: eventLoop)
+    }
 }

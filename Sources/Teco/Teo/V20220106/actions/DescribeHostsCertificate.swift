@@ -83,4 +83,20 @@ extension Teo {
     public func describeHostsCertificate(_ input: DescribeHostsCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsCertificateResponse {
         try await self.client.execute(action: "DescribeHostsCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询域名证书列表
+    ///
+    /// 查询域名证书列表，支持搜索、分页、排序、过滤。
+    @inlinable
+    public func describeHostsCertificate(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [CertFilter]? = nil, sort: CertSort? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostsCertificateResponse > {
+        self.describeHostsCertificate(DescribeHostsCertificateRequest(zoneId: zoneId, offset: offset, limit: limit, filters: filters, sort: sort), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询域名证书列表
+    ///
+    /// 查询域名证书列表，支持搜索、分页、排序、过滤。
+    @inlinable
+    public func describeHostsCertificate(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [CertFilter]? = nil, sort: CertSort? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsCertificateResponse {
+        try await self.describeHostsCertificate(DescribeHostsCertificateRequest(zoneId: zoneId, offset: offset, limit: limit, filters: filters, sort: sort), logger: logger, on: eventLoop)
+    }
 }

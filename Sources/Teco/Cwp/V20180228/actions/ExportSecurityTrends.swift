@@ -63,4 +63,16 @@ extension Cwp {
     public func exportSecurityTrends(_ input: ExportSecurityTrendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportSecurityTrendsResponse {
         try await self.client.execute(action: "ExportSecurityTrends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导出风险趋势
+    @inlinable
+    public func exportSecurityTrends(beginDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportSecurityTrendsResponse > {
+        self.exportSecurityTrends(ExportSecurityTrendsRequest(beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 导出风险趋势
+    @inlinable
+    public func exportSecurityTrends(beginDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportSecurityTrendsResponse {
+        try await self.exportSecurityTrends(ExportSecurityTrendsRequest(beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
 }

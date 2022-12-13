@@ -58,4 +58,20 @@ extension Tcss {
     public func scanCompliancePolicyItems(_ input: ScanCompliancePolicyItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanCompliancePolicyItemsResponse {
         try await self.client.execute(action: "ScanCompliancePolicyItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安全合规重新检测选定的检测项
+    ///
+    /// 重新检测选的检测项下的所有资产，返回创建的合规检查任务的ID。
+    @inlinable
+    public func scanCompliancePolicyItems(customerPolicyItemIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanCompliancePolicyItemsResponse > {
+        self.scanCompliancePolicyItems(ScanCompliancePolicyItemsRequest(customerPolicyItemIdSet: customerPolicyItemIdSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规重新检测选定的检测项
+    ///
+    /// 重新检测选的检测项下的所有资产，返回创建的合规检查任务的ID。
+    @inlinable
+    public func scanCompliancePolicyItems(customerPolicyItemIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanCompliancePolicyItemsResponse {
+        try await self.scanCompliancePolicyItems(ScanCompliancePolicyItemsRequest(customerPolicyItemIdSet: customerPolicyItemIdSet), logger: logger, on: eventLoop)
+    }
 }

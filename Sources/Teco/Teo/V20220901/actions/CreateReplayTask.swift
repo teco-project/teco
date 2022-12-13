@@ -62,4 +62,20 @@ extension Teo {
     public func createReplayTask(_ input: CreateReplayTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplayTaskResponse {
         try await self.client.execute(action: "CreateReplayTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建重放任务
+    ///
+    /// 创建刷新/预热重放任务
+    @inlinable
+    public func createReplayTask(ids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReplayTaskResponse > {
+        self.createReplayTask(CreateReplayTaskRequest(ids: ids), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建重放任务
+    ///
+    /// 创建刷新/预热重放任务
+    @inlinable
+    public func createReplayTask(ids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplayTaskResponse {
+        try await self.createReplayTask(CreateReplayTaskRequest(ids: ids), logger: logger, on: eventLoop)
+    }
 }

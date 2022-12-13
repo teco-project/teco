@@ -67,4 +67,20 @@ extension Cdb {
     public func describeDefaultParams(_ input: DescribeDefaultParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultParamsResponse {
         try await self.client.execute(action: "DescribeDefaultParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询默认的可设置参数列表
+    ///
+    /// 该接口（DescribeDefaultParams）用于查询默认的可设置参数列表。
+    @inlinable
+    public func describeDefaultParams(engineVersion: String, templateType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDefaultParamsResponse > {
+        self.describeDefaultParams(DescribeDefaultParamsRequest(engineVersion: engineVersion, templateType: templateType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询默认的可设置参数列表
+    ///
+    /// 该接口（DescribeDefaultParams）用于查询默认的可设置参数列表。
+    @inlinable
+    public func describeDefaultParams(engineVersion: String, templateType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultParamsResponse {
+        try await self.describeDefaultParams(DescribeDefaultParamsRequest(engineVersion: engineVersion, templateType: templateType), logger: logger, on: eventLoop)
+    }
 }

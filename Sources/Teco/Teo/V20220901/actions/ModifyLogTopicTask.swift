@@ -110,4 +110,20 @@ extension Teo {
     public func modifyLogTopicTask(_ input: ModifyLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogTopicTaskResponse {
         try await self.client.execute(action: "ModifyLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改推送任务
+    ///
+    /// 本接口（ModifyLogTopicTask）用于修改日志推送任务信息。
+    @inlinable
+    public func modifyLogTopicTask(zoneId: String, logSetRegion: String, logSetId: String, topicId: String, entityType: String? = nil, taskName: String? = nil, topicName: String? = nil, logSetName: String? = nil, period: Int64? = nil, dropEntityList: [String]? = nil, addedEntityList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLogTopicTaskResponse > {
+        self.modifyLogTopicTask(ModifyLogTopicTaskRequest(zoneId: zoneId, logSetRegion: logSetRegion, logSetId: logSetId, topicId: topicId, entityType: entityType, taskName: taskName, topicName: topicName, logSetName: logSetName, period: period, dropEntityList: dropEntityList, addedEntityList: addedEntityList), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改推送任务
+    ///
+    /// 本接口（ModifyLogTopicTask）用于修改日志推送任务信息。
+    @inlinable
+    public func modifyLogTopicTask(zoneId: String, logSetRegion: String, logSetId: String, topicId: String, entityType: String? = nil, taskName: String? = nil, topicName: String? = nil, logSetName: String? = nil, period: Int64? = nil, dropEntityList: [String]? = nil, addedEntityList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogTopicTaskResponse {
+        try await self.modifyLogTopicTask(ModifyLogTopicTaskRequest(zoneId: zoneId, logSetRegion: logSetRegion, logSetId: logSetId, topicId: topicId, entityType: entityType, taskName: taskName, topicName: topicName, logSetName: logSetName, period: period, dropEntityList: dropEntityList, addedEntityList: addedEntityList), logger: logger, on: eventLoop)
+    }
 }

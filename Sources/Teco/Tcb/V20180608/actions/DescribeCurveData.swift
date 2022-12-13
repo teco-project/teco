@@ -117,4 +117,20 @@ extension Tcb {
     public func describeCurveData(_ input: DescribeCurveDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCurveDataResponse {
         try await self.client.execute(action: "DescribeCurveData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询环境的监控曲线数据
+    ///
+    /// 根据用户传入的指标, 拉取一段时间内的监控数据。
+    @inlinable
+    public func describeCurveData(envId: String, metricName: String, startTime: String, endTime: String, resourceID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCurveDataResponse > {
+        self.describeCurveData(DescribeCurveDataRequest(envId: envId, metricName: metricName, startTime: startTime, endTime: endTime, resourceID: resourceID), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询环境的监控曲线数据
+    ///
+    /// 根据用户传入的指标, 拉取一段时间内的监控数据。
+    @inlinable
+    public func describeCurveData(envId: String, metricName: String, startTime: String, endTime: String, resourceID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCurveDataResponse {
+        try await self.describeCurveData(DescribeCurveDataRequest(envId: envId, metricName: metricName, startTime: startTime, endTime: endTime, resourceID: resourceID), logger: logger, on: eventLoop)
+    }
 }

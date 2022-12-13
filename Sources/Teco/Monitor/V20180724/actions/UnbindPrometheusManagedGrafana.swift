@@ -55,4 +55,16 @@ extension Monitor {
     public func unbindPrometheusManagedGrafana(_ input: UnbindPrometheusManagedGrafanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindPrometheusManagedGrafanaResponse {
         try await self.client.execute(action: "UnbindPrometheusManagedGrafana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解除实例绑定的 Grafana 可视化实例
+    @inlinable
+    public func unbindPrometheusManagedGrafana(instanceId: String, grafanaId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindPrometheusManagedGrafanaResponse > {
+        self.unbindPrometheusManagedGrafana(UnbindPrometheusManagedGrafanaRequest(instanceId: instanceId, grafanaId: grafanaId), logger: logger, on: eventLoop)
+    }
+    
+    /// 解除实例绑定的 Grafana 可视化实例
+    @inlinable
+    public func unbindPrometheusManagedGrafana(instanceId: String, grafanaId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindPrometheusManagedGrafanaResponse {
+        try await self.unbindPrometheusManagedGrafana(UnbindPrometheusManagedGrafanaRequest(instanceId: instanceId, grafanaId: grafanaId), logger: logger, on: eventLoop)
+    }
 }

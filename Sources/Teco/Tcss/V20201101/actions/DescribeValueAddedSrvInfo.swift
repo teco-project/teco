@@ -58,4 +58,20 @@ extension Tcss {
     public func describeValueAddedSrvInfo(_ input: DescribeValueAddedSrvInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeValueAddedSrvInfoResponse {
         try await self.client.execute(action: "DescribeValueAddedSrvInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询增值服务需购买信息
+    ///
+    /// DescribeValueAddedSrvInfo查询增值服务需购买信息
+    @inlinable
+    public func describeValueAddedSrvInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeValueAddedSrvInfoResponse > {
+        self.describeValueAddedSrvInfo(DescribeValueAddedSrvInfoRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询增值服务需购买信息
+    ///
+    /// DescribeValueAddedSrvInfo查询增值服务需购买信息
+    @inlinable
+    public func describeValueAddedSrvInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeValueAddedSrvInfoResponse {
+        try await self.describeValueAddedSrvInfo(DescribeValueAddedSrvInfoRequest(), logger: logger, on: eventLoop)
+    }
 }

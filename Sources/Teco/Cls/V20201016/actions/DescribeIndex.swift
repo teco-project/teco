@@ -81,4 +81,20 @@ extension Cls {
     public func describeIndex(_ input: DescribeIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexResponse {
         try await self.client.execute(action: "DescribeIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取索引配置信息
+    ///
+    /// 本接口用于获取索引配置信息
+    @inlinable
+    public func describeIndex(topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIndexResponse > {
+        self.describeIndex(DescribeIndexRequest(topicId: topicId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取索引配置信息
+    ///
+    /// 本接口用于获取索引配置信息
+    @inlinable
+    public func describeIndex(topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexResponse {
+        try await self.describeIndex(DescribeIndexRequest(topicId: topicId), logger: logger, on: eventLoop)
+    }
 }

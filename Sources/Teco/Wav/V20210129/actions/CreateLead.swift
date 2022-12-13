@@ -128,4 +128,16 @@ extension Wav {
     public func createLead(_ input: CreateLeadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLeadResponse {
         try await self.client.execute(action: "CreateLead", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 线索回收接口
+    @inlinable
+    public func createLead(channelId: UInt64, channelName: String, createTime: UInt64, sourceType: Int64, dealerId: UInt64, brandId: UInt64, seriesId: UInt64, customerName: String, customerPhone: String, modelId: UInt64? = nil, customerSex: Int64? = nil, salesName: String? = nil, salesPhone: String? = nil, ccName: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLeadResponse > {
+        self.createLead(CreateLeadRequest(channelId: channelId, channelName: channelName, createTime: createTime, sourceType: sourceType, dealerId: dealerId, brandId: brandId, seriesId: seriesId, customerName: customerName, customerPhone: customerPhone, modelId: modelId, customerSex: customerSex, salesName: salesName, salesPhone: salesPhone, ccName: ccName, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 线索回收接口
+    @inlinable
+    public func createLead(channelId: UInt64, channelName: String, createTime: UInt64, sourceType: Int64, dealerId: UInt64, brandId: UInt64, seriesId: UInt64, customerName: String, customerPhone: String, modelId: UInt64? = nil, customerSex: Int64? = nil, salesName: String? = nil, salesPhone: String? = nil, ccName: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLeadResponse {
+        try await self.createLead(CreateLeadRequest(channelId: channelId, channelName: channelName, createTime: createTime, sourceType: sourceType, dealerId: dealerId, brandId: brandId, seriesId: seriesId, customerName: customerName, customerPhone: customerPhone, modelId: modelId, customerSex: customerSex, salesName: salesName, salesPhone: salesPhone, ccName: ccName, remark: remark), logger: logger, on: eventLoop)
+    }
 }

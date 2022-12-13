@@ -55,4 +55,16 @@ extension Eb {
     public func deleteConnection(_ input: DeleteConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConnectionResponse {
         try await self.client.execute(action: "DeleteConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除事件连接器
+    @inlinable
+    public func deleteConnection(connectionId: String, eventBusId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConnectionResponse > {
+        self.deleteConnection(DeleteConnectionRequest(connectionId: connectionId, eventBusId: eventBusId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除事件连接器
+    @inlinable
+    public func deleteConnection(connectionId: String, eventBusId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConnectionResponse {
+        try await self.deleteConnection(DeleteConnectionRequest(connectionId: connectionId, eventBusId: eventBusId), logger: logger, on: eventLoop)
+    }
 }

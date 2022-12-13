@@ -79,4 +79,16 @@ extension Bmvpc {
     public func createVpcPeerConnection(_ input: CreateVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcPeerConnectionResponse {
         try await self.client.execute(action: "CreateVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建对等连接
+    @inlinable
+    public func createVpcPeerConnection(vpcId: String, peerVpcId: String, peerRegion: String, vpcPeerConnectionName: String, peerUin: String? = nil, bandwidth: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpcPeerConnectionResponse > {
+        self.createVpcPeerConnection(CreateVpcPeerConnectionRequest(vpcId: vpcId, peerVpcId: peerVpcId, peerRegion: peerRegion, vpcPeerConnectionName: vpcPeerConnectionName, peerUin: peerUin, bandwidth: bandwidth), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建对等连接
+    @inlinable
+    public func createVpcPeerConnection(vpcId: String, peerVpcId: String, peerRegion: String, vpcPeerConnectionName: String, peerUin: String? = nil, bandwidth: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcPeerConnectionResponse {
+        try await self.createVpcPeerConnection(CreateVpcPeerConnectionRequest(vpcId: vpcId, peerVpcId: peerVpcId, peerRegion: peerRegion, vpcPeerConnectionName: vpcPeerConnectionName, peerUin: peerUin, bandwidth: bandwidth), logger: logger, on: eventLoop)
+    }
 }

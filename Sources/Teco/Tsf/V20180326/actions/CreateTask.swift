@@ -130,4 +130,16 @@ extension Tsf {
     public func createTask(_ input: CreateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {
         try await self.client.execute(action: "CreateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建任务
+    @inlinable
+    public func createTask(taskName: String, taskContent: String, executeType: String, taskType: String, timeOut: UInt64, groupId: String, taskRule: TaskRule? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, successOperator: String? = nil, successRatio: String? = nil, advanceSettings: AdvanceSettings? = nil, taskArgument: String? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskResponse > {
+        self.createTask(CreateTaskRequest(taskName: taskName, taskContent: taskContent, executeType: executeType, taskType: taskType, timeOut: timeOut, groupId: groupId, taskRule: taskRule, retryCount: retryCount, retryInterval: retryInterval, shardCount: shardCount, shardArguments: shardArguments, successOperator: successOperator, successRatio: successRatio, advanceSettings: advanceSettings, taskArgument: taskArgument, programIdList: programIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建任务
+    @inlinable
+    public func createTask(taskName: String, taskContent: String, executeType: String, taskType: String, timeOut: UInt64, groupId: String, taskRule: TaskRule? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, successOperator: String? = nil, successRatio: String? = nil, advanceSettings: AdvanceSettings? = nil, taskArgument: String? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {
+        try await self.createTask(CreateTaskRequest(taskName: taskName, taskContent: taskContent, executeType: executeType, taskType: taskType, timeOut: timeOut, groupId: groupId, taskRule: taskRule, retryCount: retryCount, retryInterval: retryInterval, shardCount: shardCount, shardArguments: shardArguments, successOperator: successOperator, successRatio: successRatio, advanceSettings: advanceSettings, taskArgument: taskArgument, programIdList: programIdList), logger: logger, on: eventLoop)
+    }
 }

@@ -68,4 +68,16 @@ extension Tdmq {
     public func publishCmqMsg(_ input: PublishCmqMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishCmqMsgResponse {
         try await self.client.execute(action: "PublishCmqMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 发送cmq主题消息
+    @inlinable
+    public func publishCmqMsg(topicName: String, msgContent: String, msgTag: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishCmqMsgResponse > {
+        self.publishCmqMsg(PublishCmqMsgRequest(topicName: topicName, msgContent: msgContent, msgTag: msgTag), logger: logger, on: eventLoop)
+    }
+    
+    /// 发送cmq主题消息
+    @inlinable
+    public func publishCmqMsg(topicName: String, msgContent: String, msgTag: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishCmqMsgResponse {
+        try await self.publishCmqMsg(PublishCmqMsgRequest(topicName: topicName, msgContent: msgContent, msgTag: msgTag), logger: logger, on: eventLoop)
+    }
 }

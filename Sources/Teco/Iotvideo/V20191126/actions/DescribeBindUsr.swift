@@ -64,4 +64,20 @@ extension Iotvideo {
     public func describeBindUsr(_ input: DescribeBindUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindUsrResponse {
         try await self.client.execute(action: "DescribeBindUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询设备绑定的终端用户列表
+    ///
+    /// 本接口（DescribeBindUsr）用于查询设备被分享的所有用户列表。
+    @inlinable
+    public func describeBindUsr(tid: String, accessId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindUsrResponse > {
+        self.describeBindUsr(DescribeBindUsrRequest(tid: tid, accessId: accessId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备绑定的终端用户列表
+    ///
+    /// 本接口（DescribeBindUsr）用于查询设备被分享的所有用户列表。
+    @inlinable
+    public func describeBindUsr(tid: String, accessId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindUsrResponse {
+        try await self.describeBindUsr(DescribeBindUsrRequest(tid: tid, accessId: accessId), logger: logger, on: eventLoop)
+    }
 }

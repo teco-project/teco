@@ -89,4 +89,20 @@ extension Dts {
     public func createSubscribe(_ input: CreateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscribeResponse {
         try await self.client.execute(action: "CreateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建订阅对象
+    ///
+    /// 本接口(CreateSubscribe)用于创建一个数据订阅实例。
+    @inlinable
+    public func createSubscribe(product: String, payType: Int64, duration: Int64? = nil, count: Int64? = nil, autoRenew: Int64? = nil, tags: [TagItem]? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubscribeResponse > {
+        self.createSubscribe(CreateSubscribeRequest(product: product, payType: payType, duration: duration, count: count, autoRenew: autoRenew, tags: tags, name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建订阅对象
+    ///
+    /// 本接口(CreateSubscribe)用于创建一个数据订阅实例。
+    @inlinable
+    public func createSubscribe(product: String, payType: Int64, duration: Int64? = nil, count: Int64? = nil, autoRenew: Int64? = nil, tags: [TagItem]? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscribeResponse {
+        try await self.createSubscribe(CreateSubscribeRequest(product: product, payType: payType, duration: duration, count: count, autoRenew: autoRenew, tags: tags, name: name), logger: logger, on: eventLoop)
+    }
 }

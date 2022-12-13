@@ -74,4 +74,20 @@ extension Apigateway {
     public func unbindApiApp(_ input: UnbindApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindApiAppResponse {
         try await self.client.execute(action: "UnbindApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解除应用和API绑定关系
+    ///
+    /// 本接口（UnbindApiApp）用于解除应用和API绑定。
+    @inlinable
+    public func unbindApiApp(apiAppId: String, environment: String, serviceId: String, apiId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindApiAppResponse > {
+        self.unbindApiApp(UnbindApiAppRequest(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId), logger: logger, on: eventLoop)
+    }
+    
+    /// 解除应用和API绑定关系
+    ///
+    /// 本接口（UnbindApiApp）用于解除应用和API绑定。
+    @inlinable
+    public func unbindApiApp(apiAppId: String, environment: String, serviceId: String, apiId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindApiAppResponse {
+        try await self.unbindApiApp(UnbindApiAppRequest(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId), logger: logger, on: eventLoop)
+    }
 }

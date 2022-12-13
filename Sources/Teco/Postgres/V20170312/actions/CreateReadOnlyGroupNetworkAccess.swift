@@ -79,4 +79,20 @@ extension Postgres {
     public func createReadOnlyGroupNetworkAccess(_ input: CreateReadOnlyGroupNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyGroupNetworkAccessResponse {
         try await self.client.execute(action: "CreateReadOnlyGroupNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加RO组网络
+    ///
+    /// 可对RO组进行网络的添加操作。
+    @inlinable
+    public func createReadOnlyGroupNetworkAccess(readOnlyGroupId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReadOnlyGroupNetworkAccessResponse > {
+        self.createReadOnlyGroupNetworkAccess(CreateReadOnlyGroupNetworkAccessRequest(readOnlyGroupId: readOnlyGroupId, vpcId: vpcId, subnetId: subnetId, isAssignVip: isAssignVip, vip: vip), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加RO组网络
+    ///
+    /// 可对RO组进行网络的添加操作。
+    @inlinable
+    public func createReadOnlyGroupNetworkAccess(readOnlyGroupId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyGroupNetworkAccessResponse {
+        try await self.createReadOnlyGroupNetworkAccess(CreateReadOnlyGroupNetworkAccessRequest(readOnlyGroupId: readOnlyGroupId, vpcId: vpcId, subnetId: subnetId, isAssignVip: isAssignVip, vip: vip), logger: logger, on: eventLoop)
+    }
 }

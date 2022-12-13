@@ -58,4 +58,20 @@ extension Tione {
     public func describeBillingSpecsPrice(_ input: DescribeBillingSpecsPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingSpecsPriceResponse {
         try await self.client.execute(action: "DescribeBillingSpecsPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询计费项价格
+    ///
+    /// 本接口(DescribeBillingSpecsPrice)用于查询计费项价格。
+    @inlinable
+    public func describeBillingSpecsPrice(specsParam: [SpecUnit], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillingSpecsPriceResponse > {
+        self.describeBillingSpecsPrice(DescribeBillingSpecsPriceRequest(specsParam: specsParam), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询计费项价格
+    ///
+    /// 本接口(DescribeBillingSpecsPrice)用于查询计费项价格。
+    @inlinable
+    public func describeBillingSpecsPrice(specsParam: [SpecUnit], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingSpecsPriceResponse {
+        try await self.describeBillingSpecsPrice(DescribeBillingSpecsPriceRequest(specsParam: specsParam), logger: logger, on: eventLoop)
+    }
 }

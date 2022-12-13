@@ -64,4 +64,16 @@ extension Cam {
     public func createSAMLProvider(_ input: CreateSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSAMLProviderResponse {
         try await self.client.execute(action: "CreateSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建SAML身份提供商
+    @inlinable
+    public func createSAMLProvider(name: String, description: String, samlMetadataDocument: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSAMLProviderResponse > {
+        self.createSAMLProvider(CreateSAMLProviderRequest(name: name, description: description, samlMetadataDocument: samlMetadataDocument), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建SAML身份提供商
+    @inlinable
+    public func createSAMLProvider(name: String, description: String, samlMetadataDocument: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSAMLProviderResponse {
+        try await self.createSAMLProvider(CreateSAMLProviderRequest(name: name, description: description, samlMetadataDocument: samlMetadataDocument), logger: logger, on: eventLoop)
+    }
 }

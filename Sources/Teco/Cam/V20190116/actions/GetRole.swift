@@ -63,4 +63,20 @@ extension Cam {
     public func getRole(_ input: GetRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRoleResponse {
         try await self.client.execute(action: "GetRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取角色详情
+    ///
+    /// 本接口（GetRole）用于获取指定角色的详细信息。
+    @inlinable
+    public func getRole(roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRoleResponse > {
+        self.getRole(GetRoleRequest(roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取角色详情
+    ///
+    /// 本接口（GetRole）用于获取指定角色的详细信息。
+    @inlinable
+    public func getRole(roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRoleResponse {
+        try await self.getRole(GetRoleRequest(roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    }
 }

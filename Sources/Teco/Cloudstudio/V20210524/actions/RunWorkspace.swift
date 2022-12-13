@@ -55,4 +55,16 @@ extension Cloudstudio {
     public func runWorkspace(_ input: RunWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunWorkspaceResponse {
         try await self.client.execute(action: "RunWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行空间
+    @inlinable
+    public func runWorkspace(spaceKey: String, cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunWorkspaceResponse > {
+        self.runWorkspace(RunWorkspaceRequest(spaceKey: spaceKey, cloudStudioSessionTeam: cloudStudioSessionTeam), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行空间
+    @inlinable
+    public func runWorkspace(spaceKey: String, cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunWorkspaceResponse {
+        try await self.runWorkspace(RunWorkspaceRequest(spaceKey: spaceKey, cloudStudioSessionTeam: cloudStudioSessionTeam), logger: logger, on: eventLoop)
+    }
 }

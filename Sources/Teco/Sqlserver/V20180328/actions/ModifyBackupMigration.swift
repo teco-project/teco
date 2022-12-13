@@ -83,4 +83,20 @@ extension Sqlserver {
     public func modifyBackupMigration(_ input: ModifyBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupMigrationResponse {
         try await self.client.execute(action: "ModifyBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改备份导入任务
+    ///
+    /// 本接口（ModifyBackupMigration）用于修改备份导入任务。
+    @inlinable
+    public func modifyBackupMigration(instanceId: String, backupMigrationId: String, migrationName: String? = nil, recoveryType: String? = nil, uploadType: String? = nil, backupFiles: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupMigrationResponse > {
+        self.modifyBackupMigration(ModifyBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, migrationName: migrationName, recoveryType: recoveryType, uploadType: uploadType, backupFiles: backupFiles), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改备份导入任务
+    ///
+    /// 本接口（ModifyBackupMigration）用于修改备份导入任务。
+    @inlinable
+    public func modifyBackupMigration(instanceId: String, backupMigrationId: String, migrationName: String? = nil, recoveryType: String? = nil, uploadType: String? = nil, backupFiles: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupMigrationResponse {
+        try await self.modifyBackupMigration(ModifyBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, migrationName: migrationName, recoveryType: recoveryType, uploadType: uploadType, backupFiles: backupFiles), logger: logger, on: eventLoop)
+    }
 }

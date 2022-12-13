@@ -89,4 +89,22 @@ extension Gse {
     public func getGameServerInstanceLogUrl(_ input: GetGameServerInstanceLogUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGameServerInstanceLogUrlResponse {
         try await self.client.execute(action: "GetGameServerInstanceLogUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取游戏服务器实例的日志URL
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口用于获取游戏服务器实例的日志URL。
+    @inlinable
+    public func getGameServerInstanceLogUrl(fleetId: String, instanceId: String? = nil, serverIp: String? = nil, offset: UInt64? = nil, size: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGameServerInstanceLogUrlResponse > {
+        self.getGameServerInstanceLogUrl(GetGameServerInstanceLogUrlRequest(fleetId: fleetId, instanceId: instanceId, serverIp: serverIp, offset: offset, size: size), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取游戏服务器实例的日志URL
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口用于获取游戏服务器实例的日志URL。
+    @inlinable
+    public func getGameServerInstanceLogUrl(fleetId: String, instanceId: String? = nil, serverIp: String? = nil, offset: UInt64? = nil, size: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGameServerInstanceLogUrlResponse {
+        try await self.getGameServerInstanceLogUrl(GetGameServerInstanceLogUrlRequest(fleetId: fleetId, instanceId: instanceId, serverIp: serverIp, offset: offset, size: size), logger: logger, on: eventLoop)
+    }
 }

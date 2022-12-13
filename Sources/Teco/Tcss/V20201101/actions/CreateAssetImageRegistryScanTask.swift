@@ -80,4 +80,16 @@ extension Tcss {
     public func createAssetImageRegistryScanTask(_ input: CreateAssetImageRegistryScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageRegistryScanTaskResponse {
         try await self.client.execute(action: "CreateAssetImageRegistryScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 镜像仓库创建镜像扫描任务
+    @inlinable
+    public func createAssetImageRegistryScanTask(all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, filters: [AssetFilters]? = nil, excludeImageList: [UInt64]? = nil, onlyScanLatest: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssetImageRegistryScanTaskResponse > {
+        self.createAssetImageRegistryScanTask(CreateAssetImageRegistryScanTaskRequest(all: all, images: images, scanType: scanType, id: id, filters: filters, excludeImageList: excludeImageList, onlyScanLatest: onlyScanLatest), logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库创建镜像扫描任务
+    @inlinable
+    public func createAssetImageRegistryScanTask(all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, filters: [AssetFilters]? = nil, excludeImageList: [UInt64]? = nil, onlyScanLatest: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageRegistryScanTaskResponse {
+        try await self.createAssetImageRegistryScanTask(CreateAssetImageRegistryScanTaskRequest(all: all, images: images, scanType: scanType, id: id, filters: filters, excludeImageList: excludeImageList, onlyScanLatest: onlyScanLatest), logger: logger, on: eventLoop)
+    }
 }

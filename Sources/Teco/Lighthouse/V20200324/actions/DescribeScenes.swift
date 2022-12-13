@@ -72,4 +72,20 @@ extension Lighthouse {
     public func describeScenes(_ input: DescribeScenesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScenesResponse {
         try await self.client.execute(action: "DescribeScenes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看使用场景列表
+    ///
+    /// 本接口(DescribeScenes)用于查看使用场景列表。
+    @inlinable
+    public func describeScenes(sceneIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScenesResponse > {
+        self.describeScenes(DescribeScenesRequest(sceneIds: sceneIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看使用场景列表
+    ///
+    /// 本接口(DescribeScenes)用于查看使用场景列表。
+    @inlinable
+    public func describeScenes(sceneIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScenesResponse {
+        try await self.describeScenes(DescribeScenesRequest(sceneIds: sceneIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

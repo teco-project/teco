@@ -85,4 +85,16 @@ extension Tsf {
     public func modifyLaneRule(_ input: ModifyLaneRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaneRuleResponse {
         try await self.client.execute(action: "ModifyLaneRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新泳道规则
+    @inlinable
+    public func modifyLaneRule(ruleId: String, ruleName: String, remark: String, ruleTagList: [LaneRuleTag], ruleTagRelationship: String, laneId: String, enable: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLaneRuleResponse > {
+        self.modifyLaneRule(ModifyLaneRuleRequest(ruleId: ruleId, ruleName: ruleName, remark: remark, ruleTagList: ruleTagList, ruleTagRelationship: ruleTagRelationship, laneId: laneId, enable: enable), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新泳道规则
+    @inlinable
+    public func modifyLaneRule(ruleId: String, ruleName: String, remark: String, ruleTagList: [LaneRuleTag], ruleTagRelationship: String, laneId: String, enable: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaneRuleResponse {
+        try await self.modifyLaneRule(ModifyLaneRuleRequest(ruleId: ruleId, ruleName: ruleName, remark: remark, ruleTagList: ruleTagList, ruleTagRelationship: ruleTagRelationship, laneId: laneId, enable: enable), logger: logger, on: eventLoop)
+    }
 }

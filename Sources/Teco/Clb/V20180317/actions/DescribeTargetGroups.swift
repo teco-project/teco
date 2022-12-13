@@ -73,4 +73,16 @@ extension Clb {
     public func describeTargetGroups(_ input: DescribeTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetGroupsResponse {
         try await self.client.execute(action: "DescribeTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询目标组信息
+    @inlinable
+    public func describeTargetGroups(targetGroupIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTargetGroupsResponse > {
+        self.describeTargetGroups(DescribeTargetGroupsRequest(targetGroupIds: targetGroupIds, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询目标组信息
+    @inlinable
+    public func describeTargetGroups(targetGroupIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetGroupsResponse {
+        try await self.describeTargetGroups(DescribeTargetGroupsRequest(targetGroupIds: targetGroupIds, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

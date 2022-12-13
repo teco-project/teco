@@ -60,4 +60,16 @@ extension Iotvideo {
     public func modifyDeviceLogLevel(_ input: ModifyDeviceLogLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceLogLevelResponse {
         try await self.client.execute(action: "ModifyDeviceLogLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新设备日志级别
+    @inlinable
+    public func modifyDeviceLogLevel(productId: String, deviceName: String, logLevel: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceLogLevelResponse > {
+        self.modifyDeviceLogLevel(ModifyDeviceLogLevelRequest(productId: productId, deviceName: deviceName, logLevel: logLevel), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新设备日志级别
+    @inlinable
+    public func modifyDeviceLogLevel(productId: String, deviceName: String, logLevel: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceLogLevelResponse {
+        try await self.modifyDeviceLogLevel(ModifyDeviceLogLevelRequest(productId: productId, deviceName: deviceName, logLevel: logLevel), logger: logger, on: eventLoop)
+    }
 }

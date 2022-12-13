@@ -59,4 +59,20 @@ extension Vpc {
     public func notifyRoutes(_ input: NotifyRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> NotifyRoutesResponse {
         try await self.client.execute(action: "NotifyRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 发布路由至云联网
+    ///
+    /// 本接口（NotifyRoutes）用于路由表列表页操作增加“发布到云联网”，发布路由到云联网。
+    @inlinable
+    public func notifyRoutes(routeTableId: String, routeItemIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < NotifyRoutesResponse > {
+        self.notifyRoutes(NotifyRoutesRequest(routeTableId: routeTableId, routeItemIds: routeItemIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 发布路由至云联网
+    ///
+    /// 本接口（NotifyRoutes）用于路由表列表页操作增加“发布到云联网”，发布路由到云联网。
+    @inlinable
+    public func notifyRoutes(routeTableId: String, routeItemIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> NotifyRoutesResponse {
+        try await self.notifyRoutes(NotifyRoutesRequest(routeTableId: routeTableId, routeItemIds: routeItemIds), logger: logger, on: eventLoop)
+    }
 }

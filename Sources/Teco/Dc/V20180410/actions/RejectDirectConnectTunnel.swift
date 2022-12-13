@@ -50,4 +50,16 @@ extension Dc {
     public func rejectDirectConnectTunnel(_ input: RejectDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectDirectConnectTunnelResponse {
         try await self.client.execute(action: "RejectDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 拒绝专用通道申请
+    @inlinable
+    public func rejectDirectConnectTunnel(directConnectTunnelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RejectDirectConnectTunnelResponse > {
+        self.rejectDirectConnectTunnel(RejectDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), logger: logger, on: eventLoop)
+    }
+    
+    /// 拒绝专用通道申请
+    @inlinable
+    public func rejectDirectConnectTunnel(directConnectTunnelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectDirectConnectTunnelResponse {
+        try await self.rejectDirectConnectTunnel(RejectDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), logger: logger, on: eventLoop)
+    }
 }

@@ -83,4 +83,20 @@ extension Tsf {
     public func describePluginInstances(_ input: DescribePluginInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginInstancesResponse {
         try await self.client.execute(action: "DescribePluginInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询网关分组或API绑定（或未绑定）的插件列表
+    ///
+    /// 分页查询网关分组/API绑定（或未绑定）的插件列表
+    @inlinable
+    public func describePluginInstances(scopeValue: String, bound: Bool, offset: Int64, limit: Int64, type: String? = nil, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePluginInstancesResponse > {
+        self.describePluginInstances(DescribePluginInstancesRequest(scopeValue: scopeValue, bound: bound, offset: offset, limit: limit, type: type, searchWord: searchWord), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网关分组或API绑定（或未绑定）的插件列表
+    ///
+    /// 分页查询网关分组/API绑定（或未绑定）的插件列表
+    @inlinable
+    public func describePluginInstances(scopeValue: String, bound: Bool, offset: Int64, limit: Int64, type: String? = nil, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginInstancesResponse {
+        try await self.describePluginInstances(DescribePluginInstancesRequest(scopeValue: scopeValue, bound: bound, offset: offset, limit: limit, type: type, searchWord: searchWord), logger: logger, on: eventLoop)
+    }
 }

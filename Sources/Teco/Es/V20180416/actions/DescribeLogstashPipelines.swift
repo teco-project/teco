@@ -62,4 +62,20 @@ extension Es {
     public func describeLogstashPipelines(_ input: DescribeLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashPipelinesResponse {
         try await self.client.execute(action: "DescribeLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取Logstash实例管道列表
+    ///
+    /// 用于获取Logstash实例管道列表
+    @inlinable
+    public func describeLogstashPipelines(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogstashPipelinesResponse > {
+        self.describeLogstashPipelines(DescribeLogstashPipelinesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Logstash实例管道列表
+    ///
+    /// 用于获取Logstash实例管道列表
+    @inlinable
+    public func describeLogstashPipelines(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashPipelinesResponse {
+        try await self.describeLogstashPipelines(DescribeLogstashPipelinesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

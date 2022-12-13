@@ -54,4 +54,16 @@ extension Ckafka {
     public func deleteConnectResource(_ input: DeleteConnectResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConnectResourceResponse {
         try await self.client.execute(action: "DeleteConnectResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除Datahub连接源
+    @inlinable
+    public func deleteConnectResource(resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConnectResourceResponse > {
+        self.deleteConnectResource(DeleteConnectResourceRequest(resourceId: resourceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Datahub连接源
+    @inlinable
+    public func deleteConnectResource(resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConnectResourceResponse {
+        try await self.deleteConnectResource(DeleteConnectResourceRequest(resourceId: resourceId), logger: logger, on: eventLoop)
+    }
 }

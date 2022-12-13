@@ -84,4 +84,20 @@ extension Bm {
     public func describeDeviceOperationLog(_ input: DescribeDeviceOperationLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceOperationLogResponse {
         try await self.client.execute(action: "DescribeDeviceOperationLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询设备操作日志
+    ///
+    /// 查询设备操作日志， 如设备重启，重装，设置密码等操作
+    @inlinable
+    public func describeDeviceOperationLog(instanceId: String, startTime: Date? = nil, endTime: Date? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceOperationLogResponse > {
+        self.describeDeviceOperationLog(DescribeDeviceOperationLogRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备操作日志
+    ///
+    /// 查询设备操作日志， 如设备重启，重装，设置密码等操作
+    @inlinable
+    public func describeDeviceOperationLog(instanceId: String, startTime: Date? = nil, endTime: Date? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceOperationLogResponse {
+        try await self.describeDeviceOperationLog(DescribeDeviceOperationLogRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

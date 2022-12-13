@@ -69,4 +69,20 @@ extension Batch {
     public func modifyTaskTemplate(_ input: ModifyTaskTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskTemplateResponse {
         try await self.client.execute(action: "ModifyTaskTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改任务模板
+    ///
+    /// 用于修改任务模板
+    @inlinable
+    public func modifyTaskTemplate(taskTemplateId: String, taskTemplateName: String? = nil, taskTemplateDescription: String? = nil, taskTemplateInfo: Task? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskTemplateResponse > {
+        self.modifyTaskTemplate(ModifyTaskTemplateRequest(taskTemplateId: taskTemplateId, taskTemplateName: taskTemplateName, taskTemplateDescription: taskTemplateDescription, taskTemplateInfo: taskTemplateInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改任务模板
+    ///
+    /// 用于修改任务模板
+    @inlinable
+    public func modifyTaskTemplate(taskTemplateId: String, taskTemplateName: String? = nil, taskTemplateDescription: String? = nil, taskTemplateInfo: Task? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskTemplateResponse {
+        try await self.modifyTaskTemplate(ModifyTaskTemplateRequest(taskTemplateId: taskTemplateId, taskTemplateName: taskTemplateName, taskTemplateDescription: taskTemplateDescription, taskTemplateInfo: taskTemplateInfo), logger: logger, on: eventLoop)
+    }
 }

@@ -66,4 +66,20 @@ extension Ses {
     public func getEmailTemplate(_ input: GetEmailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEmailTemplateResponse {
         try await self.client.execute(action: "GetEmailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取模板详情
+    ///
+    /// 根据模板ID获取模板详情
+    @inlinable
+    public func getEmailTemplate(templateID: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetEmailTemplateResponse > {
+        self.getEmailTemplate(GetEmailTemplateRequest(templateID: templateID), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取模板详情
+    ///
+    /// 根据模板ID获取模板详情
+    @inlinable
+    public func getEmailTemplate(templateID: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEmailTemplateResponse {
+        try await self.getEmailTemplate(GetEmailTemplateRequest(templateID: templateID), logger: logger, on: eventLoop)
+    }
 }

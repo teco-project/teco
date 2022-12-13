@@ -69,4 +69,20 @@ extension Sqlserver {
     public func modifyMaintenanceSpan(_ input: ModifyMaintenanceSpanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaintenanceSpanResponse {
         try await self.client.execute(action: "ModifyMaintenanceSpan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改可维护时间窗
+    ///
+    /// 本接口（ModifyMaintenanceSpan）用于修改实例的可维护时间窗
+    @inlinable
+    public func modifyMaintenanceSpan(instanceId: String, weekly: [Int64]? = nil, startTime: String? = nil, span: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMaintenanceSpanResponse > {
+        self.modifyMaintenanceSpan(ModifyMaintenanceSpanRequest(instanceId: instanceId, weekly: weekly, startTime: startTime, span: span), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改可维护时间窗
+    ///
+    /// 本接口（ModifyMaintenanceSpan）用于修改实例的可维护时间窗
+    @inlinable
+    public func modifyMaintenanceSpan(instanceId: String, weekly: [Int64]? = nil, startTime: String? = nil, span: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaintenanceSpanResponse {
+        try await self.modifyMaintenanceSpan(ModifyMaintenanceSpanRequest(instanceId: instanceId, weekly: weekly, startTime: startTime, span: span), logger: logger, on: eventLoop)
+    }
 }

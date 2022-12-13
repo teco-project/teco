@@ -78,4 +78,20 @@ extension Iotexplorer {
     public func modifyStudioProduct(_ input: ModifyStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStudioProductResponse {
         try await self.client.execute(action: "ModifyStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改产品
+    ///
+    /// 提供修改产品的名称和描述等信息的能力，对于已发布产品不允许进行修改。
+    @inlinable
+    public func modifyStudioProduct(productId: String, productName: String, productDesc: String, moduleId: Int64, enableProductScript: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyStudioProductResponse > {
+        self.modifyStudioProduct(ModifyStudioProductRequest(productId: productId, productName: productName, productDesc: productDesc, moduleId: moduleId, enableProductScript: enableProductScript), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改产品
+    ///
+    /// 提供修改产品的名称和描述等信息的能力，对于已发布产品不允许进行修改。
+    @inlinable
+    public func modifyStudioProduct(productId: String, productName: String, productDesc: String, moduleId: Int64, enableProductScript: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStudioProductResponse {
+        try await self.modifyStudioProduct(ModifyStudioProductRequest(productId: productId, productName: productName, productDesc: productDesc, moduleId: moduleId, enableProductScript: enableProductScript), logger: logger, on: eventLoop)
+    }
 }

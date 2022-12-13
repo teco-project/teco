@@ -87,4 +87,16 @@ extension Monitor {
     public func describeGrafanaInstances(_ input: DescribeGrafanaInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaInstancesResponse {
         try await self.client.execute(action: "DescribeGrafanaInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 列出用户所有的 Grafana 服务
+    @inlinable
+    public func describeGrafanaInstances(offset: Int64, limit: Int64, instanceIds: [String]? = nil, instanceName: String? = nil, instanceStatus: [Int64]? = nil, tagFilters: [PrometheusTag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaInstancesResponse > {
+        self.describeGrafanaInstances(DescribeGrafanaInstancesRequest(offset: offset, limit: limit, instanceIds: instanceIds, instanceName: instanceName, instanceStatus: instanceStatus, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    }
+    
+    /// 列出用户所有的 Grafana 服务
+    @inlinable
+    public func describeGrafanaInstances(offset: Int64, limit: Int64, instanceIds: [String]? = nil, instanceName: String? = nil, instanceStatus: [Int64]? = nil, tagFilters: [PrometheusTag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaInstancesResponse {
+        try await self.describeGrafanaInstances(DescribeGrafanaInstancesRequest(offset: offset, limit: limit, instanceIds: instanceIds, instanceName: instanceName, instanceStatus: instanceStatus, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    }
 }

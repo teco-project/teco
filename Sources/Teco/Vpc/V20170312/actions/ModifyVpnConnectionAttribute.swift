@@ -114,4 +114,20 @@ extension Vpc {
     public func modifyVpnConnectionAttribute(_ input: ModifyVpnConnectionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnConnectionAttributeResponse {
         try await self.client.execute(action: "ModifyVpnConnectionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改VPN通道
+    ///
+    /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
+    @inlinable
+    public func modifyVpnConnectionAttribute(vpnConnectionId: String, vpnConnectionName: String? = nil, preShareKey: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, enableHealthCheck: Bool? = nil, healthCheckLocalIp: String? = nil, healthCheckRemoteIp: String? = nil, negotiationType: String? = nil, dpdEnable: Int64? = nil, dpdTimeout: String? = nil, dpdAction: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpnConnectionAttributeResponse > {
+        self.modifyVpnConnectionAttribute(ModifyVpnConnectionAttributeRequest(vpnConnectionId: vpnConnectionId, vpnConnectionName: vpnConnectionName, preShareKey: preShareKey, securityPolicyDatabases: securityPolicyDatabases, ikeOptionsSpecification: ikeOptionsSpecification, ipsecOptionsSpecification: ipsecOptionsSpecification, enableHealthCheck: enableHealthCheck, healthCheckLocalIp: healthCheckLocalIp, healthCheckRemoteIp: healthCheckRemoteIp, negotiationType: negotiationType, dpdEnable: dpdEnable, dpdTimeout: dpdTimeout, dpdAction: dpdAction), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改VPN通道
+    ///
+    /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
+    @inlinable
+    public func modifyVpnConnectionAttribute(vpnConnectionId: String, vpnConnectionName: String? = nil, preShareKey: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, enableHealthCheck: Bool? = nil, healthCheckLocalIp: String? = nil, healthCheckRemoteIp: String? = nil, negotiationType: String? = nil, dpdEnable: Int64? = nil, dpdTimeout: String? = nil, dpdAction: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnConnectionAttributeResponse {
+        try await self.modifyVpnConnectionAttribute(ModifyVpnConnectionAttributeRequest(vpnConnectionId: vpnConnectionId, vpnConnectionName: vpnConnectionName, preShareKey: preShareKey, securityPolicyDatabases: securityPolicyDatabases, ikeOptionsSpecification: ikeOptionsSpecification, ipsecOptionsSpecification: ipsecOptionsSpecification, enableHealthCheck: enableHealthCheck, healthCheckLocalIp: healthCheckLocalIp, healthCheckRemoteIp: healthCheckRemoteIp, negotiationType: negotiationType, dpdEnable: dpdEnable, dpdTimeout: dpdTimeout, dpdAction: dpdAction), logger: logger, on: eventLoop)
+    }
 }

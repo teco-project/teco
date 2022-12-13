@@ -54,4 +54,16 @@ extension Ckafka {
     public func describeDatahubTask(_ input: DescribeDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatahubTaskResponse {
         try await self.client.execute(action: "DescribeDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询Datahub任务信息
+    @inlinable
+    public func describeDatahubTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatahubTaskResponse > {
+        self.describeDatahubTask(DescribeDatahubTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Datahub任务信息
+    @inlinable
+    public func describeDatahubTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatahubTaskResponse {
+        try await self.describeDatahubTask(DescribeDatahubTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

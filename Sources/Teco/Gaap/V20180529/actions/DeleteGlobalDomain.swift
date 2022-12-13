@@ -54,4 +54,20 @@ extension Gaap {
     public func deleteGlobalDomain(_ input: DeleteGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGlobalDomainResponse {
         try await self.client.execute(action: "DeleteGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除域名
+    ///
+    /// 删除统一域名
+    @inlinable
+    public func deleteGlobalDomain(domainId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteGlobalDomainResponse > {
+        self.deleteGlobalDomain(DeleteGlobalDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除域名
+    ///
+    /// 删除统一域名
+    @inlinable
+    public func deleteGlobalDomain(domainId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGlobalDomainResponse {
+        try await self.deleteGlobalDomain(DeleteGlobalDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
+    }
 }

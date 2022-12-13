@@ -103,4 +103,20 @@ extension Cvm {
     public func describeReservedInstancesOfferings(_ input: DescribeReservedInstancesOfferingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReservedInstancesOfferingsResponse {
         try await self.client.execute(action: "DescribeReservedInstancesOfferings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 列出可购买的预留实例配置
+    ///
+    /// 本接口(DescribeReservedInstancesOfferings)供用户列出可购买的预留实例配置
+    @inlinable
+    public func describeReservedInstancesOfferings(dryRun: Bool? = nil, offset: Int64? = nil, limit: Int64? = nil, maxDuration: Int64? = nil, minDuration: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReservedInstancesOfferingsResponse > {
+        self.describeReservedInstancesOfferings(DescribeReservedInstancesOfferingsRequest(dryRun: dryRun, offset: offset, limit: limit, maxDuration: maxDuration, minDuration: minDuration, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 列出可购买的预留实例配置
+    ///
+    /// 本接口(DescribeReservedInstancesOfferings)供用户列出可购买的预留实例配置
+    @inlinable
+    public func describeReservedInstancesOfferings(dryRun: Bool? = nil, offset: Int64? = nil, limit: Int64? = nil, maxDuration: Int64? = nil, minDuration: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReservedInstancesOfferingsResponse {
+        try await self.describeReservedInstancesOfferings(DescribeReservedInstancesOfferingsRequest(dryRun: dryRun, offset: offset, limit: limit, maxDuration: maxDuration, minDuration: minDuration, filters: filters), logger: logger, on: eventLoop)
+    }
 }

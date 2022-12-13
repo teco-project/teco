@@ -73,4 +73,20 @@ extension Dbbrain {
     public func verifyUserAccount(_ input: VerifyUserAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyUserAccountResponse {
         try await self.client.execute(action: "VerifyUserAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 验证用户数据库账号权限
+    ///
+    /// 验证用户数据库账号权限，获取会话token。
+    @inlinable
+    public func verifyUserAccount(instanceId: String, user: String, password: String, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyUserAccountResponse > {
+        self.verifyUserAccount(VerifyUserAccountRequest(instanceId: instanceId, user: user, password: password, product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 验证用户数据库账号权限
+    ///
+    /// 验证用户数据库账号权限，获取会话token。
+    @inlinable
+    public func verifyUserAccount(instanceId: String, user: String, password: String, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyUserAccountResponse {
+        try await self.verifyUserAccount(VerifyUserAccountRequest(instanceId: instanceId, user: user, password: password, product: product), logger: logger, on: eventLoop)
+    }
 }

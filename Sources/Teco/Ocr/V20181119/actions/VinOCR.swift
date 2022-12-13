@@ -70,4 +70,20 @@ extension Ocr {
     public func vinOCR(_ input: VinOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VinOCRResponse {
         try await self.client.execute(action: "VinOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 车辆VIN码识别
+    ///
+    /// 本接口支持图片内车辆识别代号（VIN）的检测和识别。
+    @inlinable
+    public func vinOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VinOCRResponse > {
+        self.vinOCR(VinOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 车辆VIN码识别
+    ///
+    /// 本接口支持图片内车辆识别代号（VIN）的检测和识别。
+    @inlinable
+    public func vinOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VinOCRResponse {
+        try await self.vinOCR(VinOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
 }

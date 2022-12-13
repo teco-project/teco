@@ -86,4 +86,20 @@ extension Cls {
     public func describeLogHistogram(_ input: DescribeLogHistogramRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogHistogramResponse {
         try await self.client.execute(action: "DescribeLogHistogram", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取日志数量直方图
+    ///
+    /// 本接口用于构建日志数量直方图
+    @inlinable
+    public func describeLogHistogram(topicId: String, from: Int64, to: Int64, query: String, interval: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogHistogramResponse > {
+        self.describeLogHistogram(DescribeLogHistogramRequest(topicId: topicId, from: from, to: to, query: query, interval: interval), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志数量直方图
+    ///
+    /// 本接口用于构建日志数量直方图
+    @inlinable
+    public func describeLogHistogram(topicId: String, from: Int64, to: Int64, query: String, interval: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogHistogramResponse {
+        try await self.describeLogHistogram(DescribeLogHistogramRequest(topicId: topicId, from: from, to: to, query: query, interval: interval), logger: logger, on: eventLoop)
+    }
 }

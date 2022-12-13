@@ -60,4 +60,16 @@ extension Pts {
     public func createAlertChannel(_ input: CreateAlertChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlertChannelResponse {
         try await self.client.execute(action: "CreateAlertChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建告警通知接收组
+    @inlinable
+    public func createAlertChannel(noticeId: String, projectId: String, ampConsumerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAlertChannelResponse > {
+        self.createAlertChannel(CreateAlertChannelRequest(noticeId: noticeId, projectId: projectId, ampConsumerId: ampConsumerId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建告警通知接收组
+    @inlinable
+    public func createAlertChannel(noticeId: String, projectId: String, ampConsumerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlertChannelResponse {
+        try await self.createAlertChannel(CreateAlertChannelRequest(noticeId: noticeId, projectId: projectId, ampConsumerId: ampConsumerId), logger: logger, on: eventLoop)
+    }
 }

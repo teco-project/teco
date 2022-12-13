@@ -63,4 +63,16 @@ extension Iotvideo {
     public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
         try await self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取产品列表
+    @inlinable
+    public func describeProducts(limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductsResponse > {
+        self.describeProducts(DescribeProductsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取产品列表
+    @inlinable
+    public func describeProducts(limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
+        try await self.describeProducts(DescribeProductsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

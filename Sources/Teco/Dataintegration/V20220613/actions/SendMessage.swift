@@ -63,4 +63,20 @@ extension Dataintegration {
     public func sendMessage(_ input: SendMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessageResponse {
         try await self.client.execute(action: "SendMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 数据上报
+    ///
+    /// 使用SDK将数据上报到DIP
+    @inlinable
+    public func sendMessage(dataHubId: String, message: [BatchContent], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendMessageResponse > {
+        self.sendMessage(SendMessageRequest(dataHubId: dataHubId, message: message), logger: logger, on: eventLoop)
+    }
+    
+    /// 数据上报
+    ///
+    /// 使用SDK将数据上报到DIP
+    @inlinable
+    public func sendMessage(dataHubId: String, message: [BatchContent], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessageResponse {
+        try await self.sendMessage(SendMessageRequest(dataHubId: dataHubId, message: message), logger: logger, on: eventLoop)
+    }
 }

@@ -85,4 +85,20 @@ extension Yunjing {
     public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
         try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取帐号列表
+    ///
+    /// 本接口 (DescribeAccounts) 用于获取帐号列表数据。
+    @inlinable
+    public func describeAccounts(uuid: String? = nil, username: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
+        self.describeAccounts(DescribeAccountsRequest(uuid: uuid, username: username, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取帐号列表
+    ///
+    /// 本接口 (DescribeAccounts) 用于获取帐号列表数据。
+    @inlinable
+    public func describeAccounts(uuid: String? = nil, username: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
+        try await self.describeAccounts(DescribeAccountsRequest(uuid: uuid, username: username, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

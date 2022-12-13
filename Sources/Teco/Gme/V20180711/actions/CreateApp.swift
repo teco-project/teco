@@ -95,4 +95,20 @@ extension Gme {
     public func createApp(_ input: CreateAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppResponse {
         try await self.client.execute(action: "CreateApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建GME应用
+    ///
+    /// 本接口(CreateApp)用于创建一个GME应用。
+    @inlinable
+    public func createApp(appName: String, projectId: UInt64? = nil, engineList: [String]? = nil, regionList: [String]? = nil, realtimeSpeechConf: RealtimeSpeechConf? = nil, voiceMessageConf: VoiceMessageConf? = nil, voiceFilterConf: VoiceFilterConf? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppResponse > {
+        self.createApp(CreateAppRequest(appName: appName, projectId: projectId, engineList: engineList, regionList: regionList, realtimeSpeechConf: realtimeSpeechConf, voiceMessageConf: voiceMessageConf, voiceFilterConf: voiceFilterConf, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建GME应用
+    ///
+    /// 本接口(CreateApp)用于创建一个GME应用。
+    @inlinable
+    public func createApp(appName: String, projectId: UInt64? = nil, engineList: [String]? = nil, regionList: [String]? = nil, realtimeSpeechConf: RealtimeSpeechConf? = nil, voiceMessageConf: VoiceMessageConf? = nil, voiceFilterConf: VoiceFilterConf? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppResponse {
+        try await self.createApp(CreateAppRequest(appName: appName, projectId: projectId, engineList: engineList, regionList: regionList, realtimeSpeechConf: realtimeSpeechConf, voiceMessageConf: voiceMessageConf, voiceFilterConf: voiceFilterConf, tags: tags), logger: logger, on: eventLoop)
+    }
 }

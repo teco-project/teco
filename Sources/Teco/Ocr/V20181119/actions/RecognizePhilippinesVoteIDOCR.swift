@@ -103,4 +103,16 @@ extension Ocr {
     public func recognizePhilippinesVoteIDOCR(_ input: RecognizePhilippinesVoteIDOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesVoteIDOCRResponse {
         try await self.client.execute(action: "RecognizePhilippinesVoteIDOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 菲律宾VoteID识别
+    @inlinable
+    public func recognizePhilippinesVoteIDOCR(returnHeadImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizePhilippinesVoteIDOCRResponse > {
+        self.recognizePhilippinesVoteIDOCR(RecognizePhilippinesVoteIDOCRRequest(returnHeadImage: returnHeadImage, imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 菲律宾VoteID识别
+    @inlinable
+    public func recognizePhilippinesVoteIDOCR(returnHeadImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesVoteIDOCRResponse {
+        try await self.recognizePhilippinesVoteIDOCR(RecognizePhilippinesVoteIDOCRRequest(returnHeadImage: returnHeadImage, imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
 }

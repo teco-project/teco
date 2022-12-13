@@ -68,4 +68,20 @@ extension Tcr {
     public func renewInstance(_ input: RenewInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewInstanceResponse {
         try await self.client.execute(action: "RenewInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 续费实例
+    ///
+    /// 预付费实例续费，同时支持按量计费转包年包月
+    @inlinable
+    public func renewInstance(registryId: String, registryChargePrepaid: RegistryChargePrepaid, flag: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewInstanceResponse > {
+        self.renewInstance(RenewInstanceRequest(registryId: registryId, registryChargePrepaid: registryChargePrepaid, flag: flag), logger: logger, on: eventLoop)
+    }
+    
+    /// 续费实例
+    ///
+    /// 预付费实例续费，同时支持按量计费转包年包月
+    @inlinable
+    public func renewInstance(registryId: String, registryChargePrepaid: RegistryChargePrepaid, flag: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewInstanceResponse {
+        try await self.renewInstance(RenewInstanceRequest(registryId: registryId, registryChargePrepaid: registryChargePrepaid, flag: flag), logger: logger, on: eventLoop)
+    }
 }

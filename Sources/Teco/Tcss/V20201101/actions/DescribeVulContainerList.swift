@@ -76,4 +76,16 @@ extension Tcss {
     public func describeVulContainerList(_ input: DescribeVulContainerListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulContainerListResponse {
         try await self.client.execute(action: "DescribeVulContainerList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询受漏洞的容器列表
+    @inlinable
+    public func describeVulContainerList(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulContainerListResponse > {
+        self.describeVulContainerList(DescribeVulContainerListRequest(pocID: pocID, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询受漏洞的容器列表
+    @inlinable
+    public func describeVulContainerList(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulContainerListResponse {
+        try await self.describeVulContainerList(DescribeVulContainerListRequest(pocID: pocID, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

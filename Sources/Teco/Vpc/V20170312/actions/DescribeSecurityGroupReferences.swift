@@ -58,4 +58,20 @@ extension Vpc {
     public func describeSecurityGroupReferences(_ input: DescribeSecurityGroupReferencesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupReferencesResponse {
         try await self.client.execute(action: "DescribeSecurityGroupReferences", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询安全组被引用信息
+    ///
+    /// 本接口（DescribeSecurityGroupReferences）用于查询安全组被引用信息。
+    @inlinable
+    public func describeSecurityGroupReferences(securityGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupReferencesResponse > {
+        self.describeSecurityGroupReferences(DescribeSecurityGroupReferencesRequest(securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全组被引用信息
+    ///
+    /// 本接口（DescribeSecurityGroupReferences）用于查询安全组被引用信息。
+    @inlinable
+    public func describeSecurityGroupReferences(securityGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupReferencesResponse {
+        try await self.describeSecurityGroupReferences(DescribeSecurityGroupReferencesRequest(securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    }
 }

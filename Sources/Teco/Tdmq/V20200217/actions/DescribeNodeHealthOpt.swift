@@ -58,4 +58,16 @@ extension Tdmq {
     public func describeNodeHealthOpt(_ input: DescribeNodeHealthOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeHealthOptResponse {
         try await self.client.execute(action: "DescribeNodeHealthOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运营端获节点健康状态
+    @inlinable
+    public func describeNodeHealthOpt(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodeHealthOptResponse > {
+        self.describeNodeHealthOpt(DescribeNodeHealthOptRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 运营端获节点健康状态
+    @inlinable
+    public func describeNodeHealthOpt(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeHealthOptResponse {
+        try await self.describeNodeHealthOpt(DescribeNodeHealthOptRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

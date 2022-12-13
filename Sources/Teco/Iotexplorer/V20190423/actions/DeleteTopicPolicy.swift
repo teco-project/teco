@@ -59,4 +59,20 @@ extension Iotexplorer {
     public func deleteTopicPolicy(_ input: DeleteTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicPolicyResponse {
         try await self.client.execute(action: "DeleteTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除Topic
+    ///
+    /// 本接口（DeleteTopicPolicy）用于删除Topic 
+    @inlinable
+    public func deleteTopicPolicy(productId: String, topicName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTopicPolicyResponse > {
+        self.deleteTopicPolicy(DeleteTopicPolicyRequest(productId: productId, topicName: topicName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Topic
+    ///
+    /// 本接口（DeleteTopicPolicy）用于删除Topic 
+    @inlinable
+    public func deleteTopicPolicy(productId: String, topicName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicPolicyResponse {
+        try await self.deleteTopicPolicy(DeleteTopicPolicyRequest(productId: productId, topicName: topicName), logger: logger, on: eventLoop)
+    }
 }

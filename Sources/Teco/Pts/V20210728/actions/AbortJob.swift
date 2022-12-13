@@ -65,4 +65,16 @@ extension Pts {
     public func abortJob(_ input: AbortJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AbortJobResponse {
         try await self.client.execute(action: "AbortJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停止任务
+    @inlinable
+    public func abortJob(jobId: String, projectId: String, scenarioId: String, abortReason: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AbortJobResponse > {
+        self.abortJob(AbortJobRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, abortReason: abortReason), logger: logger, on: eventLoop)
+    }
+    
+    /// 停止任务
+    @inlinable
+    public func abortJob(jobId: String, projectId: String, scenarioId: String, abortReason: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AbortJobResponse {
+        try await self.abortJob(AbortJobRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, abortReason: abortReason), logger: logger, on: eventLoop)
+    }
 }

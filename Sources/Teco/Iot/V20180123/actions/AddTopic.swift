@@ -63,4 +63,20 @@ extension Iot {
     public func addTopic(_ input: AddTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTopicResponse {
         try await self.client.execute(action: "AddTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新增Topic
+    ///
+    /// 新增Topic，用于设备或应用发布消息至该Topic或订阅该Topic的消息。
+    @inlinable
+    public func addTopic(productId: String, topicName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddTopicResponse > {
+        self.addTopic(AddTopicRequest(productId: productId, topicName: topicName), logger: logger, on: eventLoop)
+    }
+    
+    /// 新增Topic
+    ///
+    /// 新增Topic，用于设备或应用发布消息至该Topic或订阅该Topic的消息。
+    @inlinable
+    public func addTopic(productId: String, topicName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTopicResponse {
+        try await self.addTopic(AddTopicRequest(productId: productId, topicName: topicName), logger: logger, on: eventLoop)
+    }
 }

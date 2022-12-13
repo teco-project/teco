@@ -55,4 +55,16 @@ extension Tcss {
     public func switchImageAutoAuthorizedRule(_ input: SwitchImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchImageAutoAuthorizedRuleResponse {
         try await self.client.execute(action: "SwitchImageAutoAuthorizedRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 编辑本地镜像自动授权开关
+    @inlinable
+    public func switchImageAutoAuthorizedRule(isEnabled: Int64, ruleId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchImageAutoAuthorizedRuleResponse > {
+        self.switchImageAutoAuthorizedRule(SwitchImageAutoAuthorizedRuleRequest(isEnabled: isEnabled, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑本地镜像自动授权开关
+    @inlinable
+    public func switchImageAutoAuthorizedRule(isEnabled: Int64, ruleId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchImageAutoAuthorizedRuleResponse {
+        try await self.switchImageAutoAuthorizedRule(SwitchImageAutoAuthorizedRuleRequest(isEnabled: isEnabled, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
 }

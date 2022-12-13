@@ -74,4 +74,20 @@ extension Iot {
     public func appIssueDeviceControl(_ input: AppIssueDeviceControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppIssueDeviceControlResponse {
         try await self.client.execute(action: "AppIssueDeviceControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 用户控制设备
+    ///
+    /// 用户通过APP控制设备
+    @inlinable
+    public func appIssueDeviceControl(accessToken: String, productId: String, deviceName: String, controlData: String, metadata: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppIssueDeviceControlResponse > {
+        self.appIssueDeviceControl(AppIssueDeviceControlRequest(accessToken: accessToken, productId: productId, deviceName: deviceName, controlData: controlData, metadata: metadata), logger: logger, on: eventLoop)
+    }
+    
+    /// 用户控制设备
+    ///
+    /// 用户通过APP控制设备
+    @inlinable
+    public func appIssueDeviceControl(accessToken: String, productId: String, deviceName: String, controlData: String, metadata: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppIssueDeviceControlResponse {
+        try await self.appIssueDeviceControl(AppIssueDeviceControlRequest(accessToken: accessToken, productId: productId, deviceName: deviceName, controlData: controlData, metadata: metadata), logger: logger, on: eventLoop)
+    }
 }

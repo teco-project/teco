@@ -59,4 +59,20 @@ extension Cam {
     public func createAccessKey(_ input: CreateAccessKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessKeyResponse {
         try await self.client.execute(action: "CreateAccessKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建访问密钥
+    ///
+    /// 为CAM用户创建访问密钥
+    @inlinable
+    public func createAccessKey(targetUin: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccessKeyResponse > {
+        self.createAccessKey(CreateAccessKeyRequest(targetUin: targetUin), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建访问密钥
+    ///
+    /// 为CAM用户创建访问密钥
+    @inlinable
+    public func createAccessKey(targetUin: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessKeyResponse {
+        try await self.createAccessKey(CreateAccessKeyRequest(targetUin: targetUin), logger: logger, on: eventLoop)
+    }
 }

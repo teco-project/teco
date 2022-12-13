@@ -69,4 +69,20 @@ extension Iotcloud {
     public func replaceTopicRule(_ input: ReplaceTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceTopicRuleResponse {
         try await self.client.execute(action: "ReplaceTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 替换规则
+    ///
+    /// 本接口（ReplaceTopicRule）用于修改替换规则 
+    @inlinable
+    public func replaceTopicRule(ruleName: String, topicRulePayload: TopicRulePayload, modifyType: UInt64? = nil, actionIndex: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceTopicRuleResponse > {
+        self.replaceTopicRule(ReplaceTopicRuleRequest(ruleName: ruleName, topicRulePayload: topicRulePayload, modifyType: modifyType, actionIndex: actionIndex), logger: logger, on: eventLoop)
+    }
+    
+    /// 替换规则
+    ///
+    /// 本接口（ReplaceTopicRule）用于修改替换规则 
+    @inlinable
+    public func replaceTopicRule(ruleName: String, topicRulePayload: TopicRulePayload, modifyType: UInt64? = nil, actionIndex: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceTopicRuleResponse {
+        try await self.replaceTopicRule(ReplaceTopicRuleRequest(ruleName: ruleName, topicRulePayload: topicRulePayload, modifyType: modifyType, actionIndex: actionIndex), logger: logger, on: eventLoop)
+    }
 }

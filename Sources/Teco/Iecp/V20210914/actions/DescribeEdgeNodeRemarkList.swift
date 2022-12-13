@@ -55,4 +55,16 @@ extension Iecp {
     public func describeEdgeNodeRemarkList(_ input: DescribeEdgeNodeRemarkListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodeRemarkListResponse {
         try await self.client.execute(action: "DescribeEdgeNodeRemarkList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取节点备注信息列表
+    @inlinable
+    public func describeEdgeNodeRemarkList(edgeUnitId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeNodeRemarkListResponse > {
+        self.describeEdgeNodeRemarkList(DescribeEdgeNodeRemarkListRequest(edgeUnitId: edgeUnitId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取节点备注信息列表
+    @inlinable
+    public func describeEdgeNodeRemarkList(edgeUnitId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodeRemarkListResponse {
+        try await self.describeEdgeNodeRemarkList(DescribeEdgeNodeRemarkListRequest(edgeUnitId: edgeUnitId), logger: logger, on: eventLoop)
+    }
 }

@@ -77,4 +77,20 @@ extension Mmps {
     public func describeFlySecMiniAppScanTaskStatus(_ input: DescribeFlySecMiniAppScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanTaskStatusResponse {
         try await self.client.execute(action: "DescribeFlySecMiniAppScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询诊断任务状态
+    ///
+    /// 查询翼扬安全诊断任务状态
+    @inlinable
+    public func describeFlySecMiniAppScanTaskStatus(taskID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlySecMiniAppScanTaskStatusResponse > {
+        self.describeFlySecMiniAppScanTaskStatus(DescribeFlySecMiniAppScanTaskStatusRequest(taskID: taskID), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询诊断任务状态
+    ///
+    /// 查询翼扬安全诊断任务状态
+    @inlinable
+    public func describeFlySecMiniAppScanTaskStatus(taskID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanTaskStatusResponse {
+        try await self.describeFlySecMiniAppScanTaskStatus(DescribeFlySecMiniAppScanTaskStatusRequest(taskID: taskID), logger: logger, on: eventLoop)
+    }
 }

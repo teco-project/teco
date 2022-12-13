@@ -60,4 +60,20 @@ extension Tdcpg {
     public func recoverCluster(_ input: RecoverClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverClusterResponse {
         try await self.client.execute(action: "RecoverCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 恢复集群
+    ///
+    /// 恢复集群，恢复集群的接入点网络，恢复后继续连接使用数据库。只有当集群状态处于isolated(已隔离)时才生效。
+    @inlinable
+    public func recoverCluster(clusterId: String, period: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecoverClusterResponse > {
+        self.recoverCluster(RecoverClusterRequest(clusterId: clusterId, period: period), logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复集群
+    ///
+    /// 恢复集群，恢复集群的接入点网络，恢复后继续连接使用数据库。只有当集群状态处于isolated(已隔离)时才生效。
+    @inlinable
+    public func recoverCluster(clusterId: String, period: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverClusterResponse {
+        try await self.recoverCluster(RecoverClusterRequest(clusterId: clusterId, period: period), logger: logger, on: eventLoop)
+    }
 }

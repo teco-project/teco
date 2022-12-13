@@ -59,4 +59,16 @@ extension Teo {
     public func describeDefaultCertificates(_ input: DescribeDefaultCertificatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultCertificatesResponse {
         try await self.client.execute(action: "DescribeDefaultCertificates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询默认证书列表
+    @inlinable
+    public func describeDefaultCertificates(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDefaultCertificatesResponse > {
+        self.describeDefaultCertificates(DescribeDefaultCertificatesRequest(zoneId: zoneId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询默认证书列表
+    @inlinable
+    public func describeDefaultCertificates(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultCertificatesResponse {
+        try await self.describeDefaultCertificates(DescribeDefaultCertificatesRequest(zoneId: zoneId), logger: logger, on: eventLoop)
+    }
 }

@@ -88,4 +88,20 @@ extension Tat {
     public func createInvoker(_ input: CreateInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInvokerResponse {
         try await self.client.execute(action: "CreateInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建执行器
+    ///
+    /// 此接口用于创建执行器。
+    @inlinable
+    public func createInvoker(name: String, type: String, commandId: String, instanceIds: [String], username: String? = nil, parameters: String? = nil, scheduleSettings: ScheduleSettings? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInvokerResponse > {
+        self.createInvoker(CreateInvokerRequest(name: name, type: type, commandId: commandId, instanceIds: instanceIds, username: username, parameters: parameters, scheduleSettings: scheduleSettings), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建执行器
+    ///
+    /// 此接口用于创建执行器。
+    @inlinable
+    public func createInvoker(name: String, type: String, commandId: String, instanceIds: [String], username: String? = nil, parameters: String? = nil, scheduleSettings: ScheduleSettings? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInvokerResponse {
+        try await self.createInvoker(CreateInvokerRequest(name: name, type: type, commandId: commandId, instanceIds: instanceIds, username: username, parameters: parameters, scheduleSettings: scheduleSettings), logger: logger, on: eventLoop)
+    }
 }

@@ -86,4 +86,16 @@ extension Tdmq {
     public func sendMessages(_ input: SendMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessagesResponse {
         try await self.client.execute(action: "SendMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 发送单条消息
+    @inlinable
+    public func sendMessages(topic: String, payload: String, stringToken: String? = nil, producerName: String? = nil, sendTimeout: Int64? = nil, maxPendingMessages: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendMessagesResponse > {
+        self.sendMessages(SendMessagesRequest(topic: topic, payload: payload, stringToken: stringToken, producerName: producerName, sendTimeout: sendTimeout, maxPendingMessages: maxPendingMessages), logger: logger, on: eventLoop)
+    }
+    
+    /// 发送单条消息
+    @inlinable
+    public func sendMessages(topic: String, payload: String, stringToken: String? = nil, producerName: String? = nil, sendTimeout: Int64? = nil, maxPendingMessages: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessagesResponse {
+        try await self.sendMessages(SendMessagesRequest(topic: topic, payload: payload, stringToken: stringToken, producerName: producerName, sendTimeout: sendTimeout, maxPendingMessages: maxPendingMessages), logger: logger, on: eventLoop)
+    }
 }

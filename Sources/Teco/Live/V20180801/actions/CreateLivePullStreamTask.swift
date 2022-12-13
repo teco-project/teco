@@ -143,7 +143,7 @@ extension Live {
         /// 注意：启用本地模式后，会将源列表中的 MP4 文件进行本地下载，优先使用本地已下载文件进行推流，提高点播源推流稳定性。使用本地下载文件推流时，会产生增值费用。
         public let vodLocalMode: Int64?
         
-        public init (sourceType: String, sourceUrls: [String], domainName: String, appName: String, streamName: String, startTime: String, endTime: String, `operator`: String, pushArgs: String? = nil, callbackEvents: [String]? = nil, vodLoopTimes: String? = nil, vodRefreshType: String? = nil, callbackUrl: String? = nil, extraCmd: String? = nil, comment: String? = nil, toUrl: String? = nil, backupSourceType: String? = nil, backupSourceUrl: String? = nil, watermarkList: [PullPushWatermarkInfo]? = nil, vodLocalMode: Int64? = nil) {
+        public init (sourceType: String, sourceUrls: [String], domainName: String, appName: String, streamName: String, startTime: String, endTime: String, operator: String, pushArgs: String? = nil, callbackEvents: [String]? = nil, vodLoopTimes: String? = nil, vodRefreshType: String? = nil, callbackUrl: String? = nil, extraCmd: String? = nil, comment: String? = nil, toUrl: String? = nil, backupSourceType: String? = nil, backupSourceUrl: String? = nil, watermarkList: [PullPushWatermarkInfo]? = nil, vodLocalMode: Int64? = nil) {
             self.sourceType = sourceType
             self.sourceUrls = sourceUrls
             self.domainName = domainName
@@ -232,5 +232,35 @@ extension Live {
     @inlinable
     public func createLivePullStreamTask(_ input: CreateLivePullStreamTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLivePullStreamTaskResponse {
         try await self.client.execute(action: "CreateLivePullStreamTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 创建直播拉流任务
+    ///
+    /// 创建直播拉流任务。支持将外部已有的点播文件，或者直播源拉取过来转推到指定的目标地址。
+    /// 注意：
+    /// 1. 默认支持任务数上限20个，如有特殊需求，可通过提单到售后进行评估增加上限。
+    /// 2. 源流视频编码目前只支持: H264, H265。其他编码格式建议先进行转码处理。
+    /// 3. 源流音频编码目前只支持: AAC。其他编码格式建议先进行转码处理。
+    /// 4. 可在控制台开启过期自动清理，避免过期任务占用任务数额度。
+    /// 5. 拉流转推功能为计费增值服务，计费规则详情可参见[计费文档](https://cloud.tencent.com/document/product/267/53308)。
+    /// 6. 拉流转推功能仅提供内容拉取与推送服务，请确保内容已获得授权并符合内容传播相关的法律法规。若内容有侵权或违规相关问题，云直播会停止相关的功能服务并保留追究法律责任的权利。
+    @inlinable
+    public func createLivePullStreamTask(sourceType: String, sourceUrls: [String], domainName: String, appName: String, streamName: String, startTime: String, endTime: String, operator: String, pushArgs: String? = nil, callbackEvents: [String]? = nil, vodLoopTimes: String? = nil, vodRefreshType: String? = nil, callbackUrl: String? = nil, extraCmd: String? = nil, comment: String? = nil, toUrl: String? = nil, backupSourceType: String? = nil, backupSourceUrl: String? = nil, watermarkList: [PullPushWatermarkInfo]? = nil, vodLocalMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLivePullStreamTaskResponse > {
+        self.createLivePullStreamTask(CreateLivePullStreamTaskRequest(sourceType: sourceType, sourceUrls: sourceUrls, domainName: domainName, appName: appName, streamName: streamName, startTime: startTime, endTime: endTime, operator: `operator`, pushArgs: pushArgs, callbackEvents: callbackEvents, vodLoopTimes: vodLoopTimes, vodRefreshType: vodRefreshType, callbackUrl: callbackUrl, extraCmd: extraCmd, comment: comment, toUrl: toUrl, backupSourceType: backupSourceType, backupSourceUrl: backupSourceUrl, watermarkList: watermarkList, vodLocalMode: vodLocalMode), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建直播拉流任务
+    ///
+    /// 创建直播拉流任务。支持将外部已有的点播文件，或者直播源拉取过来转推到指定的目标地址。
+    /// 注意：
+    /// 1. 默认支持任务数上限20个，如有特殊需求，可通过提单到售后进行评估增加上限。
+    /// 2. 源流视频编码目前只支持: H264, H265。其他编码格式建议先进行转码处理。
+    /// 3. 源流音频编码目前只支持: AAC。其他编码格式建议先进行转码处理。
+    /// 4. 可在控制台开启过期自动清理，避免过期任务占用任务数额度。
+    /// 5. 拉流转推功能为计费增值服务，计费规则详情可参见[计费文档](https://cloud.tencent.com/document/product/267/53308)。
+    /// 6. 拉流转推功能仅提供内容拉取与推送服务，请确保内容已获得授权并符合内容传播相关的法律法规。若内容有侵权或违规相关问题，云直播会停止相关的功能服务并保留追究法律责任的权利。
+    @inlinable
+    public func createLivePullStreamTask(sourceType: String, sourceUrls: [String], domainName: String, appName: String, streamName: String, startTime: String, endTime: String, operator: String, pushArgs: String? = nil, callbackEvents: [String]? = nil, vodLoopTimes: String? = nil, vodRefreshType: String? = nil, callbackUrl: String? = nil, extraCmd: String? = nil, comment: String? = nil, toUrl: String? = nil, backupSourceType: String? = nil, backupSourceUrl: String? = nil, watermarkList: [PullPushWatermarkInfo]? = nil, vodLocalMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLivePullStreamTaskResponse {
+        try await self.createLivePullStreamTask(CreateLivePullStreamTaskRequest(sourceType: sourceType, sourceUrls: sourceUrls, domainName: domainName, appName: appName, streamName: streamName, startTime: startTime, endTime: endTime, operator: `operator`, pushArgs: pushArgs, callbackEvents: callbackEvents, vodLoopTimes: vodLoopTimes, vodRefreshType: vodRefreshType, callbackUrl: callbackUrl, extraCmd: extraCmd, comment: comment, toUrl: toUrl, backupSourceType: backupSourceType, backupSourceUrl: backupSourceUrl, watermarkList: watermarkList, vodLocalMode: vodLocalMode), logger: logger, on: eventLoop)
     }
 }

@@ -76,4 +76,16 @@ extension Tci {
     public func describeImageTask(_ input: DescribeImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTaskResponse {
         try await self.client.execute(action: "DescribeImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 拉取任务详情
+    @inlinable
+    public func describeImageTask(jobId: Int64, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageTaskResponse > {
+        self.describeImageTask(DescribeImageTaskRequest(jobId: jobId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取任务详情
+    @inlinable
+    public func describeImageTask(jobId: Int64, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTaskResponse {
+        try await self.describeImageTask(DescribeImageTaskRequest(jobId: jobId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

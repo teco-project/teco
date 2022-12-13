@@ -26,7 +26,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以对任务视频拆条项目发起拆条任务。如果指定操作者，则操作者必须为项目所有者。
         public let `operator`: String?
         
-        public init (platform: String, projectId: String, `operator`: String? = nil) {
+        public init (platform: String, projectId: String, operator: String? = nil) {
             self.platform = platform
             self.projectId = projectId
             self.`operator` = `operator`
@@ -71,5 +71,25 @@ extension Cme {
     @inlinable
     public func generateVideoSegmentationSchemeByAi(_ input: GenerateVideoSegmentationSchemeByAiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateVideoSegmentationSchemeByAiResponse {
         try await self.client.execute(action: "GenerateVideoSegmentationSchemeByAi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 视频智能拆条
+    ///
+    /// <li>发起视频智能拆条任务，支持智能生成和平精英集锦、王者荣耀集锦、足球集锦、篮球集锦 、人物集锦、新闻拆条等任务。</li>
+    /// <li>和平精英集锦和王者荣耀集锦根据击杀场景进行拆条，足球集锦和篮球集锦根据进球场景进行拆条，人物集锦根据人物人脸特征进行拆条，新闻拆条根据导播进行拆条。</li>
+    /// <li>【本接口内测中，暂不建议使用】</li>
+    @inlinable
+    public func generateVideoSegmentationSchemeByAi(platform: String, projectId: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateVideoSegmentationSchemeByAiResponse > {
+        self.generateVideoSegmentationSchemeByAi(GenerateVideoSegmentationSchemeByAiRequest(platform: platform, projectId: projectId, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 视频智能拆条
+    ///
+    /// <li>发起视频智能拆条任务，支持智能生成和平精英集锦、王者荣耀集锦、足球集锦、篮球集锦 、人物集锦、新闻拆条等任务。</li>
+    /// <li>和平精英集锦和王者荣耀集锦根据击杀场景进行拆条，足球集锦和篮球集锦根据进球场景进行拆条，人物集锦根据人物人脸特征进行拆条，新闻拆条根据导播进行拆条。</li>
+    /// <li>【本接口内测中，暂不建议使用】</li>
+    @inlinable
+    public func generateVideoSegmentationSchemeByAi(platform: String, projectId: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateVideoSegmentationSchemeByAiResponse {
+        try await self.generateVideoSegmentationSchemeByAi(GenerateVideoSegmentationSchemeByAiRequest(platform: platform, projectId: projectId, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

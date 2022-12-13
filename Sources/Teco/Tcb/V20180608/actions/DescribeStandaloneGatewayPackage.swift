@@ -67,4 +67,20 @@ extension Tcb {
     public func describeStandaloneGatewayPackage(_ input: DescribeStandaloneGatewayPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStandaloneGatewayPackageResponse {
         try await self.client.execute(action: "DescribeStandaloneGatewayPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询小租户网关套餐信息
+    ///
+    /// 本接口（DescribeStandaloneGatewayPackage）用于查询小租户网关套餐信息。
+    @inlinable
+    public func describeStandaloneGatewayPackage(envId: String? = nil, packageVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStandaloneGatewayPackageResponse > {
+        self.describeStandaloneGatewayPackage(DescribeStandaloneGatewayPackageRequest(envId: envId, packageVersion: packageVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询小租户网关套餐信息
+    ///
+    /// 本接口（DescribeStandaloneGatewayPackage）用于查询小租户网关套餐信息。
+    @inlinable
+    public func describeStandaloneGatewayPackage(envId: String? = nil, packageVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStandaloneGatewayPackageResponse {
+        try await self.describeStandaloneGatewayPackage(DescribeStandaloneGatewayPackageRequest(envId: envId, packageVersion: packageVersion), logger: logger, on: eventLoop)
+    }
 }

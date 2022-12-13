@@ -60,4 +60,16 @@ extension Iecp {
     public func deleteSecret(_ input: DeleteSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecretResponse {
         try await self.client.execute(action: "DeleteSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除Secret
+    @inlinable
+    public func deleteSecret(edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecretResponse > {
+        self.deleteSecret(DeleteSecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, secretNamespace: secretNamespace), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Secret
+    @inlinable
+    public func deleteSecret(edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecretResponse {
+        try await self.deleteSecret(DeleteSecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, secretNamespace: secretNamespace), logger: logger, on: eventLoop)
+    }
 }

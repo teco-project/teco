@@ -70,4 +70,16 @@ extension Cfw {
     public func modifyTableStatus(_ input: ModifyTableStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableStatusResponse {
         try await self.client.execute(action: "ModifyTableStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改规则表状态
+    @inlinable
+    public func modifyTableStatus(edgeId: String? = nil, status: UInt64? = nil, area: String? = nil, direction: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableStatusResponse > {
+        self.modifyTableStatus(ModifyTableStatusRequest(edgeId: edgeId, status: status, area: area, direction: direction), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改规则表状态
+    @inlinable
+    public func modifyTableStatus(edgeId: String? = nil, status: UInt64? = nil, area: String? = nil, direction: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableStatusResponse {
+        try await self.modifyTableStatus(ModifyTableStatusRequest(edgeId: edgeId, status: status, area: area, direction: direction), logger: logger, on: eventLoop)
+    }
 }

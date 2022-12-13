@@ -78,4 +78,20 @@ extension Rum {
     public func describeDataReportCount(_ input: DescribeDataReportCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataReportCountResponse {
         try await self.client.execute(action: "DescribeDataReportCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取上报量
+    ///
+    /// 获取项目上报量
+    @inlinable
+    public func describeDataReportCount(startTime: Int64, endTime: Int64, id: Int64? = nil, reportType: String? = nil, instanceID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataReportCountResponse > {
+        self.describeDataReportCount(DescribeDataReportCountRequest(startTime: startTime, endTime: endTime, id: id, reportType: reportType, instanceID: instanceID), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取上报量
+    ///
+    /// 获取项目上报量
+    @inlinable
+    public func describeDataReportCount(startTime: Int64, endTime: Int64, id: Int64? = nil, reportType: String? = nil, instanceID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataReportCountResponse {
+        try await self.describeDataReportCount(DescribeDataReportCountRequest(startTime: startTime, endTime: endTime, id: id, reportType: reportType, instanceID: instanceID), logger: logger, on: eventLoop)
+    }
 }

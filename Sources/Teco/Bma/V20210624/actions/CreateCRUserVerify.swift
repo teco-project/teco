@@ -82,4 +82,20 @@ extension Bma {
     public func createCRUserVerify(_ input: CreateCRUserVerifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRUserVerifyResponse {
         try await self.client.execute(action: "CreateCRUserVerify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 个人认证
+    ///
+    /// 本接口用于个人认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
+    @inlinable
+    public func createCRUserVerify(userName: String, userID: String, userPhone: String, verificationCode: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRUserVerifyResponse > {
+        self.createCRUserVerify(CreateCRUserVerifyRequest(userName: userName, userID: userID, userPhone: userPhone, verificationCode: verificationCode, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 个人认证
+    ///
+    /// 本接口用于个人认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
+    @inlinable
+    public func createCRUserVerify(userName: String, userID: String, userPhone: String, verificationCode: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRUserVerifyResponse {
+        try await self.createCRUserVerify(CreateCRUserVerifyRequest(userName: userName, userID: userID, userPhone: userPhone, verificationCode: verificationCode, type: type), logger: logger, on: eventLoop)
+    }
 }

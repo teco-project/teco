@@ -73,4 +73,16 @@ extension Tcbr {
     public func describeServerManageTask(_ input: DescribeServerManageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServerManageTaskResponse {
         try await self.client.execute(action: "DescribeServerManageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询服务管理任务信息
+    @inlinable
+    public func describeServerManageTask(envId: String, serverName: String, taskId: Int64, operatorRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServerManageTaskResponse > {
+        self.describeServerManageTask(DescribeServerManageTaskRequest(envId: envId, serverName: serverName, taskId: taskId, operatorRemark: operatorRemark), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务管理任务信息
+    @inlinable
+    public func describeServerManageTask(envId: String, serverName: String, taskId: Int64, operatorRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServerManageTaskResponse {
+        try await self.describeServerManageTask(DescribeServerManageTaskRequest(envId: envId, serverName: serverName, taskId: taskId, operatorRemark: operatorRemark), logger: logger, on: eventLoop)
+    }
 }

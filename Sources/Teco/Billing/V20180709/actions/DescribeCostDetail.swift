@@ -103,4 +103,16 @@ extension Billing {
     public func describeCostDetail(_ input: DescribeCostDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostDetailResponse {
         try await self.client.execute(action: "DescribeCostDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询消耗明细
+    @inlinable
+    public func describeCostDetail(limit: Int64, offset: UInt64, beginTime: Date? = nil, endTime: Date? = nil, needRecordNum: UInt64? = nil, month: String? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCostDetailResponse > {
+        self.describeCostDetail(DescribeCostDetailRequest(limit: limit, offset: offset, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, month: month, productCode: productCode, payMode: payMode, resourceId: resourceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询消耗明细
+    @inlinable
+    public func describeCostDetail(limit: Int64, offset: UInt64, beginTime: Date? = nil, endTime: Date? = nil, needRecordNum: UInt64? = nil, month: String? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostDetailResponse {
+        try await self.describeCostDetail(DescribeCostDetailRequest(limit: limit, offset: offset, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, month: month, productCode: productCode, payMode: payMode, resourceId: resourceId), logger: logger, on: eventLoop)
+    }
 }

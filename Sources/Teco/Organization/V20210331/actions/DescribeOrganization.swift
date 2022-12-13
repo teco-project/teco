@@ -135,4 +135,16 @@ extension Organization {
     public func describeOrganization(_ input: DescribeOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationResponse {
         try await self.client.execute(action: "DescribeOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取企业组织信息
+    @inlinable
+    public func describeOrganization(lang: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationResponse > {
+        self.describeOrganization(DescribeOrganizationRequest(lang: lang, product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取企业组织信息
+    @inlinable
+    public func describeOrganization(lang: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationResponse {
+        try await self.describeOrganization(DescribeOrganizationRequest(lang: lang, product: product), logger: logger, on: eventLoop)
+    }
 }

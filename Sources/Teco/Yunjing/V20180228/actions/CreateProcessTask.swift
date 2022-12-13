@@ -54,4 +54,20 @@ extension Yunjing {
     public func createProcessTask(_ input: CreateProcessTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProcessTaskResponse {
         try await self.client.execute(action: "CreateProcessTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建实时拉取进程任务
+    ///
+    /// 本接口 (CreateProcessTask) 用于创建实时拉取进程任务。
+    @inlinable
+    public func createProcessTask(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProcessTaskResponse > {
+        self.createProcessTask(CreateProcessTaskRequest(uuid: uuid), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实时拉取进程任务
+    ///
+    /// 本接口 (CreateProcessTask) 用于创建实时拉取进程任务。
+    @inlinable
+    public func createProcessTask(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProcessTaskResponse {
+        try await self.createProcessTask(CreateProcessTaskRequest(uuid: uuid), logger: logger, on: eventLoop)
+    }
 }

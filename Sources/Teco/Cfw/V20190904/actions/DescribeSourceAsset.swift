@@ -91,4 +91,20 @@ extension Cfw {
     public func describeSourceAsset(_ input: DescribeSourceAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSourceAssetResponse {
         try await self.client.execute(action: "DescribeSourceAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询资产组全部资产信息
+    ///
+    /// DescribeSourceAsset-查询资产组全部资产信息
+    @inlinable
+    public func describeSourceAsset(fuzzySearch: String? = nil, insType: String? = nil, chooseType: String? = nil, zone: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSourceAssetResponse > {
+        self.describeSourceAsset(DescribeSourceAssetRequest(fuzzySearch: fuzzySearch, insType: insType, chooseType: chooseType, zone: zone, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资产组全部资产信息
+    ///
+    /// DescribeSourceAsset-查询资产组全部资产信息
+    @inlinable
+    public func describeSourceAsset(fuzzySearch: String? = nil, insType: String? = nil, chooseType: String? = nil, zone: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSourceAssetResponse {
+        try await self.describeSourceAsset(DescribeSourceAssetRequest(fuzzySearch: fuzzySearch, insType: insType, chooseType: chooseType, zone: zone, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

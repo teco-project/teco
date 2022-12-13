@@ -65,4 +65,16 @@ extension Yunjing {
     public func addMachineTag(_ input: AddMachineTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddMachineTagResponse {
         try await self.client.execute(action: "AddMachineTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 增加机器关联标签
+    @inlinable
+    public func addMachineTag(quuid: String, tagId: UInt64, mRegion: String, mArea: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddMachineTagResponse > {
+        self.addMachineTag(AddMachineTagRequest(quuid: quuid, tagId: tagId, mRegion: mRegion, mArea: mArea), logger: logger, on: eventLoop)
+    }
+    
+    /// 增加机器关联标签
+    @inlinable
+    public func addMachineTag(quuid: String, tagId: UInt64, mRegion: String, mArea: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddMachineTagResponse {
+        try await self.addMachineTag(AddMachineTagRequest(quuid: quuid, tagId: tagId, mRegion: mRegion, mArea: mArea), logger: logger, on: eventLoop)
+    }
 }

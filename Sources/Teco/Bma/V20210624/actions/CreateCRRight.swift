@@ -147,4 +147,20 @@ extension Bma {
     public func createCRRight(_ input: CreateCRRightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRRightResponse {
         try await self.client.execute(action: "CreateCRRight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新建发函
+    ///
+    /// 版权保护-新建发函接口
+    @inlinable
+    public func createCRRight(workId: Int64, tortUrl: String, tortTitle: String? = nil, tortPlat: String? = nil, rightUrl: String? = nil, fileUrl: String? = nil, validStartDate: String? = nil, validEndDate: String? = nil, commFileUrl: String? = nil, commValidStartDate: String? = nil, commValidEndDate: String? = nil, homeFileUrl: String? = nil, homeValidStartDate: String? = nil, homeValidEndDate: String? = nil, isProducer: String? = nil, evidenceFileUrl: String? = nil, evidenceValidStartDate: String? = nil, evidenceValidEndDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRRightResponse > {
+        self.createCRRight(CreateCRRightRequest(workId: workId, tortUrl: tortUrl, tortTitle: tortTitle, tortPlat: tortPlat, rightUrl: rightUrl, fileUrl: fileUrl, validStartDate: validStartDate, validEndDate: validEndDate, commFileUrl: commFileUrl, commValidStartDate: commValidStartDate, commValidEndDate: commValidEndDate, homeFileUrl: homeFileUrl, homeValidStartDate: homeValidStartDate, homeValidEndDate: homeValidEndDate, isProducer: isProducer, evidenceFileUrl: evidenceFileUrl, evidenceValidStartDate: evidenceValidStartDate, evidenceValidEndDate: evidenceValidEndDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 新建发函
+    ///
+    /// 版权保护-新建发函接口
+    @inlinable
+    public func createCRRight(workId: Int64, tortUrl: String, tortTitle: String? = nil, tortPlat: String? = nil, rightUrl: String? = nil, fileUrl: String? = nil, validStartDate: String? = nil, validEndDate: String? = nil, commFileUrl: String? = nil, commValidStartDate: String? = nil, commValidEndDate: String? = nil, homeFileUrl: String? = nil, homeValidStartDate: String? = nil, homeValidEndDate: String? = nil, isProducer: String? = nil, evidenceFileUrl: String? = nil, evidenceValidStartDate: String? = nil, evidenceValidEndDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRRightResponse {
+        try await self.createCRRight(CreateCRRightRequest(workId: workId, tortUrl: tortUrl, tortTitle: tortTitle, tortPlat: tortPlat, rightUrl: rightUrl, fileUrl: fileUrl, validStartDate: validStartDate, validEndDate: validEndDate, commFileUrl: commFileUrl, commValidStartDate: commValidStartDate, commValidEndDate: commValidEndDate, homeFileUrl: homeFileUrl, homeValidStartDate: homeValidStartDate, homeValidEndDate: homeValidEndDate, isProducer: isProducer, evidenceFileUrl: evidenceFileUrl, evidenceValidStartDate: evidenceValidStartDate, evidenceValidEndDate: evidenceValidEndDate), logger: logger, on: eventLoop)
+    }
 }

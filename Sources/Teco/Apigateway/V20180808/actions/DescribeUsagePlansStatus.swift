@@ -69,4 +69,20 @@ extension Apigateway {
     public func describeUsagePlansStatus(_ input: DescribeUsagePlansStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlansStatusResponse {
         try await self.client.execute(action: "DescribeUsagePlansStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询使用计划列表
+    ///
+    /// 本接口（DescribeUsagePlanStatus）用于查询使用计划的列表。
+    @inlinable
+    public func describeUsagePlansStatus(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsagePlansStatusResponse > {
+        self.describeUsagePlansStatus(DescribeUsagePlansStatusRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询使用计划列表
+    ///
+    /// 本接口（DescribeUsagePlanStatus）用于查询使用计划的列表。
+    @inlinable
+    public func describeUsagePlansStatus(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlansStatusResponse {
+        try await self.describeUsagePlansStatus(DescribeUsagePlansStatusRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

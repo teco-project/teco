@@ -59,4 +59,20 @@ extension Vpc {
     public func addTemplateMember(_ input: AddTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTemplateMemberResponse {
         try await self.client.execute(action: "AddTemplateMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 增加模板对象成员
+    ///
+    /// 增加模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
+    @inlinable
+    public func addTemplateMember(templateId: String, templateMember: [MemberInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddTemplateMemberResponse > {
+        self.addTemplateMember(AddTemplateMemberRequest(templateId: templateId, templateMember: templateMember), logger: logger, on: eventLoop)
+    }
+    
+    /// 增加模板对象成员
+    ///
+    /// 增加模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
+    @inlinable
+    public func addTemplateMember(templateId: String, templateMember: [MemberInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTemplateMemberResponse {
+        try await self.addTemplateMember(AddTemplateMemberRequest(templateId: templateId, templateMember: templateMember), logger: logger, on: eventLoop)
+    }
 }

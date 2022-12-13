@@ -59,4 +59,20 @@ extension Wav {
     public func queryLicenseInfo(_ input: QueryLicenseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryLicenseInfoResponse {
         try await self.client.execute(action: "QueryLicenseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询license信息接口
+    ///
+    /// 该接口获取license对应的详细信息
+    @inlinable
+    public func queryLicenseInfo(license: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryLicenseInfoResponse > {
+        self.queryLicenseInfo(QueryLicenseInfoRequest(license: license), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询license信息接口
+    ///
+    /// 该接口获取license对应的详细信息
+    @inlinable
+    public func queryLicenseInfo(license: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryLicenseInfoResponse {
+        try await self.queryLicenseInfo(QueryLicenseInfoRequest(license: license), logger: logger, on: eventLoop)
+    }
 }

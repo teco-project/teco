@@ -85,4 +85,20 @@ extension Tag {
     public func describeTagValuesSeq(_ input: DescribeTagValuesSeqRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagValuesSeqResponse {
         try await self.client.execute(action: "DescribeTagValuesSeq", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 按顺序查询标签值
+    ///
+    /// 用于查询已建立的标签列表中的标签值。
+    @inlinable
+    public func describeTagValuesSeq(tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagValuesSeqResponse > {
+        self.describeTagValuesSeq(DescribeTagValuesSeqRequest(tagKeys: tagKeys, createUin: createUin, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 按顺序查询标签值
+    ///
+    /// 用于查询已建立的标签列表中的标签值。
+    @inlinable
+    public func describeTagValuesSeq(tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagValuesSeqResponse {
+        try await self.describeTagValuesSeq(DescribeTagValuesSeqRequest(tagKeys: tagKeys, createUin: createUin, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

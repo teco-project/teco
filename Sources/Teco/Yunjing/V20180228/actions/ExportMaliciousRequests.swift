@@ -50,4 +50,20 @@ extension Yunjing {
     public func exportMaliciousRequests(_ input: ExportMaliciousRequestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportMaliciousRequestsResponse {
         try await self.client.execute(action: "ExportMaliciousRequests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导出下载恶意请求文件
+    ///
+    /// 本接口 (ExportMaliciousRequests) 用于导出下载恶意请求文件。
+    @inlinable
+    public func exportMaliciousRequests(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportMaliciousRequestsResponse > {
+        self.exportMaliciousRequests(ExportMaliciousRequestsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 导出下载恶意请求文件
+    ///
+    /// 本接口 (ExportMaliciousRequests) 用于导出下载恶意请求文件。
+    @inlinable
+    public func exportMaliciousRequests(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportMaliciousRequestsResponse {
+        try await self.exportMaliciousRequests(ExportMaliciousRequestsRequest(), logger: logger, on: eventLoop)
+    }
 }

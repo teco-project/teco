@@ -68,4 +68,16 @@ extension Kms {
     public func encryptByWhiteBox(_ input: EncryptByWhiteBoxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EncryptByWhiteBoxResponse {
         try await self.client.execute(action: "EncryptByWhiteBox", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 使用白盒密钥进行加密
+    @inlinable
+    public func encryptByWhiteBox(keyId: String, plainText: String, initializationVector: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EncryptByWhiteBoxResponse > {
+        self.encryptByWhiteBox(EncryptByWhiteBoxRequest(keyId: keyId, plainText: plainText, initializationVector: initializationVector), logger: logger, on: eventLoop)
+    }
+    
+    /// 使用白盒密钥进行加密
+    @inlinable
+    public func encryptByWhiteBox(keyId: String, plainText: String, initializationVector: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EncryptByWhiteBoxResponse {
+        try await self.encryptByWhiteBox(EncryptByWhiteBoxRequest(keyId: keyId, plainText: plainText, initializationVector: initializationVector), logger: logger, on: eventLoop)
+    }
 }

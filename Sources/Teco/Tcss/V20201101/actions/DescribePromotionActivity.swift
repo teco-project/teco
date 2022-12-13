@@ -54,4 +54,16 @@ extension Tcss {
     public func describePromotionActivity(_ input: DescribePromotionActivityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePromotionActivityResponse {
         try await self.client.execute(action: "DescribePromotionActivity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询促销活动
+    @inlinable
+    public func describePromotionActivity(activeID: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePromotionActivityResponse > {
+        self.describePromotionActivity(DescribePromotionActivityRequest(activeID: activeID), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询促销活动
+    @inlinable
+    public func describePromotionActivity(activeID: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePromotionActivityResponse {
+        try await self.describePromotionActivity(DescribePromotionActivityRequest(activeID: activeID), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Iotvideoindustry {
     public func describeGroupByPath(_ input: DescribeGroupByPathRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupByPathResponse {
         try await self.client.execute(action: "DescribeGroupByPath", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 根据分组路径查询分组
+    @inlinable
+    public func describeGroupByPath(groupPath: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupByPathResponse > {
+        self.describeGroupByPath(DescribeGroupByPathRequest(groupPath: groupPath), logger: logger, on: eventLoop)
+    }
+    
+    /// 根据分组路径查询分组
+    @inlinable
+    public func describeGroupByPath(groupPath: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupByPathResponse {
+        try await self.describeGroupByPath(DescribeGroupByPathRequest(groupPath: groupPath), logger: logger, on: eventLoop)
+    }
 }

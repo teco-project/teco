@@ -55,4 +55,16 @@ extension Iot {
     public func associateSubDeviceToGatewayProduct(_ input: AssociateSubDeviceToGatewayProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSubDeviceToGatewayProductResponse {
         try await self.client.execute(action: "AssociateSubDeviceToGatewayProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 关联子设备产品和网关产品
+    @inlinable
+    public func associateSubDeviceToGatewayProduct(subDeviceProductId: String, gatewayProductId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateSubDeviceToGatewayProductResponse > {
+        self.associateSubDeviceToGatewayProduct(AssociateSubDeviceToGatewayProductRequest(subDeviceProductId: subDeviceProductId, gatewayProductId: gatewayProductId), logger: logger, on: eventLoop)
+    }
+    
+    /// 关联子设备产品和网关产品
+    @inlinable
+    public func associateSubDeviceToGatewayProduct(subDeviceProductId: String, gatewayProductId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSubDeviceToGatewayProductResponse {
+        try await self.associateSubDeviceToGatewayProduct(AssociateSubDeviceToGatewayProductRequest(subDeviceProductId: subDeviceProductId, gatewayProductId: gatewayProductId), logger: logger, on: eventLoop)
+    }
 }

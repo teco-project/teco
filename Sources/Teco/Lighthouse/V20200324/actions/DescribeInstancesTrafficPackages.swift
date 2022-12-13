@@ -72,4 +72,20 @@ extension Lighthouse {
     public func describeInstancesTrafficPackages(_ input: DescribeInstancesTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesTrafficPackagesResponse {
         try await self.client.execute(action: "DescribeInstancesTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看实例流量包详情
+    ///
+    /// 本接口（DescribeInstancesTrafficPackages）用于查询一个或多个实例的流量包详情。
+    @inlinable
+    public func describeInstancesTrafficPackages(instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesTrafficPackagesResponse > {
+        self.describeInstancesTrafficPackages(DescribeInstancesTrafficPackagesRequest(instanceIds: instanceIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看实例流量包详情
+    ///
+    /// 本接口（DescribeInstancesTrafficPackages）用于查询一个或多个实例的流量包详情。
+    @inlinable
+    public func describeInstancesTrafficPackages(instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesTrafficPackagesResponse {
+        try await self.describeInstancesTrafficPackages(DescribeInstancesTrafficPackagesRequest(instanceIds: instanceIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -50,4 +50,16 @@ extension Cfg {
     public func executeTask(_ input: ExecuteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskResponse {
         try await self.client.execute(action: "ExecuteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 执行任务
+    @inlinable
+    public func executeTask(taskId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteTaskResponse > {
+        self.executeTask(ExecuteTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 执行任务
+    @inlinable
+    public func executeTask(taskId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskResponse {
+        try await self.executeTask(ExecuteTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

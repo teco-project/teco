@@ -69,4 +69,20 @@ extension Ssl {
     public func modifyCertificateProject(_ input: ModifyCertificateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateProjectResponse {
         try await self.client.execute(action: "ModifyCertificateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改证书所属项目
+    ///
+    /// 批量修改证书所属项目。
+    @inlinable
+    public func modifyCertificateProject(certificateIdList: [String], projectId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCertificateProjectResponse > {
+        self.modifyCertificateProject(ModifyCertificateProjectRequest(certificateIdList: certificateIdList, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改证书所属项目
+    ///
+    /// 批量修改证书所属项目。
+    @inlinable
+    public func modifyCertificateProject(certificateIdList: [String], projectId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateProjectResponse {
+        try await self.modifyCertificateProject(ModifyCertificateProjectRequest(certificateIdList: certificateIdList, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

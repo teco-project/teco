@@ -55,4 +55,16 @@ extension Antiddos {
     public func modifyDDoSSpeedLimitConfig(_ input: ModifyDDoSSpeedLimitConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSSpeedLimitConfigResponse {
         try await self.client.execute(action: "ModifyDDoSSpeedLimitConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改DDoS防护的访问限速配置
+    @inlinable
+    public func modifyDDoSSpeedLimitConfig(instanceId: String, dDoSSpeedLimitConfig: DDoSSpeedLimitConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSSpeedLimitConfigResponse > {
+        self.modifyDDoSSpeedLimitConfig(ModifyDDoSSpeedLimitConfigRequest(instanceId: instanceId, dDoSSpeedLimitConfig: dDoSSpeedLimitConfig), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改DDoS防护的访问限速配置
+    @inlinable
+    public func modifyDDoSSpeedLimitConfig(instanceId: String, dDoSSpeedLimitConfig: DDoSSpeedLimitConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSSpeedLimitConfigResponse {
+        try await self.modifyDDoSSpeedLimitConfig(ModifyDDoSSpeedLimitConfigRequest(instanceId: instanceId, dDoSSpeedLimitConfig: dDoSSpeedLimitConfig), logger: logger, on: eventLoop)
+    }
 }

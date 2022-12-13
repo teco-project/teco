@@ -64,4 +64,16 @@ extension Tke {
     public func describeRouteTableConflicts(_ input: DescribeRouteTableConflictsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteTableConflictsResponse {
         try await self.client.execute(action: "DescribeRouteTableConflicts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询路由表冲突列表
+    @inlinable
+    public func describeRouteTableConflicts(routeTableCidrBlock: String, vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRouteTableConflictsResponse > {
+        self.describeRouteTableConflicts(DescribeRouteTableConflictsRequest(routeTableCidrBlock: routeTableCidrBlock, vpcId: vpcId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询路由表冲突列表
+    @inlinable
+    public func describeRouteTableConflicts(routeTableCidrBlock: String, vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteTableConflictsResponse {
+        try await self.describeRouteTableConflicts(DescribeRouteTableConflictsRequest(routeTableCidrBlock: routeTableCidrBlock, vpcId: vpcId), logger: logger, on: eventLoop)
+    }
 }

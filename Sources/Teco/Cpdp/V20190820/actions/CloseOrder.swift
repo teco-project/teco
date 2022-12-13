@@ -88,4 +88,20 @@ extension Cpdp {
     public func closeOrder(_ input: CloseOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseOrderResponse {
         try await self.client.execute(action: "CloseOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 聚鑫-关闭订单接口
+    ///
+    /// 通过此接口关闭此前已创建的订单，关闭后，用户将无法继续付款。仅能关闭创建后未支付的订单
+    @inlinable
+    public func closeOrder(midasAppId: String, userId: String, midasSecretId: String, midasSignature: String, outTradeNo: String? = nil, transactionId: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseOrderResponse > {
+        self.closeOrder(CloseOrderRequest(midasAppId: midasAppId, userId: userId, midasSecretId: midasSecretId, midasSignature: midasSignature, outTradeNo: outTradeNo, transactionId: transactionId, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-关闭订单接口
+    ///
+    /// 通过此接口关闭此前已创建的订单，关闭后，用户将无法继续付款。仅能关闭创建后未支付的订单
+    @inlinable
+    public func closeOrder(midasAppId: String, userId: String, midasSecretId: String, midasSignature: String, outTradeNo: String? = nil, transactionId: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseOrderResponse {
+        try await self.closeOrder(CloseOrderRequest(midasAppId: midasAppId, userId: userId, midasSecretId: midasSecretId, midasSignature: midasSignature, outTradeNo: outTradeNo, transactionId: transactionId, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
 }

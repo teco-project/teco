@@ -38,7 +38,7 @@ extension Antiddos {
         /// 协议，普通高防IP要传该字段
         public let `protocol`: String?
         
-        public init (business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, ip: String? = nil, domain: String? = nil, `protocol`: String? = nil) {
+        public init (business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, ip: String? = nil, domain: String? = nil, protocol: String? = nil) {
             self.business = business
             self.offset = offset
             self.limit = limit
@@ -87,5 +87,17 @@ extension Antiddos {
     @inlinable
     public func describeCCPrecisionPlyList(_ input: DescribeCCPrecisionPlyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCPrecisionPlyListResponse {
         try await self.client.execute(action: "DescribeCCPrecisionPlyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 获取CC精准防护列表
+    @inlinable
+    public func describeCCPrecisionPlyList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, ip: String? = nil, domain: String? = nil, protocol: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCPrecisionPlyListResponse > {
+        self.describeCCPrecisionPlyList(DescribeCCPrecisionPlyListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC精准防护列表
+    @inlinable
+    public func describeCCPrecisionPlyList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, ip: String? = nil, domain: String? = nil, protocol: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCPrecisionPlyListResponse {
+        try await self.describeCCPrecisionPlyList(DescribeCCPrecisionPlyListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), logger: logger, on: eventLoop)
     }
 }

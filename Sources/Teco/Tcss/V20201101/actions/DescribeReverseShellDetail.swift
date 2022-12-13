@@ -75,4 +75,20 @@ extension Tcss {
     public func describeReverseShellDetail(_ input: DescribeReverseShellDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellDetailResponse {
         try await self.client.execute(action: "DescribeReverseShellDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行时反弹shell事件详细信息
+    ///
+    /// 查询运行时反弹shell事件详细信息
+    @inlinable
+    public func describeReverseShellDetail(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReverseShellDetailResponse > {
+        self.describeReverseShellDetail(DescribeReverseShellDetailRequest(eventId: eventId), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时反弹shell事件详细信息
+    ///
+    /// 查询运行时反弹shell事件详细信息
+    @inlinable
+    public func describeReverseShellDetail(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellDetailResponse {
+        try await self.describeReverseShellDetail(DescribeReverseShellDetailRequest(eventId: eventId), logger: logger, on: eventLoop)
+    }
 }

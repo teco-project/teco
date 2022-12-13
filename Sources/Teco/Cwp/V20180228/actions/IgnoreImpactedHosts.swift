@@ -54,4 +54,20 @@ extension Cwp {
     public func ignoreImpactedHosts(_ input: IgnoreImpactedHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IgnoreImpactedHostsResponse {
         try await self.client.execute(action: "IgnoreImpactedHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 忽略漏洞
+    ///
+    /// 本接口 (IgnoreImpactedHosts) 用于忽略漏洞。
+    @inlinable
+    public func ignoreImpactedHosts(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IgnoreImpactedHostsResponse > {
+        self.ignoreImpactedHosts(IgnoreImpactedHostsRequest(ids: ids), logger: logger, on: eventLoop)
+    }
+    
+    /// 忽略漏洞
+    ///
+    /// 本接口 (IgnoreImpactedHosts) 用于忽略漏洞。
+    @inlinable
+    public func ignoreImpactedHosts(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IgnoreImpactedHostsResponse {
+        try await self.ignoreImpactedHosts(IgnoreImpactedHostsRequest(ids: ids), logger: logger, on: eventLoop)
+    }
 }

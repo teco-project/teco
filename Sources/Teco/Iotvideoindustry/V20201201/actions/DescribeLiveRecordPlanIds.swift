@@ -68,4 +68,16 @@ extension Iotvideoindustry {
     public func describeLiveRecordPlanIds(_ input: DescribeLiveRecordPlanIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordPlanIdsResponse {
         try await self.client.execute(action: "DescribeLiveRecordPlanIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取直播录制计划列表
+    @inlinable
+    public func describeLiveRecordPlanIds(templateId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordPlanIdsResponse > {
+        self.describeLiveRecordPlanIds(DescribeLiveRecordPlanIdsRequest(templateId: templateId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取直播录制计划列表
+    @inlinable
+    public func describeLiveRecordPlanIds(templateId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordPlanIdsResponse {
+        try await self.describeLiveRecordPlanIds(DescribeLiveRecordPlanIdsRequest(templateId: templateId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Tsf {
     public func describeRepository(_ input: DescribeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryResponse {
         try await self.client.execute(action: "DescribeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询仓库信息
+    @inlinable
+    public func describeRepository(repositoryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRepositoryResponse > {
+        self.describeRepository(DescribeRepositoryRequest(repositoryId: repositoryId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询仓库信息
+    @inlinable
+    public func describeRepository(repositoryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryResponse {
+        try await self.describeRepository(DescribeRepositoryRequest(repositoryId: repositoryId), logger: logger, on: eventLoop)
+    }
 }

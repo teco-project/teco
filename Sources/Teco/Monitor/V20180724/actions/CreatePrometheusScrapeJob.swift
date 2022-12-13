@@ -64,4 +64,16 @@ extension Monitor {
     public func createPrometheusScrapeJob(_ input: CreatePrometheusScrapeJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusScrapeJobResponse {
         try await self.client.execute(action: "CreatePrometheusScrapeJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建 Prometheus 抓取任务
+    @inlinable
+    public func createPrometheusScrapeJob(instanceId: String, agentId: String, config: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusScrapeJobResponse > {
+        self.createPrometheusScrapeJob(CreatePrometheusScrapeJobRequest(instanceId: instanceId, agentId: agentId, config: config), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建 Prometheus 抓取任务
+    @inlinable
+    public func createPrometheusScrapeJob(instanceId: String, agentId: String, config: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusScrapeJobResponse {
+        try await self.createPrometheusScrapeJob(CreatePrometheusScrapeJobRequest(instanceId: instanceId, agentId: agentId, config: config), logger: logger, on: eventLoop)
+    }
 }

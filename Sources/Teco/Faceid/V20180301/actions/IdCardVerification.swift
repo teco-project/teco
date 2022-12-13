@@ -82,4 +82,20 @@ extension Faceid {
     public func idCardVerification(_ input: IdCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdCardVerificationResponse {
         try await self.client.execute(action: "IdCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 身份信息认证
+    ///
+    /// 传入姓名和身份证号，校验两者的真实性和一致性。
+    @inlinable
+    public func idCardVerification(idCard: String, name: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IdCardVerificationResponse > {
+        self.idCardVerification(IdCardVerificationRequest(idCard: idCard, name: name, encryption: encryption), logger: logger, on: eventLoop)
+    }
+    
+    /// 身份信息认证
+    ///
+    /// 传入姓名和身份证号，校验两者的真实性和一致性。
+    @inlinable
+    public func idCardVerification(idCard: String, name: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdCardVerificationResponse {
+        try await self.idCardVerification(IdCardVerificationRequest(idCard: idCard, name: name, encryption: encryption), logger: logger, on: eventLoop)
+    }
 }

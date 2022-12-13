@@ -56,4 +56,20 @@ extension Yunjing {
     public func modifyAutoOpenProVersionConfig(_ input: ModifyAutoOpenProVersionConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoOpenProVersionConfigResponse {
         try await self.client.execute(action: "ModifyAutoOpenProVersionConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置新增主机自动开通专业版配置
+    ///
+    /// 本接口 (ModifyAutoOpenProVersionConfig) 用于设置新增主机自动开通专业版配置。
+    @inlinable
+    public func modifyAutoOpenProVersionConfig(status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAutoOpenProVersionConfigResponse > {
+        self.modifyAutoOpenProVersionConfig(ModifyAutoOpenProVersionConfigRequest(status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置新增主机自动开通专业版配置
+    ///
+    /// 本接口 (ModifyAutoOpenProVersionConfig) 用于设置新增主机自动开通专业版配置。
+    @inlinable
+    public func modifyAutoOpenProVersionConfig(status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoOpenProVersionConfigResponse {
+        try await self.modifyAutoOpenProVersionConfig(ModifyAutoOpenProVersionConfigRequest(status: status), logger: logger, on: eventLoop)
+    }
 }

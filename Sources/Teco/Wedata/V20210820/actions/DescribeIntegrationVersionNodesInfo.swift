@@ -79,4 +79,16 @@ extension Wedata {
     public func describeIntegrationVersionNodesInfo(_ input: DescribeIntegrationVersionNodesInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationVersionNodesInfoResponse {
         try await self.client.execute(action: "DescribeIntegrationVersionNodesInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询集成任务版本节点信息
+    @inlinable
+    public func describeIntegrationVersionNodesInfo(taskId: String, projectId: String, taskVersionPath: String, taskVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationVersionNodesInfoResponse > {
+        self.describeIntegrationVersionNodesInfo(DescribeIntegrationVersionNodesInfoRequest(taskId: taskId, projectId: projectId, taskVersionPath: taskVersionPath, taskVersion: taskVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集成任务版本节点信息
+    @inlinable
+    public func describeIntegrationVersionNodesInfo(taskId: String, projectId: String, taskVersionPath: String, taskVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationVersionNodesInfoResponse {
+        try await self.describeIntegrationVersionNodesInfo(DescribeIntegrationVersionNodesInfoRequest(taskId: taskId, projectId: projectId, taskVersionPath: taskVersionPath, taskVersion: taskVersion), logger: logger, on: eventLoop)
+    }
 }

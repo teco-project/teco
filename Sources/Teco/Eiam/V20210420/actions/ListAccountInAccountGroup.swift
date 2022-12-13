@@ -84,4 +84,20 @@ extension Eiam {
     public func listAccountInAccountGroup(_ input: ListAccountInAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAccountInAccountGroupResponse {
         try await self.client.execute(action: "ListAccountInAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取账号组中的账号列表
+    ///
+    ///  获取账号组中的账号列表
+    @inlinable
+    public func listAccountInAccountGroup(accountGroupId: String, searchCondition: AccountGroupSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAccountInAccountGroupResponse > {
+        self.listAccountInAccountGroup(ListAccountInAccountGroupRequest(accountGroupId: accountGroupId, searchCondition: searchCondition, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取账号组中的账号列表
+    ///
+    ///  获取账号组中的账号列表
+    @inlinable
+    public func listAccountInAccountGroup(accountGroupId: String, searchCondition: AccountGroupSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAccountInAccountGroupResponse {
+        try await self.listAccountInAccountGroup(ListAccountInAccountGroupRequest(accountGroupId: accountGroupId, searchCondition: searchCondition, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

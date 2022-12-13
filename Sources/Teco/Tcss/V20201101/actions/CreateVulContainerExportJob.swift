@@ -72,4 +72,16 @@ extension Tcss {
     public func createVulContainerExportJob(_ input: CreateVulContainerExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulContainerExportJobResponse {
         try await self.client.execute(action: "CreateVulContainerExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建受漏洞影响的容器导出任务
+    @inlinable
+    public func createVulContainerExportJob(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVulContainerExportJobResponse > {
+        self.createVulContainerExportJob(CreateVulContainerExportJobRequest(pocID: pocID, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建受漏洞影响的容器导出任务
+    @inlinable
+    public func createVulContainerExportJob(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulContainerExportJobResponse {
+        try await self.createVulContainerExportJob(CreateVulContainerExportJobRequest(pocID: pocID, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

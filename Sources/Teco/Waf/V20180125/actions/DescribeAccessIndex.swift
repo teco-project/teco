@@ -60,4 +60,20 @@ extension Waf {
     public func describeAccessIndex(_ input: DescribeAccessIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessIndexResponse {
         try await self.client.execute(action: "DescribeAccessIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取访问日志索引配置信息
+    ///
+    /// 本接口用于获取访问日志索引配置信息
+    @inlinable
+    public func describeAccessIndex(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessIndexResponse > {
+        self.describeAccessIndex(DescribeAccessIndexRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取访问日志索引配置信息
+    ///
+    /// 本接口用于获取访问日志索引配置信息
+    @inlinable
+    public func describeAccessIndex(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessIndexResponse {
+        try await self.describeAccessIndex(DescribeAccessIndexRequest(), logger: logger, on: eventLoop)
+    }
 }

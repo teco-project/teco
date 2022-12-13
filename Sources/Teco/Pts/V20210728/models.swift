@@ -685,7 +685,7 @@ extension Pts {
         /// 指标值
         public let labelValue: String
         
-        public init (`operator`: Int64, labelName: String, labelValue: String) {
+        public init (operator: Int64, labelName: String, labelValue: String) {
             self.`operator` = `operator`
             self.labelName = labelName
             self.labelValue = labelValue
@@ -1585,7 +1585,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `for`: String?
         
-        public init (metric: String? = nil, aggregation: String? = nil, condition: String? = nil, value: Float? = nil, labelFilter: [SLALabel]? = nil, abortFlag: Bool? = nil, `for`: String? = nil) {
+        public init (metric: String? = nil, aggregation: String? = nil, condition: String? = nil, value: Float? = nil, labelFilter: [SLALabel]? = nil, abortFlag: Bool? = nil, for: String? = nil) {
             self.metric = metric
             self.aggregation = aggregation
             self.condition = condition

@@ -54,4 +54,16 @@ extension Rum {
     public func describeWhitelists(_ input: DescribeWhitelistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhitelistsResponse {
         try await self.client.execute(action: "DescribeWhitelists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取白名单列表
+    @inlinable
+    public func describeWhitelists(instanceID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhitelistsResponse > {
+        self.describeWhitelists(DescribeWhitelistsRequest(instanceID: instanceID), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取白名单列表
+    @inlinable
+    public func describeWhitelists(instanceID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhitelistsResponse {
+        try await self.describeWhitelists(DescribeWhitelistsRequest(instanceID: instanceID), logger: logger, on: eventLoop)
+    }
 }

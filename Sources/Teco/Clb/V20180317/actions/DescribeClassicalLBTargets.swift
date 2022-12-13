@@ -59,4 +59,20 @@ extension Clb {
     public func describeClassicalLBTargets(_ input: DescribeClassicalLBTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBTargetsResponse {
         try await self.client.execute(action: "DescribeClassicalLBTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取传统型负载均衡绑定的后端服务器列表
+    ///
+    /// DescribeClassicalLBTargets用于获取传统型负载均衡绑定的后端服务。
+    @inlinable
+    public func describeClassicalLBTargets(loadBalancerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClassicalLBTargetsResponse > {
+        self.describeClassicalLBTargets(DescribeClassicalLBTargetsRequest(loadBalancerId: loadBalancerId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取传统型负载均衡绑定的后端服务器列表
+    ///
+    /// DescribeClassicalLBTargets用于获取传统型负载均衡绑定的后端服务。
+    @inlinable
+    public func describeClassicalLBTargets(loadBalancerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBTargetsResponse {
+        try await self.describeClassicalLBTargets(DescribeClassicalLBTargetsRequest(loadBalancerId: loadBalancerId), logger: logger, on: eventLoop)
+    }
 }

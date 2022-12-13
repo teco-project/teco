@@ -34,7 +34,7 @@ extension Essbasic {
         /// 操作者的信息
         public let `operator`: UserInfo?
         
-        public init (limit: Int64, agent: Agent? = nil, filters: [Filter]? = nil, offset: Int64? = nil, `operator`: UserInfo? = nil) {
+        public init (limit: Int64, agent: Agent? = nil, filters: [Filter]? = nil, offset: Int64? = nil, operator: UserInfo? = nil) {
             self.limit = limit
             self.agent = agent
             self.filters = filters
@@ -93,5 +93,21 @@ extension Essbasic {
     @inlinable
     public func channelDescribeEmployees(_ input: ChannelDescribeEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelDescribeEmployeesResponse {
         try await self.client.execute(action: "ChannelDescribeEmployees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 查询企业员工
+    ///
+    /// 查询企业员工列表
+    @inlinable
+    public func channelDescribeEmployees(limit: Int64, agent: Agent? = nil, filters: [Filter]? = nil, offset: Int64? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelDescribeEmployeesResponse > {
+        self.channelDescribeEmployees(ChannelDescribeEmployeesRequest(limit: limit, agent: agent, filters: filters, offset: offset, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询企业员工
+    ///
+    /// 查询企业员工列表
+    @inlinable
+    public func channelDescribeEmployees(limit: Int64, agent: Agent? = nil, filters: [Filter]? = nil, offset: Int64? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelDescribeEmployeesResponse {
+        try await self.channelDescribeEmployees(ChannelDescribeEmployeesRequest(limit: limit, agent: agent, filters: filters, offset: offset, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

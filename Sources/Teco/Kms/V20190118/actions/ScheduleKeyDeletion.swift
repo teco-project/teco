@@ -67,4 +67,20 @@ extension Kms {
     public func scheduleKeyDeletion(_ input: ScheduleKeyDeletionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScheduleKeyDeletionResponse {
         try await self.client.execute(action: "ScheduleKeyDeletion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// CMK计划删除接口
+    ///
+    /// CMK计划删除接口，用于指定CMK删除的时间，可选时间区间为[7,30]天
+    @inlinable
+    public func scheduleKeyDeletion(keyId: String, pendingWindowInDays: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScheduleKeyDeletionResponse > {
+        self.scheduleKeyDeletion(ScheduleKeyDeletionRequest(keyId: keyId, pendingWindowInDays: pendingWindowInDays), logger: logger, on: eventLoop)
+    }
+    
+    /// CMK计划删除接口
+    ///
+    /// CMK计划删除接口，用于指定CMK删除的时间，可选时间区间为[7,30]天
+    @inlinable
+    public func scheduleKeyDeletion(keyId: String, pendingWindowInDays: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScheduleKeyDeletionResponse {
+        try await self.scheduleKeyDeletion(ScheduleKeyDeletionRequest(keyId: keyId, pendingWindowInDays: pendingWindowInDays), logger: logger, on: eventLoop)
+    }
 }

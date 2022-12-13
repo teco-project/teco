@@ -64,4 +64,16 @@ extension Dnspod {
     public func describeRecord(_ input: DescribeRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordResponse {
         try await self.client.execute(action: "DescribeRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取记录信息
+    @inlinable
+    public func describeRecord(domain: String, recordId: UInt64, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordResponse > {
+        self.describeRecord(DescribeRecordRequest(domain: domain, recordId: recordId, domainId: domainId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取记录信息
+    @inlinable
+    public func describeRecord(domain: String, recordId: UInt64, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordResponse {
+        try await self.describeRecord(DescribeRecordRequest(domain: domain, recordId: recordId, domainId: domainId), logger: logger, on: eventLoop)
+    }
 }

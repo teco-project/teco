@@ -54,4 +54,20 @@ extension Live {
     public func stopScreenshotTask(_ input: StopScreenshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopScreenshotTaskResponse {
         try await self.client.execute(action: "StopScreenshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 终止截图任务
+    ///
+    /// 提前结束截图，中止运行中的截图任务。任务被成功终止后，本次任务将不再启动。
+    @inlinable
+    public func stopScreenshotTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopScreenshotTaskResponse > {
+        self.stopScreenshotTask(StopScreenshotTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 终止截图任务
+    ///
+    /// 提前结束截图，中止运行中的截图任务。任务被成功终止后，本次任务将不再启动。
+    @inlinable
+    public func stopScreenshotTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopScreenshotTaskResponse {
+        try await self.stopScreenshotTask(StopScreenshotTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

@@ -72,4 +72,20 @@ extension Cdb {
     public func describeBackups(_ input: DescribeBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupsResponse {
         try await self.client.execute(action: "DescribeBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询数据备份文件列表
+    ///
+    /// 本接口(DescribeBackups)用于查询云数据库实例的备份数据。
+    @inlinable
+    public func describeBackups(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupsResponse > {
+        self.describeBackups(DescribeBackupsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据备份文件列表
+    ///
+    /// 本接口(DescribeBackups)用于查询云数据库实例的备份数据。
+    @inlinable
+    public func describeBackups(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupsResponse {
+        try await self.describeBackups(DescribeBackupsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

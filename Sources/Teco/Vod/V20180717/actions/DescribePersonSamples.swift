@@ -96,4 +96,20 @@ extension Vod {
     public func describePersonSamples(_ input: DescribePersonSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonSamplesResponse {
         try await self.client.execute(action: "DescribePersonSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取素材样本列表
+    ///
+    /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
+    @inlinable
+    public func describePersonSamples(subAppId: UInt64? = nil, type: String? = nil, personIds: [String]? = nil, names: [String]? = nil, tags: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonSamplesResponse > {
+        self.describePersonSamples(DescribePersonSamplesRequest(subAppId: subAppId, type: type, personIds: personIds, names: names, tags: tags, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取素材样本列表
+    ///
+    /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
+    @inlinable
+    public func describePersonSamples(subAppId: UInt64? = nil, type: String? = nil, personIds: [String]? = nil, names: [String]? = nil, tags: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonSamplesResponse {
+        try await self.describePersonSamples(DescribePersonSamplesRequest(subAppId: subAppId, type: type, personIds: personIds, names: names, tags: tags, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

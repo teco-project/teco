@@ -69,4 +69,20 @@ extension Tdmq {
     public func acknowledgeMessage(_ input: AcknowledgeMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcknowledgeMessageResponse {
         try await self.client.execute(action: "AcknowledgeMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 确认消息
+    ///
+    /// 根据提供的 MessageID 确认指定 topic 中的消息
+    @inlinable
+    public func acknowledgeMessage(messageId: String, ackTopic: String, subName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcknowledgeMessageResponse > {
+        self.acknowledgeMessage(AcknowledgeMessageRequest(messageId: messageId, ackTopic: ackTopic, subName: subName), logger: logger, on: eventLoop)
+    }
+    
+    /// 确认消息
+    ///
+    /// 根据提供的 MessageID 确认指定 topic 中的消息
+    @inlinable
+    public func acknowledgeMessage(messageId: String, ackTopic: String, subName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcknowledgeMessageResponse {
+        try await self.acknowledgeMessage(AcknowledgeMessageRequest(messageId: messageId, ackTopic: ackTopic, subName: subName), logger: logger, on: eventLoop)
+    }
 }

@@ -50,4 +50,16 @@ extension Cls {
     public func deleteMachineGroup(_ input: DeleteMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupResponse {
         try await self.client.execute(action: "DeleteMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除机器组
+    @inlinable
+    public func deleteMachineGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMachineGroupResponse > {
+        self.deleteMachineGroup(DeleteMachineGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除机器组
+    @inlinable
+    public func deleteMachineGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupResponse {
+        try await self.deleteMachineGroup(DeleteMachineGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

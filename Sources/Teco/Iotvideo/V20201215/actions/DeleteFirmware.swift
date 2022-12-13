@@ -59,4 +59,20 @@ extension Iotvideo {
     public func deleteFirmware(_ input: DeleteFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirmwareResponse {
         try await self.client.execute(action: "DeleteFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除固件
+    ///
+    /// 本接口（DeleteFirmware）用于删除固件 
+    @inlinable
+    public func deleteFirmware(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFirmwareResponse > {
+        self.deleteFirmware(DeleteFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除固件
+    ///
+    /// 本接口（DeleteFirmware）用于删除固件 
+    @inlinable
+    public func deleteFirmware(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirmwareResponse {
+        try await self.deleteFirmware(DeleteFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion), logger: logger, on: eventLoop)
+    }
 }

@@ -85,4 +85,20 @@ extension Cdwch {
     public func describeCkSqlApis(_ input: DescribeCkSqlApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCkSqlApisResponse {
         try await self.client.execute(action: "DescribeCkSqlApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询集群用户相关信息
+    ///
+    /// 查询集群用户、集群表，数据库等相关信息
+    @inlinable
+    public func describeCkSqlApis(instanceId: String, apiType: String, cluster: String? = nil, userName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCkSqlApisResponse > {
+        self.describeCkSqlApis(DescribeCkSqlApisRequest(instanceId: instanceId, apiType: apiType, cluster: cluster, userName: userName), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群用户相关信息
+    ///
+    /// 查询集群用户、集群表，数据库等相关信息
+    @inlinable
+    public func describeCkSqlApis(instanceId: String, apiType: String, cluster: String? = nil, userName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCkSqlApisResponse {
+        try await self.describeCkSqlApis(DescribeCkSqlApisRequest(instanceId: instanceId, apiType: apiType, cluster: cluster, userName: userName), logger: logger, on: eventLoop)
+    }
 }

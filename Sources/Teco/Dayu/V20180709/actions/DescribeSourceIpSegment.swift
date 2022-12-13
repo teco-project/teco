@@ -63,4 +63,20 @@ extension Dayu {
     public func describeSourceIpSegment(_ input: DescribeSourceIpSegmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSourceIpSegmentResponse {
         try await self.client.execute(action: "DescribeSourceIpSegment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取回源IP段
+    ///
+    /// 获取回源IP段，支持的产品：高防IP，高防IP专业版；
+    @inlinable
+    public func describeSourceIpSegment(business: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSourceIpSegmentResponse > {
+        self.describeSourceIpSegment(DescribeSourceIpSegmentRequest(business: business, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取回源IP段
+    ///
+    /// 获取回源IP段，支持的产品：高防IP，高防IP专业版；
+    @inlinable
+    public func describeSourceIpSegment(business: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSourceIpSegmentResponse {
+        try await self.describeSourceIpSegment(DescribeSourceIpSegmentRequest(business: business, id: id), logger: logger, on: eventLoop)
+    }
 }

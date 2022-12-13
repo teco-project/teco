@@ -50,4 +50,16 @@ extension Waf {
     public func deleteDownloadRecord(_ input: DeleteDownloadRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDownloadRecordResponse {
         try await self.client.execute(action: "DeleteDownloadRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除访问日志下载记录
+    @inlinable
+    public func deleteDownloadRecord(flow: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDownloadRecordResponse > {
+        self.deleteDownloadRecord(DeleteDownloadRecordRequest(flow: flow), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除访问日志下载记录
+    @inlinable
+    public func deleteDownloadRecord(flow: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDownloadRecordResponse {
+        try await self.deleteDownloadRecord(DeleteDownloadRecordRequest(flow: flow), logger: logger, on: eventLoop)
+    }
 }

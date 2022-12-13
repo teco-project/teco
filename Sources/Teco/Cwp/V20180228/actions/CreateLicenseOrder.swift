@@ -113,4 +113,26 @@ extension Cwp {
     public func createLicenseOrder(_ input: CreateLicenseOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLicenseOrderResponse {
         try await self.client.execute(action: "CreateLicenseOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建授权订单
+    ///
+    /// CreateLicenseOrder 该接口可以创建专业版/旗舰版订单
+    /// 支持预付费后付费创建
+    /// 后付费订单直接创建成功
+    /// 预付费订单仅下单不支付,需要调用计费支付接口进行支付
+    @inlinable
+    public func createLicenseOrder(tags: [Tags]? = nil, licenseType: UInt64? = nil, licenseNum: UInt64? = nil, regionId: UInt64? = nil, projectId: UInt64? = nil, timeSpan: UInt64? = nil, autoRenewFlag: Bool? = nil, autoProtectOpenConfig: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLicenseOrderResponse > {
+        self.createLicenseOrder(CreateLicenseOrderRequest(tags: tags, licenseType: licenseType, licenseNum: licenseNum, regionId: regionId, projectId: projectId, timeSpan: timeSpan, autoRenewFlag: autoRenewFlag, autoProtectOpenConfig: autoProtectOpenConfig), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建授权订单
+    ///
+    /// CreateLicenseOrder 该接口可以创建专业版/旗舰版订单
+    /// 支持预付费后付费创建
+    /// 后付费订单直接创建成功
+    /// 预付费订单仅下单不支付,需要调用计费支付接口进行支付
+    @inlinable
+    public func createLicenseOrder(tags: [Tags]? = nil, licenseType: UInt64? = nil, licenseNum: UInt64? = nil, regionId: UInt64? = nil, projectId: UInt64? = nil, timeSpan: UInt64? = nil, autoRenewFlag: Bool? = nil, autoProtectOpenConfig: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLicenseOrderResponse {
+        try await self.createLicenseOrder(CreateLicenseOrderRequest(tags: tags, licenseType: licenseType, licenseNum: licenseNum, regionId: regionId, projectId: projectId, timeSpan: timeSpan, autoRenewFlag: autoRenewFlag, autoProtectOpenConfig: autoProtectOpenConfig), logger: logger, on: eventLoop)
+    }
 }

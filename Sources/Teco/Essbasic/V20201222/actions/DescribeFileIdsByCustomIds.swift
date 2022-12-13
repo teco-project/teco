@@ -59,4 +59,16 @@ extension Essbasic {
     public func describeFileIdsByCustomIds(_ input: DescribeFileIdsByCustomIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileIdsByCustomIdsResponse {
         try await self.client.execute(action: "DescribeFileIdsByCustomIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 根据用户自定义id查询文件id
+    @inlinable
+    public func describeFileIdsByCustomIds(caller: Caller, customIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileIdsByCustomIdsResponse > {
+        self.describeFileIdsByCustomIds(DescribeFileIdsByCustomIdsRequest(caller: caller, customIds: customIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 根据用户自定义id查询文件id
+    @inlinable
+    public func describeFileIdsByCustomIds(caller: Caller, customIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileIdsByCustomIdsResponse {
+        try await self.describeFileIdsByCustomIds(DescribeFileIdsByCustomIdsRequest(caller: caller, customIds: customIds), logger: logger, on: eventLoop)
+    }
 }

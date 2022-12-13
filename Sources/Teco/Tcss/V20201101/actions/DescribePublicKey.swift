@@ -46,4 +46,16 @@ extension Tcss {
     public func describePublicKey(_ input: DescribePublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicKeyResponse {
         try await self.client.execute(action: "DescribePublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取公钥
+    @inlinable
+    public func describePublicKey(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicKeyResponse > {
+        self.describePublicKey(DescribePublicKeyRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取公钥
+    @inlinable
+    public func describePublicKey(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicKeyResponse {
+        try await self.describePublicKey(DescribePublicKeyRequest(), logger: logger, on: eventLoop)
+    }
 }

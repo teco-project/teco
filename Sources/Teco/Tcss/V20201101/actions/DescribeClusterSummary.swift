@@ -82,4 +82,16 @@ extension Tcss {
     public func describeClusterSummary(_ input: DescribeClusterSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterSummaryResponse {
         try await self.client.execute(action: "DescribeClusterSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询用户集群资产总览
+    @inlinable
+    public func describeClusterSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterSummaryResponse > {
+        self.describeClusterSummary(DescribeClusterSummaryRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户集群资产总览
+    @inlinable
+    public func describeClusterSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterSummaryResponse {
+        try await self.describeClusterSummary(DescribeClusterSummaryRequest(), logger: logger, on: eventLoop)
+    }
 }

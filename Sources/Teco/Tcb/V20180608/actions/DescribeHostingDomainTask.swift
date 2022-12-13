@@ -54,4 +54,16 @@ extension Tcb {
     public func describeHostingDomainTask(_ input: DescribeHostingDomainTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostingDomainTaskResponse {
         try await self.client.execute(action: "DescribeHostingDomainTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询静态托管域名任务状态
+    @inlinable
+    public func describeHostingDomainTask(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostingDomainTaskResponse > {
+        self.describeHostingDomainTask(DescribeHostingDomainTaskRequest(envId: envId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询静态托管域名任务状态
+    @inlinable
+    public func describeHostingDomainTask(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostingDomainTaskResponse {
+        try await self.describeHostingDomainTask(DescribeHostingDomainTaskRequest(envId: envId), logger: logger, on: eventLoop)
+    }
 }

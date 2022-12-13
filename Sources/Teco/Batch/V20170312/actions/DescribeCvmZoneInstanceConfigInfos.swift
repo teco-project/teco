@@ -58,4 +58,16 @@ extension Batch {
     public func describeCvmZoneInstanceConfigInfos(_ input: DescribeCvmZoneInstanceConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCvmZoneInstanceConfigInfosResponse {
         try await self.client.execute(action: "DescribeCvmZoneInstanceConfigInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取批量计算可用区机型配置信息
+    @inlinable
+    public func describeCvmZoneInstanceConfigInfos(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCvmZoneInstanceConfigInfosResponse > {
+        self.describeCvmZoneInstanceConfigInfos(DescribeCvmZoneInstanceConfigInfosRequest(filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取批量计算可用区机型配置信息
+    @inlinable
+    public func describeCvmZoneInstanceConfigInfos(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCvmZoneInstanceConfigInfosResponse {
+        try await self.describeCvmZoneInstanceConfigInfos(DescribeCvmZoneInstanceConfigInfosRequest(filters: filters), logger: logger, on: eventLoop)
+    }
 }

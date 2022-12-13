@@ -62,4 +62,20 @@ extension Tcss {
     public func describeAssetImageHostList(_ input: DescribeAssetImageHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageHostListResponse {
         try await self.client.execute(action: "DescribeAssetImageHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询镜像关联主机
+    ///
+    /// 容器安全查询镜像关联主机
+    @inlinable
+    public func describeAssetImageHostList(filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageHostListResponse > {
+        self.describeAssetImageHostList(DescribeAssetImageHostListRequest(filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像关联主机
+    ///
+    /// 容器安全查询镜像关联主机
+    @inlinable
+    public func describeAssetImageHostList(filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageHostListResponse {
+        try await self.describeAssetImageHostList(DescribeAssetImageHostListRequest(filters: filters), logger: logger, on: eventLoop)
+    }
 }

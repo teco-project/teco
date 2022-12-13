@@ -59,4 +59,20 @@ extension Cam {
     public func detachGroupPolicy(_ input: DetachGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachGroupPolicyResponse {
         try await self.client.execute(action: "DetachGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解除绑定到用户组的策略
+    ///
+    /// 本接口（DetachGroupPolicy）可用于解除绑定到用户组的策略。
+    @inlinable
+    public func detachGroupPolicy(policyId: UInt64, detachGroupId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachGroupPolicyResponse > {
+        self.detachGroupPolicy(DetachGroupPolicyRequest(policyId: policyId, detachGroupId: detachGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 解除绑定到用户组的策略
+    ///
+    /// 本接口（DetachGroupPolicy）可用于解除绑定到用户组的策略。
+    @inlinable
+    public func detachGroupPolicy(policyId: UInt64, detachGroupId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachGroupPolicyResponse {
+        try await self.detachGroupPolicy(DetachGroupPolicyRequest(policyId: policyId, detachGroupId: detachGroupId), logger: logger, on: eventLoop)
+    }
 }

@@ -82,4 +82,20 @@ extension Yunjing {
     public func describeVuls(_ input: DescribeVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsResponse {
         try await self.client.execute(action: "DescribeVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取漏洞列表
+    ///
+    /// 本接口 (DescribeVuls) 用于获取漏洞列表数据。
+    @inlinable
+    public func describeVuls(vulType: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulsResponse > {
+        self.describeVuls(DescribeVulsRequest(vulType: vulType, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取漏洞列表
+    ///
+    /// 本接口 (DescribeVuls) 用于获取漏洞列表数据。
+    @inlinable
+    public func describeVuls(vulType: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsResponse {
+        try await self.describeVuls(DescribeVulsRequest(vulType: vulType, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

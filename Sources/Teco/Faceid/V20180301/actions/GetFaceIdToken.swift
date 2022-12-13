@@ -95,4 +95,20 @@ extension Faceid {
     public func getFaceIdToken(_ input: GetFaceIdTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFaceIdTokenResponse {
         try await self.client.execute(action: "GetFaceIdToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取SDKToken
+    ///
+    /// 每次调用人脸核身SDK服务前，需先调用本接口获取SDKToken，用来串联核身流程，在验证完成后，用于获取验证结果信息，该token仅能核身一次。
+    @inlinable
+    public func getFaceIdToken(compareLib: String, idCard: String? = nil, name: String? = nil, imageBase64: String? = nil, meta: String? = nil, extra: String? = nil, useCos: Bool? = nil, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFaceIdTokenResponse > {
+        self.getFaceIdToken(GetFaceIdTokenRequest(compareLib: compareLib, idCard: idCard, name: name, imageBase64: imageBase64, meta: meta, extra: extra, useCos: useCos, encryption: encryption), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取SDKToken
+    ///
+    /// 每次调用人脸核身SDK服务前，需先调用本接口获取SDKToken，用来串联核身流程，在验证完成后，用于获取验证结果信息，该token仅能核身一次。
+    @inlinable
+    public func getFaceIdToken(compareLib: String, idCard: String? = nil, name: String? = nil, imageBase64: String? = nil, meta: String? = nil, extra: String? = nil, useCos: Bool? = nil, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFaceIdTokenResponse {
+        try await self.getFaceIdToken(GetFaceIdTokenRequest(compareLib: compareLib, idCard: idCard, name: name, imageBase64: imageBase64, meta: meta, extra: extra, useCos: useCos, encryption: encryption), logger: logger, on: eventLoop)
+    }
 }

@@ -50,4 +50,20 @@ extension Monitor {
     public func describePluginOverviews(_ input: DescribePluginOverviewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginOverviewsResponse {
         try await self.client.execute(action: "DescribePluginOverviews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 列出所有 Grafana 插件
+    ///
+    /// 列出可安装的所有 Grafana 插件
+    @inlinable
+    public func describePluginOverviews(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePluginOverviewsResponse > {
+        self.describePluginOverviews(DescribePluginOverviewsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 列出所有 Grafana 插件
+    ///
+    /// 列出可安装的所有 Grafana 插件
+    @inlinable
+    public func describePluginOverviews(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginOverviewsResponse {
+        try await self.describePluginOverviews(DescribePluginOverviewsRequest(), logger: logger, on: eventLoop)
+    }
 }

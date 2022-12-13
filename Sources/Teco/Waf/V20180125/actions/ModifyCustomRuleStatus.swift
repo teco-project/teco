@@ -69,4 +69,16 @@ extension Waf {
     public func modifyCustomRuleStatus(_ input: ModifyCustomRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomRuleStatusResponse {
         try await self.client.execute(action: "ModifyCustomRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开启或禁用自定义策略
+    @inlinable
+    public func modifyCustomRuleStatus(domain: String, ruleId: UInt64, status: UInt64, edition: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomRuleStatusResponse > {
+        self.modifyCustomRuleStatus(ModifyCustomRuleStatusRequest(domain: domain, ruleId: ruleId, status: status, edition: edition), logger: logger, on: eventLoop)
+    }
+    
+    /// 开启或禁用自定义策略
+    @inlinable
+    public func modifyCustomRuleStatus(domain: String, ruleId: UInt64, status: UInt64, edition: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomRuleStatusResponse {
+        try await self.modifyCustomRuleStatus(ModifyCustomRuleStatusRequest(domain: domain, ruleId: ruleId, status: status, edition: edition), logger: logger, on: eventLoop)
+    }
 }

@@ -56,4 +56,20 @@ extension Live {
     public func deleteLiveTranscodeTemplate(_ input: DeleteLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveTranscodeTemplateResponse {
         try await self.client.execute(action: "DeleteLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除转码模板
+    ///
+    /// 删除转码模板。
+    @inlinable
+    public func deleteLiveTranscodeTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveTranscodeTemplateResponse > {
+        self.deleteLiveTranscodeTemplate(DeleteLiveTranscodeTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除转码模板
+    ///
+    /// 删除转码模板。
+    @inlinable
+    public func deleteLiveTranscodeTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveTranscodeTemplateResponse {
+        try await self.deleteLiveTranscodeTemplate(DeleteLiveTranscodeTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
 }

@@ -65,4 +65,16 @@ extension Pts {
     public func updateJob(_ input: UpdateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateJobResponse {
         try await self.client.execute(action: "UpdateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新任务
+    @inlinable
+    public func updateJob(jobId: String, projectId: String, scenarioId: String, note: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateJobResponse > {
+        self.updateJob(UpdateJobRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, note: note), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新任务
+    @inlinable
+    public func updateJob(jobId: String, projectId: String, scenarioId: String, note: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateJobResponse {
+        try await self.updateJob(UpdateJobRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, note: note), logger: logger, on: eventLoop)
+    }
 }

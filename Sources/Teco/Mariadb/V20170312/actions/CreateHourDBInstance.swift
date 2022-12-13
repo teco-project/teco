@@ -153,4 +153,16 @@ extension Mariadb {
     public func createHourDBInstance(_ input: CreateHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHourDBInstanceResponse {
         try await self.client.execute(action: "CreateHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建后付费实例
+    @inlinable
+    public func createHourDBInstance(zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, instanceName: String? = nil, securityGroupIds: [String]? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHourDBInstanceResponse > {
+        self.createHourDBInstance(CreateHourDBInstanceRequest(zones: zones, nodeCount: nodeCount, memory: memory, storage: storage, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, dbVersionId: dbVersionId, instanceName: instanceName, securityGroupIds: securityGroupIds, ipv6Flag: ipv6Flag, resourceTags: resourceTags, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, initParams: initParams, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建后付费实例
+    @inlinable
+    public func createHourDBInstance(zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, instanceName: String? = nil, securityGroupIds: [String]? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHourDBInstanceResponse {
+        try await self.createHourDBInstance(CreateHourDBInstanceRequest(zones: zones, nodeCount: nodeCount, memory: memory, storage: storage, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, dbVersionId: dbVersionId, instanceName: instanceName, securityGroupIds: securityGroupIds, ipv6Flag: ipv6Flag, resourceTags: resourceTags, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, initParams: initParams, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime), logger: logger, on: eventLoop)
+    }
 }

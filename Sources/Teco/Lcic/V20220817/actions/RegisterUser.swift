@@ -73,4 +73,16 @@ extension Lcic {
     public func registerUser(_ input: RegisterUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterUserResponse {
         try await self.client.execute(action: "RegisterUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 注册用户
+    @inlinable
+    public func registerUser(sdkAppId: UInt64, name: String? = nil, originId: String? = nil, avatar: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterUserResponse > {
+        self.registerUser(RegisterUserRequest(sdkAppId: sdkAppId, name: name, originId: originId, avatar: avatar), logger: logger, on: eventLoop)
+    }
+    
+    /// 注册用户
+    @inlinable
+    public func registerUser(sdkAppId: UInt64, name: String? = nil, originId: String? = nil, avatar: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterUserResponse {
+        try await self.registerUser(RegisterUserRequest(sdkAppId: sdkAppId, name: name, originId: originId, avatar: avatar), logger: logger, on: eventLoop)
+    }
 }

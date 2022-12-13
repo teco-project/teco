@@ -69,4 +69,20 @@ extension Live {
     public func createLiveWatermarkRule(_ input: CreateLiveWatermarkRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveWatermarkRuleResponse {
         try await self.client.execute(action: "CreateLiveWatermarkRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建水印规则
+    ///
+    /// 创建水印规则，需要先调用[AddLiveWatermark](/document/product/267/30154)接口添加水印，将返回的水印id绑定到流使用。
+    @inlinable
+    public func createLiveWatermarkRule(domainName: String, appName: String, streamName: String, templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveWatermarkRuleResponse > {
+        self.createLiveWatermarkRule(CreateLiveWatermarkRuleRequest(domainName: domainName, appName: appName, streamName: streamName, templateId: templateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建水印规则
+    ///
+    /// 创建水印规则，需要先调用[AddLiveWatermark](/document/product/267/30154)接口添加水印，将返回的水印id绑定到流使用。
+    @inlinable
+    public func createLiveWatermarkRule(domainName: String, appName: String, streamName: String, templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveWatermarkRuleResponse {
+        try await self.createLiveWatermarkRule(CreateLiveWatermarkRuleRequest(domainName: domainName, appName: appName, streamName: streamName, templateId: templateId), logger: logger, on: eventLoop)
+    }
 }

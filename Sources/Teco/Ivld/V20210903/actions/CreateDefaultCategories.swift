@@ -42,4 +42,16 @@ extension Ivld {
     public func createDefaultCategories(_ input: CreateDefaultCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultCategoriesResponse {
         try await self.client.execute(action: "CreateDefaultCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建默认自定义人物类型
+    @inlinable
+    public func createDefaultCategories(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDefaultCategoriesResponse > {
+        self.createDefaultCategories(CreateDefaultCategoriesRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建默认自定义人物类型
+    @inlinable
+    public func createDefaultCategories(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultCategoriesResponse {
+        try await self.createDefaultCategories(CreateDefaultCategoriesRequest(), logger: logger, on: eventLoop)
+    }
 }

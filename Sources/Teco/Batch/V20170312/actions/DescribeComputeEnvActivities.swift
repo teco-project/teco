@@ -78,4 +78,20 @@ extension Batch {
     public func describeComputeEnvActivities(_ input: DescribeComputeEnvActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvActivitiesResponse {
         try await self.client.execute(action: "DescribeComputeEnvActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看计算环境活动信息
+    ///
+    /// 用于查询计算环境的活动信息
+    @inlinable
+    public func describeComputeEnvActivities(envId: String, offset: Int64? = nil, limit: Int64? = nil, filters: Filter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComputeEnvActivitiesResponse > {
+        self.describeComputeEnvActivities(DescribeComputeEnvActivitiesRequest(envId: envId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看计算环境活动信息
+    ///
+    /// 用于查询计算环境的活动信息
+    @inlinable
+    public func describeComputeEnvActivities(envId: String, offset: Int64? = nil, limit: Int64? = nil, filters: Filter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvActivitiesResponse {
+        try await self.describeComputeEnvActivities(DescribeComputeEnvActivitiesRequest(envId: envId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

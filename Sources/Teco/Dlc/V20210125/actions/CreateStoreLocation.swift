@@ -54,4 +54,20 @@ extension Dlc {
     public func createStoreLocation(_ input: CreateStoreLocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStoreLocationResponse {
         try await self.client.execute(action: "CreateStoreLocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改结果存储位置
+    ///
+    /// 该接口（CreateStoreLocation）新增或覆盖计算结果存储位置。
+    @inlinable
+    public func createStoreLocation(storeLocation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStoreLocationResponse > {
+        self.createStoreLocation(CreateStoreLocationRequest(storeLocation: storeLocation), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改结果存储位置
+    ///
+    /// 该接口（CreateStoreLocation）新增或覆盖计算结果存储位置。
+    @inlinable
+    public func createStoreLocation(storeLocation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStoreLocationResponse {
+        try await self.createStoreLocation(CreateStoreLocationRequest(storeLocation: storeLocation), logger: logger, on: eventLoop)
+    }
 }

@@ -79,4 +79,16 @@ extension Cpdp {
     public func queryShopOpenId(_ input: QueryShopOpenIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryShopOpenIdResponse {
         try await self.client.execute(action: "QueryShopOpenId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云支付-获取门店OpenId接口
+    @inlinable
+    public func queryShopOpenId(openId: String, openKey: String, shopNo: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryShopOpenIdResponse > {
+        self.queryShopOpenId(QueryShopOpenIdRequest(openId: openId, openKey: openKey, shopNo: shopNo, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-获取门店OpenId接口
+    @inlinable
+    public func queryShopOpenId(openId: String, openKey: String, shopNo: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryShopOpenIdResponse {
+        try await self.queryShopOpenId(QueryShopOpenIdRequest(openId: openId, openKey: openKey, shopNo: shopNo, profile: profile), logger: logger, on: eventLoop)
+    }
 }

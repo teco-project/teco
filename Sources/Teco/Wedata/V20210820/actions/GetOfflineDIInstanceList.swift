@@ -73,4 +73,16 @@ extension Wedata {
     public func getOfflineDIInstanceList(_ input: GetOfflineDIInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOfflineDIInstanceListResponse {
         try await self.client.execute(action: "GetOfflineDIInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取离线任务实例列表(新)
+    @inlinable
+    public func getOfflineDIInstanceList(pageIndex: UInt64, pageSize: UInt64, projectId: String, searchCondition: SearchConditionNew? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetOfflineDIInstanceListResponse > {
+        self.getOfflineDIInstanceList(GetOfflineDIInstanceListRequest(pageIndex: pageIndex, pageSize: pageSize, projectId: projectId, searchCondition: searchCondition), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取离线任务实例列表(新)
+    @inlinable
+    public func getOfflineDIInstanceList(pageIndex: UInt64, pageSize: UInt64, projectId: String, searchCondition: SearchConditionNew? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOfflineDIInstanceListResponse {
+        try await self.getOfflineDIInstanceList(GetOfflineDIInstanceListRequest(pageIndex: pageIndex, pageSize: pageSize, projectId: projectId, searchCondition: searchCondition), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Tsf {
     public func describeBusinessLogConfig(_ input: DescribeBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessLogConfigResponse {
         try await self.client.execute(action: "DescribeBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询业务日志配置项信息
+    @inlinable
+    public func describeBusinessLogConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBusinessLogConfigResponse > {
+        self.describeBusinessLogConfig(DescribeBusinessLogConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询业务日志配置项信息
+    @inlinable
+    public func describeBusinessLogConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessLogConfigResponse {
+        try await self.describeBusinessLogConfig(DescribeBusinessLogConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    }
 }

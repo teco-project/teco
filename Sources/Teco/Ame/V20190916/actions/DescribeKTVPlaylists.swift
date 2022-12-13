@@ -77,4 +77,20 @@ extension Ame {
     public func describeKTVPlaylists(_ input: DescribeKTVPlaylistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistsResponse {
         try await self.client.execute(action: "DescribeKTVPlaylists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取直播互动曲库推荐歌单列表
+    ///
+    /// 获取直播互动曲库推荐歌单列表。
+    @inlinable
+    public func describeKTVPlaylists(type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVPlaylistsResponse > {
+        self.describeKTVPlaylists(DescribeKTVPlaylistsRequest(type: type, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取直播互动曲库推荐歌单列表
+    ///
+    /// 获取直播互动曲库推荐歌单列表。
+    @inlinable
+    public func describeKTVPlaylists(type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistsResponse {
+        try await self.describeKTVPlaylists(DescribeKTVPlaylistsRequest(type: type, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

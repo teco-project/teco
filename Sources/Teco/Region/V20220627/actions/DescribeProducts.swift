@@ -67,4 +67,20 @@ extension Region {
     public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
         try await self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询支持地域列表查询的产品
+    ///
+    /// 本接口(DescribeProducts)用于查询各个支持地域列表查询的产品信息。
+    @inlinable
+    public func describeProducts(limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductsResponse > {
+        self.describeProducts(DescribeProductsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询支持地域列表查询的产品
+    ///
+    /// 本接口(DescribeProducts)用于查询各个支持地域列表查询的产品信息。
+    @inlinable
+    public func describeProducts(limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
+        try await self.describeProducts(DescribeProductsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Cfw {
     public func modifyAllVPCSwitchStatus(_ input: ModifyAllVPCSwitchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAllVPCSwitchStatusResponse {
         try await self.client.execute(action: "ModifyAllVPCSwitchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// VPC防火墙一键开关
+    @inlinable
+    public func modifyAllVPCSwitchStatus(status: Int64, fireWallVpcIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAllVPCSwitchStatusResponse > {
+        self.modifyAllVPCSwitchStatus(ModifyAllVPCSwitchStatusRequest(status: status, fireWallVpcIds: fireWallVpcIds), logger: logger, on: eventLoop)
+    }
+    
+    /// VPC防火墙一键开关
+    @inlinable
+    public func modifyAllVPCSwitchStatus(status: Int64, fireWallVpcIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAllVPCSwitchStatusResponse {
+        try await self.modifyAllVPCSwitchStatus(ModifyAllVPCSwitchStatusRequest(status: status, fireWallVpcIds: fireWallVpcIds), logger: logger, on: eventLoop)
+    }
 }

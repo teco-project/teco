@@ -84,4 +84,16 @@ extension Cpdp {
     public func viewMerchant(_ input: ViewMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ViewMerchantResponse {
         try await self.client.execute(action: "ViewMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云支付-查询商户明细接口
+    @inlinable
+    public func viewMerchant(openId: String, openKey: String, outMerchantId: String? = nil, merchantNo: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ViewMerchantResponse > {
+        self.viewMerchant(ViewMerchantRequest(openId: openId, openKey: openKey, outMerchantId: outMerchantId, merchantNo: merchantNo, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-查询商户明细接口
+    @inlinable
+    public func viewMerchant(openId: String, openKey: String, outMerchantId: String? = nil, merchantNo: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ViewMerchantResponse {
+        try await self.viewMerchant(ViewMerchantRequest(openId: openId, openKey: openKey, outMerchantId: outMerchantId, merchantNo: merchantNo, profile: profile), logger: logger, on: eventLoop)
+    }
 }

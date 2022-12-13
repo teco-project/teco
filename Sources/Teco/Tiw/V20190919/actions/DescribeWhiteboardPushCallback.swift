@@ -58,4 +58,16 @@ extension Tiw {
     public func describeWhiteboardPushCallback(_ input: DescribeWhiteboardPushCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteboardPushCallbackResponse {
         try await self.client.execute(action: "DescribeWhiteboardPushCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询白板推流回调地址
+    @inlinable
+    public func describeWhiteboardPushCallback(sdkAppId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteboardPushCallbackResponse > {
+        self.describeWhiteboardPushCallback(DescribeWhiteboardPushCallbackRequest(sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询白板推流回调地址
+    @inlinable
+    public func describeWhiteboardPushCallback(sdkAppId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteboardPushCallbackResponse {
+        try await self.describeWhiteboardPushCallback(DescribeWhiteboardPushCallbackRequest(sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    }
 }

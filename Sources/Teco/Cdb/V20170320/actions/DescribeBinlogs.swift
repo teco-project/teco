@@ -72,4 +72,20 @@ extension Cdb {
     public func describeBinlogs(_ input: DescribeBinlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogsResponse {
         try await self.client.execute(action: "DescribeBinlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询二进制日志备份文件列表
+    ///
+    /// 本接口(DescribeBinlogs)用于查询云数据库实例的 binlog 文件列表。
+    @inlinable
+    public func describeBinlogs(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBinlogsResponse > {
+        self.describeBinlogs(DescribeBinlogsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询二进制日志备份文件列表
+    ///
+    /// 本接口(DescribeBinlogs)用于查询云数据库实例的 binlog 文件列表。
+    @inlinable
+    public func describeBinlogs(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogsResponse {
+        try await self.describeBinlogs(DescribeBinlogsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

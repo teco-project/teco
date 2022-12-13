@@ -76,4 +76,20 @@ extension Cfs {
     public func updateCfsPGroup(_ input: UpdateCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsPGroupResponse {
         try await self.client.execute(action: "UpdateCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新权限组信息
+    ///
+    /// 本接口（UpdateCfsPGroup）更新权限组信息。
+    @inlinable
+    public func updateCfsPGroup(pGroupId: String, name: String? = nil, descInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCfsPGroupResponse > {
+        self.updateCfsPGroup(UpdateCfsPGroupRequest(pGroupId: pGroupId, name: name, descInfo: descInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新权限组信息
+    ///
+    /// 本接口（UpdateCfsPGroup）更新权限组信息。
+    @inlinable
+    public func updateCfsPGroup(pGroupId: String, name: String? = nil, descInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsPGroupResponse {
+        try await self.updateCfsPGroup(UpdateCfsPGroupRequest(pGroupId: pGroupId, name: name, descInfo: descInfo), logger: logger, on: eventLoop)
+    }
 }

@@ -63,4 +63,16 @@ extension Tcr {
     public func describeReplicationInstanceCreateTasks(_ input: DescribeReplicationInstanceCreateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationInstanceCreateTasksResponse {
         try await self.client.execute(action: "DescribeReplicationInstanceCreateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询创建从实例任务状态
+    @inlinable
+    public func describeReplicationInstanceCreateTasks(replicationRegistryId: String, replicationRegionId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReplicationInstanceCreateTasksResponse > {
+        self.describeReplicationInstanceCreateTasks(DescribeReplicationInstanceCreateTasksRequest(replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询创建从实例任务状态
+    @inlinable
+    public func describeReplicationInstanceCreateTasks(replicationRegistryId: String, replicationRegionId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationInstanceCreateTasksResponse {
+        try await self.describeReplicationInstanceCreateTasks(DescribeReplicationInstanceCreateTasksRequest(replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId), logger: logger, on: eventLoop)
+    }
 }

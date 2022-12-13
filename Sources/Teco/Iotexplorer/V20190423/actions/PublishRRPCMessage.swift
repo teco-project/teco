@@ -74,4 +74,20 @@ extension Iotexplorer {
     public func publishRRPCMessage(_ input: PublishRRPCMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishRRPCMessageResponse {
         try await self.client.execute(action: "PublishRRPCMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 发布RRPC消息
+    ///
+    /// 下发RRPC消息
+    @inlinable
+    public func publishRRPCMessage(productId: String, deviceName: String, payload: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishRRPCMessageResponse > {
+        self.publishRRPCMessage(PublishRRPCMessageRequest(productId: productId, deviceName: deviceName, payload: payload), logger: logger, on: eventLoop)
+    }
+    
+    /// 发布RRPC消息
+    ///
+    /// 下发RRPC消息
+    @inlinable
+    public func publishRRPCMessage(productId: String, deviceName: String, payload: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishRRPCMessageResponse {
+        try await self.publishRRPCMessage(PublishRRPCMessageRequest(productId: productId, deviceName: deviceName, payload: payload), logger: logger, on: eventLoop)
+    }
 }

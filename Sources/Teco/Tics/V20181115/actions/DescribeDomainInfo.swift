@@ -103,4 +103,20 @@ extension Tics {
     public func describeDomainInfo(_ input: DescribeDomainInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainInfoResponse {
         try await self.client.execute(action: "DescribeDomainInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询域名信誉
+    ///
+    /// 提供域名相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。
+    @inlinable
+    public func describeDomainInfo(key: String, option: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainInfoResponse > {
+        self.describeDomainInfo(DescribeDomainInfoRequest(key: key, option: option), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询域名信誉
+    ///
+    /// 提供域名相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。
+    @inlinable
+    public func describeDomainInfo(key: String, option: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainInfoResponse {
+        try await self.describeDomainInfo(DescribeDomainInfoRequest(key: key, option: option), logger: logger, on: eventLoop)
+    }
 }

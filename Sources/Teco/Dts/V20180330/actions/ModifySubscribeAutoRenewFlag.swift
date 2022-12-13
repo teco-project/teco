@@ -55,4 +55,16 @@ extension Dts {
     public func modifySubscribeAutoRenewFlag(_ input: ModifySubscribeAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeAutoRenewFlagResponse {
         try await self.client.execute(action: "ModifySubscribeAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改订阅实例自动续费标识
+    @inlinable
+    public func modifySubscribeAutoRenewFlag(subscribeId: String, autoRenewFlag: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubscribeAutoRenewFlagResponse > {
+        self.modifySubscribeAutoRenewFlag(ModifySubscribeAutoRenewFlagRequest(subscribeId: subscribeId, autoRenewFlag: autoRenewFlag), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改订阅实例自动续费标识
+    @inlinable
+    public func modifySubscribeAutoRenewFlag(subscribeId: String, autoRenewFlag: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeAutoRenewFlagResponse {
+        try await self.modifySubscribeAutoRenewFlag(ModifySubscribeAutoRenewFlagRequest(subscribeId: subscribeId, autoRenewFlag: autoRenewFlag), logger: logger, on: eventLoop)
+    }
 }

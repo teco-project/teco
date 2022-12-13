@@ -61,4 +61,20 @@ extension Lighthouse {
     public func describeDiskConfigs(_ input: DescribeDiskConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskConfigsResponse {
         try await self.client.execute(action: "DescribeDiskConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看云硬盘配置
+    ///
+    /// 本接口（DescribeDiskConfigs）用于查询云硬盘配置。
+    @inlinable
+    public func describeDiskConfigs(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiskConfigsResponse > {
+        self.describeDiskConfigs(DescribeDiskConfigsRequest(filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看云硬盘配置
+    ///
+    /// 本接口（DescribeDiskConfigs）用于查询云硬盘配置。
+    @inlinable
+    public func describeDiskConfigs(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskConfigsResponse {
+        try await self.describeDiskConfigs(DescribeDiskConfigsRequest(filters: filters), logger: logger, on: eventLoop)
+    }
 }

@@ -30,7 +30,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let returnCode: Int64?
         
-        public init (`switch`: String, accessControlRules: [AccessControlRule]? = nil, returnCode: Int64? = nil) {
+        public init (switch: String, accessControlRules: [AccessControlRule]? = nil, returnCode: Int64? = nil) {
             self.`switch` = `switch`
             self.accessControlRules = accessControlRules
             self.returnCode = returnCode
@@ -211,7 +211,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let typeF: AdvancedAuthenticationTypeF?
         
-        public init (`switch`: String, typeA: AdvancedAuthenticationTypeA? = nil, typeB: AdvancedAuthenticationTypeB? = nil, typeC: AdvancedAuthenticationTypeC? = nil, typeD: AdvancedAuthenticationTypeD? = nil, typeE: AdvancedAuthenticationTypeE? = nil, typeF: AdvancedAuthenticationTypeF? = nil) {
+        public init (switch: String, typeA: AdvancedAuthenticationTypeA? = nil, typeB: AdvancedAuthenticationTypeB? = nil, typeC: AdvancedAuthenticationTypeC? = nil, typeD: AdvancedAuthenticationTypeD? = nil, typeE: AdvancedAuthenticationTypeE? = nil, typeF: AdvancedAuthenticationTypeF? = nil) {
             self.`switch` = `switch`
             self.typeA = typeA
             self.typeB = typeB
@@ -534,7 +534,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
         
-        public init (ruleName: String? = nil, detectionTime: UInt64? = nil, frequencyLimit: UInt64? = nil, punishmentSwitch: String? = nil, punishmentTime: UInt64? = nil, action: String? = nil, redirectUrl: String? = nil, configure: [ScdnSevenLayerRules]? = nil, `switch`: String? = nil) {
+        public init (ruleName: String? = nil, detectionTime: UInt64? = nil, frequencyLimit: UInt64? = nil, punishmentSwitch: String? = nil, punishmentTime: UInt64? = nil, action: String? = nil, redirectUrl: String? = nil, configure: [ScdnSevenLayerRules]? = nil, switch: String? = nil) {
             self.ruleName = ruleName
             self.detectionTime = detectionTime
             self.frequencyLimit = frequencyLimit
@@ -917,7 +917,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let typeD: AuthenticationTypeD?
         
-        public init (`switch`: String, typeA: AuthenticationTypeA? = nil, typeB: AuthenticationTypeB? = nil, typeC: AuthenticationTypeC? = nil, typeD: AuthenticationTypeD? = nil) {
+        public init (switch: String, typeA: AuthenticationTypeA? = nil, typeB: AuthenticationTypeB? = nil, typeC: AuthenticationTypeC? = nil, typeD: AuthenticationTypeD? = nil) {
             self.`switch` = `switch`
             self.typeA = typeA
             self.typeB = typeB
@@ -1148,7 +1148,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
         
-        public init (`switch`: String? = nil) {
+        public init (switch: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -1178,7 +1178,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bucket: String?
         
-        public init (`switch`: String, accessKey: String? = nil, secretKey: String? = nil, region: String? = nil, bucket: String? = nil) {
+        public init (switch: String, accessKey: String? = nil, secretKey: String? = nil, region: String? = nil, bucket: String? = nil) {
             self.`switch` = `switch`
             self.accessKey = accessKey
             self.secretKey = secretKey
@@ -1239,7 +1239,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statisticItems: [StatisticItem]?
         
-        public init (`switch`: String, bpsThreshold: Int64? = nil, counterMeasure: String? = nil, lastTriggerTime: Date? = nil, alertSwitch: String? = nil, alertPercentage: Int64? = nil, lastTriggerTimeOverseas: Date? = nil, metric: String? = nil, statisticItems: [StatisticItem]? = nil) {
+        public init (switch: String, bpsThreshold: Int64? = nil, counterMeasure: String? = nil, lastTriggerTime: Date? = nil, alertSwitch: String? = nil, alertPercentage: Int64? = nil, lastTriggerTimeOverseas: Date? = nil, metric: String? = nil, statisticItems: [StatisticItem]? = nil) {
             self.`switch` = `switch`
             self.bpsThreshold = bpsThreshold
             self.counterMeasure = counterMeasure
@@ -1286,7 +1286,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: Date?
         
-        public init (`switch`: String, ruleType: String, ruleValue: [String], action: String, redirectUrl: String? = nil, updateTime: Date? = nil) {
+        public init (switch: String, ruleType: String, ruleValue: [String], action: String, redirectUrl: String? = nil, updateTime: Date? = nil) {
             self.`switch` = `switch`
             self.ruleType = ruleType
             self.ruleValue = ruleValue
@@ -1327,7 +1327,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: Date?
         
-        public init (`switch`: String, ruleType: String, ruleValue: [String], action: String, redirectUrl: String? = nil, updateTime: Date? = nil) {
+        public init (switch: String, ruleType: String, ruleValue: [String], action: String, redirectUrl: String? = nil, updateTime: Date? = nil) {
             self.`switch` = `switch`
             self.ruleType = ruleType
             self.ruleValue = ruleValue
@@ -1674,7 +1674,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ignoreSetCookie: String?
         
-        public init (`switch`: String, cacheTime: Int64, compareMaxAge: String, ignoreCacheControl: String, ignoreSetCookie: String) {
+        public init (switch: String, cacheTime: Int64, compareMaxAge: String, ignoreCacheControl: String, ignoreSetCookie: String) {
             self.`switch` = `switch`
             self.cacheTime = cacheTime
             self.compareMaxAge = compareMaxAge
@@ -1702,7 +1702,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let heuristicCache: HeuristicCache?
         
-        public init (`switch`: String, heuristicCache: HeuristicCache? = nil) {
+        public init (switch: String, heuristicCache: HeuristicCache? = nil) {
             self.`switch` = `switch`
             self.heuristicCache = heuristicCache
         }
@@ -1728,7 +1728,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let revalidate: String?
         
-        public init (`switch`: String, revalidate: String) {
+        public init (switch: String, revalidate: String) {
             self.`switch` = `switch`
             self.revalidate = revalidate
         }
@@ -1823,7 +1823,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
         
-        public init (`switch`: String, value: String? = nil) {
+        public init (switch: String, value: String? = nil) {
             self.`switch` = `switch`
             self.value = value
         }
@@ -2134,7 +2134,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compressionRules: [CompressionRule]?
         
-        public init (`switch`: String, compressionRules: [CompressionRule]? = nil) {
+        public init (switch: String, compressionRules: [CompressionRule]? = nil) {
             self.`switch` = `switch`
             self.compressionRules = compressionRules
         }
@@ -2221,7 +2221,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
         
-        public init (`switch`: String, value: String? = nil) {
+        public init (switch: String, value: String? = nil) {
             self.`switch` = `switch`
             self.value = value
         }
@@ -2958,7 +2958,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cappingRules: [CappingRule]?
         
-        public init (`switch`: String, cappingRules: [CappingRule]? = nil) {
+        public init (switch: String, cappingRules: [CappingRule]? = nil) {
             self.`switch` = `switch`
             self.cappingRules = cappingRules
         }
@@ -2981,7 +2981,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pageRules: [ErrorPageRule]?
         
-        public init (`switch`: String, pageRules: [ErrorPageRule]? = nil) {
+        public init (switch: String, pageRules: [ErrorPageRule]? = nil) {
             self.`switch` = `switch`
             self.pageRules = pageRules
         }
@@ -3060,7 +3060,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectConfig: RedirectConfig?
         
-        public init (`switch`: String, redirectConfig: RedirectConfig? = nil) {
+        public init (switch: String, redirectConfig: RedirectConfig? = nil) {
             self.`switch` = `switch`
             self.redirectConfig = redirectConfig
         }
@@ -3094,7 +3094,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let carryHeaders: String?
         
-        public init (`switch`: String, redirectType: String? = nil, redirectStatusCode: Int64? = nil, carryHeaders: String? = nil) {
+        public init (switch: String, redirectType: String? = nil, redirectStatusCode: Int64? = nil, carryHeaders: String? = nil) {
             self.`switch` = `switch`
             self.redirectType = redirectType
             self.redirectStatusCode = redirectStatusCode
@@ -3115,7 +3115,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
         
-        public init (`switch`: String? = nil) {
+        public init (switch: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -3153,7 +3153,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
         
-        public init (`switch`: String? = nil, value: String? = nil) {
+        public init (switch: String? = nil, value: String? = nil) {
             self.`switch` = `switch`
             self.value = value
         }
@@ -3173,7 +3173,7 @@ extension Cdn {
         /// 自定义启发式缓存时间配置
         public let cacheConfig: CacheConfig?
         
-        public init (`switch`: String, cacheConfig: CacheConfig? = nil) {
+        public init (switch: String, cacheConfig: CacheConfig? = nil) {
             self.`switch` = `switch`
             self.cacheConfig = cacheConfig
         }
@@ -3197,7 +3197,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let includeSubDomains: String?
         
-        public init (`switch`: String, maxAge: Int64? = nil, includeSubDomains: String? = nil) {
+        public init (switch: String, maxAge: Int64? = nil, includeSubDomains: String? = nil) {
             self.`switch` = `switch`
             self.maxAge = maxAge
             self.includeSubDomains = includeSubDomains
@@ -3345,7 +3345,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tlsVersion: [String]?
         
-        public init (`switch`: String, http2: String? = nil, ocspStapling: String? = nil, verifyClient: String? = nil, certInfo: ServerCert? = nil, clientCertInfo: ClientCert? = nil, spdy: String? = nil, sslStatus: String? = nil, hsts: Hsts? = nil, tlsVersion: [String]? = nil) {
+        public init (switch: String, http2: String? = nil, ocspStapling: String? = nil, verifyClient: String? = nil, certInfo: ServerCert? = nil, clientCertInfo: ClientCert? = nil, spdy: String? = nil, sslStatus: String? = nil, hsts: Hsts? = nil, tlsVersion: [String]? = nil) {
             self.`switch` = `switch`
             self.http2 = http2
             self.ocspStapling = ocspStapling
@@ -3389,7 +3389,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bucket: String?
         
-        public init (`switch`: String, accessKey: String? = nil, secretKey: String? = nil, bucket: String? = nil) {
+        public init (switch: String, accessKey: String? = nil, secretKey: String? = nil, bucket: String? = nil) {
             self.`switch` = `switch`
             self.accessKey = accessKey
             self.secretKey = secretKey
@@ -3458,7 +3458,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let returnCode: Int64?
         
-        public init (`switch`: String, filterType: String? = nil, filters: [String]? = nil, filterRules: [IpFilterPathRule]? = nil, returnCode: Int64? = nil) {
+        public init (switch: String, filterType: String? = nil, filters: [String]? = nil, filterRules: [IpFilterPathRule]? = nil, returnCode: Int64? = nil) {
             self.`switch` = `switch`
             self.filterType = filterType
             self.filters = filters
@@ -3532,7 +3532,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qps: Int64?
         
-        public init (`switch`: String, qps: Int64? = nil) {
+        public init (switch: String, qps: Int64? = nil) {
             self.`switch` = `switch`
             self.qps = qps
         }
@@ -3593,7 +3593,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -3920,7 +3920,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxAgeCodeRule: MaxAgeCodeRule?
         
-        public init (`switch`: String, maxAgeRules: [MaxAgeRule]? = nil, maxAgeCodeRule: MaxAgeCodeRule? = nil) {
+        public init (switch: String, maxAgeRules: [MaxAgeRule]? = nil, maxAgeCodeRule: MaxAgeCodeRule? = nil) {
             self.`switch` = `switch`
             self.maxAgeRules = maxAgeRules
             self.maxAgeCodeRule = maxAgeCodeRule
@@ -4000,7 +4000,7 @@ extension Cdn {
         /// on | off, 离线缓存是否开启
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -4151,7 +4151,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let typeA: OriginAuthenticationTypeA?
         
-        public init (`switch`: String, typeA: OriginAuthenticationTypeA? = nil) {
+        public init (switch: String, typeA: OriginAuthenticationTypeA? = nil) {
             self.`switch` = `switch`
             self.typeA = typeA
         }
@@ -4182,7 +4182,7 @@ extension Cdn {
         /// on|off 是否开启合并回源
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -4214,7 +4214,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let optimizationType: String?
         
-        public init (`switch`: String, optimizationType: String? = nil) {
+        public init (switch: String, optimizationType: String? = nil) {
             self.`switch` = `switch`
             self.optimizationType = optimizationType
         }
@@ -4267,7 +4267,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bucket: String?
         
-        public init (`switch`: String, accessKey: String? = nil, secretKey: String? = nil, region: String? = nil, bucket: String? = nil) {
+        public init (switch: String, accessKey: String? = nil, secretKey: String? = nil, region: String? = nil, bucket: String? = nil) {
             self.`switch` = `switch`
             self.accessKey = accessKey
             self.secretKey = secretKey
@@ -4573,7 +4573,7 @@ extension Cdn {
         /// 最大限制，取值在1MB和200MB之间。
         public let maxSize: Int64?
         
-        public init (`switch`: String, maxSize: Int64? = nil) {
+        public init (switch: String, maxSize: Int64? = nil) {
             self.`switch` = `switch`
             self.maxSize = maxSize
         }
@@ -4677,7 +4677,7 @@ extension Cdn {
         /// 密钥
         public let secretKey: String?
         
-        public init (`switch`: String, accessKey: String? = nil, secretKey: String? = nil) {
+        public init (switch: String, accessKey: String? = nil, secretKey: String? = nil) {
             self.`switch` = `switch`
             self.accessKey = accessKey
             self.secretKey = secretKey
@@ -4708,7 +4708,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
         
-        public init (`switch`: String, reorder: String? = nil, action: String? = nil, value: String? = nil) {
+        public init (switch: String, reorder: String? = nil, action: String? = nil, value: String? = nil) {
             self.`switch` = `switch`
             self.reorder = reorder
             self.action = action
@@ -4728,7 +4728,7 @@ extension Cdn {
         /// 是否启动Quic配置
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -4770,7 +4770,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rangeRules: [RangeOriginPullRule]?
         
-        public init (`switch`: String, rangeRules: [RangeOriginPullRule]? = nil) {
+        public init (switch: String, rangeRules: [RangeOriginPullRule]? = nil) {
             self.`switch` = `switch`
             self.rangeRules = rangeRules
         }
@@ -4800,7 +4800,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rulePaths: [String]?
         
-        public init (`switch`: String, ruleType: String, rulePaths: [String]) {
+        public init (switch: String, ruleType: String, rulePaths: [String]) {
             self.`switch` = `switch`
             self.ruleType = ruleType
             self.rulePaths = rulePaths
@@ -4824,7 +4824,7 @@ extension Cdn {
         /// 备份源站follow302请求时带的自定义的host头部
         public let followRedirectBackupHost: String?
         
-        public init (`switch`: String, followRedirectHost: String, followRedirectBackupHost: String? = nil) {
+        public init (switch: String, followRedirectHost: String, followRedirectBackupHost: String? = nil) {
             self.`switch` = `switch`
             self.followRedirectHost = followRedirectHost
             self.followRedirectBackupHost = followRedirectBackupHost
@@ -4848,7 +4848,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refererRules: [RefererRule]?
         
-        public init (`switch`: String, refererRules: [RefererRule]? = nil) {
+        public init (switch: String, refererRules: [RefererRule]? = nil) {
             self.`switch` = `switch`
             self.refererRules = refererRules
         }
@@ -4937,7 +4937,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let server: String?
         
-        public init (`switch`: String, remoteAuthenticationRules: [RemoteAuthenticationRule]? = nil, server: String? = nil) {
+        public init (switch: String, remoteAuthenticationRules: [RemoteAuthenticationRule]? = nil, server: String? = nil) {
             self.`switch` = `switch`
             self.remoteAuthenticationRules = remoteAuthenticationRules
             self.server = server
@@ -5049,7 +5049,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headerRules: [HttpHeaderPathRule]?
         
-        public init (`switch`: String, headerRules: [HttpHeaderPathRule]? = nil) {
+        public init (switch: String, headerRules: [HttpHeaderPathRule]? = nil) {
             self.`switch` = `switch`
             self.headerRules = headerRules
         }
@@ -5125,7 +5125,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headerRules: [HttpHeaderPathRule]?
         
-        public init (`switch`: String, headerRules: [HttpHeaderPathRule]? = nil) {
+        public init (switch: String, headerRules: [HttpHeaderPathRule]? = nil) {
             self.`switch` = `switch`
             self.headerRules = headerRules
         }
@@ -5143,7 +5143,7 @@ extension Cdn {
         /// off：关闭
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -5162,7 +5162,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let path: String?
         
-        public init (`switch`: String, path: String? = nil) {
+        public init (switch: String, path: String? = nil) {
             self.`switch` = `switch`
             self.path = path
         }
@@ -5250,7 +5250,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: String?
         
-        public init (`switch`: String, content: String? = nil) {
+        public init (switch: String, content: String? = nil) {
             self.`switch` = `switch`
             self.content = content
         }
@@ -5275,7 +5275,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
         
-        public init (`switch`: String, action: String, value: String) {
+        public init (switch: String, action: String, value: String) {
             self.`switch` = `switch`
             self.action = action
             self.value = value
@@ -5305,7 +5305,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let advancedScriptData: [AdvancedScdnAclGroup]?
         
-        public init (`switch`: String, scriptData: [ScdnAclGroup]? = nil, errorPage: ScdnErrorPage? = nil, advancedScriptData: [AdvancedScdnAclGroup]? = nil) {
+        public init (switch: String, scriptData: [ScdnAclGroup]? = nil, errorPage: ScdnErrorPage? = nil, advancedScriptData: [AdvancedScdnAclGroup]? = nil) {
             self.`switch` = `switch`
             self.scriptData = scriptData
             self.errorPage = errorPage
@@ -5392,7 +5392,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let botJavaScript: [BotJavaScript]?
         
-        public init (`switch`: String, botCookie: [BotCookie]? = nil, botJavaScript: [BotJavaScript]? = nil) {
+        public init (switch: String, botCookie: [BotCookie]? = nil, botJavaScript: [BotJavaScript]? = nil) {
             self.`switch` = `switch`
             self.botCookie = botCookie
             self.botJavaScript = botJavaScript
@@ -5487,7 +5487,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let globalAdvancedRules: [AdvancedCCRules]?
         
-        public init (`switch`: String, rules: [ScdnCCRules]? = nil, advancedRules: [AdvancedCCRules]? = nil, globalAdvancedRules: [AdvancedCCRules]? = nil) {
+        public init (switch: String, rules: [ScdnCCRules]? = nil, advancedRules: [AdvancedCCRules]? = nil, globalAdvancedRules: [AdvancedCCRules]? = nil) {
             self.`switch` = `switch`
             self.rules = rules
             self.advancedRules = advancedRules
@@ -5507,7 +5507,7 @@ extension Cdn {
         /// on|off
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -5600,7 +5600,7 @@ extension Cdn {
         /// 匹配值，允许使用通配符(*)查询，匹配零个、单个、多个字符，例如 1.2.*
         public let value: String
         
-        public init (key: String, `operator`: String, value: String) {
+        public init (key: String, operator: String, value: String) {
             self.key = key
             self.`operator` = `operator`
             self.value = value
@@ -5930,7 +5930,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subRuleSwitch: [WafSubRuleStatus]?
         
-        public init (`switch`: String, mode: String? = nil, errorPage: ScdnErrorPage? = nil, webShellSwitch: String? = nil, rules: [ScdnWafRule]? = nil, level: Int64? = nil, subRuleSwitch: [WafSubRuleStatus]? = nil) {
+        public init (switch: String, mode: String? = nil, errorPage: ScdnErrorPage? = nil, webShellSwitch: String? = nil, rules: [ScdnWafRule]? = nil, level: Int64? = nil, subRuleSwitch: [WafSubRuleStatus]? = nil) {
             self.`switch` = `switch`
             self.mode = mode
             self.errorPage = errorPage
@@ -5976,7 +5976,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -6003,7 +6003,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -6086,7 +6086,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cname: String?
         
-        public init (`switch`: String, cname: String? = nil) {
+        public init (switch: String, cname: String? = nil) {
             self.`switch` = `switch`
             self.cname = cname
         }
@@ -6274,7 +6274,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
         
-        public init (type: String? = nil, unBlockTime: UInt64? = nil, bpsThreshold: UInt64? = nil, counterMeasure: String? = nil, alertPercentage: UInt64? = nil, alertSwitch: String? = nil, metric: String? = nil, cycle: UInt64? = nil, `switch`: String? = nil) {
+        public init (type: String? = nil, unBlockTime: UInt64? = nil, bpsThreshold: UInt64? = nil, counterMeasure: String? = nil, alertPercentage: UInt64? = nil, alertSwitch: String? = nil, metric: String? = nil, cycle: UInt64? = nil, switch: String? = nil) {
             self.type = type
             self.unBlockTime = unBlockTime
             self.bpsThreshold = bpsThreshold
@@ -6311,7 +6311,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cacheRules: [StatusCodeCacheRule]?
         
-        public init (`switch`: String, cacheRules: [StatusCodeCacheRule]? = nil) {
+        public init (switch: String, cacheRules: [StatusCodeCacheRule]? = nil) {
             self.`switch` = `switch`
             self.cacheRules = cacheRules
         }
@@ -6500,7 +6500,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
         
-        public init (`switch`: String? = nil) {
+        public init (switch: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -6652,7 +6652,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pathRules: [UrlRedirectRule]?
         
-        public init (`switch`: String, pathRules: [UrlRedirectRule]? = nil) {
+        public init (switch: String, pathRules: [UrlRedirectRule]? = nil) {
             self.`switch` = `switch`
             self.pathRules = pathRules
         }
@@ -6709,7 +6709,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filterRules: [UserAgentFilterRule]?
         
-        public init (`switch`: String, filterRules: [UserAgentFilterRule]? = nil) {
+        public init (switch: String, filterRules: [UserAgentFilterRule]? = nil) {
             self.`switch` = `switch`
             self.filterRules = filterRules
         }
@@ -6764,7 +6764,7 @@ extension Cdn {
         /// off：关闭
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -6818,7 +6818,7 @@ extension Cdn {
         /// 规则id列表
         public let subIds: [Int64]
         
-        public init (`switch`: String, subIds: [Int64]) {
+        public init (switch: String, subIds: [Int64]) {
             self.`switch` = `switch`
             self.subIds = subIds
         }
@@ -6839,7 +6839,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeout: Int64?
         
-        public init (`switch`: String, timeout: Int64? = nil) {
+        public init (switch: String, timeout: Int64? = nil) {
             self.`switch` = `switch`
             self.timeout = timeout
         }
@@ -6856,7 +6856,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
         
-        public init (`switch`: String? = nil) {
+        public init (switch: String? = nil) {
             self.`switch` = `switch`
         }
         

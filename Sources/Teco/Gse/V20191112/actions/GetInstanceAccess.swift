@@ -65,4 +65,22 @@ extension Gse {
     public func getInstanceAccess(_ input: GetInstanceAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetInstanceAccessResponse {
         try await self.client.execute(action: "GetInstanceAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取实例登录所需要的凭据
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（GetInstanceAccess）用于获取实例登录所需要的凭据。
+    @inlinable
+    public func getInstanceAccess(fleetId: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetInstanceAccessResponse > {
+        self.getInstanceAccess(GetInstanceAccessRequest(fleetId: fleetId, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例登录所需要的凭据
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（GetInstanceAccess）用于获取实例登录所需要的凭据。
+    @inlinable
+    public func getInstanceAccess(fleetId: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetInstanceAccessResponse {
+        try await self.getInstanceAccess(GetInstanceAccessRequest(fleetId: fleetId, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

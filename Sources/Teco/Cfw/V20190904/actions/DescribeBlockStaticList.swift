@@ -78,4 +78,20 @@ extension Cfw {
     public func describeBlockStaticList(_ input: DescribeBlockStaticListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockStaticListResponse {
         try await self.client.execute(action: "DescribeBlockStaticList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 告警中心柱形图
+    ///
+    /// DescribeBlockStaticList 告警中心柱形图
+    @inlinable
+    public func describeBlockStaticList(startTime: String, endTime: String, queryType: String, top: Int64, searchValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBlockStaticListResponse > {
+        self.describeBlockStaticList(DescribeBlockStaticListRequest(startTime: startTime, endTime: endTime, queryType: queryType, top: top, searchValue: searchValue), logger: logger, on: eventLoop)
+    }
+    
+    /// 告警中心柱形图
+    ///
+    /// DescribeBlockStaticList 告警中心柱形图
+    @inlinable
+    public func describeBlockStaticList(startTime: String, endTime: String, queryType: String, top: Int64, searchValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockStaticListResponse {
+        try await self.describeBlockStaticList(DescribeBlockStaticListRequest(startTime: startTime, endTime: endTime, queryType: queryType, top: top, searchValue: searchValue), logger: logger, on: eventLoop)
+    }
 }

@@ -63,4 +63,16 @@ extension Cpdp {
     public func queryAssignment(_ input: QueryAssignmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAssignmentResponse {
         try await self.client.execute(action: "QueryAssignment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 直播平台-查询分配关系
+    @inlinable
+    public func queryAssignment(anchorId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAssignmentResponse > {
+        self.queryAssignment(QueryAssignmentRequest(anchorId: anchorId), logger: logger, on: eventLoop)
+    }
+    
+    /// 直播平台-查询分配关系
+    @inlinable
+    public func queryAssignment(anchorId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAssignmentResponse {
+        try await self.queryAssignment(QueryAssignmentRequest(anchorId: anchorId), logger: logger, on: eventLoop)
+    }
 }

@@ -115,4 +115,20 @@ extension Dayu {
     public func modifyDDoSSwitch(_ input: ModifyDDoSSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSSwitchResponse {
         try await self.client.execute(action: "ModifyDDoSSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开启或关闭DDoS防护
+    ///
+    /// 开启或关闭DDoS防护，只支持基础防护产品；
+    @inlinable
+    public func modifyDDoSSwitch(business: String, method: String, ip: String? = nil, bizType: String? = nil, deviceType: String? = nil, instanceId: String? = nil, ipRegion: String? = nil, status: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSSwitchResponse > {
+        self.modifyDDoSSwitch(ModifyDDoSSwitchRequest(business: business, method: method, ip: ip, bizType: bizType, deviceType: deviceType, instanceId: instanceId, ipRegion: ipRegion, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 开启或关闭DDoS防护
+    ///
+    /// 开启或关闭DDoS防护，只支持基础防护产品；
+    @inlinable
+    public func modifyDDoSSwitch(business: String, method: String, ip: String? = nil, bizType: String? = nil, deviceType: String? = nil, instanceId: String? = nil, ipRegion: String? = nil, status: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSSwitchResponse {
+        try await self.modifyDDoSSwitch(ModifyDDoSSwitchRequest(business: business, method: method, ip: ip, bizType: bizType, deviceType: deviceType, instanceId: instanceId, ipRegion: ipRegion, status: status), logger: logger, on: eventLoop)
+    }
 }

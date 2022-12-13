@@ -54,4 +54,16 @@ extension Iotcloud {
     public func describePrivateCA(_ input: DescribePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateCAResponse {
         try await self.client.execute(action: "DescribePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询私有化CA信息
+    @inlinable
+    public func describePrivateCA(certName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateCAResponse > {
+        self.describePrivateCA(DescribePrivateCARequest(certName: certName), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询私有化CA信息
+    @inlinable
+    public func describePrivateCA(certName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateCAResponse {
+        try await self.describePrivateCA(DescribePrivateCARequest(certName: certName), logger: logger, on: eventLoop)
+    }
 }

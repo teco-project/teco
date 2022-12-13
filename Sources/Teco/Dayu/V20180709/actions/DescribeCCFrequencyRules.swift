@@ -68,4 +68,16 @@ extension Dayu {
     public func describeCCFrequencyRules(_ input: DescribeCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCFrequencyRulesResponse {
         try await self.client.execute(action: "DescribeCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取CC防护的访问频率控制规则
+    @inlinable
+    public func describeCCFrequencyRules(business: String, id: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCFrequencyRulesResponse > {
+        self.describeCCFrequencyRules(DescribeCCFrequencyRulesRequest(business: business, id: id, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC防护的访问频率控制规则
+    @inlinable
+    public func describeCCFrequencyRules(business: String, id: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCFrequencyRulesResponse {
+        try await self.describeCCFrequencyRules(DescribeCCFrequencyRulesRequest(business: business, id: id, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
 }

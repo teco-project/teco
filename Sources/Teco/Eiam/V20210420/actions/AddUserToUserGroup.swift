@@ -60,4 +60,16 @@ extension Eiam {
     public func addUserToUserGroup(_ input: AddUserToUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserToUserGroupResponse {
         try await self.client.execute(action: "AddUserToUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 加入用户到用户组
+    @inlinable
+    public func addUserToUserGroup(userIds: [String], userGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUserToUserGroupResponse > {
+        self.addUserToUserGroup(AddUserToUserGroupRequest(userIds: userIds, userGroupId: userGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 加入用户到用户组
+    @inlinable
+    public func addUserToUserGroup(userIds: [String], userGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserToUserGroupResponse {
+        try await self.addUserToUserGroup(AddUserToUserGroupRequest(userIds: userIds, userGroupId: userGroupId), logger: logger, on: eventLoop)
+    }
 }

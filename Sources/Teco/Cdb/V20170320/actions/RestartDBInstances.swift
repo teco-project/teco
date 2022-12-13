@@ -64,4 +64,26 @@ extension Cdb {
     public func restartDBInstances(_ input: RestartDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstancesResponse {
         try await self.client.execute(action: "RestartDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重启实例
+    ///
+    /// 本接口(RestartDBInstances)用于重启云数据库实例。
+    /// 注意：
+    /// 1、本接口只支持主实例进行重启操作；
+    /// 2、实例状态必须为正常，并且没有其他异步任务在执行中。
+    @inlinable
+    public func restartDBInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartDBInstancesResponse > {
+        self.restartDBInstances(RestartDBInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 重启实例
+    ///
+    /// 本接口(RestartDBInstances)用于重启云数据库实例。
+    /// 注意：
+    /// 1、本接口只支持主实例进行重启操作；
+    /// 2、实例状态必须为正常，并且没有其他异步任务在执行中。
+    @inlinable
+    public func restartDBInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstancesResponse {
+        try await self.restartDBInstances(RestartDBInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

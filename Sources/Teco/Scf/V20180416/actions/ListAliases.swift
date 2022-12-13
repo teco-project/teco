@@ -83,4 +83,20 @@ extension Scf {
     public func listAliases(_ input: ListAliasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAliasesResponse {
         try await self.client.execute(action: "ListAliases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取别名列表
+    ///
+    /// 返回一个函数下的全部别名，可以根据特定函数版本过滤。
+    @inlinable
+    public func listAliases(functionName: String, namespace: String? = nil, functionVersion: String? = nil, offset: String? = nil, limit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAliasesResponse > {
+        self.listAliases(ListAliasesRequest(functionName: functionName, namespace: namespace, functionVersion: functionVersion, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取别名列表
+    ///
+    /// 返回一个函数下的全部别名，可以根据特定函数版本过滤。
+    @inlinable
+    public func listAliases(functionName: String, namespace: String? = nil, functionVersion: String? = nil, offset: String? = nil, limit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAliasesResponse {
+        try await self.listAliases(ListAliasesRequest(functionName: functionName, namespace: namespace, functionVersion: functionVersion, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

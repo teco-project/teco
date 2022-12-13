@@ -63,4 +63,20 @@ extension Sqlserver {
     public func deleteAccount(_ input: DeleteAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountResponse {
         try await self.client.execute(action: "DeleteAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除实例账号
+    ///
+    /// 本接口（DeleteAccount）用于删除实例账号。
+    @inlinable
+    public func deleteAccount(instanceId: String, userNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccountResponse > {
+        self.deleteAccount(DeleteAccountRequest(instanceId: instanceId, userNames: userNames), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除实例账号
+    ///
+    /// 本接口（DeleteAccount）用于删除实例账号。
+    @inlinable
+    public func deleteAccount(instanceId: String, userNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountResponse {
+        try await self.deleteAccount(DeleteAccountRequest(instanceId: instanceId, userNames: userNames), logger: logger, on: eventLoop)
+    }
 }

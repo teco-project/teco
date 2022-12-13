@@ -88,4 +88,16 @@ extension Bm {
     public func describePsaRegulations(_ input: DescribePsaRegulationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePsaRegulationsResponse {
         try await self.client.execute(action: "DescribePsaRegulations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取预授权规则列表
+    @inlinable
+    public func describePsaRegulations(limit: UInt64, offset: UInt64, psaIds: [String]? = nil, psaNames: [String]? = nil, tags: [Tag]? = nil, orderField: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePsaRegulationsResponse > {
+        self.describePsaRegulations(DescribePsaRegulationsRequest(limit: limit, offset: offset, psaIds: psaIds, psaNames: psaNames, tags: tags, orderField: orderField, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取预授权规则列表
+    @inlinable
+    public func describePsaRegulations(limit: UInt64, offset: UInt64, psaIds: [String]? = nil, psaNames: [String]? = nil, tags: [Tag]? = nil, orderField: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePsaRegulationsResponse {
+        try await self.describePsaRegulations(DescribePsaRegulationsRequest(limit: limit, offset: offset, psaIds: psaIds, psaNames: psaNames, tags: tags, orderField: orderField, order: order), logger: logger, on: eventLoop)
+    }
 }

@@ -63,4 +63,20 @@ extension Tcb {
     public func describeEndUserStatistic(_ input: DescribeEndUserStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEndUserStatisticResponse {
         try await self.client.execute(action: "DescribeEndUserStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取终端用户分布
+    ///
+    /// 获取终端用户总量与平台分布情况
+    @inlinable
+    public func describeEndUserStatistic(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEndUserStatisticResponse > {
+        self.describeEndUserStatistic(DescribeEndUserStatisticRequest(envId: envId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取终端用户分布
+    ///
+    /// 获取终端用户总量与平台分布情况
+    @inlinable
+    public func describeEndUserStatistic(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEndUserStatisticResponse {
+        try await self.describeEndUserStatistic(DescribeEndUserStatisticRequest(envId: envId), logger: logger, on: eventLoop)
+    }
 }

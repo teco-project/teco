@@ -65,4 +65,16 @@ extension Tcr {
     public func deleteImage(_ input: DeleteImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageResponse {
         try await self.client.execute(action: "DeleteImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除指定镜像
+    @inlinable
+    public func deleteImage(registryId: String, repositoryName: String, imageVersion: String, namespaceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageResponse > {
+        self.deleteImage(DeleteImageRequest(registryId: registryId, repositoryName: repositoryName, imageVersion: imageVersion, namespaceName: namespaceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除指定镜像
+    @inlinable
+    public func deleteImage(registryId: String, repositoryName: String, imageVersion: String, namespaceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageResponse {
+        try await self.deleteImage(DeleteImageRequest(registryId: registryId, repositoryName: repositoryName, imageVersion: imageVersion, namespaceName: namespaceName), logger: logger, on: eventLoop)
+    }
 }

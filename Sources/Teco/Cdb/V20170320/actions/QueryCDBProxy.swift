@@ -65,4 +65,16 @@ extension Cdb {
     public func queryCDBProxy(_ input: QueryCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCDBProxyResponse {
         try await self.client.execute(action: "QueryCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询代理详情
+    @inlinable
+    public func queryCDBProxy(instanceId: String, proxyGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCDBProxyResponse > {
+        self.queryCDBProxy(QueryCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询代理详情
+    @inlinable
+    public func queryCDBProxy(instanceId: String, proxyGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCDBProxyResponse {
+        try await self.queryCDBProxy(QueryCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId), logger: logger, on: eventLoop)
+    }
 }

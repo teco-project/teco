@@ -55,4 +55,16 @@ extension Tsf {
     public func deletePublicConfig(_ input: DeletePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublicConfigResponse {
         try await self.client.execute(action: "DeletePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除公共配置项
+    @inlinable
+    public func deletePublicConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePublicConfigResponse > {
+        self.deletePublicConfig(DeletePublicConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除公共配置项
+    @inlinable
+    public func deletePublicConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublicConfigResponse {
+        try await self.deletePublicConfig(DeletePublicConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    }
 }

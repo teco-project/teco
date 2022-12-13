@@ -67,4 +67,16 @@ extension Dnspod {
     public func payOrderWithBalance(_ input: PayOrderWithBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayOrderWithBalanceResponse {
         try await self.client.execute(action: "PayOrderWithBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// DNSPod商品余额支付
+    @inlinable
+    public func payOrderWithBalance(bigDealIdList: [String], voucherIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PayOrderWithBalanceResponse > {
+        self.payOrderWithBalance(PayOrderWithBalanceRequest(bigDealIdList: bigDealIdList, voucherIdList: voucherIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// DNSPod商品余额支付
+    @inlinable
+    public func payOrderWithBalance(bigDealIdList: [String], voucherIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayOrderWithBalanceResponse {
+        try await self.payOrderWithBalance(PayOrderWithBalanceRequest(bigDealIdList: bigDealIdList, voucherIdList: voucherIdList), logger: logger, on: eventLoop)
+    }
 }

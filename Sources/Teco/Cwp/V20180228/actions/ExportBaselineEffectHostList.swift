@@ -84,4 +84,20 @@ extension Cwp {
     public func exportBaselineEffectHostList(_ input: ExportBaselineEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBaselineEffectHostListResponse {
         try await self.client.execute(action: "ExportBaselineEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 基线影响主机列表导出
+    ///
+    /// 导出基线影响主机列表
+    @inlinable
+    public func exportBaselineEffectHostList(baselineId: UInt64, filters: [Filters]? = nil, strategyId: UInt64? = nil, uuidList: [String]? = nil, baselineName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBaselineEffectHostListResponse > {
+        self.exportBaselineEffectHostList(ExportBaselineEffectHostListRequest(baselineId: baselineId, filters: filters, strategyId: strategyId, uuidList: uuidList, baselineName: baselineName), logger: logger, on: eventLoop)
+    }
+    
+    /// 基线影响主机列表导出
+    ///
+    /// 导出基线影响主机列表
+    @inlinable
+    public func exportBaselineEffectHostList(baselineId: UInt64, filters: [Filters]? = nil, strategyId: UInt64? = nil, uuidList: [String]? = nil, baselineName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBaselineEffectHostListResponse {
+        try await self.exportBaselineEffectHostList(ExportBaselineEffectHostListRequest(baselineId: baselineId, filters: filters, strategyId: strategyId, uuidList: uuidList, baselineName: baselineName), logger: logger, on: eventLoop)
+    }
 }

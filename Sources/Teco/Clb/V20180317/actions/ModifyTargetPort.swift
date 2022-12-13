@@ -86,4 +86,22 @@ extension Clb {
     public func modifyTargetPort(_ input: ModifyTargetPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetPortResponse {
         try await self.client.execute(action: "ModifyTargetPort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改监听器绑定的后端机器的端口
+    ///
+    /// ModifyTargetPort接口用于修改监听器绑定的后端服务的端口。
+    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func modifyTargetPort(loadBalancerId: String, listenerId: String, targets: [Target], newPort: Int64, locationId: String? = nil, domain: String? = nil, url: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTargetPortResponse > {
+        self.modifyTargetPort(ModifyTargetPortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, targets: targets, newPort: newPort, locationId: locationId, domain: domain, url: url), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改监听器绑定的后端机器的端口
+    ///
+    /// ModifyTargetPort接口用于修改监听器绑定的后端服务的端口。
+    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func modifyTargetPort(loadBalancerId: String, listenerId: String, targets: [Target], newPort: Int64, locationId: String? = nil, domain: String? = nil, url: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetPortResponse {
+        try await self.modifyTargetPort(ModifyTargetPortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, targets: targets, newPort: newPort, locationId: locationId, domain: domain, url: url), logger: logger, on: eventLoop)
+    }
 }

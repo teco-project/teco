@@ -75,4 +75,16 @@ extension Ccc {
     public func describeExtension(_ input: DescribeExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionResponse {
         try await self.client.execute(action: "DescribeExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取话机信息
+    @inlinable
+    public func describeExtension(sdkAppId: UInt64, extensionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExtensionResponse > {
+        self.describeExtension(DescribeExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取话机信息
+    @inlinable
+    public func describeExtension(sdkAppId: UInt64, extensionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionResponse {
+        try await self.describeExtension(DescribeExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId), logger: logger, on: eventLoop)
+    }
 }

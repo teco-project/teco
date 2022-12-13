@@ -85,4 +85,16 @@ extension Tione {
     public func createBatchModelAccTasks(_ input: CreateBatchModelAccTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchModelAccTasksResponse {
         try await self.client.execute(action: "CreateBatchModelAccTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量创建模型加速任务
+    @inlinable
+    public func createBatchModelAccTasks(modelAccTaskName: String, batchModelAccTasks: [BatchModelAccTask], modelOutputPath: CosPathInfo, tags: [Tag]? = nil, optimizationLevel: String? = nil, gpuType: String? = nil, hyperParameter: HyperParameter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBatchModelAccTasksResponse > {
+        self.createBatchModelAccTasks(CreateBatchModelAccTasksRequest(modelAccTaskName: modelAccTaskName, batchModelAccTasks: batchModelAccTasks, modelOutputPath: modelOutputPath, tags: tags, optimizationLevel: optimizationLevel, gpuType: gpuType, hyperParameter: hyperParameter), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量创建模型加速任务
+    @inlinable
+    public func createBatchModelAccTasks(modelAccTaskName: String, batchModelAccTasks: [BatchModelAccTask], modelOutputPath: CosPathInfo, tags: [Tag]? = nil, optimizationLevel: String? = nil, gpuType: String? = nil, hyperParameter: HyperParameter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchModelAccTasksResponse {
+        try await self.createBatchModelAccTasks(CreateBatchModelAccTasksRequest(modelAccTaskName: modelAccTaskName, batchModelAccTasks: batchModelAccTasks, modelOutputPath: modelOutputPath, tags: tags, optimizationLevel: optimizationLevel, gpuType: gpuType, hyperParameter: hyperParameter), logger: logger, on: eventLoop)
+    }
 }

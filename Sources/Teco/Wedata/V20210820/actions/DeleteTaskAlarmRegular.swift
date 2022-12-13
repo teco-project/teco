@@ -70,4 +70,16 @@ extension Wedata {
     public func deleteTaskAlarmRegular(_ input: DeleteTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskAlarmRegularResponse {
         try await self.client.execute(action: "DeleteTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除任务告警规则
+    @inlinable
+    public func deleteTaskAlarmRegular(id: String, projectId: String, taskId: String, taskType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTaskAlarmRegularResponse > {
+        self.deleteTaskAlarmRegular(DeleteTaskAlarmRegularRequest(id: id, projectId: projectId, taskId: taskId, taskType: taskType), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除任务告警规则
+    @inlinable
+    public func deleteTaskAlarmRegular(id: String, projectId: String, taskId: String, taskType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskAlarmRegularResponse {
+        try await self.deleteTaskAlarmRegular(DeleteTaskAlarmRegularRequest(id: id, projectId: projectId, taskId: taskId, taskType: taskType), logger: logger, on: eventLoop)
+    }
 }

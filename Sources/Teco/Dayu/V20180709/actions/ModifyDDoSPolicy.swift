@@ -84,4 +84,16 @@ extension Dayu {
     public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyResponse {
         try await self.client.execute(action: "ModifyDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改DDoS高级策略
+    @inlinable
+    public func modifyDDoSPolicy(business: String, policyId: String, dropOptions: [DDoSPolicyDropOption], portLimits: [DDoSPolicyPortLimit]? = nil, ipAllowDenys: [IpBlackWhite]? = nil, packetFilters: [DDoSPolicyPacketFilter]? = nil, waterPrint: [WaterPrintPolicy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSPolicyResponse > {
+        self.modifyDDoSPolicy(ModifyDDoSPolicyRequest(business: business, policyId: policyId, dropOptions: dropOptions, portLimits: portLimits, ipAllowDenys: ipAllowDenys, packetFilters: packetFilters, waterPrint: waterPrint), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改DDoS高级策略
+    @inlinable
+    public func modifyDDoSPolicy(business: String, policyId: String, dropOptions: [DDoSPolicyDropOption], portLimits: [DDoSPolicyPortLimit]? = nil, ipAllowDenys: [IpBlackWhite]? = nil, packetFilters: [DDoSPolicyPacketFilter]? = nil, waterPrint: [WaterPrintPolicy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyResponse {
+        try await self.modifyDDoSPolicy(ModifyDDoSPolicyRequest(business: business, policyId: policyId, dropOptions: dropOptions, portLimits: portLimits, ipAllowDenys: ipAllowDenys, packetFilters: packetFilters, waterPrint: waterPrint), logger: logger, on: eventLoop)
+    }
 }

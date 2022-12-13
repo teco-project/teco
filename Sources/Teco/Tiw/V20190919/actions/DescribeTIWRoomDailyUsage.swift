@@ -102,4 +102,24 @@ extension Tiw {
     public func describeTIWRoomDailyUsage(_ input: DescribeTIWRoomDailyUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTIWRoomDailyUsageResponse {
         try await self.client.execute(action: "DescribeTIWRoomDailyUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询房间维度每天计费用量
+    ///
+    /// 查询互动白板房间维度每天计费用量。
+    /// 1. 单次查询统计区间最多不能超过31天。
+    /// 2. 由于统计延迟等原因，暂时不支持查询当天数据，建议在次日上午7点以后再来查询前一天的用量，例如在10月27日上午7点后，再来查询到10月26日整天的用量
+    @inlinable
+    public func describeTIWRoomDailyUsage(sdkAppId: Int64, subProduct: String, startTime: Date, endTime: Date, roomIDs: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTIWRoomDailyUsageResponse > {
+        self.describeTIWRoomDailyUsage(DescribeTIWRoomDailyUsageRequest(sdkAppId: sdkAppId, subProduct: subProduct, startTime: startTime, endTime: endTime, roomIDs: roomIDs, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询房间维度每天计费用量
+    ///
+    /// 查询互动白板房间维度每天计费用量。
+    /// 1. 单次查询统计区间最多不能超过31天。
+    /// 2. 由于统计延迟等原因，暂时不支持查询当天数据，建议在次日上午7点以后再来查询前一天的用量，例如在10月27日上午7点后，再来查询到10月26日整天的用量
+    @inlinable
+    public func describeTIWRoomDailyUsage(sdkAppId: Int64, subProduct: String, startTime: Date, endTime: Date, roomIDs: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTIWRoomDailyUsageResponse {
+        try await self.describeTIWRoomDailyUsage(DescribeTIWRoomDailyUsageRequest(sdkAppId: sdkAppId, subProduct: subProduct, startTime: startTime, endTime: endTime, roomIDs: roomIDs, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

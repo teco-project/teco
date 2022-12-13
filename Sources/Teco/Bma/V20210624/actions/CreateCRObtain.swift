@@ -102,4 +102,20 @@ extension Bma {
     public func createCRObtain(_ input: CreateCRObtainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRObtainResponse {
         try await self.client.execute(action: "CreateCRObtain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新建取证
+    ///
+    /// 版权保护-新建取证接口
+    @inlinable
+    public func createCRObtain(workId: Int64, tortUrl: String, obtainType: Int64, workTitle: String? = nil, tortPlat: String? = nil, obtainDuration: Int64? = nil, obtainUrl: String? = nil, workCategory: String? = nil, workType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRObtainResponse > {
+        self.createCRObtain(CreateCRObtainRequest(workId: workId, tortUrl: tortUrl, obtainType: obtainType, workTitle: workTitle, tortPlat: tortPlat, obtainDuration: obtainDuration, obtainUrl: obtainUrl, workCategory: workCategory, workType: workType), logger: logger, on: eventLoop)
+    }
+    
+    /// 新建取证
+    ///
+    /// 版权保护-新建取证接口
+    @inlinable
+    public func createCRObtain(workId: Int64, tortUrl: String, obtainType: Int64, workTitle: String? = nil, tortPlat: String? = nil, obtainDuration: Int64? = nil, obtainUrl: String? = nil, workCategory: String? = nil, workType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRObtainResponse {
+        try await self.createCRObtain(CreateCRObtainRequest(workId: workId, tortUrl: tortUrl, obtainType: obtainType, workTitle: workTitle, tortPlat: tortPlat, obtainDuration: obtainDuration, obtainUrl: obtainUrl, workCategory: workCategory, workType: workType), logger: logger, on: eventLoop)
+    }
 }

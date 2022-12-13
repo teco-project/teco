@@ -74,4 +74,16 @@ extension Emr {
     public func modifyResourceScheduleConfig(_ input: ModifyResourceScheduleConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceScheduleConfigResponse {
         try await self.client.execute(action: "ModifyResourceScheduleConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改YARN资源调度的资源配置
+    @inlinable
+    public func modifyResourceScheduleConfig(instanceId: String, key: String, value: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourceScheduleConfigResponse > {
+        self.modifyResourceScheduleConfig(ModifyResourceScheduleConfigRequest(instanceId: instanceId, key: key, value: value), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改YARN资源调度的资源配置
+    @inlinable
+    public func modifyResourceScheduleConfig(instanceId: String, key: String, value: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceScheduleConfigResponse {
+        try await self.modifyResourceScheduleConfig(ModifyResourceScheduleConfigRequest(instanceId: instanceId, key: key, value: value), logger: logger, on: eventLoop)
+    }
 }

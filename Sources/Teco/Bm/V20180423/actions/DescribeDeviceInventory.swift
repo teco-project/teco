@@ -104,4 +104,16 @@ extension Bm {
     public func describeDeviceInventory(_ input: DescribeDeviceInventoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceInventoryResponse {
         try await self.client.execute(action: "DescribeDeviceInventory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询设备库存
+    @inlinable
+    public func describeDeviceInventory(zone: String, deviceClassCode: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceInventoryResponse > {
+        self.describeDeviceInventory(DescribeDeviceInventoryRequest(zone: zone, deviceClassCode: deviceClassCode, vpcId: vpcId, subnetId: subnetId, cpuId: cpuId, memSize: memSize, containRaidCard: containRaidCard, systemDiskTypeId: systemDiskTypeId, systemDiskCount: systemDiskCount, dataDiskTypeId: dataDiskTypeId, dataDiskCount: dataDiskCount), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备库存
+    @inlinable
+    public func describeDeviceInventory(zone: String, deviceClassCode: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceInventoryResponse {
+        try await self.describeDeviceInventory(DescribeDeviceInventoryRequest(zone: zone, deviceClassCode: deviceClassCode, vpcId: vpcId, subnetId: subnetId, cpuId: cpuId, memSize: memSize, containRaidCard: containRaidCard, systemDiskTypeId: systemDiskTypeId, systemDiskCount: systemDiskCount, dataDiskTypeId: dataDiskTypeId, dataDiskCount: dataDiskCount), logger: logger, on: eventLoop)
+    }
 }

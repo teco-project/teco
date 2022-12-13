@@ -51,7 +51,7 @@ extension Ess {
         /// 查询内容：0-模板列表及详情（默认），1-仅模板列表
         public let contentType: Int64?
         
-        public init (`operator`: UserInfo, organization: OrganizationInfo? = nil, agent: Agent? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, applicationId: String? = nil, isChannel: Bool? = nil, generateSource: UInt64? = nil, contentType: Int64? = nil) {
+        public init (operator: UserInfo, organization: OrganizationInfo? = nil, agent: Agent? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, applicationId: String? = nil, isChannel: Bool? = nil, generateSource: UInt64? = nil, contentType: Int64? = nil) {
             self.`operator` = `operator`
             self.organization = organization
             self.agent = agent
@@ -110,5 +110,21 @@ extension Ess {
     @inlinable
     public func describeFlowTemplates(_ input: DescribeFlowTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowTemplatesResponse {
         try await self.client.execute(action: "DescribeFlowTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 查询模板
+    ///
+    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
+    @inlinable
+    public func describeFlowTemplates(operator: UserInfo, organization: OrganizationInfo? = nil, agent: Agent? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, applicationId: String? = nil, isChannel: Bool? = nil, generateSource: UInt64? = nil, contentType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowTemplatesResponse > {
+        self.describeFlowTemplates(DescribeFlowTemplatesRequest(operator: `operator`, organization: organization, agent: agent, offset: offset, limit: limit, filters: filters, applicationId: applicationId, isChannel: isChannel, generateSource: generateSource, contentType: contentType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询模板
+    ///
+    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
+    @inlinable
+    public func describeFlowTemplates(operator: UserInfo, organization: OrganizationInfo? = nil, agent: Agent? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, applicationId: String? = nil, isChannel: Bool? = nil, generateSource: UInt64? = nil, contentType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowTemplatesResponse {
+        try await self.describeFlowTemplates(DescribeFlowTemplatesRequest(operator: `operator`, organization: organization, agent: agent, offset: offset, limit: limit, filters: filters, applicationId: applicationId, isChannel: isChannel, generateSource: generateSource, contentType: contentType), logger: logger, on: eventLoop)
     }
 }

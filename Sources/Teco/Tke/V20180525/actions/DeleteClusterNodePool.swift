@@ -60,4 +60,16 @@ extension Tke {
     public func deleteClusterNodePool(_ input: DeleteClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterNodePoolResponse {
         try await self.client.execute(action: "DeleteClusterNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除节点池
+    @inlinable
+    public func deleteClusterNodePool(clusterId: String, nodePoolIds: [String], keepInstance: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterNodePoolResponse > {
+        self.deleteClusterNodePool(DeleteClusterNodePoolRequest(clusterId: clusterId, nodePoolIds: nodePoolIds, keepInstance: keepInstance), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除节点池
+    @inlinable
+    public func deleteClusterNodePool(clusterId: String, nodePoolIds: [String], keepInstance: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterNodePoolResponse {
+        try await self.deleteClusterNodePool(DeleteClusterNodePoolRequest(clusterId: clusterId, nodePoolIds: nodePoolIds, keepInstance: keepInstance), logger: logger, on: eventLoop)
+    }
 }

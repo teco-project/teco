@@ -54,4 +54,16 @@ extension Iotvideo {
     public func describePackageConsumeTask(_ input: DescribePackageConsumeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackageConsumeTaskResponse {
         try await self.client.execute(action: "DescribePackageConsumeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询套餐消耗记录详情
+    @inlinable
+    public func describePackageConsumeTask(taskId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePackageConsumeTaskResponse > {
+        self.describePackageConsumeTask(DescribePackageConsumeTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询套餐消耗记录详情
+    @inlinable
+    public func describePackageConsumeTask(taskId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackageConsumeTaskResponse {
+        try await self.describePackageConsumeTask(DescribePackageConsumeTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

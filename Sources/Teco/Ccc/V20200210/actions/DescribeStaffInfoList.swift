@@ -83,4 +83,16 @@ extension Ccc {
     public func describeStaffInfoList(_ input: DescribeStaffInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffInfoListResponse {
         try await self.client.execute(action: "DescribeStaffInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取坐席信息列表
+    @inlinable
+    public func describeStaffInfoList(sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, staffMail: String? = nil, modifiedTime: Int64? = nil, skillGroupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStaffInfoListResponse > {
+        self.describeStaffInfoList(DescribeStaffInfoListRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, staffMail: staffMail, modifiedTime: modifiedTime, skillGroupId: skillGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取坐席信息列表
+    @inlinable
+    public func describeStaffInfoList(sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, staffMail: String? = nil, modifiedTime: Int64? = nil, skillGroupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffInfoListResponse {
+        try await self.describeStaffInfoList(DescribeStaffInfoListRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, staffMail: staffMail, modifiedTime: modifiedTime, skillGroupId: skillGroupId), logger: logger, on: eventLoop)
+    }
 }

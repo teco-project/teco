@@ -63,4 +63,20 @@ extension Bmvpc {
     public func describeNatSubnets(_ input: DescribeNatSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatSubnetsResponse {
         try await self.client.execute(action: "DescribeNatSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取NAT关联的子网信息
+    ///
+    /// 可获取NAT网关绑定的子网信息
+    @inlinable
+    public func describeNatSubnets(natId: String, vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatSubnetsResponse > {
+        self.describeNatSubnets(DescribeNatSubnetsRequest(natId: natId, vpcId: vpcId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取NAT关联的子网信息
+    ///
+    /// 可获取NAT网关绑定的子网信息
+    @inlinable
+    public func describeNatSubnets(natId: String, vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatSubnetsResponse {
+        try await self.describeNatSubnets(DescribeNatSubnetsRequest(natId: natId, vpcId: vpcId), logger: logger, on: eventLoop)
+    }
 }

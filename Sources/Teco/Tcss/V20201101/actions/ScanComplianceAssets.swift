@@ -58,4 +58,20 @@ extension Tcss {
     public func scanComplianceAssets(_ input: ScanComplianceAssetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanComplianceAssetsResponse {
         try await self.client.execute(action: "ScanComplianceAssets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安全合规重新检测选定的资产
+    ///
+    /// 重新检测选定的资产
+    @inlinable
+    public func scanComplianceAssets(customerAssetIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanComplianceAssetsResponse > {
+        self.scanComplianceAssets(ScanComplianceAssetsRequest(customerAssetIdSet: customerAssetIdSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规重新检测选定的资产
+    ///
+    /// 重新检测选定的资产
+    @inlinable
+    public func scanComplianceAssets(customerAssetIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanComplianceAssetsResponse {
+        try await self.scanComplianceAssets(ScanComplianceAssetsRequest(customerAssetIdSet: customerAssetIdSet), logger: logger, on: eventLoop)
+    }
 }

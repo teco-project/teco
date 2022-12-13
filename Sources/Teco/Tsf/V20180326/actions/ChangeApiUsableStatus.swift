@@ -59,4 +59,16 @@ extension Tsf {
     public func changeApiUsableStatus(_ input: ChangeApiUsableStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeApiUsableStatusResponse {
         try await self.client.execute(action: "ChangeApiUsableStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启用或禁用API
+    @inlinable
+    public func changeApiUsableStatus(apiId: String, usableStatus: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeApiUsableStatusResponse > {
+        self.changeApiUsableStatus(ChangeApiUsableStatusRequest(apiId: apiId, usableStatus: usableStatus), logger: logger, on: eventLoop)
+    }
+    
+    /// 启用或禁用API
+    @inlinable
+    public func changeApiUsableStatus(apiId: String, usableStatus: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeApiUsableStatusResponse {
+        try await self.changeApiUsableStatus(ChangeApiUsableStatusRequest(apiId: apiId, usableStatus: usableStatus), logger: logger, on: eventLoop)
+    }
 }

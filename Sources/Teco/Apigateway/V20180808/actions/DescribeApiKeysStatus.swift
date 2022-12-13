@@ -71,4 +71,22 @@ extension Apigateway {
     public func describeApiKeysStatus(_ input: DescribeApiKeysStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiKeysStatusResponse {
         try await self.client.execute(action: "DescribeApiKeysStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询密钥列表
+    ///
+    /// 本接口（DescribeApiKeysStatus）用于查询密钥列表。
+    /// 当用户创建了多个密钥对时，可使用本接口查询一个或多个 API 密钥信息。
+    @inlinable
+    public func describeApiKeysStatus(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiKeysStatusResponse > {
+        self.describeApiKeysStatus(DescribeApiKeysStatusRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询密钥列表
+    ///
+    /// 本接口（DescribeApiKeysStatus）用于查询密钥列表。
+    /// 当用户创建了多个密钥对时，可使用本接口查询一个或多个 API 密钥信息。
+    @inlinable
+    public func describeApiKeysStatus(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiKeysStatusResponse {
+        try await self.describeApiKeysStatus(DescribeApiKeysStatusRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

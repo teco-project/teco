@@ -112,4 +112,20 @@ extension Sqlserver {
     public func describeBackupMigration(_ input: DescribeBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupMigrationResponse {
         try await self.client.execute(action: "DescribeBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询备份导入任务
+    ///
+    /// 本接口（DescribeBackupMigration）用于创建增量备份导入任务。
+    @inlinable
+    public func describeBackupMigration(instanceId: String, backupMigrationId: String? = nil, migrationName: String? = nil, backupFileName: String? = nil, statusSet: [Int64]? = nil, recoveryType: String? = nil, uploadType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupMigrationResponse > {
+        self.describeBackupMigration(DescribeBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, migrationName: migrationName, backupFileName: backupFileName, statusSet: statusSet, recoveryType: recoveryType, uploadType: uploadType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询备份导入任务
+    ///
+    /// 本接口（DescribeBackupMigration）用于创建增量备份导入任务。
+    @inlinable
+    public func describeBackupMigration(instanceId: String, backupMigrationId: String? = nil, migrationName: String? = nil, backupFileName: String? = nil, statusSet: [Int64]? = nil, recoveryType: String? = nil, uploadType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupMigrationResponse {
+        try await self.describeBackupMigration(DescribeBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, migrationName: migrationName, backupFileName: backupFileName, statusSet: statusSet, recoveryType: recoveryType, uploadType: uploadType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    }
 }

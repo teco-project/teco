@@ -73,4 +73,20 @@ extension Cwp {
     public func modifyLicenseBinds(_ input: ModifyLicenseBindsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLicenseBindsResponse {
         try await self.client.execute(action: "ModifyLicenseBinds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 授权批量绑定
+    ///
+    /// 设置中心-授权管理 对某个授权批量绑定机器
+    @inlinable
+    public func modifyLicenseBinds(resourceId: String, licenseType: UInt64, isAll: Bool? = nil, quuidList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLicenseBindsResponse > {
+        self.modifyLicenseBinds(ModifyLicenseBindsRequest(resourceId: resourceId, licenseType: licenseType, isAll: isAll, quuidList: quuidList), logger: logger, on: eventLoop)
+    }
+    
+    /// 授权批量绑定
+    ///
+    /// 设置中心-授权管理 对某个授权批量绑定机器
+    @inlinable
+    public func modifyLicenseBinds(resourceId: String, licenseType: UInt64, isAll: Bool? = nil, quuidList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLicenseBindsResponse {
+        try await self.modifyLicenseBinds(ModifyLicenseBindsRequest(resourceId: resourceId, licenseType: licenseType, isAll: isAll, quuidList: quuidList), logger: logger, on: eventLoop)
+    }
 }

@@ -51,4 +51,20 @@ extension Cfw {
     public func describeNatFwInstanceWithRegion(_ input: DescribeNatFwInstanceWithRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInstanceWithRegionResponse {
         try await self.client.execute(action: "DescribeNatFwInstanceWithRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取租户可运维NAT实例
+    ///
+    /// GetNatFwInstanceWithRegion 获取租户新增运维的NAT实例，带上地域
+    @inlinable
+    public func describeNatFwInstanceWithRegion(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatFwInstanceWithRegionResponse > {
+        self.describeNatFwInstanceWithRegion(DescribeNatFwInstanceWithRegionRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取租户可运维NAT实例
+    ///
+    /// GetNatFwInstanceWithRegion 获取租户新增运维的NAT实例，带上地域
+    @inlinable
+    public func describeNatFwInstanceWithRegion(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInstanceWithRegionResponse {
+        try await self.describeNatFwInstanceWithRegion(DescribeNatFwInstanceWithRegionRequest(), logger: logger, on: eventLoop)
+    }
 }

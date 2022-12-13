@@ -60,4 +60,20 @@ extension Dayu {
     public func describeDDoSUsedStatis(_ input: DescribeDDoSUsedStatisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSUsedStatisResponse {
         try await self.client.execute(action: "DescribeDDoSUsedStatis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取DDoS防护使用统计
+    ///
+    /// 统计用户的高防资源的使用天数和DDoS攻击防护次数
+    @inlinable
+    public func describeDDoSUsedStatis(business: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSUsedStatisResponse > {
+        self.describeDDoSUsedStatis(DescribeDDoSUsedStatisRequest(business: business), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS防护使用统计
+    ///
+    /// 统计用户的高防资源的使用天数和DDoS攻击防护次数
+    @inlinable
+    public func describeDDoSUsedStatis(business: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSUsedStatisResponse {
+        try await self.describeDDoSUsedStatis(DescribeDDoSUsedStatisRequest(business: business), logger: logger, on: eventLoop)
+    }
 }

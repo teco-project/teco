@@ -70,4 +70,16 @@ extension Monitor {
     public func unBindingPolicyObject(_ input: UnBindingPolicyObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindingPolicyObjectResponse {
         try await self.client.execute(action: "UnBindingPolicyObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除策略的关联对象
+    @inlinable
+    public func unBindingPolicyObject(module: String, groupId: Int64, uniqueId: [String], instanceGroupId: Int64? = nil, policyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindingPolicyObjectResponse > {
+        self.unBindingPolicyObject(UnBindingPolicyObjectRequest(module: module, groupId: groupId, uniqueId: uniqueId, instanceGroupId: instanceGroupId, policyId: policyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除策略的关联对象
+    @inlinable
+    public func unBindingPolicyObject(module: String, groupId: Int64, uniqueId: [String], instanceGroupId: Int64? = nil, policyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindingPolicyObjectResponse {
+        try await self.unBindingPolicyObject(UnBindingPolicyObjectRequest(module: module, groupId: groupId, uniqueId: uniqueId, instanceGroupId: instanceGroupId, policyId: policyId), logger: logger, on: eventLoop)
+    }
 }

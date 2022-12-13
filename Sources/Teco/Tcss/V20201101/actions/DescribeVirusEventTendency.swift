@@ -54,4 +54,16 @@ extension Tcss {
     public func describeVirusEventTendency(_ input: DescribeVirusEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusEventTendencyResponse {
         try await self.client.execute(action: "DescribeVirusEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询木马事件趋势
+    @inlinable
+    public func describeVirusEventTendency(tendencyPeriod: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusEventTendencyResponse > {
+        self.describeVirusEventTendency(DescribeVirusEventTendencyRequest(tendencyPeriod: tendencyPeriod), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询木马事件趋势
+    @inlinable
+    public func describeVirusEventTendency(tendencyPeriod: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusEventTendencyResponse {
+        try await self.describeVirusEventTendency(DescribeVirusEventTendencyRequest(tendencyPeriod: tendencyPeriod), logger: logger, on: eventLoop)
+    }
 }

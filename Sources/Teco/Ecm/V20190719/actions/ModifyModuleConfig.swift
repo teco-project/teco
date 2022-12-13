@@ -79,4 +79,20 @@ extension Ecm {
     public func modifyModuleConfig(_ input: ModifyModuleConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleConfigResponse {
         try await self.client.execute(action: "ModifyModuleConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改模块配置
+    ///
+    /// 修改模块配置，已关联实例的模块不支持调整配置。
+    @inlinable
+    public func modifyModuleConfig(moduleId: String, instanceType: String, defaultDataDiskSize: Int64, defaultSystemDiskSize: Int64? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleConfigResponse > {
+        self.modifyModuleConfig(ModifyModuleConfigRequest(moduleId: moduleId, instanceType: instanceType, defaultDataDiskSize: defaultDataDiskSize, defaultSystemDiskSize: defaultSystemDiskSize, systemDisk: systemDisk, dataDisks: dataDisks), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改模块配置
+    ///
+    /// 修改模块配置，已关联实例的模块不支持调整配置。
+    @inlinable
+    public func modifyModuleConfig(moduleId: String, instanceType: String, defaultDataDiskSize: Int64, defaultSystemDiskSize: Int64? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleConfigResponse {
+        try await self.modifyModuleConfig(ModifyModuleConfigRequest(moduleId: moduleId, instanceType: instanceType, defaultDataDiskSize: defaultDataDiskSize, defaultSystemDiskSize: defaultSystemDiskSize, systemDisk: systemDisk, dataDisks: dataDisks), logger: logger, on: eventLoop)
+    }
 }

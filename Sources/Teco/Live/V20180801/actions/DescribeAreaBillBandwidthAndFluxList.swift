@@ -68,4 +68,20 @@ extension Live {
     public func describeAreaBillBandwidthAndFluxList(_ input: DescribeAreaBillBandwidthAndFluxListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAreaBillBandwidthAndFluxListResponse {
         try await self.client.execute(action: "DescribeAreaBillBandwidthAndFluxList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 海外分区直播播放带宽和流量数据查询
+    ///
+    /// 海外分区直播播放带宽和流量数据查询。
+    @inlinable
+    public func describeAreaBillBandwidthAndFluxList(startTime: String, endTime: String, playDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAreaBillBandwidthAndFluxListResponse > {
+        self.describeAreaBillBandwidthAndFluxList(DescribeAreaBillBandwidthAndFluxListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains), logger: logger, on: eventLoop)
+    }
+    
+    /// 海外分区直播播放带宽和流量数据查询
+    ///
+    /// 海外分区直播播放带宽和流量数据查询。
+    @inlinable
+    public func describeAreaBillBandwidthAndFluxList(startTime: String, endTime: String, playDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAreaBillBandwidthAndFluxListResponse {
+        try await self.describeAreaBillBandwidthAndFluxList(DescribeAreaBillBandwidthAndFluxListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains), logger: logger, on: eventLoop)
+    }
 }

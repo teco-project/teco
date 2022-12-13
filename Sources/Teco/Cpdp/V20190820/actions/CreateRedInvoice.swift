@@ -71,4 +71,16 @@ extension Cpdp {
     public func createRedInvoice(_ input: CreateRedInvoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRedInvoiceResponse {
         try await self.client.execute(action: "CreateRedInvoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 智慧零售-发票红冲
+    @inlinable
+    public func createRedInvoice(invoicePlatformId: Int64, invoices: [CreateRedInvoiceItem], profile: String? = nil, invoiceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRedInvoiceResponse > {
+        self.createRedInvoice(CreateRedInvoiceRequest(invoicePlatformId: invoicePlatformId, invoices: invoices, profile: profile, invoiceChannel: invoiceChannel), logger: logger, on: eventLoop)
+    }
+    
+    /// 智慧零售-发票红冲
+    @inlinable
+    public func createRedInvoice(invoicePlatformId: Int64, invoices: [CreateRedInvoiceItem], profile: String? = nil, invoiceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRedInvoiceResponse {
+        try await self.createRedInvoice(CreateRedInvoiceRequest(invoicePlatformId: invoicePlatformId, invoices: invoices, profile: profile, invoiceChannel: invoiceChannel), logger: logger, on: eventLoop)
+    }
 }

@@ -81,4 +81,20 @@ extension Tcr {
     public func createInternalEndpointDns(_ input: CreateInternalEndpointDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInternalEndpointDnsResponse {
         try await self.client.execute(action: "CreateInternalEndpointDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建私有域名解析
+    ///
+    /// 创建tcr内网私有域名解析
+    @inlinable
+    public func createInternalEndpointDns(instanceId: String, vpcId: String, eniLBIp: String, usePublicDomain: Bool? = nil, regionName: String? = nil, regionId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInternalEndpointDnsResponse > {
+        self.createInternalEndpointDns(CreateInternalEndpointDnsRequest(instanceId: instanceId, vpcId: vpcId, eniLBIp: eniLBIp, usePublicDomain: usePublicDomain, regionName: regionName, regionId: regionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建私有域名解析
+    ///
+    /// 创建tcr内网私有域名解析
+    @inlinable
+    public func createInternalEndpointDns(instanceId: String, vpcId: String, eniLBIp: String, usePublicDomain: Bool? = nil, regionName: String? = nil, regionId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInternalEndpointDnsResponse {
+        try await self.createInternalEndpointDns(CreateInternalEndpointDnsRequest(instanceId: instanceId, vpcId: vpcId, eniLBIp: eniLBIp, usePublicDomain: usePublicDomain, regionName: regionName, regionId: regionId), logger: logger, on: eventLoop)
+    }
 }

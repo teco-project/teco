@@ -70,4 +70,16 @@ extension Bma {
     public func createBPProtectURLs(_ input: CreateBPProtectURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPProtectURLsResponse {
         try await self.client.execute(action: "CreateBPProtectURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加保护网站
+    @inlinable
+    public func createBPProtectURLs(companyName: String? = nil, phone: String? = nil, licenseName: String? = nil, protectURLs: [String]? = nil, protectWebs: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPProtectURLsResponse > {
+        self.createBPProtectURLs(CreateBPProtectURLsRequest(companyName: companyName, phone: phone, licenseName: licenseName, protectURLs: protectURLs, protectWebs: protectWebs), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加保护网站
+    @inlinable
+    public func createBPProtectURLs(companyName: String? = nil, phone: String? = nil, licenseName: String? = nil, protectURLs: [String]? = nil, protectWebs: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPProtectURLsResponse {
+        try await self.createBPProtectURLs(CreateBPProtectURLsRequest(companyName: companyName, phone: phone, licenseName: licenseName, protectURLs: protectURLs, protectWebs: protectWebs), logger: logger, on: eventLoop)
+    }
 }

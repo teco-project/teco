@@ -96,4 +96,20 @@ extension Cfs {
     public func describeCfsSnapshots(_ input: DescribeCfsSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsSnapshotsResponse {
         try await self.client.execute(action: "DescribeCfsSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询快照列表
+    ///
+    /// 查询文件系统快照列表
+    @inlinable
+    public func describeCfsSnapshots(fileSystemId: String? = nil, snapshotId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfsSnapshotsResponse > {
+        self.describeCfsSnapshots(DescribeCfsSnapshotsRequest(fileSystemId: fileSystemId, snapshotId: snapshotId, offset: offset, limit: limit, filters: filters, orderField: orderField, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询快照列表
+    ///
+    /// 查询文件系统快照列表
+    @inlinable
+    public func describeCfsSnapshots(fileSystemId: String? = nil, snapshotId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsSnapshotsResponse {
+        try await self.describeCfsSnapshots(DescribeCfsSnapshotsRequest(fileSystemId: fileSystemId, snapshotId: snapshotId, offset: offset, limit: limit, filters: filters, orderField: orderField, order: order), logger: logger, on: eventLoop)
+    }
 }

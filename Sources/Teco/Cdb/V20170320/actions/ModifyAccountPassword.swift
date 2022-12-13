@@ -68,4 +68,20 @@ extension Cdb {
     public func modifyAccountPassword(_ input: ModifyAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPasswordResponse {
         try await self.client.execute(action: "ModifyAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改云数据库实例账号的密码
+    ///
+    /// 本接口(ModifyAccountPassword)用于修改云数据库账户的密码。
+    @inlinable
+    public func modifyAccountPassword(instanceId: String, newPassword: String, accounts: [Account], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountPasswordResponse > {
+        self.modifyAccountPassword(ModifyAccountPasswordRequest(instanceId: instanceId, newPassword: newPassword, accounts: accounts), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云数据库实例账号的密码
+    ///
+    /// 本接口(ModifyAccountPassword)用于修改云数据库账户的密码。
+    @inlinable
+    public func modifyAccountPassword(instanceId: String, newPassword: String, accounts: [Account], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPasswordResponse {
+        try await self.modifyAccountPassword(ModifyAccountPasswordRequest(instanceId: instanceId, newPassword: newPassword, accounts: accounts), logger: logger, on: eventLoop)
+    }
 }

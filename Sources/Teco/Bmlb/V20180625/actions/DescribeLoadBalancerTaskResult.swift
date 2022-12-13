@@ -58,4 +58,20 @@ extension Bmlb {
     public func describeLoadBalancerTaskResult(_ input: DescribeLoadBalancerTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerTaskResultResponse {
         try await self.client.execute(action: "DescribeLoadBalancerTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询负载均衡实例异步任务的执行情况
+    ///
+    /// 查询负载均衡实例异步任务的执行情况。
+    @inlinable
+    public func describeLoadBalancerTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancerTaskResultResponse > {
+        self.describeLoadBalancerTaskResult(DescribeLoadBalancerTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询负载均衡实例异步任务的执行情况
+    ///
+    /// 查询负载均衡实例异步任务的执行情况。
+    @inlinable
+    public func describeLoadBalancerTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerTaskResultResponse {
+        try await self.describeLoadBalancerTaskResult(DescribeLoadBalancerTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

@@ -77,4 +77,20 @@ extension Gme {
     public func describeAppStatistics(_ input: DescribeAppStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppStatisticsResponse {
         try await self.client.execute(action: "DescribeAppStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取应用用量统计数据
+    ///
+    /// 本接口(DescribeAppStatistics)用于获取某个GME应用的用量数据。包括实时语音，语音消息及转文本，语音分析等。最长查询周期为最近60天。
+    @inlinable
+    public func describeAppStatistics(bizId: UInt64, startDate: Date, endDate: Date, services: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAppStatisticsResponse > {
+        self.describeAppStatistics(DescribeAppStatisticsRequest(bizId: bizId, startDate: startDate, endDate: endDate, services: services), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用用量统计数据
+    ///
+    /// 本接口(DescribeAppStatistics)用于获取某个GME应用的用量数据。包括实时语音，语音消息及转文本，语音分析等。最长查询周期为最近60天。
+    @inlinable
+    public func describeAppStatistics(bizId: UInt64, startDate: Date, endDate: Date, services: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppStatisticsResponse {
+        try await self.describeAppStatistics(DescribeAppStatisticsRequest(bizId: bizId, startDate: startDate, endDate: endDate, services: services), logger: logger, on: eventLoop)
+    }
 }

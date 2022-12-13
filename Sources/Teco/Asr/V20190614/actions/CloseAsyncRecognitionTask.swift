@@ -54,4 +54,20 @@ extension Asr {
     public func closeAsyncRecognitionTask(_ input: CloseAsyncRecognitionTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseAsyncRecognitionTaskResponse {
         try await self.client.execute(action: "CloseAsyncRecognitionTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 语音流异步识别任务关闭
+    ///
+    /// 本接口用于关闭语音流异步识别任务。
+    @inlinable
+    public func closeAsyncRecognitionTask(taskId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseAsyncRecognitionTaskResponse > {
+        self.closeAsyncRecognitionTask(CloseAsyncRecognitionTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 语音流异步识别任务关闭
+    ///
+    /// 本接口用于关闭语音流异步识别任务。
+    @inlinable
+    public func closeAsyncRecognitionTask(taskId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseAsyncRecognitionTaskResponse {
+        try await self.closeAsyncRecognitionTask(CloseAsyncRecognitionTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

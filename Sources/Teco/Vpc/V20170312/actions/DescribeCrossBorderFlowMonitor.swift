@@ -89,4 +89,20 @@ extension Vpc {
     public func describeCrossBorderFlowMonitor(_ input: DescribeCrossBorderFlowMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossBorderFlowMonitorResponse {
         try await self.client.execute(action: "DescribeCrossBorderFlowMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询跨境带宽监控数据
+    ///
+    /// 查询跨境带宽监控数据，该接口特提供给联通使用
+    @inlinable
+    public func describeCrossBorderFlowMonitor(sourceRegion: String, destinationRegion: String, ccnId: String, ccnUin: String, period: Int64, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCrossBorderFlowMonitorResponse > {
+        self.describeCrossBorderFlowMonitor(DescribeCrossBorderFlowMonitorRequest(sourceRegion: sourceRegion, destinationRegion: destinationRegion, ccnId: ccnId, ccnUin: ccnUin, period: period, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询跨境带宽监控数据
+    ///
+    /// 查询跨境带宽监控数据，该接口特提供给联通使用
+    @inlinable
+    public func describeCrossBorderFlowMonitor(sourceRegion: String, destinationRegion: String, ccnId: String, ccnUin: String, period: Int64, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossBorderFlowMonitorResponse {
+        try await self.describeCrossBorderFlowMonitor(DescribeCrossBorderFlowMonitorRequest(sourceRegion: sourceRegion, destinationRegion: destinationRegion, ccnId: ccnId, ccnUin: ccnUin, period: period, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

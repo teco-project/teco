@@ -114,4 +114,20 @@ extension Ocr {
     public func hmtResidentPermitOCR(_ input: HmtResidentPermitOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HmtResidentPermitOCRResponse {
         try await self.client.execute(action: "HmtResidentPermitOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 港澳台居住证识别
+    ///
+    /// 港澳台居住证OCR支持港澳台居住证正反面全字段内容检测识别功能，包括姓名、性别、出生日期、地址、身份证ID、签发机关、有效期限、签发次数、通行证号码关键字段识别。可以应用于港澳台居住证信息有效性校验场景，例如银行开户、用户注册等场景。
+    @inlinable
+    public func hmtResidentPermitOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < HmtResidentPermitOCRResponse > {
+        self.hmtResidentPermitOCR(HmtResidentPermitOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide), logger: logger, on: eventLoop)
+    }
+    
+    /// 港澳台居住证识别
+    ///
+    /// 港澳台居住证OCR支持港澳台居住证正反面全字段内容检测识别功能，包括姓名、性别、出生日期、地址、身份证ID、签发机关、有效期限、签发次数、通行证号码关键字段识别。可以应用于港澳台居住证信息有效性校验场景，例如银行开户、用户注册等场景。
+    @inlinable
+    public func hmtResidentPermitOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HmtResidentPermitOCRResponse {
+        try await self.hmtResidentPermitOCR(HmtResidentPermitOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide), logger: logger, on: eventLoop)
+    }
 }

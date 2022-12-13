@@ -60,4 +60,16 @@ extension Bpaas {
     public func outApproveBpaasApplication(_ input: OutApproveBpaasApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OutApproveBpaasApplicationResponse {
         try await self.client.execute(action: "OutApproveBpaasApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 外部审批申请单
+    @inlinable
+    public func outApproveBpaasApplication(status: UInt64, approveId: UInt64, msg: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OutApproveBpaasApplicationResponse > {
+        self.outApproveBpaasApplication(OutApproveBpaasApplicationRequest(status: status, approveId: approveId, msg: msg), logger: logger, on: eventLoop)
+    }
+    
+    /// 外部审批申请单
+    @inlinable
+    public func outApproveBpaasApplication(status: UInt64, approveId: UInt64, msg: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OutApproveBpaasApplicationResponse {
+        try await self.outApproveBpaasApplication(OutApproveBpaasApplicationRequest(status: status, approveId: approveId, msg: msg), logger: logger, on: eventLoop)
+    }
 }

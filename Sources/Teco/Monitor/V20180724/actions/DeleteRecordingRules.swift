@@ -59,4 +59,20 @@ extension Monitor {
     public func deleteRecordingRules(_ input: DeleteRecordingRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordingRulesResponse {
         try await self.client.execute(action: "DeleteRecordingRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除预聚合规则
+    ///
+    /// 批量删除 Prometheus 预聚合规则
+    @inlinable
+    public func deleteRecordingRules(ruleIds: [String], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRecordingRulesResponse > {
+        self.deleteRecordingRules(DeleteRecordingRulesRequest(ruleIds: ruleIds, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除预聚合规则
+    ///
+    /// 批量删除 Prometheus 预聚合规则
+    @inlinable
+    public func deleteRecordingRules(ruleIds: [String], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordingRulesResponse {
+        try await self.deleteRecordingRules(DeleteRecordingRulesRequest(ruleIds: ruleIds, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

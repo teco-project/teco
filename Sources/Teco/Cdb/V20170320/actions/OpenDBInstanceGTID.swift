@@ -58,4 +58,20 @@ extension Cdb {
     public func openDBInstanceGTID(_ input: OpenDBInstanceGTIDRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenDBInstanceGTIDResponse {
         try await self.client.execute(action: "OpenDBInstanceGTID", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开启实例的GTID
+    ///
+    /// 本接口(OpenDBInstanceGTID)用于开启云数据库实例的 GTID，只支持版本为 5.6 以及以上的实例。
+    @inlinable
+    public func openDBInstanceGTID(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenDBInstanceGTIDResponse > {
+        self.openDBInstanceGTID(OpenDBInstanceGTIDRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 开启实例的GTID
+    ///
+    /// 本接口(OpenDBInstanceGTID)用于开启云数据库实例的 GTID，只支持版本为 5.6 以及以上的实例。
+    @inlinable
+    public func openDBInstanceGTID(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenDBInstanceGTIDResponse {
+        try await self.openDBInstanceGTID(OpenDBInstanceGTIDRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

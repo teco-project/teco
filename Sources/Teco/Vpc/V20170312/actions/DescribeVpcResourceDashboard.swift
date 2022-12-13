@@ -58,4 +58,20 @@ extension Vpc {
     public func describeVpcResourceDashboard(_ input: DescribeVpcResourceDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResourceDashboardResponse {
         try await self.client.execute(action: "DescribeVpcResourceDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看VPC资源信息
+    ///
+    /// 本接口(DescribeVpcResourceDashboard)用于查看VPC资源信息。
+    @inlinable
+    public func describeVpcResourceDashboard(vpcIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcResourceDashboardResponse > {
+        self.describeVpcResourceDashboard(DescribeVpcResourceDashboardRequest(vpcIds: vpcIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看VPC资源信息
+    ///
+    /// 本接口(DescribeVpcResourceDashboard)用于查看VPC资源信息。
+    @inlinable
+    public func describeVpcResourceDashboard(vpcIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResourceDashboardResponse {
+        try await self.describeVpcResourceDashboard(DescribeVpcResourceDashboardRequest(vpcIds: vpcIds), logger: logger, on: eventLoop)
+    }
 }

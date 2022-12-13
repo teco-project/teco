@@ -68,4 +68,20 @@ extension Bmlb {
     public func describeL4ListenerInfo(_ input: DescribeL4ListenerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4ListenerInfoResponse {
         try await self.client.execute(action: "DescribeL4ListenerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器
+    ///
+    /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器。
+    @inlinable
+    public func describeL4ListenerInfo(loadBalancerId: String, searchKey: String? = nil, instanceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL4ListenerInfoResponse > {
+        self.describeL4ListenerInfo(DescribeL4ListenerInfoRequest(loadBalancerId: loadBalancerId, searchKey: searchKey, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器
+    ///
+    /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器。
+    @inlinable
+    public func describeL4ListenerInfo(loadBalancerId: String, searchKey: String? = nil, instanceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4ListenerInfoResponse {
+        try await self.describeL4ListenerInfo(DescribeL4ListenerInfoRequest(loadBalancerId: loadBalancerId, searchKey: searchKey, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

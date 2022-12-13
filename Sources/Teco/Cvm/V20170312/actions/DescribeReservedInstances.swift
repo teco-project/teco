@@ -94,4 +94,20 @@ extension Cvm {
     public func describeReservedInstances(_ input: DescribeReservedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReservedInstancesResponse {
         try await self.client.execute(action: "DescribeReservedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 列出已购买的预留实例
+    ///
+    /// 本接口(DescribeReservedInstances)可提供列出用户已购买的预留实例
+    @inlinable
+    public func describeReservedInstances(dryRun: Bool? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReservedInstancesResponse > {
+        self.describeReservedInstances(DescribeReservedInstancesRequest(dryRun: dryRun, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 列出已购买的预留实例
+    ///
+    /// 本接口(DescribeReservedInstances)可提供列出用户已购买的预留实例
+    @inlinable
+    public func describeReservedInstances(dryRun: Bool? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReservedInstancesResponse {
+        try await self.describeReservedInstances(DescribeReservedInstancesRequest(dryRun: dryRun, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

@@ -71,4 +71,20 @@ extension Habo {
     public func describeStatus(_ input: DescribeStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatusResponse {
         try await self.client.execute(action: "DescribeStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取分析结果
+    ///
+    /// 查询指定md5样本是否分析完成，并获取分析日志下载地址。
+    @inlinable
+    public func describeStatus(pk: String, md5: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStatusResponse > {
+        self.describeStatus(DescribeStatusRequest(pk: pk, md5: md5), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取分析结果
+    ///
+    /// 查询指定md5样本是否分析完成，并获取分析日志下载地址。
+    @inlinable
+    public func describeStatus(pk: String, md5: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatusResponse {
+        try await self.describeStatus(DescribeStatusRequest(pk: pk, md5: md5), logger: logger, on: eventLoop)
+    }
 }

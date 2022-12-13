@@ -60,4 +60,16 @@ extension Cloudstudio {
     public func createWorkspaceByVersionControl(_ input: CreateWorkspaceByVersionControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByVersionControlResponse {
         try await self.client.execute(action: "CreateWorkspaceByVersionControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 根据模板创建工作空间
+    @inlinable
+    public func createWorkspaceByVersionControl(workspaceDTO: WorkspaceDTO, cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkspaceByVersionControlResponse > {
+        self.createWorkspaceByVersionControl(CreateWorkspaceByVersionControlRequest(workspaceDTO: workspaceDTO, cloudStudioSessionTeam: cloudStudioSessionTeam), logger: logger, on: eventLoop)
+    }
+    
+    /// 根据模板创建工作空间
+    @inlinable
+    public func createWorkspaceByVersionControl(workspaceDTO: WorkspaceDTO, cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByVersionControlResponse {
+        try await self.createWorkspaceByVersionControl(CreateWorkspaceByVersionControlRequest(workspaceDTO: workspaceDTO, cloudStudioSessionTeam: cloudStudioSessionTeam), logger: logger, on: eventLoop)
+    }
 }

@@ -95,4 +95,20 @@ extension Cwp {
     public func describeScanState(_ input: DescribeScanStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanStateResponse {
         try await self.client.execute(action: "DescribeScanState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询扫描状态
+    ///
+    /// DescribeScanState 该接口能查询对应模块正在进行的扫描任务状态
+    @inlinable
+    public func describeScanState(moduleType: String, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanStateResponse > {
+        self.describeScanState(DescribeScanStateRequest(moduleType: moduleType, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询扫描状态
+    ///
+    /// DescribeScanState 该接口能查询对应模块正在进行的扫描任务状态
+    @inlinable
+    public func describeScanState(moduleType: String, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanStateResponse {
+        try await self.describeScanState(DescribeScanStateRequest(moduleType: moduleType, filters: filters), logger: logger, on: eventLoop)
+    }
 }

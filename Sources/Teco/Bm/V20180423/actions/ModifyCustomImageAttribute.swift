@@ -64,4 +64,20 @@ extension Bm {
     public func modifyCustomImageAttribute(_ input: ModifyCustomImageAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomImageAttributeResponse {
         try await self.client.execute(action: "ModifyCustomImageAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改自定义镜像属性
+    ///
+    /// 用于修改自定义镜像名或描述
+    @inlinable
+    public func modifyCustomImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomImageAttributeResponse > {
+        self.modifyCustomImageAttribute(ModifyCustomImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改自定义镜像属性
+    ///
+    /// 用于修改自定义镜像名或描述
+    @inlinable
+    public func modifyCustomImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomImageAttributeResponse {
+        try await self.modifyCustomImageAttribute(ModifyCustomImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), logger: logger, on: eventLoop)
+    }
 }

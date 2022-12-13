@@ -63,4 +63,20 @@ extension Sqlserver {
     public func modifyDatabaseMdf(_ input: ModifyDatabaseMdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseMdfResponse {
         try await self.client.execute(action: "ModifyDatabaseMdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 收缩数据库mdf
+    ///
+    /// 本接口(ModifyDatabaseMdf)用于收缩数据库mdf(Shrink mdf)
+    @inlinable
+    public func modifyDatabaseMdf(dbNames: [String], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDatabaseMdfResponse > {
+        self.modifyDatabaseMdf(ModifyDatabaseMdfRequest(dbNames: dbNames, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 收缩数据库mdf
+    ///
+    /// 本接口(ModifyDatabaseMdf)用于收缩数据库mdf(Shrink mdf)
+    @inlinable
+    public func modifyDatabaseMdf(dbNames: [String], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseMdfResponse {
+        try await self.modifyDatabaseMdf(ModifyDatabaseMdfRequest(dbNames: dbNames, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

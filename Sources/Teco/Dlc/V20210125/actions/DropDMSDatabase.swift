@@ -60,4 +60,16 @@ extension Dlc {
     public func dropDMSDatabase(_ input: DropDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSDatabaseResponse {
         try await self.client.execute(action: "DropDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// DMS元数据删除库
+    @inlinable
+    public func dropDMSDatabase(name: String, deleteData: Bool? = nil, cascade: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DropDMSDatabaseResponse > {
+        self.dropDMSDatabase(DropDMSDatabaseRequest(name: name, deleteData: deleteData, cascade: cascade), logger: logger, on: eventLoop)
+    }
+    
+    /// DMS元数据删除库
+    @inlinable
+    public func dropDMSDatabase(name: String, deleteData: Bool? = nil, cascade: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSDatabaseResponse {
+        try await self.dropDMSDatabase(DropDMSDatabaseRequest(name: name, deleteData: deleteData, cascade: cascade), logger: logger, on: eventLoop)
+    }
 }

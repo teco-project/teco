@@ -59,4 +59,20 @@ extension Apigateway {
     public func describeApiApp(_ input: DescribeApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiAppResponse {
         try await self.client.execute(action: "DescribeApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 搜索应用
+    ///
+    /// 本接口（DescribeApiApp）用于根据应用ID搜索应用。
+    @inlinable
+    public func describeApiApp(apiAppId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiAppResponse > {
+        self.describeApiApp(DescribeApiAppRequest(apiAppId: apiAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 搜索应用
+    ///
+    /// 本接口（DescribeApiApp）用于根据应用ID搜索应用。
+    @inlinable
+    public func describeApiApp(apiAppId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiAppResponse {
+        try await self.describeApiApp(DescribeApiAppRequest(apiAppId: apiAppId), logger: logger, on: eventLoop)
+    }
 }

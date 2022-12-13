@@ -73,4 +73,20 @@ extension Apigateway {
     public func modifyExclusiveInstance(_ input: ModifyExclusiveInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExclusiveInstanceResponse {
         try await self.client.execute(action: "ModifyExclusiveInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改独享实例
+    ///
+    /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。​
+    @inlinable
+    public func modifyExclusiveInstance(instanceId: String, instanceName: String? = nil, instanceDescription: String? = nil, parameters: [InstanceParameterInput]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyExclusiveInstanceResponse > {
+        self.modifyExclusiveInstance(ModifyExclusiveInstanceRequest(instanceId: instanceId, instanceName: instanceName, instanceDescription: instanceDescription, parameters: parameters), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改独享实例
+    ///
+    /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。​
+    @inlinable
+    public func modifyExclusiveInstance(instanceId: String, instanceName: String? = nil, instanceDescription: String? = nil, parameters: [InstanceParameterInput]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExclusiveInstanceResponse {
+        try await self.modifyExclusiveInstance(ModifyExclusiveInstanceRequest(instanceId: instanceId, instanceName: instanceName, instanceDescription: instanceDescription, parameters: parameters), logger: logger, on: eventLoop)
+    }
 }

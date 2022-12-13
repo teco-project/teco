@@ -75,4 +75,16 @@ extension Cdb {
     public func upgradeCDBProxyVersion(_ input: UpgradeCDBProxyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyVersionResponse {
         try await self.client.execute(action: "UpgradeCDBProxyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 升级数据库代理版本
+    @inlinable
+    public func upgradeCDBProxyVersion(instanceId: String, proxyGroupId: String, srcProxyVersion: String, dstProxyVersion: String, upgradeTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeCDBProxyVersionResponse > {
+        self.upgradeCDBProxyVersion(UpgradeCDBProxyVersionRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, srcProxyVersion: srcProxyVersion, dstProxyVersion: dstProxyVersion, upgradeTime: upgradeTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 升级数据库代理版本
+    @inlinable
+    public func upgradeCDBProxyVersion(instanceId: String, proxyGroupId: String, srcProxyVersion: String, dstProxyVersion: String, upgradeTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyVersionResponse {
+        try await self.upgradeCDBProxyVersion(UpgradeCDBProxyVersionRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, srcProxyVersion: srcProxyVersion, dstProxyVersion: dstProxyVersion, upgradeTime: upgradeTime), logger: logger, on: eventLoop)
+    }
 }

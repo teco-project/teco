@@ -72,4 +72,20 @@ extension Cdb {
     public func describeInstanceParamRecords(_ input: DescribeInstanceParamRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamRecordsResponse {
         try await self.client.execute(action: "DescribeInstanceParamRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例参数修改历史
+    ///
+    /// 该接口（DescribeInstanceParamRecords）用于查询实例参数修改历史。
+    @inlinable
+    public func describeInstanceParamRecords(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceParamRecordsResponse > {
+        self.describeInstanceParamRecords(DescribeInstanceParamRecordsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例参数修改历史
+    ///
+    /// 该接口（DescribeInstanceParamRecords）用于查询实例参数修改历史。
+    @inlinable
+    public func describeInstanceParamRecords(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamRecordsResponse {
+        try await self.describeInstanceParamRecords(DescribeInstanceParamRecordsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

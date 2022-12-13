@@ -77,4 +77,20 @@ extension Cvm {
     public func describeDisasterRecoverGroups(_ input: DescribeDisasterRecoverGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisasterRecoverGroupsResponse {
         try await self.client.execute(action: "DescribeDisasterRecoverGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询分散置放群组信息
+    ///
+    /// 本接口 (DescribeDisasterRecoverGroups)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)信息。
+    @inlinable
+    public func describeDisasterRecoverGroups(disasterRecoverGroupIds: [String]? = nil, name: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDisasterRecoverGroupsResponse > {
+        self.describeDisasterRecoverGroups(DescribeDisasterRecoverGroupsRequest(disasterRecoverGroupIds: disasterRecoverGroupIds, name: name, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询分散置放群组信息
+    ///
+    /// 本接口 (DescribeDisasterRecoverGroups)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)信息。
+    @inlinable
+    public func describeDisasterRecoverGroups(disasterRecoverGroupIds: [String]? = nil, name: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisasterRecoverGroupsResponse {
+        try await self.describeDisasterRecoverGroups(DescribeDisasterRecoverGroupsRequest(disasterRecoverGroupIds: disasterRecoverGroupIds, name: name, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

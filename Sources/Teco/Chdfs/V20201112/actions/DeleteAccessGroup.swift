@@ -54,4 +54,20 @@ extension Chdfs {
     public func deleteAccessGroup(_ input: DeleteAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessGroupResponse {
         try await self.client.execute(action: "DeleteAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除权限组
+    ///
+    /// 删除权限组。
+    @inlinable
+    public func deleteAccessGroup(accessGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccessGroupResponse > {
+        self.deleteAccessGroup(DeleteAccessGroupRequest(accessGroupId: accessGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除权限组
+    ///
+    /// 删除权限组。
+    @inlinable
+    public func deleteAccessGroup(accessGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessGroupResponse {
+        try await self.deleteAccessGroup(DeleteAccessGroupRequest(accessGroupId: accessGroupId), logger: logger, on: eventLoop)
+    }
 }

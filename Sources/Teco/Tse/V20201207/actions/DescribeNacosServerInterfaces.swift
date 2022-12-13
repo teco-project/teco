@@ -68,4 +68,16 @@ extension Tse {
     public func describeNacosServerInterfaces(_ input: DescribeNacosServerInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNacosServerInterfacesResponse {
         try await self.client.execute(action: "DescribeNacosServerInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询nacos服务接口列表
+    @inlinable
+    public func describeNacosServerInterfaces(instanceId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNacosServerInterfacesResponse > {
+        self.describeNacosServerInterfaces(DescribeNacosServerInterfacesRequest(instanceId: instanceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询nacos服务接口列表
+    @inlinable
+    public func describeNacosServerInterfaces(instanceId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNacosServerInterfacesResponse {
+        try await self.describeNacosServerInterfaces(DescribeNacosServerInterfacesRequest(instanceId: instanceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

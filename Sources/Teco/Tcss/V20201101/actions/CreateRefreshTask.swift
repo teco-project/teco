@@ -54,4 +54,20 @@ extension Tcss {
     public func createRefreshTask(_ input: CreateRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRefreshTaskResponse {
         try await self.client.execute(action: "CreateRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 下发刷新任务
+    ///
+    /// 下发刷新任务，会刷新资产信息
+    @inlinable
+    public func createRefreshTask(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRefreshTaskResponse > {
+        self.createRefreshTask(CreateRefreshTaskRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 下发刷新任务
+    ///
+    /// 下发刷新任务，会刷新资产信息
+    @inlinable
+    public func createRefreshTask(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRefreshTaskResponse {
+        try await self.createRefreshTask(CreateRefreshTaskRequest(), logger: logger, on: eventLoop)
+    }
 }

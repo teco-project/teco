@@ -60,4 +60,22 @@ extension Bm {
     public func deleteCustomImages(_ input: DeleteCustomImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomImagesResponse {
         try await self.client.execute(action: "DeleteCustomImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除自定义镜像
+    ///
+    /// 删除自定义镜像<br>
+    /// 正用于部署或重装中的镜像被删除后，镜像文件将保留一段时间，直到部署或重装结束
+    @inlinable
+    public func deleteCustomImages(imageIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomImagesResponse > {
+        self.deleteCustomImages(DeleteCustomImagesRequest(imageIds: imageIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除自定义镜像
+    ///
+    /// 删除自定义镜像<br>
+    /// 正用于部署或重装中的镜像被删除后，镜像文件将保留一段时间，直到部署或重装结束
+    @inlinable
+    public func deleteCustomImages(imageIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomImagesResponse {
+        try await self.deleteCustomImages(DeleteCustomImagesRequest(imageIds: imageIds), logger: logger, on: eventLoop)
+    }
 }

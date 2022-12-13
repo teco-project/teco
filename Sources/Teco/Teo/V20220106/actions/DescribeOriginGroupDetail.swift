@@ -112,4 +112,16 @@ extension Teo {
     public func describeOriginGroupDetail(_ input: DescribeOriginGroupDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupDetailResponse {
         try await self.client.execute(action: "DescribeOriginGroupDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取源站组详细信息
+    @inlinable
+    public func describeOriginGroupDetail(originId: String, zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOriginGroupDetailResponse > {
+        self.describeOriginGroupDetail(DescribeOriginGroupDetailRequest(originId: originId, zoneId: zoneId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取源站组详细信息
+    @inlinable
+    public func describeOriginGroupDetail(originId: String, zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupDetailResponse {
+        try await self.describeOriginGroupDetail(DescribeOriginGroupDetailRequest(originId: originId, zoneId: zoneId), logger: logger, on: eventLoop)
+    }
 }

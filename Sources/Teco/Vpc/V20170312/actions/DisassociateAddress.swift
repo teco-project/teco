@@ -71,4 +71,28 @@ extension Vpc {
     public func disassociateAddress(_ input: DisassociateAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateAddressResponse {
         try await self.client.execute(action: "DisassociateAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解绑定弹性公网IP
+    ///
+    /// 本接口 (DisassociateAddress) 用于解绑[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）。
+    /// * 支持CVM实例，弹性网卡上的EIP解绑
+    /// * 不支持NAT上的EIP解绑。NAT上的EIP解绑请参考[DisassociateNatGatewayAddress](https://cloud.tencent.com/document/api/215/36716)
+    /// * 只有状态为 BIND 和 BIND_ENI 的 EIP 才能进行解绑定操作。
+    /// * EIP 如果被封堵，则不能进行解绑定操作。
+    @inlinable
+    public func disassociateAddress(addressId: String, reallocateNormalPublicIp: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateAddressResponse > {
+        self.disassociateAddress(DisassociateAddressRequest(addressId: addressId, reallocateNormalPublicIp: reallocateNormalPublicIp), logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑定弹性公网IP
+    ///
+    /// 本接口 (DisassociateAddress) 用于解绑[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）。
+    /// * 支持CVM实例，弹性网卡上的EIP解绑
+    /// * 不支持NAT上的EIP解绑。NAT上的EIP解绑请参考[DisassociateNatGatewayAddress](https://cloud.tencent.com/document/api/215/36716)
+    /// * 只有状态为 BIND 和 BIND_ENI 的 EIP 才能进行解绑定操作。
+    /// * EIP 如果被封堵，则不能进行解绑定操作。
+    @inlinable
+    public func disassociateAddress(addressId: String, reallocateNormalPublicIp: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateAddressResponse {
+        try await self.disassociateAddress(DisassociateAddressRequest(addressId: addressId, reallocateNormalPublicIp: reallocateNormalPublicIp), logger: logger, on: eventLoop)
+    }
 }

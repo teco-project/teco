@@ -54,4 +54,16 @@ extension Ivld {
     public func deleteCustomPerson(_ input: DeleteCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomPersonResponse {
         try await self.client.execute(action: "DeleteCustomPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除自定义人物
+    @inlinable
+    public func deleteCustomPerson(personId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomPersonResponse > {
+        self.deleteCustomPerson(DeleteCustomPersonRequest(personId: personId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除自定义人物
+    @inlinable
+    public func deleteCustomPerson(personId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomPersonResponse {
+        try await self.deleteCustomPerson(DeleteCustomPersonRequest(personId: personId), logger: logger, on: eventLoop)
+    }
 }

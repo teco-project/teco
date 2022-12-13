@@ -73,4 +73,24 @@ extension Ecm {
     public func migratePrivateIpAddress(_ input: MigratePrivateIpAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigratePrivateIpAddressResponse {
         try await self.client.execute(action: "MigratePrivateIpAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 弹性网卡内网IP迁移
+    ///
+    /// 弹性网卡内网IP迁移。
+    /// 该接口用于将一个内网IP从一个弹性网卡上迁移到另外一个弹性网卡，主IP地址不支持迁移。
+    /// 迁移前后的弹性网卡必须在同一个子网内。
+    @inlinable
+    public func migratePrivateIpAddress(ecmRegion: String, sourceNetworkInterfaceId: String, destinationNetworkInterfaceId: String, privateIpAddress: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MigratePrivateIpAddressResponse > {
+        self.migratePrivateIpAddress(MigratePrivateIpAddressRequest(ecmRegion: ecmRegion, sourceNetworkInterfaceId: sourceNetworkInterfaceId, destinationNetworkInterfaceId: destinationNetworkInterfaceId, privateIpAddress: privateIpAddress), logger: logger, on: eventLoop)
+    }
+    
+    /// 弹性网卡内网IP迁移
+    ///
+    /// 弹性网卡内网IP迁移。
+    /// 该接口用于将一个内网IP从一个弹性网卡上迁移到另外一个弹性网卡，主IP地址不支持迁移。
+    /// 迁移前后的弹性网卡必须在同一个子网内。
+    @inlinable
+    public func migratePrivateIpAddress(ecmRegion: String, sourceNetworkInterfaceId: String, destinationNetworkInterfaceId: String, privateIpAddress: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigratePrivateIpAddressResponse {
+        try await self.migratePrivateIpAddress(MigratePrivateIpAddressRequest(ecmRegion: ecmRegion, sourceNetworkInterfaceId: sourceNetworkInterfaceId, destinationNetworkInterfaceId: destinationNetworkInterfaceId, privateIpAddress: privateIpAddress), logger: logger, on: eventLoop)
+    }
 }

@@ -64,4 +64,16 @@ extension Cynosdb {
     public func modifyClusterSlaveZone(_ input: ModifyClusterSlaveZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterSlaveZoneResponse {
         try await self.client.execute(action: "ModifyClusterSlaveZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改从可用区
+    @inlinable
+    public func modifyClusterSlaveZone(clusterId: String, oldSlaveZone: String, newSlaveZone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterSlaveZoneResponse > {
+        self.modifyClusterSlaveZone(ModifyClusterSlaveZoneRequest(clusterId: clusterId, oldSlaveZone: oldSlaveZone, newSlaveZone: newSlaveZone), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改从可用区
+    @inlinable
+    public func modifyClusterSlaveZone(clusterId: String, oldSlaveZone: String, newSlaveZone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterSlaveZoneResponse {
+        try await self.modifyClusterSlaveZone(ModifyClusterSlaveZoneRequest(clusterId: clusterId, oldSlaveZone: oldSlaveZone, newSlaveZone: newSlaveZone), logger: logger, on: eventLoop)
+    }
 }

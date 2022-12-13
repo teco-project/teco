@@ -72,4 +72,24 @@ extension As {
     public func executeScalingPolicy(_ input: ExecuteScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteScalingPolicyResponse {
         try await self.client.execute(action: "ExecuteScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 触发伸缩策略
+    ///
+    /// 本接口（ExecuteScalingPolicy）用于执行伸缩策略。
+    /// * 可以根据伸缩策略ID执行伸缩策略。
+    /// * 伸缩策略所属伸缩组处于伸缩活动时，会拒绝执行伸缩策略。
+    @inlinable
+    public func executeScalingPolicy(autoScalingPolicyId: String, honorCooldown: Bool? = nil, triggerSource: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteScalingPolicyResponse > {
+        self.executeScalingPolicy(ExecuteScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId, honorCooldown: honorCooldown, triggerSource: triggerSource), logger: logger, on: eventLoop)
+    }
+    
+    /// 触发伸缩策略
+    ///
+    /// 本接口（ExecuteScalingPolicy）用于执行伸缩策略。
+    /// * 可以根据伸缩策略ID执行伸缩策略。
+    /// * 伸缩策略所属伸缩组处于伸缩活动时，会拒绝执行伸缩策略。
+    @inlinable
+    public func executeScalingPolicy(autoScalingPolicyId: String, honorCooldown: Bool? = nil, triggerSource: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteScalingPolicyResponse {
+        try await self.executeScalingPolicy(ExecuteScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId, honorCooldown: honorCooldown, triggerSource: triggerSource), logger: logger, on: eventLoop)
+    }
 }

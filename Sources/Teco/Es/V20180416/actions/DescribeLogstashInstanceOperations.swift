@@ -82,4 +82,20 @@ extension Es {
     public func describeLogstashInstanceOperations(_ input: DescribeLogstashInstanceOperationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashInstanceOperationsResponse {
         try await self.client.execute(action: "DescribeLogstashInstanceOperations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询Logstash实例操作记录
+    ///
+    /// 查询实例指定条件下的操作记录
+    @inlinable
+    public func describeLogstashInstanceOperations(instanceId: String, startTime: String? = nil, endTime: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogstashInstanceOperationsResponse > {
+        self.describeLogstashInstanceOperations(DescribeLogstashInstanceOperationsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Logstash实例操作记录
+    ///
+    /// 查询实例指定条件下的操作记录
+    @inlinable
+    public func describeLogstashInstanceOperations(instanceId: String, startTime: String? = nil, endTime: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashInstanceOperationsResponse {
+        try await self.describeLogstashInstanceOperations(DescribeLogstashInstanceOperationsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

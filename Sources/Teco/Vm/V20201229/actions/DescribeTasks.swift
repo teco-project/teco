@@ -93,4 +93,22 @@ extension Vm {
     public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
         try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看审核任务列表
+    ///
+    /// 通过查看审核任务列表接口，可查询任务队列；您可根据多种业务信息（业务类型、审核结果、任务状态等）筛选审核任务列表。<br>
+    /// 默认接口请求频率限制：**20次/秒**。
+    @inlinable
+    public func describeTasks(limit: Int64? = nil, filter: TaskFilter? = nil, pageToken: String? = nil, startTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
+        self.describeTasks(DescribeTasksRequest(limit: limit, filter: filter, pageToken: pageToken, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看审核任务列表
+    ///
+    /// 通过查看审核任务列表接口，可查询任务队列；您可根据多种业务信息（业务类型、审核结果、任务状态等）筛选审核任务列表。<br>
+    /// 默认接口请求频率限制：**20次/秒**。
+    @inlinable
+    public func describeTasks(limit: Int64? = nil, filter: TaskFilter? = nil, pageToken: String? = nil, startTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
+        try await self.describeTasks(DescribeTasksRequest(limit: limit, filter: filter, pageToken: pageToken, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

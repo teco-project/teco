@@ -60,4 +60,16 @@ extension Tcss {
     public func modifySecLogCleanSettingInfo(_ input: ModifySecLogCleanSettingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogCleanSettingInfoResponse {
         try await self.client.execute(action: "ModifySecLogCleanSettingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改安全日志清理设置信息
+    @inlinable
+    public func modifySecLogCleanSettingInfo(reservesLimit: UInt64, reservesDeadline: UInt64, dayLimit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogCleanSettingInfoResponse > {
+        self.modifySecLogCleanSettingInfo(ModifySecLogCleanSettingInfoRequest(reservesLimit: reservesLimit, reservesDeadline: reservesDeadline, dayLimit: dayLimit), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改安全日志清理设置信息
+    @inlinable
+    public func modifySecLogCleanSettingInfo(reservesLimit: UInt64, reservesDeadline: UInt64, dayLimit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogCleanSettingInfoResponse {
+        try await self.modifySecLogCleanSettingInfo(ModifySecLogCleanSettingInfoRequest(reservesLimit: reservesLimit, reservesDeadline: reservesDeadline, dayLimit: dayLimit), logger: logger, on: eventLoop)
+    }
 }

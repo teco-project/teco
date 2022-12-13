@@ -63,4 +63,20 @@ extension Sqlserver {
     public func deleteDB(_ input: DeleteDBRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDBResponse {
         try await self.client.execute(action: "DeleteDB", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除数据库
+    ///
+    /// 本接口(DeleteDB)用于删除数据库。
+    @inlinable
+    public func deleteDB(instanceId: String, names: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDBResponse > {
+        self.deleteDB(DeleteDBRequest(instanceId: instanceId, names: names), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除数据库
+    ///
+    /// 本接口(DeleteDB)用于删除数据库。
+    @inlinable
+    public func deleteDB(instanceId: String, names: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDBResponse {
+        try await self.deleteDB(DeleteDBRequest(instanceId: instanceId, names: names), logger: logger, on: eventLoop)
+    }
 }

@@ -77,4 +77,16 @@ extension Tdmq {
     public func modifyCmqSubscriptionAttribute(_ input: ModifyCmqSubscriptionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqSubscriptionAttributeResponse {
         try await self.client.execute(action: "ModifyCmqSubscriptionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改cmq订阅属性
+    @inlinable
+    public func modifyCmqSubscriptionAttribute(topicName: String, subscriptionName: String, notifyStrategy: String? = nil, notifyContentFormat: String? = nil, filterTags: [String]? = nil, bindingKey: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCmqSubscriptionAttributeResponse > {
+        self.modifyCmqSubscriptionAttribute(ModifyCmqSubscriptionAttributeRequest(topicName: topicName, subscriptionName: subscriptionName, notifyStrategy: notifyStrategy, notifyContentFormat: notifyContentFormat, filterTags: filterTags, bindingKey: bindingKey), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改cmq订阅属性
+    @inlinable
+    public func modifyCmqSubscriptionAttribute(topicName: String, subscriptionName: String, notifyStrategy: String? = nil, notifyContentFormat: String? = nil, filterTags: [String]? = nil, bindingKey: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqSubscriptionAttributeResponse {
+        try await self.modifyCmqSubscriptionAttribute(ModifyCmqSubscriptionAttributeRequest(topicName: topicName, subscriptionName: subscriptionName, notifyStrategy: notifyStrategy, notifyContentFormat: notifyContentFormat, filterTags: filterTags, bindingKey: bindingKey), logger: logger, on: eventLoop)
+    }
 }

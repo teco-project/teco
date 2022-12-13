@@ -63,4 +63,20 @@ extension Mps {
     public func createStreamLinkOutputInfo(_ input: CreateStreamLinkOutputInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStreamLinkOutputInfoResponse {
         try await self.client.execute(action: "CreateStreamLinkOutputInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建媒体传输的输出信息
+    ///
+    /// 创建媒体传输流的输出信息。
+    @inlinable
+    public func createStreamLinkOutputInfo(flowId: String, output: CreateOutputInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStreamLinkOutputInfoResponse > {
+        self.createStreamLinkOutputInfo(CreateStreamLinkOutputInfoRequest(flowId: flowId, output: output), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建媒体传输的输出信息
+    ///
+    /// 创建媒体传输流的输出信息。
+    @inlinable
+    public func createStreamLinkOutputInfo(flowId: String, output: CreateOutputInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStreamLinkOutputInfoResponse {
+        try await self.createStreamLinkOutputInfo(CreateStreamLinkOutputInfoRequest(flowId: flowId, output: output), logger: logger, on: eventLoop)
+    }
 }

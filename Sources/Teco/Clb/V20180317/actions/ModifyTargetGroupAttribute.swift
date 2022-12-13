@@ -64,4 +64,20 @@ extension Clb {
     public func modifyTargetGroupAttribute(_ input: ModifyTargetGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetGroupAttributeResponse {
         try await self.client.execute(action: "ModifyTargetGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改目标组属性
+    ///
+    /// 修改目标组的名称或者默认端口属性
+    @inlinable
+    public func modifyTargetGroupAttribute(targetGroupId: String, targetGroupName: String? = nil, port: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTargetGroupAttributeResponse > {
+        self.modifyTargetGroupAttribute(ModifyTargetGroupAttributeRequest(targetGroupId: targetGroupId, targetGroupName: targetGroupName, port: port), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改目标组属性
+    ///
+    /// 修改目标组的名称或者默认端口属性
+    @inlinable
+    public func modifyTargetGroupAttribute(targetGroupId: String, targetGroupName: String? = nil, port: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetGroupAttributeResponse {
+        try await self.modifyTargetGroupAttribute(ModifyTargetGroupAttributeRequest(targetGroupId: targetGroupId, targetGroupName: targetGroupName, port: port), logger: logger, on: eventLoop)
+    }
 }

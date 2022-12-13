@@ -54,4 +54,20 @@ extension As {
     public func deleteAutoScalingGroup(_ input: DeleteAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoScalingGroupResponse {
         try await self.client.execute(action: "DeleteAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除伸缩组
+    ///
+    /// 本接口（DeleteAutoScalingGroup）用于删除指定伸缩组，删除前提是伸缩组内无实例且当前未在执行伸缩活动。
+    @inlinable
+    public func deleteAutoScalingGroup(autoScalingGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAutoScalingGroupResponse > {
+        self.deleteAutoScalingGroup(DeleteAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除伸缩组
+    ///
+    /// 本接口（DeleteAutoScalingGroup）用于删除指定伸缩组，删除前提是伸缩组内无实例且当前未在执行伸缩活动。
+    @inlinable
+    public func deleteAutoScalingGroup(autoScalingGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoScalingGroupResponse {
+        try await self.deleteAutoScalingGroup(DeleteAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), logger: logger, on: eventLoop)
+    }
 }

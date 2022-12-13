@@ -69,4 +69,20 @@ extension Apigateway {
     public func describeServiceEnvironmentStrategy(_ input: DescribeServiceEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceEnvironmentStrategyResponse {
         try await self.client.execute(action: "DescribeServiceEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 展示服务限流策略
+    ///
+    /// 本接口（DescribeServiceEnvironmentStrategy）用于展示服务限流策略。
+    @inlinable
+    public func describeServiceEnvironmentStrategy(serviceId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceEnvironmentStrategyResponse > {
+        self.describeServiceEnvironmentStrategy(DescribeServiceEnvironmentStrategyRequest(serviceId: serviceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 展示服务限流策略
+    ///
+    /// 本接口（DescribeServiceEnvironmentStrategy）用于展示服务限流策略。
+    @inlinable
+    public func describeServiceEnvironmentStrategy(serviceId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceEnvironmentStrategyResponse {
+        try await self.describeServiceEnvironmentStrategy(DescribeServiceEnvironmentStrategyRequest(serviceId: serviceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

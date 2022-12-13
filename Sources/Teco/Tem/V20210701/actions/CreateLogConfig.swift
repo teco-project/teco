@@ -104,4 +104,16 @@ extension Tem {
     public func createLogConfig(_ input: CreateLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogConfigResponse {
         try await self.client.execute(action: "CreateLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建日志收集配置
+    @inlinable
+    public func createLogConfig(environmentId: String, name: String, inputType: String, applicationId: String? = nil, logsetId: String? = nil, topicId: String? = nil, logType: String? = nil, beginningRegex: String? = nil, logPath: String? = nil, filePattern: String? = nil, extractRule: LogConfigExtractRule? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLogConfigResponse > {
+        self.createLogConfig(CreateLogConfigRequest(environmentId: environmentId, name: name, inputType: inputType, applicationId: applicationId, logsetId: logsetId, topicId: topicId, logType: logType, beginningRegex: beginningRegex, logPath: logPath, filePattern: filePattern, extractRule: extractRule), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建日志收集配置
+    @inlinable
+    public func createLogConfig(environmentId: String, name: String, inputType: String, applicationId: String? = nil, logsetId: String? = nil, topicId: String? = nil, logType: String? = nil, beginningRegex: String? = nil, logPath: String? = nil, filePattern: String? = nil, extractRule: LogConfigExtractRule? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogConfigResponse {
+        try await self.createLogConfig(CreateLogConfigRequest(environmentId: environmentId, name: name, inputType: inputType, applicationId: applicationId, logsetId: logsetId, topicId: topicId, logType: logType, beginningRegex: beginningRegex, logPath: logPath, filePattern: filePattern, extractRule: extractRule), logger: logger, on: eventLoop)
+    }
 }

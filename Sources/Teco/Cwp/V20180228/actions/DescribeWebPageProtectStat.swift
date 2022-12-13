@@ -54,4 +54,20 @@ extension Cwp {
     public func describeWebPageProtectStat(_ input: DescribeWebPageProtectStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageProtectStatResponse {
         try await self.client.execute(action: "DescribeWebPageProtectStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询网页防篡改防护统计
+    ///
+    /// 网站防篡改-查询动态防护信息
+    @inlinable
+    public func describeWebPageProtectStat(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebPageProtectStatResponse > {
+        self.describeWebPageProtectStat(DescribeWebPageProtectStatRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网页防篡改防护统计
+    ///
+    /// 网站防篡改-查询动态防护信息
+    @inlinable
+    public func describeWebPageProtectStat(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageProtectStatResponse {
+        try await self.describeWebPageProtectStat(DescribeWebPageProtectStatRequest(), logger: logger, on: eventLoop)
+    }
 }

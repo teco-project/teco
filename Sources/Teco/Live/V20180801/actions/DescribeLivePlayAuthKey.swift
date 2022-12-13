@@ -58,4 +58,20 @@ extension Live {
     public func describeLivePlayAuthKey(_ input: DescribeLivePlayAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePlayAuthKeyResponse {
         try await self.client.execute(action: "DescribeLivePlayAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询播放鉴权key
+    ///
+    /// 查询播放鉴权key。
+    @inlinable
+    public func describeLivePlayAuthKey(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLivePlayAuthKeyResponse > {
+        self.describeLivePlayAuthKey(DescribeLivePlayAuthKeyRequest(domainName: domainName), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询播放鉴权key
+    ///
+    /// 查询播放鉴权key。
+    @inlinable
+    public func describeLivePlayAuthKey(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePlayAuthKeyResponse {
+        try await self.describeLivePlayAuthKey(DescribeLivePlayAuthKeyRequest(domainName: domainName), logger: logger, on: eventLoop)
+    }
 }

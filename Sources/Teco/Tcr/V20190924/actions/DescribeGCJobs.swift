@@ -58,4 +58,20 @@ extension Tcr {
     public func describeGCJobs(_ input: DescribeGCJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGCJobsResponse {
         try await self.client.execute(action: "DescribeGCJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// GC 历史
+    ///
+    /// GC 最近10条历史
+    @inlinable
+    public func describeGCJobs(registryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGCJobsResponse > {
+        self.describeGCJobs(DescribeGCJobsRequest(registryId: registryId), logger: logger, on: eventLoop)
+    }
+    
+    /// GC 历史
+    ///
+    /// GC 最近10条历史
+    @inlinable
+    public func describeGCJobs(registryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGCJobsResponse {
+        try await self.describeGCJobs(DescribeGCJobsRequest(registryId: registryId), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,16 @@ extension Trp {
     public func deleteMerchant(_ input: DeleteMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMerchantResponse {
         try await self.client.execute(action: "DeleteMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除商户
+    @inlinable
+    public func deleteMerchant(merchantId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMerchantResponse > {
+        self.deleteMerchant(DeleteMerchantRequest(merchantId: merchantId, corpId: corpId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除商户
+    @inlinable
+    public func deleteMerchant(merchantId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMerchantResponse {
+        try await self.deleteMerchant(DeleteMerchantRequest(merchantId: merchantId, corpId: corpId), logger: logger, on: eventLoop)
+    }
 }

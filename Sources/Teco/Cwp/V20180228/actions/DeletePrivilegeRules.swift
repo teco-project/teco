@@ -50,4 +50,16 @@ extension Cwp {
     public func deletePrivilegeRules(_ input: DeletePrivilegeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeRulesResponse {
         try await self.client.execute(action: "DeletePrivilegeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除本地提权规则
+    @inlinable
+    public func deletePrivilegeRules(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrivilegeRulesResponse > {
+        self.deletePrivilegeRules(DeletePrivilegeRulesRequest(ids: ids), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除本地提权规则
+    @inlinable
+    public func deletePrivilegeRules(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeRulesResponse {
+        try await self.deletePrivilegeRules(DeletePrivilegeRulesRequest(ids: ids), logger: logger, on: eventLoop)
+    }
 }

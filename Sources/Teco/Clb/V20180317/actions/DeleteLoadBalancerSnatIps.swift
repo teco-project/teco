@@ -61,4 +61,22 @@ extension Clb {
     public func deleteLoadBalancerSnatIps(_ input: DeleteLoadBalancerSnatIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerSnatIpsResponse {
         try await self.client.execute(action: "DeleteLoadBalancerSnatIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除SnatIp
+    ///
+    /// 这个接口用于删除SnatPro的负载均衡的SnatIp。
+    /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+    @inlinable
+    public func deleteLoadBalancerSnatIps(loadBalancerId: String, ips: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoadBalancerSnatIpsResponse > {
+        self.deleteLoadBalancerSnatIps(DeleteLoadBalancerSnatIpsRequest(loadBalancerId: loadBalancerId, ips: ips), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除SnatIp
+    ///
+    /// 这个接口用于删除SnatPro的负载均衡的SnatIp。
+    /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+    @inlinable
+    public func deleteLoadBalancerSnatIps(loadBalancerId: String, ips: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerSnatIpsResponse {
+        try await self.deleteLoadBalancerSnatIps(DeleteLoadBalancerSnatIpsRequest(loadBalancerId: loadBalancerId, ips: ips), logger: logger, on: eventLoop)
+    }
 }

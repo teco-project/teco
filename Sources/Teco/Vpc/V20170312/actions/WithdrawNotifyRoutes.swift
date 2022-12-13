@@ -59,4 +59,20 @@ extension Vpc {
     public func withdrawNotifyRoutes(_ input: WithdrawNotifyRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WithdrawNotifyRoutesResponse {
         try await self.client.execute(action: "WithdrawNotifyRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 从云联网撤销路由
+    ///
+    /// 路由表列表页操作增加“从云联网撤销”，用于撤销已发布到云联网的路由。
+    @inlinable
+    public func withdrawNotifyRoutes(routeTableId: String, routeItemIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < WithdrawNotifyRoutesResponse > {
+        self.withdrawNotifyRoutes(WithdrawNotifyRoutesRequest(routeTableId: routeTableId, routeItemIds: routeItemIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 从云联网撤销路由
+    ///
+    /// 路由表列表页操作增加“从云联网撤销”，用于撤销已发布到云联网的路由。
+    @inlinable
+    public func withdrawNotifyRoutes(routeTableId: String, routeItemIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WithdrawNotifyRoutesResponse {
+        try await self.withdrawNotifyRoutes(WithdrawNotifyRoutesRequest(routeTableId: routeTableId, routeItemIds: routeItemIds), logger: logger, on: eventLoop)
+    }
 }

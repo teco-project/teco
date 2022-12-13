@@ -73,4 +73,20 @@ extension Tdmq {
     public func deleteTopics(_ input: DeleteTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicsResponse {
         try await self.client.execute(action: "DeleteTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除主题
+    ///
+    /// 批量删除topics
+    @inlinable
+    public func deleteTopics(topicSets: [TopicRecord], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTopicsResponse > {
+        self.deleteTopics(DeleteTopicsRequest(topicSets: topicSets, clusterId: clusterId, environmentId: environmentId, force: force), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除主题
+    ///
+    /// 批量删除topics
+    @inlinable
+    public func deleteTopics(topicSets: [TopicRecord], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicsResponse {
+        try await self.deleteTopics(DeleteTopicsRequest(topicSets: topicSets, clusterId: clusterId, environmentId: environmentId, force: force), logger: logger, on: eventLoop)
+    }
 }

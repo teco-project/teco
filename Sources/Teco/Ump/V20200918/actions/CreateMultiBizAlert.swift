@@ -92,4 +92,20 @@ extension Ump {
     public func createMultiBizAlert(_ input: CreateMultiBizAlertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiBizAlertResponse {
         try await self.client.execute(action: "CreateMultiBizAlert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 多经点位告警
+    ///
+    /// 集团广场的多经点位告警
+    @inlinable
+    public func createMultiBizAlert(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, captureTime: UInt64, state: Int64, image: String? = nil, warnings: [MultiBizWarning]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMultiBizAlertResponse > {
+        self.createMultiBizAlert(CreateMultiBizAlertRequest(groupCode: groupCode, mallId: mallId, zoneId: zoneId, cameraId: cameraId, captureTime: captureTime, state: state, image: image, warnings: warnings), logger: logger, on: eventLoop)
+    }
+    
+    /// 多经点位告警
+    ///
+    /// 集团广场的多经点位告警
+    @inlinable
+    public func createMultiBizAlert(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, captureTime: UInt64, state: Int64, image: String? = nil, warnings: [MultiBizWarning]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiBizAlertResponse {
+        try await self.createMultiBizAlert(CreateMultiBizAlertRequest(groupCode: groupCode, mallId: mallId, zoneId: zoneId, cameraId: cameraId, captureTime: captureTime, state: state, image: image, warnings: warnings), logger: logger, on: eventLoop)
+    }
 }

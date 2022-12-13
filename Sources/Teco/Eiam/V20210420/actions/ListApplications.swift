@@ -84,4 +84,20 @@ extension Eiam {
     public func listApplications(_ input: ListApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListApplicationsResponse {
         try await self.client.execute(action: "ListApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取应用列表信息
+    ///
+    /// 获取应用列表信息。
+    @inlinable
+    public func listApplications(searchCondition: ApplicationInfoSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, applicationIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListApplicationsResponse > {
+        self.listApplications(ListApplicationsRequest(searchCondition: searchCondition, sort: sort, offset: offset, limit: limit, applicationIdList: applicationIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用列表信息
+    ///
+    /// 获取应用列表信息。
+    @inlinable
+    public func listApplications(searchCondition: ApplicationInfoSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, applicationIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListApplicationsResponse {
+        try await self.listApplications(ListApplicationsRequest(searchCondition: searchCondition, sort: sort, offset: offset, limit: limit, applicationIdList: applicationIdList), logger: logger, on: eventLoop)
+    }
 }

@@ -79,4 +79,16 @@ extension Dnspod {
     public func describeSnapshotRollbackTask(_ input: DescribeSnapshotRollbackTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotRollbackTaskResponse {
         try await self.client.execute(action: "DescribeSnapshotRollbackTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询最近一次回滚
+    @inlinable
+    public func describeSnapshotRollbackTask(domain: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotRollbackTaskResponse > {
+        self.describeSnapshotRollbackTask(DescribeSnapshotRollbackTaskRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询最近一次回滚
+    @inlinable
+    public func describeSnapshotRollbackTask(domain: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotRollbackTaskResponse {
+        try await self.describeSnapshotRollbackTask(DescribeSnapshotRollbackTaskRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
+    }
 }

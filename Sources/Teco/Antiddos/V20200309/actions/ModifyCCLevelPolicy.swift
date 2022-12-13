@@ -32,7 +32,7 @@ extension Antiddos {
         /// CC防护等级，可取值loose表示宽松，strict表示严格，normal表示适中， emergency表示攻击紧急， sup_loose表示超级宽松，default表示默认策略（无频控配置下发），customized表示自定义策略
         public let level: String
         
-        public init (instanceId: String, ip: String, domain: String, `protocol`: String, level: String) {
+        public init (instanceId: String, ip: String, domain: String, protocol: String, level: String) {
             self.instanceId = instanceId
             self.ip = ip
             self.domain = domain
@@ -73,5 +73,21 @@ extension Antiddos {
     @inlinable
     public func modifyCCLevelPolicy(_ input: ModifyCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCLevelPolicyResponse {
         try await self.client.execute(action: "ModifyCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 修改CC的防护等级
+    ///
+    /// 修改CC防护等级
+    @inlinable
+    public func modifyCCLevelPolicy(instanceId: String, ip: String, domain: String, protocol: String, level: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCLevelPolicyResponse > {
+        self.modifyCCLevelPolicy(ModifyCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, level: level), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CC的防护等级
+    ///
+    /// 修改CC防护等级
+    @inlinable
+    public func modifyCCLevelPolicy(instanceId: String, ip: String, domain: String, protocol: String, level: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCLevelPolicyResponse {
+        try await self.modifyCCLevelPolicy(ModifyCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, level: level), logger: logger, on: eventLoop)
     }
 }

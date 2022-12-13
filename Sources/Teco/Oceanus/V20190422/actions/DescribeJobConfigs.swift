@@ -92,4 +92,20 @@ extension Oceanus {
     public func describeJobConfigs(_ input: DescribeJobConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobConfigsResponse {
         try await self.client.execute(action: "DescribeJobConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询作业配置
+    ///
+    /// 查询作业配置列表，一次最多查询100个
+    @inlinable
+    public func describeJobConfigs(jobId: String, jobConfigVersions: [UInt64]? = nil, offset: Int64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, onlyDraft: Bool? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobConfigsResponse > {
+        self.describeJobConfigs(DescribeJobConfigsRequest(jobId: jobId, jobConfigVersions: jobConfigVersions, offset: offset, limit: limit, filters: filters, onlyDraft: onlyDraft, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询作业配置
+    ///
+    /// 查询作业配置列表，一次最多查询100个
+    @inlinable
+    public func describeJobConfigs(jobId: String, jobConfigVersions: [UInt64]? = nil, offset: Int64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, onlyDraft: Bool? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobConfigsResponse {
+        try await self.describeJobConfigs(DescribeJobConfigsRequest(jobId: jobId, jobConfigVersions: jobConfigVersions, offset: offset, limit: limit, filters: filters, onlyDraft: onlyDraft, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    }
 }

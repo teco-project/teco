@@ -59,4 +59,20 @@ extension Cme {
     public func deleteLoginStatus(_ input: DeleteLoginStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoginStatusResponse {
         try await self.client.execute(action: "DeleteLoginStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除登录态
+    ///
+    /// 删除用户登录态，使用户登出多媒体创作引擎平台。
+    @inlinable
+    public func deleteLoginStatus(platform: String, userIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoginStatusResponse > {
+        self.deleteLoginStatus(DeleteLoginStatusRequest(platform: platform, userIds: userIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除登录态
+    ///
+    /// 删除用户登录态，使用户登出多媒体创作引擎平台。
+    @inlinable
+    public func deleteLoginStatus(platform: String, userIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoginStatusResponse {
+        try await self.deleteLoginStatus(DeleteLoginStatusRequest(platform: platform, userIds: userIds), logger: logger, on: eventLoop)
+    }
 }

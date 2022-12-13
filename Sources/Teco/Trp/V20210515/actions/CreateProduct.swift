@@ -90,4 +90,16 @@ extension Trp {
     public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
         try await self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新建商品
+    @inlinable
+    public func createProduct(name: String, merchantId: String, remark: String? = nil, merchantName: String? = nil, specification: String? = nil, logo: [String]? = nil, corpId: UInt64? = nil, ext: Ext? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProductResponse > {
+        self.createProduct(CreateProductRequest(name: name, merchantId: merchantId, remark: remark, merchantName: merchantName, specification: specification, logo: logo, corpId: corpId, ext: ext), logger: logger, on: eventLoop)
+    }
+    
+    /// 新建商品
+    @inlinable
+    public func createProduct(name: String, merchantId: String, remark: String? = nil, merchantName: String? = nil, specification: String? = nil, logo: [String]? = nil, corpId: UInt64? = nil, ext: Ext? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
+        try await self.createProduct(CreateProductRequest(name: name, merchantId: merchantId, remark: remark, merchantName: merchantName, specification: specification, logo: logo, corpId: corpId, ext: ext), logger: logger, on: eventLoop)
+    }
 }

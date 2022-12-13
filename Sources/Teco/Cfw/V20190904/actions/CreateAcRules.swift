@@ -94,4 +94,16 @@ extension Cfw {
     public func createAcRules(_ input: CreateAcRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAcRulesResponse {
         try await self.client.execute(action: "CreateAcRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建访问控制规则
+    @inlinable
+    public func createAcRules(data: [RuleInfoData], type: UInt64? = nil, edgeId: String? = nil, enable: Int64? = nil, overwrite: UInt64? = nil, instanceId: String? = nil, from: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAcRulesResponse > {
+        self.createAcRules(CreateAcRulesRequest(data: data, type: type, edgeId: edgeId, enable: enable, overwrite: overwrite, instanceId: instanceId, from: from, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建访问控制规则
+    @inlinable
+    public func createAcRules(data: [RuleInfoData], type: UInt64? = nil, edgeId: String? = nil, enable: Int64? = nil, overwrite: UInt64? = nil, instanceId: String? = nil, from: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAcRulesResponse {
+        try await self.createAcRules(CreateAcRulesRequest(data: data, type: type, edgeId: edgeId, enable: enable, overwrite: overwrite, instanceId: instanceId, from: from, area: area), logger: logger, on: eventLoop)
+    }
 }

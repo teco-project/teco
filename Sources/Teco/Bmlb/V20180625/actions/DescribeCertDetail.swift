@@ -99,4 +99,20 @@ extension Bmlb {
     public func describeCertDetail(_ input: DescribeCertDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertDetailResponse {
         try await self.client.execute(action: "DescribeCertDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取黑石负载均衡证书详情
+    ///
+    /// 获取黑石负载均衡证书详情。
+    @inlinable
+    public func describeCertDetail(certId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertDetailResponse > {
+        self.describeCertDetail(DescribeCertDetailRequest(certId: certId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取黑石负载均衡证书详情
+    ///
+    /// 获取黑石负载均衡证书详情。
+    @inlinable
+    public func describeCertDetail(certId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertDetailResponse {
+        try await self.describeCertDetail(DescribeCertDetailRequest(certId: certId), logger: logger, on: eventLoop)
+    }
 }

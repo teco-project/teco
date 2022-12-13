@@ -101,4 +101,28 @@ extension Dcdb {
     public func modifyAccountPrivileges(_ input: ModifyAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegesResponse {
         try await self.client.execute(action: "ModifyAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改云数据库实例账号的权限信息
+    ///
+    /// 本接口(ModifyAccountPrivileges)用于修改云数据库的账户的权限信息。
+    /// **注意**
+    /// - 系统保留库："mysql"，只开放["SELECT"]权限
+    /// - 只读账号授予读写权限会报错
+    /// - 不传该参数表示保留现有权限，如需清除，请在复杂类型Privileges字段传空数组
+    @inlinable
+    public func modifyAccountPrivileges(instanceId: String, accounts: [Account], globalPrivileges: [String]? = nil, databasePrivileges: [DatabasePrivilege]? = nil, tablePrivileges: [TablePrivilege]? = nil, columnPrivileges: [ColumnPrivilege]? = nil, viewPrivileges: [ViewPrivileges]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountPrivilegesResponse > {
+        self.modifyAccountPrivileges(ModifyAccountPrivilegesRequest(instanceId: instanceId, accounts: accounts, globalPrivileges: globalPrivileges, databasePrivileges: databasePrivileges, tablePrivileges: tablePrivileges, columnPrivileges: columnPrivileges, viewPrivileges: viewPrivileges), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云数据库实例账号的权限信息
+    ///
+    /// 本接口(ModifyAccountPrivileges)用于修改云数据库的账户的权限信息。
+    /// **注意**
+    /// - 系统保留库："mysql"，只开放["SELECT"]权限
+    /// - 只读账号授予读写权限会报错
+    /// - 不传该参数表示保留现有权限，如需清除，请在复杂类型Privileges字段传空数组
+    @inlinable
+    public func modifyAccountPrivileges(instanceId: String, accounts: [Account], globalPrivileges: [String]? = nil, databasePrivileges: [DatabasePrivilege]? = nil, tablePrivileges: [TablePrivilege]? = nil, columnPrivileges: [ColumnPrivilege]? = nil, viewPrivileges: [ViewPrivileges]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegesResponse {
+        try await self.modifyAccountPrivileges(ModifyAccountPrivilegesRequest(instanceId: instanceId, accounts: accounts, globalPrivileges: globalPrivileges, databasePrivileges: databasePrivileges, tablePrivileges: tablePrivileges, columnPrivileges: columnPrivileges, viewPrivileges: viewPrivileges), logger: logger, on: eventLoop)
+    }
 }

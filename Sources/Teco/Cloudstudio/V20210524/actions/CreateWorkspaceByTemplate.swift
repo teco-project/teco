@@ -63,4 +63,20 @@ extension Cloudstudio {
     public func createWorkspaceByTemplate(_ input: CreateWorkspaceByTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByTemplateResponse {
         try await self.client.execute(action: "CreateWorkspaceByTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 基于模板创建工作空间
+    ///
+    /// 快速开始, 基于模板创建工作空间
+    @inlinable
+    public func createWorkspaceByTemplate(cloudStudioSessionTeam: String, templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkspaceByTemplateResponse > {
+        self.createWorkspaceByTemplate(CreateWorkspaceByTemplateRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, templateId: templateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 基于模板创建工作空间
+    ///
+    /// 快速开始, 基于模板创建工作空间
+    @inlinable
+    public func createWorkspaceByTemplate(cloudStudioSessionTeam: String, templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByTemplateResponse {
+        try await self.createWorkspaceByTemplate(CreateWorkspaceByTemplateRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, templateId: templateId), logger: logger, on: eventLoop)
+    }
 }

@@ -99,4 +99,20 @@ extension Scf {
     public func getLayerVersion(_ input: GetLayerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLayerVersionResponse {
         try await self.client.execute(action: "GetLayerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取层版本详细信息
+    ///
+    /// 获取层版本详细信息，包括用于下载层中文件的链接。
+    @inlinable
+    public func getLayerVersion(layerName: String, layerVersion: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLayerVersionResponse > {
+        self.getLayerVersion(GetLayerVersionRequest(layerName: layerName, layerVersion: layerVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取层版本详细信息
+    ///
+    /// 获取层版本详细信息，包括用于下载层中文件的链接。
+    @inlinable
+    public func getLayerVersion(layerName: String, layerVersion: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLayerVersionResponse {
+        try await self.getLayerVersion(GetLayerVersionRequest(layerName: layerName, layerVersion: layerVersion), logger: logger, on: eventLoop)
+    }
 }

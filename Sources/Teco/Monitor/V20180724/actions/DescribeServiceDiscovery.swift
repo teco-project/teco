@@ -74,4 +74,24 @@ extension Monitor {
     public func describeServiceDiscovery(_ input: DescribeServiceDiscoveryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceDiscoveryResponse {
         try await self.client.execute(action: "DescribeServiceDiscovery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 列出服务发现列表
+    ///
+    /// 列出在腾讯云容器服务下创建的 Prometheus 服务发现。
+    /// <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
+    /// <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
+    @inlinable
+    public func describeServiceDiscovery(instanceId: String, kubeClusterId: String, kubeType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceDiscoveryResponse > {
+        self.describeServiceDiscovery(DescribeServiceDiscoveryRequest(instanceId: instanceId, kubeClusterId: kubeClusterId, kubeType: kubeType), logger: logger, on: eventLoop)
+    }
+    
+    /// 列出服务发现列表
+    ///
+    /// 列出在腾讯云容器服务下创建的 Prometheus 服务发现。
+    /// <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
+    /// <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
+    @inlinable
+    public func describeServiceDiscovery(instanceId: String, kubeClusterId: String, kubeType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceDiscoveryResponse {
+        try await self.describeServiceDiscovery(DescribeServiceDiscoveryRequest(instanceId: instanceId, kubeClusterId: kubeClusterId, kubeType: kubeType), logger: logger, on: eventLoop)
+    }
 }

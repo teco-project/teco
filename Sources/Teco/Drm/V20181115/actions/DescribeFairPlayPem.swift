@@ -65,4 +65,20 @@ extension Drm {
     public func describeFairPlayPem(_ input: DescribeFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFairPlayPemResponse {
         try await self.client.execute(action: "DescribeFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询所设置的FairPlay私钥
+    ///
+    /// 该接口用来查询设置的FairPlay私钥校验信息。可用该接口校验设置的私钥与本身的私钥是否一致。
+    @inlinable
+    public func describeFairPlayPem(bailorId: UInt64? = nil, fairPlayPemId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFairPlayPemResponse > {
+        self.describeFairPlayPem(DescribeFairPlayPemRequest(bailorId: bailorId, fairPlayPemId: fairPlayPemId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询所设置的FairPlay私钥
+    ///
+    /// 该接口用来查询设置的FairPlay私钥校验信息。可用该接口校验设置的私钥与本身的私钥是否一致。
+    @inlinable
+    public func describeFairPlayPem(bailorId: UInt64? = nil, fairPlayPemId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFairPlayPemResponse {
+        try await self.describeFairPlayPem(DescribeFairPlayPemRequest(bailorId: bailorId, fairPlayPemId: fairPlayPemId), logger: logger, on: eventLoop)
+    }
 }

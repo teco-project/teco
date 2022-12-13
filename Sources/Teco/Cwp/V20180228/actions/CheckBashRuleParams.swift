@@ -82,4 +82,20 @@ extension Cwp {
     public func checkBashRuleParams(_ input: CheckBashRuleParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBashRuleParamsResponse {
         try await self.client.execute(action: "CheckBashRuleParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 校验高危命新增用户规则参数
+    ///
+    /// 校验高危命令用户规则新增和编辑时的参数。
+    @inlinable
+    public func checkBashRuleParams(checkField: String, eventId: UInt64? = nil, name: String? = nil, rule: String? = nil, id: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBashRuleParamsResponse > {
+        self.checkBashRuleParams(CheckBashRuleParamsRequest(checkField: checkField, eventId: eventId, name: name, rule: rule, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 校验高危命新增用户规则参数
+    ///
+    /// 校验高危命令用户规则新增和编辑时的参数。
+    @inlinable
+    public func checkBashRuleParams(checkField: String, eventId: UInt64? = nil, name: String? = nil, rule: String? = nil, id: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBashRuleParamsResponse {
+        try await self.checkBashRuleParams(CheckBashRuleParamsRequest(checkField: checkField, eventId: eventId, name: name, rule: rule, id: id), logger: logger, on: eventLoop)
+    }
 }

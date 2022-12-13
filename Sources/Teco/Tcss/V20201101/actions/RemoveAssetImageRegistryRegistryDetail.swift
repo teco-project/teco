@@ -50,4 +50,16 @@ extension Tcss {
     public func removeAssetImageRegistryRegistryDetail(_ input: RemoveAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAssetImageRegistryRegistryDetailResponse {
         try await self.client.execute(action: "RemoveAssetImageRegistryRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除单个镜像仓库详细信息
+    @inlinable
+    public func removeAssetImageRegistryRegistryDetail(registryId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveAssetImageRegistryRegistryDetailResponse > {
+        self.removeAssetImageRegistryRegistryDetail(RemoveAssetImageRegistryRegistryDetailRequest(registryId: registryId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除单个镜像仓库详细信息
+    @inlinable
+    public func removeAssetImageRegistryRegistryDetail(registryId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAssetImageRegistryRegistryDetailResponse {
+        try await self.removeAssetImageRegistryRegistryDetail(RemoveAssetImageRegistryRegistryDetailRequest(registryId: registryId), logger: logger, on: eventLoop)
+    }
 }

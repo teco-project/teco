@@ -86,4 +86,20 @@ extension Cdb {
     public func describeTimeWindow(_ input: DescribeTimeWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimeWindowResponse {
         try await self.client.execute(action: "DescribeTimeWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询维护时间窗口
+    ///
+    /// 本接口(DescribeTimeWindow)用于查询云数据库实例的维护时间窗口。
+    @inlinable
+    public func describeTimeWindow(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTimeWindowResponse > {
+        self.describeTimeWindow(DescribeTimeWindowRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询维护时间窗口
+    ///
+    /// 本接口(DescribeTimeWindow)用于查询云数据库实例的维护时间窗口。
+    @inlinable
+    public func describeTimeWindow(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimeWindowResponse {
+        try await self.describeTimeWindow(DescribeTimeWindowRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

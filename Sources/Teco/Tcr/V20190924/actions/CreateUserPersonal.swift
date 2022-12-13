@@ -50,4 +50,16 @@ extension Tcr {
     public func createUserPersonal(_ input: CreateUserPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserPersonalResponse {
         try await self.client.execute(action: "CreateUserPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建个人用户
+    @inlinable
+    public func createUserPersonal(password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserPersonalResponse > {
+        self.createUserPersonal(CreateUserPersonalRequest(password: password), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建个人用户
+    @inlinable
+    public func createUserPersonal(password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserPersonalResponse {
+        try await self.createUserPersonal(CreateUserPersonalRequest(password: password), logger: logger, on: eventLoop)
+    }
 }

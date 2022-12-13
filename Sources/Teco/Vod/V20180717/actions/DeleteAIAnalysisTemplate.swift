@@ -61,4 +61,22 @@ extension Vod {
     public func deleteAIAnalysisTemplate(_ input: DeleteAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIAnalysisTemplateResponse {
         try await self.client.execute(action: "DeleteAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除音视频内容分析模板
+    ///
+    /// 删除用户自定义音视频内容分析模板。
+    /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
+    @inlinable
+    public func deleteAIAnalysisTemplate(definition: Int64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAIAnalysisTemplateResponse > {
+        self.deleteAIAnalysisTemplate(DeleteAIAnalysisTemplateRequest(definition: definition, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除音视频内容分析模板
+    ///
+    /// 删除用户自定义音视频内容分析模板。
+    /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
+    @inlinable
+    public func deleteAIAnalysisTemplate(definition: Int64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIAnalysisTemplateResponse {
+        try await self.deleteAIAnalysisTemplate(DeleteAIAnalysisTemplateRequest(definition: definition, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

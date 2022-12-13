@@ -72,4 +72,20 @@ extension Ds {
     public func deleteAccount(_ input: DeleteAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountResponse {
         try await self.client.execute(action: "DeleteAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除帐号
+    ///
+    /// 删除企业电子合同平台的最终用户。调用该接口后，腾讯云将删除该用户账号。删除账号后，已经签名的合同不受影响。
+    @inlinable
+    public func deleteAccount(module: String, operation: String, accountList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccountResponse > {
+        self.deleteAccount(DeleteAccountRequest(module: module, operation: operation, accountList: accountList), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除帐号
+    ///
+    /// 删除企业电子合同平台的最终用户。调用该接口后，腾讯云将删除该用户账号。删除账号后，已经签名的合同不受影响。
+    @inlinable
+    public func deleteAccount(module: String, operation: String, accountList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountResponse {
+        try await self.deleteAccount(DeleteAccountRequest(module: module, operation: operation, accountList: accountList), logger: logger, on: eventLoop)
+    }
 }

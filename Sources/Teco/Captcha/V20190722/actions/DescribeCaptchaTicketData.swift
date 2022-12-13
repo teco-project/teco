@@ -74,4 +74,16 @@ extension Captcha {
     public func describeCaptchaTicketData(_ input: DescribeCaptchaTicketDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaTicketDataResponse {
         try await self.client.execute(action: "DescribeCaptchaTicketData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安全验证码用户操作票据数据查询
+    @inlinable
+    public func describeCaptchaTicketData(captchaAppId: Int64, start: Int64, end: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaTicketDataResponse > {
+        self.describeCaptchaTicketData(DescribeCaptchaTicketDataRequest(captchaAppId: captchaAppId, start: start, end: end), logger: logger, on: eventLoop)
+    }
+    
+    /// 安全验证码用户操作票据数据查询
+    @inlinable
+    public func describeCaptchaTicketData(captchaAppId: Int64, start: Int64, end: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaTicketDataResponse {
+        try await self.describeCaptchaTicketData(DescribeCaptchaTicketDataRequest(captchaAppId: captchaAppId, start: start, end: end), logger: logger, on: eventLoop)
+    }
 }

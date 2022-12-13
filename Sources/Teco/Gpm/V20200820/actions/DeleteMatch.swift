@@ -56,4 +56,22 @@ extension Gpm {
     public func deleteMatch(_ input: DeleteMatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMatchResponse {
         try await self.client.execute(action: "DeleteMatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除匹配
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 删除匹配
+    @inlinable
+    public func deleteMatch(matchCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMatchResponse > {
+        self.deleteMatch(DeleteMatchRequest(matchCode: matchCode), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除匹配
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 删除匹配
+    @inlinable
+    public func deleteMatch(matchCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMatchResponse {
+        try await self.deleteMatch(DeleteMatchRequest(matchCode: matchCode), logger: logger, on: eventLoop)
+    }
 }

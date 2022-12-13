@@ -75,4 +75,20 @@ extension Teo {
     public func modifyAlarmConfig(_ input: ModifyAlarmConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmConfigResponse {
         try await self.client.execute(action: "ModifyAlarmConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改用户告警配置
+    ///
+    /// 本接口（ModifyAlarmConfig）用于修改用户告警配置。
+    @inlinable
+    public func modifyAlarmConfig(serviceType: String, zoneId: String, entityList: [String], threshold: Int64? = nil, isDefault: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmConfigResponse > {
+        self.modifyAlarmConfig(ModifyAlarmConfigRequest(serviceType: serviceType, zoneId: zoneId, entityList: entityList, threshold: threshold, isDefault: isDefault), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改用户告警配置
+    ///
+    /// 本接口（ModifyAlarmConfig）用于修改用户告警配置。
+    @inlinable
+    public func modifyAlarmConfig(serviceType: String, zoneId: String, entityList: [String], threshold: Int64? = nil, isDefault: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmConfigResponse {
+        try await self.modifyAlarmConfig(ModifyAlarmConfigRequest(serviceType: serviceType, zoneId: zoneId, entityList: entityList, threshold: threshold, isDefault: isDefault), logger: logger, on: eventLoop)
+    }
 }

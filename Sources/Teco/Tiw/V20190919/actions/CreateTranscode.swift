@@ -109,4 +109,20 @@ extension Tiw {
     public func createTranscode(_ input: CreateTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTranscodeResponse {
         try await self.client.execute(action: "CreateTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建文档转码任务
+    ///
+    /// 创建一个文档转码任务
+    @inlinable
+    public func createTranscode(sdkAppId: Int64, url: String, isStaticPPT: Bool? = nil, minResolution: String? = nil, thumbnailResolution: String? = nil, compressFileType: String? = nil, extraData: String? = nil, priority: String? = nil, minScaleResolution: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTranscodeResponse > {
+        self.createTranscode(CreateTranscodeRequest(sdkAppId: sdkAppId, url: url, isStaticPPT: isStaticPPT, minResolution: minResolution, thumbnailResolution: thumbnailResolution, compressFileType: compressFileType, extraData: extraData, priority: priority, minScaleResolution: minScaleResolution), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建文档转码任务
+    ///
+    /// 创建一个文档转码任务
+    @inlinable
+    public func createTranscode(sdkAppId: Int64, url: String, isStaticPPT: Bool? = nil, minResolution: String? = nil, thumbnailResolution: String? = nil, compressFileType: String? = nil, extraData: String? = nil, priority: String? = nil, minScaleResolution: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTranscodeResponse {
+        try await self.createTranscode(CreateTranscodeRequest(sdkAppId: sdkAppId, url: url, isStaticPPT: isStaticPPT, minResolution: minResolution, thumbnailResolution: thumbnailResolution, compressFileType: compressFileType, extraData: extraData, priority: priority, minScaleResolution: minScaleResolution), logger: logger, on: eventLoop)
+    }
 }

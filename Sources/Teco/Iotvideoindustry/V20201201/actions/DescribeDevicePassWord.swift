@@ -58,4 +58,20 @@ extension Iotvideoindustry {
     public func describeDevicePassWord(_ input: DescribeDevicePassWordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePassWordResponse {
         try await self.client.execute(action: "DescribeDevicePassWord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询设备密码
+    ///
+    /// 本接口(DescribeDevicePassWord)用于查询设备密码。
+    @inlinable
+    public func describeDevicePassWord(deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePassWordResponse > {
+        self.describeDevicePassWord(DescribeDevicePassWordRequest(deviceId: deviceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备密码
+    ///
+    /// 本接口(DescribeDevicePassWord)用于查询设备密码。
+    @inlinable
+    public func describeDevicePassWord(deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePassWordResponse {
+        try await self.describeDevicePassWord(DescribeDevicePassWordRequest(deviceId: deviceId), logger: logger, on: eventLoop)
+    }
 }

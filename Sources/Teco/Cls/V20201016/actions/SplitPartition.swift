@@ -73,4 +73,20 @@ extension Cls {
     public func splitPartition(_ input: SplitPartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SplitPartitionResponse {
         try await self.client.execute(action: "SplitPartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 分裂主题分区
+    ///
+    /// 本接口用于分裂主题分区
+    @inlinable
+    public func splitPartition(topicId: String, partitionId: Int64, splitKey: String? = nil, number: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SplitPartitionResponse > {
+        self.splitPartition(SplitPartitionRequest(topicId: topicId, partitionId: partitionId, splitKey: splitKey, number: number), logger: logger, on: eventLoop)
+    }
+    
+    /// 分裂主题分区
+    ///
+    /// 本接口用于分裂主题分区
+    @inlinable
+    public func splitPartition(topicId: String, partitionId: Int64, splitKey: String? = nil, number: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SplitPartitionResponse {
+        try await self.splitPartition(SplitPartitionRequest(topicId: topicId, partitionId: partitionId, splitKey: splitKey, number: number), logger: logger, on: eventLoop)
+    }
 }

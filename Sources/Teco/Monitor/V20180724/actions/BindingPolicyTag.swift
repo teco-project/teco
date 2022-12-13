@@ -80,4 +80,16 @@ extension Monitor {
     public func bindingPolicyTag(_ input: BindingPolicyTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindingPolicyTagResponse {
         try await self.client.execute(action: "BindingPolicyTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 策略绑定标签
+    @inlinable
+    public func bindingPolicyTag(module: String, policyId: String, groupId: String, serviceType: String, tag: PolicyTag? = nil, instanceGroupId: Int64? = nil, batchTag: [PolicyTag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindingPolicyTagResponse > {
+        self.bindingPolicyTag(BindingPolicyTagRequest(module: module, policyId: policyId, groupId: groupId, serviceType: serviceType, tag: tag, instanceGroupId: instanceGroupId, batchTag: batchTag), logger: logger, on: eventLoop)
+    }
+    
+    /// 策略绑定标签
+    @inlinable
+    public func bindingPolicyTag(module: String, policyId: String, groupId: String, serviceType: String, tag: PolicyTag? = nil, instanceGroupId: Int64? = nil, batchTag: [PolicyTag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindingPolicyTagResponse {
+        try await self.bindingPolicyTag(BindingPolicyTagRequest(module: module, policyId: policyId, groupId: groupId, serviceType: serviceType, tag: tag, instanceGroupId: instanceGroupId, batchTag: batchTag), logger: logger, on: eventLoop)
+    }
 }

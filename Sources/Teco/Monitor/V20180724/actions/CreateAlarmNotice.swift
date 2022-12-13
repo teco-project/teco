@@ -89,4 +89,16 @@ extension Monitor {
     public func createAlarmNotice(_ input: CreateAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmNoticeResponse {
         try await self.client.execute(action: "CreateAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建通知模板
+    @inlinable
+    public func createAlarmNotice(module: String, name: String, noticeType: String, noticeLanguage: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAlarmNoticeResponse > {
+        self.createAlarmNotice(CreateAlarmNoticeRequest(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建通知模板
+    @inlinable
+    public func createAlarmNotice(module: String, name: String, noticeType: String, noticeLanguage: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmNoticeResponse {
+        try await self.createAlarmNotice(CreateAlarmNoticeRequest(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices, tags: tags), logger: logger, on: eventLoop)
+    }
 }

@@ -63,4 +63,20 @@ extension Eb {
     public func checkTransformation(_ input: CheckTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTransformationResponse {
         try await self.client.execute(action: "CheckTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 检查转换器
+    ///
+    /// 用于在ETL配置页面, 测试规则和数据.
+    @inlinable
+    public func checkTransformation(input: String, transformations: [Transformation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckTransformationResponse > {
+        self.checkTransformation(CheckTransformationRequest(input: input, transformations: transformations), logger: logger, on: eventLoop)
+    }
+    
+    /// 检查转换器
+    ///
+    /// 用于在ETL配置页面, 测试规则和数据.
+    @inlinable
+    public func checkTransformation(input: String, transformations: [Transformation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTransformationResponse {
+        try await self.checkTransformation(CheckTransformationRequest(input: input, transformations: transformations), logger: logger, on: eventLoop)
+    }
 }

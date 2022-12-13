@@ -60,4 +60,16 @@ extension Organization {
     public func cancelOrganizationMemberAuthAccount(_ input: CancelOrganizationMemberAuthAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelOrganizationMemberAuthAccountResponse {
         try await self.client.execute(action: "CancelOrganizationMemberAuthAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 取消组织成员和组织管理员子账号的授权关系
+    @inlinable
+    public func cancelOrganizationMemberAuthAccount(memberUin: Int64, policyId: Int64, orgSubAccountUin: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelOrganizationMemberAuthAccountResponse > {
+        self.cancelOrganizationMemberAuthAccount(CancelOrganizationMemberAuthAccountRequest(memberUin: memberUin, policyId: policyId, orgSubAccountUin: orgSubAccountUin), logger: logger, on: eventLoop)
+    }
+    
+    /// 取消组织成员和组织管理员子账号的授权关系
+    @inlinable
+    public func cancelOrganizationMemberAuthAccount(memberUin: Int64, policyId: Int64, orgSubAccountUin: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelOrganizationMemberAuthAccountResponse {
+        try await self.cancelOrganizationMemberAuthAccount(CancelOrganizationMemberAuthAccountRequest(memberUin: memberUin, policyId: policyId, orgSubAccountUin: orgSubAccountUin), logger: logger, on: eventLoop)
+    }
 }

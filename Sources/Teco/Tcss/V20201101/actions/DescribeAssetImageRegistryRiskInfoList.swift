@@ -92,4 +92,16 @@ extension Tcss {
     public func describeAssetImageRegistryRiskInfoList(_ input: DescribeAssetImageRegistryRiskInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryRiskInfoListResponse {
         try await self.client.execute(action: "DescribeAssetImageRegistryRiskInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 镜像仓库查询镜像高危行为列表
+    @inlinable
+    public func describeAssetImageRegistryRiskInfoList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, by: String? = nil, order: String? = nil, id: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryRiskInfoListResponse > {
+        self.describeAssetImageRegistryRiskInfoList(DescribeAssetImageRegistryRiskInfoListRequest(limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, by: by, order: order, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库查询镜像高危行为列表
+    @inlinable
+    public func describeAssetImageRegistryRiskInfoList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, by: String? = nil, order: String? = nil, id: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryRiskInfoListResponse {
+        try await self.describeAssetImageRegistryRiskInfoList(DescribeAssetImageRegistryRiskInfoListRequest(limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, by: by, order: order, id: id), logger: logger, on: eventLoop)
+    }
 }

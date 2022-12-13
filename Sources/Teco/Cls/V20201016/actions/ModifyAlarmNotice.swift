@@ -77,4 +77,20 @@ extension Cls {
     public func modifyAlarmNotice(_ input: ModifyAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmNoticeResponse {
         try await self.client.execute(action: "ModifyAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改通知渠道组
+    ///
+    /// 该接口用于修改通知渠道组
+    @inlinable
+    public func modifyAlarmNotice(alarmNoticeId: String, name: String? = nil, type: String? = nil, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmNoticeResponse > {
+        self.modifyAlarmNotice(ModifyAlarmNoticeRequest(alarmNoticeId: alarmNoticeId, name: name, type: type, noticeReceivers: noticeReceivers, webCallbacks: webCallbacks), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改通知渠道组
+    ///
+    /// 该接口用于修改通知渠道组
+    @inlinable
+    public func modifyAlarmNotice(alarmNoticeId: String, name: String? = nil, type: String? = nil, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmNoticeResponse {
+        try await self.modifyAlarmNotice(ModifyAlarmNoticeRequest(alarmNoticeId: alarmNoticeId, name: name, type: type, noticeReceivers: noticeReceivers, webCallbacks: webCallbacks), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,16 @@ extension Msp {
     public func describeMigrationTask(_ input: DescribeMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationTaskResponse {
         try await self.client.execute(action: "DescribeMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取指定迁移任务详情
+    @inlinable
+    public func describeMigrationTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationTaskResponse > {
+        self.describeMigrationTask(DescribeMigrationTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定迁移任务详情
+    @inlinable
+    public func describeMigrationTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationTaskResponse {
+        try await self.describeMigrationTask(DescribeMigrationTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

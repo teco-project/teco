@@ -68,4 +68,24 @@ extension Rum {
     public func deleteLogExport(_ input: DeleteLogExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogExportResponse {
         try await self.client.execute(action: "DeleteLogExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除日志下载任务
+    ///
+    /// 接口请求域名： rum.tencentcloudapi.com 。
+    /// 本接口用于删除日志下载任务
+    /// 默认接口请求频率限制：20次/秒。
+    @inlinable
+    public func deleteLogExport(id: Int64, exportID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLogExportResponse > {
+        self.deleteLogExport(DeleteLogExportRequest(id: id, exportID: exportID), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除日志下载任务
+    ///
+    /// 接口请求域名： rum.tencentcloudapi.com 。
+    /// 本接口用于删除日志下载任务
+    /// 默认接口请求频率限制：20次/秒。
+    @inlinable
+    public func deleteLogExport(id: Int64, exportID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogExportResponse {
+        try await self.deleteLogExport(DeleteLogExportRequest(id: id, exportID: exportID), logger: logger, on: eventLoop)
+    }
 }

@@ -63,4 +63,20 @@ extension Rum {
     public func createReleaseFile(_ input: CreateReleaseFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReleaseFileResponse {
         try await self.client.execute(action: "CreateReleaseFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建发布文件记录
+    ///
+    /// 创建对应项目的文件记录
+    @inlinable
+    public func createReleaseFile(projectID: Int64, files: [ReleaseFile], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReleaseFileResponse > {
+        self.createReleaseFile(CreateReleaseFileRequest(projectID: projectID, files: files), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建发布文件记录
+    ///
+    /// 创建对应项目的文件记录
+    @inlinable
+    public func createReleaseFile(projectID: Int64, files: [ReleaseFile], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReleaseFileResponse {
+        try await self.createReleaseFile(CreateReleaseFileRequest(projectID: projectID, files: files), logger: logger, on: eventLoop)
+    }
 }

@@ -72,4 +72,20 @@ extension Ape {
     public func describeAuthUsers(_ input: DescribeAuthUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthUsersResponse {
         try await self.client.execute(action: "DescribeAuthUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询授权人列表
+    ///
+    /// 分页查询授权人列表
+    @inlinable
+    public func describeAuthUsers(limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuthUsersResponse > {
+        self.describeAuthUsers(DescribeAuthUsersRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询授权人列表
+    ///
+    /// 分页查询授权人列表
+    @inlinable
+    public func describeAuthUsers(limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthUsersResponse {
+        try await self.describeAuthUsers(DescribeAuthUsersRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

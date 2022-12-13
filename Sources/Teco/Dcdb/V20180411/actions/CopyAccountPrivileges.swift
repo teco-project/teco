@@ -86,4 +86,22 @@ extension Dcdb {
     public func copyAccountPrivileges(_ input: CopyAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyAccountPrivilegesResponse {
         try await self.client.execute(action: "CopyAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 复制账号权限
+    ///
+    /// 本接口（CopyAccountPrivileges）用于复制云数据库账号的权限。
+    /// 注意：相同用户名，不同Host是不同的账号，Readonly属性相同的账号之间才能复制权限。
+    @inlinable
+    public func copyAccountPrivileges(instanceId: String, srcUserName: String, srcHost: String, dstUserName: String, dstHost: String, srcReadOnly: String? = nil, dstReadOnly: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyAccountPrivilegesResponse > {
+        self.copyAccountPrivileges(CopyAccountPrivilegesRequest(instanceId: instanceId, srcUserName: srcUserName, srcHost: srcHost, dstUserName: dstUserName, dstHost: dstHost, srcReadOnly: srcReadOnly, dstReadOnly: dstReadOnly), logger: logger, on: eventLoop)
+    }
+    
+    /// 复制账号权限
+    ///
+    /// 本接口（CopyAccountPrivileges）用于复制云数据库账号的权限。
+    /// 注意：相同用户名，不同Host是不同的账号，Readonly属性相同的账号之间才能复制权限。
+    @inlinable
+    public func copyAccountPrivileges(instanceId: String, srcUserName: String, srcHost: String, dstUserName: String, dstHost: String, srcReadOnly: String? = nil, dstReadOnly: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyAccountPrivilegesResponse {
+        try await self.copyAccountPrivileges(CopyAccountPrivilegesRequest(instanceId: instanceId, srcUserName: srcUserName, srcHost: srcHost, dstUserName: dstUserName, dstHost: dstHost, srcReadOnly: srcReadOnly, dstReadOnly: dstReadOnly), logger: logger, on: eventLoop)
+    }
 }

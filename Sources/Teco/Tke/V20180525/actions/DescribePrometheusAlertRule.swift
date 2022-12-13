@@ -74,4 +74,16 @@ extension Tke {
     public func describePrometheusAlertRule(_ input: DescribePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAlertRuleResponse {
         try await self.client.execute(action: "DescribePrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取告警规则列表
+    @inlinable
+    public func describePrometheusAlertRule(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusAlertRuleResponse > {
+        self.describePrometheusAlertRule(DescribePrometheusAlertRuleRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取告警规则列表
+    @inlinable
+    public func describePrometheusAlertRule(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAlertRuleResponse {
+        try await self.describePrometheusAlertRule(DescribePrometheusAlertRuleRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

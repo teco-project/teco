@@ -63,4 +63,20 @@ extension Cpdp {
     public func queryTrade(_ input: QueryTradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTradeResponse {
         try await self.client.execute(action: "QueryTrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 跨境-贸易材料明细查询
+    ///
+    /// 跨境-贸易材料明细查询。
+    @inlinable
+    public func queryTrade(tradeFileId: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryTradeResponse > {
+        self.queryTrade(QueryTradeRequest(tradeFileId: tradeFileId, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 跨境-贸易材料明细查询
+    ///
+    /// 跨境-贸易材料明细查询。
+    @inlinable
+    public func queryTrade(tradeFileId: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTradeResponse {
+        try await self.queryTrade(QueryTradeRequest(tradeFileId: tradeFileId, profile: profile), logger: logger, on: eventLoop)
+    }
 }

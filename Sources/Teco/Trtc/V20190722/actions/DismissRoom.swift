@@ -59,4 +59,20 @@ extension Trtc {
     public func dismissRoom(_ input: DismissRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DismissRoomResponse {
         try await self.client.execute(action: "DismissRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解散房间
+    ///
+    /// 接口说明：把房间所有用户从房间移出，解散房间。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
+    @inlinable
+    public func dismissRoom(sdkAppId: UInt64, roomId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DismissRoomResponse > {
+        self.dismissRoom(DismissRoomRequest(sdkAppId: sdkAppId, roomId: roomId), logger: logger, on: eventLoop)
+    }
+    
+    /// 解散房间
+    ///
+    /// 接口说明：把房间所有用户从房间移出，解散房间。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
+    @inlinable
+    public func dismissRoom(sdkAppId: UInt64, roomId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DismissRoomResponse {
+        try await self.dismissRoom(DismissRoomRequest(sdkAppId: sdkAppId, roomId: roomId), logger: logger, on: eventLoop)
+    }
 }

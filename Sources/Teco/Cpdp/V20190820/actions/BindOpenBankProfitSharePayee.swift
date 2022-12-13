@@ -99,4 +99,16 @@ extension Cpdp {
     public func bindOpenBankProfitSharePayee(_ input: BindOpenBankProfitSharePayeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindOpenBankProfitSharePayeeResponse {
         try await self.client.execute(action: "BindOpenBankProfitSharePayee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-绑定分账收款方
+    @inlinable
+    public func bindOpenBankProfitSharePayee(channelMerchantId: String, accountNo: String, channelName: String, channelSubMerchantId: String? = nil, notifyUrl: String? = nil, profitSharePayeeInfo: OpenBankProfitSharePayeeInfo? = nil, externalProfitSharingData: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindOpenBankProfitSharePayeeResponse > {
+        self.bindOpenBankProfitSharePayee(BindOpenBankProfitSharePayeeRequest(channelMerchantId: channelMerchantId, accountNo: accountNo, channelName: channelName, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl, profitSharePayeeInfo: profitSharePayeeInfo, externalProfitSharingData: externalProfitSharingData, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-绑定分账收款方
+    @inlinable
+    public func bindOpenBankProfitSharePayee(channelMerchantId: String, accountNo: String, channelName: String, channelSubMerchantId: String? = nil, notifyUrl: String? = nil, profitSharePayeeInfo: OpenBankProfitSharePayeeInfo? = nil, externalProfitSharingData: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindOpenBankProfitSharePayeeResponse {
+        try await self.bindOpenBankProfitSharePayee(BindOpenBankProfitSharePayeeRequest(channelMerchantId: channelMerchantId, accountNo: accountNo, channelName: channelName, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl, profitSharePayeeInfo: profitSharePayeeInfo, externalProfitSharingData: externalProfitSharingData, environment: environment), logger: logger, on: eventLoop)
+    }
 }

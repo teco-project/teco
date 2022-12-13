@@ -55,4 +55,16 @@ extension Antiddos {
     public func deleteWaterPrintKey(_ input: DeleteWaterPrintKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWaterPrintKeyResponse {
         try await self.client.execute(action: "DeleteWaterPrintKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除DDoS防护的水印防护密钥
+    @inlinable
+    public func deleteWaterPrintKey(instanceId: String, keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWaterPrintKeyResponse > {
+        self.deleteWaterPrintKey(DeleteWaterPrintKeyRequest(instanceId: instanceId, keyId: keyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除DDoS防护的水印防护密钥
+    @inlinable
+    public func deleteWaterPrintKey(instanceId: String, keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWaterPrintKeyResponse {
+        try await self.deleteWaterPrintKey(DeleteWaterPrintKeyRequest(instanceId: instanceId, keyId: keyId), logger: logger, on: eventLoop)
+    }
 }

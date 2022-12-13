@@ -29,7 +29,7 @@ extension Essbasic {
         /// 操作者的信息
         public let `operator`: UserInfo?
         
-        public init (flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, `operator`: UserInfo? = nil) {
+        public init (flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, operator: UserInfo? = nil) {
             self.flowFileInfos = flowFileInfos
             self.flowGroupName = flowGroupName
             self.agent = agent
@@ -78,5 +78,21 @@ extension Essbasic {
     @inlinable
     public func channelCreateFlowGroupByFiles(_ input: ChannelCreateFlowGroupByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowGroupByFilesResponse {
         try await self.client.execute(action: "ChannelCreateFlowGroupByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 通过多文件创建合同组签署流程
+    ///
+    /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
+    @inlinable
+    public func channelCreateFlowGroupByFiles(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateFlowGroupByFilesResponse > {
+        self.channelCreateFlowGroupByFiles(ChannelCreateFlowGroupByFilesRequest(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 通过多文件创建合同组签署流程
+    ///
+    /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
+    @inlinable
+    public func channelCreateFlowGroupByFiles(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowGroupByFilesResponse {
+        try await self.channelCreateFlowGroupByFiles(ChannelCreateFlowGroupByFilesRequest(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

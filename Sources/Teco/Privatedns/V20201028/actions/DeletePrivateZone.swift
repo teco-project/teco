@@ -59,4 +59,20 @@ extension Privatedns {
     public func deletePrivateZone(_ input: DeletePrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateZoneResponse {
         try await self.client.execute(action: "DeletePrivateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除私有域
+    ///
+    /// 删除私有域并停止解析
+    @inlinable
+    public func deletePrivateZone(zoneId: String? = nil, zoneIdSet: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrivateZoneResponse > {
+        self.deletePrivateZone(DeletePrivateZoneRequest(zoneId: zoneId, zoneIdSet: zoneIdSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除私有域
+    ///
+    /// 删除私有域并停止解析
+    @inlinable
+    public func deletePrivateZone(zoneId: String? = nil, zoneIdSet: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateZoneResponse {
+        try await self.deletePrivateZone(DeletePrivateZoneRequest(zoneId: zoneId, zoneIdSet: zoneIdSet), logger: logger, on: eventLoop)
+    }
 }

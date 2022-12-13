@@ -59,4 +59,20 @@ extension Tcss {
     public func renewImageAuthorizeState(_ input: RenewImageAuthorizeStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewImageAuthorizeStateResponse {
         try await self.client.execute(action: "RenewImageAuthorizeState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 授权镜像扫描
+    ///
+    /// RenewImageAuthorizeState   授权镜像扫描
+    @inlinable
+    public func renewImageAuthorizeState(allImages: Bool, imageIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewImageAuthorizeStateResponse > {
+        self.renewImageAuthorizeState(RenewImageAuthorizeStateRequest(allImages: allImages, imageIds: imageIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 授权镜像扫描
+    ///
+    /// RenewImageAuthorizeState   授权镜像扫描
+    @inlinable
+    public func renewImageAuthorizeState(allImages: Bool, imageIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewImageAuthorizeStateResponse {
+        try await self.renewImageAuthorizeState(RenewImageAuthorizeStateRequest(allImages: allImages, imageIds: imageIds), logger: logger, on: eventLoop)
+    }
 }

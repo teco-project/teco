@@ -75,4 +75,16 @@ extension Iotvideo {
     public func callDeviceActionAsync(_ input: CallDeviceActionAsyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CallDeviceActionAsyncResponse {
         try await self.client.execute(action: "CallDeviceActionAsync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 异步调用设备行为
+    @inlinable
+    public func callDeviceActionAsync(productId: String, deviceName: String, actionId: String, inputParams: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CallDeviceActionAsyncResponse > {
+        self.callDeviceActionAsync(CallDeviceActionAsyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams), logger: logger, on: eventLoop)
+    }
+    
+    /// 异步调用设备行为
+    @inlinable
+    public func callDeviceActionAsync(productId: String, deviceName: String, actionId: String, inputParams: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CallDeviceActionAsyncResponse {
+        try await self.callDeviceActionAsync(CallDeviceActionAsyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams), logger: logger, on: eventLoop)
+    }
 }

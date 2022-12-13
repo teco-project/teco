@@ -83,4 +83,20 @@ extension Vpc {
     public func describeHaVips(_ input: DescribeHaVipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHaVipsResponse {
         try await self.client.execute(action: "DescribeHaVips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询HAVIP列表
+    ///
+    /// 本接口（DescribeHaVips）用于查询高可用虚拟IP（HAVIP）列表。
+    @inlinable
+    public func describeHaVips(haVipIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHaVipsResponse > {
+        self.describeHaVips(DescribeHaVipsRequest(haVipIds: haVipIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询HAVIP列表
+    ///
+    /// 本接口（DescribeHaVips）用于查询高可用虚拟IP（HAVIP）列表。
+    @inlinable
+    public func describeHaVips(haVipIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHaVipsResponse {
+        try await self.describeHaVips(DescribeHaVipsRequest(haVipIds: haVipIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

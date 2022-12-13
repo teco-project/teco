@@ -79,4 +79,20 @@ extension Apigateway {
     public func modifyUsagePlan(_ input: ModifyUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUsagePlanResponse {
         try await self.client.execute(action: "ModifyUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改使用计划
+    ///
+    /// 本接口（ModifyUsagePlan）用于修改使用计划的名称，描述及 QPS。
+    @inlinable
+    public func modifyUsagePlan(usagePlanId: String, usagePlanName: String? = nil, usagePlanDesc: String? = nil, maxRequestNum: Int64? = nil, maxRequestNumPreSec: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUsagePlanResponse > {
+        self.modifyUsagePlan(ModifyUsagePlanRequest(usagePlanId: usagePlanId, usagePlanName: usagePlanName, usagePlanDesc: usagePlanDesc, maxRequestNum: maxRequestNum, maxRequestNumPreSec: maxRequestNumPreSec), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改使用计划
+    ///
+    /// 本接口（ModifyUsagePlan）用于修改使用计划的名称，描述及 QPS。
+    @inlinable
+    public func modifyUsagePlan(usagePlanId: String, usagePlanName: String? = nil, usagePlanDesc: String? = nil, maxRequestNum: Int64? = nil, maxRequestNumPreSec: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUsagePlanResponse {
+        try await self.modifyUsagePlan(ModifyUsagePlanRequest(usagePlanId: usagePlanId, usagePlanName: usagePlanName, usagePlanDesc: usagePlanDesc, maxRequestNum: maxRequestNum, maxRequestNumPreSec: maxRequestNumPreSec), logger: logger, on: eventLoop)
+    }
 }

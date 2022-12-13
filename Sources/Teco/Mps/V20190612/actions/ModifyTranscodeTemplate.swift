@@ -105,4 +105,20 @@ extension Mps {
     public func modifyTranscodeTemplate(_ input: ModifyTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTranscodeTemplateResponse {
         try await self.client.execute(action: "ModifyTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改转码模板
+    ///
+    /// 修改用户自定义转码模板信息。
+    @inlinable
+    public func modifyTranscodeTemplate(definition: Int64, container: String? = nil, name: String? = nil, comment: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoTemplate: VideoTemplateInfoForUpdate? = nil, audioTemplate: AudioTemplateInfoForUpdate? = nil, tehdConfig: TEHDConfigForUpdate? = nil, enhanceConfig: EnhanceConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTranscodeTemplateResponse > {
+        self.modifyTranscodeTemplate(ModifyTranscodeTemplateRequest(definition: definition, container: container, name: name, comment: comment, removeVideo: removeVideo, removeAudio: removeAudio, videoTemplate: videoTemplate, audioTemplate: audioTemplate, tehdConfig: tehdConfig, enhanceConfig: enhanceConfig), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改转码模板
+    ///
+    /// 修改用户自定义转码模板信息。
+    @inlinable
+    public func modifyTranscodeTemplate(definition: Int64, container: String? = nil, name: String? = nil, comment: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoTemplate: VideoTemplateInfoForUpdate? = nil, audioTemplate: AudioTemplateInfoForUpdate? = nil, tehdConfig: TEHDConfigForUpdate? = nil, enhanceConfig: EnhanceConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTranscodeTemplateResponse {
+        try await self.modifyTranscodeTemplate(ModifyTranscodeTemplateRequest(definition: definition, container: container, name: name, comment: comment, removeVideo: removeVideo, removeAudio: removeAudio, videoTemplate: videoTemplate, audioTemplate: audioTemplate, tehdConfig: tehdConfig, enhanceConfig: enhanceConfig), logger: logger, on: eventLoop)
+    }
 }

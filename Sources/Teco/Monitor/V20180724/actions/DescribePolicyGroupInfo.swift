@@ -129,4 +129,16 @@ extension Monitor {
     public func describePolicyGroupInfo(_ input: DescribePolicyGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyGroupInfoResponse {
         try await self.client.execute(action: "DescribePolicyGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取基础策略组详情
+    @inlinable
+    public func describePolicyGroupInfo(module: String, groupId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePolicyGroupInfoResponse > {
+        self.describePolicyGroupInfo(DescribePolicyGroupInfoRequest(module: module, groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取基础策略组详情
+    @inlinable
+    public func describePolicyGroupInfo(module: String, groupId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyGroupInfoResponse {
+        try await self.describePolicyGroupInfo(DescribePolicyGroupInfoRequest(module: module, groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

@@ -84,4 +84,16 @@ extension Tdmq {
     public func describeCmqQueues(_ input: DescribeCmqQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqQueuesResponse {
         try await self.client.execute(action: "DescribeCmqQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询cmq全量队列
+    @inlinable
+    public func describeCmqQueues(offset: UInt64? = nil, limit: UInt64? = nil, queueName: String? = nil, queueNameList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCmqQueuesResponse > {
+        self.describeCmqQueues(DescribeCmqQueuesRequest(offset: offset, limit: limit, queueName: queueName, queueNameList: queueNameList, isTagFilter: isTagFilter, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询cmq全量队列
+    @inlinable
+    public func describeCmqQueues(offset: UInt64? = nil, limit: UInt64? = nil, queueName: String? = nil, queueNameList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqQueuesResponse {
+        try await self.describeCmqQueues(DescribeCmqQueuesRequest(offset: offset, limit: limit, queueName: queueName, queueNameList: queueNameList, isTagFilter: isTagFilter, filters: filters), logger: logger, on: eventLoop)
+    }
 }

@@ -76,4 +76,20 @@ extension Cls {
     public func describeConsumer(_ input: DescribeConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConsumerResponse {
         try await self.client.execute(action: "DescribeConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取投递配置
+    ///
+    /// 本接口用于获取投递配置
+    @inlinable
+    public func describeConsumer(topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConsumerResponse > {
+        self.describeConsumer(DescribeConsumerRequest(topicId: topicId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取投递配置
+    ///
+    /// 本接口用于获取投递配置
+    @inlinable
+    public func describeConsumer(topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConsumerResponse {
+        try await self.describeConsumer(DescribeConsumerRequest(topicId: topicId), logger: logger, on: eventLoop)
+    }
 }

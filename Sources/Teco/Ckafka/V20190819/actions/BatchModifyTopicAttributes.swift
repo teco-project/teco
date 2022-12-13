@@ -59,4 +59,16 @@ extension Ckafka {
     public func batchModifyTopicAttributes(_ input: BatchModifyTopicAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTopicAttributesResponse {
         try await self.client.execute(action: "BatchModifyTopicAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量设置主题属性
+    @inlinable
+    public func batchModifyTopicAttributes(instanceId: String, topic: [BatchModifyTopicInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyTopicAttributesResponse > {
+        self.batchModifyTopicAttributes(BatchModifyTopicAttributesRequest(instanceId: instanceId, topic: topic), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量设置主题属性
+    @inlinable
+    public func batchModifyTopicAttributes(instanceId: String, topic: [BatchModifyTopicInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTopicAttributesResponse {
+        try await self.batchModifyTopicAttributes(BatchModifyTopicAttributesRequest(instanceId: instanceId, topic: topic), logger: logger, on: eventLoop)
+    }
 }

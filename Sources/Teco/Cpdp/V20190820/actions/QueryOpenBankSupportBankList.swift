@@ -89,4 +89,16 @@ extension Cpdp {
     public func queryOpenBankSupportBankList(_ input: QueryOpenBankSupportBankListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSupportBankListResponse {
         try await self.client.execute(action: "QueryOpenBankSupportBankList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-查询支持银行列表
+    @inlinable
+    public func queryOpenBankSupportBankList(channelMerchantId: String, channelName: String, paymentMethod: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankSupportBankListResponse > {
+        self.queryOpenBankSupportBankList(QueryOpenBankSupportBankListRequest(channelMerchantId: channelMerchantId, channelName: channelName, paymentMethod: paymentMethod, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-查询支持银行列表
+    @inlinable
+    public func queryOpenBankSupportBankList(channelMerchantId: String, channelName: String, paymentMethod: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSupportBankListResponse {
+        try await self.queryOpenBankSupportBankList(QueryOpenBankSupportBankListRequest(channelMerchantId: channelMerchantId, channelName: channelName, paymentMethod: paymentMethod, environment: environment), logger: logger, on: eventLoop)
+    }
 }

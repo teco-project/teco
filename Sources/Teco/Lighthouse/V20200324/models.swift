@@ -666,7 +666,7 @@ extension Lighthouse {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `protocol`: String?
         
-        public init (hostPort: Int64, containerPort: Int64, ip: String? = nil, `protocol`: String? = nil) {
+        public init (hostPort: Int64, containerPort: Int64, ip: String? = nil, protocol: String? = nil) {
             self.hostPort = hostPort
             self.containerPort = containerPort
             self.ip = ip
@@ -746,7 +746,7 @@ extension Lighthouse {
         /// 防火墙规则描述。
         public let firewallRuleDescription: String?
         
-        public init (`protocol`: String, port: String? = nil, cidrBlock: String? = nil, action: String? = nil, firewallRuleDescription: String? = nil) {
+        public init (protocol: String, port: String? = nil, cidrBlock: String? = nil, action: String? = nil, firewallRuleDescription: String? = nil) {
             self.`protocol` = `protocol`
             self.port = port
             self.cidrBlock = cidrBlock

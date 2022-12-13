@@ -64,4 +64,20 @@ extension Youmall {
     public func modifyPersonTagInfo(_ input: ModifyPersonTagInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTagInfoResponse {
         try await self.client.execute(action: "ModifyPersonTagInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 标记顾客身份类型
+    ///
+    /// 标记到店顾客的身份类型，例如黑名单、白名单等
+    @inlinable
+    public func modifyPersonTagInfo(companyId: String, shopId: Int64, tags: [PersonTagInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonTagInfoResponse > {
+        self.modifyPersonTagInfo(ModifyPersonTagInfoRequest(companyId: companyId, shopId: shopId, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 标记顾客身份类型
+    ///
+    /// 标记到店顾客的身份类型，例如黑名单、白名单等
+    @inlinable
+    public func modifyPersonTagInfo(companyId: String, shopId: Int64, tags: [PersonTagInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTagInfoResponse {
+        try await self.modifyPersonTagInfo(ModifyPersonTagInfoRequest(companyId: companyId, shopId: shopId, tags: tags), logger: logger, on: eventLoop)
+    }
 }

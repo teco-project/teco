@@ -42,7 +42,7 @@ extension Gaap {
         /// 所有端口: ALL
         public let destPortRange: String?
         
-        public init (ruleId: String, aliasName: String, policyId: String, ruleAction: String? = nil, sourceCidr: String? = nil, `protocol`: String? = nil, destPortRange: String? = nil) {
+        public init (ruleId: String, aliasName: String, policyId: String, ruleAction: String? = nil, sourceCidr: String? = nil, protocol: String? = nil, destPortRange: String? = nil) {
             self.ruleId = ruleId
             self.aliasName = aliasName
             self.policyId = policyId
@@ -83,5 +83,17 @@ extension Gaap {
     @inlinable
     public func modifySecurityRule(_ input: ModifySecurityRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityRuleResponse {
         try await self.client.execute(action: "ModifySecurityRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 修改安全策略规则名
+    @inlinable
+    public func modifySecurityRule(ruleId: String, aliasName: String, policyId: String, ruleAction: String? = nil, sourceCidr: String? = nil, protocol: String? = nil, destPortRange: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityRuleResponse > {
+        self.modifySecurityRule(ModifySecurityRuleRequest(ruleId: ruleId, aliasName: aliasName, policyId: policyId, ruleAction: ruleAction, sourceCidr: sourceCidr, protocol: `protocol`, destPortRange: destPortRange), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改安全策略规则名
+    @inlinable
+    public func modifySecurityRule(ruleId: String, aliasName: String, policyId: String, ruleAction: String? = nil, sourceCidr: String? = nil, protocol: String? = nil, destPortRange: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityRuleResponse {
+        try await self.modifySecurityRule(ModifySecurityRuleRequest(ruleId: ruleId, aliasName: aliasName, policyId: policyId, ruleAction: ruleAction, sourceCidr: sourceCidr, protocol: `protocol`, destPortRange: destPortRange), logger: logger, on: eventLoop)
     }
 }

@@ -65,4 +65,16 @@ extension Tcr {
     public func modifyImmutableTagRules(_ input: ModifyImmutableTagRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImmutableTagRulesResponse {
         try await self.client.execute(action: "ModifyImmutableTagRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新镜像不可变规则
+    @inlinable
+    public func modifyImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, rule: ImmutableTagRule, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyImmutableTagRulesResponse > {
+        self.modifyImmutableTagRules(ModifyImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId, rule: rule), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新镜像不可变规则
+    @inlinable
+    public func modifyImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, rule: ImmutableTagRule, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImmutableTagRulesResponse {
+        try await self.modifyImmutableTagRules(ModifyImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId, rule: rule), logger: logger, on: eventLoop)
+    }
 }

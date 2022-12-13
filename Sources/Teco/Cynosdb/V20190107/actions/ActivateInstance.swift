@@ -63,4 +63,20 @@ extension Cynosdb {
     public func activateInstance(_ input: ActivateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateInstanceResponse {
         try await self.client.execute(action: "ActivateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 恢复实例访问
+    ///
+    /// 本接口(ActivateInstance)用于恢复已隔离的实例访问。
+    @inlinable
+    public func activateInstance(clusterId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActivateInstanceResponse > {
+        self.activateInstance(ActivateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复实例访问
+    ///
+    /// 本接口(ActivateInstance)用于恢复已隔离的实例访问。
+    @inlinable
+    public func activateInstance(clusterId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateInstanceResponse {
+        try await self.activateInstance(ActivateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
+    }
 }

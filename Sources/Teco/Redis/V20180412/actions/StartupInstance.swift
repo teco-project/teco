@@ -54,4 +54,16 @@ extension Redis {
     public func startupInstance(_ input: StartupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartupInstanceResponse {
         try await self.client.execute(action: "StartupInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 实例解隔离
+    @inlinable
+    public func startupInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartupInstanceResponse > {
+        self.startupInstance(StartupInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 实例解隔离
+    @inlinable
+    public func startupInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartupInstanceResponse {
+        try await self.startupInstance(StartupInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

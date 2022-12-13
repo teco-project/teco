@@ -60,4 +60,16 @@ extension Tcb {
     public func createHostingDomain(_ input: CreateHostingDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostingDomainResponse {
         try await self.client.execute(action: "CreateHostingDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建托管域名
+    @inlinable
+    public func createHostingDomain(envId: String, domain: String, certId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHostingDomainResponse > {
+        self.createHostingDomain(CreateHostingDomainRequest(envId: envId, domain: domain, certId: certId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建托管域名
+    @inlinable
+    public func createHostingDomain(envId: String, domain: String, certId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostingDomainResponse {
+        try await self.createHostingDomain(CreateHostingDomainRequest(envId: envId, domain: domain, certId: certId), logger: logger, on: eventLoop)
+    }
 }

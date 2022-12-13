@@ -70,4 +70,16 @@ extension Iotvideo {
     public func createAIDetection(_ input: CreateAIDetectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIDetectionResponse {
         try await self.client.execute(action: "CreateAIDetection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 发起AI推理请求
+    @inlinable
+    public func createAIDetection(productId: String, deviceName: String, modelId: String, startTime: UInt64, endTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAIDetectionResponse > {
+        self.createAIDetection(CreateAIDetectionRequest(productId: productId, deviceName: deviceName, modelId: modelId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 发起AI推理请求
+    @inlinable
+    public func createAIDetection(productId: String, deviceName: String, modelId: String, startTime: UInt64, endTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIDetectionResponse {
+        try await self.createAIDetection(CreateAIDetectionRequest(productId: productId, deviceName: deviceName, modelId: modelId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

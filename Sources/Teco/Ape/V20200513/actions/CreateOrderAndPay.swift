@@ -68,4 +68,20 @@ extension Ape {
     public func createOrderAndPay(_ input: CreateOrderAndPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderAndPayResponse {
         try await self.client.execute(action: "CreateOrderAndPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建订单并支付
+    ///
+    /// 购买一张图片并且支付
+    @inlinable
+    public func createOrderAndPay(imageId: UInt64, authUserId: String, marshalId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrderAndPayResponse > {
+        self.createOrderAndPay(CreateOrderAndPayRequest(imageId: imageId, authUserId: authUserId, marshalId: marshalId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建订单并支付
+    ///
+    /// 购买一张图片并且支付
+    @inlinable
+    public func createOrderAndPay(imageId: UInt64, authUserId: String, marshalId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderAndPayResponse {
+        try await self.createOrderAndPay(CreateOrderAndPayRequest(imageId: imageId, authUserId: authUserId, marshalId: marshalId), logger: logger, on: eventLoop)
+    }
 }

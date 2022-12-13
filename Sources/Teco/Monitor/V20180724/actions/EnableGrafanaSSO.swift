@@ -59,4 +59,20 @@ extension Monitor {
     public func enableGrafanaSSO(_ input: EnableGrafanaSSORequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGrafanaSSOResponse {
         try await self.client.execute(action: "EnableGrafanaSSO", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置 Grafana 单点登录
+    ///
+    /// 设置 Grafana 单点登录，使用腾讯云账号
+    @inlinable
+    public func enableGrafanaSSO(enableSSO: Bool, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableGrafanaSSOResponse > {
+        self.enableGrafanaSSO(EnableGrafanaSSORequest(enableSSO: enableSSO, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置 Grafana 单点登录
+    ///
+    /// 设置 Grafana 单点登录，使用腾讯云账号
+    @inlinable
+    public func enableGrafanaSSO(enableSSO: Bool, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGrafanaSSOResponse {
+        try await self.enableGrafanaSSO(EnableGrafanaSSORequest(enableSSO: enableSSO, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

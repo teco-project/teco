@@ -59,4 +59,20 @@ extension Tdcpg {
     public func deleteClusterInstances(_ input: DeleteClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterInstancesResponse {
         try await self.client.execute(action: "DeleteClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除实例
+    ///
+    /// 删除实例。只有当实例状态处于isolated(已隔离)时才生效。
+    @inlinable
+    public func deleteClusterInstances(clusterId: String, instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterInstancesResponse > {
+        self.deleteClusterInstances(DeleteClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除实例
+    ///
+    /// 删除实例。只有当实例状态处于isolated(已隔离)时才生效。
+    @inlinable
+    public func deleteClusterInstances(clusterId: String, instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterInstancesResponse {
+        try await self.deleteClusterInstances(DeleteClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    }
 }

@@ -97,4 +97,16 @@ extension Cwp {
     public func describeAssetSystemPackageList(_ input: DescribeAssetSystemPackageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSystemPackageListResponse {
         try await self.client.execute(action: "DescribeAssetSystemPackageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取资产管理系统安装包列表
+    @inlinable
+    public func describeAssetSystemPackageList(uuid: String, quuid: String, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetSystemPackageListResponse > {
+        self.describeAssetSystemPackageList(DescribeAssetSystemPackageListRequest(uuid: uuid, quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资产管理系统安装包列表
+    @inlinable
+    public func describeAssetSystemPackageList(uuid: String, quuid: String, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSystemPackageListResponse {
+        try await self.describeAssetSystemPackageList(DescribeAssetSystemPackageListRequest(uuid: uuid, quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

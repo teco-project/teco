@@ -68,4 +68,20 @@ extension Tsf {
     public func describeApiVersions(_ input: DescribeApiVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiVersionsResponse {
         try await self.client.execute(action: "DescribeApiVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询API版本
+    ///
+    /// 查询API 版本
+    @inlinable
+    public func describeApiVersions(microserviceId: String, path: String? = nil, method: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiVersionsResponse > {
+        self.describeApiVersions(DescribeApiVersionsRequest(microserviceId: microserviceId, path: path, method: method), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询API版本
+    ///
+    /// 查询API 版本
+    @inlinable
+    public func describeApiVersions(microserviceId: String, path: String? = nil, method: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiVersionsResponse {
+        try await self.describeApiVersions(DescribeApiVersionsRequest(microserviceId: microserviceId, path: path, method: method), logger: logger, on: eventLoop)
+    }
 }

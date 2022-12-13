@@ -59,4 +59,20 @@ extension Sqlserver {
     public func deletePublishSubscribe(_ input: DeletePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublishSubscribeResponse {
         try await self.client.execute(action: "DeletePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除发布订阅
+    ///
+    /// 本接口（DeletePublishSubscribe）用于删除两个数据库间的发布订阅关系。
+    @inlinable
+    public func deletePublishSubscribe(publishSubscribeId: UInt64, databaseTupleSet: [DatabaseTuple], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePublishSubscribeResponse > {
+        self.deletePublishSubscribe(DeletePublishSubscribeRequest(publishSubscribeId: publishSubscribeId, databaseTupleSet: databaseTupleSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除发布订阅
+    ///
+    /// 本接口（DeletePublishSubscribe）用于删除两个数据库间的发布订阅关系。
+    @inlinable
+    public func deletePublishSubscribe(publishSubscribeId: UInt64, databaseTupleSet: [DatabaseTuple], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublishSubscribeResponse {
+        try await self.deletePublishSubscribe(DeletePublishSubscribeRequest(publishSubscribeId: publishSubscribeId, databaseTupleSet: databaseTupleSet), logger: logger, on: eventLoop)
+    }
 }

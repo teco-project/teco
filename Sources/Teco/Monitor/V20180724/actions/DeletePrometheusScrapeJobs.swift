@@ -60,4 +60,16 @@ extension Monitor {
     public func deletePrometheusScrapeJobs(_ input: DeletePrometheusScrapeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusScrapeJobsResponse {
         try await self.client.execute(action: "DeletePrometheusScrapeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除 Prometheus 抓取任务
+    @inlinable
+    public func deletePrometheusScrapeJobs(instanceId: String, agentId: String, jobIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusScrapeJobsResponse > {
+        self.deletePrometheusScrapeJobs(DeletePrometheusScrapeJobsRequest(instanceId: instanceId, agentId: agentId, jobIds: jobIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除 Prometheus 抓取任务
+    @inlinable
+    public func deletePrometheusScrapeJobs(instanceId: String, agentId: String, jobIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusScrapeJobsResponse {
+        try await self.deletePrometheusScrapeJobs(DeletePrometheusScrapeJobsRequest(instanceId: instanceId, agentId: agentId, jobIds: jobIds), logger: logger, on: eventLoop)
+    }
 }

@@ -97,4 +97,20 @@ extension Cme {
     public func createVideoEncodingPreset(_ input: CreateVideoEncodingPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoEncodingPresetResponse {
         try await self.client.execute(action: "CreateVideoEncodingPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建视频编码配置
+    ///
+    /// 指定导出的参数，创建一个视频编码配置
+    @inlinable
+    public func createVideoEncodingPreset(platform: String, name: String, container: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoSetting: VideoEncodingPresetVideoSetting? = nil, audioSetting: VideoEncodingPresetAudioSetting? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVideoEncodingPresetResponse > {
+        self.createVideoEncodingPreset(CreateVideoEncodingPresetRequest(platform: platform, name: name, container: container, removeVideo: removeVideo, removeAudio: removeAudio, videoSetting: videoSetting, audioSetting: audioSetting), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建视频编码配置
+    ///
+    /// 指定导出的参数，创建一个视频编码配置
+    @inlinable
+    public func createVideoEncodingPreset(platform: String, name: String, container: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoSetting: VideoEncodingPresetVideoSetting? = nil, audioSetting: VideoEncodingPresetAudioSetting? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoEncodingPresetResponse {
+        try await self.createVideoEncodingPreset(CreateVideoEncodingPresetRequest(platform: platform, name: name, container: container, removeVideo: removeVideo, removeAudio: removeAudio, videoSetting: videoSetting, audioSetting: audioSetting), logger: logger, on: eventLoop)
+    }
 }

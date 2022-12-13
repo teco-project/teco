@@ -136,4 +136,20 @@ extension Cpdp {
     public func revokeMemberRechargeThirdPay(_ input: RevokeMemberRechargeThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeMemberRechargeThirdPayResponse {
         try await self.client.execute(action: "RevokeMemberRechargeThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云鉴-撤销会员在途充值(经第三方支付渠道)
+    ///
+    /// 撤销会员在途充值(经第三方支付渠道)
+    @inlinable
+    public func revokeMemberRechargeThirdPay(oldFillFrontSeqNo: String, oldFillPayChannelType: String, oldPayChannelTranSeqNo: String, oldFillEjzbOrderNo: String, applyCancelMemberAmt: String, applyCancelCommission: String, mrchCode: String, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevokeMemberRechargeThirdPayResponse > {
+        self.revokeMemberRechargeThirdPay(RevokeMemberRechargeThirdPayRequest(oldFillFrontSeqNo: oldFillFrontSeqNo, oldFillPayChannelType: oldFillPayChannelType, oldPayChannelTranSeqNo: oldPayChannelTranSeqNo, oldFillEjzbOrderNo: oldFillEjzbOrderNo, applyCancelMemberAmt: applyCancelMemberAmt, applyCancelCommission: applyCancelCommission, mrchCode: mrchCode, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-撤销会员在途充值(经第三方支付渠道)
+    ///
+    /// 撤销会员在途充值(经第三方支付渠道)
+    @inlinable
+    public func revokeMemberRechargeThirdPay(oldFillFrontSeqNo: String, oldFillPayChannelType: String, oldPayChannelTranSeqNo: String, oldFillEjzbOrderNo: String, applyCancelMemberAmt: String, applyCancelCommission: String, mrchCode: String, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeMemberRechargeThirdPayResponse {
+        try await self.revokeMemberRechargeThirdPay(RevokeMemberRechargeThirdPayRequest(oldFillFrontSeqNo: oldFillFrontSeqNo, oldFillPayChannelType: oldFillPayChannelType, oldPayChannelTranSeqNo: oldPayChannelTranSeqNo, oldFillEjzbOrderNo: oldFillEjzbOrderNo, applyCancelMemberAmt: applyCancelMemberAmt, applyCancelCommission: applyCancelCommission, mrchCode: mrchCode, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Apigateway {
     public func enableApiKey(_ input: EnableApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableApiKeyResponse {
         try await self.client.execute(action: "EnableApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启用密钥
+    ///
+    /// 本接口（EnableApiKey）用于启动一对被禁用的 API 密钥。
+    @inlinable
+    public func enableApiKey(accessKeyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableApiKeyResponse > {
+        self.enableApiKey(EnableApiKeyRequest(accessKeyId: accessKeyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 启用密钥
+    ///
+    /// 本接口（EnableApiKey）用于启动一对被禁用的 API 密钥。
+    @inlinable
+    public func enableApiKey(accessKeyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableApiKeyResponse {
+        try await self.enableApiKey(EnableApiKeyRequest(accessKeyId: accessKeyId), logger: logger, on: eventLoop)
+    }
 }

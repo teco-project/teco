@@ -63,4 +63,20 @@ extension Ump {
     public func describeCameras(_ input: DescribeCamerasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCamerasResponse {
         try await self.client.execute(action: "DescribeCameras", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取摄像头状态列表
+    ///
+    /// 获取集团广场对应的摄像头列表
+    @inlinable
+    public func describeCameras(groupCode: String, mallId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCamerasResponse > {
+        self.describeCameras(DescribeCamerasRequest(groupCode: groupCode, mallId: mallId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取摄像头状态列表
+    ///
+    /// 获取集团广场对应的摄像头列表
+    @inlinable
+    public func describeCameras(groupCode: String, mallId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCamerasResponse {
+        try await self.describeCameras(DescribeCamerasRequest(groupCode: groupCode, mallId: mallId), logger: logger, on: eventLoop)
+    }
 }

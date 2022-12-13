@@ -92,4 +92,16 @@ extension Ssl {
     public func describePackages(_ input: DescribePackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackagesResponse {
         try await self.client.execute(action: "DescribePackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获得权益包列表
+    @inlinable
+    public func describePackages(offset: UInt64? = nil, limit: UInt64? = nil, status: String? = nil, expireTime: String? = nil, packageId: String? = nil, type: String? = nil, pid: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePackagesResponse > {
+        self.describePackages(DescribePackagesRequest(offset: offset, limit: limit, status: status, expireTime: expireTime, packageId: packageId, type: type, pid: pid), logger: logger, on: eventLoop)
+    }
+    
+    /// 获得权益包列表
+    @inlinable
+    public func describePackages(offset: UInt64? = nil, limit: UInt64? = nil, status: String? = nil, expireTime: String? = nil, packageId: String? = nil, type: String? = nil, pid: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackagesResponse {
+        try await self.describePackages(DescribePackagesRequest(offset: offset, limit: limit, status: status, expireTime: expireTime, packageId: packageId, type: type, pid: pid), logger: logger, on: eventLoop)
+    }
 }

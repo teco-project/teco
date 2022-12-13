@@ -88,4 +88,20 @@ extension Cynosdb {
     public func describeClusterParamLogs(_ input: DescribeClusterParamLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterParamLogsResponse {
         try await self.client.execute(action: "DescribeClusterParamLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询参数修改日志
+    ///
+    /// 本接口（DescribeClusterParamLogs）查询参数修改日志
+    @inlinable
+    public func describeClusterParamLogs(clusterId: String, instanceIds: [String]? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterParamLogsResponse > {
+        self.describeClusterParamLogs(DescribeClusterParamLogsRequest(clusterId: clusterId, instanceIds: instanceIds, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询参数修改日志
+    ///
+    /// 本接口（DescribeClusterParamLogs）查询参数修改日志
+    @inlinable
+    public func describeClusterParamLogs(clusterId: String, instanceIds: [String]? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterParamLogsResponse {
+        try await self.describeClusterParamLogs(DescribeClusterParamLogsRequest(clusterId: clusterId, instanceIds: instanceIds, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

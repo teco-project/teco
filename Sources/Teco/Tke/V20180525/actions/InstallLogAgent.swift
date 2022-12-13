@@ -59,4 +59,20 @@ extension Tke {
     public func installLogAgent(_ input: InstallLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallLogAgentResponse {
         try await self.client.execute(action: "InstallLogAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安装日志采集组件
+    ///
+    /// 在TKE集群中安装CLS日志采集组件
+    @inlinable
+    public func installLogAgent(clusterId: String, kubeletRootDir: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstallLogAgentResponse > {
+        self.installLogAgent(InstallLogAgentRequest(clusterId: clusterId, kubeletRootDir: kubeletRootDir), logger: logger, on: eventLoop)
+    }
+    
+    /// 安装日志采集组件
+    ///
+    /// 在TKE集群中安装CLS日志采集组件
+    @inlinable
+    public func installLogAgent(clusterId: String, kubeletRootDir: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallLogAgentResponse {
+        try await self.installLogAgent(InstallLogAgentRequest(clusterId: clusterId, kubeletRootDir: kubeletRootDir), logger: logger, on: eventLoop)
+    }
 }

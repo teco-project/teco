@@ -55,4 +55,16 @@ extension Tsf {
     public func disableUnitRule(_ input: DisableUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableUnitRuleResponse {
         try await self.client.execute(action: "DisableUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 禁用单元化规则
+    @inlinable
+    public func disableUnitRule(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableUnitRuleResponse > {
+        self.disableUnitRule(DisableUnitRuleRequest(id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 禁用单元化规则
+    @inlinable
+    public func disableUnitRule(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableUnitRuleResponse {
+        try await self.disableUnitRule(DisableUnitRuleRequest(id: id), logger: logger, on: eventLoop)
+    }
 }

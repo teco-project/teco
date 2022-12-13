@@ -73,4 +73,20 @@ extension Vpc {
     public func describeVpnGatewayRoutes(_ input: DescribeVpnGatewayRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewayRoutesResponse {
         try await self.client.execute(action: "DescribeVpnGatewayRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询VPN网关路由
+    ///
+    /// 查询路由型VPN网关的目的路由
+    @inlinable
+    public func describeVpnGatewayRoutes(vpnGatewayId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpnGatewayRoutesResponse > {
+        self.describeVpnGatewayRoutes(DescribeVpnGatewayRoutesRequest(vpnGatewayId: vpnGatewayId, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询VPN网关路由
+    ///
+    /// 查询路由型VPN网关的目的路由
+    @inlinable
+    public func describeVpnGatewayRoutes(vpnGatewayId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewayRoutesResponse {
+        try await self.describeVpnGatewayRoutes(DescribeVpnGatewayRoutesRequest(vpnGatewayId: vpnGatewayId, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

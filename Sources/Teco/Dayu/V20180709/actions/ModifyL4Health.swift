@@ -68,4 +68,20 @@ extension Dayu {
     public func modifyL4Health(_ input: ModifyL4HealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4HealthResponse {
         try await self.client.execute(action: "ModifyL4Health", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改L4转发规则健康检查参数
+    ///
+    /// 修改L4转发规则健康检查参数，支持的子产品：高防IP、高防IP专业版
+    @inlinable
+    public func modifyL4Health(business: String, id: String, healths: [L4RuleHealth], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL4HealthResponse > {
+        self.modifyL4Health(ModifyL4HealthRequest(business: business, id: id, healths: healths), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改L4转发规则健康检查参数
+    ///
+    /// 修改L4转发规则健康检查参数，支持的子产品：高防IP、高防IP专业版
+    @inlinable
+    public func modifyL4Health(business: String, id: String, healths: [L4RuleHealth], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4HealthResponse {
+        try await self.modifyL4Health(ModifyL4HealthRequest(business: business, id: id, healths: healths), logger: logger, on: eventLoop)
+    }
 }

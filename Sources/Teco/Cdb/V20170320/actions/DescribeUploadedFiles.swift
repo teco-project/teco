@@ -72,4 +72,20 @@ extension Cdb {
     public func describeUploadedFiles(_ input: DescribeUploadedFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadedFilesResponse {
         try await self.client.execute(action: "DescribeUploadedFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询导入SQL文件列表 （已废弃）
+    ///
+    /// 本接口(DescribeUploadedFiles)用于查询用户导入的SQL文件列表，全地域公共参数Region均为ap-shanghai。
+    @inlinable
+    public func describeUploadedFiles(path: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUploadedFilesResponse > {
+        self.describeUploadedFiles(DescribeUploadedFilesRequest(path: path, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询导入SQL文件列表 （已废弃）
+    ///
+    /// 本接口(DescribeUploadedFiles)用于查询用户导入的SQL文件列表，全地域公共参数Region均为ap-shanghai。
+    @inlinable
+    public func describeUploadedFiles(path: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadedFilesResponse {
+        try await self.describeUploadedFiles(DescribeUploadedFilesRequest(path: path, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

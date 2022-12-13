@@ -84,4 +84,16 @@ extension Cpdp {
     public func viewShop(_ input: ViewShopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ViewShopResponse {
         try await self.client.execute(action: "ViewShop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云支付-查询门店明细接口
+    @inlinable
+    public func viewShop(openId: String, openKey: String, outShopId: String? = nil, shopNo: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ViewShopResponse > {
+        self.viewShop(ViewShopRequest(openId: openId, openKey: openKey, outShopId: outShopId, shopNo: shopNo, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-查询门店明细接口
+    @inlinable
+    public func viewShop(openId: String, openKey: String, outShopId: String? = nil, shopNo: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ViewShopResponse {
+        try await self.viewShop(ViewShopRequest(openId: openId, openKey: openKey, outShopId: outShopId, shopNo: shopNo, profile: profile), logger: logger, on: eventLoop)
+    }
 }

@@ -50,4 +50,16 @@ extension Tcss {
     public func deleteReverseShellEvents(_ input: DeleteReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellEventsResponse {
         try await self.client.execute(action: "DeleteReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除运行时反弹shell事件
+    @inlinable
+    public func deleteReverseShellEvents(eventIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReverseShellEventsResponse > {
+        self.deleteReverseShellEvents(DeleteReverseShellEventsRequest(eventIdSet: eventIdSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除运行时反弹shell事件
+    @inlinable
+    public func deleteReverseShellEvents(eventIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellEventsResponse {
+        try await self.deleteReverseShellEvents(DeleteReverseShellEventsRequest(eventIdSet: eventIdSet), logger: logger, on: eventLoop)
+    }
 }

@@ -67,4 +67,20 @@ extension Dcdb {
     public func describeProjectSecurityGroups(_ input: DescribeProjectSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupsResponse {
         try await self.client.execute(action: "DescribeProjectSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询项目安全组信息
+    ///
+    /// 本接口（DescribeProjectSecurityGroups）用于查询项目安全组信息
+    @inlinable
+    public func describeProjectSecurityGroups(product: String, projectId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectSecurityGroupsResponse > {
+        self.describeProjectSecurityGroups(DescribeProjectSecurityGroupsRequest(product: product, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询项目安全组信息
+    ///
+    /// 本接口（DescribeProjectSecurityGroups）用于查询项目安全组信息
+    @inlinable
+    public func describeProjectSecurityGroups(product: String, projectId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupsResponse {
+        try await self.describeProjectSecurityGroups(DescribeProjectSecurityGroupsRequest(product: product, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

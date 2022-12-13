@@ -54,4 +54,20 @@ extension Cdn {
     public func describeCdnOriginIp(_ input: DescribeCdnOriginIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnOriginIpResponse {
         try await self.client.execute(action: "DescribeCdnOriginIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询回源节点
+    ///
+    /// 本接口（DescribeCdnOriginIp）用于查询 CDN 回源节点的IP信息。（注：此接口即将下线，不再进行维护，请通过DescribeIpStatus 接口进行查询）
+    @inlinable
+    public func describeCdnOriginIp(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCdnOriginIpResponse > {
+        self.describeCdnOriginIp(DescribeCdnOriginIpRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询回源节点
+    ///
+    /// 本接口（DescribeCdnOriginIp）用于查询 CDN 回源节点的IP信息。（注：此接口即将下线，不再进行维护，请通过DescribeIpStatus 接口进行查询）
+    @inlinable
+    public func describeCdnOriginIp(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnOriginIpResponse {
+        try await self.describeCdnOriginIp(DescribeCdnOriginIpRequest(), logger: logger, on: eventLoop)
+    }
 }

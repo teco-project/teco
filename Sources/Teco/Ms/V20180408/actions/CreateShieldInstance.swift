@@ -67,4 +67,20 @@ extension Ms {
     public func createShieldInstance(_ input: CreateShieldInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateShieldInstanceResponse {
         try await self.client.execute(action: "CreateShieldInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 提交加固基础数据
+    ///
+    /// 用户通过该接口提交应用进行应用加固，加固后需通过DescribeShieldResult接口查询加固结果。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
+    @inlinable
+    public func createShieldInstance(appInfo: AppInfo, serviceInfo: ServiceInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateShieldInstanceResponse > {
+        self.createShieldInstance(CreateShieldInstanceRequest(appInfo: appInfo, serviceInfo: serviceInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 提交加固基础数据
+    ///
+    /// 用户通过该接口提交应用进行应用加固，加固后需通过DescribeShieldResult接口查询加固结果。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
+    @inlinable
+    public func createShieldInstance(appInfo: AppInfo, serviceInfo: ServiceInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateShieldInstanceResponse {
+        try await self.createShieldInstance(CreateShieldInstanceRequest(appInfo: appInfo, serviceInfo: serviceInfo), logger: logger, on: eventLoop)
+    }
 }

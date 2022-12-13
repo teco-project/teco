@@ -73,4 +73,20 @@ extension Gaap {
     public func createGlobalDomain(_ input: CreateGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGlobalDomainResponse {
         try await self.client.execute(action: "CreateGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建域名
+    ///
+    /// 用来创建统一域名
+    @inlinable
+    public func createGlobalDomain(projectId: Int64, defaultValue: String, alias: String? = nil, tagSet: [TagPair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGlobalDomainResponse > {
+        self.createGlobalDomain(CreateGlobalDomainRequest(projectId: projectId, defaultValue: defaultValue, alias: alias, tagSet: tagSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建域名
+    ///
+    /// 用来创建统一域名
+    @inlinable
+    public func createGlobalDomain(projectId: Int64, defaultValue: String, alias: String? = nil, tagSet: [TagPair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGlobalDomainResponse {
+        try await self.createGlobalDomain(CreateGlobalDomainRequest(projectId: projectId, defaultValue: defaultValue, alias: alias, tagSet: tagSet), logger: logger, on: eventLoop)
+    }
 }

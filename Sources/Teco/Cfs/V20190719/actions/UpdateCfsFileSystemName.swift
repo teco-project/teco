@@ -71,4 +71,20 @@ extension Cfs {
     public func updateCfsFileSystemName(_ input: UpdateCfsFileSystemNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsFileSystemNameResponse {
         try await self.client.execute(action: "UpdateCfsFileSystemName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新文件系统名
+    ///
+    /// 本接口（UpdateCfsFileSystemName）用于更新文件系统名
+    @inlinable
+    public func updateCfsFileSystemName(fileSystemId: String, fsName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCfsFileSystemNameResponse > {
+        self.updateCfsFileSystemName(UpdateCfsFileSystemNameRequest(fileSystemId: fileSystemId, fsName: fsName), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新文件系统名
+    ///
+    /// 本接口（UpdateCfsFileSystemName）用于更新文件系统名
+    @inlinable
+    public func updateCfsFileSystemName(fileSystemId: String, fsName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsFileSystemNameResponse {
+        try await self.updateCfsFileSystemName(UpdateCfsFileSystemNameRequest(fileSystemId: fileSystemId, fsName: fsName), logger: logger, on: eventLoop)
+    }
 }

@@ -68,4 +68,20 @@ extension Bmeip {
     public func unbindHosted(_ input: UnbindHostedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindHostedResponse {
         try await self.client.execute(action: "UnbindHosted", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 黑石托管机器解绑EIP
+    ///
+    /// UnbindHosted接口用于解绑托管机器上的EIP
+    @inlinable
+    public func unbindHosted(instanceId: String, eipId: String? = nil, eip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindHostedResponse > {
+        self.unbindHosted(UnbindHostedRequest(instanceId: instanceId, eipId: eipId, eip: eip), logger: logger, on: eventLoop)
+    }
+    
+    /// 黑石托管机器解绑EIP
+    ///
+    /// UnbindHosted接口用于解绑托管机器上的EIP
+    @inlinable
+    public func unbindHosted(instanceId: String, eipId: String? = nil, eip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindHostedResponse {
+        try await self.unbindHosted(UnbindHostedRequest(instanceId: instanceId, eipId: eipId, eip: eip), logger: logger, on: eventLoop)
+    }
 }

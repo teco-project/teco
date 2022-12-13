@@ -71,4 +71,20 @@ extension Vm {
     public func describeVideoStat(_ input: DescribeVideoStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoStatResponse {
         try await self.client.execute(action: "DescribeVideoStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 识别统计
+    ///
+    /// 控制台识别统计
+    @inlinable
+    public func describeVideoStat(auditType: Int64, filters: [Filters], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoStatResponse > {
+        self.describeVideoStat(DescribeVideoStatRequest(auditType: auditType, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 识别统计
+    ///
+    /// 控制台识别统计
+    @inlinable
+    public func describeVideoStat(auditType: Int64, filters: [Filters], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoStatResponse {
+        try await self.describeVideoStat(DescribeVideoStatRequest(auditType: auditType, filters: filters), logger: logger, on: eventLoop)
+    }
 }

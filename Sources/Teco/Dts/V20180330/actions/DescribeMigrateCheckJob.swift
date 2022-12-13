@@ -78,4 +78,24 @@ extension Dts {
     public func describeMigrateCheckJob(_ input: DescribeMigrateCheckJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrateCheckJobResponse {
         try await self.client.execute(action: "DescribeMigrateCheckJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取迁移校验结果
+    ///
+    /// 本接口用于创建校验后,获取校验的结果. 能查询到当前校验的状态和进度. 
+    /// 若通过校验, 则可调用'StartMigrateJob' 开始迁移.
+    /// 若未通过校验, 则能查询到校验失败的原因. 请按照报错, 通过'ModifyMigrateJob'修改迁移配置或是调整源/目标实例的相关参数.
+    @inlinable
+    public func describeMigrateCheckJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrateCheckJobResponse > {
+        self.describeMigrateCheckJob(DescribeMigrateCheckJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取迁移校验结果
+    ///
+    /// 本接口用于创建校验后,获取校验的结果. 能查询到当前校验的状态和进度. 
+    /// 若通过校验, 则可调用'StartMigrateJob' 开始迁移.
+    /// 若未通过校验, 则能查询到校验失败的原因. 请按照报错, 通过'ModifyMigrateJob'修改迁移配置或是调整源/目标实例的相关参数.
+    @inlinable
+    public func describeMigrateCheckJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrateCheckJobResponse {
+        try await self.describeMigrateCheckJob(DescribeMigrateCheckJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
 }

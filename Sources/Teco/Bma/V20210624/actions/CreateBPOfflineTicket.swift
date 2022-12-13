@@ -50,4 +50,16 @@ extension Bma {
     public func createBPOfflineTicket(_ input: CreateBPOfflineTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineTicketResponse {
         try await self.client.execute(action: "CreateBPOfflineTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加下线工单
+    @inlinable
+    public func createBPOfflineTicket(fakeURLId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPOfflineTicketResponse > {
+        self.createBPOfflineTicket(CreateBPOfflineTicketRequest(fakeURLId: fakeURLId), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加下线工单
+    @inlinable
+    public func createBPOfflineTicket(fakeURLId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineTicketResponse {
+        try await self.createBPOfflineTicket(CreateBPOfflineTicketRequest(fakeURLId: fakeURLId), logger: logger, on: eventLoop)
+    }
 }

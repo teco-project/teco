@@ -77,4 +77,16 @@ extension Youmall {
     public func describeZoneFlowAndStayTime(_ input: DescribeZoneFlowAndStayTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowAndStayTimeResponse {
         try await self.client.execute(action: "DescribeZoneFlowAndStayTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取区域人流和停留时间
+    @inlinable
+    public func describeZoneFlowAndStayTime(companyId: String, shopId: Int64, startDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneFlowAndStayTimeResponse > {
+        self.describeZoneFlowAndStayTime(DescribeZoneFlowAndStayTimeRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取区域人流和停留时间
+    @inlinable
+    public func describeZoneFlowAndStayTime(companyId: String, shopId: Int64, startDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowAndStayTimeResponse {
+        try await self.describeZoneFlowAndStayTime(DescribeZoneFlowAndStayTimeRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
 }

@@ -109,4 +109,20 @@ extension Eiam {
     public func listUsersInOrgNode(_ input: ListUsersInOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersInOrgNodeResponse {
         try await self.client.execute(action: "ListUsersInOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 读取节点下用户
+    ///
+    /// 根据机构节点ID读取节点下用户
+    @inlinable
+    public func listUsersInOrgNode(orgNodeId: String? = nil, includeOrgNodeChildInfo: Bool? = nil, searchCondition: ListUsersInOrgNodeSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUsersInOrgNodeResponse > {
+        self.listUsersInOrgNode(ListUsersInOrgNodeRequest(orgNodeId: orgNodeId, includeOrgNodeChildInfo: includeOrgNodeChildInfo, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 读取节点下用户
+    ///
+    /// 根据机构节点ID读取节点下用户
+    @inlinable
+    public func listUsersInOrgNode(orgNodeId: String? = nil, includeOrgNodeChildInfo: Bool? = nil, searchCondition: ListUsersInOrgNodeSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersInOrgNodeResponse {
+        try await self.listUsersInOrgNode(ListUsersInOrgNodeRequest(orgNodeId: orgNodeId, includeOrgNodeChildInfo: includeOrgNodeChildInfo, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -105,4 +105,16 @@ extension Wedata {
     public func modifyRuleTemplate(_ input: ModifyRuleTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleTemplateResponse {
         try await self.client.execute(action: "ModifyRuleTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 编辑规则模版
+    @inlinable
+    public func modifyRuleTemplate(templateId: UInt64? = nil, type: UInt64? = nil, name: String? = nil, qualityDim: UInt64? = nil, sourceObjectType: UInt64? = nil, description: String? = nil, sourceEngineTypes: [UInt64]? = nil, multiSourceFlag: Bool? = nil, sqlExpression: String? = nil, projectId: String? = nil, whereFlag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRuleTemplateResponse > {
+        self.modifyRuleTemplate(ModifyRuleTemplateRequest(templateId: templateId, type: type, name: name, qualityDim: qualityDim, sourceObjectType: sourceObjectType, description: description, sourceEngineTypes: sourceEngineTypes, multiSourceFlag: multiSourceFlag, sqlExpression: sqlExpression, projectId: projectId, whereFlag: whereFlag), logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑规则模版
+    @inlinable
+    public func modifyRuleTemplate(templateId: UInt64? = nil, type: UInt64? = nil, name: String? = nil, qualityDim: UInt64? = nil, sourceObjectType: UInt64? = nil, description: String? = nil, sourceEngineTypes: [UInt64]? = nil, multiSourceFlag: Bool? = nil, sqlExpression: String? = nil, projectId: String? = nil, whereFlag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleTemplateResponse {
+        try await self.modifyRuleTemplate(ModifyRuleTemplateRequest(templateId: templateId, type: type, name: name, qualityDim: qualityDim, sourceObjectType: sourceObjectType, description: description, sourceEngineTypes: sourceEngineTypes, multiSourceFlag: multiSourceFlag, sqlExpression: sqlExpression, projectId: projectId, whereFlag: whereFlag), logger: logger, on: eventLoop)
+    }
 }

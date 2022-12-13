@@ -74,4 +74,20 @@ extension Ump {
     public func modifyMultiBizConfig(_ input: ModifyMultiBizConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMultiBizConfigResponse {
         try await self.client.execute(action: "ModifyMultiBizConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 多经点位配置更新
+    ///
+    /// 集团广场的多经点位配置更新
+    @inlinable
+    public func modifyMultiBizConfig(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, monitoringAreas: [Polygon], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMultiBizConfigResponse > {
+        self.modifyMultiBizConfig(ModifyMultiBizConfigRequest(groupCode: groupCode, mallId: mallId, zoneId: zoneId, cameraId: cameraId, monitoringAreas: monitoringAreas), logger: logger, on: eventLoop)
+    }
+    
+    /// 多经点位配置更新
+    ///
+    /// 集团广场的多经点位配置更新
+    @inlinable
+    public func modifyMultiBizConfig(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, monitoringAreas: [Polygon], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMultiBizConfigResponse {
+        try await self.modifyMultiBizConfig(ModifyMultiBizConfigRequest(groupCode: groupCode, mallId: mallId, zoneId: zoneId, cameraId: cameraId, monitoringAreas: monitoringAreas), logger: logger, on: eventLoop)
+    }
 }

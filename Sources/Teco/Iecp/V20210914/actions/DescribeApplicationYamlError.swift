@@ -64,4 +64,16 @@ extension Iecp {
     public func describeApplicationYamlError(_ input: DescribeApplicationYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationYamlErrorResponse {
         try await self.client.execute(action: "DescribeApplicationYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 检查应用模板的Yaml配置
+    @inlinable
+    public func describeApplicationYamlError(yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationYamlErrorResponse > {
+        self.describeApplicationYamlError(DescribeApplicationYamlErrorRequest(yaml: yaml), logger: logger, on: eventLoop)
+    }
+    
+    /// 检查应用模板的Yaml配置
+    @inlinable
+    public func describeApplicationYamlError(yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationYamlErrorResponse {
+        try await self.describeApplicationYamlError(DescribeApplicationYamlErrorRequest(yaml: yaml), logger: logger, on: eventLoop)
+    }
 }

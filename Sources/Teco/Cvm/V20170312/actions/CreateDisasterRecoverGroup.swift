@@ -91,4 +91,20 @@ extension Cvm {
     public func createDisasterRecoverGroup(_ input: CreateDisasterRecoverGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDisasterRecoverGroupResponse {
         try await self.client.execute(action: "CreateDisasterRecoverGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建分散置放群组
+    ///
+    /// 本接口 (CreateDisasterRecoverGroup)用于创建[分散置放群组](https://cloud.tencent.com/document/product/213/15486)。创建好的置放群组，可在[创建实例](https://cloud.tencent.com/document/api/213/15730)时指定。
+    @inlinable
+    public func createDisasterRecoverGroup(name: String, type: String, clientToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDisasterRecoverGroupResponse > {
+        self.createDisasterRecoverGroup(CreateDisasterRecoverGroupRequest(name: name, type: type, clientToken: clientToken), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建分散置放群组
+    ///
+    /// 本接口 (CreateDisasterRecoverGroup)用于创建[分散置放群组](https://cloud.tencent.com/document/product/213/15486)。创建好的置放群组，可在[创建实例](https://cloud.tencent.com/document/api/213/15730)时指定。
+    @inlinable
+    public func createDisasterRecoverGroup(name: String, type: String, clientToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDisasterRecoverGroupResponse {
+        try await self.createDisasterRecoverGroup(CreateDisasterRecoverGroupRequest(name: name, type: type, clientToken: clientToken), logger: logger, on: eventLoop)
+    }
 }

@@ -90,4 +90,16 @@ extension Tcss {
     public func modifySecLogDeliveryKafkaSetting(_ input: ModifySecLogDeliveryKafkaSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogDeliveryKafkaSettingResponse {
         try await self.client.execute(action: "ModifySecLogDeliveryKafkaSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新安全日志投递kafka设置
+    @inlinable
+    public func modifySecLogDeliveryKafkaSetting(instanceID: String? = nil, instanceName: String? = nil, domain: String? = nil, user: String? = nil, password: String? = nil, logTypeList: [SecLogDeliveryKafkaSettingInfo]? = nil, accessType: Int64? = nil, kafkaVersion: String? = nil, regionID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogDeliveryKafkaSettingResponse > {
+        self.modifySecLogDeliveryKafkaSetting(ModifySecLogDeliveryKafkaSettingRequest(instanceID: instanceID, instanceName: instanceName, domain: domain, user: user, password: password, logTypeList: logTypeList, accessType: accessType, kafkaVersion: kafkaVersion, regionID: regionID), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新安全日志投递kafka设置
+    @inlinable
+    public func modifySecLogDeliveryKafkaSetting(instanceID: String? = nil, instanceName: String? = nil, domain: String? = nil, user: String? = nil, password: String? = nil, logTypeList: [SecLogDeliveryKafkaSettingInfo]? = nil, accessType: Int64? = nil, kafkaVersion: String? = nil, regionID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogDeliveryKafkaSettingResponse {
+        try await self.modifySecLogDeliveryKafkaSetting(ModifySecLogDeliveryKafkaSettingRequest(instanceID: instanceID, instanceName: instanceName, domain: domain, user: user, password: password, logTypeList: logTypeList, accessType: accessType, kafkaVersion: kafkaVersion, regionID: regionID), logger: logger, on: eventLoop)
+    }
 }

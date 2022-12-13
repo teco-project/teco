@@ -50,4 +50,16 @@ extension Rum {
     public func resumeInstance(_ input: ResumeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeInstanceResponse {
         try await self.client.execute(action: "ResumeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 恢复实例
+    @inlinable
+    public func resumeInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeInstanceResponse > {
+        self.resumeInstance(ResumeInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复实例
+    @inlinable
+    public func resumeInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeInstanceResponse {
+        try await self.resumeInstance(ResumeInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

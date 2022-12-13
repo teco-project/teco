@@ -136,4 +136,20 @@ extension Live {
     public func describePlayErrorCodeSumInfoList(_ input: DescribePlayErrorCodeSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayErrorCodeSumInfoListResponse {
         try await self.client.execute(action: "DescribePlayErrorCodeSumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询播放http错误码汇总数据
+    ///
+    /// 查询下行播放错误码信息。
+    @inlinable
+    public func describePlayErrorCodeSumInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, groupType: String? = nil, outLanguage: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePlayErrorCodeSumInfoListResponse > {
+        self.describePlayErrorCodeSumInfoList(DescribePlayErrorCodeSumInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, mainlandOrOversea: mainlandOrOversea, groupType: groupType, outLanguage: outLanguage), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询播放http错误码汇总数据
+    ///
+    /// 查询下行播放错误码信息。
+    @inlinable
+    public func describePlayErrorCodeSumInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, groupType: String? = nil, outLanguage: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayErrorCodeSumInfoListResponse {
+        try await self.describePlayErrorCodeSumInfoList(DescribePlayErrorCodeSumInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, mainlandOrOversea: mainlandOrOversea, groupType: groupType, outLanguage: outLanguage), logger: logger, on: eventLoop)
+    }
 }

@@ -68,4 +68,16 @@ extension Privatedns {
     public func describePrivateZoneList(_ input: DescribePrivateZoneListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateZoneListResponse {
         try await self.client.execute(action: "DescribePrivateZoneList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取私有域列表
+    @inlinable
+    public func describePrivateZoneList(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateZoneListResponse > {
+        self.describePrivateZoneList(DescribePrivateZoneListRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取私有域列表
+    @inlinable
+    public func describePrivateZoneList(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateZoneListResponse {
+        try await self.describePrivateZoneList(DescribePrivateZoneListRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

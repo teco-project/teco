@@ -55,4 +55,16 @@ extension Gs {
     public func startPublishStream(_ input: StartPublishStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartPublishStreamResponse {
         try await self.client.execute(action: "StartPublishStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开始云端推流
+    @inlinable
+    public func startPublishStream(userId: String, publishUrl: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartPublishStreamResponse > {
+        self.startPublishStream(StartPublishStreamRequest(userId: userId, publishUrl: publishUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 开始云端推流
+    @inlinable
+    public func startPublishStream(userId: String, publishUrl: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartPublishStreamResponse {
+        try await self.startPublishStream(StartPublishStreamRequest(userId: userId, publishUrl: publishUrl), logger: logger, on: eventLoop)
+    }
 }

@@ -87,4 +87,36 @@ extension Live {
     public func describeLiveStreamState(_ input: DescribeLiveStreamStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamStateResponse {
         try await self.client.execute(action: "DescribeLiveStreamState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询流状态
+    ///
+    /// 返回直播中、无推流或者禁播等状态。
+    /// 使用建议：
+    /// 该接口提供实时流状态查询功能，鉴于网络抖动等一些不可抗因素，使用该接口作为判断主播是否开播等重要业务场景时，请参考以下使用建议。
+    /// 1. 优先使用业务自身的房间开关播逻辑，判断主播是否在线，譬如客户端开播信令和主播在线心跳等。
+    /// 2. 对于没有房间管理的直播场景，可以结合以下方案综合判断。
+    /// 2.1 根据[推断流事件通知](/document/product/267/20388) 判断主播在线状态。
+    /// 2.2 通过定时（间隔>1min）查询[直播中的流接口](/document/api/267/20472)，判断主播是否在线。
+    /// 2.3 通过 本接口 查询直播流状态，判断主播是否在线。
+    /// 2.4 以上任一方式判断为在线，都认为主播开播中，并且接口查询超时或解析异常时，也默认为在线，减少对业务的影响。
+    @inlinable
+    public func describeLiveStreamState(appName: String, domainName: String, streamName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveStreamStateResponse > {
+        self.describeLiveStreamState(DescribeLiveStreamStateRequest(appName: appName, domainName: domainName, streamName: streamName), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流状态
+    ///
+    /// 返回直播中、无推流或者禁播等状态。
+    /// 使用建议：
+    /// 该接口提供实时流状态查询功能，鉴于网络抖动等一些不可抗因素，使用该接口作为判断主播是否开播等重要业务场景时，请参考以下使用建议。
+    /// 1. 优先使用业务自身的房间开关播逻辑，判断主播是否在线，譬如客户端开播信令和主播在线心跳等。
+    /// 2. 对于没有房间管理的直播场景，可以结合以下方案综合判断。
+    /// 2.1 根据[推断流事件通知](/document/product/267/20388) 判断主播在线状态。
+    /// 2.2 通过定时（间隔>1min）查询[直播中的流接口](/document/api/267/20472)，判断主播是否在线。
+    /// 2.3 通过 本接口 查询直播流状态，判断主播是否在线。
+    /// 2.4 以上任一方式判断为在线，都认为主播开播中，并且接口查询超时或解析异常时，也默认为在线，减少对业务的影响。
+    @inlinable
+    public func describeLiveStreamState(appName: String, domainName: String, streamName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamStateResponse {
+        try await self.describeLiveStreamState(DescribeLiveStreamStateRequest(appName: appName, domainName: domainName, streamName: streamName), logger: logger, on: eventLoop)
+    }
 }

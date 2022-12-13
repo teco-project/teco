@@ -150,4 +150,20 @@ extension Cvm {
     public func inquiryPriceRunInstances(_ input: InquiryPriceRunInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRunInstancesResponse {
         try await self.client.execute(action: "InquiryPriceRunInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建实例询价
+    ///
+    /// 本接口(InquiryPriceRunInstances)用于创建实例询价。本接口仅允许针对购买限制范围内的实例配置进行询价, 详见：[创建实例](https://cloud.tencent.com/document/api/213/15730)。
+    @inlinable
+    public func inquiryPriceRunInstances(placement: Placement, imageId: String, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, internetAccessible: InternetAccessible? = nil, instanceCount: Int64? = nil, instanceName: String? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, enhancedService: EnhancedService? = nil, clientToken: String? = nil, hostName: String? = nil, tagSpecification: [TagSpecification]? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, hpcClusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceRunInstancesResponse > {
+        self.inquiryPriceRunInstances(InquiryPriceRunInstancesRequest(placement: placement, imageId: imageId, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, instanceType: instanceType, systemDisk: systemDisk, dataDisks: dataDisks, virtualPrivateCloud: virtualPrivateCloud, internetAccessible: internetAccessible, instanceCount: instanceCount, instanceName: instanceName, loginSettings: loginSettings, securityGroupIds: securityGroupIds, enhancedService: enhancedService, clientToken: clientToken, hostName: hostName, tagSpecification: tagSpecification, instanceMarketOptions: instanceMarketOptions, hpcClusterId: hpcClusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例询价
+    ///
+    /// 本接口(InquiryPriceRunInstances)用于创建实例询价。本接口仅允许针对购买限制范围内的实例配置进行询价, 详见：[创建实例](https://cloud.tencent.com/document/api/213/15730)。
+    @inlinable
+    public func inquiryPriceRunInstances(placement: Placement, imageId: String, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, internetAccessible: InternetAccessible? = nil, instanceCount: Int64? = nil, instanceName: String? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, enhancedService: EnhancedService? = nil, clientToken: String? = nil, hostName: String? = nil, tagSpecification: [TagSpecification]? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, hpcClusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRunInstancesResponse {
+        try await self.inquiryPriceRunInstances(InquiryPriceRunInstancesRequest(placement: placement, imageId: imageId, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, instanceType: instanceType, systemDisk: systemDisk, dataDisks: dataDisks, virtualPrivateCloud: virtualPrivateCloud, internetAccessible: internetAccessible, instanceCount: instanceCount, instanceName: instanceName, loginSettings: loginSettings, securityGroupIds: securityGroupIds, enhancedService: enhancedService, clientToken: clientToken, hostName: hostName, tagSpecification: tagSpecification, instanceMarketOptions: instanceMarketOptions, hpcClusterId: hpcClusterId), logger: logger, on: eventLoop)
+    }
 }

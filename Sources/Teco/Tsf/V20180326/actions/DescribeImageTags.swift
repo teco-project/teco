@@ -84,4 +84,16 @@ extension Tsf {
     public func describeImageTags(_ input: DescribeImageTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTagsResponse {
         try await self.client.execute(action: "DescribeImageTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 镜像版本列表
+    @inlinable
+    public func describeImageTags(applicationId: String, offset: Int64? = nil, limit: Int64? = nil, queryImageIdFlag: Int64? = nil, searchWord: String? = nil, repoType: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageTagsResponse > {
+        self.describeImageTags(DescribeImageTagsRequest(applicationId: applicationId, offset: offset, limit: limit, queryImageIdFlag: queryImageIdFlag, searchWord: searchWord, repoType: repoType, tcrRepoInfo: tcrRepoInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像版本列表
+    @inlinable
+    public func describeImageTags(applicationId: String, offset: Int64? = nil, limit: Int64? = nil, queryImageIdFlag: Int64? = nil, searchWord: String? = nil, repoType: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTagsResponse {
+        try await self.describeImageTags(DescribeImageTagsRequest(applicationId: applicationId, offset: offset, limit: limit, queryImageIdFlag: queryImageIdFlag, searchWord: searchWord, repoType: repoType, tcrRepoInfo: tcrRepoInfo), logger: logger, on: eventLoop)
+    }
 }

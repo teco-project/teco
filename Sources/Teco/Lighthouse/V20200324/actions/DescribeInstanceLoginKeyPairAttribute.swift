@@ -58,4 +58,20 @@ extension Lighthouse {
     public func describeInstanceLoginKeyPairAttribute(_ input: DescribeInstanceLoginKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLoginKeyPairAttributeResponse {
         try await self.client.execute(action: "DescribeInstanceLoginKeyPairAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例默认登录密钥属性
+    ///
+    /// 本接口用于查询实例默认登录密钥属性。
+    @inlinable
+    public func describeInstanceLoginKeyPairAttribute(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLoginKeyPairAttributeResponse > {
+        self.describeInstanceLoginKeyPairAttribute(DescribeInstanceLoginKeyPairAttributeRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例默认登录密钥属性
+    ///
+    /// 本接口用于查询实例默认登录密钥属性。
+    @inlinable
+    public func describeInstanceLoginKeyPairAttribute(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLoginKeyPairAttributeResponse {
+        try await self.describeInstanceLoginKeyPairAttribute(DescribeInstanceLoginKeyPairAttributeRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

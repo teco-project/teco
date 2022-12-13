@@ -59,4 +59,20 @@ extension Vod {
     public func deleteSampleSnapshotTemplate(_ input: DeleteSampleSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSampleSnapshotTemplateResponse {
         try await self.client.execute(action: "DeleteSampleSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除采样截图模板
+    ///
+    /// 删除用户自定义采样截图模板。
+    @inlinable
+    public func deleteSampleSnapshotTemplate(definition: UInt64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSampleSnapshotTemplateResponse > {
+        self.deleteSampleSnapshotTemplate(DeleteSampleSnapshotTemplateRequest(definition: definition, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除采样截图模板
+    ///
+    /// 删除用户自定义采样截图模板。
+    @inlinable
+    public func deleteSampleSnapshotTemplate(definition: UInt64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSampleSnapshotTemplateResponse {
+        try await self.deleteSampleSnapshotTemplate(DeleteSampleSnapshotTemplateRequest(definition: definition, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

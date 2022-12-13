@@ -65,4 +65,16 @@ extension Wav {
     public func queryUserInfoList(_ input: QueryUserInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryUserInfoListResponse {
         try await self.client.execute(action: "QueryUserInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询企业成员信息列表接口
+    @inlinable
+    public func queryUserInfoList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryUserInfoListResponse > {
+        self.queryUserInfoList(QueryUserInfoListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询企业成员信息列表接口
+    @inlinable
+    public func queryUserInfoList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryUserInfoListResponse {
+        try await self.queryUserInfoList(QueryUserInfoListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    }
 }

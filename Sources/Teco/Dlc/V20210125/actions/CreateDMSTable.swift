@@ -127,4 +127,16 @@ extension Dlc {
     public func createDMSTable(_ input: CreateDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDMSTableResponse {
         try await self.client.execute(action: "CreateDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// DMS元数据创建表
+    @inlinable
+    public func createDMSTable(asset: Asset? = nil, type: String? = nil, dbName: String? = nil, storageSize: Int64? = nil, recordCount: Int64? = nil, lifeTime: Int64? = nil, dataUpdateTime: Date? = nil, structUpdateTime: Date? = nil, lastAccessTime: Date? = nil, sds: DMSSds? = nil, columns: [DMSColumn]? = nil, partitionKeys: [DMSColumn]? = nil, viewOriginalText: String? = nil, viewExpandedText: String? = nil, partitions: [DMSPartition]? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDMSTableResponse > {
+        self.createDMSTable(CreateDMSTableRequest(asset: asset, type: type, dbName: dbName, storageSize: storageSize, recordCount: recordCount, lifeTime: lifeTime, dataUpdateTime: dataUpdateTime, structUpdateTime: structUpdateTime, lastAccessTime: lastAccessTime, sds: sds, columns: columns, partitionKeys: partitionKeys, viewOriginalText: viewOriginalText, viewExpandedText: viewExpandedText, partitions: partitions, name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// DMS元数据创建表
+    @inlinable
+    public func createDMSTable(asset: Asset? = nil, type: String? = nil, dbName: String? = nil, storageSize: Int64? = nil, recordCount: Int64? = nil, lifeTime: Int64? = nil, dataUpdateTime: Date? = nil, structUpdateTime: Date? = nil, lastAccessTime: Date? = nil, sds: DMSSds? = nil, columns: [DMSColumn]? = nil, partitionKeys: [DMSColumn]? = nil, viewOriginalText: String? = nil, viewExpandedText: String? = nil, partitions: [DMSPartition]? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDMSTableResponse {
+        try await self.createDMSTable(CreateDMSTableRequest(asset: asset, type: type, dbName: dbName, storageSize: storageSize, recordCount: recordCount, lifeTime: lifeTime, dataUpdateTime: dataUpdateTime, structUpdateTime: structUpdateTime, lastAccessTime: lastAccessTime, sds: sds, columns: columns, partitionKeys: partitionKeys, viewOriginalText: viewOriginalText, viewExpandedText: viewExpandedText, partitions: partitions, name: name), logger: logger, on: eventLoop)
+    }
 }

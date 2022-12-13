@@ -62,4 +62,20 @@ extension Yunjing {
     public func describeProcessTaskStatus(_ input: DescribeProcessTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProcessTaskStatusResponse {
         try await self.client.execute(action: "DescribeProcessTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取实时拉取进程任务状态
+    ///
+    /// 本接口 (DescribeProcessTaskStatus) 用于获取实时拉取进程任务状态。
+    @inlinable
+    public func describeProcessTaskStatus(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProcessTaskStatusResponse > {
+        self.describeProcessTaskStatus(DescribeProcessTaskStatusRequest(uuid: uuid), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实时拉取进程任务状态
+    ///
+    /// 本接口 (DescribeProcessTaskStatus) 用于获取实时拉取进程任务状态。
+    @inlinable
+    public func describeProcessTaskStatus(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProcessTaskStatusResponse {
+        try await self.describeProcessTaskStatus(DescribeProcessTaskStatusRequest(uuid: uuid), logger: logger, on: eventLoop)
+    }
 }

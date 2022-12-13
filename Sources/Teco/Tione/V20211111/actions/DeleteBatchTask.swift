@@ -50,4 +50,16 @@ extension Tione {
     public func deleteBatchTask(_ input: DeleteBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBatchTaskResponse {
         try await self.client.execute(action: "DeleteBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除跑批任务
+    @inlinable
+    public func deleteBatchTask(batchTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBatchTaskResponse > {
+        self.deleteBatchTask(DeleteBatchTaskRequest(batchTaskId: batchTaskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除跑批任务
+    @inlinable
+    public func deleteBatchTask(batchTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBatchTaskResponse {
+        try await self.deleteBatchTask(DeleteBatchTaskRequest(batchTaskId: batchTaskId), logger: logger, on: eventLoop)
+    }
 }

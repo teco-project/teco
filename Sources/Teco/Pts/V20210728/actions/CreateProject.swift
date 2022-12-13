@@ -64,4 +64,16 @@ extension Pts {
     public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
         try await self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建项目
+    @inlinable
+    public func createProject(name: String, description: String? = nil, tags: [TagSpec]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProjectResponse > {
+        self.createProject(CreateProjectRequest(name: name, description: description, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建项目
+    @inlinable
+    public func createProject(name: String, description: String? = nil, tags: [TagSpec]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
+        try await self.createProject(CreateProjectRequest(name: name, description: description, tags: tags), logger: logger, on: eventLoop)
+    }
 }

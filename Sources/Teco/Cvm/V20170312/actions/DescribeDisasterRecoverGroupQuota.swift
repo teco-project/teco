@@ -66,4 +66,20 @@ extension Cvm {
     public func describeDisasterRecoverGroupQuota(_ input: DescribeDisasterRecoverGroupQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisasterRecoverGroupQuotaResponse {
         try await self.client.execute(action: "DescribeDisasterRecoverGroupQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询置放群组配额
+    ///
+    /// 本接口 (DescribeDisasterRecoverGroupQuota)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)配额。
+    @inlinable
+    public func describeDisasterRecoverGroupQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDisasterRecoverGroupQuotaResponse > {
+        self.describeDisasterRecoverGroupQuota(DescribeDisasterRecoverGroupQuotaRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询置放群组配额
+    ///
+    /// 本接口 (DescribeDisasterRecoverGroupQuota)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)配额。
+    @inlinable
+    public func describeDisasterRecoverGroupQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisasterRecoverGroupQuotaResponse {
+        try await self.describeDisasterRecoverGroupQuota(DescribeDisasterRecoverGroupQuotaRequest(), logger: logger, on: eventLoop)
+    }
 }

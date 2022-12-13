@@ -64,4 +64,20 @@ extension Live {
     public func deleteLiveSnapshotRule(_ input: DeleteLiveSnapshotRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveSnapshotRuleResponse {
         try await self.client.execute(action: "DeleteLiveSnapshotRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除截图规则
+    ///
+    /// 删除截图规则。
+    @inlinable
+    public func deleteLiveSnapshotRule(domainName: String, appName: String? = nil, streamName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveSnapshotRuleResponse > {
+        self.deleteLiveSnapshotRule(DeleteLiveSnapshotRuleRequest(domainName: domainName, appName: appName, streamName: streamName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除截图规则
+    ///
+    /// 删除截图规则。
+    @inlinable
+    public func deleteLiveSnapshotRule(domainName: String, appName: String? = nil, streamName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveSnapshotRuleResponse {
+        try await self.deleteLiveSnapshotRule(DeleteLiveSnapshotRuleRequest(domainName: domainName, appName: appName, streamName: streamName), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Ses {
     public func deleteBlackList(_ input: DeleteBlackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBlackListResponse {
         try await self.client.execute(action: "DeleteBlackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除收件人黑名单
+    ///
+    /// 邮箱被拉黑之后，用户如果确认收件邮箱有效或者已经处于激活状态，可以从腾讯云地址库中删除该黑名单之后继续投递。
+    @inlinable
+    public func deleteBlackList(emailAddressList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBlackListResponse > {
+        self.deleteBlackList(DeleteBlackListRequest(emailAddressList: emailAddressList), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除收件人黑名单
+    ///
+    /// 邮箱被拉黑之后，用户如果确认收件邮箱有效或者已经处于激活状态，可以从腾讯云地址库中删除该黑名单之后继续投递。
+    @inlinable
+    public func deleteBlackList(emailAddressList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBlackListResponse {
+        try await self.deleteBlackList(DeleteBlackListRequest(emailAddressList: emailAddressList), logger: logger, on: eventLoop)
+    }
 }

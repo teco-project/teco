@@ -98,4 +98,20 @@ extension Cwp {
     public func describeBaselineRule(_ input: DescribeBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineRuleResponse {
         try await self.client.execute(action: "DescribeBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询基线检测项信息
+    ///
+    /// 根据基线id查询下属检测项信息
+    @inlinable
+    public func describeBaselineRule(baselineId: UInt64, limit: UInt64, offset: UInt64, level: [UInt64]? = nil, status: UInt64? = nil, quuid: String? = nil, uuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineRuleResponse > {
+        self.describeBaselineRule(DescribeBaselineRuleRequest(baselineId: baselineId, limit: limit, offset: offset, level: level, status: status, quuid: quuid, uuid: uuid), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询基线检测项信息
+    ///
+    /// 根据基线id查询下属检测项信息
+    @inlinable
+    public func describeBaselineRule(baselineId: UInt64, limit: UInt64, offset: UInt64, level: [UInt64]? = nil, status: UInt64? = nil, quuid: String? = nil, uuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineRuleResponse {
+        try await self.describeBaselineRule(DescribeBaselineRuleRequest(baselineId: baselineId, limit: limit, offset: offset, level: level, status: status, quuid: quuid, uuid: uuid), logger: logger, on: eventLoop)
+    }
 }

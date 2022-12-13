@@ -158,4 +158,20 @@ extension Cdb {
     public func createCloneInstance(_ input: CreateCloneInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloneInstanceResponse {
         try await self.client.execute(action: "CreateCloneInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建克隆实例
+    ///
+    /// 本接口(CreateCloneInstance) 用于从目标源实例创建一个克隆实例，可以指定克隆实例回档到源实例的指定物理备份文件或者指定的回档时间点。
+    @inlinable
+    public func createCloneInstance(instanceId: String, specifiedRollbackTime: String? = nil, specifiedBackupId: Int64? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, memory: Int64? = nil, volume: Int64? = nil, instanceName: String? = nil, securityGroup: [String]? = nil, resourceTags: [TagInfo]? = nil, cpu: Int64? = nil, protectMode: Int64? = nil, deployMode: Int64? = nil, slaveZone: String? = nil, backupZone: String? = nil, deviceType: String? = nil, instanceNodes: Int64? = nil, deployGroupId: String? = nil, dryRun: Bool? = nil, cageId: String? = nil, projectId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloneInstanceResponse > {
+        self.createCloneInstance(CreateCloneInstanceRequest(instanceId: instanceId, specifiedRollbackTime: specifiedRollbackTime, specifiedBackupId: specifiedBackupId, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, memory: memory, volume: volume, instanceName: instanceName, securityGroup: securityGroup, resourceTags: resourceTags, cpu: cpu, protectMode: protectMode, deployMode: deployMode, slaveZone: slaveZone, backupZone: backupZone, deviceType: deviceType, instanceNodes: instanceNodes, deployGroupId: deployGroupId, dryRun: dryRun, cageId: cageId, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建克隆实例
+    ///
+    /// 本接口(CreateCloneInstance) 用于从目标源实例创建一个克隆实例，可以指定克隆实例回档到源实例的指定物理备份文件或者指定的回档时间点。
+    @inlinable
+    public func createCloneInstance(instanceId: String, specifiedRollbackTime: String? = nil, specifiedBackupId: Int64? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, memory: Int64? = nil, volume: Int64? = nil, instanceName: String? = nil, securityGroup: [String]? = nil, resourceTags: [TagInfo]? = nil, cpu: Int64? = nil, protectMode: Int64? = nil, deployMode: Int64? = nil, slaveZone: String? = nil, backupZone: String? = nil, deviceType: String? = nil, instanceNodes: Int64? = nil, deployGroupId: String? = nil, dryRun: Bool? = nil, cageId: String? = nil, projectId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloneInstanceResponse {
+        try await self.createCloneInstance(CreateCloneInstanceRequest(instanceId: instanceId, specifiedRollbackTime: specifiedRollbackTime, specifiedBackupId: specifiedBackupId, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, memory: memory, volume: volume, instanceName: instanceName, securityGroup: securityGroup, resourceTags: resourceTags, cpu: cpu, protectMode: protectMode, deployMode: deployMode, slaveZone: slaveZone, backupZone: backupZone, deviceType: deviceType, instanceNodes: instanceNodes, deployGroupId: deployGroupId, dryRun: dryRun, cageId: cageId, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,26 @@ extension Lighthouse {
     public func modifyInstancesBundle(_ input: ModifyInstancesBundleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesBundleResponse {
         try await self.client.execute(action: "ModifyInstancesBundle", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 变更实例套餐
+    ///
+    /// 本接口(ModifyInstancesBundle)用于变更一个或多个轻量应用服务器实例套餐。
+    /// * 只有状态为 RUNNING，STOPPED的实例才可以进行此操作。
+    /// * 支持批量操作。每次请求批量实例的上限为 30。
+    /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
+    @inlinable
+    public func modifyInstancesBundle(instanceIds: [String], bundleId: String, autoVoucher: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancesBundleResponse > {
+        self.modifyInstancesBundle(ModifyInstancesBundleRequest(instanceIds: instanceIds, bundleId: bundleId, autoVoucher: autoVoucher), logger: logger, on: eventLoop)
+    }
+    
+    /// 变更实例套餐
+    ///
+    /// 本接口(ModifyInstancesBundle)用于变更一个或多个轻量应用服务器实例套餐。
+    /// * 只有状态为 RUNNING，STOPPED的实例才可以进行此操作。
+    /// * 支持批量操作。每次请求批量实例的上限为 30。
+    /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
+    @inlinable
+    public func modifyInstancesBundle(instanceIds: [String], bundleId: String, autoVoucher: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesBundleResponse {
+        try await self.modifyInstancesBundle(ModifyInstancesBundleRequest(instanceIds: instanceIds, bundleId: bundleId, autoVoucher: autoVoucher), logger: logger, on: eventLoop)
+    }
 }

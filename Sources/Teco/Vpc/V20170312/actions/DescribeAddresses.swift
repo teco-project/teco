@@ -93,4 +93,22 @@ extension Vpc {
     public func describeAddresses(_ input: DescribeAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressesResponse {
         try await self.client.execute(action: "DescribeAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询弹性公网IP列表
+    ///
+    /// 本接口 (DescribeAddresses) 用于查询一个或多个[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的详细信息。
+    /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的 EIP。
+    @inlinable
+    public func describeAddresses(addressIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAddressesResponse > {
+        self.describeAddresses(DescribeAddressesRequest(addressIds: addressIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询弹性公网IP列表
+    ///
+    /// 本接口 (DescribeAddresses) 用于查询一个或多个[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的详细信息。
+    /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的 EIP。
+    @inlinable
+    public func describeAddresses(addressIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressesResponse {
+        try await self.describeAddresses(DescribeAddressesRequest(addressIds: addressIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

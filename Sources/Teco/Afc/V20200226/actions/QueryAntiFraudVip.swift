@@ -199,4 +199,24 @@ extension Afc {
     public func queryAntiFraudVip(_ input: QueryAntiFraudVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAntiFraudVipResponse {
         try await self.client.execute(action: "QueryAntiFraudVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 定制建模
+    ///
+    /// 天御反欺诈服务，主要应用于银行、证券、保险、P2P等金融行业客户，通过腾讯的大数据风控能力，
+    /// 可以准确识别恶意用户信息，解决客户在支付、活动、理财，风控等业务环节遇到的欺诈威胁，降低企业
+    /// 的损失。
+    @inlinable
+    public func queryAntiFraudVip(phoneNumber: String? = nil, idNumber: String? = nil, bankCardNumber: String? = nil, userIp: String? = nil, imei: String? = nil, idfa: String? = nil, scene: String? = nil, name: String? = nil, emailAddress: String? = nil, address: String? = nil, accountType: String? = nil, uid: String? = nil, appIdU: String? = nil, wifiMac: String? = nil, wifiSSID: String? = nil, wifiBSSID: String? = nil, businessId: String? = nil, idCryptoType: String? = nil, phoneCryptoType: String? = nil, mac: String? = nil, imsi: String? = nil, nameCryptoType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAntiFraudVipResponse > {
+        self.queryAntiFraudVip(QueryAntiFraudVipRequest(phoneNumber: phoneNumber, idNumber: idNumber, bankCardNumber: bankCardNumber, userIp: userIp, imei: imei, idfa: idfa, scene: scene, name: name, emailAddress: emailAddress, address: address, accountType: accountType, uid: uid, appIdU: appIdU, wifiMac: wifiMac, wifiSSID: wifiSSID, wifiBSSID: wifiBSSID, businessId: businessId, idCryptoType: idCryptoType, phoneCryptoType: phoneCryptoType, mac: mac, imsi: imsi, nameCryptoType: nameCryptoType), logger: logger, on: eventLoop)
+    }
+    
+    /// 定制建模
+    ///
+    /// 天御反欺诈服务，主要应用于银行、证券、保险、P2P等金融行业客户，通过腾讯的大数据风控能力，
+    /// 可以准确识别恶意用户信息，解决客户在支付、活动、理财，风控等业务环节遇到的欺诈威胁，降低企业
+    /// 的损失。
+    @inlinable
+    public func queryAntiFraudVip(phoneNumber: String? = nil, idNumber: String? = nil, bankCardNumber: String? = nil, userIp: String? = nil, imei: String? = nil, idfa: String? = nil, scene: String? = nil, name: String? = nil, emailAddress: String? = nil, address: String? = nil, accountType: String? = nil, uid: String? = nil, appIdU: String? = nil, wifiMac: String? = nil, wifiSSID: String? = nil, wifiBSSID: String? = nil, businessId: String? = nil, idCryptoType: String? = nil, phoneCryptoType: String? = nil, mac: String? = nil, imsi: String? = nil, nameCryptoType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAntiFraudVipResponse {
+        try await self.queryAntiFraudVip(QueryAntiFraudVipRequest(phoneNumber: phoneNumber, idNumber: idNumber, bankCardNumber: bankCardNumber, userIp: userIp, imei: imei, idfa: idfa, scene: scene, name: name, emailAddress: emailAddress, address: address, accountType: accountType, uid: uid, appIdU: appIdU, wifiMac: wifiMac, wifiSSID: wifiSSID, wifiBSSID: wifiBSSID, businessId: businessId, idCryptoType: idCryptoType, phoneCryptoType: phoneCryptoType, mac: mac, imsi: imsi, nameCryptoType: nameCryptoType), logger: logger, on: eventLoop)
+    }
 }

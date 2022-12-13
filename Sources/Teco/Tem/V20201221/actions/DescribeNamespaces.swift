@@ -68,4 +68,20 @@ extension Tem {
     public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacesResponse {
         try await self.client.execute(action: "DescribeNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取租户命名空间列表
+    ///
+    /// 获取租户环境列表
+    @inlinable
+    public func describeNamespaces(limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespacesResponse > {
+        self.describeNamespaces(DescribeNamespacesRequest(limit: limit, offset: offset, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取租户命名空间列表
+    ///
+    /// 获取租户环境列表
+    @inlinable
+    public func describeNamespaces(limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacesResponse {
+        try await self.describeNamespaces(DescribeNamespacesRequest(limit: limit, offset: offset, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    }
 }

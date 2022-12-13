@@ -125,4 +125,16 @@ extension Tdmq {
     public func modifyCmqQueueAttribute(_ input: ModifyCmqQueueAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqQueueAttributeResponse {
         try await self.client.execute(action: "ModifyCmqQueueAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改cmq队列属性
+    @inlinable
+    public func modifyCmqQueueAttribute(queueName: String, maxMsgHeapNum: UInt64? = nil, pollingWaitSeconds: UInt64? = nil, visibilityTimeout: UInt64? = nil, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, rewindSeconds: UInt64? = nil, firstQueryInterval: UInt64? = nil, maxQueryCount: UInt64? = nil, deadLetterQueueName: String? = nil, maxTimeToLive: UInt64? = nil, maxReceiveCount: UInt64? = nil, policy: UInt64? = nil, trace: Bool? = nil, transaction: UInt64? = nil, retentionSizeInMB: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCmqQueueAttributeResponse > {
+        self.modifyCmqQueueAttribute(ModifyCmqQueueAttributeRequest(queueName: queueName, maxMsgHeapNum: maxMsgHeapNum, pollingWaitSeconds: pollingWaitSeconds, visibilityTimeout: visibilityTimeout, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, rewindSeconds: rewindSeconds, firstQueryInterval: firstQueryInterval, maxQueryCount: maxQueryCount, deadLetterQueueName: deadLetterQueueName, maxTimeToLive: maxTimeToLive, maxReceiveCount: maxReceiveCount, policy: policy, trace: trace, transaction: transaction, retentionSizeInMB: retentionSizeInMB), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改cmq队列属性
+    @inlinable
+    public func modifyCmqQueueAttribute(queueName: String, maxMsgHeapNum: UInt64? = nil, pollingWaitSeconds: UInt64? = nil, visibilityTimeout: UInt64? = nil, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, rewindSeconds: UInt64? = nil, firstQueryInterval: UInt64? = nil, maxQueryCount: UInt64? = nil, deadLetterQueueName: String? = nil, maxTimeToLive: UInt64? = nil, maxReceiveCount: UInt64? = nil, policy: UInt64? = nil, trace: Bool? = nil, transaction: UInt64? = nil, retentionSizeInMB: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqQueueAttributeResponse {
+        try await self.modifyCmqQueueAttribute(ModifyCmqQueueAttributeRequest(queueName: queueName, maxMsgHeapNum: maxMsgHeapNum, pollingWaitSeconds: pollingWaitSeconds, visibilityTimeout: visibilityTimeout, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, rewindSeconds: rewindSeconds, firstQueryInterval: firstQueryInterval, maxQueryCount: maxQueryCount, deadLetterQueueName: deadLetterQueueName, maxTimeToLive: maxTimeToLive, maxReceiveCount: maxReceiveCount, policy: policy, trace: trace, transaction: transaction, retentionSizeInMB: retentionSizeInMB), logger: logger, on: eventLoop)
+    }
 }

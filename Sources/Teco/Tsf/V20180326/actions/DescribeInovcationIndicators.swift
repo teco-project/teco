@@ -114,4 +114,16 @@ extension Tsf {
     public func describeInovcationIndicators(_ input: DescribeInovcationIndicatorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInovcationIndicatorsResponse {
         try await self.client.execute(action: "DescribeInovcationIndicators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询调用监控指标
+    @inlinable
+    public func describeInovcationIndicators(dimension: String, startTime: Date, endTime: Date, namespaceId: String? = nil, serviceId: String? = nil, callerServiceName: String? = nil, calleeServiceName: String? = nil, callerInterfaceName: String? = nil, calleeInterfaceName: String? = nil, applicationId: String? = nil, groupId: String? = nil, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInovcationIndicatorsResponse > {
+        self.describeInovcationIndicators(DescribeInovcationIndicatorsRequest(dimension: dimension, startTime: startTime, endTime: endTime, namespaceId: namespaceId, serviceId: serviceId, callerServiceName: callerServiceName, calleeServiceName: calleeServiceName, callerInterfaceName: callerInterfaceName, calleeInterfaceName: calleeInterfaceName, applicationId: applicationId, groupId: groupId, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询调用监控指标
+    @inlinable
+    public func describeInovcationIndicators(dimension: String, startTime: Date, endTime: Date, namespaceId: String? = nil, serviceId: String? = nil, callerServiceName: String? = nil, calleeServiceName: String? = nil, callerInterfaceName: String? = nil, calleeInterfaceName: String? = nil, applicationId: String? = nil, groupId: String? = nil, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInovcationIndicatorsResponse {
+        try await self.describeInovcationIndicators(DescribeInovcationIndicatorsRequest(dimension: dimension, startTime: startTime, endTime: endTime, namespaceId: namespaceId, serviceId: serviceId, callerServiceName: callerServiceName, calleeServiceName: calleeServiceName, callerInterfaceName: callerInterfaceName, calleeInterfaceName: calleeInterfaceName, applicationId: applicationId, groupId: groupId, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

@@ -75,4 +75,16 @@ extension Waf {
     public func upsertIpAccessControl(_ input: UpsertIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpsertIpAccessControlResponse {
         try await self.client.execute(action: "UpsertIpAccessControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// Waf IP黑白名单Upsert接口
+    @inlinable
+    public func upsertIpAccessControl(domain: String, items: [String], edition: String? = nil, sourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpsertIpAccessControlResponse > {
+        self.upsertIpAccessControl(UpsertIpAccessControlRequest(domain: domain, items: items, edition: edition, sourceType: sourceType), logger: logger, on: eventLoop)
+    }
+    
+    /// Waf IP黑白名单Upsert接口
+    @inlinable
+    public func upsertIpAccessControl(domain: String, items: [String], edition: String? = nil, sourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpsertIpAccessControlResponse {
+        try await self.upsertIpAccessControl(UpsertIpAccessControlRequest(domain: domain, items: items, edition: edition, sourceType: sourceType), logger: logger, on: eventLoop)
+    }
 }

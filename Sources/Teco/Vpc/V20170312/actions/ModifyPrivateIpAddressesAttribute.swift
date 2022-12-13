@@ -59,4 +59,20 @@ extension Vpc {
     public func modifyPrivateIpAddressesAttribute(_ input: ModifyPrivateIpAddressesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateIpAddressesAttributeResponse {
         try await self.client.execute(action: "ModifyPrivateIpAddressesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改弹性网卡内网IP信息
+    ///
+    /// 本接口（ModifyPrivateIpAddressesAttribute）用于修改弹性网卡内网IP属性。
+    @inlinable
+    public func modifyPrivateIpAddressesAttribute(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrivateIpAddressesAttributeResponse > {
+        self.modifyPrivateIpAddressesAttribute(ModifyPrivateIpAddressesAttributeRequest(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改弹性网卡内网IP信息
+    ///
+    /// 本接口（ModifyPrivateIpAddressesAttribute）用于修改弹性网卡内网IP属性。
+    @inlinable
+    public func modifyPrivateIpAddressesAttribute(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateIpAddressesAttributeResponse {
+        try await self.modifyPrivateIpAddressesAttribute(ModifyPrivateIpAddressesAttributeRequest(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses), logger: logger, on: eventLoop)
+    }
 }

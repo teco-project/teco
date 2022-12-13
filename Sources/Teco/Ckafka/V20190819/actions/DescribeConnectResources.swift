@@ -69,4 +69,16 @@ extension Ckafka {
     public func describeConnectResources(_ input: DescribeConnectResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConnectResourcesResponse {
         try await self.client.execute(action: "DescribeConnectResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询Datahub连接源列表
+    @inlinable
+    public func describeConnectResources(type: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConnectResourcesResponse > {
+        self.describeConnectResources(DescribeConnectResourcesRequest(type: type, searchWord: searchWord, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Datahub连接源列表
+    @inlinable
+    public func describeConnectResources(type: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConnectResourcesResponse {
+        try await self.describeConnectResources(DescribeConnectResourcesRequest(type: type, searchWord: searchWord, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -84,4 +84,16 @@ extension Bizlive {
     public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
         try await self.client.execute(action: "CreateSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建会话
+    @inlinable
+    public func createSession(clientSession: String, gameId: String, userId: String, gameParas: String? = nil, gameRegion: String? = nil, imageUrl: String? = nil, resolution: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSessionResponse > {
+        self.createSession(CreateSessionRequest(clientSession: clientSession, gameId: gameId, userId: userId, gameParas: gameParas, gameRegion: gameRegion, imageUrl: imageUrl, resolution: resolution), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建会话
+    @inlinable
+    public func createSession(clientSession: String, gameId: String, userId: String, gameParas: String? = nil, gameRegion: String? = nil, imageUrl: String? = nil, resolution: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
+        try await self.createSession(CreateSessionRequest(clientSession: clientSession, gameId: gameId, userId: userId, gameParas: gameParas, gameRegion: gameRegion, imageUrl: imageUrl, resolution: resolution), logger: logger, on: eventLoop)
+    }
 }

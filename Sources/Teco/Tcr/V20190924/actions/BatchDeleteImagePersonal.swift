@@ -59,4 +59,20 @@ extension Tcr {
     public func batchDeleteImagePersonal(_ input: BatchDeleteImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteImagePersonalResponse {
         try await self.client.execute(action: "BatchDeleteImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 个人版镜像仓库批量删除Tag
+    ///
+    /// 用于在个人版镜像仓库中批量删除Tag
+    @inlinable
+    public func batchDeleteImagePersonal(repoName: String, tags: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDeleteImagePersonalResponse > {
+        self.batchDeleteImagePersonal(BatchDeleteImagePersonalRequest(repoName: repoName, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 个人版镜像仓库批量删除Tag
+    ///
+    /// 用于在个人版镜像仓库中批量删除Tag
+    @inlinable
+    public func batchDeleteImagePersonal(repoName: String, tags: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteImagePersonalResponse {
+        try await self.batchDeleteImagePersonal(BatchDeleteImagePersonalRequest(repoName: repoName, tags: tags), logger: logger, on: eventLoop)
+    }
 }

@@ -94,4 +94,16 @@ extension Tcss {
     public func describeAssetImageRegistryScanStatusOneKey(_ input: DescribeAssetImageRegistryScanStatusOneKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryScanStatusOneKeyResponse {
         try await self.client.execute(action: "DescribeAssetImageRegistryScanStatusOneKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 镜像仓库查询一键镜像扫描状态
+    @inlinable
+    public func describeAssetImageRegistryScanStatusOneKey(images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryScanStatusOneKeyResponse > {
+        self.describeAssetImageRegistryScanStatusOneKey(DescribeAssetImageRegistryScanStatusOneKeyRequest(images: images, all: all, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库查询一键镜像扫描状态
+    @inlinable
+    public func describeAssetImageRegistryScanStatusOneKey(images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryScanStatusOneKeyResponse {
+        try await self.describeAssetImageRegistryScanStatusOneKey(DescribeAssetImageRegistryScanStatusOneKeyRequest(images: images, all: all, id: id), logger: logger, on: eventLoop)
+    }
 }

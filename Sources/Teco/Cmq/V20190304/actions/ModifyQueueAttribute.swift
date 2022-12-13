@@ -115,4 +115,16 @@ extension Cmq {
     public func modifyQueueAttribute(_ input: ModifyQueueAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyQueueAttributeResponse {
         try await self.client.execute(action: "ModifyQueueAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改队列属性
+    @inlinable
+    public func modifyQueueAttribute(queueName: String, maxMsgHeapNum: UInt64? = nil, pollingWaitSeconds: UInt64? = nil, visibilityTimeout: UInt64? = nil, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, rewindSeconds: UInt64? = nil, firstQueryInterval: UInt64? = nil, maxQueryCount: UInt64? = nil, deadLetterQueueName: String? = nil, maxTimeToLive: UInt64? = nil, maxReceiveCount: UInt64? = nil, policy: UInt64? = nil, trace: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyQueueAttributeResponse > {
+        self.modifyQueueAttribute(ModifyQueueAttributeRequest(queueName: queueName, maxMsgHeapNum: maxMsgHeapNum, pollingWaitSeconds: pollingWaitSeconds, visibilityTimeout: visibilityTimeout, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, rewindSeconds: rewindSeconds, firstQueryInterval: firstQueryInterval, maxQueryCount: maxQueryCount, deadLetterQueueName: deadLetterQueueName, maxTimeToLive: maxTimeToLive, maxReceiveCount: maxReceiveCount, policy: policy, trace: trace), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改队列属性
+    @inlinable
+    public func modifyQueueAttribute(queueName: String, maxMsgHeapNum: UInt64? = nil, pollingWaitSeconds: UInt64? = nil, visibilityTimeout: UInt64? = nil, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, rewindSeconds: UInt64? = nil, firstQueryInterval: UInt64? = nil, maxQueryCount: UInt64? = nil, deadLetterQueueName: String? = nil, maxTimeToLive: UInt64? = nil, maxReceiveCount: UInt64? = nil, policy: UInt64? = nil, trace: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyQueueAttributeResponse {
+        try await self.modifyQueueAttribute(ModifyQueueAttributeRequest(queueName: queueName, maxMsgHeapNum: maxMsgHeapNum, pollingWaitSeconds: pollingWaitSeconds, visibilityTimeout: visibilityTimeout, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, rewindSeconds: rewindSeconds, firstQueryInterval: firstQueryInterval, maxQueryCount: maxQueryCount, deadLetterQueueName: deadLetterQueueName, maxTimeToLive: maxTimeToLive, maxReceiveCount: maxReceiveCount, policy: policy, trace: trace), logger: logger, on: eventLoop)
+    }
 }

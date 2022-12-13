@@ -80,4 +80,16 @@ extension Es {
     public func updateDictionaries(_ input: UpdateDictionariesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDictionariesResponse {
         try await self.client.execute(action: "UpdateDictionaries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新ES集群词典
+    @inlinable
+    public func updateDictionaries(instanceId: String, ikMainDicts: [String]? = nil, ikStopwords: [String]? = nil, synonym: [String]? = nil, qqDict: [String]? = nil, updateType: Int64? = nil, forceRestart: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDictionariesResponse > {
+        self.updateDictionaries(UpdateDictionariesRequest(instanceId: instanceId, ikMainDicts: ikMainDicts, ikStopwords: ikStopwords, synonym: synonym, qqDict: qqDict, updateType: updateType, forceRestart: forceRestart), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新ES集群词典
+    @inlinable
+    public func updateDictionaries(instanceId: String, ikMainDicts: [String]? = nil, ikStopwords: [String]? = nil, synonym: [String]? = nil, qqDict: [String]? = nil, updateType: Int64? = nil, forceRestart: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDictionariesResponse {
+        try await self.updateDictionaries(UpdateDictionariesRequest(instanceId: instanceId, ikMainDicts: ikMainDicts, ikStopwords: ikStopwords, synonym: synonym, qqDict: qqDict, updateType: updateType, forceRestart: forceRestart), logger: logger, on: eventLoop)
+    }
 }

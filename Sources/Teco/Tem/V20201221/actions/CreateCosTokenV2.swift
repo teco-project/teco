@@ -79,4 +79,20 @@ extension Tem {
     public func createCosTokenV2(_ input: CreateCosTokenV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCosTokenV2Response {
         try await self.client.execute(action: "CreateCosTokenV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 生成Cos临时秘钥V2
+    ///
+    /// 生成Cos临时秘钥
+    @inlinable
+    public func createCosTokenV2(serviceId: String, pkgName: String, optType: Int64, sourceChannel: Int64? = nil, timeVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCosTokenV2Response > {
+        self.createCosTokenV2(CreateCosTokenV2Request(serviceId: serviceId, pkgName: pkgName, optType: optType, sourceChannel: sourceChannel, timeVersion: timeVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 生成Cos临时秘钥V2
+    ///
+    /// 生成Cos临时秘钥
+    @inlinable
+    public func createCosTokenV2(serviceId: String, pkgName: String, optType: Int64, sourceChannel: Int64? = nil, timeVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCosTokenV2Response {
+        try await self.createCosTokenV2(CreateCosTokenV2Request(serviceId: serviceId, pkgName: pkgName, optType: optType, sourceChannel: sourceChannel, timeVersion: timeVersion), logger: logger, on: eventLoop)
+    }
 }

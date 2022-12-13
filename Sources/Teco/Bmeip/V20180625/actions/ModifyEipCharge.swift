@@ -64,4 +64,16 @@ extension Bmeip {
     public func modifyEipCharge(_ input: ModifyEipChargeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipChargeResponse {
         try await self.client.execute(action: "ModifyEipCharge", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 黑石EIP修改计费方式
+    @inlinable
+    public func modifyEipCharge(payMode: String, eipIds: [String]? = nil, bandwidth: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEipChargeResponse > {
+        self.modifyEipCharge(ModifyEipChargeRequest(payMode: payMode, eipIds: eipIds, bandwidth: bandwidth), logger: logger, on: eventLoop)
+    }
+    
+    /// 黑石EIP修改计费方式
+    @inlinable
+    public func modifyEipCharge(payMode: String, eipIds: [String]? = nil, bandwidth: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipChargeResponse {
+        try await self.modifyEipCharge(ModifyEipChargeRequest(payMode: payMode, eipIds: eipIds, bandwidth: bandwidth), logger: logger, on: eventLoop)
+    }
 }

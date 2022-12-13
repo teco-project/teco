@@ -59,4 +59,20 @@ extension Tione {
     public func describeBatchTaskInstances(_ input: DescribeBatchTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTaskInstancesResponse {
         try await self.client.execute(action: "DescribeBatchTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 跑批实例列表
+    ///
+    /// 查询跑批实例列表
+    @inlinable
+    public func describeBatchTaskInstances(batchTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchTaskInstancesResponse > {
+        self.describeBatchTaskInstances(DescribeBatchTaskInstancesRequest(batchTaskId: batchTaskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 跑批实例列表
+    ///
+    /// 查询跑批实例列表
+    @inlinable
+    public func describeBatchTaskInstances(batchTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTaskInstancesResponse {
+        try await self.describeBatchTaskInstances(DescribeBatchTaskInstancesRequest(batchTaskId: batchTaskId), logger: logger, on: eventLoop)
+    }
 }

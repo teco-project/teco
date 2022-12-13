@@ -87,4 +87,16 @@ extension Iai {
     public func getUpgradeGroupFaceModelVersionResult(_ input: GetUpgradeGroupFaceModelVersionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionResultResponse {
         try await self.client.execute(action: "GetUpgradeGroupFaceModelVersionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 人员库升级结果查询
+    @inlinable
+    public func getUpgradeGroupFaceModelVersionResult(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUpgradeGroupFaceModelVersionResultResponse > {
+        self.getUpgradeGroupFaceModelVersionResult(GetUpgradeGroupFaceModelVersionResultRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
+    
+    /// 人员库升级结果查询
+    @inlinable
+    public func getUpgradeGroupFaceModelVersionResult(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionResultResponse {
+        try await self.getUpgradeGroupFaceModelVersionResult(GetUpgradeGroupFaceModelVersionResultRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
 }

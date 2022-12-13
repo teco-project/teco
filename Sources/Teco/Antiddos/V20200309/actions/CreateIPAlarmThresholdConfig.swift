@@ -50,4 +50,16 @@ extension Antiddos {
     public func createIPAlarmThresholdConfig(_ input: CreateIPAlarmThresholdConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIPAlarmThresholdConfigResponse {
         try await self.client.execute(action: "CreateIPAlarmThresholdConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置单IP告警阈值配置
+    @inlinable
+    public func createIPAlarmThresholdConfig(ipAlarmThresholdConfigList: [IPAlarmThresholdRelation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIPAlarmThresholdConfigResponse > {
+        self.createIPAlarmThresholdConfig(CreateIPAlarmThresholdConfigRequest(ipAlarmThresholdConfigList: ipAlarmThresholdConfigList), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置单IP告警阈值配置
+    @inlinable
+    public func createIPAlarmThresholdConfig(ipAlarmThresholdConfigList: [IPAlarmThresholdRelation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIPAlarmThresholdConfigResponse {
+        try await self.createIPAlarmThresholdConfig(CreateIPAlarmThresholdConfigRequest(ipAlarmThresholdConfigList: ipAlarmThresholdConfigList), logger: logger, on: eventLoop)
+    }
 }

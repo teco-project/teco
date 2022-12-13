@@ -88,4 +88,20 @@ extension Gaap {
     public func describeRealServers(_ input: DescribeRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealServersResponse {
         try await self.client.execute(action: "DescribeRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询源站信息
+    ///
+    /// 本接口（DescribeRealServers）用于查询源站信息，可以根据项目名查询所有的源站信息，此外支持指定IP或者域名的源站模糊查询。
+    @inlinable
+    public func describeRealServers(projectId: Int64, searchValue: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagSet: [TagPair]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealServersResponse > {
+        self.describeRealServers(DescribeRealServersRequest(projectId: projectId, searchValue: searchValue, offset: offset, limit: limit, tagSet: tagSet, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询源站信息
+    ///
+    /// 本接口（DescribeRealServers）用于查询源站信息，可以根据项目名查询所有的源站信息，此外支持指定IP或者域名的源站模糊查询。
+    @inlinable
+    public func describeRealServers(projectId: Int64, searchValue: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagSet: [TagPair]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealServersResponse {
+        try await self.describeRealServers(DescribeRealServersRequest(projectId: projectId, searchValue: searchValue, offset: offset, limit: limit, tagSet: tagSet, filters: filters), logger: logger, on: eventLoop)
+    }
 }

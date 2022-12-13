@@ -77,4 +77,20 @@ extension Tic {
     public func createStack(_ input: CreateStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStackResponse {
         try await self.client.execute(action: "CreateStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建资源栈
+    ///
+    /// 本接口（CreateStack）用于通过传递一个COS的terraform zip模版URL来创建一个资源栈。创建资源栈后仍需要用户调用对应的plan, apply, destory执行对应的事件。
+    @inlinable
+    public func createStack(stackName: String, stackRegion: String, templateUrl: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStackResponse > {
+        self.createStack(CreateStackRequest(stackName: stackName, stackRegion: stackRegion, templateUrl: templateUrl, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建资源栈
+    ///
+    /// 本接口（CreateStack）用于通过传递一个COS的terraform zip模版URL来创建一个资源栈。创建资源栈后仍需要用户调用对应的plan, apply, destory执行对应的事件。
+    @inlinable
+    public func createStack(stackName: String, stackRegion: String, templateUrl: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStackResponse {
+        try await self.createStack(CreateStackRequest(stackName: stackName, stackRegion: stackRegion, templateUrl: templateUrl, description: description), logger: logger, on: eventLoop)
+    }
 }

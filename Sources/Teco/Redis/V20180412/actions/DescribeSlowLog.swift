@@ -92,4 +92,20 @@ extension Redis {
     public func describeSlowLog(_ input: DescribeSlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogResponse {
         try await self.client.execute(action: "DescribeSlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例慢查询记录
+    ///
+    /// 本接口（DescribeSlowLog）查询实例慢查询记录。
+    @inlinable
+    public func describeSlowLog(instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, role: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogResponse > {
+        self.describeSlowLog(DescribeSlowLogRequest(instanceId: instanceId, beginTime: beginTime, endTime: endTime, minQueryTime: minQueryTime, limit: limit, offset: offset, role: role), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例慢查询记录
+    ///
+    /// 本接口（DescribeSlowLog）查询实例慢查询记录。
+    @inlinable
+    public func describeSlowLog(instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, role: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogResponse {
+        try await self.describeSlowLog(DescribeSlowLogRequest(instanceId: instanceId, beginTime: beginTime, endTime: endTime, minQueryTime: minQueryTime, limit: limit, offset: offset, role: role), logger: logger, on: eventLoop)
+    }
 }

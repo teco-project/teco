@@ -64,4 +64,16 @@ extension Cwp {
     public func describeAssetCoreModuleInfo(_ input: DescribeAssetCoreModuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetCoreModuleInfoResponse {
         try await self.client.execute(action: "DescribeAssetCoreModuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取内核模块详情
+    @inlinable
+    public func describeAssetCoreModuleInfo(quuid: String, uuid: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetCoreModuleInfoResponse > {
+        self.describeAssetCoreModuleInfo(DescribeAssetCoreModuleInfoRequest(quuid: quuid, uuid: uuid, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取内核模块详情
+    @inlinable
+    public func describeAssetCoreModuleInfo(quuid: String, uuid: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetCoreModuleInfoResponse {
+        try await self.describeAssetCoreModuleInfo(DescribeAssetCoreModuleInfoRequest(quuid: quuid, uuid: uuid, id: id), logger: logger, on: eventLoop)
+    }
 }

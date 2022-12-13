@@ -59,4 +59,16 @@ extension Cpdp {
     public func getPayRollAuthResult(_ input: GetPayRollAuthResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPayRollAuthResultResponse {
         try await self.client.execute(action: "GetPayRollAuthResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 务工卡-获取核身结果
+    @inlinable
+    public func getPayRollAuthResult(authNumber: String, subMerchantId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPayRollAuthResultResponse > {
+        self.getPayRollAuthResult(GetPayRollAuthResultRequest(authNumber: authNumber, subMerchantId: subMerchantId), logger: logger, on: eventLoop)
+    }
+    
+    /// 务工卡-获取核身结果
+    @inlinable
+    public func getPayRollAuthResult(authNumber: String, subMerchantId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPayRollAuthResultResponse {
+        try await self.getPayRollAuthResult(GetPayRollAuthResultRequest(authNumber: authNumber, subMerchantId: subMerchantId), logger: logger, on: eventLoop)
+    }
 }

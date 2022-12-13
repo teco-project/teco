@@ -46,4 +46,16 @@ extension Tcr {
     public func describeUserQuotaPersonal(_ input: DescribeUserQuotaPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotaPersonalResponse {
         try await self.client.execute(action: "DescribeUserQuotaPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询个人用户配额
+    @inlinable
+    public func describeUserQuotaPersonal(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserQuotaPersonalResponse > {
+        self.describeUserQuotaPersonal(DescribeUserQuotaPersonalRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询个人用户配额
+    @inlinable
+    public func describeUserQuotaPersonal(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotaPersonalResponse {
+        try await self.describeUserQuotaPersonal(DescribeUserQuotaPersonalRequest(), logger: logger, on: eventLoop)
+    }
 }

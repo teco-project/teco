@@ -54,4 +54,16 @@ extension Monitor {
     public func describeGrafanaEnvironments(_ input: DescribeGrafanaEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaEnvironmentsResponse {
         try await self.client.execute(action: "DescribeGrafanaEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 列出 Grafana 环境变量
+    @inlinable
+    public func describeGrafanaEnvironments(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaEnvironmentsResponse > {
+        self.describeGrafanaEnvironments(DescribeGrafanaEnvironmentsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 列出 Grafana 环境变量
+    @inlinable
+    public func describeGrafanaEnvironments(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaEnvironmentsResponse {
+        try await self.describeGrafanaEnvironments(DescribeGrafanaEnvironmentsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

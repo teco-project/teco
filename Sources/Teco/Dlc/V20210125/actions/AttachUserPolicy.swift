@@ -55,4 +55,16 @@ extension Dlc {
     public func attachUserPolicy(_ input: AttachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachUserPolicyResponse {
         try await self.client.execute(action: "AttachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 绑定鉴权策略到用户
+    @inlinable
+    public func attachUserPolicy(userId: String, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachUserPolicyResponse > {
+        self.attachUserPolicy(AttachUserPolicyRequest(userId: userId, policySet: policySet), logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定鉴权策略到用户
+    @inlinable
+    public func attachUserPolicy(userId: String, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachUserPolicyResponse {
+        try await self.attachUserPolicy(AttachUserPolicyRequest(userId: userId, policySet: policySet), logger: logger, on: eventLoop)
+    }
 }

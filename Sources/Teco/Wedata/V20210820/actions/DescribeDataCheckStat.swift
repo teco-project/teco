@@ -68,4 +68,20 @@ extension Wedata {
     public func describeDataCheckStat(_ input: DescribeDataCheckStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataCheckStatResponse {
         try await self.client.execute(action: "DescribeDataCheckStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 数据质量数据监测情况接口
+    ///
+    /// 数据质量的概览页面数据监测情况接口
+    @inlinable
+    public func describeDataCheckStat(projectId: String, beginDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataCheckStatResponse > {
+        self.describeDataCheckStat(DescribeDataCheckStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 数据质量数据监测情况接口
+    ///
+    /// 数据质量的概览页面数据监测情况接口
+    @inlinable
+    public func describeDataCheckStat(projectId: String, beginDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataCheckStatResponse {
+        try await self.describeDataCheckStat(DescribeDataCheckStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
 }

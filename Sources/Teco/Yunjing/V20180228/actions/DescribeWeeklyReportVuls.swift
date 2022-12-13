@@ -75,4 +75,20 @@ extension Yunjing {
     public func describeWeeklyReportVuls(_ input: DescribeWeeklyReportVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportVulsResponse {
         try await self.client.execute(action: "DescribeWeeklyReportVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取专业版周报漏洞数据
+    ///
+    /// 本接口 (DescribeWeeklyReportVuls) 用于专业版周报漏洞数据。
+    @inlinable
+    public func describeWeeklyReportVuls(beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWeeklyReportVulsResponse > {
+        self.describeWeeklyReportVuls(DescribeWeeklyReportVulsRequest(beginDate: beginDate, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取专业版周报漏洞数据
+    ///
+    /// 本接口 (DescribeWeeklyReportVuls) 用于专业版周报漏洞数据。
+    @inlinable
+    public func describeWeeklyReportVuls(beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportVulsResponse {
+        try await self.describeWeeklyReportVuls(DescribeWeeklyReportVulsRequest(beginDate: beginDate, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

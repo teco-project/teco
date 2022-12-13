@@ -49,7 +49,7 @@ extension Cme {
         /// 操作者。填写用户的 Id，用于标识调用者及校验项目导出权限。
         public let `operator`: String?
         
-        public init (platform: String, projectId: String, definition: UInt64, exportDestination: String, coverData: String? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, exportExtensionArgs: VideoExportExtensionArgs? = nil, `operator`: String? = nil) {
+        public init (platform: String, projectId: String, definition: UInt64, exportDestination: String, coverData: String? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, exportExtensionArgs: VideoExportExtensionArgs? = nil, operator: String? = nil) {
             self.platform = platform
             self.projectId = projectId
             self.definition = definition
@@ -102,5 +102,21 @@ extension Cme {
     @inlinable
     public func exportVideoEditProject(_ input: ExportVideoEditProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoEditProjectResponse {
         try await self.client.execute(action: "ExportVideoEditProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 导出视频编辑项目
+    ///
+    /// 导出视频编辑项目，支持指定输出的模板。
+    @inlinable
+    public func exportVideoEditProject(platform: String, projectId: String, definition: UInt64, exportDestination: String, coverData: String? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, exportExtensionArgs: VideoExportExtensionArgs? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVideoEditProjectResponse > {
+        self.exportVideoEditProject(ExportVideoEditProjectRequest(platform: platform, projectId: projectId, definition: definition, exportDestination: exportDestination, coverData: coverData, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, exportExtensionArgs: exportExtensionArgs, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 导出视频编辑项目
+    ///
+    /// 导出视频编辑项目，支持指定输出的模板。
+    @inlinable
+    public func exportVideoEditProject(platform: String, projectId: String, definition: UInt64, exportDestination: String, coverData: String? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, exportExtensionArgs: VideoExportExtensionArgs? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoEditProjectResponse {
+        try await self.exportVideoEditProject(ExportVideoEditProjectRequest(platform: platform, projectId: projectId, definition: definition, exportDestination: exportDestination, coverData: coverData, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, exportExtensionArgs: exportExtensionArgs, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

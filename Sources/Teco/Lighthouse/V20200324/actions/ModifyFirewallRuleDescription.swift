@@ -78,4 +78,34 @@ extension Lighthouse {
     public func modifyFirewallRuleDescription(_ input: ModifyFirewallRuleDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFirewallRuleDescriptionResponse {
         try await self.client.execute(action: "ModifyFirewallRuleDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改防火墙规则描述
+    ///
+    /// 本接口（ModifyFirewallRuleDescription）用于修改单条防火墙规则描述。
+    /// * FirewallVersion 用于指定要操作的防火墙的版本。传入 FirewallVersion 版本号若不等于当前防火墙的最新版本，将返回失败；若不传 FirewallVersion 则直接修改防火墙规则备注。
+    /// 在 FirewallRule 参数中：
+    /// * Protocol 字段支持输入 TCP，UDP，ICMP，ALL。
+    /// * Port 字段允许输入 ALL，或者一个单独的端口号，或者用逗号分隔的离散端口号，或者用减号分隔的两个端口号代表的端口范围。当 Port 为范围时，减号分隔的第一个端口号小于第二个端口号。当 Protocol 字段不是 TCP 或 UDP 时，Port 字段只能为空或 ALL。Port 字段长度不得超过 64。
+    /// * CidrBlock 字段允许输入符合 cidr 格式标准的任意字符串。租户之间网络隔离规则优先于防火墙中的内网规则。
+    /// * Action 字段只允许输入 ACCEPT 或 DROP。
+    /// * FirewallRuleDescription 字段长度不得超过 64。
+    @inlinable
+    public func modifyFirewallRuleDescription(instanceId: String, firewallRule: FirewallRule, firewallVersion: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyFirewallRuleDescriptionResponse > {
+        self.modifyFirewallRuleDescription(ModifyFirewallRuleDescriptionRequest(instanceId: instanceId, firewallRule: firewallRule, firewallVersion: firewallVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改防火墙规则描述
+    ///
+    /// 本接口（ModifyFirewallRuleDescription）用于修改单条防火墙规则描述。
+    /// * FirewallVersion 用于指定要操作的防火墙的版本。传入 FirewallVersion 版本号若不等于当前防火墙的最新版本，将返回失败；若不传 FirewallVersion 则直接修改防火墙规则备注。
+    /// 在 FirewallRule 参数中：
+    /// * Protocol 字段支持输入 TCP，UDP，ICMP，ALL。
+    /// * Port 字段允许输入 ALL，或者一个单独的端口号，或者用逗号分隔的离散端口号，或者用减号分隔的两个端口号代表的端口范围。当 Port 为范围时，减号分隔的第一个端口号小于第二个端口号。当 Protocol 字段不是 TCP 或 UDP 时，Port 字段只能为空或 ALL。Port 字段长度不得超过 64。
+    /// * CidrBlock 字段允许输入符合 cidr 格式标准的任意字符串。租户之间网络隔离规则优先于防火墙中的内网规则。
+    /// * Action 字段只允许输入 ACCEPT 或 DROP。
+    /// * FirewallRuleDescription 字段长度不得超过 64。
+    @inlinable
+    public func modifyFirewallRuleDescription(instanceId: String, firewallRule: FirewallRule, firewallVersion: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFirewallRuleDescriptionResponse {
+        try await self.modifyFirewallRuleDescription(ModifyFirewallRuleDescriptionRequest(instanceId: instanceId, firewallRule: firewallRule, firewallVersion: firewallVersion), logger: logger, on: eventLoop)
+    }
 }

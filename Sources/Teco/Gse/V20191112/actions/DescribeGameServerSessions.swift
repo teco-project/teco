@@ -91,4 +91,22 @@ extension Gse {
     public func describeGameServerSessions(_ input: DescribeGameServerSessionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGameServerSessionsResponse {
         try await self.client.execute(action: "DescribeGameServerSessions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询游戏服务器会话列表
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeGameServerSessions）用于查询游戏服务器会话列表。
+    @inlinable
+    public func describeGameServerSessions(aliasId: String? = nil, fleetId: String? = nil, gameServerSessionId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, statusFilter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGameServerSessionsResponse > {
+        self.describeGameServerSessions(DescribeGameServerSessionsRequest(aliasId: aliasId, fleetId: fleetId, gameServerSessionId: gameServerSessionId, limit: limit, nextToken: nextToken, statusFilter: statusFilter), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询游戏服务器会话列表
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeGameServerSessions）用于查询游戏服务器会话列表。
+    @inlinable
+    public func describeGameServerSessions(aliasId: String? = nil, fleetId: String? = nil, gameServerSessionId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, statusFilter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGameServerSessionsResponse {
+        try await self.describeGameServerSessions(DescribeGameServerSessionsRequest(aliasId: aliasId, fleetId: fleetId, gameServerSessionId: gameServerSessionId, limit: limit, nextToken: nextToken, statusFilter: statusFilter), logger: logger, on: eventLoop)
+    }
 }

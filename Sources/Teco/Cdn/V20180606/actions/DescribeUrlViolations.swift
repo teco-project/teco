@@ -75,4 +75,22 @@ extension Cdn {
     public func describeUrlViolations(_ input: DescribeUrlViolationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUrlViolationsResponse {
         try await self.client.execute(action: "DescribeUrlViolations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 违规历史查询
+    ///
+    /// DescribeUrlViolations 用于查询被 CDN 系统扫描到的域名违规 URL 列表及当前状态。
+    /// 对应内容分发网络控制台【图片鉴黄】页面。
+    @inlinable
+    public func describeUrlViolations(offset: Int64? = nil, limit: Int64? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUrlViolationsResponse > {
+        self.describeUrlViolations(DescribeUrlViolationsRequest(offset: offset, limit: limit, domains: domains), logger: logger, on: eventLoop)
+    }
+    
+    /// 违规历史查询
+    ///
+    /// DescribeUrlViolations 用于查询被 CDN 系统扫描到的域名违规 URL 列表及当前状态。
+    /// 对应内容分发网络控制台【图片鉴黄】页面。
+    @inlinable
+    public func describeUrlViolations(offset: Int64? = nil, limit: Int64? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUrlViolationsResponse {
+        try await self.describeUrlViolations(DescribeUrlViolationsRequest(offset: offset, limit: limit, domains: domains), logger: logger, on: eventLoop)
+    }
 }

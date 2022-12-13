@@ -90,4 +90,16 @@ extension Iotvideo {
     public func updateAIModelChannel(_ input: UpdateAIModelChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAIModelChannelResponse {
         try await self.client.execute(action: "UpdateAIModelChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新AI推理结果推送配置
+    @inlinable
+    public func updateAIModelChannel(modelId: String, productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAIModelChannelResponse > {
+        self.updateAIModelChannel(UpdateAIModelChannelRequest(modelId: modelId, productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新AI推理结果推送配置
+    @inlinable
+    public func updateAIModelChannel(modelId: String, productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAIModelChannelResponse {
+        try await self.updateAIModelChannel(UpdateAIModelChannelRequest(modelId: modelId, productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic), logger: logger, on: eventLoop)
+    }
 }

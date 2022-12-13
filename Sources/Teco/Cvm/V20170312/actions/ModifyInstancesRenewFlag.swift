@@ -65,4 +65,26 @@ extension Cvm {
     public func modifyInstancesRenewFlag(_ input: ModifyInstancesRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesRenewFlagResponse {
         try await self.client.execute(action: "ModifyInstancesRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改实例续费标识
+    ///
+    /// 本接口 (ModifyInstancesRenewFlag) 用于修改包年包月实例续费标识。
+    /// * 实例被标识为自动续费后，每次在实例到期时，会自动续费一个月。
+    /// * 支持批量操作。每次请求批量实例的上限为100。
+    /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
+    @inlinable
+    public func modifyInstancesRenewFlag(instanceIds: [String], renewFlag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancesRenewFlagResponse > {
+        self.modifyInstancesRenewFlag(ModifyInstancesRenewFlagRequest(instanceIds: instanceIds, renewFlag: renewFlag), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例续费标识
+    ///
+    /// 本接口 (ModifyInstancesRenewFlag) 用于修改包年包月实例续费标识。
+    /// * 实例被标识为自动续费后，每次在实例到期时，会自动续费一个月。
+    /// * 支持批量操作。每次请求批量实例的上限为100。
+    /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
+    @inlinable
+    public func modifyInstancesRenewFlag(instanceIds: [String], renewFlag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesRenewFlagResponse {
+        try await self.modifyInstancesRenewFlag(ModifyInstancesRenewFlagRequest(instanceIds: instanceIds, renewFlag: renewFlag), logger: logger, on: eventLoop)
+    }
 }

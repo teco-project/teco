@@ -59,4 +59,20 @@ extension Tiw {
     public func setTranscodeCallbackKey(_ input: SetTranscodeCallbackKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTranscodeCallbackKeyResponse {
         try await self.client.execute(action: "SetTranscodeCallbackKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置文档转码回调密钥
+    ///
+    /// 设置文档转码回调鉴权密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
+    @inlinable
+    public func setTranscodeCallbackKey(sdkAppId: Int64, callbackKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTranscodeCallbackKeyResponse > {
+        self.setTranscodeCallbackKey(SetTranscodeCallbackKeyRequest(sdkAppId: sdkAppId, callbackKey: callbackKey), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置文档转码回调密钥
+    ///
+    /// 设置文档转码回调鉴权密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
+    @inlinable
+    public func setTranscodeCallbackKey(sdkAppId: Int64, callbackKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTranscodeCallbackKeyResponse {
+        try await self.setTranscodeCallbackKey(SetTranscodeCallbackKeyRequest(sdkAppId: sdkAppId, callbackKey: callbackKey), logger: logger, on: eventLoop)
+    }
 }

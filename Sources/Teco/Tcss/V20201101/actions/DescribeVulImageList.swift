@@ -91,4 +91,16 @@ extension Tcss {
     public func describeVulImageList(_ input: DescribeVulImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulImageListResponse {
         try await self.client.execute(action: "DescribeVulImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询漏洞影响的镜像列表
+    @inlinable
+    public func describeVulImageList(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulImageListResponse > {
+        self.describeVulImageList(DescribeVulImageListRequest(pocID: pocID, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞影响的镜像列表
+    @inlinable
+    public func describeVulImageList(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulImageListResponse {
+        try await self.describeVulImageList(DescribeVulImageListRequest(pocID: pocID, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

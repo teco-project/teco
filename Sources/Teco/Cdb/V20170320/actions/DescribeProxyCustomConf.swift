@@ -75,4 +75,16 @@ extension Cdb {
     public func describeProxyCustomConf(_ input: DescribeProxyCustomConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyCustomConfResponse {
         try await self.client.execute(action: "DescribeProxyCustomConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询代理规格配置
+    @inlinable
+    public func describeProxyCustomConf(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyCustomConfResponse > {
+        self.describeProxyCustomConf(DescribeProxyCustomConfRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询代理规格配置
+    @inlinable
+    public func describeProxyCustomConf(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyCustomConfResponse {
+        try await self.describeProxyCustomConf(DescribeProxyCustomConfRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

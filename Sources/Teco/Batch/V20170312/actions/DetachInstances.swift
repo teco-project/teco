@@ -59,4 +59,20 @@ extension Batch {
     public func detachInstances(_ input: DetachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachInstancesResponse {
         try await self.client.execute(action: "DetachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 从计算环境移出实例
+    ///
+    /// 将添加到计算环境中的实例从计算环境中移出。若是由批量计算自动创建的计算节点实例则不允许移出。
+    @inlinable
+    public func detachInstances(envId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachInstancesResponse > {
+        self.detachInstances(DetachInstancesRequest(envId: envId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 从计算环境移出实例
+    ///
+    /// 将添加到计算环境中的实例从计算环境中移出。若是由批量计算自动创建的计算节点实例则不允许移出。
+    @inlinable
+    public func detachInstances(envId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachInstancesResponse {
+        try await self.detachInstances(DetachInstancesRequest(envId: envId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

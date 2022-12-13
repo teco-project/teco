@@ -75,4 +75,16 @@ extension Wedata {
     public func describeRuleGroupExecResultsByPage(_ input: DescribeRuleGroupExecResultsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupExecResultsByPageResponse {
         try await self.client.execute(action: "DescribeRuleGroupExecResultsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 规则组执行结果分页查询接口
+    @inlinable
+    public func describeRuleGroupExecResultsByPage(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleGroupExecResultsByPageResponse > {
+        self.describeRuleGroupExecResultsByPage(DescribeRuleGroupExecResultsByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 规则组执行结果分页查询接口
+    @inlinable
+    public func describeRuleGroupExecResultsByPage(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupExecResultsByPageResponse {
+        try await self.describeRuleGroupExecResultsByPage(DescribeRuleGroupExecResultsByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

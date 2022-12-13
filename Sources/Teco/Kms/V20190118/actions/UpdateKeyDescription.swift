@@ -59,4 +59,20 @@ extension Kms {
     public func updateKeyDescription(_ input: UpdateKeyDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateKeyDescriptionResponse {
         try await self.client.execute(action: "UpdateKeyDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改主密钥描述信息
+    ///
+    /// 该接口用于对指定的cmk修改描述信息。对于处于PendingDelete状态的CMK禁止修改。
+    @inlinable
+    public func updateKeyDescription(description: String, keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateKeyDescriptionResponse > {
+        self.updateKeyDescription(UpdateKeyDescriptionRequest(description: description, keyId: keyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改主密钥描述信息
+    ///
+    /// 该接口用于对指定的cmk修改描述信息。对于处于PendingDelete状态的CMK禁止修改。
+    @inlinable
+    public func updateKeyDescription(description: String, keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateKeyDescriptionResponse {
+        try await self.updateKeyDescription(UpdateKeyDescriptionRequest(description: description, keyId: keyId), logger: logger, on: eventLoop)
+    }
 }

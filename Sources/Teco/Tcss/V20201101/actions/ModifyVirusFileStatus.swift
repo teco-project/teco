@@ -72,4 +72,16 @@ extension Tcss {
     public func modifyVirusFileStatus(_ input: ModifyVirusFileStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusFileStatusResponse {
         try await self.client.execute(action: "ModifyVirusFileStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行时更新木马文件事件状态
+    @inlinable
+    public func modifyVirusFileStatus(eventIdSet: [String], status: String, remark: String? = nil, autoIsolate: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVirusFileStatusResponse > {
+        self.modifyVirusFileStatus(ModifyVirusFileStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark, autoIsolate: autoIsolate), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时更新木马文件事件状态
+    @inlinable
+    public func modifyVirusFileStatus(eventIdSet: [String], status: String, remark: String? = nil, autoIsolate: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusFileStatusResponse {
+        try await self.modifyVirusFileStatus(ModifyVirusFileStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark, autoIsolate: autoIsolate), logger: logger, on: eventLoop)
+    }
 }

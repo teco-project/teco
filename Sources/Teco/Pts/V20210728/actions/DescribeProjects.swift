@@ -89,4 +89,16 @@ extension Pts {
     public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
         try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询项目列表
+    @inlinable
+    public func describeProjects(offset: Int64? = nil, limit: Int64? = nil, projectIds: [String]? = nil, projectName: String? = nil, orderBy: String? = nil, ascend: Bool? = nil, tagFilters: [TagSpec]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
+        self.describeProjects(DescribeProjectsRequest(offset: offset, limit: limit, projectIds: projectIds, projectName: projectName, orderBy: orderBy, ascend: ascend, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询项目列表
+    @inlinable
+    public func describeProjects(offset: Int64? = nil, limit: Int64? = nil, projectIds: [String]? = nil, projectName: String? = nil, orderBy: String? = nil, ascend: Bool? = nil, tagFilters: [TagSpec]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
+        try await self.describeProjects(DescribeProjectsRequest(offset: offset, limit: limit, projectIds: projectIds, projectName: projectName, orderBy: orderBy, ascend: ascend, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    }
 }

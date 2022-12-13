@@ -102,4 +102,20 @@ extension Cvm {
     public func createImage(_ input: CreateImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageResponse {
         try await self.client.execute(action: "CreateImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建镜像
+    ///
+    /// 本接口(CreateImage)用于将实例的系统盘制作为新镜像，创建后的镜像可以用于创建实例。
+    @inlinable
+    public func createImage(imageName: String, instanceId: String? = nil, imageDescription: String? = nil, forcePoweroff: String? = nil, sysprep: String? = nil, dataDiskIds: [String]? = nil, snapshotIds: [String]? = nil, dryRun: Bool? = nil, tagSpecification: [TagSpecification]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageResponse > {
+        self.createImage(CreateImageRequest(imageName: imageName, instanceId: instanceId, imageDescription: imageDescription, forcePoweroff: forcePoweroff, sysprep: sysprep, dataDiskIds: dataDiskIds, snapshotIds: snapshotIds, dryRun: dryRun, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建镜像
+    ///
+    /// 本接口(CreateImage)用于将实例的系统盘制作为新镜像，创建后的镜像可以用于创建实例。
+    @inlinable
+    public func createImage(imageName: String, instanceId: String? = nil, imageDescription: String? = nil, forcePoweroff: String? = nil, sysprep: String? = nil, dataDiskIds: [String]? = nil, snapshotIds: [String]? = nil, dryRun: Bool? = nil, tagSpecification: [TagSpecification]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageResponse {
+        try await self.createImage(CreateImageRequest(imageName: imageName, instanceId: instanceId, imageDescription: imageDescription, forcePoweroff: forcePoweroff, sysprep: sysprep, dataDiskIds: dataDiskIds, snapshotIds: snapshotIds, dryRun: dryRun, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    }
 }

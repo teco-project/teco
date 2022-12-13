@@ -70,4 +70,20 @@ extension Waf {
     public func describeWafAutoDenyRules(_ input: DescribeWafAutoDenyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafAutoDenyRulesResponse {
         try await self.client.execute(action: "DescribeWafAutoDenyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询ip惩罚规则
+    ///
+    /// 返回ip惩罚规则详细信息
+    @inlinable
+    public func describeWafAutoDenyRules(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWafAutoDenyRulesResponse > {
+        self.describeWafAutoDenyRules(DescribeWafAutoDenyRulesRequest(domain: domain), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询ip惩罚规则
+    ///
+    /// 返回ip惩罚规则详细信息
+    @inlinable
+    public func describeWafAutoDenyRules(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafAutoDenyRulesResponse {
+        try await self.describeWafAutoDenyRules(DescribeWafAutoDenyRulesRequest(domain: domain), logger: logger, on: eventLoop)
+    }
 }

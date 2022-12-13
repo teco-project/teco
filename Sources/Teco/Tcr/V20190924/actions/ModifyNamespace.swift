@@ -64,4 +64,20 @@ extension Tcr {
     public func modifyNamespace(_ input: ModifyNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
         try await self.client.execute(action: "ModifyNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新命名空间信息
+    ///
+    /// 更新命名空间信息，当前仅支持修改命名空间访问级别
+    @inlinable
+    public func modifyNamespace(registryId: String, namespaceName: String, isPublic: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNamespaceResponse > {
+        self.modifyNamespace(ModifyNamespaceRequest(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新命名空间信息
+    ///
+    /// 更新命名空间信息，当前仅支持修改命名空间访问级别
+    @inlinable
+    public func modifyNamespace(registryId: String, namespaceName: String, isPublic: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
+        try await self.modifyNamespace(ModifyNamespaceRequest(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic), logger: logger, on: eventLoop)
+    }
 }

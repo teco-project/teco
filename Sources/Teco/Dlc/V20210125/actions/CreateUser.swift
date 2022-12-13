@@ -75,4 +75,16 @@ extension Dlc {
     public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
         try await self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建用户
+    @inlinable
+    public func createUser(userId: String, userDescription: String? = nil, policySet: [Policy]? = nil, userType: String? = nil, workGroupIds: [Int64]? = nil, userAlias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserResponse > {
+        self.createUser(CreateUserRequest(userId: userId, userDescription: userDescription, policySet: policySet, userType: userType, workGroupIds: workGroupIds, userAlias: userAlias), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建用户
+    @inlinable
+    public func createUser(userId: String, userDescription: String? = nil, policySet: [Policy]? = nil, userType: String? = nil, workGroupIds: [Int64]? = nil, userAlias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
+        try await self.createUser(CreateUserRequest(userId: userId, userDescription: userDescription, policySet: policySet, userType: userType, workGroupIds: workGroupIds, userAlias: userAlias), logger: logger, on: eventLoop)
+    }
 }

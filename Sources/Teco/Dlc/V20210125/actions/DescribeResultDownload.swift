@@ -79,4 +79,16 @@ extension Dlc {
     public func describeResultDownload(_ input: DescribeResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResultDownloadResponse {
         try await self.client.execute(action: "DescribeResultDownload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询结果下载任务
+    @inlinable
+    public func describeResultDownload(downloadId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResultDownloadResponse > {
+        self.describeResultDownload(DescribeResultDownloadRequest(downloadId: downloadId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询结果下载任务
+    @inlinable
+    public func describeResultDownload(downloadId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResultDownloadResponse {
+        try await self.describeResultDownload(DescribeResultDownloadRequest(downloadId: downloadId), logger: logger, on: eventLoop)
+    }
 }

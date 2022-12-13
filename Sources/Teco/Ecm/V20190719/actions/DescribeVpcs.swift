@@ -94,4 +94,20 @@ extension Ecm {
     public func describeVpcs(_ input: DescribeVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcsResponse {
         try await self.client.execute(action: "DescribeVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询VPC列表
+    ///
+    /// 查询私有网络列表
+    @inlinable
+    public func describeVpcs(vpcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, ecmRegion: String? = nil, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcsResponse > {
+        self.describeVpcs(DescribeVpcsRequest(vpcIds: vpcIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion, sort: sort), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询VPC列表
+    ///
+    /// 查询私有网络列表
+    @inlinable
+    public func describeVpcs(vpcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, ecmRegion: String? = nil, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcsResponse {
+        try await self.describeVpcs(DescribeVpcsRequest(vpcIds: vpcIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion, sort: sort), logger: logger, on: eventLoop)
+    }
 }

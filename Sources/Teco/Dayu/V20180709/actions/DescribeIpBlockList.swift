@@ -46,4 +46,16 @@ extension Dayu {
     public func describeIpBlockList(_ input: DescribeIpBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpBlockListResponse {
         try await self.client.execute(action: "DescribeIpBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取IP封堵列表
+    @inlinable
+    public func describeIpBlockList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpBlockListResponse > {
+        self.describeIpBlockList(DescribeIpBlockListRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取IP封堵列表
+    @inlinable
+    public func describeIpBlockList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpBlockListResponse {
+        try await self.describeIpBlockList(DescribeIpBlockListRequest(), logger: logger, on: eventLoop)
+    }
 }

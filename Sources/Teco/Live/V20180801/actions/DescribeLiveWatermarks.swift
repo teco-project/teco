@@ -54,4 +54,20 @@ extension Live {
     public func describeLiveWatermarks(_ input: DescribeLiveWatermarksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarksResponse {
         try await self.client.execute(action: "DescribeLiveWatermarks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询水印列表
+    ///
+    /// 查询水印列表。
+    @inlinable
+    public func describeLiveWatermarks(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveWatermarksResponse > {
+        self.describeLiveWatermarks(DescribeLiveWatermarksRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询水印列表
+    ///
+    /// 查询水印列表。
+    @inlinable
+    public func describeLiveWatermarks(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarksResponse {
+        try await self.describeLiveWatermarks(DescribeLiveWatermarksRequest(), logger: logger, on: eventLoop)
+    }
 }

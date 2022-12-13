@@ -57,4 +57,22 @@ extension Gse {
     public func describeUserQuotas(_ input: DescribeUserQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotasResponse {
         try await self.client.execute(action: "DescribeUserQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取用户配额
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeUserQuotas）用于获取用户配额
+    @inlinable
+    public func describeUserQuotas(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserQuotasResponse > {
+        self.describeUserQuotas(DescribeUserQuotasRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户配额
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeUserQuotas）用于获取用户配额
+    @inlinable
+    public func describeUserQuotas(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotasResponse {
+        try await self.describeUserQuotas(DescribeUserQuotasRequest(), logger: logger, on: eventLoop)
+    }
 }

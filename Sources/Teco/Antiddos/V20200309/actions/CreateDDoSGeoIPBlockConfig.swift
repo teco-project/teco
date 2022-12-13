@@ -55,4 +55,16 @@ extension Antiddos {
     public func createDDoSGeoIPBlockConfig(_ input: CreateDDoSGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSGeoIPBlockConfigResponse {
         try await self.client.execute(action: "CreateDDoSGeoIPBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加DDoS防护的区域封禁配置
+    @inlinable
+    public func createDDoSGeoIPBlockConfig(instanceId: String, dDoSGeoIPBlockConfig: DDoSGeoIPBlockConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDDoSGeoIPBlockConfigResponse > {
+        self.createDDoSGeoIPBlockConfig(CreateDDoSGeoIPBlockConfigRequest(instanceId: instanceId, dDoSGeoIPBlockConfig: dDoSGeoIPBlockConfig), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加DDoS防护的区域封禁配置
+    @inlinable
+    public func createDDoSGeoIPBlockConfig(instanceId: String, dDoSGeoIPBlockConfig: DDoSGeoIPBlockConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSGeoIPBlockConfigResponse {
+        try await self.createDDoSGeoIPBlockConfig(CreateDDoSGeoIPBlockConfigRequest(instanceId: instanceId, dDoSGeoIPBlockConfig: dDoSGeoIPBlockConfig), logger: logger, on: eventLoop)
+    }
 }

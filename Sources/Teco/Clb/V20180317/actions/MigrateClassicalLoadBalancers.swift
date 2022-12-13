@@ -61,4 +61,22 @@ extension Clb {
     public func migrateClassicalLoadBalancers(_ input: MigrateClassicalLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigrateClassicalLoadBalancersResponse {
         try await self.client.execute(action: "MigrateClassicalLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 传统型负载均衡迁移成(原应用型)负载均衡
+    ///
+    /// 本接口将传统型负载均衡迁移成(原应用型)负载均衡
+    /// 本接口为异步接口，接口成功返回后，可使用 DescribeLoadBalancers 接口查询负载均衡实例的状态（如创建中、正常），以确定是否创建成功。
+    @inlinable
+    public func migrateClassicalLoadBalancers(loadBalancerIds: [String], exclusiveCluster: ExclusiveCluster? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MigrateClassicalLoadBalancersResponse > {
+        self.migrateClassicalLoadBalancers(MigrateClassicalLoadBalancersRequest(loadBalancerIds: loadBalancerIds, exclusiveCluster: exclusiveCluster), logger: logger, on: eventLoop)
+    }
+    
+    /// 传统型负载均衡迁移成(原应用型)负载均衡
+    ///
+    /// 本接口将传统型负载均衡迁移成(原应用型)负载均衡
+    /// 本接口为异步接口，接口成功返回后，可使用 DescribeLoadBalancers 接口查询负载均衡实例的状态（如创建中、正常），以确定是否创建成功。
+    @inlinable
+    public func migrateClassicalLoadBalancers(loadBalancerIds: [String], exclusiveCluster: ExclusiveCluster? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigrateClassicalLoadBalancersResponse {
+        try await self.migrateClassicalLoadBalancers(MigrateClassicalLoadBalancersRequest(loadBalancerIds: loadBalancerIds, exclusiveCluster: exclusiveCluster), logger: logger, on: eventLoop)
+    }
 }

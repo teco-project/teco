@@ -60,4 +60,16 @@ extension Wedata {
     public func getIntegrationNodeColumnSchema(_ input: GetIntegrationNodeColumnSchemaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetIntegrationNodeColumnSchemaResponse {
         try await self.client.execute(action: "GetIntegrationNodeColumnSchema", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 提取数据集成节点字段Schema
+    @inlinable
+    public func getIntegrationNodeColumnSchema(columnContent: String? = nil, datasourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetIntegrationNodeColumnSchemaResponse > {
+        self.getIntegrationNodeColumnSchema(GetIntegrationNodeColumnSchemaRequest(columnContent: columnContent, datasourceType: datasourceType), logger: logger, on: eventLoop)
+    }
+    
+    /// 提取数据集成节点字段Schema
+    @inlinable
+    public func getIntegrationNodeColumnSchema(columnContent: String? = nil, datasourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetIntegrationNodeColumnSchemaResponse {
+        try await self.getIntegrationNodeColumnSchema(GetIntegrationNodeColumnSchemaRequest(columnContent: columnContent, datasourceType: datasourceType), logger: logger, on: eventLoop)
+    }
 }

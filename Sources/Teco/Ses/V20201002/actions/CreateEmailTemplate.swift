@@ -65,4 +65,22 @@ extension Ses {
     public func createEmailTemplate(_ input: CreateEmailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmailTemplateResponse {
         try await self.client.execute(action: "CreateEmailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建邮件模板
+    ///
+    /// 创建模板，该模板可以是TXT或者HTML，请注意如果HTML不要包含外部文件的CSS。模板中的变量使用 {{变量名}} 表示。
+    /// 注意：模板需要审核通过才可以使用。
+    @inlinable
+    public func createEmailTemplate(templateName: String, templateContent: TemplateContent, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEmailTemplateResponse > {
+        self.createEmailTemplate(CreateEmailTemplateRequest(templateName: templateName, templateContent: templateContent), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建邮件模板
+    ///
+    /// 创建模板，该模板可以是TXT或者HTML，请注意如果HTML不要包含外部文件的CSS。模板中的变量使用 {{变量名}} 表示。
+    /// 注意：模板需要审核通过才可以使用。
+    @inlinable
+    public func createEmailTemplate(templateName: String, templateContent: TemplateContent, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmailTemplateResponse {
+        try await self.createEmailTemplate(CreateEmailTemplateRequest(templateName: templateName, templateContent: templateContent), logger: logger, on: eventLoop)
+    }
 }

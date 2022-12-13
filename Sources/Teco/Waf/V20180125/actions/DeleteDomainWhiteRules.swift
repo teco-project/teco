@@ -60,4 +60,16 @@ extension Waf {
     public func deleteDomainWhiteRules(_ input: DeleteDomainWhiteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainWhiteRulesResponse {
         try await self.client.execute(action: "DeleteDomainWhiteRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除域名规则白名单
+    @inlinable
+    public func deleteDomainWhiteRules(domain: String, ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDomainWhiteRulesResponse > {
+        self.deleteDomainWhiteRules(DeleteDomainWhiteRulesRequest(domain: domain, ids: ids), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除域名规则白名单
+    @inlinable
+    public func deleteDomainWhiteRules(domain: String, ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainWhiteRulesResponse {
+        try await self.deleteDomainWhiteRules(DeleteDomainWhiteRulesRequest(domain: domain, ids: ids), logger: logger, on: eventLoop)
+    }
 }

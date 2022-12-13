@@ -94,4 +94,22 @@ extension Dcdb {
     public func grantAccountPrivileges(_ input: GrantAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantAccountPrivilegesResponse {
         try await self.client.execute(action: "GrantAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置账号权限
+    ///
+    /// 本接口（GrantAccountPrivileges）用于给云数据库账号赋权。
+    /// 注意：相同用户名，不同Host是不同的账号。
+    @inlinable
+    public func grantAccountPrivileges(instanceId: String, userName: String, host: String, dbName: String, privileges: [String], type: String? = nil, object: String? = nil, colName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GrantAccountPrivilegesResponse > {
+        self.grantAccountPrivileges(GrantAccountPrivilegesRequest(instanceId: instanceId, userName: userName, host: host, dbName: dbName, privileges: privileges, type: type, object: object, colName: colName), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置账号权限
+    ///
+    /// 本接口（GrantAccountPrivileges）用于给云数据库账号赋权。
+    /// 注意：相同用户名，不同Host是不同的账号。
+    @inlinable
+    public func grantAccountPrivileges(instanceId: String, userName: String, host: String, dbName: String, privileges: [String], type: String? = nil, object: String? = nil, colName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantAccountPrivilegesResponse {
+        try await self.grantAccountPrivileges(GrantAccountPrivilegesRequest(instanceId: instanceId, userName: userName, host: host, dbName: dbName, privileges: privileges, type: type, object: object, colName: colName), logger: logger, on: eventLoop)
+    }
 }

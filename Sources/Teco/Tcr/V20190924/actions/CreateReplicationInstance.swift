@@ -69,4 +69,16 @@ extension Tcr {
     public func createReplicationInstance(_ input: CreateReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationInstanceResponse {
         try await self.client.execute(action: "CreateReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建从实例
+    @inlinable
+    public func createReplicationInstance(registryId: String, replicationRegionId: UInt64? = nil, replicationRegionName: String? = nil, syncTag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReplicationInstanceResponse > {
+        self.createReplicationInstance(CreateReplicationInstanceRequest(registryId: registryId, replicationRegionId: replicationRegionId, replicationRegionName: replicationRegionName, syncTag: syncTag), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建从实例
+    @inlinable
+    public func createReplicationInstance(registryId: String, replicationRegionId: UInt64? = nil, replicationRegionName: String? = nil, syncTag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationInstanceResponse {
+        try await self.createReplicationInstance(CreateReplicationInstanceRequest(registryId: registryId, replicationRegionId: replicationRegionId, replicationRegionName: replicationRegionName, syncTag: syncTag), logger: logger, on: eventLoop)
+    }
 }

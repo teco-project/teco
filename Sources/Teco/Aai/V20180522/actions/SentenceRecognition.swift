@@ -98,4 +98,20 @@ extension Aai {
     public func sentenceRecognition(_ input: SentenceRecognitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SentenceRecognitionResponse {
         try await self.client.execute(action: "SentenceRecognition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 一句话识别
+    ///
+    /// 识别60s内的短语音，当音频放在请求body中传输时整个请求大小不能超过600KB，当音频以url方式传输时，音频时长不可超过60s。所有请求参数放在post的body中采用x-www-form-urlencoded（数据转换成一个字符串（name1=value1&name2=value2…）进行urlencode后）编码传输。现暂只支持中文普通话识别，支持识别8k(16k)的16bit的mp3或者wav音频。
+    @inlinable
+    public func sentenceRecognition(projectId: UInt64, subServiceType: UInt64, engSerViceType: String, sourceType: UInt64, voiceFormat: String, usrAudioKey: String, url: String? = nil, data: String? = nil, dataLen: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SentenceRecognitionResponse > {
+        self.sentenceRecognition(SentenceRecognitionRequest(projectId: projectId, subServiceType: subServiceType, engSerViceType: engSerViceType, sourceType: sourceType, voiceFormat: voiceFormat, usrAudioKey: usrAudioKey, url: url, data: data, dataLen: dataLen), logger: logger, on: eventLoop)
+    }
+    
+    /// 一句话识别
+    ///
+    /// 识别60s内的短语音，当音频放在请求body中传输时整个请求大小不能超过600KB，当音频以url方式传输时，音频时长不可超过60s。所有请求参数放在post的body中采用x-www-form-urlencoded（数据转换成一个字符串（name1=value1&name2=value2…）进行urlencode后）编码传输。现暂只支持中文普通话识别，支持识别8k(16k)的16bit的mp3或者wav音频。
+    @inlinable
+    public func sentenceRecognition(projectId: UInt64, subServiceType: UInt64, engSerViceType: String, sourceType: UInt64, voiceFormat: String, usrAudioKey: String, url: String? = nil, data: String? = nil, dataLen: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SentenceRecognitionResponse {
+        try await self.sentenceRecognition(SentenceRecognitionRequest(projectId: projectId, subServiceType: subServiceType, engSerViceType: engSerViceType, sourceType: sourceType, voiceFormat: voiceFormat, usrAudioKey: usrAudioKey, url: url, data: data, dataLen: dataLen), logger: logger, on: eventLoop)
+    }
 }

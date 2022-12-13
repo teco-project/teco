@@ -50,4 +50,16 @@ extension Yunjing {
     public func exportAttackLogs(_ input: ExportAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAttackLogsResponse {
         try await self.client.execute(action: "ExportAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导出网络攻击日志
+    @inlinable
+    public func exportAttackLogs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportAttackLogsResponse > {
+        self.exportAttackLogs(ExportAttackLogsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 导出网络攻击日志
+    @inlinable
+    public func exportAttackLogs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAttackLogsResponse {
+        try await self.exportAttackLogs(ExportAttackLogsRequest(), logger: logger, on: eventLoop)
+    }
 }

@@ -69,4 +69,20 @@ extension Apigateway {
     public func modifyIPStrategy(_ input: ModifyIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIPStrategyResponse {
         try await self.client.execute(action: "ModifyIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改服务IP策略
+    ///
+    /// 本接口（ModifyIPStrategy）用于修改服务IP策略。
+    @inlinable
+    public func modifyIPStrategy(serviceId: String, strategyId: String, strategyData: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIPStrategyResponse > {
+        self.modifyIPStrategy(ModifyIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, strategyData: strategyData), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改服务IP策略
+    ///
+    /// 本接口（ModifyIPStrategy）用于修改服务IP策略。
+    @inlinable
+    public func modifyIPStrategy(serviceId: String, strategyId: String, strategyData: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIPStrategyResponse {
+        try await self.modifyIPStrategy(ModifyIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, strategyData: strategyData), logger: logger, on: eventLoop)
+    }
 }

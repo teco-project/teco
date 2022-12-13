@@ -50,4 +50,16 @@ extension Gaap {
     public func disableGlobalDomain(_ input: DisableGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableGlobalDomainResponse {
         try await self.client.execute(action: "DisableGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 暂停域名解析
+    @inlinable
+    public func disableGlobalDomain(domainId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableGlobalDomainResponse > {
+        self.disableGlobalDomain(DisableGlobalDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
+    }
+    
+    /// 暂停域名解析
+    @inlinable
+    public func disableGlobalDomain(domainId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableGlobalDomainResponse {
+        try await self.disableGlobalDomain(DisableGlobalDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
+    }
 }

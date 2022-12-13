@@ -59,4 +59,16 @@ extension Redis {
     public func describeInstanceMonitorBigKeySizeDist(_ input: DescribeInstanceMonitorBigKeySizeDistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeySizeDistResponse {
         try await self.client.execute(action: "DescribeInstanceMonitorBigKeySizeDist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例大Key大小分布
+    @inlinable
+    public func describeInstanceMonitorBigKeySizeDist(instanceId: String, date: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorBigKeySizeDistResponse > {
+        self.describeInstanceMonitorBigKeySizeDist(DescribeInstanceMonitorBigKeySizeDistRequest(instanceId: instanceId, date: date), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例大Key大小分布
+    @inlinable
+    public func describeInstanceMonitorBigKeySizeDist(instanceId: String, date: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeySizeDistResponse {
+        try await self.describeInstanceMonitorBigKeySizeDist(DescribeInstanceMonitorBigKeySizeDistRequest(instanceId: instanceId, date: date), logger: logger, on: eventLoop)
+    }
 }

@@ -67,4 +67,16 @@ extension Tsf {
     public func updateHealthCheckSettings(_ input: UpdateHealthCheckSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateHealthCheckSettingsResponse {
         try await self.client.execute(action: "UpdateHealthCheckSettings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新健康检查配置
+    @inlinable
+    public func updateHealthCheckSettings(groupId: String, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateHealthCheckSettingsResponse > {
+        self.updateHealthCheckSettings(UpdateHealthCheckSettingsRequest(groupId: groupId, enableHealthCheck: enableHealthCheck, healthCheckSettings: healthCheckSettings), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新健康检查配置
+    @inlinable
+    public func updateHealthCheckSettings(groupId: String, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateHealthCheckSettingsResponse {
+        try await self.updateHealthCheckSettings(UpdateHealthCheckSettingsRequest(groupId: groupId, enableHealthCheck: enableHealthCheck, healthCheckSettings: healthCheckSettings), logger: logger, on: eventLoop)
+    }
 }

@@ -78,4 +78,20 @@ extension Tcss {
     public func describeComplianceAssetPolicyItemList(_ input: DescribeComplianceAssetPolicyItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetPolicyItemListResponse {
         try await self.client.execute(action: "DescribeComplianceAssetPolicyItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安全合规查询某资产下的检测项列表
+    ///
+    /// 查询某资产下的检测项列表
+    @inlinable
+    public func describeComplianceAssetPolicyItemList(customerAssetId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceAssetPolicyItemListResponse > {
+        self.describeComplianceAssetPolicyItemList(DescribeComplianceAssetPolicyItemListRequest(customerAssetId: customerAssetId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规查询某资产下的检测项列表
+    ///
+    /// 查询某资产下的检测项列表
+    @inlinable
+    public func describeComplianceAssetPolicyItemList(customerAssetId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetPolicyItemListResponse {
+        try await self.describeComplianceAssetPolicyItemList(DescribeComplianceAssetPolicyItemListRequest(customerAssetId: customerAssetId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

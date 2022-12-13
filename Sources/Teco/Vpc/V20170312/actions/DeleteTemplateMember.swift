@@ -59,4 +59,20 @@ extension Vpc {
     public func deleteTemplateMember(_ input: DeleteTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTemplateMemberResponse {
         try await self.client.execute(action: "DeleteTemplateMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除模板对象成员
+    ///
+    /// 删除模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
+    @inlinable
+    public func deleteTemplateMember(templateId: String, templateMember: [MemberInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTemplateMemberResponse > {
+        self.deleteTemplateMember(DeleteTemplateMemberRequest(templateId: templateId, templateMember: templateMember), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除模板对象成员
+    ///
+    /// 删除模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
+    @inlinable
+    public func deleteTemplateMember(templateId: String, templateMember: [MemberInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTemplateMemberResponse {
+        try await self.deleteTemplateMember(DeleteTemplateMemberRequest(templateId: templateId, templateMember: templateMember), logger: logger, on: eventLoop)
+    }
 }

@@ -88,4 +88,20 @@ extension Vod {
     public func createHeadTailTemplate(_ input: CreateHeadTailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHeadTailTemplateResponse {
         try await self.client.execute(action: "CreateHeadTailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建片头片尾模板
+    ///
+    /// 创建片头片尾模板。
+    @inlinable
+    public func createHeadTailTemplate(name: String, subAppId: UInt64? = nil, comment: String? = nil, headCandidateSet: [String]? = nil, tailCandidateSet: [String]? = nil, fillType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHeadTailTemplateResponse > {
+        self.createHeadTailTemplate(CreateHeadTailTemplateRequest(name: name, subAppId: subAppId, comment: comment, headCandidateSet: headCandidateSet, tailCandidateSet: tailCandidateSet, fillType: fillType), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建片头片尾模板
+    ///
+    /// 创建片头片尾模板。
+    @inlinable
+    public func createHeadTailTemplate(name: String, subAppId: UInt64? = nil, comment: String? = nil, headCandidateSet: [String]? = nil, tailCandidateSet: [String]? = nil, fillType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHeadTailTemplateResponse {
+        try await self.createHeadTailTemplate(CreateHeadTailTemplateRequest(name: name, subAppId: subAppId, comment: comment, headCandidateSet: headCandidateSet, tailCandidateSet: tailCandidateSet, fillType: fillType), logger: logger, on: eventLoop)
+    }
 }

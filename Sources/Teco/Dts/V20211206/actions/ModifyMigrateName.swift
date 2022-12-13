@@ -59,4 +59,20 @@ extension Dts {
     public func modifyMigrateName(_ input: ModifyMigrateNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateNameResponse {
         try await self.client.execute(action: "ModifyMigrateName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改迁移名称
+    ///
+    /// 修改迁移任务名
+    @inlinable
+    public func modifyMigrateName(jobId: String, jobName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrateNameResponse > {
+        self.modifyMigrateName(ModifyMigrateNameRequest(jobId: jobId, jobName: jobName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改迁移名称
+    ///
+    /// 修改迁移任务名
+    @inlinable
+    public func modifyMigrateName(jobId: String, jobName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateNameResponse {
+        try await self.modifyMigrateName(ModifyMigrateNameRequest(jobId: jobId, jobName: jobName), logger: logger, on: eventLoop)
+    }
 }

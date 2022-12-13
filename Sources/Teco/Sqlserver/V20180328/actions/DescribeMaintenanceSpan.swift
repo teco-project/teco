@@ -66,4 +66,20 @@ extension Sqlserver {
     public func describeMaintenanceSpan(_ input: DescribeMaintenanceSpanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintenanceSpanResponse {
         try await self.client.execute(action: "DescribeMaintenanceSpan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询该实例的可维护时间窗
+    ///
+    /// 本接口（DescribeMaintenanceSpan）根据实例ID查询该实例的可维护时间窗。
+    @inlinable
+    public func describeMaintenanceSpan(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMaintenanceSpanResponse > {
+        self.describeMaintenanceSpan(DescribeMaintenanceSpanRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询该实例的可维护时间窗
+    ///
+    /// 本接口（DescribeMaintenanceSpan）根据实例ID查询该实例的可维护时间窗。
+    @inlinable
+    public func describeMaintenanceSpan(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintenanceSpanResponse {
+        try await self.describeMaintenanceSpan(DescribeMaintenanceSpanRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

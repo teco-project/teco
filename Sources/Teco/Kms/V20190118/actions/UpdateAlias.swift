@@ -59,4 +59,20 @@ extension Kms {
     public func updateAlias(_ input: UpdateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAliasResponse {
         try await self.client.execute(action: "UpdateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改别名
+    ///
+    /// 用于修改CMK的别名。对于处于PendingDelete状态的CMK禁止修改。
+    @inlinable
+    public func updateAlias(alias: String, keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAliasResponse > {
+        self.updateAlias(UpdateAliasRequest(alias: alias, keyId: keyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改别名
+    ///
+    /// 用于修改CMK的别名。对于处于PendingDelete状态的CMK禁止修改。
+    @inlinable
+    public func updateAlias(alias: String, keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAliasResponse {
+        try await self.updateAlias(UpdateAliasRequest(alias: alias, keyId: keyId), logger: logger, on: eventLoop)
+    }
 }

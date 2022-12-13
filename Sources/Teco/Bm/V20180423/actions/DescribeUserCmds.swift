@@ -83,4 +83,16 @@ extension Bm {
     public func describeUserCmds(_ input: DescribeUserCmdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdsResponse {
         try await self.client.execute(action: "DescribeUserCmds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取自定义脚本信息列表
+    @inlinable
+    public func describeUserCmds(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, searchKey: String? = nil, cmdId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserCmdsResponse > {
+        self.describeUserCmds(DescribeUserCmdsRequest(offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey, cmdId: cmdId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取自定义脚本信息列表
+    @inlinable
+    public func describeUserCmds(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, searchKey: String? = nil, cmdId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdsResponse {
+        try await self.describeUserCmds(DescribeUserCmdsRequest(offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey, cmdId: cmdId), logger: logger, on: eventLoop)
+    }
 }

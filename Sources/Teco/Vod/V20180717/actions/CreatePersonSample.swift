@@ -93,4 +93,20 @@ extension Vod {
     public func createPersonSample(_ input: CreatePersonSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonSampleResponse {
         try await self.client.execute(action: "CreatePersonSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建素材样本
+    ///
+    /// 该接口用于创建素材样本，用于通过五官定位等技术，进行内容识别、不适宜视频识别等视频处理。
+    @inlinable
+    public func createPersonSample(name: String, usages: [String], subAppId: UInt64? = nil, description: String? = nil, faceContents: [String]? = nil, tags: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePersonSampleResponse > {
+        self.createPersonSample(CreatePersonSampleRequest(name: name, usages: usages, subAppId: subAppId, description: description, faceContents: faceContents, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建素材样本
+    ///
+    /// 该接口用于创建素材样本，用于通过五官定位等技术，进行内容识别、不适宜视频识别等视频处理。
+    @inlinable
+    public func createPersonSample(name: String, usages: [String], subAppId: UInt64? = nil, description: String? = nil, faceContents: [String]? = nil, tags: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonSampleResponse {
+        try await self.createPersonSample(CreatePersonSampleRequest(name: name, usages: usages, subAppId: subAppId, description: description, faceContents: faceContents, tags: tags), logger: logger, on: eventLoop)
+    }
 }

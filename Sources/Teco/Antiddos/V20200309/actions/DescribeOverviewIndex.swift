@@ -95,4 +95,16 @@ extension Antiddos {
     public func describeOverviewIndex(_ input: DescribeOverviewIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewIndexResponse {
         try await self.client.execute(action: "DescribeOverviewIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 拉取防护概览指标
+    @inlinable
+    public func describeOverviewIndex(startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewIndexResponse > {
+        self.describeOverviewIndex(DescribeOverviewIndexRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取防护概览指标
+    @inlinable
+    public func describeOverviewIndex(startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewIndexResponse {
+        try await self.describeOverviewIndex(DescribeOverviewIndexRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

@@ -67,4 +67,20 @@ extension Live {
     public func deleteLiveRecordRule(_ input: DeleteLiveRecordRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordRuleResponse {
         try await self.client.execute(action: "DeleteLiveRecordRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除录制规则
+    ///
+    /// 删除录制规则。
+    @inlinable
+    public func deleteLiveRecordRule(domainName: String, appName: String? = nil, streamName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveRecordRuleResponse > {
+        self.deleteLiveRecordRule(DeleteLiveRecordRuleRequest(domainName: domainName, appName: appName, streamName: streamName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除录制规则
+    ///
+    /// 删除录制规则。
+    @inlinable
+    public func deleteLiveRecordRule(domainName: String, appName: String? = nil, streamName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordRuleResponse {
+        try await self.deleteLiveRecordRule(DeleteLiveRecordRuleRequest(domainName: domainName, appName: appName, streamName: streamName), logger: logger, on: eventLoop)
+    }
 }

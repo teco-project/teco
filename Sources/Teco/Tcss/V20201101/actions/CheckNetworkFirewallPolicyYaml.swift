@@ -73,4 +73,16 @@ extension Tcss {
     public func checkNetworkFirewallPolicyYaml(_ input: CheckNetworkFirewallPolicyYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckNetworkFirewallPolicyYamlResponse {
         try await self.client.execute(action: "CheckNetworkFirewallPolicyYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 容器网络创建检查Yaml网络策略任务
+    @inlinable
+    public func checkNetworkFirewallPolicyYaml(clusterId: String, policyName: String, yaml: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckNetworkFirewallPolicyYamlResponse > {
+        self.checkNetworkFirewallPolicyYaml(CheckNetworkFirewallPolicyYamlRequest(clusterId: clusterId, policyName: policyName, yaml: yaml, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络创建检查Yaml网络策略任务
+    @inlinable
+    public func checkNetworkFirewallPolicyYaml(clusterId: String, policyName: String, yaml: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckNetworkFirewallPolicyYamlResponse {
+        try await self.checkNetworkFirewallPolicyYaml(CheckNetworkFirewallPolicyYamlRequest(clusterId: clusterId, policyName: policyName, yaml: yaml, description: description), logger: logger, on: eventLoop)
+    }
 }

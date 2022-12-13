@@ -74,4 +74,20 @@ extension Pts {
     public func describeSampleBatchQuery(_ input: DescribeSampleBatchQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleBatchQueryResponse {
         try await self.client.execute(action: "DescribeSampleBatchQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量查询指标
+    ///
+    /// 批量查询指标，返回固定时间点指标内容
+    @inlinable
+    public func describeSampleBatchQuery(jobId: String, scenarioId: String, queries: [InternalMetricQuery], projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSampleBatchQueryResponse > {
+        self.describeSampleBatchQuery(DescribeSampleBatchQueryRequest(jobId: jobId, scenarioId: scenarioId, queries: queries, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量查询指标
+    ///
+    /// 批量查询指标，返回固定时间点指标内容
+    @inlinable
+    public func describeSampleBatchQuery(jobId: String, scenarioId: String, queries: [InternalMetricQuery], projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleBatchQueryResponse {
+        try await self.describeSampleBatchQuery(DescribeSampleBatchQueryRequest(jobId: jobId, scenarioId: scenarioId, queries: queries, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

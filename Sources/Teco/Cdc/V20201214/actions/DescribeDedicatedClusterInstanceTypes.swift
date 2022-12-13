@@ -54,4 +54,16 @@ extension Cdc {
     public func describeDedicatedClusterInstanceTypes(_ input: DescribeDedicatedClusterInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterInstanceTypesResponse {
         try await self.client.execute(action: "DescribeDedicatedClusterInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询专用集群支持的实例规格列表
+    @inlinable
+    public func describeDedicatedClusterInstanceTypes(dedicatedClusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterInstanceTypesResponse > {
+        self.describeDedicatedClusterInstanceTypes(DescribeDedicatedClusterInstanceTypesRequest(dedicatedClusterId: dedicatedClusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专用集群支持的实例规格列表
+    @inlinable
+    public func describeDedicatedClusterInstanceTypes(dedicatedClusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterInstanceTypesResponse {
+        try await self.describeDedicatedClusterInstanceTypes(DescribeDedicatedClusterInstanceTypesRequest(dedicatedClusterId: dedicatedClusterId), logger: logger, on: eventLoop)
+    }
 }

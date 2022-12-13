@@ -80,4 +80,16 @@ extension Iecp {
     public func describeConfigMaps(_ input: DescribeConfigMapsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapsResponse {
         try await self.client.execute(action: "DescribeConfigMaps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取ConfigMap列表
+    @inlinable
+    public func describeConfigMaps(edgeUnitID: UInt64, offset: UInt64, limit: UInt64, configMapNamespace: String? = nil, namePattern: String? = nil, sort: FieldSort? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigMapsResponse > {
+        self.describeConfigMaps(DescribeConfigMapsRequest(edgeUnitID: edgeUnitID, offset: offset, limit: limit, configMapNamespace: configMapNamespace, namePattern: namePattern, sort: sort), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取ConfigMap列表
+    @inlinable
+    public func describeConfigMaps(edgeUnitID: UInt64, offset: UInt64, limit: UInt64, configMapNamespace: String? = nil, namePattern: String? = nil, sort: FieldSort? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapsResponse {
+        try await self.describeConfigMaps(DescribeConfigMapsRequest(edgeUnitID: edgeUnitID, offset: offset, limit: limit, configMapNamespace: configMapNamespace, namePattern: namePattern, sort: sort), logger: logger, on: eventLoop)
+    }
 }

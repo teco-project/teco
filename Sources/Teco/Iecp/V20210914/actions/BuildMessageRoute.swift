@@ -85,4 +85,16 @@ extension Iecp {
     public func buildMessageRoute(_ input: BuildMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BuildMessageRouteResponse {
         try await self.client.execute(action: "BuildMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 建立消息路由
+    @inlinable
+    public func buildMessageRoute(routeName: String, sourceProductID: String, sourceDeviceNameList: [String], topicFilter: String, mode: String, sourceUnitIDList: [String]? = nil, descript: String? = nil, targetOptions: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BuildMessageRouteResponse > {
+        self.buildMessageRoute(BuildMessageRouteRequest(routeName: routeName, sourceProductID: sourceProductID, sourceDeviceNameList: sourceDeviceNameList, topicFilter: topicFilter, mode: mode, sourceUnitIDList: sourceUnitIDList, descript: descript, targetOptions: targetOptions), logger: logger, on: eventLoop)
+    }
+    
+    /// 建立消息路由
+    @inlinable
+    public func buildMessageRoute(routeName: String, sourceProductID: String, sourceDeviceNameList: [String], topicFilter: String, mode: String, sourceUnitIDList: [String]? = nil, descript: String? = nil, targetOptions: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BuildMessageRouteResponse {
+        try await self.buildMessageRoute(BuildMessageRouteRequest(routeName: routeName, sourceProductID: sourceProductID, sourceDeviceNameList: sourceDeviceNameList, topicFilter: topicFilter, mode: mode, sourceUnitIDList: sourceUnitIDList, descript: descript, targetOptions: targetOptions), logger: logger, on: eventLoop)
+    }
 }

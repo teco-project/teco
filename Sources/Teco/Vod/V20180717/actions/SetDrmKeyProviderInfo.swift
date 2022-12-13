@@ -59,4 +59,20 @@ extension Vod {
     public func setDrmKeyProviderInfo(_ input: SetDrmKeyProviderInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDrmKeyProviderInfoResponse {
         try await self.client.execute(action: "SetDrmKeyProviderInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置 DRM 密钥提供商信息
+    ///
+    /// 设置 DRM 密钥提供商信息。
+    @inlinable
+    public func setDrmKeyProviderInfo(sdmcInfo: SDMCDrmKeyProviderInfo? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetDrmKeyProviderInfoResponse > {
+        self.setDrmKeyProviderInfo(SetDrmKeyProviderInfoRequest(sdmcInfo: sdmcInfo, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置 DRM 密钥提供商信息
+    ///
+    /// 设置 DRM 密钥提供商信息。
+    @inlinable
+    public func setDrmKeyProviderInfo(sdmcInfo: SDMCDrmKeyProviderInfo? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDrmKeyProviderInfoResponse {
+        try await self.setDrmKeyProviderInfo(SetDrmKeyProviderInfoRequest(sdmcInfo: sdmcInfo, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

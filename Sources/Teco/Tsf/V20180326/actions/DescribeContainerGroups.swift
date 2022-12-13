@@ -89,4 +89,16 @@ extension Tsf {
     public func describeContainerGroups(_ input: DescribeContainerGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupsResponse {
         try await self.client.execute(action: "DescribeContainerGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 容器部署组列表
+    @inlinable
+    public func describeContainerGroups(searchWord: String? = nil, applicationId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, namespaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerGroupsResponse > {
+        self.describeContainerGroups(DescribeContainerGroupsRequest(searchWord: searchWord, applicationId: applicationId, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 容器部署组列表
+    @inlinable
+    public func describeContainerGroups(searchWord: String? = nil, applicationId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, namespaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupsResponse {
+        try await self.describeContainerGroups(DescribeContainerGroupsRequest(searchWord: searchWord, applicationId: applicationId, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId), logger: logger, on: eventLoop)
+    }
 }

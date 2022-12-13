@@ -69,4 +69,20 @@ extension Wav {
     public func queryActivityList(_ input: QueryActivityListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryActivityListResponse {
         try await self.client.execute(action: "QueryActivityList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询活动列表接口
+    ///
+    /// 根据游标拉取活动列表信息
+    @inlinable
+    public func queryActivityList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryActivityListResponse > {
+        self.queryActivityList(QueryActivityListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询活动列表接口
+    ///
+    /// 根据游标拉取活动列表信息
+    @inlinable
+    public func queryActivityList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryActivityListResponse {
+        try await self.queryActivityList(QueryActivityListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    }
 }

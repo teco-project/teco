@@ -78,4 +78,20 @@ extension Teo {
     public func describeHostsSetting(_ input: DescribeHostsSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsSettingResponse {
         try await self.client.execute(action: "DescribeHostsSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询域名详细配置
+    ///
+    /// 用于查询域名配置信息
+    @inlinable
+    public func describeHostsSetting(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostsSettingResponse > {
+        self.describeHostsSetting(DescribeHostsSettingRequest(zoneId: zoneId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询域名详细配置
+    ///
+    /// 用于查询域名配置信息
+    @inlinable
+    public func describeHostsSetting(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsSettingResponse {
+        try await self.describeHostsSetting(DescribeHostsSettingRequest(zoneId: zoneId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

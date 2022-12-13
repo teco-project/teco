@@ -78,4 +78,20 @@ extension Tcss {
     public func describeAssetWebServiceList(_ input: DescribeAssetWebServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebServiceListResponse {
         try await self.client.execute(action: "DescribeAssetWebServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询web服务列表
+    ///
+    /// 容器安全查询web服务列表
+    @inlinable
+    public func describeAssetWebServiceList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetWebServiceListResponse > {
+        self.describeAssetWebServiceList(DescribeAssetWebServiceListRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询web服务列表
+    ///
+    /// 容器安全查询web服务列表
+    @inlinable
+    public func describeAssetWebServiceList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebServiceListResponse {
+        try await self.describeAssetWebServiceList(DescribeAssetWebServiceListRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

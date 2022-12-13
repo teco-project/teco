@@ -89,4 +89,20 @@ extension Cwp {
     public func describeExportMachines(_ input: DescribeExportMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportMachinesResponse {
         try await self.client.execute(action: "DescribeExportMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导出区域主机列表
+    ///
+    /// 本接口 (DescribeExportMachines) 用于导出区域主机列表。
+    @inlinable
+    public func describeExportMachines(machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, projectIds: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExportMachinesResponse > {
+        self.describeExportMachines(DescribeExportMachinesRequest(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters, projectIds: projectIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 导出区域主机列表
+    ///
+    /// 本接口 (DescribeExportMachines) 用于导出区域主机列表。
+    @inlinable
+    public func describeExportMachines(machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, projectIds: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportMachinesResponse {
+        try await self.describeExportMachines(DescribeExportMachinesRequest(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters, projectIds: projectIds), logger: logger, on: eventLoop)
+    }
 }

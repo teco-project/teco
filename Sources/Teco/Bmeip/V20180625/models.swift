@@ -95,7 +95,7 @@ extension Bmeip {
         /// 备注
         public let description: String
         
-        public init (ip: String, port: String, `protocol`: String, action: String, description: String) {
+        public init (ip: String, port: String, protocol: String, action: String, description: String) {
             self.ip = ip
             self.port = port
             self.`protocol` = `protocol`

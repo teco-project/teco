@@ -82,4 +82,16 @@ extension Cpdp {
     public func queryOpenBankRefundOrder(_ input: QueryOpenBankRefundOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankRefundOrderResponse {
         try await self.client.execute(action: "QueryOpenBankRefundOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-退款结果查询
+    @inlinable
+    public func queryOpenBankRefundOrder(channelMerchantId: String, outRefundId: String? = nil, channelRefundId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankRefundOrderResponse > {
+        self.queryOpenBankRefundOrder(QueryOpenBankRefundOrderRequest(channelMerchantId: channelMerchantId, outRefundId: outRefundId, channelRefundId: channelRefundId, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-退款结果查询
+    @inlinable
+    public func queryOpenBankRefundOrder(channelMerchantId: String, outRefundId: String? = nil, channelRefundId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankRefundOrderResponse {
+        try await self.queryOpenBankRefundOrder(QueryOpenBankRefundOrderRequest(channelMerchantId: channelMerchantId, outRefundId: outRefundId, channelRefundId: channelRefundId, environment: environment), logger: logger, on: eventLoop)
+    }
 }

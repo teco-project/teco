@@ -102,4 +102,16 @@ extension Tdid {
     public func getDeployInfo(_ input: GetDeployInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeployInfoResponse {
         try await self.client.execute(action: "GetDeployInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 合约部署详情
+    @inlinable
+    public func getDeployInfo(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeployInfoResponse > {
+        self.getDeployInfo(GetDeployInfoRequest(hash: hash), logger: logger, on: eventLoop)
+    }
+    
+    /// 合约部署详情
+    @inlinable
+    public func getDeployInfo(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeployInfoResponse {
+        try await self.getDeployInfo(GetDeployInfoRequest(hash: hash), logger: logger, on: eventLoop)
+    }
 }

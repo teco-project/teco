@@ -68,4 +68,20 @@ extension Batch {
     public func createComputeEnv(_ input: CreateComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateComputeEnvResponse {
         try await self.client.execute(action: "CreateComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建计算环境
+    ///
+    /// 用于创建计算环境
+    @inlinable
+    public func createComputeEnv(computeEnv: NamedComputeEnv, placement: Placement, clientToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateComputeEnvResponse > {
+        self.createComputeEnv(CreateComputeEnvRequest(computeEnv: computeEnv, placement: placement, clientToken: clientToken), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建计算环境
+    ///
+    /// 用于创建计算环境
+    @inlinable
+    public func createComputeEnv(computeEnv: NamedComputeEnv, placement: Placement, clientToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateComputeEnvResponse {
+        try await self.createComputeEnv(CreateComputeEnvRequest(computeEnv: computeEnv, placement: placement, clientToken: clientToken), logger: logger, on: eventLoop)
+    }
 }

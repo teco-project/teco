@@ -65,4 +65,16 @@ extension Cdwch {
     public func createBackUpSchedule(_ input: CreateBackUpScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackUpScheduleResponse {
         try await self.client.execute(action: "CreateBackUpSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建或者修改备份策略
+    @inlinable
+    public func createBackUpSchedule(scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBackUpScheduleResponse > {
+        self.createBackUpSchedule(CreateBackUpScheduleRequest(scheduleId: scheduleId, weekDays: weekDays, executeHour: executeHour, backUpTables: backUpTables), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建或者修改备份策略
+    @inlinable
+    public func createBackUpSchedule(scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackUpScheduleResponse {
+        try await self.createBackUpSchedule(CreateBackUpScheduleRequest(scheduleId: scheduleId, weekDays: weekDays, executeHour: executeHour, backUpTables: backUpTables), logger: logger, on: eventLoop)
+    }
 }

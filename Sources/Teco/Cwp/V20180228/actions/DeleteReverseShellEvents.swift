@@ -54,4 +54,20 @@ extension Cwp {
     public func deleteReverseShellEvents(_ input: DeleteReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellEventsResponse {
         try await self.client.execute(action: "DeleteReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除反弹Shell事件
+    ///
+    /// 根据Ids删除反弹Shell事件
+    @inlinable
+    public func deleteReverseShellEvents(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReverseShellEventsResponse > {
+        self.deleteReverseShellEvents(DeleteReverseShellEventsRequest(ids: ids), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除反弹Shell事件
+    ///
+    /// 根据Ids删除反弹Shell事件
+    @inlinable
+    public func deleteReverseShellEvents(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellEventsResponse {
+        try await self.deleteReverseShellEvents(DeleteReverseShellEventsRequest(ids: ids), logger: logger, on: eventLoop)
+    }
 }

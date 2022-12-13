@@ -54,4 +54,20 @@ extension Iotvideo {
     public func createTraceIds(_ input: CreateTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceIdsResponse {
         try await self.client.execute(action: "CreateTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 将设备加到白名单
+    ///
+    /// 本接口（CreateTraceIds）用于将设备加到日志跟踪白名单。
+    @inlinable
+    public func createTraceIds(tids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceIdsResponse > {
+        self.createTraceIds(CreateTraceIdsRequest(tids: tids), logger: logger, on: eventLoop)
+    }
+    
+    /// 将设备加到白名单
+    ///
+    /// 本接口（CreateTraceIds）用于将设备加到日志跟踪白名单。
+    @inlinable
+    public func createTraceIds(tids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceIdsResponse {
+        try await self.createTraceIds(CreateTraceIdsRequest(tids: tids), logger: logger, on: eventLoop)
+    }
 }

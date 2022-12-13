@@ -63,4 +63,20 @@ extension Iotvideo {
     public func getFirmwareURL(_ input: GetFirmwareURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFirmwareURLResponse {
         try await self.client.execute(action: "GetFirmwareURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取固件下载地址
+    ///
+    /// 本接口（GetFirmwareURL）用于获取固件存储的URL 
+    @inlinable
+    public func getFirmwareURL(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFirmwareURLResponse > {
+        self.getFirmwareURL(GetFirmwareURLRequest(productID: productID, firmwareVersion: firmwareVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取固件下载地址
+    ///
+    /// 本接口（GetFirmwareURL）用于获取固件存储的URL 
+    @inlinable
+    public func getFirmwareURL(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFirmwareURLResponse {
+        try await self.getFirmwareURL(GetFirmwareURLRequest(productID: productID, firmwareVersion: firmwareVersion), logger: logger, on: eventLoop)
+    }
 }

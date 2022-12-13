@@ -75,4 +75,16 @@ extension Tcb {
     public func modifyCloudBaseRunServerFlowConf(_ input: ModifyCloudBaseRunServerFlowConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCloudBaseRunServerFlowConfResponse {
         try await self.client.execute(action: "ModifyCloudBaseRunServerFlowConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改容器内的版本流量配置
+    @inlinable
+    public func modifyCloudBaseRunServerFlowConf(envId: String, serverName: String, versionFlowItems: [CloudBaseRunVersionFlowItem]? = nil, trafficType: String? = nil, operatorRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCloudBaseRunServerFlowConfResponse > {
+        self.modifyCloudBaseRunServerFlowConf(ModifyCloudBaseRunServerFlowConfRequest(envId: envId, serverName: serverName, versionFlowItems: versionFlowItems, trafficType: trafficType, operatorRemark: operatorRemark), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改容器内的版本流量配置
+    @inlinable
+    public func modifyCloudBaseRunServerFlowConf(envId: String, serverName: String, versionFlowItems: [CloudBaseRunVersionFlowItem]? = nil, trafficType: String? = nil, operatorRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCloudBaseRunServerFlowConfResponse {
+        try await self.modifyCloudBaseRunServerFlowConf(ModifyCloudBaseRunServerFlowConfRequest(envId: envId, serverName: serverName, versionFlowItems: versionFlowItems, trafficType: trafficType, operatorRemark: operatorRemark), logger: logger, on: eventLoop)
+    }
 }

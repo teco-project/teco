@@ -77,4 +77,16 @@ extension Tione {
     public func describeNotebookLifecycleScripts(_ input: DescribeNotebookLifecycleScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookLifecycleScriptsResponse {
         try await self.client.execute(action: "DescribeNotebookLifecycleScripts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看notebook生命周期脚本列表
+    @inlinable
+    public func describeNotebookLifecycleScripts(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, sortOrder: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNotebookLifecycleScriptsResponse > {
+        self.describeNotebookLifecycleScripts(DescribeNotebookLifecycleScriptsRequest(offset: offset, limit: limit, filters: filters, sortOrder: sortOrder), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看notebook生命周期脚本列表
+    @inlinable
+    public func describeNotebookLifecycleScripts(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, sortOrder: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookLifecycleScriptsResponse {
+        try await self.describeNotebookLifecycleScripts(DescribeNotebookLifecycleScriptsRequest(offset: offset, limit: limit, filters: filters, sortOrder: sortOrder), logger: logger, on: eventLoop)
+    }
 }

@@ -74,4 +74,20 @@ extension Bm {
     public func modifyPsaRegulation(_ input: ModifyPsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPsaRegulationResponse {
         try await self.client.execute(action: "ModifyPsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改预授权规则
+    ///
+    /// 允许修改规则信息及关联故障类型
+    @inlinable
+    public func modifyPsaRegulation(psaId: String, psaName: String? = nil, repairLimit: UInt64? = nil, psaDescription: String? = nil, taskTypeIds: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPsaRegulationResponse > {
+        self.modifyPsaRegulation(ModifyPsaRegulationRequest(psaId: psaId, psaName: psaName, repairLimit: repairLimit, psaDescription: psaDescription, taskTypeIds: taskTypeIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改预授权规则
+    ///
+    /// 允许修改规则信息及关联故障类型
+    @inlinable
+    public func modifyPsaRegulation(psaId: String, psaName: String? = nil, repairLimit: UInt64? = nil, psaDescription: String? = nil, taskTypeIds: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPsaRegulationResponse {
+        try await self.modifyPsaRegulation(ModifyPsaRegulationRequest(psaId: psaId, psaName: psaName, repairLimit: repairLimit, psaDescription: psaDescription, taskTypeIds: taskTypeIds), logger: logger, on: eventLoop)
+    }
 }

@@ -84,4 +84,20 @@ extension Tdmq {
     public func describePublisherSummary(_ input: DescribePublisherSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublisherSummaryResponse {
         try await self.client.execute(action: "DescribePublisherSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取消息生产概览
+    ///
+    /// 获取消息生产概览信息
+    @inlinable
+    public func describePublisherSummary(clusterId: String, namespace: String, topic: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublisherSummaryResponse > {
+        self.describePublisherSummary(DescribePublisherSummaryRequest(clusterId: clusterId, namespace: namespace, topic: topic), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取消息生产概览
+    ///
+    /// 获取消息生产概览信息
+    @inlinable
+    public func describePublisherSummary(clusterId: String, namespace: String, topic: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublisherSummaryResponse {
+        try await self.describePublisherSummary(DescribePublisherSummaryRequest(clusterId: clusterId, namespace: namespace, topic: topic), logger: logger, on: eventLoop)
+    }
 }

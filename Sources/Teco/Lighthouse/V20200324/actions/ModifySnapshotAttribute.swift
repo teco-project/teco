@@ -61,4 +61,22 @@ extension Lighthouse {
     public func modifySnapshotAttribute(_ input: ModifySnapshotAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotAttributeResponse {
         try await self.client.execute(action: "ModifySnapshotAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改快照信息
+    ///
+    /// 本接口（ModifySnapshotAttribute）用于修改指定快照的属性。
+    /// <li>“快照名称”仅为方便用户自己管理之用。</li>
+    @inlinable
+    public func modifySnapshotAttribute(snapshotId: String, snapshotName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySnapshotAttributeResponse > {
+        self.modifySnapshotAttribute(ModifySnapshotAttributeRequest(snapshotId: snapshotId, snapshotName: snapshotName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改快照信息
+    ///
+    /// 本接口（ModifySnapshotAttribute）用于修改指定快照的属性。
+    /// <li>“快照名称”仅为方便用户自己管理之用。</li>
+    @inlinable
+    public func modifySnapshotAttribute(snapshotId: String, snapshotName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotAttributeResponse {
+        try await self.modifySnapshotAttribute(ModifySnapshotAttributeRequest(snapshotId: snapshotId, snapshotName: snapshotName), logger: logger, on: eventLoop)
+    }
 }

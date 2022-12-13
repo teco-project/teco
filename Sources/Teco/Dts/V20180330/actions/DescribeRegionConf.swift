@@ -54,4 +54,20 @@ extension Dts {
     public func describeRegionConf(_ input: DescribeRegionConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionConfResponse {
         try await self.client.execute(action: "DescribeRegionConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询可售卖订阅地域
+    ///
+    /// 本接口（DescribeRegionConf）用于查询可售卖订阅实例的地域
+    @inlinable
+    public func describeRegionConf(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionConfResponse > {
+        self.describeRegionConf(DescribeRegionConfRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询可售卖订阅地域
+    ///
+    /// 本接口（DescribeRegionConf）用于查询可售卖订阅实例的地域
+    @inlinable
+    public func describeRegionConf(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionConfResponse {
+        try await self.describeRegionConf(DescribeRegionConfRequest(), logger: logger, on: eventLoop)
+    }
 }

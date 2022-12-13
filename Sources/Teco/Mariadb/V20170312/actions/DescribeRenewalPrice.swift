@@ -78,4 +78,20 @@ extension Mariadb {
     public func describeRenewalPrice(_ input: DescribeRenewalPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRenewalPriceResponse {
         try await self.client.execute(action: "DescribeRenewalPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 续费实例询价
+    ///
+    /// 本接口（DescribeRenewalPrice）用于在续费云数据库实例时，查询续费的价格。
+    @inlinable
+    public func describeRenewalPrice(instanceId: String, period: Int64? = nil, amountUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRenewalPriceResponse > {
+        self.describeRenewalPrice(DescribeRenewalPriceRequest(instanceId: instanceId, period: period, amountUnit: amountUnit), logger: logger, on: eventLoop)
+    }
+    
+    /// 续费实例询价
+    ///
+    /// 本接口（DescribeRenewalPrice）用于在续费云数据库实例时，查询续费的价格。
+    @inlinable
+    public func describeRenewalPrice(instanceId: String, period: Int64? = nil, amountUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRenewalPriceResponse {
+        try await self.describeRenewalPrice(DescribeRenewalPriceRequest(instanceId: instanceId, period: period, amountUnit: amountUnit), logger: logger, on: eventLoop)
+    }
 }

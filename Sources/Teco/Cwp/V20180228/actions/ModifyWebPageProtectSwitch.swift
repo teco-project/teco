@@ -64,4 +64,20 @@ extension Cwp {
     public func modifyWebPageProtectSwitch(_ input: ModifyWebPageProtectSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectSwitchResponse {
         try await self.client.execute(action: "ModifyWebPageProtectSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 网站防护设置开关
+    ///
+    /// 网站防篡改防护设置开关
+    @inlinable
+    public func modifyWebPageProtectSwitch(switchType: UInt64, ids: [String], status: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWebPageProtectSwitchResponse > {
+        self.modifyWebPageProtectSwitch(ModifyWebPageProtectSwitchRequest(switchType: switchType, ids: ids, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 网站防护设置开关
+    ///
+    /// 网站防篡改防护设置开关
+    @inlinable
+    public func modifyWebPageProtectSwitch(switchType: UInt64, ids: [String], status: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectSwitchResponse {
+        try await self.modifyWebPageProtectSwitch(ModifyWebPageProtectSwitchRequest(switchType: switchType, ids: ids, status: status), logger: logger, on: eventLoop)
+    }
 }

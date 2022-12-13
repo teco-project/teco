@@ -73,4 +73,20 @@ extension Cwp {
     public func describeProcessStatistics(_ input: DescribeProcessStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProcessStatisticsResponse {
         try await self.client.execute(action: "DescribeProcessStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取进程统计列表
+    ///
+    /// 本接口 (DescribeProcessStatistics) 用于获取进程统计列表数据。
+    @inlinable
+    public func describeProcessStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProcessStatisticsResponse > {
+        self.describeProcessStatistics(DescribeProcessStatisticsRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取进程统计列表
+    ///
+    /// 本接口 (DescribeProcessStatistics) 用于获取进程统计列表数据。
+    @inlinable
+    public func describeProcessStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProcessStatisticsResponse {
+        try await self.describeProcessStatistics(DescribeProcessStatisticsRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

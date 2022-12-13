@@ -59,4 +59,20 @@ extension Vpc {
     public func deleteAssistantCidr(_ input: DeleteAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAssistantCidrResponse {
         try await self.client.execute(action: "DeleteAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除辅助CIDR
+    ///
+    /// 本接口(DeleteAssistantCidr)用于删除辅助CIDR。
+    @inlinable
+    public func deleteAssistantCidr(vpcId: String, cidrBlocks: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAssistantCidrResponse > {
+        self.deleteAssistantCidr(DeleteAssistantCidrRequest(vpcId: vpcId, cidrBlocks: cidrBlocks), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除辅助CIDR
+    ///
+    /// 本接口(DeleteAssistantCidr)用于删除辅助CIDR。
+    @inlinable
+    public func deleteAssistantCidr(vpcId: String, cidrBlocks: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAssistantCidrResponse {
+        try await self.deleteAssistantCidr(DeleteAssistantCidrRequest(vpcId: vpcId, cidrBlocks: cidrBlocks), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,16 @@ extension Gme {
     public func deleteScanUser(_ input: DeleteScanUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanUserResponse {
         try await self.client.execute(action: "DeleteScanUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除自定义送检用户
+    @inlinable
+    public func deleteScanUser(bizId: UInt64, userId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScanUserResponse > {
+        self.deleteScanUser(DeleteScanUserRequest(bizId: bizId, userId: userId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除自定义送检用户
+    @inlinable
+    public func deleteScanUser(bizId: UInt64, userId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanUserResponse {
+        try await self.deleteScanUser(DeleteScanUserRequest(bizId: bizId, userId: userId), logger: logger, on: eventLoop)
+    }
 }

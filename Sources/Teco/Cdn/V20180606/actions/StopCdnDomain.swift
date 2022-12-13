@@ -57,4 +57,22 @@ extension Cdn {
     public func stopCdnDomain(_ input: StopCdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopCdnDomainResponse {
         try await self.client.execute(action: "StopCdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停用加速域名
+    ///
+    /// StopCdnDomain 用于停止域名的加速服务。
+    /// 注意：停止加速服务后，访问至加速节点的请求将会直接返回 404。为避免对您的业务造成影响，请在停止加速服务前将解析切走。
+    @inlinable
+    public func stopCdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopCdnDomainResponse > {
+        self.stopCdnDomain(StopCdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
+    }
+    
+    /// 停用加速域名
+    ///
+    /// StopCdnDomain 用于停止域名的加速服务。
+    /// 注意：停止加速服务后，访问至加速节点的请求将会直接返回 404。为避免对您的业务造成影响，请在停止加速服务前将解析切走。
+    @inlinable
+    public func stopCdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopCdnDomainResponse {
+        try await self.stopCdnDomain(StopCdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
+    }
 }

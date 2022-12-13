@@ -87,4 +87,22 @@ extension Iotvideoindustry {
     public func updateRecordPlan(_ input: UpdateRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRecordPlanResponse {
         try await self.client.execute(action: "UpdateRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新录制计划（旧）
+    ///
+    /// 本接口(UpdateRecordPlan)用于更新录制计划。
+    /// 请使用 ModifyRecordingPlan接口和ModifyBindRecordingPlan接口
+    @inlinable
+    public func updateRecordPlan(planId: String, name: String? = nil, timeTemplateId: String? = nil, eventId: Int64? = nil, devices: [DeviceItem]? = nil, isModifyDevices: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRecordPlanResponse > {
+        self.updateRecordPlan(UpdateRecordPlanRequest(planId: planId, name: name, timeTemplateId: timeTemplateId, eventId: eventId, devices: devices, isModifyDevices: isModifyDevices), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新录制计划（旧）
+    ///
+    /// 本接口(UpdateRecordPlan)用于更新录制计划。
+    /// 请使用 ModifyRecordingPlan接口和ModifyBindRecordingPlan接口
+    @inlinable
+    public func updateRecordPlan(planId: String, name: String? = nil, timeTemplateId: String? = nil, eventId: Int64? = nil, devices: [DeviceItem]? = nil, isModifyDevices: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRecordPlanResponse {
+        try await self.updateRecordPlan(UpdateRecordPlanRequest(planId: planId, name: name, timeTemplateId: timeTemplateId, eventId: eventId, devices: devices, isModifyDevices: isModifyDevices), logger: logger, on: eventLoop)
+    }
 }

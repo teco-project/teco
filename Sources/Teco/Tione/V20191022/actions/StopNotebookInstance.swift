@@ -50,4 +50,16 @@ extension Tione {
     public func stopNotebookInstance(_ input: StopNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopNotebookInstanceResponse {
         try await self.client.execute(action: "StopNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停止Notebook实例
+    @inlinable
+    public func stopNotebookInstance(notebookInstanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopNotebookInstanceResponse > {
+        self.stopNotebookInstance(StopNotebookInstanceRequest(notebookInstanceName: notebookInstanceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 停止Notebook实例
+    @inlinable
+    public func stopNotebookInstance(notebookInstanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopNotebookInstanceResponse {
+        try await self.stopNotebookInstance(StopNotebookInstanceRequest(notebookInstanceName: notebookInstanceName), logger: logger, on: eventLoop)
+    }
 }

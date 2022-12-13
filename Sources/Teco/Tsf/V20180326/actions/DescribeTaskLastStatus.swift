@@ -58,4 +58,20 @@ extension Tsf {
     public func describeTaskLastStatus(_ input: DescribeTaskLastStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLastStatusResponse {
         try await self.client.execute(action: "DescribeTaskLastStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看任务最近执行批次状态
+    ///
+    /// 查询任务最近一次执行状态
+    @inlinable
+    public func describeTaskLastStatus(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskLastStatusResponse > {
+        self.describeTaskLastStatus(DescribeTaskLastStatusRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看任务最近执行批次状态
+    ///
+    /// 查询任务最近一次执行状态
+    @inlinable
+    public func describeTaskLastStatus(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLastStatusResponse {
+        try await self.describeTaskLastStatus(DescribeTaskLastStatusRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

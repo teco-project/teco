@@ -85,4 +85,20 @@ extension Youmall {
     public func describePersonArrivedMall(_ input: DescribePersonArrivedMallRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonArrivedMallResponse {
         try await self.client.execute(action: "DescribePersonArrivedMall", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询客户到场信息
+    ///
+    /// 输出开始时间到结束时间段内的进出场数据。不做按天聚合的情况下，每次进出场，产生一条进出场数据。
+    @inlinable
+    public func describePersonArrivedMall(mallId: String, personId: String, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonArrivedMallResponse > {
+        self.describePersonArrivedMall(DescribePersonArrivedMallRequest(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询客户到场信息
+    ///
+    /// 输出开始时间到结束时间段内的进出场数据。不做按天聚合的情况下，每次进出场，产生一条进出场数据。
+    @inlinable
+    public func describePersonArrivedMall(mallId: String, personId: String, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonArrivedMallResponse {
+        try await self.describePersonArrivedMall(DescribePersonArrivedMallRequest(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

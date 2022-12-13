@@ -80,4 +80,20 @@ extension Vpc {
     public func describeCustomerGateways(_ input: DescribeCustomerGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomerGatewaysResponse {
         try await self.client.execute(action: "DescribeCustomerGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询对端网关
+    ///
+    /// 本接口（DescribeCustomerGateways）用于查询对端网关列表。
+    @inlinable
+    public func describeCustomerGateways(customerGatewayIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomerGatewaysResponse > {
+        self.describeCustomerGateways(DescribeCustomerGatewaysRequest(customerGatewayIds: customerGatewayIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询对端网关
+    ///
+    /// 本接口（DescribeCustomerGateways）用于查询对端网关列表。
+    @inlinable
+    public func describeCustomerGateways(customerGatewayIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomerGatewaysResponse {
+        try await self.describeCustomerGateways(DescribeCustomerGatewaysRequest(customerGatewayIds: customerGatewayIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

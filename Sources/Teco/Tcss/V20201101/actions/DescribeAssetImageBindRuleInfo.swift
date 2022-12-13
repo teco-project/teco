@@ -85,4 +85,20 @@ extension Tcss {
     public func describeAssetImageBindRuleInfo(_ input: DescribeAssetImageBindRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageBindRuleInfoResponse {
         try await self.client.execute(action: "DescribeAssetImageBindRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 镜像绑定规则列表
+    ///
+    /// 镜像绑定规则列表信息，包含运行时访问控制和异常进程公用
+    @inlinable
+    public func describeAssetImageBindRuleInfo(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageBindRuleInfoResponse > {
+        self.describeAssetImageBindRuleInfo(DescribeAssetImageBindRuleInfoRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像绑定规则列表
+    ///
+    /// 镜像绑定规则列表信息，包含运行时访问控制和异常进程公用
+    @inlinable
+    public func describeAssetImageBindRuleInfo(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageBindRuleInfoResponse {
+        try await self.describeAssetImageBindRuleInfo(DescribeAssetImageBindRuleInfoRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,16 @@ extension Iotvideoindustry {
     public func describeMonitorDataByDate(_ input: DescribeMonitorDataByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorDataByDateResponse {
         try await self.client.execute(action: "DescribeMonitorDataByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运营中心-设备录像存储统计
+    @inlinable
+    public func describeMonitorDataByDate(startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorDataByDateResponse > {
+        self.describeMonitorDataByDate(DescribeMonitorDataByDateRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 运营中心-设备录像存储统计
+    @inlinable
+    public func describeMonitorDataByDate(startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorDataByDateResponse {
+        try await self.describeMonitorDataByDate(DescribeMonitorDataByDateRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

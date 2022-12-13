@@ -87,4 +87,24 @@ extension Vpc {
     public func createCcn(_ input: CreateCcnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCcnResponse {
         try await self.client.execute(action: "CreateCcn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建CCN
+    ///
+    /// 本接口（CreateCcn）用于创建云联网（CCN）。<br />
+    /// * 创建云联网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
+    /// * 每个账号能创建的云联网实例个数是有限的，详请参考产品文档。如果需要扩充请联系在线客服。
+    @inlinable
+    public func createCcn(ccnName: String, ccnDescription: String? = nil, qosLevel: String? = nil, instanceChargeType: String? = nil, bandwidthLimitType: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCcnResponse > {
+        self.createCcn(CreateCcnRequest(ccnName: ccnName, ccnDescription: ccnDescription, qosLevel: qosLevel, instanceChargeType: instanceChargeType, bandwidthLimitType: bandwidthLimitType, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建CCN
+    ///
+    /// 本接口（CreateCcn）用于创建云联网（CCN）。<br />
+    /// * 创建云联网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
+    /// * 每个账号能创建的云联网实例个数是有限的，详请参考产品文档。如果需要扩充请联系在线客服。
+    @inlinable
+    public func createCcn(ccnName: String, ccnDescription: String? = nil, qosLevel: String? = nil, instanceChargeType: String? = nil, bandwidthLimitType: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCcnResponse {
+        try await self.createCcn(CreateCcnRequest(ccnName: ccnName, ccnDescription: ccnDescription, qosLevel: qosLevel, instanceChargeType: instanceChargeType, bandwidthLimitType: bandwidthLimitType, tags: tags), logger: logger, on: eventLoop)
+    }
 }

@@ -119,4 +119,16 @@ extension Solar {
     public func describeCustomers(_ input: DescribeCustomersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomersResponse {
         try await self.client.execute(action: "DescribeCustomers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询客户档案列表
+    @inlinable
+    public func describeCustomers(queryType: String, groupId: String? = nil, markFlag: Int64? = nil, tagIds: String? = nil, relChannelFlag: String? = nil, needPhoneFlag: Int64? = nil, province: String? = nil, city: String? = nil, sex: String? = nil, keyWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subProjectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomersResponse > {
+        self.describeCustomers(DescribeCustomersRequest(queryType: queryType, groupId: groupId, markFlag: markFlag, tagIds: tagIds, relChannelFlag: relChannelFlag, needPhoneFlag: needPhoneFlag, province: province, city: city, sex: sex, keyWord: keyWord, offset: offset, limit: limit, subProjectId: subProjectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询客户档案列表
+    @inlinable
+    public func describeCustomers(queryType: String, groupId: String? = nil, markFlag: Int64? = nil, tagIds: String? = nil, relChannelFlag: String? = nil, needPhoneFlag: Int64? = nil, province: String? = nil, city: String? = nil, sex: String? = nil, keyWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subProjectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomersResponse {
+        try await self.describeCustomers(DescribeCustomersRequest(queryType: queryType, groupId: groupId, markFlag: markFlag, tagIds: tagIds, relChannelFlag: relChannelFlag, needPhoneFlag: needPhoneFlag, province: province, city: city, sex: sex, keyWord: keyWord, offset: offset, limit: limit, subProjectId: subProjectId), logger: logger, on: eventLoop)
+    }
 }

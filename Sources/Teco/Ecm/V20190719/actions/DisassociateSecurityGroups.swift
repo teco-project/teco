@@ -55,4 +55,16 @@ extension Ecm {
     public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {
         try await self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解绑安全组
+    @inlinable
+    public func disassociateSecurityGroups(securityGroupIds: [String], instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateSecurityGroupsResponse > {
+        self.disassociateSecurityGroups(DisassociateSecurityGroupsRequest(securityGroupIds: securityGroupIds, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑安全组
+    @inlinable
+    public func disassociateSecurityGroups(securityGroupIds: [String], instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {
+        try await self.disassociateSecurityGroups(DisassociateSecurityGroupsRequest(securityGroupIds: securityGroupIds, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

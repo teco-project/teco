@@ -94,4 +94,20 @@ extension Tsf {
     public func addInstances(_ input: AddInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddInstancesResponse {
         try await self.client.execute(action: "AddInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 集群导入云主机
+    ///
+    /// 添加云主机节点至TSF集群
+    @inlinable
+    public func addInstances(clusterId: String, instanceIdList: [String], osName: String? = nil, imageId: String? = nil, password: String? = nil, keyId: String? = nil, sgId: String? = nil, instanceImportMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddInstancesResponse > {
+        self.addInstances(AddInstancesRequest(clusterId: clusterId, instanceIdList: instanceIdList, osName: osName, imageId: imageId, password: password, keyId: keyId, sgId: sgId, instanceImportMode: instanceImportMode), logger: logger, on: eventLoop)
+    }
+    
+    /// 集群导入云主机
+    ///
+    /// 添加云主机节点至TSF集群
+    @inlinable
+    public func addInstances(clusterId: String, instanceIdList: [String], osName: String? = nil, imageId: String? = nil, password: String? = nil, keyId: String? = nil, sgId: String? = nil, instanceImportMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddInstancesResponse {
+        try await self.addInstances(AddInstancesRequest(clusterId: clusterId, instanceIdList: instanceIdList, osName: osName, imageId: imageId, password: password, keyId: keyId, sgId: sgId, instanceImportMode: instanceImportMode), logger: logger, on: eventLoop)
+    }
 }

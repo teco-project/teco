@@ -64,4 +64,20 @@ extension Vpc {
     public func modifyAddressTemplateGroupAttribute(_ input: ModifyAddressTemplateGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressTemplateGroupAttributeResponse {
         try await self.client.execute(action: "ModifyAddressTemplateGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改IP地址模板集合
+    ///
+    /// 本接口（ModifyAddressTemplateGroupAttribute）用于修改IP地址模板集合
+    @inlinable
+    public func modifyAddressTemplateGroupAttribute(addressTemplateGroupId: String, addressTemplateGroupName: String? = nil, addressTemplateIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAddressTemplateGroupAttributeResponse > {
+        self.modifyAddressTemplateGroupAttribute(ModifyAddressTemplateGroupAttributeRequest(addressTemplateGroupId: addressTemplateGroupId, addressTemplateGroupName: addressTemplateGroupName, addressTemplateIds: addressTemplateIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改IP地址模板集合
+    ///
+    /// 本接口（ModifyAddressTemplateGroupAttribute）用于修改IP地址模板集合
+    @inlinable
+    public func modifyAddressTemplateGroupAttribute(addressTemplateGroupId: String, addressTemplateGroupName: String? = nil, addressTemplateIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressTemplateGroupAttributeResponse {
+        try await self.modifyAddressTemplateGroupAttribute(ModifyAddressTemplateGroupAttributeRequest(addressTemplateGroupId: addressTemplateGroupId, addressTemplateGroupName: addressTemplateGroupName, addressTemplateIds: addressTemplateIds), logger: logger, on: eventLoop)
+    }
 }

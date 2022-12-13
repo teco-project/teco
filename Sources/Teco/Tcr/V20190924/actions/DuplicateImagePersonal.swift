@@ -63,4 +63,20 @@ extension Tcr {
     public func duplicateImagePersonal(_ input: DuplicateImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DuplicateImagePersonalResponse {
         try await self.client.execute(action: "DuplicateImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 复制个人版仓库镜像版本
+    ///
+    /// 用于在个人版镜像仓库中复制镜像版本
+    @inlinable
+    public func duplicateImagePersonal(srcImage: String, destImage: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DuplicateImagePersonalResponse > {
+        self.duplicateImagePersonal(DuplicateImagePersonalRequest(srcImage: srcImage, destImage: destImage), logger: logger, on: eventLoop)
+    }
+    
+    /// 复制个人版仓库镜像版本
+    ///
+    /// 用于在个人版镜像仓库中复制镜像版本
+    @inlinable
+    public func duplicateImagePersonal(srcImage: String, destImage: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DuplicateImagePersonalResponse {
+        try await self.duplicateImagePersonal(DuplicateImagePersonalRequest(srcImage: srcImage, destImage: destImage), logger: logger, on: eventLoop)
+    }
 }

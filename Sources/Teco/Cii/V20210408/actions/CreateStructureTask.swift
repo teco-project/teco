@@ -90,4 +90,20 @@ extension Cii {
     public func createStructureTask(_ input: CreateStructureTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStructureTaskResponse {
         try await self.client.execute(action: "CreateStructureTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新建结构化任务
+    ///
+    /// 本接口(CreateStructureTask)基于提供的客户及保单信息，创建并启动结构化识别任务。
+    @inlinable
+    public func createStructureTask(serviceType: String, taskInfos: [CreateStructureTaskInfo], policyId: String? = nil, triggerType: String? = nil, insuranceTypes: [String]? = nil, callbackUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStructureTaskResponse > {
+        self.createStructureTask(CreateStructureTaskRequest(serviceType: serviceType, taskInfos: taskInfos, policyId: policyId, triggerType: triggerType, insuranceTypes: insuranceTypes, callbackUrl: callbackUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 新建结构化任务
+    ///
+    /// 本接口(CreateStructureTask)基于提供的客户及保单信息，创建并启动结构化识别任务。
+    @inlinable
+    public func createStructureTask(serviceType: String, taskInfos: [CreateStructureTaskInfo], policyId: String? = nil, triggerType: String? = nil, insuranceTypes: [String]? = nil, callbackUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStructureTaskResponse {
+        try await self.createStructureTask(CreateStructureTaskRequest(serviceType: serviceType, taskInfos: taskInfos, policyId: policyId, triggerType: triggerType, insuranceTypes: insuranceTypes, callbackUrl: callbackUrl), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,20 @@ extension Sqlserver {
     public func createBackup(_ input: CreateBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
         try await self.client.execute(action: "CreateBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建备份
+    ///
+    /// 本接口(CreateBackup)用于创建备份。
+    @inlinable
+    public func createBackup(strategy: Int64? = nil, dbNames: [String]? = nil, instanceId: String? = nil, backupName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBackupResponse > {
+        self.createBackup(CreateBackupRequest(strategy: strategy, dbNames: dbNames, instanceId: instanceId, backupName: backupName), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建备份
+    ///
+    /// 本接口(CreateBackup)用于创建备份。
+    @inlinable
+    public func createBackup(strategy: Int64? = nil, dbNames: [String]? = nil, instanceId: String? = nil, backupName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
+        try await self.createBackup(CreateBackupRequest(strategy: strategy, dbNames: dbNames, instanceId: instanceId, backupName: backupName), logger: logger, on: eventLoop)
+    }
 }

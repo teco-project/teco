@@ -98,4 +98,20 @@ extension Cynosdb {
     public func exportInstanceSlowQueries(_ input: ExportInstanceSlowQueriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportInstanceSlowQueriesResponse {
         try await self.client.execute(action: "ExportInstanceSlowQueries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导出实例慢日志
+    ///
+    /// 此接口（ExportInstanceSlowQueries）用于导出实例慢日志。
+    @inlinable
+    public func exportInstanceSlowQueries(instanceId: String, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, username: String? = nil, host: String? = nil, database: String? = nil, fileType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportInstanceSlowQueriesResponse > {
+        self.exportInstanceSlowQueries(ExportInstanceSlowQueriesRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, limit: limit, offset: offset, username: username, host: host, database: database, fileType: fileType), logger: logger, on: eventLoop)
+    }
+    
+    /// 导出实例慢日志
+    ///
+    /// 此接口（ExportInstanceSlowQueries）用于导出实例慢日志。
+    @inlinable
+    public func exportInstanceSlowQueries(instanceId: String, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, username: String? = nil, host: String? = nil, database: String? = nil, fileType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportInstanceSlowQueriesResponse {
+        try await self.exportInstanceSlowQueries(ExportInstanceSlowQueriesRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, limit: limit, offset: offset, username: username, host: host, database: database, fileType: fileType), logger: logger, on: eventLoop)
+    }
 }

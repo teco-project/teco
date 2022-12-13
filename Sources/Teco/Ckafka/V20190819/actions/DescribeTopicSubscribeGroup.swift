@@ -69,4 +69,16 @@ extension Ckafka {
     public func describeTopicSubscribeGroup(_ input: DescribeTopicSubscribeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicSubscribeGroupResponse {
         try await self.client.execute(action: "DescribeTopicSubscribeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询订阅某主题消息分组信息
+    @inlinable
+    public func describeTopicSubscribeGroup(instanceId: String, topicName: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicSubscribeGroupResponse > {
+        self.describeTopicSubscribeGroup(DescribeTopicSubscribeGroupRequest(instanceId: instanceId, topicName: topicName, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询订阅某主题消息分组信息
+    @inlinable
+    public func describeTopicSubscribeGroup(instanceId: String, topicName: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicSubscribeGroupResponse {
+        try await self.describeTopicSubscribeGroup(DescribeTopicSubscribeGroupRequest(instanceId: instanceId, topicName: topicName, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

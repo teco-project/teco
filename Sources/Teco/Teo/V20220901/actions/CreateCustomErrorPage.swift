@@ -73,4 +73,20 @@ extension Teo {
     public func createCustomErrorPage(_ input: CreateCustomErrorPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomErrorPageResponse {
         try await self.client.execute(action: "CreateCustomErrorPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建自定义页
+    ///
+    /// 创建自定义规则的自定义页
+    @inlinable
+    public func createCustomErrorPage(zoneId: String, entity: String, name: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomErrorPageResponse > {
+        self.createCustomErrorPage(CreateCustomErrorPageRequest(zoneId: zoneId, entity: entity, name: name, content: content), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建自定义页
+    ///
+    /// 创建自定义规则的自定义页
+    @inlinable
+    public func createCustomErrorPage(zoneId: String, entity: String, name: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomErrorPageResponse {
+        try await self.createCustomErrorPage(CreateCustomErrorPageRequest(zoneId: zoneId, entity: entity, name: name, content: content), logger: logger, on: eventLoop)
+    }
 }

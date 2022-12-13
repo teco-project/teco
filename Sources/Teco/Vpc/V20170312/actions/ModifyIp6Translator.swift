@@ -59,4 +59,20 @@ extension Vpc {
     public func modifyIp6Translator(_ input: ModifyIp6TranslatorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIp6TranslatorResponse {
         try await self.client.execute(action: "ModifyIp6Translator", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改IP6转换实例属性
+    ///
+    /// 该接口用于修改IP6转换实例属性，当前仅支持修改实例名称。
+    @inlinable
+    public func modifyIp6Translator(ip6TranslatorId: String, ip6TranslatorName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIp6TranslatorResponse > {
+        self.modifyIp6Translator(ModifyIp6TranslatorRequest(ip6TranslatorId: ip6TranslatorId, ip6TranslatorName: ip6TranslatorName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改IP6转换实例属性
+    ///
+    /// 该接口用于修改IP6转换实例属性，当前仅支持修改实例名称。
+    @inlinable
+    public func modifyIp6Translator(ip6TranslatorId: String, ip6TranslatorName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIp6TranslatorResponse {
+        try await self.modifyIp6Translator(ModifyIp6TranslatorRequest(ip6TranslatorId: ip6TranslatorId, ip6TranslatorName: ip6TranslatorName), logger: logger, on: eventLoop)
+    }
 }

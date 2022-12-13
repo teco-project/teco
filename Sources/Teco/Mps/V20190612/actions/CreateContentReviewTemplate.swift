@@ -91,4 +91,20 @@ extension Mps {
     public func createContentReviewTemplate(_ input: CreateContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContentReviewTemplateResponse {
         try await self.client.execute(action: "CreateContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建内容审核模板
+    ///
+    /// 创建用户自定义内容审核模板，数量上限：50。
+    @inlinable
+    public func createContentReviewTemplate(name: String? = nil, comment: String? = nil, pornConfigure: PornConfigureInfo? = nil, terrorismConfigure: TerrorismConfigureInfo? = nil, politicalConfigure: PoliticalConfigureInfo? = nil, prohibitedConfigure: ProhibitedConfigureInfo? = nil, userDefineConfigure: UserDefineConfigureInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateContentReviewTemplateResponse > {
+        self.createContentReviewTemplate(CreateContentReviewTemplateRequest(name: name, comment: comment, pornConfigure: pornConfigure, terrorismConfigure: terrorismConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建内容审核模板
+    ///
+    /// 创建用户自定义内容审核模板，数量上限：50。
+    @inlinable
+    public func createContentReviewTemplate(name: String? = nil, comment: String? = nil, pornConfigure: PornConfigureInfo? = nil, terrorismConfigure: TerrorismConfigureInfo? = nil, politicalConfigure: PoliticalConfigureInfo? = nil, prohibitedConfigure: ProhibitedConfigureInfo? = nil, userDefineConfigure: UserDefineConfigureInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContentReviewTemplateResponse {
+        try await self.createContentReviewTemplate(CreateContentReviewTemplateRequest(name: name, comment: comment, pornConfigure: pornConfigure, terrorismConfigure: terrorismConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure), logger: logger, on: eventLoop)
+    }
 }

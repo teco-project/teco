@@ -79,4 +79,16 @@ extension Monitor {
     public func createGrafanaInstance(_ input: CreateGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaInstanceResponse {
         try await self.client.execute(action: "CreateGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建 Grafana 实例
+    @inlinable
+    public func createGrafanaInstance(instanceName: String, vpcId: String, subnetIds: [String], grafanaInitPassword: String, enableInternet: Bool, tagSpecification: [PrometheusTag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGrafanaInstanceResponse > {
+        self.createGrafanaInstance(CreateGrafanaInstanceRequest(instanceName: instanceName, vpcId: vpcId, subnetIds: subnetIds, grafanaInitPassword: grafanaInitPassword, enableInternet: enableInternet, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建 Grafana 实例
+    @inlinable
+    public func createGrafanaInstance(instanceName: String, vpcId: String, subnetIds: [String], grafanaInitPassword: String, enableInternet: Bool, tagSpecification: [PrometheusTag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaInstanceResponse {
+        try await self.createGrafanaInstance(CreateGrafanaInstanceRequest(instanceName: instanceName, vpcId: vpcId, subnetIds: subnetIds, grafanaInitPassword: grafanaInitPassword, enableInternet: enableInternet, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    }
 }

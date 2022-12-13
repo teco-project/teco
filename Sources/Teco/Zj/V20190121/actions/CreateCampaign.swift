@@ -88,4 +88,20 @@ extension Zj {
     public func createCampaign(_ input: CreateCampaignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCampaignResponse {
         try await self.client.execute(action: "CreateCampaign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建短信活动
+    ///
+    /// 创建短信推送活动
+    @inlinable
+    public func createCampaign(license: String, sendTime: Int64, name: String, strategies: [PaasStrategy]? = nil, templateId: Int64? = nil, crowdID: Int64? = nil, smsType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCampaignResponse > {
+        self.createCampaign(CreateCampaignRequest(license: license, sendTime: sendTime, name: name, strategies: strategies, templateId: templateId, crowdID: crowdID, smsType: smsType), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建短信活动
+    ///
+    /// 创建短信推送活动
+    @inlinable
+    public func createCampaign(license: String, sendTime: Int64, name: String, strategies: [PaasStrategy]? = nil, templateId: Int64? = nil, crowdID: Int64? = nil, smsType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCampaignResponse {
+        try await self.createCampaign(CreateCampaignRequest(license: license, sendTime: sendTime, name: name, strategies: strategies, templateId: templateId, crowdID: crowdID, smsType: smsType), logger: logger, on: eventLoop)
+    }
 }

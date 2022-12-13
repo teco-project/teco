@@ -60,4 +60,16 @@ extension Monitor {
     public func installPlugins(_ input: InstallPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallPluginsResponse {
         try await self.client.execute(action: "InstallPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安装 Grafana Plugin
+    @inlinable
+    public func installPlugins(plugins: [GrafanaPlugin], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstallPluginsResponse > {
+        self.installPlugins(InstallPluginsRequest(plugins: plugins, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 安装 Grafana Plugin
+    @inlinable
+    public func installPlugins(plugins: [GrafanaPlugin], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallPluginsResponse {
+        try await self.installPlugins(InstallPluginsRequest(plugins: plugins, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

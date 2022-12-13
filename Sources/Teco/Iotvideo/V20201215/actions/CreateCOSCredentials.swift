@@ -83,4 +83,16 @@ extension Iotvideo {
     public func createCOSCredentials(_ input: CreateCOSCredentialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCOSCredentialsResponse {
         try await self.client.execute(action: "CreateCOSCredentials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建COS上传密钥
+    @inlinable
+    public func createCOSCredentials(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCOSCredentialsResponse > {
+        self.createCOSCredentials(CreateCOSCredentialsRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建COS上传密钥
+    @inlinable
+    public func createCOSCredentials(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCOSCredentialsResponse {
+        try await self.createCOSCredentials(CreateCOSCredentialsRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
 }

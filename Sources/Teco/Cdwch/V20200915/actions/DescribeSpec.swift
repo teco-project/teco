@@ -77,4 +77,20 @@ extension Cdwch {
     public func describeSpec(_ input: DescribeSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecResponse {
         try await self.client.execute(action: "DescribeSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取集群规格
+    ///
+    /// 购买页拉取集群的数据节点和zookeeper节点的规格列表
+    @inlinable
+    public func describeSpec(zone: String, payMode: String? = nil, isElastic: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpecResponse > {
+        self.describeSpec(DescribeSpecRequest(zone: zone, payMode: payMode, isElastic: isElastic), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群规格
+    ///
+    /// 购买页拉取集群的数据节点和zookeeper节点的规格列表
+    @inlinable
+    public func describeSpec(zone: String, payMode: String? = nil, isElastic: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecResponse {
+        try await self.describeSpec(DescribeSpecRequest(zone: zone, payMode: payMode, isElastic: isElastic), logger: logger, on: eventLoop)
+    }
 }

@@ -67,4 +67,20 @@ extension Cfs {
     public func updateCfsFileSystemPGroup(_ input: UpdateCfsFileSystemPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsFileSystemPGroupResponse {
         try await self.client.execute(action: "UpdateCfsFileSystemPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新文件系统的权限组
+    ///
+    /// 本接口（UpdateCfsFileSystemPGroup）用于更新文件系统所使用的权限组
+    @inlinable
+    public func updateCfsFileSystemPGroup(pGroupId: String, fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCfsFileSystemPGroupResponse > {
+        self.updateCfsFileSystemPGroup(UpdateCfsFileSystemPGroupRequest(pGroupId: pGroupId, fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新文件系统的权限组
+    ///
+    /// 本接口（UpdateCfsFileSystemPGroup）用于更新文件系统所使用的权限组
+    @inlinable
+    public func updateCfsFileSystemPGroup(pGroupId: String, fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsFileSystemPGroupResponse {
+        try await self.updateCfsFileSystemPGroup(UpdateCfsFileSystemPGroupRequest(pGroupId: pGroupId, fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    }
 }

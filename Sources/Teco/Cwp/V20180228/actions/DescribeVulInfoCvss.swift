@@ -139,4 +139,20 @@ extension Cwp {
     public func describeVulInfoCvss(_ input: DescribeVulInfoCvssRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulInfoCvssResponse {
         try await self.client.execute(action: "DescribeVulInfoCvss", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 漏洞详情
+    ///
+    /// 漏洞详情，带CVSS版本
+    @inlinable
+    public func describeVulInfoCvss(vulId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulInfoCvssResponse > {
+        self.describeVulInfoCvss(DescribeVulInfoCvssRequest(vulId: vulId), logger: logger, on: eventLoop)
+    }
+    
+    /// 漏洞详情
+    ///
+    /// 漏洞详情，带CVSS版本
+    @inlinable
+    public func describeVulInfoCvss(vulId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulInfoCvssResponse {
+        try await self.describeVulInfoCvss(DescribeVulInfoCvssRequest(vulId: vulId), logger: logger, on: eventLoop)
+    }
 }

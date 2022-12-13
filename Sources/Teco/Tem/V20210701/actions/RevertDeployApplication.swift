@@ -59,4 +59,16 @@ extension Tem {
     public func revertDeployApplication(_ input: RevertDeployApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevertDeployApplicationResponse {
         try await self.client.execute(action: "RevertDeployApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 回滚分批发布
+    @inlinable
+    public func revertDeployApplication(applicationId: String? = nil, environmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevertDeployApplicationResponse > {
+        self.revertDeployApplication(RevertDeployApplicationRequest(applicationId: applicationId, environmentId: environmentId), logger: logger, on: eventLoop)
+    }
+    
+    /// 回滚分批发布
+    @inlinable
+    public func revertDeployApplication(applicationId: String? = nil, environmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevertDeployApplicationResponse {
+        try await self.revertDeployApplication(RevertDeployApplicationRequest(applicationId: applicationId, environmentId: environmentId), logger: logger, on: eventLoop)
+    }
 }

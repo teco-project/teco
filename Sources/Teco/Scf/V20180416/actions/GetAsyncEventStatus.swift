@@ -58,4 +58,20 @@ extension Scf {
     public func getAsyncEventStatus(_ input: GetAsyncEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsyncEventStatusResponse {
         try await self.client.execute(action: "GetAsyncEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取函数异步事件状态
+    ///
+    /// 获取函数异步执行事件状态，事件状态保留 3 * 24 小时（从事件完成开始计时）。
+    @inlinable
+    public func getAsyncEventStatus(invokeRequestId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAsyncEventStatusResponse > {
+        self.getAsyncEventStatus(GetAsyncEventStatusRequest(invokeRequestId: invokeRequestId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取函数异步事件状态
+    ///
+    /// 获取函数异步执行事件状态，事件状态保留 3 * 24 小时（从事件完成开始计时）。
+    @inlinable
+    public func getAsyncEventStatus(invokeRequestId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsyncEventStatusResponse {
+        try await self.getAsyncEventStatus(GetAsyncEventStatusRequest(invokeRequestId: invokeRequestId), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,16 @@ extension Tcr {
     public func deleteWebhookTrigger(_ input: DeleteWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWebhookTriggerResponse {
         try await self.client.execute(action: "DeleteWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除触发器
+    @inlinable
+    public func deleteWebhookTrigger(registryId: String, namespace: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWebhookTriggerResponse > {
+        self.deleteWebhookTrigger(DeleteWebhookTriggerRequest(registryId: registryId, namespace: namespace, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除触发器
+    @inlinable
+    public func deleteWebhookTrigger(registryId: String, namespace: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWebhookTriggerResponse {
+        try await self.deleteWebhookTrigger(DeleteWebhookTriggerRequest(registryId: registryId, namespace: namespace, id: id), logger: logger, on: eventLoop)
+    }
 }

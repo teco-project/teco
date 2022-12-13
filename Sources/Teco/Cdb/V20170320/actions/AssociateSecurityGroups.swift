@@ -64,4 +64,20 @@ extension Cdb {
     public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
         try await self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安全组批量绑定云资源
+    ///
+    /// 本接口(AssociateSecurityGroups)用于安全组批量绑定实例。
+    @inlinable
+    public func associateSecurityGroups(securityGroupId: String, instanceIds: [String], forReadonlyInstance: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateSecurityGroupsResponse > {
+        self.associateSecurityGroups(AssociateSecurityGroupsRequest(securityGroupId: securityGroupId, instanceIds: instanceIds, forReadonlyInstance: forReadonlyInstance), logger: logger, on: eventLoop)
+    }
+    
+    /// 安全组批量绑定云资源
+    ///
+    /// 本接口(AssociateSecurityGroups)用于安全组批量绑定实例。
+    @inlinable
+    public func associateSecurityGroups(securityGroupId: String, instanceIds: [String], forReadonlyInstance: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
+        try await self.associateSecurityGroups(AssociateSecurityGroupsRequest(securityGroupId: securityGroupId, instanceIds: instanceIds, forReadonlyInstance: forReadonlyInstance), logger: logger, on: eventLoop)
+    }
 }

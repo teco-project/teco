@@ -84,4 +84,20 @@ extension Kms {
     public func getServiceStatus(_ input: GetServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceStatusResponse {
         try await self.client.execute(action: "GetServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询服务状态
+    ///
+    /// 用于查询该用户是否已开通KMS服务
+    @inlinable
+    public func getServiceStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetServiceStatusResponse > {
+        self.getServiceStatus(GetServiceStatusRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务状态
+    ///
+    /// 用于查询该用户是否已开通KMS服务
+    @inlinable
+    public func getServiceStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceStatusResponse {
+        try await self.getServiceStatus(GetServiceStatusRequest(), logger: logger, on: eventLoop)
+    }
 }

@@ -70,4 +70,16 @@ extension Cam {
     public func updateOIDCConfig(_ input: UpdateOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOIDCConfigResponse {
         try await self.client.execute(action: "UpdateOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改角色OIDC配置
+    @inlinable
+    public func updateOIDCConfig(identityUrl: String, identityKey: String, clientId: [String], name: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateOIDCConfigResponse > {
+        self.updateOIDCConfig(UpdateOIDCConfigRequest(identityUrl: identityUrl, identityKey: identityKey, clientId: clientId, name: name, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改角色OIDC配置
+    @inlinable
+    public func updateOIDCConfig(identityUrl: String, identityKey: String, clientId: [String], name: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOIDCConfigResponse {
+        try await self.updateOIDCConfig(UpdateOIDCConfigRequest(identityUrl: identityUrl, identityKey: identityKey, clientId: clientId, name: name, description: description), logger: logger, on: eventLoop)
+    }
 }

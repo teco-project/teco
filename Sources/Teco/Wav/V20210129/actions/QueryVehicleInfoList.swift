@@ -74,4 +74,20 @@ extension Wav {
     public func queryVehicleInfoList(_ input: QueryVehicleInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryVehicleInfoListResponse {
         try await self.client.execute(action: "QueryVehicleInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询车系车型信息列表接口
+    ///
+    /// 企业可通过此接口获取企微SaaS平台上的车系车型信息。
+    @inlinable
+    public func queryVehicleInfoList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryVehicleInfoListResponse > {
+        self.queryVehicleInfoList(QueryVehicleInfoListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询车系车型信息列表接口
+    ///
+    /// 企业可通过此接口获取企微SaaS平台上的车系车型信息。
+    @inlinable
+    public func queryVehicleInfoList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryVehicleInfoListResponse {
+        try await self.queryVehicleInfoList(QueryVehicleInfoListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    }
 }

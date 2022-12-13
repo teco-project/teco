@@ -80,4 +80,16 @@ extension Iecp {
     public func createSecret(_ input: CreateSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecretResponse {
         try await self.client.execute(action: "CreateSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建Secret
+    @inlinable
+    public func createSecret(edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, secretType: String? = nil, dockerConfigJson: String? = nil, cloudData: [KeyValueObj]? = nil, dockerConfig: DockerConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecretResponse > {
+        self.createSecret(CreateSecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, secretNamespace: secretNamespace, secretType: secretType, dockerConfigJson: dockerConfigJson, cloudData: cloudData, dockerConfig: dockerConfig), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建Secret
+    @inlinable
+    public func createSecret(edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, secretType: String? = nil, dockerConfigJson: String? = nil, cloudData: [KeyValueObj]? = nil, dockerConfig: DockerConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecretResponse {
+        try await self.createSecret(CreateSecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, secretNamespace: secretNamespace, secretType: secretType, dockerConfigJson: dockerConfigJson, cloudData: cloudData, dockerConfig: dockerConfig), logger: logger, on: eventLoop)
+    }
 }

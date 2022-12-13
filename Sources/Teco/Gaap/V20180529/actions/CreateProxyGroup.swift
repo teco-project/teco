@@ -93,4 +93,20 @@ extension Gaap {
     public func createProxyGroup(_ input: CreateProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxyGroupResponse {
         try await self.client.execute(action: "CreateProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建通道组
+    ///
+    /// 本接口（CreateProxyGroup）用于创建通道组。
+    @inlinable
+    public func createProxyGroup(projectId: UInt64, groupName: String, realServerRegion: String, tagSet: [TagPair]? = nil, accessRegionSet: [AccessConfiguration]? = nil, ipAddressVersion: String? = nil, packageType: String? = nil, http3Supported: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProxyGroupResponse > {
+        self.createProxyGroup(CreateProxyGroupRequest(projectId: projectId, groupName: groupName, realServerRegion: realServerRegion, tagSet: tagSet, accessRegionSet: accessRegionSet, ipAddressVersion: ipAddressVersion, packageType: packageType, http3Supported: http3Supported), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建通道组
+    ///
+    /// 本接口（CreateProxyGroup）用于创建通道组。
+    @inlinable
+    public func createProxyGroup(projectId: UInt64, groupName: String, realServerRegion: String, tagSet: [TagPair]? = nil, accessRegionSet: [AccessConfiguration]? = nil, ipAddressVersion: String? = nil, packageType: String? = nil, http3Supported: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxyGroupResponse {
+        try await self.createProxyGroup(CreateProxyGroupRequest(projectId: projectId, groupName: groupName, realServerRegion: realServerRegion, tagSet: tagSet, accessRegionSet: accessRegionSet, ipAddressVersion: ipAddressVersion, packageType: packageType, http3Supported: http3Supported), logger: logger, on: eventLoop)
+    }
 }

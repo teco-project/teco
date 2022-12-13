@@ -66,4 +66,20 @@ extension Yunjing {
     public func describeVulScanResult(_ input: DescribeVulScanResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanResultResponse {
         try await self.client.execute(action: "DescribeVulScanResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取漏洞检测结果
+    ///
+    /// 本接口 (DescribeVulScanResult) 用于获取漏洞检测结果。
+    @inlinable
+    public func describeVulScanResult(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulScanResultResponse > {
+        self.describeVulScanResult(DescribeVulScanResultRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取漏洞检测结果
+    ///
+    /// 本接口 (DescribeVulScanResult) 用于获取漏洞检测结果。
+    @inlinable
+    public func describeVulScanResult(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanResultResponse {
+        try await self.describeVulScanResult(DescribeVulScanResultRequest(), logger: logger, on: eventLoop)
+    }
 }

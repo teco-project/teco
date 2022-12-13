@@ -65,4 +65,16 @@ extension Bm {
     public func modifyUserCmd(_ input: ModifyUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserCmdResponse {
         try await self.client.execute(action: "ModifyUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改自定义脚本
+    @inlinable
+    public func modifyUserCmd(cmdId: String, alias: String? = nil, osType: String? = nil, content: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserCmdResponse > {
+        self.modifyUserCmd(ModifyUserCmdRequest(cmdId: cmdId, alias: alias, osType: osType, content: content), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改自定义脚本
+    @inlinable
+    public func modifyUserCmd(cmdId: String, alias: String? = nil, osType: String? = nil, content: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserCmdResponse {
+        try await self.modifyUserCmd(ModifyUserCmdRequest(cmdId: cmdId, alias: alias, osType: osType, content: content), logger: logger, on: eventLoop)
+    }
 }

@@ -94,4 +94,16 @@ extension Ckafka {
     public func modifyInstanceAttributes(_ input: ModifyInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAttributesResponse {
         try await self.client.execute(action: "ModifyInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置实例属性
+    @inlinable
+    public func modifyInstanceAttributes(instanceId: String, msgRetentionTime: Int64? = nil, instanceName: String? = nil, config: ModifyInstanceAttributesConfig? = nil, dynamicRetentionConfig: DynamicRetentionTime? = nil, rebalanceTime: Int64? = nil, publicNetwork: Int64? = nil, dynamicDiskConfig: DynamicDiskConfig? = nil, maxMessageByte: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceAttributesResponse > {
+        self.modifyInstanceAttributes(ModifyInstanceAttributesRequest(instanceId: instanceId, msgRetentionTime: msgRetentionTime, instanceName: instanceName, config: config, dynamicRetentionConfig: dynamicRetentionConfig, rebalanceTime: rebalanceTime, publicNetwork: publicNetwork, dynamicDiskConfig: dynamicDiskConfig, maxMessageByte: maxMessageByte), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置实例属性
+    @inlinable
+    public func modifyInstanceAttributes(instanceId: String, msgRetentionTime: Int64? = nil, instanceName: String? = nil, config: ModifyInstanceAttributesConfig? = nil, dynamicRetentionConfig: DynamicRetentionTime? = nil, rebalanceTime: Int64? = nil, publicNetwork: Int64? = nil, dynamicDiskConfig: DynamicDiskConfig? = nil, maxMessageByte: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAttributesResponse {
+        try await self.modifyInstanceAttributes(ModifyInstanceAttributesRequest(instanceId: instanceId, msgRetentionTime: msgRetentionTime, instanceName: instanceName, config: config, dynamicRetentionConfig: dynamicRetentionConfig, rebalanceTime: rebalanceTime, publicNetwork: publicNetwork, dynamicDiskConfig: dynamicDiskConfig, maxMessageByte: maxMessageByte), logger: logger, on: eventLoop)
+    }
 }

@@ -90,4 +90,20 @@ extension Tke {
     public func upgradeClusterInstances(_ input: UpgradeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeClusterInstancesResponse {
         try await self.client.execute(action: "UpgradeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 集群节点升级
+    ///
+    /// 给集群的一批work节点进行升级 
+    @inlinable
+    public func upgradeClusterInstances(clusterId: String, operation: String, upgradeType: String? = nil, instanceIds: [String]? = nil, resetParam: UpgradeNodeResetParam? = nil, skipPreCheck: Bool? = nil, maxNotReadyPercent: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeClusterInstancesResponse > {
+        self.upgradeClusterInstances(UpgradeClusterInstancesRequest(clusterId: clusterId, operation: operation, upgradeType: upgradeType, instanceIds: instanceIds, resetParam: resetParam, skipPreCheck: skipPreCheck, maxNotReadyPercent: maxNotReadyPercent), logger: logger, on: eventLoop)
+    }
+    
+    /// 集群节点升级
+    ///
+    /// 给集群的一批work节点进行升级 
+    @inlinable
+    public func upgradeClusterInstances(clusterId: String, operation: String, upgradeType: String? = nil, instanceIds: [String]? = nil, resetParam: UpgradeNodeResetParam? = nil, skipPreCheck: Bool? = nil, maxNotReadyPercent: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeClusterInstancesResponse {
+        try await self.upgradeClusterInstances(UpgradeClusterInstancesRequest(clusterId: clusterId, operation: operation, upgradeType: upgradeType, instanceIds: instanceIds, resetParam: resetParam, skipPreCheck: skipPreCheck, maxNotReadyPercent: maxNotReadyPercent), logger: logger, on: eventLoop)
+    }
 }

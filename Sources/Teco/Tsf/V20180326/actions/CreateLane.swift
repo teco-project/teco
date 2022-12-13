@@ -70,4 +70,16 @@ extension Tsf {
     public func createLane(_ input: CreateLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneResponse {
         try await self.client.execute(action: "CreateLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建泳道
+    @inlinable
+    public func createLane(laneName: String, remark: String, laneGroupList: [LaneGroup], programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLaneResponse > {
+        self.createLane(CreateLaneRequest(laneName: laneName, remark: remark, laneGroupList: laneGroupList, programIdList: programIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建泳道
+    @inlinable
+    public func createLane(laneName: String, remark: String, laneGroupList: [LaneGroup], programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneResponse {
+        try await self.createLane(CreateLaneRequest(laneName: laneName, remark: remark, laneGroupList: laneGroupList, programIdList: programIdList), logger: logger, on: eventLoop)
+    }
 }

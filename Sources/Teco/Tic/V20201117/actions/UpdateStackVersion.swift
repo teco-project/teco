@@ -69,4 +69,20 @@ extension Tic {
     public func updateStackVersion(_ input: UpdateStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackVersionResponse {
         try await self.client.execute(action: "UpdateStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新资源栈版本的内容
+    ///
+    /// 本接口（UpdateStackVersion）用于更新一个版本的模版内容，名称或描述，模版仅限COS URL，且为zip格式。
+    @inlinable
+    public func updateStackVersion(versionId: String, templateUrl: String, versionName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateStackVersionResponse > {
+        self.updateStackVersion(UpdateStackVersionRequest(versionId: versionId, templateUrl: templateUrl, versionName: versionName, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新资源栈版本的内容
+    ///
+    /// 本接口（UpdateStackVersion）用于更新一个版本的模版内容，名称或描述，模版仅限COS URL，且为zip格式。
+    @inlinable
+    public func updateStackVersion(versionId: String, templateUrl: String, versionName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackVersionResponse {
+        try await self.updateStackVersion(UpdateStackVersionRequest(versionId: versionId, templateUrl: templateUrl, versionName: versionName, description: description), logger: logger, on: eventLoop)
+    }
 }

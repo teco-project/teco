@@ -50,4 +50,20 @@ extension Vpc {
     public func describeTemplateLimits(_ input: DescribeTemplateLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateLimitsResponse {
         try await self.client.execute(action: "DescribeTemplateLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询参数模板配额列表
+    ///
+    /// 本接口（DescribeTemplateLimits）用于查询参数模板配额列表。
+    @inlinable
+    public func describeTemplateLimits(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateLimitsResponse > {
+        self.describeTemplateLimits(DescribeTemplateLimitsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询参数模板配额列表
+    ///
+    /// 本接口（DescribeTemplateLimits）用于查询参数模板配额列表。
+    @inlinable
+    public func describeTemplateLimits(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateLimitsResponse {
+        try await self.describeTemplateLimits(DescribeTemplateLimitsRequest(), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Cwp {
     public func destroyOrder(_ input: DestroyOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyOrderResponse {
         try await self.client.execute(action: "DestroyOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 销毁订单
+    ///
+    /// DestroyOrder  该接口可以对资源销毁.
+    @inlinable
+    public func destroyOrder(resourceId: String, licenseType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyOrderResponse > {
+        self.destroyOrder(DestroyOrderRequest(resourceId: resourceId, licenseType: licenseType), logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁订单
+    ///
+    /// DestroyOrder  该接口可以对资源销毁.
+    @inlinable
+    public func destroyOrder(resourceId: String, licenseType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyOrderResponse {
+        try await self.destroyOrder(DestroyOrderRequest(resourceId: resourceId, licenseType: licenseType), logger: logger, on: eventLoop)
+    }
 }

@@ -65,4 +65,22 @@ extension Iotvideoindustry {
     public func describeChannelLiveStreamURL(_ input: DescribeChannelLiveStreamURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelLiveStreamURLResponse {
         try await self.client.execute(action: "DescribeChannelLiveStreamURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备通道实时流地址
+    ///
+    /// 本接口(DescribeChannelLiveStreamURL)用于获取设备指定通道实时流地址，地址是动态生成，如重新播放需要调用此接口重新获取最新播放地址。
+    /// 正常推流，如未设置对应录制计划，且180s无人观看此流，将会被自动掐断。
+    @inlinable
+    public func describeChannelLiveStreamURL(deviceId: String, channelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChannelLiveStreamURLResponse > {
+        self.describeChannelLiveStreamURL(DescribeChannelLiveStreamURLRequest(deviceId: deviceId, channelId: channelId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备通道实时流地址
+    ///
+    /// 本接口(DescribeChannelLiveStreamURL)用于获取设备指定通道实时流地址，地址是动态生成，如重新播放需要调用此接口重新获取最新播放地址。
+    /// 正常推流，如未设置对应录制计划，且180s无人观看此流，将会被自动掐断。
+    @inlinable
+    public func describeChannelLiveStreamURL(deviceId: String, channelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelLiveStreamURLResponse {
+        try await self.describeChannelLiveStreamURL(DescribeChannelLiveStreamURLRequest(deviceId: deviceId, channelId: channelId), logger: logger, on: eventLoop)
+    }
 }

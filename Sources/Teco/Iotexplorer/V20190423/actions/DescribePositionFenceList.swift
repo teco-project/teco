@@ -70,4 +70,16 @@ extension Iotexplorer {
     public func describePositionFenceList(_ input: DescribePositionFenceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePositionFenceListResponse {
         try await self.client.execute(action: "DescribePositionFenceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取围栏列表
+    @inlinable
+    public func describePositionFenceList(spaceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePositionFenceListResponse > {
+        self.describePositionFenceList(DescribePositionFenceListRequest(spaceId: spaceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取围栏列表
+    @inlinable
+    public func describePositionFenceList(spaceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePositionFenceListResponse {
+        try await self.describePositionFenceList(DescribePositionFenceListRequest(spaceId: spaceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,16 @@ extension Cynosdb {
     public func addClusterSlaveZone(_ input: AddClusterSlaveZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddClusterSlaveZoneResponse {
         try await self.client.execute(action: "AddClusterSlaveZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 增加从可用区
+    @inlinable
+    public func addClusterSlaveZone(clusterId: String, slaveZone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddClusterSlaveZoneResponse > {
+        self.addClusterSlaveZone(AddClusterSlaveZoneRequest(clusterId: clusterId, slaveZone: slaveZone), logger: logger, on: eventLoop)
+    }
+    
+    /// 增加从可用区
+    @inlinable
+    public func addClusterSlaveZone(clusterId: String, slaveZone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddClusterSlaveZoneResponse {
+        try await self.addClusterSlaveZone(AddClusterSlaveZoneRequest(clusterId: clusterId, slaveZone: slaveZone), logger: logger, on: eventLoop)
+    }
 }

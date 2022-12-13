@@ -76,4 +76,20 @@ extension Trp {
     public func createTraceCodes(_ input: CreateTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceCodesResponse {
         try await self.client.execute(action: "CreateTraceCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量导入二维码
+    ///
+    /// 批量导入二维码，只支持平台发的码
+    @inlinable
+    public func createTraceCodes(batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceCodesResponse > {
+        self.createTraceCodes(CreateTraceCodesRequest(batchId: batchId, corpId: corpId, codes: codes), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量导入二维码
+    ///
+    /// 批量导入二维码，只支持平台发的码
+    @inlinable
+    public func createTraceCodes(batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceCodesResponse {
+        try await self.createTraceCodes(CreateTraceCodesRequest(batchId: batchId, corpId: corpId, codes: codes), logger: logger, on: eventLoop)
+    }
 }

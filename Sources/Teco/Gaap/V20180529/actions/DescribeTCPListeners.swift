@@ -99,4 +99,20 @@ extension Gaap {
     public func describeTCPListeners(_ input: DescribeTCPListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTCPListenersResponse {
         try await self.client.execute(action: "DescribeTCPListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询TCP监听器列表
+    ///
+    /// 该接口（DescribeTCPListeners）用于查询单通道或者通道组下的TCP监听器信息。
+    @inlinable
+    public func describeTCPListeners(proxyId: String? = nil, listenerId: String? = nil, listenerName: String? = nil, port: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, groupId: String? = nil, searchValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTCPListenersResponse > {
+        self.describeTCPListeners(DescribeTCPListenersRequest(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, groupId: groupId, searchValue: searchValue), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询TCP监听器列表
+    ///
+    /// 该接口（DescribeTCPListeners）用于查询单通道或者通道组下的TCP监听器信息。
+    @inlinable
+    public func describeTCPListeners(proxyId: String? = nil, listenerId: String? = nil, listenerName: String? = nil, port: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, groupId: String? = nil, searchValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTCPListenersResponse {
+        try await self.describeTCPListeners(DescribeTCPListenersRequest(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, groupId: groupId, searchValue: searchValue), logger: logger, on: eventLoop)
+    }
 }

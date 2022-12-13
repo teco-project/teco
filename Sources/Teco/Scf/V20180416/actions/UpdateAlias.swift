@@ -75,4 +75,16 @@ extension Scf {
     public func updateAlias(_ input: UpdateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAliasResponse {
         try await self.client.execute(action: "UpdateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新别名的配置
+    @inlinable
+    public func updateAlias(functionName: String, name: String, functionVersion: String, namespace: String? = nil, routingConfig: RoutingConfig? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAliasResponse > {
+        self.updateAlias(UpdateAliasRequest(functionName: functionName, name: name, functionVersion: functionVersion, namespace: namespace, routingConfig: routingConfig, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新别名的配置
+    @inlinable
+    public func updateAlias(functionName: String, name: String, functionVersion: String, namespace: String? = nil, routingConfig: RoutingConfig? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAliasResponse {
+        try await self.updateAlias(UpdateAliasRequest(functionName: functionName, name: name, functionVersion: functionVersion, namespace: namespace, routingConfig: routingConfig, description: description), logger: logger, on: eventLoop)
+    }
 }

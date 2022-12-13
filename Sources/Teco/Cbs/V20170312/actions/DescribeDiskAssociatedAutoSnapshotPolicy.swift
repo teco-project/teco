@@ -62,4 +62,20 @@ extension Cbs {
     public func describeDiskAssociatedAutoSnapshotPolicy(_ input: DescribeDiskAssociatedAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskAssociatedAutoSnapshotPolicyResponse {
         try await self.client.execute(action: "DescribeDiskAssociatedAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询云硬盘关联定期快照策略
+    ///
+    /// 本接口（DescribeDiskAssociatedAutoSnapshotPolicy）用于查询云盘绑定的定期快照策略。
+    @inlinable
+    public func describeDiskAssociatedAutoSnapshotPolicy(diskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiskAssociatedAutoSnapshotPolicyResponse > {
+        self.describeDiskAssociatedAutoSnapshotPolicy(DescribeDiskAssociatedAutoSnapshotPolicyRequest(diskId: diskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云硬盘关联定期快照策略
+    ///
+    /// 本接口（DescribeDiskAssociatedAutoSnapshotPolicy）用于查询云盘绑定的定期快照策略。
+    @inlinable
+    public func describeDiskAssociatedAutoSnapshotPolicy(diskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskAssociatedAutoSnapshotPolicyResponse {
+        try await self.describeDiskAssociatedAutoSnapshotPolicy(DescribeDiskAssociatedAutoSnapshotPolicyRequest(diskId: diskId), logger: logger, on: eventLoop)
+    }
 }

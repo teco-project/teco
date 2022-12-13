@@ -127,4 +127,20 @@ extension Dayu {
     public func describeDDoSTrend(_ input: DescribeDDoSTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSTrendResponse {
         try await self.client.execute(action: "DescribeDDoSTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取DDoS攻击指标数据
+    ///
+    /// 获取DDoS攻击流量带宽和攻击包速率数据
+    @inlinable
+    public func describeDDoSTrend(business: String, ip: String, metricName: String, period: Int64, startTime: Date, endTime: Date, id: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSTrendResponse > {
+        self.describeDDoSTrend(DescribeDDoSTrendRequest(business: business, ip: ip, metricName: metricName, period: period, startTime: startTime, endTime: endTime, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS攻击指标数据
+    ///
+    /// 获取DDoS攻击流量带宽和攻击包速率数据
+    @inlinable
+    public func describeDDoSTrend(business: String, ip: String, metricName: String, period: Int64, startTime: Date, endTime: Date, id: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSTrendResponse {
+        try await self.describeDDoSTrend(DescribeDDoSTrendRequest(business: business, ip: ip, metricName: metricName, period: period, startTime: startTime, endTime: endTime, id: id), logger: logger, on: eventLoop)
+    }
 }

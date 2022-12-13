@@ -59,4 +59,20 @@ extension Lighthouse {
     public func modifyInstancesLoginKeyPairAttribute(_ input: ModifyInstancesLoginKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesLoginKeyPairAttributeResponse {
         try await self.client.execute(action: "ModifyInstancesLoginKeyPairAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改实例默认登录密钥对属性
+    ///
+    /// 本接口用于设置实例默认登录密钥对属性。
+    @inlinable
+    public func modifyInstancesLoginKeyPairAttribute(instanceIds: [String], permitLogin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancesLoginKeyPairAttributeResponse > {
+        self.modifyInstancesLoginKeyPairAttribute(ModifyInstancesLoginKeyPairAttributeRequest(instanceIds: instanceIds, permitLogin: permitLogin), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例默认登录密钥对属性
+    ///
+    /// 本接口用于设置实例默认登录密钥对属性。
+    @inlinable
+    public func modifyInstancesLoginKeyPairAttribute(instanceIds: [String], permitLogin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesLoginKeyPairAttributeResponse {
+        try await self.modifyInstancesLoginKeyPairAttribute(ModifyInstancesLoginKeyPairAttributeRequest(instanceIds: instanceIds, permitLogin: permitLogin), logger: logger, on: eventLoop)
+    }
 }

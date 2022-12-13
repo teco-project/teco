@@ -54,4 +54,20 @@ extension Mps {
     public func stopStreamLinkFlow(_ input: StopStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopStreamLinkFlowResponse {
         try await self.client.execute(action: "StopStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停止媒体传输流
+    ///
+    /// 停止媒体传输流。
+    @inlinable
+    public func stopStreamLinkFlow(flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopStreamLinkFlowResponse > {
+        self.stopStreamLinkFlow(StopStreamLinkFlowRequest(flowId: flowId), logger: logger, on: eventLoop)
+    }
+    
+    /// 停止媒体传输流
+    ///
+    /// 停止媒体传输流。
+    @inlinable
+    public func stopStreamLinkFlow(flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopStreamLinkFlowResponse {
+        try await self.stopStreamLinkFlow(StopStreamLinkFlowRequest(flowId: flowId), logger: logger, on: eventLoop)
+    }
 }

@@ -75,4 +75,16 @@ extension Cloudstudio {
     public func modifyCustomizeTemplateVersionControl(_ input: ModifyCustomizeTemplateVersionControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplateVersionControlResponse {
         try await self.client.execute(action: "ModifyCustomizeTemplateVersionControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改模板默认代码仓库
+    @inlinable
+    public func modifyCustomizeTemplateVersionControl(cloudStudioSessionTeam: String, templateId: Int64, url: String? = nil, ref: String? = nil, refType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomizeTemplateVersionControlResponse > {
+        self.modifyCustomizeTemplateVersionControl(ModifyCustomizeTemplateVersionControlRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, templateId: templateId, url: url, ref: ref, refType: refType), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改模板默认代码仓库
+    @inlinable
+    public func modifyCustomizeTemplateVersionControl(cloudStudioSessionTeam: String, templateId: Int64, url: String? = nil, ref: String? = nil, refType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplateVersionControlResponse {
+        try await self.modifyCustomizeTemplateVersionControl(ModifyCustomizeTemplateVersionControlRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, templateId: templateId, url: url, ref: ref, refType: refType), logger: logger, on: eventLoop)
+    }
 }

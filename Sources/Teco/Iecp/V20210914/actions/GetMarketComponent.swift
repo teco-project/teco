@@ -86,4 +86,16 @@ extension Iecp {
     public func getMarketComponent(_ input: GetMarketComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetMarketComponentResponse {
         try await self.client.execute(action: "GetMarketComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取组件市场的组件信息
+    @inlinable
+    public func getMarketComponent(id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetMarketComponentResponse > {
+        self.getMarketComponent(GetMarketComponentRequest(id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取组件市场的组件信息
+    @inlinable
+    public func getMarketComponent(id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetMarketComponentResponse {
+        try await self.getMarketComponent(GetMarketComponentRequest(id: id), logger: logger, on: eventLoop)
+    }
 }

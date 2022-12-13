@@ -108,4 +108,16 @@ extension Teo {
     public func describeDDosMajorAttackEvent(_ input: DescribeDDosMajorAttackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosMajorAttackEventResponse {
         try await self.client.execute(action: "DescribeDDosMajorAttackEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询DDos主攻击事件
+    @inlinable
+    public func describeDDosMajorAttackEvent(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, protocolType: String? = nil, zoneIds: [String]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDosMajorAttackEventResponse > {
+        self.describeDDosMajorAttackEvent(DescribeDDosMajorAttackEventRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, policyIds: policyIds, protocolType: protocolType, zoneIds: zoneIds, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询DDos主攻击事件
+    @inlinable
+    public func describeDDosMajorAttackEvent(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, protocolType: String? = nil, zoneIds: [String]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosMajorAttackEventResponse {
+        try await self.describeDDosMajorAttackEvent(DescribeDDosMajorAttackEventRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, policyIds: policyIds, protocolType: protocolType, zoneIds: zoneIds, area: area), logger: logger, on: eventLoop)
+    }
 }

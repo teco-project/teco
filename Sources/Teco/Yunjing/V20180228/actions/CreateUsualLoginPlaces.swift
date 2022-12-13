@@ -59,4 +59,20 @@ extension Yunjing {
     public func createUsualLoginPlaces(_ input: CreateUsualLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUsualLoginPlacesResponse {
         try await self.client.execute(action: "CreateUsualLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加常用登录地
+    ///
+    /// 此接口（CreateUsualLoginPlaces）用于添加常用登录地。
+    @inlinable
+    public func createUsualLoginPlaces(uuids: [String], places: [Place], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUsualLoginPlacesResponse > {
+        self.createUsualLoginPlaces(CreateUsualLoginPlacesRequest(uuids: uuids, places: places), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加常用登录地
+    ///
+    /// 此接口（CreateUsualLoginPlaces）用于添加常用登录地。
+    @inlinable
+    public func createUsualLoginPlaces(uuids: [String], places: [Place], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUsualLoginPlacesResponse {
+        try await self.createUsualLoginPlaces(CreateUsualLoginPlacesRequest(uuids: uuids, places: places), logger: logger, on: eventLoop)
+    }
 }

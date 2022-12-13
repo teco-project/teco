@@ -78,4 +78,16 @@ extension Cwp {
     public func describeBaselinePolicyList(_ input: DescribeBaselinePolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselinePolicyListResponse {
         try await self.client.execute(action: "DescribeBaselinePolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取基线策略列表
+    @inlinable
+    public func describeBaselinePolicyList(filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselinePolicyListResponse > {
+        self.describeBaselinePolicyList(DescribeBaselinePolicyListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取基线策略列表
+    @inlinable
+    public func describeBaselinePolicyList(filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselinePolicyListResponse {
+        try await self.describeBaselinePolicyList(DescribeBaselinePolicyListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

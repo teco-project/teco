@@ -59,4 +59,20 @@ extension Tag {
     public func deleteResourceTag(_ input: DeleteResourceTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceTagResponse {
         try await self.client.execute(action: "DeleteResourceTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 标签解绑资源
+    ///
+    /// 本接口用于解除标签和资源的关联关系
+    @inlinable
+    public func deleteResourceTag(tagKey: String, resource: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourceTagResponse > {
+        self.deleteResourceTag(DeleteResourceTagRequest(tagKey: tagKey, resource: resource), logger: logger, on: eventLoop)
+    }
+    
+    /// 标签解绑资源
+    ///
+    /// 本接口用于解除标签和资源的关联关系
+    @inlinable
+    public func deleteResourceTag(tagKey: String, resource: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceTagResponse {
+        try await self.deleteResourceTag(DeleteResourceTagRequest(tagKey: tagKey, resource: resource), logger: logger, on: eventLoop)
+    }
 }

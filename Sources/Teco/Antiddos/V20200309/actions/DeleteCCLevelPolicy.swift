@@ -29,7 +29,7 @@ extension Antiddos {
         /// 协议，可取值http
         public let `protocol`: String
         
-        public init (instanceId: String, ip: String, domain: String, `protocol`: String) {
+        public init (instanceId: String, ip: String, domain: String, protocol: String) {
             self.instanceId = instanceId
             self.ip = ip
             self.domain = domain
@@ -64,5 +64,17 @@ extension Antiddos {
     @inlinable
     public func deleteCCLevelPolicy(_ input: DeleteCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCLevelPolicyResponse {
         try await self.client.execute(action: "DeleteCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 删除CC分级策略
+    @inlinable
+    public func deleteCCLevelPolicy(instanceId: String, ip: String, domain: String, protocol: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCCLevelPolicyResponse > {
+        self.deleteCCLevelPolicy(DeleteCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除CC分级策略
+    @inlinable
+    public func deleteCCLevelPolicy(instanceId: String, ip: String, domain: String, protocol: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCLevelPolicyResponse {
+        try await self.deleteCCLevelPolicy(DeleteCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), logger: logger, on: eventLoop)
     }
 }

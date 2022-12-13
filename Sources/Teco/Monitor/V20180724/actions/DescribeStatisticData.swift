@@ -106,4 +106,16 @@ extension Monitor {
     public func describeStatisticData(_ input: DescribeStatisticDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticDataResponse {
         try await self.client.execute(action: "DescribeStatisticData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 根据维度条件查询监控数据
+    @inlinable
+    public func describeStatisticData(module: String, namespace: String, metricNames: [String], conditions: [MidQueryCondition]? = nil, period: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, groupBys: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStatisticDataResponse > {
+        self.describeStatisticData(DescribeStatisticDataRequest(module: module, namespace: namespace, metricNames: metricNames, conditions: conditions, period: period, startTime: startTime, endTime: endTime, groupBys: groupBys), logger: logger, on: eventLoop)
+    }
+    
+    /// 根据维度条件查询监控数据
+    @inlinable
+    public func describeStatisticData(module: String, namespace: String, metricNames: [String], conditions: [MidQueryCondition]? = nil, period: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, groupBys: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticDataResponse {
+        try await self.describeStatisticData(DescribeStatisticDataRequest(module: module, namespace: namespace, metricNames: metricNames, conditions: conditions, period: period, startTime: startTime, endTime: endTime, groupBys: groupBys), logger: logger, on: eventLoop)
+    }
 }

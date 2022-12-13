@@ -55,4 +55,16 @@ extension Tdmq {
     public func rewindCmqQueue(_ input: RewindCmqQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RewindCmqQueueResponse {
         try await self.client.execute(action: "RewindCmqQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 回溯cmq队列
+    @inlinable
+    public func rewindCmqQueue(queueName: String, startConsumeTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RewindCmqQueueResponse > {
+        self.rewindCmqQueue(RewindCmqQueueRequest(queueName: queueName, startConsumeTime: startConsumeTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 回溯cmq队列
+    @inlinable
+    public func rewindCmqQueue(queueName: String, startConsumeTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RewindCmqQueueResponse {
+        try await self.rewindCmqQueue(RewindCmqQueueRequest(queueName: queueName, startConsumeTime: startConsumeTime), logger: logger, on: eventLoop)
+    }
 }

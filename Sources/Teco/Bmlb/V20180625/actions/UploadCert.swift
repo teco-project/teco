@@ -73,4 +73,20 @@ extension Bmlb {
     public func uploadCert(_ input: UploadCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertResponse {
         try await self.client.execute(action: "UploadCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建黑石负载均衡证书
+    ///
+    /// 创建黑石负载均衡证书。
+    @inlinable
+    public func uploadCert(certType: String, cert: String, alias: String? = nil, key: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadCertResponse > {
+        self.uploadCert(UploadCertRequest(certType: certType, cert: cert, alias: alias, key: key), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建黑石负载均衡证书
+    ///
+    /// 创建黑石负载均衡证书。
+    @inlinable
+    public func uploadCert(certType: String, cert: String, alias: String? = nil, key: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertResponse {
+        try await self.uploadCert(UploadCertRequest(certType: certType, cert: cert, alias: alias, key: key), logger: logger, on: eventLoop)
+    }
 }

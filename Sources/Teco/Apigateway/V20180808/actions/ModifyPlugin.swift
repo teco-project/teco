@@ -73,4 +73,20 @@ extension Apigateway {
     public func modifyPlugin(_ input: ModifyPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPluginResponse {
         try await self.client.execute(action: "ModifyPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改插件
+    ///
+    /// 修改API网关插件。
+    @inlinable
+    public func modifyPlugin(pluginId: String, pluginName: String? = nil, description: String? = nil, pluginData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPluginResponse > {
+        self.modifyPlugin(ModifyPluginRequest(pluginId: pluginId, pluginName: pluginName, description: description, pluginData: pluginData), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改插件
+    ///
+    /// 修改API网关插件。
+    @inlinable
+    public func modifyPlugin(pluginId: String, pluginName: String? = nil, description: String? = nil, pluginData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPluginResponse {
+        try await self.modifyPlugin(ModifyPluginRequest(pluginId: pluginId, pluginName: pluginName, description: description, pluginData: pluginData), logger: logger, on: eventLoop)
+    }
 }

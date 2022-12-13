@@ -63,4 +63,20 @@ extension Redis {
     public func clearInstance(_ input: ClearInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearInstanceResponse {
         try await self.client.execute(action: "ClearInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 清空Redis实例
+    ///
+    /// 清空Redis实例的实例数据。
+    @inlinable
+    public func clearInstance(instanceId: String, password: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ClearInstanceResponse > {
+        self.clearInstance(ClearInstanceRequest(instanceId: instanceId, password: password), logger: logger, on: eventLoop)
+    }
+    
+    /// 清空Redis实例
+    ///
+    /// 清空Redis实例的实例数据。
+    @inlinable
+    public func clearInstance(instanceId: String, password: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearInstanceResponse {
+        try await self.clearInstance(ClearInstanceRequest(instanceId: instanceId, password: password), logger: logger, on: eventLoop)
+    }
 }

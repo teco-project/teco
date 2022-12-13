@@ -91,4 +91,26 @@ extension Tic {
     public func describeStackVersions(_ input: DescribeStackVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackVersionsResponse {
         try await self.client.execute(action: "DescribeStackVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询版本列表
+    ///
+    /// 本接口（DescribeStackVersions）用于查询一个或多个版本的详细信息。
+    /// - 可以根据版本ID查询感兴趣的版本
+    /// - 可以根据版本名字和状态来过滤版本，详见过滤器Filter
+    /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的版本
+    @inlinable
+    public func describeStackVersions(versionIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStackVersionsResponse > {
+        self.describeStackVersions(DescribeStackVersionsRequest(versionIds: versionIds, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询版本列表
+    ///
+    /// 本接口（DescribeStackVersions）用于查询一个或多个版本的详细信息。
+    /// - 可以根据版本ID查询感兴趣的版本
+    /// - 可以根据版本名字和状态来过滤版本，详见过滤器Filter
+    /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的版本
+    @inlinable
+    public func describeStackVersions(versionIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackVersionsResponse {
+        try await self.describeStackVersions(DescribeStackVersionsRequest(versionIds: versionIds, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

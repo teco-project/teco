@@ -91,4 +91,20 @@ extension Tia {
     public func queryLogs(_ input: QueryLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryLogsResponse {
         try await self.client.execute(action: "QueryLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询日志
+    ///
+    /// 查询 TI-A 训练任务的日志
+    @inlinable
+    public func queryLogs(jobName: String, cluster: String, startTime: String, endTime: String, limit: UInt64, context: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryLogsResponse > {
+        self.queryLogs(QueryLogsRequest(jobName: jobName, cluster: cluster, startTime: startTime, endTime: endTime, limit: limit, context: context), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询日志
+    ///
+    /// 查询 TI-A 训练任务的日志
+    @inlinable
+    public func queryLogs(jobName: String, cluster: String, startTime: String, endTime: String, limit: UInt64, context: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryLogsResponse {
+        try await self.queryLogs(QueryLogsRequest(jobName: jobName, cluster: cluster, startTime: startTime, endTime: endTime, limit: limit, context: context), logger: logger, on: eventLoop)
+    }
 }

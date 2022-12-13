@@ -84,4 +84,16 @@ extension Tsf {
     public func describeInvocationMetricDataDimension(_ input: DescribeInvocationMetricDataDimensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataDimensionResponse {
         try await self.client.execute(action: "DescribeInvocationMetricDataDimension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询维度
+    @inlinable
+    public func describeInvocationMetricDataDimension(startTime: String, endTime: String, offset: Int64, limit: Int64, dimensionName: String, searchWord: String? = nil, metricDimensionValues: [MetricDimensionValue]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvocationMetricDataDimensionResponse > {
+        self.describeInvocationMetricDataDimension(DescribeInvocationMetricDataDimensionRequest(startTime: startTime, endTime: endTime, offset: offset, limit: limit, dimensionName: dimensionName, searchWord: searchWord, metricDimensionValues: metricDimensionValues), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询维度
+    @inlinable
+    public func describeInvocationMetricDataDimension(startTime: String, endTime: String, offset: Int64, limit: Int64, dimensionName: String, searchWord: String? = nil, metricDimensionValues: [MetricDimensionValue]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataDimensionResponse {
+        try await self.describeInvocationMetricDataDimension(DescribeInvocationMetricDataDimensionRequest(startTime: startTime, endTime: endTime, offset: offset, limit: limit, dimensionName: dimensionName, searchWord: searchWord, metricDimensionValues: metricDimensionValues), logger: logger, on: eventLoop)
+    }
 }

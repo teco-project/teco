@@ -114,4 +114,20 @@ extension Dlc {
     public func describeTables(_ input: DescribeTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTablesResponse {
         try await self.client.execute(action: "DescribeTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询数据表列表
+    ///
+    /// 本接口（DescribeTables）用于查询数据表列表。
+    @inlinable
+    public func describeTables(databaseName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, datasourceConnectionName: String? = nil, startTime: String? = nil, endTime: String? = nil, sort: String? = nil, asc: Bool? = nil, tableType: String? = nil, tableFormat: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTablesResponse > {
+        self.describeTables(DescribeTablesRequest(databaseName: databaseName, limit: limit, offset: offset, filters: filters, datasourceConnectionName: datasourceConnectionName, startTime: startTime, endTime: endTime, sort: sort, asc: asc, tableType: tableType, tableFormat: tableFormat), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据表列表
+    ///
+    /// 本接口（DescribeTables）用于查询数据表列表。
+    @inlinable
+    public func describeTables(databaseName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, datasourceConnectionName: String? = nil, startTime: String? = nil, endTime: String? = nil, sort: String? = nil, asc: Bool? = nil, tableType: String? = nil, tableFormat: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTablesResponse {
+        try await self.describeTables(DescribeTablesRequest(databaseName: databaseName, limit: limit, offset: offset, filters: filters, datasourceConnectionName: datasourceConnectionName, startTime: startTime, endTime: endTime, sort: sort, asc: asc, tableType: tableType, tableFormat: tableFormat), logger: logger, on: eventLoop)
+    }
 }

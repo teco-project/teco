@@ -50,4 +50,16 @@ extension Iotvideo {
     public func clearDeviceActiveCode(_ input: ClearDeviceActiveCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearDeviceActiveCodeResponse {
         try await self.client.execute(action: "ClearDeviceActiveCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 清除设备激活码
+    @inlinable
+    public func clearDeviceActiveCode(tids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ClearDeviceActiveCodeResponse > {
+        self.clearDeviceActiveCode(ClearDeviceActiveCodeRequest(tids: tids), logger: logger, on: eventLoop)
+    }
+    
+    /// 清除设备激活码
+    @inlinable
+    public func clearDeviceActiveCode(tids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearDeviceActiveCodeResponse {
+        try await self.clearDeviceActiveCode(ClearDeviceActiveCodeRequest(tids: tids), logger: logger, on: eventLoop)
+    }
 }

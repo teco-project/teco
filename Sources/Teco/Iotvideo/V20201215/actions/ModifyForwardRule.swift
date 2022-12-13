@@ -115,4 +115,16 @@ extension Iotvideo {
     public func modifyForwardRule(_ input: ModifyForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyForwardRuleResponse {
         try await self.client.execute(action: "ModifyForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改转发规则
+    @inlinable
+    public func modifyForwardRule(productID: String, msgType: UInt64, skey: String, queueRegion: String, queueType: UInt64, consecretid: String? = nil, instanceId: String? = nil, instanceName: String? = nil, queueID: String? = nil, queueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyForwardRuleResponse > {
+        self.modifyForwardRule(ModifyForwardRuleRequest(productID: productID, msgType: msgType, skey: skey, queueRegion: queueRegion, queueType: queueType, consecretid: consecretid, instanceId: instanceId, instanceName: instanceName, queueID: queueID, queueName: queueName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改转发规则
+    @inlinable
+    public func modifyForwardRule(productID: String, msgType: UInt64, skey: String, queueRegion: String, queueType: UInt64, consecretid: String? = nil, instanceId: String? = nil, instanceName: String? = nil, queueID: String? = nil, queueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyForwardRuleResponse {
+        try await self.modifyForwardRule(ModifyForwardRuleRequest(productID: productID, msgType: msgType, skey: skey, queueRegion: queueRegion, queueType: queueType, consecretid: consecretid, instanceId: instanceId, instanceName: instanceName, queueID: queueID, queueName: queueName), logger: logger, on: eventLoop)
+    }
 }

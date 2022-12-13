@@ -79,4 +79,16 @@ extension Wedata {
     public func createHiveTable(_ input: CreateHiveTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHiveTableResponse {
         try await self.client.execute(action: "CreateHiveTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 建hive表
+    @inlinable
+    public func createHiveTable(datasourceId: String, database: String, ddlSql: String, privilege: Int64, projectId: String, incharge: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHiveTableResponse > {
+        self.createHiveTable(CreateHiveTableRequest(datasourceId: datasourceId, database: database, ddlSql: ddlSql, privilege: privilege, projectId: projectId, incharge: incharge), logger: logger, on: eventLoop)
+    }
+    
+    /// 建hive表
+    @inlinable
+    public func createHiveTable(datasourceId: String, database: String, ddlSql: String, privilege: Int64, projectId: String, incharge: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHiveTableResponse {
+        try await self.createHiveTable(CreateHiveTableRequest(datasourceId: datasourceId, database: database, ddlSql: ddlSql, privilege: privilege, projectId: projectId, incharge: incharge), logger: logger, on: eventLoop)
+    }
 }

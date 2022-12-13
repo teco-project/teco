@@ -65,4 +65,16 @@ extension Wedata {
     public func updateInLongAgent(_ input: UpdateInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateInLongAgentResponse {
         try await self.client.execute(action: "UpdateInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新采集器
+    @inlinable
+    public func updateInLongAgent(agentId: String, projectId: String, agentName: String? = nil, executorGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateInLongAgentResponse > {
+        self.updateInLongAgent(UpdateInLongAgentRequest(agentId: agentId, projectId: projectId, agentName: agentName, executorGroupId: executorGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新采集器
+    @inlinable
+    public func updateInLongAgent(agentId: String, projectId: String, agentName: String? = nil, executorGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateInLongAgentResponse {
+        try await self.updateInLongAgent(UpdateInLongAgentRequest(agentId: agentId, projectId: projectId, agentName: agentName, executorGroupId: executorGroupId), logger: logger, on: eventLoop)
+    }
 }

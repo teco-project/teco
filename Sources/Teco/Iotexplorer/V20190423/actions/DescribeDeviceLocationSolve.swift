@@ -87,4 +87,16 @@ extension Iotexplorer {
     public func describeDeviceLocationSolve(_ input: DescribeDeviceLocationSolveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceLocationSolveResponse {
         try await self.client.execute(action: "DescribeDeviceLocationSolve", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取实时位置解析
+    @inlinable
+    public func describeDeviceLocationSolve(productId: String, deviceName: String, locationType: String, gnssNavigation: String? = nil, wiFiInfo: [WifiInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceLocationSolveResponse > {
+        self.describeDeviceLocationSolve(DescribeDeviceLocationSolveRequest(productId: productId, deviceName: deviceName, locationType: locationType, gnssNavigation: gnssNavigation, wiFiInfo: wiFiInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实时位置解析
+    @inlinable
+    public func describeDeviceLocationSolve(productId: String, deviceName: String, locationType: String, gnssNavigation: String? = nil, wiFiInfo: [WifiInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceLocationSolveResponse {
+        try await self.describeDeviceLocationSolve(DescribeDeviceLocationSolveRequest(productId: productId, deviceName: deviceName, locationType: locationType, gnssNavigation: gnssNavigation, wiFiInfo: wiFiInfo), logger: logger, on: eventLoop)
+    }
 }

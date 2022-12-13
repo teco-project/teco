@@ -44,7 +44,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以获取所有任务信息。如果指定操作者，则操作者需要是任务发起者。
         public let `operator`: String?
         
-        public init (platform: String, projectId: String? = nil, taskTypeSet: [String]? = nil, statusSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, `operator`: String? = nil) {
+        public init (platform: String, projectId: String? = nil, taskTypeSet: [String]? = nil, statusSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil) {
             self.platform = platform
             self.projectId = projectId
             self.taskTypeSet = taskTypeSet
@@ -97,5 +97,21 @@ extension Cme {
     @inlinable
     public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
         try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 获取任务列表
+    ///
+    /// 获取任务列表，支持条件筛选，返回对应的任务基础信息列表。
+    @inlinable
+    public func describeTasks(platform: String, projectId: String? = nil, taskTypeSet: [String]? = nil, statusSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
+        self.describeTasks(DescribeTasksRequest(platform: platform, projectId: projectId, taskTypeSet: taskTypeSet, statusSet: statusSet, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取任务列表
+    ///
+    /// 获取任务列表，支持条件筛选，返回对应的任务基础信息列表。
+    @inlinable
+    public func describeTasks(platform: String, projectId: String? = nil, taskTypeSet: [String]? = nil, statusSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
+        try await self.describeTasks(DescribeTasksRequest(platform: platform, projectId: projectId, taskTypeSet: taskTypeSet, statusSet: statusSet, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

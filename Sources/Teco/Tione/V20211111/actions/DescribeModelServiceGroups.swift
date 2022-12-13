@@ -86,4 +86,16 @@ extension Tione {
     public func describeModelServiceGroups(_ input: DescribeModelServiceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceGroupsResponse {
         try await self.client.execute(action: "DescribeModelServiceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 列举在线推理服务组
+    @inlinable
+    public func describeModelServiceGroups(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServiceGroupsResponse > {
+        self.describeModelServiceGroups(DescribeModelServiceGroupsRequest(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    }
+    
+    /// 列举在线推理服务组
+    @inlinable
+    public func describeModelServiceGroups(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceGroupsResponse {
+        try await self.describeModelServiceGroups(DescribeModelServiceGroupsRequest(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    }
 }

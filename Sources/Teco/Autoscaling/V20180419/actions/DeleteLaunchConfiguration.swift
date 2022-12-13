@@ -56,4 +56,22 @@ extension As {
     public func deleteLaunchConfiguration(_ input: DeleteLaunchConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchConfigurationResponse {
         try await self.client.execute(action: "DeleteLaunchConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除启动配置
+    ///
+    /// 本接口（DeleteLaunchConfiguration）用于删除启动配置。
+    /// * 若启动配置在伸缩组中属于生效状态，则该启动配置不允许删除。
+    @inlinable
+    public func deleteLaunchConfiguration(launchConfigurationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLaunchConfigurationResponse > {
+        self.deleteLaunchConfiguration(DeleteLaunchConfigurationRequest(launchConfigurationId: launchConfigurationId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除启动配置
+    ///
+    /// 本接口（DeleteLaunchConfiguration）用于删除启动配置。
+    /// * 若启动配置在伸缩组中属于生效状态，则该启动配置不允许删除。
+    @inlinable
+    public func deleteLaunchConfiguration(launchConfigurationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchConfigurationResponse {
+        try await self.deleteLaunchConfiguration(DeleteLaunchConfigurationRequest(launchConfigurationId: launchConfigurationId), logger: logger, on: eventLoop)
+    }
 }

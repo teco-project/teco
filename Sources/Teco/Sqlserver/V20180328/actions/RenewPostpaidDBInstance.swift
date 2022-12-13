@@ -54,4 +54,20 @@ extension Sqlserver {
     public func renewPostpaidDBInstance(_ input: RenewPostpaidDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewPostpaidDBInstanceResponse {
         try await self.client.execute(action: "RenewPostpaidDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 恢复后付费实例
+    ///
+    /// 本接口（RenewPostpaidDBInstance）用于将通过接口TerminateDBInstance手动隔离的按量计费实例从回收站中恢复。
+    @inlinable
+    public func renewPostpaidDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewPostpaidDBInstanceResponse > {
+        self.renewPostpaidDBInstance(RenewPostpaidDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复后付费实例
+    ///
+    /// 本接口（RenewPostpaidDBInstance）用于将通过接口TerminateDBInstance手动隔离的按量计费实例从回收站中恢复。
+    @inlinable
+    public func renewPostpaidDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewPostpaidDBInstanceResponse {
+        try await self.renewPostpaidDBInstance(RenewPostpaidDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

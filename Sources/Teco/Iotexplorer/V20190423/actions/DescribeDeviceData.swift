@@ -68,4 +68,20 @@ extension Iotexplorer {
     public func describeDeviceData(_ input: DescribeDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceDataResponse {
         try await self.client.execute(action: "DescribeDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备属性数据
+    ///
+    /// 根据设备产品ID、设备名称，获取设备上报的属性数据。
+    @inlinable
+    public func describeDeviceData(productId: String, deviceName: String, deviceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceDataResponse > {
+        self.describeDeviceData(DescribeDeviceDataRequest(productId: productId, deviceName: deviceName, deviceId: deviceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备属性数据
+    ///
+    /// 根据设备产品ID、设备名称，获取设备上报的属性数据。
+    @inlinable
+    public func describeDeviceData(productId: String, deviceName: String, deviceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceDataResponse {
+        try await self.describeDeviceData(DescribeDeviceDataRequest(productId: productId, deviceName: deviceName, deviceId: deviceId), logger: logger, on: eventLoop)
+    }
 }

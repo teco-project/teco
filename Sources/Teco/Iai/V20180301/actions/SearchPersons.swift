@@ -141,4 +141,32 @@ extension Iai {
     public func searchPersons(_ input: SearchPersonsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchPersonsResponse {
         try await self.client.execute(action: "SearchPersons", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 人员搜索
+    ///
+    /// 用于对一张待识别的人脸图片，在一个或多个人员库中识别出最相似的 TopK 人员，按照相似度从大到小排列。
+    /// 支持一次性识别图片中的最多 10 张人脸，支持一次性跨 100 个人员库（Group）搜索。
+    /// 单次搜索的人员库人脸总数量和人员库的算法模型版本（FaceModelVersion）相关。算法模型版本为2.0的人员库，单次搜索人员库人脸总数量不得超过 100 万张；算法模型版本为3.0的人员库，单次搜索人员库人脸总数量不得超过 300 万张。
+    /// 本接口会将该人员（Person）下的所有人脸（Face）进行融合特征处理，即若某个 Person 下有4张 Face ，本接口会将4张 Face 的特征进行融合处理，生成对应这个 Person 的特征，使人员搜索（确定待识别的人脸图片是某人）更加准确。而[人脸搜索](https://cloud.tencent.com/document/product/867/32798)及[人脸搜索按库返回接口](https://cloud.tencent.com/document/product/867/38882)将该人员（Person）下的每个人脸（Face）都作为单独个体进行搜索。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
+    @inlinable
+    public func searchPersons(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNum: UInt64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needPersonInfo: Int64? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchPersonsResponse > {
+        self.searchPersons(SearchPersonsRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNum: maxPersonNum, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needPersonInfo: needPersonInfo, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    }
+    
+    /// 人员搜索
+    ///
+    /// 用于对一张待识别的人脸图片，在一个或多个人员库中识别出最相似的 TopK 人员，按照相似度从大到小排列。
+    /// 支持一次性识别图片中的最多 10 张人脸，支持一次性跨 100 个人员库（Group）搜索。
+    /// 单次搜索的人员库人脸总数量和人员库的算法模型版本（FaceModelVersion）相关。算法模型版本为2.0的人员库，单次搜索人员库人脸总数量不得超过 100 万张；算法模型版本为3.0的人员库，单次搜索人员库人脸总数量不得超过 300 万张。
+    /// 本接口会将该人员（Person）下的所有人脸（Face）进行融合特征处理，即若某个 Person 下有4张 Face ，本接口会将4张 Face 的特征进行融合处理，生成对应这个 Person 的特征，使人员搜索（确定待识别的人脸图片是某人）更加准确。而[人脸搜索](https://cloud.tencent.com/document/product/867/32798)及[人脸搜索按库返回接口](https://cloud.tencent.com/document/product/867/38882)将该人员（Person）下的每个人脸（Face）都作为单独个体进行搜索。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
+    @inlinable
+    public func searchPersons(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNum: UInt64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needPersonInfo: Int64? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchPersonsResponse {
+        try await self.searchPersons(SearchPersonsRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNum: maxPersonNum, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needPersonInfo: needPersonInfo, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    }
 }

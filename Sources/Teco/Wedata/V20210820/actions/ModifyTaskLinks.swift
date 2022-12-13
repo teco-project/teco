@@ -86,4 +86,22 @@ extension Wedata {
     public func modifyTaskLinks(_ input: ModifyTaskLinksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskLinksResponse {
         try await self.client.execute(action: "ModifyTaskLinks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加父任务依赖【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 添加父任务依赖
+    @inlinable
+    public func modifyTaskLinks(projectId: String, taskFrom: String, taskTo: String, workflowId: String, realFromWorkflowId: String, linkDependencyType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskLinksResponse > {
+        self.modifyTaskLinks(ModifyTaskLinksRequest(projectId: projectId, taskFrom: taskFrom, taskTo: taskTo, workflowId: workflowId, realFromWorkflowId: realFromWorkflowId, linkDependencyType: linkDependencyType), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加父任务依赖【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 添加父任务依赖
+    @inlinable
+    public func modifyTaskLinks(projectId: String, taskFrom: String, taskTo: String, workflowId: String, realFromWorkflowId: String, linkDependencyType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskLinksResponse {
+        try await self.modifyTaskLinks(ModifyTaskLinksRequest(projectId: projectId, taskFrom: taskFrom, taskTo: taskTo, workflowId: workflowId, realFromWorkflowId: realFromWorkflowId, linkDependencyType: linkDependencyType), logger: logger, on: eventLoop)
+    }
 }

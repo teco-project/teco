@@ -90,4 +90,16 @@ extension Youmall {
     public func describeZoneFlowDailyByZoneId(_ input: DescribeZoneFlowDailyByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowDailyByZoneIdResponse {
         try await self.client.execute(action: "DescribeZoneFlowDailyByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取指定区域每日客流量
+    @inlinable
+    public func describeZoneFlowDailyByZoneId(companyId: String, shopId: Int64, zoneId: Int64, startDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneFlowDailyByZoneIdResponse > {
+        self.describeZoneFlowDailyByZoneId(DescribeZoneFlowDailyByZoneIdRequest(companyId: companyId, shopId: shopId, zoneId: zoneId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定区域每日客流量
+    @inlinable
+    public func describeZoneFlowDailyByZoneId(companyId: String, shopId: Int64, zoneId: Int64, startDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowDailyByZoneIdResponse {
+        try await self.describeZoneFlowDailyByZoneId(DescribeZoneFlowDailyByZoneIdRequest(companyId: companyId, shopId: shopId, zoneId: zoneId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
 }

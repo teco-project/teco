@@ -83,4 +83,16 @@ extension Iecp {
     public func describeIotDevices(_ input: DescribeIotDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDevicesResponse {
         try await self.client.execute(action: "DescribeIotDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备列表信息
+    @inlinable
+    public func describeIotDevices(offset: Int64, limit: Int64, productId: String? = nil, namePattern: String? = nil, versions: [String]? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIotDevicesResponse > {
+        self.describeIotDevices(DescribeIotDevicesRequest(offset: offset, limit: limit, productId: productId, namePattern: namePattern, versions: versions, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备列表信息
+    @inlinable
+    public func describeIotDevices(offset: Int64, limit: Int64, productId: String? = nil, namePattern: String? = nil, versions: [String]? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDevicesResponse {
+        try await self.describeIotDevices(DescribeIotDevicesRequest(offset: offset, limit: limit, productId: productId, namePattern: namePattern, versions: versions, order: order), logger: logger, on: eventLoop)
+    }
 }

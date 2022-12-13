@@ -80,4 +80,16 @@ extension Tbaas {
     public func invokeChainMakerContract(_ input: InvokeChainMakerContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeChainMakerContractResponse {
         try await self.client.execute(action: "InvokeChainMakerContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 调用长安链合约执行交易
+    @inlinable
+    public func invokeChainMakerContract(clusterId: String, chainId: String, contractName: String, funcName: String, funcParam: String? = nil, asyncFlag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeChainMakerContractResponse > {
+        self.invokeChainMakerContract(InvokeChainMakerContractRequest(clusterId: clusterId, chainId: chainId, contractName: contractName, funcName: funcName, funcParam: funcParam, asyncFlag: asyncFlag), logger: logger, on: eventLoop)
+    }
+    
+    /// 调用长安链合约执行交易
+    @inlinable
+    public func invokeChainMakerContract(clusterId: String, chainId: String, contractName: String, funcName: String, funcParam: String? = nil, asyncFlag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeChainMakerContractResponse {
+        try await self.invokeChainMakerContract(InvokeChainMakerContractRequest(clusterId: clusterId, chainId: chainId, contractName: contractName, funcName: funcName, funcParam: funcParam, asyncFlag: asyncFlag), logger: logger, on: eventLoop)
+    }
 }

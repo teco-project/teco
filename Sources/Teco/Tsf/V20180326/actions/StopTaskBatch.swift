@@ -63,4 +63,20 @@ extension Tsf {
     public func stopTaskBatch(_ input: StopTaskBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTaskBatchResponse {
         try await self.client.execute(action: "StopTaskBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停止执行中的任务批次
+    ///
+    /// 停止执行中的任务批次， 非运行中的任务不可调用。
+    @inlinable
+    public func stopTaskBatch(batchId: String, taskId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopTaskBatchResponse > {
+        self.stopTaskBatch(StopTaskBatchRequest(batchId: batchId, taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 停止执行中的任务批次
+    ///
+    /// 停止执行中的任务批次， 非运行中的任务不可调用。
+    @inlinable
+    public func stopTaskBatch(batchId: String, taskId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTaskBatchResponse {
+        try await self.stopTaskBatch(StopTaskBatchRequest(batchId: batchId, taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

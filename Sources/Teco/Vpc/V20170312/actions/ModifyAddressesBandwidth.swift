@@ -75,4 +75,20 @@ extension Vpc {
     public func modifyAddressesBandwidth(_ input: ModifyAddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressesBandwidthResponse {
         try await self.client.execute(action: "ModifyAddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 调整弹性公网IP带宽
+    ///
+    /// 本接口（ModifyAddressesBandwidth）用于调整[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)(简称EIP)带宽，支持后付费EIP, 预付费EIP和带宽包EIP
+    @inlinable
+    public func modifyAddressesBandwidth(addressIds: [String], internetMaxBandwidthOut: Int64, startTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAddressesBandwidthResponse > {
+        self.modifyAddressesBandwidth(ModifyAddressesBandwidthRequest(addressIds: addressIds, internetMaxBandwidthOut: internetMaxBandwidthOut, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 调整弹性公网IP带宽
+    ///
+    /// 本接口（ModifyAddressesBandwidth）用于调整[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)(简称EIP)带宽，支持后付费EIP, 预付费EIP和带宽包EIP
+    @inlinable
+    public func modifyAddressesBandwidth(addressIds: [String], internetMaxBandwidthOut: Int64, startTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressesBandwidthResponse {
+        try await self.modifyAddressesBandwidth(ModifyAddressesBandwidthRequest(addressIds: addressIds, internetMaxBandwidthOut: internetMaxBandwidthOut, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

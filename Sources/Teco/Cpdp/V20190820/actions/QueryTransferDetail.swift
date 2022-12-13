@@ -193,4 +193,20 @@ extension Cpdp {
     public func queryTransferDetail(_ input: QueryTransferDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferDetailResponse {
         try await self.client.execute(action: "QueryTransferDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 智慧薪酬-通过明细单号查询批明细单
+    ///
+    /// 通过商家或者微信批次明细单号查询明细单
+    @inlinable
+    public func queryTransferDetail(merchantId: String, merchantBatchNo: String? = nil, merchantDetailNo: String? = nil, batchId: String? = nil, detailId: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryTransferDetailResponse > {
+        self.queryTransferDetail(QueryTransferDetailRequest(merchantId: merchantId, merchantBatchNo: merchantBatchNo, merchantDetailNo: merchantDetailNo, batchId: batchId, detailId: detailId, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 智慧薪酬-通过明细单号查询批明细单
+    ///
+    /// 通过商家或者微信批次明细单号查询明细单
+    @inlinable
+    public func queryTransferDetail(merchantId: String, merchantBatchNo: String? = nil, merchantDetailNo: String? = nil, batchId: String? = nil, detailId: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferDetailResponse {
+        try await self.queryTransferDetail(QueryTransferDetailRequest(merchantId: merchantId, merchantBatchNo: merchantBatchNo, merchantDetailNo: merchantDetailNo, batchId: batchId, detailId: detailId, profile: profile), logger: logger, on: eventLoop)
+    }
 }

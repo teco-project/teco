@@ -247,7 +247,7 @@ extension Tem {
         /// 间隔时间，单位为秒，默认为 10
         public let periodSeconds: Int64?
         
-        public init (type: String, `protocol`: String? = nil, path: String? = nil, exec: String? = nil, port: Int64? = nil, initialDelaySeconds: Int64? = nil, timeoutSeconds: Int64? = nil, periodSeconds: Int64? = nil) {
+        public init (type: String, protocol: String? = nil, path: String? = nil, exec: String? = nil, port: Int64? = nil, initialDelaySeconds: Int64? = nil, timeoutSeconds: Int64? = nil, periodSeconds: Int64? = nil) {
             self.type = type
             self.`protocol` = `protocol`
             self.path = path
@@ -352,7 +352,7 @@ extension Tem {
         /// 协议，选项为 http， https，默认为 http
         public let `protocol`: String?
         
-        public init (http: IngressRuleValue, host: String? = nil, `protocol`: String? = nil) {
+        public init (http: IngressRuleValue, host: String? = nil, protocol: String? = nil) {
             self.http = http
             self.host = host
             self.`protocol` = `protocol`
@@ -551,7 +551,7 @@ extension Tem {
         /// 协议栈 TCP/UDP
         public let `protocol`: String
         
-        public init (port: Int64, targetPort: Int64, `protocol`: String) {
+        public init (port: Int64, targetPort: Int64, protocol: String) {
             self.port = port
             self.targetPort = targetPort
             self.`protocol` = `protocol`

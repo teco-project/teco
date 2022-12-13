@@ -81,4 +81,22 @@ extension Cdn {
     public func purgePathCache(_ input: PurgePathCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgePathCacheResponse {
         try await self.client.execute(action: "PurgePathCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 刷新目录
+    ///
+    /// PurgePathCache 用于批量提交目录刷新，根据域名的加速区域进行对应区域的刷新。
+    /// 默认情况下境内、境外加速区域每日目录刷新额度为各 100 条，每次最多可提交 500 条。
+    @inlinable
+    public func purgePathCache(paths: [String], flushType: String, urlEncode: Bool? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PurgePathCacheResponse > {
+        self.purgePathCache(PurgePathCacheRequest(paths: paths, flushType: flushType, urlEncode: urlEncode, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 刷新目录
+    ///
+    /// PurgePathCache 用于批量提交目录刷新，根据域名的加速区域进行对应区域的刷新。
+    /// 默认情况下境内、境外加速区域每日目录刷新额度为各 100 条，每次最多可提交 500 条。
+    @inlinable
+    public func purgePathCache(paths: [String], flushType: String, urlEncode: Bool? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgePathCacheResponse {
+        try await self.purgePathCache(PurgePathCacheRequest(paths: paths, flushType: flushType, urlEncode: urlEncode, area: area), logger: logger, on: eventLoop)
+    }
 }

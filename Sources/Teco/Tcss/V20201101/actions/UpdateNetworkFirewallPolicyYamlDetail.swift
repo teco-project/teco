@@ -73,4 +73,16 @@ extension Tcss {
     public func updateNetworkFirewallPolicyYamlDetail(_ input: UpdateNetworkFirewallPolicyYamlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateNetworkFirewallPolicyYamlDetailResponse {
         try await self.client.execute(action: "UpdateNetworkFirewallPolicyYamlDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 容器网络更新Yaml网络策略任务
+    @inlinable
+    public func updateNetworkFirewallPolicyYamlDetail(clusterId: String, id: UInt64, yaml: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateNetworkFirewallPolicyYamlDetailResponse > {
+        self.updateNetworkFirewallPolicyYamlDetail(UpdateNetworkFirewallPolicyYamlDetailRequest(clusterId: clusterId, id: id, yaml: yaml, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络更新Yaml网络策略任务
+    @inlinable
+    public func updateNetworkFirewallPolicyYamlDetail(clusterId: String, id: UInt64, yaml: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateNetworkFirewallPolicyYamlDetailResponse {
+        try await self.updateNetworkFirewallPolicyYamlDetail(UpdateNetworkFirewallPolicyYamlDetailRequest(clusterId: clusterId, id: id, yaml: yaml, description: description), logger: logger, on: eventLoop)
+    }
 }

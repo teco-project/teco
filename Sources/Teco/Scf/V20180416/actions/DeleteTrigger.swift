@@ -79,4 +79,20 @@ extension Scf {
     public func deleteTrigger(_ input: DeleteTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTriggerResponse {
         try await self.client.execute(action: "DeleteTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除触发器
+    ///
+    /// 该接口根据参数传入删除已有的触发方式。
+    @inlinable
+    public func deleteTrigger(functionName: String, triggerName: String, type: String, namespace: String? = nil, triggerDesc: String? = nil, qualifier: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTriggerResponse > {
+        self.deleteTrigger(DeleteTriggerRequest(functionName: functionName, triggerName: triggerName, type: type, namespace: namespace, triggerDesc: triggerDesc, qualifier: qualifier), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除触发器
+    ///
+    /// 该接口根据参数传入删除已有的触发方式。
+    @inlinable
+    public func deleteTrigger(functionName: String, triggerName: String, type: String, namespace: String? = nil, triggerDesc: String? = nil, qualifier: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTriggerResponse {
+        try await self.deleteTrigger(DeleteTriggerRequest(functionName: functionName, triggerName: triggerName, type: type, namespace: namespace, triggerDesc: triggerDesc, qualifier: qualifier), logger: logger, on: eventLoop)
+    }
 }

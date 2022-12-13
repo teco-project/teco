@@ -58,4 +58,20 @@ extension Pds {
     public func describeNewUserAcquisition(_ input: DescribeNewUserAcquisitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewUserAcquisitionResponse {
         try await self.client.execute(action: "DescribeNewUserAcquisition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 拉新判断服务
+    ///
+    /// 判断新用户信誉值
+    @inlinable
+    public func describeNewUserAcquisition(serviceParams: UserInfos, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewUserAcquisitionResponse > {
+        self.describeNewUserAcquisition(DescribeNewUserAcquisitionRequest(serviceParams: serviceParams), logger: logger, on: eventLoop)
+    }
+    
+    /// 拉新判断服务
+    ///
+    /// 判断新用户信誉值
+    @inlinable
+    public func describeNewUserAcquisition(serviceParams: UserInfos, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewUserAcquisitionResponse {
+        try await self.describeNewUserAcquisition(DescribeNewUserAcquisitionRequest(serviceParams: serviceParams), logger: logger, on: eventLoop)
+    }
 }

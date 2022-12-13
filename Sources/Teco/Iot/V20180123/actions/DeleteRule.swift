@@ -50,4 +50,16 @@ extension Iot {
     public func deleteRule(_ input: DeleteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
         try await self.client.execute(action: "DeleteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除规则
+    @inlinable
+    public func deleteRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRuleResponse > {
+        self.deleteRule(DeleteRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除规则
+    @inlinable
+    public func deleteRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
+        try await self.deleteRule(DeleteRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    }
 }

@@ -63,4 +63,20 @@ extension Mrs {
     public func textToClass(_ input: TextToClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToClassResponse {
         try await self.client.execute(action: "TextToClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 文本分类接口
+    ///
+    /// 文本分类
+    @inlinable
+    public func textToClass(text: String, userType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextToClassResponse > {
+        self.textToClass(TextToClassRequest(text: text, userType: userType), logger: logger, on: eventLoop)
+    }
+    
+    /// 文本分类接口
+    ///
+    /// 文本分类
+    @inlinable
+    public func textToClass(text: String, userType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToClassResponse {
+        try await self.textToClass(TextToClassRequest(text: text, userType: userType), logger: logger, on: eventLoop)
+    }
 }

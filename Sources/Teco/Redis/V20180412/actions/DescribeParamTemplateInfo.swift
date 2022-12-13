@@ -78,4 +78,20 @@ extension Redis {
     public func describeParamTemplateInfo(_ input: DescribeParamTemplateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamTemplateInfoResponse {
         try await self.client.execute(action: "DescribeParamTemplateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询参数模板详情
+    ///
+    /// 查询参数模板详情。
+    @inlinable
+    public func describeParamTemplateInfo(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeParamTemplateInfoResponse > {
+        self.describeParamTemplateInfo(DescribeParamTemplateInfoRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询参数模板详情
+    ///
+    /// 查询参数模板详情。
+    @inlinable
+    public func describeParamTemplateInfo(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamTemplateInfoResponse {
+        try await self.describeParamTemplateInfo(DescribeParamTemplateInfoRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
 }

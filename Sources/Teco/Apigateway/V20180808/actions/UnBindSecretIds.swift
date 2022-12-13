@@ -64,4 +64,20 @@ extension Apigateway {
     public func unBindSecretIds(_ input: UnBindSecretIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindSecretIdsResponse {
         try await self.client.execute(action: "UnBindSecretIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 使用计划解绑密钥
+    ///
+    /// 本接口（UnBindSecretIds）用于为使用计划解绑密钥。
+    @inlinable
+    public func unBindSecretIds(usagePlanId: String, accessKeyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindSecretIdsResponse > {
+        self.unBindSecretIds(UnBindSecretIdsRequest(usagePlanId: usagePlanId, accessKeyIds: accessKeyIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 使用计划解绑密钥
+    ///
+    /// 本接口（UnBindSecretIds）用于为使用计划解绑密钥。
+    @inlinable
+    public func unBindSecretIds(usagePlanId: String, accessKeyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindSecretIdsResponse {
+        try await self.unBindSecretIds(UnBindSecretIdsRequest(usagePlanId: usagePlanId, accessKeyIds: accessKeyIds), logger: logger, on: eventLoop)
+    }
 }

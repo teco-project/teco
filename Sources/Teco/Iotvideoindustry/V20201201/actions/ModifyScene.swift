@@ -65,4 +65,16 @@ extension Iotvideoindustry {
     public func modifyScene(_ input: ModifySceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySceneResponse {
         try await self.client.execute(action: "ModifyScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改场景
+    @inlinable
+    public func modifyScene(intId: Int64, sceneName: String? = nil, sceneTrigger: String? = nil, recordDuration: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySceneResponse > {
+        self.modifyScene(ModifySceneRequest(intId: intId, sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改场景
+    @inlinable
+    public func modifyScene(intId: Int64, sceneName: String? = nil, sceneTrigger: String? = nil, recordDuration: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySceneResponse {
+        try await self.modifyScene(ModifySceneRequest(intId: intId, sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration), logger: logger, on: eventLoop)
+    }
 }

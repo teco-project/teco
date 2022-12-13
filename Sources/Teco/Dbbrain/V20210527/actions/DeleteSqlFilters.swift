@@ -64,4 +64,20 @@ extension Dbbrain {
     public func deleteSqlFilters(_ input: DeleteSqlFiltersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSqlFiltersResponse {
         try await self.client.execute(action: "DeleteSqlFilters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除实例SQL限流任务
+    ///
+    /// 删除实例SQL限流任务。
+    @inlinable
+    public func deleteSqlFilters(instanceId: String, sessionToken: String, filterIds: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSqlFiltersResponse > {
+        self.deleteSqlFilters(DeleteSqlFiltersRequest(instanceId: instanceId, sessionToken: sessionToken, filterIds: filterIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除实例SQL限流任务
+    ///
+    /// 删除实例SQL限流任务。
+    @inlinable
+    public func deleteSqlFilters(instanceId: String, sessionToken: String, filterIds: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSqlFiltersResponse {
+        try await self.deleteSqlFilters(DeleteSqlFiltersRequest(instanceId: instanceId, sessionToken: sessionToken, filterIds: filterIds), logger: logger, on: eventLoop)
+    }
 }

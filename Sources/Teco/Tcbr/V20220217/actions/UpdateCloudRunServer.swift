@@ -73,4 +73,16 @@ extension Tcbr {
     public func updateCloudRunServer(_ input: UpdateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCloudRunServerResponse {
         try await self.client.execute(action: "UpdateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新云托管服务
+    @inlinable
+    public func updateCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCloudRunServerResponse > {
+        self.updateCloudRunServer(UpdateCloudRunServerRequest(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新云托管服务
+    @inlinable
+    public func updateCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCloudRunServerResponse {
+        try await self.updateCloudRunServer(UpdateCloudRunServerRequest(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig), logger: logger, on: eventLoop)
+    }
 }

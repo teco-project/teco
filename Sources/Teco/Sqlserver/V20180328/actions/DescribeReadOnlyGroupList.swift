@@ -58,4 +58,20 @@ extension Sqlserver {
     public func describeReadOnlyGroupList(_ input: DescribeReadOnlyGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupListResponse {
         try await self.client.execute(action: "DescribeReadOnlyGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询只读组列表
+    ///
+    /// 本接口（DescribeReadOnlyGroupList）用于查询只读组列表。
+    @inlinable
+    public func describeReadOnlyGroupList(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReadOnlyGroupListResponse > {
+        self.describeReadOnlyGroupList(DescribeReadOnlyGroupListRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询只读组列表
+    ///
+    /// 本接口（DescribeReadOnlyGroupList）用于查询只读组列表。
+    @inlinable
+    public func describeReadOnlyGroupList(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupListResponse {
+        try await self.describeReadOnlyGroupList(DescribeReadOnlyGroupListRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

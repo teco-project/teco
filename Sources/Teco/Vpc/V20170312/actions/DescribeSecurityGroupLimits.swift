@@ -50,4 +50,20 @@ extension Vpc {
     public func describeSecurityGroupLimits(_ input: DescribeSecurityGroupLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupLimitsResponse {
         try await self.client.execute(action: "DescribeSecurityGroupLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询用户安全组配额
+    ///
+    /// 本接口(DescribeSecurityGroupLimits)用于查询用户安全组配额。
+    @inlinable
+    public func describeSecurityGroupLimits(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupLimitsResponse > {
+        self.describeSecurityGroupLimits(DescribeSecurityGroupLimitsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户安全组配额
+    ///
+    /// 本接口(DescribeSecurityGroupLimits)用于查询用户安全组配额。
+    @inlinable
+    public func describeSecurityGroupLimits(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupLimitsResponse {
+        try await self.describeSecurityGroupLimits(DescribeSecurityGroupLimitsRequest(), logger: logger, on: eventLoop)
+    }
 }

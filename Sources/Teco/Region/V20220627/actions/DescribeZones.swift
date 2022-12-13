@@ -62,4 +62,20 @@ extension Region {
     public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
         try await self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询产品可用区列表
+    ///
+    /// 本接口(DescribeZones)用于查询产品可用区信息。
+    @inlinable
+    public func describeZones(product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZonesResponse > {
+        self.describeZones(DescribeZonesRequest(product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询产品可用区列表
+    ///
+    /// 本接口(DescribeZones)用于查询产品可用区信息。
+    @inlinable
+    public func describeZones(product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
+        try await self.describeZones(DescribeZonesRequest(product: product), logger: logger, on: eventLoop)
+    }
 }

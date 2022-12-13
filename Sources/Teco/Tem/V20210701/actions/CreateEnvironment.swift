@@ -100,4 +100,16 @@ extension Tem {
     public func createEnvironment(_ input: CreateEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentResponse {
         try await self.client.execute(action: "CreateEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建环境
+    @inlinable
+    public func createEnvironment(environmentName: String, vpc: String, subnetIds: [String], description: String? = nil, k8sVersion: String? = nil, sourceChannel: Int64? = nil, enableTswTraceService: Bool? = nil, tags: [Tag]? = nil, envType: String? = nil, createRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEnvironmentResponse > {
+        self.createEnvironment(CreateEnvironmentRequest(environmentName: environmentName, vpc: vpc, subnetIds: subnetIds, description: description, k8sVersion: k8sVersion, sourceChannel: sourceChannel, enableTswTraceService: enableTswTraceService, tags: tags, envType: envType, createRegion: createRegion), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建环境
+    @inlinable
+    public func createEnvironment(environmentName: String, vpc: String, subnetIds: [String], description: String? = nil, k8sVersion: String? = nil, sourceChannel: Int64? = nil, enableTswTraceService: Bool? = nil, tags: [Tag]? = nil, envType: String? = nil, createRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentResponse {
+        try await self.createEnvironment(CreateEnvironmentRequest(environmentName: environmentName, vpc: vpc, subnetIds: subnetIds, description: description, k8sVersion: k8sVersion, sourceChannel: sourceChannel, enableTswTraceService: enableTswTraceService, tags: tags, envType: envType, createRegion: createRegion), logger: logger, on: eventLoop)
+    }
 }

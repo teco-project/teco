@@ -77,4 +77,20 @@ extension Cws {
     public func describeMonitors(_ input: DescribeMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorsResponse {
         try await self.client.execute(action: "DescribeMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看监控任务
+    ///
+    /// 本接口 (DescribeMonitors) 用于查询一个或多个监控任务的详细信息。
+    @inlinable
+    public func describeMonitors(monitorIds: [UInt64]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorsResponse > {
+        self.describeMonitors(DescribeMonitorsRequest(monitorIds: monitorIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看监控任务
+    ///
+    /// 本接口 (DescribeMonitors) 用于查询一个或多个监控任务的详细信息。
+    @inlinable
+    public func describeMonitors(monitorIds: [UInt64]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorsResponse {
+        try await self.describeMonitors(DescribeMonitorsRequest(monitorIds: monitorIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

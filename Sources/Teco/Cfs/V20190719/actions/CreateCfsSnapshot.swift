@@ -64,4 +64,16 @@ extension Cfs {
     public func createCfsSnapshot(_ input: CreateCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsSnapshotResponse {
         try await self.client.execute(action: "CreateCfsSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建文件系统快照
+    @inlinable
+    public func createCfsSnapshot(fileSystemId: String, snapshotName: String? = nil, resourceTags: [TagInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCfsSnapshotResponse > {
+        self.createCfsSnapshot(CreateCfsSnapshotRequest(fileSystemId: fileSystemId, snapshotName: snapshotName, resourceTags: resourceTags), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建文件系统快照
+    @inlinable
+    public func createCfsSnapshot(fileSystemId: String, snapshotName: String? = nil, resourceTags: [TagInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsSnapshotResponse {
+        try await self.createCfsSnapshot(CreateCfsSnapshotRequest(fileSystemId: fileSystemId, snapshotName: snapshotName, resourceTags: resourceTags), logger: logger, on: eventLoop)
+    }
 }

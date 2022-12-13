@@ -190,4 +190,20 @@ extension Tiw {
     public func startWhiteboardPush(_ input: StartWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartWhiteboardPushResponse {
         try await self.client.execute(action: "StartWhiteboardPush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开始白板推流
+    ///
+    /// 发起一个白板推流任务
+    @inlinable
+    public func startWhiteboardPush(sdkAppId: Int64, roomId: Int64, pushUserId: String, pushUserSig: String, whiteboard: Whiteboard? = nil, autoStopTimeout: Int64? = nil, autoManageBackup: Bool? = nil, backup: WhiteboardPushBackupParam? = nil, privateMapKey: String? = nil, videoFPS: Int64? = nil, videoBitrate: Int64? = nil, autoRecord: Bool? = nil, userDefinedRecordId: String? = nil, autoPublish: Bool? = nil, userDefinedStreamId: String? = nil, extraData: String? = nil, trtcRoomId: Int64? = nil, trtcRoomIdStr: String? = nil, imAuthParam: AuthParam? = nil, trtcAuthParam: AuthParam? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartWhiteboardPushResponse > {
+        self.startWhiteboardPush(StartWhiteboardPushRequest(sdkAppId: sdkAppId, roomId: roomId, pushUserId: pushUserId, pushUserSig: pushUserSig, whiteboard: whiteboard, autoStopTimeout: autoStopTimeout, autoManageBackup: autoManageBackup, backup: backup, privateMapKey: privateMapKey, videoFPS: videoFPS, videoBitrate: videoBitrate, autoRecord: autoRecord, userDefinedRecordId: userDefinedRecordId, autoPublish: autoPublish, userDefinedStreamId: userDefinedStreamId, extraData: extraData, trtcRoomId: trtcRoomId, trtcRoomIdStr: trtcRoomIdStr, imAuthParam: imAuthParam, trtcAuthParam: trtcAuthParam), logger: logger, on: eventLoop)
+    }
+    
+    /// 开始白板推流
+    ///
+    /// 发起一个白板推流任务
+    @inlinable
+    public func startWhiteboardPush(sdkAppId: Int64, roomId: Int64, pushUserId: String, pushUserSig: String, whiteboard: Whiteboard? = nil, autoStopTimeout: Int64? = nil, autoManageBackup: Bool? = nil, backup: WhiteboardPushBackupParam? = nil, privateMapKey: String? = nil, videoFPS: Int64? = nil, videoBitrate: Int64? = nil, autoRecord: Bool? = nil, userDefinedRecordId: String? = nil, autoPublish: Bool? = nil, userDefinedStreamId: String? = nil, extraData: String? = nil, trtcRoomId: Int64? = nil, trtcRoomIdStr: String? = nil, imAuthParam: AuthParam? = nil, trtcAuthParam: AuthParam? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartWhiteboardPushResponse {
+        try await self.startWhiteboardPush(StartWhiteboardPushRequest(sdkAppId: sdkAppId, roomId: roomId, pushUserId: pushUserId, pushUserSig: pushUserSig, whiteboard: whiteboard, autoStopTimeout: autoStopTimeout, autoManageBackup: autoManageBackup, backup: backup, privateMapKey: privateMapKey, videoFPS: videoFPS, videoBitrate: videoBitrate, autoRecord: autoRecord, userDefinedRecordId: userDefinedRecordId, autoPublish: autoPublish, userDefinedStreamId: userDefinedStreamId, extraData: extraData, trtcRoomId: trtcRoomId, trtcRoomIdStr: trtcRoomIdStr, imAuthParam: imAuthParam, trtcAuthParam: trtcAuthParam), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Monitor {
     public func destroyPrometheusInstance(_ input: DestroyPrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPrometheusInstanceResponse {
         try await self.client.execute(action: "DestroyPrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 强制释放 Prometheus 实例
+    ///
+    /// 彻底删除 Prometheus 实例相关数据，给定的实例必须先被 Terminate
+    @inlinable
+    public func destroyPrometheusInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyPrometheusInstanceResponse > {
+        self.destroyPrometheusInstance(DestroyPrometheusInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 强制释放 Prometheus 实例
+    ///
+    /// 彻底删除 Prometheus 实例相关数据，给定的实例必须先被 Terminate
+    @inlinable
+    public func destroyPrometheusInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPrometheusInstanceResponse {
+        try await self.destroyPrometheusInstance(DestroyPrometheusInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

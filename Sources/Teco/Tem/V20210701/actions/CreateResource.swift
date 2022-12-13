@@ -80,4 +80,16 @@ extension Tem {
     public func createResource(_ input: CreateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
         try await self.client.execute(action: "CreateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 绑定云资源
+    @inlinable
+    public func createResource(environmentId: String, resourceType: String, resourceId: String, sourceChannel: Int64? = nil, resourceFrom: String? = nil, resourceConfig: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResourceResponse > {
+        self.createResource(CreateResourceRequest(environmentId: environmentId, resourceType: resourceType, resourceId: resourceId, sourceChannel: sourceChannel, resourceFrom: resourceFrom, resourceConfig: resourceConfig), logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定云资源
+    @inlinable
+    public func createResource(environmentId: String, resourceType: String, resourceId: String, sourceChannel: Int64? = nil, resourceFrom: String? = nil, resourceConfig: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
+        try await self.createResource(CreateResourceRequest(environmentId: environmentId, resourceType: resourceType, resourceId: resourceId, sourceChannel: sourceChannel, resourceFrom: resourceFrom, resourceConfig: resourceConfig), logger: logger, on: eventLoop)
+    }
 }

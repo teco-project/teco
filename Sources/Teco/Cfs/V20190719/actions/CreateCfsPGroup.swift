@@ -79,4 +79,20 @@ extension Cfs {
     public func createCfsPGroup(_ input: CreateCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsPGroupResponse {
         try await self.client.execute(action: "CreateCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建权限组
+    ///
+    /// 本接口（CreateCfsPGroup）用于创建权限组
+    @inlinable
+    public func createCfsPGroup(name: String, descInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCfsPGroupResponse > {
+        self.createCfsPGroup(CreateCfsPGroupRequest(name: name, descInfo: descInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建权限组
+    ///
+    /// 本接口（CreateCfsPGroup）用于创建权限组
+    @inlinable
+    public func createCfsPGroup(name: String, descInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsPGroupResponse {
+        try await self.createCfsPGroup(CreateCfsPGroupRequest(name: name, descInfo: descInfo), logger: logger, on: eventLoop)
+    }
 }

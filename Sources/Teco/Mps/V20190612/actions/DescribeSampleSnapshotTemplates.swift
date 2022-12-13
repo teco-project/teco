@@ -79,4 +79,20 @@ extension Mps {
     public func describeSampleSnapshotTemplates(_ input: DescribeSampleSnapshotTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleSnapshotTemplatesResponse {
         try await self.client.execute(action: "DescribeSampleSnapshotTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取采样截图模板列表
+    ///
+    /// 查询采样截图模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeSampleSnapshotTemplates(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSampleSnapshotTemplatesResponse > {
+        self.describeSampleSnapshotTemplates(DescribeSampleSnapshotTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取采样截图模板列表
+    ///
+    /// 查询采样截图模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeSampleSnapshotTemplates(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleSnapshotTemplatesResponse {
+        try await self.describeSampleSnapshotTemplates(DescribeSampleSnapshotTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
+    }
 }

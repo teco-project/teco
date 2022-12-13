@@ -75,4 +75,16 @@ extension Wedata {
     public func batchCreateIntegrationTaskAlarms(_ input: BatchCreateIntegrationTaskAlarmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchCreateIntegrationTaskAlarmsResponse {
         try await self.client.execute(action: "BatchCreateIntegrationTaskAlarms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量创建任务告警规则
+    @inlinable
+    public func batchCreateIntegrationTaskAlarms(taskIds: [String], taskAlarmInfo: TaskAlarmInfo, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchCreateIntegrationTaskAlarmsResponse > {
+        self.batchCreateIntegrationTaskAlarms(BatchCreateIntegrationTaskAlarmsRequest(taskIds: taskIds, taskAlarmInfo: taskAlarmInfo, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量创建任务告警规则
+    @inlinable
+    public func batchCreateIntegrationTaskAlarms(taskIds: [String], taskAlarmInfo: TaskAlarmInfo, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchCreateIntegrationTaskAlarmsResponse {
+        try await self.batchCreateIntegrationTaskAlarms(BatchCreateIntegrationTaskAlarmsRequest(taskIds: taskIds, taskAlarmInfo: taskAlarmInfo, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

@@ -115,4 +115,20 @@ extension Sqlserver {
     public func describeBackupByFlowId(_ input: DescribeBackupByFlowIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupByFlowIdResponse {
         try await self.client.execute(action: "DescribeBackupByFlowId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 根据流程ID查询备份信息
+    ///
+    /// 本接口(DescribeBackupByFlowId)用于通过备份创建流程的ID查询创建的备份详情，流程ID可从接口CreateBackup中获得。
+    @inlinable
+    public func describeBackupByFlowId(instanceId: String, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupByFlowIdResponse > {
+        self.describeBackupByFlowId(DescribeBackupByFlowIdRequest(instanceId: instanceId, flowId: flowId), logger: logger, on: eventLoop)
+    }
+    
+    /// 根据流程ID查询备份信息
+    ///
+    /// 本接口(DescribeBackupByFlowId)用于通过备份创建流程的ID查询创建的备份详情，流程ID可从接口CreateBackup中获得。
+    @inlinable
+    public func describeBackupByFlowId(instanceId: String, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupByFlowIdResponse {
+        try await self.describeBackupByFlowId(DescribeBackupByFlowIdRequest(instanceId: instanceId, flowId: flowId), logger: logger, on: eventLoop)
+    }
 }

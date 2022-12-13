@@ -88,4 +88,20 @@ extension Scf {
     public func invoke(_ input: InvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeResponse {
         try await self.client.execute(action: "Invoke", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行函数
+    ///
+    /// 该接口用于运行函数。
+    @inlinable
+    public func invoke(functionName: String, invocationType: String? = nil, qualifier: String? = nil, clientContext: String? = nil, logType: String? = nil, namespace: String? = nil, routingKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeResponse > {
+        self.invoke(InvokeRequest(functionName: functionName, invocationType: invocationType, qualifier: qualifier, clientContext: clientContext, logType: logType, namespace: namespace, routingKey: routingKey), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行函数
+    ///
+    /// 该接口用于运行函数。
+    @inlinable
+    public func invoke(functionName: String, invocationType: String? = nil, qualifier: String? = nil, clientContext: String? = nil, logType: String? = nil, namespace: String? = nil, routingKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeResponse {
+        try await self.invoke(InvokeRequest(functionName: functionName, invocationType: invocationType, qualifier: qualifier, clientContext: clientContext, logType: logType, namespace: namespace, routingKey: routingKey), logger: logger, on: eventLoop)
+    }
 }

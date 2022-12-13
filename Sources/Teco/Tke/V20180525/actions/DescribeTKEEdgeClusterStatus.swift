@@ -62,4 +62,20 @@ extension Tke {
     public func describeTKEEdgeClusterStatus(_ input: DescribeTKEEdgeClusterStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeClusterStatusResponse {
         try await self.client.execute(action: "DescribeTKEEdgeClusterStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询边缘计算集群状态
+    ///
+    /// 获取边缘计算集群的当前状态以及过程信息
+    @inlinable
+    public func describeTKEEdgeClusterStatus(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTKEEdgeClusterStatusResponse > {
+        self.describeTKEEdgeClusterStatus(DescribeTKEEdgeClusterStatusRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘计算集群状态
+    ///
+    /// 获取边缘计算集群的当前状态以及过程信息
+    @inlinable
+    public func describeTKEEdgeClusterStatus(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeClusterStatusResponse {
+        try await self.describeTKEEdgeClusterStatus(DescribeTKEEdgeClusterStatusRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

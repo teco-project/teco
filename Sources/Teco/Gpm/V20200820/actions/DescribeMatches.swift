@@ -101,4 +101,22 @@ extension Gpm {
     public func describeMatches(_ input: DescribeMatchesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchesResponse {
         try await self.client.execute(action: "DescribeMatches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 分页查询匹配列表
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 分页查询匹配列表
+    @inlinable
+    public func describeMatches(pageNumber: Int64? = nil, pageSize: Int64? = nil, searchType: String? = nil, keyword: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMatchesResponse > {
+        self.describeMatches(DescribeMatchesRequest(pageNumber: pageNumber, pageSize: pageSize, searchType: searchType, keyword: keyword, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 分页查询匹配列表
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 分页查询匹配列表
+    @inlinable
+    public func describeMatches(pageNumber: Int64? = nil, pageSize: Int64? = nil, searchType: String? = nil, keyword: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchesResponse {
+        try await self.describeMatches(DescribeMatchesRequest(pageNumber: pageNumber, pageSize: pageSize, searchType: searchType, keyword: keyword, tags: tags), logger: logger, on: eventLoop)
+    }
 }

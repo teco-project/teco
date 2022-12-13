@@ -54,4 +54,20 @@ extension Eiam {
     public func deleteOrgNode(_ input: DeleteOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrgNodeResponse {
         try await self.client.execute(action: "DeleteOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除机构节点
+    ///
+    /// 删除一个机构节点
+    @inlinable
+    public func deleteOrgNode(orgNodeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOrgNodeResponse > {
+        self.deleteOrgNode(DeleteOrgNodeRequest(orgNodeId: orgNodeId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除机构节点
+    ///
+    /// 删除一个机构节点
+    @inlinable
+    public func deleteOrgNode(orgNodeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrgNodeResponse {
+        try await self.deleteOrgNode(DeleteOrgNodeRequest(orgNodeId: orgNodeId), logger: logger, on: eventLoop)
+    }
 }

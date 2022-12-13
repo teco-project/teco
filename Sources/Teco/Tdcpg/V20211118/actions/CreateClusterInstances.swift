@@ -78,4 +78,20 @@ extension Tdcpg {
     public func createClusterInstances(_ input: CreateClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterInstancesResponse {
         try await self.client.execute(action: "CreateClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建实例
+    ///
+    /// 在集群中新建实例
+    @inlinable
+    public func createClusterInstances(clusterId: String, cpu: UInt64, memory: UInt64, instanceName: String? = nil, instanceCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterInstancesResponse > {
+        self.createClusterInstances(CreateClusterInstancesRequest(clusterId: clusterId, cpu: cpu, memory: memory, instanceName: instanceName, instanceCount: instanceCount), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例
+    ///
+    /// 在集群中新建实例
+    @inlinable
+    public func createClusterInstances(clusterId: String, cpu: UInt64, memory: UInt64, instanceName: String? = nil, instanceCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterInstancesResponse {
+        try await self.createClusterInstances(CreateClusterInstancesRequest(clusterId: clusterId, cpu: cpu, memory: memory, instanceName: instanceName, instanceCount: instanceCount), logger: logger, on: eventLoop)
+    }
 }

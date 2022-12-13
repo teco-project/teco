@@ -50,4 +50,20 @@ extension Cds {
     public func describeDbauditInstanceType(_ input: DescribeDbauditInstanceTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditInstanceTypeResponse {
         try await self.client.execute(action: "DescribeDbauditInstanceType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取产品规格信息列表
+    ///
+    /// 本接口 (DescribeDbauditInstanceType) 用于查询可售卖的产品规格列表。
+    @inlinable
+    public func describeDbauditInstanceType(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDbauditInstanceTypeResponse > {
+        self.describeDbauditInstanceType(DescribeDbauditInstanceTypeRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取产品规格信息列表
+    ///
+    /// 本接口 (DescribeDbauditInstanceType) 用于查询可售卖的产品规格列表。
+    @inlinable
+    public func describeDbauditInstanceType(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditInstanceTypeResponse {
+        try await self.describeDbauditInstanceType(DescribeDbauditInstanceTypeRequest(), logger: logger, on: eventLoop)
+    }
 }

@@ -62,4 +62,16 @@ extension Ecm {
     public func describeCustomImageTask(_ input: DescribeCustomImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImageTaskResponse {
         try await self.client.execute(action: "DescribeCustomImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询导入镜像任务
+    @inlinable
+    public func describeCustomImageTask(filters: [Filter], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomImageTaskResponse > {
+        self.describeCustomImageTask(DescribeCustomImageTaskRequest(filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询导入镜像任务
+    @inlinable
+    public func describeCustomImageTask(filters: [Filter], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImageTaskResponse {
+        try await self.describeCustomImageTask(DescribeCustomImageTaskRequest(filters: filters), logger: logger, on: eventLoop)
+    }
 }

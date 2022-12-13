@@ -108,4 +108,16 @@ extension Cpdp {
     public func bindOpenBankExternalSubMerchantBankAccount(_ input: BindOpenBankExternalSubMerchantBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindOpenBankExternalSubMerchantBankAccountResponse {
         try await self.client.execute(action: "BindOpenBankExternalSubMerchantBankAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-子商户银行卡绑定
+    @inlinable
+    public func bindOpenBankExternalSubMerchantBankAccount(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, externalSubMerchantBindBankAccountData: String, outApplyId: String, notifyUrl: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindOpenBankExternalSubMerchantBankAccountResponse > {
+        self.bindOpenBankExternalSubMerchantBankAccount(BindOpenBankExternalSubMerchantBankAccountRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, externalSubMerchantBindBankAccountData: externalSubMerchantBindBankAccountData, outApplyId: outApplyId, notifyUrl: notifyUrl, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-子商户银行卡绑定
+    @inlinable
+    public func bindOpenBankExternalSubMerchantBankAccount(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, externalSubMerchantBindBankAccountData: String, outApplyId: String, notifyUrl: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindOpenBankExternalSubMerchantBankAccountResponse {
+        try await self.bindOpenBankExternalSubMerchantBankAccount(BindOpenBankExternalSubMerchantBankAccountRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, externalSubMerchantBindBankAccountData: externalSubMerchantBindBankAccountData, outApplyId: outApplyId, notifyUrl: notifyUrl, environment: environment), logger: logger, on: eventLoop)
+    }
 }

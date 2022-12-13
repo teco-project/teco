@@ -60,4 +60,16 @@ extension Tem {
     public func modifyIngress(_ input: ModifyIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIngressResponse {
         try await self.client.execute(action: "ModifyIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建或者更新 Ingress 规则
+    @inlinable
+    public func modifyIngress(ingress: IngressInfo, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIngressResponse > {
+        self.modifyIngress(ModifyIngressRequest(ingress: ingress, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建或者更新 Ingress 规则
+    @inlinable
+    public func modifyIngress(ingress: IngressInfo, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIngressResponse {
+        try await self.modifyIngress(ModifyIngressRequest(ingress: ingress, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    }
 }

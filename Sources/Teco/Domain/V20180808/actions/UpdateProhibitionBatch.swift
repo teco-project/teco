@@ -65,4 +65,20 @@ extension Domain {
     public func updateProhibitionBatch(_ input: UpdateProhibitionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProhibitionBatchResponse {
         try await self.client.execute(action: "UpdateProhibitionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量禁止更新锁
+    ///
+    /// 本接口 ( UpdateProhibitionBatch ) 用于批量禁止更新锁。
+    @inlinable
+    public func updateProhibitionBatch(domains: [String], status: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProhibitionBatchResponse > {
+        self.updateProhibitionBatch(UpdateProhibitionBatchRequest(domains: domains, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量禁止更新锁
+    ///
+    /// 本接口 ( UpdateProhibitionBatch ) 用于批量禁止更新锁。
+    @inlinable
+    public func updateProhibitionBatch(domains: [String], status: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProhibitionBatchResponse {
+        try await self.updateProhibitionBatch(UpdateProhibitionBatchRequest(domains: domains, status: status), logger: logger, on: eventLoop)
+    }
 }

@@ -149,4 +149,20 @@ extension Faceid {
     public func checkIdCardInformation(_ input: CheckIdCardInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdCardInformationResponse {
         try await self.client.execute(action: "CheckIdCardInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 身份证人像照片验真
+    ///
+    /// 传入身份证人像面照片，识别身份证照片上的信息，并将姓名、身份证号、身份证人像照片与权威库的证件照进行比对，是否属于同一个人，从而验证身份证信息的真实性。
+    @inlinable
+    public func checkIdCardInformation(imageBase64: String? = nil, imageUrl: String? = nil, config: String? = nil, isEncrypt: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckIdCardInformationResponse > {
+        self.checkIdCardInformation(CheckIdCardInformationRequest(imageBase64: imageBase64, imageUrl: imageUrl, config: config, isEncrypt: isEncrypt), logger: logger, on: eventLoop)
+    }
+    
+    /// 身份证人像照片验真
+    ///
+    /// 传入身份证人像面照片，识别身份证照片上的信息，并将姓名、身份证号、身份证人像照片与权威库的证件照进行比对，是否属于同一个人，从而验证身份证信息的真实性。
+    @inlinable
+    public func checkIdCardInformation(imageBase64: String? = nil, imageUrl: String? = nil, config: String? = nil, isEncrypt: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdCardInformationResponse {
+        try await self.checkIdCardInformation(CheckIdCardInformationRequest(imageBase64: imageBase64, imageUrl: imageUrl, config: config, isEncrypt: isEncrypt), logger: logger, on: eventLoop)
+    }
 }

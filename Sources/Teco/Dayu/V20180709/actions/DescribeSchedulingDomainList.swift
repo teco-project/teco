@@ -68,4 +68,16 @@ extension Dayu {
     public func describeSchedulingDomainList(_ input: DescribeSchedulingDomainListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSchedulingDomainListResponse {
         try await self.client.execute(action: "DescribeSchedulingDomainList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取调度域名列表
+    @inlinable
+    public func describeSchedulingDomainList(limit: UInt64, offset: UInt64, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSchedulingDomainListResponse > {
+        self.describeSchedulingDomainList(DescribeSchedulingDomainListRequest(limit: limit, offset: offset, domain: domain), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取调度域名列表
+    @inlinable
+    public func describeSchedulingDomainList(limit: UInt64, offset: UInt64, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSchedulingDomainListResponse {
+        try await self.describeSchedulingDomainList(DescribeSchedulingDomainListRequest(limit: limit, offset: offset, domain: domain), logger: logger, on: eventLoop)
+    }
 }

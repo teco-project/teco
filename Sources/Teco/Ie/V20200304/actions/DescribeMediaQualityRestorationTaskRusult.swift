@@ -58,4 +58,20 @@ extension Ie {
     public func describeMediaQualityRestorationTaskRusult(_ input: DescribeMediaQualityRestorationTaskRusultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaQualityRestorationTaskRusultResponse {
         try await self.client.execute(action: "DescribeMediaQualityRestorationTaskRusult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取画质重生任务结果
+    ///
+    /// 获取画质重生任务结果，查看结束后的文件信息
+    @inlinable
+    public func describeMediaQualityRestorationTaskRusult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMediaQualityRestorationTaskRusultResponse > {
+        self.describeMediaQualityRestorationTaskRusult(DescribeMediaQualityRestorationTaskRusultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取画质重生任务结果
+    ///
+    /// 获取画质重生任务结果，查看结束后的文件信息
+    @inlinable
+    public func describeMediaQualityRestorationTaskRusult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaQualityRestorationTaskRusultResponse {
+        try await self.describeMediaQualityRestorationTaskRusult(DescribeMediaQualityRestorationTaskRusultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

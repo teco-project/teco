@@ -102,4 +102,20 @@ extension Teo {
     public func describeClientRuleList(_ input: DescribeClientRuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientRuleListResponse {
         try await self.client.execute(action: "DescribeClientRuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询封禁客户端信息列表
+    ///
+    /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
+    @inlinable
+    public func describeClientRuleList(zoneId: String, domain: String, ruleType: String? = nil, ruleId: Int64? = nil, sourceClientIp: String? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientRuleListResponse > {
+        self.describeClientRuleList(DescribeClientRuleListRequest(zoneId: zoneId, domain: domain, ruleType: ruleType, ruleId: ruleId, sourceClientIp: sourceClientIp, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询封禁客户端信息列表
+    ///
+    /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
+    @inlinable
+    public func describeClientRuleList(zoneId: String, domain: String, ruleType: String? = nil, ruleId: Int64? = nil, sourceClientIp: String? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientRuleListResponse {
+        try await self.describeClientRuleList(DescribeClientRuleListRequest(zoneId: zoneId, domain: domain, ruleType: ruleType, ruleId: ruleId, sourceClientIp: sourceClientIp, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,16 @@ extension Dcdb {
     public func cancelDcnJob(_ input: CancelDcnJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelDcnJobResponse {
         try await self.client.execute(action: "CancelDcnJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 取消DCN同步
+    @inlinable
+    public func cancelDcnJob(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelDcnJobResponse > {
+        self.cancelDcnJob(CancelDcnJobRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 取消DCN同步
+    @inlinable
+    public func cancelDcnJob(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelDcnJobResponse {
+        try await self.cancelDcnJob(CancelDcnJobRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

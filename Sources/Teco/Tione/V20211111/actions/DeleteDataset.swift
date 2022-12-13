@@ -59,4 +59,16 @@ extension Tione {
     public func deleteDataset(_ input: DeleteDatasetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDatasetResponse {
         try await self.client.execute(action: "DeleteDataset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除数据集
+    @inlinable
+    public func deleteDataset(datasetId: String, deleteLabelEnable: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDatasetResponse > {
+        self.deleteDataset(DeleteDatasetRequest(datasetId: datasetId, deleteLabelEnable: deleteLabelEnable), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除数据集
+    @inlinable
+    public func deleteDataset(datasetId: String, deleteLabelEnable: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDatasetResponse {
+        try await self.deleteDataset(DeleteDatasetRequest(datasetId: datasetId, deleteLabelEnable: deleteLabelEnable), logger: logger, on: eventLoop)
+    }
 }

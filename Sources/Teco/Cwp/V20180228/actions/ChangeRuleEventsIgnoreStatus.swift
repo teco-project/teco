@@ -64,4 +64,20 @@ extension Cwp {
     public func changeRuleEventsIgnoreStatus(_ input: ChangeRuleEventsIgnoreStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRuleEventsIgnoreStatusResponse {
         try await self.client.execute(action: "ChangeRuleEventsIgnoreStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改事件忽略状态
+    ///
+    /// 根据检测项id或事件id批量忽略事件或取消忽略
+    @inlinable
+    public func changeRuleEventsIgnoreStatus(ignoreStatus: UInt64, ruleIdList: [UInt64]? = nil, eventIdList: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeRuleEventsIgnoreStatusResponse > {
+        self.changeRuleEventsIgnoreStatus(ChangeRuleEventsIgnoreStatusRequest(ignoreStatus: ignoreStatus, ruleIdList: ruleIdList, eventIdList: eventIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改事件忽略状态
+    ///
+    /// 根据检测项id或事件id批量忽略事件或取消忽略
+    @inlinable
+    public func changeRuleEventsIgnoreStatus(ignoreStatus: UInt64, ruleIdList: [UInt64]? = nil, eventIdList: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRuleEventsIgnoreStatusResponse {
+        try await self.changeRuleEventsIgnoreStatus(ChangeRuleEventsIgnoreStatusRequest(ignoreStatus: ignoreStatus, ruleIdList: ruleIdList, eventIdList: eventIdList), logger: logger, on: eventLoop)
+    }
 }

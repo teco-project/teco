@@ -54,4 +54,16 @@ extension Cms {
     public func manualReview(_ input: ManualReviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualReviewResponse {
         try await self.client.execute(action: "ManualReview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 人工审核对外接口
+    @inlinable
+    public func manualReview(reviewContent: ManualReviewContent, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManualReviewResponse > {
+        self.manualReview(ManualReviewRequest(reviewContent: reviewContent), logger: logger, on: eventLoop)
+    }
+    
+    /// 人工审核对外接口
+    @inlinable
+    public func manualReview(reviewContent: ManualReviewContent, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualReviewResponse {
+        try await self.manualReview(ManualReviewRequest(reviewContent: reviewContent), logger: logger, on: eventLoop)
+    }
 }

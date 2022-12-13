@@ -130,7 +130,7 @@ extension Mps {
         /// <li>OFF：关闭。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -2285,7 +2285,7 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
         
-        public init (`switch`: String? = nil, type: String? = nil) {
+        public init (switch: String? = nil, type: String? = nil) {
             self.`switch` = `switch`
             self.type = type
         }
@@ -2307,7 +2307,7 @@ extension Mps {
         /// <li>vtt：生成 WebVTT 字幕文件。</li>
         public let subtitleFormat: String?
         
-        public init (`switch`: String, subtitleFormat: String? = nil) {
+        public init (switch: String, subtitleFormat: String? = nil) {
             self.`switch` = `switch`
             self.subtitleFormat = subtitleFormat
         }
@@ -2329,7 +2329,7 @@ extension Mps {
         /// <li>vtt：生成 WebVTT 字幕文件。</li>
         public let subtitleFormat: String?
         
-        public init (`switch`: String? = nil, subtitleFormat: String? = nil) {
+        public init (switch: String? = nil, subtitleFormat: String? = nil) {
             self.`switch` = `switch`
             self.subtitleFormat = subtitleFormat
         }
@@ -2351,7 +2351,7 @@ extension Mps {
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
         
-        public init (`switch`: String, labelSet: [String]? = nil) {
+        public init (switch: String, labelSet: [String]? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
         }
@@ -2373,7 +2373,7 @@ extension Mps {
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
         
-        public init (`switch`: String? = nil, labelSet: [String]? = nil) {
+        public init (switch: String? = nil, labelSet: [String]? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
         }
@@ -2501,7 +2501,7 @@ extension Mps {
         /// <li>OFF：关闭智能分类任务。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -2517,7 +2517,7 @@ extension Mps {
         /// <li>OFF：关闭智能分类任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String? = nil) {
+        public init (switch: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -2542,7 +2542,7 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
         
-        public init (`switch`: String? = nil, type: String? = nil) {
+        public init (switch: String? = nil, type: String? = nil) {
             self.`switch` = `switch`
             self.type = type
         }
@@ -2692,7 +2692,7 @@ extension Mps {
         /// <li>OFF：关闭智能封面任务。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -2708,7 +2708,7 @@ extension Mps {
         /// <li>OFF：关闭智能封面任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String? = nil) {
+        public init (switch: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -2752,7 +2752,7 @@ extension Mps {
         /// 延播平滑吐流配置信息。
         public let resilientStream: ResilientStreamConf?
         
-        public init (inputName: String, `protocol`: String, description: String? = nil, allowIpList: [String]? = nil, srtSettings: CreateInputSRTSettings? = nil, rtpSettings: CreateInputRTPSettings? = nil, failOver: String? = nil, rtmpPullSettings: CreateInputRTMPPullSettings? = nil, rtspPullSettings: CreateInputRTSPPullSettings? = nil, hlsPullSettings: CreateInputHLSPullSettings? = nil, resilientStream: ResilientStreamConf? = nil) {
+        public init (inputName: String, protocol: String, description: String? = nil, allowIpList: [String]? = nil, srtSettings: CreateInputSRTSettings? = nil, rtpSettings: CreateInputRTPSettings? = nil, failOver: String? = nil, rtmpPullSettings: CreateInputRTMPPullSettings? = nil, rtspPullSettings: CreateInputRTSPPullSettings? = nil, hlsPullSettings: CreateInputHLSPullSettings? = nil, resilientStream: ResilientStreamConf? = nil) {
             self.inputName = inputName
             self.`protocol` = `protocol`
             self.description = description
@@ -2923,7 +2923,7 @@ extension Mps {
         /// 当Protocol为RTMP_PULL有效，为空代表不限制客户端IP。
         public let allowIpList: [String]?
         
-        public init (outputName: String, description: String, `protocol`: String, outputRegion: String, srtSettings: CreateOutputSRTSettings? = nil, rtmpSettings: CreateOutputRTMPSettings? = nil, rtpSettings: CreateOutputInfoRTPSettings? = nil, allowIpList: [String]? = nil) {
+        public init (outputName: String, description: String, protocol: String, outputRegion: String, srtSettings: CreateOutputSRTSettings? = nil, rtmpSettings: CreateOutputRTMPSettings? = nil, rtpSettings: CreateOutputInfoRTPSettings? = nil, allowIpList: [String]? = nil) {
             self.outputName = outputName
             self.description = description
             self.`protocol` = `protocol`
@@ -3708,7 +3708,7 @@ extension Mps {
         /// <li>OFF：关闭。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -3744,7 +3744,7 @@ extension Mps {
         /// 默认值：All，使用系统默认人物库及用户自定义人物库。
         public let faceLibrary: String?
         
-        public init (`switch`: String, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
+        public init (switch: String, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
             self.`switch` = `switch`
             self.score = score
             self.defaultLibraryLabelSet = defaultLibraryLabelSet
@@ -3787,7 +3787,7 @@ extension Mps {
         /// <li>All：同时使用默认人物库和用户自定义人物库。</li>
         public let faceLibrary: String?
         
-        public init (`switch`: String? = nil, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
+        public init (switch: String? = nil, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
             self.`switch` = `switch`
             self.score = score
             self.defaultLibraryLabelSet = defaultLibraryLabelSet
@@ -3817,7 +3817,7 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intensity: Float?
         
-        public init (`switch`: String? = nil, intensity: Float? = nil) {
+        public init (switch: String? = nil, intensity: Float? = nil) {
             self.`switch` = `switch`
             self.intensity = intensity
         }
@@ -4213,7 +4213,7 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fps: UInt64?
         
-        public init (`switch`: String? = nil, fps: UInt64? = nil) {
+        public init (switch: String? = nil, fps: UInt64? = nil) {
             self.`switch` = `switch`
             self.fps = fps
         }
@@ -4231,7 +4231,7 @@ extension Mps {
         /// <li>OFF：关闭智能按帧标签任务。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -4247,7 +4247,7 @@ extension Mps {
         /// <li>OFF：关闭智能按帧标签任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String? = nil) {
+        public init (switch: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -4287,7 +4287,7 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
         
-        public init (`switch`: String? = nil, type: String? = nil) {
+        public init (switch: String? = nil, type: String? = nil) {
             self.`switch` = `switch`
             self.type = type
         }
@@ -4333,7 +4333,7 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
         
-        public init (`switch`: String? = nil, type: String? = nil) {
+        public init (switch: String? = nil, type: String? = nil) {
             self.`switch` = `switch`
             self.type = type
         }
@@ -5098,7 +5098,7 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
         
-        public init (`switch`: String? = nil, type: String? = nil) {
+        public init (switch: String? = nil, type: String? = nil) {
             self.`switch` = `switch`
             self.type = type
         }
@@ -6036,7 +6036,7 @@ extension Mps {
         /// 延播平滑吐流配置信息。
         public let resilientStream: ResilientStreamConf?
         
-        public init (inputId: String, inputName: String, description: String, allowIpList: [String], srtSettings: CreateInputSRTSettings, rtpSettings: CreateInputRTPSettings, `protocol`: String? = nil, failOver: String? = nil, rtmpPullSettings: CreateInputRTMPPullSettings? = nil, rtspPullSettings: CreateInputRTSPPullSettings? = nil, hlsPullSettings: CreateInputHLSPullSettings? = nil, resilientStream: ResilientStreamConf? = nil) {
+        public init (inputId: String, inputName: String, description: String, allowIpList: [String], srtSettings: CreateInputSRTSettings, rtpSettings: CreateInputRTPSettings, protocol: String? = nil, failOver: String? = nil, rtmpPullSettings: CreateInputRTMPPullSettings? = nil, rtspPullSettings: CreateInputRTSPPullSettings? = nil, hlsPullSettings: CreateInputHLSPullSettings? = nil, resilientStream: ResilientStreamConf? = nil) {
             self.inputId = inputId
             self.inputName = inputName
             self.description = description
@@ -6094,7 +6094,7 @@ extension Mps {
         /// 当Protocol为RTMP_PULL有效，为空代表不限制客户端IP。
         public let allowIpList: [String]?
         
-        public init (outputId: String, outputName: String, description: String, `protocol`: String, srtSettings: CreateOutputSRTSettings? = nil, rtpSettings: CreateOutputInfoRTPSettings? = nil, rtmpSettings: CreateOutputRTMPSettings? = nil, allowIpList: [String]? = nil) {
+        public init (outputId: String, outputName: String, description: String, protocol: String, srtSettings: CreateOutputSRTSettings? = nil, rtpSettings: CreateOutputInfoRTPSettings? = nil, rtmpSettings: CreateOutputRTMPSettings? = nil, allowIpList: [String]? = nil) {
             self.outputId = outputId
             self.outputName = outputName
             self.description = description
@@ -6217,7 +6217,7 @@ extension Mps {
         /// <li>OFF：关闭智能文本全文识别任务。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -6233,7 +6233,7 @@ extension Mps {
         /// <li>OFF：关闭智能文本全文识别任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String? = nil) {
+        public init (switch: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -6253,7 +6253,7 @@ extension Mps {
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
         
-        public init (`switch`: String, labelSet: [String]? = nil) {
+        public init (switch: String, labelSet: [String]? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
         }
@@ -6275,7 +6275,7 @@ extension Mps {
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
         
-        public init (`switch`: String? = nil, labelSet: [String]? = nil) {
+        public init (switch: String? = nil, labelSet: [String]? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
         }
@@ -6376,7 +6376,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -6402,7 +6402,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -6487,7 +6487,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 95 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -6526,7 +6526,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -6554,7 +6554,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -6580,7 +6580,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -6606,7 +6606,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -6632,7 +6632,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -6713,7 +6713,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 0 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -6748,7 +6748,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -6776,7 +6776,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -6802,7 +6802,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -6828,7 +6828,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -6854,7 +6854,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -6920,7 +6920,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -6946,7 +6946,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7480,7 +7480,7 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intensity: Float?
         
-        public init (`switch`: String? = nil, intensity: Float? = nil) {
+        public init (switch: String? = nil, intensity: Float? = nil) {
             self.`switch` = `switch`
             self.intensity = intensity
         }
@@ -7504,7 +7504,7 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intensity: Float?
         
-        public init (`switch`: String? = nil, intensity: Float? = nil) {
+        public init (switch: String? = nil, intensity: Float? = nil) {
             self.`switch` = `switch`
             self.intensity = intensity
         }
@@ -7711,7 +7711,7 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let size: Int64?
         
-        public init (`switch`: String? = nil, type: String? = nil, size: Int64? = nil) {
+        public init (switch: String? = nil, type: String? = nil, size: Int64? = nil) {
             self.`switch` = `switch`
             self.type = type
             self.size = size
@@ -7844,7 +7844,7 @@ extension Mps {
         /// <li>OFF：关闭智能标签任务。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (switch: String) {
             self.`switch` = `switch`
         }
         
@@ -7860,7 +7860,7 @@ extension Mps {
         /// <li>OFF：关闭智能标签任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String? = nil) {
+        public init (switch: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -8029,7 +8029,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 80 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -8069,7 +8069,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -8097,7 +8097,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -8123,7 +8123,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -8390,7 +8390,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -8422,7 +8422,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -8502,7 +8502,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 95 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -8534,7 +8534,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -8566,7 +8566,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -8598,7 +8598,7 @@ extension Mps {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String? = nil, labelSet: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
+        public init (switch: String? = nil, labelSet: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -8628,7 +8628,7 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
         
-        public init (`switch`: String? = nil, type: String? = nil) {
+        public init (switch: String? = nil, type: String? = nil) {
             self.`switch` = `switch`
             self.type = type
         }

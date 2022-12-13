@@ -93,4 +93,16 @@ extension Tbaas {
     public func getChaincodeInitializeResultForUser(_ input: GetChaincodeInitializeResultForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChaincodeInitializeResultForUserResponse {
         try await self.client.execute(action: "GetChaincodeInitializeResultForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 实例化结果查询
+    @inlinable
+    public func getChaincodeInitializeResultForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, chaincodeName: String, chaincodeVersion: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetChaincodeInitializeResultForUserResponse > {
+        self.getChaincodeInitializeResultForUser(GetChaincodeInitializeResultForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 实例化结果查询
+    @inlinable
+    public func getChaincodeInitializeResultForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, chaincodeName: String, chaincodeVersion: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChaincodeInitializeResultForUserResponse {
+        try await self.getChaincodeInitializeResultForUser(GetChaincodeInitializeResultForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

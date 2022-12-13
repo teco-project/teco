@@ -76,4 +76,20 @@ extension Tbm {
     public func describeBrandExposure(_ input: DescribeBrandExposureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandExposureResponse {
         try await self.client.execute(action: "DescribeBrandExposure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取品牌总热度
+    ///
+    /// 监测品牌关键词命中文章标题或全文的文章篇数，按天输出数据。
+    @inlinable
+    public func describeBrandExposure(brandId: String, startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBrandExposureResponse > {
+        self.describeBrandExposure(DescribeBrandExposureRequest(brandId: brandId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取品牌总热度
+    ///
+    /// 监测品牌关键词命中文章标题或全文的文章篇数，按天输出数据。
+    @inlinable
+    public func describeBrandExposure(brandId: String, startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandExposureResponse {
+        try await self.describeBrandExposure(DescribeBrandExposureRequest(brandId: brandId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
 }

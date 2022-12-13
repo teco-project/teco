@@ -50,4 +50,16 @@ extension Tcss {
     public func deleteEscapeWhiteList(_ input: DeleteEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEscapeWhiteListResponse {
         try await self.client.execute(action: "DeleteEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除逃逸白名单
+    @inlinable
+    public func deleteEscapeWhiteList(idSet: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEscapeWhiteListResponse > {
+        self.deleteEscapeWhiteList(DeleteEscapeWhiteListRequest(idSet: idSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除逃逸白名单
+    @inlinable
+    public func deleteEscapeWhiteList(idSet: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEscapeWhiteListResponse {
+        try await self.deleteEscapeWhiteList(DeleteEscapeWhiteListRequest(idSet: idSet), logger: logger, on: eventLoop)
+    }
 }

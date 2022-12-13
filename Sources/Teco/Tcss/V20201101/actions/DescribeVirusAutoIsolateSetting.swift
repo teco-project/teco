@@ -50,4 +50,16 @@ extension Tcss {
     public func describeVirusAutoIsolateSetting(_ input: DescribeVirusAutoIsolateSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSettingResponse {
         try await self.client.execute(action: "DescribeVirusAutoIsolateSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询木马自动隔离设置
+    @inlinable
+    public func describeVirusAutoIsolateSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusAutoIsolateSettingResponse > {
+        self.describeVirusAutoIsolateSetting(DescribeVirusAutoIsolateSettingRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询木马自动隔离设置
+    @inlinable
+    public func describeVirusAutoIsolateSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSettingResponse {
+        try await self.describeVirusAutoIsolateSetting(DescribeVirusAutoIsolateSettingRequest(), logger: logger, on: eventLoop)
+    }
 }

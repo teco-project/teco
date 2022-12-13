@@ -73,4 +73,16 @@ extension Tcaplusdb {
     public func modifyCensorship(_ input: ModifyCensorshipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCensorshipResponse {
         try await self.client.execute(action: "ModifyCensorship", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改集群审批状态
+    @inlinable
+    public func modifyCensorship(clusterId: String, censorship: Int64, uins: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCensorshipResponse > {
+        self.modifyCensorship(ModifyCensorshipRequest(clusterId: clusterId, censorship: censorship, uins: uins), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改集群审批状态
+    @inlinable
+    public func modifyCensorship(clusterId: String, censorship: Int64, uins: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCensorshipResponse {
+        try await self.modifyCensorship(ModifyCensorshipRequest(clusterId: clusterId, censorship: censorship, uins: uins), logger: logger, on: eventLoop)
+    }
 }

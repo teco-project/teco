@@ -46,4 +46,16 @@ extension Yunjing {
     public func exportReverseShellEvents(_ input: ExportReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportReverseShellEventsResponse {
         try await self.client.execute(action: "ExportReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导出反弹Shell事件
+    @inlinable
+    public func exportReverseShellEvents(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportReverseShellEventsResponse > {
+        self.exportReverseShellEvents(ExportReverseShellEventsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 导出反弹Shell事件
+    @inlinable
+    public func exportReverseShellEvents(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportReverseShellEventsResponse {
+        try await self.exportReverseShellEvents(ExportReverseShellEventsRequest(), logger: logger, on: eventLoop)
+    }
 }

@@ -91,4 +91,16 @@ extension Tag {
     public func describeResourceTagsByResourceIdsSeq(_ input: DescribeResourceTagsByResourceIdsSeqRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsByResourceIdsSeqResponse {
         try await self.client.execute(action: "DescribeResourceTagsByResourceIdsSeq", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 按顺序查看资源关联的标签
+    @inlinable
+    public func describeResourceTagsByResourceIdsSeq(serviceType: String, resourcePrefix: String, resourceIds: [String], resourceRegion: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceTagsByResourceIdsSeqResponse > {
+        self.describeResourceTagsByResourceIdsSeq(DescribeResourceTagsByResourceIdsSeqRequest(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceIds: resourceIds, resourceRegion: resourceRegion, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 按顺序查看资源关联的标签
+    @inlinable
+    public func describeResourceTagsByResourceIdsSeq(serviceType: String, resourcePrefix: String, resourceIds: [String], resourceRegion: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsByResourceIdsSeqResponse {
+        try await self.describeResourceTagsByResourceIdsSeq(DescribeResourceTagsByResourceIdsSeqRequest(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceIds: resourceIds, resourceRegion: resourceRegion, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

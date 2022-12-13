@@ -51,7 +51,7 @@ extension Essbasic {
         /// 支持的授权方式,授权方式: "1" - 上传授权书认证  "2" - 法定代表人认证
         public let authorizationTypes: [Int64]?
         
-        public init (agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, `operator`: UserInfo? = nil, authorizationTypes: [Int64]? = nil) {
+        public init (agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, operator: UserInfo? = nil, authorizationTypes: [Int64]? = nil) {
             self.agent = agent
             self.proxyOrganizationName = proxyOrganizationName
             self.proxyOperatorName = proxyOperatorName
@@ -127,5 +127,27 @@ extension Essbasic {
     @inlinable
     public func createConsoleLoginUrl(_ input: CreateConsoleLoginUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsoleLoginUrlResponse {
         try await self.client.execute(action: "CreateConsoleLoginUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 生成控制台、移动端链接
+    ///
+    /// 此接口（CreateConsoleLoginUrl）用于创建渠道子客企业控制台Web/移动登录链接。登录链接是子客控制台的唯一入口。
+    /// 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。（若企业激活过程中填写信息有误，需要重置激活流程，可以换一个经办人OpenId获取新的链接进入。）
+    /// 若子客企业已激活，使用了新的经办人OpenId进入，则会进入经办人的实名流程。
+    /// 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
+    @inlinable
+    public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, operator: UserInfo? = nil, authorizationTypes: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConsoleLoginUrlResponse > {
+        self.createConsoleLoginUrl(CreateConsoleLoginUrlRequest(agent: agent, proxyOrganizationName: proxyOrganizationName, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, uniformSocialCreditCode: uniformSocialCreditCode, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, operator: `operator`, authorizationTypes: authorizationTypes), logger: logger, on: eventLoop)
+    }
+    
+    /// 生成控制台、移动端链接
+    ///
+    /// 此接口（CreateConsoleLoginUrl）用于创建渠道子客企业控制台Web/移动登录链接。登录链接是子客控制台的唯一入口。
+    /// 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。（若企业激活过程中填写信息有误，需要重置激活流程，可以换一个经办人OpenId获取新的链接进入。）
+    /// 若子客企业已激活，使用了新的经办人OpenId进入，则会进入经办人的实名流程。
+    /// 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
+    @inlinable
+    public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, operator: UserInfo? = nil, authorizationTypes: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsoleLoginUrlResponse {
+        try await self.createConsoleLoginUrl(CreateConsoleLoginUrlRequest(agent: agent, proxyOrganizationName: proxyOrganizationName, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, uniformSocialCreditCode: uniformSocialCreditCode, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, operator: `operator`, authorizationTypes: authorizationTypes), logger: logger, on: eventLoop)
     }
 }

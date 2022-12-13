@@ -170,4 +170,20 @@ extension Tcss {
     public func describeAssetContainerDetail(_ input: DescribeAssetContainerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetContainerDetailResponse {
         try await self.client.execute(action: "DescribeAssetContainerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询容器信息
+    ///
+    /// 查询容器详细信息
+    @inlinable
+    public func describeAssetContainerDetail(containerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetContainerDetailResponse > {
+        self.describeAssetContainerDetail(DescribeAssetContainerDetailRequest(containerId: containerId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器信息
+    ///
+    /// 查询容器详细信息
+    @inlinable
+    public func describeAssetContainerDetail(containerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetContainerDetailResponse {
+        try await self.describeAssetContainerDetail(DescribeAssetContainerDetailRequest(containerId: containerId), logger: logger, on: eventLoop)
+    }
 }

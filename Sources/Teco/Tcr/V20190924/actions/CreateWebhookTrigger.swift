@@ -64,4 +64,16 @@ extension Tcr {
     public func createWebhookTrigger(_ input: CreateWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebhookTriggerResponse {
         try await self.client.execute(action: "CreateWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建触发器
+    @inlinable
+    public func createWebhookTrigger(registryId: String, trigger: WebhookTrigger, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWebhookTriggerResponse > {
+        self.createWebhookTrigger(CreateWebhookTriggerRequest(registryId: registryId, trigger: trigger, namespace: namespace), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建触发器
+    @inlinable
+    public func createWebhookTrigger(registryId: String, trigger: WebhookTrigger, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebhookTriggerResponse {
+        try await self.createWebhookTrigger(CreateWebhookTriggerRequest(registryId: registryId, trigger: trigger, namespace: namespace), logger: logger, on: eventLoop)
+    }
 }

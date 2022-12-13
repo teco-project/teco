@@ -63,4 +63,20 @@ extension Sqlserver {
     public func describeRollbackTime(_ input: DescribeRollbackTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTimeResponse {
         try await self.client.execute(action: "DescribeRollbackTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例可回档时间范围
+    ///
+    /// 本接口（DescribeRollbackTime）用于查询实例可回档时间范围
+    @inlinable
+    public func describeRollbackTime(instanceId: String, dBs: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRollbackTimeResponse > {
+        self.describeRollbackTime(DescribeRollbackTimeRequest(instanceId: instanceId, dBs: dBs), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例可回档时间范围
+    ///
+    /// 本接口（DescribeRollbackTime）用于查询实例可回档时间范围
+    @inlinable
+    public func describeRollbackTime(instanceId: String, dBs: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTimeResponse {
+        try await self.describeRollbackTime(DescribeRollbackTimeRequest(instanceId: instanceId, dBs: dBs), logger: logger, on: eventLoop)
+    }
 }

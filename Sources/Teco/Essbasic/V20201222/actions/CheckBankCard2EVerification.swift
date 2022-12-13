@@ -93,4 +93,20 @@ extension Essbasic {
     public func checkBankCard2EVerification(_ input: CheckBankCard2EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCard2EVerificationResponse {
         try await self.client.execute(action: "CheckBankCard2EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 银行卡二要素检测
+    ///
+    /// 该接口为第三方平台向电子签平台验证银行卡二要素
+    @inlinable
+    public func checkBankCard2EVerification(caller: Caller, bankCard: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBankCard2EVerificationResponse > {
+        self.checkBankCard2EVerification(CheckBankCard2EVerificationRequest(caller: caller, bankCard: bankCard, name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 银行卡二要素检测
+    ///
+    /// 该接口为第三方平台向电子签平台验证银行卡二要素
+    @inlinable
+    public func checkBankCard2EVerification(caller: Caller, bankCard: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCard2EVerificationResponse {
+        try await self.checkBankCard2EVerification(CheckBankCard2EVerificationRequest(caller: caller, bankCard: bankCard, name: name), logger: logger, on: eventLoop)
+    }
 }

@@ -94,4 +94,16 @@ extension Tbaas {
     public func initializeChaincodeForUser(_ input: InitializeChaincodeForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeChaincodeForUserResponse {
         try await self.client.execute(action: "InitializeChaincodeForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 实例化合约
+    @inlinable
+    public func initializeChaincodeForUser(module: String, operation: String, clusterId: String, groupName: String, chaincodeName: String, chaincodeVersion: String, channelName: String, peerName: String, args: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InitializeChaincodeForUserResponse > {
+        self.initializeChaincodeForUser(InitializeChaincodeForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, channelName: channelName, peerName: peerName, args: args), logger: logger, on: eventLoop)
+    }
+    
+    /// 实例化合约
+    @inlinable
+    public func initializeChaincodeForUser(module: String, operation: String, clusterId: String, groupName: String, chaincodeName: String, chaincodeVersion: String, channelName: String, peerName: String, args: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeChaincodeForUserResponse {
+        try await self.initializeChaincodeForUser(InitializeChaincodeForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, channelName: channelName, peerName: peerName, args: args), logger: logger, on: eventLoop)
+    }
 }

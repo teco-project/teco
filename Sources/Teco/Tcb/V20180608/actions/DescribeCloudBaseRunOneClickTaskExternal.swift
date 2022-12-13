@@ -109,4 +109,20 @@ extension Tcb {
     public func describeCloudBaseRunOneClickTaskExternal(_ input: DescribeCloudBaseRunOneClickTaskExternalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunOneClickTaskExternalResponse {
         try await self.client.execute(action: "DescribeCloudBaseRunOneClickTaskExternal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询一键部署任务
+    ///
+    /// 查询一键部署任务 （特定接口：外部查询使用）
+    @inlinable
+    public func describeCloudBaseRunOneClickTaskExternal(externalId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunOneClickTaskExternalResponse > {
+        self.describeCloudBaseRunOneClickTaskExternal(DescribeCloudBaseRunOneClickTaskExternalRequest(externalId: externalId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询一键部署任务
+    ///
+    /// 查询一键部署任务 （特定接口：外部查询使用）
+    @inlinable
+    public func describeCloudBaseRunOneClickTaskExternal(externalId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunOneClickTaskExternalResponse {
+        try await self.describeCloudBaseRunOneClickTaskExternal(DescribeCloudBaseRunOneClickTaskExternalRequest(externalId: externalId), logger: logger, on: eventLoop)
+    }
 }

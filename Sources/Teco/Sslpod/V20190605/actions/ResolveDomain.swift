@@ -58,4 +58,20 @@ extension Sslpod {
     public func resolveDomain(_ input: ResolveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResolveDomainResponse {
         try await self.client.execute(action: "ResolveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 域名解析
+    ///
+    /// 解析域名获得多个IP地址
+    @inlinable
+    public func resolveDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResolveDomainResponse > {
+        self.resolveDomain(ResolveDomainRequest(domain: domain), logger: logger, on: eventLoop)
+    }
+    
+    /// 域名解析
+    ///
+    /// 解析域名获得多个IP地址
+    @inlinable
+    public func resolveDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResolveDomainResponse {
+        try await self.resolveDomain(ResolveDomainRequest(domain: domain), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,16 @@ extension Ic {
     public func modifyUserCardRemark(_ input: ModifyUserCardRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserCardRemarkResponse {
         try await self.client.execute(action: "ModifyUserCardRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 编辑卡片备注
+    @inlinable
+    public func modifyUserCardRemark(sdkappid: Int64, iccid: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserCardRemarkResponse > {
+        self.modifyUserCardRemark(ModifyUserCardRemarkRequest(sdkappid: sdkappid, iccid: iccid, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑卡片备注
+    @inlinable
+    public func modifyUserCardRemark(sdkappid: Int64, iccid: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserCardRemarkResponse {
+        try await self.modifyUserCardRemark(ModifyUserCardRemarkRequest(sdkappid: sdkappid, iccid: iccid, remark: remark), logger: logger, on: eventLoop)
+    }
 }

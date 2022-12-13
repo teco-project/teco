@@ -91,4 +91,20 @@ extension Faceid {
     public func bankCard2EVerification(_ input: BankCard2EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCard2EVerificationResponse {
         try await self.client.execute(action: "BankCard2EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 银行卡二要素核验
+    ///
+    /// 本接口用于校验姓名和银行卡号的真实性和一致性。
+    @inlinable
+    public func bankCard2EVerification(name: String, bankCard: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BankCard2EVerificationResponse > {
+        self.bankCard2EVerification(BankCard2EVerificationRequest(name: name, bankCard: bankCard, encryption: encryption), logger: logger, on: eventLoop)
+    }
+    
+    /// 银行卡二要素核验
+    ///
+    /// 本接口用于校验姓名和银行卡号的真实性和一致性。
+    @inlinable
+    public func bankCard2EVerification(name: String, bankCard: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCard2EVerificationResponse {
+        try await self.bankCard2EVerification(BankCard2EVerificationRequest(name: name, bankCard: bankCard, encryption: encryption), logger: logger, on: eventLoop)
+    }
 }

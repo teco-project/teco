@@ -68,4 +68,20 @@ extension Bmvpc {
     public func asyncRegisterIps(_ input: AsyncRegisterIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AsyncRegisterIpsResponse {
         try await self.client.execute(action: "AsyncRegisterIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量注册虚拟IP
+    ///
+    /// 批量注册虚拟IP，异步接口。通过接口来查询任务进度。每次请求最多注册256个IP
+    @inlinable
+    public func asyncRegisterIps(vpcId: String, subnetId: String, ips: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AsyncRegisterIpsResponse > {
+        self.asyncRegisterIps(AsyncRegisterIpsRequest(vpcId: vpcId, subnetId: subnetId, ips: ips), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量注册虚拟IP
+    ///
+    /// 批量注册虚拟IP，异步接口。通过接口来查询任务进度。每次请求最多注册256个IP
+    @inlinable
+    public func asyncRegisterIps(vpcId: String, subnetId: String, ips: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AsyncRegisterIpsResponse {
+        try await self.asyncRegisterIps(AsyncRegisterIpsRequest(vpcId: vpcId, subnetId: subnetId, ips: ips), logger: logger, on: eventLoop)
+    }
 }

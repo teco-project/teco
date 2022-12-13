@@ -69,4 +69,16 @@ extension Ccc {
     public func createUserSig(_ input: CreateUserSigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSigResponse {
         try await self.client.execute(action: "CreateUserSig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建用户数据签名
+    @inlinable
+    public func createUserSig(sdkAppId: Int64, uid: String, expiredTime: Int64, clientData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserSigResponse > {
+        self.createUserSig(CreateUserSigRequest(sdkAppId: sdkAppId, uid: uid, expiredTime: expiredTime, clientData: clientData), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建用户数据签名
+    @inlinable
+    public func createUserSig(sdkAppId: Int64, uid: String, expiredTime: Int64, clientData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSigResponse {
+        try await self.createUserSig(CreateUserSigRequest(sdkAppId: sdkAppId, uid: uid, expiredTime: expiredTime, clientData: clientData), logger: logger, on: eventLoop)
+    }
 }

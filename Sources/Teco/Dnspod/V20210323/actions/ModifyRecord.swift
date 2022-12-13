@@ -109,4 +109,16 @@ extension Dnspod {
     public func modifyRecord(_ input: ModifyRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordResponse {
         try await self.client.execute(action: "ModifyRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改记录
+    @inlinable
+    public func modifyRecord(domain: String, recordType: String, recordLine: String, value: String, recordId: UInt64, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, mx: UInt64? = nil, ttl: UInt64? = nil, weight: UInt64? = nil, status: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordResponse > {
+        self.modifyRecord(ModifyRecordRequest(domain: domain, recordType: recordType, recordLine: recordLine, value: value, recordId: recordId, domainId: domainId, subDomain: subDomain, recordLineId: recordLineId, mx: mx, ttl: ttl, weight: weight, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改记录
+    @inlinable
+    public func modifyRecord(domain: String, recordType: String, recordLine: String, value: String, recordId: UInt64, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, mx: UInt64? = nil, ttl: UInt64? = nil, weight: UInt64? = nil, status: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordResponse {
+        try await self.modifyRecord(ModifyRecordRequest(domain: domain, recordType: recordType, recordLine: recordLine, value: value, recordId: recordId, domainId: domainId, subDomain: subDomain, recordLineId: recordLineId, mx: mx, ttl: ttl, weight: weight, status: status), logger: logger, on: eventLoop)
+    }
 }

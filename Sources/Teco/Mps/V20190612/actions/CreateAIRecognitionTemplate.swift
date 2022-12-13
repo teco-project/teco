@@ -88,4 +88,20 @@ extension Mps {
     public func createAIRecognitionTemplate(_ input: CreateAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIRecognitionTemplateResponse {
         try await self.client.execute(action: "CreateAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建内容识别模板
+    ///
+    /// 创建用户自定义内容识别模板，数量上限：50。
+    @inlinable
+    public func createAIRecognitionTemplate(name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfo? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfo? = nil, ocrWordsConfigure: OcrWordsConfigureInfo? = nil, asrFullTextConfigure: AsrFullTextConfigureInfo? = nil, asrWordsConfigure: AsrWordsConfigureInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAIRecognitionTemplateResponse > {
+        self.createAIRecognitionTemplate(CreateAIRecognitionTemplateRequest(name: name, comment: comment, faceConfigure: faceConfigure, ocrFullTextConfigure: ocrFullTextConfigure, ocrWordsConfigure: ocrWordsConfigure, asrFullTextConfigure: asrFullTextConfigure, asrWordsConfigure: asrWordsConfigure), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建内容识别模板
+    ///
+    /// 创建用户自定义内容识别模板，数量上限：50。
+    @inlinable
+    public func createAIRecognitionTemplate(name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfo? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfo? = nil, ocrWordsConfigure: OcrWordsConfigureInfo? = nil, asrFullTextConfigure: AsrFullTextConfigureInfo? = nil, asrWordsConfigure: AsrWordsConfigureInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIRecognitionTemplateResponse {
+        try await self.createAIRecognitionTemplate(CreateAIRecognitionTemplateRequest(name: name, comment: comment, faceConfigure: faceConfigure, ocrFullTextConfigure: ocrFullTextConfigure, ocrWordsConfigure: ocrWordsConfigure, asrFullTextConfigure: asrFullTextConfigure, asrWordsConfigure: asrWordsConfigure), logger: logger, on: eventLoop)
+    }
 }

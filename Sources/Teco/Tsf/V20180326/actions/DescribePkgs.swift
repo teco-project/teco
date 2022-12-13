@@ -98,4 +98,20 @@ extension Tsf {
     public func describePkgs(_ input: DescribePkgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePkgsResponse {
         try await self.client.execute(action: "DescribePkgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取某个应用的程序包信息列表
+    ///
+    /// 无
+    @inlinable
+    public func describePkgs(applicationId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, repositoryType: String? = nil, repositoryId: String? = nil, packageTypeList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePkgsResponse > {
+        self.describePkgs(DescribePkgsRequest(applicationId: applicationId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, repositoryType: repositoryType, repositoryId: repositoryId, packageTypeList: packageTypeList), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取某个应用的程序包信息列表
+    ///
+    /// 无
+    @inlinable
+    public func describePkgs(applicationId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, repositoryType: String? = nil, repositoryId: String? = nil, packageTypeList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePkgsResponse {
+        try await self.describePkgs(DescribePkgsRequest(applicationId: applicationId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, repositoryType: repositoryType, repositoryId: repositoryId, packageTypeList: packageTypeList), logger: logger, on: eventLoop)
+    }
 }

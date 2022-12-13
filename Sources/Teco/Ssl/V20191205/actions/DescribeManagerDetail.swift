@@ -134,4 +134,16 @@ extension Ssl {
     public func describeManagerDetail(_ input: DescribeManagerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeManagerDetailResponse {
         try await self.client.execute(action: "DescribeManagerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询管理人详情
+    @inlinable
+    public func describeManagerDetail(managerId: Int64, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeManagerDetailResponse > {
+        self.describeManagerDetail(DescribeManagerDetailRequest(managerId: managerId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询管理人详情
+    @inlinable
+    public func describeManagerDetail(managerId: Int64, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeManagerDetailResponse {
+        try await self.describeManagerDetail(DescribeManagerDetailRequest(managerId: managerId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

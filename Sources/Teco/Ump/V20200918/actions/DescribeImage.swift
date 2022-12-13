@@ -68,4 +68,20 @@ extension Ump {
     public func describeImage(_ input: DescribeImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageResponse {
         try await self.client.execute(action: "DescribeImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取底图
+    ///
+    /// 实时获取底图接口
+    @inlinable
+    public func describeImage(groupCode: String, mallId: UInt64, cameraId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageResponse > {
+        self.describeImage(DescribeImageRequest(groupCode: groupCode, mallId: mallId, cameraId: cameraId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取底图
+    ///
+    /// 实时获取底图接口
+    @inlinable
+    public func describeImage(groupCode: String, mallId: UInt64, cameraId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageResponse {
+        try await self.describeImage(DescribeImageRequest(groupCode: groupCode, mallId: mallId, cameraId: cameraId), logger: logger, on: eventLoop)
+    }
 }

@@ -63,4 +63,16 @@ extension Iecp {
     public func describeEdgeUnitMonitorStatus(_ input: DescribeEdgeUnitMonitorStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitMonitorStatusResponse {
         try await self.client.execute(action: "DescribeEdgeUnitMonitorStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询边缘集群监控状态
+    @inlinable
+    public func describeEdgeUnitMonitorStatus(edgeUnitId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitMonitorStatusResponse > {
+        self.describeEdgeUnitMonitorStatus(DescribeEdgeUnitMonitorStatusRequest(edgeUnitId: edgeUnitId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘集群监控状态
+    @inlinable
+    public func describeEdgeUnitMonitorStatus(edgeUnitId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitMonitorStatusResponse {
+        try await self.describeEdgeUnitMonitorStatus(DescribeEdgeUnitMonitorStatusRequest(edgeUnitId: edgeUnitId), logger: logger, on: eventLoop)
+    }
 }

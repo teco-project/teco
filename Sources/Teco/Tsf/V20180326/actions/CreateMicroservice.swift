@@ -66,4 +66,16 @@ extension Tsf {
     public func createMicroservice(_ input: CreateMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMicroserviceResponse {
         try await self.client.execute(action: "CreateMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新增微服务
+    @inlinable
+    public func createMicroservice(namespaceId: String, microserviceName: String, microserviceDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMicroserviceResponse > {
+        self.createMicroservice(CreateMicroserviceRequest(namespaceId: namespaceId, microserviceName: microserviceName, microserviceDesc: microserviceDesc), logger: logger, on: eventLoop)
+    }
+    
+    /// 新增微服务
+    @inlinable
+    public func createMicroservice(namespaceId: String, microserviceName: String, microserviceDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMicroserviceResponse {
+        try await self.createMicroservice(CreateMicroserviceRequest(namespaceId: namespaceId, microserviceName: microserviceName, microserviceDesc: microserviceDesc), logger: logger, on: eventLoop)
+    }
 }

@@ -64,4 +64,16 @@ extension Cpdp {
     public func queryExchangeRate(_ input: QueryExchangeRateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExchangeRateResponse {
         try await self.client.execute(action: "QueryExchangeRate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 跨境-查询汇率
+    @inlinable
+    public func queryExchangeRate(sourceCurrency: String, targetCurrency: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryExchangeRateResponse > {
+        self.queryExchangeRate(QueryExchangeRateRequest(sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 跨境-查询汇率
+    @inlinable
+    public func queryExchangeRate(sourceCurrency: String, targetCurrency: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExchangeRateResponse {
+        try await self.queryExchangeRate(QueryExchangeRateRequest(sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, profile: profile), logger: logger, on: eventLoop)
+    }
 }

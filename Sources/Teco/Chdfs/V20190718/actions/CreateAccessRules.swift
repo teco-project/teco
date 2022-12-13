@@ -61,4 +61,22 @@ extension Chdfs {
     public func createAccessRules(_ input: CreateAccessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessRulesResponse {
         try await self.client.execute(action: "CreateAccessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量创建权限规则
+    ///
+    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    /// 批量创建权限规则，权限规则ID和创建时间无需填写。
+    @inlinable
+    public func createAccessRules(accessRules: [AccessRule], accessGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccessRulesResponse > {
+        self.createAccessRules(CreateAccessRulesRequest(accessRules: accessRules, accessGroupId: accessGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量创建权限规则
+    ///
+    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    /// 批量创建权限规则，权限规则ID和创建时间无需填写。
+    @inlinable
+    public func createAccessRules(accessRules: [AccessRule], accessGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessRulesResponse {
+        try await self.createAccessRules(CreateAccessRulesRequest(accessRules: accessRules, accessGroupId: accessGroupId), logger: logger, on: eventLoop)
+    }
 }

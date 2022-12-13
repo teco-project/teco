@@ -115,4 +115,24 @@ extension Tiia {
     public func detectLabelBeta(_ input: DetectLabelBetaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLabelBetaResponse {
         try await self.client.execute(action: "DetectLabelBeta", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 图像标签测试接口
+    ///
+    /// 图像标签测试接口
+    /// >     
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func detectLabelBeta(imageUrl: String? = nil, imageBase64: String? = nil, scenes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectLabelBetaResponse > {
+        self.detectLabelBeta(DetectLabelBetaRequest(imageUrl: imageUrl, imageBase64: imageBase64, scenes: scenes), logger: logger, on: eventLoop)
+    }
+    
+    /// 图像标签测试接口
+    ///
+    /// 图像标签测试接口
+    /// >     
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func detectLabelBeta(imageUrl: String? = nil, imageBase64: String? = nil, scenes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLabelBetaResponse {
+        try await self.detectLabelBeta(DetectLabelBetaRequest(imageUrl: imageUrl, imageBase64: imageBase64, scenes: scenes), logger: logger, on: eventLoop)
+    }
 }

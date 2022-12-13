@@ -84,4 +84,20 @@ extension Yunjing {
     public func describeComponents(_ input: DescribeComponentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentsResponse {
         try await self.client.execute(action: "DescribeComponents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取组件列表
+    ///
+    /// 本接口 (DescribeComponents) 用于获取组件列表数据。
+    @inlinable
+    public func describeComponents(uuid: String? = nil, componentId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComponentsResponse > {
+        self.describeComponents(DescribeComponentsRequest(uuid: uuid, componentId: componentId, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取组件列表
+    ///
+    /// 本接口 (DescribeComponents) 用于获取组件列表数据。
+    @inlinable
+    public func describeComponents(uuid: String? = nil, componentId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentsResponse {
+        try await self.describeComponents(DescribeComponentsRequest(uuid: uuid, componentId: componentId, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

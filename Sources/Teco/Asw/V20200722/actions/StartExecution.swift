@@ -72,4 +72,20 @@ extension Asw {
     public func startExecution(_ input: StartExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartExecutionResponse {
         try await self.client.execute(action: "StartExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启动执行
+    ///
+    /// 为指定的状态机启动一次执行
+    @inlinable
+    public func startExecution(stateMachineResourceName: String, input: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartExecutionResponse > {
+        self.startExecution(StartExecutionRequest(stateMachineResourceName: stateMachineResourceName, input: input, name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 启动执行
+    ///
+    /// 为指定的状态机启动一次执行
+    @inlinable
+    public func startExecution(stateMachineResourceName: String, input: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartExecutionResponse {
+        try await self.startExecution(StartExecutionRequest(stateMachineResourceName: stateMachineResourceName, input: input, name: name), logger: logger, on: eventLoop)
+    }
 }

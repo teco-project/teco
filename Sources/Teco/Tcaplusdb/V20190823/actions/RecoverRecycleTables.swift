@@ -67,4 +67,20 @@ extension Tcaplusdb {
     public func recoverRecycleTables(_ input: RecoverRecycleTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverRecycleTablesResponse {
         try await self.client.execute(action: "RecoverRecycleTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 恢复回收站中的表
+    ///
+    /// 恢复回收站中，用户自行删除的表。对欠费待释放的表无效。
+    @inlinable
+    public func recoverRecycleTables(clusterId: String, selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecoverRecycleTablesResponse > {
+        self.recoverRecycleTables(RecoverRecycleTablesRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复回收站中的表
+    ///
+    /// 恢复回收站中，用户自行删除的表。对欠费待释放的表无效。
+    @inlinable
+    public func recoverRecycleTables(clusterId: String, selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverRecycleTablesResponse {
+        try await self.recoverRecycleTables(RecoverRecycleTablesRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    }
 }

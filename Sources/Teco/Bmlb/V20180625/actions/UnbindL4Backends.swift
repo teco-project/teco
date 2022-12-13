@@ -73,4 +73,20 @@ extension Bmlb {
     public func unbindL4Backends(_ input: UnbindL4BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindL4BackendsResponse {
         try await self.client.execute(action: "UnbindL4Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解绑黑石负载均衡四层监听器物理服务器
+    ///
+    /// 解绑黑石负载均衡四层监听器物理服务器。
+    @inlinable
+    public func unbindL4Backends(loadBalancerId: String, listenerId: String, backendSet: [UnbindL4Backend], bindType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindL4BackendsResponse > {
+        self.unbindL4Backends(UnbindL4BackendsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, backendSet: backendSet, bindType: bindType), logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑黑石负载均衡四层监听器物理服务器
+    ///
+    /// 解绑黑石负载均衡四层监听器物理服务器。
+    @inlinable
+    public func unbindL4Backends(loadBalancerId: String, listenerId: String, backendSet: [UnbindL4Backend], bindType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindL4BackendsResponse {
+        try await self.unbindL4Backends(UnbindL4BackendsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, backendSet: backendSet, bindType: bindType), logger: logger, on: eventLoop)
+    }
 }

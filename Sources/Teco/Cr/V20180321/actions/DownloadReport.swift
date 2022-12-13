@@ -102,4 +102,20 @@ extension Cr {
     public func downloadReport(_ input: DownloadReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadReportResponse {
         try await self.client.execute(action: "DownloadReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 报告下载
+    ///
+    /// 用于下载结果报表。当日23:00后，可获取当日到期/逾期提醒结果，次日00:30后，可获取昨日回访结果。
+    @inlinable
+    public func downloadReport(module: String, operation: String, reportDate: Date, instId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadReportResponse > {
+        self.downloadReport(DownloadReportRequest(module: module, operation: operation, reportDate: reportDate, instId: instId), logger: logger, on: eventLoop)
+    }
+    
+    /// 报告下载
+    ///
+    /// 用于下载结果报表。当日23:00后，可获取当日到期/逾期提醒结果，次日00:30后，可获取昨日回访结果。
+    @inlinable
+    public func downloadReport(module: String, operation: String, reportDate: Date, instId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadReportResponse {
+        try await self.downloadReport(DownloadReportRequest(module: module, operation: operation, reportDate: reportDate, instId: instId), logger: logger, on: eventLoop)
+    }
 }

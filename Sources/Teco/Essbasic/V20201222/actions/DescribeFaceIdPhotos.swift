@@ -68,4 +68,20 @@ extension Essbasic {
     public func describeFaceIdPhotos(_ input: DescribeFaceIdPhotosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdPhotosResponse {
         try await self.client.execute(action: "DescribeFaceIdPhotos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询慧眼人脸核身照片
+    ///
+    /// 该接口为第三方平台向电子签平台获取慧眼人脸核身照片
+    @inlinable
+    public func describeFaceIdPhotos(caller: Caller, wbAppId: String, orderNumbers: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFaceIdPhotosResponse > {
+        self.describeFaceIdPhotos(DescribeFaceIdPhotosRequest(caller: caller, wbAppId: wbAppId, orderNumbers: orderNumbers), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询慧眼人脸核身照片
+    ///
+    /// 该接口为第三方平台向电子签平台获取慧眼人脸核身照片
+    @inlinable
+    public func describeFaceIdPhotos(caller: Caller, wbAppId: String, orderNumbers: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdPhotosResponse {
+        try await self.describeFaceIdPhotos(DescribeFaceIdPhotosRequest(caller: caller, wbAppId: wbAppId, orderNumbers: orderNumbers), logger: logger, on: eventLoop)
+    }
 }

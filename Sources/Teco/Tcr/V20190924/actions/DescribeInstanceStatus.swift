@@ -59,4 +59,20 @@ extension Tcr {
     public func describeInstanceStatus(_ input: DescribeInstanceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceStatusResponse {
         try await self.client.execute(action: "DescribeInstanceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例状态
+    ///
+    /// 查询实例当前状态以及过程信息
+    @inlinable
+    public func describeInstanceStatus(registryIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceStatusResponse > {
+        self.describeInstanceStatus(DescribeInstanceStatusRequest(registryIds: registryIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例状态
+    ///
+    /// 查询实例当前状态以及过程信息
+    @inlinable
+    public func describeInstanceStatus(registryIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceStatusResponse {
+        try await self.describeInstanceStatus(DescribeInstanceStatusRequest(registryIds: registryIds), logger: logger, on: eventLoop)
+    }
 }

@@ -85,4 +85,22 @@ extension Wedata {
     public func makeUpTasksNew(_ input: MakeUpTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MakeUpTasksNewResponse {
         try await self.client.execute(action: "MakeUpTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量补录任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 任务批量补录，调度状态任务才可以补录；
+    @inlinable
+    public func makeUpTasksNew(taskIdList: [String], startTime: String, endTime: String, makeUpType: UInt64, projectId: String, checkParent: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MakeUpTasksNewResponse > {
+        self.makeUpTasksNew(MakeUpTasksNewRequest(taskIdList: taskIdList, startTime: startTime, endTime: endTime, makeUpType: makeUpType, projectId: projectId, checkParent: checkParent), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量补录任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 任务批量补录，调度状态任务才可以补录；
+    @inlinable
+    public func makeUpTasksNew(taskIdList: [String], startTime: String, endTime: String, makeUpType: UInt64, projectId: String, checkParent: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MakeUpTasksNewResponse {
+        try await self.makeUpTasksNew(MakeUpTasksNewRequest(taskIdList: taskIdList, startTime: startTime, endTime: endTime, makeUpType: makeUpType, projectId: projectId, checkParent: checkParent), logger: logger, on: eventLoop)
+    }
 }

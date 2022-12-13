@@ -125,4 +125,22 @@ extension Gpm {
     public func modifyMatch(_ input: ModifyMatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMatchResponse {
         try await self.client.execute(action: "ModifyMatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改匹配
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 修改匹配
+    @inlinable
+    public func modifyMatch(matchName: String, ruleCode: String, timeout: Int64, serverType: Int64, matchCode: String, matchDesc: String? = nil, notifyUrl: String? = nil, serverRegion: String? = nil, serverQueue: String? = nil, customPushData: String? = nil, serverSessionData: String? = nil, gameProperties: [StringKV]? = nil, logSwitch: Int64? = nil, tags: [StringKV]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMatchResponse > {
+        self.modifyMatch(ModifyMatchRequest(matchName: matchName, ruleCode: ruleCode, timeout: timeout, serverType: serverType, matchCode: matchCode, matchDesc: matchDesc, notifyUrl: notifyUrl, serverRegion: serverRegion, serverQueue: serverQueue, customPushData: customPushData, serverSessionData: serverSessionData, gameProperties: gameProperties, logSwitch: logSwitch, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改匹配
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 修改匹配
+    @inlinable
+    public func modifyMatch(matchName: String, ruleCode: String, timeout: Int64, serverType: Int64, matchCode: String, matchDesc: String? = nil, notifyUrl: String? = nil, serverRegion: String? = nil, serverQueue: String? = nil, customPushData: String? = nil, serverSessionData: String? = nil, gameProperties: [StringKV]? = nil, logSwitch: Int64? = nil, tags: [StringKV]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMatchResponse {
+        try await self.modifyMatch(ModifyMatchRequest(matchName: matchName, ruleCode: ruleCode, timeout: timeout, serverType: serverType, matchCode: matchCode, matchDesc: matchDesc, notifyUrl: notifyUrl, serverRegion: serverRegion, serverQueue: serverQueue, customPushData: customPushData, serverSessionData: serverSessionData, gameProperties: gameProperties, logSwitch: logSwitch, tags: tags), logger: logger, on: eventLoop)
+    }
 }

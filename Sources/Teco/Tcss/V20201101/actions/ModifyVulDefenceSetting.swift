@@ -60,4 +60,16 @@ extension Tcss {
     public func modifyVulDefenceSetting(_ input: ModifyVulDefenceSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVulDefenceSettingResponse {
         try await self.client.execute(action: "ModifyVulDefenceSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 编辑漏洞防御设置
+    @inlinable
+    public func modifyVulDefenceSetting(isEnabled: Int64, scope: Int64? = nil, hostIDs: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVulDefenceSettingResponse > {
+        self.modifyVulDefenceSetting(ModifyVulDefenceSettingRequest(isEnabled: isEnabled, scope: scope, hostIDs: hostIDs), logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑漏洞防御设置
+    @inlinable
+    public func modifyVulDefenceSetting(isEnabled: Int64, scope: Int64? = nil, hostIDs: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVulDefenceSettingResponse {
+        try await self.modifyVulDefenceSetting(ModifyVulDefenceSettingRequest(isEnabled: isEnabled, scope: scope, hostIDs: hostIDs), logger: logger, on: eventLoop)
+    }
 }

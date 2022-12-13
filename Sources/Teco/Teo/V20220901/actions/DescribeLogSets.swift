@@ -73,4 +73,20 @@ extension Teo {
     public func describeLogSets(_ input: DescribeLogSetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSetsResponse {
         try await self.client.execute(action: "DescribeLogSets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取日志集列表
+    ///
+    /// 本接口（DescribeLogSets）用于获取日志集列表。
+    @inlinable
+    public func describeLogSets(logSetRegion: String, logSetId: String? = nil, logSetName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogSetsResponse > {
+        self.describeLogSets(DescribeLogSetsRequest(logSetRegion: logSetRegion, logSetId: logSetId, logSetName: logSetName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志集列表
+    ///
+    /// 本接口（DescribeLogSets）用于获取日志集列表。
+    @inlinable
+    public func describeLogSets(logSetRegion: String, logSetId: String? = nil, logSetName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSetsResponse {
+        try await self.describeLogSets(DescribeLogSetsRequest(logSetRegion: logSetRegion, logSetId: logSetId, logSetName: logSetName), logger: logger, on: eventLoop)
+    }
 }

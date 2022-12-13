@@ -55,4 +55,16 @@ extension Tsf {
     public func describePublicConfig(_ input: DescribePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigResponse {
         try await self.client.execute(action: "DescribePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询公共配置（单条）
+    @inlinable
+    public func describePublicConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicConfigResponse > {
+        self.describePublicConfig(DescribePublicConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询公共配置（单条）
+    @inlinable
+    public func describePublicConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigResponse {
+        try await self.describePublicConfig(DescribePublicConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    }
 }

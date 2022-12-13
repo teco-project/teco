@@ -59,4 +59,20 @@ extension Cdn {
     public func updatePayType(_ input: UpdatePayTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePayTypeResponse {
         try await self.client.execute(action: "UpdatePayType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改计费类型
+    ///
+    /// 本接口(UpdatePayType)用于修改账号计费类型，暂不支持月结用户或子账号修改。
+    @inlinable
+    public func updatePayType(area: String, payType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePayTypeResponse > {
+        self.updatePayType(UpdatePayTypeRequest(area: area, payType: payType), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改计费类型
+    ///
+    /// 本接口(UpdatePayType)用于修改账号计费类型，暂不支持月结用户或子账号修改。
+    @inlinable
+    public func updatePayType(area: String, payType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePayTypeResponse {
+        try await self.updatePayType(UpdatePayTypeRequest(area: area, payType: payType), logger: logger, on: eventLoop)
+    }
 }

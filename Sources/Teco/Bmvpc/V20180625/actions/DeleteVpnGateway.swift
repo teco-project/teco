@@ -58,4 +58,20 @@ extension Bmvpc {
     public func deleteVpnGateway(_ input: DeleteVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewayResponse {
         try await self.client.execute(action: "DeleteVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除VPN网关
+    ///
+    /// 本接口（DeleteVpnGateway）用于删除VPN网关。
+    @inlinable
+    public func deleteVpnGateway(vpnGatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnGatewayResponse > {
+        self.deleteVpnGateway(DeleteVpnGatewayRequest(vpnGatewayId: vpnGatewayId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除VPN网关
+    ///
+    /// 本接口（DeleteVpnGateway）用于删除VPN网关。
+    @inlinable
+    public func deleteVpnGateway(vpnGatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewayResponse {
+        try await self.deleteVpnGateway(DeleteVpnGatewayRequest(vpnGatewayId: vpnGatewayId), logger: logger, on: eventLoop)
+    }
 }

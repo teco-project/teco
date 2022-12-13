@@ -65,4 +65,16 @@ extension Monitor {
     public func updateGrafanaIntegration(_ input: UpdateGrafanaIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaIntegrationResponse {
         try await self.client.execute(action: "UpdateGrafanaIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新 Grafana 集成配置
+    @inlinable
+    public func updateGrafanaIntegration(integrationId: String, instanceId: String, kind: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGrafanaIntegrationResponse > {
+        self.updateGrafanaIntegration(UpdateGrafanaIntegrationRequest(integrationId: integrationId, instanceId: instanceId, kind: kind, content: content), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新 Grafana 集成配置
+    @inlinable
+    public func updateGrafanaIntegration(integrationId: String, instanceId: String, kind: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaIntegrationResponse {
+        try await self.updateGrafanaIntegration(UpdateGrafanaIntegrationRequest(integrationId: integrationId, instanceId: instanceId, kind: kind, content: content), logger: logger, on: eventLoop)
+    }
 }

@@ -74,4 +74,20 @@ extension Cdb {
     public func describeProxyConnectionPoolConf(_ input: DescribeProxyConnectionPoolConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyConnectionPoolConfResponse {
         try await self.client.execute(action: "DescribeProxyConnectionPoolConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询代理连接池规格配置
+    ///
+    /// 获取数据库代理连接池相关规格配置
+    @inlinable
+    public func describeProxyConnectionPoolConf(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyConnectionPoolConfResponse > {
+        self.describeProxyConnectionPoolConf(DescribeProxyConnectionPoolConfRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询代理连接池规格配置
+    ///
+    /// 获取数据库代理连接池相关规格配置
+    @inlinable
+    public func describeProxyConnectionPoolConf(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyConnectionPoolConfResponse {
+        try await self.describeProxyConnectionPoolConf(DescribeProxyConnectionPoolConfRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -69,4 +69,20 @@ extension Iotvideo {
     public func editFirmware(_ input: EditFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditFirmwareResponse {
         try await self.client.execute(action: "EditFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 编辑固件信息
+    ///
+    /// 本接口用于编辑固件信息
+    @inlinable
+    public func editFirmware(productID: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditFirmwareResponse > {
+        self.editFirmware(EditFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, firmwareName: firmwareName, firmwareDescription: firmwareDescription), logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑固件信息
+    ///
+    /// 本接口用于编辑固件信息
+    @inlinable
+    public func editFirmware(productID: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditFirmwareResponse {
+        try await self.editFirmware(EditFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, firmwareName: firmwareName, firmwareDescription: firmwareDescription), logger: logger, on: eventLoop)
+    }
 }

@@ -65,4 +65,16 @@ extension Wedata {
     public func describeIntegrationStatisticsRecordsTrend(_ input: DescribeIntegrationStatisticsRecordsTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationStatisticsRecordsTrendResponse {
         try await self.client.execute(action: "DescribeIntegrationStatisticsRecordsTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 数据集成大屏同步条数统计趋势
+    @inlinable
+    public func describeIntegrationStatisticsRecordsTrend(taskType: Int64, projectId: String, queryDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationStatisticsRecordsTrendResponse > {
+        self.describeIntegrationStatisticsRecordsTrend(DescribeIntegrationStatisticsRecordsTrendRequest(taskType: taskType, projectId: projectId, queryDate: queryDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 数据集成大屏同步条数统计趋势
+    @inlinable
+    public func describeIntegrationStatisticsRecordsTrend(taskType: Int64, projectId: String, queryDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationStatisticsRecordsTrendResponse {
+        try await self.describeIntegrationStatisticsRecordsTrend(DescribeIntegrationStatisticsRecordsTrendRequest(taskType: taskType, projectId: projectId, queryDate: queryDate), logger: logger, on: eventLoop)
+    }
 }

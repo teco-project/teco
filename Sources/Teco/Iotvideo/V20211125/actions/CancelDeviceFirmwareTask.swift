@@ -69,4 +69,20 @@ extension Iotvideo {
     public func cancelDeviceFirmwareTask(_ input: CancelDeviceFirmwareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelDeviceFirmwareTaskResponse {
         try await self.client.execute(action: "CancelDeviceFirmwareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 取消设备升级任务
+    ///
+    /// 本接口用于取消设备升级任务
+    @inlinable
+    public func cancelDeviceFirmwareTask(productID: String, deviceName: String, firmwareVersion: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelDeviceFirmwareTaskResponse > {
+        self.cancelDeviceFirmwareTask(CancelDeviceFirmwareTaskRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 取消设备升级任务
+    ///
+    /// 本接口用于取消设备升级任务
+    @inlinable
+    public func cancelDeviceFirmwareTask(productID: String, deviceName: String, firmwareVersion: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelDeviceFirmwareTaskResponse {
+        try await self.cancelDeviceFirmwareTask(CancelDeviceFirmwareTaskRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

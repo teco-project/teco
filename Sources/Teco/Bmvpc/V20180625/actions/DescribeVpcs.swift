@@ -80,4 +80,22 @@ extension Bmvpc {
     public func describeVpcs(_ input: DescribeVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcsResponse {
         try await self.client.execute(action: "DescribeVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询VPC列表
+    ///
+    /// 本接口（DescribeVpcs）用于查询私有网络列表。
+    /// 本接口不传参数时，返回默认排序下的前20条VPC信息。
+    @inlinable
+    public func describeVpcs(vpcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcsResponse > {
+        self.describeVpcs(DescribeVpcsRequest(vpcIds: vpcIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询VPC列表
+    ///
+    /// 本接口（DescribeVpcs）用于查询私有网络列表。
+    /// 本接口不传参数时，返回默认排序下的前20条VPC信息。
+    @inlinable
+    public func describeVpcs(vpcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcsResponse {
+        try await self.describeVpcs(DescribeVpcsRequest(vpcIds: vpcIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

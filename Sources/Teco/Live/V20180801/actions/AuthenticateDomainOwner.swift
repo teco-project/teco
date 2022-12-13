@@ -79,4 +79,20 @@ extension Live {
     public func authenticateDomainOwner(_ input: AuthenticateDomainOwnerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthenticateDomainOwnerResponse {
         try await self.client.execute(action: "AuthenticateDomainOwner", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 验证直播域名所有权
+    ///
+    /// 验证用户是否拥有特定直播域名。
+    @inlinable
+    public func authenticateDomainOwner(domainName: String, verifyType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AuthenticateDomainOwnerResponse > {
+        self.authenticateDomainOwner(AuthenticateDomainOwnerRequest(domainName: domainName, verifyType: verifyType), logger: logger, on: eventLoop)
+    }
+    
+    /// 验证直播域名所有权
+    ///
+    /// 验证用户是否拥有特定直播域名。
+    @inlinable
+    public func authenticateDomainOwner(domainName: String, verifyType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthenticateDomainOwnerResponse {
+        try await self.authenticateDomainOwner(AuthenticateDomainOwnerRequest(domainName: domainName, verifyType: verifyType), logger: logger, on: eventLoop)
+    }
 }

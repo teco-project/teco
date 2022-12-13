@@ -88,4 +88,16 @@ extension Dlc {
     public func describeSparkAppJobs(_ input: DescribeSparkAppJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppJobsResponse {
         try await self.client.execute(action: "DescribeSparkAppJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取spark应用列表
+    @inlinable
+    public func describeSparkAppJobs(sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSparkAppJobsResponse > {
+        self.describeSparkAppJobs(DescribeSparkAppJobsRequest(sortBy: sortBy, sorting: sorting, filters: filters, startTime: startTime, endTime: endTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取spark应用列表
+    @inlinable
+    public func describeSparkAppJobs(sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppJobsResponse {
+        try await self.describeSparkAppJobs(DescribeSparkAppJobsRequest(sortBy: sortBy, sorting: sorting, filters: filters, startTime: startTime, endTime: endTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

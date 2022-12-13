@@ -83,4 +83,20 @@ extension Vpc {
     public func describeRouteTables(_ input: DescribeRouteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteTablesResponse {
         try await self.client.execute(action: "DescribeRouteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询路由列表
+    ///
+    ///  本接口（DescribeRouteTables）用于查询路由表。
+    @inlinable
+    public func describeRouteTables(filters: [Filter]? = nil, routeTableIds: [String]? = nil, offset: String? = nil, limit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRouteTablesResponse > {
+        self.describeRouteTables(DescribeRouteTablesRequest(filters: filters, routeTableIds: routeTableIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询路由列表
+    ///
+    ///  本接口（DescribeRouteTables）用于查询路由表。
+    @inlinable
+    public func describeRouteTables(filters: [Filter]? = nil, routeTableIds: [String]? = nil, offset: String? = nil, limit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteTablesResponse {
+        try await self.describeRouteTables(DescribeRouteTablesRequest(filters: filters, routeTableIds: routeTableIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

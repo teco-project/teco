@@ -50,4 +50,16 @@ extension Ssm {
     public func describeSupportedProducts(_ input: DescribeSupportedProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedProductsResponse {
         try await self.client.execute(action: "DescribeSupportedProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询支持的云产品列表
+    @inlinable
+    public func describeSupportedProducts(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSupportedProductsResponse > {
+        self.describeSupportedProducts(DescribeSupportedProductsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询支持的云产品列表
+    @inlinable
+    public func describeSupportedProducts(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedProductsResponse {
+        try await self.describeSupportedProducts(DescribeSupportedProductsRequest(), logger: logger, on: eventLoop)
+    }
 }

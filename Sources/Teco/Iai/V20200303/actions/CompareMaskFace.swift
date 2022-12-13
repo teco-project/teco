@@ -120,4 +120,24 @@ extension Iai {
     public func compareMaskFace(_ input: CompareMaskFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareMaskFaceResponse {
         try await self.client.execute(action: "CompareMaskFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 防疫场景人脸比对
+    ///
+    /// 对两张图片中的人脸进行相似度比对，返回人脸相似度分数。
+    /// 防疫场景人脸比对接口可在人脸戴口罩情况下使用，口罩遮挡程度最高可以遮挡鼻尖。
+    /// 如图片人脸不存在防疫场景下戴口罩的情况，建议使用人脸比对服务。
+    @inlinable
+    public func compareMaskFace(imageA: String? = nil, imageB: String? = nil, urlA: String? = nil, urlB: String? = nil, faceModelVersion: String? = nil, qualityControl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CompareMaskFaceResponse > {
+        self.compareMaskFace(CompareMaskFaceRequest(imageA: imageA, imageB: imageB, urlA: urlA, urlB: urlB, faceModelVersion: faceModelVersion, qualityControl: qualityControl), logger: logger, on: eventLoop)
+    }
+    
+    /// 防疫场景人脸比对
+    ///
+    /// 对两张图片中的人脸进行相似度比对，返回人脸相似度分数。
+    /// 防疫场景人脸比对接口可在人脸戴口罩情况下使用，口罩遮挡程度最高可以遮挡鼻尖。
+    /// 如图片人脸不存在防疫场景下戴口罩的情况，建议使用人脸比对服务。
+    @inlinable
+    public func compareMaskFace(imageA: String? = nil, imageB: String? = nil, urlA: String? = nil, urlB: String? = nil, faceModelVersion: String? = nil, qualityControl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareMaskFaceResponse {
+        try await self.compareMaskFace(CompareMaskFaceRequest(imageA: imageA, imageB: imageB, urlA: urlA, urlB: urlB, faceModelVersion: faceModelVersion, qualityControl: qualityControl), logger: logger, on: eventLoop)
+    }
 }

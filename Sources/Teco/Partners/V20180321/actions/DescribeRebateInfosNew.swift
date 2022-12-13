@@ -72,4 +72,20 @@ extension Partners {
     public func describeRebateInfosNew(_ input: DescribeRebateInfosNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRebateInfosNewResponse {
         try await self.client.execute(action: "DescribeRebateInfosNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询代理商返佣信息V2
+    ///
+    /// 代理商可查询自己名下全部返佣信息
+    @inlinable
+    public func describeRebateInfosNew(rebateMonth: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRebateInfosNewResponse > {
+        self.describeRebateInfosNew(DescribeRebateInfosNewRequest(rebateMonth: rebateMonth, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询代理商返佣信息V2
+    ///
+    /// 代理商可查询自己名下全部返佣信息
+    @inlinable
+    public func describeRebateInfosNew(rebateMonth: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRebateInfosNewResponse {
+        try await self.describeRebateInfosNew(DescribeRebateInfosNewRequest(rebateMonth: rebateMonth, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

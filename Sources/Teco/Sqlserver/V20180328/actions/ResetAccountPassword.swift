@@ -63,4 +63,20 @@ extension Sqlserver {
     public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
         try await self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重置账户密码
+    ///
+    /// 本接口（ResetAccountPassword）用于重置实例的账户密码。
+    @inlinable
+    public func resetAccountPassword(instanceId: String, accounts: [AccountPassword], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetAccountPasswordResponse > {
+        self.resetAccountPassword(ResetAccountPasswordRequest(instanceId: instanceId, accounts: accounts), logger: logger, on: eventLoop)
+    }
+    
+    /// 重置账户密码
+    ///
+    /// 本接口（ResetAccountPassword）用于重置实例的账户密码。
+    @inlinable
+    public func resetAccountPassword(instanceId: String, accounts: [AccountPassword], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
+        try await self.resetAccountPassword(ResetAccountPasswordRequest(instanceId: instanceId, accounts: accounts), logger: logger, on: eventLoop)
+    }
 }

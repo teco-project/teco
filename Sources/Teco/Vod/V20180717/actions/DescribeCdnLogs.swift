@@ -100,4 +100,26 @@ extension Vod {
     public func describeCdnLogs(_ input: DescribeCdnLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnLogsResponse {
         try await self.client.execute(action: "DescribeCdnLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询 CDN 日志下载链接列表
+    ///
+    /// 查询点播域名的 CDN 访问日志的下载链接。
+    ///     1. 可以查询最近30天内的 CDN 日志下载链接。
+    ///     2. 默认情况下 CDN 每小时生成一个日志文件，如果某一个小时没有 CDN 访问，不会生成日志文件。    
+    ///     3. CDN 日志下载链接的有效期为24小时。
+    @inlinable
+    public func describeCdnLogs(domainName: String, startTime: String, endTime: String, subAppId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCdnLogsResponse > {
+        self.describeCdnLogs(DescribeCdnLogsRequest(domainName: domainName, startTime: startTime, endTime: endTime, subAppId: subAppId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询 CDN 日志下载链接列表
+    ///
+    /// 查询点播域名的 CDN 访问日志的下载链接。
+    ///     1. 可以查询最近30天内的 CDN 日志下载链接。
+    ///     2. 默认情况下 CDN 每小时生成一个日志文件，如果某一个小时没有 CDN 访问，不会生成日志文件。    
+    ///     3. CDN 日志下载链接的有效期为24小时。
+    @inlinable
+    public func describeCdnLogs(domainName: String, startTime: String, endTime: String, subAppId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnLogsResponse {
+        try await self.describeCdnLogs(DescribeCdnLogsRequest(domainName: domainName, startTime: startTime, endTime: endTime, subAppId: subAppId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

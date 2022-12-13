@@ -125,4 +125,22 @@ extension Tiems {
     public func createJob(_ input: CreateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobResponse {
         try await self.client.execute(action: "CreateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建任务
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 创建任务
+    @inlinable
+    public func createJob(name: String, resourceGroupId: String, cpu: UInt64, memory: UInt64, cluster: String? = nil, predictInput: PredictInput? = nil, description: String? = nil, workerCount: UInt64? = nil, configId: String? = nil, gpu: UInt64? = nil, gpuMemory: UInt64? = nil, gpuType: String? = nil, quantizationInput: QuantizationInput? = nil, logTopicId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateJobResponse > {
+        self.createJob(CreateJobRequest(name: name, resourceGroupId: resourceGroupId, cpu: cpu, memory: memory, cluster: cluster, predictInput: predictInput, description: description, workerCount: workerCount, configId: configId, gpu: gpu, gpuMemory: gpuMemory, gpuType: gpuType, quantizationInput: quantizationInput, logTopicId: logTopicId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建任务
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 创建任务
+    @inlinable
+    public func createJob(name: String, resourceGroupId: String, cpu: UInt64, memory: UInt64, cluster: String? = nil, predictInput: PredictInput? = nil, description: String? = nil, workerCount: UInt64? = nil, configId: String? = nil, gpu: UInt64? = nil, gpuMemory: UInt64? = nil, gpuType: String? = nil, quantizationInput: QuantizationInput? = nil, logTopicId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobResponse {
+        try await self.createJob(CreateJobRequest(name: name, resourceGroupId: resourceGroupId, cpu: cpu, memory: memory, cluster: cluster, predictInput: predictInput, description: description, workerCount: workerCount, configId: configId, gpu: gpu, gpuMemory: gpuMemory, gpuType: gpuType, quantizationInput: quantizationInput, logTopicId: logTopicId), logger: logger, on: eventLoop)
+    }
 }

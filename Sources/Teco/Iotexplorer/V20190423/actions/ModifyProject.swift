@@ -64,4 +64,16 @@ extension Iotexplorer {
     public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
         try await self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改项目
+    @inlinable
+    public func modifyProject(projectId: String, projectName: String, projectDesc: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProjectResponse > {
+        self.modifyProject(ModifyProjectRequest(projectId: projectId, projectName: projectName, projectDesc: projectDesc), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改项目
+    @inlinable
+    public func modifyProject(projectId: String, projectName: String, projectDesc: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
+        try await self.modifyProject(ModifyProjectRequest(projectId: projectId, projectName: projectName, projectDesc: projectDesc), logger: logger, on: eventLoop)
+    }
 }

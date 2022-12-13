@@ -58,4 +58,20 @@ extension Tcr {
     public func validateRepositoryExistPersonal(_ input: ValidateRepositoryExistPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ValidateRepositoryExistPersonalResponse {
         try await self.client.execute(action: "ValidateRepositoryExistPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 验证个人版仓库是否存在
+    ///
+    /// 用于判断个人版仓库是否存在
+    @inlinable
+    public func validateRepositoryExistPersonal(repoName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ValidateRepositoryExistPersonalResponse > {
+        self.validateRepositoryExistPersonal(ValidateRepositoryExistPersonalRequest(repoName: repoName), logger: logger, on: eventLoop)
+    }
+    
+    /// 验证个人版仓库是否存在
+    ///
+    /// 用于判断个人版仓库是否存在
+    @inlinable
+    public func validateRepositoryExistPersonal(repoName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ValidateRepositoryExistPersonalResponse {
+        try await self.validateRepositoryExistPersonal(ValidateRepositoryExistPersonalRequest(repoName: repoName), logger: logger, on: eventLoop)
+    }
 }

@@ -69,4 +69,16 @@ extension Billing {
     public func describeBillSummaryByProject(_ input: DescribeBillSummaryByProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByProjectResponse {
         try await self.client.execute(action: "DescribeBillSummaryByProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取按项目汇总费用分布
+    @inlinable
+    public func describeBillSummaryByProject(beginTime: String, endTime: String, payerUin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillSummaryByProjectResponse > {
+        self.describeBillSummaryByProject(DescribeBillSummaryByProjectRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取按项目汇总费用分布
+    @inlinable
+    public func describeBillSummaryByProject(beginTime: String, endTime: String, payerUin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByProjectResponse {
+        try await self.describeBillSummaryByProject(DescribeBillSummaryByProjectRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Iotexplorer {
     public func deletePositionFence(_ input: DeletePositionFenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePositionFenceResponse {
         try await self.client.execute(action: "DeletePositionFence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除围栏
+    @inlinable
+    public func deletePositionFence(spaceId: String, fenceId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePositionFenceResponse > {
+        self.deletePositionFence(DeletePositionFenceRequest(spaceId: spaceId, fenceId: fenceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除围栏
+    @inlinable
+    public func deletePositionFence(spaceId: String, fenceId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePositionFenceResponse {
+        try await self.deletePositionFence(DeletePositionFenceRequest(spaceId: spaceId, fenceId: fenceId), logger: logger, on: eventLoop)
+    }
 }

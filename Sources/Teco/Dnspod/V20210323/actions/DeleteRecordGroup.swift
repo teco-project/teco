@@ -60,4 +60,16 @@ extension Dnspod {
     public func deleteRecordGroup(_ input: DeleteRecordGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordGroupResponse {
         try await self.client.execute(action: "DeleteRecordGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除记录分组
+    @inlinable
+    public func deleteRecordGroup(domain: String, groupId: UInt64, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRecordGroupResponse > {
+        self.deleteRecordGroup(DeleteRecordGroupRequest(domain: domain, groupId: groupId, domainId: domainId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除记录分组
+    @inlinable
+    public func deleteRecordGroup(domain: String, groupId: UInt64, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordGroupResponse {
+        try await self.deleteRecordGroup(DeleteRecordGroupRequest(domain: domain, groupId: groupId, domainId: domainId), logger: logger, on: eventLoop)
+    }
 }

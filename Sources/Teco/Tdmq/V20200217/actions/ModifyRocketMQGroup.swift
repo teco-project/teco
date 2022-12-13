@@ -75,4 +75,16 @@ extension Tdmq {
     public func modifyRocketMQGroup(_ input: ModifyRocketMQGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQGroupResponse {
         try await self.client.execute(action: "ModifyRocketMQGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新RocketMQ消费组信息
+    @inlinable
+    public func modifyRocketMQGroup(clusterId: String, namespaceId: String, groupId: String, remark: String? = nil, readEnable: Bool? = nil, broadcastEnable: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRocketMQGroupResponse > {
+        self.modifyRocketMQGroup(ModifyRocketMQGroupRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, remark: remark, readEnable: readEnable, broadcastEnable: broadcastEnable), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新RocketMQ消费组信息
+    @inlinable
+    public func modifyRocketMQGroup(clusterId: String, namespaceId: String, groupId: String, remark: String? = nil, readEnable: Bool? = nil, broadcastEnable: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQGroupResponse {
+        try await self.modifyRocketMQGroup(ModifyRocketMQGroupRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, remark: remark, readEnable: readEnable, broadcastEnable: broadcastEnable), logger: logger, on: eventLoop)
+    }
 }

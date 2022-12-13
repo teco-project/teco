@@ -78,4 +78,20 @@ extension Kms {
     public func verifyByAsymmetricKey(_ input: VerifyByAsymmetricKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyByAsymmetricKeyResponse {
         try await self.client.execute(action: "VerifyByAsymmetricKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 验证签名
+    ///
+    /// 使用非对称密钥验签
+    @inlinable
+    public func verifyByAsymmetricKey(keyId: String, signatureValue: String, message: String, algorithm: String, messageType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyByAsymmetricKeyResponse > {
+        self.verifyByAsymmetricKey(VerifyByAsymmetricKeyRequest(keyId: keyId, signatureValue: signatureValue, message: message, algorithm: algorithm, messageType: messageType), logger: logger, on: eventLoop)
+    }
+    
+    /// 验证签名
+    ///
+    /// 使用非对称密钥验签
+    @inlinable
+    public func verifyByAsymmetricKey(keyId: String, signatureValue: String, message: String, algorithm: String, messageType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyByAsymmetricKeyResponse {
+        try await self.verifyByAsymmetricKey(VerifyByAsymmetricKeyRequest(keyId: keyId, signatureValue: signatureValue, message: message, algorithm: algorithm, messageType: messageType), logger: logger, on: eventLoop)
+    }
 }

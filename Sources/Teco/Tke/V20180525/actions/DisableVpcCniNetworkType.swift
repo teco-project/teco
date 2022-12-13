@@ -54,4 +54,20 @@ extension Tke {
     public func disableVpcCniNetworkType(_ input: DisableVpcCniNetworkTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableVpcCniNetworkTypeResponse {
         try await self.client.execute(action: "DisableVpcCniNetworkType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 关闭附加的VPC-CNI网络能力
+    ///
+    /// 提供给附加了VPC-CNI能力的Global-Route集群关闭VPC-CNI
+    @inlinable
+    public func disableVpcCniNetworkType(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableVpcCniNetworkTypeResponse > {
+        self.disableVpcCniNetworkType(DisableVpcCniNetworkTypeRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭附加的VPC-CNI网络能力
+    ///
+    /// 提供给附加了VPC-CNI能力的Global-Route集群关闭VPC-CNI
+    @inlinable
+    public func disableVpcCniNetworkType(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableVpcCniNetworkTypeResponse {
+        try await self.disableVpcCniNetworkType(DisableVpcCniNetworkTypeRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

@@ -120,4 +120,20 @@ extension Lcic {
     public func describeRoom(_ input: DescribeRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomResponse {
         try await self.client.execute(action: "DescribeRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 房间信息
+    ///
+    /// 获取房间信息
+    @inlinable
+    public func describeRoom(roomId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoomResponse > {
+        self.describeRoom(DescribeRoomRequest(roomId: roomId), logger: logger, on: eventLoop)
+    }
+    
+    /// 房间信息
+    ///
+    /// 获取房间信息
+    @inlinable
+    public func describeRoom(roomId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomResponse {
+        try await self.describeRoom(DescribeRoomRequest(roomId: roomId), logger: logger, on: eventLoop)
+    }
 }

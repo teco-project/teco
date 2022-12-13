@@ -54,4 +54,20 @@ extension Rum {
     public func deleteInstance(_ input: DeleteInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
         try await self.client.execute(action: "DeleteInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除实例
+    ///
+    /// 删除实例，谨慎操作，不可恢复
+    @inlinable
+    public func deleteInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstanceResponse > {
+        self.deleteInstance(DeleteInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除实例
+    ///
+    /// 删除实例，谨慎操作，不可恢复
+    @inlinable
+    public func deleteInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
+        try await self.deleteInstance(DeleteInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

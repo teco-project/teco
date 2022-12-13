@@ -50,4 +50,16 @@ extension Tione {
     public func pushTrainingMetrics(_ input: PushTrainingMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushTrainingMetricsResponse {
         try await self.client.execute(action: "PushTrainingMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 上报训练自定义指标
+    @inlinable
+    public func pushTrainingMetrics(data: [MetricData]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PushTrainingMetricsResponse > {
+        self.pushTrainingMetrics(PushTrainingMetricsRequest(data: data), logger: logger, on: eventLoop)
+    }
+    
+    /// 上报训练自定义指标
+    @inlinable
+    public func pushTrainingMetrics(data: [MetricData]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushTrainingMetricsResponse {
+        try await self.pushTrainingMetrics(PushTrainingMetricsRequest(data: data), logger: logger, on: eventLoop)
+    }
 }

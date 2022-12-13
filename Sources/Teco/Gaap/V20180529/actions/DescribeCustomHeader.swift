@@ -56,4 +56,20 @@ extension Gaap {
     public func describeCustomHeader(_ input: DescribeCustomHeaderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomHeaderResponse {
         try await self.client.execute(action: "DescribeCustomHeader", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询自定义header列表
+    ///
+    /// 本接口（DescribeCustomHeader）用于自定义header列表
+    @inlinable
+    public func describeCustomHeader(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomHeaderResponse > {
+        self.describeCustomHeader(DescribeCustomHeaderRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询自定义header列表
+    ///
+    /// 本接口（DescribeCustomHeader）用于自定义header列表
+    @inlinable
+    public func describeCustomHeader(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomHeaderResponse {
+        try await self.describeCustomHeader(DescribeCustomHeaderRequest(), logger: logger, on: eventLoop)
+    }
 }

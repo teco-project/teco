@@ -65,4 +65,16 @@ extension Cfw {
     public func modifyAllPublicIPSwitchStatus(_ input: ModifyAllPublicIPSwitchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAllPublicIPSwitchStatusResponse {
         try await self.client.execute(action: "ModifyAllPublicIPSwitchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 互联网边界防火墙一键开关
+    @inlinable
+    public func modifyAllPublicIPSwitchStatus(status: Int64, fireWallPublicIPs: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAllPublicIPSwitchStatusResponse > {
+        self.modifyAllPublicIPSwitchStatus(ModifyAllPublicIPSwitchStatusRequest(status: status, fireWallPublicIPs: fireWallPublicIPs), logger: logger, on: eventLoop)
+    }
+    
+    /// 互联网边界防火墙一键开关
+    @inlinable
+    public func modifyAllPublicIPSwitchStatus(status: Int64, fireWallPublicIPs: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAllPublicIPSwitchStatusResponse {
+        try await self.modifyAllPublicIPSwitchStatus(ModifyAllPublicIPSwitchStatusRequest(status: status, fireWallPublicIPs: fireWallPublicIPs), logger: logger, on: eventLoop)
+    }
 }

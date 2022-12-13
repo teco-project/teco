@@ -65,4 +65,16 @@ extension Iecp {
     public func createEdgeUnitApplicationYaml(_ input: CreateEdgeUnitApplicationYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitApplicationYamlResponse {
         try await self.client.execute(action: "CreateEdgeUnitApplicationYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// yaml方式创建应用
+    @inlinable
+    public func createEdgeUnitApplicationYaml(edgeUnitId: Int64, yaml: String, basicInfo: ApplicationBasicInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeUnitApplicationYamlResponse > {
+        self.createEdgeUnitApplicationYaml(CreateEdgeUnitApplicationYamlRequest(edgeUnitId: edgeUnitId, yaml: yaml, basicInfo: basicInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// yaml方式创建应用
+    @inlinable
+    public func createEdgeUnitApplicationYaml(edgeUnitId: Int64, yaml: String, basicInfo: ApplicationBasicInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitApplicationYamlResponse {
+        try await self.createEdgeUnitApplicationYaml(CreateEdgeUnitApplicationYamlRequest(edgeUnitId: edgeUnitId, yaml: yaml, basicInfo: basicInfo), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Yunjing {
     public func renewProVersion(_ input: RenewProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewProVersionResponse {
         try await self.client.execute(action: "RenewProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 续费专业版
+    ///
+    /// 本接口 (RenewProVersion) 用于续费专业版(包年包月)。
+    @inlinable
+    public func renewProVersion(chargePrepaid: ChargePrepaid, quuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewProVersionResponse > {
+        self.renewProVersion(RenewProVersionRequest(chargePrepaid: chargePrepaid, quuid: quuid), logger: logger, on: eventLoop)
+    }
+    
+    /// 续费专业版
+    ///
+    /// 本接口 (RenewProVersion) 用于续费专业版(包年包月)。
+    @inlinable
+    public func renewProVersion(chargePrepaid: ChargePrepaid, quuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewProVersionResponse {
+        try await self.renewProVersion(RenewProVersionRequest(chargePrepaid: chargePrepaid, quuid: quuid), logger: logger, on: eventLoop)
+    }
 }

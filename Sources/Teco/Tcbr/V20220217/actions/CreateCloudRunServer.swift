@@ -73,4 +73,20 @@ extension Tcbr {
     public func createCloudRunServer(_ input: CreateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRunServerResponse {
         try await self.client.execute(action: "CreateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建云托管服务
+    ///
+    /// 创建云托管服务接口
+    @inlinable
+    public func createCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloudRunServerResponse > {
+        self.createCloudRunServer(CreateCloudRunServerRequest(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云托管服务
+    ///
+    /// 创建云托管服务接口
+    @inlinable
+    public func createCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRunServerResponse {
+        try await self.createCloudRunServer(CreateCloudRunServerRequest(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig), logger: logger, on: eventLoop)
+    }
 }

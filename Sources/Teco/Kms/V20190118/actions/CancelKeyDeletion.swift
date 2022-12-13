@@ -58,4 +58,20 @@ extension Kms {
     public func cancelKeyDeletion(_ input: CancelKeyDeletionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyDeletionResponse {
         try await self.client.execute(action: "CancelKeyDeletion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 取消CMK计划删除操作
+    ///
+    /// 取消CMK的计划删除操作
+    @inlinable
+    public func cancelKeyDeletion(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelKeyDeletionResponse > {
+        self.cancelKeyDeletion(CancelKeyDeletionRequest(keyId: keyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 取消CMK计划删除操作
+    ///
+    /// 取消CMK的计划删除操作
+    @inlinable
+    public func cancelKeyDeletion(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyDeletionResponse {
+        try await self.cancelKeyDeletion(CancelKeyDeletionRequest(keyId: keyId), logger: logger, on: eventLoop)
+    }
 }

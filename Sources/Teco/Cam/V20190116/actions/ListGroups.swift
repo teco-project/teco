@@ -68,4 +68,16 @@ extension Cam {
     public func listGroups(_ input: ListGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListGroupsResponse {
         try await self.client.execute(action: "ListGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询用户组列表
+    @inlinable
+    public func listGroups(page: UInt64? = nil, rp: UInt64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListGroupsResponse > {
+        self.listGroups(ListGroupsRequest(page: page, rp: rp, keyword: keyword), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户组列表
+    @inlinable
+    public func listGroups(page: UInt64? = nil, rp: UInt64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListGroupsResponse {
+        try await self.listGroups(ListGroupsRequest(page: page, rp: rp, keyword: keyword), logger: logger, on: eventLoop)
+    }
 }

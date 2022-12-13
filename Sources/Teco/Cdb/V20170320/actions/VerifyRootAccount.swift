@@ -63,4 +63,20 @@ extension Cdb {
     public func verifyRootAccount(_ input: VerifyRootAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyRootAccountResponse {
         try await self.client.execute(action: "VerifyRootAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 验证root账号权限
+    ///
+    /// 本接口(VerifyRootAccount)用于校验云数据库实例的 ROOT 账号是否有足够的权限进行授权操作。
+    @inlinable
+    public func verifyRootAccount(instanceId: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyRootAccountResponse > {
+        self.verifyRootAccount(VerifyRootAccountRequest(instanceId: instanceId, password: password), logger: logger, on: eventLoop)
+    }
+    
+    /// 验证root账号权限
+    ///
+    /// 本接口(VerifyRootAccount)用于校验云数据库实例的 ROOT 账号是否有足够的权限进行授权操作。
+    @inlinable
+    public func verifyRootAccount(instanceId: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyRootAccountResponse {
+        try await self.verifyRootAccount(VerifyRootAccountRequest(instanceId: instanceId, password: password), logger: logger, on: eventLoop)
+    }
 }

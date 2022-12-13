@@ -82,4 +82,20 @@ extension Tcss {
     public func describeEscapeEventInfo(_ input: DescribeEscapeEventInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventInfoResponse {
         try await self.client.execute(action: "DescribeEscapeEventInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询容器逃逸事件列表
+    ///
+    /// DescribeEscapeEventInfo 查询容器逃逸事件列表
+    @inlinable
+    public func describeEscapeEventInfo(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeEventInfoResponse > {
+        self.describeEscapeEventInfo(DescribeEscapeEventInfoRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器逃逸事件列表
+    ///
+    /// DescribeEscapeEventInfo 查询容器逃逸事件列表
+    @inlinable
+    public func describeEscapeEventInfo(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventInfoResponse {
+        try await self.describeEscapeEventInfo(DescribeEscapeEventInfoRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

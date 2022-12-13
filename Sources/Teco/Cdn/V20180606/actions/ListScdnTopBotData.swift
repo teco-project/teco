@@ -85,4 +85,16 @@ extension Cdn {
     public func listScdnTopBotData(_ input: ListScdnTopBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnTopBotDataResponse {
         try await self.client.execute(action: "ListScdnTopBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取Bot攻击的Top数据列表
+    @inlinable
+    public func listScdnTopBotData(topCount: Int64, startTime: Date, endTime: Date, area: String, metric: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListScdnTopBotDataResponse > {
+        self.listScdnTopBotData(ListScdnTopBotDataRequest(topCount: topCount, startTime: startTime, endTime: endTime, area: area, metric: metric, domains: domains), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Bot攻击的Top数据列表
+    @inlinable
+    public func listScdnTopBotData(topCount: Int64, startTime: Date, endTime: Date, area: String, metric: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnTopBotDataResponse {
+        try await self.listScdnTopBotData(ListScdnTopBotDataRequest(topCount: topCount, startTime: startTime, endTime: endTime, area: area, metric: metric, domains: domains), logger: logger, on: eventLoop)
+    }
 }

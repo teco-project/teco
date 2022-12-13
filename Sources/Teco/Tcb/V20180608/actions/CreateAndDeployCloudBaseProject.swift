@@ -115,4 +115,16 @@ extension Tcb {
     public func createAndDeployCloudBaseProject(_ input: CreateAndDeployCloudBaseProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAndDeployCloudBaseProjectResponse {
         try await self.client.execute(action: "CreateAndDeployCloudBaseProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建云开发项目
+    @inlinable
+    public func createAndDeployCloudBaseProject(name: String, source: CodeSource, envId: String? = nil, type: String? = nil, parameters: [KVPair]? = nil, envAlias: String? = nil, rcJson: String? = nil, addonConfig: String? = nil, tags: [String]? = nil, networkConfig: String? = nil, freeQuota: String? = nil, autoDeployOnCodeChange: Bool? = nil, repoUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAndDeployCloudBaseProjectResponse > {
+        self.createAndDeployCloudBaseProject(CreateAndDeployCloudBaseProjectRequest(name: name, source: source, envId: envId, type: type, parameters: parameters, envAlias: envAlias, rcJson: rcJson, addonConfig: addonConfig, tags: tags, networkConfig: networkConfig, freeQuota: freeQuota, autoDeployOnCodeChange: autoDeployOnCodeChange, repoUrl: repoUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云开发项目
+    @inlinable
+    public func createAndDeployCloudBaseProject(name: String, source: CodeSource, envId: String? = nil, type: String? = nil, parameters: [KVPair]? = nil, envAlias: String? = nil, rcJson: String? = nil, addonConfig: String? = nil, tags: [String]? = nil, networkConfig: String? = nil, freeQuota: String? = nil, autoDeployOnCodeChange: Bool? = nil, repoUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAndDeployCloudBaseProjectResponse {
+        try await self.createAndDeployCloudBaseProject(CreateAndDeployCloudBaseProjectRequest(name: name, source: source, envId: envId, type: type, parameters: parameters, envAlias: envAlias, rcJson: rcJson, addonConfig: addonConfig, tags: tags, networkConfig: networkConfig, freeQuota: freeQuota, autoDeployOnCodeChange: autoDeployOnCodeChange, repoUrl: repoUrl), logger: logger, on: eventLoop)
+    }
 }

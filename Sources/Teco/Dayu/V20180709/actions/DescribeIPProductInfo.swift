@@ -67,4 +67,20 @@ extension Dayu {
     public func describeIPProductInfo(_ input: DescribeIPProductInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPProductInfoResponse {
         try await self.client.execute(action: "DescribeIPProductInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取独享包或共享包IP对应的云资产信息
+    ///
+    /// 获取独享包或共享包IP对应的云资产信息，只支持独享包和共享包的IP
+    @inlinable
+    public func describeIPProductInfo(business: String, ipList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIPProductInfoResponse > {
+        self.describeIPProductInfo(DescribeIPProductInfoRequest(business: business, ipList: ipList), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取独享包或共享包IP对应的云资产信息
+    ///
+    /// 获取独享包或共享包IP对应的云资产信息，只支持独享包和共享包的IP
+    @inlinable
+    public func describeIPProductInfo(business: String, ipList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPProductInfoResponse {
+        try await self.describeIPProductInfo(DescribeIPProductInfoRequest(business: business, ipList: ipList), logger: logger, on: eventLoop)
+    }
 }

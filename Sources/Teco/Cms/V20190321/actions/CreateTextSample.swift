@@ -92,4 +92,24 @@ extension Cms {
     public func createTextSample(_ input: CreateTextSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTextSampleResponse {
         try await self.client.execute(action: "CreateTextSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新增文本样本库
+    ///
+    /// 本文档适用于文本内容安全、音频内容安全自定义识别库的管理。
+    /// <br>
+    /// 通过该接口可以将文本新增到样本库。
+    @inlinable
+    public func createTextSample(contents: [String], evilType: Int64, label: UInt64, test: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTextSampleResponse > {
+        self.createTextSample(CreateTextSampleRequest(contents: contents, evilType: evilType, label: label, test: test), logger: logger, on: eventLoop)
+    }
+    
+    /// 新增文本样本库
+    ///
+    /// 本文档适用于文本内容安全、音频内容安全自定义识别库的管理。
+    /// <br>
+    /// 通过该接口可以将文本新增到样本库。
+    @inlinable
+    public func createTextSample(contents: [String], evilType: Int64, label: UInt64, test: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTextSampleResponse {
+        try await self.createTextSample(CreateTextSampleRequest(contents: contents, evilType: evilType, label: label, test: test), logger: logger, on: eventLoop)
+    }
 }

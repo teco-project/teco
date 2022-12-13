@@ -87,4 +87,20 @@ extension Teo {
     public func createZone(_ input: CreateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateZoneResponse {
         try await self.client.execute(action: "CreateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建站点
+    ///
+    /// 用于用户接入新的站点。
+    @inlinable
+    public func createZone(zoneName: String, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, aliasZoneName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateZoneResponse > {
+        self.createZone(CreateZoneRequest(zoneName: zoneName, type: type, jumpStart: jumpStart, tags: tags, allowDuplicates: allowDuplicates, aliasZoneName: aliasZoneName), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建站点
+    ///
+    /// 用于用户接入新的站点。
+    @inlinable
+    public func createZone(zoneName: String, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, aliasZoneName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateZoneResponse {
+        try await self.createZone(CreateZoneRequest(zoneName: zoneName, type: type, jumpStart: jumpStart, tags: tags, allowDuplicates: allowDuplicates, aliasZoneName: aliasZoneName), logger: logger, on: eventLoop)
+    }
 }

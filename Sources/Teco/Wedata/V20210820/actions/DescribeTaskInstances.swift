@@ -124,4 +124,16 @@ extension Wedata {
     public func describeTaskInstances(_ input: DescribeTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstancesResponse {
         try await self.client.execute(action: "DescribeTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询任务实例列表
+    @inlinable
+    public func describeTaskInstances(projectId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, workflowIdList: [String]? = nil, workflowNameList: [String]? = nil, dateFrom: String? = nil, dateTo: String? = nil, taskIdList: [String]? = nil, taskNameList: [String]? = nil, inChargeList: [String]? = nil, taskTypeIdList: [Int64]? = nil, stateList: [String]? = nil, taskCycleUnitList: [String]? = nil, instanceType: Int64? = nil, orderFields: [OrderField]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskInstancesResponse > {
+        self.describeTaskInstances(DescribeTaskInstancesRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, workflowIdList: workflowIdList, workflowNameList: workflowNameList, dateFrom: dateFrom, dateTo: dateTo, taskIdList: taskIdList, taskNameList: taskNameList, inChargeList: inChargeList, taskTypeIdList: taskTypeIdList, stateList: stateList, taskCycleUnitList: taskCycleUnitList, instanceType: instanceType, orderFields: orderFields), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务实例列表
+    @inlinable
+    public func describeTaskInstances(projectId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, workflowIdList: [String]? = nil, workflowNameList: [String]? = nil, dateFrom: String? = nil, dateTo: String? = nil, taskIdList: [String]? = nil, taskNameList: [String]? = nil, inChargeList: [String]? = nil, taskTypeIdList: [Int64]? = nil, stateList: [String]? = nil, taskCycleUnitList: [String]? = nil, instanceType: Int64? = nil, orderFields: [OrderField]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstancesResponse {
+        try await self.describeTaskInstances(DescribeTaskInstancesRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, workflowIdList: workflowIdList, workflowNameList: workflowNameList, dateFrom: dateFrom, dateTo: dateTo, taskIdList: taskIdList, taskNameList: taskNameList, inChargeList: inChargeList, taskTypeIdList: taskTypeIdList, stateList: stateList, taskCycleUnitList: taskCycleUnitList, instanceType: instanceType, orderFields: orderFields), logger: logger, on: eventLoop)
+    }
 }

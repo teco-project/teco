@@ -80,4 +80,16 @@ extension Cwp {
     public func describeVulEffectHostList(_ input: DescribeVulEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulEffectHostListResponse {
         try await self.client.execute(action: "DescribeVulEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 漏洞影响主机列表
+    @inlinable
+    public func describeVulEffectHostList(limit: UInt64, offset: UInt64, vulId: UInt64, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulEffectHostListResponse > {
+        self.describeVulEffectHostList(DescribeVulEffectHostListRequest(limit: limit, offset: offset, vulId: vulId, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 漏洞影响主机列表
+    @inlinable
+    public func describeVulEffectHostList(limit: UInt64, offset: UInt64, vulId: UInt64, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulEffectHostListResponse {
+        try await self.describeVulEffectHostList(DescribeVulEffectHostListRequest(limit: limit, offset: offset, vulId: vulId, filters: filters), logger: logger, on: eventLoop)
+    }
 }

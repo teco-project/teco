@@ -104,4 +104,20 @@ extension Dbbrain {
     public func describeDBDiagReportTasks(_ input: DescribeDBDiagReportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBDiagReportTasksResponse {
         try await self.client.execute(action: "DescribeDBDiagReportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询健康报告生成任务列表
+    ///
+    /// 查询健康报告生成任务列表。
+    @inlinable
+    public func describeDBDiagReportTasks(startTime: Date? = nil, endTime: Date? = nil, instanceIds: [String]? = nil, sources: [String]? = nil, healthLevels: String? = nil, taskStatuses: String? = nil, offset: Int64? = nil, limit: Int64? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBDiagReportTasksResponse > {
+        self.describeDBDiagReportTasks(DescribeDBDiagReportTasksRequest(startTime: startTime, endTime: endTime, instanceIds: instanceIds, sources: sources, healthLevels: healthLevels, taskStatuses: taskStatuses, offset: offset, limit: limit, product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询健康报告生成任务列表
+    ///
+    /// 查询健康报告生成任务列表。
+    @inlinable
+    public func describeDBDiagReportTasks(startTime: Date? = nil, endTime: Date? = nil, instanceIds: [String]? = nil, sources: [String]? = nil, healthLevels: String? = nil, taskStatuses: String? = nil, offset: Int64? = nil, limit: Int64? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBDiagReportTasksResponse {
+        try await self.describeDBDiagReportTasks(DescribeDBDiagReportTasksRequest(startTime: startTime, endTime: endTime, instanceIds: instanceIds, sources: sources, healthLevels: healthLevels, taskStatuses: taskStatuses, offset: offset, limit: limit, product: product), logger: logger, on: eventLoop)
+    }
 }

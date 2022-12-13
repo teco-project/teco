@@ -35,7 +35,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以修改任意媒体的信息。如果指定操作者，则操作者必须对媒体有写权限。
         public let `operator`: String?
         
-        public init (platform: String, materialId: String, owner: Entity? = nil, name: String? = nil, classPath: String? = nil, `operator`: String? = nil) {
+        public init (platform: String, materialId: String, owner: Entity? = nil, name: String? = nil, classPath: String? = nil, operator: String? = nil) {
             self.platform = platform
             self.materialId = materialId
             self.owner = owner
@@ -78,5 +78,21 @@ extension Cme {
     @inlinable
     public func modifyMaterial(_ input: ModifyMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaterialResponse {
         try await self.client.execute(action: "ModifyMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 修改媒体信息
+    ///
+    /// 修改媒体信息，支持修改媒体名称、分类路径、标签等信息。
+    @inlinable
+    public func modifyMaterial(platform: String, materialId: String, owner: Entity? = nil, name: String? = nil, classPath: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMaterialResponse > {
+        self.modifyMaterial(ModifyMaterialRequest(platform: platform, materialId: materialId, owner: owner, name: name, classPath: classPath, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改媒体信息
+    ///
+    /// 修改媒体信息，支持修改媒体名称、分类路径、标签等信息。
+    @inlinable
+    public func modifyMaterial(platform: String, materialId: String, owner: Entity? = nil, name: String? = nil, classPath: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaterialResponse {
+        try await self.modifyMaterial(ModifyMaterialRequest(platform: platform, materialId: materialId, owner: owner, name: name, classPath: classPath, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

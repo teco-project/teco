@@ -64,4 +64,16 @@ extension Wedata {
     public func describeTaskLockStatus(_ input: DescribeTaskLockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLockStatusResponse {
         try await self.client.execute(action: "DescribeTaskLockStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看任务锁状态信息
+    @inlinable
+    public func describeTaskLockStatus(taskId: String, projectId: String, taskType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskLockStatusResponse > {
+        self.describeTaskLockStatus(DescribeTaskLockStatusRequest(taskId: taskId, projectId: projectId, taskType: taskType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看任务锁状态信息
+    @inlinable
+    public func describeTaskLockStatus(taskId: String, projectId: String, taskType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLockStatusResponse {
+        try await self.describeTaskLockStatus(DescribeTaskLockStatusRequest(taskId: taskId, projectId: projectId, taskType: taskType), logger: logger, on: eventLoop)
+    }
 }

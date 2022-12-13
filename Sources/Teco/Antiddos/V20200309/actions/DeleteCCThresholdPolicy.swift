@@ -29,7 +29,7 @@ extension Antiddos {
         /// 协议，可取值http
         public let `protocol`: String
         
-        public init (instanceId: String, ip: String, domain: String, `protocol`: String) {
+        public init (instanceId: String, ip: String, domain: String, protocol: String) {
             self.instanceId = instanceId
             self.ip = ip
             self.domain = domain
@@ -64,5 +64,17 @@ extension Antiddos {
     @inlinable
     public func deleteCCThresholdPolicy(_ input: DeleteCCThresholdPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCThresholdPolicyResponse {
         try await self.client.execute(action: "DeleteCCThresholdPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 删除CC清洗阈值策略
+    @inlinable
+    public func deleteCCThresholdPolicy(instanceId: String, ip: String, domain: String, protocol: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCCThresholdPolicyResponse > {
+        self.deleteCCThresholdPolicy(DeleteCCThresholdPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除CC清洗阈值策略
+    @inlinable
+    public func deleteCCThresholdPolicy(instanceId: String, ip: String, domain: String, protocol: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCThresholdPolicyResponse {
+        try await self.deleteCCThresholdPolicy(DeleteCCThresholdPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), logger: logger, on: eventLoop)
     }
 }

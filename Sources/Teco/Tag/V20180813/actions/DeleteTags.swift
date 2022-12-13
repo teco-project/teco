@@ -55,4 +55,20 @@ extension Tag {
     public func deleteTags(_ input: DeleteTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagsResponse {
         try await self.client.execute(action: "DeleteTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量删除标签
+    ///
+    /// 本接口用于批量删除标签键和标签值。
+    @inlinable
+    public func deleteTags(tags: [Tag], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTagsResponse > {
+        self.deleteTags(DeleteTagsRequest(tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除标签
+    ///
+    /// 本接口用于批量删除标签键和标签值。
+    @inlinable
+    public func deleteTags(tags: [Tag], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagsResponse {
+        try await self.deleteTags(DeleteTagsRequest(tags: tags), logger: logger, on: eventLoop)
+    }
 }

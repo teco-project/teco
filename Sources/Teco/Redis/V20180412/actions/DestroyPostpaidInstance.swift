@@ -54,4 +54,16 @@ extension Redis {
     public func destroyPostpaidInstance(_ input: DestroyPostpaidInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPostpaidInstanceResponse {
         try await self.client.execute(action: "DestroyPostpaidInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 按量计费实例销毁
+    @inlinable
+    public func destroyPostpaidInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyPostpaidInstanceResponse > {
+        self.destroyPostpaidInstance(DestroyPostpaidInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 按量计费实例销毁
+    @inlinable
+    public func destroyPostpaidInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPostpaidInstanceResponse {
+        try await self.destroyPostpaidInstance(DestroyPostpaidInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

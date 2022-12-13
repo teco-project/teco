@@ -58,4 +58,20 @@ extension Cis {
     public func deleteContainerInstance(_ input: DeleteContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContainerInstanceResponse {
         try await self.client.execute(action: "DeleteContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除容器实例
+    ///
+    /// 此接口（DeleteContainerInstance）用于删除容器实例
+    @inlinable
+    public func deleteContainerInstance(instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteContainerInstanceResponse > {
+        self.deleteContainerInstance(DeleteContainerInstanceRequest(instanceName: instanceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除容器实例
+    ///
+    /// 此接口（DeleteContainerInstance）用于删除容器实例
+    @inlinable
+    public func deleteContainerInstance(instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContainerInstanceResponse {
+        try await self.deleteContainerInstance(DeleteContainerInstanceRequest(instanceName: instanceName), logger: logger, on: eventLoop)
+    }
 }

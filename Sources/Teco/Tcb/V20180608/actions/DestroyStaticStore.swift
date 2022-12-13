@@ -63,4 +63,20 @@ extension Tcb {
     public func destroyStaticStore(_ input: DestroyStaticStoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStaticStoreResponse {
         try await self.client.execute(action: "DestroyStaticStore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 销毁静态资源
+    ///
+    /// 销毁静态托管资源，该接口创建异步销毁任务，资源最终状态可从DestroyStaticStore接口查看
+    @inlinable
+    public func destroyStaticStore(envId: String, cdnDomain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyStaticStoreResponse > {
+        self.destroyStaticStore(DestroyStaticStoreRequest(envId: envId, cdnDomain: cdnDomain), logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁静态资源
+    ///
+    /// 销毁静态托管资源，该接口创建异步销毁任务，资源最终状态可从DestroyStaticStore接口查看
+    @inlinable
+    public func destroyStaticStore(envId: String, cdnDomain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStaticStoreResponse {
+        try await self.destroyStaticStore(DestroyStaticStoreRequest(envId: envId, cdnDomain: cdnDomain), logger: logger, on: eventLoop)
+    }
 }

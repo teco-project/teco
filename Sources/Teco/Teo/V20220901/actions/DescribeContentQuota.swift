@@ -60,4 +60,16 @@ extension Teo {
     public func describeContentQuota(_ input: DescribeContentQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContentQuotaResponse {
         try await self.client.execute(action: "DescribeContentQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询内容管理接口配额
+    @inlinable
+    public func describeContentQuota(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContentQuotaResponse > {
+        self.describeContentQuota(DescribeContentQuotaRequest(zoneId: zoneId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询内容管理接口配额
+    @inlinable
+    public func describeContentQuota(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContentQuotaResponse {
+        try await self.describeContentQuota(DescribeContentQuotaRequest(zoneId: zoneId), logger: logger, on: eventLoop)
+    }
 }

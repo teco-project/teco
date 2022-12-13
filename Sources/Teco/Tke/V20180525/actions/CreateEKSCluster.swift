@@ -104,4 +104,16 @@ extension Tke {
     public func createEKSCluster(_ input: CreateEKSClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEKSClusterResponse {
         try await self.client.execute(action: "CreateEKSCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建弹性集群
+    @inlinable
+    public func createEKSCluster(k8sVersion: String, vpcId: String, clusterName: String, subnetIds: [String], clusterDesc: String? = nil, serviceSubnetId: String? = nil, dnsServers: [DnsServerConf]? = nil, extraParam: String? = nil, enableVpcCoreDNS: Bool? = nil, tagSpecification: [TagSpecification]? = nil, subnetInfos: [SubnetInfos]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEKSClusterResponse > {
+        self.createEKSCluster(CreateEKSClusterRequest(k8sVersion: k8sVersion, vpcId: vpcId, clusterName: clusterName, subnetIds: subnetIds, clusterDesc: clusterDesc, serviceSubnetId: serviceSubnetId, dnsServers: dnsServers, extraParam: extraParam, enableVpcCoreDNS: enableVpcCoreDNS, tagSpecification: tagSpecification, subnetInfos: subnetInfos), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建弹性集群
+    @inlinable
+    public func createEKSCluster(k8sVersion: String, vpcId: String, clusterName: String, subnetIds: [String], clusterDesc: String? = nil, serviceSubnetId: String? = nil, dnsServers: [DnsServerConf]? = nil, extraParam: String? = nil, enableVpcCoreDNS: Bool? = nil, tagSpecification: [TagSpecification]? = nil, subnetInfos: [SubnetInfos]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEKSClusterResponse {
+        try await self.createEKSCluster(CreateEKSClusterRequest(k8sVersion: k8sVersion, vpcId: vpcId, clusterName: clusterName, subnetIds: subnetIds, clusterDesc: clusterDesc, serviceSubnetId: serviceSubnetId, dnsServers: dnsServers, extraParam: extraParam, enableVpcCoreDNS: enableVpcCoreDNS, tagSpecification: tagSpecification, subnetInfos: subnetInfos), logger: logger, on: eventLoop)
+    }
 }

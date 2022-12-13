@@ -50,4 +50,16 @@ extension Tci {
     public func deleteVocabLib(_ input: DeleteVocabLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVocabLibResponse {
         try await self.client.execute(action: "DeleteVocabLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除词汇库
+    @inlinable
+    public func deleteVocabLib(vocabLibName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVocabLibResponse > {
+        self.deleteVocabLib(DeleteVocabLibRequest(vocabLibName: vocabLibName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除词汇库
+    @inlinable
+    public func deleteVocabLib(vocabLibName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVocabLibResponse {
+        try await self.deleteVocabLib(DeleteVocabLibRequest(vocabLibName: vocabLibName), logger: logger, on: eventLoop)
+    }
 }

@@ -63,4 +63,20 @@ extension Zj {
     public func getSmsCampaignStatus(_ input: GetSmsCampaignStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSmsCampaignStatusResponse {
         try await self.client.execute(action: "GetSmsCampaignStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取短信活动状态
+    ///
+    /// 获取短信活动状态信息
+    @inlinable
+    public func getSmsCampaignStatus(license: String, campaignId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSmsCampaignStatusResponse > {
+        self.getSmsCampaignStatus(GetSmsCampaignStatusRequest(license: license, campaignId: campaignId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取短信活动状态
+    ///
+    /// 获取短信活动状态信息
+    @inlinable
+    public func getSmsCampaignStatus(license: String, campaignId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSmsCampaignStatusResponse {
+        try await self.getSmsCampaignStatus(GetSmsCampaignStatusRequest(license: license, campaignId: campaignId), logger: logger, on: eventLoop)
+    }
 }

@@ -93,4 +93,20 @@ extension Vpc {
     public func describeCcns(_ input: DescribeCcnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnsResponse {
         try await self.client.execute(action: "DescribeCcns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询CCN列表
+    ///
+    /// 本接口（DescribeCcns）用于查询云联网（CCN）列表。
+    @inlinable
+    public func describeCcns(ccnIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCcnsResponse > {
+        self.describeCcns(DescribeCcnsRequest(ccnIds: ccnIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询CCN列表
+    ///
+    /// 本接口（DescribeCcns）用于查询云联网（CCN）列表。
+    @inlinable
+    public func describeCcns(ccnIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnsResponse {
+        try await self.describeCcns(DescribeCcnsRequest(ccnIds: ccnIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    }
 }

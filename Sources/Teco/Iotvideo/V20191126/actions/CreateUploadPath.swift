@@ -64,4 +64,20 @@ extension Iotvideo {
     public func createUploadPath(_ input: CreateUploadPathRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUploadPathResponse {
         try await self.client.execute(action: "CreateUploadPath", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取固件上传路径
+    ///
+    /// 本接口（CreateUploadPath）用于获取固件上传路径。
+    @inlinable
+    public func createUploadPath(productId: String, fileName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUploadPathResponse > {
+        self.createUploadPath(CreateUploadPathRequest(productId: productId, fileName: fileName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取固件上传路径
+    ///
+    /// 本接口（CreateUploadPath）用于获取固件上传路径。
+    @inlinable
+    public func createUploadPath(productId: String, fileName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUploadPathResponse {
+        try await self.createUploadPath(CreateUploadPathRequest(productId: productId, fileName: fileName), logger: logger, on: eventLoop)
+    }
 }

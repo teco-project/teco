@@ -58,4 +58,20 @@ extension Tms {
     public func describeTextLib(_ input: DescribeTextLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextLibResponse {
         try await self.client.execute(action: "DescribeTextLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取用户词库列表
+    ///
+    /// 控制台获取用户词库列表
+    @inlinable
+    public func describeTextLib(strategyType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTextLibResponse > {
+        self.describeTextLib(DescribeTextLibRequest(strategyType: strategyType), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户词库列表
+    ///
+    /// 控制台获取用户词库列表
+    @inlinable
+    public func describeTextLib(strategyType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextLibResponse {
+        try await self.describeTextLib(DescribeTextLibRequest(strategyType: strategyType), logger: logger, on: eventLoop)
+    }
 }

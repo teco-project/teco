@@ -4543,7 +4543,7 @@ extension Tsf {
         /// 端口协议
         public let `protocol`: String
         
-        public init (targetPort: UInt64, `protocol`: String) {
+        public init (targetPort: UInt64, protocol: String) {
             self.targetPort = targetPort
             self.`protocol` = `protocol`
         }
@@ -4696,7 +4696,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodePort: Int64?
         
-        public init (`protocol`: String, port: Int64, targetPort: Int64, nodePort: Int64? = nil) {
+        public init (protocol: String, port: Int64, targetPort: Int64, nodePort: Int64? = nil) {
             self.`protocol` = `protocol`
             self.port = port
             self.targetPort = targetPort

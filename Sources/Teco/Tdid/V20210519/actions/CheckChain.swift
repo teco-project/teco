@@ -72,4 +72,16 @@ extension Tdid {
     public func checkChain(_ input: CheckChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckChainResponse {
         try await self.client.execute(action: "CheckChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 检查区块链信息
+    @inlinable
+    public func checkChain(groupId: Int64, clusterId: String, agencyName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckChainResponse > {
+        self.checkChain(CheckChainRequest(groupId: groupId, clusterId: clusterId, agencyName: agencyName), logger: logger, on: eventLoop)
+    }
+    
+    /// 检查区块链信息
+    @inlinable
+    public func checkChain(groupId: Int64, clusterId: String, agencyName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckChainResponse {
+        try await self.checkChain(CheckChainRequest(groupId: groupId, clusterId: clusterId, agencyName: agencyName), logger: logger, on: eventLoop)
+    }
 }

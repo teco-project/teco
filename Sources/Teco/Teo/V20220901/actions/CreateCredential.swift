@@ -46,4 +46,20 @@ extension Teo {
     public func createCredential(_ input: CreateCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
         try await self.client.execute(action: "CreateCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建凭证
+    ///
+    /// 用于创建COS回源私有凭证
+    @inlinable
+    public func createCredential(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCredentialResponse > {
+        self.createCredential(CreateCredentialRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建凭证
+    ///
+    /// 用于创建COS回源私有凭证
+    @inlinable
+    public func createCredential(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
+        try await self.createCredential(CreateCredentialRequest(), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Tcb {
     public func reinstateEnv(_ input: ReinstateEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReinstateEnvResponse {
         try await self.client.execute(action: "ReinstateEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 恢复环境，解除隔离状态
+    ///
+    /// 针对已隔离的免费环境，可以通过本接口将其恢复访问。
+    @inlinable
+    public func reinstateEnv(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReinstateEnvResponse > {
+        self.reinstateEnv(ReinstateEnvRequest(envId: envId), logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复环境，解除隔离状态
+    ///
+    /// 针对已隔离的免费环境，可以通过本接口将其恢复访问。
+    @inlinable
+    public func reinstateEnv(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReinstateEnvResponse {
+        try await self.reinstateEnv(ReinstateEnvRequest(envId: envId), logger: logger, on: eventLoop)
+    }
 }

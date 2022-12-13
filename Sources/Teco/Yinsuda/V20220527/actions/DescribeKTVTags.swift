@@ -63,4 +63,20 @@ extension Yinsuda {
     public func describeKTVTags(_ input: DescribeKTVTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVTagsResponse {
         try await self.client.execute(action: "DescribeKTVTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取标签列表
+    ///
+    /// 获取标签分组及分组下的标签列表信息。
+    @inlinable
+    public func describeKTVTags(appName: String, userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVTagsResponse > {
+        self.describeKTVTags(DescribeKTVTagsRequest(appName: appName, userId: userId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取标签列表
+    ///
+    /// 获取标签分组及分组下的标签列表信息。
+    @inlinable
+    public func describeKTVTags(appName: String, userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVTagsResponse {
+        try await self.describeKTVTags(DescribeKTVTagsRequest(appName: appName, userId: userId), logger: logger, on: eventLoop)
+    }
 }

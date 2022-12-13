@@ -78,4 +78,20 @@ extension Vpc {
     public func inquiryPriceCreateVpnGateway(_ input: InquiryPriceCreateVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateVpnGatewayResponse {
         try await self.client.execute(action: "InquiryPriceCreateVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建VPN网关询价
+    ///
+    /// 本接口（InquiryPriceCreateVpnGateway）用于创建VPN网关询价。
+    @inlinable
+    public func inquiryPriceCreateVpnGateway(internetMaxBandwidthOut: UInt64, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, maxConnection: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateVpnGatewayResponse > {
+        self.inquiryPriceCreateVpnGateway(InquiryPriceCreateVpnGatewayRequest(internetMaxBandwidthOut: internetMaxBandwidthOut, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, maxConnection: maxConnection, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建VPN网关询价
+    ///
+    /// 本接口（InquiryPriceCreateVpnGateway）用于创建VPN网关询价。
+    @inlinable
+    public func inquiryPriceCreateVpnGateway(internetMaxBandwidthOut: UInt64, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, maxConnection: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateVpnGatewayResponse {
+        try await self.inquiryPriceCreateVpnGateway(InquiryPriceCreateVpnGatewayRequest(internetMaxBandwidthOut: internetMaxBandwidthOut, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, maxConnection: maxConnection, type: type), logger: logger, on: eventLoop)
+    }
 }

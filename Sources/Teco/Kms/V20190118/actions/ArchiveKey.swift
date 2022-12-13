@@ -54,4 +54,20 @@ extension Kms {
     public func archiveKey(_ input: ArchiveKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ArchiveKeyResponse {
         try await self.client.execute(action: "ArchiveKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 密钥归档
+    ///
+    /// 对密钥进行归档，被归档的密钥只能用于解密，不能加密
+    @inlinable
+    public func archiveKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ArchiveKeyResponse > {
+        self.archiveKey(ArchiveKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 密钥归档
+    ///
+    /// 对密钥进行归档，被归档的密钥只能用于解密，不能加密
+    @inlinable
+    public func archiveKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ArchiveKeyResponse {
+        try await self.archiveKey(ArchiveKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
+    }
 }

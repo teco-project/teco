@@ -60,4 +60,16 @@ extension Cloudstudio {
     public func removeWorkspace(_ input: RemoveWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveWorkspaceResponse {
         try await self.client.execute(action: "RemoveWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除工作空间
+    @inlinable
+    public func removeWorkspace(cloudStudioSessionTeam: String, spaceKey: String, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveWorkspaceResponse > {
+        self.removeWorkspace(RemoveWorkspaceRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey, force: force), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除工作空间
+    @inlinable
+    public func removeWorkspace(cloudStudioSessionTeam: String, spaceKey: String, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveWorkspaceResponse {
+        try await self.removeWorkspace(RemoveWorkspaceRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey, force: force), logger: logger, on: eventLoop)
+    }
 }

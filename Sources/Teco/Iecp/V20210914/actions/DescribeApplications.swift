@@ -74,4 +74,16 @@ extension Iecp {
     public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
         try await self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取应用模板列表
+    @inlinable
+    public func describeApplications(namePattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, sort: [FieldSort]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationsResponse > {
+        self.describeApplications(DescribeApplicationsRequest(namePattern: namePattern, offset: offset, limit: limit, sort: sort), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用模板列表
+    @inlinable
+    public func describeApplications(namePattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, sort: [FieldSort]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
+        try await self.describeApplications(DescribeApplicationsRequest(namePattern: namePattern, offset: offset, limit: limit, sort: sort), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,22 @@ extension Gse {
     public func describeAsset(_ input: DescribeAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetResponse {
         try await self.client.execute(action: "DescribeAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取生成包信息
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeAsset）获取生成包信息。
+    @inlinable
+    public func describeAsset(assetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetResponse > {
+        self.describeAsset(DescribeAssetRequest(assetId: assetId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取生成包信息
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeAsset）获取生成包信息。
+    @inlinable
+    public func describeAsset(assetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetResponse {
+        try await self.describeAsset(DescribeAssetRequest(assetId: assetId), logger: logger, on: eventLoop)
+    }
 }

@@ -137,4 +137,20 @@ extension Vod {
     public func createImageSpriteTemplate(_ input: CreateImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageSpriteTemplateResponse {
         try await self.client.execute(action: "CreateImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建雪碧图模板
+    ///
+    /// 创建用户自定义雪碧图模板，数量上限：16。
+    @inlinable
+    public func createImageSpriteTemplate(sampleType: String, sampleInterval: UInt64, rowCount: UInt64, columnCount: UInt64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, fillType: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageSpriteTemplateResponse > {
+        self.createImageSpriteTemplate(CreateImageSpriteTemplateRequest(sampleType: sampleType, sampleInterval: sampleInterval, rowCount: rowCount, columnCount: columnCount, subAppId: subAppId, name: name, comment: comment, fillType: fillType, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建雪碧图模板
+    ///
+    /// 创建用户自定义雪碧图模板，数量上限：16。
+    @inlinable
+    public func createImageSpriteTemplate(sampleType: String, sampleInterval: UInt64, rowCount: UInt64, columnCount: UInt64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, fillType: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageSpriteTemplateResponse {
+        try await self.createImageSpriteTemplate(CreateImageSpriteTemplateRequest(sampleType: sampleType, sampleInterval: sampleInterval, rowCount: rowCount, columnCount: columnCount, subAppId: subAppId, name: name, comment: comment, fillType: fillType, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format), logger: logger, on: eventLoop)
+    }
 }

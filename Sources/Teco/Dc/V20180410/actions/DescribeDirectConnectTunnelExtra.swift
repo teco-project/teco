@@ -58,4 +58,20 @@ extension Dc {
     public func describeDirectConnectTunnelExtra(_ input: DescribeDirectConnectTunnelExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectTunnelExtraResponse {
         try await self.client.execute(action: "DescribeDirectConnectTunnelExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询专用通道扩展信息
+    ///
+    /// 本接口（DescribeDirectConnectTunnelExtra）用于查询专用通道扩展信息
+    @inlinable
+    public func describeDirectConnectTunnelExtra(directConnectTunnelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDirectConnectTunnelExtraResponse > {
+        self.describeDirectConnectTunnelExtra(DescribeDirectConnectTunnelExtraRequest(directConnectTunnelId: directConnectTunnelId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专用通道扩展信息
+    ///
+    /// 本接口（DescribeDirectConnectTunnelExtra）用于查询专用通道扩展信息
+    @inlinable
+    public func describeDirectConnectTunnelExtra(directConnectTunnelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectTunnelExtraResponse {
+        try await self.describeDirectConnectTunnelExtra(DescribeDirectConnectTunnelExtraRequest(directConnectTunnelId: directConnectTunnelId), logger: logger, on: eventLoop)
+    }
 }

@@ -50,4 +50,16 @@ extension Msp {
     public func deregisterMigrationTask(_ input: DeregisterMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterMigrationTaskResponse {
         try await self.client.execute(action: "DeregisterMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 取消注册迁移任务
+    @inlinable
+    public func deregisterMigrationTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeregisterMigrationTaskResponse > {
+        self.deregisterMigrationTask(DeregisterMigrationTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 取消注册迁移任务
+    @inlinable
+    public func deregisterMigrationTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterMigrationTaskResponse {
+        try await self.deregisterMigrationTask(DeregisterMigrationTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

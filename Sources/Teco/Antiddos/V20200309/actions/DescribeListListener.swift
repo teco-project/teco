@@ -50,4 +50,16 @@ extension Antiddos {
     public func describeListListener(_ input: DescribeListListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListListenerResponse {
         try await self.client.execute(action: "DescribeListListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取转发监听器列表
+    @inlinable
+    public func describeListListener(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListListenerResponse > {
+        self.describeListListener(DescribeListListenerRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取转发监听器列表
+    @inlinable
+    public func describeListListener(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListListenerResponse {
+        try await self.describeListListener(DescribeListListenerRequest(), logger: logger, on: eventLoop)
+    }
 }

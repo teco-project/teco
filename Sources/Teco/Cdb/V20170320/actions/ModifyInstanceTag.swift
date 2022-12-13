@@ -64,4 +64,20 @@ extension Cdb {
     public func modifyInstanceTag(_ input: ModifyInstanceTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTagResponse {
         try await self.client.execute(action: "ModifyInstanceTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改实例标签
+    ///
+    /// 本接口(ModifyInstanceTag)用于对实例标签进行添加、修改或者删除。
+    @inlinable
+    public func modifyInstanceTag(instanceId: String, replaceTags: [TagInfo]? = nil, deleteTags: [TagInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceTagResponse > {
+        self.modifyInstanceTag(ModifyInstanceTagRequest(instanceId: instanceId, replaceTags: replaceTags, deleteTags: deleteTags), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例标签
+    ///
+    /// 本接口(ModifyInstanceTag)用于对实例标签进行添加、修改或者删除。
+    @inlinable
+    public func modifyInstanceTag(instanceId: String, replaceTags: [TagInfo]? = nil, deleteTags: [TagInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTagResponse {
+        try await self.modifyInstanceTag(ModifyInstanceTagRequest(instanceId: instanceId, replaceTags: replaceTags, deleteTags: deleteTags), logger: logger, on: eventLoop)
+    }
 }

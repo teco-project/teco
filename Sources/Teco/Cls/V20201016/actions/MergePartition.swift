@@ -63,4 +63,20 @@ extension Cls {
     public func mergePartition(_ input: MergePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MergePartitionResponse {
         try await self.client.execute(action: "MergePartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 合并分区
+    ///
+    /// 本接口用于合并一个读写态的主题分区，合并时指定一个主题分区 ID，日志服务会自动合并范围右相邻的分区。
+    @inlinable
+    public func mergePartition(topicId: String, partitionId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MergePartitionResponse > {
+        self.mergePartition(MergePartitionRequest(topicId: topicId, partitionId: partitionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 合并分区
+    ///
+    /// 本接口用于合并一个读写态的主题分区，合并时指定一个主题分区 ID，日志服务会自动合并范围右相邻的分区。
+    @inlinable
+    public func mergePartition(topicId: String, partitionId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MergePartitionResponse {
+        try await self.mergePartition(MergePartitionRequest(topicId: topicId, partitionId: partitionId), logger: logger, on: eventLoop)
+    }
 }

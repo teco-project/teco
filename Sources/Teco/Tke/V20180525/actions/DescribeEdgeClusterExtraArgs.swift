@@ -55,4 +55,16 @@ extension Tke {
     public func describeEdgeClusterExtraArgs(_ input: DescribeEdgeClusterExtraArgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterExtraArgsResponse {
         try await self.client.execute(action: "DescribeEdgeClusterExtraArgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询边缘集群自定义参数
+    @inlinable
+    public func describeEdgeClusterExtraArgs(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeClusterExtraArgsResponse > {
+        self.describeEdgeClusterExtraArgs(DescribeEdgeClusterExtraArgsRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘集群自定义参数
+    @inlinable
+    public func describeEdgeClusterExtraArgs(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterExtraArgsResponse {
+        try await self.describeEdgeClusterExtraArgs(DescribeEdgeClusterExtraArgsRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

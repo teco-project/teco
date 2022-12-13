@@ -59,4 +59,16 @@ extension Smpn {
     public func describeSmpnFnr(_ input: DescribeSmpnFnrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnFnrResponse {
         try await self.client.execute(action: "DescribeSmpnFnr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 虚假号码识别
+    @inlinable
+    public func describeSmpnFnr(requestData: FNRRequest, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmpnFnrResponse > {
+        self.describeSmpnFnr(DescribeSmpnFnrRequest(requestData: requestData, resourceId: resourceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 虚假号码识别
+    @inlinable
+    public func describeSmpnFnr(requestData: FNRRequest, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnFnrResponse {
+        try await self.describeSmpnFnr(DescribeSmpnFnrRequest(requestData: requestData, resourceId: resourceId), logger: logger, on: eventLoop)
+    }
 }

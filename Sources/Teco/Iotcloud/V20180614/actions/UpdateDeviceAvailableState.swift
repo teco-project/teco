@@ -64,4 +64,20 @@ extension Iotcloud {
     public func updateDeviceAvailableState(_ input: UpdateDeviceAvailableStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceAvailableStateResponse {
         try await self.client.execute(action: "UpdateDeviceAvailableState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 切换设备可用状态
+    ///
+    /// 启用或者禁用设备 
+    @inlinable
+    public func updateDeviceAvailableState(productId: String, deviceName: String, enableState: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDeviceAvailableStateResponse > {
+        self.updateDeviceAvailableState(UpdateDeviceAvailableStateRequest(productId: productId, deviceName: deviceName, enableState: enableState), logger: logger, on: eventLoop)
+    }
+    
+    /// 切换设备可用状态
+    ///
+    /// 启用或者禁用设备 
+    @inlinable
+    public func updateDeviceAvailableState(productId: String, deviceName: String, enableState: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceAvailableStateResponse {
+        try await self.updateDeviceAvailableState(UpdateDeviceAvailableStateRequest(productId: productId, deviceName: deviceName, enableState: enableState), logger: logger, on: eventLoop)
+    }
 }

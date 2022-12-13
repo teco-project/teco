@@ -58,4 +58,20 @@ extension Live {
     public func describeLiveDomainCert(_ input: DescribeLiveDomainCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainCertResponse {
         try await self.client.execute(action: "DescribeLiveDomainCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取域名证书信息
+    ///
+    /// 获取域名证书信息。
+    @inlinable
+    public func describeLiveDomainCert(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveDomainCertResponse > {
+        self.describeLiveDomainCert(DescribeLiveDomainCertRequest(domainName: domainName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取域名证书信息
+    ///
+    /// 获取域名证书信息。
+    @inlinable
+    public func describeLiveDomainCert(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainCertResponse {
+        try await self.describeLiveDomainCert(DescribeLiveDomainCertRequest(domainName: domainName), logger: logger, on: eventLoop)
+    }
 }

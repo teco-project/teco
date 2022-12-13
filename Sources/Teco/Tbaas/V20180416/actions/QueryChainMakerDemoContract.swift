@@ -75,4 +75,16 @@ extension Tbaas {
     public func queryChainMakerDemoContract(_ input: QueryChainMakerDemoContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerDemoContractResponse {
         try await self.client.execute(action: "QueryChainMakerDemoContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 调用长安链体验网络合约查询
+    @inlinable
+    public func queryChainMakerDemoContract(clusterId: String, chainId: String, contractName: String, funcName: String, funcParam: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryChainMakerDemoContractResponse > {
+        self.queryChainMakerDemoContract(QueryChainMakerDemoContractRequest(clusterId: clusterId, chainId: chainId, contractName: contractName, funcName: funcName, funcParam: funcParam), logger: logger, on: eventLoop)
+    }
+    
+    /// 调用长安链体验网络合约查询
+    @inlinable
+    public func queryChainMakerDemoContract(clusterId: String, chainId: String, contractName: String, funcName: String, funcParam: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerDemoContractResponse {
+        try await self.queryChainMakerDemoContract(QueryChainMakerDemoContractRequest(clusterId: clusterId, chainId: chainId, contractName: contractName, funcName: funcName, funcParam: funcParam), logger: logger, on: eventLoop)
+    }
 }

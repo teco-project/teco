@@ -56,4 +56,20 @@ extension Clb {
     public func modifyLoadBalancerSla(_ input: ModifyLoadBalancerSlaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerSlaResponse {
         try await self.client.execute(action: "ModifyLoadBalancerSla", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 性能容量型变配
+    ///
+    /// 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
+    @inlinable
+    public func modifyLoadBalancerSla(loadBalancerSla: [SlaUpdateParam], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancerSlaResponse > {
+        self.modifyLoadBalancerSla(ModifyLoadBalancerSlaRequest(loadBalancerSla: loadBalancerSla), logger: logger, on: eventLoop)
+    }
+    
+    /// 性能容量型变配
+    ///
+    /// 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
+    @inlinable
+    public func modifyLoadBalancerSla(loadBalancerSla: [SlaUpdateParam], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerSlaResponse {
+        try await self.modifyLoadBalancerSla(ModifyLoadBalancerSlaRequest(loadBalancerSla: loadBalancerSla), logger: logger, on: eventLoop)
+    }
 }

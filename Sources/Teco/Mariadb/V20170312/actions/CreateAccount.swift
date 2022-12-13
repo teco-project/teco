@@ -110,4 +110,20 @@ extension Mariadb {
     public func createAccount(_ input: CreateAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountResponse {
         try await self.client.execute(action: "CreateAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建账号
+    ///
+    /// 本接口（CreateAccount）用于创建云数据库账号。一个实例可以创建多个不同的账号，相同的用户名+不同的host是不同的账号。
+    @inlinable
+    public func createAccount(instanceId: String, userName: String, host: String, password: String, readOnly: Int64? = nil, description: String? = nil, delayThresh: Int64? = nil, slaveConst: Int64? = nil, maxUserConnections: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccountResponse > {
+        self.createAccount(CreateAccountRequest(instanceId: instanceId, userName: userName, host: host, password: password, readOnly: readOnly, description: description, delayThresh: delayThresh, slaveConst: slaveConst, maxUserConnections: maxUserConnections), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建账号
+    ///
+    /// 本接口（CreateAccount）用于创建云数据库账号。一个实例可以创建多个不同的账号，相同的用户名+不同的host是不同的账号。
+    @inlinable
+    public func createAccount(instanceId: String, userName: String, host: String, password: String, readOnly: Int64? = nil, description: String? = nil, delayThresh: Int64? = nil, slaveConst: Int64? = nil, maxUserConnections: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountResponse {
+        try await self.createAccount(CreateAccountRequest(instanceId: instanceId, userName: userName, host: host, password: password, readOnly: readOnly, description: description, delayThresh: delayThresh, slaveConst: slaveConst, maxUserConnections: maxUserConnections), logger: logger, on: eventLoop)
+    }
 }

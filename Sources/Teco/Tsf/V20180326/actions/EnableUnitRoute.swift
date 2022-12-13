@@ -55,4 +55,16 @@ extension Tsf {
     public func enableUnitRoute(_ input: EnableUnitRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableUnitRouteResponse {
         try await self.client.execute(action: "EnableUnitRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启用单元化路由
+    @inlinable
+    public func enableUnitRoute(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableUnitRouteResponse > {
+        self.enableUnitRoute(EnableUnitRouteRequest(id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 启用单元化路由
+    @inlinable
+    public func enableUnitRoute(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableUnitRouteResponse {
+        try await self.enableUnitRoute(EnableUnitRouteRequest(id: id), logger: logger, on: eventLoop)
+    }
 }

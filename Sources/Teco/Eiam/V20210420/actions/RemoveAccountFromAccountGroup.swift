@@ -55,4 +55,16 @@ extension Eiam {
     public func removeAccountFromAccountGroup(_ input: RemoveAccountFromAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAccountFromAccountGroupResponse {
         try await self.client.execute(action: "RemoveAccountFromAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 从账号组中移除账号
+    @inlinable
+    public func removeAccountFromAccountGroup(accountGroupId: String, accountIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveAccountFromAccountGroupResponse > {
+        self.removeAccountFromAccountGroup(RemoveAccountFromAccountGroupRequest(accountGroupId: accountGroupId, accountIds: accountIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 从账号组中移除账号
+    @inlinable
+    public func removeAccountFromAccountGroup(accountGroupId: String, accountIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAccountFromAccountGroupResponse {
+        try await self.removeAccountFromAccountGroup(RemoveAccountFromAccountGroupRequest(accountGroupId: accountGroupId, accountIds: accountIds), logger: logger, on: eventLoop)
+    }
 }

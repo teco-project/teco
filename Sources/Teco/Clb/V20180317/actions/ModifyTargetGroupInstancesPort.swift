@@ -61,4 +61,22 @@ extension Clb {
     public func modifyTargetGroupInstancesPort(_ input: ModifyTargetGroupInstancesPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetGroupInstancesPortResponse {
         try await self.client.execute(action: "ModifyTargetGroupInstancesPort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量修改目标组服务器端口
+    ///
+    /// 批量修改目标组服务器端口。
+    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+    @inlinable
+    public func modifyTargetGroupInstancesPort(targetGroupId: String, targetGroupInstances: [TargetGroupInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTargetGroupInstancesPortResponse > {
+        self.modifyTargetGroupInstancesPort(ModifyTargetGroupInstancesPortRequest(targetGroupId: targetGroupId, targetGroupInstances: targetGroupInstances), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量修改目标组服务器端口
+    ///
+    /// 批量修改目标组服务器端口。
+    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+    @inlinable
+    public func modifyTargetGroupInstancesPort(targetGroupId: String, targetGroupInstances: [TargetGroupInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetGroupInstancesPortResponse {
+        try await self.modifyTargetGroupInstancesPort(ModifyTargetGroupInstancesPortRequest(targetGroupId: targetGroupId, targetGroupInstances: targetGroupInstances), logger: logger, on: eventLoop)
+    }
 }

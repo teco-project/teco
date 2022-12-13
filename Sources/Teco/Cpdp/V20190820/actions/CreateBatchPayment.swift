@@ -79,4 +79,16 @@ extension Cpdp {
     public func createBatchPayment(_ input: CreateBatchPaymentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchPaymentResponse {
         try await self.client.execute(action: "CreateBatchPayment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 灵云-批量主播转账接口
+    @inlinable
+    public func createBatchPayment(transferType: Int64, recipientList: [CreateBatchPaymentRecipient], reqReserved: String? = nil, notifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBatchPaymentResponse > {
+        self.createBatchPayment(CreateBatchPaymentRequest(transferType: transferType, recipientList: recipientList, reqReserved: reqReserved, notifyUrl: notifyUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云-批量主播转账接口
+    @inlinable
+    public func createBatchPayment(transferType: Int64, recipientList: [CreateBatchPaymentRecipient], reqReserved: String? = nil, notifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchPaymentResponse {
+        try await self.createBatchPayment(CreateBatchPaymentRequest(transferType: transferType, recipientList: recipientList, reqReserved: reqReserved, notifyUrl: notifyUrl), logger: logger, on: eventLoop)
+    }
 }

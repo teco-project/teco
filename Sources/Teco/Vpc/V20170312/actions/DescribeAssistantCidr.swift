@@ -79,4 +79,20 @@ extension Vpc {
     public func describeAssistantCidr(_ input: DescribeAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssistantCidrResponse {
         try await self.client.execute(action: "DescribeAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询辅助CIDR列表
+    ///
+    /// 本接口（DescribeAssistantCidr）用于查询辅助CIDR列表。
+    @inlinable
+    public func describeAssistantCidr(vpcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssistantCidrResponse > {
+        self.describeAssistantCidr(DescribeAssistantCidrRequest(vpcIds: vpcIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询辅助CIDR列表
+    ///
+    /// 本接口（DescribeAssistantCidr）用于查询辅助CIDR列表。
+    @inlinable
+    public func describeAssistantCidr(vpcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssistantCidrResponse {
+        try await self.describeAssistantCidr(DescribeAssistantCidrRequest(vpcIds: vpcIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -32,7 +32,7 @@ extension Antiddos {
         /// 清洗阈值，-1表示开启“默认”模式
         public let threshold: Int64
         
-        public init (instanceId: String, ip: String, domain: String, `protocol`: String, threshold: Int64) {
+        public init (instanceId: String, ip: String, domain: String, protocol: String, threshold: Int64) {
             self.instanceId = instanceId
             self.ip = ip
             self.domain = domain
@@ -69,5 +69,17 @@ extension Antiddos {
     @inlinable
     public func modifyCCThresholdPolicy(_ input: ModifyCCThresholdPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCThresholdPolicyResponse {
         try await self.client.execute(action: "ModifyCCThresholdPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 修改CC清洗阈值
+    @inlinable
+    public func modifyCCThresholdPolicy(instanceId: String, ip: String, domain: String, protocol: String, threshold: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCThresholdPolicyResponse > {
+        self.modifyCCThresholdPolicy(ModifyCCThresholdPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, threshold: threshold), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CC清洗阈值
+    @inlinable
+    public func modifyCCThresholdPolicy(instanceId: String, ip: String, domain: String, protocol: String, threshold: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCThresholdPolicyResponse {
+        try await self.modifyCCThresholdPolicy(ModifyCCThresholdPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, threshold: threshold), logger: logger, on: eventLoop)
     }
 }

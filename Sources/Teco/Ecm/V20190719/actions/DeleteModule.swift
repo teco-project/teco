@@ -50,4 +50,16 @@ extension Ecm {
     public func deleteModule(_ input: DeleteModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModuleResponse {
         try await self.client.execute(action: "DeleteModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除业务模块
+    @inlinable
+    public func deleteModule(moduleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModuleResponse > {
+        self.deleteModule(DeleteModuleRequest(moduleId: moduleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除业务模块
+    @inlinable
+    public func deleteModule(moduleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModuleResponse {
+        try await self.deleteModule(DeleteModuleRequest(moduleId: moduleId), logger: logger, on: eventLoop)
+    }
 }

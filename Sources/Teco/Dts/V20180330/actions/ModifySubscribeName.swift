@@ -59,4 +59,20 @@ extension Dts {
     public func modifySubscribeName(_ input: ModifySubscribeNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeNameResponse {
         try await self.client.execute(action: "ModifySubscribeName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改数据订阅实例的名称
+    ///
+    /// 本接口(ModifySubscribeName)用于修改数据订阅实例的名称
+    @inlinable
+    public func modifySubscribeName(subscribeId: String, subscribeName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubscribeNameResponse > {
+        self.modifySubscribeName(ModifySubscribeNameRequest(subscribeId: subscribeId, subscribeName: subscribeName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改数据订阅实例的名称
+    ///
+    /// 本接口(ModifySubscribeName)用于修改数据订阅实例的名称
+    @inlinable
+    public func modifySubscribeName(subscribeId: String, subscribeName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeNameResponse {
+        try await self.modifySubscribeName(ModifySubscribeNameRequest(subscribeId: subscribeId, subscribeName: subscribeName), logger: logger, on: eventLoop)
+    }
 }

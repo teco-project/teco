@@ -81,4 +81,20 @@ extension Cdb {
     public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
         try await self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询数据库
+    ///
+    /// 本接口(DescribeDatabases)用于查询云数据库实例的数据库信息，仅支持主实例和灾备实例，不支持只读实例。
+    @inlinable
+    public func describeDatabases(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, databaseRegexp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatabasesResponse > {
+        self.describeDatabases(DescribeDatabasesRequest(instanceId: instanceId, offset: offset, limit: limit, databaseRegexp: databaseRegexp), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库
+    ///
+    /// 本接口(DescribeDatabases)用于查询云数据库实例的数据库信息，仅支持主实例和灾备实例，不支持只读实例。
+    @inlinable
+    public func describeDatabases(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, databaseRegexp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
+        try await self.describeDatabases(DescribeDatabasesRequest(instanceId: instanceId, offset: offset, limit: limit, databaseRegexp: databaseRegexp), logger: logger, on: eventLoop)
+    }
 }

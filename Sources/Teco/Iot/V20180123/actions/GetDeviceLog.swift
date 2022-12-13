@@ -105,4 +105,20 @@ extension Iot {
     public func getDeviceLog(_ input: GetDeviceLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceLogResponse {
         try await self.client.execute(action: "GetDeviceLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备日志
+    ///
+    /// 批量获取设备与云端的详细通信日志，该接口适用于使用高级版类型的产品。
+    @inlinable
+    public func getDeviceLog(productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceLogResponse > {
+        self.getDeviceLog(GetDeviceLogRequest(productId: productId, deviceNames: deviceNames, startTime: startTime, endTime: endTime, size: size, order: order, scrollId: scrollId, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备日志
+    ///
+    /// 批量获取设备与云端的详细通信日志，该接口适用于使用高级版类型的产品。
+    @inlinable
+    public func getDeviceLog(productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceLogResponse {
+        try await self.getDeviceLog(GetDeviceLogRequest(productId: productId, deviceNames: deviceNames, startTime: startTime, endTime: endTime, size: size, order: order, scrollId: scrollId, type: type), logger: logger, on: eventLoop)
+    }
 }

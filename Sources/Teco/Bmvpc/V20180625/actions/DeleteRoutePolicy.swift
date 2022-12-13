@@ -59,4 +59,16 @@ extension Bmvpc {
     public func deleteRoutePolicy(_ input: DeleteRoutePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoutePolicyResponse {
         try await self.client.execute(action: "DeleteRoutePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除黑石路由表路由规则
+    @inlinable
+    public func deleteRoutePolicy(routeTableId: String, routePolicyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRoutePolicyResponse > {
+        self.deleteRoutePolicy(DeleteRoutePolicyRequest(routeTableId: routeTableId, routePolicyId: routePolicyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除黑石路由表路由规则
+    @inlinable
+    public func deleteRoutePolicy(routeTableId: String, routePolicyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoutePolicyResponse {
+        try await self.deleteRoutePolicy(DeleteRoutePolicyRequest(routeTableId: routeTableId, routePolicyId: routePolicyId), logger: logger, on: eventLoop)
+    }
 }

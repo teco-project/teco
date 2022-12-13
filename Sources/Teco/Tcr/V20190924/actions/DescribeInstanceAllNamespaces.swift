@@ -59,4 +59,20 @@ extension Tcr {
     public func describeInstanceAllNamespaces(_ input: DescribeInstanceAllNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAllNamespacesResponse {
         try await self.client.execute(action: "DescribeInstanceAllNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询所有实例命名空间
+    ///
+    /// 查询所有实例命名空间列表
+    @inlinable
+    public func describeInstanceAllNamespaces(limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceAllNamespacesResponse > {
+        self.describeInstanceAllNamespaces(DescribeInstanceAllNamespacesRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询所有实例命名空间
+    ///
+    /// 查询所有实例命名空间列表
+    @inlinable
+    public func describeInstanceAllNamespaces(limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAllNamespacesResponse {
+        try await self.describeInstanceAllNamespaces(DescribeInstanceAllNamespacesRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

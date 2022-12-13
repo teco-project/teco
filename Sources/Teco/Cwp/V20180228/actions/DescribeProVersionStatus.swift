@@ -54,4 +54,20 @@ extension Cwp {
     public func describeProVersionStatus(_ input: DescribeProVersionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionStatusResponse {
         try await self.client.execute(action: "DescribeProVersionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取专业版状态
+    ///
+    /// 用于获取单台主机或所有主机是否开通专业版状态。
+    @inlinable
+    public func describeProVersionStatus(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProVersionStatusResponse > {
+        self.describeProVersionStatus(DescribeProVersionStatusRequest(uuid: uuid), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取专业版状态
+    ///
+    /// 用于获取单台主机或所有主机是否开通专业版状态。
+    @inlinable
+    public func describeProVersionStatus(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionStatusResponse {
+        try await self.describeProVersionStatus(DescribeProVersionStatusRequest(uuid: uuid), logger: logger, on: eventLoop)
+    }
 }

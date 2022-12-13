@@ -47,4 +47,16 @@ extension Tione {
     public func describeInferTemplates(_ input: DescribeInferTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInferTemplatesResponse {
         try await self.client.execute(action: "DescribeInferTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询推理镜像模板
+    @inlinable
+    public func describeInferTemplates(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInferTemplatesResponse > {
+        self.describeInferTemplates(DescribeInferTemplatesRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询推理镜像模板
+    @inlinable
+    public func describeInferTemplates(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInferTemplatesResponse {
+        try await self.describeInferTemplates(DescribeInferTemplatesRequest(), logger: logger, on: eventLoop)
+    }
 }

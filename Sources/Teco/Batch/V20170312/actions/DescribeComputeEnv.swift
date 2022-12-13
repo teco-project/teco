@@ -103,4 +103,20 @@ extension Batch {
     public func describeComputeEnv(_ input: DescribeComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvResponse {
         try await self.client.execute(action: "DescribeComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取计算环境详情
+    ///
+    /// 用于查询计算环境的详细信息
+    @inlinable
+    public func describeComputeEnv(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComputeEnvResponse > {
+        self.describeComputeEnv(DescribeComputeEnvRequest(envId: envId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取计算环境详情
+    ///
+    /// 用于查询计算环境的详细信息
+    @inlinable
+    public func describeComputeEnv(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvResponse {
+        try await self.describeComputeEnv(DescribeComputeEnvRequest(envId: envId), logger: logger, on: eventLoop)
+    }
 }

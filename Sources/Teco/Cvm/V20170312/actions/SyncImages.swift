@@ -84,4 +84,26 @@ extension Cvm {
     public func syncImages(_ input: SyncImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncImagesResponse {
         try await self.client.execute(action: "SyncImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 同步镜像
+    ///
+    /// 本接口（SyncImages）用于将自定义镜像同步到其它地区。
+    /// * 该接口每次调用只支持同步一个镜像。
+    /// * 该接口支持多个同步地域。
+    /// * 单个帐号在每个地域最多支持存在10个自定义镜像。
+    @inlinable
+    public func syncImages(imageIds: [String], destinationRegions: [String], dryRun: Bool? = nil, imageName: String? = nil, imageSetRequired: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncImagesResponse > {
+        self.syncImages(SyncImagesRequest(imageIds: imageIds, destinationRegions: destinationRegions, dryRun: dryRun, imageName: imageName, imageSetRequired: imageSetRequired), logger: logger, on: eventLoop)
+    }
+    
+    /// 同步镜像
+    ///
+    /// 本接口（SyncImages）用于将自定义镜像同步到其它地区。
+    /// * 该接口每次调用只支持同步一个镜像。
+    /// * 该接口支持多个同步地域。
+    /// * 单个帐号在每个地域最多支持存在10个自定义镜像。
+    @inlinable
+    public func syncImages(imageIds: [String], destinationRegions: [String], dryRun: Bool? = nil, imageName: String? = nil, imageSetRequired: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncImagesResponse {
+        try await self.syncImages(SyncImagesRequest(imageIds: imageIds, destinationRegions: destinationRegions, dryRun: dryRun, imageName: imageName, imageSetRequired: imageSetRequired), logger: logger, on: eventLoop)
+    }
 }

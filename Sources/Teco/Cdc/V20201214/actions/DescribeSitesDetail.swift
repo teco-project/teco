@@ -73,4 +73,16 @@ extension Cdc {
     public func describeSitesDetail(_ input: DescribeSitesDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesDetailResponse {
         try await self.client.execute(action: "DescribeSitesDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询站点详情
+    @inlinable
+    public func describeSitesDetail(siteIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSitesDetailResponse > {
+        self.describeSitesDetail(DescribeSitesDetailRequest(siteIds: siteIds, offset: offset, limit: limit, name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询站点详情
+    @inlinable
+    public func describeSitesDetail(siteIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesDetailResponse {
+        try await self.describeSitesDetail(DescribeSitesDetailRequest(siteIds: siteIds, offset: offset, limit: limit, name: name), logger: logger, on: eventLoop)
+    }
 }

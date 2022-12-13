@@ -64,4 +64,20 @@ extension Apigateway {
     public func deleteIPStrategy(_ input: DeleteIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIPStrategyResponse {
         try await self.client.execute(action: "DeleteIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除服务IP策略
+    ///
+    /// 本接口（DeleteIPStrategy）用于删除服务IP策略。
+    @inlinable
+    public func deleteIPStrategy(serviceId: String, strategyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIPStrategyResponse > {
+        self.deleteIPStrategy(DeleteIPStrategyRequest(serviceId: serviceId, strategyId: strategyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除服务IP策略
+    ///
+    /// 本接口（DeleteIPStrategy）用于删除服务IP策略。
+    @inlinable
+    public func deleteIPStrategy(serviceId: String, strategyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIPStrategyResponse {
+        try await self.deleteIPStrategy(DeleteIPStrategyRequest(serviceId: serviceId, strategyId: strategyId), logger: logger, on: eventLoop)
+    }
 }

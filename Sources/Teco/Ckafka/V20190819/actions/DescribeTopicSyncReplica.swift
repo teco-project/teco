@@ -78,4 +78,20 @@ extension Ckafka {
     public func describeTopicSyncReplica(_ input: DescribeTopicSyncReplicaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicSyncReplicaResponse {
         try await self.client.execute(action: "DescribeTopicSyncReplica", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取Topic 同步副本信息
+    ///
+    /// 获取Topic 副本详情信息
+    @inlinable
+    public func describeTopicSyncReplica(instanceId: String, topicName: String, offset: UInt64? = nil, limit: Int64? = nil, outOfSyncReplicaOnly: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicSyncReplicaResponse > {
+        self.describeTopicSyncReplica(DescribeTopicSyncReplicaRequest(instanceId: instanceId, topicName: topicName, offset: offset, limit: limit, outOfSyncReplicaOnly: outOfSyncReplicaOnly), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Topic 同步副本信息
+    ///
+    /// 获取Topic 副本详情信息
+    @inlinable
+    public func describeTopicSyncReplica(instanceId: String, topicName: String, offset: UInt64? = nil, limit: Int64? = nil, outOfSyncReplicaOnly: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicSyncReplicaResponse {
+        try await self.describeTopicSyncReplica(DescribeTopicSyncReplicaRequest(instanceId: instanceId, topicName: topicName, offset: offset, limit: limit, outOfSyncReplicaOnly: outOfSyncReplicaOnly), logger: logger, on: eventLoop)
+    }
 }

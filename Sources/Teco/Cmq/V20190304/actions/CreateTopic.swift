@@ -74,4 +74,16 @@ extension Cmq {
     public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
         try await self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建主题
+    @inlinable
+    public func createTopic(topicName: String, maxMsgSize: UInt64? = nil, filterType: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicResponse > {
+        self.createTopic(CreateTopicRequest(topicName: topicName, maxMsgSize: maxMsgSize, filterType: filterType, msgRetentionSeconds: msgRetentionSeconds, trace: trace), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建主题
+    @inlinable
+    public func createTopic(topicName: String, maxMsgSize: UInt64? = nil, filterType: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
+        try await self.createTopic(CreateTopicRequest(topicName: topicName, maxMsgSize: maxMsgSize, filterType: filterType, msgRetentionSeconds: msgRetentionSeconds, trace: trace), logger: logger, on: eventLoop)
+    }
 }

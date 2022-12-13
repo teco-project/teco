@@ -99,4 +99,16 @@ extension Wedata {
     public func genHiveTableDDLSql(_ input: GenHiveTableDDLSqlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenHiveTableDDLSqlResponse {
         try await self.client.execute(action: "GenHiveTableDDLSql", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 生成建hive表的sql
+    @inlinable
+    public func genHiveTableDDLSql(projectId: String, sinkDatabase: String, id: String? = nil, msType: String? = nil, datasourceId: String? = nil, sourceDatabase: String? = nil, tableName: String? = nil, sinkType: String? = nil, schemaName: String? = nil, sourceFieldInfoList: [SourceFieldInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenHiveTableDDLSqlResponse > {
+        self.genHiveTableDDLSql(GenHiveTableDDLSqlRequest(projectId: projectId, sinkDatabase: sinkDatabase, id: id, msType: msType, datasourceId: datasourceId, sourceDatabase: sourceDatabase, tableName: tableName, sinkType: sinkType, schemaName: schemaName, sourceFieldInfoList: sourceFieldInfoList), logger: logger, on: eventLoop)
+    }
+    
+    /// 生成建hive表的sql
+    @inlinable
+    public func genHiveTableDDLSql(projectId: String, sinkDatabase: String, id: String? = nil, msType: String? = nil, datasourceId: String? = nil, sourceDatabase: String? = nil, tableName: String? = nil, sinkType: String? = nil, schemaName: String? = nil, sourceFieldInfoList: [SourceFieldInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenHiveTableDDLSqlResponse {
+        try await self.genHiveTableDDLSql(GenHiveTableDDLSqlRequest(projectId: projectId, sinkDatabase: sinkDatabase, id: id, msType: msType, datasourceId: datasourceId, sourceDatabase: sourceDatabase, tableName: tableName, sinkType: sinkType, schemaName: schemaName, sourceFieldInfoList: sourceFieldInfoList), logger: logger, on: eventLoop)
+    }
 }

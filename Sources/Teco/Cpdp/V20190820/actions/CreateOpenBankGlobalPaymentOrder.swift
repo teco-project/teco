@@ -142,4 +142,16 @@ extension Cpdp {
     public func createOpenBankGlobalPaymentOrder(_ input: CreateOpenBankGlobalPaymentOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankGlobalPaymentOrderResponse {
         try await self.client.execute(action: "CreateOpenBankGlobalPaymentOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-跨境支付下单
+    @inlinable
+    public func createOpenBankGlobalPaymentOrder(channelMerchantId: String, channelName: String, payType: String, outOrderId: String, totalAmount: Int64, currency: String, channelSubMerchantId: String? = nil, notifyUrl: String? = nil, frontUrl: String? = nil, frontLanguage: String? = nil, remark: String? = nil, externalPaymentData: String? = nil, goodsInfos: [OpenBankGoodsInfo]? = nil, shippingInfo: OpenBankShippingInfo? = nil, billingInfo: OpenBankBillingInfo? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankGlobalPaymentOrderResponse > {
+        self.createOpenBankGlobalPaymentOrder(CreateOpenBankGlobalPaymentOrderRequest(channelMerchantId: channelMerchantId, channelName: channelName, payType: payType, outOrderId: outOrderId, totalAmount: totalAmount, currency: currency, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl, frontUrl: frontUrl, frontLanguage: frontLanguage, remark: remark, externalPaymentData: externalPaymentData, goodsInfos: goodsInfos, shippingInfo: shippingInfo, billingInfo: billingInfo, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-跨境支付下单
+    @inlinable
+    public func createOpenBankGlobalPaymentOrder(channelMerchantId: String, channelName: String, payType: String, outOrderId: String, totalAmount: Int64, currency: String, channelSubMerchantId: String? = nil, notifyUrl: String? = nil, frontUrl: String? = nil, frontLanguage: String? = nil, remark: String? = nil, externalPaymentData: String? = nil, goodsInfos: [OpenBankGoodsInfo]? = nil, shippingInfo: OpenBankShippingInfo? = nil, billingInfo: OpenBankBillingInfo? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankGlobalPaymentOrderResponse {
+        try await self.createOpenBankGlobalPaymentOrder(CreateOpenBankGlobalPaymentOrderRequest(channelMerchantId: channelMerchantId, channelName: channelName, payType: payType, outOrderId: outOrderId, totalAmount: totalAmount, currency: currency, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl, frontUrl: frontUrl, frontLanguage: frontLanguage, remark: remark, externalPaymentData: externalPaymentData, goodsInfos: goodsInfos, shippingInfo: shippingInfo, billingInfo: billingInfo, environment: environment), logger: logger, on: eventLoop)
+    }
 }

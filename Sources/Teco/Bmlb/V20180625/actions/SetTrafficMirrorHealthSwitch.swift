@@ -93,4 +93,20 @@ extension Bmlb {
     public func setTrafficMirrorHealthSwitch(_ input: SetTrafficMirrorHealthSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTrafficMirrorHealthSwitchResponse {
         try await self.client.execute(action: "SetTrafficMirrorHealthSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置流量镜像的健康检查参数
+    ///
+    /// 设置流量镜像的健康检查参数。
+    @inlinable
+    public func setTrafficMirrorHealthSwitch(trafficMirrorId: String, healthSwitch: Int64, healthNum: Int64? = nil, unhealthNum: Int64? = nil, intervalTime: Int64? = nil, httpCheckDomain: String? = nil, httpCheckPath: String? = nil, httpCodes: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTrafficMirrorHealthSwitchResponse > {
+        self.setTrafficMirrorHealthSwitch(SetTrafficMirrorHealthSwitchRequest(trafficMirrorId: trafficMirrorId, healthSwitch: healthSwitch, healthNum: healthNum, unhealthNum: unhealthNum, intervalTime: intervalTime, httpCheckDomain: httpCheckDomain, httpCheckPath: httpCheckPath, httpCodes: httpCodes), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置流量镜像的健康检查参数
+    ///
+    /// 设置流量镜像的健康检查参数。
+    @inlinable
+    public func setTrafficMirrorHealthSwitch(trafficMirrorId: String, healthSwitch: Int64, healthNum: Int64? = nil, unhealthNum: Int64? = nil, intervalTime: Int64? = nil, httpCheckDomain: String? = nil, httpCheckPath: String? = nil, httpCodes: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTrafficMirrorHealthSwitchResponse {
+        try await self.setTrafficMirrorHealthSwitch(SetTrafficMirrorHealthSwitchRequest(trafficMirrorId: trafficMirrorId, healthSwitch: healthSwitch, healthNum: healthNum, unhealthNum: unhealthNum, intervalTime: intervalTime, httpCheckDomain: httpCheckDomain, httpCheckPath: httpCheckPath, httpCodes: httpCodes), logger: logger, on: eventLoop)
+    }
 }

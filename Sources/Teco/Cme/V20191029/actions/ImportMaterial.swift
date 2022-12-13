@@ -48,7 +48,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以向任意团队或者个人导入媒体。如果指定操作者，如果媒体归属为个人，则操作者必须与归属者一致；如果媒体归属为团队，则必须为团队可导入媒体的团队成员(如果没有特殊设置，所有团队成员可导入媒体)。
         public let `operator`: String?
         
-        public init (platform: String, owner: Entity, name: String, sourceType: String? = nil, vodFileId: String? = nil, externalMediaInfo: ExternalMediaInfo? = nil, classPath: String? = nil, preProcessDefinition: Int64? = nil, `operator`: String? = nil) {
+        public init (platform: String, owner: Entity, name: String, sourceType: String? = nil, vodFileId: String? = nil, externalMediaInfo: ExternalMediaInfo? = nil, classPath: String? = nil, preProcessDefinition: Int64? = nil, operator: String? = nil) {
             self.platform = platform
             self.owner = owner
             self.name = name
@@ -105,5 +105,21 @@ extension Cme {
     @inlinable
     public func importMaterial(_ input: ImportMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportMaterialResponse {
         try await self.client.execute(action: "ImportMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 导入媒体
+    ///
+    /// 将云点播媒资文件导入到多媒体创作引擎媒体资源库。支持导入媒体归属团队或者个人。
+    @inlinable
+    public func importMaterial(platform: String, owner: Entity, name: String, sourceType: String? = nil, vodFileId: String? = nil, externalMediaInfo: ExternalMediaInfo? = nil, classPath: String? = nil, preProcessDefinition: Int64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportMaterialResponse > {
+        self.importMaterial(ImportMaterialRequest(platform: platform, owner: owner, name: name, sourceType: sourceType, vodFileId: vodFileId, externalMediaInfo: externalMediaInfo, classPath: classPath, preProcessDefinition: preProcessDefinition, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 导入媒体
+    ///
+    /// 将云点播媒资文件导入到多媒体创作引擎媒体资源库。支持导入媒体归属团队或者个人。
+    @inlinable
+    public func importMaterial(platform: String, owner: Entity, name: String, sourceType: String? = nil, vodFileId: String? = nil, externalMediaInfo: ExternalMediaInfo? = nil, classPath: String? = nil, preProcessDefinition: Int64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportMaterialResponse {
+        try await self.importMaterial(ImportMaterialRequest(platform: platform, owner: owner, name: name, sourceType: sourceType, vodFileId: vodFileId, externalMediaInfo: externalMediaInfo, classPath: classPath, preProcessDefinition: preProcessDefinition, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

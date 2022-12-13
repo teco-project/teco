@@ -94,4 +94,16 @@ extension Tke {
     public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
         try await self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建集群
+    @inlinable
+    public func createCluster(clusterCIDRSettings: ClusterCIDRSettings, clusterType: String, runInstancesForNode: [RunInstancesForNode]? = nil, clusterBasicSettings: ClusterBasicSettings? = nil, clusterAdvancedSettings: ClusterAdvancedSettings? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, existedInstancesForNode: [ExistedInstancesForNode]? = nil, instanceDataDiskMountSettings: [InstanceDataDiskMountSetting]? = nil, extensionAddons: [ExtensionAddon]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterResponse > {
+        self.createCluster(CreateClusterRequest(clusterCIDRSettings: clusterCIDRSettings, clusterType: clusterType, runInstancesForNode: runInstancesForNode, clusterBasicSettings: clusterBasicSettings, clusterAdvancedSettings: clusterAdvancedSettings, instanceAdvancedSettings: instanceAdvancedSettings, existedInstancesForNode: existedInstancesForNode, instanceDataDiskMountSettings: instanceDataDiskMountSettings, extensionAddons: extensionAddons), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群
+    @inlinable
+    public func createCluster(clusterCIDRSettings: ClusterCIDRSettings, clusterType: String, runInstancesForNode: [RunInstancesForNode]? = nil, clusterBasicSettings: ClusterBasicSettings? = nil, clusterAdvancedSettings: ClusterAdvancedSettings? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, existedInstancesForNode: [ExistedInstancesForNode]? = nil, instanceDataDiskMountSettings: [InstanceDataDiskMountSetting]? = nil, extensionAddons: [ExtensionAddon]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
+        try await self.createCluster(CreateClusterRequest(clusterCIDRSettings: clusterCIDRSettings, clusterType: clusterType, runInstancesForNode: runInstancesForNode, clusterBasicSettings: clusterBasicSettings, clusterAdvancedSettings: clusterAdvancedSettings, instanceAdvancedSettings: instanceAdvancedSettings, existedInstancesForNode: existedInstancesForNode, instanceDataDiskMountSettings: instanceDataDiskMountSettings, extensionAddons: extensionAddons), logger: logger, on: eventLoop)
+    }
 }

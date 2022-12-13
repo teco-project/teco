@@ -55,4 +55,16 @@ extension Cmq {
     public func deleteSubscribe(_ input: DeleteSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubscribeResponse {
         try await self.client.execute(action: "DeleteSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除订阅
+    @inlinable
+    public func deleteSubscribe(topicName: String, subscriptionName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSubscribeResponse > {
+        self.deleteSubscribe(DeleteSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除订阅
+    @inlinable
+    public func deleteSubscribe(topicName: String, subscriptionName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubscribeResponse {
+        try await self.deleteSubscribe(DeleteSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName), logger: logger, on: eventLoop)
+    }
 }

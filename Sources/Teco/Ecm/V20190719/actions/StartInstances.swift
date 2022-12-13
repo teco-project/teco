@@ -54,4 +54,20 @@ extension Ecm {
     public func startInstances(_ input: StartInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartInstancesResponse {
         try await self.client.execute(action: "StartInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开启实例
+    ///
+    /// 只有状态为STOPPED的实例才可以进行此操作；接口调用成功时，实例会进入STARTING状态；启动实例成功时，实例会进入RUNNING状态。
+    @inlinable
+    public func startInstances(instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartInstancesResponse > {
+        self.startInstances(StartInstancesRequest(instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 开启实例
+    ///
+    /// 只有状态为STOPPED的实例才可以进行此操作；接口调用成功时，实例会进入STARTING状态；启动实例成功时，实例会进入RUNNING状态。
+    @inlinable
+    public func startInstances(instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartInstancesResponse {
+        try await self.startInstances(StartInstancesRequest(instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    }
 }

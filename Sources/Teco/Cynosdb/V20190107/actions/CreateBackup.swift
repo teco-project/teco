@@ -78,4 +78,20 @@ extension Cynosdb {
     public func createBackup(_ input: CreateBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
         try await self.client.execute(action: "CreateBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建手动备份
+    ///
+    /// 为集群创建手动备份
+    @inlinable
+    public func createBackup(clusterId: String, backupType: String? = nil, backupDatabases: [String]? = nil, backupTables: [DatabaseTables]? = nil, backupName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBackupResponse > {
+        self.createBackup(CreateBackupRequest(clusterId: clusterId, backupType: backupType, backupDatabases: backupDatabases, backupTables: backupTables, backupName: backupName), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建手动备份
+    ///
+    /// 为集群创建手动备份
+    @inlinable
+    public func createBackup(clusterId: String, backupType: String? = nil, backupDatabases: [String]? = nil, backupTables: [DatabaseTables]? = nil, backupName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
+        try await self.createBackup(CreateBackupRequest(clusterId: clusterId, backupType: backupType, backupDatabases: backupDatabases, backupTables: backupTables, backupName: backupName), logger: logger, on: eventLoop)
+    }
 }

@@ -85,4 +85,16 @@ extension Oceanus {
     public func describeJobSavepoint(_ input: DescribeJobSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobSavepointResponse {
         try await self.client.execute(action: "DescribeJobSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查找Savepoint列表
+    @inlinable
+    public func describeJobSavepoint(jobId: String, limit: Int64, offset: Int64, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobSavepointResponse > {
+        self.describeJobSavepoint(DescribeJobSavepointRequest(jobId: jobId, limit: limit, offset: offset, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查找Savepoint列表
+    @inlinable
+    public func describeJobSavepoint(jobId: String, limit: Int64, offset: Int64, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobSavepointResponse {
+        try await self.describeJobSavepoint(DescribeJobSavepointRequest(jobId: jobId, limit: limit, offset: offset, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    }
 }

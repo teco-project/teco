@@ -112,4 +112,16 @@ extension Cpdp {
     public func queryFundsTransactionDetails(_ input: QueryFundsTransactionDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFundsTransactionDetailsResponse {
         try await self.client.execute(action: "QueryFundsTransactionDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 聚鑫-查询会员资金交易信息列表
+    @inlinable
+    public func queryFundsTransactionDetails(queryDateType: String, queryTranType: String, bankAccountNumber: String, subAccountNumber: String, pageOffSet: String, queryStartDate: String? = nil, queryEndDate: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFundsTransactionDetailsResponse > {
+        self.queryFundsTransactionDetails(QueryFundsTransactionDetailsRequest(queryDateType: queryDateType, queryTranType: queryTranType, bankAccountNumber: bankAccountNumber, subAccountNumber: subAccountNumber, pageOffSet: pageOffSet, queryStartDate: queryStartDate, queryEndDate: queryEndDate, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-查询会员资金交易信息列表
+    @inlinable
+    public func queryFundsTransactionDetails(queryDateType: String, queryTranType: String, bankAccountNumber: String, subAccountNumber: String, pageOffSet: String, queryStartDate: String? = nil, queryEndDate: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFundsTransactionDetailsResponse {
+        try await self.queryFundsTransactionDetails(QueryFundsTransactionDetailsRequest(queryDateType: queryDateType, queryTranType: queryTranType, bankAccountNumber: bankAccountNumber, subAccountNumber: subAccountNumber, pageOffSet: pageOffSet, queryStartDate: queryStartDate, queryEndDate: queryEndDate, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
 }

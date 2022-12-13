@@ -64,4 +64,16 @@ extension Apigateway {
     public func describeUpstreams(_ input: DescribeUpstreamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpstreamsResponse {
         try await self.client.execute(action: "DescribeUpstreams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询后端通道列表详情
+    @inlinable
+    public func describeUpstreams(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUpstreamsResponse > {
+        self.describeUpstreams(DescribeUpstreamsRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询后端通道列表详情
+    @inlinable
+    public func describeUpstreams(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpstreamsResponse {
+        try await self.describeUpstreams(DescribeUpstreamsRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

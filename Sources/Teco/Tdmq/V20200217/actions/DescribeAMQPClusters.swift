@@ -89,4 +89,16 @@ extension Tdmq {
     public func describeAMQPClusters(_ input: DescribeAMQPClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPClustersResponse {
         try await self.client.execute(action: "DescribeAMQPClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取amqp集群列表
+    @inlinable
+    public func describeAMQPClusters(offset: UInt64, limit: UInt64, idKeyword: String? = nil, nameKeyword: String? = nil, clusterIdList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAMQPClustersResponse > {
+        self.describeAMQPClusters(DescribeAMQPClustersRequest(offset: offset, limit: limit, idKeyword: idKeyword, nameKeyword: nameKeyword, clusterIdList: clusterIdList, isTagFilter: isTagFilter, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取amqp集群列表
+    @inlinable
+    public func describeAMQPClusters(offset: UInt64, limit: UInt64, idKeyword: String? = nil, nameKeyword: String? = nil, clusterIdList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPClustersResponse {
+        try await self.describeAMQPClusters(DescribeAMQPClustersRequest(offset: offset, limit: limit, idKeyword: idKeyword, nameKeyword: nameKeyword, clusterIdList: clusterIdList, isTagFilter: isTagFilter, filters: filters), logger: logger, on: eventLoop)
+    }
 }

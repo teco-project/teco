@@ -103,4 +103,20 @@ extension Cpdp {
     public func applyPayerInfo(_ input: ApplyPayerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyPayerInfoResponse {
         try await self.client.execute(action: "ApplyPayerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 跨境-付款人申请
+    ///
+    /// 跨境-付款人申请。通过该接口提交付款人信息并进行 kyc 审核。
+    @inlinable
+    public func applyPayerInfo(payerId: String, payerType: String, payerName: String, payerIdType: String, payerIdNo: String, payerCountryCode: String, payerContactName: String? = nil, payerContactNumber: String? = nil, payerEmailAddress: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyPayerInfoResponse > {
+        self.applyPayerInfo(ApplyPayerInfoRequest(payerId: payerId, payerType: payerType, payerName: payerName, payerIdType: payerIdType, payerIdNo: payerIdNo, payerCountryCode: payerCountryCode, payerContactName: payerContactName, payerContactNumber: payerContactNumber, payerEmailAddress: payerEmailAddress, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 跨境-付款人申请
+    ///
+    /// 跨境-付款人申请。通过该接口提交付款人信息并进行 kyc 审核。
+    @inlinable
+    public func applyPayerInfo(payerId: String, payerType: String, payerName: String, payerIdType: String, payerIdNo: String, payerCountryCode: String, payerContactName: String? = nil, payerContactNumber: String? = nil, payerEmailAddress: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyPayerInfoResponse {
+        try await self.applyPayerInfo(ApplyPayerInfoRequest(payerId: payerId, payerType: payerType, payerName: payerName, payerIdType: payerIdType, payerIdNo: payerIdNo, payerCountryCode: payerCountryCode, payerContactName: payerContactName, payerContactNumber: payerContactNumber, payerEmailAddress: payerEmailAddress, profile: profile), logger: logger, on: eventLoop)
+    }
 }

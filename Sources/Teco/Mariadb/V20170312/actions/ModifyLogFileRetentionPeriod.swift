@@ -63,4 +63,20 @@ extension Mariadb {
     public func modifyLogFileRetentionPeriod(_ input: ModifyLogFileRetentionPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogFileRetentionPeriodResponse {
         try await self.client.execute(action: "ModifyLogFileRetentionPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改备份日志保存天数
+    ///
+    /// 本接口(ModifyLogFileRetentionPeriod)用于修改数据库备份日志保存天数。
+    @inlinable
+    public func modifyLogFileRetentionPeriod(instanceId: String, days: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLogFileRetentionPeriodResponse > {
+        self.modifyLogFileRetentionPeriod(ModifyLogFileRetentionPeriodRequest(instanceId: instanceId, days: days), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改备份日志保存天数
+    ///
+    /// 本接口(ModifyLogFileRetentionPeriod)用于修改数据库备份日志保存天数。
+    @inlinable
+    public func modifyLogFileRetentionPeriod(instanceId: String, days: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogFileRetentionPeriodResponse {
+        try await self.modifyLogFileRetentionPeriod(ModifyLogFileRetentionPeriodRequest(instanceId: instanceId, days: days), logger: logger, on: eventLoop)
+    }
 }

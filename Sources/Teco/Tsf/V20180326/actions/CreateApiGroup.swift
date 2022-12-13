@@ -100,4 +100,16 @@ extension Tsf {
     public func createApiGroup(_ input: CreateApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiGroupResponse {
         try await self.client.execute(action: "CreateApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建API分组
+    @inlinable
+    public func createApiGroup(groupName: String, groupContext: String, authType: String? = nil, description: String? = nil, groupType: String? = nil, gatewayInstanceId: String? = nil, namespaceNameKey: String? = nil, serviceNameKey: String? = nil, namespaceNameKeyPosition: String? = nil, serviceNameKeyPosition: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApiGroupResponse > {
+        self.createApiGroup(CreateApiGroupRequest(groupName: groupName, groupContext: groupContext, authType: authType, description: description, groupType: groupType, gatewayInstanceId: gatewayInstanceId, namespaceNameKey: namespaceNameKey, serviceNameKey: serviceNameKey, namespaceNameKeyPosition: namespaceNameKeyPosition, serviceNameKeyPosition: serviceNameKeyPosition), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建API分组
+    @inlinable
+    public func createApiGroup(groupName: String, groupContext: String, authType: String? = nil, description: String? = nil, groupType: String? = nil, gatewayInstanceId: String? = nil, namespaceNameKey: String? = nil, serviceNameKey: String? = nil, namespaceNameKeyPosition: String? = nil, serviceNameKeyPosition: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiGroupResponse {
+        try await self.createApiGroup(CreateApiGroupRequest(groupName: groupName, groupContext: groupContext, authType: authType, description: description, groupType: groupType, gatewayInstanceId: gatewayInstanceId, namespaceNameKey: namespaceNameKey, serviceNameKey: serviceNameKey, namespaceNameKeyPosition: namespaceNameKeyPosition, serviceNameKeyPosition: serviceNameKeyPosition), logger: logger, on: eventLoop)
+    }
 }

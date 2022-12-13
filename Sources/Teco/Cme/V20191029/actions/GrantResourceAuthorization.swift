@@ -39,7 +39,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以授权任意归属者的资源。如果指定操作者，则操作者必须对资源拥有写权限。
         public let `operator`: String?
         
-        public init (platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], `operator`: String? = nil) {
+        public init (platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], operator: String? = nil) {
             self.platform = platform
             self.owner = owner
             self.resources = resources
@@ -82,5 +82,21 @@ extension Cme {
     @inlinable
     public func grantResourceAuthorization(_ input: GrantResourceAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantResourceAuthorizationResponse {
         try await self.client.execute(action: "GrantResourceAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 发起媒资授权
+    ///
+    /// 资源归属者对个人或团队授予目标资源的相应权限。
+    @inlinable
+    public func grantResourceAuthorization(platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GrantResourceAuthorizationResponse > {
+        self.grantResourceAuthorization(GrantResourceAuthorizationRequest(platform: platform, owner: owner, resources: resources, authorizees: authorizees, permissions: permissions, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 发起媒资授权
+    ///
+    /// 资源归属者对个人或团队授予目标资源的相应权限。
+    @inlinable
+    public func grantResourceAuthorization(platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantResourceAuthorizationResponse {
+        try await self.grantResourceAuthorization(GrantResourceAuthorizationRequest(platform: platform, owner: owner, resources: resources, authorizees: authorizees, permissions: permissions, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

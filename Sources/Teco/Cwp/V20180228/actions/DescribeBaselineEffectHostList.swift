@@ -91,4 +91,20 @@ extension Cwp {
     public func describeBaselineEffectHostList(_ input: DescribeBaselineEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineEffectHostListResponse {
         try await self.client.execute(action: "DescribeBaselineEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 基线影响主机列表
+    ///
+    /// 根据基线id查询基线影响主机列表
+    @inlinable
+    public func describeBaselineEffectHostList(limit: UInt64, offset: UInt64, baselineId: UInt64, filters: [Filters]? = nil, strategyId: UInt64? = nil, uuidList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineEffectHostListResponse > {
+        self.describeBaselineEffectHostList(DescribeBaselineEffectHostListRequest(limit: limit, offset: offset, baselineId: baselineId, filters: filters, strategyId: strategyId, uuidList: uuidList), logger: logger, on: eventLoop)
+    }
+    
+    /// 基线影响主机列表
+    ///
+    /// 根据基线id查询基线影响主机列表
+    @inlinable
+    public func describeBaselineEffectHostList(limit: UInt64, offset: UInt64, baselineId: UInt64, filters: [Filters]? = nil, strategyId: UInt64? = nil, uuidList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineEffectHostListResponse {
+        try await self.describeBaselineEffectHostList(DescribeBaselineEffectHostListRequest(limit: limit, offset: offset, baselineId: baselineId, filters: filters, strategyId: strategyId, uuidList: uuidList), logger: logger, on: eventLoop)
+    }
 }

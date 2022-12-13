@@ -75,4 +75,16 @@ extension Wedata {
     public func submitCustomFunction(_ input: SubmitCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCustomFunctionResponse {
         try await self.client.execute(action: "SubmitCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 提交自定义函数
+    @inlinable
+    public func submitCustomFunction(functionId: String, clusterIdentifier: String, comment: String, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitCustomFunctionResponse > {
+        self.submitCustomFunction(SubmitCustomFunctionRequest(functionId: functionId, clusterIdentifier: clusterIdentifier, comment: comment, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 提交自定义函数
+    @inlinable
+    public func submitCustomFunction(functionId: String, clusterIdentifier: String, comment: String, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCustomFunctionResponse {
+        try await self.submitCustomFunction(SubmitCustomFunctionRequest(functionId: functionId, clusterIdentifier: clusterIdentifier, comment: comment, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

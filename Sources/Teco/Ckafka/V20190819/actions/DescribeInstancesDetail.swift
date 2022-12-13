@@ -98,4 +98,20 @@ extension Ckafka {
     public func describeInstancesDetail(_ input: DescribeInstancesDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDetailResponse {
         try await self.client.execute(action: "DescribeInstancesDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取实例列表详情
+    ///
+    /// 用户账户下获取实例列表详情
+    @inlinable
+    public func describeInstancesDetail(instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, filters: [Filter]? = nil, instanceIds: String? = nil, instanceIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesDetailResponse > {
+        self.describeInstancesDetail(DescribeInstancesDetailRequest(instanceId: instanceId, searchWord: searchWord, status: status, offset: offset, limit: limit, tagKey: tagKey, filters: filters, instanceIds: instanceIds, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例列表详情
+    ///
+    /// 用户账户下获取实例列表详情
+    @inlinable
+    public func describeInstancesDetail(instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, filters: [Filter]? = nil, instanceIds: String? = nil, instanceIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDetailResponse {
+        try await self.describeInstancesDetail(DescribeInstancesDetailRequest(instanceId: instanceId, searchWord: searchWord, status: status, offset: offset, limit: limit, tagKey: tagKey, filters: filters, instanceIds: instanceIds, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
+    }
 }

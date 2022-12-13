@@ -54,4 +54,16 @@ extension Iotvideoindustry {
     public func deleteLiveRecordPlan(_ input: DeleteLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordPlanResponse {
         try await self.client.execute(action: "DeleteLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除直播录制计划
+    @inlinable
+    public func deleteLiveRecordPlan(planId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveRecordPlanResponse > {
+        self.deleteLiveRecordPlan(DeleteLiveRecordPlanRequest(planId: planId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除直播录制计划
+    @inlinable
+    public func deleteLiveRecordPlan(planId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordPlanResponse {
+        try await self.deleteLiveRecordPlan(DeleteLiveRecordPlanRequest(planId: planId), logger: logger, on: eventLoop)
+    }
 }

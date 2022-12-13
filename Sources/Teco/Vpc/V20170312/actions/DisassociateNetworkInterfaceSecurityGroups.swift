@@ -59,4 +59,20 @@ extension Vpc {
     public func disassociateNetworkInterfaceSecurityGroups(_ input: DisassociateNetworkInterfaceSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateNetworkInterfaceSecurityGroupsResponse {
         try await self.client.execute(action: "DisassociateNetworkInterfaceSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 弹性网卡解绑安全组
+    ///
+    /// 本接口（DisassociateNetworkInterfaceSecurityGroups）用于弹性网卡解绑安全组。支持弹性网卡完全解绑安全组。
+    @inlinable
+    public func disassociateNetworkInterfaceSecurityGroups(networkInterfaceIds: [String], securityGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateNetworkInterfaceSecurityGroupsResponse > {
+        self.disassociateNetworkInterfaceSecurityGroups(DisassociateNetworkInterfaceSecurityGroupsRequest(networkInterfaceIds: networkInterfaceIds, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 弹性网卡解绑安全组
+    ///
+    /// 本接口（DisassociateNetworkInterfaceSecurityGroups）用于弹性网卡解绑安全组。支持弹性网卡完全解绑安全组。
+    @inlinable
+    public func disassociateNetworkInterfaceSecurityGroups(networkInterfaceIds: [String], securityGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateNetworkInterfaceSecurityGroupsResponse {
+        try await self.disassociateNetworkInterfaceSecurityGroups(DisassociateNetworkInterfaceSecurityGroupsRequest(networkInterfaceIds: networkInterfaceIds, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    }
 }

@@ -107,4 +107,20 @@ extension Acp {
     public func describeScanTaskList(_ input: DescribeScanTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskListResponse {
         try await self.client.execute(action: "DescribeScanTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取应用合规隐私诊断任务列表
+    ///
+    /// 获取App隐私合规诊断任务列表
+    @inlinable
+    public func describeScanTaskList(source: Int64, platform: Int64, taskStatuses: String, taskTypes: String, pageNo: Int64, pageSize: Int64, appName: String? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskListResponse > {
+        self.describeScanTaskList(DescribeScanTaskListRequest(source: source, platform: platform, taskStatuses: taskStatuses, taskTypes: taskTypes, pageNo: pageNo, pageSize: pageSize, appName: appName, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用合规隐私诊断任务列表
+    ///
+    /// 获取App隐私合规诊断任务列表
+    @inlinable
+    public func describeScanTaskList(source: Int64, platform: Int64, taskStatuses: String, taskTypes: String, pageNo: Int64, pageSize: Int64, appName: String? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskListResponse {
+        try await self.describeScanTaskList(DescribeScanTaskListRequest(source: source, platform: platform, taskStatuses: taskStatuses, taskTypes: taskTypes, pageNo: pageNo, pageSize: pageSize, appName: appName, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

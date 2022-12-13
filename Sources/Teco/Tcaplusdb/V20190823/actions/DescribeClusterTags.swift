@@ -60,4 +60,16 @@ extension Tcaplusdb {
     public func describeClusterTags(_ input: DescribeClusterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterTagsResponse {
         try await self.client.execute(action: "DescribeClusterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取集群关联的标签列表
+    @inlinable
+    public func describeClusterTags(clusterIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterTagsResponse > {
+        self.describeClusterTags(DescribeClusterTagsRequest(clusterIds: clusterIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群关联的标签列表
+    @inlinable
+    public func describeClusterTags(clusterIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterTagsResponse {
+        try await self.describeClusterTags(DescribeClusterTagsRequest(clusterIds: clusterIds), logger: logger, on: eventLoop)
+    }
 }

@@ -50,7 +50,7 @@ extension Essbasic {
         /// 限制二维码用户条件（已弃用）
         public let approverRestrictions: ApproverRestriction?
         
-        public init (agent: Agent, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, callbackUrl: String? = nil, `operator`: UserInfo? = nil, approverRestrictions: ApproverRestriction? = nil) {
+        public init (agent: Agent, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, callbackUrl: String? = nil, operator: UserInfo? = nil, approverRestrictions: ApproverRestriction? = nil) {
             self.agent = agent
             self.templateId = templateId
             self.flowName = flowName
@@ -111,5 +111,23 @@ extension Essbasic {
     @inlinable
     public func channelCreateMultiFlowSignQRCode(_ input: ChannelCreateMultiFlowSignQRCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateMultiFlowSignQRCodeResponse {
         try await self.client.execute(action: "ChannelCreateMultiFlowSignQRCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 创建一码多扫签署流程二维码
+    ///
+    /// 此接口（ChannelCreateMultiFlowSignQRCode）用于创建一码多扫签署流程二维码。
+    /// 适用的模版仅限于B2C（1、无序签署，2、顺序签署时B静默签署，3、顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。
+    @inlinable
+    public func channelCreateMultiFlowSignQRCode(agent: Agent, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, callbackUrl: String? = nil, operator: UserInfo? = nil, approverRestrictions: ApproverRestriction? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateMultiFlowSignQRCodeResponse > {
+        self.channelCreateMultiFlowSignQRCode(ChannelCreateMultiFlowSignQRCodeRequest(agent: agent, templateId: templateId, flowName: flowName, maxFlowNum: maxFlowNum, flowEffectiveDay: flowEffectiveDay, qrEffectiveDay: qrEffectiveDay, restrictions: restrictions, callbackUrl: callbackUrl, operator: `operator`, approverRestrictions: approverRestrictions), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建一码多扫签署流程二维码
+    ///
+    /// 此接口（ChannelCreateMultiFlowSignQRCode）用于创建一码多扫签署流程二维码。
+    /// 适用的模版仅限于B2C（1、无序签署，2、顺序签署时B静默签署，3、顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。
+    @inlinable
+    public func channelCreateMultiFlowSignQRCode(agent: Agent, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, callbackUrl: String? = nil, operator: UserInfo? = nil, approverRestrictions: ApproverRestriction? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateMultiFlowSignQRCodeResponse {
+        try await self.channelCreateMultiFlowSignQRCode(ChannelCreateMultiFlowSignQRCodeRequest(agent: agent, templateId: templateId, flowName: flowName, maxFlowNum: maxFlowNum, flowEffectiveDay: flowEffectiveDay, qrEffectiveDay: qrEffectiveDay, restrictions: restrictions, callbackUrl: callbackUrl, operator: `operator`, approverRestrictions: approverRestrictions), logger: logger, on: eventLoop)
     }
 }

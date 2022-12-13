@@ -35,7 +35,7 @@ extension Antiddos {
         /// 是否为兜底频控
         public let isGlobal: Int64?
         
-        public init (instanceId: String, ip: String, `protocol`: String, domain: String, policy: CCReqLimitPolicyRecord, isGlobal: Int64? = nil) {
+        public init (instanceId: String, ip: String, protocol: String, domain: String, policy: CCReqLimitPolicyRecord, isGlobal: Int64? = nil) {
             self.instanceId = instanceId
             self.ip = ip
             self.`protocol` = `protocol`
@@ -74,5 +74,17 @@ extension Antiddos {
     @inlinable
     public func createCCReqLimitPolicy(_ input: CreateCCReqLimitPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCReqLimitPolicyResponse {
         try await self.client.execute(action: "CreateCCReqLimitPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 新增CC频率限制策略
+    @inlinable
+    public func createCCReqLimitPolicy(instanceId: String, ip: String, protocol: String, domain: String, policy: CCReqLimitPolicyRecord, isGlobal: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCCReqLimitPolicyResponse > {
+        self.createCCReqLimitPolicy(CreateCCReqLimitPolicyRequest(instanceId: instanceId, ip: ip, protocol: `protocol`, domain: domain, policy: policy, isGlobal: isGlobal), logger: logger, on: eventLoop)
+    }
+    
+    /// 新增CC频率限制策略
+    @inlinable
+    public func createCCReqLimitPolicy(instanceId: String, ip: String, protocol: String, domain: String, policy: CCReqLimitPolicyRecord, isGlobal: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCReqLimitPolicyResponse {
+        try await self.createCCReqLimitPolicy(CreateCCReqLimitPolicyRequest(instanceId: instanceId, ip: ip, protocol: `protocol`, domain: domain, policy: policy, isGlobal: isGlobal), logger: logger, on: eventLoop)
     }
 }

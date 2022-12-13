@@ -54,4 +54,20 @@ extension Cls {
     public func deleteExport(_ input: DeleteExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExportResponse {
         try await self.client.execute(action: "DeleteExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除日志下载任务
+    ///
+    /// 本接口用于删除日志下载任务
+    @inlinable
+    public func deleteExport(exportId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteExportResponse > {
+        self.deleteExport(DeleteExportRequest(exportId: exportId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除日志下载任务
+    ///
+    /// 本接口用于删除日志下载任务
+    @inlinable
+    public func deleteExport(exportId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExportResponse {
+        try await self.deleteExport(DeleteExportRequest(exportId: exportId), logger: logger, on: eventLoop)
+    }
 }

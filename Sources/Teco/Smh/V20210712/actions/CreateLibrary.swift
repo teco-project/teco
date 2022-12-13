@@ -78,4 +78,20 @@ extension Smh {
     public func createLibrary(_ input: CreateLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLibraryResponse {
         try await self.client.execute(action: "CreateLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建媒体库
+    ///
+    /// 创建 PaaS 服务媒体库
+    @inlinable
+    public func createLibrary(name: String, bucketName: String, bucketRegion: String, libraryExtension: LibraryExtension, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLibraryResponse > {
+        self.createLibrary(CreateLibraryRequest(name: name, bucketName: bucketName, bucketRegion: bucketRegion, libraryExtension: libraryExtension, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建媒体库
+    ///
+    /// 创建 PaaS 服务媒体库
+    @inlinable
+    public func createLibrary(name: String, bucketName: String, bucketRegion: String, libraryExtension: LibraryExtension, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLibraryResponse {
+        try await self.createLibrary(CreateLibraryRequest(name: name, bucketName: bucketName, bucketRegion: bucketRegion, libraryExtension: libraryExtension, remark: remark), logger: logger, on: eventLoop)
+    }
 }

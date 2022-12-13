@@ -83,4 +83,22 @@ extension Vpc {
     public func describeIp6Translators(_ input: DescribeIp6TranslatorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIp6TranslatorsResponse {
         try await self.client.execute(action: "DescribeIp6Translators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询IPV6转换实例及其绑定规则信息
+    ///
+    /// 1. 该接口用于查询账户下的IPV6转换实例及其绑定的转换规则信息
+    /// 2. 支持过滤查询
+    @inlinable
+    public func describeIp6Translators(ip6TranslatorIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIp6TranslatorsResponse > {
+        self.describeIp6Translators(DescribeIp6TranslatorsRequest(ip6TranslatorIds: ip6TranslatorIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询IPV6转换实例及其绑定规则信息
+    ///
+    /// 1. 该接口用于查询账户下的IPV6转换实例及其绑定的转换规则信息
+    /// 2. 支持过滤查询
+    @inlinable
+    public func describeIp6Translators(ip6TranslatorIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIp6TranslatorsResponse {
+        try await self.describeIp6Translators(DescribeIp6TranslatorsRequest(ip6TranslatorIds: ip6TranslatorIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

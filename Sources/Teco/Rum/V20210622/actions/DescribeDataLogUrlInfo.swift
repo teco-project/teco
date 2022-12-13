@@ -68,4 +68,20 @@ extension Rum {
     public func describeDataLogUrlInfo(_ input: DescribeDataLogUrlInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataLogUrlInfoResponse {
         try await self.client.execute(action: "DescribeDataLogUrlInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取dataloginfo信息
+    ///
+    /// 获取loginfo信息
+    @inlinable
+    public func describeDataLogUrlInfo(id: Int64, startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataLogUrlInfoResponse > {
+        self.describeDataLogUrlInfo(DescribeDataLogUrlInfoRequest(id: id, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取dataloginfo信息
+    ///
+    /// 获取loginfo信息
+    @inlinable
+    public func describeDataLogUrlInfo(id: Int64, startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataLogUrlInfoResponse {
+        try await self.describeDataLogUrlInfo(DescribeDataLogUrlInfoRequest(id: id, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

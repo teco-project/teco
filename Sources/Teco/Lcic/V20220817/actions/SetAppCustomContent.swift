@@ -59,4 +59,20 @@ extension Lcic {
     public func setAppCustomContent(_ input: SetAppCustomContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAppCustomContentResponse {
         try await self.client.execute(action: "SetAppCustomContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置应用自定义内容
+    ///
+    /// 设置应用的自定义内容，包括应用图标，自定义的代码等。如果已存在，则为更新。更新js、css内容后，要生效也需要调用该接口
+    @inlinable
+    public func setAppCustomContent(customContent: [AppCustomContent], sdkAppId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAppCustomContentResponse > {
+        self.setAppCustomContent(SetAppCustomContentRequest(customContent: customContent, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置应用自定义内容
+    ///
+    /// 设置应用的自定义内容，包括应用图标，自定义的代码等。如果已存在，则为更新。更新js、css内容后，要生效也需要调用该接口
+    @inlinable
+    public func setAppCustomContent(customContent: [AppCustomContent], sdkAppId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAppCustomContentResponse {
+        try await self.setAppCustomContent(SetAppCustomContentRequest(customContent: customContent, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    }
 }

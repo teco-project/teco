@@ -64,4 +64,16 @@ extension Tione {
     public func createCodeRepository(_ input: CreateCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodeRepositoryResponse {
         try await self.client.execute(action: "CreateCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建存储库
+    @inlinable
+    public func createCodeRepository(codeRepositoryName: String, gitConfig: GitConfig, gitSecret: GitSecret, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCodeRepositoryResponse > {
+        self.createCodeRepository(CreateCodeRepositoryRequest(codeRepositoryName: codeRepositoryName, gitConfig: gitConfig, gitSecret: gitSecret), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建存储库
+    @inlinable
+    public func createCodeRepository(codeRepositoryName: String, gitConfig: GitConfig, gitSecret: GitSecret, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodeRepositoryResponse {
+        try await self.createCodeRepository(CreateCodeRepositoryRequest(codeRepositoryName: codeRepositoryName, gitConfig: gitConfig, gitSecret: gitSecret), logger: logger, on: eventLoop)
+    }
 }

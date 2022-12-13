@@ -64,4 +64,20 @@ extension Tcss {
     public func describePostPayDetail(_ input: DescribePostPayDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePostPayDetailResponse {
         try await self.client.execute(action: "DescribePostPayDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询后付费详情
+    ///
+    /// DescribePostPayDetail  查询后付费详情
+    @inlinable
+    public func describePostPayDetail(limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePostPayDetailResponse > {
+        self.describePostPayDetail(DescribePostPayDetailRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询后付费详情
+    ///
+    /// DescribePostPayDetail  查询后付费详情
+    @inlinable
+    public func describePostPayDetail(limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePostPayDetailResponse {
+        try await self.describePostPayDetail(DescribePostPayDetailRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

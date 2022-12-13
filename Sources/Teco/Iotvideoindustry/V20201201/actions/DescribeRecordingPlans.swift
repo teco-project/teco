@@ -56,4 +56,20 @@ extension Iotvideoindustry {
     public func describeRecordingPlans(_ input: DescribeRecordingPlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingPlansResponse {
         try await self.client.execute(action: "DescribeRecordingPlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取全部录制计划
+    ///
+    /// 本接口(DescribeRecordingPlans)用于获取用户的全部录制计划。
+    @inlinable
+    public func describeRecordingPlans(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordingPlansResponse > {
+        self.describeRecordingPlans(DescribeRecordingPlansRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取全部录制计划
+    ///
+    /// 本接口(DescribeRecordingPlans)用于获取用户的全部录制计划。
+    @inlinable
+    public func describeRecordingPlans(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingPlansResponse {
+        try await self.describeRecordingPlans(DescribeRecordingPlansRequest(), logger: logger, on: eventLoop)
+    }
 }

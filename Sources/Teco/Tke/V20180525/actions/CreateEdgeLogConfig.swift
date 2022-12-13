@@ -60,4 +60,16 @@ extension Tke {
     public func createEdgeLogConfig(_ input: CreateEdgeLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeLogConfigResponse {
         try await self.client.execute(action: "CreateEdgeLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建边缘集群日志采集配置
+    @inlinable
+    public func createEdgeLogConfig(clusterId: String, logConfig: String, logsetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeLogConfigResponse > {
+        self.createEdgeLogConfig(CreateEdgeLogConfigRequest(clusterId: clusterId, logConfig: logConfig, logsetId: logsetId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建边缘集群日志采集配置
+    @inlinable
+    public func createEdgeLogConfig(clusterId: String, logConfig: String, logsetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeLogConfigResponse {
+        try await self.createEdgeLogConfig(CreateEdgeLogConfigRequest(clusterId: clusterId, logConfig: logConfig, logsetId: logsetId), logger: logger, on: eventLoop)
+    }
 }

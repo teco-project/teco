@@ -78,4 +78,16 @@ extension Gme {
     public func describeUserInAndOutTime(_ input: DescribeUserInAndOutTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserInAndOutTimeResponse {
         try await self.client.execute(action: "DescribeUserInAndOutTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 拉取用户在房间得进出时间
+    @inlinable
+    public func describeUserInAndOutTime(bizId: Int64, roomId: Int64, userId: Int64, userIdStr: String? = nil, roomIdStr: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserInAndOutTimeResponse > {
+        self.describeUserInAndOutTime(DescribeUserInAndOutTimeRequest(bizId: bizId, roomId: roomId, userId: userId, userIdStr: userIdStr, roomIdStr: roomIdStr), logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取用户在房间得进出时间
+    @inlinable
+    public func describeUserInAndOutTime(bizId: Int64, roomId: Int64, userId: Int64, userIdStr: String? = nil, roomIdStr: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserInAndOutTimeResponse {
+        try await self.describeUserInAndOutTime(DescribeUserInAndOutTimeRequest(bizId: bizId, roomId: roomId, userId: userId, userIdStr: userIdStr, roomIdStr: roomIdStr), logger: logger, on: eventLoop)
+    }
 }

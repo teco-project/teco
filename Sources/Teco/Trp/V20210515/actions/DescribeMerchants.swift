@@ -80,4 +80,16 @@ extension Trp {
     public func describeMerchants(_ input: DescribeMerchantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMerchantsResponse {
         try await self.client.execute(action: "DescribeMerchants", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询商户列表
+    @inlinable
+    public func describeMerchants(name: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMerchantsResponse > {
+        self.describeMerchants(DescribeMerchantsRequest(name: name, pageSize: pageSize, pageNumber: pageNumber, corpId: corpId, codeType: codeType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询商户列表
+    @inlinable
+    public func describeMerchants(name: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMerchantsResponse {
+        try await self.describeMerchants(DescribeMerchantsRequest(name: name, pageSize: pageSize, pageNumber: pageNumber, corpId: corpId, codeType: codeType), logger: logger, on: eventLoop)
+    }
 }

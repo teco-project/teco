@@ -86,4 +86,22 @@ extension Gse {
     public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
         try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询服务器实例列表
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeInstances）用于查询服务器实例列表。
+    @inlinable
+    public func describeInstances(fleetId: String? = nil, instanceId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, ipAddress: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+        self.describeInstances(DescribeInstancesRequest(fleetId: fleetId, instanceId: instanceId, offset: offset, limit: limit, ipAddress: ipAddress), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务器实例列表
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeInstances）用于查询服务器实例列表。
+    @inlinable
+    public func describeInstances(fleetId: String? = nil, instanceId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, ipAddress: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
+        try await self.describeInstances(DescribeInstancesRequest(fleetId: fleetId, instanceId: instanceId, offset: offset, limit: limit, ipAddress: ipAddress), logger: logger, on: eventLoop)
+    }
 }

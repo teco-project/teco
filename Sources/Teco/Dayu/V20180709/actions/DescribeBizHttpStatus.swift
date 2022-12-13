@@ -89,4 +89,16 @@ extension Dayu {
     public func describeBizHttpStatus(_ input: DescribeBizHttpStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizHttpStatusResponse {
         try await self.client.execute(action: "DescribeBizHttpStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取业务流量状态码统计
+    @inlinable
+    public func describeBizHttpStatus(business: String, id: String, period: Int64, startTime: String, endTime: String, statistics: String, protoInfo: [ProtocolPort]? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBizHttpStatusResponse > {
+        self.describeBizHttpStatus(DescribeBizHttpStatusRequest(business: business, id: id, period: period, startTime: startTime, endTime: endTime, statistics: statistics, protoInfo: protoInfo, domain: domain), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取业务流量状态码统计
+    @inlinable
+    public func describeBizHttpStatus(business: String, id: String, period: Int64, startTime: String, endTime: String, statistics: String, protoInfo: [ProtocolPort]? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizHttpStatusResponse {
+        try await self.describeBizHttpStatus(DescribeBizHttpStatusRequest(business: business, id: id, period: period, startTime: startTime, endTime: endTime, statistics: statistics, protoInfo: protoInfo, domain: domain), logger: logger, on: eventLoop)
+    }
 }

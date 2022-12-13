@@ -99,4 +99,20 @@ extension Ape {
     public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
         try await self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询图片列表
+    ///
+    /// 根据关键字搜索图片列表
+    @inlinable
+    public func describeImages(offset: Int64, limit: Int64, keyword: String, orientation: String? = nil, imageSenseType: String? = nil, layeredGalleryIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
+        self.describeImages(DescribeImagesRequest(offset: offset, limit: limit, keyword: keyword, orientation: orientation, imageSenseType: imageSenseType, layeredGalleryIds: layeredGalleryIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询图片列表
+    ///
+    /// 根据关键字搜索图片列表
+    @inlinable
+    public func describeImages(offset: Int64, limit: Int64, keyword: String, orientation: String? = nil, imageSenseType: String? = nil, layeredGalleryIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
+        try await self.describeImages(DescribeImagesRequest(offset: offset, limit: limit, keyword: keyword, orientation: orientation, imageSenseType: imageSenseType, layeredGalleryIds: layeredGalleryIds), logger: logger, on: eventLoop)
+    }
 }

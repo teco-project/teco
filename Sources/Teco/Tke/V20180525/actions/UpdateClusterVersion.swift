@@ -74,4 +74,20 @@ extension Tke {
     public func updateClusterVersion(_ input: UpdateClusterVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateClusterVersionResponse {
         try await self.client.execute(action: "UpdateClusterVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 升级集群
+    ///
+    /// 升级集群 Master 组件到指定版本
+    @inlinable
+    public func updateClusterVersion(clusterId: String, dstVersion: String, extraArgs: ClusterExtraArgs? = nil, maxNotReadyPercent: Float? = nil, skipPreCheck: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateClusterVersionResponse > {
+        self.updateClusterVersion(UpdateClusterVersionRequest(clusterId: clusterId, dstVersion: dstVersion, extraArgs: extraArgs, maxNotReadyPercent: maxNotReadyPercent, skipPreCheck: skipPreCheck), logger: logger, on: eventLoop)
+    }
+    
+    /// 升级集群
+    ///
+    /// 升级集群 Master 组件到指定版本
+    @inlinable
+    public func updateClusterVersion(clusterId: String, dstVersion: String, extraArgs: ClusterExtraArgs? = nil, maxNotReadyPercent: Float? = nil, skipPreCheck: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateClusterVersionResponse {
+        try await self.updateClusterVersion(UpdateClusterVersionRequest(clusterId: clusterId, dstVersion: dstVersion, extraArgs: extraArgs, maxNotReadyPercent: maxNotReadyPercent, skipPreCheck: skipPreCheck), logger: logger, on: eventLoop)
+    }
 }

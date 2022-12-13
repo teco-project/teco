@@ -59,4 +59,20 @@ extension Live {
     public func deleteLiveDomain(_ input: DeleteLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveDomainResponse {
         try await self.client.execute(action: "DeleteLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除域名
+    ///
+    /// 删除已添加的直播域名
+    @inlinable
+    public func deleteLiveDomain(domainName: String, domainType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveDomainResponse > {
+        self.deleteLiveDomain(DeleteLiveDomainRequest(domainName: domainName, domainType: domainType), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除域名
+    ///
+    /// 删除已添加的直播域名
+    @inlinable
+    public func deleteLiveDomain(domainName: String, domainType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveDomainResponse {
+        try await self.deleteLiveDomain(DeleteLiveDomainRequest(domainName: domainName, domainType: domainType), logger: logger, on: eventLoop)
+    }
 }

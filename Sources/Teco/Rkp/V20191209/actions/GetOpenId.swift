@@ -84,4 +84,20 @@ extension Rkp {
     public func getOpenId(_ input: GetOpenIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOpenIdResponse {
         try await self.client.execute(action: "GetOpenId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// RPopenID查询
+    ///
+    /// 根据DevicceToken查询OpenID。
+    @inlinable
+    public func getOpenId(deviceToken: String, businessId: Int64, businessUserId: String? = nil, platform: Int64? = nil, option: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetOpenIdResponse > {
+        self.getOpenId(GetOpenIdRequest(deviceToken: deviceToken, businessId: businessId, businessUserId: businessUserId, platform: platform, option: option), logger: logger, on: eventLoop)
+    }
+    
+    /// RPopenID查询
+    ///
+    /// 根据DevicceToken查询OpenID。
+    @inlinable
+    public func getOpenId(deviceToken: String, businessId: Int64, businessUserId: String? = nil, platform: Int64? = nil, option: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOpenIdResponse {
+        try await self.getOpenId(GetOpenIdRequest(deviceToken: deviceToken, businessId: businessId, businessUserId: businessUserId, platform: platform, option: option), logger: logger, on: eventLoop)
+    }
 }

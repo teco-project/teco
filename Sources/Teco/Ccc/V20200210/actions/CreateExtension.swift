@@ -60,4 +60,16 @@ extension Ccc {
     public func createExtension(_ input: CreateExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExtensionResponse {
         try await self.client.execute(action: "CreateExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建话机账号
+    @inlinable
+    public func createExtension(sdkAppId: UInt64, extensionId: String, extensionName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateExtensionResponse > {
+        self.createExtension(CreateExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建话机账号
+    @inlinable
+    public func createExtension(sdkAppId: UInt64, extensionId: String, extensionName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExtensionResponse {
+        try await self.createExtension(CreateExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName), logger: logger, on: eventLoop)
+    }
 }

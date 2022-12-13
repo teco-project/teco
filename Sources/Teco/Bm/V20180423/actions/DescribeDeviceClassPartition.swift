@@ -98,4 +98,20 @@ extension Bm {
     public func describeDeviceClassPartition(_ input: DescribeDeviceClassPartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceClassPartitionResponse {
         try await self.client.execute(action: "DescribeDeviceClassPartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询机型RAID方式以及系统盘大小
+    ///
+    /// 查询机型支持的RAID方式， 并返回系统盘的分区和逻辑盘的列表
+    @inlinable
+    public func describeDeviceClassPartition(deviceClassCode: String? = nil, instanceId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceClassPartitionResponse > {
+        self.describeDeviceClassPartition(DescribeDeviceClassPartitionRequest(deviceClassCode: deviceClassCode, instanceId: instanceId, cpuId: cpuId, memSize: memSize, containRaidCard: containRaidCard, systemDiskTypeId: systemDiskTypeId, systemDiskCount: systemDiskCount, dataDiskTypeId: dataDiskTypeId, dataDiskCount: dataDiskCount), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询机型RAID方式以及系统盘大小
+    ///
+    /// 查询机型支持的RAID方式， 并返回系统盘的分区和逻辑盘的列表
+    @inlinable
+    public func describeDeviceClassPartition(deviceClassCode: String? = nil, instanceId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceClassPartitionResponse {
+        try await self.describeDeviceClassPartition(DescribeDeviceClassPartitionRequest(deviceClassCode: deviceClassCode, instanceId: instanceId, cpuId: cpuId, memSize: memSize, containRaidCard: containRaidCard, systemDiskTypeId: systemDiskTypeId, systemDiskCount: systemDiskCount, dataDiskTypeId: dataDiskTypeId, dataDiskCount: dataDiskCount), logger: logger, on: eventLoop)
+    }
 }

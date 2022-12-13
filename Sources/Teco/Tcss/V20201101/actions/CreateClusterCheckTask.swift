@@ -62,4 +62,20 @@ extension Tcss {
     public func createClusterCheckTask(_ input: CreateClusterCheckTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterCheckTaskResponse {
         try await self.client.execute(action: "CreateClusterCheckTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建集群检查任务
+    ///
+    /// 创建集群检查任务，用户检查用户的集群相关风险项
+    @inlinable
+    public func createClusterCheckTask(clusterCheckTaskList: [ClusterCheckTaskItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterCheckTaskResponse > {
+        self.createClusterCheckTask(CreateClusterCheckTaskRequest(clusterCheckTaskList: clusterCheckTaskList), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群检查任务
+    ///
+    /// 创建集群检查任务，用户检查用户的集群相关风险项
+    @inlinable
+    public func createClusterCheckTask(clusterCheckTaskList: [ClusterCheckTaskItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterCheckTaskResponse {
+        try await self.createClusterCheckTask(CreateClusterCheckTaskRequest(clusterCheckTaskList: clusterCheckTaskList), logger: logger, on: eventLoop)
+    }
 }

@@ -63,4 +63,20 @@ extension Cynosdb {
     public func describeResourcesByDealName(_ input: DescribeResourcesByDealNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByDealNameResponse {
         try await self.client.execute(action: "DescribeResourcesByDealName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 根据订单id查询资源信息
+    ///
+    /// 根据计费订单id查询资源列表
+    @inlinable
+    public func describeResourcesByDealName(dealName: String? = nil, dealNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesByDealNameResponse > {
+        self.describeResourcesByDealName(DescribeResourcesByDealNameRequest(dealName: dealName, dealNames: dealNames), logger: logger, on: eventLoop)
+    }
+    
+    /// 根据订单id查询资源信息
+    ///
+    /// 根据计费订单id查询资源列表
+    @inlinable
+    public func describeResourcesByDealName(dealName: String? = nil, dealNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByDealNameResponse {
+        try await self.describeResourcesByDealName(DescribeResourcesByDealNameRequest(dealName: dealName, dealNames: dealNames), logger: logger, on: eventLoop)
+    }
 }

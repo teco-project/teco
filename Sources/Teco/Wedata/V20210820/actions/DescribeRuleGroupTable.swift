@@ -55,4 +55,16 @@ extension Wedata {
     public func describeRuleGroupTable(_ input: DescribeRuleGroupTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupTableResponse {
         try await self.client.execute(action: "DescribeRuleGroupTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询表绑定执行规则组信息
+    @inlinable
+    public func describeRuleGroupTable(tableId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleGroupTableResponse > {
+        self.describeRuleGroupTable(DescribeRuleGroupTableRequest(tableId: tableId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询表绑定执行规则组信息
+    @inlinable
+    public func describeRuleGroupTable(tableId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupTableResponse {
+        try await self.describeRuleGroupTable(DescribeRuleGroupTableRequest(tableId: tableId), logger: logger, on: eventLoop)
+    }
 }

@@ -56,4 +56,22 @@ extension Chdfs {
     public func deleteMountPoint(_ input: DeleteMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMountPointResponse {
         try await self.client.execute(action: "DeleteMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除挂载点
+    ///
+    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    /// 删除挂载点。
+    @inlinable
+    public func deleteMountPoint(mountPointId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMountPointResponse > {
+        self.deleteMountPoint(DeleteMountPointRequest(mountPointId: mountPointId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除挂载点
+    ///
+    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    /// 删除挂载点。
+    @inlinable
+    public func deleteMountPoint(mountPointId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMountPointResponse {
+        try await self.deleteMountPoint(DeleteMountPointRequest(mountPointId: mountPointId), logger: logger, on: eventLoop)
+    }
 }

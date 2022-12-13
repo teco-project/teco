@@ -50,4 +50,20 @@ extension Mna {
     public func createEncryptedKey(_ input: CreateEncryptedKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEncryptedKeyResponse {
         try await self.client.execute(action: "CreateEncryptedKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置或更新密钥
+    ///
+    /// 通过此接口设置和更新预置密钥
+    @inlinable
+    public func createEncryptedKey(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEncryptedKeyResponse > {
+        self.createEncryptedKey(CreateEncryptedKeyRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置或更新密钥
+    ///
+    /// 通过此接口设置和更新预置密钥
+    @inlinable
+    public func createEncryptedKey(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEncryptedKeyResponse {
+        try await self.createEncryptedKey(CreateEncryptedKeyRequest(), logger: logger, on: eventLoop)
+    }
 }

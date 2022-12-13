@@ -67,4 +67,16 @@ extension Tcss {
     public func describeVulDefenceEventTendency(_ input: DescribeVulDefenceEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceEventTendencyResponse {
         try await self.client.execute(action: "DescribeVulDefenceEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询漏洞防御攻击事件趋势
+    @inlinable
+    public func describeVulDefenceEventTendency(startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDefenceEventTendencyResponse > {
+        self.describeVulDefenceEventTendency(DescribeVulDefenceEventTendencyRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞防御攻击事件趋势
+    @inlinable
+    public func describeVulDefenceEventTendency(startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceEventTendencyResponse {
+        try await self.describeVulDefenceEventTendency(DescribeVulDefenceEventTendencyRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

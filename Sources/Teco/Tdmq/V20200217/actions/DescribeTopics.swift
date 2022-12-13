@@ -106,4 +106,20 @@ extension Tdmq {
     public func describeTopics(_ input: DescribeTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicsResponse {
         try await self.client.execute(action: "DescribeTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询主题列表
+    ///
+    /// 获取环境下主题列表
+    @inlinable
+    public func describeTopics(environmentId: String, topicName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, topicType: UInt64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, topicCreator: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicsResponse > {
+        self.describeTopics(DescribeTopicsRequest(environmentId: environmentId, topicName: topicName, offset: offset, limit: limit, topicType: topicType, clusterId: clusterId, filters: filters, topicCreator: topicCreator), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询主题列表
+    ///
+    /// 获取环境下主题列表
+    @inlinable
+    public func describeTopics(environmentId: String, topicName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, topicType: UInt64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, topicCreator: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicsResponse {
+        try await self.describeTopics(DescribeTopicsRequest(environmentId: environmentId, topicName: topicName, offset: offset, limit: limit, topicType: topicType, clusterId: clusterId, filters: filters, topicCreator: topicCreator), logger: logger, on: eventLoop)
+    }
 }

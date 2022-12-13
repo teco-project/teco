@@ -73,4 +73,20 @@ extension Tcss {
     public func modifyAssetImageScanStop(_ input: ModifyAssetImageScanStopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetImageScanStopResponse {
         try await self.client.execute(action: "ModifyAssetImageScanStop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停止镜像扫描
+    ///
+    /// 容器安全停止镜像扫描
+    @inlinable
+    public func modifyAssetImageScanStop(taskID: String? = nil, images: [String]? = nil, filters: [AssetFilters]? = nil, excludeImageIds: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAssetImageScanStopResponse > {
+        self.modifyAssetImageScanStop(ModifyAssetImageScanStopRequest(taskID: taskID, images: images, filters: filters, excludeImageIds: excludeImageIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 停止镜像扫描
+    ///
+    /// 容器安全停止镜像扫描
+    @inlinable
+    public func modifyAssetImageScanStop(taskID: String? = nil, images: [String]? = nil, filters: [AssetFilters]? = nil, excludeImageIds: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetImageScanStopResponse {
+        try await self.modifyAssetImageScanStop(ModifyAssetImageScanStopRequest(taskID: taskID, images: images, filters: filters, excludeImageIds: excludeImageIds), logger: logger, on: eventLoop)
+    }
 }

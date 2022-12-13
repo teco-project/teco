@@ -114,4 +114,20 @@ extension Tcb {
     public func modifyCloudBaseRunServerVersion(_ input: ModifyCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCloudBaseRunServerVersionResponse {
         try await self.client.execute(action: "ModifyCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改服务版本信息
+    ///
+    /// 修改服务版本的副本数，环境变量
+    @inlinable
+    public func modifyCloudBaseRunServerVersion(envId: String, serverName: String, versionName: String, envParams: String? = nil, minNum: String? = nil, maxNum: String? = nil, containerPort: String? = nil, remark: String? = nil, customLogs: String? = nil, isResetRemark: Bool? = nil, basicModify: Bool? = nil, operatorRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCloudBaseRunServerVersionResponse > {
+        self.modifyCloudBaseRunServerVersion(ModifyCloudBaseRunServerVersionRequest(envId: envId, serverName: serverName, versionName: versionName, envParams: envParams, minNum: minNum, maxNum: maxNum, containerPort: containerPort, remark: remark, customLogs: customLogs, isResetRemark: isResetRemark, basicModify: basicModify, operatorRemark: operatorRemark), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改服务版本信息
+    ///
+    /// 修改服务版本的副本数，环境变量
+    @inlinable
+    public func modifyCloudBaseRunServerVersion(envId: String, serverName: String, versionName: String, envParams: String? = nil, minNum: String? = nil, maxNum: String? = nil, containerPort: String? = nil, remark: String? = nil, customLogs: String? = nil, isResetRemark: Bool? = nil, basicModify: Bool? = nil, operatorRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCloudBaseRunServerVersionResponse {
+        try await self.modifyCloudBaseRunServerVersion(ModifyCloudBaseRunServerVersionRequest(envId: envId, serverName: serverName, versionName: versionName, envParams: envParams, minNum: minNum, maxNum: maxNum, containerPort: containerPort, remark: remark, customLogs: customLogs, isResetRemark: isResetRemark, basicModify: basicModify, operatorRemark: operatorRemark), logger: logger, on: eventLoop)
+    }
 }

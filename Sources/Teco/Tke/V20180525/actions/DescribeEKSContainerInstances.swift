@@ -89,4 +89,16 @@ extension Tke {
     public func describeEKSContainerInstances(_ input: DescribeEKSContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSContainerInstancesResponse {
         try await self.client.execute(action: "DescribeEKSContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询容器实例
+    @inlinable
+    public func describeEKSContainerInstances(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, eksCiIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEKSContainerInstancesResponse > {
+        self.describeEKSContainerInstances(DescribeEKSContainerInstancesRequest(limit: limit, offset: offset, filters: filters, eksCiIds: eksCiIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器实例
+    @inlinable
+    public func describeEKSContainerInstances(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, eksCiIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSContainerInstancesResponse {
+        try await self.describeEKSContainerInstances(DescribeEKSContainerInstancesRequest(limit: limit, offset: offset, filters: filters, eksCiIds: eksCiIds), logger: logger, on: eventLoop)
+    }
 }

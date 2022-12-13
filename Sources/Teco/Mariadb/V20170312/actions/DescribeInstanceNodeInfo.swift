@@ -72,4 +72,20 @@ extension Mariadb {
     public func describeInstanceNodeInfo(_ input: DescribeInstanceNodeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceNodeInfoResponse {
         try await self.client.execute(action: "DescribeInstanceNodeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取实例节点信息
+    ///
+    /// 本接口（DescribeInstanceNodeInfo）用于获取数据库实例主备节点信息
+    @inlinable
+    public func describeInstanceNodeInfo(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceNodeInfoResponse > {
+        self.describeInstanceNodeInfo(DescribeInstanceNodeInfoRequest(instanceId: instanceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例节点信息
+    ///
+    /// 本接口（DescribeInstanceNodeInfo）用于获取数据库实例主备节点信息
+    @inlinable
+    public func describeInstanceNodeInfo(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceNodeInfoResponse {
+        try await self.describeInstanceNodeInfo(DescribeInstanceNodeInfoRequest(instanceId: instanceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

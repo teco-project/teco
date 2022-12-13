@@ -55,4 +55,16 @@ extension Sslpod {
     public func modifyDomainTags(_ input: ModifyDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainTagsResponse {
         try await self.client.execute(action: "ModifyDomainTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改域名tag
+    @inlinable
+    public func modifyDomainTags(accountDomainId: Int64, tags: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainTagsResponse > {
+        self.modifyDomainTags(ModifyDomainTagsRequest(accountDomainId: accountDomainId, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改域名tag
+    @inlinable
+    public func modifyDomainTags(accountDomainId: Int64, tags: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainTagsResponse {
+        try await self.modifyDomainTags(ModifyDomainTagsRequest(accountDomainId: accountDomainId, tags: tags), logger: logger, on: eventLoop)
+    }
 }

@@ -65,4 +65,20 @@ extension Cdn {
     public func verifyDomainRecord(_ input: VerifyDomainRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyDomainRecordResponse {
         try await self.client.execute(action: "VerifyDomainRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 验证域名解析
+    ///
+    /// 验证域名解析值
+    @inlinable
+    public func verifyDomainRecord(domain: String, verifyType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyDomainRecordResponse > {
+        self.verifyDomainRecord(VerifyDomainRecordRequest(domain: domain, verifyType: verifyType), logger: logger, on: eventLoop)
+    }
+    
+    /// 验证域名解析
+    ///
+    /// 验证域名解析值
+    @inlinable
+    public func verifyDomainRecord(domain: String, verifyType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyDomainRecordResponse {
+        try await self.verifyDomainRecord(VerifyDomainRecordRequest(domain: domain, verifyType: verifyType), logger: logger, on: eventLoop)
+    }
 }

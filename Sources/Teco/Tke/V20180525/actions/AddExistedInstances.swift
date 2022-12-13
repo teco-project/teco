@@ -121,4 +121,16 @@ extension Tke {
     public func addExistedInstances(_ input: AddExistedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddExistedInstancesResponse {
         try await self.client.execute(action: "AddExistedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加已经存在的实例到集群
+    @inlinable
+    public func addExistedInstances(clusterId: String, instanceIds: [String], instanceAdvancedSettings: InstanceAdvancedSettings? = nil, enhancedService: EnhancedService? = nil, loginSettings: LoginSettings? = nil, hostName: String? = nil, securityGroupIds: [String]? = nil, nodePool: NodePoolOption? = nil, skipValidateOptions: [String]? = nil, instanceAdvancedSettingsOverrides: [InstanceAdvancedSettings]? = nil, imageId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddExistedInstancesResponse > {
+        self.addExistedInstances(AddExistedInstancesRequest(clusterId: clusterId, instanceIds: instanceIds, instanceAdvancedSettings: instanceAdvancedSettings, enhancedService: enhancedService, loginSettings: loginSettings, hostName: hostName, securityGroupIds: securityGroupIds, nodePool: nodePool, skipValidateOptions: skipValidateOptions, instanceAdvancedSettingsOverrides: instanceAdvancedSettingsOverrides, imageId: imageId), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加已经存在的实例到集群
+    @inlinable
+    public func addExistedInstances(clusterId: String, instanceIds: [String], instanceAdvancedSettings: InstanceAdvancedSettings? = nil, enhancedService: EnhancedService? = nil, loginSettings: LoginSettings? = nil, hostName: String? = nil, securityGroupIds: [String]? = nil, nodePool: NodePoolOption? = nil, skipValidateOptions: [String]? = nil, instanceAdvancedSettingsOverrides: [InstanceAdvancedSettings]? = nil, imageId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddExistedInstancesResponse {
+        try await self.addExistedInstances(AddExistedInstancesRequest(clusterId: clusterId, instanceIds: instanceIds, instanceAdvancedSettings: instanceAdvancedSettings, enhancedService: enhancedService, loginSettings: loginSettings, hostName: hostName, securityGroupIds: securityGroupIds, nodePool: nodePool, skipValidateOptions: skipValidateOptions, instanceAdvancedSettingsOverrides: instanceAdvancedSettingsOverrides, imageId: imageId), logger: logger, on: eventLoop)
+    }
 }

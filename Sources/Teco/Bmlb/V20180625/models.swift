@@ -173,7 +173,7 @@ extension Bmlb {
         /// 是否开启toa。可选值：0（关闭）、1（开启），默认关闭。（该字段在负载均衡为fullnat类型下才生效）
         public let toaFlag: Int64?
         
-        public init (loadBalancerPort: Int64, `protocol`: String, listenerName: String, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, bandwidth: Int64? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil) {
+        public init (loadBalancerPort: Int64, protocol: String, listenerName: String, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, bandwidth: Int64? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil) {
             self.loadBalancerPort = loadBalancerPort
             self.`protocol` = `protocol`
             self.listenerName = listenerName
@@ -253,7 +253,7 @@ extension Bmlb {
         /// 转发协议。当Protocol为https时并且SslMode为1或2时，有意义。可选的值为0：https，1：spdy，2：http2，3：spdy+http2。
         public let forwardProtocol: Int64?
         
-        public init (loadBalancerPort: Int64, `protocol`: String, listenerName: String, sslMode: Int64? = nil, certId: String? = nil, certName: String? = nil, certContent: String? = nil, certKey: String? = nil, certCaId: String? = nil, certCaName: String? = nil, certCaContent: String? = nil, bandwidth: Int64? = nil, forwardProtocol: Int64? = nil) {
+        public init (loadBalancerPort: Int64, protocol: String, listenerName: String, sslMode: Int64? = nil, certId: String? = nil, certName: String? = nil, certContent: String? = nil, certKey: String? = nil, certCaId: String? = nil, certCaName: String? = nil, certCaContent: String? = nil, bandwidth: Int64? = nil, forwardProtocol: Int64? = nil) {
             self.loadBalancerPort = loadBalancerPort
             self.`protocol` = `protocol`
             self.listenerName = listenerName
@@ -445,7 +445,7 @@ extension Bmlb {
         /// 该转发路径所绑定的主机列表。
         public let backendSet: [DevicesBindInfoBackend]?
         
-        public init (listenerId: String? = nil, `protocol`: String? = nil, loadBalancerPort: Int64? = nil, backendSet: [DevicesBindInfoBackend]? = nil) {
+        public init (listenerId: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, backendSet: [DevicesBindInfoBackend]? = nil) {
             self.listenerId = listenerId
             self.`protocol` = `protocol`
             self.loadBalancerPort = loadBalancerPort
@@ -474,7 +474,7 @@ extension Bmlb {
         /// 返回的转发规则列表。
         public let ruleSet: [DevicesBindInfoRule]?
         
-        public init (listenerId: String? = nil, `protocol`: String? = nil, loadBalancerPort: Int64? = nil, ruleSet: [DevicesBindInfoRule]? = nil) {
+        public init (listenerId: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, ruleSet: [DevicesBindInfoRule]? = nil) {
             self.listenerId = listenerId
             self.`protocol` = `protocol`
             self.loadBalancerPort = loadBalancerPort
@@ -729,7 +729,7 @@ extension Bmlb {
         /// 转发后端服务器调度类型。
         public let balanceMode: String?
         
-        public init (listenerId: String? = nil, listenerName: String? = nil, `protocol`: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil, status: Int64? = nil, addTimestamp: Date? = nil, balanceMode: String? = nil) {
+        public init (listenerId: String? = nil, listenerName: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil, status: Int64? = nil, addTimestamp: Date? = nil, balanceMode: String? = nil) {
             self.listenerId = listenerId
             self.listenerName = listenerName
             self.`protocol` = `protocol`
@@ -843,7 +843,7 @@ extension Bmlb {
         /// 转发后端服务器调度类型。
         public let balanceMode: String?
         
-        public init (listenerId: String? = nil, listenerName: String? = nil, `protocol`: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, status: Int64? = nil, addTimestamp: Date? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil, balanceMode: String? = nil) {
+        public init (listenerId: String? = nil, listenerName: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, status: Int64? = nil, addTimestamp: Date? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil, balanceMode: String? = nil) {
             self.listenerId = listenerId
             self.listenerName = listenerName
             self.`protocol` = `protocol`
@@ -1067,7 +1067,7 @@ extension Bmlb {
         /// https转发类型。0：https。1：spdy。2：http2。3：spdy+http2。
         public let forwardProtocol: Int64?
         
-        public init (listenerId: String? = nil, listenerName: String? = nil, `protocol`: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certCaId: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, forwardProtocol: Int64? = nil) {
+        public init (listenerId: String? = nil, listenerName: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certCaId: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, forwardProtocol: Int64? = nil) {
             self.listenerId = listenerId
             self.listenerName = listenerName
             self.`protocol` = `protocol`
@@ -1139,7 +1139,7 @@ extension Bmlb {
         /// https转发类型。0：https。1：spdy。2：http2。3：spdy+http2。
         public let forwardProtocol: Int64?
         
-        public init (listenerId: String? = nil, listenerName: String? = nil, `protocol`: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certCaId: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, ruleSet: [L7ListenerInfoRule]? = nil, forwardProtocol: Int64? = nil) {
+        public init (listenerId: String? = nil, listenerName: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certCaId: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, ruleSet: [L7ListenerInfoRule]? = nil, forwardProtocol: Int64? = nil) {
             self.listenerId = listenerId
             self.listenerName = listenerName
             self.`protocol` = `protocol`
@@ -1706,7 +1706,7 @@ extension Bmlb {
         /// 带宽。
         public let bandwidth: UInt64
         
-        public init (listenerId: String, `protocol`: String, bandwidth: UInt64) {
+        public init (listenerId: String, protocol: String, bandwidth: UInt64) {
             self.listenerId = listenerId
             self.`protocol` = `protocol`
             self.bandwidth = bandwidth

@@ -69,4 +69,16 @@ extension Ckafka {
     public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
         try await self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询用户信息
+    @inlinable
+    public func describeUser(instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserResponse > {
+        self.describeUser(DescribeUserRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户信息
+    @inlinable
+    public func describeUser(instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
+        try await self.describeUser(DescribeUserRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

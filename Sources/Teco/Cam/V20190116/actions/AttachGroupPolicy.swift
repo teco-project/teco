@@ -59,4 +59,20 @@ extension Cam {
     public func attachGroupPolicy(_ input: AttachGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachGroupPolicyResponse {
         try await self.client.execute(action: "AttachGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 绑定策略到用户组
+    ///
+    /// 本接口（AttachGroupPolicy）可用于绑定策略到用户组。
+    @inlinable
+    public func attachGroupPolicy(policyId: UInt64, attachGroupId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachGroupPolicyResponse > {
+        self.attachGroupPolicy(AttachGroupPolicyRequest(policyId: policyId, attachGroupId: attachGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定策略到用户组
+    ///
+    /// 本接口（AttachGroupPolicy）可用于绑定策略到用户组。
+    @inlinable
+    public func attachGroupPolicy(policyId: UInt64, attachGroupId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachGroupPolicyResponse {
+        try await self.attachGroupPolicy(AttachGroupPolicyRequest(policyId: policyId, attachGroupId: attachGroupId), logger: logger, on: eventLoop)
+    }
 }

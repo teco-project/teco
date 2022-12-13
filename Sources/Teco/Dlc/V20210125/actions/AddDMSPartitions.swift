@@ -58,4 +58,16 @@ extension Dlc {
     public func addDMSPartitions(_ input: AddDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDMSPartitionsResponse {
         try await self.client.execute(action: "AddDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// DMS元数据新增分区
+    @inlinable
+    public func addDMSPartitions(partitions: [DMSPartition]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddDMSPartitionsResponse > {
+        self.addDMSPartitions(AddDMSPartitionsRequest(partitions: partitions), logger: logger, on: eventLoop)
+    }
+    
+    /// DMS元数据新增分区
+    @inlinable
+    public func addDMSPartitions(partitions: [DMSPartition]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDMSPartitionsResponse {
+        try await self.addDMSPartitions(AddDMSPartitionsRequest(partitions: partitions), logger: logger, on: eventLoop)
+    }
 }

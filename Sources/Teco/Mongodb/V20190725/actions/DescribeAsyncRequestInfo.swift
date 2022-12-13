@@ -54,4 +54,16 @@ extension Mongodb {
     public func describeAsyncRequestInfo(_ input: DescribeAsyncRequestInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRequestInfoResponse {
         try await self.client.execute(action: "DescribeAsyncRequestInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询异步任务状态接口
+    @inlinable
+    public func describeAsyncRequestInfo(asyncRequestId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAsyncRequestInfoResponse > {
+        self.describeAsyncRequestInfo(DescribeAsyncRequestInfoRequest(asyncRequestId: asyncRequestId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询异步任务状态接口
+    @inlinable
+    public func describeAsyncRequestInfo(asyncRequestId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRequestInfoResponse {
+        try await self.describeAsyncRequestInfo(DescribeAsyncRequestInfoRequest(asyncRequestId: asyncRequestId), logger: logger, on: eventLoop)
+    }
 }

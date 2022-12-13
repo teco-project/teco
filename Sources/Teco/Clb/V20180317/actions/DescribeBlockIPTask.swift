@@ -58,4 +58,20 @@ extension Clb {
     public func describeBlockIPTask(_ input: DescribeBlockIPTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockIPTaskResponse {
         try await self.client.execute(action: "DescribeBlockIPTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询封禁IP（黑名单）异步任务的执行状态
+    ///
+    /// 根据 ModifyBlockIPList 接口返回的异步任务的ID，查询封禁IP（黑名单）异步任务的执行状态。（接口灰度中，如需使用请提工单）
+    @inlinable
+    public func describeBlockIPTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBlockIPTaskResponse > {
+        self.describeBlockIPTask(DescribeBlockIPTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询封禁IP（黑名单）异步任务的执行状态
+    ///
+    /// 根据 ModifyBlockIPList 接口返回的异步任务的ID，查询封禁IP（黑名单）异步任务的执行状态。（接口灰度中，如需使用请提工单）
+    @inlinable
+    public func describeBlockIPTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockIPTaskResponse {
+        try await self.describeBlockIPTask(DescribeBlockIPTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

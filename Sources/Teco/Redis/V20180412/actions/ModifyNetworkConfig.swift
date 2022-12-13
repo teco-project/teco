@@ -91,4 +91,16 @@ extension Redis {
     public func modifyNetworkConfig(_ input: ModifyNetworkConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkConfigResponse {
         try await self.client.execute(action: "ModifyNetworkConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改实例网络配置
+    @inlinable
+    public func modifyNetworkConfig(instanceId: String, operation: String, vip: String? = nil, vpcId: String? = nil, subnetId: String? = nil, recycle: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetworkConfigResponse > {
+        self.modifyNetworkConfig(ModifyNetworkConfigRequest(instanceId: instanceId, operation: operation, vip: vip, vpcId: vpcId, subnetId: subnetId, recycle: recycle), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例网络配置
+    @inlinable
+    public func modifyNetworkConfig(instanceId: String, operation: String, vip: String? = nil, vpcId: String? = nil, subnetId: String? = nil, recycle: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkConfigResponse {
+        try await self.modifyNetworkConfig(ModifyNetworkConfigRequest(instanceId: instanceId, operation: operation, vip: vip, vpcId: vpcId, subnetId: subnetId, recycle: recycle), logger: logger, on: eventLoop)
+    }
 }

@@ -78,4 +78,16 @@ extension Cmq {
     public func describeQueueDetail(_ input: DescribeQueueDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQueueDetailResponse {
         try await self.client.execute(action: "DescribeQueueDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 枚举队列
+    @inlinable
+    public func describeQueueDetail(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, queueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQueueDetailResponse > {
+        self.describeQueueDetail(DescribeQueueDetailRequest(offset: offset, limit: limit, filters: filters, tagKey: tagKey, queueName: queueName), logger: logger, on: eventLoop)
+    }
+    
+    /// 枚举队列
+    @inlinable
+    public func describeQueueDetail(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, queueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQueueDetailResponse {
+        try await self.describeQueueDetail(DescribeQueueDetailRequest(offset: offset, limit: limit, filters: filters, tagKey: tagKey, queueName: queueName), logger: logger, on: eventLoop)
+    }
 }

@@ -61,4 +61,22 @@ extension Gpm {
     public func describeMatch(_ input: DescribeMatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchResponse {
         try await self.client.execute(action: "DescribeMatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询匹配详情
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 查询匹配详情
+    @inlinable
+    public func describeMatch(matchCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMatchResponse > {
+        self.describeMatch(DescribeMatchRequest(matchCode: matchCode), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询匹配详情
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 查询匹配详情
+    @inlinable
+    public func describeMatch(matchCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchResponse {
+        try await self.describeMatch(DescribeMatchRequest(matchCode: matchCode), logger: logger, on: eventLoop)
+    }
 }

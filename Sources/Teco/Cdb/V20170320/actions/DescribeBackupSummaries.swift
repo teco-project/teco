@@ -82,4 +82,20 @@ extension Cdb {
     public func describeBackupSummaries(_ input: DescribeBackupSummariesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupSummariesResponse {
         try await self.client.execute(action: "DescribeBackupSummaries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询备份实时统计
+    ///
+    /// 本接口(DescribeBackupSummaries)用于查询备份的统计情况，返回以实例为维度的备份占用容量，以及每个实例的数据备份和日志备份的个数和容量（容量单位为字节）。
+    @inlinable
+    public func describeBackupSummaries(product: String, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupSummariesResponse > {
+        self.describeBackupSummaries(DescribeBackupSummariesRequest(product: product, offset: offset, limit: limit, orderBy: orderBy, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询备份实时统计
+    ///
+    /// 本接口(DescribeBackupSummaries)用于查询备份的统计情况，返回以实例为维度的备份占用容量，以及每个实例的数据备份和日志备份的个数和容量（容量单位为字节）。
+    @inlinable
+    public func describeBackupSummaries(product: String, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupSummariesResponse {
+        try await self.describeBackupSummaries(DescribeBackupSummariesRequest(product: product, offset: offset, limit: limit, orderBy: orderBy, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    }
 }

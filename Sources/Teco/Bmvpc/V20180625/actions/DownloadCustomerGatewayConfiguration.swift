@@ -63,4 +63,20 @@ extension Bmvpc {
     public func downloadCustomerGatewayConfiguration(_ input: DownloadCustomerGatewayConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCustomerGatewayConfigurationResponse {
         try await self.client.execute(action: "DownloadCustomerGatewayConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 下载VPN通道配置
+    ///
+    /// 本接口(DownloadCustomerGatewayConfiguration)用于下载VPN通道配置。
+    @inlinable
+    public func downloadCustomerGatewayConfiguration(vpnConnectionId: String, vendorName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadCustomerGatewayConfigurationResponse > {
+        self.downloadCustomerGatewayConfiguration(DownloadCustomerGatewayConfigurationRequest(vpnConnectionId: vpnConnectionId, vendorName: vendorName), logger: logger, on: eventLoop)
+    }
+    
+    /// 下载VPN通道配置
+    ///
+    /// 本接口(DownloadCustomerGatewayConfiguration)用于下载VPN通道配置。
+    @inlinable
+    public func downloadCustomerGatewayConfiguration(vpnConnectionId: String, vendorName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCustomerGatewayConfigurationResponse {
+        try await self.downloadCustomerGatewayConfiguration(DownloadCustomerGatewayConfigurationRequest(vpnConnectionId: vpnConnectionId, vendorName: vendorName), logger: logger, on: eventLoop)
+    }
 }

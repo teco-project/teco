@@ -58,4 +58,20 @@ extension Ie {
     public func describeEditingTaskResult(_ input: DescribeEditingTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEditingTaskResultResponse {
         try await self.client.execute(action: "DescribeEditingTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取编辑理解任务结果
+    ///
+    /// 获取编辑理解任务结果。
+    @inlinable
+    public func describeEditingTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEditingTaskResultResponse > {
+        self.describeEditingTaskResult(DescribeEditingTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取编辑理解任务结果
+    ///
+    /// 获取编辑理解任务结果。
+    @inlinable
+    public func describeEditingTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEditingTaskResultResponse {
+        try await self.describeEditingTaskResult(DescribeEditingTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

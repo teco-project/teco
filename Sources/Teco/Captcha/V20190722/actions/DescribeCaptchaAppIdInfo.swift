@@ -112,4 +112,16 @@ extension Captcha {
     public func describeCaptchaAppIdInfo(_ input: DescribeCaptchaAppIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaAppIdInfoResponse {
         try await self.client.execute(action: "DescribeCaptchaAppIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询安全验证码应用APPId信息
+    @inlinable
+    public func describeCaptchaAppIdInfo(captchaAppId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaAppIdInfoResponse > {
+        self.describeCaptchaAppIdInfo(DescribeCaptchaAppIdInfoRequest(captchaAppId: captchaAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全验证码应用APPId信息
+    @inlinable
+    public func describeCaptchaAppIdInfo(captchaAppId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaAppIdInfoResponse {
+        try await self.describeCaptchaAppIdInfo(DescribeCaptchaAppIdInfoRequest(captchaAppId: captchaAppId), logger: logger, on: eventLoop)
+    }
 }

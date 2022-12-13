@@ -85,4 +85,16 @@ extension Teo {
     public func createOriginGroup(_ input: CreateOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOriginGroupResponse {
         try await self.client.execute(action: "CreateOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建源站组
+    @inlinable
+    public func createOriginGroup(zoneId: String, originType: String, originGroupName: String, configurationType: String, originRecords: [OriginRecord], hostHeader: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOriginGroupResponse > {
+        self.createOriginGroup(CreateOriginGroupRequest(zoneId: zoneId, originType: originType, originGroupName: originGroupName, configurationType: configurationType, originRecords: originRecords, hostHeader: hostHeader), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建源站组
+    @inlinable
+    public func createOriginGroup(zoneId: String, originType: String, originGroupName: String, configurationType: String, originRecords: [OriginRecord], hostHeader: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOriginGroupResponse {
+        try await self.createOriginGroup(CreateOriginGroupRequest(zoneId: zoneId, originType: originType, originGroupName: originGroupName, configurationType: configurationType, originRecords: originRecords, hostHeader: hostHeader), logger: logger, on: eventLoop)
+    }
 }

@@ -64,4 +64,16 @@ extension Tcss {
     public func describeESHits(_ input: DescribeESHitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeESHitsResponse {
         try await self.client.execute(action: "DescribeESHits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取ES查询文档列表
+    @inlinable
+    public func describeESHits(query: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeESHitsResponse > {
+        self.describeESHits(DescribeESHitsRequest(query: query, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取ES查询文档列表
+    @inlinable
+    public func describeESHits(query: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeESHitsResponse {
+        try await self.describeESHits(DescribeESHitsRequest(query: query, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

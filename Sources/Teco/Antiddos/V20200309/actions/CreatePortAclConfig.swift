@@ -55,4 +55,16 @@ extension Antiddos {
     public func createPortAclConfig(_ input: CreatePortAclConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePortAclConfigResponse {
         try await self.client.execute(action: "CreatePortAclConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加DDoS防护的端口acl策略
+    @inlinable
+    public func createPortAclConfig(instanceId: String, aclConfig: AclConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePortAclConfigResponse > {
+        self.createPortAclConfig(CreatePortAclConfigRequest(instanceId: instanceId, aclConfig: aclConfig), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加DDoS防护的端口acl策略
+    @inlinable
+    public func createPortAclConfig(instanceId: String, aclConfig: AclConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePortAclConfigResponse {
+        try await self.createPortAclConfig(CreatePortAclConfigRequest(instanceId: instanceId, aclConfig: aclConfig), logger: logger, on: eventLoop)
+    }
 }

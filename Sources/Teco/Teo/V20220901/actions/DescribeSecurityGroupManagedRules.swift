@@ -82,4 +82,16 @@ extension Teo {
     public func describeSecurityGroupManagedRules(_ input: DescribeSecurityGroupManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupManagedRulesResponse {
         try await self.client.execute(action: "DescribeSecurityGroupManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取托管规则组
+    @inlinable
+    public func describeSecurityGroupManagedRules(zoneId: String? = nil, entity: String? = nil, offset: Int64? = nil, limit: Int64? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupManagedRulesResponse > {
+        self.describeSecurityGroupManagedRules(DescribeSecurityGroupManagedRulesRequest(zoneId: zoneId, entity: entity, offset: offset, limit: limit, templateId: templateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取托管规则组
+    @inlinable
+    public func describeSecurityGroupManagedRules(zoneId: String? = nil, entity: String? = nil, offset: Int64? = nil, limit: Int64? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupManagedRulesResponse {
+        try await self.describeSecurityGroupManagedRules(DescribeSecurityGroupManagedRulesRequest(zoneId: zoneId, entity: entity, offset: offset, limit: limit, templateId: templateId), logger: logger, on: eventLoop)
+    }
 }

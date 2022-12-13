@@ -65,4 +65,22 @@ extension Bmvpc {
     public func createSubnet(_ input: CreateSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
         try await self.client.execute(action: "CreateSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建黑石私有网络的子网
+    ///
+    /// 创建黑石私有网络的子网
+    /// 访问管理: 用户可以对VpcId进行授权操作。例如设置资源为["qcs::bmvpc:::unVpc/vpc-xxxxx"]
+    @inlinable
+    public func createSubnet(vpcId: String, subnetSet: [SubnetCreateInputInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubnetResponse > {
+        self.createSubnet(CreateSubnetRequest(vpcId: vpcId, subnetSet: subnetSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建黑石私有网络的子网
+    ///
+    /// 创建黑石私有网络的子网
+    /// 访问管理: 用户可以对VpcId进行授权操作。例如设置资源为["qcs::bmvpc:::unVpc/vpc-xxxxx"]
+    @inlinable
+    public func createSubnet(vpcId: String, subnetSet: [SubnetCreateInputInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
+        try await self.createSubnet(CreateSubnetRequest(vpcId: vpcId, subnetSet: subnetSet), logger: logger, on: eventLoop)
+    }
 }

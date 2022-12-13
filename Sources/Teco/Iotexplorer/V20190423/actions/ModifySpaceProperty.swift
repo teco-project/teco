@@ -60,4 +60,16 @@ extension Iotexplorer {
     public func modifySpaceProperty(_ input: ModifySpacePropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySpacePropertyResponse {
         try await self.client.execute(action: "ModifySpaceProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新位置空间产品属性
+    @inlinable
+    public func modifySpaceProperty(spaceId: String, productId: String, data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySpacePropertyResponse > {
+        self.modifySpaceProperty(ModifySpacePropertyRequest(spaceId: spaceId, productId: productId, data: data), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新位置空间产品属性
+    @inlinable
+    public func modifySpaceProperty(spaceId: String, productId: String, data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySpacePropertyResponse {
+        try await self.modifySpaceProperty(ModifySpacePropertyRequest(spaceId: spaceId, productId: productId, data: data), logger: logger, on: eventLoop)
+    }
 }

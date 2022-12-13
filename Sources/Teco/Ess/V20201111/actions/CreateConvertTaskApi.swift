@@ -35,7 +35,7 @@ extension Ess {
         /// 暂未开放
         public let organization: OrganizationInfo?
         
-        public init (resourceType: String, resourceName: String, resourceId: String, `operator`: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil) {
+        public init (resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil) {
             self.resourceType = resourceType
             self.resourceName = resourceName
             self.resourceId = resourceId
@@ -78,5 +78,17 @@ extension Ess {
     @inlinable
     public func createConvertTaskApi(_ input: CreateConvertTaskApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConvertTaskApiResponse {
         try await self.client.execute(action: "CreateConvertTaskApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 创建文件转换任务
+    @inlinable
+    public func createConvertTaskApi(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConvertTaskApiResponse > {
+        self.createConvertTaskApi(CreateConvertTaskApiRequest(resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, agent: agent, organization: organization), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建文件转换任务
+    @inlinable
+    public func createConvertTaskApi(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConvertTaskApiResponse {
+        try await self.createConvertTaskApi(CreateConvertTaskApiRequest(resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, agent: agent, organization: organization), logger: logger, on: eventLoop)
     }
 }

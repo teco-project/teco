@@ -63,4 +63,20 @@ extension Trtc {
     public func stopPublishCdnStream(_ input: StopPublishCdnStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopPublishCdnStreamResponse {
         try await self.client.execute(action: "StopPublishCdnStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停止转推任务
+    ///
+    /// 停止转推任务。
+    @inlinable
+    public func stopPublishCdnStream(sdkAppId: UInt64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopPublishCdnStreamResponse > {
+        self.stopPublishCdnStream(StopPublishCdnStreamRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 停止转推任务
+    ///
+    /// 停止转推任务。
+    @inlinable
+    public func stopPublishCdnStream(sdkAppId: UInt64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopPublishCdnStreamResponse {
+        try await self.stopPublishCdnStream(StopPublishCdnStreamRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

@@ -29,7 +29,7 @@ extension Antiddos {
         /// 协议，可取值HTTP，HTTPS
         public let `protocol`: String
         
-        public init (instanceId: String, ip: String, domain: String, `protocol`: String) {
+        public init (instanceId: String, ip: String, domain: String, protocol: String) {
             self.instanceId = instanceId
             self.ip = ip
             self.domain = domain
@@ -68,5 +68,17 @@ extension Antiddos {
     @inlinable
     public func describeCCLevelPolicy(_ input: DescribeCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelPolicyResponse {
         try await self.client.execute(action: "DescribeCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 获取CC分级策略
+    @inlinable
+    public func describeCCLevelPolicy(instanceId: String, ip: String, domain: String, protocol: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCLevelPolicyResponse > {
+        self.describeCCLevelPolicy(DescribeCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC分级策略
+    @inlinable
+    public func describeCCLevelPolicy(instanceId: String, ip: String, domain: String, protocol: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelPolicyResponse {
+        try await self.describeCCLevelPolicy(DescribeCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), logger: logger, on: eventLoop)
     }
 }

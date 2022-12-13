@@ -60,4 +60,16 @@ extension Ccc {
     public func deleteStaff(_ input: DeleteStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStaffResponse {
         try await self.client.execute(action: "DeleteStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除坐席信息
+    @inlinable
+    public func deleteStaff(sdkAppId: Int64, staffList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStaffResponse > {
+        self.deleteStaff(DeleteStaffRequest(sdkAppId: sdkAppId, staffList: staffList), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除坐席信息
+    @inlinable
+    public func deleteStaff(sdkAppId: Int64, staffList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStaffResponse {
+        try await self.deleteStaff(DeleteStaffRequest(sdkAppId: sdkAppId, staffList: staffList), logger: logger, on: eventLoop)
+    }
 }

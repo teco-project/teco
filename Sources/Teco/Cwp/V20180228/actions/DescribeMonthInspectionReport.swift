@@ -67,4 +67,20 @@ extension Cwp {
     public func describeMonthInspectionReport(_ input: DescribeMonthInspectionReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonthInspectionReportResponse {
         try await self.client.execute(action: "DescribeMonthInspectionReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安全管家月巡检报告下载
+    ///
+    /// 专家服务-安全管家月巡检报告下载
+    @inlinable
+    public func describeMonthInspectionReport(limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonthInspectionReportResponse > {
+        self.describeMonthInspectionReport(DescribeMonthInspectionReportRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 安全管家月巡检报告下载
+    ///
+    /// 专家服务-安全管家月巡检报告下载
+    @inlinable
+    public func describeMonthInspectionReport(limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonthInspectionReportResponse {
+        try await self.describeMonthInspectionReport(DescribeMonthInspectionReportRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

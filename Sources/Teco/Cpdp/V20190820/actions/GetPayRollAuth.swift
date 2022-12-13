@@ -96,4 +96,16 @@ extension Cpdp {
     public func getPayRollAuth(_ input: GetPayRollAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPayRollAuthResponse {
         try await self.client.execute(action: "GetPayRollAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 务工卡-查询授权关系
+    @inlinable
+    public func getPayRollAuth(openId: String, subMerchantId: String, wechatAppId: String? = nil, wechatSubAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPayRollAuthResponse > {
+        self.getPayRollAuth(GetPayRollAuthRequest(openId: openId, subMerchantId: subMerchantId, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 务工卡-查询授权关系
+    @inlinable
+    public func getPayRollAuth(openId: String, subMerchantId: String, wechatAppId: String? = nil, wechatSubAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPayRollAuthResponse {
+        try await self.getPayRollAuth(GetPayRollAuthRequest(openId: openId, subMerchantId: subMerchantId, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId), logger: logger, on: eventLoop)
+    }
 }

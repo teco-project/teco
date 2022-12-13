@@ -54,4 +54,16 @@ extension Ape {
     public func batchDescribeOrderCertificate(_ input: BatchDescribeOrderCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeOrderCertificateResponse {
         try await self.client.execute(action: "BatchDescribeOrderCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量获取授权书下载地址
+    @inlinable
+    public func batchDescribeOrderCertificate(orderIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDescribeOrderCertificateResponse > {
+        self.batchDescribeOrderCertificate(BatchDescribeOrderCertificateRequest(orderIds: orderIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量获取授权书下载地址
+    @inlinable
+    public func batchDescribeOrderCertificate(orderIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeOrderCertificateResponse {
+        try await self.batchDescribeOrderCertificate(BatchDescribeOrderCertificateRequest(orderIds: orderIds), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,20 @@ extension Tcss {
     public func describeAbnormalProcessRuleDetail(_ input: DescribeAbnormalProcessRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessRuleDetailResponse {
         try await self.client.execute(action: "DescribeAbnormalProcessRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询运行时异常进程策略详细信息
+    ///
+    /// 查询运行时异常策略详细信息
+    @inlinable
+    public func describeAbnormalProcessRuleDetail(ruleId: String? = nil, imageId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalProcessRuleDetailResponse > {
+        self.describeAbnormalProcessRuleDetail(DescribeAbnormalProcessRuleDetailRequest(ruleId: ruleId, imageId: imageId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询运行时异常进程策略详细信息
+    ///
+    /// 查询运行时异常策略详细信息
+    @inlinable
+    public func describeAbnormalProcessRuleDetail(ruleId: String? = nil, imageId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessRuleDetailResponse {
+        try await self.describeAbnormalProcessRuleDetail(DescribeAbnormalProcessRuleDetailRequest(ruleId: ruleId, imageId: imageId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

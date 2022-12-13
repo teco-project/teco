@@ -73,4 +73,20 @@ extension Cvm {
     public func describeReservedInstancesConfigInfos(_ input: DescribeReservedInstancesConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReservedInstancesConfigInfosResponse {
         try await self.client.execute(action: "DescribeReservedInstancesConfigInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询预留实例机型配置
+    ///
+    /// 本接口(DescribeReservedInstancesConfigInfos)供用户列出可购买预留实例机型配置。预留实例当前只针对国际站白名单用户开放。
+    @inlinable
+    public func describeReservedInstancesConfigInfos(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReservedInstancesConfigInfosResponse > {
+        self.describeReservedInstancesConfigInfos(DescribeReservedInstancesConfigInfosRequest(filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询预留实例机型配置
+    ///
+    /// 本接口(DescribeReservedInstancesConfigInfos)供用户列出可购买预留实例机型配置。预留实例当前只针对国际站白名单用户开放。
+    @inlinable
+    public func describeReservedInstancesConfigInfos(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReservedInstancesConfigInfosResponse {
+        try await self.describeReservedInstancesConfigInfos(DescribeReservedInstancesConfigInfosRequest(filters: filters), logger: logger, on: eventLoop)
+    }
 }

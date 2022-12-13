@@ -72,4 +72,24 @@ extension Cvm {
     public func inquiryPriceResizeInstanceDisks(_ input: InquiryPriceResizeInstanceDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResizeInstanceDisksResponse {
         try await self.client.execute(action: "InquiryPriceResizeInstanceDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 扩容实例磁盘询价
+    ///
+    /// 本接口 (InquiryPriceResizeInstanceDisks) 用于扩容实例的数据盘询价。
+    /// * 目前只支持扩容非弹性数据盘（[`DescribeDisks`](https://cloud.tencent.com/document/api/362/16315)接口返回值中的`Portable`为`false`表示非弹性）询价，且[数据盘类型](https://cloud.tencent.com/document/product/213/15753#DataDisk)为：`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`。
+    /// * 目前不支持[CDH](https://cloud.tencent.com/document/product/416)实例使用该接口扩容数据盘询价。* 仅支持包年包月实例随机器购买的数据盘。* 目前只支持扩容一块数据盘询价。
+    @inlinable
+    public func inquiryPriceResizeInstanceDisks(instanceId: String, dataDisks: [DataDisk]? = nil, forceStop: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceResizeInstanceDisksResponse > {
+        self.inquiryPriceResizeInstanceDisks(InquiryPriceResizeInstanceDisksRequest(instanceId: instanceId, dataDisks: dataDisks, forceStop: forceStop), logger: logger, on: eventLoop)
+    }
+    
+    /// 扩容实例磁盘询价
+    ///
+    /// 本接口 (InquiryPriceResizeInstanceDisks) 用于扩容实例的数据盘询价。
+    /// * 目前只支持扩容非弹性数据盘（[`DescribeDisks`](https://cloud.tencent.com/document/api/362/16315)接口返回值中的`Portable`为`false`表示非弹性）询价，且[数据盘类型](https://cloud.tencent.com/document/product/213/15753#DataDisk)为：`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`。
+    /// * 目前不支持[CDH](https://cloud.tencent.com/document/product/416)实例使用该接口扩容数据盘询价。* 仅支持包年包月实例随机器购买的数据盘。* 目前只支持扩容一块数据盘询价。
+    @inlinable
+    public func inquiryPriceResizeInstanceDisks(instanceId: String, dataDisks: [DataDisk]? = nil, forceStop: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResizeInstanceDisksResponse {
+        try await self.inquiryPriceResizeInstanceDisks(InquiryPriceResizeInstanceDisksRequest(instanceId: instanceId, dataDisks: dataDisks, forceStop: forceStop), logger: logger, on: eventLoop)
+    }
 }

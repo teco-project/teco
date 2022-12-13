@@ -100,4 +100,16 @@ extension Iotvideoindustry {
     public func describeMessageForward(_ input: DescribeMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageForwardResponse {
         try await self.client.execute(action: "DescribeMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看消息转发配置详情
+    @inlinable
+    public func describeMessageForward(intId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMessageForwardResponse > {
+        self.describeMessageForward(DescribeMessageForwardRequest(intId: intId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看消息转发配置详情
+    @inlinable
+    public func describeMessageForward(intId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageForwardResponse {
+        try await self.describeMessageForward(DescribeMessageForwardRequest(intId: intId), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,20 @@ extension Yunjing {
     public func openProVersion(_ input: OpenProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProVersionResponse {
         try await self.client.execute(action: "OpenProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开通专业版
+    ///
+    /// 本接口 (OpenProVersion) 用于开通专业版。
+    @inlinable
+    public func openProVersion(machineType: String, machineRegion: String, quuids: [String], activityId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenProVersionResponse > {
+        self.openProVersion(OpenProVersionRequest(machineType: machineType, machineRegion: machineRegion, quuids: quuids, activityId: activityId), logger: logger, on: eventLoop)
+    }
+    
+    /// 开通专业版
+    ///
+    /// 本接口 (OpenProVersion) 用于开通专业版。
+    @inlinable
+    public func openProVersion(machineType: String, machineRegion: String, quuids: [String], activityId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProVersionResponse {
+        try await self.openProVersion(OpenProVersionRequest(machineType: machineType, machineRegion: machineRegion, quuids: quuids, activityId: activityId), logger: logger, on: eventLoop)
+    }
 }

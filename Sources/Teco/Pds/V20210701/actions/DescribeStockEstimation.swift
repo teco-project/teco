@@ -58,4 +58,20 @@ extension Pds {
     public func describeStockEstimation(_ input: DescribeStockEstimationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStockEstimationResponse {
         try await self.client.execute(action: "DescribeStockEstimation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 存量判断服务
+    ///
+    /// 查询存量判断服务
+    @inlinable
+    public func describeStockEstimation(serviceParams: UserInfos, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStockEstimationResponse > {
+        self.describeStockEstimation(DescribeStockEstimationRequest(serviceParams: serviceParams), logger: logger, on: eventLoop)
+    }
+    
+    /// 存量判断服务
+    ///
+    /// 查询存量判断服务
+    @inlinable
+    public func describeStockEstimation(serviceParams: UserInfos, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStockEstimationResponse {
+        try await self.describeStockEstimation(DescribeStockEstimationRequest(serviceParams: serviceParams), logger: logger, on: eventLoop)
+    }
 }

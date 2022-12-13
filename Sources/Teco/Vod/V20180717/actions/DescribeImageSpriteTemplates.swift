@@ -84,4 +84,20 @@ extension Vod {
     public func describeImageSpriteTemplates(_ input: DescribeImageSpriteTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSpriteTemplatesResponse {
         try await self.client.execute(action: "DescribeImageSpriteTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取雪碧图模板列表
+    ///
+    /// 查询雪碧图模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeImageSpriteTemplates(subAppId: UInt64? = nil, definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageSpriteTemplatesResponse > {
+        self.describeImageSpriteTemplates(DescribeImageSpriteTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取雪碧图模板列表
+    ///
+    /// 查询雪碧图模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeImageSpriteTemplates(subAppId: UInt64? = nil, definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSpriteTemplatesResponse {
+        try await self.describeImageSpriteTemplates(DescribeImageSpriteTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
+    }
 }

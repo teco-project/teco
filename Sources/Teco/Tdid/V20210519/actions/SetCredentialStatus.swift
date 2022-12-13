@@ -50,4 +50,16 @@ extension Tdid {
     public func setCredentialStatus(_ input: SetCredentialStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCredentialStatusResponse {
         try await self.client.execute(action: "SetCredentialStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置凭证链上状态
+    @inlinable
+    public func setCredentialStatus(credentialStatus: CredentialStatus, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetCredentialStatusResponse > {
+        self.setCredentialStatus(SetCredentialStatusRequest(credentialStatus: credentialStatus), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置凭证链上状态
+    @inlinable
+    public func setCredentialStatus(credentialStatus: CredentialStatus, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCredentialStatusResponse {
+        try await self.setCredentialStatus(SetCredentialStatusRequest(credentialStatus: credentialStatus), logger: logger, on: eventLoop)
+    }
 }

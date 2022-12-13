@@ -55,4 +55,16 @@ extension Taf {
     public func recognizePreciseTargetAudience(_ input: RecognizePreciseTargetAudienceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePreciseTargetAudienceResponse {
         try await self.client.execute(action: "RecognizePreciseTargetAudience", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 流量反欺诈-流量验准高级版
+    @inlinable
+    public func recognizePreciseTargetAudience(bspData: InputRecognizeTargetAudience, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizePreciseTargetAudienceResponse > {
+        self.recognizePreciseTargetAudience(RecognizePreciseTargetAudienceRequest(bspData: bspData), logger: logger, on: eventLoop)
+    }
+    
+    /// 流量反欺诈-流量验准高级版
+    @inlinable
+    public func recognizePreciseTargetAudience(bspData: InputRecognizeTargetAudience, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePreciseTargetAudienceResponse {
+        try await self.recognizePreciseTargetAudience(RecognizePreciseTargetAudienceRequest(bspData: bspData), logger: logger, on: eventLoop)
+    }
 }

@@ -65,4 +65,22 @@ extension Fmu {
     public func createModel(_ input: CreateModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModelResponse {
         try await self.client.execute(action: "CreateModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 上传唇色素材
+    ///
+    /// 在使用LUT素材的modelid实现试唇色前，您需要先上传 LUT 格式的cube文件注册唇色ID。查看 [LUT文件的使用说明](https://cloud.tencent.com/document/product/1172/41701)。
+    /// 注：您也可以直接使用 [试唇色接口](https://cloud.tencent.com/document/product/1172/40706)，通过输入RGBA模型数值的方式指定唇色，更简单易用。
+    @inlinable
+    public func createModel(lutFile: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateModelResponse > {
+        self.createModel(CreateModelRequest(lutFile: lutFile, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 上传唇色素材
+    ///
+    /// 在使用LUT素材的modelid实现试唇色前，您需要先上传 LUT 格式的cube文件注册唇色ID。查看 [LUT文件的使用说明](https://cloud.tencent.com/document/product/1172/41701)。
+    /// 注：您也可以直接使用 [试唇色接口](https://cloud.tencent.com/document/product/1172/40706)，通过输入RGBA模型数值的方式指定唇色，更简单易用。
+    @inlinable
+    public func createModel(lutFile: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModelResponse {
+        try await self.createModel(CreateModelRequest(lutFile: lutFile, description: description), logger: logger, on: eventLoop)
+    }
 }

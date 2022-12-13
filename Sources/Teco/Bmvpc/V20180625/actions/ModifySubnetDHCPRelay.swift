@@ -70,4 +70,16 @@ extension Bmvpc {
     public func modifySubnetDHCPRelay(_ input: ModifySubnetDHCPRelayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetDHCPRelayResponse {
         try await self.client.execute(action: "ModifySubnetDHCPRelay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改子网DHCP Relay属性
+    @inlinable
+    public func modifySubnetDHCPRelay(vpcId: String, subnetId: String, enableDHCP: Bool, serverIps: [String]? = nil, reservedIpCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubnetDHCPRelayResponse > {
+        self.modifySubnetDHCPRelay(ModifySubnetDHCPRelayRequest(vpcId: vpcId, subnetId: subnetId, enableDHCP: enableDHCP, serverIps: serverIps, reservedIpCount: reservedIpCount), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改子网DHCP Relay属性
+    @inlinable
+    public func modifySubnetDHCPRelay(vpcId: String, subnetId: String, enableDHCP: Bool, serverIps: [String]? = nil, reservedIpCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetDHCPRelayResponse {
+        try await self.modifySubnetDHCPRelay(ModifySubnetDHCPRelayRequest(vpcId: vpcId, subnetId: subnetId, enableDHCP: enableDHCP, serverIps: serverIps, reservedIpCount: reservedIpCount), logger: logger, on: eventLoop)
+    }
 }

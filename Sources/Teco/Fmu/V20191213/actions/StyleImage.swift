@@ -90,4 +90,20 @@ extension Fmu {
     public func styleImage(_ input: StyleImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StyleImageResponse {
         try await self.client.execute(action: "StyleImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 图片滤镜
+    ///
+    /// 上传一张照片，输出滤镜处理后的图片。
+    @inlinable
+    public func styleImage(filterType: Int64, image: String? = nil, url: String? = nil, filterDegree: Int64? = nil, rspImgType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StyleImageResponse > {
+        self.styleImage(StyleImageRequest(filterType: filterType, image: image, url: url, filterDegree: filterDegree, rspImgType: rspImgType), logger: logger, on: eventLoop)
+    }
+    
+    /// 图片滤镜
+    ///
+    /// 上传一张照片，输出滤镜处理后的图片。
+    @inlinable
+    public func styleImage(filterType: Int64, image: String? = nil, url: String? = nil, filterDegree: Int64? = nil, rspImgType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StyleImageResponse {
+        try await self.styleImage(StyleImageRequest(filterType: filterType, image: image, url: url, filterDegree: filterDegree, rspImgType: rspImgType), logger: logger, on: eventLoop)
+    }
 }

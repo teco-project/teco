@@ -51,4 +51,16 @@ extension Tke {
     public func describeEKSContainerInstanceRegions(_ input: DescribeEKSContainerInstanceRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSContainerInstanceRegionsResponse {
         try await self.client.execute(action: "DescribeEKSContainerInstanceRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询容器实例支持的地域
+    @inlinable
+    public func describeEKSContainerInstanceRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEKSContainerInstanceRegionsResponse > {
+        self.describeEKSContainerInstanceRegions(DescribeEKSContainerInstanceRegionsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器实例支持的地域
+    @inlinable
+    public func describeEKSContainerInstanceRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSContainerInstanceRegionsResponse {
+        try await self.describeEKSContainerInstanceRegions(DescribeEKSContainerInstanceRegionsRequest(), logger: logger, on: eventLoop)
+    }
 }

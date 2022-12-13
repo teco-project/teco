@@ -97,4 +97,20 @@ extension Dbbrain {
     public func describeUserSqlAdvice(_ input: DescribeUserSqlAdviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSqlAdviceResponse {
         try await self.client.execute(action: "DescribeUserSqlAdvice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取SQL优化建议
+    ///
+    /// 获取SQL优化建议。【产品用户回馈，此接口限免开放，后续将并入dbbrain专业版】
+    @inlinable
+    public func describeUserSqlAdvice(instanceId: String, sqlText: String, schema: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserSqlAdviceResponse > {
+        self.describeUserSqlAdvice(DescribeUserSqlAdviceRequest(instanceId: instanceId, sqlText: sqlText, schema: schema, product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取SQL优化建议
+    ///
+    /// 获取SQL优化建议。【产品用户回馈，此接口限免开放，后续将并入dbbrain专业版】
+    @inlinable
+    public func describeUserSqlAdvice(instanceId: String, sqlText: String, schema: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSqlAdviceResponse {
+        try await self.describeUserSqlAdvice(DescribeUserSqlAdviceRequest(instanceId: instanceId, sqlText: sqlText, schema: schema, product: product), logger: logger, on: eventLoop)
+    }
 }

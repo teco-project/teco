@@ -72,4 +72,20 @@ extension Ame {
     public func describeKTVPlaylistDetail(_ input: DescribeKTVPlaylistDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistDetailResponse {
         try await self.client.execute(action: "DescribeKTVPlaylistDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取直播互动曲库推荐歌单详情
+    ///
+    /// 根据歌单 Id 获取歌单详情，包括歌单的基础信息以及歌曲列表。
+    @inlinable
+    public func describeKTVPlaylistDetail(playlistId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVPlaylistDetailResponse > {
+        self.describeKTVPlaylistDetail(DescribeKTVPlaylistDetailRequest(playlistId: playlistId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取直播互动曲库推荐歌单详情
+    ///
+    /// 根据歌单 Id 获取歌单详情，包括歌单的基础信息以及歌曲列表。
+    @inlinable
+    public func describeKTVPlaylistDetail(playlistId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistDetailResponse {
+        try await self.describeKTVPlaylistDetail(DescribeKTVPlaylistDetailRequest(playlistId: playlistId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

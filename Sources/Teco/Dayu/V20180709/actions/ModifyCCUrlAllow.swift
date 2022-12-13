@@ -44,7 +44,7 @@ extension Dayu {
         /// 当Method为delete时，可以不用填写此字段；
         public let ruleId: String?
         
-        public init (business: String, id: String, method: String, type: String, urlList: [String], `protocol`: String? = nil, domain: String? = nil, ruleId: String? = nil) {
+        public init (business: String, id: String, method: String, type: String, urlList: [String], protocol: String? = nil, domain: String? = nil, ruleId: String? = nil) {
             self.business = business
             self.id = id
             self.method = method
@@ -91,5 +91,17 @@ extension Dayu {
     @inlinable
     public func modifyCCUrlAllow(_ input: ModifyCCUrlAllowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCUrlAllowResponse {
         try await self.client.execute(action: "ModifyCCUrlAllow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 添加或删除CC的URL白名单
+    @inlinable
+    public func modifyCCUrlAllow(business: String, id: String, method: String, type: String, urlList: [String], protocol: String? = nil, domain: String? = nil, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCUrlAllowResponse > {
+        self.modifyCCUrlAllow(ModifyCCUrlAllowRequest(business: business, id: id, method: method, type: type, urlList: urlList, protocol: `protocol`, domain: domain, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加或删除CC的URL白名单
+    @inlinable
+    public func modifyCCUrlAllow(business: String, id: String, method: String, type: String, urlList: [String], protocol: String? = nil, domain: String? = nil, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCUrlAllowResponse {
+        try await self.modifyCCUrlAllow(ModifyCCUrlAllowRequest(business: business, id: id, method: method, type: type, urlList: urlList, protocol: `protocol`, domain: domain, ruleId: ruleId), logger: logger, on: eventLoop)
     }
 }

@@ -47,4 +47,16 @@ extension Cloudaudit {
     public func listAudits(_ input: ListAuditsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuditsResponse {
         try await self.client.execute(action: "ListAudits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询跟踪集概要
+    @inlinable
+    public func listAudits(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAuditsResponse > {
+        self.listAudits(ListAuditsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询跟踪集概要
+    @inlinable
+    public func listAudits(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuditsResponse {
+        try await self.listAudits(ListAuditsRequest(), logger: logger, on: eventLoop)
+    }
 }

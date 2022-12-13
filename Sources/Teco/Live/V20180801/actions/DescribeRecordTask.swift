@@ -93,4 +93,26 @@ extension Live {
     public func describeRecordTask(_ input: DescribeRecordTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordTaskResponse {
         try await self.client.execute(action: "DescribeRecordTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询录制任务列表（新）
+    ///
+    /// 查询指定时间段范围内启动和结束的录制任务列表。
+    /// - 使用前提
+    /// 1. 仅用于查询由 CreateRecordTask 接口创建的录制任务。
+    /// 2. 不能查询被 DeleteRecordTask 接口删除以及已过期（平台侧保留3个月）的录制任务。
+    @inlinable
+    public func describeRecordTask(startTime: UInt64, endTime: UInt64, streamName: String? = nil, domainName: String? = nil, appName: String? = nil, scrollToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordTaskResponse > {
+        self.describeRecordTask(DescribeRecordTaskRequest(startTime: startTime, endTime: endTime, streamName: streamName, domainName: domainName, appName: appName, scrollToken: scrollToken), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询录制任务列表（新）
+    ///
+    /// 查询指定时间段范围内启动和结束的录制任务列表。
+    /// - 使用前提
+    /// 1. 仅用于查询由 CreateRecordTask 接口创建的录制任务。
+    /// 2. 不能查询被 DeleteRecordTask 接口删除以及已过期（平台侧保留3个月）的录制任务。
+    @inlinable
+    public func describeRecordTask(startTime: UInt64, endTime: UInt64, streamName: String? = nil, domainName: String? = nil, appName: String? = nil, scrollToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordTaskResponse {
+        try await self.describeRecordTask(DescribeRecordTaskRequest(startTime: startTime, endTime: endTime, streamName: streamName, domainName: domainName, appName: appName, scrollToken: scrollToken), logger: logger, on: eventLoop)
+    }
 }

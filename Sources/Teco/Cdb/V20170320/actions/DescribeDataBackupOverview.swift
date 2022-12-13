@@ -94,4 +94,20 @@ extension Cdb {
     public func describeDataBackupOverview(_ input: DescribeDataBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataBackupOverviewResponse {
         try await self.client.execute(action: "DescribeDataBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询数据备份概览
+    ///
+    /// 本接口(DescribeDataBackupOverview)用于查询用户在当前地域总的数据备份概览。
+    @inlinable
+    public func describeDataBackupOverview(product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataBackupOverviewResponse > {
+        self.describeDataBackupOverview(DescribeDataBackupOverviewRequest(product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据备份概览
+    ///
+    /// 本接口(DescribeDataBackupOverview)用于查询用户在当前地域总的数据备份概览。
+    @inlinable
+    public func describeDataBackupOverview(product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataBackupOverviewResponse {
+        try await self.describeDataBackupOverview(DescribeDataBackupOverviewRequest(product: product), logger: logger, on: eventLoop)
+    }
 }

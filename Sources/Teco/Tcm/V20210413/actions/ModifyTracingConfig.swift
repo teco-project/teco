@@ -70,4 +70,16 @@ extension Tcm {
     public func modifyTracingConfig(_ input: ModifyTracingConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTracingConfigResponse {
         try await self.client.execute(action: "ModifyTracingConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改 Tracing 配置
+    @inlinable
+    public func modifyTracingConfig(meshId: String, enable: Bool? = nil, apm: APM? = nil, sampling: Float? = nil, zipkin: TracingZipkin? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTracingConfigResponse > {
+        self.modifyTracingConfig(ModifyTracingConfigRequest(meshId: meshId, enable: enable, apm: apm, sampling: sampling, zipkin: zipkin), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改 Tracing 配置
+    @inlinable
+    public func modifyTracingConfig(meshId: String, enable: Bool? = nil, apm: APM? = nil, sampling: Float? = nil, zipkin: TracingZipkin? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTracingConfigResponse {
+        try await self.modifyTracingConfig(ModifyTracingConfigRequest(meshId: meshId, enable: enable, apm: apm, sampling: sampling, zipkin: zipkin), logger: logger, on: eventLoop)
+    }
 }

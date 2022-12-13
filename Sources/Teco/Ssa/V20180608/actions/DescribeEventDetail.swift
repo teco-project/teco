@@ -74,4 +74,16 @@ extension Ssa {
     public func describeEventDetail(_ input: DescribeEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventDetailResponse {
         try await self.client.execute(action: "DescribeEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取安全事件详情
+    @inlinable
+    public func describeEventDetail(index: String? = nil, id: String? = nil, source: String? = nil, subEventType: UInt64? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEventDetailResponse > {
+        self.describeEventDetail(DescribeEventDetailRequest(index: index, id: id, source: source, subEventType: subEventType, name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取安全事件详情
+    @inlinable
+    public func describeEventDetail(index: String? = nil, id: String? = nil, source: String? = nil, subEventType: UInt64? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventDetailResponse {
+        try await self.describeEventDetail(DescribeEventDetailRequest(index: index, id: id, source: source, subEventType: subEventType, name: name), logger: logger, on: eventLoop)
+    }
 }

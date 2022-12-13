@@ -67,4 +67,20 @@ extension Tcaplusdb {
     public func deleteTables(_ input: DeleteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTablesResponse {
         try await self.client.execute(action: "DeleteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除表
+    ///
+    /// 删除指定的表,第一次调用此接口代表将表移动至回收站，再次调用代表将此表格从回收站中彻底删除。
+    @inlinable
+    public func deleteTables(clusterId: String, selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTablesResponse > {
+        self.deleteTables(DeleteTablesRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除表
+    ///
+    /// 删除指定的表,第一次调用此接口代表将表移动至回收站，再次调用代表将此表格从回收站中彻底删除。
+    @inlinable
+    public func deleteTables(clusterId: String, selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTablesResponse {
+        try await self.deleteTables(DeleteTablesRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Cfs {
     public func updateCfsFileSystemSizeLimit(_ input: UpdateCfsFileSystemSizeLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsFileSystemSizeLimitResponse {
         try await self.client.execute(action: "UpdateCfsFileSystemSizeLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新文件系统存储容量限制
+    ///
+    /// 本接口（UpdateCfsFileSystemSizeLimit）用于更新文件系统存储容量限制。
+    @inlinable
+    public func updateCfsFileSystemSizeLimit(fsLimit: UInt64, fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCfsFileSystemSizeLimitResponse > {
+        self.updateCfsFileSystemSizeLimit(UpdateCfsFileSystemSizeLimitRequest(fsLimit: fsLimit, fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新文件系统存储容量限制
+    ///
+    /// 本接口（UpdateCfsFileSystemSizeLimit）用于更新文件系统存储容量限制。
+    @inlinable
+    public func updateCfsFileSystemSizeLimit(fsLimit: UInt64, fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsFileSystemSizeLimitResponse {
+        try await self.updateCfsFileSystemSizeLimit(UpdateCfsFileSystemSizeLimitRequest(fsLimit: fsLimit, fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Iecp {
     public func createEdgeNodeBatch(_ input: CreateEdgeNodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeBatchResponse {
         try await self.client.execute(action: "CreateEdgeNodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量预注册节点
+    @inlinable
+    public func createEdgeNodeBatch(edgeUnitId: UInt64, nodes: [DracoNodeInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeNodeBatchResponse > {
+        self.createEdgeNodeBatch(CreateEdgeNodeBatchRequest(edgeUnitId: edgeUnitId, nodes: nodes), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量预注册节点
+    @inlinable
+    public func createEdgeNodeBatch(edgeUnitId: UInt64, nodes: [DracoNodeInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeBatchResponse {
+        try await self.createEdgeNodeBatch(CreateEdgeNodeBatchRequest(edgeUnitId: edgeUnitId, nodes: nodes), logger: logger, on: eventLoop)
+    }
 }

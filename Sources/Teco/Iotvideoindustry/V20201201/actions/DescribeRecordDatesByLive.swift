@@ -65,4 +65,16 @@ extension Iotvideoindustry {
     public func describeRecordDatesByLive(_ input: DescribeRecordDatesByLiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordDatesByLiveResponse {
         try await self.client.execute(action: "DescribeRecordDatesByLive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 直播录像存储日期列表
+    @inlinable
+    public func describeRecordDatesByLive(liveChannelId: String, offset: Int64, limit: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordDatesByLiveResponse > {
+        self.describeRecordDatesByLive(DescribeRecordDatesByLiveRequest(liveChannelId: liveChannelId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 直播录像存储日期列表
+    @inlinable
+    public func describeRecordDatesByLive(liveChannelId: String, offset: Int64, limit: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordDatesByLiveResponse {
+        try await self.describeRecordDatesByLive(DescribeRecordDatesByLiveRequest(liveChannelId: liveChannelId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

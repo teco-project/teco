@@ -102,4 +102,20 @@ extension Sqlserver {
     public func describeIncrementalMigration(_ input: DescribeIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIncrementalMigrationResponse {
         try await self.client.execute(action: "DescribeIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询增量备份导入任务
+    ///
+    /// 本接口（DescribeIncrementalMigration）用于查询增量备份导入任务。
+    @inlinable
+    public func describeIncrementalMigration(backupMigrationId: String, instanceId: String, backupFileName: String? = nil, statusSet: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, incrementalMigrationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIncrementalMigrationResponse > {
+        self.describeIncrementalMigration(DescribeIncrementalMigrationRequest(backupMigrationId: backupMigrationId, instanceId: instanceId, backupFileName: backupFileName, statusSet: statusSet, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, incrementalMigrationId: incrementalMigrationId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询增量备份导入任务
+    ///
+    /// 本接口（DescribeIncrementalMigration）用于查询增量备份导入任务。
+    @inlinable
+    public func describeIncrementalMigration(backupMigrationId: String, instanceId: String, backupFileName: String? = nil, statusSet: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, incrementalMigrationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIncrementalMigrationResponse {
+        try await self.describeIncrementalMigration(DescribeIncrementalMigrationRequest(backupMigrationId: backupMigrationId, instanceId: instanceId, backupFileName: backupFileName, statusSet: statusSet, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, incrementalMigrationId: incrementalMigrationId), logger: logger, on: eventLoop)
+    }
 }

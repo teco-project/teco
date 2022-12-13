@@ -59,4 +59,16 @@ extension Teo {
     public func importDnsRecords(_ input: ImportDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportDnsRecordsResponse {
         try await self.client.execute(action: "ImportDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导入 DNS 记录
+    @inlinable
+    public func importDnsRecords(zoneId: String, file: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportDnsRecordsResponse > {
+        self.importDnsRecords(ImportDnsRecordsRequest(zoneId: zoneId, file: file), logger: logger, on: eventLoop)
+    }
+    
+    /// 导入 DNS 记录
+    @inlinable
+    public func importDnsRecords(zoneId: String, file: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportDnsRecordsResponse {
+        try await self.importDnsRecords(ImportDnsRecordsRequest(zoneId: zoneId, file: file), logger: logger, on: eventLoop)
+    }
 }

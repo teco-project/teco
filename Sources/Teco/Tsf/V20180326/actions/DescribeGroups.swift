@@ -105,4 +105,16 @@ extension Tsf {
     public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
         try await self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取虚拟机部署组列表
+    @inlinable
+    public func describeGroups(searchWord: String? = nil, applicationId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, groupResourceTypeList: [String]? = nil, status: String? = nil, groupIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupsResponse > {
+        self.describeGroups(DescribeGroupsRequest(searchWord: searchWord, applicationId: applicationId, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, namespaceId: namespaceId, clusterId: clusterId, groupResourceTypeList: groupResourceTypeList, status: status, groupIdList: groupIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取虚拟机部署组列表
+    @inlinable
+    public func describeGroups(searchWord: String? = nil, applicationId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, groupResourceTypeList: [String]? = nil, status: String? = nil, groupIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
+        try await self.describeGroups(DescribeGroupsRequest(searchWord: searchWord, applicationId: applicationId, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, namespaceId: namespaceId, clusterId: clusterId, groupResourceTypeList: groupResourceTypeList, status: status, groupIdList: groupIdList), logger: logger, on: eventLoop)
+    }
 }

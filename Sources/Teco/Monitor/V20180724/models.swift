@@ -613,7 +613,7 @@ extension Monitor {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hierarchicalValue: AlarmHierarchicalValue?
         
-        public init (metricName: String? = nil, period: Int64? = nil, `operator`: String? = nil, value: String? = nil, continuePeriod: Int64? = nil, noticeFrequency: Int64? = nil, isPowerNotice: Int64? = nil, filter: AlarmPolicyFilter? = nil, description: String? = nil, unit: String? = nil, ruleType: String? = nil, isAdvanced: Int64? = nil, isOpen: Int64? = nil, productId: String? = nil, valueMax: Float? = nil, valueMin: Float? = nil, hierarchicalValue: AlarmHierarchicalValue? = nil) {
+        public init (metricName: String? = nil, period: Int64? = nil, operator: String? = nil, value: String? = nil, continuePeriod: Int64? = nil, noticeFrequency: Int64? = nil, isPowerNotice: Int64? = nil, filter: AlarmPolicyFilter? = nil, description: String? = nil, unit: String? = nil, ruleType: String? = nil, isAdvanced: Int64? = nil, isOpen: Int64? = nil, productId: String? = nil, valueMax: Float? = nil, valueMin: Float? = nil, hierarchicalValue: AlarmHierarchicalValue? = nil) {
             self.metricName = metricName
             self.period = period
             self.`operator` = `operator`
@@ -2512,7 +2512,7 @@ extension Monitor {
         /// 字段值
         public let value: String
         
-        public init (key: String, `operator`: String, value: String) {
+        public init (key: String, operator: String, value: String) {
             self.key = key
             self.`operator` = `operator`
             self.value = value
@@ -2748,7 +2748,7 @@ extension Monitor {
         /// 维度值，当Op是eq、ne时，只使用第一个元素
         public let value: [String]
         
-        public init (key: String, `operator`: String, value: [String]) {
+        public init (key: String, operator: String, value: [String]) {
             self.key = key
             self.`operator` = `operator`
             self.value = value

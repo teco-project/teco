@@ -100,4 +100,20 @@ extension Tci {
     public func describeAudioTask(_ input: DescribeAudioTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAudioTaskResponse {
         try await self.client.execute(action: "DescribeAudioTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 音频分析结果查询
+    ///
+    /// 音频评估任务信息查询接口，异步查询客户提交的请求的结果。
+    @inlinable
+    public func describeAudioTask(jobId: Int64, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAudioTaskResponse > {
+        self.describeAudioTask(DescribeAudioTaskRequest(jobId: jobId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 音频分析结果查询
+    ///
+    /// 音频评估任务信息查询接口，异步查询客户提交的请求的结果。
+    @inlinable
+    public func describeAudioTask(jobId: Int64, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAudioTaskResponse {
+        try await self.describeAudioTask(DescribeAudioTaskRequest(jobId: jobId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

@@ -50,4 +50,16 @@ extension Tcss {
     public func describeLogStorageStatistic(_ input: DescribeLogStorageStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogStorageStatisticResponse {
         try await self.client.execute(action: "DescribeLogStorageStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取日志检索容量使用统计
+    @inlinable
+    public func describeLogStorageStatistic(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogStorageStatisticResponse > {
+        self.describeLogStorageStatistic(DescribeLogStorageStatisticRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志检索容量使用统计
+    @inlinable
+    public func describeLogStorageStatistic(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogStorageStatisticResponse {
+        try await self.describeLogStorageStatistic(DescribeLogStorageStatisticRequest(), logger: logger, on: eventLoop)
+    }
 }

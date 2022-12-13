@@ -70,4 +70,16 @@ extension Cfw {
     public func modifyAllRuleStatus(_ input: ModifyAllRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAllRuleStatusResponse {
         try await self.client.execute(action: "ModifyAllRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启用停用全部规则
+    @inlinable
+    public func modifyAllRuleStatus(status: UInt64, direction: UInt64? = nil, edgeId: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAllRuleStatusResponse > {
+        self.modifyAllRuleStatus(ModifyAllRuleStatusRequest(status: status, direction: direction, edgeId: edgeId, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 启用停用全部规则
+    @inlinable
+    public func modifyAllRuleStatus(status: UInt64, direction: UInt64? = nil, edgeId: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAllRuleStatusResponse {
+        try await self.modifyAllRuleStatus(ModifyAllRuleStatusRequest(status: status, direction: direction, edgeId: edgeId, area: area), logger: logger, on: eventLoop)
+    }
 }

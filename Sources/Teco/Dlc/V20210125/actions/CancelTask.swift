@@ -54,4 +54,20 @@ extension Dlc {
     public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
         try await self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 取消任务执行
+    ///
+    /// 本接口（CancelTask），用于取消任务执行
+    @inlinable
+    public func cancelTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelTaskResponse > {
+        self.cancelTask(CancelTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 取消任务执行
+    ///
+    /// 本接口（CancelTask），用于取消任务执行
+    @inlinable
+    public func cancelTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
+        try await self.cancelTask(CancelTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

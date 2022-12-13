@@ -59,4 +59,20 @@ extension Iai {
     public func deletePersonFromGroup(_ input: DeletePersonFromGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonFromGroupResponse {
         try await self.client.execute(action: "DeletePersonFromGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 人员库删除人员
+    ///
+    /// 从某人员库中删除人员，此操作仅影响该人员库。若该人员仅存在于指定的人员库中，该人员将被删除，其所有的人脸信息也将被删除。
+    @inlinable
+    public func deletePersonFromGroup(personId: String, groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePersonFromGroupResponse > {
+        self.deletePersonFromGroup(DeletePersonFromGroupRequest(personId: personId, groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 人员库删除人员
+    ///
+    /// 从某人员库中删除人员，此操作仅影响该人员库。若该人员仅存在于指定的人员库中，该人员将被删除，其所有的人脸信息也将被删除。
+    @inlinable
+    public func deletePersonFromGroup(personId: String, groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonFromGroupResponse {
+        try await self.deletePersonFromGroup(DeletePersonFromGroupRequest(personId: personId, groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

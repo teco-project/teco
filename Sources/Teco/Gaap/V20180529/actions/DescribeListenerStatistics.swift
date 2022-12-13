@@ -85,4 +85,20 @@ extension Gaap {
     public func describeListenerStatistics(_ input: DescribeListenerStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListenerStatisticsResponse {
         try await self.client.execute(action: "DescribeListenerStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询监听器统计数据
+    ///
+    /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发数据。支持300秒, 3600秒和86400秒的细粒度，取值为细粒度范围内最大值。
+    @inlinable
+    public func describeListenerStatistics(listenerId: String, startTime: Date, endTime: Date, metricNames: [String], granularity: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListenerStatisticsResponse > {
+        self.describeListenerStatistics(DescribeListenerStatisticsRequest(listenerId: listenerId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询监听器统计数据
+    ///
+    /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发数据。支持300秒, 3600秒和86400秒的细粒度，取值为细粒度范围内最大值。
+    @inlinable
+    public func describeListenerStatistics(listenerId: String, startTime: Date, endTime: Date, metricNames: [String], granularity: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListenerStatisticsResponse {
+        try await self.describeListenerStatistics(DescribeListenerStatisticsRequest(listenerId: listenerId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity), logger: logger, on: eventLoop)
+    }
 }

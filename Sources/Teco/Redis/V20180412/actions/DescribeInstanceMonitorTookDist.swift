@@ -64,4 +64,16 @@ extension Redis {
     public func describeInstanceMonitorTookDist(_ input: DescribeInstanceMonitorTookDistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTookDistResponse {
         try await self.client.execute(action: "DescribeInstanceMonitorTookDist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例访问的耗时分布
+    @inlinable
+    public func describeInstanceMonitorTookDist(instanceId: String, date: String, spanType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorTookDistResponse > {
+        self.describeInstanceMonitorTookDist(DescribeInstanceMonitorTookDistRequest(instanceId: instanceId, date: date, spanType: spanType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例访问的耗时分布
+    @inlinable
+    public func describeInstanceMonitorTookDist(instanceId: String, date: String, spanType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTookDistResponse {
+        try await self.describeInstanceMonitorTookDist(DescribeInstanceMonitorTookDistRequest(instanceId: instanceId, date: date, spanType: spanType), logger: logger, on: eventLoop)
+    }
 }

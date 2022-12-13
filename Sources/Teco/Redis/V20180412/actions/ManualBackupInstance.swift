@@ -64,4 +64,16 @@ extension Redis {
     public func manualBackupInstance(_ input: ManualBackupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualBackupInstanceResponse {
         try await self.client.execute(action: "ManualBackupInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 手动备份Redis实例
+    @inlinable
+    public func manualBackupInstance(instanceId: String, remark: String? = nil, storageDays: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManualBackupInstanceResponse > {
+        self.manualBackupInstance(ManualBackupInstanceRequest(instanceId: instanceId, remark: remark, storageDays: storageDays), logger: logger, on: eventLoop)
+    }
+    
+    /// 手动备份Redis实例
+    @inlinable
+    public func manualBackupInstance(instanceId: String, remark: String? = nil, storageDays: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualBackupInstanceResponse {
+        try await self.manualBackupInstance(ManualBackupInstanceRequest(instanceId: instanceId, remark: remark, storageDays: storageDays), logger: logger, on: eventLoop)
+    }
 }

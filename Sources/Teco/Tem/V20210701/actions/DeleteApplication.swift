@@ -79,4 +79,26 @@ extension Tem {
     public func deleteApplication(_ input: DeleteApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationResponse {
         try await self.client.execute(action: "DeleteApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 服务删除
+    ///
+    /// 服务删除
+    ///   - 停止当前运行服务
+    ///   - 删除服务相关资源
+    ///   - 删除服务
+    @inlinable
+    public func deleteApplication(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, deleteApplicationIfNoRunningVersion: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationResponse > {
+        self.deleteApplication(DeleteApplicationRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, deleteApplicationIfNoRunningVersion: deleteApplicationIfNoRunningVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 服务删除
+    ///
+    /// 服务删除
+    ///   - 停止当前运行服务
+    ///   - 删除服务相关资源
+    ///   - 删除服务
+    @inlinable
+    public func deleteApplication(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, deleteApplicationIfNoRunningVersion: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationResponse {
+        try await self.deleteApplication(DeleteApplicationRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, deleteApplicationIfNoRunningVersion: deleteApplicationIfNoRunningVersion), logger: logger, on: eventLoop)
+    }
 }

@@ -79,4 +79,16 @@ extension Iotvideo {
     public func describePushChannel(_ input: DescribePushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushChannelResponse {
         try await self.client.execute(action: "DescribePushChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看推送通道
+    @inlinable
+    public func describePushChannel(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePushChannelResponse > {
+        self.describePushChannel(DescribePushChannelRequest(productId: productId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看推送通道
+    @inlinable
+    public func describePushChannel(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushChannelResponse {
+        try await self.describePushChannel(DescribePushChannelRequest(productId: productId), logger: logger, on: eventLoop)
+    }
 }

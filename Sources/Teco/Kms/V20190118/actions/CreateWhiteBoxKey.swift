@@ -91,4 +91,20 @@ extension Kms {
     public func createWhiteBoxKey(_ input: CreateWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWhiteBoxKeyResponse {
         try await self.client.execute(action: "CreateWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建白盒密钥
+    ///
+    /// 创建白盒密钥。 密钥个数的上限为 50。
+    @inlinable
+    public func createWhiteBoxKey(alias: String, algorithm: String, description: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWhiteBoxKeyResponse > {
+        self.createWhiteBoxKey(CreateWhiteBoxKeyRequest(alias: alias, algorithm: algorithm, description: description, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建白盒密钥
+    ///
+    /// 创建白盒密钥。 密钥个数的上限为 50。
+    @inlinable
+    public func createWhiteBoxKey(alias: String, algorithm: String, description: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWhiteBoxKeyResponse {
+        try await self.createWhiteBoxKey(CreateWhiteBoxKeyRequest(alias: alias, algorithm: algorithm, description: description, tags: tags), logger: logger, on: eventLoop)
+    }
 }

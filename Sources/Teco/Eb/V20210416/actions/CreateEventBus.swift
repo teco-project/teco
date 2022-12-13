@@ -63,4 +63,20 @@ extension Eb {
     public func createEventBus(_ input: CreateEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEventBusResponse {
         try await self.client.execute(action: "CreateEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建事件集
+    ///
+    /// 用于创建事件集
+    @inlinable
+    public func createEventBus(eventBusName: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEventBusResponse > {
+        self.createEventBus(CreateEventBusRequest(eventBusName: eventBusName, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建事件集
+    ///
+    /// 用于创建事件集
+    @inlinable
+    public func createEventBus(eventBusName: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEventBusResponse {
+        try await self.createEventBus(CreateEventBusRequest(eventBusName: eventBusName, description: description), logger: logger, on: eventLoop)
+    }
 }

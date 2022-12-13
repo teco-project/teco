@@ -55,4 +55,16 @@ extension Iotvideoindustry {
     public func modifyVideoInfo(_ input: ModifyVideoInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVideoInfoResponse {
         try await self.client.execute(action: "ModifyVideoInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改录像存储列表
+    @inlinable
+    public func modifyVideoInfo(initIDs: [Int64], expireTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVideoInfoResponse > {
+        self.modifyVideoInfo(ModifyVideoInfoRequest(initIDs: initIDs, expireTime: expireTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改录像存储列表
+    @inlinable
+    public func modifyVideoInfo(initIDs: [Int64], expireTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVideoInfoResponse {
+        try await self.modifyVideoInfo(ModifyVideoInfoRequest(initIDs: initIDs, expireTime: expireTime), logger: logger, on: eventLoop)
+    }
 }

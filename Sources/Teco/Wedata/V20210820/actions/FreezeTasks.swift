@@ -65,4 +65,22 @@ extension Wedata {
     public func freezeTasks(_ input: FreezeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeTasksResponse {
         try await self.client.execute(action: "FreezeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量冻结任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 批量冻结任务
+    @inlinable
+    public func freezeTasks(tasks: [SimpleTaskInfo], operateIsInform: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FreezeTasksResponse > {
+        self.freezeTasks(FreezeTasksRequest(tasks: tasks, operateIsInform: operateIsInform), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量冻结任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 批量冻结任务
+    @inlinable
+    public func freezeTasks(tasks: [SimpleTaskInfo], operateIsInform: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeTasksResponse {
+        try await self.freezeTasks(FreezeTasksRequest(tasks: tasks, operateIsInform: operateIsInform), logger: logger, on: eventLoop)
+    }
 }

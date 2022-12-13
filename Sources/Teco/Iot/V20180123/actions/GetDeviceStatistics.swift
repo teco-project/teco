@@ -70,4 +70,20 @@ extension Iot {
     public func getDeviceStatistics(_ input: GetDeviceStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceStatisticsResponse {
         try await self.client.execute(action: "GetDeviceStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备统计指标
+    ///
+    /// 查询某段时间范围内产品的在线、激活设备数
+    @inlinable
+    public func getDeviceStatistics(products: [String]? = nil, startDate: Date? = nil, endDate: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceStatisticsResponse > {
+        self.getDeviceStatistics(GetDeviceStatisticsRequest(products: products, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备统计指标
+    ///
+    /// 查询某段时间范围内产品的在线、激活设备数
+    @inlinable
+    public func getDeviceStatistics(products: [String]? = nil, startDate: Date? = nil, endDate: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceStatisticsResponse {
+        try await self.getDeviceStatistics(GetDeviceStatisticsRequest(products: products, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
 }

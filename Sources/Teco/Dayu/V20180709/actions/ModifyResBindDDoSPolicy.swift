@@ -73,4 +73,20 @@ extension Dayu {
     public func modifyResBindDDoSPolicy(_ input: ModifyResBindDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResBindDDoSPolicyResponse {
         try await self.client.execute(action: "ModifyResBindDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 资源绑定DDoS高级策略
+    ///
+    /// 资源实例绑定DDoS高级策略
+    @inlinable
+    public func modifyResBindDDoSPolicy(business: String, id: String, policyId: String, method: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResBindDDoSPolicyResponse > {
+        self.modifyResBindDDoSPolicy(ModifyResBindDDoSPolicyRequest(business: business, id: id, policyId: policyId, method: method), logger: logger, on: eventLoop)
+    }
+    
+    /// 资源绑定DDoS高级策略
+    ///
+    /// 资源实例绑定DDoS高级策略
+    @inlinable
+    public func modifyResBindDDoSPolicy(business: String, id: String, policyId: String, method: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResBindDDoSPolicyResponse {
+        try await self.modifyResBindDDoSPolicy(ModifyResBindDDoSPolicyRequest(business: business, id: id, policyId: policyId, method: method), logger: logger, on: eventLoop)
+    }
 }

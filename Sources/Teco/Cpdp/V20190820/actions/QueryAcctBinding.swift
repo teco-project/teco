@@ -90,4 +90,16 @@ extension Cpdp {
     public func queryAcctBinding(_ input: QueryAcctBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAcctBindingResponse {
         try await self.client.execute(action: "QueryAcctBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 聚鑫-查询子账户绑定银行卡
+    @inlinable
+    public func queryAcctBinding(midasAppId: String, subAppId: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAcctBindingResponse > {
+        self.queryAcctBinding(QueryAcctBindingRequest(midasAppId: midasAppId, subAppId: subAppId, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-查询子账户绑定银行卡
+    @inlinable
+    public func queryAcctBinding(midasAppId: String, subAppId: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAcctBindingResponse {
+        try await self.queryAcctBinding(QueryAcctBindingRequest(midasAppId: midasAppId, subAppId: subAppId, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,16 @@ extension Tcb {
     public func describeWxCloudBaseRunSubNets(_ input: DescribeWxCloudBaseRunSubNetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWxCloudBaseRunSubNetsResponse {
         try await self.client.execute(action: "DescribeWxCloudBaseRunSubNets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询微信云托管子网
+    @inlinable
+    public func describeWxCloudBaseRunSubNets(vpcId: String, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWxCloudBaseRunSubNetsResponse > {
+        self.describeWxCloudBaseRunSubNets(DescribeWxCloudBaseRunSubNetsRequest(vpcId: vpcId, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询微信云托管子网
+    @inlinable
+    public func describeWxCloudBaseRunSubNets(vpcId: String, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWxCloudBaseRunSubNetsResponse {
+        try await self.describeWxCloudBaseRunSubNets(DescribeWxCloudBaseRunSubNetsRequest(vpcId: vpcId, limit: limit), logger: logger, on: eventLoop)
+    }
 }

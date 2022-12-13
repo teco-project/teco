@@ -62,4 +62,20 @@ extension Tcss {
     public func describeAffectedClusterCount(_ input: DescribeAffectedClusterCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedClusterCountResponse {
         try await self.client.execute(action: "DescribeAffectedClusterCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取受影响的集群数量
+    ///
+    /// 获取受影响的集群数量，返回数量
+    @inlinable
+    public func describeAffectedClusterCount(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAffectedClusterCountResponse > {
+        self.describeAffectedClusterCount(DescribeAffectedClusterCountRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取受影响的集群数量
+    ///
+    /// 获取受影响的集群数量，返回数量
+    @inlinable
+    public func describeAffectedClusterCount(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedClusterCountResponse {
+        try await self.describeAffectedClusterCount(DescribeAffectedClusterCountRequest(), logger: logger, on: eventLoop)
+    }
 }

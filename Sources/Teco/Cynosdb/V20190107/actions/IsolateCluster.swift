@@ -65,4 +65,16 @@ extension Cynosdb {
     public func isolateCluster(_ input: IsolateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterResponse {
         try await self.client.execute(action: "IsolateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 隔离集群
+    @inlinable
+    public func isolateCluster(clusterId: String, dbType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateClusterResponse > {
+        self.isolateCluster(IsolateClusterRequest(clusterId: clusterId, dbType: dbType), logger: logger, on: eventLoop)
+    }
+    
+    /// 隔离集群
+    @inlinable
+    public func isolateCluster(clusterId: String, dbType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterResponse {
+        try await self.isolateCluster(IsolateClusterRequest(clusterId: clusterId, dbType: dbType), logger: logger, on: eventLoop)
+    }
 }

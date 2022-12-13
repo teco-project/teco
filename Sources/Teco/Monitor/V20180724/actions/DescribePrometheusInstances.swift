@@ -123,4 +123,28 @@ extension Monitor {
     public func describePrometheusInstances(_ input: DescribePrometheusInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstancesResponse {
         try await self.client.execute(action: "DescribePrometheusInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看 Prometheus 实例列表
+    ///
+    /// 本接口 (DescribePrometheusInstances) 用于查询一个或多个实例的详细信息。
+    /// <ul>
+    /// <li>可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息</li>
+    /// <li>如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。</li>
+    /// </ul>
+    @inlinable
+    public func describePrometheusInstances(instanceIds: [String]? = nil, instanceStatus: [Int64]? = nil, instanceName: String? = nil, zones: [String]? = nil, tagFilters: [PrometheusTag]? = nil, iPv4Address: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, instanceChargeType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusInstancesResponse > {
+        self.describePrometheusInstances(DescribePrometheusInstancesRequest(instanceIds: instanceIds, instanceStatus: instanceStatus, instanceName: instanceName, zones: zones, tagFilters: tagFilters, iPv4Address: iPv4Address, limit: limit, offset: offset, instanceChargeType: instanceChargeType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看 Prometheus 实例列表
+    ///
+    /// 本接口 (DescribePrometheusInstances) 用于查询一个或多个实例的详细信息。
+    /// <ul>
+    /// <li>可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息</li>
+    /// <li>如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。</li>
+    /// </ul>
+    @inlinable
+    public func describePrometheusInstances(instanceIds: [String]? = nil, instanceStatus: [Int64]? = nil, instanceName: String? = nil, zones: [String]? = nil, tagFilters: [PrometheusTag]? = nil, iPv4Address: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, instanceChargeType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstancesResponse {
+        try await self.describePrometheusInstances(DescribePrometheusInstancesRequest(instanceIds: instanceIds, instanceStatus: instanceStatus, instanceName: instanceName, zones: zones, tagFilters: tagFilters, iPv4Address: iPv4Address, limit: limit, offset: offset, instanceChargeType: instanceChargeType), logger: logger, on: eventLoop)
+    }
 }

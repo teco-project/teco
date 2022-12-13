@@ -80,4 +80,16 @@ extension Tcm {
     public func createMesh(_ input: CreateMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMeshResponse {
         try await self.client.execute(action: "CreateMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建网格
+    @inlinable
+    public func createMesh(displayName: String, meshVersion: String, type: String, config: MeshConfig, clusterList: [Cluster]? = nil, tagList: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMeshResponse > {
+        self.createMesh(CreateMeshRequest(displayName: displayName, meshVersion: meshVersion, type: type, config: config, clusterList: clusterList, tagList: tagList), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建网格
+    @inlinable
+    public func createMesh(displayName: String, meshVersion: String, type: String, config: MeshConfig, clusterList: [Cluster]? = nil, tagList: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMeshResponse {
+        try await self.createMesh(CreateMeshRequest(displayName: displayName, meshVersion: meshVersion, type: type, config: config, clusterList: clusterList, tagList: tagList), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,16 @@ extension Teo {
     public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyResponse {
         try await self.client.execute(action: "ModifyDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改DDoS防护分区配置
+    @inlinable
+    public func modifyDDoSPolicy(policyId: Int64, zoneId: String, dDoSRule: DDoSRule? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSPolicyResponse > {
+        self.modifyDDoSPolicy(ModifyDDoSPolicyRequest(policyId: policyId, zoneId: zoneId, dDoSRule: dDoSRule), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改DDoS防护分区配置
+    @inlinable
+    public func modifyDDoSPolicy(policyId: Int64, zoneId: String, dDoSRule: DDoSRule? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyResponse {
+        try await self.modifyDDoSPolicy(ModifyDDoSPolicyRequest(policyId: policyId, zoneId: zoneId, dDoSRule: dDoSRule), logger: logger, on: eventLoop)
+    }
 }

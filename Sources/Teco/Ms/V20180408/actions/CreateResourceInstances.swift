@@ -73,4 +73,20 @@ extension Ms {
     public func createResourceInstances(_ input: CreateResourceInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceInstancesResponse {
         try await self.client.execute(action: "CreateResourceInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建资源
+    ///
+    /// 用户可以使用该接口自建资源，只支持白名单用户
+    @inlinable
+    public func createResourceInstances(pid: UInt64, timeUnit: String, timeSpan: UInt64, resourceNum: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResourceInstancesResponse > {
+        self.createResourceInstances(CreateResourceInstancesRequest(pid: pid, timeUnit: timeUnit, timeSpan: timeSpan, resourceNum: resourceNum), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建资源
+    ///
+    /// 用户可以使用该接口自建资源，只支持白名单用户
+    @inlinable
+    public func createResourceInstances(pid: UInt64, timeUnit: String, timeSpan: UInt64, resourceNum: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceInstancesResponse {
+        try await self.createResourceInstances(CreateResourceInstancesRequest(pid: pid, timeUnit: timeUnit, timeSpan: timeSpan, resourceNum: resourceNum), logger: logger, on: eventLoop)
+    }
 }

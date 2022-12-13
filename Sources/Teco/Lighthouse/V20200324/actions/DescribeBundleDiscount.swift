@@ -62,4 +62,20 @@ extension Lighthouse {
     public func describeBundleDiscount(_ input: DescribeBundleDiscountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundleDiscountResponse {
         try await self.client.execute(action: "DescribeBundleDiscount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询套餐折扣
+    ///
+    /// 本接口（DescribeBundleDiscount）用于查询套餐折扣信息。
+    @inlinable
+    public func describeBundleDiscount(bundleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBundleDiscountResponse > {
+        self.describeBundleDiscount(DescribeBundleDiscountRequest(bundleId: bundleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询套餐折扣
+    ///
+    /// 本接口（DescribeBundleDiscount）用于查询套餐折扣信息。
+    @inlinable
+    public func describeBundleDiscount(bundleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundleDiscountResponse {
+        try await self.describeBundleDiscount(DescribeBundleDiscountRequest(bundleId: bundleId), logger: logger, on: eventLoop)
+    }
 }

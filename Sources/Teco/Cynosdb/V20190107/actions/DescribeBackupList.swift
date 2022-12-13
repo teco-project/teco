@@ -114,4 +114,16 @@ extension Cynosdb {
     public func describeBackupList(_ input: DescribeBackupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupListResponse {
         try await self.client.execute(action: "DescribeBackupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询备份文件列表
+    @inlinable
+    public func describeBackupList(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupListResponse > {
+        self.describeBackupList(DescribeBackupListRequest(clusterId: clusterId, limit: limit, offset: offset, dbType: dbType, backupIds: backupIds, backupType: backupType, backupMethod: backupMethod, snapShotType: snapShotType, startTime: startTime, endTime: endTime, fileNames: fileNames, backupNames: backupNames), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询备份文件列表
+    @inlinable
+    public func describeBackupList(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupListResponse {
+        try await self.describeBackupList(DescribeBackupListRequest(clusterId: clusterId, limit: limit, offset: offset, dbType: dbType, backupIds: backupIds, backupType: backupType, backupMethod: backupMethod, snapShotType: snapShotType, startTime: startTime, endTime: endTime, fileNames: fileNames, backupNames: backupNames), logger: logger, on: eventLoop)
+    }
 }

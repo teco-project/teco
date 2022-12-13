@@ -630,7 +630,7 @@ extension Cfw {
         /// 国家名
         public let countryName: String?
         
-        public init (orderIndex: UInt64, sourceIp: String, targetIp: String, `protocol`: String, strategy: String, sourceType: UInt64, direction: UInt64, detail: String, targetType: UInt64, port: String? = nil, id: UInt64? = nil, logId: String? = nil, city: UInt64? = nil, country: UInt64? = nil, cloudCode: String? = nil, isRegion: UInt64? = nil, cityName: String? = nil, countryName: String? = nil) {
+        public init (orderIndex: UInt64, sourceIp: String, targetIp: String, protocol: String, strategy: String, sourceType: UInt64, direction: UInt64, detail: String, targetType: UInt64, port: String? = nil, id: UInt64? = nil, logId: String? = nil, city: UInt64? = nil, country: UInt64? = nil, cloudCode: String? = nil, isRegion: UInt64? = nil, cityName: String? = nil, countryName: String? = nil) {
             self.orderIndex = orderIndex
             self.sourceIp = sourceIp
             self.targetIp = targetIp
@@ -818,7 +818,7 @@ extension Cfw {
         /// 是否使用端口协议模板，0：否，1：是
         public let protocolPortType: UInt64?
         
-        public init (orderIndex: UInt64, sourceId: String, sourceType: UInt64, targetId: String, targetType: UInt64, `protocol`: String, port: String, strategy: UInt64, direction: UInt64, region: String, detail: String? = nil, status: UInt64? = nil, isNew: UInt64? = nil, bothWay: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, instanceName: String? = nil, publicIp: String? = nil, privateIp: String? = nil, cidr: String? = nil, serviceTemplateId: String? = nil, protocolPortType: UInt64? = nil) {
+        public init (orderIndex: UInt64, sourceId: String, sourceType: UInt64, targetId: String, targetType: UInt64, protocol: String, port: String, strategy: UInt64, direction: UInt64, region: String, detail: String? = nil, status: UInt64? = nil, isNew: UInt64? = nil, bothWay: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, instanceName: String? = nil, publicIp: String? = nil, privateIp: String? = nil, cidr: String? = nil, serviceTemplateId: String? = nil, protocolPortType: UInt64? = nil) {
             self.orderIndex = orderIndex
             self.sourceId = sourceId
             self.sourceType = sourceType
@@ -948,7 +948,7 @@ extension Cfw {
         /// 是否使用端口协议模板，0：否，1：是
         public let protocolPortType: UInt64?
         
-        public init (orderIndex: UInt64, sourceId: String, sourceType: UInt64, targetId: String, targetType: UInt64, `protocol`: String, port: String, strategy: UInt64, detail: String, bothWay: UInt64, id: UInt64? = nil, status: UInt64? = nil, isNew: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, instanceName: String? = nil, publicIp: String? = nil, privateIp: String? = nil, cidr: String? = nil, serviceTemplateId: String? = nil, bothWayInfo: [SecurityGroupBothWayInfo]? = nil, direction: UInt64? = nil, protocolPortType: UInt64? = nil) {
+        public init (orderIndex: UInt64, sourceId: String, sourceType: UInt64, targetId: String, targetType: UInt64, protocol: String, port: String, strategy: UInt64, detail: String, bothWay: UInt64, id: UInt64? = nil, status: UInt64? = nil, isNew: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, instanceName: String? = nil, publicIp: String? = nil, privateIp: String? = nil, cidr: String? = nil, serviceTemplateId: String? = nil, bothWayInfo: [SecurityGroupBothWayInfo]? = nil, direction: UInt64? = nil, protocolPortType: UInt64? = nil) {
             self.orderIndex = orderIndex
             self.sourceId = sourceId
             self.sourceType = sourceType
@@ -1077,7 +1077,7 @@ extension Cfw {
         /// 规则状态，true表示启用，false表示禁用
         public let enable: String?
         
-        public init (sourceContent: String, sourceType: String, destContent: String, destType: String, ruleAction: String, description: String, orderIndex: String, `protocol`: String? = nil, port: String? = nil, serviceTemplateId: String? = nil, id: String? = nil, enable: String? = nil) {
+        public init (sourceContent: String, sourceType: String, destContent: String, destType: String, ruleAction: String, description: String, orderIndex: String, protocol: String? = nil, port: String? = nil, serviceTemplateId: String? = nil, id: String? = nil, enable: String? = nil) {
             self.sourceContent = sourceContent
             self.sourceType = sourceType
             self.destContent = destContent

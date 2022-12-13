@@ -59,4 +59,20 @@ extension Eb {
     public func putEvents(_ input: PutEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutEventsResponse {
         try await self.client.execute(action: "PutEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 事件投递
+    ///
+    /// 用于Event事件投递
+    @inlinable
+    public func putEvents(eventList: [Event], eventBusId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutEventsResponse > {
+        self.putEvents(PutEventsRequest(eventList: eventList, eventBusId: eventBusId), logger: logger, on: eventLoop)
+    }
+    
+    /// 事件投递
+    ///
+    /// 用于Event事件投递
+    @inlinable
+    public func putEvents(eventList: [Event], eventBusId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutEventsResponse {
+        try await self.putEvents(PutEventsRequest(eventList: eventList, eventBusId: eventBusId), logger: logger, on: eventLoop)
+    }
 }

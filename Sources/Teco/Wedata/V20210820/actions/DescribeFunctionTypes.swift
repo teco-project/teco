@@ -52,4 +52,16 @@ extension Wedata {
     public func describeFunctionTypes(_ input: DescribeFunctionTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFunctionTypesResponse {
         try await self.client.execute(action: "DescribeFunctionTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询函数类型
+    @inlinable
+    public func describeFunctionTypes(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFunctionTypesResponse > {
+        self.describeFunctionTypes(DescribeFunctionTypesRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询函数类型
+    @inlinable
+    public func describeFunctionTypes(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFunctionTypesResponse {
+        try await self.describeFunctionTypes(DescribeFunctionTypesRequest(), logger: logger, on: eventLoop)
+    }
 }

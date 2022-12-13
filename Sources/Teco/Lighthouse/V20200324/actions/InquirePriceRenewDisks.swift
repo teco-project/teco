@@ -63,4 +63,20 @@ extension Lighthouse {
     public func inquirePriceRenewDisks(_ input: InquirePriceRenewDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewDisksResponse {
         try await self.client.execute(action: "InquirePriceRenewDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 续费云硬盘询价
+    ///
+    /// 本接口（InquirePriceRenewDisks）用于续费云硬盘询价。
+    @inlinable
+    public func inquirePriceRenewDisks(diskIds: [String], renewDiskChargePrepaid: RenewDiskChargePrepaid, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceRenewDisksResponse > {
+        self.inquirePriceRenewDisks(InquirePriceRenewDisksRequest(diskIds: diskIds, renewDiskChargePrepaid: renewDiskChargePrepaid), logger: logger, on: eventLoop)
+    }
+    
+    /// 续费云硬盘询价
+    ///
+    /// 本接口（InquirePriceRenewDisks）用于续费云硬盘询价。
+    @inlinable
+    public func inquirePriceRenewDisks(diskIds: [String], renewDiskChargePrepaid: RenewDiskChargePrepaid, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewDisksResponse {
+        try await self.inquirePriceRenewDisks(InquirePriceRenewDisksRequest(diskIds: diskIds, renewDiskChargePrepaid: renewDiskChargePrepaid), logger: logger, on: eventLoop)
+    }
 }

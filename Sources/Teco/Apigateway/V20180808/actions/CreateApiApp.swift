@@ -64,4 +64,20 @@ extension Apigateway {
     public func createApiApp(_ input: CreateApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiAppResponse {
         try await self.client.execute(action: "CreateApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建应用
+    ///
+    /// 本接口（CreateApiApp）用于创建应用。
+    @inlinable
+    public func createApiApp(apiAppName: String, apiAppDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApiAppResponse > {
+        self.createApiApp(CreateApiAppRequest(apiAppName: apiAppName, apiAppDesc: apiAppDesc), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建应用
+    ///
+    /// 本接口（CreateApiApp）用于创建应用。
+    @inlinable
+    public func createApiApp(apiAppName: String, apiAppDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiAppResponse {
+        try await self.createApiApp(CreateApiAppRequest(apiAppName: apiAppName, apiAppDesc: apiAppDesc), logger: logger, on: eventLoop)
+    }
 }

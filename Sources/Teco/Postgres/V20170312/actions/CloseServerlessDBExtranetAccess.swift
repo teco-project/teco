@@ -55,4 +55,16 @@ extension Postgres {
     public func closeServerlessDBExtranetAccess(_ input: CloseServerlessDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseServerlessDBExtranetAccessResponse {
         try await self.client.execute(action: "CloseServerlessDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 关闭serverlessDB实例外网
+    @inlinable
+    public func closeServerlessDBExtranetAccess(dbInstanceId: String? = nil, dbInstanceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseServerlessDBExtranetAccessResponse > {
+        self.closeServerlessDBExtranetAccess(CloseServerlessDBExtranetAccessRequest(dbInstanceId: dbInstanceId, dbInstanceName: dbInstanceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭serverlessDB实例外网
+    @inlinable
+    public func closeServerlessDBExtranetAccess(dbInstanceId: String? = nil, dbInstanceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseServerlessDBExtranetAccessResponse {
+        try await self.closeServerlessDBExtranetAccess(CloseServerlessDBExtranetAccessRequest(dbInstanceId: dbInstanceId, dbInstanceName: dbInstanceName), logger: logger, on: eventLoop)
+    }
 }

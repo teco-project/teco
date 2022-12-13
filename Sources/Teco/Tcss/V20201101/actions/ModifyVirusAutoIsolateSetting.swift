@@ -55,4 +55,16 @@ extension Tcss {
     public func modifyVirusAutoIsolateSetting(_ input: ModifyVirusAutoIsolateSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusAutoIsolateSettingResponse {
         try await self.client.execute(action: "ModifyVirusAutoIsolateSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改木马自动隔离设置
+    @inlinable
+    public func modifyVirusAutoIsolateSetting(autoIsolateSwitch: Bool, isKillProgress: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVirusAutoIsolateSettingResponse > {
+        self.modifyVirusAutoIsolateSetting(ModifyVirusAutoIsolateSettingRequest(autoIsolateSwitch: autoIsolateSwitch, isKillProgress: isKillProgress), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改木马自动隔离设置
+    @inlinable
+    public func modifyVirusAutoIsolateSetting(autoIsolateSwitch: Bool, isKillProgress: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusAutoIsolateSettingResponse {
+        try await self.modifyVirusAutoIsolateSetting(ModifyVirusAutoIsolateSettingRequest(autoIsolateSwitch: autoIsolateSwitch, isKillProgress: isKillProgress), logger: logger, on: eventLoop)
+    }
 }

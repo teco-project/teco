@@ -59,4 +59,16 @@ extension Gaap {
     public func openSecurityPolicy(_ input: OpenSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenSecurityPolicyResponse {
         try await self.client.execute(action: "OpenSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开启安全策略
+    @inlinable
+    public func openSecurityPolicy(proxyId: String? = nil, policyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenSecurityPolicyResponse > {
+        self.openSecurityPolicy(OpenSecurityPolicyRequest(proxyId: proxyId, policyId: policyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 开启安全策略
+    @inlinable
+    public func openSecurityPolicy(proxyId: String? = nil, policyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenSecurityPolicyResponse {
+        try await self.openSecurityPolicy(OpenSecurityPolicyRequest(proxyId: proxyId, policyId: policyId), logger: logger, on: eventLoop)
+    }
 }

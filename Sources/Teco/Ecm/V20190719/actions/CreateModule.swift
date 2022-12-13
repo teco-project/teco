@@ -116,4 +116,16 @@ extension Ecm {
     public func createModule(_ input: CreateModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModuleResponse {
         try await self.client.execute(action: "CreateModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建模块
+    @inlinable
+    public func createModule(moduleName: String, defaultBandWidth: Int64, defaultImageId: String, instanceType: String, defaultSystemDiskSize: Int64, defaultDataDiskSize: Int64, closeIpDirect: Bool? = nil, tagSpecification: [TagSpecification]? = nil, securityGroups: [String]? = nil, defaultBandWidthIn: Int64? = nil, disableWanIp: Bool? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateModuleResponse > {
+        self.createModule(CreateModuleRequest(moduleName: moduleName, defaultBandWidth: defaultBandWidth, defaultImageId: defaultImageId, instanceType: instanceType, defaultSystemDiskSize: defaultSystemDiskSize, defaultDataDiskSize: defaultDataDiskSize, closeIpDirect: closeIpDirect, tagSpecification: tagSpecification, securityGroups: securityGroups, defaultBandWidthIn: defaultBandWidthIn, disableWanIp: disableWanIp, systemDisk: systemDisk, dataDisks: dataDisks), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建模块
+    @inlinable
+    public func createModule(moduleName: String, defaultBandWidth: Int64, defaultImageId: String, instanceType: String, defaultSystemDiskSize: Int64, defaultDataDiskSize: Int64, closeIpDirect: Bool? = nil, tagSpecification: [TagSpecification]? = nil, securityGroups: [String]? = nil, defaultBandWidthIn: Int64? = nil, disableWanIp: Bool? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModuleResponse {
+        try await self.createModule(CreateModuleRequest(moduleName: moduleName, defaultBandWidth: defaultBandWidth, defaultImageId: defaultImageId, instanceType: instanceType, defaultSystemDiskSize: defaultSystemDiskSize, defaultDataDiskSize: defaultDataDiskSize, closeIpDirect: closeIpDirect, tagSpecification: tagSpecification, securityGroups: securityGroups, defaultBandWidthIn: defaultBandWidthIn, disableWanIp: disableWanIp, systemDisk: systemDisk, dataDisks: dataDisks), logger: logger, on: eventLoop)
+    }
 }

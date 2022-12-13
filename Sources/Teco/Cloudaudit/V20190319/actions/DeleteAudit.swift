@@ -54,4 +54,16 @@ extension Cloudaudit {
     public func deleteAudit(_ input: DeleteAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditResponse {
         try await self.client.execute(action: "DeleteAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除跟踪集
+    @inlinable
+    public func deleteAudit(auditName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAuditResponse > {
+        self.deleteAudit(DeleteAuditRequest(auditName: auditName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除跟踪集
+    @inlinable
+    public func deleteAudit(auditName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditResponse {
+        try await self.deleteAudit(DeleteAuditRequest(auditName: auditName), logger: logger, on: eventLoop)
+    }
 }

@@ -76,4 +76,22 @@ extension Apigateway {
     public func createUsagePlan(_ input: CreateUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUsagePlanResponse {
         try await self.client.execute(action: "CreateUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建使用计划
+    ///
+    /// 本接口（CreateUsagePlan）用于创建使用计划。
+    /// 用户在使用 API 网关时，需要创建使用计划并将其绑定到服务的环境中使用。
+    @inlinable
+    public func createUsagePlan(usagePlanName: String, usagePlanDesc: String? = nil, maxRequestNum: Int64? = nil, maxRequestNumPreSec: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUsagePlanResponse > {
+        self.createUsagePlan(CreateUsagePlanRequest(usagePlanName: usagePlanName, usagePlanDesc: usagePlanDesc, maxRequestNum: maxRequestNum, maxRequestNumPreSec: maxRequestNumPreSec), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建使用计划
+    ///
+    /// 本接口（CreateUsagePlan）用于创建使用计划。
+    /// 用户在使用 API 网关时，需要创建使用计划并将其绑定到服务的环境中使用。
+    @inlinable
+    public func createUsagePlan(usagePlanName: String, usagePlanDesc: String? = nil, maxRequestNum: Int64? = nil, maxRequestNumPreSec: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUsagePlanResponse {
+        try await self.createUsagePlan(CreateUsagePlanRequest(usagePlanName: usagePlanName, usagePlanDesc: usagePlanDesc, maxRequestNum: maxRequestNum, maxRequestNumPreSec: maxRequestNumPreSec), logger: logger, on: eventLoop)
+    }
 }

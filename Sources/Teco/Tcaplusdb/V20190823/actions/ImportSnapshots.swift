@@ -89,4 +89,20 @@ extension Tcaplusdb {
     public func importSnapshots(_ input: ImportSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportSnapshotsResponse {
         try await self.client.execute(action: "ImportSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导入快照数据
+    ///
+    /// 将快照数据导入到新表或当前表
+    @inlinable
+    public func importSnapshots(clusterId: String, snapshots: SnapshotInfo, importSpecialKey: String, importOriginTable: String, keyFile: KeyFile? = nil, newTableGroupId: String? = nil, newTableName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportSnapshotsResponse > {
+        self.importSnapshots(ImportSnapshotsRequest(clusterId: clusterId, snapshots: snapshots, importSpecialKey: importSpecialKey, importOriginTable: importOriginTable, keyFile: keyFile, newTableGroupId: newTableGroupId, newTableName: newTableName), logger: logger, on: eventLoop)
+    }
+    
+    /// 导入快照数据
+    ///
+    /// 将快照数据导入到新表或当前表
+    @inlinable
+    public func importSnapshots(clusterId: String, snapshots: SnapshotInfo, importSpecialKey: String, importOriginTable: String, keyFile: KeyFile? = nil, newTableGroupId: String? = nil, newTableName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportSnapshotsResponse {
+        try await self.importSnapshots(ImportSnapshotsRequest(clusterId: clusterId, snapshots: snapshots, importSpecialKey: importSpecialKey, importOriginTable: importOriginTable, keyFile: keyFile, newTableGroupId: newTableGroupId, newTableName: newTableName), logger: logger, on: eventLoop)
+    }
 }

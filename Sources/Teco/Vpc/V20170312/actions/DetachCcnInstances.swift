@@ -61,4 +61,22 @@ extension Vpc {
     public func detachCcnInstances(_ input: DetachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnInstancesResponse {
         try await self.client.execute(action: "DetachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云联网解关联实例
+    ///
+    /// 本接口（DetachCcnInstances）用于从云联网实例中解关联指定的网络实例。<br />
+    /// 解关联网络实例后，相应的路由策略会一并删除。
+    @inlinable
+    public func detachCcnInstances(ccnId: String, instances: [CcnInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachCcnInstancesResponse > {
+        self.detachCcnInstances(DetachCcnInstancesRequest(ccnId: ccnId, instances: instances), logger: logger, on: eventLoop)
+    }
+    
+    /// 云联网解关联实例
+    ///
+    /// 本接口（DetachCcnInstances）用于从云联网实例中解关联指定的网络实例。<br />
+    /// 解关联网络实例后，相应的路由策略会一并删除。
+    @inlinable
+    public func detachCcnInstances(ccnId: String, instances: [CcnInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnInstancesResponse {
+        try await self.detachCcnInstances(DetachCcnInstancesRequest(ccnId: ccnId, instances: instances), logger: logger, on: eventLoop)
+    }
 }

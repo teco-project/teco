@@ -70,4 +70,16 @@ extension Wedata {
     public func describeIntegrationStatisticsTaskStatus(_ input: DescribeIntegrationStatisticsTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationStatisticsTaskStatusResponse {
         try await self.client.execute(action: "DescribeIntegrationStatisticsTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 数据集成大屏任务状态分布统计
+    @inlinable
+    public func describeIntegrationStatisticsTaskStatus(taskType: Int64, projectId: String, queryDate: String? = nil, executorGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationStatisticsTaskStatusResponse > {
+        self.describeIntegrationStatisticsTaskStatus(DescribeIntegrationStatisticsTaskStatusRequest(taskType: taskType, projectId: projectId, queryDate: queryDate, executorGroupId: executorGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 数据集成大屏任务状态分布统计
+    @inlinable
+    public func describeIntegrationStatisticsTaskStatus(taskType: Int64, projectId: String, queryDate: String? = nil, executorGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationStatisticsTaskStatusResponse {
+        try await self.describeIntegrationStatisticsTaskStatus(DescribeIntegrationStatisticsTaskStatusRequest(taskType: taskType, projectId: projectId, queryDate: queryDate, executorGroupId: executorGroupId), logger: logger, on: eventLoop)
+    }
 }

@@ -88,4 +88,24 @@ extension Vod {
     public func describeMediaProcessUsageData(_ input: DescribeMediaProcessUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaProcessUsageDataResponse {
         try await self.client.execute(action: "DescribeMediaProcessUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询视频处理用量统计数据
+    ///
+    /// 该接口返回查询时间范围内每天使用的视频处理用量信息。
+    ///    1. 可以查询最近365天内的视频处理统计数据。
+    ///    2. 查询时间跨度不超过90天。
+    @inlinable
+    public func describeMediaProcessUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMediaProcessUsageDataResponse > {
+        self.describeMediaProcessUsageData(DescribeMediaProcessUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询视频处理用量统计数据
+    ///
+    /// 该接口返回查询时间范围内每天使用的视频处理用量信息。
+    ///    1. 可以查询最近365天内的视频处理统计数据。
+    ///    2. 查询时间跨度不超过90天。
+    @inlinable
+    public func describeMediaProcessUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaProcessUsageDataResponse {
+        try await self.describeMediaProcessUsageData(DescribeMediaProcessUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type), logger: logger, on: eventLoop)
+    }
 }

@@ -102,4 +102,16 @@ extension Dayu {
     public func describeDDoSIpLog(_ input: DescribeDDoSIpLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSIpLogResponse {
         try await self.client.execute(action: "DescribeDDoSIpLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取DDoSIP攻击日志
+    @inlinable
+    public func describeDDoSIpLog(business: String, id: String, ip: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSIpLogResponse > {
+        self.describeDDoSIpLog(DescribeDDoSIpLogRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoSIP攻击日志
+    @inlinable
+    public func describeDDoSIpLog(business: String, id: String, ip: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSIpLogResponse {
+        try await self.describeDDoSIpLog(DescribeDDoSIpLogRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

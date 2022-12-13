@@ -59,4 +59,20 @@ extension Pts {
     public func adjustJobSpeed(_ input: AdjustJobSpeedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AdjustJobSpeedResponse {
         try await self.client.execute(action: "AdjustJobSpeed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 调整任务目标RPS
+    ///
+    /// 调整任务的目标RPS
+    @inlinable
+    public func adjustJobSpeed(jobId: String, targetRequestsPerSecond: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AdjustJobSpeedResponse > {
+        self.adjustJobSpeed(AdjustJobSpeedRequest(jobId: jobId, targetRequestsPerSecond: targetRequestsPerSecond), logger: logger, on: eventLoop)
+    }
+    
+    /// 调整任务目标RPS
+    ///
+    /// 调整任务的目标RPS
+    @inlinable
+    public func adjustJobSpeed(jobId: String, targetRequestsPerSecond: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AdjustJobSpeedResponse {
+        try await self.adjustJobSpeed(AdjustJobSpeedRequest(jobId: jobId, targetRequestsPerSecond: targetRequestsPerSecond), logger: logger, on: eventLoop)
+    }
 }

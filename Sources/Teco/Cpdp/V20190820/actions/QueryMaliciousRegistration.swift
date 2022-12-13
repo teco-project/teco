@@ -118,4 +118,16 @@ extension Cpdp {
     public func queryMaliciousRegistration(_ input: QueryMaliciousRegistrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMaliciousRegistrationResponse {
         try await self.client.execute(action: "QueryMaliciousRegistration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 商户恶意注册接口
+    @inlinable
+    public func queryMaliciousRegistration(merchantId: String, merchantName: String, companyName: String, regAddress: String, regTime: UInt64, usci: String? = nil, regNumber: String? = nil, encryptedPhoneNumber: String? = nil, encryptedEmailAddress: String? = nil, encryptedPersonId: String? = nil, ip: String? = nil, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMaliciousRegistrationResponse > {
+        self.queryMaliciousRegistration(QueryMaliciousRegistrationRequest(merchantId: merchantId, merchantName: merchantName, companyName: companyName, regAddress: regAddress, regTime: regTime, usci: usci, regNumber: regNumber, encryptedPhoneNumber: encryptedPhoneNumber, encryptedEmailAddress: encryptedEmailAddress, encryptedPersonId: encryptedPersonId, ip: ip, channel: channel), logger: logger, on: eventLoop)
+    }
+    
+    /// 商户恶意注册接口
+    @inlinable
+    public func queryMaliciousRegistration(merchantId: String, merchantName: String, companyName: String, regAddress: String, regTime: UInt64, usci: String? = nil, regNumber: String? = nil, encryptedPhoneNumber: String? = nil, encryptedEmailAddress: String? = nil, encryptedPersonId: String? = nil, ip: String? = nil, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMaliciousRegistrationResponse {
+        try await self.queryMaliciousRegistration(QueryMaliciousRegistrationRequest(merchantId: merchantId, merchantName: merchantName, companyName: companyName, regAddress: regAddress, regTime: regTime, usci: usci, regNumber: regNumber, encryptedPhoneNumber: encryptedPhoneNumber, encryptedEmailAddress: encryptedEmailAddress, encryptedPersonId: encryptedPersonId, ip: ip, channel: channel), logger: logger, on: eventLoop)
+    }
 }

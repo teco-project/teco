@@ -74,4 +74,20 @@ extension Iotvideo {
     public func describeAccountBalance(_ input: DescribeAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountBalanceResponse {
         try await self.client.execute(action: "DescribeAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询账户余额
+    ///
+    /// 客户可通过本接口获取账户余额信息, 默认接口请求频率限制：1次/秒
+    @inlinable
+    public func describeAccountBalance(accountType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountBalanceResponse > {
+        self.describeAccountBalance(DescribeAccountBalanceRequest(accountType: accountType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账户余额
+    ///
+    /// 客户可通过本接口获取账户余额信息, 默认接口请求频率限制：1次/秒
+    @inlinable
+    public func describeAccountBalance(accountType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountBalanceResponse {
+        try await self.describeAccountBalance(DescribeAccountBalanceRequest(accountType: accountType), logger: logger, on: eventLoop)
+    }
 }

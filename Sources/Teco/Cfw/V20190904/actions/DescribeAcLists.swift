@@ -47,7 +47,7 @@ extension Cfw {
         /// 实例ID
         public let instanceId: String?
         
-        public init (`protocol`: String? = nil, strategy: String? = nil, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, direction: UInt64? = nil, edgeId: String? = nil, status: String? = nil, area: String? = nil, instanceId: String? = nil) {
+        public init (protocol: String? = nil, strategy: String? = nil, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, direction: UInt64? = nil, edgeId: String? = nil, status: String? = nil, area: String? = nil, instanceId: String? = nil) {
             self.`protocol` = `protocol`
             self.strategy = strategy
             self.searchValue = searchValue
@@ -111,5 +111,17 @@ extension Cfw {
     @inlinable
     public func describeAcLists(_ input: DescribeAcListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAcListsResponse {
         try await self.client.execute(action: "DescribeAcLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 访问控制列表
+    @inlinable
+    public func describeAcLists(protocol: String? = nil, strategy: String? = nil, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, direction: UInt64? = nil, edgeId: String? = nil, status: String? = nil, area: String? = nil, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAcListsResponse > {
+        self.describeAcLists(DescribeAcListsRequest(protocol: `protocol`, strategy: strategy, searchValue: searchValue, limit: limit, offset: offset, direction: direction, edgeId: edgeId, status: status, area: area, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 访问控制列表
+    @inlinable
+    public func describeAcLists(protocol: String? = nil, strategy: String? = nil, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, direction: UInt64? = nil, edgeId: String? = nil, status: String? = nil, area: String? = nil, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAcListsResponse {
+        try await self.describeAcLists(DescribeAcListsRequest(protocol: `protocol`, strategy: strategy, searchValue: searchValue, limit: limit, offset: offset, direction: direction, edgeId: edgeId, status: status, area: area, instanceId: instanceId), logger: logger, on: eventLoop)
     }
 }

@@ -63,4 +63,20 @@ extension Dayu {
     public func describeDDoSAlarmThreshold(_ input: DescribeDDoSAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAlarmThresholdResponse {
         try await self.client.execute(action: "DescribeDDoSAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取DDoS告警通知阈值
+    ///
+    /// 获取高防包、高防IP、高防IP专业版、棋牌盾产品设置DDoS攻击的告警通知阈值
+    @inlinable
+    public func describeDDoSAlarmThreshold(business: String, rsId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSAlarmThresholdResponse > {
+        self.describeDDoSAlarmThreshold(DescribeDDoSAlarmThresholdRequest(business: business, rsId: rsId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS告警通知阈值
+    ///
+    /// 获取高防包、高防IP、高防IP专业版、棋牌盾产品设置DDoS攻击的告警通知阈值
+    @inlinable
+    public func describeDDoSAlarmThreshold(business: String, rsId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAlarmThresholdResponse {
+        try await self.describeDDoSAlarmThreshold(DescribeDDoSAlarmThresholdRequest(business: business, rsId: rsId), logger: logger, on: eventLoop)
+    }
 }

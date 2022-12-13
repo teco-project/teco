@@ -74,4 +74,16 @@ extension Kms {
     public func describeWhiteBoxKeyDetails(_ input: DescribeWhiteBoxKeyDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxKeyDetailsResponse {
         try await self.client.execute(action: "DescribeWhiteBoxKeyDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取白盒密钥列表
+    @inlinable
+    public func describeWhiteBoxKeyDetails(keyStatus: Int64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteBoxKeyDetailsResponse > {
+        self.describeWhiteBoxKeyDetails(DescribeWhiteBoxKeyDetailsRequest(keyStatus: keyStatus, offset: offset, limit: limit, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取白盒密钥列表
+    @inlinable
+    public func describeWhiteBoxKeyDetails(keyStatus: Int64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxKeyDetailsResponse {
+        try await self.describeWhiteBoxKeyDetails(DescribeWhiteBoxKeyDetailsRequest(keyStatus: keyStatus, offset: offset, limit: limit, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    }
 }

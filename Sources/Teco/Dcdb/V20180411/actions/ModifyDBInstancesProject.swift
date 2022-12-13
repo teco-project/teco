@@ -59,4 +59,20 @@ extension Dcdb {
     public func modifyDBInstancesProject(_ input: ModifyDBInstancesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstancesProjectResponse {
         try await self.client.execute(action: "ModifyDBInstancesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改实例所属项目
+    ///
+    /// 本接口（ModifyDBInstancesProject）用于修改云数据库实例所属项目。
+    @inlinable
+    public func modifyDBInstancesProject(instanceIds: [String], projectId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstancesProjectResponse > {
+        self.modifyDBInstancesProject(ModifyDBInstancesProjectRequest(instanceIds: instanceIds, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例所属项目
+    ///
+    /// 本接口（ModifyDBInstancesProject）用于修改云数据库实例所属项目。
+    @inlinable
+    public func modifyDBInstancesProject(instanceIds: [String], projectId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstancesProjectResponse {
+        try await self.modifyDBInstancesProject(ModifyDBInstancesProjectRequest(instanceIds: instanceIds, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

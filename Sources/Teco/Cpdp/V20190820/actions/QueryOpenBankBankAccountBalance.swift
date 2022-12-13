@@ -97,4 +97,16 @@ extension Cpdp {
     public func queryOpenBankBankAccountBalance(_ input: QueryOpenBankBankAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBankAccountBalanceResponse {
         try await self.client.execute(action: "QueryOpenBankBankAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-子商户银行卡余额查询
+    @inlinable
+    public func queryOpenBankBankAccountBalance(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankBankAccountBalanceResponse > {
+        self.queryOpenBankBankAccountBalance(QueryOpenBankBankAccountBalanceRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, bindSerialNo: bindSerialNo, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-子商户银行卡余额查询
+    @inlinable
+    public func queryOpenBankBankAccountBalance(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBankAccountBalanceResponse {
+        try await self.queryOpenBankBankAccountBalance(QueryOpenBankBankAccountBalanceRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, bindSerialNo: bindSerialNo, environment: environment), logger: logger, on: eventLoop)
+    }
 }

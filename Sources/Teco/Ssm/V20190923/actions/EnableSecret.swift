@@ -58,4 +58,20 @@ extension Ssm {
     public func enableSecret(_ input: EnableSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableSecretResponse {
         try await self.client.execute(action: "EnableSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启用凭据
+    ///
+    /// 该接口用于开启凭据，状态为Enabled。可以通过 GetSecretValue 接口获取凭据明文。处于PendingDelete状态的凭据不能直接开启，需要通过RestoreSecret 恢复后再开启使用。
+    @inlinable
+    public func enableSecret(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableSecretResponse > {
+        self.enableSecret(EnableSecretRequest(secretName: secretName), logger: logger, on: eventLoop)
+    }
+    
+    /// 启用凭据
+    ///
+    /// 该接口用于开启凭据，状态为Enabled。可以通过 GetSecretValue 接口获取凭据明文。处于PendingDelete状态的凭据不能直接开启，需要通过RestoreSecret 恢复后再开启使用。
+    @inlinable
+    public func enableSecret(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableSecretResponse {
+        try await self.enableSecret(EnableSecretRequest(secretName: secretName), logger: logger, on: eventLoop)
+    }
 }

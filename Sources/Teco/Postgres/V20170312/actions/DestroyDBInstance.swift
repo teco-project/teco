@@ -54,4 +54,20 @@ extension Postgres {
     public func destroyDBInstance(_ input: DestroyDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyDBInstanceResponse {
         try await self.client.execute(action: "DestroyDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 销毁实例
+    ///
+    /// 本接口 (DestroyDBInstance) 用于彻底销毁指定DBInstanceId对应的实例，销毁后实例数据将彻底删除，无法找回，只能销毁隔离中的实例。
+    @inlinable
+    public func destroyDBInstance(dbInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyDBInstanceResponse > {
+        self.destroyDBInstance(DestroyDBInstanceRequest(dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁实例
+    ///
+    /// 本接口 (DestroyDBInstance) 用于彻底销毁指定DBInstanceId对应的实例，销毁后实例数据将彻底删除，无法找回，只能销毁隔离中的实例。
+    @inlinable
+    public func destroyDBInstance(dbInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyDBInstanceResponse {
+        try await self.destroyDBInstance(DestroyDBInstanceRequest(dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
+    }
 }

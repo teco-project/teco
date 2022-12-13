@@ -177,4 +177,20 @@ extension Tione {
     public func modifyModelService(_ input: ModifyModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelServiceResponse {
         try await self.client.execute(action: "ModifyModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新模型服务
+    ///
+    /// 用于更新模型服务
+    @inlinable
+    public func modifyModelService(serviceId: String, modelInfo: ModelInfo? = nil, imageInfo: ImageInfo? = nil, env: [EnvVar]? = nil, resources: ResourceInfo? = nil, instanceType: String? = nil, scaleMode: String? = nil, replicas: Int64? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logEnable: Bool? = nil, logConfig: LogConfig? = nil, serviceAction: String? = nil, serviceDescription: String? = nil, scaleStrategy: String? = nil, cronScaleJobs: [CronScaleJob]? = nil, hybridBillingPrepaidReplicas: Int64? = nil, modelHotUpdateEnable: Bool? = nil, scheduledAction: ScheduledAction? = nil, serviceLimit: ServiceLimit? = nil, volumeMount: VolumeMount? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModelServiceResponse > {
+        self.modifyModelService(ModifyModelServiceRequest(serviceId: serviceId, modelInfo: modelInfo, imageInfo: imageInfo, env: env, resources: resources, instanceType: instanceType, scaleMode: scaleMode, replicas: replicas, horizontalPodAutoscaler: horizontalPodAutoscaler, logEnable: logEnable, logConfig: logConfig, serviceAction: serviceAction, serviceDescription: serviceDescription, scaleStrategy: scaleStrategy, cronScaleJobs: cronScaleJobs, hybridBillingPrepaidReplicas: hybridBillingPrepaidReplicas, modelHotUpdateEnable: modelHotUpdateEnable, scheduledAction: scheduledAction, serviceLimit: serviceLimit, volumeMount: volumeMount), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新模型服务
+    ///
+    /// 用于更新模型服务
+    @inlinable
+    public func modifyModelService(serviceId: String, modelInfo: ModelInfo? = nil, imageInfo: ImageInfo? = nil, env: [EnvVar]? = nil, resources: ResourceInfo? = nil, instanceType: String? = nil, scaleMode: String? = nil, replicas: Int64? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logEnable: Bool? = nil, logConfig: LogConfig? = nil, serviceAction: String? = nil, serviceDescription: String? = nil, scaleStrategy: String? = nil, cronScaleJobs: [CronScaleJob]? = nil, hybridBillingPrepaidReplicas: Int64? = nil, modelHotUpdateEnable: Bool? = nil, scheduledAction: ScheduledAction? = nil, serviceLimit: ServiceLimit? = nil, volumeMount: VolumeMount? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelServiceResponse {
+        try await self.modifyModelService(ModifyModelServiceRequest(serviceId: serviceId, modelInfo: modelInfo, imageInfo: imageInfo, env: env, resources: resources, instanceType: instanceType, scaleMode: scaleMode, replicas: replicas, horizontalPodAutoscaler: horizontalPodAutoscaler, logEnable: logEnable, logConfig: logConfig, serviceAction: serviceAction, serviceDescription: serviceDescription, scaleStrategy: scaleStrategy, cronScaleJobs: cronScaleJobs, hybridBillingPrepaidReplicas: hybridBillingPrepaidReplicas, modelHotUpdateEnable: modelHotUpdateEnable, scheduledAction: scheduledAction, serviceLimit: serviceLimit, volumeMount: volumeMount), logger: logger, on: eventLoop)
+    }
 }

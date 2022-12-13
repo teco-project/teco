@@ -74,4 +74,16 @@ extension Dc {
     public func describeInternetAddress(_ input: DescribeInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressResponse {
         try await self.client.execute(action: "DescribeInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取用户互联网公网地址信息
+    @inlinable
+    public func describeInternetAddress(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternetAddressResponse > {
+        self.describeInternetAddress(DescribeInternetAddressRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户互联网公网地址信息
+    @inlinable
+    public func describeInternetAddress(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressResponse {
+        try await self.describeInternetAddress(DescribeInternetAddressRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

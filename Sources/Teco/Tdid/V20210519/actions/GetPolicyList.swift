@@ -63,4 +63,16 @@ extension Tdid {
     public func getPolicyList(_ input: GetPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyListResponse {
         try await self.client.execute(action: "GetPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 披露策略Policy管理列表
+    @inlinable
+    public func getPolicyList(displayStart: Int64, displayLength: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPolicyListResponse > {
+        self.getPolicyList(GetPolicyListRequest(displayStart: displayStart, displayLength: displayLength), logger: logger, on: eventLoop)
+    }
+    
+    /// 披露策略Policy管理列表
+    @inlinable
+    public func getPolicyList(displayStart: Int64, displayLength: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyListResponse {
+        try await self.getPolicyList(GetPolicyListRequest(displayStart: displayStart, displayLength: displayLength), logger: logger, on: eventLoop)
+    }
 }

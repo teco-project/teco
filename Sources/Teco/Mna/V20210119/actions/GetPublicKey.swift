@@ -50,4 +50,20 @@ extension Mna {
     public func getPublicKey(_ input: GetPublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPublicKeyResponse {
         try await self.client.execute(action: "GetPublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取公钥
+    ///
+    /// 获取公钥用于验签
+    @inlinable
+    public func getPublicKey(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPublicKeyResponse > {
+        self.getPublicKey(GetPublicKeyRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取公钥
+    ///
+    /// 获取公钥用于验签
+    @inlinable
+    public func getPublicKey(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPublicKeyResponse {
+        try await self.getPublicKey(GetPublicKeyRequest(), logger: logger, on: eventLoop)
+    }
 }

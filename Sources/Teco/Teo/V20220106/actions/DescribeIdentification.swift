@@ -81,4 +81,20 @@ extension Teo {
     public func describeIdentification(_ input: DescribeIdentificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIdentificationResponse {
         try await self.client.execute(action: "DescribeIdentification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询站点的验证状态
+    ///
+    /// 查询验证结果
+    @inlinable
+    public func describeIdentification(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIdentificationResponse > {
+        self.describeIdentification(DescribeIdentificationRequest(name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询站点的验证状态
+    ///
+    /// 查询验证结果
+    @inlinable
+    public func describeIdentification(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIdentificationResponse {
+        try await self.describeIdentification(DescribeIdentificationRequest(name: name), logger: logger, on: eventLoop)
+    }
 }

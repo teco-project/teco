@@ -89,4 +89,16 @@ extension Tke {
     public func describeClusterSecurity(_ input: DescribeClusterSecurityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterSecurityResponse {
         try await self.client.execute(action: "DescribeClusterSecurity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 集群的密钥信息
+    @inlinable
+    public func describeClusterSecurity(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterSecurityResponse > {
+        self.describeClusterSecurity(DescribeClusterSecurityRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 集群的密钥信息
+    @inlinable
+    public func describeClusterSecurity(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterSecurityResponse {
+        try await self.describeClusterSecurity(DescribeClusterSecurityRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

@@ -92,4 +92,20 @@ extension Market {
     public func flowProductRemind(_ input: FlowProductRemindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlowProductRemindResponse {
         try await self.client.execute(action: "FlowProductRemind", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 计量商品用量提醒
+    ///
+    /// 计量商品用量提醒，用于服务商调用云服务，云服务向客户发送提醒信息
+    @inlinable
+    public func flowProductRemind(providerUin: String, signId: String, resourceId: String, totalFlow: String, leftFlow: String, flowUnit: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FlowProductRemindResponse > {
+        self.flowProductRemind(FlowProductRemindRequest(providerUin: providerUin, signId: signId, resourceId: resourceId, totalFlow: totalFlow, leftFlow: leftFlow, flowUnit: flowUnit), logger: logger, on: eventLoop)
+    }
+    
+    /// 计量商品用量提醒
+    ///
+    /// 计量商品用量提醒，用于服务商调用云服务，云服务向客户发送提醒信息
+    @inlinable
+    public func flowProductRemind(providerUin: String, signId: String, resourceId: String, totalFlow: String, leftFlow: String, flowUnit: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlowProductRemindResponse {
+        try await self.flowProductRemind(FlowProductRemindRequest(providerUin: providerUin, signId: signId, resourceId: resourceId, totalFlow: totalFlow, leftFlow: leftFlow, flowUnit: flowUnit), logger: logger, on: eventLoop)
+    }
 }

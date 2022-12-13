@@ -51,4 +51,20 @@ extension Dlc {
     public func describeStoreLocation(_ input: DescribeStoreLocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStoreLocationResponse {
         try await self.client.execute(action: "DescribeStoreLocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询结果存储位置
+    ///
+    /// 查询计算结果存储位置。
+    @inlinable
+    public func describeStoreLocation(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStoreLocationResponse > {
+        self.describeStoreLocation(DescribeStoreLocationRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询结果存储位置
+    ///
+    /// 查询计算结果存储位置。
+    @inlinable
+    public func describeStoreLocation(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStoreLocationResponse {
+        try await self.describeStoreLocation(DescribeStoreLocationRequest(), logger: logger, on: eventLoop)
+    }
 }

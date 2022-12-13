@@ -68,4 +68,20 @@ extension Yinsuda {
     public func describeKTVSuggestions(_ input: DescribeKTVSuggestionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSuggestionsResponse {
         try await self.client.execute(action: "DescribeKTVSuggestions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取联想词
+    ///
+    /// 根据关键词获取联想词列表。
+    @inlinable
+    public func describeKTVSuggestions(appName: String, userId: String, keyWord: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVSuggestionsResponse > {
+        self.describeKTVSuggestions(DescribeKTVSuggestionsRequest(appName: appName, userId: userId, keyWord: keyWord), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取联想词
+    ///
+    /// 根据关键词获取联想词列表。
+    @inlinable
+    public func describeKTVSuggestions(appName: String, userId: String, keyWord: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSuggestionsResponse {
+        try await self.describeKTVSuggestions(DescribeKTVSuggestionsRequest(appName: appName, userId: userId, keyWord: keyWord), logger: logger, on: eventLoop)
+    }
 }

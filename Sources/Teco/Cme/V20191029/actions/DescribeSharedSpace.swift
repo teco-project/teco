@@ -26,7 +26,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以查询任意个人或者团队的共享空间。如果指定操作者，则操作者必须本人或者团队成员。
         public let `operator`: String?
         
-        public init (platform: String, authorizee: Entity, `operator`: String? = nil) {
+        public init (platform: String, authorizee: Entity, operator: String? = nil) {
             self.platform = platform
             self.authorizee = authorizee
             self.`operator` = `operator`
@@ -71,5 +71,21 @@ extension Cme {
     @inlinable
     public func describeSharedSpace(_ input: DescribeSharedSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSharedSpaceResponse {
         try await self.client.execute(action: "DescribeSharedSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 获取共享空间
+    ///
+    /// 获取共享空间。当个人或团队A对个人或团队B授权某资源以后，个人或团队B的共享空间就会增加个人或团队A。
+    @inlinable
+    public func describeSharedSpace(platform: String, authorizee: Entity, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSharedSpaceResponse > {
+        self.describeSharedSpace(DescribeSharedSpaceRequest(platform: platform, authorizee: authorizee, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取共享空间
+    ///
+    /// 获取共享空间。当个人或团队A对个人或团队B授权某资源以后，个人或团队B的共享空间就会增加个人或团队A。
+    @inlinable
+    public func describeSharedSpace(platform: String, authorizee: Entity, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSharedSpaceResponse {
+        try await self.describeSharedSpace(DescribeSharedSpaceRequest(platform: platform, authorizee: authorizee, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

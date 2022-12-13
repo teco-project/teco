@@ -72,4 +72,20 @@ extension Kms {
     public func encrypt(_ input: EncryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EncryptResponse {
         try await self.client.execute(action: "Encrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 加密
+    ///
+    /// 本接口用于加密最多为4KB任意数据，可用于加密数据库密码，RSA Key，或其它较小的敏感信息。对于应用的数据加密，使用GenerateDataKey生成的DataKey进行本地数据的加解密操作
+    @inlinable
+    public func encrypt(keyId: String, plaintext: String, encryptionContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EncryptResponse > {
+        self.encrypt(EncryptRequest(keyId: keyId, plaintext: plaintext, encryptionContext: encryptionContext), logger: logger, on: eventLoop)
+    }
+    
+    /// 加密
+    ///
+    /// 本接口用于加密最多为4KB任意数据，可用于加密数据库密码，RSA Key，或其它较小的敏感信息。对于应用的数据加密，使用GenerateDataKey生成的DataKey进行本地数据的加解密操作
+    @inlinable
+    public func encrypt(keyId: String, plaintext: String, encryptionContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EncryptResponse {
+        try await self.encrypt(EncryptRequest(keyId: keyId, plaintext: plaintext, encryptionContext: encryptionContext), logger: logger, on: eventLoop)
+    }
 }

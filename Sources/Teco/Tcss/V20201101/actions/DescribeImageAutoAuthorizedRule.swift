@@ -66,4 +66,16 @@ extension Tcss {
     public func describeImageAutoAuthorizedRule(_ input: DescribeImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAutoAuthorizedRuleResponse {
         try await self.client.execute(action: "DescribeImageAutoAuthorizedRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询本地镜像自动授权规则
+    @inlinable
+    public func describeImageAutoAuthorizedRule(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageAutoAuthorizedRuleResponse > {
+        self.describeImageAutoAuthorizedRule(DescribeImageAutoAuthorizedRuleRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询本地镜像自动授权规则
+    @inlinable
+    public func describeImageAutoAuthorizedRule(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAutoAuthorizedRuleResponse {
+        try await self.describeImageAutoAuthorizedRule(DescribeImageAutoAuthorizedRuleRequest(), logger: logger, on: eventLoop)
+    }
 }

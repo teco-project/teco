@@ -69,4 +69,20 @@ extension Tke {
     public func cancelClusterRelease(_ input: CancelClusterReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelClusterReleaseResponse {
         try await self.client.execute(action: "CancelClusterRelease", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 集群取消安装应用
+    ///
+    /// 在应用市场中取消安装失败的应用
+    @inlinable
+    public func cancelClusterRelease(id: String, clusterId: String? = nil, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelClusterReleaseResponse > {
+        self.cancelClusterRelease(CancelClusterReleaseRequest(id: id, clusterId: clusterId, clusterType: clusterType), logger: logger, on: eventLoop)
+    }
+    
+    /// 集群取消安装应用
+    ///
+    /// 在应用市场中取消安装失败的应用
+    @inlinable
+    public func cancelClusterRelease(id: String, clusterId: String? = nil, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelClusterReleaseResponse {
+        try await self.cancelClusterRelease(CancelClusterReleaseRequest(id: id, clusterId: clusterId, clusterType: clusterType), logger: logger, on: eventLoop)
+    }
 }

@@ -1077,7 +1077,7 @@ extension Cms {
         /// 恶意类型，广告（10001）， 政治（20001）， 色情（20002）， 社会事件（20004）， 暴力（20011）， 低俗（20012）， 违法犯罪（20006）， 欺诈（20008）， 版权（20013）， 谣言（20104）， 其他（21000）
         public let resultType: Int64?
         
-        public init (`operator`: String? = nil, resultCode: Int64? = nil, resultMsg: String? = nil, resultType: Int64? = nil) {
+        public init (operator: String? = nil, resultCode: Int64? = nil, resultMsg: String? = nil, resultType: Int64? = nil) {
             self.`operator` = `operator`
             self.resultCode = resultCode
             self.resultMsg = resultMsg

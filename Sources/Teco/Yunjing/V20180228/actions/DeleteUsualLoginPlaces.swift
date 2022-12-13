@@ -59,4 +59,20 @@ extension Yunjing {
     public func deleteUsualLoginPlaces(_ input: DeleteUsualLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsualLoginPlacesResponse {
         try await self.client.execute(action: "DeleteUsualLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除常用登录地
+    ///
+    /// 本接口（DeleteUsualLoginPlaces）用于删除常用登录地。
+    @inlinable
+    public func deleteUsualLoginPlaces(uuid: String, cityIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUsualLoginPlacesResponse > {
+        self.deleteUsualLoginPlaces(DeleteUsualLoginPlacesRequest(uuid: uuid, cityIds: cityIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除常用登录地
+    ///
+    /// 本接口（DeleteUsualLoginPlaces）用于删除常用登录地。
+    @inlinable
+    public func deleteUsualLoginPlaces(uuid: String, cityIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsualLoginPlacesResponse {
+        try await self.deleteUsualLoginPlaces(DeleteUsualLoginPlacesRequest(uuid: uuid, cityIds: cityIds), logger: logger, on: eventLoop)
+    }
 }

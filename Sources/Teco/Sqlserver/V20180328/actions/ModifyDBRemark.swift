@@ -59,4 +59,20 @@ extension Sqlserver {
     public func modifyDBRemark(_ input: ModifyDBRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBRemarkResponse {
         try await self.client.execute(action: "ModifyDBRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改数据库备注
+    ///
+    /// 本接口（ModifyDBRemark）用于修改数据库备注。
+    @inlinable
+    public func modifyDBRemark(instanceId: String, dbRemarks: [DBRemark], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBRemarkResponse > {
+        self.modifyDBRemark(ModifyDBRemarkRequest(instanceId: instanceId, dbRemarks: dbRemarks), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改数据库备注
+    ///
+    /// 本接口（ModifyDBRemark）用于修改数据库备注。
+    @inlinable
+    public func modifyDBRemark(instanceId: String, dbRemarks: [DBRemark], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBRemarkResponse {
+        try await self.modifyDBRemark(ModifyDBRemarkRequest(instanceId: instanceId, dbRemarks: dbRemarks), logger: logger, on: eventLoop)
+    }
 }

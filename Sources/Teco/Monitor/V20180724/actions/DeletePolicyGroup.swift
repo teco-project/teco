@@ -55,4 +55,16 @@ extension Monitor {
     public func deletePolicyGroup(_ input: DeletePolicyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyGroupResponse {
         try await self.client.execute(action: "DeletePolicyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除告警策略组
+    @inlinable
+    public func deletePolicyGroup(module: String, groupId: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePolicyGroupResponse > {
+        self.deletePolicyGroup(DeletePolicyGroupRequest(module: module, groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除告警策略组
+    @inlinable
+    public func deletePolicyGroup(module: String, groupId: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyGroupResponse {
+        try await self.deletePolicyGroup(DeletePolicyGroupRequest(module: module, groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

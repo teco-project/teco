@@ -54,4 +54,16 @@ extension Cfg {
     public func describeTemplate(_ input: DescribeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateResponse {
         try await self.client.execute(action: "DescribeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询经验库
+    @inlinable
+    public func describeTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateResponse > {
+        self.describeTemplate(DescribeTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询经验库
+    @inlinable
+    public func describeTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateResponse {
+        try await self.describeTemplate(DescribeTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
 }

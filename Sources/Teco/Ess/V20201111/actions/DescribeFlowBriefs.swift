@@ -26,7 +26,7 @@ extension Ess {
         /// 应用相关信息
         public let agent: Agent?
         
-        public init (`operator`: UserInfo, flowIds: [String], agent: Agent? = nil) {
+        public init (operator: UserInfo, flowIds: [String], agent: Agent? = nil) {
             self.`operator` = `operator`
             self.flowIds = flowIds
             self.agent = agent
@@ -71,5 +71,25 @@ extension Ess {
     @inlinable
     public func describeFlowBriefs(_ input: DescribeFlowBriefsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowBriefsResponse {
         try await self.client.execute(action: "DescribeFlowBriefs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 查询流程摘要
+    ///
+    /// 查询流程摘要
+    /// 适用场景：可用于主动查询某个合同流程的签署状态信息。可以配合回调通知使用。
+    /// 日调用量默认10W
+    @inlinable
+    public func describeFlowBriefs(operator: UserInfo, flowIds: [String], agent: Agent? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowBriefsResponse > {
+        self.describeFlowBriefs(DescribeFlowBriefsRequest(operator: `operator`, flowIds: flowIds, agent: agent), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流程摘要
+    ///
+    /// 查询流程摘要
+    /// 适用场景：可用于主动查询某个合同流程的签署状态信息。可以配合回调通知使用。
+    /// 日调用量默认10W
+    @inlinable
+    public func describeFlowBriefs(operator: UserInfo, flowIds: [String], agent: Agent? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowBriefsResponse {
+        try await self.describeFlowBriefs(DescribeFlowBriefsRequest(operator: `operator`, flowIds: flowIds, agent: agent), logger: logger, on: eventLoop)
     }
 }

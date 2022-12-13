@@ -59,4 +59,16 @@ extension Cfs {
     public func deleteCfsSnapshot(_ input: DeleteCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsSnapshotResponse {
         try await self.client.execute(action: "DeleteCfsSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除文件系统快照
+    @inlinable
+    public func deleteCfsSnapshot(snapshotId: String? = nil, snapshotIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCfsSnapshotResponse > {
+        self.deleteCfsSnapshot(DeleteCfsSnapshotRequest(snapshotId: snapshotId, snapshotIds: snapshotIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除文件系统快照
+    @inlinable
+    public func deleteCfsSnapshot(snapshotId: String? = nil, snapshotIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsSnapshotResponse {
+        try await self.deleteCfsSnapshot(DeleteCfsSnapshotRequest(snapshotId: snapshotId, snapshotIds: snapshotIds), logger: logger, on: eventLoop)
+    }
 }

@@ -25,7 +25,7 @@ extension Eb {
         /// POST
         public let method: String
         
-        public init (`protocol`: String, method: String) {
+        public init (protocol: String, method: String) {
             self.`protocol` = `protocol`
             self.method = method
         }

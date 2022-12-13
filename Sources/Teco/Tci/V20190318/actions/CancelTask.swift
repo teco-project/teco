@@ -58,4 +58,20 @@ extension Tci {
     public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
         try await self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 取消任务执行
+    ///
+    /// 用于取消已经提交的任务，目前只支持图像任务。
+    @inlinable
+    public func cancelTask(jobId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelTaskResponse > {
+        self.cancelTask(CancelTaskRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
+    
+    /// 取消任务执行
+    ///
+    /// 用于取消已经提交的任务，目前只支持图像任务。
+    @inlinable
+    public func cancelTask(jobId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
+        try await self.cancelTask(CancelTaskRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Eiam {
     public func deleteUserGroup(_ input: DeleteUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserGroupResponse {
         try await self.client.execute(action: "DeleteUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除用户组
+    ///
+    /// 删除一个用户组
+    @inlinable
+    public func deleteUserGroup(userGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserGroupResponse > {
+        self.deleteUserGroup(DeleteUserGroupRequest(userGroupId: userGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除用户组
+    ///
+    /// 删除一个用户组
+    @inlinable
+    public func deleteUserGroup(userGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserGroupResponse {
+        try await self.deleteUserGroup(DeleteUserGroupRequest(userGroupId: userGroupId), logger: logger, on: eventLoop)
+    }
 }

@@ -69,4 +69,20 @@ extension Wedata {
     public func describeQualityScore(_ input: DescribeQualityScoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityScoreResponse {
         try await self.client.execute(action: "DescribeQualityScore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询质量评分
+    ///
+    /// 质量报告-质量评分
+    @inlinable
+    public func describeQualityScore(statisticsDate: Int64, projectId: String, datasourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQualityScoreResponse > {
+        self.describeQualityScore(DescribeQualityScoreRequest(statisticsDate: statisticsDate, projectId: projectId, datasourceId: datasourceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询质量评分
+    ///
+    /// 质量报告-质量评分
+    @inlinable
+    public func describeQualityScore(statisticsDate: Int64, projectId: String, datasourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityScoreResponse {
+        try await self.describeQualityScore(DescribeQualityScoreRequest(statisticsDate: statisticsDate, projectId: projectId, datasourceId: datasourceId), logger: logger, on: eventLoop)
+    }
 }

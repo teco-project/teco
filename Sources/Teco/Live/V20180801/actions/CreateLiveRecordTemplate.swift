@@ -112,4 +112,22 @@ extension Live {
     public func createLiveRecordTemplate(_ input: CreateLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordTemplateResponse {
         try await self.client.execute(action: "CreateLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 直播创建录制模板
+    ///
+    /// 创建录制模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveRecordRule](/document/product/267/32615)接口，将模板id绑定到流进行使用。
+    /// <br>录制相关文档：[直播录制](/document/product/267/32739)。
+    @inlinable
+    public func createLiveRecordTemplate(templateName: String, description: String? = nil, flvParam: RecordParam? = nil, hlsParam: RecordParam? = nil, mp4Param: RecordParam? = nil, aacParam: RecordParam? = nil, isDelayLive: Int64? = nil, hlsSpecialParam: HlsSpecialParam? = nil, mp3Param: RecordParam? = nil, removeWatermark: Bool? = nil, flvSpecialParam: FlvSpecialParam? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveRecordTemplateResponse > {
+        self.createLiveRecordTemplate(CreateLiveRecordTemplateRequest(templateName: templateName, description: description, flvParam: flvParam, hlsParam: hlsParam, mp4Param: mp4Param, aacParam: aacParam, isDelayLive: isDelayLive, hlsSpecialParam: hlsSpecialParam, mp3Param: mp3Param, removeWatermark: removeWatermark, flvSpecialParam: flvSpecialParam), logger: logger, on: eventLoop)
+    }
+    
+    /// 直播创建录制模板
+    ///
+    /// 创建录制模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveRecordRule](/document/product/267/32615)接口，将模板id绑定到流进行使用。
+    /// <br>录制相关文档：[直播录制](/document/product/267/32739)。
+    @inlinable
+    public func createLiveRecordTemplate(templateName: String, description: String? = nil, flvParam: RecordParam? = nil, hlsParam: RecordParam? = nil, mp4Param: RecordParam? = nil, aacParam: RecordParam? = nil, isDelayLive: Int64? = nil, hlsSpecialParam: HlsSpecialParam? = nil, mp3Param: RecordParam? = nil, removeWatermark: Bool? = nil, flvSpecialParam: FlvSpecialParam? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordTemplateResponse {
+        try await self.createLiveRecordTemplate(CreateLiveRecordTemplateRequest(templateName: templateName, description: description, flvParam: flvParam, hlsParam: hlsParam, mp4Param: mp4Param, aacParam: aacParam, isDelayLive: isDelayLive, hlsSpecialParam: hlsSpecialParam, mp3Param: mp3Param, removeWatermark: removeWatermark, flvSpecialParam: flvSpecialParam), logger: logger, on: eventLoop)
+    }
 }

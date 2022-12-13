@@ -89,4 +89,20 @@ extension Cls {
     public func describeAlarms(_ input: DescribeAlarmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmsResponse {
         try await self.client.execute(action: "DescribeAlarms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取告警策略列表
+    ///
+    /// 本接口用于获取告警策略列表。
+    @inlinable
+    public func describeAlarms(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmsResponse > {
+        self.describeAlarms(DescribeAlarmsRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取告警策略列表
+    ///
+    /// 本接口用于获取告警策略列表。
+    @inlinable
+    public func describeAlarms(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmsResponse {
+        try await self.describeAlarms(DescribeAlarmsRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

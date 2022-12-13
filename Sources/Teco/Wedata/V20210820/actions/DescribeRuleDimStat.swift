@@ -68,4 +68,20 @@ extension Wedata {
     public func describeRuleDimStat(_ input: DescribeRuleDimStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleDimStatResponse {
         try await self.client.execute(action: "DescribeRuleDimStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 数据质量触发维度分布统计接口
+    ///
+    /// 数据质量概览页面触发维度分布统计接口
+    @inlinable
+    public func describeRuleDimStat(projectId: String, beginDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleDimStatResponse > {
+        self.describeRuleDimStat(DescribeRuleDimStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 数据质量触发维度分布统计接口
+    ///
+    /// 数据质量概览页面触发维度分布统计接口
+    @inlinable
+    public func describeRuleDimStat(projectId: String, beginDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleDimStatResponse {
+        try await self.describeRuleDimStat(DescribeRuleDimStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
 }

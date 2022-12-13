@@ -54,4 +54,20 @@ extension Dcdb {
     public func isolateDedicatedDBInstance(_ input: IsolateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDedicatedDBInstanceResponse {
         try await self.client.execute(action: "IsolateDedicatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 隔离独享云数据库实例
+    ///
+    /// 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
+    @inlinable
+    public func isolateDedicatedDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateDedicatedDBInstanceResponse > {
+        self.isolateDedicatedDBInstance(IsolateDedicatedDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 隔离独享云数据库实例
+    ///
+    /// 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
+    @inlinable
+    public func isolateDedicatedDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDedicatedDBInstanceResponse {
+        try await self.isolateDedicatedDBInstance(IsolateDedicatedDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

@@ -97,4 +97,16 @@ extension Antiddos {
     public func describeNewL7Rules(_ input: DescribeNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL7RulesResponse {
         try await self.client.execute(action: "DescribeNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 高防IP获取7层规则
+    @inlinable
+    public func describeNewL7Rules(business: String, statusList: [UInt64]? = nil, domain: String? = nil, ip: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, protocolList: [String]? = nil, cname: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewL7RulesResponse > {
+        self.describeNewL7Rules(DescribeNewL7RulesRequest(business: business, statusList: statusList, domain: domain, ip: ip, limit: limit, offset: offset, protocolList: protocolList, cname: cname), logger: logger, on: eventLoop)
+    }
+    
+    /// 高防IP获取7层规则
+    @inlinable
+    public func describeNewL7Rules(business: String, statusList: [UInt64]? = nil, domain: String? = nil, ip: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, protocolList: [String]? = nil, cname: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL7RulesResponse {
+        try await self.describeNewL7Rules(DescribeNewL7RulesRequest(business: business, statusList: statusList, domain: domain, ip: ip, limit: limit, offset: offset, protocolList: protocolList, cname: cname), logger: logger, on: eventLoop)
+    }
 }

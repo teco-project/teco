@@ -60,4 +60,16 @@ extension Eb {
     public func deleteTarget(_ input: DeleteTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTargetResponse {
         try await self.client.execute(action: "DeleteTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除事件目标
+    @inlinable
+    public func deleteTarget(eventBusId: String, targetId: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTargetResponse > {
+        self.deleteTarget(DeleteTargetRequest(eventBusId: eventBusId, targetId: targetId, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除事件目标
+    @inlinable
+    public func deleteTarget(eventBusId: String, targetId: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTargetResponse {
+        try await self.deleteTarget(DeleteTargetRequest(eventBusId: eventBusId, targetId: targetId, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
 }

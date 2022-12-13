@@ -64,4 +64,20 @@ extension Eiam {
     public func listAuthorizedApplicationsToUser(_ input: ListAuthorizedApplicationsToUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuthorizedApplicationsToUserResponse {
         try await self.client.execute(action: "ListAuthorizedApplicationsToUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取用户被授权访问的应用列表
+    ///
+    /// 通过用户ID获得被授权访问的应用列表。
+    @inlinable
+    public func listAuthorizedApplicationsToUser(userId: String, includeInheritedAuthorizations: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAuthorizedApplicationsToUserResponse > {
+        self.listAuthorizedApplicationsToUser(ListAuthorizedApplicationsToUserRequest(userId: userId, includeInheritedAuthorizations: includeInheritedAuthorizations), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户被授权访问的应用列表
+    ///
+    /// 通过用户ID获得被授权访问的应用列表。
+    @inlinable
+    public func listAuthorizedApplicationsToUser(userId: String, includeInheritedAuthorizations: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuthorizedApplicationsToUserResponse {
+        try await self.listAuthorizedApplicationsToUser(ListAuthorizedApplicationsToUserRequest(userId: userId, includeInheritedAuthorizations: includeInheritedAuthorizations), logger: logger, on: eventLoop)
+    }
 }

@@ -50,4 +50,20 @@ extension Cfs {
     public func describeAvailableZoneInfo(_ input: DescribeAvailableZoneInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableZoneInfoResponse {
         try await self.client.execute(action: "DescribeAvailableZoneInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询区域可用情况
+    ///
+    /// 本接口（DescribeAvailableZoneInfo）用于查询区域的可用情况。
+    @inlinable
+    public func describeAvailableZoneInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableZoneInfoResponse > {
+        self.describeAvailableZoneInfo(DescribeAvailableZoneInfoRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询区域可用情况
+    ///
+    /// 本接口（DescribeAvailableZoneInfo）用于查询区域的可用情况。
+    @inlinable
+    public func describeAvailableZoneInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableZoneInfoResponse {
+        try await self.describeAvailableZoneInfo(DescribeAvailableZoneInfoRequest(), logger: logger, on: eventLoop)
+    }
 }

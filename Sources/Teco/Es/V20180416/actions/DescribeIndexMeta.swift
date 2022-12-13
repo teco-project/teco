@@ -75,4 +75,16 @@ extension Es {
     public func describeIndexMeta(_ input: DescribeIndexMetaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexMetaResponse {
         try await self.client.execute(action: "DescribeIndexMeta", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取索引元数据
+    @inlinable
+    public func describeIndexMeta(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIndexMetaResponse > {
+        self.describeIndexMeta(DescribeIndexMetaRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取索引元数据
+    @inlinable
+    public func describeIndexMeta(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexMetaResponse {
+        try await self.describeIndexMeta(DescribeIndexMetaRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password), logger: logger, on: eventLoop)
+    }
 }

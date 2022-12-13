@@ -67,4 +67,20 @@ extension Tcss {
     public func describeSecEventsTendency(_ input: DescribeSecEventsTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecEventsTendencyResponse {
         try await self.client.execute(action: "DescribeSecEventsTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询容器运行时安全时间趋势
+    ///
+    /// 查询容器运行时安全事件趋势
+    @inlinable
+    public func describeSecEventsTendency(startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecEventsTendencyResponse > {
+        self.describeSecEventsTendency(DescribeSecEventsTendencyRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器运行时安全时间趋势
+    ///
+    /// 查询容器运行时安全事件趋势
+    @inlinable
+    public func describeSecEventsTendency(startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecEventsTendencyResponse {
+        try await self.describeSecEventsTendency(DescribeSecEventsTendencyRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

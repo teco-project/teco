@@ -73,4 +73,20 @@ extension Ie {
     public func createEditingTask(_ input: CreateEditingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEditingTaskResponse {
         try await self.client.execute(action: "CreateEditingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建编辑理解任务
+    ///
+    /// 创建编辑理解任务，可以同时选择视频标签识别、分类识别、智能拆条、智能集锦、智能封面和片头片尾识别中的一项或者多项能力。
+    @inlinable
+    public func createEditingTask(editingInfo: EditingInfo, downInfo: DownInfo, saveInfo: SaveInfo? = nil, callbackInfo: CallbackInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEditingTaskResponse > {
+        self.createEditingTask(CreateEditingTaskRequest(editingInfo: editingInfo, downInfo: downInfo, saveInfo: saveInfo, callbackInfo: callbackInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建编辑理解任务
+    ///
+    /// 创建编辑理解任务，可以同时选择视频标签识别、分类识别、智能拆条、智能集锦、智能封面和片头片尾识别中的一项或者多项能力。
+    @inlinable
+    public func createEditingTask(editingInfo: EditingInfo, downInfo: DownInfo, saveInfo: SaveInfo? = nil, callbackInfo: CallbackInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEditingTaskResponse {
+        try await self.createEditingTask(CreateEditingTaskRequest(editingInfo: editingInfo, downInfo: downInfo, saveInfo: saveInfo, callbackInfo: callbackInfo), logger: logger, on: eventLoop)
+    }
 }

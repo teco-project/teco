@@ -103,4 +103,16 @@ extension Tbaas {
     public func invoke(_ input: InvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeResponse {
         try await self.client.execute(action: "Invoke", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新增交易
+    @inlinable
+    public func invoke(module: String, operation: String, clusterId: String, chaincodeName: String, channelName: String, peers: [PeerSet], funcName: String, groupName: String, args: [String]? = nil, asyncFlag: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeResponse > {
+        self.invoke(InvokeRequest(module: module, operation: operation, clusterId: clusterId, chaincodeName: chaincodeName, channelName: channelName, peers: peers, funcName: funcName, groupName: groupName, args: args, asyncFlag: asyncFlag), logger: logger, on: eventLoop)
+    }
+    
+    /// 新增交易
+    @inlinable
+    public func invoke(module: String, operation: String, clusterId: String, chaincodeName: String, channelName: String, peers: [PeerSet], funcName: String, groupName: String, args: [String]? = nil, asyncFlag: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeResponse {
+        try await self.invoke(InvokeRequest(module: module, operation: operation, clusterId: clusterId, chaincodeName: chaincodeName, channelName: channelName, peers: peers, funcName: funcName, groupName: groupName, args: args, asyncFlag: asyncFlag), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,16 @@ extension Tcr {
     public func createImmutableTagRules(_ input: CreateImmutableTagRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImmutableTagRulesResponse {
         try await self.client.execute(action: "CreateImmutableTagRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建镜像不可变规则
+    @inlinable
+    public func createImmutableTagRules(registryId: String, namespaceName: String, rule: ImmutableTagRule, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImmutableTagRulesResponse > {
+        self.createImmutableTagRules(CreateImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, rule: rule), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建镜像不可变规则
+    @inlinable
+    public func createImmutableTagRules(registryId: String, namespaceName: String, rule: ImmutableTagRule, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImmutableTagRulesResponse {
+        try await self.createImmutableTagRules(CreateImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, rule: rule), logger: logger, on: eventLoop)
+    }
 }

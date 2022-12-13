@@ -130,4 +130,42 @@ extension Vod {
     public func processMedia(_ input: ProcessMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaResponse {
         try await self.client.execute(action: "ProcessMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 视频处理
+    ///
+    /// 对点播中的音视频媒体发起处理任务，功能包括：
+    /// 1. 视频转码（带水印）；
+    /// 2. 视频转动图；
+    /// 3. 对视频按指定时间点截图；
+    /// 4. 对视频采样截图；
+    /// 5. 对视频截图雪碧图；
+    /// 6. 对视频截取一张图做封面；
+    /// 7. 对视频转自适应码流（并加密）；
+    /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息）；
+    /// 9. 内容分析（标签、分类、封面、按帧标签）；
+    /// 10. 内容识别（视频片头片尾、人脸、文本全文、文本关键词、语音全文、语音关键词、物体）。
+    /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
+    @inlinable
+    public func processMedia(fileId: String, subAppId: UInt64? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ProcessMediaResponse > {
+        self.processMedia(ProcessMediaRequest(fileId: fileId, subAppId: subAppId, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 视频处理
+    ///
+    /// 对点播中的音视频媒体发起处理任务，功能包括：
+    /// 1. 视频转码（带水印）；
+    /// 2. 视频转动图；
+    /// 3. 对视频按指定时间点截图；
+    /// 4. 对视频采样截图；
+    /// 5. 对视频截图雪碧图；
+    /// 6. 对视频截取一张图做封面；
+    /// 7. 对视频转自适应码流（并加密）；
+    /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息）；
+    /// 9. 内容分析（标签、分类、封面、按帧标签）；
+    /// 10. 内容识别（视频片头片尾、人脸、文本全文、文本关键词、语音全文、语音关键词、物体）。
+    /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
+    @inlinable
+    public func processMedia(fileId: String, subAppId: UInt64? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaResponse {
+        try await self.processMedia(ProcessMediaRequest(fileId: fileId, subAppId: subAppId, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), logger: logger, on: eventLoop)
+    }
 }

@@ -76,4 +76,20 @@ extension Clb {
     public func describeTargetGroupInstances(_ input: DescribeTargetGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetGroupInstancesResponse {
         try await self.client.execute(action: "DescribeTargetGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取目标组绑定的服务器
+    ///
+    /// 获取目标组绑定的服务器信息
+    @inlinable
+    public func describeTargetGroupInstances(filters: [Filter], limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTargetGroupInstancesResponse > {
+        self.describeTargetGroupInstances(DescribeTargetGroupInstancesRequest(filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取目标组绑定的服务器
+    ///
+    /// 获取目标组绑定的服务器信息
+    @inlinable
+    public func describeTargetGroupInstances(filters: [Filter], limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetGroupInstancesResponse {
+        try await self.describeTargetGroupInstances(DescribeTargetGroupInstancesRequest(filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

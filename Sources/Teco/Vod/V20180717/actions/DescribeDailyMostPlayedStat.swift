@@ -85,4 +85,30 @@ extension Vod {
     public func describeDailyMostPlayedStat(_ input: DescribeDailyMostPlayedStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDailyMostPlayedStatResponse {
         try await self.client.execute(action: "DescribeDailyMostPlayedStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询每日播放 Top100的媒体文件的播放统计数据
+    ///
+    /// 该接口用于查询每日播放Top100 的媒体文件的播放统计数据。
+    /// * 可以查询最近一年的播放统计数据。
+    /// * 可以按播放次数或者播放流量查询。
+    /// * 播放次数统计说明：
+    ///     1. HLS 文件：访问 M3U8 文件时统计播放次数；访问 TS 文件不统计播放次数。
+    ///     2. 其它文件（如 MP4 文件）：播放请求带有 range 参数且 range 的 start 参数不等于0时不统计播放次数，其它情况统计播放次数。
+    @inlinable
+    public func describeDailyMostPlayedStat(date: String, domainName: String? = nil, metric: String? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDailyMostPlayedStatResponse > {
+        self.describeDailyMostPlayedStat(DescribeDailyMostPlayedStatRequest(date: date, domainName: domainName, metric: metric, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询每日播放 Top100的媒体文件的播放统计数据
+    ///
+    /// 该接口用于查询每日播放Top100 的媒体文件的播放统计数据。
+    /// * 可以查询最近一年的播放统计数据。
+    /// * 可以按播放次数或者播放流量查询。
+    /// * 播放次数统计说明：
+    ///     1. HLS 文件：访问 M3U8 文件时统计播放次数；访问 TS 文件不统计播放次数。
+    ///     2. 其它文件（如 MP4 文件）：播放请求带有 range 参数且 range 的 start 参数不等于0时不统计播放次数，其它情况统计播放次数。
+    @inlinable
+    public func describeDailyMostPlayedStat(date: String, domainName: String? = nil, metric: String? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDailyMostPlayedStatResponse {
+        try await self.describeDailyMostPlayedStat(DescribeDailyMostPlayedStatRequest(date: date, domainName: domainName, metric: metric, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

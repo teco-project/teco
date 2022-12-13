@@ -90,4 +90,16 @@ extension Trp {
     public func describeCodeBatchs(_ input: DescribeCodeBatchsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodeBatchsResponse {
         try await self.client.execute(action: "DescribeCodeBatchs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询批次列表
+    @inlinable
+    public func describeCodeBatchs(merchantId: String? = nil, productId: String? = nil, keyword: String? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, batchType: String? = nil, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodeBatchsResponse > {
+        self.describeCodeBatchs(DescribeCodeBatchsRequest(merchantId: merchantId, productId: productId, keyword: keyword, pageSize: pageSize, pageNumber: pageNumber, batchType: batchType, corpId: corpId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询批次列表
+    @inlinable
+    public func describeCodeBatchs(merchantId: String? = nil, productId: String? = nil, keyword: String? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, batchType: String? = nil, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodeBatchsResponse {
+        try await self.describeCodeBatchs(DescribeCodeBatchsRequest(merchantId: merchantId, productId: productId, keyword: keyword, pageSize: pageSize, pageNumber: pageNumber, batchType: batchType, corpId: corpId), logger: logger, on: eventLoop)
+    }
 }

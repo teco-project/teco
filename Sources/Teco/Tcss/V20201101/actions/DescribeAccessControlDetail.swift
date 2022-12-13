@@ -79,4 +79,20 @@ extension Tcss {
     public func describeAccessControlDetail(_ input: DescribeAccessControlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlDetailResponse {
         try await self.client.execute(action: "DescribeAccessControlDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行时访问控制事件详细信息
+    ///
+    /// 查询运行时访问控制事件的详细信息
+    @inlinable
+    public func describeAccessControlDetail(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessControlDetailResponse > {
+        self.describeAccessControlDetail(DescribeAccessControlDetailRequest(eventId: eventId), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时访问控制事件详细信息
+    ///
+    /// 查询运行时访问控制事件的详细信息
+    @inlinable
+    public func describeAccessControlDetail(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlDetailResponse {
+        try await self.describeAccessControlDetail(DescribeAccessControlDetailRequest(eventId: eventId), logger: logger, on: eventLoop)
+    }
 }

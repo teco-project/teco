@@ -32,7 +32,7 @@ extension Iotvideo {
         /// 版本发布的描述信息，需要国际化，可以为空
         public let contents: Contents?
         
-        public init (productId: String, otaVersion: String, `operator`: String? = nil, remark: String? = nil, contents: Contents? = nil) {
+        public init (productId: String, otaVersion: String, operator: String? = nil, remark: String? = nil, contents: Contents? = nil) {
             self.productId = productId
             self.otaVersion = otaVersion
             self.`operator` = `operator`
@@ -69,5 +69,17 @@ extension Iotvideo {
     @inlinable
     public func modifyVerContent(_ input: ModifyVerContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVerContentResponse {
         try await self.client.execute(action: "ModifyVerContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 编辑版本描述信息
+    @inlinable
+    public func modifyVerContent(productId: String, otaVersion: String, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVerContentResponse > {
+        self.modifyVerContent(ModifyVerContentRequest(productId: productId, otaVersion: otaVersion, operator: `operator`, remark: remark, contents: contents), logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑版本描述信息
+    @inlinable
+    public func modifyVerContent(productId: String, otaVersion: String, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVerContentResponse {
+        try await self.modifyVerContent(ModifyVerContentRequest(productId: productId, otaVersion: otaVersion, operator: `operator`, remark: remark, contents: contents), logger: logger, on: eventLoop)
     }
 }

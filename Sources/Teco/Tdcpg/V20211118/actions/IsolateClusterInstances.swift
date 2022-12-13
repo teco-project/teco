@@ -65,4 +65,26 @@ extension Tdcpg {
     public func isolateClusterInstances(_ input: IsolateClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterInstancesResponse {
         try await self.client.execute(action: "IsolateClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 隔离实例
+    ///
+    /// 隔离实例。此接口只针对状态为running的实例生效，使用场景包括：
+    ///  - 批量隔离集群内所有的实例
+    ///  - 在读写实例为running(运行中)时，单个/批量隔离只读实例
+    ///  - 集群内所有只读实例为isolated(已隔离)时，单独隔离读写实例
+    @inlinable
+    public func isolateClusterInstances(clusterId: String, instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateClusterInstancesResponse > {
+        self.isolateClusterInstances(IsolateClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 隔离实例
+    ///
+    /// 隔离实例。此接口只针对状态为running的实例生效，使用场景包括：
+    ///  - 批量隔离集群内所有的实例
+    ///  - 在读写实例为running(运行中)时，单个/批量隔离只读实例
+    ///  - 集群内所有只读实例为isolated(已隔离)时，单独隔离读写实例
+    @inlinable
+    public func isolateClusterInstances(clusterId: String, instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterInstancesResponse {
+        try await self.isolateClusterInstances(IsolateClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    }
 }

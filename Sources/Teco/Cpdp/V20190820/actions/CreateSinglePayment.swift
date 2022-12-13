@@ -106,4 +106,16 @@ extension Cpdp {
     public func createSinglePayment(_ input: CreateSinglePaymentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSinglePaymentResponse {
         try await self.client.execute(action: "CreateSinglePayment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 灵云-单笔主播转账接口
+    @inlinable
+    public func createSinglePayment(transferType: UInt64, orderId: String, transferAmount: UInt64, anchorId: String, reqReserved: String? = nil, remark: String? = nil, anchorName: String? = nil, uid: String? = nil, notifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSinglePaymentResponse > {
+        self.createSinglePayment(CreateSinglePaymentRequest(transferType: transferType, orderId: orderId, transferAmount: transferAmount, anchorId: anchorId, reqReserved: reqReserved, remark: remark, anchorName: anchorName, uid: uid, notifyUrl: notifyUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云-单笔主播转账接口
+    @inlinable
+    public func createSinglePayment(transferType: UInt64, orderId: String, transferAmount: UInt64, anchorId: String, reqReserved: String? = nil, remark: String? = nil, anchorName: String? = nil, uid: String? = nil, notifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSinglePaymentResponse {
+        try await self.createSinglePayment(CreateSinglePaymentRequest(transferType: transferType, orderId: orderId, transferAmount: transferAmount, anchorId: anchorId, reqReserved: reqReserved, remark: remark, anchorName: anchorName, uid: uid, notifyUrl: notifyUrl), logger: logger, on: eventLoop)
+    }
 }

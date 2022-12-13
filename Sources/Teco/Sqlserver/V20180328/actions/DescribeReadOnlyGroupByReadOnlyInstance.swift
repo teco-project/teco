@@ -106,4 +106,20 @@ extension Sqlserver {
     public func describeReadOnlyGroupByReadOnlyInstance(_ input: DescribeReadOnlyGroupByReadOnlyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupByReadOnlyInstanceResponse {
         try await self.client.execute(action: "DescribeReadOnlyGroupByReadOnlyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 通过只读实例查询只读组
+    ///
+    /// 本接口（DescribeReadOnlyGroupByReadOnlyInstance）用于通过只读副本实例ID查询其所在的只读组。
+    @inlinable
+    public func describeReadOnlyGroupByReadOnlyInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReadOnlyGroupByReadOnlyInstanceResponse > {
+        self.describeReadOnlyGroupByReadOnlyInstance(DescribeReadOnlyGroupByReadOnlyInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 通过只读实例查询只读组
+    ///
+    /// 本接口（DescribeReadOnlyGroupByReadOnlyInstance）用于通过只读副本实例ID查询其所在的只读组。
+    @inlinable
+    public func describeReadOnlyGroupByReadOnlyInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupByReadOnlyInstanceResponse {
+        try await self.describeReadOnlyGroupByReadOnlyInstance(DescribeReadOnlyGroupByReadOnlyInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

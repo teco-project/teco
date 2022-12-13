@@ -65,4 +65,16 @@ extension Tke {
     public func describeAvailableClusterVersion(_ input: DescribeAvailableClusterVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableClusterVersionResponse {
         try await self.client.execute(action: "DescribeAvailableClusterVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取集群可以升级的所有版本
+    @inlinable
+    public func describeAvailableClusterVersion(clusterId: String? = nil, clusterIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableClusterVersionResponse > {
+        self.describeAvailableClusterVersion(DescribeAvailableClusterVersionRequest(clusterId: clusterId, clusterIds: clusterIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群可以升级的所有版本
+    @inlinable
+    public func describeAvailableClusterVersion(clusterId: String? = nil, clusterIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableClusterVersionResponse {
+        try await self.describeAvailableClusterVersion(DescribeAvailableClusterVersionRequest(clusterId: clusterId, clusterIds: clusterIds), logger: logger, on: eventLoop)
+    }
 }

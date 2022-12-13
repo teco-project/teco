@@ -76,4 +76,22 @@ extension Apigateway {
     public func describeUsagePlanEnvironments(_ input: DescribeUsagePlanEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlanEnvironmentsResponse {
         try await self.client.execute(action: "DescribeUsagePlanEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询使用计划绑定环境列表
+    ///
+    /// 本接口（DescribeUsagePlanEnvironments）用于查询使用计划绑定的环境列表。
+    /// 用户在绑定了某个使用计划到环境后，可使用本接口查询这个使用计划绑定的所有服务的环境。
+    @inlinable
+    public func describeUsagePlanEnvironments(usagePlanId: String, bindType: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsagePlanEnvironmentsResponse > {
+        self.describeUsagePlanEnvironments(DescribeUsagePlanEnvironmentsRequest(usagePlanId: usagePlanId, bindType: bindType, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询使用计划绑定环境列表
+    ///
+    /// 本接口（DescribeUsagePlanEnvironments）用于查询使用计划绑定的环境列表。
+    /// 用户在绑定了某个使用计划到环境后，可使用本接口查询这个使用计划绑定的所有服务的环境。
+    @inlinable
+    public func describeUsagePlanEnvironments(usagePlanId: String, bindType: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlanEnvironmentsResponse {
+        try await self.describeUsagePlanEnvironments(DescribeUsagePlanEnvironmentsRequest(usagePlanId: usagePlanId, bindType: bindType, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

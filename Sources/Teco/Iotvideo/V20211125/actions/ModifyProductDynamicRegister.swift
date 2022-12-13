@@ -72,4 +72,16 @@ extension Iotvideo {
     public func modifyProductDynamicRegister(_ input: ModifyProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductDynamicRegisterResponse {
         try await self.client.execute(action: "ModifyProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改产品动态注册
+    @inlinable
+    public func modifyProductDynamicRegister(productId: String, registerType: UInt64, registerLimit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProductDynamicRegisterResponse > {
+        self.modifyProductDynamicRegister(ModifyProductDynamicRegisterRequest(productId: productId, registerType: registerType, registerLimit: registerLimit), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改产品动态注册
+    @inlinable
+    public func modifyProductDynamicRegister(productId: String, registerType: UInt64, registerLimit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductDynamicRegisterResponse {
+        try await self.modifyProductDynamicRegister(ModifyProductDynamicRegisterRequest(productId: productId, registerType: registerType, registerLimit: registerLimit), logger: logger, on: eventLoop)
+    }
 }

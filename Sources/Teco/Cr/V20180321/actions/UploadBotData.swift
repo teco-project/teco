@@ -70,4 +70,16 @@ extension Cr {
     public func uploadBotData(_ input: UploadBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadBotDataResponse {
         try await self.client.execute(action: "UploadBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 上传机器人任务数据
+    @inlinable
+    public func uploadBotData(module: String, operation: String, data: String, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadBotDataResponse > {
+        self.uploadBotData(UploadBotDataRequest(module: module, operation: operation, data: data, botId: botId, botName: botName), logger: logger, on: eventLoop)
+    }
+    
+    /// 上传机器人任务数据
+    @inlinable
+    public func uploadBotData(module: String, operation: String, data: String, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadBotDataResponse {
+        try await self.uploadBotData(UploadBotDataRequest(module: module, operation: operation, data: data, botId: botId, botName: botName), logger: logger, on: eventLoop)
+    }
 }

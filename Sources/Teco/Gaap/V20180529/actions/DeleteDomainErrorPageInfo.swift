@@ -50,4 +50,16 @@ extension Gaap {
     public func deleteDomainErrorPageInfo(_ input: DeleteDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainErrorPageInfoResponse {
         try await self.client.execute(action: "DeleteDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除域名的定制错误
+    @inlinable
+    public func deleteDomainErrorPageInfo(errorPageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDomainErrorPageInfoResponse > {
+        self.deleteDomainErrorPageInfo(DeleteDomainErrorPageInfoRequest(errorPageId: errorPageId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除域名的定制错误
+    @inlinable
+    public func deleteDomainErrorPageInfo(errorPageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainErrorPageInfoResponse {
+        try await self.deleteDomainErrorPageInfo(DeleteDomainErrorPageInfoRequest(errorPageId: errorPageId), logger: logger, on: eventLoop)
+    }
 }

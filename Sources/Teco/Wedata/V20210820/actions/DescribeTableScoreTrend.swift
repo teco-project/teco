@@ -70,4 +70,16 @@ extension Wedata {
     public func describeTableScoreTrend(_ input: DescribeTableScoreTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableScoreTrendResponse {
         try await self.client.execute(action: "DescribeTableScoreTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询表得分趋势
+    @inlinable
+    public func describeTableScoreTrend(projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableScoreTrendResponse > {
+        self.describeTableScoreTrend(DescribeTableScoreTrendRequest(projectId: projectId, statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, tableId: tableId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询表得分趋势
+    @inlinable
+    public func describeTableScoreTrend(projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableScoreTrendResponse {
+        try await self.describeTableScoreTrend(DescribeTableScoreTrendRequest(projectId: projectId, statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, tableId: tableId), logger: logger, on: eventLoop)
+    }
 }

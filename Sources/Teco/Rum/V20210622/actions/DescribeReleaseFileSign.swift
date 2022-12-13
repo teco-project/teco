@@ -74,4 +74,20 @@ extension Rum {
     public func describeReleaseFileSign(_ input: DescribeReleaseFileSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFileSignResponse {
         try await self.client.execute(action: "DescribeReleaseFileSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取存储临时密钥
+    ///
+    /// 获取上传文件存储的临时密钥
+    @inlinable
+    public func describeReleaseFileSign(timeout: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReleaseFileSignResponse > {
+        self.describeReleaseFileSign(DescribeReleaseFileSignRequest(timeout: timeout), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取存储临时密钥
+    ///
+    /// 获取上传文件存储的临时密钥
+    @inlinable
+    public func describeReleaseFileSign(timeout: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFileSignResponse {
+        try await self.describeReleaseFileSign(DescribeReleaseFileSignRequest(timeout: timeout), logger: logger, on: eventLoop)
+    }
 }

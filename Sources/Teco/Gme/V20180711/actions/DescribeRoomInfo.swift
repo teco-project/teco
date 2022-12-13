@@ -70,4 +70,16 @@ extension Gme {
     public func describeRoomInfo(_ input: DescribeRoomInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomInfoResponse {
         try await self.client.execute(action: "DescribeRoomInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取房间内用户信息
+    @inlinable
+    public func describeRoomInfo(sdkAppId: UInt64, roomIds: [UInt64]? = nil, strRoomIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoomInfoResponse > {
+        self.describeRoomInfo(DescribeRoomInfoRequest(sdkAppId: sdkAppId, roomIds: roomIds, strRoomIds: strRoomIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取房间内用户信息
+    @inlinable
+    public func describeRoomInfo(sdkAppId: UInt64, roomIds: [UInt64]? = nil, strRoomIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomInfoResponse {
+        try await self.describeRoomInfo(DescribeRoomInfoRequest(sdkAppId: sdkAppId, roomIds: roomIds, strRoomIds: strRoomIds), logger: logger, on: eventLoop)
+    }
 }

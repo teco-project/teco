@@ -63,4 +63,20 @@ extension Vpc {
     public func createServiceTemplateGroup(_ input: CreateServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceTemplateGroupResponse {
         try await self.client.execute(action: "CreateServiceTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建协议端口模板集合
+    ///
+    /// 本接口（CreateServiceTemplateGroup）用于创建协议端口模板集合
+    @inlinable
+    public func createServiceTemplateGroup(serviceTemplateGroupName: String, serviceTemplateIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceTemplateGroupResponse > {
+        self.createServiceTemplateGroup(CreateServiceTemplateGroupRequest(serviceTemplateGroupName: serviceTemplateGroupName, serviceTemplateIds: serviceTemplateIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建协议端口模板集合
+    ///
+    /// 本接口（CreateServiceTemplateGroup）用于创建协议端口模板集合
+    @inlinable
+    public func createServiceTemplateGroup(serviceTemplateGroupName: String, serviceTemplateIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceTemplateGroupResponse {
+        try await self.createServiceTemplateGroup(CreateServiceTemplateGroupRequest(serviceTemplateGroupName: serviceTemplateGroupName, serviceTemplateIds: serviceTemplateIds), logger: logger, on: eventLoop)
+    }
 }

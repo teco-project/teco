@@ -176,4 +176,16 @@ extension Emr {
     public func inquiryPriceCreateInstance(_ input: InquiryPriceCreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateInstanceResponse {
         try await self.client.execute(action: "InquiryPriceCreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建实例询价
+    @inlinable
+    public func inquiryPriceCreateInstance(timeUnit: String, timeSpan: UInt64, currency: String, payMode: UInt64, supportHA: UInt64, software: [String], resourceSpec: NewResourceSpec? = nil, placement: Placement? = nil, vpcSettings: VPCSettings? = nil, metaType: String? = nil, unifyMetaInstanceId: String? = nil, metaDBInfo: CustomMetaInfo? = nil, productId: UInt64? = nil, sceneName: String? = nil, externalService: [ExternalService]? = nil, versionID: UInt64? = nil, multiZoneSettings: [MultiZoneSetting]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateInstanceResponse > {
+        self.inquiryPriceCreateInstance(InquiryPriceCreateInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, currency: currency, payMode: payMode, supportHA: supportHA, software: software, resourceSpec: resourceSpec, placement: placement, vpcSettings: vpcSettings, metaType: metaType, unifyMetaInstanceId: unifyMetaInstanceId, metaDBInfo: metaDBInfo, productId: productId, sceneName: sceneName, externalService: externalService, versionID: versionID, multiZoneSettings: multiZoneSettings), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例询价
+    @inlinable
+    public func inquiryPriceCreateInstance(timeUnit: String, timeSpan: UInt64, currency: String, payMode: UInt64, supportHA: UInt64, software: [String], resourceSpec: NewResourceSpec? = nil, placement: Placement? = nil, vpcSettings: VPCSettings? = nil, metaType: String? = nil, unifyMetaInstanceId: String? = nil, metaDBInfo: CustomMetaInfo? = nil, productId: UInt64? = nil, sceneName: String? = nil, externalService: [ExternalService]? = nil, versionID: UInt64? = nil, multiZoneSettings: [MultiZoneSetting]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateInstanceResponse {
+        try await self.inquiryPriceCreateInstance(InquiryPriceCreateInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, currency: currency, payMode: payMode, supportHA: supportHA, software: software, resourceSpec: resourceSpec, placement: placement, vpcSettings: vpcSettings, metaType: metaType, unifyMetaInstanceId: unifyMetaInstanceId, metaDBInfo: metaDBInfo, productId: productId, sceneName: sceneName, externalService: externalService, versionID: versionID, multiZoneSettings: multiZoneSettings), logger: logger, on: eventLoop)
+    }
 }

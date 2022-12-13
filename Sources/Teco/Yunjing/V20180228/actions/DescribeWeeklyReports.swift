@@ -67,4 +67,20 @@ extension Yunjing {
     public func describeWeeklyReports(_ input: DescribeWeeklyReportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportsResponse {
         try await self.client.execute(action: "DescribeWeeklyReports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取周报列表
+    ///
+    /// 本接口 (DescribeWeeklyReports) 用于获取周报列表数据。
+    @inlinable
+    public func describeWeeklyReports(limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWeeklyReportsResponse > {
+        self.describeWeeklyReports(DescribeWeeklyReportsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取周报列表
+    ///
+    /// 本接口 (DescribeWeeklyReports) 用于获取周报列表数据。
+    @inlinable
+    public func describeWeeklyReports(limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportsResponse {
+        try await self.describeWeeklyReports(DescribeWeeklyReportsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

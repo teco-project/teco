@@ -50,4 +50,20 @@ extension Cds {
     public func describeDbauditUsedRegions(_ input: DescribeDbauditUsedRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditUsedRegionsResponse {
         try await self.client.execute(action: "DescribeDbauditUsedRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询可售卖地域列表
+    ///
+    /// 本接口 (DescribeDbauditUsedRegions) 用于查询可售卖地域列表。
+    @inlinable
+    public func describeDbauditUsedRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDbauditUsedRegionsResponse > {
+        self.describeDbauditUsedRegions(DescribeDbauditUsedRegionsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询可售卖地域列表
+    ///
+    /// 本接口 (DescribeDbauditUsedRegions) 用于查询可售卖地域列表。
+    @inlinable
+    public func describeDbauditUsedRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditUsedRegionsResponse {
+        try await self.describeDbauditUsedRegions(DescribeDbauditUsedRegionsRequest(), logger: logger, on: eventLoop)
+    }
 }

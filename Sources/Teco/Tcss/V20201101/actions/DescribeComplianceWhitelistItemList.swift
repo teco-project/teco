@@ -87,4 +87,20 @@ extension Tcss {
     public func describeComplianceWhitelistItemList(_ input: DescribeComplianceWhitelistItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceWhitelistItemListResponse {
         try await self.client.execute(action: "DescribeComplianceWhitelistItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安全合规查询白名单列表
+    ///
+    /// 查询白名单列表
+    @inlinable
+    public func describeComplianceWhitelistItemList(offset: UInt64? = nil, limit: UInt64? = nil, assetTypeSet: [String]? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceWhitelistItemListResponse > {
+        self.describeComplianceWhitelistItemList(DescribeComplianceWhitelistItemListRequest(offset: offset, limit: limit, assetTypeSet: assetTypeSet, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规查询白名单列表
+    ///
+    /// 查询白名单列表
+    @inlinable
+    public func describeComplianceWhitelistItemList(offset: UInt64? = nil, limit: UInt64? = nil, assetTypeSet: [String]? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceWhitelistItemListResponse {
+        try await self.describeComplianceWhitelistItemList(DescribeComplianceWhitelistItemListRequest(offset: offset, limit: limit, assetTypeSet: assetTypeSet, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    }
 }

@@ -80,4 +80,22 @@ extension Gse {
     public func describeGameServerSessionQueues(_ input: DescribeGameServerSessionQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGameServerSessionQueuesResponse {
         try await self.client.execute(action: "DescribeGameServerSessionQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询游戏服务器会话队列
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeGameServerSessionQueues）用于查询游戏服务器会话队列。
+    @inlinable
+    public func describeGameServerSessionQueues(names: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGameServerSessionQueuesResponse > {
+        self.describeGameServerSessionQueues(DescribeGameServerSessionQueuesRequest(names: names, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询游戏服务器会话队列
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeGameServerSessionQueues）用于查询游戏服务器会话队列。
+    @inlinable
+    public func describeGameServerSessionQueues(names: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGameServerSessionQueuesResponse {
+        try await self.describeGameServerSessionQueues(DescribeGameServerSessionQueuesRequest(names: names, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

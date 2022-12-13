@@ -70,4 +70,16 @@ extension Tcb {
     public func freezeCloudBaseRunServers(_ input: FreezeCloudBaseRunServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeCloudBaseRunServersResponse {
         try await self.client.execute(action: "FreezeCloudBaseRunServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量冻结
+    @inlinable
+    public func freezeCloudBaseRunServers(envId: String, serverNameList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FreezeCloudBaseRunServersResponse > {
+        self.freezeCloudBaseRunServers(FreezeCloudBaseRunServersRequest(envId: envId, serverNameList: serverNameList), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量冻结
+    @inlinable
+    public func freezeCloudBaseRunServers(envId: String, serverNameList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeCloudBaseRunServersResponse {
+        try await self.freezeCloudBaseRunServers(FreezeCloudBaseRunServersRequest(envId: envId, serverNameList: serverNameList), logger: logger, on: eventLoop)
+    }
 }

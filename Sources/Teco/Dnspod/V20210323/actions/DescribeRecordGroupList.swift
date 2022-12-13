@@ -69,4 +69,16 @@ extension Dnspod {
     public func describeRecordGroupList(_ input: DescribeRecordGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordGroupListResponse {
         try await self.client.execute(action: "DescribeRecordGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询解析记录分组列表
+    @inlinable
+    public func describeRecordGroupList(domain: String, domainId: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordGroupListResponse > {
+        self.describeRecordGroupList(DescribeRecordGroupListRequest(domain: domain, domainId: domainId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询解析记录分组列表
+    @inlinable
+    public func describeRecordGroupList(domain: String, domainId: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordGroupListResponse {
+        try await self.describeRecordGroupList(DescribeRecordGroupListRequest(domain: domain, domainId: domainId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

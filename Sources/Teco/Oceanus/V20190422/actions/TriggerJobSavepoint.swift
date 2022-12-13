@@ -79,4 +79,16 @@ extension Oceanus {
     public func triggerJobSavepoint(_ input: TriggerJobSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TriggerJobSavepointResponse {
         try await self.client.execute(action: "TriggerJobSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 触发Savepoint
+    @inlinable
+    public func triggerJobSavepoint(jobId: String, description: String? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TriggerJobSavepointResponse > {
+        self.triggerJobSavepoint(TriggerJobSavepointRequest(jobId: jobId, description: description, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 触发Savepoint
+    @inlinable
+    public func triggerJobSavepoint(jobId: String, description: String? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TriggerJobSavepointResponse {
+        try await self.triggerJobSavepoint(TriggerJobSavepointRequest(jobId: jobId, description: description, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    }
 }

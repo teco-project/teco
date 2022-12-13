@@ -86,4 +86,16 @@ extension Antiddos {
     public func describeListIPAlarmConfig(_ input: DescribeListIPAlarmConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListIPAlarmConfigResponse {
         try await self.client.execute(action: "DescribeListIPAlarmConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取单IP告警阈值配置列表
+    @inlinable
+    public func describeListIPAlarmConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterAlarmType: Int64, filterIp: String? = nil, filterCname: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListIPAlarmConfigResponse > {
+        self.describeListIPAlarmConfig(DescribeListIPAlarmConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterAlarmType: filterAlarmType, filterIp: filterIp, filterCname: filterCname), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取单IP告警阈值配置列表
+    @inlinable
+    public func describeListIPAlarmConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterAlarmType: Int64, filterIp: String? = nil, filterCname: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListIPAlarmConfigResponse {
+        try await self.describeListIPAlarmConfig(DescribeListIPAlarmConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterAlarmType: filterAlarmType, filterIp: filterIp, filterCname: filterCname), logger: logger, on: eventLoop)
+    }
 }

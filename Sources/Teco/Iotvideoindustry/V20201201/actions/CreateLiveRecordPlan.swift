@@ -75,4 +75,16 @@ extension Iotvideoindustry {
     public func createLiveRecordPlan(_ input: CreateLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordPlanResponse {
         try await self.client.execute(action: "CreateLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建直播录制计划
+    @inlinable
+    public func createLiveRecordPlan(planName: String, planType: Int64, templateId: String? = nil, recordStorageTime: Int64? = nil, liveChannelIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveRecordPlanResponse > {
+        self.createLiveRecordPlan(CreateLiveRecordPlanRequest(planName: planName, planType: planType, templateId: templateId, recordStorageTime: recordStorageTime, liveChannelIds: liveChannelIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建直播录制计划
+    @inlinable
+    public func createLiveRecordPlan(planName: String, planType: Int64, templateId: String? = nil, recordStorageTime: Int64? = nil, liveChannelIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordPlanResponse {
+        try await self.createLiveRecordPlan(CreateLiveRecordPlanRequest(planName: planName, planType: planType, templateId: templateId, recordStorageTime: recordStorageTime, liveChannelIds: liveChannelIds), logger: logger, on: eventLoop)
+    }
 }

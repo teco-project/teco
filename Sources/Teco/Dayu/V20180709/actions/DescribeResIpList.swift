@@ -59,4 +59,16 @@ extension Dayu {
     public func describeResIpList(_ input: DescribeResIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResIpListResponse {
         try await self.client.execute(action: "DescribeResIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取资源的IP列表
+    @inlinable
+    public func describeResIpList(business: String, idList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResIpListResponse > {
+        self.describeResIpList(DescribeResIpListRequest(business: business, idList: idList), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资源的IP列表
+    @inlinable
+    public func describeResIpList(business: String, idList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResIpListResponse {
+        try await self.describeResIpList(DescribeResIpListRequest(business: business, idList: idList), logger: logger, on: eventLoop)
+    }
 }

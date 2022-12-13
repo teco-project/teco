@@ -107,4 +107,20 @@ extension Teo {
     public func describeDnsRecords(_ input: DescribeDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnsRecordsResponse {
         try await self.client.execute(action: "DescribeDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询 DNS 记录列表
+    ///
+    /// 查询 DNS 记录列表，支持搜索、分页、排序、过滤。
+    @inlinable
+    public func describeDnsRecords(zoneId: String? = nil, filters: [AdvancedFilter]? = nil, direction: String? = nil, match: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDnsRecordsResponse > {
+        self.describeDnsRecords(DescribeDnsRecordsRequest(zoneId: zoneId, filters: filters, direction: direction, match: match, limit: limit, offset: offset, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询 DNS 记录列表
+    ///
+    /// 查询 DNS 记录列表，支持搜索、分页、排序、过滤。
+    @inlinable
+    public func describeDnsRecords(zoneId: String? = nil, filters: [AdvancedFilter]? = nil, direction: String? = nil, match: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnsRecordsResponse {
+        try await self.describeDnsRecords(DescribeDnsRecordsRequest(zoneId: zoneId, filters: filters, direction: direction, match: match, limit: limit, offset: offset, order: order), logger: logger, on: eventLoop)
+    }
 }

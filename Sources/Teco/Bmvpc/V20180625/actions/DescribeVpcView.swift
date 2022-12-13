@@ -58,4 +58,20 @@ extension Bmvpc {
     public func describeVpcView(_ input: DescribeVpcViewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcViewResponse {
         try await self.client.execute(action: "DescribeVpcView", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询黑石VPC视图
+    ///
+    /// 本接口（DescribeVpcView）用于查询VPC网络拓扑视图。
+    @inlinable
+    public func describeVpcView(vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcViewResponse > {
+        self.describeVpcView(DescribeVpcViewRequest(vpcId: vpcId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询黑石VPC视图
+    ///
+    /// 本接口（DescribeVpcView）用于查询VPC网络拓扑视图。
+    @inlinable
+    public func describeVpcView(vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcViewResponse {
+        try await self.describeVpcView(DescribeVpcViewRequest(vpcId: vpcId), logger: logger, on: eventLoop)
+    }
 }

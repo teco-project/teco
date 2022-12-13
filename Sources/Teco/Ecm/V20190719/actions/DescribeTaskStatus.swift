@@ -58,4 +58,20 @@ extension Ecm {
     public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
         try await self.client.execute(action: "DescribeTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取任务状态
+    ///
+    /// 本接口(DescribeTaskStatus)用于获取异步任务状态
+    @inlinable
+    public func describeTaskStatus(taskSet: [TaskInput], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskStatusResponse > {
+        self.describeTaskStatus(DescribeTaskStatusRequest(taskSet: taskSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取任务状态
+    ///
+    /// 本接口(DescribeTaskStatus)用于获取异步任务状态
+    @inlinable
+    public func describeTaskStatus(taskSet: [TaskInput], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
+        try await self.describeTaskStatus(DescribeTaskStatusRequest(taskSet: taskSet), logger: logger, on: eventLoop)
+    }
 }

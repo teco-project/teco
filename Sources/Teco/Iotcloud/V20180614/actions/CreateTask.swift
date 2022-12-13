@@ -83,4 +83,20 @@ extension Iotcloud {
     public func createTask(_ input: CreateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {
         try await self.client.execute(action: "CreateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建任务
+    ///
+    /// 本接口（CreateTask）用于创建一个批量任务。目前此接口可以创建批量更新影子以及批量下发消息的任务 
+    @inlinable
+    public func createTask(taskType: String, productId: String, deviceNameFilter: String, scheduleTimeInSeconds: UInt64, tasks: Task, maxExecutionTimeInSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskResponse > {
+        self.createTask(CreateTaskRequest(taskType: taskType, productId: productId, deviceNameFilter: deviceNameFilter, scheduleTimeInSeconds: scheduleTimeInSeconds, tasks: tasks, maxExecutionTimeInSeconds: maxExecutionTimeInSeconds), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建任务
+    ///
+    /// 本接口（CreateTask）用于创建一个批量任务。目前此接口可以创建批量更新影子以及批量下发消息的任务 
+    @inlinable
+    public func createTask(taskType: String, productId: String, deviceNameFilter: String, scheduleTimeInSeconds: UInt64, tasks: Task, maxExecutionTimeInSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {
+        try await self.createTask(CreateTaskRequest(taskType: taskType, productId: productId, deviceNameFilter: deviceNameFilter, scheduleTimeInSeconds: scheduleTimeInSeconds, tasks: tasks, maxExecutionTimeInSeconds: maxExecutionTimeInSeconds), logger: logger, on: eventLoop)
+    }
 }

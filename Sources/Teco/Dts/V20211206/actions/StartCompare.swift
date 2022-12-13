@@ -59,4 +59,20 @@ extension Dts {
     public func startCompare(_ input: StartCompareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartCompareResponse {
         try await self.client.execute(action: "StartCompare", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启动一致性校验任务
+    ///
+    /// 启动一致性校验任务，启动之前需要先通过接口`CreateCompareTask` 创建一致性校验任务，启动后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态
+    @inlinable
+    public func startCompare(jobId: String, compareTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartCompareResponse > {
+        self.startCompare(StartCompareRequest(jobId: jobId, compareTaskId: compareTaskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 启动一致性校验任务
+    ///
+    /// 启动一致性校验任务，启动之前需要先通过接口`CreateCompareTask` 创建一致性校验任务，启动后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态
+    @inlinable
+    public func startCompare(jobId: String, compareTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartCompareResponse {
+        try await self.startCompare(StartCompareRequest(jobId: jobId, compareTaskId: compareTaskId), logger: logger, on: eventLoop)
+    }
 }

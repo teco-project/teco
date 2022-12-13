@@ -87,4 +87,20 @@ extension Tcr {
     public func describeRepositories(_ input: DescribeRepositoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoriesResponse {
         try await self.client.execute(action: "DescribeRepositories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询镜像仓库信息
+    ///
+    /// 查询镜像仓库列表或指定镜像仓库信息
+    @inlinable
+    public func describeRepositories(registryId: String, namespaceName: String? = nil, repositoryName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRepositoriesResponse > {
+        self.describeRepositories(DescribeRepositoriesRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, offset: offset, limit: limit, sortBy: sortBy), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像仓库信息
+    ///
+    /// 查询镜像仓库列表或指定镜像仓库信息
+    @inlinable
+    public func describeRepositories(registryId: String, namespaceName: String? = nil, repositoryName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoriesResponse {
+        try await self.describeRepositories(DescribeRepositoriesRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, offset: offset, limit: limit, sortBy: sortBy), logger: logger, on: eventLoop)
+    }
 }

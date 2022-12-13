@@ -69,4 +69,16 @@ extension Wedata {
     public func commitIntegrationTask(_ input: CommitIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitIntegrationTaskResponse {
         try await self.client.execute(action: "CommitIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 提交集成任务
+    @inlinable
+    public func commitIntegrationTask(taskId: String, projectId: String, commitType: Int64? = nil, taskType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommitIntegrationTaskResponse > {
+        self.commitIntegrationTask(CommitIntegrationTaskRequest(taskId: taskId, projectId: projectId, commitType: commitType, taskType: taskType), logger: logger, on: eventLoop)
+    }
+    
+    /// 提交集成任务
+    @inlinable
+    public func commitIntegrationTask(taskId: String, projectId: String, commitType: Int64? = nil, taskType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitIntegrationTaskResponse {
+        try await self.commitIntegrationTask(CommitIntegrationTaskRequest(taskId: taskId, projectId: projectId, commitType: commitType, taskType: taskType), logger: logger, on: eventLoop)
+    }
 }

@@ -76,4 +76,20 @@ extension Cdb {
     public func modifyCDBProxyConnectionPool(_ input: ModifyCDBProxyConnectionPoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCDBProxyConnectionPoolResponse {
         try await self.client.execute(action: "ModifyCDBProxyConnectionPool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 配置数据库代理连接池
+    ///
+    /// 请求该接口配置数据库连接池；支持的连接池配置请求DescribeProxyConnectionPoolConf接口获取。
+    @inlinable
+    public func modifyCDBProxyConnectionPool(proxyGroupId: String, openConnectionPool: Bool, connectionPoolType: String? = nil, poolConnectionTimeOut: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCDBProxyConnectionPoolResponse > {
+        self.modifyCDBProxyConnectionPool(ModifyCDBProxyConnectionPoolRequest(proxyGroupId: proxyGroupId, openConnectionPool: openConnectionPool, connectionPoolType: connectionPoolType, poolConnectionTimeOut: poolConnectionTimeOut), logger: logger, on: eventLoop)
+    }
+    
+    /// 配置数据库代理连接池
+    ///
+    /// 请求该接口配置数据库连接池；支持的连接池配置请求DescribeProxyConnectionPoolConf接口获取。
+    @inlinable
+    public func modifyCDBProxyConnectionPool(proxyGroupId: String, openConnectionPool: Bool, connectionPoolType: String? = nil, poolConnectionTimeOut: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCDBProxyConnectionPoolResponse {
+        try await self.modifyCDBProxyConnectionPool(ModifyCDBProxyConnectionPoolRequest(proxyGroupId: proxyGroupId, openConnectionPool: openConnectionPool, connectionPoolType: connectionPoolType, poolConnectionTimeOut: poolConnectionTimeOut), logger: logger, on: eventLoop)
+    }
 }

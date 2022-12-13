@@ -55,4 +55,16 @@ extension Gme {
     public func getCustomizationList(_ input: GetCustomizationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomizationListResponse {
         try await self.client.execute(action: "GetCustomizationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询语音消息转文本自学习模型列表
+    @inlinable
+    public func getCustomizationList(bizId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCustomizationListResponse > {
+        self.getCustomizationList(GetCustomizationListRequest(bizId: bizId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询语音消息转文本自学习模型列表
+    @inlinable
+    public func getCustomizationList(bizId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomizationListResponse {
+        try await self.getCustomizationList(GetCustomizationListRequest(bizId: bizId), logger: logger, on: eventLoop)
+    }
 }

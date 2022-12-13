@@ -60,4 +60,16 @@ extension Cdb {
     public func modifyNameOrDescByDpId(_ input: ModifyNameOrDescByDpIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNameOrDescByDpIdResponse {
         try await self.client.execute(action: "ModifyNameOrDescByDpId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改置放群组的名称或者描述
+    @inlinable
+    public func modifyNameOrDescByDpId(deployGroupId: String, deployGroupName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNameOrDescByDpIdResponse > {
+        self.modifyNameOrDescByDpId(ModifyNameOrDescByDpIdRequest(deployGroupId: deployGroupId, deployGroupName: deployGroupName, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改置放群组的名称或者描述
+    @inlinable
+    public func modifyNameOrDescByDpId(deployGroupId: String, deployGroupName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNameOrDescByDpIdResponse {
+        try await self.modifyNameOrDescByDpId(ModifyNameOrDescByDpIdRequest(deployGroupId: deployGroupId, deployGroupName: deployGroupName, description: description), logger: logger, on: eventLoop)
+    }
 }

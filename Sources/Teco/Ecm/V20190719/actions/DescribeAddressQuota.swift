@@ -58,4 +58,20 @@ extension Ecm {
     public func describeAddressQuota(_ input: DescribeAddressQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressQuotaResponse {
         try await self.client.execute(action: "DescribeAddressQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询弹性公网IP配额
+    ///
+    /// 查询您账户的弹性公网IP（简称 EIP）在当前地域的配额信息
+    @inlinable
+    public func describeAddressQuota(ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAddressQuotaResponse > {
+        self.describeAddressQuota(DescribeAddressQuotaRequest(ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询弹性公网IP配额
+    ///
+    /// 查询您账户的弹性公网IP（简称 EIP）在当前地域的配额信息
+    @inlinable
+    public func describeAddressQuota(ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressQuotaResponse {
+        try await self.describeAddressQuota(DescribeAddressQuotaRequest(ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    }
 }

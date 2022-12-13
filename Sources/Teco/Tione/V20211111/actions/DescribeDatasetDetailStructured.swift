@@ -80,4 +80,16 @@ extension Tione {
     public func describeDatasetDetailStructured(_ input: DescribeDatasetDetailStructuredRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasetDetailStructuredResponse {
         try await self.client.execute(action: "DescribeDatasetDetailStructured", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询结构化数据集详情
+    @inlinable
+    public func describeDatasetDetailStructured(datasetId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatasetDetailStructuredResponse > {
+        self.describeDatasetDetailStructured(DescribeDatasetDetailStructuredRequest(datasetId: datasetId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询结构化数据集详情
+    @inlinable
+    public func describeDatasetDetailStructured(datasetId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasetDetailStructuredResponse {
+        try await self.describeDatasetDetailStructured(DescribeDatasetDetailStructuredRequest(datasetId: datasetId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

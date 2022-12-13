@@ -80,4 +80,20 @@ extension Teo {
     public func describeDnssec(_ input: DescribeDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnssecResponse {
         try await self.client.execute(action: "DescribeDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询 DNSSEC 信息
+    ///
+    /// 用于查询 DNSSEC 相关信息
+    @inlinable
+    public func describeDnssec(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDnssecResponse > {
+        self.describeDnssec(DescribeDnssecRequest(id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询 DNSSEC 信息
+    ///
+    /// 用于查询 DNSSEC 相关信息
+    @inlinable
+    public func describeDnssec(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnssecResponse {
+        try await self.describeDnssec(DescribeDnssecRequest(id: id), logger: logger, on: eventLoop)
+    }
 }

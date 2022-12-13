@@ -92,4 +92,22 @@ extension Nlp {
     public func sentimentAnalysis(_ input: SentimentAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SentimentAnalysisResponse {
         try await self.client.execute(action: "SentimentAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 情感分析
+    ///
+    /// 情感分析接口能够对带有情感色彩的主观性文本进行分析、处理、归纳和推理，识别出用户的情感倾向，是积极还是消极，并且提供各自概率。
+    /// 该功能基于千亿级大规模互联网语料和LSTM、BERT等深度神经网络模型进行训练，并持续迭代更新，以保证效果不断提升。
+    @inlinable
+    public func sentimentAnalysis(text: String, flag: UInt64? = nil, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SentimentAnalysisResponse > {
+        self.sentimentAnalysis(SentimentAnalysisRequest(text: text, flag: flag, mode: mode), logger: logger, on: eventLoop)
+    }
+    
+    /// 情感分析
+    ///
+    /// 情感分析接口能够对带有情感色彩的主观性文本进行分析、处理、归纳和推理，识别出用户的情感倾向，是积极还是消极，并且提供各自概率。
+    /// 该功能基于千亿级大规模互联网语料和LSTM、BERT等深度神经网络模型进行训练，并持续迭代更新，以保证效果不断提升。
+    @inlinable
+    public func sentimentAnalysis(text: String, flag: UInt64? = nil, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SentimentAnalysisResponse {
+        try await self.sentimentAnalysis(SentimentAnalysisRequest(text: text, flag: flag, mode: mode), logger: logger, on: eventLoop)
+    }
 }

@@ -133,4 +133,20 @@ extension Essbasic {
     public func sendFlow(_ input: SendFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendFlowResponse {
         try await self.client.execute(action: "SendFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 发送流程
+    ///
+    /// 此接口（SendFlow）用于指定签署者及签署内容，后续可通过生成签署接口（CreateSignUrl）获取签署url。
+    @inlinable
+    public func sendFlow(caller: Caller, flowId: String, userId: String, signComponents: [Component], mobile: String? = nil, subOrganizationId: String? = nil, verifyChannel: [String]? = nil, deadline: Int64? = nil, isLastApprover: Bool? = nil, jumpUrl: String? = nil, smsTemplate: SmsTemplate? = nil, isFullText: Bool? = nil, preReadTime: Int64? = nil, canOffLine: Bool? = nil, callbackUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendFlowResponse > {
+        self.sendFlow(SendFlowRequest(caller: caller, flowId: flowId, userId: userId, signComponents: signComponents, mobile: mobile, subOrganizationId: subOrganizationId, verifyChannel: verifyChannel, deadline: deadline, isLastApprover: isLastApprover, jumpUrl: jumpUrl, smsTemplate: smsTemplate, isFullText: isFullText, preReadTime: preReadTime, canOffLine: canOffLine, callbackUrl: callbackUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 发送流程
+    ///
+    /// 此接口（SendFlow）用于指定签署者及签署内容，后续可通过生成签署接口（CreateSignUrl）获取签署url。
+    @inlinable
+    public func sendFlow(caller: Caller, flowId: String, userId: String, signComponents: [Component], mobile: String? = nil, subOrganizationId: String? = nil, verifyChannel: [String]? = nil, deadline: Int64? = nil, isLastApprover: Bool? = nil, jumpUrl: String? = nil, smsTemplate: SmsTemplate? = nil, isFullText: Bool? = nil, preReadTime: Int64? = nil, canOffLine: Bool? = nil, callbackUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendFlowResponse {
+        try await self.sendFlow(SendFlowRequest(caller: caller, flowId: flowId, userId: userId, signComponents: signComponents, mobile: mobile, subOrganizationId: subOrganizationId, verifyChannel: verifyChannel, deadline: deadline, isLastApprover: isLastApprover, jumpUrl: jumpUrl, smsTemplate: smsTemplate, isFullText: isFullText, preReadTime: preReadTime, canOffLine: canOffLine, callbackUrl: callbackUrl), logger: logger, on: eventLoop)
+    }
 }

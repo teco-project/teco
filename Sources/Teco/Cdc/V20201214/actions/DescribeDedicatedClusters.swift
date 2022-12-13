@@ -88,4 +88,16 @@ extension Cdc {
     public func describeDedicatedClusters(_ input: DescribeDedicatedClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClustersResponse {
         try await self.client.execute(action: "DescribeDedicatedClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询专用集群列表
+    @inlinable
+    public func describeDedicatedClusters(dedicatedClusterIds: [String]? = nil, zones: [String]? = nil, siteIds: [String]? = nil, lifecycleStatuses: [String]? = nil, name: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClustersResponse > {
+        self.describeDedicatedClusters(DescribeDedicatedClustersRequest(dedicatedClusterIds: dedicatedClusterIds, zones: zones, siteIds: siteIds, lifecycleStatuses: lifecycleStatuses, name: name, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专用集群列表
+    @inlinable
+    public func describeDedicatedClusters(dedicatedClusterIds: [String]? = nil, zones: [String]? = nil, siteIds: [String]? = nil, lifecycleStatuses: [String]? = nil, name: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClustersResponse {
+        try await self.describeDedicatedClusters(DescribeDedicatedClustersRequest(dedicatedClusterIds: dedicatedClusterIds, zones: zones, siteIds: siteIds, lifecycleStatuses: lifecycleStatuses, name: name, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

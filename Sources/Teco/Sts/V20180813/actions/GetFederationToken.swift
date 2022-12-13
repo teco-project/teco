@@ -77,4 +77,16 @@ extension Sts {
     public func getFederationToken(_ input: GetFederationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFederationTokenResponse {
         try await self.client.execute(action: "GetFederationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取联合身份临时访问凭证
+    @inlinable
+    public func getFederationToken(name: String, policy: String, durationSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFederationTokenResponse > {
+        self.getFederationToken(GetFederationTokenRequest(name: name, policy: policy, durationSeconds: durationSeconds), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取联合身份临时访问凭证
+    @inlinable
+    public func getFederationToken(name: String, policy: String, durationSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFederationTokenResponse {
+        try await self.getFederationToken(GetFederationTokenRequest(name: name, policy: policy, durationSeconds: durationSeconds), logger: logger, on: eventLoop)
+    }
 }

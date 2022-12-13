@@ -83,4 +83,30 @@ extension Vod {
     public func processImage(_ input: ProcessImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessImageResponse {
         try await self.client.execute(action: "ProcessImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 图片处理
+    ///
+    /// 该 API 已经<font color='red'>不再维护</font>，智能识别任务请使用图片智能识别 [ReviewImage](https://cloud.tencent.com/document/api/266/73217) 接口。
+    /// 对点播中的图片文件发起处理任务，功能包括：
+    /// 1. 智能识别（令人反感的信息、不安全的信息、不适宜的信息）;
+    /// ><li>图片文件大小支持：文件 < 5M；</li>
+    /// ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响识别效果；</li>
+    /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
+    @inlinable
+    public func processImage(fileId: String, operation: String, contentReviewInput: ImageContentReviewInput? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ProcessImageResponse > {
+        self.processImage(ProcessImageRequest(fileId: fileId, operation: operation, contentReviewInput: contentReviewInput, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 图片处理
+    ///
+    /// 该 API 已经<font color='red'>不再维护</font>，智能识别任务请使用图片智能识别 [ReviewImage](https://cloud.tencent.com/document/api/266/73217) 接口。
+    /// 对点播中的图片文件发起处理任务，功能包括：
+    /// 1. 智能识别（令人反感的信息、不安全的信息、不适宜的信息）;
+    /// ><li>图片文件大小支持：文件 < 5M；</li>
+    /// ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响识别效果；</li>
+    /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
+    @inlinable
+    public func processImage(fileId: String, operation: String, contentReviewInput: ImageContentReviewInput? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessImageResponse {
+        try await self.processImage(ProcessImageRequest(fileId: fileId, operation: operation, contentReviewInput: contentReviewInput, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

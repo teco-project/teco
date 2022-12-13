@@ -65,4 +65,16 @@ extension Ecm {
     public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressAttributeResponse {
         try await self.client.execute(action: "ModifyAddressAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改弹性公网IP属性
+    @inlinable
+    public func modifyAddressAttribute(ecmRegion: String, addressId: String, addressName: String? = nil, eipDirectConnection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAddressAttributeResponse > {
+        self.modifyAddressAttribute(ModifyAddressAttributeRequest(ecmRegion: ecmRegion, addressId: addressId, addressName: addressName, eipDirectConnection: eipDirectConnection), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改弹性公网IP属性
+    @inlinable
+    public func modifyAddressAttribute(ecmRegion: String, addressId: String, addressName: String? = nil, eipDirectConnection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressAttributeResponse {
+        try await self.modifyAddressAttribute(ModifyAddressAttributeRequest(ecmRegion: ecmRegion, addressId: addressId, addressName: addressName, eipDirectConnection: eipDirectConnection), logger: logger, on: eventLoop)
+    }
 }

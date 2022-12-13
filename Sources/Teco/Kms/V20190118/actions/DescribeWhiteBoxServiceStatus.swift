@@ -46,4 +46,16 @@ extension Kms {
     public func describeWhiteBoxServiceStatus(_ input: DescribeWhiteBoxServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxServiceStatusResponse {
         try await self.client.execute(action: "DescribeWhiteBoxServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取白盒密钥服务状态
+    @inlinable
+    public func describeWhiteBoxServiceStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteBoxServiceStatusResponse > {
+        self.describeWhiteBoxServiceStatus(DescribeWhiteBoxServiceStatusRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取白盒密钥服务状态
+    @inlinable
+    public func describeWhiteBoxServiceStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxServiceStatusResponse {
+        try await self.describeWhiteBoxServiceStatus(DescribeWhiteBoxServiceStatusRequest(), logger: logger, on: eventLoop)
+    }
 }

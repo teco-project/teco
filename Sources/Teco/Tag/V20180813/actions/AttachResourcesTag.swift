@@ -79,4 +79,20 @@ extension Tag {
     public func attachResourcesTag(_ input: AttachResourcesTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachResourcesTagResponse {
         try await self.client.execute(action: "AttachResourcesTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 标签关联批量资源
+    ///
+    /// 给多个资源关联某个标签
+    @inlinable
+    public func attachResourcesTag(serviceType: String, resourceIds: [String], tagKey: String, tagValue: String, resourceRegion: String? = nil, resourcePrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachResourcesTagResponse > {
+        self.attachResourcesTag(AttachResourcesTagRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, tagValue: tagValue, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix), logger: logger, on: eventLoop)
+    }
+    
+    /// 标签关联批量资源
+    ///
+    /// 给多个资源关联某个标签
+    @inlinable
+    public func attachResourcesTag(serviceType: String, resourceIds: [String], tagKey: String, tagValue: String, resourceRegion: String? = nil, resourcePrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachResourcesTagResponse {
+        try await self.attachResourcesTag(AttachResourcesTagRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, tagValue: tagValue, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix), logger: logger, on: eventLoop)
+    }
 }

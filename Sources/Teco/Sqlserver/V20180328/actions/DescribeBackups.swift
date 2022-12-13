@@ -126,4 +126,20 @@ extension Sqlserver {
     public func describeBackups(_ input: DescribeBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupsResponse {
         try await self.client.execute(action: "DescribeBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询备份列表
+    ///
+    /// 本接口(DescribeBackups)用于查询备份列表。
+    @inlinable
+    public func describeBackups(startTime: Date, endTime: Date, instanceId: String, limit: Int64? = nil, offset: Int64? = nil, backupName: String? = nil, strategy: Int64? = nil, backupWay: Int64? = nil, backupId: UInt64? = nil, databaseName: String? = nil, group: Int64? = nil, type: Int64? = nil, backupFormat: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupsResponse > {
+        self.describeBackups(DescribeBackupsRequest(startTime: startTime, endTime: endTime, instanceId: instanceId, limit: limit, offset: offset, backupName: backupName, strategy: strategy, backupWay: backupWay, backupId: backupId, databaseName: databaseName, group: group, type: type, backupFormat: backupFormat), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询备份列表
+    ///
+    /// 本接口(DescribeBackups)用于查询备份列表。
+    @inlinable
+    public func describeBackups(startTime: Date, endTime: Date, instanceId: String, limit: Int64? = nil, offset: Int64? = nil, backupName: String? = nil, strategy: Int64? = nil, backupWay: Int64? = nil, backupId: UInt64? = nil, databaseName: String? = nil, group: Int64? = nil, type: Int64? = nil, backupFormat: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupsResponse {
+        try await self.describeBackups(DescribeBackupsRequest(startTime: startTime, endTime: endTime, instanceId: instanceId, limit: limit, offset: offset, backupName: backupName, strategy: strategy, backupWay: backupWay, backupId: backupId, databaseName: databaseName, group: group, type: type, backupFormat: backupFormat), logger: logger, on: eventLoop)
+    }
 }

@@ -85,4 +85,20 @@ extension As {
     public func modifyScalingPolicy(_ input: ModifyScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyScalingPolicyResponse {
         try await self.client.execute(action: "ModifyScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改告警触发策略
+    ///
+    /// 本接口（ModifyScalingPolicy）用于修改告警触发策略。
+    @inlinable
+    public func modifyScalingPolicy(autoScalingPolicyId: String, scalingPolicyName: String? = nil, adjustmentType: String? = nil, adjustmentValue: Int64? = nil, cooldown: UInt64? = nil, metricAlarm: MetricAlarm? = nil, notificationUserGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyScalingPolicyResponse > {
+        self.modifyScalingPolicy(ModifyScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId, scalingPolicyName: scalingPolicyName, adjustmentType: adjustmentType, adjustmentValue: adjustmentValue, cooldown: cooldown, metricAlarm: metricAlarm, notificationUserGroupIds: notificationUserGroupIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改告警触发策略
+    ///
+    /// 本接口（ModifyScalingPolicy）用于修改告警触发策略。
+    @inlinable
+    public func modifyScalingPolicy(autoScalingPolicyId: String, scalingPolicyName: String? = nil, adjustmentType: String? = nil, adjustmentValue: Int64? = nil, cooldown: UInt64? = nil, metricAlarm: MetricAlarm? = nil, notificationUserGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyScalingPolicyResponse {
+        try await self.modifyScalingPolicy(ModifyScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId, scalingPolicyName: scalingPolicyName, adjustmentType: adjustmentType, adjustmentValue: adjustmentValue, cooldown: cooldown, metricAlarm: metricAlarm, notificationUserGroupIds: notificationUserGroupIds), logger: logger, on: eventLoop)
+    }
 }

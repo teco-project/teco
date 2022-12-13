@@ -126,4 +126,20 @@ extension Cpdp {
     public func queryBankClear(_ input: QueryBankClearRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBankClearResponse {
         try await self.client.execute(action: "QueryBankClear", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云鉴-查询银行在途清算结果
+    ///
+    /// 查询银行在途清算结果。查询时间段内交易网的在途清算结果。
+    @inlinable
+    public func queryBankClear(mrchCode: String, functionFlag: String, pageNum: String, startDate: String? = nil, endDate: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBankClearResponse > {
+        self.queryBankClear(QueryBankClearRequest(mrchCode: mrchCode, functionFlag: functionFlag, pageNum: pageNum, startDate: startDate, endDate: endDate, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-查询银行在途清算结果
+    ///
+    /// 查询银行在途清算结果。查询时间段内交易网的在途清算结果。
+    @inlinable
+    public func queryBankClear(mrchCode: String, functionFlag: String, pageNum: String, startDate: String? = nil, endDate: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBankClearResponse {
+        try await self.queryBankClear(QueryBankClearRequest(mrchCode: mrchCode, functionFlag: functionFlag, pageNum: pageNum, startDate: startDate, endDate: endDate, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    }
 }

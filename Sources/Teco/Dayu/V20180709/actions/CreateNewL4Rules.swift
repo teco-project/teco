@@ -73,4 +73,20 @@ extension Dayu {
     public func createNewL4Rules(_ input: CreateNewL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNewL4RulesResponse {
         try await self.client.execute(action: "CreateNewL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加四层转发规则
+    ///
+    /// 添加L4转发规则
+    @inlinable
+    public func createNewL4Rules(business: String, idList: [String], vipList: [String], rules: [L4RuleEntry], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNewL4RulesResponse > {
+        self.createNewL4Rules(CreateNewL4RulesRequest(business: business, idList: idList, vipList: vipList, rules: rules), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加四层转发规则
+    ///
+    /// 添加L4转发规则
+    @inlinable
+    public func createNewL4Rules(business: String, idList: [String], vipList: [String], rules: [L4RuleEntry], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNewL4RulesResponse {
+        try await self.createNewL4Rules(CreateNewL4RulesRequest(business: business, idList: idList, vipList: vipList, rules: rules), logger: logger, on: eventLoop)
+    }
 }

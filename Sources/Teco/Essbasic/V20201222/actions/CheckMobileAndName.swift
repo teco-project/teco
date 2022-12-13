@@ -84,4 +84,20 @@ extension Essbasic {
     public func checkMobileAndName(_ input: CheckMobileAndNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckMobileAndNameResponse {
         try await self.client.execute(action: "CheckMobileAndName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 手机号二要素核验
+    ///
+    /// 该接口为第三方平台向电子签平台验证手机号二要素
+    @inlinable
+    public func checkMobileAndName(caller: Caller, mobile: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckMobileAndNameResponse > {
+        self.checkMobileAndName(CheckMobileAndNameRequest(caller: caller, mobile: mobile, name: name), logger: logger, on: eventLoop)
+    }
+    
+    /// 手机号二要素核验
+    ///
+    /// 该接口为第三方平台向电子签平台验证手机号二要素
+    @inlinable
+    public func checkMobileAndName(caller: Caller, mobile: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckMobileAndNameResponse {
+        try await self.checkMobileAndName(CheckMobileAndNameRequest(caller: caller, mobile: mobile, name: name), logger: logger, on: eventLoop)
+    }
 }

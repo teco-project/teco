@@ -59,4 +59,16 @@ extension Tsf {
     public func redoTaskBatch(_ input: RedoTaskBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskBatchResponse {
         try await self.client.execute(action: "RedoTaskBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重新执行任务批次
+    @inlinable
+    public func redoTaskBatch(taskId: String, batchId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RedoTaskBatchResponse > {
+        self.redoTaskBatch(RedoTaskBatchRequest(taskId: taskId, batchId: batchId), logger: logger, on: eventLoop)
+    }
+    
+    /// 重新执行任务批次
+    @inlinable
+    public func redoTaskBatch(taskId: String, batchId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskBatchResponse {
+        try await self.redoTaskBatch(RedoTaskBatchRequest(taskId: taskId, batchId: batchId), logger: logger, on: eventLoop)
+    }
 }

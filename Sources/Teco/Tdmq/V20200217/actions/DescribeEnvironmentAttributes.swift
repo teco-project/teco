@@ -91,4 +91,20 @@ extension Tdmq {
     public func describeEnvironmentAttributes(_ input: DescribeEnvironmentAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentAttributesResponse {
         try await self.client.execute(action: "DescribeEnvironmentAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取命名空间属性
+    ///
+    /// 获取指定命名空间的属性
+    @inlinable
+    public func describeEnvironmentAttributes(environmentId: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentAttributesResponse > {
+        self.describeEnvironmentAttributes(DescribeEnvironmentAttributesRequest(environmentId: environmentId, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取命名空间属性
+    ///
+    /// 获取指定命名空间的属性
+    @inlinable
+    public func describeEnvironmentAttributes(environmentId: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentAttributesResponse {
+        try await self.describeEnvironmentAttributes(DescribeEnvironmentAttributesRequest(environmentId: environmentId, clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

@@ -93,4 +93,20 @@ extension Essbasic {
     public func sendSignInnerVerifyCode(_ input: SendSignInnerVerifyCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSignInnerVerifyCodeResponse {
         try await self.client.execute(action: "SendSignInnerVerifyCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 发送签署验证码
+    ///
+    /// 此接口用于发送签署验证码
+    @inlinable
+    public func sendSignInnerVerifyCode(caller: Caller, mobile: String, verifyType: String, userId: String? = nil, verifyTemplateId: String? = nil, verifySign: String? = nil, flowId: String? = nil, checkThreeElementResult: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendSignInnerVerifyCodeResponse > {
+        self.sendSignInnerVerifyCode(SendSignInnerVerifyCodeRequest(caller: caller, mobile: mobile, verifyType: verifyType, userId: userId, verifyTemplateId: verifyTemplateId, verifySign: verifySign, flowId: flowId, checkThreeElementResult: checkThreeElementResult), logger: logger, on: eventLoop)
+    }
+    
+    /// 发送签署验证码
+    ///
+    /// 此接口用于发送签署验证码
+    @inlinable
+    public func sendSignInnerVerifyCode(caller: Caller, mobile: String, verifyType: String, userId: String? = nil, verifyTemplateId: String? = nil, verifySign: String? = nil, flowId: String? = nil, checkThreeElementResult: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSignInnerVerifyCodeResponse {
+        try await self.sendSignInnerVerifyCode(SendSignInnerVerifyCodeRequest(caller: caller, mobile: mobile, verifyType: verifyType, userId: userId, verifyTemplateId: verifyTemplateId, verifySign: verifySign, flowId: flowId, checkThreeElementResult: checkThreeElementResult), logger: logger, on: eventLoop)
+    }
 }

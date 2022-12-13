@@ -64,4 +64,20 @@ extension Ckafka {
     public func createToken(_ input: CreateTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTokenResponse {
         try await self.client.execute(action: "CreateToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建token
+    ///
+    /// 创建最高权限的token
+    @inlinable
+    public func createToken(instanceId: String, user: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTokenResponse > {
+        self.createToken(CreateTokenRequest(instanceId: instanceId, user: user), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建token
+    ///
+    /// 创建最高权限的token
+    @inlinable
+    public func createToken(instanceId: String, user: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTokenResponse {
+        try await self.createToken(CreateTokenRequest(instanceId: instanceId, user: user), logger: logger, on: eventLoop)
+    }
 }

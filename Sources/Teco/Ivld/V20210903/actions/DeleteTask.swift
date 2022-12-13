@@ -58,4 +58,24 @@ extension Ivld {
     public func deleteTask(_ input: DeleteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskResponse {
         try await self.client.execute(action: "DeleteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除任务
+    ///
+    /// 删除任务信息
+    /// 请注意，本接口**不会**删除媒资文件
+    /// 只有已完成(成功或者失败)的任务可以删除，**正在执行中的任务不支持删除**
+    @inlinable
+    public func deleteTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTaskResponse > {
+        self.deleteTask(DeleteTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除任务
+    ///
+    /// 删除任务信息
+    /// 请注意，本接口**不会**删除媒资文件
+    /// 只有已完成(成功或者失败)的任务可以删除，**正在执行中的任务不支持删除**
+    @inlinable
+    public func deleteTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskResponse {
+        try await self.deleteTask(DeleteTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

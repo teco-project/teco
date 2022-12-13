@@ -63,4 +63,20 @@ extension Mariadb {
     public func restartDBInstances(_ input: RestartDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstancesResponse {
         try await self.client.execute(action: "RestartDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重启实例
+    ///
+    /// 本接口（RestartDBInstances）用于重启数据库实例
+    @inlinable
+    public func restartDBInstances(instanceIds: [String], restartTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartDBInstancesResponse > {
+        self.restartDBInstances(RestartDBInstancesRequest(instanceIds: instanceIds, restartTime: restartTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 重启实例
+    ///
+    /// 本接口（RestartDBInstances）用于重启数据库实例
+    @inlinable
+    public func restartDBInstances(instanceIds: [String], restartTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstancesResponse {
+        try await self.restartDBInstances(RestartDBInstancesRequest(instanceIds: instanceIds, restartTime: restartTime), logger: logger, on: eventLoop)
+    }
 }

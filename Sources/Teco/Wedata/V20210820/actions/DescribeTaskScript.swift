@@ -66,4 +66,22 @@ extension Wedata {
     public func describeTaskScript(_ input: DescribeTaskScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskScriptResponse {
         try await self.client.execute(action: "DescribeTaskScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询任务脚本【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 查询任务脚本
+    @inlinable
+    public func describeTaskScript(projectId: String, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskScriptResponse > {
+        self.describeTaskScript(DescribeTaskScriptRequest(projectId: projectId, taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务脚本【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 查询任务脚本
+    @inlinable
+    public func describeTaskScript(projectId: String, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskScriptResponse {
+        try await self.describeTaskScript(DescribeTaskScriptRequest(projectId: projectId, taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

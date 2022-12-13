@@ -58,4 +58,20 @@ extension Ecm {
     public func describeSecurityGroupAssociationStatistics(_ input: DescribeSecurityGroupAssociationStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupAssociationStatisticsResponse {
         try await self.client.execute(action: "DescribeSecurityGroupAssociationStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询安全组关联统计
+    ///
+    /// 查询安全组关联实例统计
+    @inlinable
+    public func describeSecurityGroupAssociationStatistics(securityGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupAssociationStatisticsResponse > {
+        self.describeSecurityGroupAssociationStatistics(DescribeSecurityGroupAssociationStatisticsRequest(securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全组关联统计
+    ///
+    /// 查询安全组关联实例统计
+    @inlinable
+    public func describeSecurityGroupAssociationStatistics(securityGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupAssociationStatisticsResponse {
+        try await self.describeSecurityGroupAssociationStatistics(DescribeSecurityGroupAssociationStatisticsRequest(securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    }
 }

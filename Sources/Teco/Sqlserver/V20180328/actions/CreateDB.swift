@@ -63,4 +63,20 @@ extension Sqlserver {
     public func createDB(_ input: CreateDBRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBResponse {
         try await self.client.execute(action: "CreateDB", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建数据库
+    ///
+    /// 本接口（CreateDB）用于创建数据库。
+    @inlinable
+    public func createDB(instanceId: String, dBs: [DBCreateInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBResponse > {
+        self.createDB(CreateDBRequest(instanceId: instanceId, dBs: dBs), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建数据库
+    ///
+    /// 本接口（CreateDB）用于创建数据库。
+    @inlinable
+    public func createDB(instanceId: String, dBs: [DBCreateInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBResponse {
+        try await self.createDB(CreateDBRequest(instanceId: instanceId, dBs: dBs), logger: logger, on: eventLoop)
+    }
 }

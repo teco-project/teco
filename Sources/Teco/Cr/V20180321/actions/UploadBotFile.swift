@@ -80,4 +80,16 @@ extension Cr {
     public func uploadBotFile(_ input: UploadBotFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadBotFileResponse {
         try await self.client.execute(action: "UploadBotFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 上传机器人文件
+    @inlinable
+    public func uploadBotFile(module: String, operation: String, fileType: String, fileUrl: String, fileName: String, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadBotFileResponse > {
+        self.uploadBotFile(UploadBotFileRequest(module: module, operation: operation, fileType: fileType, fileUrl: fileUrl, fileName: fileName, botId: botId, botName: botName), logger: logger, on: eventLoop)
+    }
+    
+    /// 上传机器人文件
+    @inlinable
+    public func uploadBotFile(module: String, operation: String, fileType: String, fileUrl: String, fileName: String, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadBotFileResponse {
+        try await self.uploadBotFile(UploadBotFileRequest(module: module, operation: operation, fileType: fileType, fileUrl: fileUrl, fileName: fileName, botId: botId, botName: botName), logger: logger, on: eventLoop)
+    }
 }

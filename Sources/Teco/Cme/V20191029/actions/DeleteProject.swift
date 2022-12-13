@@ -26,7 +26,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以删除一切项目。如果指定操作者，则操作者必须为项目所有者。
         public let `operator`: String?
         
-        public init (platform: String, projectId: String, `operator`: String? = nil) {
+        public init (platform: String, projectId: String, operator: String? = nil) {
             self.platform = platform
             self.projectId = projectId
             self.`operator` = `operator`
@@ -63,5 +63,21 @@ extension Cme {
     @inlinable
     public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
         try await self.client.execute(action: "DeleteProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 删除项目
+    ///
+    /// 删除项目。
+    @inlinable
+    public func deleteProject(platform: String, projectId: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProjectResponse > {
+        self.deleteProject(DeleteProjectRequest(platform: platform, projectId: projectId, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除项目
+    ///
+    /// 删除项目。
+    @inlinable
+    public func deleteProject(platform: String, projectId: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
+        try await self.deleteProject(DeleteProjectRequest(platform: platform, projectId: projectId, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

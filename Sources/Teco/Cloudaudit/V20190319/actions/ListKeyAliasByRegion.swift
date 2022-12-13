@@ -68,4 +68,16 @@ extension Cloudaudit {
     public func listKeyAliasByRegion(_ input: ListKeyAliasByRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListKeyAliasByRegionResponse {
         try await self.client.execute(action: "ListKeyAliasByRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 根据地域获取KMS密钥别名
+    @inlinable
+    public func listKeyAliasByRegion(kmsRegion: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListKeyAliasByRegionResponse > {
+        self.listKeyAliasByRegion(ListKeyAliasByRegionRequest(kmsRegion: kmsRegion, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 根据地域获取KMS密钥别名
+    @inlinable
+    public func listKeyAliasByRegion(kmsRegion: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListKeyAliasByRegionResponse {
+        try await self.listKeyAliasByRegion(ListKeyAliasByRegionRequest(kmsRegion: kmsRegion, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

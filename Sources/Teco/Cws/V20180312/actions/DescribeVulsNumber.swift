@@ -82,4 +82,20 @@ extension Cws {
     public func describeVulsNumber(_ input: DescribeVulsNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsNumberResponse {
         try await self.client.execute(action: "DescribeVulsNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看当前漏洞总计数量
+    ///
+    /// 本接口 (DescribeVulsNumber) 用于查询用户网站的漏洞总计数量。
+    @inlinable
+    public func describeVulsNumber(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulsNumberResponse > {
+        self.describeVulsNumber(DescribeVulsNumberRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看当前漏洞总计数量
+    ///
+    /// 本接口 (DescribeVulsNumber) 用于查询用户网站的漏洞总计数量。
+    @inlinable
+    public func describeVulsNumber(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsNumberResponse {
+        try await self.describeVulsNumber(DescribeVulsNumberRequest(), logger: logger, on: eventLoop)
+    }
 }

@@ -118,4 +118,20 @@ extension Ssl {
     public func applyCertificate(_ input: ApplyCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyCertificateResponse {
         try await self.client.execute(action: "ApplyCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 免费证书申请
+    ///
+    /// 本接口（ApplyCertificate）用于免费证书申请。
+    @inlinable
+    public func applyCertificate(dvAuthMethod: String, domainName: String, projectId: UInt64? = nil, packageType: String? = nil, contactEmail: String? = nil, contactPhone: String? = nil, validityPeriod: String? = nil, csrEncryptAlgo: String? = nil, csrKeyParameter: String? = nil, csrKeyPassword: String? = nil, alias: String? = nil, oldCertificateId: String? = nil, packageId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyCertificateResponse > {
+        self.applyCertificate(ApplyCertificateRequest(dvAuthMethod: dvAuthMethod, domainName: domainName, projectId: projectId, packageType: packageType, contactEmail: contactEmail, contactPhone: contactPhone, validityPeriod: validityPeriod, csrEncryptAlgo: csrEncryptAlgo, csrKeyParameter: csrKeyParameter, csrKeyPassword: csrKeyPassword, alias: alias, oldCertificateId: oldCertificateId, packageId: packageId), logger: logger, on: eventLoop)
+    }
+    
+    /// 免费证书申请
+    ///
+    /// 本接口（ApplyCertificate）用于免费证书申请。
+    @inlinable
+    public func applyCertificate(dvAuthMethod: String, domainName: String, projectId: UInt64? = nil, packageType: String? = nil, contactEmail: String? = nil, contactPhone: String? = nil, validityPeriod: String? = nil, csrEncryptAlgo: String? = nil, csrKeyParameter: String? = nil, csrKeyPassword: String? = nil, alias: String? = nil, oldCertificateId: String? = nil, packageId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyCertificateResponse {
+        try await self.applyCertificate(ApplyCertificateRequest(dvAuthMethod: dvAuthMethod, domainName: domainName, projectId: projectId, packageType: packageType, contactEmail: contactEmail, contactPhone: contactPhone, validityPeriod: validityPeriod, csrEncryptAlgo: csrEncryptAlgo, csrKeyParameter: csrKeyParameter, csrKeyPassword: csrKeyPassword, alias: alias, oldCertificateId: oldCertificateId, packageId: packageId), logger: logger, on: eventLoop)
+    }
 }

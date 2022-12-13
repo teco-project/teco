@@ -112,4 +112,20 @@ extension Cwp {
     public func describeSecurityEventsCnt(_ input: DescribeSecurityEventsCntRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityEventsCntResponse {
         try await self.client.execute(action: "DescribeSecurityEventsCnt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取安全事件数统计数据
+    ///
+    /// 获取安全概览相关事件统计数据接口
+    @inlinable
+    public func describeSecurityEventsCnt(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityEventsCntResponse > {
+        self.describeSecurityEventsCnt(DescribeSecurityEventsCntRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取安全事件数统计数据
+    ///
+    /// 获取安全概览相关事件统计数据接口
+    @inlinable
+    public func describeSecurityEventsCnt(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityEventsCntResponse {
+        try await self.describeSecurityEventsCnt(DescribeSecurityEventsCntRequest(), logger: logger, on: eventLoop)
+    }
 }

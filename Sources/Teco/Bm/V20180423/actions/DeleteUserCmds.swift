@@ -50,4 +50,16 @@ extension Bm {
     public func deleteUserCmds(_ input: DeleteUserCmdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserCmdsResponse {
         try await self.client.execute(action: "DeleteUserCmds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除自定义脚本
+    @inlinable
+    public func deleteUserCmds(cmdIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserCmdsResponse > {
+        self.deleteUserCmds(DeleteUserCmdsRequest(cmdIds: cmdIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除自定义脚本
+    @inlinable
+    public func deleteUserCmds(cmdIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserCmdsResponse {
+        try await self.deleteUserCmds(DeleteUserCmdsRequest(cmdIds: cmdIds), logger: logger, on: eventLoop)
+    }
 }

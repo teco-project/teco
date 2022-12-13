@@ -68,4 +68,20 @@ extension Tcb {
     public func turnOnStandaloneGateway(_ input: TurnOnStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TurnOnStandaloneGatewayResponse {
         try await self.client.execute(action: "TurnOnStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开启小租户网关
+    ///
+    /// 本接口（TurnOnStandaloneGateway）用于开启小租户网关。
+    @inlinable
+    public func turnOnStandaloneGateway(envId: String, gatewayName: String, serviceNameList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TurnOnStandaloneGatewayResponse > {
+        self.turnOnStandaloneGateway(TurnOnStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, serviceNameList: serviceNameList), logger: logger, on: eventLoop)
+    }
+    
+    /// 开启小租户网关
+    ///
+    /// 本接口（TurnOnStandaloneGateway）用于开启小租户网关。
+    @inlinable
+    public func turnOnStandaloneGateway(envId: String, gatewayName: String, serviceNameList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TurnOnStandaloneGatewayResponse {
+        try await self.turnOnStandaloneGateway(TurnOnStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, serviceNameList: serviceNameList), logger: logger, on: eventLoop)
+    }
 }

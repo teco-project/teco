@@ -69,4 +69,16 @@ extension Tem {
     public func modifyLogConfig(_ input: ModifyLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogConfigResponse {
         try await self.client.execute(action: "ModifyLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 编辑日志收集配置
+    @inlinable
+    public func modifyLogConfig(environmentId: String, name: String, data: LogConfig? = nil, applicationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLogConfigResponse > {
+        self.modifyLogConfig(ModifyLogConfigRequest(environmentId: environmentId, name: name, data: data, applicationId: applicationId), logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑日志收集配置
+    @inlinable
+    public func modifyLogConfig(environmentId: String, name: String, data: LogConfig? = nil, applicationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogConfigResponse {
+        try await self.modifyLogConfig(ModifyLogConfigRequest(environmentId: environmentId, name: name, data: data, applicationId: applicationId), logger: logger, on: eventLoop)
+    }
 }

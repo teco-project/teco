@@ -87,4 +87,16 @@ extension Teo {
     public func modifyOriginGroup(_ input: ModifyOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOriginGroupResponse {
         try await self.client.execute(action: "ModifyOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改源站组
+    @inlinable
+    public func modifyOriginGroup(zoneId: String, originGroupId: String, originType: String, originGroupName: String, configurationType: String, originRecords: [OriginRecord], hostHeader: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyOriginGroupResponse > {
+        self.modifyOriginGroup(ModifyOriginGroupRequest(zoneId: zoneId, originGroupId: originGroupId, originType: originType, originGroupName: originGroupName, configurationType: configurationType, originRecords: originRecords, hostHeader: hostHeader), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改源站组
+    @inlinable
+    public func modifyOriginGroup(zoneId: String, originGroupId: String, originType: String, originGroupName: String, configurationType: String, originRecords: [OriginRecord], hostHeader: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOriginGroupResponse {
+        try await self.modifyOriginGroup(ModifyOriginGroupRequest(zoneId: zoneId, originGroupId: originGroupId, originType: originType, originGroupName: originGroupName, configurationType: configurationType, originRecords: originRecords, hostHeader: hostHeader), logger: logger, on: eventLoop)
+    }
 }

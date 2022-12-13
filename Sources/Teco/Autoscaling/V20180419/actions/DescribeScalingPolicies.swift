@@ -81,4 +81,20 @@ extension As {
     public func describeScalingPolicies(_ input: DescribeScalingPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScalingPoliciesResponse {
         try await self.client.execute(action: "DescribeScalingPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询告警触发策略
+    ///
+    /// 本接口（DescribeScalingPolicies）用于查询告警触发策略。
+    @inlinable
+    public func describeScalingPolicies(autoScalingPolicyIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScalingPoliciesResponse > {
+        self.describeScalingPolicies(DescribeScalingPoliciesRequest(autoScalingPolicyIds: autoScalingPolicyIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询告警触发策略
+    ///
+    /// 本接口（DescribeScalingPolicies）用于查询告警触发策略。
+    @inlinable
+    public func describeScalingPolicies(autoScalingPolicyIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScalingPoliciesResponse {
+        try await self.describeScalingPolicies(DescribeScalingPoliciesRequest(autoScalingPolicyIds: autoScalingPolicyIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

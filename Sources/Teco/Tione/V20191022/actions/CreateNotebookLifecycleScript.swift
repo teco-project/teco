@@ -66,4 +66,16 @@ extension Tione {
     public func createNotebookLifecycleScript(_ input: CreateNotebookLifecycleScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookLifecycleScriptResponse {
         try await self.client.execute(action: "CreateNotebookLifecycleScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建Notebook生命周期脚本
+    @inlinable
+    public func createNotebookLifecycleScript(notebookLifecycleScriptsName: String, createScript: String? = nil, startScript: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNotebookLifecycleScriptResponse > {
+        self.createNotebookLifecycleScript(CreateNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName, createScript: createScript, startScript: startScript), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建Notebook生命周期脚本
+    @inlinable
+    public func createNotebookLifecycleScript(notebookLifecycleScriptsName: String, createScript: String? = nil, startScript: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookLifecycleScriptResponse {
+        try await self.createNotebookLifecycleScript(CreateNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName, createScript: createScript, startScript: startScript), logger: logger, on: eventLoop)
+    }
 }

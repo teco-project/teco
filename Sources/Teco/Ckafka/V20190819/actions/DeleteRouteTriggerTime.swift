@@ -54,4 +54,20 @@ extension Ckafka {
     public func deleteRouteTriggerTime(_ input: DeleteRouteTriggerTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTriggerTimeResponse {
         try await self.client.execute(action: "DeleteRouteTriggerTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改路由触发时间
+    ///
+    /// 修改删除路由延迟触发时间
+    @inlinable
+    public func deleteRouteTriggerTime(delayTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRouteTriggerTimeResponse > {
+        self.deleteRouteTriggerTime(DeleteRouteTriggerTimeRequest(delayTime: delayTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改路由触发时间
+    ///
+    /// 修改删除路由延迟触发时间
+    @inlinable
+    public func deleteRouteTriggerTime(delayTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTriggerTimeResponse {
+        try await self.deleteRouteTriggerTime(DeleteRouteTriggerTimeRequest(delayTime: delayTime), logger: logger, on: eventLoop)
+    }
 }

@@ -58,4 +58,20 @@ extension Iotvideo {
     public func describeRegistrationStatus(_ input: DescribeRegistrationStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegistrationStatusResponse {
         try await self.client.execute(action: "DescribeRegistrationStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询终端用户的注册状态
+    ///
+    /// 本接口（DescribeRegistrationStatus）用于查询终端用户的注册状态。
+    @inlinable
+    public func describeRegistrationStatus(cunionIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegistrationStatusResponse > {
+        self.describeRegistrationStatus(DescribeRegistrationStatusRequest(cunionIds: cunionIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询终端用户的注册状态
+    ///
+    /// 本接口（DescribeRegistrationStatus）用于查询终端用户的注册状态。
+    @inlinable
+    public func describeRegistrationStatus(cunionIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegistrationStatusResponse {
+        try await self.describeRegistrationStatus(DescribeRegistrationStatusRequest(cunionIds: cunionIds), logger: logger, on: eventLoop)
+    }
 }

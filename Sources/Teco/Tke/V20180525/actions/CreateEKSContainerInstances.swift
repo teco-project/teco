@@ -160,4 +160,16 @@ extension Tke {
     public func createEKSContainerInstances(_ input: CreateEKSContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEKSContainerInstancesResponse {
         try await self.client.execute(action: "CreateEKSContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建容器实例
+    @inlinable
+    public func createEKSContainerInstances(containers: [Container], eksCiName: String, securityGroupIds: [String], subnetId: String, vpcId: String, memory: Float, cpu: Float, restartPolicy: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, eksCiVolume: EksCiVolume? = nil, replicas: Int64? = nil, initContainers: [Container]? = nil, dnsConfig: DNSConfig? = nil, existedEipIds: [String]? = nil, autoCreateEipAttribute: EipAttribute? = nil, autoCreateEip: Bool? = nil, cpuType: String? = nil, gpuType: String? = nil, gpuCount: UInt64? = nil, camRoleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEKSContainerInstancesResponse > {
+        self.createEKSContainerInstances(CreateEKSContainerInstancesRequest(containers: containers, eksCiName: eksCiName, securityGroupIds: securityGroupIds, subnetId: subnetId, vpcId: vpcId, memory: memory, cpu: cpu, restartPolicy: restartPolicy, imageRegistryCredentials: imageRegistryCredentials, eksCiVolume: eksCiVolume, replicas: replicas, initContainers: initContainers, dnsConfig: dnsConfig, existedEipIds: existedEipIds, autoCreateEipAttribute: autoCreateEipAttribute, autoCreateEip: autoCreateEip, cpuType: cpuType, gpuType: gpuType, gpuCount: gpuCount, camRoleName: camRoleName), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建容器实例
+    @inlinable
+    public func createEKSContainerInstances(containers: [Container], eksCiName: String, securityGroupIds: [String], subnetId: String, vpcId: String, memory: Float, cpu: Float, restartPolicy: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, eksCiVolume: EksCiVolume? = nil, replicas: Int64? = nil, initContainers: [Container]? = nil, dnsConfig: DNSConfig? = nil, existedEipIds: [String]? = nil, autoCreateEipAttribute: EipAttribute? = nil, autoCreateEip: Bool? = nil, cpuType: String? = nil, gpuType: String? = nil, gpuCount: UInt64? = nil, camRoleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEKSContainerInstancesResponse {
+        try await self.createEKSContainerInstances(CreateEKSContainerInstancesRequest(containers: containers, eksCiName: eksCiName, securityGroupIds: securityGroupIds, subnetId: subnetId, vpcId: vpcId, memory: memory, cpu: cpu, restartPolicy: restartPolicy, imageRegistryCredentials: imageRegistryCredentials, eksCiVolume: eksCiVolume, replicas: replicas, initContainers: initContainers, dnsConfig: dnsConfig, existedEipIds: existedEipIds, autoCreateEipAttribute: autoCreateEipAttribute, autoCreateEip: autoCreateEip, cpuType: cpuType, gpuType: gpuType, gpuCount: gpuCount, camRoleName: camRoleName), logger: logger, on: eventLoop)
+    }
 }

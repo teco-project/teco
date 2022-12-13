@@ -50,4 +50,16 @@ extension Cam {
     public func deleteUserPermissionsBoundary(_ input: DeleteUserPermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserPermissionsBoundaryResponse {
         try await self.client.execute(action: "DeleteUserPermissionsBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除用户权限边界
+    @inlinable
+    public func deleteUserPermissionsBoundary(targetUin: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserPermissionsBoundaryResponse > {
+        self.deleteUserPermissionsBoundary(DeleteUserPermissionsBoundaryRequest(targetUin: targetUin), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除用户权限边界
+    @inlinable
+    public func deleteUserPermissionsBoundary(targetUin: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserPermissionsBoundaryResponse {
+        try await self.deleteUserPermissionsBoundary(DeleteUserPermissionsBoundaryRequest(targetUin: targetUin), logger: logger, on: eventLoop)
+    }
 }

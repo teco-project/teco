@@ -108,4 +108,16 @@ extension Cpdp {
     public func unbindOpenBankExternalSubMerchantBankAccount(_ input: UnbindOpenBankExternalSubMerchantBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindOpenBankExternalSubMerchantBankAccountResponse {
         try await self.client.execute(action: "UnbindOpenBankExternalSubMerchantBankAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云企付-子商户银行卡解绑
+    @inlinable
+    public func unbindOpenBankExternalSubMerchantBankAccount(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, outApplyId: String, notifyUrl: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindOpenBankExternalSubMerchantBankAccountResponse > {
+        self.unbindOpenBankExternalSubMerchantBankAccount(UnbindOpenBankExternalSubMerchantBankAccountRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, bindSerialNo: bindSerialNo, outApplyId: outApplyId, notifyUrl: notifyUrl, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-子商户银行卡解绑
+    @inlinable
+    public func unbindOpenBankExternalSubMerchantBankAccount(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, outApplyId: String, notifyUrl: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindOpenBankExternalSubMerchantBankAccountResponse {
+        try await self.unbindOpenBankExternalSubMerchantBankAccount(UnbindOpenBankExternalSubMerchantBankAccountRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, bindSerialNo: bindSerialNo, outApplyId: outApplyId, notifyUrl: notifyUrl, environment: environment), logger: logger, on: eventLoop)
+    }
 }

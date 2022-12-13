@@ -50,4 +50,16 @@ extension Lcic {
     public func deleteRoom(_ input: DeleteRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoomResponse {
         try await self.client.execute(action: "DeleteRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除房间
+    @inlinable
+    public func deleteRoom(roomId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRoomResponse > {
+        self.deleteRoom(DeleteRoomRequest(roomId: roomId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除房间
+    @inlinable
+    public func deleteRoom(roomId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoomResponse {
+        try await self.deleteRoom(DeleteRoomRequest(roomId: roomId), logger: logger, on: eventLoop)
+    }
 }

@@ -137,4 +137,26 @@ extension Cpdp {
     public func bindRelateAcctSmallAmount(_ input: BindRelateAcctSmallAmountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRelateAcctSmallAmountResponse {
         try await self.client.execute(action: "BindRelateAcctSmallAmount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云鉴-会员绑定提现账户-小额鉴权
+    ///
+    /// 会员绑定提现账户-小额鉴权。会员申请绑定提现账户，绑定后从会员子账户中提现到绑定账户。
+    /// 转账鉴权有两种形式：往账鉴权和来账鉴权。
+    /// 往账鉴权：该接口发起成功后，银行会向提现账户转入小于等于0.5元的随机金额，并短信通知客户查看，客户查看后，需将收到的金额大小，在电商平台页面上回填，并通知银行。银行验证通过后，完成提现账户绑定。
+    /// 来账鉴权：该接口发起成功后，银行以短信通知客户查看，客户查看后，需通过待绑定的账户往市场的监管账户转入短信上指定的金额。银行检索到该笔指定金额的来账是源自待绑定账户，则绑定成功。平安银行的账户，即BankType送1时，大小额行号和超级网银号都不用送。
+    @inlinable
+    public func bindRelateAcctSmallAmount(mrchCode: String, tranNetMemberCode: String, memberName: String, memberGlobalType: String, memberGlobalId: String, memberAcctNo: String, bankType: String, acctOpenBranchName: String, mobile: String, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindRelateAcctSmallAmountResponse > {
+        self.bindRelateAcctSmallAmount(BindRelateAcctSmallAmountRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, memberName: memberName, memberGlobalType: memberGlobalType, memberGlobalId: memberGlobalId, memberAcctNo: memberAcctNo, bankType: bankType, acctOpenBranchName: acctOpenBranchName, mobile: mobile, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-会员绑定提现账户-小额鉴权
+    ///
+    /// 会员绑定提现账户-小额鉴权。会员申请绑定提现账户，绑定后从会员子账户中提现到绑定账户。
+    /// 转账鉴权有两种形式：往账鉴权和来账鉴权。
+    /// 往账鉴权：该接口发起成功后，银行会向提现账户转入小于等于0.5元的随机金额，并短信通知客户查看，客户查看后，需将收到的金额大小，在电商平台页面上回填，并通知银行。银行验证通过后，完成提现账户绑定。
+    /// 来账鉴权：该接口发起成功后，银行以短信通知客户查看，客户查看后，需通过待绑定的账户往市场的监管账户转入短信上指定的金额。银行检索到该笔指定金额的来账是源自待绑定账户，则绑定成功。平安银行的账户，即BankType送1时，大小额行号和超级网银号都不用送。
+    @inlinable
+    public func bindRelateAcctSmallAmount(mrchCode: String, tranNetMemberCode: String, memberName: String, memberGlobalType: String, memberGlobalId: String, memberAcctNo: String, bankType: String, acctOpenBranchName: String, mobile: String, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRelateAcctSmallAmountResponse {
+        try await self.bindRelateAcctSmallAmount(BindRelateAcctSmallAmountRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, memberName: memberName, memberGlobalType: memberGlobalType, memberGlobalId: memberGlobalId, memberAcctNo: memberAcctNo, bankType: bankType, acctOpenBranchName: acctOpenBranchName, mobile: mobile, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    }
 }

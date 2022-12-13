@@ -58,4 +58,20 @@ extension Iotvideo {
     public func getAllFirmwareVersion(_ input: GetAllFirmwareVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAllFirmwareVersionResponse {
         try await self.client.execute(action: "GetAllFirmwareVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取所有版本列表
+    ///
+    /// 本接口（GetAllFirmwareVersion）用于获取所有的版本列表 
+    @inlinable
+    public func getAllFirmwareVersion(productID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAllFirmwareVersionResponse > {
+        self.getAllFirmwareVersion(GetAllFirmwareVersionRequest(productID: productID), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取所有版本列表
+    ///
+    /// 本接口（GetAllFirmwareVersion）用于获取所有的版本列表 
+    @inlinable
+    public func getAllFirmwareVersion(productID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAllFirmwareVersionResponse {
+        try await self.getAllFirmwareVersion(GetAllFirmwareVersionRequest(productID: productID), logger: logger, on: eventLoop)
+    }
 }

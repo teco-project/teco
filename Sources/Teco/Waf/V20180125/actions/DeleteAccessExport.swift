@@ -59,4 +59,20 @@ extension Waf {
     public func deleteAccessExport(_ input: DeleteAccessExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessExportResponse {
         try await self.client.execute(action: "DeleteAccessExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除访问日志导出
+    ///
+    /// 本接口用于删除访问日志导出
+    @inlinable
+    public func deleteAccessExport(exportId: String, topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccessExportResponse > {
+        self.deleteAccessExport(DeleteAccessExportRequest(exportId: exportId, topicId: topicId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除访问日志导出
+    ///
+    /// 本接口用于删除访问日志导出
+    @inlinable
+    public func deleteAccessExport(exportId: String, topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessExportResponse {
+        try await self.deleteAccessExport(DeleteAccessExportRequest(exportId: exportId, topicId: topicId), logger: logger, on: eventLoop)
+    }
 }

@@ -75,4 +75,16 @@ extension Es {
     public func updatePlugins(_ input: UpdatePluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePluginsResponse {
         try await self.client.execute(action: "UpdatePlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 变更插件列表
+    @inlinable
+    public func updatePlugins(instanceId: String, installPluginList: [String]? = nil, removePluginList: [String]? = nil, forceRestart: Bool? = nil, forceUpdate: Bool? = nil, pluginType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePluginsResponse > {
+        self.updatePlugins(UpdatePluginsRequest(instanceId: instanceId, installPluginList: installPluginList, removePluginList: removePluginList, forceRestart: forceRestart, forceUpdate: forceUpdate, pluginType: pluginType), logger: logger, on: eventLoop)
+    }
+    
+    /// 变更插件列表
+    @inlinable
+    public func updatePlugins(instanceId: String, installPluginList: [String]? = nil, removePluginList: [String]? = nil, forceRestart: Bool? = nil, forceUpdate: Bool? = nil, pluginType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePluginsResponse {
+        try await self.updatePlugins(UpdatePluginsRequest(instanceId: instanceId, installPluginList: installPluginList, removePluginList: removePluginList, forceRestart: forceRestart, forceUpdate: forceUpdate, pluginType: pluginType), logger: logger, on: eventLoop)
+    }
 }

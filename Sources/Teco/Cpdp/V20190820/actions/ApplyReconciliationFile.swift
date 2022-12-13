@@ -89,4 +89,16 @@ extension Cpdp {
     public func applyReconciliationFile(_ input: ApplyReconciliationFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyReconciliationFileResponse {
         try await self.client.execute(action: "ApplyReconciliationFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 聚鑫-申请对账文件
+    @inlinable
+    public func applyReconciliationFile(applyFileType: String, applyFileDate: String, bankAccountNumber: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyReconciliationFileResponse > {
+        self.applyReconciliationFile(ApplyReconciliationFileRequest(applyFileType: applyFileType, applyFileDate: applyFileDate, bankAccountNumber: bankAccountNumber, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-申请对账文件
+    @inlinable
+    public func applyReconciliationFile(applyFileType: String, applyFileDate: String, bankAccountNumber: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyReconciliationFileResponse {
+        try await self.applyReconciliationFile(ApplyReconciliationFileRequest(applyFileType: applyFileType, applyFileDate: applyFileDate, bankAccountNumber: bankAccountNumber, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
 }

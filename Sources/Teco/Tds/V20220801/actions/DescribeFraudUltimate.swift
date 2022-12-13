@@ -146,4 +146,16 @@ extension Tds {
     public func describeFraudUltimate(_ input: DescribeFraudUltimateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudUltimateResponse {
         try await self.client.execute(action: "DescribeFraudUltimate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询设备标识及风险（旗舰版）
+    @inlinable
+    public func describeFraudUltimate(deviceToken: String, sceneCode: String, userId: String, eventTime: UInt64, elapsedTime: UInt64? = nil, weChatOpenId: String? = nil, phoneNumber: String? = nil, clientIP: String? = nil, qqOpenId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFraudUltimateResponse > {
+        self.describeFraudUltimate(DescribeFraudUltimateRequest(deviceToken: deviceToken, sceneCode: sceneCode, userId: userId, eventTime: eventTime, elapsedTime: elapsedTime, weChatOpenId: weChatOpenId, phoneNumber: phoneNumber, clientIP: clientIP, qqOpenId: qqOpenId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备标识及风险（旗舰版）
+    @inlinable
+    public func describeFraudUltimate(deviceToken: String, sceneCode: String, userId: String, eventTime: UInt64, elapsedTime: UInt64? = nil, weChatOpenId: String? = nil, phoneNumber: String? = nil, clientIP: String? = nil, qqOpenId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudUltimateResponse {
+        try await self.describeFraudUltimate(DescribeFraudUltimateRequest(deviceToken: deviceToken, sceneCode: sceneCode, userId: userId, eventTime: eventTime, elapsedTime: elapsedTime, weChatOpenId: weChatOpenId, phoneNumber: phoneNumber, clientIP: clientIP, qqOpenId: qqOpenId), logger: logger, on: eventLoop)
+    }
 }

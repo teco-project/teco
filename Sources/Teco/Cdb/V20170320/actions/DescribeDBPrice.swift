@@ -128,4 +128,22 @@ extension Cdb {
     public func describeDBPrice(_ input: DescribeDBPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBPriceResponse {
         try await self.client.execute(action: "DescribeDBPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询数据库价格
+    ///
+    /// 本接口(DescribeDBPrice)用于查询购买或续费云数据库实例的价格，支持查询按量计费或者包年包月的价格。可传入实例类型、购买时长、购买数量、内存大小、硬盘大小和可用区信息等来查询实例价格。可传入实例名称来查询实例续费价格。
+    /// 注意：对某个地域进行询价，请使用对应地域的接入点，接入点信息请参照 <a href="https://cloud.tencent.com/document/api/236/15832">服务地址</a> 文档。例如：对广州地域进行询价，请把请求发到：cdb.ap-guangzhou.tencentcloudapi.com。同理对上海地域询价，把请求发到：cdb.ap-shanghai.tencentcloudapi.com。
+    @inlinable
+    public func describeDBPrice(period: Int64, zone: String? = nil, goodsNum: Int64? = nil, memory: Int64? = nil, volume: Int64? = nil, instanceRole: String? = nil, payType: String? = nil, protectMode: Int64? = nil, deviceType: String? = nil, instanceNodes: Int64? = nil, cpu: Int64? = nil, instanceId: String? = nil, ladder: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBPriceResponse > {
+        self.describeDBPrice(DescribeDBPriceRequest(period: period, zone: zone, goodsNum: goodsNum, memory: memory, volume: volume, instanceRole: instanceRole, payType: payType, protectMode: protectMode, deviceType: deviceType, instanceNodes: instanceNodes, cpu: cpu, instanceId: instanceId, ladder: ladder), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库价格
+    ///
+    /// 本接口(DescribeDBPrice)用于查询购买或续费云数据库实例的价格，支持查询按量计费或者包年包月的价格。可传入实例类型、购买时长、购买数量、内存大小、硬盘大小和可用区信息等来查询实例价格。可传入实例名称来查询实例续费价格。
+    /// 注意：对某个地域进行询价，请使用对应地域的接入点，接入点信息请参照 <a href="https://cloud.tencent.com/document/api/236/15832">服务地址</a> 文档。例如：对广州地域进行询价，请把请求发到：cdb.ap-guangzhou.tencentcloudapi.com。同理对上海地域询价，把请求发到：cdb.ap-shanghai.tencentcloudapi.com。
+    @inlinable
+    public func describeDBPrice(period: Int64, zone: String? = nil, goodsNum: Int64? = nil, memory: Int64? = nil, volume: Int64? = nil, instanceRole: String? = nil, payType: String? = nil, protectMode: Int64? = nil, deviceType: String? = nil, instanceNodes: Int64? = nil, cpu: Int64? = nil, instanceId: String? = nil, ladder: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBPriceResponse {
+        try await self.describeDBPrice(DescribeDBPriceRequest(period: period, zone: zone, goodsNum: goodsNum, memory: memory, volume: volume, instanceRole: instanceRole, payType: payType, protectMode: protectMode, deviceType: deviceType, instanceNodes: instanceNodes, cpu: cpu, instanceId: instanceId, ladder: ladder), logger: logger, on: eventLoop)
+    }
 }

@@ -107,4 +107,16 @@ extension Tse {
     public func describeSREInstanceAccessAddress(_ input: DescribeSREInstanceAccessAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSREInstanceAccessAddressResponse {
         try await self.client.execute(action: "DescribeSREInstanceAccessAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询引擎实例访问地址
+    @inlinable
+    public func describeSREInstanceAccessAddress(instanceId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, workload: String? = nil, engineRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSREInstanceAccessAddressResponse > {
+        self.describeSREInstanceAccessAddress(DescribeSREInstanceAccessAddressRequest(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, workload: workload, engineRegion: engineRegion), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询引擎实例访问地址
+    @inlinable
+    public func describeSREInstanceAccessAddress(instanceId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, workload: String? = nil, engineRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSREInstanceAccessAddressResponse {
+        try await self.describeSREInstanceAccessAddress(DescribeSREInstanceAccessAddressRequest(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, workload: workload, engineRegion: engineRegion), logger: logger, on: eventLoop)
+    }
 }

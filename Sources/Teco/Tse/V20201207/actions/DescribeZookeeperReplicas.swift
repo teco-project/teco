@@ -69,4 +69,16 @@ extension Tse {
     public func describeZookeeperReplicas(_ input: DescribeZookeeperReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZookeeperReplicasResponse {
         try await self.client.execute(action: "DescribeZookeeperReplicas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询Zookeeper类型注册引擎实例副本信息
+    @inlinable
+    public func describeZookeeperReplicas(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZookeeperReplicasResponse > {
+        self.describeZookeeperReplicas(DescribeZookeeperReplicasRequest(instanceId: instanceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Zookeeper类型注册引擎实例副本信息
+    @inlinable
+    public func describeZookeeperReplicas(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZookeeperReplicasResponse {
+        try await self.describeZookeeperReplicas(DescribeZookeeperReplicasRequest(instanceId: instanceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

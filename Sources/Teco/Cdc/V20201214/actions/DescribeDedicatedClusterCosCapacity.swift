@@ -54,4 +54,16 @@ extension Cdc {
     public func describeDedicatedClusterCosCapacity(_ input: DescribeDedicatedClusterCosCapacityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterCosCapacityResponse {
         try await self.client.execute(action: "DescribeDedicatedClusterCosCapacity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询专用集群内cos的容量信息
+    @inlinable
+    public func describeDedicatedClusterCosCapacity(dedicatedClusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterCosCapacityResponse > {
+        self.describeDedicatedClusterCosCapacity(DescribeDedicatedClusterCosCapacityRequest(dedicatedClusterId: dedicatedClusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专用集群内cos的容量信息
+    @inlinable
+    public func describeDedicatedClusterCosCapacity(dedicatedClusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterCosCapacityResponse {
+        try await self.describeDedicatedClusterCosCapacity(DescribeDedicatedClusterCosCapacityRequest(dedicatedClusterId: dedicatedClusterId), logger: logger, on: eventLoop)
+    }
 }

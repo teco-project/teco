@@ -64,4 +64,16 @@ extension Tcr {
     public func describeNamespacePersonal(_ input: DescribeNamespacePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacePersonalResponse {
         try await self.client.execute(action: "DescribeNamespacePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询个人版命名空间信息
+    @inlinable
+    public func describeNamespacePersonal(namespace: String, limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespacePersonalResponse > {
+        self.describeNamespacePersonal(DescribeNamespacePersonalRequest(namespace: namespace, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询个人版命名空间信息
+    @inlinable
+    public func describeNamespacePersonal(namespace: String, limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacePersonalResponse {
+        try await self.describeNamespacePersonal(DescribeNamespacePersonalRequest(namespace: namespace, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

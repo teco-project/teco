@@ -68,4 +68,20 @@ extension Wedata {
     public func describeRuleExecStat(_ input: DescribeRuleExecStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecStatResponse {
         try await self.client.execute(action: "DescribeRuleExecStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 数据质量规则运行情况接口
+    ///
+    /// 数据质量概览页面规则运行情况接口
+    @inlinable
+    public func describeRuleExecStat(projectId: String, beginDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleExecStatResponse > {
+        self.describeRuleExecStat(DescribeRuleExecStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 数据质量规则运行情况接口
+    ///
+    /// 数据质量概览页面规则运行情况接口
+    @inlinable
+    public func describeRuleExecStat(projectId: String, beginDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecStatResponse {
+        try await self.describeRuleExecStat(DescribeRuleExecStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
 }

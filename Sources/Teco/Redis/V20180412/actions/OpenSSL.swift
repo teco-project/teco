@@ -54,4 +54,16 @@ extension Redis {
     public func openSSL(_ input: OpenSSLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenSSLResponse {
         try await self.client.execute(action: "OpenSSL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开启SSL
+    @inlinable
+    public func openSSL(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenSSLResponse > {
+        self.openSSL(OpenSSLRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 开启SSL
+    @inlinable
+    public func openSSL(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenSSLResponse {
+        try await self.openSSL(OpenSSLRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

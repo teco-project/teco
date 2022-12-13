@@ -96,4 +96,20 @@ extension Bda {
     public func segmentPortraitPic(_ input: SegmentPortraitPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SegmentPortraitPicResponse {
         try await self.client.execute(action: "SegmentPortraitPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 人像分割
+    ///
+    /// 即二分类人像分割，识别传入图片中人体的完整轮廓，进行抠像。
+    @inlinable
+    public func segmentPortraitPic(image: String? = nil, url: String? = nil, rspImgType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SegmentPortraitPicResponse > {
+        self.segmentPortraitPic(SegmentPortraitPicRequest(image: image, url: url, rspImgType: rspImgType), logger: logger, on: eventLoop)
+    }
+    
+    /// 人像分割
+    ///
+    /// 即二分类人像分割，识别传入图片中人体的完整轮廓，进行抠像。
+    @inlinable
+    public func segmentPortraitPic(image: String? = nil, url: String? = nil, rspImgType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SegmentPortraitPicResponse {
+        try await self.segmentPortraitPic(SegmentPortraitPicRequest(image: image, url: url, rspImgType: rspImgType), logger: logger, on: eventLoop)
+    }
 }

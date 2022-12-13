@@ -69,4 +69,20 @@ extension Tag {
     public func getTagKeys(_ input: GetTagKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTagKeysResponse {
         try await self.client.execute(action: "GetTagKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询标签键列表
+    ///
+    /// 查询标签键列表。
+    @inlinable
+    public func getTagKeys(paginationToken: String? = nil, maxResults: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTagKeysResponse > {
+        self.getTagKeys(GetTagKeysRequest(paginationToken: paginationToken, maxResults: maxResults), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询标签键列表
+    ///
+    /// 查询标签键列表。
+    @inlinable
+    public func getTagKeys(paginationToken: String? = nil, maxResults: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTagKeysResponse {
+        try await self.getTagKeys(GetTagKeysRequest(paginationToken: paginationToken, maxResults: maxResults), logger: logger, on: eventLoop)
+    }
 }

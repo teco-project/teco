@@ -50,4 +50,20 @@ extension Tdid {
     public func getDidClusterList(_ input: GetDidClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterListResponse {
         try await self.client.execute(action: "GetDidClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取DID网络列表
+    ///
+    /// 获取用户的DID网络列表
+    @inlinable
+    public func getDidClusterList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidClusterListResponse > {
+        self.getDidClusterList(GetDidClusterListRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DID网络列表
+    ///
+    /// 获取用户的DID网络列表
+    @inlinable
+    public func getDidClusterList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterListResponse {
+        try await self.getDidClusterList(GetDidClusterListRequest(), logger: logger, on: eventLoop)
+    }
 }

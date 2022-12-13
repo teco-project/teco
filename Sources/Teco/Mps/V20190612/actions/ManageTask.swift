@@ -64,4 +64,20 @@ extension Mps {
     public func manageTask(_ input: ManageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageTaskResponse {
         try await self.client.execute(action: "ManageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 任务管理
+    ///
+    /// 对已发起的任务进行管理。
+    @inlinable
+    public func manageTask(operationType: String, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageTaskResponse > {
+        self.manageTask(ManageTaskRequest(operationType: operationType, taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 任务管理
+    ///
+    /// 对已发起的任务进行管理。
+    @inlinable
+    public func manageTask(operationType: String, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageTaskResponse {
+        try await self.manageTask(ManageTaskRequest(operationType: operationType, taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

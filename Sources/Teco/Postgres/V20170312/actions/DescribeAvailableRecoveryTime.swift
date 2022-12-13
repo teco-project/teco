@@ -62,4 +62,20 @@ extension Postgres {
     public func describeAvailableRecoveryTime(_ input: DescribeAvailableRecoveryTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableRecoveryTimeResponse {
         try await self.client.execute(action: "DescribeAvailableRecoveryTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例可恢复的时间范围
+    ///
+    /// 本接口（DescribeAvailableRecoveryTime）用于查询实例可恢复的时间范围。
+    @inlinable
+    public func describeAvailableRecoveryTime(dbInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableRecoveryTimeResponse > {
+        self.describeAvailableRecoveryTime(DescribeAvailableRecoveryTimeRequest(dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例可恢复的时间范围
+    ///
+    /// 本接口（DescribeAvailableRecoveryTime）用于查询实例可恢复的时间范围。
+    @inlinable
+    public func describeAvailableRecoveryTime(dbInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableRecoveryTimeResponse {
+        try await self.describeAvailableRecoveryTime(DescribeAvailableRecoveryTimeRequest(dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
+    }
 }

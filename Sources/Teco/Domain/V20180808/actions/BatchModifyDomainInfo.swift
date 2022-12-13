@@ -70,4 +70,20 @@ extension Domain {
     public func batchModifyDomainInfo(_ input: BatchModifyDomainInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyDomainInfoResponse {
         try await self.client.execute(action: "BatchModifyDomainInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量域名信息修改
+    ///
+    /// 本接口 ( BatchModifyDomainInfo ) 用于批量域名信息修改 。
+    @inlinable
+    public func batchModifyDomainInfo(domains: [String], templateId: String, lockTransfer: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyDomainInfoResponse > {
+        self.batchModifyDomainInfo(BatchModifyDomainInfoRequest(domains: domains, templateId: templateId, lockTransfer: lockTransfer), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量域名信息修改
+    ///
+    /// 本接口 ( BatchModifyDomainInfo ) 用于批量域名信息修改 。
+    @inlinable
+    public func batchModifyDomainInfo(domains: [String], templateId: String, lockTransfer: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyDomainInfoResponse {
+        try await self.batchModifyDomainInfo(BatchModifyDomainInfoRequest(domains: domains, templateId: templateId, lockTransfer: lockTransfer), logger: logger, on: eventLoop)
+    }
 }

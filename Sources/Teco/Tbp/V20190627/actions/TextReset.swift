@@ -114,4 +114,20 @@ extension Tbp {
     public func textReset(_ input: TextResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextResetResponse {
         try await self.client.execute(action: "TextReset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 会话重置
+    ///
+    /// 会话重置接口。
+    @inlinable
+    public func textReset(botId: String, botEnv: String, terminalId: String, platformType: String? = nil, platformId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextResetResponse > {
+        self.textReset(TextResetRequest(botId: botId, botEnv: botEnv, terminalId: terminalId, platformType: platformType, platformId: platformId), logger: logger, on: eventLoop)
+    }
+    
+    /// 会话重置
+    ///
+    /// 会话重置接口。
+    @inlinable
+    public func textReset(botId: String, botEnv: String, terminalId: String, platformType: String? = nil, platformId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextResetResponse {
+        try await self.textReset(TextResetRequest(botId: botId, botEnv: botEnv, terminalId: terminalId, platformType: platformType, platformId: platformId), logger: logger, on: eventLoop)
+    }
 }

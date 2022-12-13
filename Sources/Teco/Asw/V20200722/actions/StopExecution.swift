@@ -54,4 +54,20 @@ extension Asw {
     public func stopExecution(_ input: StopExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopExecutionResponse {
         try await self.client.execute(action: "StopExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停止状态机
+    ///
+    /// 终止某个状态机
+    @inlinable
+    public func stopExecution(executionQrn: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopExecutionResponse > {
+        self.stopExecution(StopExecutionRequest(executionQrn: executionQrn), logger: logger, on: eventLoop)
+    }
+    
+    /// 停止状态机
+    ///
+    /// 终止某个状态机
+    @inlinable
+    public func stopExecution(executionQrn: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopExecutionResponse {
+        try await self.stopExecution(StopExecutionRequest(executionQrn: executionQrn), logger: logger, on: eventLoop)
+    }
 }

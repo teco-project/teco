@@ -103,4 +103,16 @@ extension Bmeip {
     public func describeEipAcls(_ input: DescribeEipAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipAclsResponse {
         try await self.client.execute(action: "DescribeEipAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询弹性公网IP ACL
+    @inlinable
+    public func describeEipAcls(aclName: String? = nil, aclIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, eipIds: [String]? = nil, eipIps: [String]? = nil, eipNames: [String]? = nil, orderField: String? = nil, order: UInt64? = nil, aclNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEipAclsResponse > {
+        self.describeEipAcls(DescribeEipAclsRequest(aclName: aclName, aclIds: aclIds, offset: offset, limit: limit, eipIds: eipIds, eipIps: eipIps, eipNames: eipNames, orderField: orderField, order: order, aclNames: aclNames), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询弹性公网IP ACL
+    @inlinable
+    public func describeEipAcls(aclName: String? = nil, aclIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, eipIds: [String]? = nil, eipIps: [String]? = nil, eipNames: [String]? = nil, orderField: String? = nil, order: UInt64? = nil, aclNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipAclsResponse {
+        try await self.describeEipAcls(DescribeEipAclsRequest(aclName: aclName, aclIds: aclIds, offset: offset, limit: limit, eipIds: eipIds, eipIps: eipIps, eipNames: eipNames, orderField: orderField, order: order, aclNames: aclNames), logger: logger, on: eventLoop)
+    }
 }

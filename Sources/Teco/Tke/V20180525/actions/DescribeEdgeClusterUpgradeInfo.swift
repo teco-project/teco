@@ -84,4 +84,20 @@ extension Tke {
     public func describeEdgeClusterUpgradeInfo(_ input: DescribeEdgeClusterUpgradeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterUpgradeInfoResponse {
         try await self.client.execute(action: "DescribeEdgeClusterUpgradeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询边缘集群升级信息
+    ///
+    /// 可以查询边缘集群升级信息，包含可以升级的组件，当前升级状态和升级错误信息
+    @inlinable
+    public func describeEdgeClusterUpgradeInfo(clusterId: String, edgeVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeClusterUpgradeInfoResponse > {
+        self.describeEdgeClusterUpgradeInfo(DescribeEdgeClusterUpgradeInfoRequest(clusterId: clusterId, edgeVersion: edgeVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘集群升级信息
+    ///
+    /// 可以查询边缘集群升级信息，包含可以升级的组件，当前升级状态和升级错误信息
+    @inlinable
+    public func describeEdgeClusterUpgradeInfo(clusterId: String, edgeVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterUpgradeInfoResponse {
+        try await self.describeEdgeClusterUpgradeInfo(DescribeEdgeClusterUpgradeInfoRequest(clusterId: clusterId, edgeVersion: edgeVersion), logger: logger, on: eventLoop)
+    }
 }

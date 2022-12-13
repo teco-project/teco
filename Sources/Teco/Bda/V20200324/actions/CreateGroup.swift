@@ -77,4 +77,26 @@ extension Bda {
     public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
         try await self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建人体库
+    ///
+    /// 用于创建一个空的人体库，如果人体库已存在返回错误。
+    /// 1个APPID下最多有2000W个人体动作轨迹（Trace），最多1W个人体库（Group）。
+    /// 单个人体库（Group）最多10W个人体动作轨迹（Trace）。
+    /// 单个人员（Person）最多添加 5 个人体动作轨迹（Trace）。
+    @inlinable
+    public func createGroup(groupName: String, groupId: String, tag: String? = nil, bodyModelVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGroupResponse > {
+        self.createGroup(CreateGroupRequest(groupName: groupName, groupId: groupId, tag: tag, bodyModelVersion: bodyModelVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建人体库
+    ///
+    /// 用于创建一个空的人体库，如果人体库已存在返回错误。
+    /// 1个APPID下最多有2000W个人体动作轨迹（Trace），最多1W个人体库（Group）。
+    /// 单个人体库（Group）最多10W个人体动作轨迹（Trace）。
+    /// 单个人员（Person）最多添加 5 个人体动作轨迹（Trace）。
+    @inlinable
+    public func createGroup(groupName: String, groupId: String, tag: String? = nil, bodyModelVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
+        try await self.createGroup(CreateGroupRequest(groupName: groupName, groupId: groupId, tag: tag, bodyModelVersion: bodyModelVersion), logger: logger, on: eventLoop)
+    }
 }

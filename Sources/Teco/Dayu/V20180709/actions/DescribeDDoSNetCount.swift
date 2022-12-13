@@ -112,4 +112,16 @@ extension Dayu {
     public func describeDDoSNetCount(_ input: DescribeDDoSNetCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetCountResponse {
         try await self.client.execute(action: "DescribeDDoSNetCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取高防IP专业版资源的DDoS攻击占比分析
+    @inlinable
+    public func describeDDoSNetCount(business: String, id: String, startTime: Date, endTime: Date, metricName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSNetCountResponse > {
+        self.describeDDoSNetCount(DescribeDDoSNetCountRequest(business: business, id: id, startTime: startTime, endTime: endTime, metricName: metricName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取高防IP专业版资源的DDoS攻击占比分析
+    @inlinable
+    public func describeDDoSNetCount(business: String, id: String, startTime: Date, endTime: Date, metricName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetCountResponse {
+        try await self.describeDDoSNetCount(DescribeDDoSNetCountRequest(business: business, id: id, startTime: startTime, endTime: endTime, metricName: metricName), logger: logger, on: eventLoop)
+    }
 }

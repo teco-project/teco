@@ -55,4 +55,16 @@ extension Tsf {
     public func describeGroup(_ input: DescribeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupResponse {
         try await self.client.execute(action: "DescribeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询虚拟机部署组详情
+    @inlinable
+    public func describeGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupResponse > {
+        self.describeGroup(DescribeGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询虚拟机部署组详情
+    @inlinable
+    public func describeGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupResponse {
+        try await self.describeGroup(DescribeGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

@@ -72,4 +72,20 @@ extension Gme {
     public func describeApplicationData(_ input: DescribeApplicationDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationDataResponse {
         try await self.client.execute(action: "DescribeApplicationData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取数据详情
+    ///
+    /// 本接口(DescribeApplicationData)用于获取数据详情信息，最多可拉取最近90天的数据。
+    @inlinable
+    public func describeApplicationData(bizId: UInt64, startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationDataResponse > {
+        self.describeApplicationData(DescribeApplicationDataRequest(bizId: bizId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取数据详情
+    ///
+    /// 本接口(DescribeApplicationData)用于获取数据详情信息，最多可拉取最近90天的数据。
+    @inlinable
+    public func describeApplicationData(bizId: UInt64, startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationDataResponse {
+        try await self.describeApplicationData(DescribeApplicationDataRequest(bizId: bizId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
 }

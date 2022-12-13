@@ -74,4 +74,20 @@ extension Apigateway {
     public func modifyApiEnvironmentStrategy(_ input: ModifyApiEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApiEnvironmentStrategyResponse {
         try await self.client.execute(action: "ModifyApiEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改API限流策略
+    ///
+    /// 本接口（ModifyApiEnvironmentStrategy）用于修改API限流策略
+    @inlinable
+    public func modifyApiEnvironmentStrategy(serviceId: String, strategy: Int64, environmentName: String, apiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApiEnvironmentStrategyResponse > {
+        self.modifyApiEnvironmentStrategy(ModifyApiEnvironmentStrategyRequest(serviceId: serviceId, strategy: strategy, environmentName: environmentName, apiIds: apiIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改API限流策略
+    ///
+    /// 本接口（ModifyApiEnvironmentStrategy）用于修改API限流策略
+    @inlinable
+    public func modifyApiEnvironmentStrategy(serviceId: String, strategy: Int64, environmentName: String, apiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApiEnvironmentStrategyResponse {
+        try await self.modifyApiEnvironmentStrategy(ModifyApiEnvironmentStrategyRequest(serviceId: serviceId, strategy: strategy, environmentName: environmentName, apiIds: apiIds), logger: logger, on: eventLoop)
+    }
 }

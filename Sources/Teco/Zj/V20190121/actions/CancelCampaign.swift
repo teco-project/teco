@@ -63,4 +63,20 @@ extension Zj {
     public func cancelCampaign(_ input: CancelCampaignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCampaignResponse {
         try await self.client.execute(action: "CancelCampaign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 取消短信活动
+    ///
+    /// 取消短信推送活动
+    @inlinable
+    public func cancelCampaign(license: String, campaignId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelCampaignResponse > {
+        self.cancelCampaign(CancelCampaignRequest(license: license, campaignId: campaignId), logger: logger, on: eventLoop)
+    }
+    
+    /// 取消短信活动
+    ///
+    /// 取消短信推送活动
+    @inlinable
+    public func cancelCampaign(license: String, campaignId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCampaignResponse {
+        try await self.cancelCampaign(CancelCampaignRequest(license: license, campaignId: campaignId), logger: logger, on: eventLoop)
+    }
 }

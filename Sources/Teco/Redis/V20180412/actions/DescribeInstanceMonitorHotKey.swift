@@ -59,4 +59,16 @@ extension Redis {
     public func describeInstanceMonitorHotKey(_ input: DescribeInstanceMonitorHotKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorHotKeyResponse {
         try await self.client.execute(action: "DescribeInstanceMonitorHotKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例热Key
+    @inlinable
+    public func describeInstanceMonitorHotKey(instanceId: String, spanType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorHotKeyResponse > {
+        self.describeInstanceMonitorHotKey(DescribeInstanceMonitorHotKeyRequest(instanceId: instanceId, spanType: spanType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例热Key
+    @inlinable
+    public func describeInstanceMonitorHotKey(instanceId: String, spanType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorHotKeyResponse {
+        try await self.describeInstanceMonitorHotKey(DescribeInstanceMonitorHotKeyRequest(instanceId: instanceId, spanType: spanType), logger: logger, on: eventLoop)
+    }
 }

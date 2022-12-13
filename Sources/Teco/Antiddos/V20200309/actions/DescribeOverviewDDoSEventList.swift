@@ -78,4 +78,16 @@ extension Antiddos {
     public func describeOverviewDDoSEventList(_ input: DescribeOverviewDDoSEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSEventListResponse {
         try await self.client.execute(action: "DescribeOverviewDDoSEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取防护概览的ddos攻击事件
+    @inlinable
+    public func describeOverviewDDoSEventList(startTime: String, endTime: String, attackStatus: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewDDoSEventListResponse > {
+        self.describeOverviewDDoSEventList(DescribeOverviewDDoSEventListRequest(startTime: startTime, endTime: endTime, attackStatus: attackStatus, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取防护概览的ddos攻击事件
+    @inlinable
+    public func describeOverviewDDoSEventList(startTime: String, endTime: String, attackStatus: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSEventListResponse {
+        try await self.describeOverviewDDoSEventList(DescribeOverviewDDoSEventListRequest(startTime: startTime, endTime: endTime, attackStatus: attackStatus, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

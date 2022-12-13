@@ -68,4 +68,20 @@ extension Iot {
     public func getDeviceSignatures(_ input: GetDeviceSignaturesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceSignaturesResponse {
         try await self.client.execute(action: "GetDeviceSignatures", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备绑定签名
+    ///
+    /// 获取设备绑定签名，用于用户绑定某个设备的应用场景
+    @inlinable
+    public func getDeviceSignatures(productId: String, deviceNames: [String], expire: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceSignaturesResponse > {
+        self.getDeviceSignatures(GetDeviceSignaturesRequest(productId: productId, deviceNames: deviceNames, expire: expire), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备绑定签名
+    ///
+    /// 获取设备绑定签名，用于用户绑定某个设备的应用场景
+    @inlinable
+    public func getDeviceSignatures(productId: String, deviceNames: [String], expire: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceSignaturesResponse {
+        try await self.getDeviceSignatures(GetDeviceSignaturesRequest(productId: productId, deviceNames: deviceNames, expire: expire), logger: logger, on: eventLoop)
+    }
 }

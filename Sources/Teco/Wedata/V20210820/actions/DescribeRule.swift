@@ -60,4 +60,16 @@ extension Wedata {
     public func describeRule(_ input: DescribeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleResponse {
         try await self.client.execute(action: "DescribeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询规则详情
+    @inlinable
+    public func describeRule(ruleId: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleResponse > {
+        self.describeRule(DescribeRuleRequest(ruleId: ruleId, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询规则详情
+    @inlinable
+    public func describeRule(ruleId: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleResponse {
+        try await self.describeRule(DescribeRuleRequest(ruleId: ruleId, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

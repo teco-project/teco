@@ -98,4 +98,16 @@ extension Tdid {
     public func getDataPanel(_ input: GetDataPanelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataPanelResponse {
         try await self.client.execute(action: "GetDataPanel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 概览
+    @inlinable
+    public func getDataPanel(clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDataPanelResponse > {
+        self.getDataPanel(GetDataPanelRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 概览
+    @inlinable
+    public func getDataPanel(clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataPanelResponse {
+        try await self.getDataPanel(GetDataPanelRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

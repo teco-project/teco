@@ -95,4 +95,16 @@ extension Ssl {
     public func describeManagers(_ input: DescribeManagersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeManagersResponse {
         try await self.client.execute(action: "DescribeManagers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询管理人列表
+    @inlinable
+    public func describeManagers(companyId: Int64, offset: Int64? = nil, limit: Int64? = nil, managerName: String? = nil, managerMail: String? = nil, status: String? = nil, searchKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeManagersResponse > {
+        self.describeManagers(DescribeManagersRequest(companyId: companyId, offset: offset, limit: limit, managerName: managerName, managerMail: managerMail, status: status, searchKey: searchKey), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询管理人列表
+    @inlinable
+    public func describeManagers(companyId: Int64, offset: Int64? = nil, limit: Int64? = nil, managerName: String? = nil, managerMail: String? = nil, status: String? = nil, searchKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeManagersResponse {
+        try await self.describeManagers(DescribeManagersRequest(companyId: companyId, offset: offset, limit: limit, managerName: managerName, managerMail: managerMail, status: status, searchKey: searchKey), logger: logger, on: eventLoop)
+    }
 }

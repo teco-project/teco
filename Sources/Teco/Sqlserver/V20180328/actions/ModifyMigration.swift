@@ -88,4 +88,20 @@ extension Sqlserver {
     public func modifyMigration(_ input: ModifyMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationResponse {
         try await self.client.execute(action: "ModifyMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改迁移任务
+    ///
+    /// 本接口（ModifyMigration）可以修改已有的迁移任务信息
+    @inlinable
+    public func modifyMigration(migrateId: UInt64, migrateName: String? = nil, migrateType: UInt64? = nil, sourceType: UInt64? = nil, source: MigrateSource? = nil, target: MigrateTarget? = nil, migrateDBSet: [MigrateDB]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrationResponse > {
+        self.modifyMigration(ModifyMigrationRequest(migrateId: migrateId, migrateName: migrateName, migrateType: migrateType, sourceType: sourceType, source: source, target: target, migrateDBSet: migrateDBSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改迁移任务
+    ///
+    /// 本接口（ModifyMigration）可以修改已有的迁移任务信息
+    @inlinable
+    public func modifyMigration(migrateId: UInt64, migrateName: String? = nil, migrateType: UInt64? = nil, sourceType: UInt64? = nil, source: MigrateSource? = nil, target: MigrateTarget? = nil, migrateDBSet: [MigrateDB]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationResponse {
+        try await self.modifyMigration(ModifyMigrationRequest(migrateId: migrateId, migrateName: migrateName, migrateType: migrateType, sourceType: sourceType, source: source, target: target, migrateDBSet: migrateDBSet), logger: logger, on: eventLoop)
+    }
 }

@@ -52,7 +52,7 @@ extension Apigateway {
         /// vpc属性
         public let uniqVpcId: String?
         
-        public init (serviceName: String, `protocol`: String, serviceDesc: String? = nil, exclusiveSetName: String? = nil, netTypes: [String]? = nil, ipVersion: String? = nil, setServerName: String? = nil, appIdType: String? = nil, tags: [Tag]? = nil, instanceId: String? = nil, uniqVpcId: String? = nil) {
+        public init (serviceName: String, protocol: String, serviceDesc: String? = nil, exclusiveSetName: String? = nil, netTypes: [String]? = nil, ipVersion: String? = nil, setServerName: String? = nil, appIdType: String? = nil, tags: [Tag]? = nil, instanceId: String? = nil, uniqVpcId: String? = nil) {
             self.serviceName = serviceName
             self.`protocol` = `protocol`
             self.serviceDesc = serviceDesc
@@ -141,5 +141,23 @@ extension Apigateway {
     @inlinable
     public func createService(_ input: CreateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceResponse {
         try await self.client.execute(action: "CreateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 创建服务
+    ///
+    /// 本接口（CreateService）用于创建服务。
+    /// API 网关使用的最大单元为服务，每个服务中可创建多个 API 接口。每个服务有一个默认域名供客户调用，用户也可绑定自定义域名到此服务中。 
+    @inlinable
+    public func createService(serviceName: String, protocol: String, serviceDesc: String? = nil, exclusiveSetName: String? = nil, netTypes: [String]? = nil, ipVersion: String? = nil, setServerName: String? = nil, appIdType: String? = nil, tags: [Tag]? = nil, instanceId: String? = nil, uniqVpcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceResponse > {
+        self.createService(CreateServiceRequest(serviceName: serviceName, protocol: `protocol`, serviceDesc: serviceDesc, exclusiveSetName: exclusiveSetName, netTypes: netTypes, ipVersion: ipVersion, setServerName: setServerName, appIdType: appIdType, tags: tags, instanceId: instanceId, uniqVpcId: uniqVpcId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建服务
+    ///
+    /// 本接口（CreateService）用于创建服务。
+    /// API 网关使用的最大单元为服务，每个服务中可创建多个 API 接口。每个服务有一个默认域名供客户调用，用户也可绑定自定义域名到此服务中。 
+    @inlinable
+    public func createService(serviceName: String, protocol: String, serviceDesc: String? = nil, exclusiveSetName: String? = nil, netTypes: [String]? = nil, ipVersion: String? = nil, setServerName: String? = nil, appIdType: String? = nil, tags: [Tag]? = nil, instanceId: String? = nil, uniqVpcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceResponse {
+        try await self.createService(CreateServiceRequest(serviceName: serviceName, protocol: `protocol`, serviceDesc: serviceDesc, exclusiveSetName: exclusiveSetName, netTypes: netTypes, ipVersion: ipVersion, setServerName: setServerName, appIdType: appIdType, tags: tags, instanceId: instanceId, uniqVpcId: uniqVpcId), logger: logger, on: eventLoop)
     }
 }

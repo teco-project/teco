@@ -54,4 +54,20 @@ extension Cmq {
     public func deleteQueue(_ input: DeleteQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteQueueResponse {
         try await self.client.execute(action: "DeleteQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除队列
+    ///
+    /// DeleteQueue
+    @inlinable
+    public func deleteQueue(queueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteQueueResponse > {
+        self.deleteQueue(DeleteQueueRequest(queueName: queueName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除队列
+    ///
+    /// DeleteQueue
+    @inlinable
+    public func deleteQueue(queueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteQueueResponse {
+        try await self.deleteQueue(DeleteQueueRequest(queueName: queueName), logger: logger, on: eventLoop)
+    }
 }

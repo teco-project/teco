@@ -69,4 +69,20 @@ extension Iotvideoindustry {
     public func updateDeviceGroup(_ input: UpdateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceGroupResponse {
         try await self.client.execute(action: "UpdateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改分组信息
+    ///
+    /// 本接口(UpdateDeviceGroup)用于修改分组信息。
+    @inlinable
+    public func updateDeviceGroup(groupName: String, groupId: String, groupDescribe: String? = nil, newParentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDeviceGroupResponse > {
+        self.updateDeviceGroup(UpdateDeviceGroupRequest(groupName: groupName, groupId: groupId, groupDescribe: groupDescribe, newParentId: newParentId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改分组信息
+    ///
+    /// 本接口(UpdateDeviceGroup)用于修改分组信息。
+    @inlinable
+    public func updateDeviceGroup(groupName: String, groupId: String, groupDescribe: String? = nil, newParentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceGroupResponse {
+        try await self.updateDeviceGroup(UpdateDeviceGroupRequest(groupName: groupName, groupId: groupId, groupDescribe: groupDescribe, newParentId: newParentId), logger: logger, on: eventLoop)
+    }
 }

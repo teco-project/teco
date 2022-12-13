@@ -50,4 +50,16 @@ extension Organization {
     public func acceptOrganizationInvitation(_ input: AcceptOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptOrganizationInvitationResponse {
         try await self.client.execute(action: "AcceptOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 接受加入企业组织邀请
+    @inlinable
+    public func acceptOrganizationInvitation(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcceptOrganizationInvitationResponse > {
+        self.acceptOrganizationInvitation(AcceptOrganizationInvitationRequest(id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 接受加入企业组织邀请
+    @inlinable
+    public func acceptOrganizationInvitation(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptOrganizationInvitationResponse {
+        try await self.acceptOrganizationInvitation(AcceptOrganizationInvitationRequest(id: id), logger: logger, on: eventLoop)
+    }
 }

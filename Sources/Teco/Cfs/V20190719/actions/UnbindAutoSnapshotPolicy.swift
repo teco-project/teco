@@ -63,4 +63,20 @@ extension Cfs {
     public func unbindAutoSnapshotPolicy(_ input: UnbindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindAutoSnapshotPolicyResponse {
         try await self.client.execute(action: "UnbindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解绑快照策略
+    ///
+    /// 解除文件系统绑定的快照策略
+    @inlinable
+    public func unbindAutoSnapshotPolicy(fileSystemIds: String, autoSnapshotPolicyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindAutoSnapshotPolicyResponse > {
+        self.unbindAutoSnapshotPolicy(UnbindAutoSnapshotPolicyRequest(fileSystemIds: fileSystemIds, autoSnapshotPolicyId: autoSnapshotPolicyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑快照策略
+    ///
+    /// 解除文件系统绑定的快照策略
+    @inlinable
+    public func unbindAutoSnapshotPolicy(fileSystemIds: String, autoSnapshotPolicyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindAutoSnapshotPolicyResponse {
+        try await self.unbindAutoSnapshotPolicy(UnbindAutoSnapshotPolicyRequest(fileSystemIds: fileSystemIds, autoSnapshotPolicyId: autoSnapshotPolicyId), logger: logger, on: eventLoop)
+    }
 }

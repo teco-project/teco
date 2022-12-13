@@ -63,4 +63,20 @@ extension Tke {
     public func createClusterEndpointVip(_ input: CreateClusterEndpointVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterEndpointVipResponse {
         try await self.client.execute(action: "CreateClusterEndpointVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建托管集群外网访问端口
+    ///
+    /// 创建托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
+    @inlinable
+    public func createClusterEndpointVip(clusterId: String, securityPolicies: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterEndpointVipResponse > {
+        self.createClusterEndpointVip(CreateClusterEndpointVipRequest(clusterId: clusterId, securityPolicies: securityPolicies), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建托管集群外网访问端口
+    ///
+    /// 创建托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
+    @inlinable
+    public func createClusterEndpointVip(clusterId: String, securityPolicies: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterEndpointVipResponse {
+        try await self.createClusterEndpointVip(CreateClusterEndpointVipRequest(clusterId: clusterId, securityPolicies: securityPolicies), logger: logger, on: eventLoop)
+    }
 }

@@ -50,4 +50,16 @@ extension Tcss {
     public func deleteK8sApiAbnormalRule(_ input: DeleteK8sApiAbnormalRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteK8sApiAbnormalRuleResponse {
         try await self.client.execute(action: "DeleteK8sApiAbnormalRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除k8sapi异常事件规则
+    @inlinable
+    public func deleteK8sApiAbnormalRule(ruleIDSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteK8sApiAbnormalRuleResponse > {
+        self.deleteK8sApiAbnormalRule(DeleteK8sApiAbnormalRuleRequest(ruleIDSet: ruleIDSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除k8sapi异常事件规则
+    @inlinable
+    public func deleteK8sApiAbnormalRule(ruleIDSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteK8sApiAbnormalRuleResponse {
+        try await self.deleteK8sApiAbnormalRule(DeleteK8sApiAbnormalRuleRequest(ruleIDSet: ruleIDSet), logger: logger, on: eventLoop)
+    }
 }

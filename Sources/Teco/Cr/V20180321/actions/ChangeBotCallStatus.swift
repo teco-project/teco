@@ -84,4 +84,16 @@ extension Cr {
     public func changeBotCallStatus(_ input: ChangeBotCallStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotCallStatusResponse {
         try await self.client.execute(action: "ChangeBotCallStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新机器人任务作业状态
+    @inlinable
+    public func changeBotCallStatus(module: String, operation: String, status: String, callId: String, bizDate: Date, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeBotCallStatusResponse > {
+        self.changeBotCallStatus(ChangeBotCallStatusRequest(module: module, operation: operation, status: status, callId: callId, bizDate: bizDate, botId: botId, botName: botName), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新机器人任务作业状态
+    @inlinable
+    public func changeBotCallStatus(module: String, operation: String, status: String, callId: String, bizDate: Date, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotCallStatusResponse {
+        try await self.changeBotCallStatus(ChangeBotCallStatusRequest(module: module, operation: operation, status: status, callId: callId, bizDate: bizDate, botId: botId, botName: botName), logger: logger, on: eventLoop)
+    }
 }

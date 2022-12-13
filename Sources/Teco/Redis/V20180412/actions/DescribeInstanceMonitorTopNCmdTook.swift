@@ -59,4 +59,16 @@ extension Redis {
     public func describeInstanceMonitorTopNCmdTook(_ input: DescribeInstanceMonitorTopNCmdTookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTopNCmdTookResponse {
         try await self.client.execute(action: "DescribeInstanceMonitorTopNCmdTook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例CPU耗时
+    @inlinable
+    public func describeInstanceMonitorTopNCmdTook(instanceId: String, spanType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorTopNCmdTookResponse > {
+        self.describeInstanceMonitorTopNCmdTook(DescribeInstanceMonitorTopNCmdTookRequest(instanceId: instanceId, spanType: spanType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例CPU耗时
+    @inlinable
+    public func describeInstanceMonitorTopNCmdTook(instanceId: String, spanType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTopNCmdTookResponse {
+        try await self.describeInstanceMonitorTopNCmdTook(DescribeInstanceMonitorTopNCmdTookRequest(instanceId: instanceId, spanType: spanType), logger: logger, on: eventLoop)
+    }
 }

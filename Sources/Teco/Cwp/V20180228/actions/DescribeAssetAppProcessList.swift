@@ -79,4 +79,16 @@ extension Cwp {
     public func describeAssetAppProcessList(_ input: DescribeAssetAppProcessListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetAppProcessListResponse {
         try await self.client.execute(action: "DescribeAssetAppProcessList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取软件关联进程列表
+    @inlinable
+    public func describeAssetAppProcessList(quuid: String, uuid: String, name: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetAppProcessListResponse > {
+        self.describeAssetAppProcessList(DescribeAssetAppProcessListRequest(quuid: quuid, uuid: uuid, name: name, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取软件关联进程列表
+    @inlinable
+    public func describeAssetAppProcessList(quuid: String, uuid: String, name: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetAppProcessListResponse {
+        try await self.describeAssetAppProcessList(DescribeAssetAppProcessListRequest(quuid: quuid, uuid: uuid, name: name, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

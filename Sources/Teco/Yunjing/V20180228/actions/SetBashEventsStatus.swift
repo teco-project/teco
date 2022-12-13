@@ -55,4 +55,16 @@ extension Yunjing {
     public func setBashEventsStatus(_ input: SetBashEventsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetBashEventsStatusResponse {
         try await self.client.execute(action: "SetBashEventsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置高危命令事件状态
+    @inlinable
+    public func setBashEventsStatus(ids: [UInt64], status: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetBashEventsStatusResponse > {
+        self.setBashEventsStatus(SetBashEventsStatusRequest(ids: ids, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置高危命令事件状态
+    @inlinable
+    public func setBashEventsStatus(ids: [UInt64], status: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetBashEventsStatusResponse {
+        try await self.setBashEventsStatus(SetBashEventsStatusRequest(ids: ids, status: status), logger: logger, on: eventLoop)
+    }
 }

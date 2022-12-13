@@ -64,4 +64,20 @@ extension Ecm {
     public func batchRegisterTargets(_ input: BatchRegisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRegisterTargetsResponse {
         try await self.client.execute(action: "BatchRegisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量绑定后端目标
+    ///
+    /// 批量绑定后端目标。
+    @inlinable
+    public func batchRegisterTargets(loadBalancerId: String, targets: [BatchTarget], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchRegisterTargetsResponse > {
+        self.batchRegisterTargets(BatchRegisterTargetsRequest(loadBalancerId: loadBalancerId, targets: targets), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量绑定后端目标
+    ///
+    /// 批量绑定后端目标。
+    @inlinable
+    public func batchRegisterTargets(loadBalancerId: String, targets: [BatchTarget], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRegisterTargetsResponse {
+        try await self.batchRegisterTargets(BatchRegisterTargetsRequest(loadBalancerId: loadBalancerId, targets: targets), logger: logger, on: eventLoop)
+    }
 }

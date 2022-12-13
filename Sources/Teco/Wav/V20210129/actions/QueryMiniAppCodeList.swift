@@ -65,4 +65,16 @@ extension Wav {
     public func queryMiniAppCodeList(_ input: QueryMiniAppCodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMiniAppCodeListResponse {
         try await self.client.execute(action: "QueryMiniAppCodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询小程序码列表接口
+    @inlinable
+    public func queryMiniAppCodeList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMiniAppCodeListResponse > {
+        self.queryMiniAppCodeList(QueryMiniAppCodeListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询小程序码列表接口
+    @inlinable
+    public func queryMiniAppCodeList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMiniAppCodeListResponse {
+        try await self.queryMiniAppCodeList(QueryMiniAppCodeListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    }
 }

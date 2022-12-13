@@ -96,4 +96,20 @@ extension Iotvideo {
     public func describeFirmware(_ input: DescribeFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareResponse {
         try await self.client.execute(action: "DescribeFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询固件信息
+    ///
+    /// 本接口（DescribeFirmware）用于查询固件信息
+    @inlinable
+    public func describeFirmware(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirmwareResponse > {
+        self.describeFirmware(DescribeFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询固件信息
+    ///
+    /// 本接口（DescribeFirmware）用于查询固件信息
+    @inlinable
+    public func describeFirmware(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareResponse {
+        try await self.describeFirmware(DescribeFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion), logger: logger, on: eventLoop)
+    }
 }

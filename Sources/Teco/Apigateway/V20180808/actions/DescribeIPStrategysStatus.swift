@@ -64,4 +64,20 @@ extension Apigateway {
     public func describeIPStrategysStatus(_ input: DescribeIPStrategysStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStrategysStatusResponse {
         try await self.client.execute(action: "DescribeIPStrategysStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询服务IP策略列表
+    ///
+    /// 本接口（DescribeIPStrategysStatus）用于查询服务IP策略列表。
+    @inlinable
+    public func describeIPStrategysStatus(serviceId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIPStrategysStatusResponse > {
+        self.describeIPStrategysStatus(DescribeIPStrategysStatusRequest(serviceId: serviceId, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务IP策略列表
+    ///
+    /// 本接口（DescribeIPStrategysStatus）用于查询服务IP策略列表。
+    @inlinable
+    public func describeIPStrategysStatus(serviceId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStrategysStatusResponse {
+        try await self.describeIPStrategysStatus(DescribeIPStrategysStatusRequest(serviceId: serviceId, filters: filters), logger: logger, on: eventLoop)
+    }
 }

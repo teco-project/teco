@@ -54,4 +54,20 @@ extension Ump {
     public func createCameraAlerts(_ input: CreateCameraAlertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraAlertsResponse {
         try await self.client.execute(action: "CreateCameraAlerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 上报相机告警信息
+    ///
+    /// 上报相机移动、遮挡等告警信息
+    @inlinable
+    public func createCameraAlerts(alerts: [CreateCameraAlertAlert]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCameraAlertsResponse > {
+        self.createCameraAlerts(CreateCameraAlertsRequest(alerts: alerts), logger: logger, on: eventLoop)
+    }
+    
+    /// 上报相机告警信息
+    ///
+    /// 上报相机移动、遮挡等告警信息
+    @inlinable
+    public func createCameraAlerts(alerts: [CreateCameraAlertAlert]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraAlertsResponse {
+        try await self.createCameraAlerts(CreateCameraAlertsRequest(alerts: alerts), logger: logger, on: eventLoop)
+    }
 }

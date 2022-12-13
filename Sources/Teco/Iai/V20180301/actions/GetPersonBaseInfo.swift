@@ -66,4 +66,20 @@ extension Iai {
     public func getPersonBaseInfo(_ input: GetPersonBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonBaseInfoResponse {
         try await self.client.execute(action: "GetPersonBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取人员基础信息
+    ///
+    /// 获取指定人员的信息，包括姓名、性别、人脸等。
+    @inlinable
+    public func getPersonBaseInfo(personId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPersonBaseInfoResponse > {
+        self.getPersonBaseInfo(GetPersonBaseInfoRequest(personId: personId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取人员基础信息
+    ///
+    /// 获取指定人员的信息，包括姓名、性别、人脸等。
+    @inlinable
+    public func getPersonBaseInfo(personId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonBaseInfoResponse {
+        try await self.getPersonBaseInfo(GetPersonBaseInfoRequest(personId: personId), logger: logger, on: eventLoop)
+    }
 }

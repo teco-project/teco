@@ -59,4 +59,20 @@ extension Cvm {
     public func modifyLaunchTemplateDefaultVersion(_ input: ModifyLaunchTemplateDefaultVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaunchTemplateDefaultVersionResponse {
         try await self.client.execute(action: "ModifyLaunchTemplateDefaultVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改实例启动模板默认版本
+    ///
+    /// 本接口（ModifyLaunchTemplateDefaultVersion）用于修改实例启动模板默认版本。
+    @inlinable
+    public func modifyLaunchTemplateDefaultVersion(launchTemplateId: String, defaultVersion: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLaunchTemplateDefaultVersionResponse > {
+        self.modifyLaunchTemplateDefaultVersion(ModifyLaunchTemplateDefaultVersionRequest(launchTemplateId: launchTemplateId, defaultVersion: defaultVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例启动模板默认版本
+    ///
+    /// 本接口（ModifyLaunchTemplateDefaultVersion）用于修改实例启动模板默认版本。
+    @inlinable
+    public func modifyLaunchTemplateDefaultVersion(launchTemplateId: String, defaultVersion: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaunchTemplateDefaultVersionResponse {
+        try await self.modifyLaunchTemplateDefaultVersion(ModifyLaunchTemplateDefaultVersionRequest(launchTemplateId: launchTemplateId, defaultVersion: defaultVersion), logger: logger, on: eventLoop)
+    }
 }

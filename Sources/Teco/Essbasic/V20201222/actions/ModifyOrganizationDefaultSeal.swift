@@ -64,4 +64,20 @@ extension Essbasic {
     public func modifyOrganizationDefaultSeal(_ input: ModifyOrganizationDefaultSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrganizationDefaultSealResponse {
         try await self.client.execute(action: "ModifyOrganizationDefaultSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改企业默认印章
+    ///
+    /// 此接口 (ModifyOrganizationDefaultSeal) 用于重新指定企业默认印章。
+    @inlinable
+    public func modifyOrganizationDefaultSeal(caller: Caller, sealId: String, sourceIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyOrganizationDefaultSealResponse > {
+        self.modifyOrganizationDefaultSeal(ModifyOrganizationDefaultSealRequest(caller: caller, sealId: sealId, sourceIp: sourceIp), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改企业默认印章
+    ///
+    /// 此接口 (ModifyOrganizationDefaultSeal) 用于重新指定企业默认印章。
+    @inlinable
+    public func modifyOrganizationDefaultSeal(caller: Caller, sealId: String, sourceIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrganizationDefaultSealResponse {
+        try await self.modifyOrganizationDefaultSeal(ModifyOrganizationDefaultSealRequest(caller: caller, sealId: sealId, sourceIp: sourceIp), logger: logger, on: eventLoop)
+    }
 }

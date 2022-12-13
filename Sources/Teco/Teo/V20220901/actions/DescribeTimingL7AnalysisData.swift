@@ -120,4 +120,20 @@ extension Teo {
     public func describeTimingL7AnalysisData(_ input: DescribeTimingL7AnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL7AnalysisDataResponse {
         try await self.client.execute(action: "DescribeTimingL7AnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询七层数据分析类时序数据
+    ///
+    /// 本接口（DescribeTimingL7AnalysisData）查询七层数据分析类时序数据。
+    @inlinable
+    public func describeTimingL7AnalysisData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, interval: String? = nil, filters: [QueryCondition]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTimingL7AnalysisDataResponse > {
+        self.describeTimingL7AnalysisData(DescribeTimingL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, interval: interval, filters: filters, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询七层数据分析类时序数据
+    ///
+    /// 本接口（DescribeTimingL7AnalysisData）查询七层数据分析类时序数据。
+    @inlinable
+    public func describeTimingL7AnalysisData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, interval: String? = nil, filters: [QueryCondition]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL7AnalysisDataResponse {
+        try await self.describeTimingL7AnalysisData(DescribeTimingL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, interval: interval, filters: filters, area: area), logger: logger, on: eventLoop)
+    }
 }

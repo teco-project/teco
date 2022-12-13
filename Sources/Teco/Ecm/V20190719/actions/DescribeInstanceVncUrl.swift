@@ -54,4 +54,16 @@ extension Ecm {
     public func describeInstanceVncUrl(_ input: DescribeInstanceVncUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceVncUrlResponse {
         try await self.client.execute(action: "DescribeInstanceVncUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询实例管理终端地址
+    @inlinable
+    public func describeInstanceVncUrl(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceVncUrlResponse > {
+        self.describeInstanceVncUrl(DescribeInstanceVncUrlRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例管理终端地址
+    @inlinable
+    public func describeInstanceVncUrl(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceVncUrlResponse {
+        try await self.describeInstanceVncUrl(DescribeInstanceVncUrlRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

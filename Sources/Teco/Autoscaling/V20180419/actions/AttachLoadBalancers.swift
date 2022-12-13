@@ -68,4 +68,20 @@ extension As {
     public func attachLoadBalancers(_ input: AttachLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachLoadBalancersResponse {
         try await self.client.execute(action: "AttachLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加负载均衡器
+    ///
+    /// 此接口（AttachLoadBalancers）用于将负载均衡器添加到伸缩组。
+    @inlinable
+    public func attachLoadBalancers(autoScalingGroupId: String, loadBalancerIds: [String]? = nil, forwardLoadBalancers: [ForwardLoadBalancer]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachLoadBalancersResponse > {
+        self.attachLoadBalancers(AttachLoadBalancersRequest(autoScalingGroupId: autoScalingGroupId, loadBalancerIds: loadBalancerIds, forwardLoadBalancers: forwardLoadBalancers), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加负载均衡器
+    ///
+    /// 此接口（AttachLoadBalancers）用于将负载均衡器添加到伸缩组。
+    @inlinable
+    public func attachLoadBalancers(autoScalingGroupId: String, loadBalancerIds: [String]? = nil, forwardLoadBalancers: [ForwardLoadBalancer]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachLoadBalancersResponse {
+        try await self.attachLoadBalancers(AttachLoadBalancersRequest(autoScalingGroupId: autoScalingGroupId, loadBalancerIds: loadBalancerIds, forwardLoadBalancers: forwardLoadBalancers), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,20 @@ extension Batch {
     public func createTaskTemplate(_ input: CreateTaskTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskTemplateResponse {
         try await self.client.execute(action: "CreateTaskTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建任务模板
+    ///
+    /// 用于创建任务模板
+    @inlinable
+    public func createTaskTemplate(taskTemplateName: String, taskTemplateInfo: Task, taskTemplateDescription: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskTemplateResponse > {
+        self.createTaskTemplate(CreateTaskTemplateRequest(taskTemplateName: taskTemplateName, taskTemplateInfo: taskTemplateInfo, taskTemplateDescription: taskTemplateDescription, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建任务模板
+    ///
+    /// 用于创建任务模板
+    @inlinable
+    public func createTaskTemplate(taskTemplateName: String, taskTemplateInfo: Task, taskTemplateDescription: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskTemplateResponse {
+        try await self.createTaskTemplate(CreateTaskTemplateRequest(taskTemplateName: taskTemplateName, taskTemplateInfo: taskTemplateInfo, taskTemplateDescription: taskTemplateDescription, tags: tags), logger: logger, on: eventLoop)
+    }
 }

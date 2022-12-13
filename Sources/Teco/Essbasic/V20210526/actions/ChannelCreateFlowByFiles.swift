@@ -68,7 +68,7 @@ extension Essbasic {
         /// 标识是否允许发起后添加控件。0为不允许1为允许。如果为1，创建的时候不能有签署控件，只能创建后添加。注意发起后添加控件功能不支持添加骑缝章和签批控件
         public let signBeanTag: Int64?
         
-        public init (agent: Agent? = nil, flowName: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, fileIds: [String]? = nil, components: [Component]? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, unordered: Bool? = nil, flowType: String? = nil, flowDescription: String? = nil, customShowMap: String? = nil, customerData: String? = nil, needSignReview: Bool? = nil, `operator`: UserInfo? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil) {
+        public init (agent: Agent? = nil, flowName: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, fileIds: [String]? = nil, components: [Component]? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, unordered: Bool? = nil, flowType: String? = nil, flowDescription: String? = nil, customShowMap: String? = nil, customerData: String? = nil, needSignReview: Bool? = nil, operator: UserInfo? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil) {
             self.agent = agent
             self.flowName = flowName
             self.flowApprovers = flowApprovers
@@ -136,5 +136,21 @@ extension Essbasic {
     @inlinable
     public func channelCreateFlowByFiles(_ input: ChannelCreateFlowByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowByFilesResponse {
         try await self.client.execute(action: "ChannelCreateFlowByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 渠道版通过文件创建签署流程
+    ///
+    /// 接口（ChannelCreateFlowByFiles）用于渠道版通过文件创建签署流程。此接口静默签能力不可直接使用，需要运营申请
+    @inlinable
+    public func channelCreateFlowByFiles(agent: Agent? = nil, flowName: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, fileIds: [String]? = nil, components: [Component]? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, unordered: Bool? = nil, flowType: String? = nil, flowDescription: String? = nil, customShowMap: String? = nil, customerData: String? = nil, needSignReview: Bool? = nil, operator: UserInfo? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateFlowByFilesResponse > {
+        self.channelCreateFlowByFiles(ChannelCreateFlowByFilesRequest(agent: agent, flowName: flowName, flowApprovers: flowApprovers, fileIds: fileIds, components: components, deadline: deadline, callbackUrl: callbackUrl, unordered: unordered, flowType: flowType, flowDescription: flowDescription, customShowMap: customShowMap, customerData: customerData, needSignReview: needSignReview, operator: `operator`, approverVerifyType: approverVerifyType, signBeanTag: signBeanTag), logger: logger, on: eventLoop)
+    }
+    
+    /// 渠道版通过文件创建签署流程
+    ///
+    /// 接口（ChannelCreateFlowByFiles）用于渠道版通过文件创建签署流程。此接口静默签能力不可直接使用，需要运营申请
+    @inlinable
+    public func channelCreateFlowByFiles(agent: Agent? = nil, flowName: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, fileIds: [String]? = nil, components: [Component]? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, unordered: Bool? = nil, flowType: String? = nil, flowDescription: String? = nil, customShowMap: String? = nil, customerData: String? = nil, needSignReview: Bool? = nil, operator: UserInfo? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowByFilesResponse {
+        try await self.channelCreateFlowByFiles(ChannelCreateFlowByFilesRequest(agent: agent, flowName: flowName, flowApprovers: flowApprovers, fileIds: fileIds, components: components, deadline: deadline, callbackUrl: callbackUrl, unordered: unordered, flowType: flowType, flowDescription: flowDescription, customShowMap: customShowMap, customerData: customerData, needSignReview: needSignReview, operator: `operator`, approverVerifyType: approverVerifyType, signBeanTag: signBeanTag), logger: logger, on: eventLoop)
     }
 }

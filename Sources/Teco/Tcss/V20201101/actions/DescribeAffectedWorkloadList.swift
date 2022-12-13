@@ -88,4 +88,20 @@ extension Tcss {
     public func describeAffectedWorkloadList(_ input: DescribeAffectedWorkloadListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedWorkloadListResponse {
         try await self.client.execute(action: "DescribeAffectedWorkloadList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询workload类型的影响范围
+    ///
+    /// 查询workload类型的影响范围，返回workload列表
+    @inlinable
+    public func describeAffectedWorkloadList(checkItemId: Int64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAffectedWorkloadListResponse > {
+        self.describeAffectedWorkloadList(DescribeAffectedWorkloadListRequest(checkItemId: checkItemId, offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询workload类型的影响范围
+    ///
+    /// 查询workload类型的影响范围，返回workload列表
+    @inlinable
+    public func describeAffectedWorkloadList(checkItemId: Int64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedWorkloadListResponse {
+        try await self.describeAffectedWorkloadList(DescribeAffectedWorkloadListRequest(checkItemId: checkItemId, offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    }
 }

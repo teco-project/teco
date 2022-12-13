@@ -87,4 +87,20 @@ extension Smh {
     public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficPackagesResponse {
         try await self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询流量包
+    ///
+    /// 查询流量资源包
+    @inlinable
+    public func describeTrafficPackages(resourceIds: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, type: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficPackagesResponse > {
+        self.describeTrafficPackages(DescribeTrafficPackagesRequest(resourceIds: resourceIds, pageNumber: pageNumber, pageSize: pageSize, orderBy: orderBy, orderByType: orderByType, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流量包
+    ///
+    /// 查询流量资源包
+    @inlinable
+    public func describeTrafficPackages(resourceIds: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, type: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficPackagesResponse {
+        try await self.describeTrafficPackages(DescribeTrafficPackagesRequest(resourceIds: resourceIds, pageNumber: pageNumber, pageSize: pageSize, orderBy: orderBy, orderByType: orderByType, type: type), logger: logger, on: eventLoop)
+    }
 }

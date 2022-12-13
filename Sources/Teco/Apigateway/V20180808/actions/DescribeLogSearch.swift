@@ -145,4 +145,20 @@ extension Apigateway {
     public func describeLogSearch(_ input: DescribeLogSearchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSearchResponse {
         try await self.client.execute(action: "DescribeLogSearch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 日志搜索服务
+    ///
+    /// 本接口DescribeLogSearch用于搜索日志
+    @inlinable
+    public func describeLogSearch(startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil, logQuerys: [LogQuery]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogSearchResponse > {
+        self.describeLogSearch(DescribeLogSearchRequest(startTime: startTime, endTime: endTime, serviceId: serviceId, filters: filters, limit: limit, conText: conText, sort: sort, query: query, logQuerys: logQuerys), logger: logger, on: eventLoop)
+    }
+    
+    /// 日志搜索服务
+    ///
+    /// 本接口DescribeLogSearch用于搜索日志
+    @inlinable
+    public func describeLogSearch(startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil, logQuerys: [LogQuery]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSearchResponse {
+        try await self.describeLogSearch(DescribeLogSearchRequest(startTime: startTime, endTime: endTime, serviceId: serviceId, filters: filters, limit: limit, conText: conText, sort: sort, query: query, logQuerys: logQuerys), logger: logger, on: eventLoop)
+    }
 }

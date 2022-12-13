@@ -59,4 +59,16 @@ extension Pts {
     public func copyScenario(_ input: CopyScenarioRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyScenarioResponse {
         try await self.client.execute(action: "CopyScenario", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 复制场景
+    @inlinable
+    public func copyScenario(projectId: String, scenarioId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyScenarioResponse > {
+        self.copyScenario(CopyScenarioRequest(projectId: projectId, scenarioId: scenarioId), logger: logger, on: eventLoop)
+    }
+    
+    /// 复制场景
+    @inlinable
+    public func copyScenario(projectId: String, scenarioId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyScenarioResponse {
+        try await self.copyScenario(CopyScenarioRequest(projectId: projectId, scenarioId: scenarioId), logger: logger, on: eventLoop)
+    }
 }

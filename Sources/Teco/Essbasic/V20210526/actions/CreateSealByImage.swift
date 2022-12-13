@@ -29,7 +29,7 @@ extension Essbasic {
         /// 操作者的信息
         public let `operator`: UserInfo?
         
-        public init (agent: Agent, sealName: String, sealImage: String, `operator`: UserInfo? = nil) {
+        public init (agent: Agent, sealName: String, sealImage: String, operator: UserInfo? = nil) {
             self.agent = agent
             self.sealName = sealName
             self.sealImage = sealImage
@@ -72,5 +72,21 @@ extension Essbasic {
     @inlinable
     public func createSealByImage(_ input: CreateSealByImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealByImageResponse {
         try await self.client.execute(action: "CreateSealByImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 渠道通过图片为子客代创建印章
+    ///
+    /// 渠道通过图片为子客代创建印章，图片最大5m；此接口不可直接使用，请联系运营/客服咨询相关流程
+    @inlinable
+    public func createSealByImage(agent: Agent, sealName: String, sealImage: String, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSealByImageResponse > {
+        self.createSealByImage(CreateSealByImageRequest(agent: agent, sealName: sealName, sealImage: sealImage, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 渠道通过图片为子客代创建印章
+    ///
+    /// 渠道通过图片为子客代创建印章，图片最大5m；此接口不可直接使用，请联系运营/客服咨询相关流程
+    @inlinable
+    public func createSealByImage(agent: Agent, sealName: String, sealImage: String, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealByImageResponse {
+        try await self.createSealByImage(CreateSealByImageRequest(agent: agent, sealName: sealName, sealImage: sealImage, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

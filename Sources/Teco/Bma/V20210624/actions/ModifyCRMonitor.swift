@@ -64,4 +64,20 @@ extension Bma {
     public func modifyCRMonitor(_ input: ModifyCRMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRMonitorResponse {
         try await self.client.execute(action: "ModifyCRMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开启或关闭监测
+    ///
+    /// 开启/关闭监测
+    @inlinable
+    public func modifyCRMonitor(workId: Int64, monitorStatus: String, monitorEnd: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRMonitorResponse > {
+        self.modifyCRMonitor(ModifyCRMonitorRequest(workId: workId, monitorStatus: monitorStatus, monitorEnd: monitorEnd), logger: logger, on: eventLoop)
+    }
+    
+    /// 开启或关闭监测
+    ///
+    /// 开启/关闭监测
+    @inlinable
+    public func modifyCRMonitor(workId: Int64, monitorStatus: String, monitorEnd: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRMonitorResponse {
+        try await self.modifyCRMonitor(ModifyCRMonitorRequest(workId: workId, monitorStatus: monitorStatus, monitorEnd: monitorEnd), logger: logger, on: eventLoop)
+    }
 }

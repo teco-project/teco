@@ -90,4 +90,16 @@ extension Wedata {
     public func describeIntegrationTasks(_ input: DescribeIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationTasksResponse {
         try await self.client.execute(action: "DescribeIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询集成任务列表
+    @inlinable
+    public func describeIntegrationTasks(projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, startTime: String? = nil, endTime: String? = nil, taskType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationTasksResponse > {
+        self.describeIntegrationTasks(DescribeIntegrationTasksRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, startTime: startTime, endTime: endTime, taskType: taskType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集成任务列表
+    @inlinable
+    public func describeIntegrationTasks(projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, startTime: String? = nil, endTime: String? = nil, taskType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationTasksResponse {
+        try await self.describeIntegrationTasks(DescribeIntegrationTasksRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, startTime: startTime, endTime: endTime, taskType: taskType), logger: logger, on: eventLoop)
+    }
 }

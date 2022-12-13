@@ -77,4 +77,20 @@ extension Rum {
     public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
         try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取项目列表
+    ///
+    /// 获取项目列表（实例创建的团队下的项目列表）
+    @inlinable
+    public func describeProjects(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, isDemo: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
+        self.describeProjects(DescribeProjectsRequest(limit: limit, offset: offset, filters: filters, isDemo: isDemo), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取项目列表
+    ///
+    /// 获取项目列表（实例创建的团队下的项目列表）
+    @inlinable
+    public func describeProjects(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, isDemo: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
+        try await self.describeProjects(DescribeProjectsRequest(limit: limit, offset: offset, filters: filters, isDemo: isDemo), logger: logger, on: eventLoop)
+    }
 }

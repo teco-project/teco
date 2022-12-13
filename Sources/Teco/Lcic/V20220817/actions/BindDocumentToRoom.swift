@@ -60,4 +60,16 @@ extension Lcic {
     public func bindDocumentToRoom(_ input: BindDocumentToRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDocumentToRoomResponse {
         try await self.client.execute(action: "BindDocumentToRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 绑定文档到房间
+    @inlinable
+    public func bindDocumentToRoom(roomId: UInt64, documentId: String, bindType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindDocumentToRoomResponse > {
+        self.bindDocumentToRoom(BindDocumentToRoomRequest(roomId: roomId, documentId: documentId, bindType: bindType), logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定文档到房间
+    @inlinable
+    public func bindDocumentToRoom(roomId: UInt64, documentId: String, bindType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDocumentToRoomResponse {
+        try await self.bindDocumentToRoom(BindDocumentToRoomRequest(roomId: roomId, documentId: documentId, bindType: bindType), logger: logger, on: eventLoop)
+    }
 }

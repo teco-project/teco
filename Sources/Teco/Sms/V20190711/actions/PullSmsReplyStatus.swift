@@ -71,4 +71,28 @@ extension Sms {
     public func pullSmsReplyStatus(_ input: PullSmsReplyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullSmsReplyStatusResponse {
         try await self.client.execute(action: "PullSmsReplyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 拉取短信回复状态
+    ///
+    /// 拉取短信回复状态。
+    /// 目前也支持 [配置回复回调](https://cloud.tencent.com/document/product/382/42907) 的方式来获取上行回复。
+    /// >- 注：此接口需要联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81) 开通。
+    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
+    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
+    @inlinable
+    public func pullSmsReplyStatus(limit: UInt64, smsSdkAppid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PullSmsReplyStatusResponse > {
+        self.pullSmsReplyStatus(PullSmsReplyStatusRequest(limit: limit, smsSdkAppid: smsSdkAppid), logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取短信回复状态
+    ///
+    /// 拉取短信回复状态。
+    /// 目前也支持 [配置回复回调](https://cloud.tencent.com/document/product/382/42907) 的方式来获取上行回复。
+    /// >- 注：此接口需要联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81) 开通。
+    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
+    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
+    @inlinable
+    public func pullSmsReplyStatus(limit: UInt64, smsSdkAppid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullSmsReplyStatusResponse {
+        try await self.pullSmsReplyStatus(PullSmsReplyStatusRequest(limit: limit, smsSdkAppid: smsSdkAppid), logger: logger, on: eventLoop)
+    }
 }

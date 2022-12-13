@@ -71,4 +71,20 @@ extension Cynosdb {
     public func searchClusterDatabases(_ input: SearchClusterDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClusterDatabasesResponse {
         try await self.client.execute(action: "SearchClusterDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 搜索集群database列表
+    ///
+    /// 本接口(SearchClusterDatabases)搜索集群database列表
+    @inlinable
+    public func searchClusterDatabases(clusterId: String, database: String? = nil, matchType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchClusterDatabasesResponse > {
+        self.searchClusterDatabases(SearchClusterDatabasesRequest(clusterId: clusterId, database: database, matchType: matchType), logger: logger, on: eventLoop)
+    }
+    
+    /// 搜索集群database列表
+    ///
+    /// 本接口(SearchClusterDatabases)搜索集群database列表
+    @inlinable
+    public func searchClusterDatabases(clusterId: String, database: String? = nil, matchType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClusterDatabasesResponse {
+        try await self.searchClusterDatabases(SearchClusterDatabasesRequest(clusterId: clusterId, database: database, matchType: matchType), logger: logger, on: eventLoop)
+    }
 }

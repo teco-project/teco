@@ -130,4 +130,16 @@ extension Tbaas {
     public func getClusterSummary(_ input: GetClusterSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterSummaryResponse {
         try await self.client.execute(action: "GetClusterSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取区块链网络概要
+    @inlinable
+    public func getClusterSummary(module: String, operation: String, clusterId: String, groupId: UInt64, groupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetClusterSummaryResponse > {
+        self.getClusterSummary(GetClusterSummaryRequest(module: module, operation: operation, clusterId: clusterId, groupId: groupId, groupName: groupName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取区块链网络概要
+    @inlinable
+    public func getClusterSummary(module: String, operation: String, clusterId: String, groupId: UInt64, groupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterSummaryResponse {
+        try await self.getClusterSummary(GetClusterSummaryRequest(module: module, operation: operation, clusterId: clusterId, groupId: groupId, groupName: groupName), logger: logger, on: eventLoop)
+    }
 }

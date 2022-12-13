@@ -69,4 +69,20 @@ extension Tcr {
     public func createSignature(_ input: CreateSignatureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignatureResponse {
         try await self.client.execute(action: "CreateSignature", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建镜像签名
+    ///
+    /// 为一个镜像版本创建签名
+    @inlinable
+    public func createSignature(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSignatureResponse > {
+        self.createSignature(CreateSignatureRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建镜像签名
+    ///
+    /// 为一个镜像版本创建签名
+    @inlinable
+    public func createSignature(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignatureResponse {
+        try await self.createSignature(CreateSignatureRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion), logger: logger, on: eventLoop)
+    }
 }

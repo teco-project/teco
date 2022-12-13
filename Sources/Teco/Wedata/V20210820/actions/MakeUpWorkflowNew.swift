@@ -75,4 +75,22 @@ extension Wedata {
     public func makeUpWorkflowNew(_ input: MakeUpWorkflowNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MakeUpWorkflowNewResponse {
         try await self.client.execute(action: "MakeUpWorkflowNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 工作流任务补录【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 工作流下所有任务的补录
+    @inlinable
+    public func makeUpWorkflowNew(workFlowId: String, startTime: String, endTime: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MakeUpWorkflowNewResponse > {
+        self.makeUpWorkflowNew(MakeUpWorkflowNewRequest(workFlowId: workFlowId, startTime: startTime, endTime: endTime, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 工作流任务补录【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 工作流下所有任务的补录
+    @inlinable
+    public func makeUpWorkflowNew(workFlowId: String, startTime: String, endTime: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MakeUpWorkflowNewResponse {
+        try await self.makeUpWorkflowNew(MakeUpWorkflowNewRequest(workFlowId: workFlowId, startTime: startTime, endTime: endTime, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Iecp {
     public func deleteEdgeNodes(_ input: DeleteEdgeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodesResponse {
         try await self.client.execute(action: "DeleteEdgeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量删除边缘节点
+    @inlinable
+    public func deleteEdgeNodes(edgeUnitId: UInt64, nodeIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeNodesResponse > {
+        self.deleteEdgeNodes(DeleteEdgeNodesRequest(edgeUnitId: edgeUnitId, nodeIds: nodeIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除边缘节点
+    @inlinable
+    public func deleteEdgeNodes(edgeUnitId: UInt64, nodeIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodesResponse {
+        try await self.deleteEdgeNodes(DeleteEdgeNodesRequest(edgeUnitId: edgeUnitId, nodeIds: nodeIds), logger: logger, on: eventLoop)
+    }
 }

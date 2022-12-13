@@ -78,4 +78,20 @@ extension Cwp {
     public func describeServerRelatedDirInfo(_ input: DescribeServerRelatedDirInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServerRelatedDirInfoResponse {
         try await self.client.execute(action: "DescribeServerRelatedDirInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询服务器关联目录详情
+    ///
+    /// 查询服务区关联目录详情
+    @inlinable
+    public func describeServerRelatedDirInfo(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServerRelatedDirInfoResponse > {
+        self.describeServerRelatedDirInfo(DescribeServerRelatedDirInfoRequest(id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务器关联目录详情
+    ///
+    /// 查询服务区关联目录详情
+    @inlinable
+    public func describeServerRelatedDirInfo(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServerRelatedDirInfoResponse {
+        try await self.describeServerRelatedDirInfo(DescribeServerRelatedDirInfoRequest(id: id), logger: logger, on: eventLoop)
+    }
 }

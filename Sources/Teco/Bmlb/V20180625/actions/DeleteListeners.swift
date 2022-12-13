@@ -63,4 +63,20 @@ extension Bmlb {
     public func deleteListeners(_ input: DeleteListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenersResponse {
         try await self.client.execute(action: "DeleteListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除黑石负载均衡监听器
+    ///
+    /// 删除黑石负载均衡监听器。
+    @inlinable
+    public func deleteListeners(loadBalancerId: String, listenerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteListenersResponse > {
+        self.deleteListeners(DeleteListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除黑石负载均衡监听器
+    ///
+    /// 删除黑石负载均衡监听器。
+    @inlinable
+    public func deleteListeners(loadBalancerId: String, listenerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenersResponse {
+        try await self.deleteListeners(DeleteListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds), logger: logger, on: eventLoop)
+    }
 }

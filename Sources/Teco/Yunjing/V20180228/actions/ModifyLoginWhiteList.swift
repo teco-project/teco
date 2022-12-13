@@ -50,4 +50,16 @@ extension Yunjing {
     public func modifyLoginWhiteList(_ input: ModifyLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoginWhiteListResponse {
         try await self.client.execute(action: "ModifyLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 编辑白名单规则
+    @inlinable
+    public func modifyLoginWhiteList(rules: LoginWhiteListsRule, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoginWhiteListResponse > {
+        self.modifyLoginWhiteList(ModifyLoginWhiteListRequest(rules: rules), logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑白名单规则
+    @inlinable
+    public func modifyLoginWhiteList(rules: LoginWhiteListsRule, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoginWhiteListResponse {
+        try await self.modifyLoginWhiteList(ModifyLoginWhiteListRequest(rules: rules), logger: logger, on: eventLoop)
+    }
 }

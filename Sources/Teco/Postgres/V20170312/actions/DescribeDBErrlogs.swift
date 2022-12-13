@@ -96,4 +96,20 @@ extension Postgres {
     public func describeDBErrlogs(_ input: DescribeDBErrlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBErrlogsResponse {
         try await self.client.execute(action: "DescribeDBErrlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取错误日志
+    ///
+    /// 本接口（DescribeDBErrlogs）用于获取错误日志。
+    @inlinable
+    public func describeDBErrlogs(dbInstanceId: String, startTime: Date, endTime: Date, databaseName: String? = nil, searchKeys: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBErrlogsResponse > {
+        self.describeDBErrlogs(DescribeDBErrlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, searchKeys: searchKeys, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取错误日志
+    ///
+    /// 本接口（DescribeDBErrlogs）用于获取错误日志。
+    @inlinable
+    public func describeDBErrlogs(dbInstanceId: String, startTime: Date, endTime: Date, databaseName: String? = nil, searchKeys: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBErrlogsResponse {
+        try await self.describeDBErrlogs(DescribeDBErrlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, searchKeys: searchKeys, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

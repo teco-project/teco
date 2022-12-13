@@ -63,4 +63,20 @@ extension Domain {
     public func createTemplate(_ input: CreateTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTemplateResponse {
         try await self.client.execute(action: "CreateTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加域名信息模板
+    ///
+    /// 本接口 ( CreateTemplate ) 用于添加域名信息模板 。
+    @inlinable
+    public func createTemplate(contactInfo: ContactInfo, certificateInfo: CertificateInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTemplateResponse > {
+        self.createTemplate(CreateTemplateRequest(contactInfo: contactInfo, certificateInfo: certificateInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加域名信息模板
+    ///
+    /// 本接口 ( CreateTemplate ) 用于添加域名信息模板 。
+    @inlinable
+    public func createTemplate(contactInfo: ContactInfo, certificateInfo: CertificateInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTemplateResponse {
+        try await self.createTemplate(CreateTemplateRequest(contactInfo: contactInfo, certificateInfo: certificateInfo), logger: logger, on: eventLoop)
+    }
 }

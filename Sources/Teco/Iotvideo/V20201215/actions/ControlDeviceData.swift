@@ -84,4 +84,20 @@ extension Iotvideo {
     public func controlDeviceData(_ input: ControlDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlDeviceDataResponse {
         try await self.client.execute(action: "ControlDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设备远程控制
+    ///
+    /// 根据设备产品ID、设备名称，设置控制设备的属性数据。
+    @inlinable
+    public func controlDeviceData(productId: String, deviceName: String, data: String, method: String? = nil, dataTimestamp: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlDeviceDataResponse > {
+        self.controlDeviceData(ControlDeviceDataRequest(productId: productId, deviceName: deviceName, data: data, method: method, dataTimestamp: dataTimestamp), logger: logger, on: eventLoop)
+    }
+    
+    /// 设备远程控制
+    ///
+    /// 根据设备产品ID、设备名称，设置控制设备的属性数据。
+    @inlinable
+    public func controlDeviceData(productId: String, deviceName: String, data: String, method: String? = nil, dataTimestamp: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlDeviceDataResponse {
+        try await self.controlDeviceData(ControlDeviceDataRequest(productId: productId, deviceName: deviceName, data: data, method: method, dataTimestamp: dataTimestamp), logger: logger, on: eventLoop)
+    }
 }

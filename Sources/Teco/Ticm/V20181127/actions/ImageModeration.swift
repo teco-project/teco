@@ -115,4 +115,20 @@ extension Ticm {
     public func imageModeration(_ input: ImageModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageModerationResponse {
         try await self.client.execute(action: "ImageModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 图像内容审核
+    ///
+    /// 本接口提供多种维度的图像审核能力，支持色情和性感内容识别，政治人物和涉政敏感场景识别，以及暴恐人物、场景、旗帜标识等违禁内容的识别。
+    @inlinable
+    public func imageModeration(scenes: [String], imageUrl: String? = nil, config: String? = nil, extra: String? = nil, imageBase64: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImageModerationResponse > {
+        self.imageModeration(ImageModerationRequest(scenes: scenes, imageUrl: imageUrl, config: config, extra: extra, imageBase64: imageBase64), logger: logger, on: eventLoop)
+    }
+    
+    /// 图像内容审核
+    ///
+    /// 本接口提供多种维度的图像审核能力，支持色情和性感内容识别，政治人物和涉政敏感场景识别，以及暴恐人物、场景、旗帜标识等违禁内容的识别。
+    @inlinable
+    public func imageModeration(scenes: [String], imageUrl: String? = nil, config: String? = nil, extra: String? = nil, imageBase64: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageModerationResponse {
+        try await self.imageModeration(ImageModerationRequest(scenes: scenes, imageUrl: imageUrl, config: config, extra: extra, imageBase64: imageBase64), logger: logger, on: eventLoop)
+    }
 }

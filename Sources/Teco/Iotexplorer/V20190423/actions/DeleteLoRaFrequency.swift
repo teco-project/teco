@@ -54,4 +54,20 @@ extension Iotexplorer {
     public func deleteLoRaFrequency(_ input: DeleteLoRaFrequencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoRaFrequencyResponse {
         try await self.client.execute(action: "DeleteLoRaFrequency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除LoRa自定义频点
+    ///
+    /// 提供删除LoRa自定义频点的能力
+    @inlinable
+    public func deleteLoRaFrequency(freqId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoRaFrequencyResponse > {
+        self.deleteLoRaFrequency(DeleteLoRaFrequencyRequest(freqId: freqId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除LoRa自定义频点
+    ///
+    /// 提供删除LoRa自定义频点的能力
+    @inlinable
+    public func deleteLoRaFrequency(freqId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoRaFrequencyResponse {
+        try await self.deleteLoRaFrequency(DeleteLoRaFrequencyRequest(freqId: freqId), logger: logger, on: eventLoop)
+    }
 }

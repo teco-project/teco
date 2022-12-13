@@ -54,4 +54,20 @@ extension Tcr {
     public func deleteNamespacePersonal(_ input: DeleteNamespacePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNamespacePersonalResponse {
         try await self.client.execute(action: "DeleteNamespacePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除个人版命名空间
+    ///
+    /// 删除共享版命名空间
+    @inlinable
+    public func deleteNamespacePersonal(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNamespacePersonalResponse > {
+        self.deleteNamespacePersonal(DeleteNamespacePersonalRequest(namespace: namespace), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除个人版命名空间
+    ///
+    /// 删除共享版命名空间
+    @inlinable
+    public func deleteNamespacePersonal(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNamespacePersonalResponse {
+        try await self.deleteNamespacePersonal(DeleteNamespacePersonalRequest(namespace: namespace), logger: logger, on: eventLoop)
+    }
 }

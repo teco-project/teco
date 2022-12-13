@@ -81,4 +81,16 @@ extension Tione {
     public func describeAPIConfigs(_ input: DescribeAPIConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAPIConfigsResponse {
         try await self.client.execute(action: "DescribeAPIConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 列举API
+    @inlinable
+    public func describeAPIConfigs(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAPIConfigsResponse > {
+        self.describeAPIConfigs(DescribeAPIConfigsRequest(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 列举API
+    @inlinable
+    public func describeAPIConfigs(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAPIConfigsResponse {
+        try await self.describeAPIConfigs(DescribeAPIConfigsRequest(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters), logger: logger, on: eventLoop)
+    }
 }

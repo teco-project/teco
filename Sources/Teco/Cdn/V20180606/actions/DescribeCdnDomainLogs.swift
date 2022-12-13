@@ -102,4 +102,20 @@ extension Cdn {
     public func describeCdnDomainLogs(_ input: DescribeCdnDomainLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnDomainLogsResponse {
         try await self.client.execute(action: "DescribeCdnDomainLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 日志下载链接查询
+    ///
+    /// DescribeCdnDomainLogs 用于查询访问日志下载地址，仅支持 30 天以内的境内、境外访问日志下载链接查询。
+    @inlinable
+    public func describeCdnDomainLogs(domain: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, logType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCdnDomainLogsResponse > {
+        self.describeCdnDomainLogs(DescribeCdnDomainLogsRequest(domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit, area: area, logType: logType), logger: logger, on: eventLoop)
+    }
+    
+    /// 日志下载链接查询
+    ///
+    /// DescribeCdnDomainLogs 用于查询访问日志下载地址，仅支持 30 天以内的境内、境外访问日志下载链接查询。
+    @inlinable
+    public func describeCdnDomainLogs(domain: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, logType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnDomainLogsResponse {
+        try await self.describeCdnDomainLogs(DescribeCdnDomainLogsRequest(domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit, area: area, logType: logType), logger: logger, on: eventLoop)
+    }
 }

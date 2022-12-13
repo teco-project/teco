@@ -113,4 +113,20 @@ extension Vod {
     public func createAIRecognitionTemplate(_ input: CreateAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIRecognitionTemplateResponse {
         try await self.client.execute(action: "CreateAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建音视频内容识别模板
+    ///
+    /// 创建用户自定义音视频内容识别模板，数量上限：50。
+    @inlinable
+    public func createAIRecognitionTemplate(subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, headTailConfigure: HeadTailConfigureInfo? = nil, segmentConfigure: SegmentConfigureInfo? = nil, faceConfigure: FaceConfigureInfo? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfo? = nil, ocrWordsConfigure: OcrWordsConfigureInfo? = nil, asrFullTextConfigure: AsrFullTextConfigureInfo? = nil, asrWordsConfigure: AsrWordsConfigureInfo? = nil, objectConfigure: ObjectConfigureInfo? = nil, screenshotInterval: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAIRecognitionTemplateResponse > {
+        self.createAIRecognitionTemplate(CreateAIRecognitionTemplateRequest(subAppId: subAppId, name: name, comment: comment, headTailConfigure: headTailConfigure, segmentConfigure: segmentConfigure, faceConfigure: faceConfigure, ocrFullTextConfigure: ocrFullTextConfigure, ocrWordsConfigure: ocrWordsConfigure, asrFullTextConfigure: asrFullTextConfigure, asrWordsConfigure: asrWordsConfigure, objectConfigure: objectConfigure, screenshotInterval: screenshotInterval), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建音视频内容识别模板
+    ///
+    /// 创建用户自定义音视频内容识别模板，数量上限：50。
+    @inlinable
+    public func createAIRecognitionTemplate(subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, headTailConfigure: HeadTailConfigureInfo? = nil, segmentConfigure: SegmentConfigureInfo? = nil, faceConfigure: FaceConfigureInfo? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfo? = nil, ocrWordsConfigure: OcrWordsConfigureInfo? = nil, asrFullTextConfigure: AsrFullTextConfigureInfo? = nil, asrWordsConfigure: AsrWordsConfigureInfo? = nil, objectConfigure: ObjectConfigureInfo? = nil, screenshotInterval: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIRecognitionTemplateResponse {
+        try await self.createAIRecognitionTemplate(CreateAIRecognitionTemplateRequest(subAppId: subAppId, name: name, comment: comment, headTailConfigure: headTailConfigure, segmentConfigure: segmentConfigure, faceConfigure: faceConfigure, ocrFullTextConfigure: ocrFullTextConfigure, ocrWordsConfigure: ocrWordsConfigure, asrFullTextConfigure: asrFullTextConfigure, asrWordsConfigure: asrWordsConfigure, objectConfigure: objectConfigure, screenshotInterval: screenshotInterval), logger: logger, on: eventLoop)
+    }
 }

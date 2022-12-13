@@ -75,4 +75,20 @@ extension Vpc {
     public func describeAddressTemplates(_ input: DescribeAddressTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressTemplatesResponse {
         try await self.client.execute(action: "DescribeAddressTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询IP地址模板
+    ///
+    /// 本接口（DescribeAddressTemplates）用于查询IP地址模板
+    @inlinable
+    public func describeAddressTemplates(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAddressTemplatesResponse > {
+        self.describeAddressTemplates(DescribeAddressTemplatesRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询IP地址模板
+    ///
+    /// 本接口（DescribeAddressTemplates）用于查询IP地址模板
+    @inlinable
+    public func describeAddressTemplates(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressTemplatesResponse {
+        try await self.describeAddressTemplates(DescribeAddressTemplatesRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

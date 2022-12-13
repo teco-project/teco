@@ -76,4 +76,20 @@ extension Cdb {
     public func openAuditService(_ input: OpenAuditServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenAuditServiceResponse {
         try await self.client.execute(action: "OpenAuditService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开通审计服务
+    ///
+    /// CDB实例开通审计服务
+    @inlinable
+    public func openAuditService(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenAuditServiceResponse > {
+        self.openAuditService(OpenAuditServiceRequest(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay), logger: logger, on: eventLoop)
+    }
+    
+    /// 开通审计服务
+    ///
+    /// CDB实例开通审计服务
+    @inlinable
+    public func openAuditService(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenAuditServiceResponse {
+        try await self.openAuditService(OpenAuditServiceRequest(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay), logger: logger, on: eventLoop)
+    }
 }

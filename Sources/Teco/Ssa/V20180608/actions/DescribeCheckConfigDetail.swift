@@ -54,4 +54,16 @@ extension Ssa {
     public func describeCheckConfigDetail(_ input: DescribeCheckConfigDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckConfigDetailResponse {
         try await self.client.execute(action: "DescribeCheckConfigDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云安全配置检查项详情
+    @inlinable
+    public func describeCheckConfigDetail(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCheckConfigDetailResponse > {
+        self.describeCheckConfigDetail(DescribeCheckConfigDetailRequest(id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 云安全配置检查项详情
+    @inlinable
+    public func describeCheckConfigDetail(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckConfigDetailResponse {
+        try await self.describeCheckConfigDetail(DescribeCheckConfigDetailRequest(id: id), logger: logger, on: eventLoop)
+    }
 }

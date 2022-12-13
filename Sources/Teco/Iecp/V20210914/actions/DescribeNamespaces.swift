@@ -59,4 +59,16 @@ extension Iecp {
     public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacesResponse {
         try await self.client.execute(action: "DescribeNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取命名空间列表信息
+    @inlinable
+    public func describeNamespaces(edgeUnitID: UInt64, namePattern: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespacesResponse > {
+        self.describeNamespaces(DescribeNamespacesRequest(edgeUnitID: edgeUnitID, namePattern: namePattern), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取命名空间列表信息
+    @inlinable
+    public func describeNamespaces(edgeUnitID: UInt64, namePattern: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacesResponse {
+        try await self.describeNamespaces(DescribeNamespacesRequest(edgeUnitID: edgeUnitID, namePattern: namePattern), logger: logger, on: eventLoop)
+    }
 }

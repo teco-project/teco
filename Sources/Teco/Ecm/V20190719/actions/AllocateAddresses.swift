@@ -100,4 +100,20 @@ extension Ecm {
     public func allocateAddresses(_ input: AllocateAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateAddressesResponse {
         try await self.client.execute(action: "AllocateAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建弹性公网IP
+    ///
+    /// 申请一个或多个弹性公网IP（简称 EIP）
+    @inlinable
+    public func allocateAddresses(ecmRegion: String, addressCount: UInt64? = nil, internetServiceProvider: String? = nil, internetMaxBandwidthOut: UInt64? = nil, tags: [Tag]? = nil, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AllocateAddressesResponse > {
+        self.allocateAddresses(AllocateAddressesRequest(ecmRegion: ecmRegion, addressCount: addressCount, internetServiceProvider: internetServiceProvider, internetMaxBandwidthOut: internetMaxBandwidthOut, tags: tags, instanceId: instanceId, networkInterfaceId: networkInterfaceId, privateIpAddress: privateIpAddress), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建弹性公网IP
+    ///
+    /// 申请一个或多个弹性公网IP（简称 EIP）
+    @inlinable
+    public func allocateAddresses(ecmRegion: String, addressCount: UInt64? = nil, internetServiceProvider: String? = nil, internetMaxBandwidthOut: UInt64? = nil, tags: [Tag]? = nil, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateAddressesResponse {
+        try await self.allocateAddresses(AllocateAddressesRequest(ecmRegion: ecmRegion, addressCount: addressCount, internetServiceProvider: internetServiceProvider, internetMaxBandwidthOut: internetMaxBandwidthOut, tags: tags, instanceId: instanceId, networkInterfaceId: networkInterfaceId, privateIpAddress: privateIpAddress), logger: logger, on: eventLoop)
+    }
 }

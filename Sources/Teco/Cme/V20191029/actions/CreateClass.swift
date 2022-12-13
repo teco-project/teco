@@ -29,7 +29,7 @@ extension Cme {
         /// 操作者。填写用户的 Id，用于标识调用者及校验分类创建权限。
         public let `operator`: String?
         
-        public init (platform: String, owner: Entity, classPath: String, `operator`: String? = nil) {
+        public init (platform: String, owner: Entity, classPath: String, operator: String? = nil) {
             self.platform = platform
             self.owner = owner
             self.classPath = classPath
@@ -68,5 +68,21 @@ extension Cme {
     @inlinable
     public func createClass(_ input: CreateClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClassResponse {
         try await self.client.execute(action: "CreateClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 创建分类
+    ///
+    /// 新增分类，用于管理素材。分类层数不能超过20。
+    @inlinable
+    public func createClass(platform: String, owner: Entity, classPath: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClassResponse > {
+        self.createClass(CreateClassRequest(platform: platform, owner: owner, classPath: classPath, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建分类
+    ///
+    /// 新增分类，用于管理素材。分类层数不能超过20。
+    @inlinable
+    public func createClass(platform: String, owner: Entity, classPath: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClassResponse {
+        try await self.createClass(CreateClassRequest(platform: platform, owner: owner, classPath: classPath, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

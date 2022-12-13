@@ -170,7 +170,7 @@ extension Ie {
         /// 额外定制化服务参数。参数为序列化的Json字符串，例如：{"k1":"v1"}。
         public let customInfo: String?
         
-        public init (`switch`: Int64, customInfo: String? = nil) {
+        public init (switch: Int64, customInfo: String? = nil) {
             self.`switch` = `switch`
             self.customInfo = customInfo
         }
@@ -316,7 +316,7 @@ extension Ie {
         /// 额外定制化服务参数。参数为序列化的Json字符串，例如：{"k1":"v1"}。
         public let customInfo: String?
         
-        public init (`switch`: Int64, customInfo: String? = nil) {
+        public init (switch: Int64, customInfo: String? = nil) {
             self.`switch` = `switch`
             self.customInfo = customInfo
         }
@@ -722,7 +722,7 @@ extension Ie {
         /// 额外定制化服务参数。参数为序列化的Json字符串，例如：{"k1":"v1"}。
         public let customInfo: String?
         
-        public init (`switch`: Int64, customInfo: String? = nil) {
+        public init (switch: Int64, customInfo: String? = nil) {
             self.`switch` = `switch`
             self.customInfo = customInfo
         }
@@ -1436,7 +1436,7 @@ extension Ie {
         /// 额外定制化服务参数。参数为序列化的Json字符串，例如：{"k1":"v1"}。
         public let customInfo: String?
         
-        public init (`switch`: Int64, customInfo: String? = nil) {
+        public init (switch: Int64, customInfo: String? = nil) {
             self.`switch` = `switch`
             self.customInfo = customInfo
         }
@@ -2001,7 +2001,7 @@ extension Ie {
         /// 额外定制化服务参数。参数为序列化的Json字符串，例如：{"k1":"v1"}。
         public let customInfo: String?
         
-        public init (`switch`: Int64, customInfo: String? = nil) {
+        public init (switch: Int64, customInfo: String? = nil) {
             self.`switch` = `switch`
             self.customInfo = customInfo
         }
@@ -2230,7 +2230,7 @@ extension Ie {
         /// 额外定制化服务参数。参数为序列化的Json字符串，例如：{"k1":"v1"}。
         public let customInfo: String?
         
-        public init (`switch`: Int64, customInfo: String? = nil) {
+        public init (switch: Int64, customInfo: String? = nil) {
             self.`switch` = `switch`
             self.customInfo = customInfo
         }

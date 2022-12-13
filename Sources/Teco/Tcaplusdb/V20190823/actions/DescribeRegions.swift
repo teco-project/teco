@@ -54,4 +54,20 @@ extension Tcaplusdb {
     public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
         try await self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询地域列表
+    ///
+    /// 查询TcaplusDB服务支持的地域列表
+    @inlinable
+    public func describeRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionsResponse > {
+        self.describeRegions(DescribeRegionsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询地域列表
+    ///
+    /// 查询TcaplusDB服务支持的地域列表
+    @inlinable
+    public func describeRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
+        try await self.describeRegions(DescribeRegionsRequest(), logger: logger, on: eventLoop)
+    }
 }

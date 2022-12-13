@@ -50,4 +50,16 @@ extension Iotvideoindustry {
     public func deleteLiveChannel(_ input: DeleteLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveChannelResponse {
         try await self.client.execute(action: "DeleteLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除直播接口
+    @inlinable
+    public func deleteLiveChannel(liveChannelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveChannelResponse > {
+        self.deleteLiveChannel(DeleteLiveChannelRequest(liveChannelId: liveChannelId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除直播接口
+    @inlinable
+    public func deleteLiveChannel(liveChannelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveChannelResponse {
+        try await self.deleteLiveChannel(DeleteLiveChannelRequest(liveChannelId: liveChannelId), logger: logger, on: eventLoop)
+    }
 }

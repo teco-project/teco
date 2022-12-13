@@ -80,4 +80,16 @@ extension Eiam {
     public func describeAccountGroup(_ input: DescribeAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountGroupResponse {
         try await self.client.execute(action: "DescribeAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询账号组列表
+    @inlinable
+    public func describeAccountGroup(applicationId: String, searchCondition: AccountGroupSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountGroupResponse > {
+        self.describeAccountGroup(DescribeAccountGroupRequest(applicationId: applicationId, searchCondition: searchCondition, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账号组列表
+    @inlinable
+    public func describeAccountGroup(applicationId: String, searchCondition: AccountGroupSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountGroupResponse {
+        try await self.describeAccountGroup(DescribeAccountGroupRequest(applicationId: applicationId, searchCondition: searchCondition, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

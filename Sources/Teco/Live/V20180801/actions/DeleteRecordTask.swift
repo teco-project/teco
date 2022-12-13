@@ -54,4 +54,20 @@ extension Live {
     public func deleteRecordTask(_ input: DeleteRecordTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordTaskResponse {
         try await self.client.execute(action: "DeleteRecordTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除录制任务（新）
+    ///
+    /// 删除录制任务配置。删除操作不影响正在运行当中的任务，仅对删除之后新的推流有效。
+    @inlinable
+    public func deleteRecordTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRecordTaskResponse > {
+        self.deleteRecordTask(DeleteRecordTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除录制任务（新）
+    ///
+    /// 删除录制任务配置。删除操作不影响正在运行当中的任务，仅对删除之后新的推流有效。
+    @inlinable
+    public func deleteRecordTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordTaskResponse {
+        try await self.deleteRecordTask(DeleteRecordTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

@@ -111,4 +111,30 @@ extension Tat {
     public func invokeCommand(_ input: InvokeCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeCommandResponse {
         try await self.client.execute(action: "InvokeCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 触发命令
+    ///
+    /// 在指定的实例上触发命令，调用成功返回执行活动ID（inv-xxxxxxxx），每个执行活动内部有一个或多个执行任务（invt-xxxxxxxx），每个执行任务代表命令在一台 CVM 或一台 Lighthouse 上的执行记录。
+    /// * 如果指定实例未安装 agent，或 agent 不在线，返回失败
+    /// * 如果命令类型与 agent 运行环境不符，返回失败
+    /// * 指定的实例需要处于 VPC 网络
+    /// * 指定的实例需要处于 RUNNING 状态
+    /// * 不可同时指定 CVM 和 Lighthouse
+    @inlinable
+    public func invokeCommand(commandId: String, instanceIds: [String], parameters: String? = nil, username: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeCommandResponse > {
+        self.invokeCommand(InvokeCommandRequest(commandId: commandId, instanceIds: instanceIds, parameters: parameters, username: username, workingDirectory: workingDirectory, timeout: timeout, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), logger: logger, on: eventLoop)
+    }
+    
+    /// 触发命令
+    ///
+    /// 在指定的实例上触发命令，调用成功返回执行活动ID（inv-xxxxxxxx），每个执行活动内部有一个或多个执行任务（invt-xxxxxxxx），每个执行任务代表命令在一台 CVM 或一台 Lighthouse 上的执行记录。
+    /// * 如果指定实例未安装 agent，或 agent 不在线，返回失败
+    /// * 如果命令类型与 agent 运行环境不符，返回失败
+    /// * 指定的实例需要处于 VPC 网络
+    /// * 指定的实例需要处于 RUNNING 状态
+    /// * 不可同时指定 CVM 和 Lighthouse
+    @inlinable
+    public func invokeCommand(commandId: String, instanceIds: [String], parameters: String? = nil, username: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeCommandResponse {
+        try await self.invokeCommand(InvokeCommandRequest(commandId: commandId, instanceIds: instanceIds, parameters: parameters, username: username, workingDirectory: workingDirectory, timeout: timeout, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), logger: logger, on: eventLoop)
+    }
 }

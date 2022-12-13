@@ -64,4 +64,16 @@ extension Tcss {
     public func setCheckMode(_ input: SetCheckModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCheckModeResponse {
         try await self.client.execute(action: "SetCheckMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置检测模式和自动检查
+    @inlinable
+    public func setCheckMode(clusterIds: [String], clusterCheckMode: String? = nil, clusterAutoCheck: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetCheckModeResponse > {
+        self.setCheckMode(SetCheckModeRequest(clusterIds: clusterIds, clusterCheckMode: clusterCheckMode, clusterAutoCheck: clusterAutoCheck), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置检测模式和自动检查
+    @inlinable
+    public func setCheckMode(clusterIds: [String], clusterCheckMode: String? = nil, clusterAutoCheck: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCheckModeResponse {
+        try await self.setCheckMode(SetCheckModeRequest(clusterIds: clusterIds, clusterCheckMode: clusterCheckMode, clusterAutoCheck: clusterAutoCheck), logger: logger, on: eventLoop)
+    }
 }

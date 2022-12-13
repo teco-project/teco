@@ -64,4 +64,20 @@ extension Iotvideoindustry {
     public func modifyBindRecordingPlan(_ input: ModifyBindRecordingPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindRecordingPlanResponse {
         try await self.client.execute(action: "ModifyBindRecordingPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新录制计划绑定的通道
+    ///
+    /// 本接口(ModifyBindRecordingPlan)用于更新录制计划绑定的通道
+    @inlinable
+    public func modifyBindRecordingPlan(type: Int64, planId: String, channels: [ChannelItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBindRecordingPlanResponse > {
+        self.modifyBindRecordingPlan(ModifyBindRecordingPlanRequest(type: type, planId: planId, channels: channels), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新录制计划绑定的通道
+    ///
+    /// 本接口(ModifyBindRecordingPlan)用于更新录制计划绑定的通道
+    @inlinable
+    public func modifyBindRecordingPlan(type: Int64, planId: String, channels: [ChannelItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindRecordingPlanResponse {
+        try await self.modifyBindRecordingPlan(ModifyBindRecordingPlanRequest(type: type, planId: planId, channels: channels), logger: logger, on: eventLoop)
+    }
 }

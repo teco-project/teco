@@ -59,4 +59,20 @@ extension Iotcloud {
     public func deleteDeviceShadow(_ input: DeleteDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceShadowResponse {
         try await self.client.execute(action: "DeleteDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除设备影子
+    ///
+    /// 本接口（DeleteDeviceShadow）用于删除设备影子 
+    @inlinable
+    public func deleteDeviceShadow(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceShadowResponse > {
+        self.deleteDeviceShadow(DeleteDeviceShadowRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除设备影子
+    ///
+    /// 本接口（DeleteDeviceShadow）用于删除设备影子 
+    @inlinable
+    public func deleteDeviceShadow(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceShadowResponse {
+        try await self.deleteDeviceShadow(DeleteDeviceShadowRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
 }

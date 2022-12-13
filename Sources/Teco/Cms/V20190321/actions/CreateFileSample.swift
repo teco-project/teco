@@ -88,4 +88,24 @@ extension Cms {
     public func createFileSample(_ input: CreateFileSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSampleResponse {
         try await self.client.execute(action: "CreateFileSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新增图片样本库
+    ///
+    /// 本文档适用于图片内容安全、视频内容安全自定义识别库的管理。
+    /// <br>
+    /// 通过该接口可以将图片新增到样本库。
+    @inlinable
+    public func createFileSample(contents: [FileSample], evilType: Int64, fileType: String, label: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileSampleResponse > {
+        self.createFileSample(CreateFileSampleRequest(contents: contents, evilType: evilType, fileType: fileType, label: label), logger: logger, on: eventLoop)
+    }
+    
+    /// 新增图片样本库
+    ///
+    /// 本文档适用于图片内容安全、视频内容安全自定义识别库的管理。
+    /// <br>
+    /// 通过该接口可以将图片新增到样本库。
+    @inlinable
+    public func createFileSample(contents: [FileSample], evilType: Int64, fileType: String, label: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSampleResponse {
+        try await self.createFileSample(CreateFileSampleRequest(contents: contents, evilType: evilType, fileType: fileType, label: label), logger: logger, on: eventLoop)
+    }
 }

@@ -139,4 +139,16 @@ extension Ocr {
     public func recognizeIndonesiaIDCardOCR(_ input: RecognizeIndonesiaIDCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeIndonesiaIDCardOCRResponse {
         try await self.client.execute(action: "RecognizeIndonesiaIDCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 印尼身份证识别
+    @inlinable
+    public func recognizeIndonesiaIDCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnHeadImage: Bool? = nil, scene: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeIndonesiaIDCardOCRResponse > {
+        self.recognizeIndonesiaIDCardOCR(RecognizeIndonesiaIDCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage, scene: scene), logger: logger, on: eventLoop)
+    }
+    
+    /// 印尼身份证识别
+    @inlinable
+    public func recognizeIndonesiaIDCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnHeadImage: Bool? = nil, scene: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeIndonesiaIDCardOCRResponse {
+        try await self.recognizeIndonesiaIDCardOCR(RecognizeIndonesiaIDCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage, scene: scene), logger: logger, on: eventLoop)
+    }
 }

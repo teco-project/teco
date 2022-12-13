@@ -113,4 +113,64 @@ extension Bm {
     public func repairTaskControl(_ input: RepairTaskControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RepairTaskControlResponse {
         try await self.client.execute(action: "RepairTaskControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 维修任务管理
+    ///
+    /// 此接口用于操作维修任务<br>
+    /// 入参TaskId为维修任务ID<br>
+    /// 入参Operate表示对维修任务的操作，支持如下取值：<br>
+    /// AuthorizeRepair（授权维修）<br>
+    /// Ignore（暂不提醒）<br>
+    /// ConfirmRecovered（维修完成后，确认故障恢复）<br>
+    /// ConfirmUnRecovered（维修完成后，确认故障未恢复，该操作已不推荐用）<br>
+    /// NeedRepairAgain（维修完成后，故障未恢复，需要重新维修，推荐用此操作打回）<br>
+    /// 入参OperateRemark仅在Operate为NeedRepairAgain时有效，表示打回重修原因，建议给出打回的具体原因。<br>
+    /// <br>
+    /// 操作约束（当前任务状态(TaskStatus)->对应可执行的操作）：<br>
+    /// 未授权(1)->授权维修；暂不处理<br>
+    /// 暂不处理(4)->授权维修<br>
+    /// 待确认(3)->确认故障恢复；确认故障未恢复；需要重新维修<br>
+    /// 未恢复(6)->确认故障恢复<br>
+    /// <br>
+    /// 对于Ping不可达故障的任务，还允许：<br>
+    /// 未授权->确认故障恢复<br>
+    /// 暂不处理->确认故障恢复<br>
+    /// <br>
+    /// 处理中与已恢复状态的任务不允许进行操作。<br>
+    /// <br>
+    /// 详细信息请访问：https://cloud.tencent.com/document/product/386/18190
+    @inlinable
+    public func repairTaskControl(taskId: String, operate: String, operateRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RepairTaskControlResponse > {
+        self.repairTaskControl(RepairTaskControlRequest(taskId: taskId, operate: operate, operateRemark: operateRemark), logger: logger, on: eventLoop)
+    }
+    
+    /// 维修任务管理
+    ///
+    /// 此接口用于操作维修任务<br>
+    /// 入参TaskId为维修任务ID<br>
+    /// 入参Operate表示对维修任务的操作，支持如下取值：<br>
+    /// AuthorizeRepair（授权维修）<br>
+    /// Ignore（暂不提醒）<br>
+    /// ConfirmRecovered（维修完成后，确认故障恢复）<br>
+    /// ConfirmUnRecovered（维修完成后，确认故障未恢复，该操作已不推荐用）<br>
+    /// NeedRepairAgain（维修完成后，故障未恢复，需要重新维修，推荐用此操作打回）<br>
+    /// 入参OperateRemark仅在Operate为NeedRepairAgain时有效，表示打回重修原因，建议给出打回的具体原因。<br>
+    /// <br>
+    /// 操作约束（当前任务状态(TaskStatus)->对应可执行的操作）：<br>
+    /// 未授权(1)->授权维修；暂不处理<br>
+    /// 暂不处理(4)->授权维修<br>
+    /// 待确认(3)->确认故障恢复；确认故障未恢复；需要重新维修<br>
+    /// 未恢复(6)->确认故障恢复<br>
+    /// <br>
+    /// 对于Ping不可达故障的任务，还允许：<br>
+    /// 未授权->确认故障恢复<br>
+    /// 暂不处理->确认故障恢复<br>
+    /// <br>
+    /// 处理中与已恢复状态的任务不允许进行操作。<br>
+    /// <br>
+    /// 详细信息请访问：https://cloud.tencent.com/document/product/386/18190
+    @inlinable
+    public func repairTaskControl(taskId: String, operate: String, operateRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RepairTaskControlResponse {
+        try await self.repairTaskControl(RepairTaskControlRequest(taskId: taskId, operate: operate, operateRemark: operateRemark), logger: logger, on: eventLoop)
+    }
 }

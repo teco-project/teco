@@ -74,4 +74,20 @@ extension Apm {
     public func describeApmInstances(_ input: DescribeApmInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApmInstancesResponse {
         try await self.client.execute(action: "DescribeApmInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 拉取APM实例列表
+    ///
+    /// APM实例列表拉取
+    @inlinable
+    public func describeApmInstances(tags: [ApmTag]? = nil, instanceName: String? = nil, instanceIds: [String]? = nil, demoInstanceFlag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApmInstancesResponse > {
+        self.describeApmInstances(DescribeApmInstancesRequest(tags: tags, instanceName: instanceName, instanceIds: instanceIds, demoInstanceFlag: demoInstanceFlag), logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取APM实例列表
+    ///
+    /// APM实例列表拉取
+    @inlinable
+    public func describeApmInstances(tags: [ApmTag]? = nil, instanceName: String? = nil, instanceIds: [String]? = nil, demoInstanceFlag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApmInstancesResponse {
+        try await self.describeApmInstances(DescribeApmInstancesRequest(tags: tags, instanceName: instanceName, instanceIds: instanceIds, demoInstanceFlag: demoInstanceFlag), logger: logger, on: eventLoop)
+    }
 }

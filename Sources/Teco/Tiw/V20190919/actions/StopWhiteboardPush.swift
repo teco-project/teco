@@ -64,4 +64,20 @@ extension Tiw {
     public func stopWhiteboardPush(_ input: StopWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopWhiteboardPushResponse {
         try await self.client.execute(action: "StopWhiteboardPush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 结束白板推流
+    ///
+    /// 停止白板推流任务
+    @inlinable
+    public func stopWhiteboardPush(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopWhiteboardPushResponse > {
+        self.stopWhiteboardPush(StopWhiteboardPushRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 结束白板推流
+    ///
+    /// 停止白板推流任务
+    @inlinable
+    public func stopWhiteboardPush(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopWhiteboardPushResponse {
+        try await self.stopWhiteboardPush(StopWhiteboardPushRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

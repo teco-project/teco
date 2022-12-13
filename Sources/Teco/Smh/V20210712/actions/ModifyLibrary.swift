@@ -69,4 +69,20 @@ extension Smh {
     public func modifyLibrary(_ input: ModifyLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLibraryResponse {
         try await self.client.execute(action: "ModifyLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改媒体库配置项
+    ///
+    /// 修改 PaaS 服务媒体库配置项
+    @inlinable
+    public func modifyLibrary(libraryId: String, name: String? = nil, remark: String? = nil, libraryExtension: LibraryExtension? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLibraryResponse > {
+        self.modifyLibrary(ModifyLibraryRequest(libraryId: libraryId, name: name, remark: remark, libraryExtension: libraryExtension), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改媒体库配置项
+    ///
+    /// 修改 PaaS 服务媒体库配置项
+    @inlinable
+    public func modifyLibrary(libraryId: String, name: String? = nil, remark: String? = nil, libraryExtension: LibraryExtension? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLibraryResponse {
+        try await self.modifyLibrary(ModifyLibraryRequest(libraryId: libraryId, name: name, remark: remark, libraryExtension: libraryExtension), logger: logger, on: eventLoop)
+    }
 }

@@ -76,4 +76,20 @@ extension Iotcloud {
     public func updateProductDynamicRegister(_ input: UpdateProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductDynamicRegisterResponse {
         try await self.client.execute(action: "UpdateProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新产品动态注册
+    ///
+    /// 更新产品动态注册的配置 
+    @inlinable
+    public func updateProductDynamicRegister(productId: String, registerType: UInt64, registerLimit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProductDynamicRegisterResponse > {
+        self.updateProductDynamicRegister(UpdateProductDynamicRegisterRequest(productId: productId, registerType: registerType, registerLimit: registerLimit), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新产品动态注册
+    ///
+    /// 更新产品动态注册的配置 
+    @inlinable
+    public func updateProductDynamicRegister(productId: String, registerType: UInt64, registerLimit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductDynamicRegisterResponse {
+        try await self.updateProductDynamicRegister(UpdateProductDynamicRegisterRequest(productId: productId, registerType: registerType, registerLimit: registerLimit), logger: logger, on: eventLoop)
+    }
 }

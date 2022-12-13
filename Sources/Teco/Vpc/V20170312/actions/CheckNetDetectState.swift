@@ -98,4 +98,20 @@ extension Vpc {
     public func checkNetDetectState(_ input: CheckNetDetectStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckNetDetectStateResponse {
         try await self.client.execute(action: "CheckNetDetectState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 验证网络探测
+    ///
+    /// 本接口(CheckNetDetectState)用于验证网络探测。
+    @inlinable
+    public func checkNetDetectState(detectDestinationIp: [String], nextHopType: String, nextHopDestination: String, netDetectId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, netDetectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckNetDetectStateResponse > {
+        self.checkNetDetectState(CheckNetDetectStateRequest(detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectId: netDetectId, vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName), logger: logger, on: eventLoop)
+    }
+    
+    /// 验证网络探测
+    ///
+    /// 本接口(CheckNetDetectState)用于验证网络探测。
+    @inlinable
+    public func checkNetDetectState(detectDestinationIp: [String], nextHopType: String, nextHopDestination: String, netDetectId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, netDetectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckNetDetectStateResponse {
+        try await self.checkNetDetectState(CheckNetDetectStateRequest(detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectId: netDetectId, vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName), logger: logger, on: eventLoop)
+    }
 }

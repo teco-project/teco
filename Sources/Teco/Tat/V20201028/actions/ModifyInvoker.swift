@@ -89,4 +89,20 @@ extension Tat {
     public func modifyInvoker(_ input: ModifyInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInvokerResponse {
         try await self.client.execute(action: "ModifyInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改执行器
+    ///
+    /// 此接口用于修改执行器。
+    @inlinable
+    public func modifyInvoker(invokerId: String, name: String? = nil, type: String? = nil, commandId: String? = nil, username: String? = nil, parameters: String? = nil, instanceIds: [String]? = nil, scheduleSettings: ScheduleSettings? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInvokerResponse > {
+        self.modifyInvoker(ModifyInvokerRequest(invokerId: invokerId, name: name, type: type, commandId: commandId, username: username, parameters: parameters, instanceIds: instanceIds, scheduleSettings: scheduleSettings), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改执行器
+    ///
+    /// 此接口用于修改执行器。
+    @inlinable
+    public func modifyInvoker(invokerId: String, name: String? = nil, type: String? = nil, commandId: String? = nil, username: String? = nil, parameters: String? = nil, instanceIds: [String]? = nil, scheduleSettings: ScheduleSettings? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInvokerResponse {
+        try await self.modifyInvoker(ModifyInvokerRequest(invokerId: invokerId, name: name, type: type, commandId: commandId, username: username, parameters: parameters, instanceIds: instanceIds, scheduleSettings: scheduleSettings), logger: logger, on: eventLoop)
+    }
 }

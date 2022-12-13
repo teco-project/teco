@@ -50,4 +50,20 @@ extension Teo {
     public func describeRulesSetting(_ input: DescribeRulesSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesSettingResponse {
         try await self.client.execute(action: "DescribeRulesSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询规则引擎的设置参数
+    ///
+    /// 返回规则引擎可应用匹配请求的设置列表及其详细建议配置信息
+    @inlinable
+    public func describeRulesSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesSettingResponse > {
+        self.describeRulesSetting(DescribeRulesSettingRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询规则引擎的设置参数
+    ///
+    /// 返回规则引擎可应用匹配请求的设置列表及其详细建议配置信息
+    @inlinable
+    public func describeRulesSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesSettingResponse {
+        try await self.describeRulesSetting(DescribeRulesSettingRequest(), logger: logger, on: eventLoop)
+    }
 }

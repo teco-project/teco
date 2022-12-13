@@ -91,4 +91,20 @@ extension Live {
     public func describePlayErrorCodeDetailInfoList(_ input: DescribePlayErrorCodeDetailInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayErrorCodeDetailInfoListResponse {
         try await self.client.execute(action: "DescribePlayErrorCodeDetailInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询播放http错误码实时数据
+    ///
+    /// 查询下行播放错误码信息，某段时间内1分钟粒度的各http错误码出现的次数，包括4xx，5xx。
+    @inlinable
+    public func describePlayErrorCodeDetailInfoList(startTime: String, endTime: String, granularity: UInt64, statType: String, playDomains: [String]? = nil, mainlandOrOversea: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePlayErrorCodeDetailInfoListResponse > {
+        self.describePlayErrorCodeDetailInfoList(DescribePlayErrorCodeDetailInfoListRequest(startTime: startTime, endTime: endTime, granularity: granularity, statType: statType, playDomains: playDomains, mainlandOrOversea: mainlandOrOversea), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询播放http错误码实时数据
+    ///
+    /// 查询下行播放错误码信息，某段时间内1分钟粒度的各http错误码出现的次数，包括4xx，5xx。
+    @inlinable
+    public func describePlayErrorCodeDetailInfoList(startTime: String, endTime: String, granularity: UInt64, statType: String, playDomains: [String]? = nil, mainlandOrOversea: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayErrorCodeDetailInfoListResponse {
+        try await self.describePlayErrorCodeDetailInfoList(DescribePlayErrorCodeDetailInfoListRequest(startTime: startTime, endTime: endTime, granularity: granularity, statType: statType, playDomains: playDomains, mainlandOrOversea: mainlandOrOversea), logger: logger, on: eventLoop)
+    }
 }

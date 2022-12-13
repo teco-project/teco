@@ -73,4 +73,16 @@ extension Tdid {
     public func getLabelList(_ input: GetLabelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLabelListResponse {
         try await self.client.execute(action: "GetLabelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 标签列表
+    @inlinable
+    public func getLabelList(pageSize: Int64, pageNumber: Int64, clusterId: String? = nil, groupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLabelListResponse > {
+        self.getLabelList(GetLabelListRequest(pageSize: pageSize, pageNumber: pageNumber, clusterId: clusterId, groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 标签列表
+    @inlinable
+    public func getLabelList(pageSize: Int64, pageNumber: Int64, clusterId: String? = nil, groupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLabelListResponse {
+        try await self.getLabelList(GetLabelListRequest(pageSize: pageSize, pageNumber: pageNumber, clusterId: clusterId, groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

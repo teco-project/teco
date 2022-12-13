@@ -59,4 +59,20 @@ extension Dbdc {
     public func modifyInstanceName(_ input: ModifyInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceNameResponse {
         try await self.client.execute(action: "ModifyInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改独享集群名称
+    ///
+    /// 本接口用于修改集群名称
+    @inlinable
+    public func modifyInstanceName(instanceId: String, instanceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceNameResponse > {
+        self.modifyInstanceName(ModifyInstanceNameRequest(instanceId: instanceId, instanceName: instanceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改独享集群名称
+    ///
+    /// 本接口用于修改集群名称
+    @inlinable
+    public func modifyInstanceName(instanceId: String, instanceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceNameResponse {
+        try await self.modifyInstanceName(ModifyInstanceNameRequest(instanceId: instanceId, instanceName: instanceName), logger: logger, on: eventLoop)
+    }
 }

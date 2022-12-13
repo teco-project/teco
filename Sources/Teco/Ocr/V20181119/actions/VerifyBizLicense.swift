@@ -228,4 +228,24 @@ extension Ocr {
     public func verifyBizLicense(_ input: VerifyBizLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyBizLicenseResponse {
         try await self.client.execute(action: "VerifyBizLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 营业执照识别及核验（详细版）
+    ///
+    /// 本接口支持营业执照信息的识别与准确性核验，返回的真实工商照面信息比营业执照识别及核验（基础版）接口更详细。
+    /// 您可以输入营业执照注册号或营业执照图片（若两者都输入则只用注册号做查询），接口返回查询到的工商照面信息，并比对要校验的字段与查询结果的一致性。
+    /// 查询到工商信息包括：统一社会信用代码、组织机构代码、经营期限、法人姓名、经营状态、经营业务范围及方式、注册资金、注册币种、登记机关、开业日期、企业（机构）类型、注销日期、吊销日期、许可经营项目、一般经营项目、核准时间、省、地级市、区/县、住所所在行政区划代码、行业门类代码、行业门类名称、国民经济行业代码、国民经济行业名称、经营（业务）范围等。
+    @inlinable
+    public func verifyBizLicense(imageBase64: String? = nil, imageUrl: String? = nil, imageConfig: String? = nil, regNum: String? = nil, name: String? = nil, address: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyBizLicenseResponse > {
+        self.verifyBizLicense(VerifyBizLicenseRequest(imageBase64: imageBase64, imageUrl: imageUrl, imageConfig: imageConfig, regNum: regNum, name: name, address: address), logger: logger, on: eventLoop)
+    }
+    
+    /// 营业执照识别及核验（详细版）
+    ///
+    /// 本接口支持营业执照信息的识别与准确性核验，返回的真实工商照面信息比营业执照识别及核验（基础版）接口更详细。
+    /// 您可以输入营业执照注册号或营业执照图片（若两者都输入则只用注册号做查询），接口返回查询到的工商照面信息，并比对要校验的字段与查询结果的一致性。
+    /// 查询到工商信息包括：统一社会信用代码、组织机构代码、经营期限、法人姓名、经营状态、经营业务范围及方式、注册资金、注册币种、登记机关、开业日期、企业（机构）类型、注销日期、吊销日期、许可经营项目、一般经营项目、核准时间、省、地级市、区/县、住所所在行政区划代码、行业门类代码、行业门类名称、国民经济行业代码、国民经济行业名称、经营（业务）范围等。
+    @inlinable
+    public func verifyBizLicense(imageBase64: String? = nil, imageUrl: String? = nil, imageConfig: String? = nil, regNum: String? = nil, name: String? = nil, address: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyBizLicenseResponse {
+        try await self.verifyBizLicense(VerifyBizLicenseRequest(imageBase64: imageBase64, imageUrl: imageUrl, imageConfig: imageConfig, regNum: regNum, name: name, address: address), logger: logger, on: eventLoop)
+    }
 }

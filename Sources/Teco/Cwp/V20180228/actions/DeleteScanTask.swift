@@ -64,4 +64,20 @@ extension Cwp {
     public func deleteScanTask(_ input: DeleteScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanTaskResponse {
         try await self.client.execute(action: "DeleteScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停止扫描任务
+    ///
+    /// DeleteScanTask 该接口可以对指定类型的扫描任务进行停止扫描;
+    @inlinable
+    public func deleteScanTask(taskId: UInt64, moduleType: String, quuidList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScanTaskResponse > {
+        self.deleteScanTask(DeleteScanTaskRequest(taskId: taskId, moduleType: moduleType, quuidList: quuidList), logger: logger, on: eventLoop)
+    }
+    
+    /// 停止扫描任务
+    ///
+    /// DeleteScanTask 该接口可以对指定类型的扫描任务进行停止扫描;
+    @inlinable
+    public func deleteScanTask(taskId: UInt64, moduleType: String, quuidList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanTaskResponse {
+        try await self.deleteScanTask(DeleteScanTaskRequest(taskId: taskId, moduleType: moduleType, quuidList: quuidList), logger: logger, on: eventLoop)
+    }
 }

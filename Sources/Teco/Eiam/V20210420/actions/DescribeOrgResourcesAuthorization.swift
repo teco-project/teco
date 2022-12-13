@@ -84,4 +84,16 @@ extension Eiam {
     public func describeOrgResourcesAuthorization(_ input: DescribeOrgResourcesAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrgResourcesAuthorizationResponse {
         try await self.client.execute(action: "DescribeOrgResourcesAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询指定机构下的资源授权列表
+    @inlinable
+    public func describeOrgResourcesAuthorization(applicationId: String, orgNodeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrgResourcesAuthorizationResponse > {
+        self.describeOrgResourcesAuthorization(DescribeOrgResourcesAuthorizationRequest(applicationId: applicationId, orgNodeId: orgNodeId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询指定机构下的资源授权列表
+    @inlinable
+    public func describeOrgResourcesAuthorization(applicationId: String, orgNodeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrgResourcesAuthorizationResponse {
+        try await self.describeOrgResourcesAuthorization(DescribeOrgResourcesAuthorizationRequest(applicationId: applicationId, orgNodeId: orgNodeId), logger: logger, on: eventLoop)
+    }
 }

@@ -89,4 +89,20 @@ extension Tcss {
     public func describeAccessControlEventsExport(_ input: DescribeAccessControlEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlEventsExportResponse {
         try await self.client.execute(action: "DescribeAccessControlEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行时访问控制事件列表导出
+    ///
+    /// 查询运行时访问控制事件列表导出
+    @inlinable
+    public func describeAccessControlEventsExport(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessControlEventsExportResponse > {
+        self.describeAccessControlEventsExport(DescribeAccessControlEventsExportRequest(limit: limit, offset: offset, filters: filters, order: order, by: by, exportField: exportField), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时访问控制事件列表导出
+    ///
+    /// 查询运行时访问控制事件列表导出
+    @inlinable
+    public func describeAccessControlEventsExport(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlEventsExportResponse {
+        try await self.describeAccessControlEventsExport(DescribeAccessControlEventsExportRequest(limit: limit, offset: offset, filters: filters, order: order, by: by, exportField: exportField), logger: logger, on: eventLoop)
+    }
 }

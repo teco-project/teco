@@ -54,4 +54,20 @@ extension Emr {
     public func syncPodState(_ input: SyncPodStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncPodStateResponse {
         try await self.client.execute(action: "SyncPodState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// EMR同步POD状态
+    ///
+    /// EMR同步TKE中POD状态
+    @inlinable
+    public func syncPodState(message: PodState, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncPodStateResponse > {
+        self.syncPodState(SyncPodStateRequest(message: message), logger: logger, on: eventLoop)
+    }
+    
+    /// EMR同步POD状态
+    ///
+    /// EMR同步TKE中POD状态
+    @inlinable
+    public func syncPodState(message: PodState, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncPodStateResponse {
+        try await self.syncPodState(SyncPodStateRequest(message: message), logger: logger, on: eventLoop)
+    }
 }

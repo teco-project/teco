@@ -96,4 +96,20 @@ extension Domain {
     public func createDomainBatch(_ input: CreateDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainBatchResponse {
         try await self.client.execute(action: "CreateDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量域名注册
+    ///
+    /// 本接口 ( CreateDomainBatch ) 用于批量域名注册 。
+    @inlinable
+    public func createDomainBatch(templateId: String, period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, packageResourceId: String? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainBatchResponse > {
+        self.createDomainBatch(CreateDomainBatchRequest(templateId: templateId, period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag, packageResourceId: packageResourceId, updateProhibition: updateProhibition, transferProhibition: transferProhibition), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量域名注册
+    ///
+    /// 本接口 ( CreateDomainBatch ) 用于批量域名注册 。
+    @inlinable
+    public func createDomainBatch(templateId: String, period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, packageResourceId: String? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainBatchResponse {
+        try await self.createDomainBatch(CreateDomainBatchRequest(templateId: templateId, period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag, packageResourceId: packageResourceId, updateProhibition: updateProhibition, transferProhibition: transferProhibition), logger: logger, on: eventLoop)
+    }
 }

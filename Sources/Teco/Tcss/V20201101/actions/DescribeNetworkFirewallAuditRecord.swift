@@ -79,4 +79,16 @@ extension Tcss {
     public func describeNetworkFirewallAuditRecord(_ input: DescribeNetworkFirewallAuditRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallAuditRecordResponse {
         try await self.client.execute(action: "DescribeNetworkFirewallAuditRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询集群策略审计列表
+    @inlinable
+    public func describeNetworkFirewallAuditRecord(offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallAuditRecordResponse > {
+        self.describeNetworkFirewallAuditRecord(DescribeNetworkFirewallAuditRecordRequest(offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群策略审计列表
+    @inlinable
+    public func describeNetworkFirewallAuditRecord(offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallAuditRecordResponse {
+        try await self.describeNetworkFirewallAuditRecord(DescribeNetworkFirewallAuditRecordRequest(offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    }
 }

@@ -84,4 +84,20 @@ extension Bda {
     public func segmentCustomizedPortraitPic(_ input: SegmentCustomizedPortraitPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SegmentCustomizedPortraitPicResponse {
         try await self.client.execute(action: "SegmentCustomizedPortraitPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 自定义人像分割
+    ///
+    /// 在前后景分割的基础上优化多分类分割，支持对头发、五官等的分割，既作为换发型、挂件等底层技术，也可用于抠人头、抠人脸等玩法
+    @inlinable
+    public func segmentCustomizedPortraitPic(segmentationOptions: SegmentationOptions, image: String? = nil, url: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SegmentCustomizedPortraitPicResponse > {
+        self.segmentCustomizedPortraitPic(SegmentCustomizedPortraitPicRequest(segmentationOptions: segmentationOptions, image: image, url: url), logger: logger, on: eventLoop)
+    }
+    
+    /// 自定义人像分割
+    ///
+    /// 在前后景分割的基础上优化多分类分割，支持对头发、五官等的分割，既作为换发型、挂件等底层技术，也可用于抠人头、抠人脸等玩法
+    @inlinable
+    public func segmentCustomizedPortraitPic(segmentationOptions: SegmentationOptions, image: String? = nil, url: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SegmentCustomizedPortraitPicResponse {
+        try await self.segmentCustomizedPortraitPic(SegmentCustomizedPortraitPicRequest(segmentationOptions: segmentationOptions, image: image, url: url), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Domain {
     public func sendPhoneEmailCode(_ input: SendPhoneEmailCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendPhoneEmailCodeResponse {
         try await self.client.execute(action: "SendPhoneEmailCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 发送手机邮箱验证码
+    ///
+    /// 此接口用于发送手机邮箱验证码。
+    @inlinable
+    public func sendPhoneEmailCode(code: String, type: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendPhoneEmailCodeResponse > {
+        self.sendPhoneEmailCode(SendPhoneEmailCodeRequest(code: code, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 发送手机邮箱验证码
+    ///
+    /// 此接口用于发送手机邮箱验证码。
+    @inlinable
+    public func sendPhoneEmailCode(code: String, type: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendPhoneEmailCodeResponse {
+        try await self.sendPhoneEmailCode(SendPhoneEmailCodeRequest(code: code, type: type), logger: logger, on: eventLoop)
+    }
 }

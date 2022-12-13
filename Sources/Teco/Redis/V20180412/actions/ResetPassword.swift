@@ -64,4 +64,16 @@ extension Redis {
     public func resetPassword(_ input: ResetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetPasswordResponse {
         try await self.client.execute(action: "ResetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重置密码
+    @inlinable
+    public func resetPassword(instanceId: String, password: String? = nil, noAuth: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetPasswordResponse > {
+        self.resetPassword(ResetPasswordRequest(instanceId: instanceId, password: password, noAuth: noAuth), logger: logger, on: eventLoop)
+    }
+    
+    /// 重置密码
+    @inlinable
+    public func resetPassword(instanceId: String, password: String? = nil, noAuth: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetPasswordResponse {
+        try await self.resetPassword(ResetPasswordRequest(instanceId: instanceId, password: password, noAuth: noAuth), logger: logger, on: eventLoop)
+    }
 }

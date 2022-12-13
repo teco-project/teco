@@ -113,4 +113,20 @@ extension Tat {
     public func modifyCommand(_ input: ModifyCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCommandResponse {
         try await self.client.execute(action: "ModifyCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改命令
+    ///
+    /// 此接口用于修改命令。
+    @inlinable
+    public func modifyCommand(commandId: String, commandName: String? = nil, description: String? = nil, content: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, defaultParameters: String? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCommandResponse > {
+        self.modifyCommand(ModifyCommandRequest(commandId: commandId, commandName: commandName, description: description, content: content, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, defaultParameters: defaultParameters, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改命令
+    ///
+    /// 此接口用于修改命令。
+    @inlinable
+    public func modifyCommand(commandId: String, commandName: String? = nil, description: String? = nil, content: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, defaultParameters: String? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCommandResponse {
+        try await self.modifyCommand(ModifyCommandRequest(commandId: commandId, commandName: commandName, description: description, content: content, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, defaultParameters: defaultParameters, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), logger: logger, on: eventLoop)
+    }
 }

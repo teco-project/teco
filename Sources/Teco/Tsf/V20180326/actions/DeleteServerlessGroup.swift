@@ -58,4 +58,20 @@ extension Tsf {
     public func deleteServerlessGroup(_ input: DeleteServerlessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServerlessGroupResponse {
         try await self.client.execute(action: "DeleteServerlessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除部署组
+    ///
+    /// 删除Serverless部署组
+    @inlinable
+    public func deleteServerlessGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServerlessGroupResponse > {
+        self.deleteServerlessGroup(DeleteServerlessGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除部署组
+    ///
+    /// 删除Serverless部署组
+    @inlinable
+    public func deleteServerlessGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServerlessGroupResponse {
+        try await self.deleteServerlessGroup(DeleteServerlessGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

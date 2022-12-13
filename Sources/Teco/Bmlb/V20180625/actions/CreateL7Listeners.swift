@@ -63,4 +63,20 @@ extension Bmlb {
     public func createL7Listeners(_ input: CreateL7ListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7ListenersResponse {
         try await self.client.execute(action: "CreateL7Listeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建黑石负载均衡七层监听器
+    ///
+    /// 创建黑石负载均衡七层监听器功能。负载均衡七层监听器提供了转发用户请求的具体规则，包括端口、协议等参数。
+    @inlinable
+    public func createL7Listeners(loadBalancerId: String, listenerSet: [CreateL7Listener], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateL7ListenersResponse > {
+        self.createL7Listeners(CreateL7ListenersRequest(loadBalancerId: loadBalancerId, listenerSet: listenerSet), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建黑石负载均衡七层监听器
+    ///
+    /// 创建黑石负载均衡七层监听器功能。负载均衡七层监听器提供了转发用户请求的具体规则，包括端口、协议等参数。
+    @inlinable
+    public func createL7Listeners(loadBalancerId: String, listenerSet: [CreateL7Listener], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7ListenersResponse {
+        try await self.createL7Listeners(CreateL7ListenersRequest(loadBalancerId: loadBalancerId, listenerSet: listenerSet), logger: logger, on: eventLoop)
+    }
 }

@@ -70,4 +70,16 @@ extension Trp {
     public func describeCodePackUrl(_ input: DescribeCodePackUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodePackUrlResponse {
         try await self.client.execute(action: "DescribeCodePackUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询码包地址
+    @inlinable
+    public func describeCodePackUrl(packId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodePackUrlResponse > {
+        self.describeCodePackUrl(DescribeCodePackUrlRequest(packId: packId, corpId: corpId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询码包地址
+    @inlinable
+    public func describeCodePackUrl(packId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodePackUrlResponse {
+        try await self.describeCodePackUrl(DescribeCodePackUrlRequest(packId: packId, corpId: corpId), logger: logger, on: eventLoop)
+    }
 }

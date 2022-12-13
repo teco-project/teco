@@ -62,4 +62,20 @@ extension Cdb {
     public func describeRollbackRangeTime(_ input: DescribeRollbackRangeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackRangeTimeResponse {
         try await self.client.execute(action: "DescribeRollbackRangeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询可回档时间
+    ///
+    /// 本接口(DescribeRollbackRangeTime)用于查询云数据库实例可回档的时间范围。
+    @inlinable
+    public func describeRollbackRangeTime(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRollbackRangeTimeResponse > {
+        self.describeRollbackRangeTime(DescribeRollbackRangeTimeRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询可回档时间
+    ///
+    /// 本接口(DescribeRollbackRangeTime)用于查询云数据库实例可回档的时间范围。
+    @inlinable
+    public func describeRollbackRangeTime(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackRangeTimeResponse {
+        try await self.describeRollbackRangeTime(DescribeRollbackRangeTimeRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

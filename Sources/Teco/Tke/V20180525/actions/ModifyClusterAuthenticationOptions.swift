@@ -60,4 +60,16 @@ extension Tke {
     public func modifyClusterAuthenticationOptions(_ input: ModifyClusterAuthenticationOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAuthenticationOptionsResponse {
         try await self.client.execute(action: "ModifyClusterAuthenticationOptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改集群认证配置
+    @inlinable
+    public func modifyClusterAuthenticationOptions(clusterId: String, serviceAccounts: ServiceAccountAuthenticationOptions? = nil, oidcConfig: OIDCConfigAuthenticationOptions? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterAuthenticationOptionsResponse > {
+        self.modifyClusterAuthenticationOptions(ModifyClusterAuthenticationOptionsRequest(clusterId: clusterId, serviceAccounts: serviceAccounts, oidcConfig: oidcConfig), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改集群认证配置
+    @inlinable
+    public func modifyClusterAuthenticationOptions(clusterId: String, serviceAccounts: ServiceAccountAuthenticationOptions? = nil, oidcConfig: OIDCConfigAuthenticationOptions? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAuthenticationOptionsResponse {
+        try await self.modifyClusterAuthenticationOptions(ModifyClusterAuthenticationOptionsRequest(clusterId: clusterId, serviceAccounts: serviceAccounts, oidcConfig: oidcConfig), logger: logger, on: eventLoop)
+    }
 }

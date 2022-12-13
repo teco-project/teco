@@ -50,4 +50,16 @@ extension Bm {
     public func deletePsaRegulation(_ input: DeletePsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePsaRegulationResponse {
         try await self.client.execute(action: "DeletePsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除预授权规则
+    @inlinable
+    public func deletePsaRegulation(psaId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePsaRegulationResponse > {
+        self.deletePsaRegulation(DeletePsaRegulationRequest(psaId: psaId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除预授权规则
+    @inlinable
+    public func deletePsaRegulation(psaId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePsaRegulationResponse {
+        try await self.deletePsaRegulation(DeletePsaRegulationRequest(psaId: psaId), logger: logger, on: eventLoop)
+    }
 }

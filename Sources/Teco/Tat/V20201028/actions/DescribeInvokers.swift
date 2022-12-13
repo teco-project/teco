@@ -80,4 +80,20 @@ extension Tat {
     public func describeInvokers(_ input: DescribeInvokersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvokersResponse {
         try await self.client.execute(action: "DescribeInvokers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询执行器
+    ///
+    /// 此接口用于查询执行器信息。
+    @inlinable
+    public func describeInvokers(invokerIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvokersResponse > {
+        self.describeInvokers(DescribeInvokersRequest(invokerIds: invokerIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询执行器
+    ///
+    /// 此接口用于查询执行器信息。
+    @inlinable
+    public func describeInvokers(invokerIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvokersResponse {
+        try await self.describeInvokers(DescribeInvokersRequest(invokerIds: invokerIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

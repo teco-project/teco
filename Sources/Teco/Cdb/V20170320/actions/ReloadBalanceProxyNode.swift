@@ -59,4 +59,20 @@ extension Cdb {
     public func reloadBalanceProxyNode(_ input: ReloadBalanceProxyNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReloadBalanceProxyNodeResponse {
         try await self.client.execute(action: "ReloadBalanceProxyNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 负载均衡数据库代理
+    ///
+    /// 重新负载均衡数据库代理
+    @inlinable
+    public func reloadBalanceProxyNode(proxyGroupId: String, proxyAddressId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReloadBalanceProxyNodeResponse > {
+        self.reloadBalanceProxyNode(ReloadBalanceProxyNodeRequest(proxyGroupId: proxyGroupId, proxyAddressId: proxyAddressId), logger: logger, on: eventLoop)
+    }
+    
+    /// 负载均衡数据库代理
+    ///
+    /// 重新负载均衡数据库代理
+    @inlinable
+    public func reloadBalanceProxyNode(proxyGroupId: String, proxyAddressId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReloadBalanceProxyNodeResponse {
+        try await self.reloadBalanceProxyNode(ReloadBalanceProxyNodeRequest(proxyGroupId: proxyGroupId, proxyAddressId: proxyAddressId), logger: logger, on: eventLoop)
+    }
 }

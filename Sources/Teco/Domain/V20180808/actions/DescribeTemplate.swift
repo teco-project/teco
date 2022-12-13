@@ -58,4 +58,20 @@ extension Domain {
     public func describeTemplate(_ input: DescribeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateResponse {
         try await self.client.execute(action: "DescribeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取模板信息
+    ///
+    /// 本接口 (DescribeTemplate) 用于获取模板信息。
+    @inlinable
+    public func describeTemplate(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateResponse > {
+        self.describeTemplate(DescribeTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取模板信息
+    ///
+    /// 本接口 (DescribeTemplate) 用于获取模板信息。
+    @inlinable
+    public func describeTemplate(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateResponse {
+        try await self.describeTemplate(DescribeTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
 }

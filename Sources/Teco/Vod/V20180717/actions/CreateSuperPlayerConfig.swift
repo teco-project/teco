@@ -131,4 +131,22 @@ extension Vod {
     public func createSuperPlayerConfig(_ input: CreateSuperPlayerConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSuperPlayerConfigResponse {
         try await self.client.execute(action: "CreateSuperPlayerConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建播放器配置
+    ///
+    /// 该 API 已经<font color='red'>不再维护</font>，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
+    /// 创建播放器配置，数量上限：100。
+    @inlinable
+    public func createSuperPlayerConfig(name: String, subAppId: UInt64? = nil, audioVideoType: String? = nil, drmSwitch: String? = nil, adaptiveDynamicStreamingDefinition: UInt64? = nil, drmStreamingsInfo: DrmStreamingsInfo? = nil, transcodeDefinition: UInt64? = nil, imageSpriteDefinition: UInt64? = nil, resolutionNames: [ResolutionNameInfo]? = nil, domain: String? = nil, scheme: String? = nil, comment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSuperPlayerConfigResponse > {
+        self.createSuperPlayerConfig(CreateSuperPlayerConfigRequest(name: name, subAppId: subAppId, audioVideoType: audioVideoType, drmSwitch: drmSwitch, adaptiveDynamicStreamingDefinition: adaptiveDynamicStreamingDefinition, drmStreamingsInfo: drmStreamingsInfo, transcodeDefinition: transcodeDefinition, imageSpriteDefinition: imageSpriteDefinition, resolutionNames: resolutionNames, domain: domain, scheme: scheme, comment: comment), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建播放器配置
+    ///
+    /// 该 API 已经<font color='red'>不再维护</font>，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
+    /// 创建播放器配置，数量上限：100。
+    @inlinable
+    public func createSuperPlayerConfig(name: String, subAppId: UInt64? = nil, audioVideoType: String? = nil, drmSwitch: String? = nil, adaptiveDynamicStreamingDefinition: UInt64? = nil, drmStreamingsInfo: DrmStreamingsInfo? = nil, transcodeDefinition: UInt64? = nil, imageSpriteDefinition: UInt64? = nil, resolutionNames: [ResolutionNameInfo]? = nil, domain: String? = nil, scheme: String? = nil, comment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSuperPlayerConfigResponse {
+        try await self.createSuperPlayerConfig(CreateSuperPlayerConfigRequest(name: name, subAppId: subAppId, audioVideoType: audioVideoType, drmSwitch: drmSwitch, adaptiveDynamicStreamingDefinition: adaptiveDynamicStreamingDefinition, drmStreamingsInfo: drmStreamingsInfo, transcodeDefinition: transcodeDefinition, imageSpriteDefinition: imageSpriteDefinition, resolutionNames: resolutionNames, domain: domain, scheme: scheme, comment: comment), logger: logger, on: eventLoop)
+    }
 }

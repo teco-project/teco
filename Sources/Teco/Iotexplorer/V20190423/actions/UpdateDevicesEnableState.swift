@@ -65,4 +65,16 @@ extension Iotexplorer {
     public func updateDevicesEnableState(_ input: UpdateDevicesEnableStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicesEnableStateResponse {
         try await self.client.execute(action: "UpdateDevicesEnableState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量禁用启用设备
+    @inlinable
+    public func updateDevicesEnableState(devicesItems: [DevicesItem], status: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDevicesEnableStateResponse > {
+        self.updateDevicesEnableState(UpdateDevicesEnableStateRequest(devicesItems: devicesItems, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量禁用启用设备
+    @inlinable
+    public func updateDevicesEnableState(devicesItems: [DevicesItem], status: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicesEnableStateResponse {
+        try await self.updateDevicesEnableState(UpdateDevicesEnableStateRequest(devicesItems: devicesItems, status: status), logger: logger, on: eventLoop)
+    }
 }

@@ -72,4 +72,20 @@ extension Cdwch {
     public func modifyClusterConfigs(_ input: ModifyClusterConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterConfigsResponse {
         try await self.client.execute(action: "ModifyClusterConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改集群配置文件接口
+    ///
+    /// 在集群配置页面修改集群配置文件接口，xml模式
+    @inlinable
+    public func modifyClusterConfigs(instanceId: String, modifyConfContext: [ConfigSubmitContext], remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterConfigsResponse > {
+        self.modifyClusterConfigs(ModifyClusterConfigsRequest(instanceId: instanceId, modifyConfContext: modifyConfContext, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改集群配置文件接口
+    ///
+    /// 在集群配置页面修改集群配置文件接口，xml模式
+    @inlinable
+    public func modifyClusterConfigs(instanceId: String, modifyConfContext: [ConfigSubmitContext], remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterConfigsResponse {
+        try await self.modifyClusterConfigs(ModifyClusterConfigsRequest(instanceId: instanceId, modifyConfContext: modifyConfContext, remark: remark), logger: logger, on: eventLoop)
+    }
 }

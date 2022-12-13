@@ -59,4 +59,20 @@ extension Vod {
     public func deleteContentReviewTemplate(_ input: DeleteContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContentReviewTemplateResponse {
         try await self.client.execute(action: "DeleteContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除音视频内容审核模板
+    ///
+    /// 删除用户自定义音视频内容审核模板。
+    @inlinable
+    public func deleteContentReviewTemplate(definition: Int64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteContentReviewTemplateResponse > {
+        self.deleteContentReviewTemplate(DeleteContentReviewTemplateRequest(definition: definition, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除音视频内容审核模板
+    ///
+    /// 删除用户自定义音视频内容审核模板。
+    @inlinable
+    public func deleteContentReviewTemplate(definition: Int64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContentReviewTemplateResponse {
+        try await self.deleteContentReviewTemplate(DeleteContentReviewTemplateRequest(definition: definition, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

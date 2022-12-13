@@ -98,4 +98,20 @@ extension Lighthouse {
     public func describeBundles(_ input: DescribeBundlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundlesResponse {
         try await self.client.execute(action: "DescribeBundles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询套餐
+    ///
+    /// 本接口（DescribeBundles）用于查询套餐信息。
+    @inlinable
+    public func describeBundles(bundleIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, zones: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBundlesResponse > {
+        self.describeBundles(DescribeBundlesRequest(bundleIds: bundleIds, offset: offset, limit: limit, filters: filters, zones: zones), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询套餐
+    ///
+    /// 本接口（DescribeBundles）用于查询套餐信息。
+    @inlinable
+    public func describeBundles(bundleIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, zones: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundlesResponse {
+        try await self.describeBundles(DescribeBundlesRequest(bundleIds: bundleIds, offset: offset, limit: limit, filters: filters, zones: zones), logger: logger, on: eventLoop)
+    }
 }

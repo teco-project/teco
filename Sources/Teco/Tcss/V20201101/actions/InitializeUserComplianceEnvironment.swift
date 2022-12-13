@@ -46,4 +46,20 @@ extension Tcss {
     public func initializeUserComplianceEnvironment(_ input: InitializeUserComplianceEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeUserComplianceEnvironmentResponse {
         try await self.client.execute(action: "InitializeUserComplianceEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安全合规初始化用户的合规基线检测环境
+    ///
+    /// 为客户初始化合规基线的使用环境，创建必要的数据和选项。
+    @inlinable
+    public func initializeUserComplianceEnvironment(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InitializeUserComplianceEnvironmentResponse > {
+        self.initializeUserComplianceEnvironment(InitializeUserComplianceEnvironmentRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规初始化用户的合规基线检测环境
+    ///
+    /// 为客户初始化合规基线的使用环境，创建必要的数据和选项。
+    @inlinable
+    public func initializeUserComplianceEnvironment(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeUserComplianceEnvironmentResponse {
+        try await self.initializeUserComplianceEnvironment(InitializeUserComplianceEnvironmentRequest(), logger: logger, on: eventLoop)
+    }
 }

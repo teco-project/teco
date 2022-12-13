@@ -66,4 +66,20 @@ extension Market {
     public func getUsagePlanUsageAmount(_ input: GetUsagePlanUsageAmountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUsagePlanUsageAmountResponse {
         try await self.client.execute(action: "GetUsagePlanUsageAmount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询使用计划使用量
+    ///
+    /// 该接口可以根据InstanceId查询实例的api的使用情况。
+    @inlinable
+    public func getUsagePlanUsageAmount(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUsagePlanUsageAmountResponse > {
+        self.getUsagePlanUsageAmount(GetUsagePlanUsageAmountRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询使用计划使用量
+    ///
+    /// 该接口可以根据InstanceId查询实例的api的使用情况。
+    @inlinable
+    public func getUsagePlanUsageAmount(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUsagePlanUsageAmountResponse {
+        try await self.getUsagePlanUsageAmount(GetUsagePlanUsageAmountRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Gaap {
     public func modifyRealServerName(_ input: ModifyRealServerNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRealServerNameResponse {
         try await self.client.execute(action: "ModifyRealServerName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改源站名称
+    ///
+    /// 本接口（ModifyRealServerName）用于修改源站的名称
+    @inlinable
+    public func modifyRealServerName(realServerName: String, realServerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRealServerNameResponse > {
+        self.modifyRealServerName(ModifyRealServerNameRequest(realServerName: realServerName, realServerId: realServerId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改源站名称
+    ///
+    /// 本接口（ModifyRealServerName）用于修改源站的名称
+    @inlinable
+    public func modifyRealServerName(realServerName: String, realServerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRealServerNameResponse {
+        try await self.modifyRealServerName(ModifyRealServerNameRequest(realServerName: realServerName, realServerId: realServerId), logger: logger, on: eventLoop)
+    }
 }

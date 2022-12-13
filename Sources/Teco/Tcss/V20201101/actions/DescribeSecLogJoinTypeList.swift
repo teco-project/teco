@@ -46,4 +46,16 @@ extension Tcss {
     public func describeSecLogJoinTypeList(_ input: DescribeSecLogJoinTypeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogJoinTypeListResponse {
         try await self.client.execute(action: "DescribeSecLogJoinTypeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询安全日志接入列表
+    @inlinable
+    public func describeSecLogJoinTypeList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogJoinTypeListResponse > {
+        self.describeSecLogJoinTypeList(DescribeSecLogJoinTypeListRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全日志接入列表
+    @inlinable
+    public func describeSecLogJoinTypeList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogJoinTypeListResponse {
+        try await self.describeSecLogJoinTypeList(DescribeSecLogJoinTypeListRequest(), logger: logger, on: eventLoop)
+    }
 }

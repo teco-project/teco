@@ -64,4 +64,16 @@ extension Dnspod {
     public func modifyDomainLock(_ input: ModifyDomainLockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainLockResponse {
         try await self.client.execute(action: "ModifyDomainLock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 锁定域名
+    @inlinable
+    public func modifyDomainLock(domain: String, lockDays: UInt64, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainLockResponse > {
+        self.modifyDomainLock(ModifyDomainLockRequest(domain: domain, lockDays: lockDays, domainId: domainId), logger: logger, on: eventLoop)
+    }
+    
+    /// 锁定域名
+    @inlinable
+    public func modifyDomainLock(domain: String, lockDays: UInt64, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainLockResponse {
+        try await self.modifyDomainLock(ModifyDomainLockRequest(domain: domain, lockDays: lockDays, domainId: domainId), logger: logger, on: eventLoop)
+    }
 }

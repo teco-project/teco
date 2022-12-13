@@ -75,4 +75,16 @@ extension Es {
     public func deleteIndex(_ input: DeleteIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
         try await self.client.execute(action: "DeleteIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除索引
+    @inlinable
+    public func deleteIndex(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, backingIndexName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIndexResponse > {
+        self.deleteIndex(DeleteIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password, backingIndexName: backingIndexName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除索引
+    @inlinable
+    public func deleteIndex(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, backingIndexName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
+        try await self.deleteIndex(DeleteIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password, backingIndexName: backingIndexName), logger: logger, on: eventLoop)
+    }
 }

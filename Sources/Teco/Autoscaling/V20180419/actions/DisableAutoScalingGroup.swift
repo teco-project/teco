@@ -80,4 +80,46 @@ extension As {
     public func disableAutoScalingGroup(_ input: DisableAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableAutoScalingGroupResponse {
         try await self.client.execute(action: "DisableAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停用伸缩组
+    ///
+    /// 本接口（DisableAutoScalingGroup）用于停用指定伸缩组。
+    /// * 停用伸缩组后，自动触发的伸缩活动不再进行，包括：
+    ///     - 告警策略触发的伸缩活动
+    ///     - 匹配期望实例数的伸缩活动
+    ///     - 不健康实例替换活动
+    ///     - 定时任务
+    /// * 停用伸缩组后，手动触发的伸缩活动允许进行，包括：
+    ///     - 指定数量扩容实例（ScaleOutInstances）
+    ///     - 指定数量缩容实例（ScaleInInstances）
+    ///     - 从伸缩组中移出 CVM 实例（DetachInstances）
+    ///     - 从伸缩组中删除 CVM 实例（RemoveInstances）
+    ///     - 添加 CVM 实例到伸缩组（AttachInstances）
+    ///     - 关闭伸缩组内 CVM 实例（StopAutoScalingInstances）
+    ///     - 开启伸缩组内 CVM 实例（StartAutoScalingInstances）
+    @inlinable
+    public func disableAutoScalingGroup(autoScalingGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableAutoScalingGroupResponse > {
+        self.disableAutoScalingGroup(DisableAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 停用伸缩组
+    ///
+    /// 本接口（DisableAutoScalingGroup）用于停用指定伸缩组。
+    /// * 停用伸缩组后，自动触发的伸缩活动不再进行，包括：
+    ///     - 告警策略触发的伸缩活动
+    ///     - 匹配期望实例数的伸缩活动
+    ///     - 不健康实例替换活动
+    ///     - 定时任务
+    /// * 停用伸缩组后，手动触发的伸缩活动允许进行，包括：
+    ///     - 指定数量扩容实例（ScaleOutInstances）
+    ///     - 指定数量缩容实例（ScaleInInstances）
+    ///     - 从伸缩组中移出 CVM 实例（DetachInstances）
+    ///     - 从伸缩组中删除 CVM 实例（RemoveInstances）
+    ///     - 添加 CVM 实例到伸缩组（AttachInstances）
+    ///     - 关闭伸缩组内 CVM 实例（StopAutoScalingInstances）
+    ///     - 开启伸缩组内 CVM 实例（StartAutoScalingInstances）
+    @inlinable
+    public func disableAutoScalingGroup(autoScalingGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableAutoScalingGroupResponse {
+        try await self.disableAutoScalingGroup(DisableAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), logger: logger, on: eventLoop)
+    }
 }

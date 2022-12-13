@@ -63,4 +63,20 @@ extension Cfw {
     public func describeResourceGroup(_ input: DescribeResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupResponse {
         try await self.client.execute(action: "DescribeResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 资产中心资产树信息查询
+    ///
+    /// DescribeResourceGroup资产中心资产树信息
+    @inlinable
+    public func describeResourceGroup(queryType: String, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceGroupResponse > {
+        self.describeResourceGroup(DescribeResourceGroupRequest(queryType: queryType, groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 资产中心资产树信息查询
+    ///
+    /// DescribeResourceGroup资产中心资产树信息
+    @inlinable
+    public func describeResourceGroup(queryType: String, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupResponse {
+        try await self.describeResourceGroup(DescribeResourceGroupRequest(queryType: queryType, groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

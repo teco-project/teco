@@ -64,4 +64,16 @@ extension Dayu {
     public func modifyElasticLimit(_ input: ModifyElasticLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyElasticLimitResponse {
         try await self.client.execute(action: "ModifyElasticLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改弹性防护阈值
+    @inlinable
+    public func modifyElasticLimit(business: String, id: String, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyElasticLimitResponse > {
+        self.modifyElasticLimit(ModifyElasticLimitRequest(business: business, id: id, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改弹性防护阈值
+    @inlinable
+    public func modifyElasticLimit(business: String, id: String, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyElasticLimitResponse {
+        try await self.modifyElasticLimit(ModifyElasticLimitRequest(business: business, id: id, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -79,4 +79,16 @@ extension Iotvideo {
     public func describeCloudStorageTime(_ input: DescribeCloudStorageTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageTimeResponse {
         try await self.client.execute(action: "DescribeCloudStorageTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取某一天云存时间轴
+    @inlinable
+    public func describeCloudStorageTime(productId: String, deviceName: String, date: String, startTime: UInt64? = nil, endTime: UInt64? = nil, userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStorageTimeResponse > {
+        self.describeCloudStorageTime(DescribeCloudStorageTimeRequest(productId: productId, deviceName: deviceName, date: date, startTime: startTime, endTime: endTime, userId: userId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取某一天云存时间轴
+    @inlinable
+    public func describeCloudStorageTime(productId: String, deviceName: String, date: String, startTime: UInt64? = nil, endTime: UInt64? = nil, userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageTimeResponse {
+        try await self.describeCloudStorageTime(DescribeCloudStorageTimeRequest(productId: productId, deviceName: deviceName, date: date, startTime: startTime, endTime: endTime, userId: userId), logger: logger, on: eventLoop)
+    }
 }

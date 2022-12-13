@@ -89,4 +89,24 @@ extension As {
     public func describeLaunchConfigurations(_ input: DescribeLaunchConfigurationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaunchConfigurationsResponse {
         try await self.client.execute(action: "DescribeLaunchConfigurations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询启动配置
+    ///
+    /// 本接口（DescribeLaunchConfigurations）用于查询启动配置的信息。
+    /// * 可以根据启动配置ID、启动配置名称等信息来查询启动配置的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的启动配置。
+    @inlinable
+    public func describeLaunchConfigurations(launchConfigurationIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLaunchConfigurationsResponse > {
+        self.describeLaunchConfigurations(DescribeLaunchConfigurationsRequest(launchConfigurationIds: launchConfigurationIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询启动配置
+    ///
+    /// 本接口（DescribeLaunchConfigurations）用于查询启动配置的信息。
+    /// * 可以根据启动配置ID、启动配置名称等信息来查询启动配置的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的启动配置。
+    @inlinable
+    public func describeLaunchConfigurations(launchConfigurationIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaunchConfigurationsResponse {
+        try await self.describeLaunchConfigurations(DescribeLaunchConfigurationsRequest(launchConfigurationIds: launchConfigurationIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

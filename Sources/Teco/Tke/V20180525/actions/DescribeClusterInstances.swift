@@ -87,4 +87,20 @@ extension Tke {
     public func describeClusterInstances(_ input: DescribeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstancesResponse {
         try await self.client.execute(action: "DescribeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询集群节点信息
+    ///
+    ///  查询集群下节点实例信息 
+    @inlinable
+    public func describeClusterInstances(clusterId: String, offset: Int64? = nil, limit: Int64? = nil, instanceIds: [String]? = nil, instanceRole: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterInstancesResponse > {
+        self.describeClusterInstances(DescribeClusterInstancesRequest(clusterId: clusterId, offset: offset, limit: limit, instanceIds: instanceIds, instanceRole: instanceRole, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群节点信息
+    ///
+    ///  查询集群下节点实例信息 
+    @inlinable
+    public func describeClusterInstances(clusterId: String, offset: Int64? = nil, limit: Int64? = nil, instanceIds: [String]? = nil, instanceRole: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstancesResponse {
+        try await self.describeClusterInstances(DescribeClusterInstancesRequest(clusterId: clusterId, offset: offset, limit: limit, instanceIds: instanceIds, instanceRole: instanceRole, filters: filters), logger: logger, on: eventLoop)
+    }
 }

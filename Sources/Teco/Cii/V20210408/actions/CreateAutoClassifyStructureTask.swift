@@ -90,4 +90,20 @@ extension Cii {
     public func createAutoClassifyStructureTask(_ input: CreateAutoClassifyStructureTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoClassifyStructureTaskResponse {
         try await self.client.execute(action: "CreateAutoClassifyStructureTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新建自动分类结构化任务
+    ///
+    /// 本接口(CreateAutoClassifyStructureTask)基于提供的客户及保单信息，创建并启动结构化识别任务。
+    @inlinable
+    public func createAutoClassifyStructureTask(serviceType: String, taskInfos: [CreateAutoClassifyStructureTaskInfo], policyId: String? = nil, triggerType: String? = nil, insuranceTypes: [String]? = nil, callbackUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAutoClassifyStructureTaskResponse > {
+        self.createAutoClassifyStructureTask(CreateAutoClassifyStructureTaskRequest(serviceType: serviceType, taskInfos: taskInfos, policyId: policyId, triggerType: triggerType, insuranceTypes: insuranceTypes, callbackUrl: callbackUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 新建自动分类结构化任务
+    ///
+    /// 本接口(CreateAutoClassifyStructureTask)基于提供的客户及保单信息，创建并启动结构化识别任务。
+    @inlinable
+    public func createAutoClassifyStructureTask(serviceType: String, taskInfos: [CreateAutoClassifyStructureTaskInfo], policyId: String? = nil, triggerType: String? = nil, insuranceTypes: [String]? = nil, callbackUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoClassifyStructureTaskResponse {
+        try await self.createAutoClassifyStructureTask(CreateAutoClassifyStructureTaskRequest(serviceType: serviceType, taskInfos: taskInfos, policyId: policyId, triggerType: triggerType, insuranceTypes: insuranceTypes, callbackUrl: callbackUrl), logger: logger, on: eventLoop)
+    }
 }

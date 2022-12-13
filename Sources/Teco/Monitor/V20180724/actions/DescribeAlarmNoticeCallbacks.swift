@@ -59,4 +59,20 @@ extension Monitor {
     public func describeAlarmNoticeCallbacks(_ input: DescribeAlarmNoticeCallbacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticeCallbacksResponse {
         try await self.client.execute(action: "DescribeAlarmNoticeCallbacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询账号下所有回调URL列表
+    ///
+    /// 云监控告警获取告警通知模板所有回调URL
+    @inlinable
+    public func describeAlarmNoticeCallbacks(module: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmNoticeCallbacksResponse > {
+        self.describeAlarmNoticeCallbacks(DescribeAlarmNoticeCallbacksRequest(module: module), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账号下所有回调URL列表
+    ///
+    /// 云监控告警获取告警通知模板所有回调URL
+    @inlinable
+    public func describeAlarmNoticeCallbacks(module: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticeCallbacksResponse {
+        try await self.describeAlarmNoticeCallbacks(DescribeAlarmNoticeCallbacksRequest(module: module), logger: logger, on: eventLoop)
+    }
 }

@@ -86,4 +86,20 @@ extension Dayu {
     public func describeNewL4Rules(_ input: DescribeNewL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL4RulesResponse {
         try await self.client.execute(action: "DescribeNewL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取四层转发规则
+    ///
+    /// 获取L4转发规则
+    @inlinable
+    public func describeNewL4Rules(business: String, ip: String? = nil, virtualPort: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewL4RulesResponse > {
+        self.describeNewL4Rules(DescribeNewL4RulesRequest(business: business, ip: ip, virtualPort: virtualPort, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取四层转发规则
+    ///
+    /// 获取L4转发规则
+    @inlinable
+    public func describeNewL4Rules(business: String, ip: String? = nil, virtualPort: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL4RulesResponse {
+        try await self.describeNewL4Rules(DescribeNewL4RulesRequest(business: business, ip: ip, virtualPort: virtualPort, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

@@ -70,4 +70,22 @@ extension Mgobe {
     public func describeRoom(_ input: DescribeRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomResponse {
         try await self.client.execute(action: "DescribeRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询房间信息
+    ///
+    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
+    /// 该接口用于查询房间信息。支持两种用法，当房间Id不传的时候，玩家Id必传，传入玩家Id可以查询当前玩家所在的房间信息，当房间Id传入的时候，玩家Id可不传，按照房间Id查询房间信息。
+    @inlinable
+    public func describeRoom(gameId: String, playerId: String? = nil, roomId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoomResponse > {
+        self.describeRoom(DescribeRoomRequest(gameId: gameId, playerId: playerId, roomId: roomId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询房间信息
+    ///
+    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
+    /// 该接口用于查询房间信息。支持两种用法，当房间Id不传的时候，玩家Id必传，传入玩家Id可以查询当前玩家所在的房间信息，当房间Id传入的时候，玩家Id可不传，按照房间Id查询房间信息。
+    @inlinable
+    public func describeRoom(gameId: String, playerId: String? = nil, roomId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomResponse {
+        try await self.describeRoom(DescribeRoomRequest(gameId: gameId, playerId: playerId, roomId: roomId), logger: logger, on: eventLoop)
+    }
 }

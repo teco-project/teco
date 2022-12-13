@@ -81,4 +81,30 @@ extension Cvm {
     public func stopInstances(_ input: StopInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstancesResponse {
         try await self.client.execute(action: "StopInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 关闭实例
+    ///
+    /// 本接口 (StopInstances) 用于关闭一个或多个实例。
+    /// * 只有状态为`RUNNING`的实例才可以进行此操作。
+    /// * 接口调用成功时，实例会进入`STOPPING`状态；关闭实例成功时，实例会进入`STOPPED`状态。
+    /// * 支持强制关闭。强制关机的效果等同于关闭物理计算机的电源开关。强制关机可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常关机时使用。
+    /// * 支持批量操作。每次请求批量实例的上限为100。
+    /// * 本接口为异步接口，关闭实例请求发送成功后会返回一个RequestId，此时操作并未立即完成。实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表关闭实例操作成功。
+    @inlinable
+    public func stopInstances(instanceIds: [String], forceStop: Bool? = nil, stopType: String? = nil, stoppedMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopInstancesResponse > {
+        self.stopInstances(StopInstancesRequest(instanceIds: instanceIds, forceStop: forceStop, stopType: stopType, stoppedMode: stoppedMode), logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭实例
+    ///
+    /// 本接口 (StopInstances) 用于关闭一个或多个实例。
+    /// * 只有状态为`RUNNING`的实例才可以进行此操作。
+    /// * 接口调用成功时，实例会进入`STOPPING`状态；关闭实例成功时，实例会进入`STOPPED`状态。
+    /// * 支持强制关闭。强制关机的效果等同于关闭物理计算机的电源开关。强制关机可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常关机时使用。
+    /// * 支持批量操作。每次请求批量实例的上限为100。
+    /// * 本接口为异步接口，关闭实例请求发送成功后会返回一个RequestId，此时操作并未立即完成。实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表关闭实例操作成功。
+    @inlinable
+    public func stopInstances(instanceIds: [String], forceStop: Bool? = nil, stopType: String? = nil, stoppedMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstancesResponse {
+        try await self.stopInstances(StopInstancesRequest(instanceIds: instanceIds, forceStop: forceStop, stopType: stopType, stoppedMode: stoppedMode), logger: logger, on: eventLoop)
+    }
 }

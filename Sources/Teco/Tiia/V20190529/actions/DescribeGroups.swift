@@ -69,4 +69,20 @@ extension Tiia {
     public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
         try await self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询图片库
+    ///
+    /// 查询所有的图库信息。
+    @inlinable
+    public func describeGroups(offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupsResponse > {
+        self.describeGroups(DescribeGroupsRequest(offset: offset, limit: limit, groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询图片库
+    ///
+    /// 查询所有的图库信息。
+    @inlinable
+    public func describeGroups(offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
+        try await self.describeGroups(DescribeGroupsRequest(offset: offset, limit: limit, groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

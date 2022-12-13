@@ -68,4 +68,20 @@ extension Tag {
     public func unTagResources(_ input: UnTagResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnTagResourcesResponse {
         try await self.client.execute(action: "UnTagResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 为资源解绑标签
+    ///
+    /// 指定的多个云产品的多个云资源统一解绑标签。
+    @inlinable
+    public func unTagResources(resourceList: [String], tagKeys: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnTagResourcesResponse > {
+        self.unTagResources(UnTagResourcesRequest(resourceList: resourceList, tagKeys: tagKeys), logger: logger, on: eventLoop)
+    }
+    
+    /// 为资源解绑标签
+    ///
+    /// 指定的多个云产品的多个云资源统一解绑标签。
+    @inlinable
+    public func unTagResources(resourceList: [String], tagKeys: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnTagResourcesResponse {
+        try await self.unTagResources(UnTagResourcesRequest(resourceList: resourceList, tagKeys: tagKeys), logger: logger, on: eventLoop)
+    }
 }

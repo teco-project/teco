@@ -87,4 +87,16 @@ extension Tdcpg {
     public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
         try await self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询集群
+    @inlinable
+    public func describeClusters(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClustersResponse > {
+        self.describeClusters(DescribeClustersRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群
+    @inlinable
+    public func describeClusters(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
+        try await self.describeClusters(DescribeClustersRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    }
 }

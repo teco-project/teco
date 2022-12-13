@@ -58,4 +58,20 @@ extension Tcss {
     public func describeRiskSyscallWhiteListDetail(_ input: DescribeRiskSyscallWhiteListDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallWhiteListDetailResponse {
         try await self.client.execute(action: "DescribeRiskSyscallWhiteListDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行时高危系统调用白名单详细信息
+    ///
+    /// 查询运行时高危系统调用白名单详细信息
+    @inlinable
+    public func describeRiskSyscallWhiteListDetail(whiteListId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskSyscallWhiteListDetailResponse > {
+        self.describeRiskSyscallWhiteListDetail(DescribeRiskSyscallWhiteListDetailRequest(whiteListId: whiteListId), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时高危系统调用白名单详细信息
+    ///
+    /// 查询运行时高危系统调用白名单详细信息
+    @inlinable
+    public func describeRiskSyscallWhiteListDetail(whiteListId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallWhiteListDetailResponse {
+        try await self.describeRiskSyscallWhiteListDetail(DescribeRiskSyscallWhiteListDetailRequest(whiteListId: whiteListId), logger: logger, on: eventLoop)
+    }
 }

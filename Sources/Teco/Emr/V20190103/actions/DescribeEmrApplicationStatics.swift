@@ -124,4 +124,20 @@ extension Emr {
     public func describeEmrApplicationStatics(_ input: DescribeEmrApplicationStaticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEmrApplicationStaticsResponse {
         try await self.client.execute(action: "DescribeEmrApplicationStatics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询YARN的任务统计信息
+    ///
+    ///  yarn application 统计接口查询
+    @inlinable
+    public func describeEmrApplicationStatics(instanceId: String, startTime: Int64? = nil, endTime: Int64? = nil, queues: [String]? = nil, users: [String]? = nil, applicationTypes: [String]? = nil, groupBy: [String]? = nil, orderBy: String? = nil, isAsc: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEmrApplicationStaticsResponse > {
+        self.describeEmrApplicationStatics(DescribeEmrApplicationStaticsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, queues: queues, users: users, applicationTypes: applicationTypes, groupBy: groupBy, orderBy: orderBy, isAsc: isAsc, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询YARN的任务统计信息
+    ///
+    ///  yarn application 统计接口查询
+    @inlinable
+    public func describeEmrApplicationStatics(instanceId: String, startTime: Int64? = nil, endTime: Int64? = nil, queues: [String]? = nil, users: [String]? = nil, applicationTypes: [String]? = nil, groupBy: [String]? = nil, orderBy: String? = nil, isAsc: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEmrApplicationStaticsResponse {
+        try await self.describeEmrApplicationStatics(DescribeEmrApplicationStaticsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, queues: queues, users: users, applicationTypes: applicationTypes, groupBy: groupBy, orderBy: orderBy, isAsc: isAsc, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

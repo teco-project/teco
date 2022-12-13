@@ -91,4 +91,16 @@ extension Teo {
     public func modifyLoadBalancing(_ input: ModifyLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancingResponse {
         try await self.client.execute(action: "ModifyLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改负载均衡
+    @inlinable
+    public func modifyLoadBalancing(zoneId: String, loadBalancingId: String, type: String, originGroupId: String, backupOriginGroupId: String, ttl: UInt64? = nil, originType: String? = nil, advancedOriginGroups: [AdvancedOriginGroup]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancingResponse > {
+        self.modifyLoadBalancing(ModifyLoadBalancingRequest(zoneId: zoneId, loadBalancingId: loadBalancingId, type: type, originGroupId: originGroupId, backupOriginGroupId: backupOriginGroupId, ttl: ttl, originType: originType, advancedOriginGroups: advancedOriginGroups), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改负载均衡
+    @inlinable
+    public func modifyLoadBalancing(zoneId: String, loadBalancingId: String, type: String, originGroupId: String, backupOriginGroupId: String, ttl: UInt64? = nil, originType: String? = nil, advancedOriginGroups: [AdvancedOriginGroup]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancingResponse {
+        try await self.modifyLoadBalancing(ModifyLoadBalancingRequest(zoneId: zoneId, loadBalancingId: loadBalancingId, type: type, originGroupId: originGroupId, backupOriginGroupId: backupOriginGroupId, ttl: ttl, originType: originType, advancedOriginGroups: advancedOriginGroups), logger: logger, on: eventLoop)
+    }
 }

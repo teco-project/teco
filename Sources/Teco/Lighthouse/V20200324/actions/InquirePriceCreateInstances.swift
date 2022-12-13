@@ -73,4 +73,20 @@ extension Lighthouse {
     public func inquirePriceCreateInstances(_ input: InquirePriceCreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateInstancesResponse {
         try await self.client.execute(action: "InquirePriceCreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建实例询价
+    ///
+    /// 本接口（InquiryPriceCreateInstances）用于创建实例询价。
+    @inlinable
+    public func inquirePriceCreateInstances(bundleId: String, instanceCount: Int64? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, blueprintId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceCreateInstancesResponse > {
+        self.inquirePriceCreateInstances(InquirePriceCreateInstancesRequest(bundleId: bundleId, instanceCount: instanceCount, instanceChargePrepaid: instanceChargePrepaid, blueprintId: blueprintId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例询价
+    ///
+    /// 本接口（InquiryPriceCreateInstances）用于创建实例询价。
+    @inlinable
+    public func inquirePriceCreateInstances(bundleId: String, instanceCount: Int64? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, blueprintId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateInstancesResponse {
+        try await self.inquirePriceCreateInstances(InquirePriceCreateInstancesRequest(bundleId: bundleId, instanceCount: instanceCount, instanceChargePrepaid: instanceChargePrepaid, blueprintId: blueprintId), logger: logger, on: eventLoop)
+    }
 }

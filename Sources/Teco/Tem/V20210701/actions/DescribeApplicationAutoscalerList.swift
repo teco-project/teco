@@ -65,4 +65,16 @@ extension Tem {
     public func describeApplicationAutoscalerList(_ input: DescribeApplicationAutoscalerListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationAutoscalerListResponse {
         try await self.client.execute(action: "DescribeApplicationAutoscalerList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取应用弹性策略组合
+    @inlinable
+    public func describeApplicationAutoscalerList(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationAutoscalerListResponse > {
+        self.describeApplicationAutoscalerList(DescribeApplicationAutoscalerListRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用弹性策略组合
+    @inlinable
+    public func describeApplicationAutoscalerList(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationAutoscalerListResponse {
+        try await self.describeApplicationAutoscalerList(DescribeApplicationAutoscalerListRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    }
 }

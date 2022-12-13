@@ -54,4 +54,20 @@ extension Tke {
     public func deleteClusterEndpointVip(_ input: DeleteClusterEndpointVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterEndpointVipResponse {
         try await self.client.execute(action: "DeleteClusterEndpointVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除托管集群外网访问端口
+    ///
+    /// 删除托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
+    @inlinable
+    public func deleteClusterEndpointVip(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterEndpointVipResponse > {
+        self.deleteClusterEndpointVip(DeleteClusterEndpointVipRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除托管集群外网访问端口
+    ///
+    /// 删除托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
+    @inlinable
+    public func deleteClusterEndpointVip(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterEndpointVipResponse {
+        try await self.deleteClusterEndpointVip(DeleteClusterEndpointVipRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

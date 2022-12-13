@@ -63,4 +63,16 @@ extension Tcaplusdb {
     public func deleteTableIndex(_ input: DeleteTableIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableIndexResponse {
         try await self.client.execute(action: "DeleteTableIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除表格的分布式索引
+    @inlinable
+    public func deleteTableIndex(clusterId: String, selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTableIndexResponse > {
+        self.deleteTableIndex(DeleteTableIndexRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除表格的分布式索引
+    @inlinable
+    public func deleteTableIndex(clusterId: String, selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableIndexResponse {
+        try await self.deleteTableIndex(DeleteTableIndexRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    }
 }

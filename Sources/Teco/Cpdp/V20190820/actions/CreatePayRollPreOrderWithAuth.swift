@@ -124,4 +124,16 @@ extension Cpdp {
     public func createPayRollPreOrderWithAuth(_ input: CreatePayRollPreOrderWithAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayRollPreOrderWithAuthResponse {
         try await self.client.execute(action: "CreatePayRollPreOrderWithAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 务工卡-核身预下单带授权
+    @inlinable
+    public func createPayRollPreOrderWithAuth(openId: String, subMerchantId: String, authNumber: String, projectName: String, companyName: String, userName: String, idNo: String, employmentType: String, wechatAppId: String? = nil, wechatSubAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePayRollPreOrderWithAuthResponse > {
+        self.createPayRollPreOrderWithAuth(CreatePayRollPreOrderWithAuthRequest(openId: openId, subMerchantId: subMerchantId, authNumber: authNumber, projectName: projectName, companyName: companyName, userName: userName, idNo: idNo, employmentType: employmentType, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 务工卡-核身预下单带授权
+    @inlinable
+    public func createPayRollPreOrderWithAuth(openId: String, subMerchantId: String, authNumber: String, projectName: String, companyName: String, userName: String, idNo: String, employmentType: String, wechatAppId: String? = nil, wechatSubAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayRollPreOrderWithAuthResponse {
+        try await self.createPayRollPreOrderWithAuth(CreatePayRollPreOrderWithAuthRequest(openId: openId, subMerchantId: subMerchantId, authNumber: authNumber, projectName: projectName, companyName: companyName, userName: userName, idNo: idNo, employmentType: employmentType, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId), logger: logger, on: eventLoop)
+    }
 }

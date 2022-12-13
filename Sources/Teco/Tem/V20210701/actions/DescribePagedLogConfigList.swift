@@ -79,4 +79,16 @@ extension Tem {
     public func describePagedLogConfigList(_ input: DescribePagedLogConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePagedLogConfigListResponse {
         try await self.client.execute(action: "DescribePagedLogConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询分页的日志收集配置列表
+    @inlinable
+    public func describePagedLogConfigList(environmentId: String, applicationId: String? = nil, applicationName: String? = nil, name: String? = nil, limit: Int64? = nil, continueToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePagedLogConfigListResponse > {
+        self.describePagedLogConfigList(DescribePagedLogConfigListRequest(environmentId: environmentId, applicationId: applicationId, applicationName: applicationName, name: name, limit: limit, continueToken: continueToken), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询分页的日志收集配置列表
+    @inlinable
+    public func describePagedLogConfigList(environmentId: String, applicationId: String? = nil, applicationName: String? = nil, name: String? = nil, limit: Int64? = nil, continueToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePagedLogConfigListResponse {
+        try await self.describePagedLogConfigList(DescribePagedLogConfigListRequest(environmentId: environmentId, applicationId: applicationId, applicationName: applicationName, name: name, limit: limit, continueToken: continueToken), logger: logger, on: eventLoop)
+    }
 }

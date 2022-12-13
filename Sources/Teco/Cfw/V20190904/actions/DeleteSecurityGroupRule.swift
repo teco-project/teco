@@ -78,4 +78,20 @@ extension Cfw {
     public func deleteSecurityGroupRule(_ input: DeleteSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityGroupRuleResponse {
         try await self.client.execute(action: "DeleteSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除安全组规则
+    ///
+    /// 删除规则
+    @inlinable
+    public func deleteSecurityGroupRule(id: UInt64, area: String, direction: UInt64, isDelReverse: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityGroupRuleResponse > {
+        self.deleteSecurityGroupRule(DeleteSecurityGroupRuleRequest(id: id, area: area, direction: direction, isDelReverse: isDelReverse), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除安全组规则
+    ///
+    /// 删除规则
+    @inlinable
+    public func deleteSecurityGroupRule(id: UInt64, area: String, direction: UInt64, isDelReverse: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityGroupRuleResponse {
+        try await self.deleteSecurityGroupRule(DeleteSecurityGroupRuleRequest(id: id, area: area, direction: direction, isDelReverse: isDelReverse), logger: logger, on: eventLoop)
+    }
 }

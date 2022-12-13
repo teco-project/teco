@@ -56,4 +56,22 @@ extension Tat {
     public func deleteCommand(_ input: DeleteCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCommandResponse {
         try await self.client.execute(action: "DeleteCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除命令
+    ///
+    /// 此接口用于删除命令。
+    /// 如果命令与执行器关联，则无法被删除。
+    @inlinable
+    public func deleteCommand(commandId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCommandResponse > {
+        self.deleteCommand(DeleteCommandRequest(commandId: commandId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除命令
+    ///
+    /// 此接口用于删除命令。
+    /// 如果命令与执行器关联，则无法被删除。
+    @inlinable
+    public func deleteCommand(commandId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCommandResponse {
+        try await self.deleteCommand(DeleteCommandRequest(commandId: commandId), logger: logger, on: eventLoop)
+    }
 }

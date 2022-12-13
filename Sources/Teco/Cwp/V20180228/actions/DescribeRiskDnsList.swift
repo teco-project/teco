@@ -88,4 +88,20 @@ extension Cwp {
     public func describeRiskDnsList(_ input: DescribeRiskDnsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskDnsListResponse {
         try await self.client.execute(action: "DescribeRiskDnsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取恶意请求列表
+    ///
+    /// 入侵检测，获取恶意请求列表
+    @inlinable
+    public func describeRiskDnsList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskDnsListResponse > {
+        self.describeRiskDnsList(DescribeRiskDnsListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取恶意请求列表
+    ///
+    /// 入侵检测，获取恶意请求列表
+    @inlinable
+    public func describeRiskDnsList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskDnsListResponse {
+        try await self.describeRiskDnsList(DescribeRiskDnsListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

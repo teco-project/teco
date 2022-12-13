@@ -88,4 +88,20 @@ extension Youmall {
     public func describeHistoryNetworkInfo(_ input: DescribeHistoryNetworkInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHistoryNetworkInfoResponse {
         try await self.client.execute(action: "DescribeHistoryNetworkInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询设备历史网络状态
+    ///
+    /// 返回当前门店历史网络状态数据
+    @inlinable
+    public func describeHistoryNetworkInfo(time: Int64, companyId: String, shopId: Int64, startDay: String, endDay: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHistoryNetworkInfoResponse > {
+        self.describeHistoryNetworkInfo(DescribeHistoryNetworkInfoRequest(time: time, companyId: companyId, shopId: shopId, startDay: startDay, endDay: endDay, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备历史网络状态
+    ///
+    /// 返回当前门店历史网络状态数据
+    @inlinable
+    public func describeHistoryNetworkInfo(time: Int64, companyId: String, shopId: Int64, startDay: String, endDay: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHistoryNetworkInfoResponse {
+        try await self.describeHistoryNetworkInfo(DescribeHistoryNetworkInfoRequest(time: time, companyId: companyId, shopId: shopId, startDay: startDay, endDay: endDay, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

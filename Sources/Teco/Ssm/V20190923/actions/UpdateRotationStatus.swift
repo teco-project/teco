@@ -78,4 +78,26 @@ extension Ssm {
     public func updateRotationStatus(_ input: UpdateRotationStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRotationStatusResponse {
         try await self.client.execute(action: "UpdateRotationStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置云产品凭据轮转策略
+    ///
+    /// 设置云产品凭据轮转策略，可以设置：
+    /// 是否开启轮转
+    /// 轮转周期
+    /// 轮转开始时间
+    @inlinable
+    public func updateRotationStatus(secretName: String, enableRotation: Bool, frequency: Int64? = nil, rotationBeginTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRotationStatusResponse > {
+        self.updateRotationStatus(UpdateRotationStatusRequest(secretName: secretName, enableRotation: enableRotation, frequency: frequency, rotationBeginTime: rotationBeginTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置云产品凭据轮转策略
+    ///
+    /// 设置云产品凭据轮转策略，可以设置：
+    /// 是否开启轮转
+    /// 轮转周期
+    /// 轮转开始时间
+    @inlinable
+    public func updateRotationStatus(secretName: String, enableRotation: Bool, frequency: Int64? = nil, rotationBeginTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRotationStatusResponse {
+        try await self.updateRotationStatus(UpdateRotationStatusRequest(secretName: secretName, enableRotation: enableRotation, frequency: frequency, rotationBeginTime: rotationBeginTime), logger: logger, on: eventLoop)
+    }
 }

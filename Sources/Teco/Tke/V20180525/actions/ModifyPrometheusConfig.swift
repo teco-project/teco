@@ -79,4 +79,20 @@ extension Tke {
     public func modifyPrometheusConfig(_ input: ModifyPrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusConfigResponse {
         try await self.client.execute(action: "ModifyPrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改prometheus配置
+    ///
+    /// 修改prometheus配置，如果配置项不存在，则会新增
+    @inlinable
+    public func modifyPrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusConfigResponse > {
+        self.modifyPrometheusConfig(ModifyPrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改prometheus配置
+    ///
+    /// 修改prometheus配置，如果配置项不存在，则会新增
+    @inlinable
+    public func modifyPrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusConfigResponse {
+        try await self.modifyPrometheusConfig(ModifyPrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), logger: logger, on: eventLoop)
+    }
 }

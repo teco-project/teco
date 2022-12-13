@@ -65,4 +65,16 @@ extension Tdmq {
     public func modifyCmqTopicAttribute(_ input: ModifyCmqTopicAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqTopicAttributeResponse {
         try await self.client.execute(action: "ModifyCmqTopicAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改cmq主题属性
+    @inlinable
+    public func modifyCmqTopicAttribute(topicName: String, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCmqTopicAttributeResponse > {
+        self.modifyCmqTopicAttribute(ModifyCmqTopicAttributeRequest(topicName: topicName, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, trace: trace), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改cmq主题属性
+    @inlinable
+    public func modifyCmqTopicAttribute(topicName: String, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqTopicAttributeResponse {
+        try await self.modifyCmqTopicAttribute(ModifyCmqTopicAttributeRequest(topicName: topicName, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, trace: trace), logger: logger, on: eventLoop)
+    }
 }

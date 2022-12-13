@@ -63,4 +63,20 @@ extension Iotcloud {
     public func describeDeviceShadow(_ input: DescribeDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceShadowResponse {
         try await self.client.execute(action: "DescribeDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备影子
+    ///
+    /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。 
+    @inlinable
+    public func describeDeviceShadow(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceShadowResponse > {
+        self.describeDeviceShadow(DescribeDeviceShadowRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备影子
+    ///
+    /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。 
+    @inlinable
+    public func describeDeviceShadow(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceShadowResponse {
+        try await self.describeDeviceShadow(DescribeDeviceShadowRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    }
 }

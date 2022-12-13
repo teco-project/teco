@@ -63,4 +63,20 @@ extension Cbs {
     public func inquirePriceModifyDiskExtraPerformance(_ input: InquirePriceModifyDiskExtraPerformanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceModifyDiskExtraPerformanceResponse {
         try await self.client.execute(action: "InquirePriceModifyDiskExtraPerformance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 调整云硬盘额外性能询价
+    ///
+    /// 本接口（InquirePriceModifyDiskExtraPerformance）用于调整云硬盘额外性能询价。
+    @inlinable
+    public func inquirePriceModifyDiskExtraPerformance(diskId: String, throughputPerformance: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceModifyDiskExtraPerformanceResponse > {
+        self.inquirePriceModifyDiskExtraPerformance(InquirePriceModifyDiskExtraPerformanceRequest(diskId: diskId, throughputPerformance: throughputPerformance), logger: logger, on: eventLoop)
+    }
+    
+    /// 调整云硬盘额外性能询价
+    ///
+    /// 本接口（InquirePriceModifyDiskExtraPerformance）用于调整云硬盘额外性能询价。
+    @inlinable
+    public func inquirePriceModifyDiskExtraPerformance(diskId: String, throughputPerformance: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceModifyDiskExtraPerformanceResponse {
+        try await self.inquirePriceModifyDiskExtraPerformance(InquirePriceModifyDiskExtraPerformanceRequest(diskId: diskId, throughputPerformance: throughputPerformance), logger: logger, on: eventLoop)
+    }
 }

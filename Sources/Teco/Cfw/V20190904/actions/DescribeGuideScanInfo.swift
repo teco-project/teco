@@ -50,4 +50,20 @@ extension Cfw {
     public func describeGuideScanInfo(_ input: DescribeGuideScanInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGuideScanInfoResponse {
         try await self.client.execute(action: "DescribeGuideScanInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新手引导扫描接口信息
+    ///
+    /// DescribeGuideScanInfo新手引导扫描接口信息
+    @inlinable
+    public func describeGuideScanInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGuideScanInfoResponse > {
+        self.describeGuideScanInfo(DescribeGuideScanInfoRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 新手引导扫描接口信息
+    ///
+    /// DescribeGuideScanInfo新手引导扫描接口信息
+    @inlinable
+    public func describeGuideScanInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGuideScanInfoResponse {
+        try await self.describeGuideScanInfo(DescribeGuideScanInfoRequest(), logger: logger, on: eventLoop)
+    }
 }

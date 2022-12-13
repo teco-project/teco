@@ -91,4 +91,20 @@ extension Tke {
     public func describeClusterEndpoints(_ input: DescribeClusterEndpointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterEndpointsResponse {
         try await self.client.execute(action: "DescribeClusterEndpoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取集群访问地址
+    ///
+    /// 获取集群的访问地址，包括内网地址，外网地址，外网域名，外网访问安全策略
+    @inlinable
+    public func describeClusterEndpoints(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterEndpointsResponse > {
+        self.describeClusterEndpoints(DescribeClusterEndpointsRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群访问地址
+    ///
+    /// 获取集群的访问地址，包括内网地址，外网地址，外网域名，外网访问安全策略
+    @inlinable
+    public func describeClusterEndpoints(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterEndpointsResponse {
+        try await self.describeClusterEndpoints(DescribeClusterEndpointsRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

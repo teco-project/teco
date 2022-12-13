@@ -70,4 +70,16 @@ extension Ssa {
     public func describeSocCheckItemList(_ input: DescribeSocCheckItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocCheckItemListResponse {
         try await self.client.execute(action: "DescribeSocCheckItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云安全配置检查项列表
+    @inlinable
+    public func describeSocCheckItemList(filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, pageSize: Int64? = nil, pageIndex: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSocCheckItemListResponse > {
+        self.describeSocCheckItemList(DescribeSocCheckItemListRequest(filter: filter, sorter: sorter, pageSize: pageSize, pageIndex: pageIndex), logger: logger, on: eventLoop)
+    }
+    
+    /// 云安全配置检查项列表
+    @inlinable
+    public func describeSocCheckItemList(filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, pageSize: Int64? = nil, pageIndex: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocCheckItemListResponse {
+        try await self.describeSocCheckItemList(DescribeSocCheckItemListRequest(filter: filter, sorter: sorter, pageSize: pageSize, pageIndex: pageIndex), logger: logger, on: eventLoop)
+    }
 }

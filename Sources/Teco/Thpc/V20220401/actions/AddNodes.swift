@@ -145,4 +145,20 @@ extension Thpc {
     public func addNodes(_ input: AddNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNodesResponse {
         try await self.client.execute(action: "AddNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加节点
+    ///
+    /// 本接口(AddNodes)用于添加一个或者多个计算节点或者登录节点到指定集群。
+    @inlinable
+    public func addNodes(placement: Placement, clusterId: String, imageId: String, virtualPrivateCloud: VirtualPrivateCloud, count: Int64, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: [SystemDisk]? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, queueName: String? = nil, nodeRole: String? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddNodesResponse > {
+        self.addNodes(AddNodesRequest(placement: placement, clusterId: clusterId, imageId: imageId, virtualPrivateCloud: virtualPrivateCloud, count: count, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, instanceType: instanceType, systemDisk: systemDisk, dataDisks: dataDisks, internetAccessible: internetAccessible, instanceName: instanceName, loginSettings: loginSettings, securityGroupIds: securityGroupIds, clientToken: clientToken, queueName: queueName, nodeRole: nodeRole, dryRun: dryRun), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加节点
+    ///
+    /// 本接口(AddNodes)用于添加一个或者多个计算节点或者登录节点到指定集群。
+    @inlinable
+    public func addNodes(placement: Placement, clusterId: String, imageId: String, virtualPrivateCloud: VirtualPrivateCloud, count: Int64, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: [SystemDisk]? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, queueName: String? = nil, nodeRole: String? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNodesResponse {
+        try await self.addNodes(AddNodesRequest(placement: placement, clusterId: clusterId, imageId: imageId, virtualPrivateCloud: virtualPrivateCloud, count: count, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, instanceType: instanceType, systemDisk: systemDisk, dataDisks: dataDisks, internetAccessible: internetAccessible, instanceName: instanceName, loginSettings: loginSettings, securityGroupIds: securityGroupIds, clientToken: clientToken, queueName: queueName, nodeRole: nodeRole, dryRun: dryRun), logger: logger, on: eventLoop)
+    }
 }

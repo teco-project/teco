@@ -62,4 +62,20 @@ extension Gaap {
     public func deleteProxyGroup(_ input: DeleteProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProxyGroupResponse {
         try await self.client.execute(action: "DeleteProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除通道组
+    ///
+    /// 本接口（DeleteProxyGroup）用于删除通道组。
+    @inlinable
+    public func deleteProxyGroup(groupId: String? = nil, force: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProxyGroupResponse > {
+        self.deleteProxyGroup(DeleteProxyGroupRequest(groupId: groupId, force: force), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除通道组
+    ///
+    /// 本接口（DeleteProxyGroup）用于删除通道组。
+    @inlinable
+    public func deleteProxyGroup(groupId: String? = nil, force: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProxyGroupResponse {
+        try await self.deleteProxyGroup(DeleteProxyGroupRequest(groupId: groupId, force: force), logger: logger, on: eventLoop)
+    }
 }

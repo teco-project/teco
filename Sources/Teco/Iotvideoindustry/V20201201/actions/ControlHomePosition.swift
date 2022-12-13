@@ -70,4 +70,16 @@ extension Iotvideoindustry {
     public func controlHomePosition(_ input: ControlHomePositionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlHomePositionResponse {
         try await self.client.execute(action: "ControlHomePosition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 看守位控制
+    @inlinable
+    public func controlHomePosition(channelId: String, deviceId: String, enable: Int64? = nil, presetId: Int64? = nil, resetTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlHomePositionResponse > {
+        self.controlHomePosition(ControlHomePositionRequest(channelId: channelId, deviceId: deviceId, enable: enable, presetId: presetId, resetTime: resetTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 看守位控制
+    @inlinable
+    public func controlHomePosition(channelId: String, deviceId: String, enable: Int64? = nil, presetId: Int64? = nil, resetTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlHomePositionResponse {
+        try await self.controlHomePosition(ControlHomePositionRequest(channelId: channelId, deviceId: deviceId, enable: enable, presetId: presetId, resetTime: resetTime), logger: logger, on: eventLoop)
+    }
 }

@@ -89,4 +89,20 @@ extension As {
     public func createScalingPolicy(_ input: CreateScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScalingPolicyResponse {
         try await self.client.execute(action: "CreateScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建告警触发策略
+    ///
+    /// 本接口（CreateScalingPolicy）用于创建告警触发策略。
+    @inlinable
+    public func createScalingPolicy(autoScalingGroupId: String, scalingPolicyName: String, adjustmentType: String, adjustmentValue: Int64, metricAlarm: MetricAlarm, cooldown: UInt64? = nil, notificationUserGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScalingPolicyResponse > {
+        self.createScalingPolicy(CreateScalingPolicyRequest(autoScalingGroupId: autoScalingGroupId, scalingPolicyName: scalingPolicyName, adjustmentType: adjustmentType, adjustmentValue: adjustmentValue, metricAlarm: metricAlarm, cooldown: cooldown, notificationUserGroupIds: notificationUserGroupIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建告警触发策略
+    ///
+    /// 本接口（CreateScalingPolicy）用于创建告警触发策略。
+    @inlinable
+    public func createScalingPolicy(autoScalingGroupId: String, scalingPolicyName: String, adjustmentType: String, adjustmentValue: Int64, metricAlarm: MetricAlarm, cooldown: UInt64? = nil, notificationUserGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScalingPolicyResponse {
+        try await self.createScalingPolicy(CreateScalingPolicyRequest(autoScalingGroupId: autoScalingGroupId, scalingPolicyName: scalingPolicyName, adjustmentType: adjustmentType, adjustmentValue: adjustmentValue, metricAlarm: metricAlarm, cooldown: cooldown, notificationUserGroupIds: notificationUserGroupIds), logger: logger, on: eventLoop)
+    }
 }

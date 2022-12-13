@@ -81,4 +81,16 @@ extension Tcss {
     public func describeVirusAutoIsolateSampleList(_ input: DescribeVirusAutoIsolateSampleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSampleListResponse {
         try await self.client.execute(action: "DescribeVirusAutoIsolateSampleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询木马自动隔离样本列表
+    @inlinable
+    public func describeVirusAutoIsolateSampleList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusAutoIsolateSampleListResponse > {
+        self.describeVirusAutoIsolateSampleList(DescribeVirusAutoIsolateSampleListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询木马自动隔离样本列表
+    @inlinable
+    public func describeVirusAutoIsolateSampleList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSampleListResponse {
+        try await self.describeVirusAutoIsolateSampleList(DescribeVirusAutoIsolateSampleListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    }
 }

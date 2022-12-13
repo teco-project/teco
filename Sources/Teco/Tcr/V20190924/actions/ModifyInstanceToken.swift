@@ -74,4 +74,20 @@ extension Tcr {
     public func modifyInstanceToken(_ input: ModifyInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTokenResponse {
         try await self.client.execute(action: "ModifyInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新实例长期访问凭证
+    ///
+    /// 更新实例内指定长期访问凭证的启用状态
+    @inlinable
+    public func modifyInstanceToken(tokenId: String, registryId: String, enable: Bool? = nil, desc: String? = nil, modifyFlag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceTokenResponse > {
+        self.modifyInstanceToken(ModifyInstanceTokenRequest(tokenId: tokenId, registryId: registryId, enable: enable, desc: desc, modifyFlag: modifyFlag), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新实例长期访问凭证
+    ///
+    /// 更新实例内指定长期访问凭证的启用状态
+    @inlinable
+    public func modifyInstanceToken(tokenId: String, registryId: String, enable: Bool? = nil, desc: String? = nil, modifyFlag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTokenResponse {
+        try await self.modifyInstanceToken(ModifyInstanceTokenRequest(tokenId: tokenId, registryId: registryId, enable: enable, desc: desc, modifyFlag: modifyFlag), logger: logger, on: eventLoop)
+    }
 }

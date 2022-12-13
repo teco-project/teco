@@ -58,4 +58,20 @@ extension Mongodb {
     public func offlineIsolatedDBInstance(_ input: OfflineIsolatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineIsolatedDBInstanceResponse {
         try await self.client.execute(action: "OfflineIsolatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 下线隔离状态的云数据库实例
+    ///
+    /// 本接口(OfflineIsolatedDBInstance)用于立即下线隔离状态的云数据库实例。进行操作的实例状态必须为隔离状态。
+    @inlinable
+    public func offlineIsolatedDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OfflineIsolatedDBInstanceResponse > {
+        self.offlineIsolatedDBInstance(OfflineIsolatedDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 下线隔离状态的云数据库实例
+    ///
+    /// 本接口(OfflineIsolatedDBInstance)用于立即下线隔离状态的云数据库实例。进行操作的实例状态必须为隔离状态。
+    @inlinable
+    public func offlineIsolatedDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineIsolatedDBInstanceResponse {
+        try await self.offlineIsolatedDBInstance(OfflineIsolatedDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

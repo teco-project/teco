@@ -63,4 +63,20 @@ extension Bm {
     public func resetDevicePassword(_ input: ResetDevicePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDevicePasswordResponse {
         try await self.client.execute(action: "ResetDevicePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重置密码
+    ///
+    /// 重置服务器密码
+    @inlinable
+    public func resetDevicePassword(instanceIds: [String], password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetDevicePasswordResponse > {
+        self.resetDevicePassword(ResetDevicePasswordRequest(instanceIds: instanceIds, password: password), logger: logger, on: eventLoop)
+    }
+    
+    /// 重置密码
+    ///
+    /// 重置服务器密码
+    @inlinable
+    public func resetDevicePassword(instanceIds: [String], password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDevicePasswordResponse {
+        try await self.resetDevicePassword(ResetDevicePasswordRequest(instanceIds: instanceIds, password: password), logger: logger, on: eventLoop)
+    }
 }

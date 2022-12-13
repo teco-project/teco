@@ -77,4 +77,20 @@ extension Iotcloud {
     public func listFirmwares(_ input: ListFirmwaresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFirmwaresResponse {
         try await self.client.execute(action: "ListFirmwares", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取固件列表
+    ///
+    /// 本接口（ListFirmwares）用于获取固件列表 
+    @inlinable
+    public func listFirmwares(pageNum: UInt64, pageSize: UInt64, productId: String? = nil, filters: [SearchKeyword]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListFirmwaresResponse > {
+        self.listFirmwares(ListFirmwaresRequest(pageNum: pageNum, pageSize: pageSize, productId: productId, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取固件列表
+    ///
+    /// 本接口（ListFirmwares）用于获取固件列表 
+    @inlinable
+    public func listFirmwares(pageNum: UInt64, pageSize: UInt64, productId: String? = nil, filters: [SearchKeyword]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFirmwaresResponse {
+        try await self.listFirmwares(ListFirmwaresRequest(pageNum: pageNum, pageSize: pageSize, productId: productId, filters: filters), logger: logger, on: eventLoop)
+    }
 }

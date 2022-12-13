@@ -59,4 +59,20 @@ extension Vpc {
     public func modifyCcnRegionBandwidthLimitsType(_ input: ModifyCcnRegionBandwidthLimitsTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnRegionBandwidthLimitsTypeResponse {
         try await self.client.execute(action: "ModifyCcnRegionBandwidthLimitsType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 后付费产品修改带宽限速策略
+    ///
+    /// 本接口（ModifyCcnRegionBandwidthLimitsType）用于修改后付费云联网实例修改带宽限速策略。
+    @inlinable
+    public func modifyCcnRegionBandwidthLimitsType(ccnId: String, bandwidthLimitType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCcnRegionBandwidthLimitsTypeResponse > {
+        self.modifyCcnRegionBandwidthLimitsType(ModifyCcnRegionBandwidthLimitsTypeRequest(ccnId: ccnId, bandwidthLimitType: bandwidthLimitType), logger: logger, on: eventLoop)
+    }
+    
+    /// 后付费产品修改带宽限速策略
+    ///
+    /// 本接口（ModifyCcnRegionBandwidthLimitsType）用于修改后付费云联网实例修改带宽限速策略。
+    @inlinable
+    public func modifyCcnRegionBandwidthLimitsType(ccnId: String, bandwidthLimitType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnRegionBandwidthLimitsTypeResponse {
+        try await self.modifyCcnRegionBandwidthLimitsType(ModifyCcnRegionBandwidthLimitsTypeRequest(ccnId: ccnId, bandwidthLimitType: bandwidthLimitType), logger: logger, on: eventLoop)
+    }
 }

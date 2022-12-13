@@ -73,4 +73,20 @@ extension Dlc {
     public func createExportTask(_ input: CreateExportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportTaskResponse {
         try await self.client.execute(action: "CreateExportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建导出任务
+    ///
+    /// 该接口（CreateExportTask）用于创建导出任务
+    @inlinable
+    public func createExportTask(inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateExportTaskResponse > {
+        self.createExportTask(CreateExportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建导出任务
+    ///
+    /// 该接口（CreateExportTask）用于创建导出任务
+    @inlinable
+    public func createExportTask(inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportTaskResponse {
+        try await self.createExportTask(CreateExportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType), logger: logger, on: eventLoop)
+    }
 }

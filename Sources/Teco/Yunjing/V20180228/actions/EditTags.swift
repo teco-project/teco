@@ -60,4 +60,16 @@ extension Yunjing {
     public func editTags(_ input: EditTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditTagsResponse {
         try await self.client.execute(action: "EditTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新增或编辑标签
+    @inlinable
+    public func editTags(name: String, id: UInt64? = nil, quuids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditTagsResponse > {
+        self.editTags(EditTagsRequest(name: name, id: id, quuids: quuids), logger: logger, on: eventLoop)
+    }
+    
+    /// 新增或编辑标签
+    @inlinable
+    public func editTags(name: String, id: UInt64? = nil, quuids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditTagsResponse {
+        try await self.editTags(EditTagsRequest(name: name, id: id, quuids: quuids), logger: logger, on: eventLoop)
+    }
 }

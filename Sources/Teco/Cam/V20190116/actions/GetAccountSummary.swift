@@ -70,4 +70,20 @@ extension Cam {
     public func getAccountSummary(_ input: GetAccountSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAccountSummaryResponse {
         try await self.client.execute(action: "GetAccountSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询账户摘要
+    ///
+    /// 查询账户摘要 
+    @inlinable
+    public func getAccountSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAccountSummaryResponse > {
+        self.getAccountSummary(GetAccountSummaryRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账户摘要
+    ///
+    /// 查询账户摘要 
+    @inlinable
+    public func getAccountSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAccountSummaryResponse {
+        try await self.getAccountSummary(GetAccountSummaryRequest(), logger: logger, on: eventLoop)
+    }
 }

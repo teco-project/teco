@@ -73,4 +73,20 @@ extension Bmlb {
     public func describeL7ListenerInfo(_ input: DescribeL7ListenerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenerInfoResponse {
         try await self.client.execute(action: "DescribeL7ListenerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查找绑定了某主机或者有某转发域名黑石负载均衡七层监听器
+    ///
+    /// 查找绑定了某主机或者有某转发域名黑石负载均衡七层监听器。
+    @inlinable
+    public func describeL7ListenerInfo(loadBalancerId: String, searchKey: String? = nil, instanceIds: [String]? = nil, ifGetBackendInfo: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7ListenerInfoResponse > {
+        self.describeL7ListenerInfo(DescribeL7ListenerInfoRequest(loadBalancerId: loadBalancerId, searchKey: searchKey, instanceIds: instanceIds, ifGetBackendInfo: ifGetBackendInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 查找绑定了某主机或者有某转发域名黑石负载均衡七层监听器
+    ///
+    /// 查找绑定了某主机或者有某转发域名黑石负载均衡七层监听器。
+    @inlinable
+    public func describeL7ListenerInfo(loadBalancerId: String, searchKey: String? = nil, instanceIds: [String]? = nil, ifGetBackendInfo: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenerInfoResponse {
+        try await self.describeL7ListenerInfo(DescribeL7ListenerInfoRequest(loadBalancerId: loadBalancerId, searchKey: searchKey, instanceIds: instanceIds, ifGetBackendInfo: ifGetBackendInfo), logger: logger, on: eventLoop)
+    }
 }

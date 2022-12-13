@@ -66,4 +66,16 @@ extension Emr {
     public func modifyResourcePools(_ input: ModifyResourcePoolsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourcePoolsResponse {
         try await self.client.execute(action: "ModifyResourcePools", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 刷新YARN的动态资源池
+    @inlinable
+    public func modifyResourcePools(instanceId: String, key: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourcePoolsResponse > {
+        self.modifyResourcePools(ModifyResourcePoolsRequest(instanceId: instanceId, key: key), logger: logger, on: eventLoop)
+    }
+    
+    /// 刷新YARN的动态资源池
+    @inlinable
+    public func modifyResourcePools(instanceId: String, key: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourcePoolsResponse {
+        try await self.modifyResourcePools(ModifyResourcePoolsRequest(instanceId: instanceId, key: key), logger: logger, on: eventLoop)
+    }
 }

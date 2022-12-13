@@ -59,4 +59,16 @@ extension Cpdp {
     public func queryOutwardOrder(_ input: QueryOutwardOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOutwardOrderResponse {
         try await self.client.execute(action: "QueryOutwardOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 跨境-查询汇出结果
+    @inlinable
+    public func queryOutwardOrder(transactionId: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOutwardOrderResponse > {
+        self.queryOutwardOrder(QueryOutwardOrderRequest(transactionId: transactionId, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 跨境-查询汇出结果
+    @inlinable
+    public func queryOutwardOrder(transactionId: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOutwardOrderResponse {
+        try await self.queryOutwardOrder(QueryOutwardOrderRequest(transactionId: transactionId, profile: profile), logger: logger, on: eventLoop)
+    }
 }

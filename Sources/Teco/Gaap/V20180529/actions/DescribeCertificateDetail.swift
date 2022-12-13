@@ -58,4 +58,20 @@ extension Gaap {
     public func describeCertificateDetail(_ input: DescribeCertificateDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateDetailResponse {
         try await self.client.execute(action: "DescribeCertificateDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询证书详情
+    ///
+    /// 本接口（DescribeCertificateDetail）用于查询证书详情，包括证书ID，证书名字，证书类型，证书内容以及密钥等信息。
+    @inlinable
+    public func describeCertificateDetail(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertificateDetailResponse > {
+        self.describeCertificateDetail(DescribeCertificateDetailRequest(certificateId: certificateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询证书详情
+    ///
+    /// 本接口（DescribeCertificateDetail）用于查询证书详情，包括证书ID，证书名字，证书类型，证书内容以及密钥等信息。
+    @inlinable
+    public func describeCertificateDetail(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateDetailResponse {
+        try await self.describeCertificateDetail(DescribeCertificateDetailRequest(certificateId: certificateId), logger: logger, on: eventLoop)
+    }
 }

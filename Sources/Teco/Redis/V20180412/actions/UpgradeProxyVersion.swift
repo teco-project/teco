@@ -73,4 +73,20 @@ extension Redis {
     public func upgradeProxyVersion(_ input: UpgradeProxyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeProxyVersionResponse {
         try await self.client.execute(action: "UpgradeProxyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 实例proxy版本升级接口
+    ///
+    /// 实例proxy版本升级
+    @inlinable
+    public func upgradeProxyVersion(instanceId: String, currentProxyVersion: String, upgradeProxyVersion: String, instanceTypeUpgradeNow: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeProxyVersionResponse > {
+        self.upgradeProxyVersion(UpgradeProxyVersionRequest(instanceId: instanceId, currentProxyVersion: currentProxyVersion, upgradeProxyVersion: upgradeProxyVersion, instanceTypeUpgradeNow: instanceTypeUpgradeNow), logger: logger, on: eventLoop)
+    }
+    
+    /// 实例proxy版本升级接口
+    ///
+    /// 实例proxy版本升级
+    @inlinable
+    public func upgradeProxyVersion(instanceId: String, currentProxyVersion: String, upgradeProxyVersion: String, instanceTypeUpgradeNow: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeProxyVersionResponse {
+        try await self.upgradeProxyVersion(UpgradeProxyVersionRequest(instanceId: instanceId, currentProxyVersion: currentProxyVersion, upgradeProxyVersion: upgradeProxyVersion, instanceTypeUpgradeNow: instanceTypeUpgradeNow), logger: logger, on: eventLoop)
+    }
 }

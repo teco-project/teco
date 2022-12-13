@@ -95,4 +95,16 @@ extension Cfw {
     public func describeAssociatedInstanceList(_ input: DescribeAssociatedInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssociatedInstanceListResponse {
         try await self.client.execute(action: "DescribeAssociatedInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取安全组关联实例列表
+    @inlinable
+    public func describeAssociatedInstanceList(offset: UInt64, limit: UInt64, area: String, searchValue: String? = nil, by: String? = nil, order: String? = nil, securityGroupId: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssociatedInstanceListResponse > {
+        self.describeAssociatedInstanceList(DescribeAssociatedInstanceListRequest(offset: offset, limit: limit, area: area, searchValue: searchValue, by: by, order: order, securityGroupId: securityGroupId, type: type), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取安全组关联实例列表
+    @inlinable
+    public func describeAssociatedInstanceList(offset: UInt64, limit: UInt64, area: String, searchValue: String? = nil, by: String? = nil, order: String? = nil, securityGroupId: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssociatedInstanceListResponse {
+        try await self.describeAssociatedInstanceList(DescribeAssociatedInstanceListRequest(offset: offset, limit: limit, area: area, searchValue: searchValue, by: by, order: order, securityGroupId: securityGroupId, type: type), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,16 @@ extension Tcb {
     public func describePostpayPackageFreeQuotas(_ input: DescribePostpayPackageFreeQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePostpayPackageFreeQuotasResponse {
         try await self.client.execute(action: "DescribePostpayPackageFreeQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取后付费免费额度
+    @inlinable
+    public func describePostpayPackageFreeQuotas(envId: String? = nil, freeQuotaType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePostpayPackageFreeQuotasResponse > {
+        self.describePostpayPackageFreeQuotas(DescribePostpayPackageFreeQuotasRequest(envId: envId, freeQuotaType: freeQuotaType), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取后付费免费额度
+    @inlinable
+    public func describePostpayPackageFreeQuotas(envId: String? = nil, freeQuotaType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePostpayPackageFreeQuotasResponse {
+        try await self.describePostpayPackageFreeQuotas(DescribePostpayPackageFreeQuotasRequest(envId: envId, freeQuotaType: freeQuotaType), logger: logger, on: eventLoop)
+    }
 }

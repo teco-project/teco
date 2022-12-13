@@ -72,4 +72,20 @@ extension Cdb {
     public func describeDBSwitchRecords(_ input: DescribeDBSwitchRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSwitchRecordsResponse {
         try await self.client.execute(action: "DescribeDBSwitchRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询云数据库切换记录
+    ///
+    /// 本接口(DescribeDBSwitchRecords)用于查询云数据库实例切换记录。
+    @inlinable
+    public func describeDBSwitchRecords(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBSwitchRecordsResponse > {
+        self.describeDBSwitchRecords(DescribeDBSwitchRecordsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云数据库切换记录
+    ///
+    /// 本接口(DescribeDBSwitchRecords)用于查询云数据库实例切换记录。
+    @inlinable
+    public func describeDBSwitchRecords(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSwitchRecordsResponse {
+        try await self.describeDBSwitchRecords(DescribeDBSwitchRecordsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

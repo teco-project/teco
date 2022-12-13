@@ -63,4 +63,16 @@ extension Tke {
     public func describeClusterRoutes(_ input: DescribeClusterRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRoutesResponse {
         try await self.client.execute(action: "DescribeClusterRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询集群路由
+    @inlinable
+    public func describeClusterRoutes(routeTableName: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterRoutesResponse > {
+        self.describeClusterRoutes(DescribeClusterRoutesRequest(routeTableName: routeTableName, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群路由
+    @inlinable
+    public func describeClusterRoutes(routeTableName: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRoutesResponse {
+        try await self.describeClusterRoutes(DescribeClusterRoutesRequest(routeTableName: routeTableName, filters: filters), logger: logger, on: eventLoop)
+    }
 }

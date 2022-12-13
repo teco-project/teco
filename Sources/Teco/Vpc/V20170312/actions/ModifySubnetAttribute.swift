@@ -64,4 +64,20 @@ extension Vpc {
     public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetAttributeResponse {
         try await self.client.execute(action: "ModifySubnetAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改子网属性
+    ///
+    /// 本接口（ModifySubnetAttribute）用于修改子网属性。
+    @inlinable
+    public func modifySubnetAttribute(subnetId: String, subnetName: String? = nil, enableBroadcast: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubnetAttributeResponse > {
+        self.modifySubnetAttribute(ModifySubnetAttributeRequest(subnetId: subnetId, subnetName: subnetName, enableBroadcast: enableBroadcast), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改子网属性
+    ///
+    /// 本接口（ModifySubnetAttribute）用于修改子网属性。
+    @inlinable
+    public func modifySubnetAttribute(subnetId: String, subnetName: String? = nil, enableBroadcast: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetAttributeResponse {
+        try await self.modifySubnetAttribute(ModifySubnetAttributeRequest(subnetId: subnetId, subnetName: subnetName, enableBroadcast: enableBroadcast), logger: logger, on: eventLoop)
+    }
 }

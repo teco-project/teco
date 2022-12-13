@@ -54,4 +54,20 @@ extension Lighthouse {
     public func describeFirewallRulesTemplate(_ input: DescribeFirewallRulesTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirewallRulesTemplateResponse {
         try await self.client.execute(action: "DescribeFirewallRulesTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询防火墙规则模板
+    ///
+    /// 本接口（DescribeFirewallRulesTemplate）用于查询防火墙规则模板。
+    @inlinable
+    public func describeFirewallRulesTemplate(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirewallRulesTemplateResponse > {
+        self.describeFirewallRulesTemplate(DescribeFirewallRulesTemplateRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询防火墙规则模板
+    ///
+    /// 本接口（DescribeFirewallRulesTemplate）用于查询防火墙规则模板。
+    @inlinable
+    public func describeFirewallRulesTemplate(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirewallRulesTemplateResponse {
+        try await self.describeFirewallRulesTemplate(DescribeFirewallRulesTemplateRequest(), logger: logger, on: eventLoop)
+    }
 }

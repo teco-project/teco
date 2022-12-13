@@ -60,4 +60,16 @@ extension Pts {
     public func updateFileScenarioRelation(_ input: UpdateFileScenarioRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFileScenarioRelationResponse {
         try await self.client.execute(action: "UpdateFileScenarioRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新关联文件场景
+    @inlinable
+    public func updateFileScenarioRelation(fileId: String, projectId: String, scenarioIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateFileScenarioRelationResponse > {
+        self.updateFileScenarioRelation(UpdateFileScenarioRelationRequest(fileId: fileId, projectId: projectId, scenarioIds: scenarioIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新关联文件场景
+    @inlinable
+    public func updateFileScenarioRelation(fileId: String, projectId: String, scenarioIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFileScenarioRelationResponse {
+        try await self.updateFileScenarioRelation(UpdateFileScenarioRelationRequest(fileId: fileId, projectId: projectId, scenarioIds: scenarioIds), logger: logger, on: eventLoop)
+    }
 }

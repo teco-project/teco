@@ -73,4 +73,20 @@ extension Ecm {
     public func createHaVip(_ input: CreateHaVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHaVipResponse {
         try await self.client.execute(action: "CreateHaVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建HAVIP
+    ///
+    /// 本接口（CreateHaVip）用于创建高可用虚拟IP（HAVIP）
+    @inlinable
+    public func createHaVip(vpcId: String, subnetId: String, haVipName: String, vip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHaVipResponse > {
+        self.createHaVip(CreateHaVipRequest(vpcId: vpcId, subnetId: subnetId, haVipName: haVipName, vip: vip), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建HAVIP
+    ///
+    /// 本接口（CreateHaVip）用于创建高可用虚拟IP（HAVIP）
+    @inlinable
+    public func createHaVip(vpcId: String, subnetId: String, haVipName: String, vip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHaVipResponse {
+        try await self.createHaVip(CreateHaVipRequest(vpcId: vpcId, subnetId: subnetId, haVipName: haVipName, vip: vip), logger: logger, on: eventLoop)
+    }
 }

@@ -83,4 +83,16 @@ extension Cloudaudit {
     public func describeAuditTrack(_ input: DescribeAuditTrackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditTrackResponse {
         try await self.client.execute(action: "DescribeAuditTrack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询云审计跟踪集详情
+    @inlinable
+    public func describeAuditTrack(trackId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditTrackResponse > {
+        self.describeAuditTrack(DescribeAuditTrackRequest(trackId: trackId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云审计跟踪集详情
+    @inlinable
+    public func describeAuditTrack(trackId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditTrackResponse {
+        try await self.describeAuditTrack(DescribeAuditTrackRequest(trackId: trackId), logger: logger, on: eventLoop)
+    }
 }

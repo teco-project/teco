@@ -117,4 +117,22 @@ extension Clb {
     public func modifyListener(_ input: ModifyListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyListenerResponse {
         try await self.client.execute(action: "ModifyListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改负载均衡监听器属性
+    ///
+    /// ModifyListener接口用来修改负载均衡监听器的属性，包括监听器名称、健康检查参数、证书信息、转发策略等。本接口不支持传统型负载均衡。
+    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func modifyListener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpireTime: Int64? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, keepaliveEnable: Int64? = nil, deregisterTargetRst: Bool? = nil, sessionType: String? = nil, multiCertInfo: MultiCertInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyListenerResponse > {
+        self.modifyListener(ModifyListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sessionExpireTime: sessionExpireTime, healthCheck: healthCheck, certificate: certificate, scheduler: scheduler, sniSwitch: sniSwitch, targetType: targetType, keepaliveEnable: keepaliveEnable, deregisterTargetRst: deregisterTargetRst, sessionType: sessionType, multiCertInfo: multiCertInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改负载均衡监听器属性
+    ///
+    /// ModifyListener接口用来修改负载均衡监听器的属性，包括监听器名称、健康检查参数、证书信息、转发策略等。本接口不支持传统型负载均衡。
+    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func modifyListener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpireTime: Int64? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, keepaliveEnable: Int64? = nil, deregisterTargetRst: Bool? = nil, sessionType: String? = nil, multiCertInfo: MultiCertInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyListenerResponse {
+        try await self.modifyListener(ModifyListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sessionExpireTime: sessionExpireTime, healthCheck: healthCheck, certificate: certificate, scheduler: scheduler, sniSwitch: sniSwitch, targetType: targetType, keepaliveEnable: keepaliveEnable, deregisterTargetRst: deregisterTargetRst, sessionType: sessionType, multiCertInfo: multiCertInfo), logger: logger, on: eventLoop)
+    }
 }

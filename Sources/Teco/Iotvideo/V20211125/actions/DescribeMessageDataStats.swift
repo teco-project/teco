@@ -70,4 +70,16 @@ extension Iotvideo {
     public func describeMessageDataStats(_ input: DescribeMessageDataStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageDataStatsResponse {
         try await self.client.execute(action: "DescribeMessageDataStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询设备消息数量统计
+    @inlinable
+    public func describeMessageDataStats(startDate: String, endDate: String, productId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMessageDataStatsResponse > {
+        self.describeMessageDataStats(DescribeMessageDataStatsRequest(startDate: startDate, endDate: endDate, productId: productId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备消息数量统计
+    @inlinable
+    public func describeMessageDataStats(startDate: String, endDate: String, productId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageDataStatsResponse {
+        try await self.describeMessageDataStats(DescribeMessageDataStatsRequest(startDate: startDate, endDate: endDate, productId: productId), logger: logger, on: eventLoop)
+    }
 }

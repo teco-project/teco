@@ -54,4 +54,16 @@ extension Apigateway {
     public func deleteAPIDoc(_ input: DeleteAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAPIDocResponse {
         try await self.client.execute(action: "DeleteAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除 API 文档
+    @inlinable
+    public func deleteAPIDoc(apiDocId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAPIDocResponse > {
+        self.deleteAPIDoc(DeleteAPIDocRequest(apiDocId: apiDocId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除 API 文档
+    @inlinable
+    public func deleteAPIDoc(apiDocId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAPIDocResponse {
+        try await self.deleteAPIDoc(DeleteAPIDocRequest(apiDocId: apiDocId), logger: logger, on: eventLoop)
+    }
 }

@@ -46,4 +46,16 @@ extension Tci {
     public func describeVocabLib(_ input: DescribeVocabLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVocabLibResponse {
         try await self.client.execute(action: "DescribeVocabLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询词汇库
+    @inlinable
+    public func describeVocabLib(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVocabLibResponse > {
+        self.describeVocabLib(DescribeVocabLibRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询词汇库
+    @inlinable
+    public func describeVocabLib(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVocabLibResponse {
+        try await self.describeVocabLib(DescribeVocabLibRequest(), logger: logger, on: eventLoop)
+    }
 }

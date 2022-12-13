@@ -107,4 +107,20 @@ extension Teo {
     public func describeDDoSMajorAttackEvent(_ input: DescribeDDoSMajorAttackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSMajorAttackEventResponse {
         try await self.client.execute(action: "DescribeDDoSMajorAttackEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询DDoS主攻击事件列表
+    ///
+    /// 本接口（DescribeDDoSMajorAttackEvent）用于查询DDoS主攻击事件列表。
+    @inlinable
+    public func describeDDoSMajorAttackEvent(startTime: Date, endTime: Date, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, protocolType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSMajorAttackEventResponse > {
+        self.describeDDoSMajorAttackEvent(DescribeDDoSMajorAttackEventRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, policyIds: policyIds, protocolType: protocolType, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询DDoS主攻击事件列表
+    ///
+    /// 本接口（DescribeDDoSMajorAttackEvent）用于查询DDoS主攻击事件列表。
+    @inlinable
+    public func describeDDoSMajorAttackEvent(startTime: Date, endTime: Date, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, protocolType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSMajorAttackEventResponse {
+        try await self.describeDDoSMajorAttackEvent(DescribeDDoSMajorAttackEventRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, policyIds: policyIds, protocolType: protocolType, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    }
 }

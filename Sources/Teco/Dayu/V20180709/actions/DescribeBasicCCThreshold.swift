@@ -83,4 +83,16 @@ extension Dayu {
     public func describeBasicCCThreshold(_ input: DescribeBasicCCThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicCCThresholdResponse {
         try await self.client.execute(action: "DescribeBasicCCThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取基础防护CC防护阈值
+    @inlinable
+    public func describeBasicCCThreshold(basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicCCThresholdResponse > {
+        self.describeBasicCCThreshold(DescribeBasicCCThresholdRequest(basicIp: basicIp, basicRegion: basicRegion, basicBizType: basicBizType, basicDeviceType: basicDeviceType, basicIpInstance: basicIpInstance, basicIspCode: basicIspCode), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取基础防护CC防护阈值
+    @inlinable
+    public func describeBasicCCThreshold(basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicCCThresholdResponse {
+        try await self.describeBasicCCThreshold(DescribeBasicCCThresholdRequest(basicIp: basicIp, basicRegion: basicRegion, basicBizType: basicBizType, basicDeviceType: basicDeviceType, basicIpInstance: basicIpInstance, basicIspCode: basicIspCode), logger: logger, on: eventLoop)
+    }
 }

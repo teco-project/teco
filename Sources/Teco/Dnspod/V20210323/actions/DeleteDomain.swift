@@ -55,4 +55,16 @@ extension Dnspod {
     public func deleteDomain(_ input: DeleteDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainResponse {
         try await self.client.execute(action: "DeleteDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除域名
+    @inlinable
+    public func deleteDomain(domain: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDomainResponse > {
+        self.deleteDomain(DeleteDomainRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除域名
+    @inlinable
+    public func deleteDomain(domain: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainResponse {
+        try await self.deleteDomain(DeleteDomainRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Es {
     public func startLogstashPipelines(_ input: StartLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartLogstashPipelinesResponse {
         try await self.client.execute(action: "StartLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启动Logstash管道
+    ///
+    /// 用于启动Logstash管道
+    @inlinable
+    public func startLogstashPipelines(instanceId: String, pipelineIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartLogstashPipelinesResponse > {
+        self.startLogstashPipelines(StartLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 启动Logstash管道
+    ///
+    /// 用于启动Logstash管道
+    @inlinable
+    public func startLogstashPipelines(instanceId: String, pipelineIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartLogstashPipelinesResponse {
+        try await self.startLogstashPipelines(StartLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), logger: logger, on: eventLoop)
+    }
 }

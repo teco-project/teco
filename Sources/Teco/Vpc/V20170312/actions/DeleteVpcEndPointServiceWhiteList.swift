@@ -59,4 +59,20 @@ extension Vpc {
     public func deleteVpcEndPointServiceWhiteList(_ input: DeleteVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcEndPointServiceWhiteListResponse {
         try await self.client.execute(action: "DeleteVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除终端节点服务白名单
+    ///
+    /// 删除终端节点服务白名单。
+    @inlinable
+    public func deleteVpcEndPointServiceWhiteList(userUin: [String], endPointServiceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpcEndPointServiceWhiteListResponse > {
+        self.deleteVpcEndPointServiceWhiteList(DeleteVpcEndPointServiceWhiteListRequest(userUin: userUin, endPointServiceId: endPointServiceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除终端节点服务白名单
+    ///
+    /// 删除终端节点服务白名单。
+    @inlinable
+    public func deleteVpcEndPointServiceWhiteList(userUin: [String], endPointServiceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcEndPointServiceWhiteListResponse {
+        try await self.deleteVpcEndPointServiceWhiteList(DeleteVpcEndPointServiceWhiteListRequest(userUin: userUin, endPointServiceId: endPointServiceId), logger: logger, on: eventLoop)
+    }
 }

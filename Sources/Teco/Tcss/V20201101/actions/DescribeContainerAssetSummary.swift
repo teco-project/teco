@@ -90,4 +90,20 @@ extension Tcss {
     public func describeContainerAssetSummary(_ input: DescribeContainerAssetSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerAssetSummaryResponse {
         try await self.client.execute(action: "DescribeContainerAssetSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询容器安全资产概览
+    ///
+    /// 查询容器资产概览信息
+    @inlinable
+    public func describeContainerAssetSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerAssetSummaryResponse > {
+        self.describeContainerAssetSummary(DescribeContainerAssetSummaryRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器安全资产概览
+    ///
+    /// 查询容器资产概览信息
+    @inlinable
+    public func describeContainerAssetSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerAssetSummaryResponse {
+        try await self.describeContainerAssetSummary(DescribeContainerAssetSummaryRequest(), logger: logger, on: eventLoop)
+    }
 }

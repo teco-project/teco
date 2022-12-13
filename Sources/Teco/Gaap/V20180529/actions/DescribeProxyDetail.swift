@@ -58,4 +58,20 @@ extension Gaap {
     public func describeProxyDetail(_ input: DescribeProxyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyDetailResponse {
         try await self.client.execute(action: "DescribeProxyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询通道详情
+    ///
+    /// 本接口（DescribeProxyDetail）用于查询通道详情。
+    @inlinable
+    public func describeProxyDetail(proxyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyDetailResponse > {
+        self.describeProxyDetail(DescribeProxyDetailRequest(proxyId: proxyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询通道详情
+    ///
+    /// 本接口（DescribeProxyDetail）用于查询通道详情。
+    @inlinable
+    public func describeProxyDetail(proxyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyDetailResponse {
+        try await self.describeProxyDetail(DescribeProxyDetailRequest(proxyId: proxyId), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,20 @@ extension Btoe {
     public func createHashDepositNoCert(_ input: CreateHashDepositNoCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositNoCertResponse {
         try await self.client.execute(action: "CreateHashDepositNoCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 哈希上链存证(无证书)
+    ///
+    /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，本接口不生成区块链存证电子凭证。
+    @inlinable
+    public func createHashDepositNoCert(evidenceHash: String, businessId: String? = nil, evidenceInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHashDepositNoCertResponse > {
+        self.createHashDepositNoCert(CreateHashDepositNoCertRequest(evidenceHash: evidenceHash, businessId: businessId, evidenceInfo: evidenceInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 哈希上链存证(无证书)
+    ///
+    /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，本接口不生成区块链存证电子凭证。
+    @inlinable
+    public func createHashDepositNoCert(evidenceHash: String, businessId: String? = nil, evidenceInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositNoCertResponse {
+        try await self.createHashDepositNoCert(CreateHashDepositNoCertRequest(evidenceHash: evidenceHash, businessId: businessId, evidenceInfo: evidenceInfo), logger: logger, on: eventLoop)
+    }
 }

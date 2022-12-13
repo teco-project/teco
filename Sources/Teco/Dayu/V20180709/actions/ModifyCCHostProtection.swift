@@ -69,4 +69,16 @@ extension Dayu {
     public func modifyCCHostProtection(_ input: ModifyCCHostProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCHostProtectionResponse {
         try await self.client.execute(action: "ModifyCCHostProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开启或关闭CC域名防护
+    @inlinable
+    public func modifyCCHostProtection(business: String, id: String, ruleId: String, method: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCHostProtectionResponse > {
+        self.modifyCCHostProtection(ModifyCCHostProtectionRequest(business: business, id: id, ruleId: ruleId, method: method), logger: logger, on: eventLoop)
+    }
+    
+    /// 开启或关闭CC域名防护
+    @inlinable
+    public func modifyCCHostProtection(business: String, id: String, ruleId: String, method: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCHostProtectionResponse {
+        try await self.modifyCCHostProtection(ModifyCCHostProtectionRequest(business: business, id: id, ruleId: ruleId, method: method), logger: logger, on: eventLoop)
+    }
 }

@@ -73,4 +73,20 @@ extension Bmlb {
     public func bindL4Backends(_ input: BindL4BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindL4BackendsResponse {
         try await self.client.execute(action: "BindL4Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 绑定黑石服务器到四层监听器
+    ///
+    /// 绑定黑石服务器到四层监听器。服务器包括物理服务器、虚拟机以及半托管机器。
+    @inlinable
+    public func bindL4Backends(loadBalancerId: String, listenerId: String, backendSet: [BindL4Backend], bindType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindL4BackendsResponse > {
+        self.bindL4Backends(BindL4BackendsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, backendSet: backendSet, bindType: bindType), logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定黑石服务器到四层监听器
+    ///
+    /// 绑定黑石服务器到四层监听器。服务器包括物理服务器、虚拟机以及半托管机器。
+    @inlinable
+    public func bindL4Backends(loadBalancerId: String, listenerId: String, backendSet: [BindL4Backend], bindType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindL4BackendsResponse {
+        try await self.bindL4Backends(BindL4BackendsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, backendSet: backendSet, bindType: bindType), logger: logger, on: eventLoop)
+    }
 }

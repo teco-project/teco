@@ -69,4 +69,20 @@ extension Tcbr {
     public func describeCloudRunEnvs(_ input: DescribeCloudRunEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRunEnvsResponse {
         try await self.client.execute(action: "DescribeCloudRunEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询环境列表
+    ///
+    /// 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
+    @inlinable
+    public func describeCloudRunEnvs(envId: String? = nil, isVisible: Bool? = nil, channels: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudRunEnvsResponse > {
+        self.describeCloudRunEnvs(DescribeCloudRunEnvsRequest(envId: envId, isVisible: isVisible, channels: channels), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询环境列表
+    ///
+    /// 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
+    @inlinable
+    public func describeCloudRunEnvs(envId: String? = nil, isVisible: Bool? = nil, channels: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRunEnvsResponse {
+        try await self.describeCloudRunEnvs(DescribeCloudRunEnvsRequest(envId: envId, isVisible: isVisible, channels: channels), logger: logger, on: eventLoop)
+    }
 }

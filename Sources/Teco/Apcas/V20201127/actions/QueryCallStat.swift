@@ -68,4 +68,20 @@ extension Apcas {
     public func queryCallStat(_ input: QueryCallStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallStatResponse {
         try await self.client.execute(action: "QueryCallStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取调用量统计
+    ///
+    /// 按时间维度获取调用量统计
+    @inlinable
+    public func queryCallStat(type: UInt64, startTime: UInt64, endTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCallStatResponse > {
+        self.queryCallStat(QueryCallStatRequest(type: type, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取调用量统计
+    ///
+    /// 按时间维度获取调用量统计
+    @inlinable
+    public func queryCallStat(type: UInt64, startTime: UInt64, endTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallStatResponse {
+        try await self.queryCallStat(QueryCallStatRequest(type: type, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

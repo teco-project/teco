@@ -81,4 +81,20 @@ extension Cr {
     public func uploadFile(_ input: UploadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
         try await self.client.execute(action: "UploadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 上传数据文件
+    ///
+    /// 客户通过调用该接口上传需催收文档，格式需为excel格式。接口返回任务ID。
+    @inlinable
+    public func uploadFile(module: String = "Data", operation: String = "UploadFile", fileUrl: String, fileName: String, fileDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadFileResponse > {
+        self.uploadFile(UploadFileRequest(module: module, operation: operation, fileUrl: fileUrl, fileName: fileName, fileDate: fileDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 上传数据文件
+    ///
+    /// 客户通过调用该接口上传需催收文档，格式需为excel格式。接口返回任务ID。
+    @inlinable
+    public func uploadFile(module: String = "Data", operation: String = "UploadFile", fileUrl: String, fileName: String, fileDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
+        try await self.uploadFile(UploadFileRequest(module: module, operation: operation, fileUrl: fileUrl, fileName: fileName, fileDate: fileDate), logger: logger, on: eventLoop)
+    }
 }

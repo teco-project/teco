@@ -90,4 +90,16 @@ extension Tdid {
     public func getDidDetail(_ input: GetDidDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDetailResponse {
         try await self.client.execute(action: "GetDidDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// DID详情
+    @inlinable
+    public func getDidDetail(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidDetailResponse > {
+        self.getDidDetail(GetDidDetailRequest(did: did), logger: logger, on: eventLoop)
+    }
+    
+    /// DID详情
+    @inlinable
+    public func getDidDetail(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDetailResponse {
+        try await self.getDidDetail(GetDidDetailRequest(did: did), logger: logger, on: eventLoop)
+    }
 }

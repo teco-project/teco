@@ -72,4 +72,20 @@ extension Tms {
     public func describeTextStat(_ input: DescribeTextStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextStatResponse {
         try await self.client.execute(action: "DescribeTextStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 识别统计
+    ///
+    /// 控制台识别统计
+    @inlinable
+    public func describeTextStat(auditType: Int64, filters: [Filters], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTextStatResponse > {
+        self.describeTextStat(DescribeTextStatRequest(auditType: auditType, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 识别统计
+    ///
+    /// 控制台识别统计
+    @inlinable
+    public func describeTextStat(auditType: Int64, filters: [Filters], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextStatResponse {
+        try await self.describeTextStat(DescribeTextStatRequest(auditType: auditType, filters: filters), logger: logger, on: eventLoop)
+    }
 }

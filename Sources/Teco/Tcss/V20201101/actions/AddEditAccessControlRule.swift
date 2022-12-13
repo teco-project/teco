@@ -59,4 +59,20 @@ extension Tcss {
     public func addEditAccessControlRule(_ input: AddEditAccessControlRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditAccessControlRuleResponse {
         try await self.client.execute(action: "AddEditAccessControlRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加编辑运行访问控制策略
+    ///
+    /// 添加编辑运行时访问控制策略
+    @inlinable
+    public func addEditAccessControlRule(ruleInfo: AccessControlRuleInfo, eventId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddEditAccessControlRuleResponse > {
+        self.addEditAccessControlRule(AddEditAccessControlRuleRequest(ruleInfo: ruleInfo, eventId: eventId), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加编辑运行访问控制策略
+    ///
+    /// 添加编辑运行时访问控制策略
+    @inlinable
+    public func addEditAccessControlRule(ruleInfo: AccessControlRuleInfo, eventId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditAccessControlRuleResponse {
+        try await self.addEditAccessControlRule(AddEditAccessControlRuleRequest(ruleInfo: ruleInfo, eventId: eventId), logger: logger, on: eventLoop)
+    }
 }

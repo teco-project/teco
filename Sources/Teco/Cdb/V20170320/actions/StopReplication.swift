@@ -59,4 +59,20 @@ extension Cdb {
     public func stopReplication(_ input: StopReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopReplicationResponse {
         try await self.client.execute(action: "StopReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停止复制
+    ///
+    /// 停止 RO 复制，中断从主实例同步数据。
+    @inlinable
+    public func stopReplication(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopReplicationResponse > {
+        self.stopReplication(StopReplicationRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 停止复制
+    ///
+    /// 停止 RO 复制，中断从主实例同步数据。
+    @inlinable
+    public func stopReplication(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopReplicationResponse {
+        try await self.stopReplication(StopReplicationRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

@@ -84,4 +84,16 @@ extension Tdid {
     public func createDidService(_ input: CreateDidServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDidServiceResponse {
         try await self.client.execute(action: "CreateDidService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建DID服务
+    @inlinable
+    public func createDidService(consortiumName: String, consortiumId: Int64, groupId: Int64, agencyName: String, appName: String, clusterId: String, groupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDidServiceResponse > {
+        self.createDidService(CreateDidServiceRequest(consortiumName: consortiumName, consortiumId: consortiumId, groupId: groupId, agencyName: agencyName, appName: appName, clusterId: clusterId, groupName: groupName), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建DID服务
+    @inlinable
+    public func createDidService(consortiumName: String, consortiumId: Int64, groupId: Int64, agencyName: String, appName: String, clusterId: String, groupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDidServiceResponse {
+        try await self.createDidService(CreateDidServiceRequest(consortiumName: consortiumName, consortiumId: consortiumId, groupId: groupId, agencyName: agencyName, appName: appName, clusterId: clusterId, groupName: groupName), logger: logger, on: eventLoop)
+    }
 }

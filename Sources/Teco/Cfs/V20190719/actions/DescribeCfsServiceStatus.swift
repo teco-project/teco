@@ -50,4 +50,20 @@ extension Cfs {
     public func describeCfsServiceStatus(_ input: DescribeCfsServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsServiceStatusResponse {
         try await self.client.execute(action: "DescribeCfsServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询CFS服务状态
+    ///
+    /// 本接口（DescribeCfsServiceStatus）用于查询用户使用CFS的服务状态。
+    @inlinable
+    public func describeCfsServiceStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfsServiceStatusResponse > {
+        self.describeCfsServiceStatus(DescribeCfsServiceStatusRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询CFS服务状态
+    ///
+    /// 本接口（DescribeCfsServiceStatus）用于查询用户使用CFS的服务状态。
+    @inlinable
+    public func describeCfsServiceStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsServiceStatusResponse {
+        try await self.describeCfsServiceStatus(DescribeCfsServiceStatusRequest(), logger: logger, on: eventLoop)
+    }
 }

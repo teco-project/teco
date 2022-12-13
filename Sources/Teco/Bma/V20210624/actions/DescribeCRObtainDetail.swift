@@ -114,4 +114,16 @@ extension Bma {
     public func describeCRObtainDetail(_ input: DescribeCRObtainDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRObtainDetailResponse {
         try await self.client.execute(action: "DescribeCRObtainDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询取证详情
+    @inlinable
+    public func describeCRObtainDetail(tortId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCRObtainDetailResponse > {
+        self.describeCRObtainDetail(DescribeCRObtainDetailRequest(tortId: tortId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询取证详情
+    @inlinable
+    public func describeCRObtainDetail(tortId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRObtainDetailResponse {
+        try await self.describeCRObtainDetail(DescribeCRObtainDetailRequest(tortId: tortId), logger: logger, on: eventLoop)
+    }
 }

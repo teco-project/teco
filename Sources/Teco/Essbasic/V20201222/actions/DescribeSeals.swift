@@ -68,4 +68,20 @@ extension Essbasic {
     public func describeSeals(_ input: DescribeSealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSealsResponse {
         try await self.client.execute(action: "DescribeSeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询电子印章
+    ///
+    /// 此接口（DescribeSeals）用于查询指定ID的印章信息。
+    @inlinable
+    public func describeSeals(caller: Caller, sealIds: [String], userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSealsResponse > {
+        self.describeSeals(DescribeSealsRequest(caller: caller, sealIds: sealIds, userId: userId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询电子印章
+    ///
+    /// 此接口（DescribeSeals）用于查询指定ID的印章信息。
+    @inlinable
+    public func describeSeals(caller: Caller, sealIds: [String], userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSealsResponse {
+        try await self.describeSeals(DescribeSealsRequest(caller: caller, sealIds: sealIds, userId: userId), logger: logger, on: eventLoop)
+    }
 }

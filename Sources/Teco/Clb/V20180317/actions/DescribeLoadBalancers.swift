@@ -163,4 +163,20 @@ extension Clb {
     public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersResponse {
         try await self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询负载均衡实例列表
+    ///
+    /// 查询一个地域的负载均衡实例列表。
+    @inlinable
+    public func describeLoadBalancers(loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, forward: Int64? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, backendPublicIps: [String]? = nil, backendPrivateIps: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderType: Int64? = nil, searchKey: String? = nil, projectId: Int64? = nil, withRs: Int64? = nil, vpcId: String? = nil, securityGroup: String? = nil, masterZone: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancersResponse > {
+        self.describeLoadBalancers(DescribeLoadBalancersRequest(loadBalancerIds: loadBalancerIds, loadBalancerType: loadBalancerType, forward: forward, loadBalancerName: loadBalancerName, domain: domain, loadBalancerVips: loadBalancerVips, backendPublicIps: backendPublicIps, backendPrivateIps: backendPrivateIps, offset: offset, limit: limit, orderBy: orderBy, orderType: orderType, searchKey: searchKey, projectId: projectId, withRs: withRs, vpcId: vpcId, securityGroup: securityGroup, masterZone: masterZone, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询负载均衡实例列表
+    ///
+    /// 查询一个地域的负载均衡实例列表。
+    @inlinable
+    public func describeLoadBalancers(loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, forward: Int64? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, backendPublicIps: [String]? = nil, backendPrivateIps: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderType: Int64? = nil, searchKey: String? = nil, projectId: Int64? = nil, withRs: Int64? = nil, vpcId: String? = nil, securityGroup: String? = nil, masterZone: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersResponse {
+        try await self.describeLoadBalancers(DescribeLoadBalancersRequest(loadBalancerIds: loadBalancerIds, loadBalancerType: loadBalancerType, forward: forward, loadBalancerName: loadBalancerName, domain: domain, loadBalancerVips: loadBalancerVips, backendPublicIps: backendPublicIps, backendPrivateIps: backendPrivateIps, offset: offset, limit: limit, orderBy: orderBy, orderType: orderType, searchKey: searchKey, projectId: projectId, withRs: withRs, vpcId: vpcId, securityGroup: securityGroup, masterZone: masterZone, filters: filters), logger: logger, on: eventLoop)
+    }
 }

@@ -75,4 +75,16 @@ extension Cvm {
     public func modifyChcAttribute(_ input: ModifyChcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyChcAttributeResponse {
         try await self.client.execute(action: "ModifyChcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改CHC物理服务器的属性
+    @inlinable
+    public func modifyChcAttribute(chcIds: [String], instanceName: String? = nil, deviceType: String? = nil, bmcUser: String? = nil, password: String? = nil, bmcSecurityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyChcAttributeResponse > {
+        self.modifyChcAttribute(ModifyChcAttributeRequest(chcIds: chcIds, instanceName: instanceName, deviceType: deviceType, bmcUser: bmcUser, password: password, bmcSecurityGroupIds: bmcSecurityGroupIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CHC物理服务器的属性
+    @inlinable
+    public func modifyChcAttribute(chcIds: [String], instanceName: String? = nil, deviceType: String? = nil, bmcUser: String? = nil, password: String? = nil, bmcSecurityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyChcAttributeResponse {
+        try await self.modifyChcAttribute(ModifyChcAttributeRequest(chcIds: chcIds, instanceName: instanceName, deviceType: deviceType, bmcUser: bmcUser, password: password, bmcSecurityGroupIds: bmcSecurityGroupIds), logger: logger, on: eventLoop)
+    }
 }

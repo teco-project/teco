@@ -73,4 +73,20 @@ extension Tic {
     public func createStackVersion(_ input: CreateStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStackVersionResponse {
         try await self.client.execute(action: "CreateStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 给资源栈新增一个版本
+    ///
+    /// 本接口（CreateStackVersion）用于给资源栈新增一个HCL模版版本，仅限COS链接，且为zip格式。
+    @inlinable
+    public func createStackVersion(stackId: String, templateUrl: String, versionName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStackVersionResponse > {
+        self.createStackVersion(CreateStackVersionRequest(stackId: stackId, templateUrl: templateUrl, versionName: versionName, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 给资源栈新增一个版本
+    ///
+    /// 本接口（CreateStackVersion）用于给资源栈新增一个HCL模版版本，仅限COS链接，且为zip格式。
+    @inlinable
+    public func createStackVersion(stackId: String, templateUrl: String, versionName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStackVersionResponse {
+        try await self.createStackVersion(CreateStackVersionRequest(stackId: stackId, templateUrl: templateUrl, versionName: versionName, description: description), logger: logger, on: eventLoop)
+    }
 }

@@ -122,4 +122,16 @@ extension Cdn {
     public func describeWafData(_ input: DescribeWafDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafDataResponse {
         try await self.client.execute(action: "DescribeWafData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// Waf统计数据查询
+    @inlinable
+    public func describeWafData(startTime: String, endTime: String, interval: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, area: String? = nil, attackTypes: [String]? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWafDataResponse > {
+        self.describeWafData(DescribeWafDataRequest(startTime: startTime, endTime: endTime, interval: interval, domain: domain, attackType: attackType, defenceMode: defenceMode, area: area, attackTypes: attackTypes, domains: domains), logger: logger, on: eventLoop)
+    }
+    
+    /// Waf统计数据查询
+    @inlinable
+    public func describeWafData(startTime: String, endTime: String, interval: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, area: String? = nil, attackTypes: [String]? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafDataResponse {
+        try await self.describeWafData(DescribeWafDataRequest(startTime: startTime, endTime: endTime, interval: interval, domain: domain, attackType: attackType, defenceMode: defenceMode, area: area, attackTypes: attackTypes, domains: domains), logger: logger, on: eventLoop)
+    }
 }

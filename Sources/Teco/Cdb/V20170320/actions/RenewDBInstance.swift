@@ -68,4 +68,20 @@ extension Cdb {
     public func renewDBInstance(_ input: RenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstanceResponse {
         try await self.client.execute(action: "RenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 续费云数据库实例
+    ///
+    /// 本接口(RenewDBInstance)用于续费云数据库实例，支持付费模式为包年包月的实例。按量计费实例可通过该接口续费为包年包月的实例。
+    @inlinable
+    public func renewDBInstance(instanceId: String, timeSpan: Int64, modifyPayType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewDBInstanceResponse > {
+        self.renewDBInstance(RenewDBInstanceRequest(instanceId: instanceId, timeSpan: timeSpan, modifyPayType: modifyPayType), logger: logger, on: eventLoop)
+    }
+    
+    /// 续费云数据库实例
+    ///
+    /// 本接口(RenewDBInstance)用于续费云数据库实例，支持付费模式为包年包月的实例。按量计费实例可通过该接口续费为包年包月的实例。
+    @inlinable
+    public func renewDBInstance(instanceId: String, timeSpan: Int64, modifyPayType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstanceResponse {
+        try await self.renewDBInstance(RenewDBInstanceRequest(instanceId: instanceId, timeSpan: timeSpan, modifyPayType: modifyPayType), logger: logger, on: eventLoop)
+    }
 }

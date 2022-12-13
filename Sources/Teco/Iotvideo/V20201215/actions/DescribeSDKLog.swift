@@ -86,4 +86,16 @@ extension Iotvideo {
     public func describeSDKLog(_ input: DescribeSDKLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSDKLogResponse {
         try await self.client.execute(action: "DescribeSDKLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取设备sdk日志
+    @inlinable
+    public func describeSDKLog(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSDKLogResponse > {
+        self.describeSDKLog(DescribeSDKLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备sdk日志
+    @inlinable
+    public func describeSDKLog(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSDKLogResponse {
+        try await self.describeSDKLog(DescribeSDKLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), logger: logger, on: eventLoop)
+    }
 }

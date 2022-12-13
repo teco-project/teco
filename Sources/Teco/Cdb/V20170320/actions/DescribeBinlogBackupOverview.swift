@@ -78,4 +78,20 @@ extension Cdb {
     public func describeBinlogBackupOverview(_ input: DescribeBinlogBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogBackupOverviewResponse {
         try await self.client.execute(action: "DescribeBinlogBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询日志备份概览
+    ///
+    /// 本接口(DescribeBinlogBackupOverview)用于查询用户在当前地域总的日志备份概览。
+    @inlinable
+    public func describeBinlogBackupOverview(product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBinlogBackupOverviewResponse > {
+        self.describeBinlogBackupOverview(DescribeBinlogBackupOverviewRequest(product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询日志备份概览
+    ///
+    /// 本接口(DescribeBinlogBackupOverview)用于查询用户在当前地域总的日志备份概览。
+    @inlinable
+    public func describeBinlogBackupOverview(product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogBackupOverviewResponse {
+        try await self.describeBinlogBackupOverview(DescribeBinlogBackupOverviewRequest(product: product), logger: logger, on: eventLoop)
+    }
 }

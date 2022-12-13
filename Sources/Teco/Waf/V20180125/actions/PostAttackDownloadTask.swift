@@ -87,4 +87,20 @@ extension Waf {
     public func postAttackDownloadTask(_ input: PostAttackDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PostAttackDownloadTaskResponse {
         try await self.client.execute(action: "PostAttackDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建搜索下载攻击日志任务
+    ///
+    /// 创建搜索下载攻击日志任务，使用CLS新版本的搜索下载getlog接口
+    @inlinable
+    public func postAttackDownloadTask(domain: String, startTime: Date, endTime: Date, queryString: String, taskName: String, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PostAttackDownloadTaskResponse > {
+        self.postAttackDownloadTask(PostAttackDownloadTaskRequest(domain: domain, startTime: startTime, endTime: endTime, queryString: queryString, taskName: taskName, sort: sort), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建搜索下载攻击日志任务
+    ///
+    /// 创建搜索下载攻击日志任务，使用CLS新版本的搜索下载getlog接口
+    @inlinable
+    public func postAttackDownloadTask(domain: String, startTime: Date, endTime: Date, queryString: String, taskName: String, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PostAttackDownloadTaskResponse {
+        try await self.postAttackDownloadTask(PostAttackDownloadTaskRequest(domain: domain, startTime: startTime, endTime: endTime, queryString: queryString, taskName: taskName, sort: sort), logger: logger, on: eventLoop)
+    }
 }

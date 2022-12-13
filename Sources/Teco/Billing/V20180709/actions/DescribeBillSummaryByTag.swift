@@ -84,4 +84,16 @@ extension Billing {
     public func describeBillSummaryByTag(_ input: DescribeBillSummaryByTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByTagResponse {
         try await self.client.execute(action: "DescribeBillSummaryByTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取按标签汇总费用分布
+    @inlinable
+    public func describeBillSummaryByTag(beginTime: String, endTime: String, tagKey: String, payerUin: String? = nil, tagValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillSummaryByTagResponse > {
+        self.describeBillSummaryByTag(DescribeBillSummaryByTagRequest(beginTime: beginTime, endTime: endTime, tagKey: tagKey, payerUin: payerUin, tagValue: tagValue), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取按标签汇总费用分布
+    @inlinable
+    public func describeBillSummaryByTag(beginTime: String, endTime: String, tagKey: String, payerUin: String? = nil, tagValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByTagResponse {
+        try await self.describeBillSummaryByTag(DescribeBillSummaryByTagRequest(beginTime: beginTime, endTime: endTime, tagKey: tagKey, payerUin: payerUin, tagValue: tagValue), logger: logger, on: eventLoop)
+    }
 }

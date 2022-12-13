@@ -224,4 +224,20 @@ extension Cpdp {
     public func queryTransferBatch(_ input: QueryTransferBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferBatchResponse {
         try await self.client.execute(action: "QueryTransferBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 智慧薪酬-通过商家或者微信批次号查询批次单
+    ///
+    /// 通过商家批次单号或者微信批次号查询批次单
+    @inlinable
+    public func queryTransferBatch(merchantId: String, needQueryDetail: Bool, merchantBatchNo: String? = nil, batchId: String? = nil, profile: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, detailStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryTransferBatchResponse > {
+        self.queryTransferBatch(QueryTransferBatchRequest(merchantId: merchantId, needQueryDetail: needQueryDetail, merchantBatchNo: merchantBatchNo, batchId: batchId, profile: profile, offset: offset, limit: limit, detailStatus: detailStatus), logger: logger, on: eventLoop)
+    }
+    
+    /// 智慧薪酬-通过商家或者微信批次号查询批次单
+    ///
+    /// 通过商家批次单号或者微信批次号查询批次单
+    @inlinable
+    public func queryTransferBatch(merchantId: String, needQueryDetail: Bool, merchantBatchNo: String? = nil, batchId: String? = nil, profile: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, detailStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferBatchResponse {
+        try await self.queryTransferBatch(QueryTransferBatchRequest(merchantId: merchantId, needQueryDetail: needQueryDetail, merchantBatchNo: merchantBatchNo, batchId: batchId, profile: profile, offset: offset, limit: limit, detailStatus: detailStatus), logger: logger, on: eventLoop)
+    }
 }

@@ -36,7 +36,7 @@ extension Essbasic {
         /// 操作人信息
         public let `operator`: UserInfo?
         
-        public init (agent: Agent, flowIds: [String], cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil, `operator`: UserInfo? = nil) {
+        public init (agent: Agent, flowIds: [String], cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.flowIds = flowIds
             self.cancelMessage = cancelMessage
@@ -87,5 +87,27 @@ extension Essbasic {
     @inlinable
     public func channelBatchCancelFlows(_ input: ChannelBatchCancelFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelBatchCancelFlowsResponse {
         try await self.client.execute(action: "ChannelBatchCancelFlows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 电子签渠道版-根据签署流程id批量撤销合同
+    ///
+    /// 指定需要批量撤销的签署流程Id，批量撤销合同
+    /// 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；接口失败后返回错误信息
+    /// 注意:
+    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
+    @inlinable
+    public func channelBatchCancelFlows(agent: Agent, flowIds: [String], cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelBatchCancelFlowsResponse > {
+        self.channelBatchCancelFlows(ChannelBatchCancelFlowsRequest(agent: agent, flowIds: flowIds, cancelMessage: cancelMessage, cancelMessageFormat: cancelMessageFormat, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 电子签渠道版-根据签署流程id批量撤销合同
+    ///
+    /// 指定需要批量撤销的签署流程Id，批量撤销合同
+    /// 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；接口失败后返回错误信息
+    /// 注意:
+    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
+    @inlinable
+    public func channelBatchCancelFlows(agent: Agent, flowIds: [String], cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelBatchCancelFlowsResponse {
+        try await self.channelBatchCancelFlows(ChannelBatchCancelFlowsRequest(agent: agent, flowIds: flowIds, cancelMessage: cancelMessage, cancelMessageFormat: cancelMessageFormat, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

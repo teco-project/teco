@@ -139,4 +139,20 @@ extension Cwp {
     public func describeScanTaskDetails(_ input: DescribeScanTaskDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskDetailsResponse {
         try await self.client.execute(action: "DescribeScanTaskDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询扫描任务详情
+    ///
+    /// DescribeScanTaskDetails 查询扫描任务详情 , 可以查询扫描进度信息/异常;
+    @inlinable
+    public func describeScanTaskDetails(moduleType: String, taskId: UInt64, filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskDetailsResponse > {
+        self.describeScanTaskDetails(DescribeScanTaskDetailsRequest(moduleType: moduleType, taskId: taskId, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询扫描任务详情
+    ///
+    /// DescribeScanTaskDetails 查询扫描任务详情 , 可以查询扫描进度信息/异常;
+    @inlinable
+    public func describeScanTaskDetails(moduleType: String, taskId: UInt64, filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskDetailsResponse {
+        try await self.describeScanTaskDetails(DescribeScanTaskDetailsRequest(moduleType: moduleType, taskId: taskId, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

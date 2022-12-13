@@ -110,4 +110,22 @@ extension Wedata {
     public func modifyWorkflowInfo(_ input: ModifyWorkflowInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowInfoResponse {
         try await self.client.execute(action: "ModifyWorkflowInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 更新工作流
+    @inlinable
+    public func modifyWorkflowInfo(projectId: String, workflowId: String, owner: String? = nil, ownerId: String? = nil, workflowDesc: String? = nil, workflowName: String? = nil, folderId: String? = nil, userGroupId: String? = nil, userGroupName: String? = nil, workflowParams: [ParamInfo]? = nil, generalTaskParams: [GeneralTaskParam]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWorkflowInfoResponse > {
+        self.modifyWorkflowInfo(ModifyWorkflowInfoRequest(projectId: projectId, workflowId: workflowId, owner: owner, ownerId: ownerId, workflowDesc: workflowDesc, workflowName: workflowName, folderId: folderId, userGroupId: userGroupId, userGroupName: userGroupName, workflowParams: workflowParams, generalTaskParams: generalTaskParams), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 更新工作流
+    @inlinable
+    public func modifyWorkflowInfo(projectId: String, workflowId: String, owner: String? = nil, ownerId: String? = nil, workflowDesc: String? = nil, workflowName: String? = nil, folderId: String? = nil, userGroupId: String? = nil, userGroupName: String? = nil, workflowParams: [ParamInfo]? = nil, generalTaskParams: [GeneralTaskParam]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowInfoResponse {
+        try await self.modifyWorkflowInfo(ModifyWorkflowInfoRequest(projectId: projectId, workflowId: workflowId, owner: owner, ownerId: ownerId, workflowDesc: workflowDesc, workflowName: workflowName, folderId: folderId, userGroupId: userGroupId, userGroupName: userGroupName, workflowParams: workflowParams, generalTaskParams: generalTaskParams), logger: logger, on: eventLoop)
+    }
 }

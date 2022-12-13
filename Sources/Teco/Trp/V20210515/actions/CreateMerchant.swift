@@ -75,4 +75,16 @@ extension Trp {
     public func createMerchant(_ input: CreateMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMerchantResponse {
         try await self.client.execute(action: "CreateMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新建商户
+    @inlinable
+    public func createMerchant(name: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMerchantResponse > {
+        self.createMerchant(CreateMerchantRequest(name: name, remark: remark, corpId: corpId, codeType: codeType, codeUrl: codeUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 新建商户
+    @inlinable
+    public func createMerchant(name: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMerchantResponse {
+        try await self.createMerchant(CreateMerchantRequest(name: name, remark: remark, corpId: corpId, codeType: codeType, codeUrl: codeUrl), logger: logger, on: eventLoop)
+    }
 }

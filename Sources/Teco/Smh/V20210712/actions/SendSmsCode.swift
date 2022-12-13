@@ -69,4 +69,20 @@ extension Smh {
     public func sendSmsCode(_ input: SendSmsCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsCodeResponse {
         try await self.client.execute(action: "SendSmsCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 发送短信验证码
+    ///
+    /// 发送用于换绑官方云盘实例的超级管理员账号的短信验证码
+    @inlinable
+    public func sendSmsCode(purpose: String, phoneNumber: String, instanceId: String? = nil, countryCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendSmsCodeResponse > {
+        self.sendSmsCode(SendSmsCodeRequest(purpose: purpose, phoneNumber: phoneNumber, instanceId: instanceId, countryCode: countryCode), logger: logger, on: eventLoop)
+    }
+    
+    /// 发送短信验证码
+    ///
+    /// 发送用于换绑官方云盘实例的超级管理员账号的短信验证码
+    @inlinable
+    public func sendSmsCode(purpose: String, phoneNumber: String, instanceId: String? = nil, countryCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsCodeResponse {
+        try await self.sendSmsCode(SendSmsCodeRequest(purpose: purpose, phoneNumber: phoneNumber, instanceId: instanceId, countryCode: countryCode), logger: logger, on: eventLoop)
+    }
 }

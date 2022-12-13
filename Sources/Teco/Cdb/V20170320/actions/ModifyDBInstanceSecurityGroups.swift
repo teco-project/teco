@@ -64,4 +64,20 @@ extension Cdb {
     public func modifyDBInstanceSecurityGroups(_ input: ModifyDBInstanceSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupsResponse {
         try await self.client.execute(action: "ModifyDBInstanceSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改云数据库安全组
+    ///
+    /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
+    @inlinable
+    public func modifyDBInstanceSecurityGroups(instanceId: String, securityGroupIds: [String], forReadonlyInstance: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceSecurityGroupsResponse > {
+        self.modifyDBInstanceSecurityGroups(ModifyDBInstanceSecurityGroupsRequest(instanceId: instanceId, securityGroupIds: securityGroupIds, forReadonlyInstance: forReadonlyInstance), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云数据库安全组
+    ///
+    /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
+    @inlinable
+    public func modifyDBInstanceSecurityGroups(instanceId: String, securityGroupIds: [String], forReadonlyInstance: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupsResponse {
+        try await self.modifyDBInstanceSecurityGroups(ModifyDBInstanceSecurityGroupsRequest(instanceId: instanceId, securityGroupIds: securityGroupIds, forReadonlyInstance: forReadonlyInstance), logger: logger, on: eventLoop)
+    }
 }

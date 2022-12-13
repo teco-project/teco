@@ -35,7 +35,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以拉取任意团队成员的信息。如果指定操作者，则操作者必须为团队成员。
         public let `operator`: String?
         
-        public init (platform: String, teamId: String, memberIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, `operator`: String? = nil) {
+        public init (platform: String, teamId: String, memberIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil) {
             self.platform = platform
             self.teamId = teamId
             self.memberIds = memberIds
@@ -86,5 +86,21 @@ extension Cme {
     @inlinable
     public func describeTeamMembers(_ input: DescribeTeamMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTeamMembersResponse {
         try await self.client.execute(action: "DescribeTeamMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 获取团队成员信息
+    ///
+    /// 获取指定团队的成员信息。支持获取指定成员的信息，同时也支持分页拉取指定团队的所有成员信息。
+    @inlinable
+    public func describeTeamMembers(platform: String, teamId: String, memberIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTeamMembersResponse > {
+        self.describeTeamMembers(DescribeTeamMembersRequest(platform: platform, teamId: teamId, memberIds: memberIds, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取团队成员信息
+    ///
+    /// 获取指定团队的成员信息。支持获取指定成员的信息，同时也支持分页拉取指定团队的所有成员信息。
+    @inlinable
+    public func describeTeamMembers(platform: String, teamId: String, memberIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTeamMembersResponse {
+        try await self.describeTeamMembers(DescribeTeamMembersRequest(platform: platform, teamId: teamId, memberIds: memberIds, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

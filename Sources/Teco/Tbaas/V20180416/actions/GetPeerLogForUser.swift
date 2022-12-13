@@ -88,4 +88,16 @@ extension Tbaas {
     public func getPeerLogForUser(_ input: GetPeerLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPeerLogForUserResponse {
         try await self.client.execute(action: "GetPeerLogForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取节点日志
+    @inlinable
+    public func getPeerLogForUser(module: String, operation: String, clusterId: String, groupName: String, peerName: String, beginTime: String, rowNum: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPeerLogForUserResponse > {
+        self.getPeerLogForUser(GetPeerLogForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, peerName: peerName, beginTime: beginTime, rowNum: rowNum), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取节点日志
+    @inlinable
+    public func getPeerLogForUser(module: String, operation: String, clusterId: String, groupName: String, peerName: String, beginTime: String, rowNum: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPeerLogForUserResponse {
+        try await self.getPeerLogForUser(GetPeerLogForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, peerName: peerName, beginTime: beginTime, rowNum: rowNum), logger: logger, on: eventLoop)
+    }
 }

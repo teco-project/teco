@@ -63,4 +63,16 @@ extension Dnspod {
     public func describeDomainShareInfo(_ input: DescribeDomainShareInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainShareInfoResponse {
         try await self.client.execute(action: "DescribeDomainShareInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取域名共享信息
+    @inlinable
+    public func describeDomainShareInfo(domain: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainShareInfoResponse > {
+        self.describeDomainShareInfo(DescribeDomainShareInfoRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取域名共享信息
+    @inlinable
+    public func describeDomainShareInfo(domain: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainShareInfoResponse {
+        try await self.describeDomainShareInfo(DescribeDomainShareInfoRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
+    }
 }

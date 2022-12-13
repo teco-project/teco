@@ -82,4 +82,16 @@ extension Cwp {
     public func exportAssetWebServiceInfoList(_ input: ExportAssetWebServiceInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAssetWebServiceInfoListResponse {
         try await self.client.execute(action: "ExportAssetWebServiceInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 导出资产管理Web服务列表
+    @inlinable
+    public func exportAssetWebServiceInfoList(quuid: String? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportAssetWebServiceInfoListResponse > {
+        self.exportAssetWebServiceInfoList(ExportAssetWebServiceInfoListRequest(quuid: quuid, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 导出资产管理Web服务列表
+    @inlinable
+    public func exportAssetWebServiceInfoList(quuid: String? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAssetWebServiceInfoListResponse {
+        try await self.exportAssetWebServiceInfoList(ExportAssetWebServiceInfoListRequest(quuid: quuid, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

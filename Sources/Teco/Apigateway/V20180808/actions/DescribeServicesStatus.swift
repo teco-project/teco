@@ -69,4 +69,20 @@ extension Apigateway {
     public func describeServicesStatus(_ input: DescribeServicesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServicesStatusResponse {
         try await self.client.execute(action: "DescribeServicesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询服务列表状态
+    ///
+    /// 本接口（DescribeServicesStatus）用于搜索查询某一个服务或多个服务的列表，并返回服务相关的域名、时间等信息。
+    @inlinable
+    public func describeServicesStatus(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServicesStatusResponse > {
+        self.describeServicesStatus(DescribeServicesStatusRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务列表状态
+    ///
+    /// 本接口（DescribeServicesStatus）用于搜索查询某一个服务或多个服务的列表，并返回服务相关的域名、时间等信息。
+    @inlinable
+    public func describeServicesStatus(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServicesStatusResponse {
+        try await self.describeServicesStatus(DescribeServicesStatusRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    }
 }

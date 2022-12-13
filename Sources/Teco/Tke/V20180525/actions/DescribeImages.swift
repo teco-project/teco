@@ -52,4 +52,16 @@ extension Tke {
     public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
         try await self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取镜像信息
+    @inlinable
+    public func describeImages(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
+        self.describeImages(DescribeImagesRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取镜像信息
+    @inlinable
+    public func describeImages(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
+        try await self.describeImages(DescribeImagesRequest(), logger: logger, on: eventLoop)
+    }
 }

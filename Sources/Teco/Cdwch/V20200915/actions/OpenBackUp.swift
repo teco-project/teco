@@ -60,4 +60,16 @@ extension Cdwch {
     public func openBackUp(_ input: OpenBackUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenBackUpResponse {
         try await self.client.execute(action: "OpenBackUp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开启或者关闭策略
+    @inlinable
+    public func openBackUp(instanceId: String, operationType: String, cosBucketName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenBackUpResponse > {
+        self.openBackUp(OpenBackUpRequest(instanceId: instanceId, operationType: operationType, cosBucketName: cosBucketName), logger: logger, on: eventLoop)
+    }
+    
+    /// 开启或者关闭策略
+    @inlinable
+    public func openBackUp(instanceId: String, operationType: String, cosBucketName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenBackUpResponse {
+        try await self.openBackUp(OpenBackUpRequest(instanceId: instanceId, operationType: operationType, cosBucketName: cosBucketName), logger: logger, on: eventLoop)
+    }
 }

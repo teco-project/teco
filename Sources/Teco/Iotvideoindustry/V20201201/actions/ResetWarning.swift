@@ -55,4 +55,16 @@ extension Iotvideoindustry {
     public func resetWarning(_ input: ResetWarningRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetWarningResponse {
         try await self.client.execute(action: "ResetWarning", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重置设备告警
+    @inlinable
+    public func resetWarning(id: Int64? = nil, index: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetWarningResponse > {
+        self.resetWarning(ResetWarningRequest(id: id, index: index), logger: logger, on: eventLoop)
+    }
+    
+    /// 重置设备告警
+    @inlinable
+    public func resetWarning(id: Int64? = nil, index: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetWarningResponse {
+        try await self.resetWarning(ResetWarningRequest(id: id, index: index), logger: logger, on: eventLoop)
+    }
 }

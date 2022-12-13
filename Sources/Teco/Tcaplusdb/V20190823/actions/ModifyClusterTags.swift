@@ -65,4 +65,16 @@ extension Tcaplusdb {
     public func modifyClusterTags(_ input: ModifyClusterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterTagsResponse {
         try await self.client.execute(action: "ModifyClusterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改集群标签
+    @inlinable
+    public func modifyClusterTags(clusterId: String, replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterTagsResponse > {
+        self.modifyClusterTags(ModifyClusterTagsRequest(clusterId: clusterId, replaceTags: replaceTags, deleteTags: deleteTags), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改集群标签
+    @inlinable
+    public func modifyClusterTags(clusterId: String, replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterTagsResponse {
+        try await self.modifyClusterTags(ModifyClusterTagsRequest(clusterId: clusterId, replaceTags: replaceTags, deleteTags: deleteTags), logger: logger, on: eventLoop)
+    }
 }

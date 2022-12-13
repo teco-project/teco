@@ -112,4 +112,20 @@ extension Teo {
     public func describeTimingL7CacheData(_ input: DescribeTimingL7CacheDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL7CacheDataResponse {
         try await self.client.execute(action: "DescribeTimingL7CacheData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询七层缓存分析类时序数据
+    ///
+    /// 本接口（DescribeTimingL7CacheData）用于查询七层缓存分析时序类流量数据。
+    @inlinable
+    public func describeTimingL7CacheData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, filters: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTimingL7CacheDataResponse > {
+        self.describeTimingL7CacheData(DescribeTimingL7CacheDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, filters: filters, interval: interval, area: area), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询七层缓存分析类时序数据
+    ///
+    /// 本接口（DescribeTimingL7CacheData）用于查询七层缓存分析时序类流量数据。
+    @inlinable
+    public func describeTimingL7CacheData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, filters: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL7CacheDataResponse {
+        try await self.describeTimingL7CacheData(DescribeTimingL7CacheDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, filters: filters, interval: interval, area: area), logger: logger, on: eventLoop)
+    }
 }

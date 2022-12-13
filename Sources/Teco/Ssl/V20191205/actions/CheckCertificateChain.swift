@@ -66,4 +66,20 @@ extension Ssl {
     public func checkCertificateChain(_ input: CheckCertificateChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCertificateChainResponse {
         try await self.client.execute(action: "CheckCertificateChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 检查证书链完整性
+    ///
+    /// 本接口（CheckCertificateChain）用于检查证书链是否完整。
+    @inlinable
+    public func checkCertificateChain(certificateChain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckCertificateChainResponse > {
+        self.checkCertificateChain(CheckCertificateChainRequest(certificateChain: certificateChain), logger: logger, on: eventLoop)
+    }
+    
+    /// 检查证书链完整性
+    ///
+    /// 本接口（CheckCertificateChain）用于检查证书链是否完整。
+    @inlinable
+    public func checkCertificateChain(certificateChain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCertificateChainResponse {
+        try await self.checkCertificateChain(CheckCertificateChainRequest(certificateChain: certificateChain), logger: logger, on: eventLoop)
+    }
 }

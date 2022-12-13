@@ -72,4 +72,28 @@ extension Cvm {
     public func modifyImageSharePermission(_ input: ModifyImageSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageSharePermissionResponse {
         try await self.client.execute(action: "ModifyImageSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改镜像分享信息
+    ///
+    /// 本接口（ModifyImageSharePermission）用于修改镜像分享信息。
+    /// * 分享镜像后，被分享账户可以通过该镜像创建实例。
+    /// * 每个自定义镜像最多可共享给50个账户。
+    /// * 分享镜像无法更改名称，描述，仅可用于创建实例。
+    /// * 只支持分享到对方账户相同地域。
+    @inlinable
+    public func modifyImageSharePermission(imageId: String, accountIds: [String], permission: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyImageSharePermissionResponse > {
+        self.modifyImageSharePermission(ModifyImageSharePermissionRequest(imageId: imageId, accountIds: accountIds, permission: permission), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改镜像分享信息
+    ///
+    /// 本接口（ModifyImageSharePermission）用于修改镜像分享信息。
+    /// * 分享镜像后，被分享账户可以通过该镜像创建实例。
+    /// * 每个自定义镜像最多可共享给50个账户。
+    /// * 分享镜像无法更改名称，描述，仅可用于创建实例。
+    /// * 只支持分享到对方账户相同地域。
+    @inlinable
+    public func modifyImageSharePermission(imageId: String, accountIds: [String], permission: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageSharePermissionResponse {
+        try await self.modifyImageSharePermission(ModifyImageSharePermissionRequest(imageId: imageId, accountIds: accountIds, permission: permission), logger: logger, on: eventLoop)
+    }
 }

@@ -93,4 +93,20 @@ extension Vpc {
     public func createDirectConnectGateway(_ input: CreateDirectConnectGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectGatewayResponse {
         try await self.client.execute(action: "CreateDirectConnectGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建专线网关
+    ///
+    /// 本接口（CreateDirectConnectGateway）用于创建专线网关。
+    @inlinable
+    public func createDirectConnectGateway(directConnectGatewayName: String, networkType: String, networkInstanceId: String, gatewayType: String? = nil, modeType: String? = nil, zone: String? = nil, haZoneGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDirectConnectGatewayResponse > {
+        self.createDirectConnectGateway(CreateDirectConnectGatewayRequest(directConnectGatewayName: directConnectGatewayName, networkType: networkType, networkInstanceId: networkInstanceId, gatewayType: gatewayType, modeType: modeType, zone: zone, haZoneGroupId: haZoneGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建专线网关
+    ///
+    /// 本接口（CreateDirectConnectGateway）用于创建专线网关。
+    @inlinable
+    public func createDirectConnectGateway(directConnectGatewayName: String, networkType: String, networkInstanceId: String, gatewayType: String? = nil, modeType: String? = nil, zone: String? = nil, haZoneGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectGatewayResponse {
+        try await self.createDirectConnectGateway(CreateDirectConnectGatewayRequest(directConnectGatewayName: directConnectGatewayName, networkType: networkType, networkInstanceId: networkInstanceId, gatewayType: gatewayType, modeType: modeType, zone: zone, haZoneGroupId: haZoneGroupId), logger: logger, on: eventLoop)
+    }
 }

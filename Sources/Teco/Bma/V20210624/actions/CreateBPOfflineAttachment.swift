@@ -65,4 +65,16 @@ extension Bma {
     public func createBPOfflineAttachment(_ input: CreateBPOfflineAttachmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineAttachmentResponse {
         try await self.client.execute(action: "CreateBPOfflineAttachment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加下线材料
+    @inlinable
+    public func createBPOfflineAttachment(brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil, authorizationName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPOfflineAttachmentResponse > {
+        self.createBPOfflineAttachment(CreateBPOfflineAttachmentRequest(brandName: brandName, brandCertificateName: brandCertificateName, transferName: transferName, authorizationName: authorizationName), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加下线材料
+    @inlinable
+    public func createBPOfflineAttachment(brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil, authorizationName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineAttachmentResponse {
+        try await self.createBPOfflineAttachment(CreateBPOfflineAttachmentRequest(brandName: brandName, brandCertificateName: brandCertificateName, transferName: transferName, authorizationName: authorizationName), logger: logger, on: eventLoop)
+    }
 }

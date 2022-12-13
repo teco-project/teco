@@ -84,4 +84,16 @@ extension Cpdp {
     public func queryOrderStatus(_ input: QueryOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOrderStatusResponse {
         try await self.client.execute(action: "QueryOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云支付-查询订单付款状态
+    @inlinable
+    public func queryOrderStatus(openId: String, openKey: String, developerNo: String, orderNo: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOrderStatusResponse > {
+        self.queryOrderStatus(QueryOrderStatusRequest(openId: openId, openKey: openKey, developerNo: developerNo, orderNo: orderNo, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-查询订单付款状态
+    @inlinable
+    public func queryOrderStatus(openId: String, openKey: String, developerNo: String, orderNo: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOrderStatusResponse {
+        try await self.queryOrderStatus(QueryOrderStatusRequest(openId: openId, openKey: openKey, developerNo: developerNo, orderNo: orderNo, profile: profile), logger: logger, on: eventLoop)
+    }
 }

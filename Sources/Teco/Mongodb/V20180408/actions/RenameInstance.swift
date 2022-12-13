@@ -59,4 +59,20 @@ extension Mongodb {
     public func renameInstance(_ input: RenameInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenameInstanceResponse {
         try await self.client.execute(action: "RenameInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改实例名称
+    ///
+    /// 本接口(RenameInstance)用于修改云数据库实例的名称。
+    @inlinable
+    public func renameInstance(instanceId: String, newName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenameInstanceResponse > {
+        self.renameInstance(RenameInstanceRequest(instanceId: instanceId, newName: newName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例名称
+    ///
+    /// 本接口(RenameInstance)用于修改云数据库实例的名称。
+    @inlinable
+    public func renameInstance(instanceId: String, newName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenameInstanceResponse {
+        try await self.renameInstance(RenameInstanceRequest(instanceId: instanceId, newName: newName), logger: logger, on: eventLoop)
+    }
 }

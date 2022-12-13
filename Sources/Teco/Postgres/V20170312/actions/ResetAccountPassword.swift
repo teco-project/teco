@@ -64,4 +64,20 @@ extension Postgres {
     public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
         try await self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重置账户密码
+    ///
+    /// 本接口（ResetAccountPassword）用于重置实例的账户密码。
+    @inlinable
+    public func resetAccountPassword(dbInstanceId: String, userName: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetAccountPasswordResponse > {
+        self.resetAccountPassword(ResetAccountPasswordRequest(dbInstanceId: dbInstanceId, userName: userName, password: password), logger: logger, on: eventLoop)
+    }
+    
+    /// 重置账户密码
+    ///
+    /// 本接口（ResetAccountPassword）用于重置实例的账户密码。
+    @inlinable
+    public func resetAccountPassword(dbInstanceId: String, userName: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
+        try await self.resetAccountPassword(ResetAccountPasswordRequest(dbInstanceId: dbInstanceId, userName: userName, password: password), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,22 @@ extension Wedata {
     public func freezeTasksByMultiWorkflow(_ input: FreezeTasksByMultiWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeTasksByMultiWorkflowResponse {
         try await self.client.execute(action: "FreezeTasksByMultiWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 基于多个工作流进行批量冻结任务操作【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 基于多个工作流进行批量冻结任务操作
+    @inlinable
+    public func freezeTasksByMultiWorkflow(workFlowIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FreezeTasksByMultiWorkflowResponse > {
+        self.freezeTasksByMultiWorkflow(FreezeTasksByMultiWorkflowRequest(workFlowIds: workFlowIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 基于多个工作流进行批量冻结任务操作【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 基于多个工作流进行批量冻结任务操作
+    @inlinable
+    public func freezeTasksByMultiWorkflow(workFlowIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeTasksByMultiWorkflowResponse {
+        try await self.freezeTasksByMultiWorkflow(FreezeTasksByMultiWorkflowRequest(workFlowIds: workFlowIds), logger: logger, on: eventLoop)
+    }
 }

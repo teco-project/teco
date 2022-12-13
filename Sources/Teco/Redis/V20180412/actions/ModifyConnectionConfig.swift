@@ -70,4 +70,20 @@ extension Redis {
     public func modifyConnectionConfig(_ input: ModifyConnectionConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConnectionConfigResponse {
         try await self.client.execute(action: "ModifyConnectionConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改实例连接配置
+    ///
+    /// 修改实例的连接配置，包括带宽和最大连接数。
+    @inlinable
+    public func modifyConnectionConfig(instanceId: String, bandwidth: Int64? = nil, clientLimit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConnectionConfigResponse > {
+        self.modifyConnectionConfig(ModifyConnectionConfigRequest(instanceId: instanceId, bandwidth: bandwidth, clientLimit: clientLimit), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例连接配置
+    ///
+    /// 修改实例的连接配置，包括带宽和最大连接数。
+    @inlinable
+    public func modifyConnectionConfig(instanceId: String, bandwidth: Int64? = nil, clientLimit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConnectionConfigResponse {
+        try await self.modifyConnectionConfig(ModifyConnectionConfigRequest(instanceId: instanceId, bandwidth: bandwidth, clientLimit: clientLimit), logger: logger, on: eventLoop)
+    }
 }

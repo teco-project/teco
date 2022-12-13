@@ -95,4 +95,16 @@ extension Iotvideo {
     public func describeStorageService(_ input: DescribeStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageServiceResponse {
         try await self.client.execute(action: "DescribeStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询云存服务
+    @inlinable
+    public func describeStorageService(serviceId: String, getFinishedOrder: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStorageServiceResponse > {
+        self.describeStorageService(DescribeStorageServiceRequest(serviceId: serviceId, getFinishedOrder: getFinishedOrder), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云存服务
+    @inlinable
+    public func describeStorageService(serviceId: String, getFinishedOrder: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageServiceResponse {
+        try await self.describeStorageService(DescribeStorageServiceRequest(serviceId: serviceId, getFinishedOrder: getFinishedOrder), logger: logger, on: eventLoop)
+    }
 }

@@ -71,4 +71,16 @@ extension Tcss {
     public func createK8sApiAbnormalRuleExportJob(_ input: CreateK8sApiAbnormalRuleExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateK8sApiAbnormalRuleExportJobResponse {
         try await self.client.execute(action: "CreateK8sApiAbnormalRuleExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建k8sApi异常规则导出任务
+    @inlinable
+    public func createK8sApiAbnormalRuleExportJob(filters: [RunTimeFilters]? = nil, order: String? = nil, by: [String]? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateK8sApiAbnormalRuleExportJobResponse > {
+        self.createK8sApiAbnormalRuleExportJob(CreateK8sApiAbnormalRuleExportJobRequest(filters: filters, order: order, by: by, exportField: exportField), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建k8sApi异常规则导出任务
+    @inlinable
+    public func createK8sApiAbnormalRuleExportJob(filters: [RunTimeFilters]? = nil, order: String? = nil, by: [String]? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateK8sApiAbnormalRuleExportJobResponse {
+        try await self.createK8sApiAbnormalRuleExportJob(CreateK8sApiAbnormalRuleExportJobRequest(filters: filters, order: order, by: by, exportField: exportField), logger: logger, on: eventLoop)
+    }
 }

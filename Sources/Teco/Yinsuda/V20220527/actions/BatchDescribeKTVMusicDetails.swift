@@ -72,4 +72,20 @@ extension Yinsuda {
     public func batchDescribeKTVMusicDetails(_ input: BatchDescribeKTVMusicDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeKTVMusicDetailsResponse {
         try await self.client.execute(action: "BatchDescribeKTVMusicDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量获取歌曲详情
+    ///
+    /// 批量获取歌曲详细信息，包括：歌词下载链接、播放凭证、音高数据下载链接信息等。
+    @inlinable
+    public func batchDescribeKTVMusicDetails(appName: String, userId: String, musicIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDescribeKTVMusicDetailsResponse > {
+        self.batchDescribeKTVMusicDetails(BatchDescribeKTVMusicDetailsRequest(appName: appName, userId: userId, musicIds: musicIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量获取歌曲详情
+    ///
+    /// 批量获取歌曲详细信息，包括：歌词下载链接、播放凭证、音高数据下载链接信息等。
+    @inlinable
+    public func batchDescribeKTVMusicDetails(appName: String, userId: String, musicIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeKTVMusicDetailsResponse {
+        try await self.batchDescribeKTVMusicDetails(BatchDescribeKTVMusicDetailsRequest(appName: appName, userId: userId, musicIds: musicIds), logger: logger, on: eventLoop)
+    }
 }

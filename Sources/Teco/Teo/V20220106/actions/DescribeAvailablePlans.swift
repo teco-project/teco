@@ -51,4 +51,20 @@ extension Teo {
     public func describeAvailablePlans(_ input: DescribeAvailablePlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailablePlansResponse {
         try await self.client.execute(action: "DescribeAvailablePlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询当前账户可购买套餐信息列表
+    ///
+    /// 查询当前账户可用套餐信息列表
+    @inlinable
+    public func describeAvailablePlans(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailablePlansResponse > {
+        self.describeAvailablePlans(DescribeAvailablePlansRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询当前账户可购买套餐信息列表
+    ///
+    /// 查询当前账户可用套餐信息列表
+    @inlinable
+    public func describeAvailablePlans(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailablePlansResponse {
+        try await self.describeAvailablePlans(DescribeAvailablePlansRequest(), logger: logger, on: eventLoop)
+    }
 }

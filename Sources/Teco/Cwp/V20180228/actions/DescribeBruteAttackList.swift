@@ -91,4 +91,16 @@ extension Cwp {
     public func describeBruteAttackList(_ input: DescribeBruteAttackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBruteAttackListResponse {
         try await self.client.execute(action: "DescribeBruteAttackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取密码破解列表
+    @inlinable
+    public func describeBruteAttackList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBruteAttackListResponse > {
+        self.describeBruteAttackList(DescribeBruteAttackListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取密码破解列表
+    @inlinable
+    public func describeBruteAttackList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBruteAttackListResponse {
+        try await self.describeBruteAttackList(DescribeBruteAttackListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Cdb {
     public func deleteAuditLogFile(_ input: DeleteAuditLogFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditLogFileResponse {
         try await self.client.execute(action: "DeleteAuditLogFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除审计日志文件
+    ///
+    /// 本接口(DeleteAuditLogFile)用于删除云数据库实例的审计日志文件。
+    @inlinable
+    public func deleteAuditLogFile(fileName: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAuditLogFileResponse > {
+        self.deleteAuditLogFile(DeleteAuditLogFileRequest(fileName: fileName, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除审计日志文件
+    ///
+    /// 本接口(DeleteAuditLogFile)用于删除云数据库实例的审计日志文件。
+    @inlinable
+    public func deleteAuditLogFile(fileName: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditLogFileResponse {
+        try await self.deleteAuditLogFile(DeleteAuditLogFileRequest(fileName: fileName, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

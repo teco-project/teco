@@ -54,4 +54,20 @@ extension Yunjing {
     public func misAlarmNonlocalLoginPlaces(_ input: MisAlarmNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MisAlarmNonlocalLoginPlacesResponse {
         try await self.client.execute(action: "MisAlarmNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 误报异地登录
+    ///
+    /// 本接口{MisAlarmNonlocalLoginPlaces}将设置当前地点为常用登录地。
+    @inlinable
+    public func misAlarmNonlocalLoginPlaces(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MisAlarmNonlocalLoginPlacesResponse > {
+        self.misAlarmNonlocalLoginPlaces(MisAlarmNonlocalLoginPlacesRequest(ids: ids), logger: logger, on: eventLoop)
+    }
+    
+    /// 误报异地登录
+    ///
+    /// 本接口{MisAlarmNonlocalLoginPlaces}将设置当前地点为常用登录地。
+    @inlinable
+    public func misAlarmNonlocalLoginPlaces(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MisAlarmNonlocalLoginPlacesResponse {
+        try await self.misAlarmNonlocalLoginPlaces(MisAlarmNonlocalLoginPlacesRequest(ids: ids), logger: logger, on: eventLoop)
+    }
 }

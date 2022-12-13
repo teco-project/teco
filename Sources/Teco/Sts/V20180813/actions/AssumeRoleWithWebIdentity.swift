@@ -82,4 +82,16 @@ extension Sts {
     public func assumeRoleWithWebIdentity(_ input: AssumeRoleWithWebIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithWebIdentityResponse {
         try await self.client.execute(action: "AssumeRoleWithWebIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 申请OIDC角色临时密钥
+    @inlinable
+    public func assumeRoleWithWebIdentity(providerId: String, webIdentityToken: String, roleArn: String, roleSessionName: String, durationSeconds: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssumeRoleWithWebIdentityResponse > {
+        self.assumeRoleWithWebIdentity(AssumeRoleWithWebIdentityRequest(providerId: providerId, webIdentityToken: webIdentityToken, roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds), logger: logger, on: eventLoop)
+    }
+    
+    /// 申请OIDC角色临时密钥
+    @inlinable
+    public func assumeRoleWithWebIdentity(providerId: String, webIdentityToken: String, roleArn: String, roleSessionName: String, durationSeconds: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithWebIdentityResponse {
+        try await self.assumeRoleWithWebIdentity(AssumeRoleWithWebIdentityRequest(providerId: providerId, webIdentityToken: webIdentityToken, roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds), logger: logger, on: eventLoop)
+    }
 }

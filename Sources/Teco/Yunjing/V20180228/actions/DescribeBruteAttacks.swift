@@ -79,4 +79,20 @@ extension Yunjing {
     public func describeBruteAttacks(_ input: DescribeBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBruteAttacksResponse {
         try await self.client.execute(action: "DescribeBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取云镜破解事件列表
+    ///
+    /// 本接口{DescribeBruteAttacks}用于获取暴力破解事件列表。
+    @inlinable
+    public func describeBruteAttacks(uuid: String? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBruteAttacksResponse > {
+        self.describeBruteAttacks(DescribeBruteAttacksRequest(uuid: uuid, offset: offset, filters: filters, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取云镜破解事件列表
+    ///
+    /// 本接口{DescribeBruteAttacks}用于获取暴力破解事件列表。
+    @inlinable
+    public func describeBruteAttacks(uuid: String? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBruteAttacksResponse {
+        try await self.describeBruteAttacks(DescribeBruteAttacksRequest(uuid: uuid, offset: offset, filters: filters, limit: limit), logger: logger, on: eventLoop)
+    }
 }

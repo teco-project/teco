@@ -68,4 +68,20 @@ extension Wedata {
     public func describeTopTableStat(_ input: DescribeTopTableStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopTableStatResponse {
         try await self.client.execute(action: "DescribeTopTableStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 数据质量表排行接口
+    ///
+    /// 数据质量概览页面表排行接口
+    @inlinable
+    public func describeTopTableStat(projectId: String, beginDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopTableStatResponse > {
+        self.describeTopTableStat(DescribeTopTableStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 数据质量表排行接口
+    ///
+    /// 数据质量概览页面表排行接口
+    @inlinable
+    public func describeTopTableStat(projectId: String, beginDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopTableStatResponse {
+        try await self.describeTopTableStat(DescribeTopTableStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    }
 }

@@ -55,4 +55,16 @@ extension Dlc {
     public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
         try await self.client.execute(action: "ModifyUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改用户信息
+    @inlinable
+    public func modifyUser(userId: String, userDescription: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserResponse > {
+        self.modifyUser(ModifyUserRequest(userId: userId, userDescription: userDescription), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改用户信息
+    @inlinable
+    public func modifyUser(userId: String, userDescription: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
+        try await self.modifyUser(ModifyUserRequest(userId: userId, userDescription: userDescription), logger: logger, on: eventLoop)
+    }
 }

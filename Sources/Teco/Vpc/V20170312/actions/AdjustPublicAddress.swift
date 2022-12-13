@@ -63,4 +63,20 @@ extension Vpc {
     public func adjustPublicAddress(_ input: AdjustPublicAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AdjustPublicAddressResponse {
         try await self.client.execute(action: "AdjustPublicAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更换公网IP
+    ///
+    /// 本接口 (AdjustPublicAddress) 用于更换IP地址，支持更换CVM实例的普通公网IP和包月带宽的EIP。
+    @inlinable
+    public func adjustPublicAddress(instanceId: String? = nil, addressId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AdjustPublicAddressResponse > {
+        self.adjustPublicAddress(AdjustPublicAddressRequest(instanceId: instanceId, addressId: addressId), logger: logger, on: eventLoop)
+    }
+    
+    /// 更换公网IP
+    ///
+    /// 本接口 (AdjustPublicAddress) 用于更换IP地址，支持更换CVM实例的普通公网IP和包月带宽的EIP。
+    @inlinable
+    public func adjustPublicAddress(instanceId: String? = nil, addressId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AdjustPublicAddressResponse {
+        try await self.adjustPublicAddress(AdjustPublicAddressRequest(instanceId: instanceId, addressId: addressId), logger: logger, on: eventLoop)
+    }
 }

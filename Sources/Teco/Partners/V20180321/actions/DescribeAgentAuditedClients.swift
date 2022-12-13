@@ -118,4 +118,16 @@ extension Partners {
     public func describeAgentAuditedClients(_ input: DescribeAgentAuditedClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentAuditedClientsResponse {
         try await self.client.execute(action: "DescribeAgentAuditedClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询已审核客户列表
+    @inlinable
+    public func describeAgentAuditedClients(clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, clientUins: [String]? = nil, hasOverdueBill: UInt64? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, clientType: String? = nil, projectType: String? = nil, salesUin: String? = nil, salesName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentAuditedClientsResponse > {
+        self.describeAgentAuditedClients(DescribeAgentAuditedClientsRequest(clientUin: clientUin, clientName: clientName, clientFlag: clientFlag, orderDirection: orderDirection, clientUins: clientUins, hasOverdueBill: hasOverdueBill, clientRemark: clientRemark, offset: offset, limit: limit, clientType: clientType, projectType: projectType, salesUin: salesUin, salesName: salesName), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询已审核客户列表
+    @inlinable
+    public func describeAgentAuditedClients(clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, clientUins: [String]? = nil, hasOverdueBill: UInt64? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, clientType: String? = nil, projectType: String? = nil, salesUin: String? = nil, salesName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentAuditedClientsResponse {
+        try await self.describeAgentAuditedClients(DescribeAgentAuditedClientsRequest(clientUin: clientUin, clientName: clientName, clientFlag: clientFlag, orderDirection: orderDirection, clientUins: clientUins, hasOverdueBill: hasOverdueBill, clientRemark: clientRemark, offset: offset, limit: limit, clientType: clientType, projectType: projectType, salesUin: salesUin, salesName: salesName), logger: logger, on: eventLoop)
+    }
 }

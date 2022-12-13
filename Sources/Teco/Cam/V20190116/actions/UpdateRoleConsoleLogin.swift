@@ -64,4 +64,20 @@ extension Cam {
     public func updateRoleConsoleLogin(_ input: UpdateRoleConsoleLoginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleConsoleLoginResponse {
         try await self.client.execute(action: "UpdateRoleConsoleLogin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改角色是否可登录
+    ///
+    /// 本接口（UpdateRoleConsoleLogin）用于修改角色是否可登录。
+    @inlinable
+    public func updateRoleConsoleLogin(consoleLogin: Int64, roleId: Int64? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRoleConsoleLoginResponse > {
+        self.updateRoleConsoleLogin(UpdateRoleConsoleLoginRequest(consoleLogin: consoleLogin, roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改角色是否可登录
+    ///
+    /// 本接口（UpdateRoleConsoleLogin）用于修改角色是否可登录。
+    @inlinable
+    public func updateRoleConsoleLogin(consoleLogin: Int64, roleId: Int64? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleConsoleLoginResponse {
+        try await self.updateRoleConsoleLogin(UpdateRoleConsoleLoginRequest(consoleLogin: consoleLogin, roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    }
 }

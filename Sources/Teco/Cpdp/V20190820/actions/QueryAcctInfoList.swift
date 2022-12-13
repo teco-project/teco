@@ -108,4 +108,20 @@ extension Cpdp {
     public func queryAcctInfoList(_ input: QueryAcctInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAcctInfoListResponse {
         try await self.client.execute(action: "QueryAcctInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 聚鑫-开户列表查询
+    ///
+    /// 聚鑫-开户信息列表查询, 查询某一段时间的开户信息
+    @inlinable
+    public func queryAcctInfoList(midasAppId: String, queryAcctBeginTime: String, queryAcctEndTime: String, pageOffset: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAcctInfoListResponse > {
+        self.queryAcctInfoList(QueryAcctInfoListRequest(midasAppId: midasAppId, queryAcctBeginTime: queryAcctBeginTime, queryAcctEndTime: queryAcctEndTime, pageOffset: pageOffset, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-开户列表查询
+    ///
+    /// 聚鑫-开户信息列表查询, 查询某一段时间的开户信息
+    @inlinable
+    public func queryAcctInfoList(midasAppId: String, queryAcctBeginTime: String, queryAcctEndTime: String, pageOffset: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAcctInfoListResponse {
+        try await self.queryAcctInfoList(QueryAcctInfoListRequest(midasAppId: midasAppId, queryAcctBeginTime: queryAcctBeginTime, queryAcctEndTime: queryAcctEndTime, pageOffset: pageOffset, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
 }

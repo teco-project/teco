@@ -60,4 +60,16 @@ extension Wedata {
     public func deleteRule(_ input: DeleteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
         try await self.client.execute(action: "DeleteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除质量规则接口
+    @inlinable
+    public func deleteRule(ruleId: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRuleResponse > {
+        self.deleteRule(DeleteRuleRequest(ruleId: ruleId, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除质量规则接口
+    @inlinable
+    public func deleteRule(ruleId: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
+        try await self.deleteRule(DeleteRuleRequest(ruleId: ruleId, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

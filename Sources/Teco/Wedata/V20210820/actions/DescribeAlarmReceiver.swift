@@ -99,4 +99,16 @@ extension Wedata {
     public func describeAlarmReceiver(_ input: DescribeAlarmReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmReceiverResponse {
         try await self.client.execute(action: "DescribeAlarmReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 告警接收人详情
+    @inlinable
+    public func describeAlarmReceiver(alarmId: String, pageNumber: UInt64, pageSize: UInt64, projectId: String, messageId: String, taskType: UInt64? = nil, alarmRecipient: String? = nil, alarmRecipientName: String? = nil, alarmTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmReceiverResponse > {
+        self.describeAlarmReceiver(DescribeAlarmReceiverRequest(alarmId: alarmId, pageNumber: pageNumber, pageSize: pageSize, projectId: projectId, messageId: messageId, taskType: taskType, alarmRecipient: alarmRecipient, alarmRecipientName: alarmRecipientName, alarmTime: alarmTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 告警接收人详情
+    @inlinable
+    public func describeAlarmReceiver(alarmId: String, pageNumber: UInt64, pageSize: UInt64, projectId: String, messageId: String, taskType: UInt64? = nil, alarmRecipient: String? = nil, alarmRecipientName: String? = nil, alarmTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmReceiverResponse {
+        try await self.describeAlarmReceiver(DescribeAlarmReceiverRequest(alarmId: alarmId, pageNumber: pageNumber, pageSize: pageSize, projectId: projectId, messageId: messageId, taskType: taskType, alarmRecipient: alarmRecipient, alarmRecipientName: alarmRecipientName, alarmTime: alarmTime), logger: logger, on: eventLoop)
+    }
 }

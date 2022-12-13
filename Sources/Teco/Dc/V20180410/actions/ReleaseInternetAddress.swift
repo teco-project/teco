@@ -54,4 +54,20 @@ extension Dc {
     public func releaseInternetAddress(_ input: ReleaseInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseInternetAddressResponse {
         try await self.client.execute(action: "ReleaseInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 释放互联网地址
+    ///
+    /// 释放已申请的互联网地址
+    @inlinable
+    public func releaseInternetAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseInternetAddressResponse > {
+        self.releaseInternetAddress(ReleaseInternetAddressRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 释放互联网地址
+    ///
+    /// 释放已申请的互联网地址
+    @inlinable
+    public func releaseInternetAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseInternetAddressResponse {
+        try await self.releaseInternetAddress(ReleaseInternetAddressRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

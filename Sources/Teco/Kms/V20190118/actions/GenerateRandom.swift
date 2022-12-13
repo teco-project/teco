@@ -58,4 +58,20 @@ extension Kms {
     public func generateRandom(_ input: GenerateRandomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateRandomResponse {
         try await self.client.execute(action: "GenerateRandom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 随机数生成接口
+    ///
+    /// 随机数生成接口。
+    @inlinable
+    public func generateRandom(numberOfBytes: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateRandomResponse > {
+        self.generateRandom(GenerateRandomRequest(numberOfBytes: numberOfBytes), logger: logger, on: eventLoop)
+    }
+    
+    /// 随机数生成接口
+    ///
+    /// 随机数生成接口。
+    @inlinable
+    public func generateRandom(numberOfBytes: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateRandomResponse {
+        try await self.generateRandom(GenerateRandomRequest(numberOfBytes: numberOfBytes), logger: logger, on: eventLoop)
+    }
 }

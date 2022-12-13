@@ -68,4 +68,20 @@ extension Batch {
     public func submitJob(_ input: SubmitJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitJobResponse {
         try await self.client.execute(action: "SubmitJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 提交作业
+    ///
+    /// 用于提交一个作业
+    @inlinable
+    public func submitJob(placement: Placement, job: Job, clientToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitJobResponse > {
+        self.submitJob(SubmitJobRequest(placement: placement, job: job, clientToken: clientToken), logger: logger, on: eventLoop)
+    }
+    
+    /// 提交作业
+    ///
+    /// 用于提交一个作业
+    @inlinable
+    public func submitJob(placement: Placement, job: Job, clientToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitJobResponse {
+        try await self.submitJob(SubmitJobRequest(placement: placement, job: job, clientToken: clientToken), logger: logger, on: eventLoop)
+    }
 }

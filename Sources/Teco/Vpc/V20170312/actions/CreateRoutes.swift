@@ -69,4 +69,22 @@ extension Vpc {
     public func createRoutes(_ input: CreateRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutesResponse {
         try await self.client.execute(action: "CreateRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建路由策略
+    ///
+    /// 本接口(CreateRoutes)用于创建路由策略。
+    /// * 向指定路由表批量新增路由策略。
+    @inlinable
+    public func createRoutes(routeTableId: String, routes: [Route], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRoutesResponse > {
+        self.createRoutes(CreateRoutesRequest(routeTableId: routeTableId, routes: routes), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建路由策略
+    ///
+    /// 本接口(CreateRoutes)用于创建路由策略。
+    /// * 向指定路由表批量新增路由策略。
+    @inlinable
+    public func createRoutes(routeTableId: String, routes: [Route], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutesResponse {
+        try await self.createRoutes(CreateRoutesRequest(routeTableId: routeTableId, routes: routes), logger: logger, on: eventLoop)
+    }
 }

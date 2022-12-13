@@ -60,4 +60,16 @@ extension Cwp {
     public func scanAsset(_ input: ScanAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanAssetResponse {
         try await self.client.execute(action: "ScanAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 资产指纹启动扫描
+    @inlinable
+    public func scanAsset(assetTypeIds: [UInt64]? = nil, quuids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanAssetResponse > {
+        self.scanAsset(ScanAssetRequest(assetTypeIds: assetTypeIds, quuids: quuids), logger: logger, on: eventLoop)
+    }
+    
+    /// 资产指纹启动扫描
+    @inlinable
+    public func scanAsset(assetTypeIds: [UInt64]? = nil, quuids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanAssetResponse {
+        try await self.scanAsset(ScanAssetRequest(assetTypeIds: assetTypeIds, quuids: quuids), logger: logger, on: eventLoop)
+    }
 }

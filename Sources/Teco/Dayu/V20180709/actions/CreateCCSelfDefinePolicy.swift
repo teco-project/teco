@@ -64,4 +64,16 @@ extension Dayu {
     public func createCCSelfDefinePolicy(_ input: CreateCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCSelfDefinePolicyResponse {
         try await self.client.execute(action: "CreateCCSelfDefinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建CC自定义策略
+    @inlinable
+    public func createCCSelfDefinePolicy(business: String, id: String, policy: CCPolicy, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCCSelfDefinePolicyResponse > {
+        self.createCCSelfDefinePolicy(CreateCCSelfDefinePolicyRequest(business: business, id: id, policy: policy), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建CC自定义策略
+    @inlinable
+    public func createCCSelfDefinePolicy(business: String, id: String, policy: CCPolicy, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCSelfDefinePolicyResponse {
+        try await self.createCCSelfDefinePolicy(CreateCCSelfDefinePolicyRequest(business: business, id: id, policy: policy), logger: logger, on: eventLoop)
+    }
 }

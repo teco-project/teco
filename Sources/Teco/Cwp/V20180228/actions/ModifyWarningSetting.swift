@@ -50,4 +50,16 @@ extension Cwp {
     public func modifyWarningSetting(_ input: ModifyWarningSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWarningSettingResponse {
         try await self.client.execute(action: "ModifyWarningSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改告警设置
+    @inlinable
+    public func modifyWarningSetting(warningObjects: [WarningObject], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWarningSettingResponse > {
+        self.modifyWarningSetting(ModifyWarningSettingRequest(warningObjects: warningObjects), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改告警设置
+    @inlinable
+    public func modifyWarningSetting(warningObjects: [WarningObject], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWarningSettingResponse {
+        try await self.modifyWarningSetting(ModifyWarningSettingRequest(warningObjects: warningObjects), logger: logger, on: eventLoop)
+    }
 }

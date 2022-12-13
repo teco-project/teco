@@ -85,4 +85,16 @@ extension Redis {
     public func createInstanceAccount(_ input: CreateInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceAccountResponse {
         try await self.client.execute(action: "CreateInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建实例子账号
+    @inlinable
+    public func createInstanceAccount(instanceId: String, accountName: String, accountPassword: String, readonlyPolicy: [String], privilege: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceAccountResponse > {
+        self.createInstanceAccount(CreateInstanceAccountRequest(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, readonlyPolicy: readonlyPolicy, privilege: privilege, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例子账号
+    @inlinable
+    public func createInstanceAccount(instanceId: String, accountName: String, accountPassword: String, readonlyPolicy: [String], privilege: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceAccountResponse {
+        try await self.createInstanceAccount(CreateInstanceAccountRequest(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, readonlyPolicy: readonlyPolicy, privilege: privilege, remark: remark), logger: logger, on: eventLoop)
+    }
 }

@@ -71,4 +71,20 @@ extension Tcss {
     public func describeAssetImageRiskListExport(_ input: DescribeAssetImageRiskListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRiskListExportResponse {
         try await self.client.execute(action: "DescribeAssetImageRiskListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 镜像风险列表导出
+    ///
+    /// 容器安全搜索查询镜像风险列表导出
+    @inlinable
+    public func describeAssetImageRiskListExport(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRiskListExportResponse > {
+        self.describeAssetImageRiskListExport(DescribeAssetImageRiskListExportRequest(exportField: exportField, imageID: imageID, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像风险列表导出
+    ///
+    /// 容器安全搜索查询镜像风险列表导出
+    @inlinable
+    public func describeAssetImageRiskListExport(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRiskListExportResponse {
+        try await self.describeAssetImageRiskListExport(DescribeAssetImageRiskListExportRequest(exportField: exportField, imageID: imageID, filters: filters), logger: logger, on: eventLoop)
+    }
 }

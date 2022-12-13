@@ -63,4 +63,20 @@ extension Vod {
     public func modifySubAppIdStatus(_ input: ModifySubAppIdStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubAppIdStatusResponse {
         try await self.client.execute(action: "ModifySubAppIdStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改子应用状态
+    ///
+    /// 该接口用于启用、停用子应用。被停用的子应用将封停对应域名，并限制控制台访问。
+    @inlinable
+    public func modifySubAppIdStatus(subAppId: UInt64, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubAppIdStatusResponse > {
+        self.modifySubAppIdStatus(ModifySubAppIdStatusRequest(subAppId: subAppId, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改子应用状态
+    ///
+    /// 该接口用于启用、停用子应用。被停用的子应用将封停对应域名，并限制控制台访问。
+    @inlinable
+    public func modifySubAppIdStatus(subAppId: UInt64, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubAppIdStatusResponse {
+        try await self.modifySubAppIdStatus(ModifySubAppIdStatusRequest(subAppId: subAppId, status: status), logger: logger, on: eventLoop)
+    }
 }

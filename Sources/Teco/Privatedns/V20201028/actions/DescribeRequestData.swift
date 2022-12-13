@@ -68,4 +68,16 @@ extension Privatedns {
     public func describeRequestData(_ input: DescribeRequestDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRequestDataResponse {
         try await self.client.execute(action: "DescribeRequestData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取私有域解析请求量
+    @inlinable
+    public func describeRequestData(timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRequestDataResponse > {
+        self.describeRequestData(DescribeRequestDataRequest(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取私有域解析请求量
+    @inlinable
+    public func describeRequestData(timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRequestDataResponse {
+        try await self.describeRequestData(DescribeRequestDataRequest(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd), logger: logger, on: eventLoop)
+    }
 }

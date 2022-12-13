@@ -90,4 +90,20 @@ extension Mps {
     public func describeStreamLinkFlowStatistics(_ input: DescribeStreamLinkFlowStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowStatisticsResponse {
         try await self.client.execute(action: "DescribeStreamLinkFlowStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询流的媒体质量数据
+    ///
+    /// 查询媒体传输流的媒体质量数据。
+    @inlinable
+    public func describeStreamLinkFlowStatistics(flowId: String, type: String, inputOutputId: String, pipeline: String, period: String, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamLinkFlowStatisticsResponse > {
+        self.describeStreamLinkFlowStatistics(DescribeStreamLinkFlowStatisticsRequest(flowId: flowId, type: type, inputOutputId: inputOutputId, pipeline: pipeline, period: period, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流的媒体质量数据
+    ///
+    /// 查询媒体传输流的媒体质量数据。
+    @inlinable
+    public func describeStreamLinkFlowStatistics(flowId: String, type: String, inputOutputId: String, pipeline: String, period: String, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowStatisticsResponse {
+        try await self.describeStreamLinkFlowStatistics(DescribeStreamLinkFlowStatisticsRequest(flowId: flowId, type: type, inputOutputId: inputOutputId, pipeline: pipeline, period: period, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    }
 }

@@ -80,4 +80,16 @@ extension Tcbr {
     public func releaseGray(_ input: ReleaseGrayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseGrayResponse {
         try await self.client.execute(action: "ReleaseGray", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 灰度发布
+    @inlinable
+    public func releaseGray(envId: String, serverName: String, grayType: String, trafficType: String, versionFlowItems: [VersionFlowInfo]? = nil, operatorRemark: String? = nil, grayFlowRatio: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseGrayResponse > {
+        self.releaseGray(ReleaseGrayRequest(envId: envId, serverName: serverName, grayType: grayType, trafficType: trafficType, versionFlowItems: versionFlowItems, operatorRemark: operatorRemark, grayFlowRatio: grayFlowRatio), logger: logger, on: eventLoop)
+    }
+    
+    /// 灰度发布
+    @inlinable
+    public func releaseGray(envId: String, serverName: String, grayType: String, trafficType: String, versionFlowItems: [VersionFlowInfo]? = nil, operatorRemark: String? = nil, grayFlowRatio: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseGrayResponse {
+        try await self.releaseGray(ReleaseGrayRequest(envId: envId, serverName: serverName, grayType: grayType, trafficType: trafficType, versionFlowItems: versionFlowItems, operatorRemark: operatorRemark, grayFlowRatio: grayFlowRatio), logger: logger, on: eventLoop)
+    }
 }

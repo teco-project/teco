@@ -55,4 +55,16 @@ extension Es {
     public func updateRequestTargetNodeTypes(_ input: UpdateRequestTargetNodeTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRequestTargetNodeTypesResponse {
         try await self.client.execute(action: "UpdateRequestTargetNodeTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新接收客户端请求的节点类型
+    @inlinable
+    public func updateRequestTargetNodeTypes(instanceId: String, targetNodeTypes: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRequestTargetNodeTypesResponse > {
+        self.updateRequestTargetNodeTypes(UpdateRequestTargetNodeTypesRequest(instanceId: instanceId, targetNodeTypes: targetNodeTypes), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新接收客户端请求的节点类型
+    @inlinable
+    public func updateRequestTargetNodeTypes(instanceId: String, targetNodeTypes: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRequestTargetNodeTypesResponse {
+        try await self.updateRequestTargetNodeTypes(UpdateRequestTargetNodeTypesRequest(instanceId: instanceId, targetNodeTypes: targetNodeTypes), logger: logger, on: eventLoop)
+    }
 }

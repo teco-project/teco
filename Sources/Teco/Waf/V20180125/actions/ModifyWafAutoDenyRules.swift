@@ -74,4 +74,16 @@ extension Waf {
     public func modifyWafAutoDenyRules(_ input: ModifyWafAutoDenyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafAutoDenyRulesResponse {
         try await self.client.execute(action: "ModifyWafAutoDenyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改ip惩罚规则
+    @inlinable
+    public func modifyWafAutoDenyRules(domain: String, attackThreshold: Int64, timeThreshold: Int64, denyTimeThreshold: Int64, defenseStatus: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWafAutoDenyRulesResponse > {
+        self.modifyWafAutoDenyRules(ModifyWafAutoDenyRulesRequest(domain: domain, attackThreshold: attackThreshold, timeThreshold: timeThreshold, denyTimeThreshold: denyTimeThreshold, defenseStatus: defenseStatus), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改ip惩罚规则
+    @inlinable
+    public func modifyWafAutoDenyRules(domain: String, attackThreshold: Int64, timeThreshold: Int64, denyTimeThreshold: Int64, defenseStatus: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafAutoDenyRulesResponse {
+        try await self.modifyWafAutoDenyRules(ModifyWafAutoDenyRulesRequest(domain: domain, attackThreshold: attackThreshold, timeThreshold: timeThreshold, denyTimeThreshold: denyTimeThreshold, defenseStatus: defenseStatus), logger: logger, on: eventLoop)
+    }
 }

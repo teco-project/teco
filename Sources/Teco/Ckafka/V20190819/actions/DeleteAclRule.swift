@@ -59,4 +59,16 @@ extension Ckafka {
     public func deleteAclRule(_ input: DeleteAclRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAclRuleResponse {
         try await self.client.execute(action: "DeleteAclRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除ACL规则
+    @inlinable
+    public func deleteAclRule(instanceId: String, ruleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAclRuleResponse > {
+        self.deleteAclRule(DeleteAclRuleRequest(instanceId: instanceId, ruleName: ruleName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除ACL规则
+    @inlinable
+    public func deleteAclRule(instanceId: String, ruleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAclRuleResponse {
+        try await self.deleteAclRule(DeleteAclRuleRequest(instanceId: instanceId, ruleName: ruleName), logger: logger, on: eventLoop)
+    }
 }

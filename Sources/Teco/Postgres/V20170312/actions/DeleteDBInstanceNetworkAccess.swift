@@ -74,4 +74,20 @@ extension Postgres {
     public func deleteDBInstanceNetworkAccess(_ input: DeleteDBInstanceNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDBInstanceNetworkAccessResponse {
         try await self.client.execute(action: "DeleteDBInstanceNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除实例网络
+    ///
+    /// 可对实例进行网络的删除操作。
+    @inlinable
+    public func deleteDBInstanceNetworkAccess(dbInstanceId: String, vpcId: String, subnetId: String, vip: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDBInstanceNetworkAccessResponse > {
+        self.deleteDBInstanceNetworkAccess(DeleteDBInstanceNetworkAccessRequest(dbInstanceId: dbInstanceId, vpcId: vpcId, subnetId: subnetId, vip: vip), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除实例网络
+    ///
+    /// 可对实例进行网络的删除操作。
+    @inlinable
+    public func deleteDBInstanceNetworkAccess(dbInstanceId: String, vpcId: String, subnetId: String, vip: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDBInstanceNetworkAccessResponse {
+        try await self.deleteDBInstanceNetworkAccess(DeleteDBInstanceNetworkAccessRequest(dbInstanceId: dbInstanceId, vpcId: vpcId, subnetId: subnetId, vip: vip), logger: logger, on: eventLoop)
+    }
 }

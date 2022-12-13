@@ -46,4 +46,16 @@ extension Dnspod {
     public func describeUserDetail(_ input: DescribeUserDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserDetailResponse {
         try await self.client.execute(action: "DescribeUserDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取帐户信息
+    @inlinable
+    public func describeUserDetail(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserDetailResponse > {
+        self.describeUserDetail(DescribeUserDetailRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取帐户信息
+    @inlinable
+    public func describeUserDetail(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserDetailResponse {
+        try await self.describeUserDetail(DescribeUserDetailRequest(), logger: logger, on: eventLoop)
+    }
 }

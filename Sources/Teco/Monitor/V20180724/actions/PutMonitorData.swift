@@ -79,4 +79,30 @@ extension Monitor {
     public func putMonitorData(_ input: PutMonitorDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutMonitorDataResponse {
         try await self.client.execute(action: "PutMonitorData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 自定义监控上报数据
+    ///
+    /// 默认接口请求频率限制：50次/秒。
+    /// 默认单租户指标上限：100个。
+    /// 单次上报最多 30 个指标/值对，请求返回错误时，请求中所有的指标/值均不会被保存。
+    /// 上报的时间戳为期望保存的时间戳，建议构造整数分钟时刻的时间戳。
+    /// 时间戳时间范围必须为当前时间到 300 秒前之间。
+    /// 同一 IP 指标对的数据需按分钟先后顺序上报。
+    @inlinable
+    public func putMonitorData(metrics: [MetricDatum], announceIp: String? = nil, announceTimestamp: UInt64? = nil, announceInstance: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutMonitorDataResponse > {
+        self.putMonitorData(PutMonitorDataRequest(metrics: metrics, announceIp: announceIp, announceTimestamp: announceTimestamp, announceInstance: announceInstance), logger: logger, on: eventLoop)
+    }
+    
+    /// 自定义监控上报数据
+    ///
+    /// 默认接口请求频率限制：50次/秒。
+    /// 默认单租户指标上限：100个。
+    /// 单次上报最多 30 个指标/值对，请求返回错误时，请求中所有的指标/值均不会被保存。
+    /// 上报的时间戳为期望保存的时间戳，建议构造整数分钟时刻的时间戳。
+    /// 时间戳时间范围必须为当前时间到 300 秒前之间。
+    /// 同一 IP 指标对的数据需按分钟先后顺序上报。
+    @inlinable
+    public func putMonitorData(metrics: [MetricDatum], announceIp: String? = nil, announceTimestamp: UInt64? = nil, announceInstance: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutMonitorDataResponse {
+        try await self.putMonitorData(PutMonitorDataRequest(metrics: metrics, announceIp: announceIp, announceTimestamp: announceTimestamp, announceInstance: announceInstance), logger: logger, on: eventLoop)
+    }
 }

@@ -85,4 +85,20 @@ extension Cls {
     public func describeShippers(_ input: DescribeShippersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShippersResponse {
         try await self.client.execute(action: "DescribeShippers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取投递规则
+    ///
+    /// 获取投递规则信息列表
+    @inlinable
+    public func describeShippers(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShippersResponse > {
+        self.describeShippers(DescribeShippersRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取投递规则
+    ///
+    /// 获取投递规则信息列表
+    @inlinable
+    public func describeShippers(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShippersResponse {
+        try await self.describeShippers(DescribeShippersRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

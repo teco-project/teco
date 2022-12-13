@@ -85,4 +85,16 @@ extension Cwp {
     public func describeBaselineItemDetectList(_ input: DescribeBaselineItemDetectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineItemDetectListResponse {
         try await self.client.execute(action: "DescribeBaselineItemDetectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取基线检测项的列表
+    @inlinable
+    public func describeBaselineItemDetectList(filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineItemDetectListResponse > {
+        self.describeBaselineItemDetectList(DescribeBaselineItemDetectListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取基线检测项的列表
+    @inlinable
+    public func describeBaselineItemDetectList(filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineItemDetectListResponse {
+        try await self.describeBaselineItemDetectList(DescribeBaselineItemDetectListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

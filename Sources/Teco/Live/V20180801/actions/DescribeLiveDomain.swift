@@ -59,4 +59,20 @@ extension Live {
     public func describeLiveDomain(_ input: DescribeLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainResponse {
         try await self.client.execute(action: "DescribeLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询域名信息
+    ///
+    /// 查询直播域名信息。
+    @inlinable
+    public func describeLiveDomain(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveDomainResponse > {
+        self.describeLiveDomain(DescribeLiveDomainRequest(domainName: domainName), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询域名信息
+    ///
+    /// 查询直播域名信息。
+    @inlinable
+    public func describeLiveDomain(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainResponse {
+        try await self.describeLiveDomain(DescribeLiveDomainRequest(domainName: domainName), logger: logger, on: eventLoop)
+    }
 }

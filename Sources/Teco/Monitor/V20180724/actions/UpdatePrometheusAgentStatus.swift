@@ -62,4 +62,16 @@ extension Monitor {
     public func updatePrometheusAgentStatus(_ input: UpdatePrometheusAgentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePrometheusAgentStatusResponse {
         try await self.client.execute(action: "UpdatePrometheusAgentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新 Prometheus CVM Agent 状态
+    @inlinable
+    public func updatePrometheusAgentStatus(instanceId: String, agentIds: [String], status: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePrometheusAgentStatusResponse > {
+        self.updatePrometheusAgentStatus(UpdatePrometheusAgentStatusRequest(instanceId: instanceId, agentIds: agentIds, status: status), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新 Prometheus CVM Agent 状态
+    @inlinable
+    public func updatePrometheusAgentStatus(instanceId: String, agentIds: [String], status: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePrometheusAgentStatusResponse {
+        try await self.updatePrometheusAgentStatus(UpdatePrometheusAgentStatusRequest(instanceId: instanceId, agentIds: agentIds, status: status), logger: logger, on: eventLoop)
+    }
 }

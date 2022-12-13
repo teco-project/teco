@@ -84,4 +84,20 @@ extension Cynosdb {
     public func inquirePriceRenew(_ input: InquirePriceRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewResponse {
         try await self.client.execute(action: "InquirePriceRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 续费集群询价
+    ///
+    /// 查询续费集群价格
+    @inlinable
+    public func inquirePriceRenew(clusterId: String, timeSpan: Int64, timeUnit: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceRenewResponse > {
+        self.inquirePriceRenew(InquirePriceRenewRequest(clusterId: clusterId, timeSpan: timeSpan, timeUnit: timeUnit), logger: logger, on: eventLoop)
+    }
+    
+    /// 续费集群询价
+    ///
+    /// 查询续费集群价格
+    @inlinable
+    public func inquirePriceRenew(clusterId: String, timeSpan: Int64, timeUnit: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewResponse {
+        try await self.inquirePriceRenew(InquirePriceRenewRequest(clusterId: clusterId, timeSpan: timeSpan, timeUnit: timeUnit), logger: logger, on: eventLoop)
+    }
 }

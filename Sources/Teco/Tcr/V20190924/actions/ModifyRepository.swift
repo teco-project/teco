@@ -74,4 +74,20 @@ extension Tcr {
     public func modifyRepository(_ input: ModifyRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryResponse {
         try await self.client.execute(action: "ModifyRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新镜像仓库信息
+    ///
+    /// 更新镜像仓库信息，可修改仓库描述信息
+    @inlinable
+    public func modifyRepository(registryId: String, namespaceName: String, repositoryName: String, briefDescription: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRepositoryResponse > {
+        self.modifyRepository(ModifyRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, briefDescription: briefDescription, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新镜像仓库信息
+    ///
+    /// 更新镜像仓库信息，可修改仓库描述信息
+    @inlinable
+    public func modifyRepository(registryId: String, namespaceName: String, repositoryName: String, briefDescription: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryResponse {
+        try await self.modifyRepository(ModifyRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, briefDescription: briefDescription, description: description), logger: logger, on: eventLoop)
+    }
 }

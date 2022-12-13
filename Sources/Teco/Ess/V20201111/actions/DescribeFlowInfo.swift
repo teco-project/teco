@@ -23,7 +23,7 @@ extension Ess {
         /// 调用方用户信息
         public let `operator`: UserInfo?
         
-        public init (flowIds: [String], `operator`: UserInfo? = nil) {
+        public init (flowIds: [String], operator: UserInfo? = nil) {
             self.flowIds = flowIds
             self.`operator` = `operator`
         }
@@ -64,5 +64,23 @@ extension Ess {
     @inlinable
     public func describeFlowInfo(_ input: DescribeFlowInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowInfoResponse {
         try await self.client.execute(action: "DescribeFlowInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 查询合同详情
+    ///
+    /// 查询合同详情
+    /// 适用场景：可用于主动查询某个合同详情信息。
+    @inlinable
+    public func describeFlowInfo(flowIds: [String], operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowInfoResponse > {
+        self.describeFlowInfo(DescribeFlowInfoRequest(flowIds: flowIds, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询合同详情
+    ///
+    /// 查询合同详情
+    /// 适用场景：可用于主动查询某个合同详情信息。
+    @inlinable
+    public func describeFlowInfo(flowIds: [String], operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowInfoResponse {
+        try await self.describeFlowInfo(DescribeFlowInfoRequest(flowIds: flowIds, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

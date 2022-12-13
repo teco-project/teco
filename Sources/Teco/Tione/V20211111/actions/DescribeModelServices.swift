@@ -86,4 +86,16 @@ extension Tione {
     public func describeModelServices(_ input: DescribeModelServicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServicesResponse {
         try await self.client.execute(action: "DescribeModelServices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询多个服务
+    @inlinable
+    public func describeModelServices(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServicesResponse > {
+        self.describeModelServices(DescribeModelServicesRequest(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询多个服务
+    @inlinable
+    public func describeModelServices(offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServicesResponse {
+        try await self.describeModelServices(DescribeModelServicesRequest(offset: offset, limit: limit, order: order, orderField: orderField, filters: filters, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    }
 }

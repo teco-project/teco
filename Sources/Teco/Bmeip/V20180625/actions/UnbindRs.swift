@@ -59,4 +59,16 @@ extension Bmeip {
     public func unbindRs(_ input: UnbindRsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRsResponse {
         try await self.client.execute(action: "UnbindRs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解绑黑石EIP
+    @inlinable
+    public func unbindRs(eipId: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindRsResponse > {
+        self.unbindRs(UnbindRsRequest(eipId: eipId, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑黑石EIP
+    @inlinable
+    public func unbindRs(eipId: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRsResponse {
+        try await self.unbindRs(UnbindRsRequest(eipId: eipId, instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

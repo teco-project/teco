@@ -32,7 +32,7 @@ extension Iotvideo {
         /// 设备访问token，访问用户未绑定的设备时，需提供该参数
         public let accessToken: String?
         
-        public init (tid: String? = nil, accessId: String? = nil, `protocol`: String? = nil, address: String? = nil, accessToken: String? = nil) {
+        public init (tid: String? = nil, accessId: String? = nil, protocol: String? = nil, address: String? = nil, accessToken: String? = nil) {
             self.tid = tid
             self.accessId = accessId
             self.`protocol` = `protocol`
@@ -74,5 +74,17 @@ extension Iotvideo {
     @inlinable
     public func describeStream(_ input: DescribeStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamResponse {
         try await self.client.execute(action: "DescribeStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 请求设备直播流地址
+    @inlinable
+    public func describeStream(tid: String? = nil, accessId: String? = nil, protocol: String? = nil, address: String? = nil, accessToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamResponse > {
+        self.describeStream(DescribeStreamRequest(tid: tid, accessId: accessId, protocol: `protocol`, address: address, accessToken: accessToken), logger: logger, on: eventLoop)
+    }
+    
+    /// 请求设备直播流地址
+    @inlinable
+    public func describeStream(tid: String? = nil, accessId: String? = nil, protocol: String? = nil, address: String? = nil, accessToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamResponse {
+        try await self.describeStream(DescribeStreamRequest(tid: tid, accessId: accessId, protocol: `protocol`, address: address, accessToken: accessToken), logger: logger, on: eventLoop)
     }
 }

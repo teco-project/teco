@@ -85,4 +85,20 @@ extension Tat {
     public func describeCommands(_ input: DescribeCommandsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCommandsResponse {
         try await self.client.execute(action: "DescribeCommands", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询命令详情
+    ///
+    /// 此接口用于查询命令详情。
+    @inlinable
+    public func describeCommands(commandIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCommandsResponse > {
+        self.describeCommands(DescribeCommandsRequest(commandIds: commandIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询命令详情
+    ///
+    /// 此接口用于查询命令详情。
+    @inlinable
+    public func describeCommands(commandIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCommandsResponse {
+        try await self.describeCommands(DescribeCommandsRequest(commandIds: commandIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

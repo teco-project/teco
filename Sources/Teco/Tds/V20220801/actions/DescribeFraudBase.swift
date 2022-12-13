@@ -94,4 +94,16 @@ extension Tds {
     public func describeFraudBase(_ input: DescribeFraudBaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudBaseResponse {
         try await self.client.execute(action: "DescribeFraudBase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询设备风险
+    @inlinable
+    public func describeFraudBase(deviceToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFraudBaseResponse > {
+        self.describeFraudBase(DescribeFraudBaseRequest(deviceToken: deviceToken), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备风险
+    @inlinable
+    public func describeFraudBase(deviceToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudBaseResponse {
+        try await self.describeFraudBase(DescribeFraudBaseRequest(deviceToken: deviceToken), logger: logger, on: eventLoop)
+    }
 }

@@ -68,4 +68,20 @@ extension Ic {
     public func describeCards(_ input: DescribeCardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCardsResponse {
         try await self.client.execute(action: "DescribeCards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询卡片列表
+    ///
+    /// 查询卡片列表信息
+    @inlinable
+    public func describeCards(sdkappid: String, offset: Int64, limit: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCardsResponse > {
+        self.describeCards(DescribeCardsRequest(sdkappid: sdkappid, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询卡片列表
+    ///
+    /// 查询卡片列表信息
+    @inlinable
+    public func describeCards(sdkappid: String, offset: Int64, limit: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCardsResponse {
+        try await self.describeCards(DescribeCardsRequest(sdkappid: sdkappid, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

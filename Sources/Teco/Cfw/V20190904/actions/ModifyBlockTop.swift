@@ -59,4 +59,20 @@ extension Cfw {
     public func modifyBlockTop(_ input: ModifyBlockTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlockTopResponse {
         try await self.client.execute(action: "ModifyBlockTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 取消阻断记录置顶接口
+    ///
+    /// ModifyBlockTop取消置顶接口
+    @inlinable
+    public func modifyBlockTop(uniqueId: String, opeType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBlockTopResponse > {
+        self.modifyBlockTop(ModifyBlockTopRequest(uniqueId: uniqueId, opeType: opeType), logger: logger, on: eventLoop)
+    }
+    
+    /// 取消阻断记录置顶接口
+    ///
+    /// ModifyBlockTop取消置顶接口
+    @inlinable
+    public func modifyBlockTop(uniqueId: String, opeType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlockTopResponse {
+        try await self.modifyBlockTop(ModifyBlockTopRequest(uniqueId: uniqueId, opeType: opeType), logger: logger, on: eventLoop)
+    }
 }

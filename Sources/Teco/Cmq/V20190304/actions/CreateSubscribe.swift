@@ -41,7 +41,7 @@ extension Cmq {
         /// 推送内容的格式。取值：1）JSON；2）SIMPLIFIED，即raw格式。如果Protocol是queue，则取值必须为SIMPLIFIED。如果Protocol是http，两个值均可以，默认值是JSON。
         public let notifyContentFormat: String?
         
-        public init (topicName: String, subscriptionName: String, `protocol`: String, endpoint: String, notifyStrategy: String? = nil, filterTag: [String]? = nil, bindingKey: [String]? = nil, notifyContentFormat: String? = nil) {
+        public init (topicName: String, subscriptionName: String, protocol: String, endpoint: String, notifyStrategy: String? = nil, filterTag: [String]? = nil, bindingKey: [String]? = nil, notifyContentFormat: String? = nil) {
             self.topicName = topicName
             self.subscriptionName = subscriptionName
             self.`protocol` = `protocol`
@@ -88,5 +88,17 @@ extension Cmq {
     @inlinable
     public func createSubscribe(_ input: CreateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscribeResponse {
         try await self.client.execute(action: "CreateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 创建订阅接口
+    @inlinable
+    public func createSubscribe(topicName: String, subscriptionName: String, protocol: String, endpoint: String, notifyStrategy: String? = nil, filterTag: [String]? = nil, bindingKey: [String]? = nil, notifyContentFormat: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubscribeResponse > {
+        self.createSubscribe(CreateSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName, protocol: `protocol`, endpoint: endpoint, notifyStrategy: notifyStrategy, filterTag: filterTag, bindingKey: bindingKey, notifyContentFormat: notifyContentFormat), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建订阅接口
+    @inlinable
+    public func createSubscribe(topicName: String, subscriptionName: String, protocol: String, endpoint: String, notifyStrategy: String? = nil, filterTag: [String]? = nil, bindingKey: [String]? = nil, notifyContentFormat: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscribeResponse {
+        try await self.createSubscribe(CreateSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName, protocol: `protocol`, endpoint: endpoint, notifyStrategy: notifyStrategy, filterTag: filterTag, bindingKey: bindingKey, notifyContentFormat: notifyContentFormat), logger: logger, on: eventLoop)
     }
 }

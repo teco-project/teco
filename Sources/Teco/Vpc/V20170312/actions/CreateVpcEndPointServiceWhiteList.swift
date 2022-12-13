@@ -64,4 +64,20 @@ extension Vpc {
     public func createVpcEndPointServiceWhiteList(_ input: CreateVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceWhiteListResponse {
         try await self.client.execute(action: "CreateVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建终端服务白名单
+    ///
+    /// 创建终端服务白名单。
+    @inlinable
+    public func createVpcEndPointServiceWhiteList(userUin: String, endPointServiceId: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpcEndPointServiceWhiteListResponse > {
+        self.createVpcEndPointServiceWhiteList(CreateVpcEndPointServiceWhiteListRequest(userUin: userUin, endPointServiceId: endPointServiceId, description: description), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建终端服务白名单
+    ///
+    /// 创建终端服务白名单。
+    @inlinable
+    public func createVpcEndPointServiceWhiteList(userUin: String, endPointServiceId: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceWhiteListResponse {
+        try await self.createVpcEndPointServiceWhiteList(CreateVpcEndPointServiceWhiteListRequest(userUin: userUin, endPointServiceId: endPointServiceId, description: description), logger: logger, on: eventLoop)
+    }
 }

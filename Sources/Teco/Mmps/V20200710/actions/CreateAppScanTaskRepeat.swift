@@ -82,4 +82,20 @@ extension Mmps {
     public func createAppScanTaskRepeat(_ input: CreateAppScanTaskRepeatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskRepeatResponse {
         try await self.client.execute(action: "CreateAppScanTaskRepeat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 隐私合规诊断重试任务
+    ///
+    /// 小程序隐私合规诊断重试任务
+    @inlinable
+    public func createAppScanTaskRepeat(taskType: Int64, source: Int64, appPackage: String, platform: Int64, orgTaskID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppScanTaskRepeatResponse > {
+        self.createAppScanTaskRepeat(CreateAppScanTaskRepeatRequest(taskType: taskType, source: source, appPackage: appPackage, platform: platform, orgTaskID: orgTaskID), logger: logger, on: eventLoop)
+    }
+    
+    /// 隐私合规诊断重试任务
+    ///
+    /// 小程序隐私合规诊断重试任务
+    @inlinable
+    public func createAppScanTaskRepeat(taskType: Int64, source: Int64, appPackage: String, platform: Int64, orgTaskID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskRepeatResponse {
+        try await self.createAppScanTaskRepeat(CreateAppScanTaskRepeatRequest(taskType: taskType, source: source, appPackage: appPackage, platform: platform, orgTaskID: orgTaskID), logger: logger, on: eventLoop)
+    }
 }

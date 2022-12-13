@@ -119,4 +119,16 @@ extension Tke {
     public func createClusterNodePool(_ input: CreateClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterNodePoolResponse {
         try await self.client.execute(action: "CreateClusterNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建节点池
+    @inlinable
+    public func createClusterNodePool(clusterId: String, autoScalingGroupPara: String, launchConfigurePara: String, instanceAdvancedSettings: InstanceAdvancedSettings, enableAutoscale: Bool, name: String? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, containerRuntime: String? = nil, runtimeVersion: String? = nil, nodePoolOs: String? = nil, osCustomizeType: String? = nil, tags: [Tag]? = nil, deletionProtection: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterNodePoolResponse > {
+        self.createClusterNodePool(CreateClusterNodePoolRequest(clusterId: clusterId, autoScalingGroupPara: autoScalingGroupPara, launchConfigurePara: launchConfigurePara, instanceAdvancedSettings: instanceAdvancedSettings, enableAutoscale: enableAutoscale, name: name, labels: labels, taints: taints, containerRuntime: containerRuntime, runtimeVersion: runtimeVersion, nodePoolOs: nodePoolOs, osCustomizeType: osCustomizeType, tags: tags, deletionProtection: deletionProtection), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建节点池
+    @inlinable
+    public func createClusterNodePool(clusterId: String, autoScalingGroupPara: String, launchConfigurePara: String, instanceAdvancedSettings: InstanceAdvancedSettings, enableAutoscale: Bool, name: String? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, containerRuntime: String? = nil, runtimeVersion: String? = nil, nodePoolOs: String? = nil, osCustomizeType: String? = nil, tags: [Tag]? = nil, deletionProtection: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterNodePoolResponse {
+        try await self.createClusterNodePool(CreateClusterNodePoolRequest(clusterId: clusterId, autoScalingGroupPara: autoScalingGroupPara, launchConfigurePara: launchConfigurePara, instanceAdvancedSettings: instanceAdvancedSettings, enableAutoscale: enableAutoscale, name: name, labels: labels, taints: taints, containerRuntime: containerRuntime, runtimeVersion: runtimeVersion, nodePoolOs: nodePoolOs, osCustomizeType: osCustomizeType, tags: tags, deletionProtection: deletionProtection), logger: logger, on: eventLoop)
+    }
 }

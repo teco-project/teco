@@ -54,4 +54,20 @@ extension Ses {
     public func deleteReceiver(_ input: DeleteReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReceiverResponse {
         try await self.client.execute(action: "DeleteReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除收件人列表
+    ///
+    /// 根据收件id删除收件人列表,同时删除列表中的所有收件邮箱
+    @inlinable
+    public func deleteReceiver(receiverId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReceiverResponse > {
+        self.deleteReceiver(DeleteReceiverRequest(receiverId: receiverId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除收件人列表
+    ///
+    /// 根据收件id删除收件人列表,同时删除列表中的所有收件邮箱
+    @inlinable
+    public func deleteReceiver(receiverId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReceiverResponse {
+        try await self.deleteReceiver(DeleteReceiverRequest(receiverId: receiverId), logger: logger, on: eventLoop)
+    }
 }

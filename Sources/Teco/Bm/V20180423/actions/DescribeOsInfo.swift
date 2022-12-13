@@ -58,4 +58,20 @@ extension Bm {
     public func describeOsInfo(_ input: DescribeOsInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOsInfoResponse {
         try await self.client.execute(action: "DescribeOsInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询操作系统信息
+    ///
+    /// 查询指定机型所支持的操作系统
+    @inlinable
+    public func describeOsInfo(deviceClassCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOsInfoResponse > {
+        self.describeOsInfo(DescribeOsInfoRequest(deviceClassCode: deviceClassCode), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询操作系统信息
+    ///
+    /// 查询指定机型所支持的操作系统
+    @inlinable
+    public func describeOsInfo(deviceClassCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOsInfoResponse {
+        try await self.describeOsInfo(DescribeOsInfoRequest(deviceClassCode: deviceClassCode), logger: logger, on: eventLoop)
+    }
 }

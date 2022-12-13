@@ -62,4 +62,20 @@ extension Cynosdb {
     public func describeClusterParams(_ input: DescribeClusterParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterParamsResponse {
         try await self.client.execute(action: "DescribeClusterParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询集群参数
+    ///
+    /// 本接口（DescribeClusterParams）用于查询集群参数
+    @inlinable
+    public func describeClusterParams(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterParamsResponse > {
+        self.describeClusterParams(DescribeClusterParamsRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群参数
+    ///
+    /// 本接口（DescribeClusterParams）用于查询集群参数
+    @inlinable
+    public func describeClusterParams(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterParamsResponse {
+        try await self.describeClusterParams(DescribeClusterParamsRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

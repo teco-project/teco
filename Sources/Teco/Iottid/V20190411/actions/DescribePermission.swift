@@ -58,4 +58,20 @@ extension Iottid {
     public func describePermission(_ input: DescribePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePermissionResponse {
         try await self.client.execute(action: "DescribePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询权限
+    ///
+    /// 查询企业用户TID平台控制台权限 
+    @inlinable
+    public func describePermission(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePermissionResponse > {
+        self.describePermission(DescribePermissionRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询权限
+    ///
+    /// 查询企业用户TID平台控制台权限 
+    @inlinable
+    public func describePermission(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePermissionResponse {
+        try await self.describePermission(DescribePermissionRequest(), logger: logger, on: eventLoop)
+    }
 }

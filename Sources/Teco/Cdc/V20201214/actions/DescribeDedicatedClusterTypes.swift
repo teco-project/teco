@@ -78,4 +78,16 @@ extension Cdc {
     public func describeDedicatedClusterTypes(_ input: DescribeDedicatedClusterTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterTypesResponse {
         try await self.client.execute(action: "DescribeDedicatedClusterTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询专有集群配置列表
+    @inlinable
+    public func describeDedicatedClusterTypes(name: String? = nil, dedicatedClusterTypeIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, isCompute: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterTypesResponse > {
+        self.describeDedicatedClusterTypes(DescribeDedicatedClusterTypesRequest(name: name, dedicatedClusterTypeIds: dedicatedClusterTypeIds, offset: offset, limit: limit, isCompute: isCompute), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专有集群配置列表
+    @inlinable
+    public func describeDedicatedClusterTypes(name: String? = nil, dedicatedClusterTypeIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, isCompute: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterTypesResponse {
+        try await self.describeDedicatedClusterTypes(DescribeDedicatedClusterTypesRequest(name: name, dedicatedClusterTypeIds: dedicatedClusterTypeIds, offset: offset, limit: limit, isCompute: isCompute), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Tke {
     public func deletePrometheusTemp(_ input: DeletePrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTempResponse {
         try await self.client.execute(action: "DeletePrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除模板实例
+    ///
+    /// 删除一个云原生Prometheus配置模板
+    @inlinable
+    public func deletePrometheusTemp(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusTempResponse > {
+        self.deletePrometheusTemp(DeletePrometheusTempRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除模板实例
+    ///
+    /// 删除一个云原生Prometheus配置模板
+    @inlinable
+    public func deletePrometheusTemp(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTempResponse {
+        try await self.deletePrometheusTemp(DeletePrometheusTempRequest(templateId: templateId), logger: logger, on: eventLoop)
+    }
 }

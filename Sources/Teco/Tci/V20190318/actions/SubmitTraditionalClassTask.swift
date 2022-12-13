@@ -93,4 +93,36 @@ extension Tci {
     public func submitTraditionalClassTask(_ input: SubmitTraditionalClassTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitTraditionalClassTaskResponse {
         try await self.client.execute(action: "SubmitTraditionalClassTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 提交传统面授大班课（含课桌）任务
+    ///
+    /// **提交线下传统面授大班课（含课桌）任务。**  
+    /// 传统教室课堂是指有学生课堂有课桌的课堂，满座20-50人，全局画面且背景不动。  
+    ///   
+    /// **提供的功能接口有：**学生人脸识别、学生表情识别、学生肢体动作识别。可分析的指标维度包括：学生身份识别、正脸、侧脸、抬头、低头、高兴、中性、高兴、中性、惊讶、厌恶、恐惧、愤怒、蔑视、悲伤、举手、站立、坐着、趴桌子、玩手机等  
+    ///   
+    /// **对场景的要求为：**传统的学生上课教室，满座20-50人，全局画面且背景不动；人脸上下角度在20度以内，左右角度在15度以内，歪头角度在15度以内；光照均匀，无遮挡，人脸清晰可见；像素最好在 100X100 像素以上，但是图像整体质量不能超过1080p。
+    ///     
+    /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
+    ///   
+    @inlinable
+    public func submitTraditionalClassTask(fileContent: String, fileType: String, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitTraditionalClassTaskResponse > {
+        self.submitTraditionalClassTask(SubmitTraditionalClassTaskRequest(fileContent: fileContent, fileType: fileType, librarySet: librarySet, maxVideoDuration: maxVideoDuration), logger: logger, on: eventLoop)
+    }
+    
+    /// 提交传统面授大班课（含课桌）任务
+    ///
+    /// **提交线下传统面授大班课（含课桌）任务。**  
+    /// 传统教室课堂是指有学生课堂有课桌的课堂，满座20-50人，全局画面且背景不动。  
+    ///   
+    /// **提供的功能接口有：**学生人脸识别、学生表情识别、学生肢体动作识别。可分析的指标维度包括：学生身份识别、正脸、侧脸、抬头、低头、高兴、中性、高兴、中性、惊讶、厌恶、恐惧、愤怒、蔑视、悲伤、举手、站立、坐着、趴桌子、玩手机等  
+    ///   
+    /// **对场景的要求为：**传统的学生上课教室，满座20-50人，全局画面且背景不动；人脸上下角度在20度以内，左右角度在15度以内，歪头角度在15度以内；光照均匀，无遮挡，人脸清晰可见；像素最好在 100X100 像素以上，但是图像整体质量不能超过1080p。
+    ///     
+    /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
+    ///   
+    @inlinable
+    public func submitTraditionalClassTask(fileContent: String, fileType: String, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitTraditionalClassTaskResponse {
+        try await self.submitTraditionalClassTask(SubmitTraditionalClassTaskRequest(fileContent: fileContent, fileType: fileType, librarySet: librarySet, maxVideoDuration: maxVideoDuration), logger: logger, on: eventLoop)
+    }
 }

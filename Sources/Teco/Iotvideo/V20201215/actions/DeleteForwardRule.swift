@@ -85,4 +85,16 @@ extension Iotvideo {
     public func deleteForwardRule(_ input: DeleteForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteForwardRuleResponse {
         try await self.client.execute(action: "DeleteForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除转发规则
+    @inlinable
+    public func deleteForwardRule(productID: String, skey: String, queueType: UInt64, queueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteForwardRuleResponse > {
+        self.deleteForwardRule(DeleteForwardRuleRequest(productID: productID, skey: skey, queueType: queueType, queueName: queueName), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除转发规则
+    @inlinable
+    public func deleteForwardRule(productID: String, skey: String, queueType: UInt64, queueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteForwardRuleResponse {
+        try await self.deleteForwardRule(DeleteForwardRuleRequest(productID: productID, skey: skey, queueType: queueType, queueName: queueName), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,16 @@ extension Faceid {
     public func getRealNameAuthResult(_ input: GetRealNameAuthResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRealNameAuthResultResponse {
         try await self.client.execute(action: "GetRealNameAuthResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取微信实名认证结果
+    @inlinable
+    public func getRealNameAuthResult(authToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRealNameAuthResultResponse > {
+        self.getRealNameAuthResult(GetRealNameAuthResultRequest(authToken: authToken), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取微信实名认证结果
+    @inlinable
+    public func getRealNameAuthResult(authToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRealNameAuthResultResponse {
+        try await self.getRealNameAuthResult(GetRealNameAuthResultRequest(authToken: authToken), logger: logger, on: eventLoop)
+    }
 }

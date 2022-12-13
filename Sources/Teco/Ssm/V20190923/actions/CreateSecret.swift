@@ -102,4 +102,20 @@ extension Ssm {
     public func createSecret(_ input: CreateSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecretResponse {
         try await self.client.execute(action: "CreateSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建凭据
+    ///
+    /// 创建新的凭据信息，通过KMS进行加密保护。每个Region最多可创建存储1000个凭据信息。
+    @inlinable
+    public func createSecret(secretName: String, versionId: String, description: String? = nil, kmsKeyId: String? = nil, secretBinary: String? = nil, secretString: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecretResponse > {
+        self.createSecret(CreateSecretRequest(secretName: secretName, versionId: versionId, description: description, kmsKeyId: kmsKeyId, secretBinary: secretBinary, secretString: secretString, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建凭据
+    ///
+    /// 创建新的凭据信息，通过KMS进行加密保护。每个Region最多可创建存储1000个凭据信息。
+    @inlinable
+    public func createSecret(secretName: String, versionId: String, description: String? = nil, kmsKeyId: String? = nil, secretBinary: String? = nil, secretString: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecretResponse {
+        try await self.createSecret(CreateSecretRequest(secretName: secretName, versionId: versionId, description: description, kmsKeyId: kmsKeyId, secretBinary: secretBinary, secretString: secretString, tags: tags), logger: logger, on: eventLoop)
+    }
 }

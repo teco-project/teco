@@ -72,4 +72,20 @@ extension Cdb {
     public func describeSlowLogs(_ input: DescribeSlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogsResponse {
         try await self.client.execute(action: "DescribeSlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询慢查询日志
+    ///
+    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
+    @inlinable
+    public func describeSlowLogs(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogsResponse > {
+        self.describeSlowLogs(DescribeSlowLogsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询慢查询日志
+    ///
+    /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
+    @inlinable
+    public func describeSlowLogs(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogsResponse {
+        try await self.describeSlowLogs(DescribeSlowLogsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

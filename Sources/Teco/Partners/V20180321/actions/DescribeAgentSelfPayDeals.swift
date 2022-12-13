@@ -99,4 +99,20 @@ extension Partners {
     public func describeAgentSelfPayDeals(_ input: DescribeAgentSelfPayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentSelfPayDealsResponse {
         try await self.client.execute(action: "DescribeAgentSelfPayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 代理商自付订单查询接口（禁止接入）
+    ///
+    /// 【该接口已下线，请切换使用升级版本DescribeAgentSelfPayDealsV2】可以查询代理商下指定客户的自付订单
+    @inlinable
+    public func describeAgentSelfPayDeals(ownerUin: String, offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, dealNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentSelfPayDealsResponse > {
+        self.describeAgentSelfPayDeals(DescribeAgentSelfPayDealsRequest(ownerUin: ownerUin, offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, dealNames: dealNames), logger: logger, on: eventLoop)
+    }
+    
+    /// 代理商自付订单查询接口（禁止接入）
+    ///
+    /// 【该接口已下线，请切换使用升级版本DescribeAgentSelfPayDealsV2】可以查询代理商下指定客户的自付订单
+    @inlinable
+    public func describeAgentSelfPayDeals(ownerUin: String, offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, dealNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentSelfPayDealsResponse {
+        try await self.describeAgentSelfPayDeals(DescribeAgentSelfPayDealsRequest(ownerUin: ownerUin, offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, dealNames: dealNames), logger: logger, on: eventLoop)
+    }
 }

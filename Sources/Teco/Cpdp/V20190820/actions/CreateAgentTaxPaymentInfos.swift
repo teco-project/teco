@@ -84,4 +84,16 @@ extension Cpdp {
     public func createAgentTaxPaymentInfos(_ input: CreateAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAgentTaxPaymentInfosResponse {
         try await self.client.execute(action: "CreateAgentTaxPaymentInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 直播平台-代理商完税信息录入
+    @inlinable
+    public func createAgentTaxPaymentInfos(agentId: String, channel: Int64, type: Int64, rawElectronicCertUrl: String, fileName: String, agentTaxPaymentInfos: [AgentTaxPayment], profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAgentTaxPaymentInfosResponse > {
+        self.createAgentTaxPaymentInfos(CreateAgentTaxPaymentInfosRequest(agentId: agentId, channel: channel, type: type, rawElectronicCertUrl: rawElectronicCertUrl, fileName: fileName, agentTaxPaymentInfos: agentTaxPaymentInfos, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 直播平台-代理商完税信息录入
+    @inlinable
+    public func createAgentTaxPaymentInfos(agentId: String, channel: Int64, type: Int64, rawElectronicCertUrl: String, fileName: String, agentTaxPaymentInfos: [AgentTaxPayment], profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAgentTaxPaymentInfosResponse {
+        try await self.createAgentTaxPaymentInfos(CreateAgentTaxPaymentInfosRequest(agentId: agentId, channel: channel, type: type, rawElectronicCertUrl: rawElectronicCertUrl, fileName: fileName, agentTaxPaymentInfos: agentTaxPaymentInfos, profile: profile), logger: logger, on: eventLoop)
+    }
 }

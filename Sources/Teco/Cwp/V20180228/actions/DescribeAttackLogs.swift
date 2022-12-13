@@ -90,4 +90,20 @@ extension Cwp {
     public func describeAttackLogs(_ input: DescribeAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackLogsResponse {
         try await self.client.execute(action: "DescribeAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 网络攻击日志列表
+    ///
+    /// 按分页形式展示网络攻击日志列表
+    @inlinable
+    public func describeAttackLogs(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, uuid: String? = nil, quuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAttackLogsResponse > {
+        self.describeAttackLogs(DescribeAttackLogsRequest(limit: limit, offset: offset, filters: filters, uuid: uuid, quuid: quuid), logger: logger, on: eventLoop)
+    }
+    
+    /// 网络攻击日志列表
+    ///
+    /// 按分页形式展示网络攻击日志列表
+    @inlinable
+    public func describeAttackLogs(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, uuid: String? = nil, quuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackLogsResponse {
+        try await self.describeAttackLogs(DescribeAttackLogsRequest(limit: limit, offset: offset, filters: filters, uuid: uuid, quuid: quuid), logger: logger, on: eventLoop)
+    }
 }

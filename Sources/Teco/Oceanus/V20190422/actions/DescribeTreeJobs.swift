@@ -54,4 +54,20 @@ extension Oceanus {
     public func describeTreeJobs(_ input: DescribeTreeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTreeJobsResponse {
         try await self.client.execute(action: "DescribeTreeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 自定义树状结构
+    ///
+    /// 生成树状作业显示结构
+    @inlinable
+    public func describeTreeJobs(workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTreeJobsResponse > {
+        self.describeTreeJobs(DescribeTreeJobsRequest(workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 自定义树状结构
+    ///
+    /// 生成树状作业显示结构
+    @inlinable
+    public func describeTreeJobs(workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTreeJobsResponse {
+        try await self.describeTreeJobs(DescribeTreeJobsRequest(workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    }
 }

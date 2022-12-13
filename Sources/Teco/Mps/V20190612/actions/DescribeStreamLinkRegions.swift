@@ -50,4 +50,20 @@ extension Mps {
     public func describeStreamLinkRegions(_ input: DescribeStreamLinkRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkRegionsResponse {
         try await self.client.execute(action: "DescribeStreamLinkRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询媒体传输地区
+    ///
+    /// 查询媒体传输所有地区。
+    @inlinable
+    public func describeStreamLinkRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamLinkRegionsResponse > {
+        self.describeStreamLinkRegions(DescribeStreamLinkRegionsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询媒体传输地区
+    ///
+    /// 查询媒体传输所有地区。
+    @inlinable
+    public func describeStreamLinkRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkRegionsResponse {
+        try await self.describeStreamLinkRegions(DescribeStreamLinkRegionsRequest(), logger: logger, on: eventLoop)
+    }
 }

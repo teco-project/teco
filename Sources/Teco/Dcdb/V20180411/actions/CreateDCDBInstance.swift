@@ -177,4 +177,20 @@ extension Dcdb {
     public func createDCDBInstance(_ input: CreateDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDCDBInstanceResponse {
         try await self.client.execute(action: "CreateDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建DCDB分布式实例
+    ///
+    /// 本接口（CreateDCDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长等信息创建云数据库实例。
+    @inlinable
+    public func createDCDBInstance(zones: [String], period: Int64, shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64, shardCount: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, securityGroupId: String? = nil, instanceName: String? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, initParams: [DBParamValue]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, autoRenewFlag: Int64? = nil, securityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDCDBInstanceResponse > {
+        self.createDCDBInstance(CreateDCDBInstanceRequest(zones: zones, period: period, shardMemory: shardMemory, shardStorage: shardStorage, shardNodeCount: shardNodeCount, shardCount: shardCount, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, dbVersionId: dbVersionId, autoVoucher: autoVoucher, voucherIds: voucherIds, securityGroupId: securityGroupId, instanceName: instanceName, ipv6Flag: ipv6Flag, resourceTags: resourceTags, initParams: initParams, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, autoRenewFlag: autoRenewFlag, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建DCDB分布式实例
+    ///
+    /// 本接口（CreateDCDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长等信息创建云数据库实例。
+    @inlinable
+    public func createDCDBInstance(zones: [String], period: Int64, shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64, shardCount: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, securityGroupId: String? = nil, instanceName: String? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, initParams: [DBParamValue]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, autoRenewFlag: Int64? = nil, securityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDCDBInstanceResponse {
+        try await self.createDCDBInstance(CreateDCDBInstanceRequest(zones: zones, period: period, shardMemory: shardMemory, shardStorage: shardStorage, shardNodeCount: shardNodeCount, shardCount: shardCount, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, dbVersionId: dbVersionId, autoVoucher: autoVoucher, voucherIds: voucherIds, securityGroupId: securityGroupId, instanceName: instanceName, ipv6Flag: ipv6Flag, resourceTags: resourceTags, initParams: initParams, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, autoRenewFlag: autoRenewFlag, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    }
 }

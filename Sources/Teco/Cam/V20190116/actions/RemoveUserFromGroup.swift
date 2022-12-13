@@ -50,4 +50,16 @@ extension Cam {
     public func removeUserFromGroup(_ input: RemoveUserFromGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveUserFromGroupResponse {
         try await self.client.execute(action: "RemoveUserFromGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 从用户组删除用户
+    @inlinable
+    public func removeUserFromGroup(info: [GroupIdOfUidInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveUserFromGroupResponse > {
+        self.removeUserFromGroup(RemoveUserFromGroupRequest(info: info), logger: logger, on: eventLoop)
+    }
+    
+    /// 从用户组删除用户
+    @inlinable
+    public func removeUserFromGroup(info: [GroupIdOfUidInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveUserFromGroupResponse {
+        try await self.removeUserFromGroup(RemoveUserFromGroupRequest(info: info), logger: logger, on: eventLoop)
+    }
 }

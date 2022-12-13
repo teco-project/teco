@@ -46,4 +46,20 @@ extension Cwp {
     public func deleteWebPageEventLog(_ input: DeleteWebPageEventLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWebPageEventLogResponse {
         try await self.client.execute(action: "DeleteWebPageEventLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除事件记录
+    ///
+    /// 网站防篡改-删除事件记录
+    @inlinable
+    public func deleteWebPageEventLog(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWebPageEventLogResponse > {
+        self.deleteWebPageEventLog(DeleteWebPageEventLogRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除事件记录
+    ///
+    /// 网站防篡改-删除事件记录
+    @inlinable
+    public func deleteWebPageEventLog(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWebPageEventLogResponse {
+        try await self.deleteWebPageEventLog(DeleteWebPageEventLogRequest(), logger: logger, on: eventLoop)
+    }
 }

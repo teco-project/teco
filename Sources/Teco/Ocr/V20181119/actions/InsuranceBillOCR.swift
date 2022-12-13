@@ -70,4 +70,20 @@ extension Ocr {
     public func insuranceBillOCR(_ input: InsuranceBillOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InsuranceBillOCRResponse {
         try await self.client.execute(action: "InsuranceBillOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 保险单据识别
+    ///
+    /// 本接口支持病案首页、费用清单、结算单、医疗发票四种保险理赔单据的文本识别和结构化输出。
+    @inlinable
+    public func insuranceBillOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InsuranceBillOCRResponse > {
+        self.insuranceBillOCR(InsuranceBillOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
+    
+    /// 保险单据识别
+    ///
+    /// 本接口支持病案首页、费用清单、结算单、医疗发票四种保险理赔单据的文本识别和结构化输出。
+    @inlinable
+    public func insuranceBillOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InsuranceBillOCRResponse {
+        try await self.insuranceBillOCR(InsuranceBillOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    }
 }

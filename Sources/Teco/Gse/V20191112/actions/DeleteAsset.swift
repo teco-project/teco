@@ -56,4 +56,22 @@ extension Gse {
     public func deleteAsset(_ input: DeleteAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAssetResponse {
         try await self.client.execute(action: "DeleteAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除生成包
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DeleteAsset）用于删除生成包。
+    @inlinable
+    public func deleteAsset(assetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAssetResponse > {
+        self.deleteAsset(DeleteAssetRequest(assetId: assetId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除生成包
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DeleteAsset）用于删除生成包。
+    @inlinable
+    public func deleteAsset(assetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAssetResponse {
+        try await self.deleteAsset(DeleteAssetRequest(assetId: assetId), logger: logger, on: eventLoop)
+    }
 }

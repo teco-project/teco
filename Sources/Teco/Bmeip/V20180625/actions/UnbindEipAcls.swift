@@ -50,4 +50,16 @@ extension Bmeip {
     public func unbindEipAcls(_ input: UnbindEipAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindEipAclsResponse {
         try await self.client.execute(action: "UnbindEipAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 解绑弹性公网IP ACL
+    @inlinable
+    public func unbindEipAcls(eipIdAclIdList: [EipAclMap], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindEipAclsResponse > {
+        self.unbindEipAcls(UnbindEipAclsRequest(eipIdAclIdList: eipIdAclIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑弹性公网IP ACL
+    @inlinable
+    public func unbindEipAcls(eipIdAclIdList: [EipAclMap], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindEipAclsResponse {
+        try await self.unbindEipAcls(UnbindEipAclsRequest(eipIdAclIdList: eipIdAclIdList), logger: logger, on: eventLoop)
+    }
 }

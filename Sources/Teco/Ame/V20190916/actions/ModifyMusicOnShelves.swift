@@ -59,4 +59,20 @@ extension Ame {
     public func modifyMusicOnShelves(_ input: ModifyMusicOnShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMusicOnShelvesResponse {
         try await self.client.execute(action: "ModifyMusicOnShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 变更歌曲参数
+    ///
+    /// 根据资源方，需要变更的参数，请求该接口进行变更，为空的参数默认为无变更
+    @inlinable
+    public func modifyMusicOnShelves(musicDetailInfos: MusicDetailInfo, ameKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMusicOnShelvesResponse > {
+        self.modifyMusicOnShelves(ModifyMusicOnShelvesRequest(musicDetailInfos: musicDetailInfos, ameKey: ameKey), logger: logger, on: eventLoop)
+    }
+    
+    /// 变更歌曲参数
+    ///
+    /// 根据资源方，需要变更的参数，请求该接口进行变更，为空的参数默认为无变更
+    @inlinable
+    public func modifyMusicOnShelves(musicDetailInfos: MusicDetailInfo, ameKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMusicOnShelvesResponse {
+        try await self.modifyMusicOnShelves(ModifyMusicOnShelvesRequest(musicDetailInfos: musicDetailInfos, ameKey: ameKey), logger: logger, on: eventLoop)
+    }
 }

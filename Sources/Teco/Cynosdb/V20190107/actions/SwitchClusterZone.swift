@@ -69,4 +69,16 @@ extension Cynosdb {
     public func switchClusterZone(_ input: SwitchClusterZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchClusterZoneResponse {
         try await self.client.execute(action: "SwitchClusterZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 切换到从可用区
+    @inlinable
+    public func switchClusterZone(clusterId: String, oldZone: String, newZone: String, isInMaintainPeriod: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchClusterZoneResponse > {
+        self.switchClusterZone(SwitchClusterZoneRequest(clusterId: clusterId, oldZone: oldZone, newZone: newZone, isInMaintainPeriod: isInMaintainPeriod), logger: logger, on: eventLoop)
+    }
+    
+    /// 切换到从可用区
+    @inlinable
+    public func switchClusterZone(clusterId: String, oldZone: String, newZone: String, isInMaintainPeriod: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchClusterZoneResponse {
+        try await self.switchClusterZone(SwitchClusterZoneRequest(clusterId: clusterId, oldZone: oldZone, newZone: newZone, isInMaintainPeriod: isInMaintainPeriod), logger: logger, on: eventLoop)
+    }
 }

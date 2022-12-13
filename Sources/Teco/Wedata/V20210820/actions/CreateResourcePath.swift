@@ -69,4 +69,20 @@ extension Wedata {
     public func createResourcePath(_ input: CreateResourcePathRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourcePathResponse {
         try await self.client.execute(action: "CreateResourcePath", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 资源管理创建文件路径
+    ///
+    /// 文件路径的根目录为 /datastudio/resource，如果要在根目录下创建 aaa 文件夹，FilePath的值应该为 /datastudio/resource，如果根目录下已经创建了 aaa 文件夹，要在 aaa 下创建  bbb 文件夹，FilePath的值应该为 /datastudio/resource/aaa
+    @inlinable
+    public func createResourcePath(name: String, filePath: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResourcePathResponse > {
+        self.createResourcePath(CreateResourcePathRequest(name: name, filePath: filePath, projectId: projectId), logger: logger, on: eventLoop)
+    }
+    
+    /// 资源管理创建文件路径
+    ///
+    /// 文件路径的根目录为 /datastudio/resource，如果要在根目录下创建 aaa 文件夹，FilePath的值应该为 /datastudio/resource，如果根目录下已经创建了 aaa 文件夹，要在 aaa 下创建  bbb 文件夹，FilePath的值应该为 /datastudio/resource/aaa
+    @inlinable
+    public func createResourcePath(name: String, filePath: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourcePathResponse {
+        try await self.createResourcePath(CreateResourcePathRequest(name: name, filePath: filePath, projectId: projectId), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,16 @@ extension Tdmq {
     public func deleteRocketMQGroup(_ input: DeleteRocketMQGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQGroupResponse {
         try await self.client.execute(action: "DeleteRocketMQGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除RocketMQ消费组
+    @inlinable
+    public func deleteRocketMQGroup(clusterId: String, namespaceId: String, groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRocketMQGroupResponse > {
+        self.deleteRocketMQGroup(DeleteRocketMQGroupRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除RocketMQ消费组
+    @inlinable
+    public func deleteRocketMQGroup(clusterId: String, namespaceId: String, groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQGroupResponse {
+        try await self.deleteRocketMQGroup(DeleteRocketMQGroupRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

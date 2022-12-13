@@ -115,4 +115,20 @@ extension Ocr {
     public func mainlandPermitOCR(_ input: MainlandPermitOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MainlandPermitOCRResponse {
         try await self.client.execute(action: "MainlandPermitOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 港澳台来往内地通行证识别
+    ///
+    /// 智能识别并结构化港澳台居民来往内地通行证正面全部字段，包含中文姓名、英文姓名、性别、出生日期、签发机关、有效期限、证件号、签发地点、签发次数、证件类别。
+    @inlinable
+    public func mainlandPermitOCR(imageBase64: String? = nil, imageUrl: String? = nil, retProfile: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MainlandPermitOCRResponse > {
+        self.mainlandPermitOCR(MainlandPermitOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, retProfile: retProfile), logger: logger, on: eventLoop)
+    }
+    
+    /// 港澳台来往内地通行证识别
+    ///
+    /// 智能识别并结构化港澳台居民来往内地通行证正面全部字段，包含中文姓名、英文姓名、性别、出生日期、签发机关、有效期限、证件号、签发地点、签发次数、证件类别。
+    @inlinable
+    public func mainlandPermitOCR(imageBase64: String? = nil, imageUrl: String? = nil, retProfile: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MainlandPermitOCRResponse {
+        try await self.mainlandPermitOCR(MainlandPermitOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, retProfile: retProfile), logger: logger, on: eventLoop)
+    }
 }

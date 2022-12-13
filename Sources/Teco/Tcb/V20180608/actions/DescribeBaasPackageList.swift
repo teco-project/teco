@@ -99,4 +99,20 @@ extension Tcb {
     public func describeBaasPackageList(_ input: DescribeBaasPackageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaasPackageListResponse {
         try await self.client.execute(action: "DescribeBaasPackageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取新套餐
+    ///
+    /// 获取新套餐列表，含详情，如果传了PackageId，则只获取指定套餐详情
+    @inlinable
+    public func describeBaasPackageList(packageName: String? = nil, envId: String? = nil, source: String? = nil, envChannel: String? = nil, targetAction: String? = nil, groupName: String? = nil, packageTypeList: [String]? = nil, paymentChannel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaasPackageListResponse > {
+        self.describeBaasPackageList(DescribeBaasPackageListRequest(packageName: packageName, envId: envId, source: source, envChannel: envChannel, targetAction: targetAction, groupName: groupName, packageTypeList: packageTypeList, paymentChannel: paymentChannel), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取新套餐
+    ///
+    /// 获取新套餐列表，含详情，如果传了PackageId，则只获取指定套餐详情
+    @inlinable
+    public func describeBaasPackageList(packageName: String? = nil, envId: String? = nil, source: String? = nil, envChannel: String? = nil, targetAction: String? = nil, groupName: String? = nil, packageTypeList: [String]? = nil, paymentChannel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaasPackageListResponse {
+        try await self.describeBaasPackageList(DescribeBaasPackageListRequest(packageName: packageName, envId: envId, source: source, envChannel: envChannel, targetAction: targetAction, groupName: groupName, packageTypeList: packageTypeList, paymentChannel: paymentChannel), logger: logger, on: eventLoop)
+    }
 }

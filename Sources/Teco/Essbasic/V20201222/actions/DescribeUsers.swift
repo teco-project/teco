@@ -65,4 +65,22 @@ extension Essbasic {
     public func describeUsers(_ input: DescribeUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
         try await self.client.execute(action: "DescribeUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询个人用户信息
+    ///
+    /// 此接口（DescribeUsers）用于查询应用号下的个人用户信息。
+    /// 注：此接口仅可查询您所属机构应用号创建的个人用户信息，不可跨应用/跨机构查询。
+    @inlinable
+    public func describeUsers(caller: Caller, userIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsersResponse > {
+        self.describeUsers(DescribeUsersRequest(caller: caller, userIds: userIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询个人用户信息
+    ///
+    /// 此接口（DescribeUsers）用于查询应用号下的个人用户信息。
+    /// 注：此接口仅可查询您所属机构应用号创建的个人用户信息，不可跨应用/跨机构查询。
+    @inlinable
+    public func describeUsers(caller: Caller, userIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
+        try await self.describeUsers(DescribeUsersRequest(caller: caller, userIds: userIds), logger: logger, on: eventLoop)
+    }
 }

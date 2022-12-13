@@ -59,4 +59,20 @@ extension Oceanus {
     public func stopJobs(_ input: StopJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopJobsResponse {
         try await self.client.execute(action: "StopJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停止作业
+    ///
+    /// 批量停止作业，批量操作数量上限为20
+    @inlinable
+    public func stopJobs(stopJobDescriptions: [StopJobDescription], workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopJobsResponse > {
+        self.stopJobs(StopJobsRequest(stopJobDescriptions: stopJobDescriptions, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 停止作业
+    ///
+    /// 批量停止作业，批量操作数量上限为20
+    @inlinable
+    public func stopJobs(stopJobDescriptions: [StopJobDescription], workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopJobsResponse {
+        try await self.stopJobs(StopJobsRequest(stopJobDescriptions: stopJobDescriptions, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    }
 }

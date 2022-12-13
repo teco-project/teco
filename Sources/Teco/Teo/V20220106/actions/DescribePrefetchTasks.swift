@@ -101,4 +101,16 @@ extension Teo {
     public func describePrefetchTasks(_ input: DescribePrefetchTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrefetchTasksResponse {
         try await self.client.execute(action: "DescribePrefetchTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询预热任务状态
+    @inlinable
+    public func describePrefetchTasks(jobId: String? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: Int64? = nil, limit: Int64? = nil, statuses: [String]? = nil, zoneId: String? = nil, domains: [String]? = nil, target: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrefetchTasksResponse > {
+        self.describePrefetchTasks(DescribePrefetchTasksRequest(jobId: jobId, startTime: startTime, endTime: endTime, offset: offset, limit: limit, statuses: statuses, zoneId: zoneId, domains: domains, target: target), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询预热任务状态
+    @inlinable
+    public func describePrefetchTasks(jobId: String? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: Int64? = nil, limit: Int64? = nil, statuses: [String]? = nil, zoneId: String? = nil, domains: [String]? = nil, target: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrefetchTasksResponse {
+        try await self.describePrefetchTasks(DescribePrefetchTasksRequest(jobId: jobId, startTime: startTime, endTime: endTime, offset: offset, limit: limit, statuses: statuses, zoneId: zoneId, domains: domains, target: target), logger: logger, on: eventLoop)
+    }
 }

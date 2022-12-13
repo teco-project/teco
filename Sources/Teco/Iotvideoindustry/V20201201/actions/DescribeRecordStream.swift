@@ -91,4 +91,28 @@ extension Iotvideoindustry {
     public func describeRecordStream(_ input: DescribeRecordStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordStreamResponse {
         try await self.client.execute(action: "DescribeRecordStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取通道本地回放流地址（旧）
+    ///
+    /// 获取回放视频流地址
+    /// 请使用DescribeChannelLocalRecordURL接口
+    /// RecordId和StartTime/EndTime互斥
+    /// 当存在RecordId时，StartTime和EndTime无效
+    /// 当RecordId为空，StartTime和EndTime生效
+    @inlinable
+    public func describeRecordStream(deviceId: String, expireTime: Int64, recordId: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, channelId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordStreamResponse > {
+        self.describeRecordStream(DescribeRecordStreamRequest(deviceId: deviceId, expireTime: expireTime, recordId: recordId, startTime: startTime, endTime: endTime, channelId: channelId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取通道本地回放流地址（旧）
+    ///
+    /// 获取回放视频流地址
+    /// 请使用DescribeChannelLocalRecordURL接口
+    /// RecordId和StartTime/EndTime互斥
+    /// 当存在RecordId时，StartTime和EndTime无效
+    /// 当RecordId为空，StartTime和EndTime生效
+    @inlinable
+    public func describeRecordStream(deviceId: String, expireTime: Int64, recordId: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, channelId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordStreamResponse {
+        try await self.describeRecordStream(DescribeRecordStreamRequest(deviceId: deviceId, expireTime: expireTime, recordId: recordId, startTime: startTime, endTime: endTime, channelId: channelId), logger: logger, on: eventLoop)
+    }
 }

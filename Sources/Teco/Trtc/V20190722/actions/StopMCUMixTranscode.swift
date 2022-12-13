@@ -59,4 +59,20 @@ extension Trtc {
     public func stopMCUMixTranscode(_ input: StopMCUMixTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMCUMixTranscodeResponse {
         try await self.client.execute(action: "StopMCUMixTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 结束云端混流
+    ///
+    /// 接口说明：结束云端混流
+    @inlinable
+    public func stopMCUMixTranscode(sdkAppId: UInt64, roomId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopMCUMixTranscodeResponse > {
+        self.stopMCUMixTranscode(StopMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId), logger: logger, on: eventLoop)
+    }
+    
+    /// 结束云端混流
+    ///
+    /// 接口说明：结束云端混流
+    @inlinable
+    public func stopMCUMixTranscode(sdkAppId: UInt64, roomId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMCUMixTranscodeResponse {
+        try await self.stopMCUMixTranscode(StopMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId), logger: logger, on: eventLoop)
+    }
 }

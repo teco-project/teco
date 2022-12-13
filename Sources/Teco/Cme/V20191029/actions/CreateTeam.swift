@@ -78,4 +78,20 @@ extension Cme {
     public func createTeam(_ input: CreateTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTeamResponse {
         try await self.client.execute(action: "CreateTeam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建团队
+    ///
+    /// 创建一个团队。
+    @inlinable
+    public func createTeam(platform: String, name: String, ownerId: String, ownerRemark: String? = nil, teamId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTeamResponse > {
+        self.createTeam(CreateTeamRequest(platform: platform, name: name, ownerId: ownerId, ownerRemark: ownerRemark, teamId: teamId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建团队
+    ///
+    /// 创建一个团队。
+    @inlinable
+    public func createTeam(platform: String, name: String, ownerId: String, ownerRemark: String? = nil, teamId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTeamResponse {
+        try await self.createTeam(CreateTeamRequest(platform: platform, name: name, ownerId: ownerId, ownerRemark: ownerRemark, teamId: teamId), logger: logger, on: eventLoop)
+    }
 }

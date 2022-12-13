@@ -69,4 +69,16 @@ extension Cfs {
     public func createAutoSnapshotPolicy(_ input: CreateAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoSnapshotPolicyResponse {
         try await self.client.execute(action: "CreateAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建定期快照策略
+    @inlinable
+    public func createAutoSnapshotPolicy(dayOfWeek: String, hour: String, policyName: String? = nil, aliveDays: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAutoSnapshotPolicyResponse > {
+        self.createAutoSnapshotPolicy(CreateAutoSnapshotPolicyRequest(dayOfWeek: dayOfWeek, hour: hour, policyName: policyName, aliveDays: aliveDays), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建定期快照策略
+    @inlinable
+    public func createAutoSnapshotPolicy(dayOfWeek: String, hour: String, policyName: String? = nil, aliveDays: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoSnapshotPolicyResponse {
+        try await self.createAutoSnapshotPolicy(CreateAutoSnapshotPolicyRequest(dayOfWeek: dayOfWeek, hour: hour, policyName: policyName, aliveDays: aliveDays), logger: logger, on: eventLoop)
+    }
 }

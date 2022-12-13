@@ -97,4 +97,20 @@ extension Bmlb {
     public func describeTrafficMirrorReceivers(_ input: DescribeTrafficMirrorReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorReceiversResponse {
         try await self.client.execute(action: "DescribeTrafficMirrorReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取指定流量镜像实例的接收机信息
+    ///
+    /// 获取指定流量镜像实例的接收机信息。
+    @inlinable
+    public func describeTrafficMirrorReceivers(trafficMirrorId: String, instanceIds: [String]? = nil, ports: [Int64]? = nil, weights: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, vagueStr: String? = nil, vagueIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficMirrorReceiversResponse > {
+        self.describeTrafficMirrorReceivers(DescribeTrafficMirrorReceiversRequest(trafficMirrorId: trafficMirrorId, instanceIds: instanceIds, ports: ports, weights: weights, offset: offset, limit: limit, vagueStr: vagueStr, vagueIp: vagueIp), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定流量镜像实例的接收机信息
+    ///
+    /// 获取指定流量镜像实例的接收机信息。
+    @inlinable
+    public func describeTrafficMirrorReceivers(trafficMirrorId: String, instanceIds: [String]? = nil, ports: [Int64]? = nil, weights: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, vagueStr: String? = nil, vagueIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorReceiversResponse {
+        try await self.describeTrafficMirrorReceivers(DescribeTrafficMirrorReceiversRequest(trafficMirrorId: trafficMirrorId, instanceIds: instanceIds, ports: ports, weights: weights, offset: offset, limit: limit, vagueStr: vagueStr, vagueIp: vagueIp), logger: logger, on: eventLoop)
+    }
 }

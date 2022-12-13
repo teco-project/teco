@@ -67,4 +67,20 @@ extension Tcaplusdb {
     public func modifyTableQuotas(_ input: ModifyTableQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableQuotasResponse {
         try await self.client.execute(action: "ModifyTableQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 表扩缩容
+    ///
+    /// 表格扩缩容
+    @inlinable
+    public func modifyTableQuotas(clusterId: String, tableQuotas: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableQuotasResponse > {
+        self.modifyTableQuotas(ModifyTableQuotasRequest(clusterId: clusterId, tableQuotas: tableQuotas), logger: logger, on: eventLoop)
+    }
+    
+    /// 表扩缩容
+    ///
+    /// 表格扩缩容
+    @inlinable
+    public func modifyTableQuotas(clusterId: String, tableQuotas: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableQuotasResponse {
+        try await self.modifyTableQuotas(ModifyTableQuotasRequest(clusterId: clusterId, tableQuotas: tableQuotas), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Tat {
     public func enableInvoker(_ input: EnableInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableInvokerResponse {
         try await self.client.execute(action: "EnableInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启用执行器
+    ///
+    /// 此接口用于启用执行器。
+    @inlinable
+    public func enableInvoker(invokerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableInvokerResponse > {
+        self.enableInvoker(EnableInvokerRequest(invokerId: invokerId), logger: logger, on: eventLoop)
+    }
+    
+    /// 启用执行器
+    ///
+    /// 此接口用于启用执行器。
+    @inlinable
+    public func enableInvoker(invokerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableInvokerResponse {
+        try await self.enableInvoker(EnableInvokerRequest(invokerId: invokerId), logger: logger, on: eventLoop)
+    }
 }

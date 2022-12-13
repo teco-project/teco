@@ -72,4 +72,20 @@ extension Ame {
     public func describePkgOfflineMusic(_ input: DescribePkgOfflineMusicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePkgOfflineMusicResponse {
         try await self.client.execute(action: "DescribePkgOfflineMusic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 曲库包获取已核销歌曲回退数据
+    ///
+    /// 根据购买曲库包用户可查询已回退的歌曲信息
+    @inlinable
+    public func describePkgOfflineMusic(packageOrderId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePkgOfflineMusicResponse > {
+        self.describePkgOfflineMusic(DescribePkgOfflineMusicRequest(packageOrderId: packageOrderId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 曲库包获取已核销歌曲回退数据
+    ///
+    /// 根据购买曲库包用户可查询已回退的歌曲信息
+    @inlinable
+    public func describePkgOfflineMusic(packageOrderId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePkgOfflineMusicResponse {
+        try await self.describePkgOfflineMusic(DescribePkgOfflineMusicRequest(packageOrderId: packageOrderId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

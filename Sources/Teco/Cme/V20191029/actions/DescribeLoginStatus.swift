@@ -63,4 +63,20 @@ extension Cme {
     public func describeLoginStatus(_ input: DescribeLoginStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoginStatusResponse {
         try await self.client.execute(action: "DescribeLoginStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询登录态
+    ///
+    /// 查询指定用户的登录态。
+    @inlinable
+    public func describeLoginStatus(platform: String, userIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoginStatusResponse > {
+        self.describeLoginStatus(DescribeLoginStatusRequest(platform: platform, userIds: userIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询登录态
+    ///
+    /// 查询指定用户的登录态。
+    @inlinable
+    public func describeLoginStatus(platform: String, userIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoginStatusResponse {
+        try await self.describeLoginStatus(DescribeLoginStatusRequest(platform: platform, userIds: userIds), logger: logger, on: eventLoop)
+    }
 }

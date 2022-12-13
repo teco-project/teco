@@ -63,4 +63,16 @@ extension Tcb {
     public func describeDatabaseACL(_ input: DescribeDatabaseACLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseACLResponse {
         try await self.client.execute(action: "DescribeDatabaseACL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取数据库权限
+    @inlinable
+    public func describeDatabaseACL(envId: String, collectionName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatabaseACLResponse > {
+        self.describeDatabaseACL(DescribeDatabaseACLRequest(envId: envId, collectionName: collectionName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取数据库权限
+    @inlinable
+    public func describeDatabaseACL(envId: String, collectionName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseACLResponse {
+        try await self.describeDatabaseACL(DescribeDatabaseACLRequest(envId: envId, collectionName: collectionName), logger: logger, on: eventLoop)
+    }
 }

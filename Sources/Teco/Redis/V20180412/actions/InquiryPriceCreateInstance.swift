@@ -106,4 +106,16 @@ extension Redis {
     public func inquiryPriceCreateInstance(_ input: InquiryPriceCreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateInstanceResponse {
         try await self.client.execute(action: "InquiryPriceCreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询新购实例价格
+    @inlinable
+    public func inquiryPriceCreateInstance(typeId: UInt64, memSize: UInt64, goodsNum: UInt64, period: UInt64, billingMode: Int64, zoneId: UInt64? = nil, redisShardNum: Int64? = nil, redisReplicasNum: Int64? = nil, replicasReadonly: Bool? = nil, zoneName: String? = nil, productVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateInstanceResponse > {
+        self.inquiryPriceCreateInstance(InquiryPriceCreateInstanceRequest(typeId: typeId, memSize: memSize, goodsNum: goodsNum, period: period, billingMode: billingMode, zoneId: zoneId, redisShardNum: redisShardNum, redisReplicasNum: redisReplicasNum, replicasReadonly: replicasReadonly, zoneName: zoneName, productVersion: productVersion), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询新购实例价格
+    @inlinable
+    public func inquiryPriceCreateInstance(typeId: UInt64, memSize: UInt64, goodsNum: UInt64, period: UInt64, billingMode: Int64, zoneId: UInt64? = nil, redisShardNum: Int64? = nil, redisReplicasNum: Int64? = nil, replicasReadonly: Bool? = nil, zoneName: String? = nil, productVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateInstanceResponse {
+        try await self.inquiryPriceCreateInstance(InquiryPriceCreateInstanceRequest(typeId: typeId, memSize: memSize, goodsNum: goodsNum, period: period, billingMode: billingMode, zoneId: zoneId, redisShardNum: redisShardNum, redisReplicasNum: redisReplicasNum, replicasReadonly: replicasReadonly, zoneName: zoneName, productVersion: productVersion), logger: logger, on: eventLoop)
+    }
 }

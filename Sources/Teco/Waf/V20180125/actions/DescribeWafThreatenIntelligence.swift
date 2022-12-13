@@ -46,4 +46,16 @@ extension Waf {
     public func describeWafThreatenIntelligence(_ input: DescribeWafThreatenIntelligenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafThreatenIntelligenceResponse {
         try await self.client.execute(action: "DescribeWafThreatenIntelligence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 描述WAF威胁情报封禁模块配置详情
+    @inlinable
+    public func describeWafThreatenIntelligence(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWafThreatenIntelligenceResponse > {
+        self.describeWafThreatenIntelligence(DescribeWafThreatenIntelligenceRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 描述WAF威胁情报封禁模块配置详情
+    @inlinable
+    public func describeWafThreatenIntelligence(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafThreatenIntelligenceResponse {
+        try await self.describeWafThreatenIntelligence(DescribeWafThreatenIntelligenceRequest(), logger: logger, on: eventLoop)
+    }
 }

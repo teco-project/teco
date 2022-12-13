@@ -83,4 +83,20 @@ extension Faceid {
     public func mobileStatus(_ input: MobileStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MobileStatusResponse {
         try await self.client.execute(action: "MobileStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 手机号状态查询
+    ///
+    /// 本接口用于验证手机号的状态，您可以输入手机号进行查询。
+    @inlinable
+    public func mobileStatus(mobile: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MobileStatusResponse > {
+        self.mobileStatus(MobileStatusRequest(mobile: mobile, encryption: encryption), logger: logger, on: eventLoop)
+    }
+    
+    /// 手机号状态查询
+    ///
+    /// 本接口用于验证手机号的状态，您可以输入手机号进行查询。
+    @inlinable
+    public func mobileStatus(mobile: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MobileStatusResponse {
+        try await self.mobileStatus(MobileStatusRequest(mobile: mobile, encryption: encryption), logger: logger, on: eventLoop)
+    }
 }

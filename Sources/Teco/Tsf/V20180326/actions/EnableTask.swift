@@ -54,4 +54,16 @@ extension Tsf {
     public func enableTask(_ input: EnableTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableTaskResponse {
         try await self.client.execute(action: "EnableTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启用任务
+    @inlinable
+    public func enableTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableTaskResponse > {
+        self.enableTask(EnableTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 启用任务
+    @inlinable
+    public func enableTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableTaskResponse {
+        try await self.enableTask(EnableTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

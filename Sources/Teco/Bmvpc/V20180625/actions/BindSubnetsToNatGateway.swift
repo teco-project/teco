@@ -68,4 +68,20 @@ extension Bmvpc {
     public func bindSubnetsToNatGateway(_ input: BindSubnetsToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindSubnetsToNatGatewayResponse {
         try await self.client.execute(action: "BindSubnetsToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// NAT网关绑定子网
+    ///
+    /// NAT网关绑定子网后，该子网内全部IP可出公网
+    @inlinable
+    public func bindSubnetsToNatGateway(natId: String, vpcId: String, subnetIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindSubnetsToNatGatewayResponse > {
+        self.bindSubnetsToNatGateway(BindSubnetsToNatGatewayRequest(natId: natId, vpcId: vpcId, subnetIds: subnetIds), logger: logger, on: eventLoop)
+    }
+    
+    /// NAT网关绑定子网
+    ///
+    /// NAT网关绑定子网后，该子网内全部IP可出公网
+    @inlinable
+    public func bindSubnetsToNatGateway(natId: String, vpcId: String, subnetIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindSubnetsToNatGatewayResponse {
+        try await self.bindSubnetsToNatGateway(BindSubnetsToNatGatewayRequest(natId: natId, vpcId: vpcId, subnetIds: subnetIds), logger: logger, on: eventLoop)
+    }
 }

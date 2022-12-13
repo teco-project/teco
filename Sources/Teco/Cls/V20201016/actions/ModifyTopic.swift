@@ -84,4 +84,20 @@ extension Cls {
     public func modifyTopic(_ input: ModifyTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
         try await self.client.execute(action: "ModifyTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改日志主题
+    ///
+    /// 本接口用于修改日志主题。
+    @inlinable
+    public func modifyTopic(topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTopicResponse > {
+        self.modifyTopic(ModifyTopicRequest(topicId: topicId, topicName: topicName, tags: tags, status: status, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, period: period), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改日志主题
+    ///
+    /// 本接口用于修改日志主题。
+    @inlinable
+    public func modifyTopic(topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
+        try await self.modifyTopic(ModifyTopicRequest(topicId: topicId, topicName: topicName, tags: tags, status: status, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, period: period), logger: logger, on: eventLoop)
+    }
 }

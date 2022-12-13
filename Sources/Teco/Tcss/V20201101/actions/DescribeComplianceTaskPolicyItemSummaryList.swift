@@ -89,4 +89,20 @@ extension Tcss {
     public func describeComplianceTaskPolicyItemSummaryList(_ input: DescribeComplianceTaskPolicyItemSummaryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceTaskPolicyItemSummaryListResponse {
         try await self.client.execute(action: "DescribeComplianceTaskPolicyItemSummaryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安全合规查询上次任务的检测项的汇总信息列表
+    ///
+    /// 查询最近一次任务发现的检测项的汇总信息列表，按照 检测项 → 资产 的两级层次展开。
+    @inlinable
+    public func describeComplianceTaskPolicyItemSummaryList(assetType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceTaskPolicyItemSummaryListResponse > {
+        self.describeComplianceTaskPolicyItemSummaryList(DescribeComplianceTaskPolicyItemSummaryListRequest(assetType: assetType, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规查询上次任务的检测项的汇总信息列表
+    ///
+    /// 查询最近一次任务发现的检测项的汇总信息列表，按照 检测项 → 资产 的两级层次展开。
+    @inlinable
+    public func describeComplianceTaskPolicyItemSummaryList(assetType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceTaskPolicyItemSummaryListResponse {
+        try await self.describeComplianceTaskPolicyItemSummaryList(DescribeComplianceTaskPolicyItemSummaryListRequest(assetType: assetType, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    }
 }

@@ -75,4 +75,16 @@ extension Apm {
     public func describeApmAgent(_ input: DescribeApmAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApmAgentResponse {
         try await self.client.execute(action: "DescribeApmAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取Apm Agent信息
+    @inlinable
+    public func describeApmAgent(instanceId: String, agentType: String? = nil, networkMode: String? = nil, languageEnvironment: String? = nil, reportMethod: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApmAgentResponse > {
+        self.describeApmAgent(DescribeApmAgentRequest(instanceId: instanceId, agentType: agentType, networkMode: networkMode, languageEnvironment: languageEnvironment, reportMethod: reportMethod), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Apm Agent信息
+    @inlinable
+    public func describeApmAgent(instanceId: String, agentType: String? = nil, networkMode: String? = nil, languageEnvironment: String? = nil, reportMethod: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApmAgentResponse {
+        try await self.describeApmAgent(DescribeApmAgentRequest(instanceId: instanceId, agentType: agentType, networkMode: networkMode, languageEnvironment: languageEnvironment, reportMethod: reportMethod), logger: logger, on: eventLoop)
+    }
 }

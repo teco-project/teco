@@ -68,4 +68,20 @@ extension Sqlserver {
     public func startIncrementalMigration(_ input: StartIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartIncrementalMigrationResponse {
         try await self.client.execute(action: "StartIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启动增量备份导入任务
+    ///
+    /// 本接口（StartIncrementalMigration）用于启动增量备份导入任务。
+    @inlinable
+    public func startIncrementalMigration(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartIncrementalMigrationResponse > {
+        self.startIncrementalMigration(StartIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), logger: logger, on: eventLoop)
+    }
+    
+    /// 启动增量备份导入任务
+    ///
+    /// 本接口（StartIncrementalMigration）用于启动增量备份导入任务。
+    @inlinable
+    public func startIncrementalMigration(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartIncrementalMigrationResponse {
+        try await self.startIncrementalMigration(StartIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), logger: logger, on: eventLoop)
+    }
 }

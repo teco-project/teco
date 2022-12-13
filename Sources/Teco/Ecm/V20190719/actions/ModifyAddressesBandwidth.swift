@@ -64,4 +64,16 @@ extension Ecm {
     public func modifyAddressesBandwidth(_ input: ModifyAddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressesBandwidthResponse {
         try await self.client.execute(action: "ModifyAddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 调整弹性公网IP带宽
+    @inlinable
+    public func modifyAddressesBandwidth(ecmRegion: String, addressIds: [String], internetMaxBandwidthOut: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAddressesBandwidthResponse > {
+        self.modifyAddressesBandwidth(ModifyAddressesBandwidthRequest(ecmRegion: ecmRegion, addressIds: addressIds, internetMaxBandwidthOut: internetMaxBandwidthOut), logger: logger, on: eventLoop)
+    }
+    
+    /// 调整弹性公网IP带宽
+    @inlinable
+    public func modifyAddressesBandwidth(ecmRegion: String, addressIds: [String], internetMaxBandwidthOut: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressesBandwidthResponse {
+        try await self.modifyAddressesBandwidth(ModifyAddressesBandwidthRequest(ecmRegion: ecmRegion, addressIds: addressIds, internetMaxBandwidthOut: internetMaxBandwidthOut), logger: logger, on: eventLoop)
+    }
 }

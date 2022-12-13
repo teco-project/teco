@@ -55,4 +55,16 @@ extension Solar {
     public func checkStaffChUser(_ input: CheckStaffChUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckStaffChUserResponse {
         try await self.client.execute(action: "CheckStaffChUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 员工渠道更改员工状态
+    @inlinable
+    public func checkStaffChUser(userId: [String], operateType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckStaffChUserResponse > {
+        self.checkStaffChUser(CheckStaffChUserRequest(userId: userId, operateType: operateType), logger: logger, on: eventLoop)
+    }
+    
+    /// 员工渠道更改员工状态
+    @inlinable
+    public func checkStaffChUser(userId: [String], operateType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckStaffChUserResponse {
+        try await self.checkStaffChUser(CheckStaffChUserRequest(userId: userId, operateType: operateType), logger: logger, on: eventLoop)
+    }
 }

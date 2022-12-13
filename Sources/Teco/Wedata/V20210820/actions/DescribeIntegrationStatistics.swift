@@ -120,4 +120,16 @@ extension Wedata {
     public func describeIntegrationStatistics(_ input: DescribeIntegrationStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationStatisticsResponse {
         try await self.client.execute(action: "DescribeIntegrationStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 数据集成大屏概览
+    @inlinable
+    public func describeIntegrationStatistics(taskType: Int64, projectId: String, queryDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationStatisticsResponse > {
+        self.describeIntegrationStatistics(DescribeIntegrationStatisticsRequest(taskType: taskType, projectId: projectId, queryDate: queryDate), logger: logger, on: eventLoop)
+    }
+    
+    /// 数据集成大屏概览
+    @inlinable
+    public func describeIntegrationStatistics(taskType: Int64, projectId: String, queryDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationStatisticsResponse {
+        try await self.describeIntegrationStatistics(DescribeIntegrationStatisticsRequest(taskType: taskType, projectId: projectId, queryDate: queryDate), logger: logger, on: eventLoop)
+    }
 }

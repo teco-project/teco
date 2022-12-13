@@ -75,4 +75,16 @@ extension Eb {
     public func updateTarget(_ input: UpdateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTargetResponse {
         try await self.client.execute(action: "UpdateTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新事件目标
+    @inlinable
+    public func updateTarget(eventBusId: String, ruleId: String, targetId: String, enableBatchDelivery: Bool? = nil, batchTimeout: Int64? = nil, batchEventCount: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateTargetResponse > {
+        self.updateTarget(UpdateTargetRequest(eventBusId: eventBusId, ruleId: ruleId, targetId: targetId, enableBatchDelivery: enableBatchDelivery, batchTimeout: batchTimeout, batchEventCount: batchEventCount), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新事件目标
+    @inlinable
+    public func updateTarget(eventBusId: String, ruleId: String, targetId: String, enableBatchDelivery: Bool? = nil, batchTimeout: Int64? = nil, batchEventCount: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTargetResponse {
+        try await self.updateTarget(UpdateTargetRequest(eventBusId: eventBusId, ruleId: ruleId, targetId: targetId, enableBatchDelivery: enableBatchDelivery, batchTimeout: batchTimeout, batchEventCount: batchEventCount), logger: logger, on: eventLoop)
+    }
 }

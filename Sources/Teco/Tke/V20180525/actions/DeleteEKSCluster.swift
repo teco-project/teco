@@ -54,4 +54,20 @@ extension Tke {
     public func deleteEKSCluster(_ input: DeleteEKSClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEKSClusterResponse {
         try await self.client.execute(action: "DeleteEKSCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除弹性集群
+    ///
+    /// 删除弹性集群(yunapiv3)
+    @inlinable
+    public func deleteEKSCluster(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEKSClusterResponse > {
+        self.deleteEKSCluster(DeleteEKSClusterRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除弹性集群
+    ///
+    /// 删除弹性集群(yunapiv3)
+    @inlinable
+    public func deleteEKSCluster(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEKSClusterResponse {
+        try await self.deleteEKSCluster(DeleteEKSClusterRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

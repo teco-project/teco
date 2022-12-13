@@ -54,4 +54,20 @@ extension Dc {
     public func disableInternetAddress(_ input: DisableInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableInternetAddressResponse {
         try await self.client.execute(action: "DisableInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停用公网互联网地址
+    ///
+    /// 停用用户申请的公网互联网地址
+    @inlinable
+    public func disableInternetAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableInternetAddressResponse > {
+        self.disableInternetAddress(DisableInternetAddressRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 停用公网互联网地址
+    ///
+    /// 停用用户申请的公网互联网地址
+    @inlinable
+    public func disableInternetAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableInternetAddressResponse {
+        try await self.disableInternetAddress(DisableInternetAddressRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

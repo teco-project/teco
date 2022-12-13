@@ -70,4 +70,16 @@ extension Trp {
     public func modifyTraceDataRanks(_ input: ModifyTraceDataRanksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceDataRanksResponse {
         try await self.client.execute(action: "ModifyTraceDataRanks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改溯源信息的排序
+    @inlinable
+    public func modifyTraceDataRanks(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, traceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTraceDataRanksResponse > {
+        self.modifyTraceDataRanks(ModifyTraceDataRanksRequest(corpId: corpId, batchId: batchId, taskId: taskId, traceIds: traceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改溯源信息的排序
+    @inlinable
+    public func modifyTraceDataRanks(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, traceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceDataRanksResponse {
+        try await self.modifyTraceDataRanks(ModifyTraceDataRanksRequest(corpId: corpId, batchId: batchId, taskId: taskId, traceIds: traceIds), logger: logger, on: eventLoop)
+    }
 }

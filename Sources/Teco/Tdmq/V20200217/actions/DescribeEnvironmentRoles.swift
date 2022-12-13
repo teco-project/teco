@@ -86,4 +86,16 @@ extension Tdmq {
     public func describeEnvironmentRoles(_ input: DescribeEnvironmentRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentRolesResponse {
         try await self.client.execute(action: "DescribeEnvironmentRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取命名空间角色列表
+    @inlinable
+    public func describeEnvironmentRoles(environmentId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, roleName: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentRolesResponse > {
+        self.describeEnvironmentRoles(DescribeEnvironmentRolesRequest(environmentId: environmentId, offset: offset, limit: limit, clusterId: clusterId, roleName: roleName, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取命名空间角色列表
+    @inlinable
+    public func describeEnvironmentRoles(environmentId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, roleName: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentRolesResponse {
+        try await self.describeEnvironmentRoles(DescribeEnvironmentRolesRequest(environmentId: environmentId, offset: offset, limit: limit, clusterId: clusterId, roleName: roleName, filters: filters), logger: logger, on: eventLoop)
+    }
 }

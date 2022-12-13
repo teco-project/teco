@@ -94,4 +94,16 @@ extension Cpdp {
     public func uploadOrgFile(_ input: UploadOrgFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOrgFileResponse {
         try await self.client.execute(action: "UploadOrgFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 云支付-上传机构文件接口
+    @inlinable
+    public func uploadOrgFile(openId: String, openKey: String, storage: String, fileMd5: String, fileContent: String, fileExtension: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadOrgFileResponse > {
+        self.uploadOrgFile(UploadOrgFileRequest(openId: openId, openKey: openKey, storage: storage, fileMd5: fileMd5, fileContent: fileContent, fileExtension: fileExtension, profile: profile), logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-上传机构文件接口
+    @inlinable
+    public func uploadOrgFile(openId: String, openKey: String, storage: String, fileMd5: String, fileContent: String, fileExtension: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOrgFileResponse {
+        try await self.uploadOrgFile(UploadOrgFileRequest(openId: openId, openKey: openKey, storage: storage, fileMd5: fileMd5, fileContent: fileContent, fileExtension: fileExtension, profile: profile), logger: logger, on: eventLoop)
+    }
 }

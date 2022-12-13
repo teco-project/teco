@@ -55,4 +55,16 @@ extension Tione {
     public func describeModelServiceGroup(_ input: DescribeModelServiceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceGroupResponse {
         try await self.client.execute(action: "DescribeModelServiceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询单个服务组
+    @inlinable
+    public func describeModelServiceGroup(serviceGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServiceGroupResponse > {
+        self.describeModelServiceGroup(DescribeModelServiceGroupRequest(serviceGroupId: serviceGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询单个服务组
+    @inlinable
+    public func describeModelServiceGroup(serviceGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceGroupResponse {
+        try await self.describeModelServiceGroup(DescribeModelServiceGroupRequest(serviceGroupId: serviceGroupId), logger: logger, on: eventLoop)
+    }
 }

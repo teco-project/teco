@@ -102,4 +102,22 @@ extension Essbasic {
     public func createSeal(_ input: CreateSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealResponse {
         try await self.client.execute(action: "CreateSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建印章
+    ///
+    /// 此接口（CreateSeal）用于创建个人/企业印章。
+    /// 注意：使用FileId参数指定印章，需先调用多文件上传 (UploadFiles) 上传印章图片。
+    @inlinable
+    public func createSeal(caller: Caller, sealType: String, sealName: String, sourceIp: String, image: String? = nil, fileId: String? = nil, userId: String? = nil, isDefault: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSealResponse > {
+        self.createSeal(CreateSealRequest(caller: caller, sealType: sealType, sealName: sealName, sourceIp: sourceIp, image: image, fileId: fileId, userId: userId, isDefault: isDefault), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建印章
+    ///
+    /// 此接口（CreateSeal）用于创建个人/企业印章。
+    /// 注意：使用FileId参数指定印章，需先调用多文件上传 (UploadFiles) 上传印章图片。
+    @inlinable
+    public func createSeal(caller: Caller, sealType: String, sealName: String, sourceIp: String, image: String? = nil, fileId: String? = nil, userId: String? = nil, isDefault: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealResponse {
+        try await self.createSeal(CreateSealRequest(caller: caller, sealType: sealType, sealName: sealName, sourceIp: sourceIp, image: image, fileId: fileId, userId: userId, isDefault: isDefault), logger: logger, on: eventLoop)
+    }
 }

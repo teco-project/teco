@@ -54,4 +54,20 @@ extension Yunjing {
     public func createOpenPortTask(_ input: CreateOpenPortTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenPortTaskResponse {
         try await self.client.execute(action: "CreateOpenPortTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建实时获取端口任务
+    ///
+    /// 本接口 (CreateOpenPortTask) 用于创建实时获取端口任务。
+    @inlinable
+    public func createOpenPortTask(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenPortTaskResponse > {
+        self.createOpenPortTask(CreateOpenPortTaskRequest(uuid: uuid), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实时获取端口任务
+    ///
+    /// 本接口 (CreateOpenPortTask) 用于创建实时获取端口任务。
+    @inlinable
+    public func createOpenPortTask(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenPortTaskResponse {
+        try await self.createOpenPortTask(CreateOpenPortTaskRequest(uuid: uuid), logger: logger, on: eventLoop)
+    }
 }

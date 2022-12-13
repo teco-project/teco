@@ -50,4 +50,20 @@ extension Tcss {
     public func describeEscapeRuleInfo(_ input: DescribeEscapeRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeRuleInfoResponse {
         try await self.client.execute(action: "DescribeEscapeRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询容器逃逸扫描规则信息
+    ///
+    /// DescribeEscapeRuleInfo 查询容器逃逸扫描规则信息
+    @inlinable
+    public func describeEscapeRuleInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeRuleInfoResponse > {
+        self.describeEscapeRuleInfo(DescribeEscapeRuleInfoRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器逃逸扫描规则信息
+    ///
+    /// DescribeEscapeRuleInfo 查询容器逃逸扫描规则信息
+    @inlinable
+    public func describeEscapeRuleInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeRuleInfoResponse {
+        try await self.describeEscapeRuleInfo(DescribeEscapeRuleInfoRequest(), logger: logger, on: eventLoop)
+    }
 }

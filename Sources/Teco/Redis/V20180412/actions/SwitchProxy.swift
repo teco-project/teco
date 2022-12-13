@@ -55,4 +55,16 @@ extension Redis {
     public func switchProxy(_ input: SwitchProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchProxyResponse {
         try await self.client.execute(action: "SwitchProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// Proxy模拟故障接口
+    @inlinable
+    public func switchProxy(instanceId: String, proxyID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchProxyResponse > {
+        self.switchProxy(SwitchProxyRequest(instanceId: instanceId, proxyID: proxyID), logger: logger, on: eventLoop)
+    }
+    
+    /// Proxy模拟故障接口
+    @inlinable
+    public func switchProxy(instanceId: String, proxyID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchProxyResponse {
+        try await self.switchProxy(SwitchProxyRequest(instanceId: instanceId, proxyID: proxyID), logger: logger, on: eventLoop)
+    }
 }

@@ -96,4 +96,20 @@ extension Vod {
     public func modifyPersonSample(_ input: ModifyPersonSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonSampleResponse {
         try await self.client.execute(action: "ModifyPersonSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改素材样本
+    ///
+    /// 该接口用于根据素材 ID，修改素材样本信息，包括名称、描述的修改，以及五官、标签的添加、删除、重置操作。五官删除操作需保证至少剩余 1 张图片，否则，请使用重置操作。
+    @inlinable
+    public func modifyPersonSample(personId: String, subAppId: UInt64? = nil, name: String? = nil, description: String? = nil, usages: [String]? = nil, faceOperationInfo: AiSampleFaceOperation? = nil, tagOperationInfo: AiSampleTagOperation? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonSampleResponse > {
+        self.modifyPersonSample(ModifyPersonSampleRequest(personId: personId, subAppId: subAppId, name: name, description: description, usages: usages, faceOperationInfo: faceOperationInfo, tagOperationInfo: tagOperationInfo), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改素材样本
+    ///
+    /// 该接口用于根据素材 ID，修改素材样本信息，包括名称、描述的修改，以及五官、标签的添加、删除、重置操作。五官删除操作需保证至少剩余 1 张图片，否则，请使用重置操作。
+    @inlinable
+    public func modifyPersonSample(personId: String, subAppId: UInt64? = nil, name: String? = nil, description: String? = nil, usages: [String]? = nil, faceOperationInfo: AiSampleFaceOperation? = nil, tagOperationInfo: AiSampleTagOperation? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonSampleResponse {
+        try await self.modifyPersonSample(ModifyPersonSampleRequest(personId: personId, subAppId: subAppId, name: name, description: description, usages: usages, faceOperationInfo: faceOperationInfo, tagOperationInfo: tagOperationInfo), logger: logger, on: eventLoop)
+    }
 }

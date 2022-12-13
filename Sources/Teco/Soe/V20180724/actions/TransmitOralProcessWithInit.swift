@@ -230,4 +230,20 @@ extension Soe {
     public func transmitOralProcessWithInit(_ input: TransmitOralProcessWithInitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransmitOralProcessWithInitResponse {
         try await self.client.execute(action: "TransmitOralProcessWithInit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 发音数据传输接口附带初始化过程（常用实践）
+    ///
+    /// 本接口可用于中英文发音评测。在使用本接口时需要注意：初始化并传输音频数据，分片传输时，尽量保证SeqId顺序传输（请确认SeqId由1开始）。音频源目前仅支持16k采样率16bit单声道编码方式，如有不一致可能导致评估不准确或失败。
+    @inlinable
+    public func transmitOralProcessWithInit(seqId: Int64, isEnd: Int64, voiceFileType: Int64, voiceEncodeType: Int64, userVoiceData: String, sessionId: String, refText: String, workMode: Int64, evalMode: Int64, scoreCoeff: Float, soeAppId: String? = nil, storageMode: Int64? = nil, sentenceInfoEnabled: Int64? = nil, serverType: Int64? = nil, isAsync: Int64? = nil, isQuery: Int64? = nil, textMode: Int64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransmitOralProcessWithInitResponse > {
+        self.transmitOralProcessWithInit(TransmitOralProcessWithInitRequest(seqId: seqId, isEnd: isEnd, voiceFileType: voiceFileType, voiceEncodeType: voiceEncodeType, userVoiceData: userVoiceData, sessionId: sessionId, refText: refText, workMode: workMode, evalMode: evalMode, scoreCoeff: scoreCoeff, soeAppId: soeAppId, storageMode: storageMode, sentenceInfoEnabled: sentenceInfoEnabled, serverType: serverType, isAsync: isAsync, isQuery: isQuery, textMode: textMode, keyword: keyword), logger: logger, on: eventLoop)
+    }
+    
+    /// 发音数据传输接口附带初始化过程（常用实践）
+    ///
+    /// 本接口可用于中英文发音评测。在使用本接口时需要注意：初始化并传输音频数据，分片传输时，尽量保证SeqId顺序传输（请确认SeqId由1开始）。音频源目前仅支持16k采样率16bit单声道编码方式，如有不一致可能导致评估不准确或失败。
+    @inlinable
+    public func transmitOralProcessWithInit(seqId: Int64, isEnd: Int64, voiceFileType: Int64, voiceEncodeType: Int64, userVoiceData: String, sessionId: String, refText: String, workMode: Int64, evalMode: Int64, scoreCoeff: Float, soeAppId: String? = nil, storageMode: Int64? = nil, sentenceInfoEnabled: Int64? = nil, serverType: Int64? = nil, isAsync: Int64? = nil, isQuery: Int64? = nil, textMode: Int64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransmitOralProcessWithInitResponse {
+        try await self.transmitOralProcessWithInit(TransmitOralProcessWithInitRequest(seqId: seqId, isEnd: isEnd, voiceFileType: voiceFileType, voiceEncodeType: voiceEncodeType, userVoiceData: userVoiceData, sessionId: sessionId, refText: refText, workMode: workMode, evalMode: evalMode, scoreCoeff: scoreCoeff, soeAppId: soeAppId, storageMode: storageMode, sentenceInfoEnabled: sentenceInfoEnabled, serverType: serverType, isAsync: isAsync, isQuery: isQuery, textMode: textMode, keyword: keyword), logger: logger, on: eventLoop)
+    }
 }

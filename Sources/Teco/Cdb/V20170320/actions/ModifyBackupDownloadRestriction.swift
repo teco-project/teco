@@ -74,4 +74,20 @@ extension Cdb {
     public func modifyBackupDownloadRestriction(_ input: ModifyBackupDownloadRestrictionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupDownloadRestrictionResponse {
         try await self.client.execute(action: "ModifyBackupDownloadRestriction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改备份文件的限制下载来源
+    ///
+    /// 该接口用于修改用户当前地域的备份文件限制下载来源，可以设置内外网均可下载、仅内网可下载，或内网指定的vpc、ip可以下载。
+    @inlinable
+    public func modifyBackupDownloadRestriction(limitType: String, vpcComparisonSymbol: String? = nil, ipComparisonSymbol: String? = nil, limitVpc: [BackupLimitVpcItem]? = nil, limitIp: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupDownloadRestrictionResponse > {
+        self.modifyBackupDownloadRestriction(ModifyBackupDownloadRestrictionRequest(limitType: limitType, vpcComparisonSymbol: vpcComparisonSymbol, ipComparisonSymbol: ipComparisonSymbol, limitVpc: limitVpc, limitIp: limitIp), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改备份文件的限制下载来源
+    ///
+    /// 该接口用于修改用户当前地域的备份文件限制下载来源，可以设置内外网均可下载、仅内网可下载，或内网指定的vpc、ip可以下载。
+    @inlinable
+    public func modifyBackupDownloadRestriction(limitType: String, vpcComparisonSymbol: String? = nil, ipComparisonSymbol: String? = nil, limitVpc: [BackupLimitVpcItem]? = nil, limitIp: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupDownloadRestrictionResponse {
+        try await self.modifyBackupDownloadRestriction(ModifyBackupDownloadRestrictionRequest(limitType: limitType, vpcComparisonSymbol: vpcComparisonSymbol, ipComparisonSymbol: ipComparisonSymbol, limitVpc: limitVpc, limitIp: limitIp), logger: logger, on: eventLoop)
+    }
 }

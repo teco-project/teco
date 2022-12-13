@@ -54,4 +54,16 @@ extension Ssl {
     public func submitAuditManager(_ input: SubmitAuditManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitAuditManagerResponse {
         try await self.client.execute(action: "SubmitAuditManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重新提交审核管理人
+    @inlinable
+    public func submitAuditManager(managerId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitAuditManagerResponse > {
+        self.submitAuditManager(SubmitAuditManagerRequest(managerId: managerId), logger: logger, on: eventLoop)
+    }
+    
+    /// 重新提交审核管理人
+    @inlinable
+    public func submitAuditManager(managerId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitAuditManagerResponse {
+        try await self.submitAuditManager(SubmitAuditManagerRequest(managerId: managerId), logger: logger, on: eventLoop)
+    }
 }

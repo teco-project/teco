@@ -86,4 +86,20 @@ extension Tiw {
     public func describeSnapshotTask(_ input: DescribeSnapshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotTaskResponse {
         try await self.client.execute(action: "DescribeSnapshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取白板板书生成任务信息
+    ///
+    /// 获取指定白板板书生成任务信息
+    @inlinable
+    public func describeSnapshotTask(taskID: String, sdkAppId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotTaskResponse > {
+        self.describeSnapshotTask(DescribeSnapshotTaskRequest(taskID: taskID, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取白板板书生成任务信息
+    ///
+    /// 获取指定白板板书生成任务信息
+    @inlinable
+    public func describeSnapshotTask(taskID: String, sdkAppId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotTaskResponse {
+        try await self.describeSnapshotTask(DescribeSnapshotTaskRequest(taskID: taskID, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    }
 }

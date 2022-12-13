@@ -72,4 +72,20 @@ extension Cds {
     public func describeDbauditInstances(_ input: DescribeDbauditInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditInstancesResponse {
         try await self.client.execute(action: "DescribeDbauditInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取数据安全审计实例列表
+    ///
+    /// 本接口 (DescribeDbauditInstances) 用于查询数据安全审计实例列表
+    @inlinable
+    public func describeDbauditInstances(searchRegion: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDbauditInstancesResponse > {
+        self.describeDbauditInstances(DescribeDbauditInstancesRequest(searchRegion: searchRegion, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取数据安全审计实例列表
+    ///
+    /// 本接口 (DescribeDbauditInstances) 用于查询数据安全审计实例列表
+    @inlinable
+    public func describeDbauditInstances(searchRegion: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditInstancesResponse {
+        try await self.describeDbauditInstances(DescribeDbauditInstancesRequest(searchRegion: searchRegion, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    }
 }

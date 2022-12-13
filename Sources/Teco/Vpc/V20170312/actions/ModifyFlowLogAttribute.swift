@@ -69,4 +69,20 @@ extension Vpc {
     public func modifyFlowLogAttribute(_ input: ModifyFlowLogAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlowLogAttributeResponse {
         try await self.client.execute(action: "ModifyFlowLogAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改流日志属性
+    ///
+    /// 本接口（ModifyFlowLogAttribute）用于修改流日志属性
+    @inlinable
+    public func modifyFlowLogAttribute(flowLogId: String, vpcId: String? = nil, flowLogName: String? = nil, flowLogDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyFlowLogAttributeResponse > {
+        self.modifyFlowLogAttribute(ModifyFlowLogAttributeRequest(flowLogId: flowLogId, vpcId: vpcId, flowLogName: flowLogName, flowLogDescription: flowLogDescription), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改流日志属性
+    ///
+    /// 本接口（ModifyFlowLogAttribute）用于修改流日志属性
+    @inlinable
+    public func modifyFlowLogAttribute(flowLogId: String, vpcId: String? = nil, flowLogName: String? = nil, flowLogDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlowLogAttributeResponse {
+        try await self.modifyFlowLogAttribute(ModifyFlowLogAttributeRequest(flowLogId: flowLogId, vpcId: vpcId, flowLogName: flowLogName, flowLogDescription: flowLogDescription), logger: logger, on: eventLoop)
+    }
 }

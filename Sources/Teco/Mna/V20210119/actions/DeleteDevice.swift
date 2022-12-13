@@ -54,4 +54,20 @@ extension Mna {
     public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
         try await self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除设备
+    ///
+    /// 删除设备信息
+    @inlinable
+    public func deleteDevice(deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceResponse > {
+        self.deleteDevice(DeleteDeviceRequest(deviceId: deviceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除设备
+    ///
+    /// 删除设备信息
+    @inlinable
+    public func deleteDevice(deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
+        try await self.deleteDevice(DeleteDeviceRequest(deviceId: deviceId), logger: logger, on: eventLoop)
+    }
 }

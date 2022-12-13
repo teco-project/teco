@@ -66,4 +66,22 @@ extension Wedata {
     public func describeDataSourceWithoutInfo(_ input: DescribeDataSourceWithoutInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceWithoutInfoResponse {
         try await self.client.execute(action: "DescribeDataSourceWithoutInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看数据源列表不带额外信息【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 数据源列表
+    @inlinable
+    public func describeDataSourceWithoutInfo(orderFields: [OrderField]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataSourceWithoutInfoResponse > {
+        self.describeDataSourceWithoutInfo(DescribeDataSourceWithoutInfoRequest(orderFields: orderFields, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看数据源列表不带额外信息【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 数据源列表
+    @inlinable
+    public func describeDataSourceWithoutInfo(orderFields: [OrderField]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceWithoutInfoResponse {
+        try await self.describeDataSourceWithoutInfo(DescribeDataSourceWithoutInfoRequest(orderFields: orderFields, filters: filters), logger: logger, on: eventLoop)
+    }
 }

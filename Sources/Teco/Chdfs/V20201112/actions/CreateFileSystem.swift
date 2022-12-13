@@ -103,4 +103,20 @@ extension Chdfs {
     public func createFileSystem(_ input: CreateFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSystemResponse {
         try await self.client.execute(action: "CreateFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建文件系统
+    ///
+    /// 创建文件系统（异步）。
+    @inlinable
+    public func createFileSystem(fileSystemName: String, capacityQuota: UInt64, posixAcl: Bool, description: String? = nil, superUsers: [String]? = nil, rootInodeUser: String? = nil, rootInodeGroup: String? = nil, enableRanger: Bool? = nil, rangerServiceAddresses: [String]? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileSystemResponse > {
+        self.createFileSystem(CreateFileSystemRequest(fileSystemName: fileSystemName, capacityQuota: capacityQuota, posixAcl: posixAcl, description: description, superUsers: superUsers, rootInodeUser: rootInodeUser, rootInodeGroup: rootInodeGroup, enableRanger: enableRanger, rangerServiceAddresses: rangerServiceAddresses, tags: tags), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建文件系统
+    ///
+    /// 创建文件系统（异步）。
+    @inlinable
+    public func createFileSystem(fileSystemName: String, capacityQuota: UInt64, posixAcl: Bool, description: String? = nil, superUsers: [String]? = nil, rootInodeUser: String? = nil, rootInodeGroup: String? = nil, enableRanger: Bool? = nil, rangerServiceAddresses: [String]? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSystemResponse {
+        try await self.createFileSystem(CreateFileSystemRequest(fileSystemName: fileSystemName, capacityQuota: capacityQuota, posixAcl: posixAcl, description: description, superUsers: superUsers, rootInodeUser: rootInodeUser, rootInodeGroup: rootInodeGroup, enableRanger: enableRanger, rangerServiceAddresses: rangerServiceAddresses, tags: tags), logger: logger, on: eventLoop)
+    }
 }

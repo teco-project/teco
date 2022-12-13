@@ -80,4 +80,16 @@ extension Tsf {
     public func createLaneRule(_ input: CreateLaneRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneRuleResponse {
         try await self.client.execute(action: "CreateLaneRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建泳道规则
+    @inlinable
+    public func createLaneRule(ruleName: String, remark: String, ruleTagList: [LaneRuleTag], ruleTagRelationship: String, laneId: String, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLaneRuleResponse > {
+        self.createLaneRule(CreateLaneRuleRequest(ruleName: ruleName, remark: remark, ruleTagList: ruleTagList, ruleTagRelationship: ruleTagRelationship, laneId: laneId, programIdList: programIdList), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建泳道规则
+    @inlinable
+    public func createLaneRule(ruleName: String, remark: String, ruleTagList: [LaneRuleTag], ruleTagRelationship: String, laneId: String, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneRuleResponse {
+        try await self.createLaneRule(CreateLaneRuleRequest(ruleName: ruleName, remark: remark, ruleTagList: ruleTagList, ruleTagRelationship: ruleTagRelationship, laneId: laneId, programIdList: programIdList), logger: logger, on: eventLoop)
+    }
 }

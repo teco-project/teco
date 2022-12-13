@@ -57,4 +57,16 @@ extension Antiddos {
     public func describeBasicDeviceStatus(_ input: DescribeBasicDeviceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceStatusResponse {
         try await self.client.execute(action: "DescribeBasicDeviceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取基础防护攻击状态
+    @inlinable
+    public func describeBasicDeviceStatus(ipList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicDeviceStatusResponse > {
+        self.describeBasicDeviceStatus(DescribeBasicDeviceStatusRequest(ipList: ipList), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取基础防护攻击状态
+    @inlinable
+    public func describeBasicDeviceStatus(ipList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceStatusResponse {
+        try await self.describeBasicDeviceStatus(DescribeBasicDeviceStatusRequest(ipList: ipList), logger: logger, on: eventLoop)
+    }
 }

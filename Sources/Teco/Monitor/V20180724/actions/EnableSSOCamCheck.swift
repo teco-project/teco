@@ -59,4 +59,20 @@ extension Monitor {
     public func enableSSOCamCheck(_ input: EnableSSOCamCheckRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableSSOCamCheckResponse {
         try await self.client.execute(action: "EnableSSOCamCheck", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置SSO登录是否鉴权
+    ///
+    /// SSO单点登录时，设置是否cam鉴权
+    @inlinable
+    public func enableSSOCamCheck(instanceId: String, enableSSOCamCheck: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableSSOCamCheckResponse > {
+        self.enableSSOCamCheck(EnableSSOCamCheckRequest(instanceId: instanceId, enableSSOCamCheck: enableSSOCamCheck), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置SSO登录是否鉴权
+    ///
+    /// SSO单点登录时，设置是否cam鉴权
+    @inlinable
+    public func enableSSOCamCheck(instanceId: String, enableSSOCamCheck: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableSSOCamCheckResponse {
+        try await self.enableSSOCamCheck(EnableSSOCamCheckRequest(instanceId: instanceId, enableSSOCamCheck: enableSSOCamCheck), logger: logger, on: eventLoop)
+    }
 }

@@ -85,4 +85,20 @@ extension Essbasic {
     public func checkIdCardVerification(_ input: CheckIdCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdCardVerificationResponse {
         try await self.client.execute(action: "CheckIdCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 身份证核验
+    ///
+    /// 该接口为第三方平台向电子签平台验证姓名和身份证信息
+    @inlinable
+    public func checkIdCardVerification(caller: Caller, name: String, idCardNumber: String, idCardType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckIdCardVerificationResponse > {
+        self.checkIdCardVerification(CheckIdCardVerificationRequest(caller: caller, name: name, idCardNumber: idCardNumber, idCardType: idCardType), logger: logger, on: eventLoop)
+    }
+    
+    /// 身份证核验
+    ///
+    /// 该接口为第三方平台向电子签平台验证姓名和身份证信息
+    @inlinable
+    public func checkIdCardVerification(caller: Caller, name: String, idCardNumber: String, idCardType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdCardVerificationResponse {
+        try await self.checkIdCardVerification(CheckIdCardVerificationRequest(caller: caller, name: name, idCardNumber: idCardNumber, idCardType: idCardType), logger: logger, on: eventLoop)
+    }
 }

@@ -90,4 +90,20 @@ extension Dbbrain {
     public func describeRedisTopBigKeys(_ input: DescribeRedisTopBigKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRedisTopBigKeysResponse {
         try await self.client.execute(action: "DescribeRedisTopBigKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询redis实例大key列表
+    ///
+    /// 查询redis实例大key列表。
+    @inlinable
+    public func describeRedisTopBigKeys(instanceId: String, date: Date, product: String, sortBy: String? = nil, keyType: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRedisTopBigKeysResponse > {
+        self.describeRedisTopBigKeys(DescribeRedisTopBigKeysRequest(instanceId: instanceId, date: date, product: product, sortBy: sortBy, keyType: keyType, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询redis实例大key列表
+    ///
+    /// 查询redis实例大key列表。
+    @inlinable
+    public func describeRedisTopBigKeys(instanceId: String, date: Date, product: String, sortBy: String? = nil, keyType: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRedisTopBigKeysResponse {
+        try await self.describeRedisTopBigKeys(DescribeRedisTopBigKeysRequest(instanceId: instanceId, date: date, product: product, sortBy: sortBy, keyType: keyType, limit: limit), logger: logger, on: eventLoop)
+    }
 }

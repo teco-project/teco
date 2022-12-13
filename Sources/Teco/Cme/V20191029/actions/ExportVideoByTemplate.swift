@@ -46,7 +46,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，无权限限制。如果指定操作者，则操作者需要有替换媒体及剪辑模板的权限。
         public let `operator`: String?
         
-        public init (platform: String, templateId: String, definition: Int64, exportDestination: String, slotReplacements: [SlotReplacementInfo]? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, `operator`: String? = nil) {
+        public init (platform: String, templateId: String, definition: Int64, exportDestination: String, slotReplacements: [SlotReplacementInfo]? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil) {
             self.platform = platform
             self.templateId = templateId
             self.definition = definition
@@ -97,5 +97,21 @@ extension Cme {
     @inlinable
     public func exportVideoByTemplate(_ input: ExportVideoByTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoByTemplateResponse {
         try await self.client.execute(action: "ExportVideoByTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 使用视频剪辑模板导出视频
+    ///
+    /// 使用视频剪辑模板直接导出视频。
+    @inlinable
+    public func exportVideoByTemplate(platform: String, templateId: String, definition: Int64, exportDestination: String, slotReplacements: [SlotReplacementInfo]? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVideoByTemplateResponse > {
+        self.exportVideoByTemplate(ExportVideoByTemplateRequest(platform: platform, templateId: templateId, definition: definition, exportDestination: exportDestination, slotReplacements: slotReplacements, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 使用视频剪辑模板导出视频
+    ///
+    /// 使用视频剪辑模板直接导出视频。
+    @inlinable
+    public func exportVideoByTemplate(platform: String, templateId: String, definition: Int64, exportDestination: String, slotReplacements: [SlotReplacementInfo]? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoByTemplateResponse {
+        try await self.exportVideoByTemplate(ExportVideoByTemplateRequest(platform: platform, templateId: templateId, definition: definition, exportDestination: exportDestination, slotReplacements: slotReplacements, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

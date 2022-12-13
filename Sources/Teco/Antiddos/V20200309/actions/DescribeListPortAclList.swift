@@ -73,4 +73,16 @@ extension Antiddos {
     public func describeListPortAclList(_ input: DescribeListPortAclListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListPortAclListResponse {
         try await self.client.execute(action: "DescribeListPortAclList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取DDoS防护的端口acl策略列表
+    @inlinable
+    public func describeListPortAclList(offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListPortAclListResponse > {
+        self.describeListPortAclList(DescribeListPortAclListRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS防护的端口acl策略列表
+    @inlinable
+    public func describeListPortAclList(offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListPortAclListResponse {
+        try await self.describeListPortAclList(DescribeListPortAclListRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), logger: logger, on: eventLoop)
+    }
 }

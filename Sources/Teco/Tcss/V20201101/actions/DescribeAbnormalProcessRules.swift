@@ -82,4 +82,20 @@ extension Tcss {
     public func describeAbnormalProcessRules(_ input: DescribeAbnormalProcessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessRulesResponse {
         try await self.client.execute(action: "DescribeAbnormalProcessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 运行时异常进程策略列表
+    ///
+    /// 查询运行时异常进程策略列表信息
+    @inlinable
+    public func describeAbnormalProcessRules(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalProcessRulesResponse > {
+        self.describeAbnormalProcessRules(DescribeAbnormalProcessRulesRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时异常进程策略列表
+    ///
+    /// 查询运行时异常进程策略列表信息
+    @inlinable
+    public func describeAbnormalProcessRules(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessRulesResponse {
+        try await self.describeAbnormalProcessRules(DescribeAbnormalProcessRulesRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

@@ -68,4 +68,16 @@ extension Organization {
     public func listOrganizationInvitations(_ input: ListOrganizationInvitationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationInvitationsResponse {
         try await self.client.execute(action: "ListOrganizationInvitations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取邀请信息列表
+    @inlinable
+    public func listOrganizationInvitations(invited: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListOrganizationInvitationsResponse > {
+        self.listOrganizationInvitations(ListOrganizationInvitationsRequest(invited: invited, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取邀请信息列表
+    @inlinable
+    public func listOrganizationInvitations(invited: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationInvitationsResponse {
+        try await self.listOrganizationInvitations(ListOrganizationInvitationsRequest(invited: invited, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -50,4 +50,20 @@ extension Live {
     public func describeLiveDelayInfoList(_ input: DescribeLiveDelayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDelayInfoListResponse {
         try await self.client.execute(action: "DescribeLiveDelayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取直播延播列表
+    ///
+    /// 获取直播延播列表。
+    @inlinable
+    public func describeLiveDelayInfoList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveDelayInfoListResponse > {
+        self.describeLiveDelayInfoList(DescribeLiveDelayInfoListRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取直播延播列表
+    ///
+    /// 获取直播延播列表。
+    @inlinable
+    public func describeLiveDelayInfoList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDelayInfoListResponse {
+        try await self.describeLiveDelayInfoList(DescribeLiveDelayInfoListRequest(), logger: logger, on: eventLoop)
+    }
 }

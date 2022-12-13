@@ -54,4 +54,16 @@ extension Sts {
     public func queryApiKey(_ input: QueryApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryApiKeyResponse {
         try await self.client.execute(action: "QueryApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 拉取API密钥列表
+    @inlinable
+    public func queryApiKey(targetUin: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryApiKeyResponse > {
+        self.queryApiKey(QueryApiKeyRequest(targetUin: targetUin), logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取API密钥列表
+    @inlinable
+    public func queryApiKey(targetUin: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryApiKeyResponse {
+        try await self.queryApiKey(QueryApiKeyRequest(targetUin: targetUin), logger: logger, on: eventLoop)
+    }
 }

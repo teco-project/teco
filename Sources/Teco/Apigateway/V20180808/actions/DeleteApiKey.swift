@@ -59,4 +59,20 @@ extension Apigateway {
     public func deleteApiKey(_ input: DeleteApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiKeyResponse {
         try await self.client.execute(action: "DeleteApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除密钥
+    ///
+    /// 本接口（DeleteApiKey）用于删除一对 API 密钥。
+    @inlinable
+    public func deleteApiKey(accessKeyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApiKeyResponse > {
+        self.deleteApiKey(DeleteApiKeyRequest(accessKeyId: accessKeyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除密钥
+    ///
+    /// 本接口（DeleteApiKey）用于删除一对 API 密钥。
+    @inlinable
+    public func deleteApiKey(accessKeyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiKeyResponse {
+        try await self.deleteApiKey(DeleteApiKeyRequest(accessKeyId: accessKeyId), logger: logger, on: eventLoop)
+    }
 }

@@ -59,4 +59,20 @@ extension Iotexplorer {
     public func describeLoRaFrequency(_ input: DescribeLoRaFrequencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoRaFrequencyResponse {
         try await self.client.execute(action: "DescribeLoRaFrequency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取LoRa自定义频点详情
+    ///
+    /// 提供查询LoRa自定义频点详情的能力
+    @inlinable
+    public func describeLoRaFrequency(freqId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoRaFrequencyResponse > {
+        self.describeLoRaFrequency(DescribeLoRaFrequencyRequest(freqId: freqId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取LoRa自定义频点详情
+    ///
+    /// 提供查询LoRa自定义频点详情的能力
+    @inlinable
+    public func describeLoRaFrequency(freqId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoRaFrequencyResponse {
+        try await self.describeLoRaFrequency(DescribeLoRaFrequencyRequest(freqId: freqId), logger: logger, on: eventLoop)
+    }
 }

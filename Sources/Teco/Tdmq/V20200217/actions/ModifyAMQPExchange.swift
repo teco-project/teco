@@ -65,4 +65,16 @@ extension Tdmq {
     public func modifyAMQPExchange(_ input: ModifyAMQPExchangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPExchangeResponse {
         try await self.client.execute(action: "ModifyAMQPExchange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新Amqp交换机
+    @inlinable
+    public func modifyAMQPExchange(clusterId: String, vHostId: String, exchange: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAMQPExchangeResponse > {
+        self.modifyAMQPExchange(ModifyAMQPExchangeRequest(clusterId: clusterId, vHostId: vHostId, exchange: exchange, remark: remark), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新Amqp交换机
+    @inlinable
+    public func modifyAMQPExchange(clusterId: String, vHostId: String, exchange: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPExchangeResponse {
+        try await self.modifyAMQPExchange(ModifyAMQPExchangeRequest(clusterId: clusterId, vHostId: vHostId, exchange: exchange, remark: remark), logger: logger, on: eventLoop)
+    }
 }

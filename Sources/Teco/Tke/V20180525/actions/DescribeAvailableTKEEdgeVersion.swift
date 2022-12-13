@@ -68,4 +68,20 @@ extension Tke {
     public func describeAvailableTKEEdgeVersion(_ input: DescribeAvailableTKEEdgeVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableTKEEdgeVersionResponse {
         try await self.client.execute(action: "DescribeAvailableTKEEdgeVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 边缘计算支持的k8s版本
+    ///
+    /// 边缘计算支持版本和k8s版本
+    @inlinable
+    public func describeAvailableTKEEdgeVersion(clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableTKEEdgeVersionResponse > {
+        self.describeAvailableTKEEdgeVersion(DescribeAvailableTKEEdgeVersionRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 边缘计算支持的k8s版本
+    ///
+    /// 边缘计算支持版本和k8s版本
+    @inlinable
+    public func describeAvailableTKEEdgeVersion(clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableTKEEdgeVersionResponse {
+        try await self.describeAvailableTKEEdgeVersion(DescribeAvailableTKEEdgeVersionRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

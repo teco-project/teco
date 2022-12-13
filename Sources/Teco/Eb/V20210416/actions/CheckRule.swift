@@ -42,4 +42,16 @@ extension Eb {
     public func checkRule(_ input: CheckRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRuleResponse {
         try await self.client.execute(action: "CheckRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 检验规则
+    @inlinable
+    public func checkRule(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckRuleResponse > {
+        self.checkRule(CheckRuleRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 检验规则
+    @inlinable
+    public func checkRule(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRuleResponse {
+        try await self.checkRule(CheckRuleRequest(), logger: logger, on: eventLoop)
+    }
 }

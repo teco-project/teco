@@ -852,7 +852,7 @@ extension Ame {
         /// 消息重复次数，默认为 1。
         public let `repeat`: UInt64?
         
-        public init (message: String, `repeat`: UInt64? = nil) {
+        public init (message: String, repeat: UInt64? = nil) {
             self.message = message
             self.`repeat` = `repeat`
         }

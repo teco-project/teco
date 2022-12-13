@@ -89,4 +89,20 @@ extension Ocr {
     public func eduPaperOCR(_ input: EduPaperOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EduPaperOCRResponse {
         try await self.client.execute(action: "EduPaperOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 数学试题识别
+    ///
+    /// 本接口支持数学试题内容的识别和结构化输出，包括通用文本解析和小学/初中/高中数学公式解析能力（包括91种题型，180种符号），公式返回格式为 Latex 格式文本。
+    @inlinable
+    public func eduPaperOCR(imageBase64: String? = nil, imageUrl: String? = nil, config: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EduPaperOCRResponse > {
+        self.eduPaperOCR(EduPaperOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, config: config), logger: logger, on: eventLoop)
+    }
+    
+    /// 数学试题识别
+    ///
+    /// 本接口支持数学试题内容的识别和结构化输出，包括通用文本解析和小学/初中/高中数学公式解析能力（包括91种题型，180种符号），公式返回格式为 Latex 格式文本。
+    @inlinable
+    public func eduPaperOCR(imageBase64: String? = nil, imageUrl: String? = nil, config: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EduPaperOCRResponse {
+        try await self.eduPaperOCR(EduPaperOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, config: config), logger: logger, on: eventLoop)
+    }
 }

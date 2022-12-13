@@ -78,4 +78,20 @@ extension Antiddos {
     public func createBoundIP(_ input: CreateBoundIPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBoundIPResponse {
         try await self.client.execute(action: "CreateBoundIP", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 绑定IP到高防包实例
+    ///
+    /// 绑定IP到高防包实例，支持独享包、共享包；需要注意的是此接口绑定或解绑IP是异步接口，当处于绑定或解绑中时，则不允许再进行绑定或解绑，需要等待当前绑定或解绑完成。
+    @inlinable
+    public func createBoundIP(business: String, id: String, boundDevList: [BoundIpInfo]? = nil, unBoundDevList: [BoundIpInfo]? = nil, copyPolicy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBoundIPResponse > {
+        self.createBoundIP(CreateBoundIPRequest(business: business, id: id, boundDevList: boundDevList, unBoundDevList: unBoundDevList, copyPolicy: copyPolicy), logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定IP到高防包实例
+    ///
+    /// 绑定IP到高防包实例，支持独享包、共享包；需要注意的是此接口绑定或解绑IP是异步接口，当处于绑定或解绑中时，则不允许再进行绑定或解绑，需要等待当前绑定或解绑完成。
+    @inlinable
+    public func createBoundIP(business: String, id: String, boundDevList: [BoundIpInfo]? = nil, unBoundDevList: [BoundIpInfo]? = nil, copyPolicy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBoundIPResponse {
+        try await self.createBoundIP(CreateBoundIPRequest(business: business, id: id, boundDevList: boundDevList, unBoundDevList: unBoundDevList, copyPolicy: copyPolicy), logger: logger, on: eventLoop)
+    }
 }

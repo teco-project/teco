@@ -82,4 +82,16 @@ extension Cdn {
     public func describeScdnBotData(_ input: DescribeScdnBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotDataResponse {
         try await self.client.execute(action: "DescribeScdnBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取BOT统计数据列表
+    @inlinable
+    public func describeScdnBotData(startTime: Date, endTime: Date, area: String, interval: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnBotDataResponse > {
+        self.describeScdnBotData(DescribeScdnBotDataRequest(startTime: startTime, endTime: endTime, area: area, interval: interval, domains: domains), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取BOT统计数据列表
+    @inlinable
+    public func describeScdnBotData(startTime: Date, endTime: Date, area: String, interval: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotDataResponse {
+        try await self.describeScdnBotData(DescribeScdnBotDataRequest(startTime: startTime, endTime: endTime, area: area, interval: interval, domains: domains), logger: logger, on: eventLoop)
+    }
 }

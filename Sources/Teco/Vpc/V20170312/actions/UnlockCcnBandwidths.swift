@@ -50,4 +50,24 @@ extension Vpc {
     public func unlockCcnBandwidths(_ input: UnlockCcnBandwidthsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockCcnBandwidthsResponse {
         try await self.client.execute(action: "UnlockCcnBandwidths", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 安全解锁云联网带宽
+    ///
+    /// 本接口（UnlockCcnBandwidths）用户解锁云联网限速实例。
+    /// 该接口一般用来封禁地域间限速的云联网实例下的限速实例, 目前联通内部运营系统通过云API调用, 如果是出口限速, 一般使用更粗的云联网实例粒度封禁（SecurityUnlockCcns）。
+    /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统。
+    @inlinable
+    public func unlockCcnBandwidths(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnlockCcnBandwidthsResponse > {
+        self.unlockCcnBandwidths(UnlockCcnBandwidthsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 安全解锁云联网带宽
+    ///
+    /// 本接口（UnlockCcnBandwidths）用户解锁云联网限速实例。
+    /// 该接口一般用来封禁地域间限速的云联网实例下的限速实例, 目前联通内部运营系统通过云API调用, 如果是出口限速, 一般使用更粗的云联网实例粒度封禁（SecurityUnlockCcns）。
+    /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统。
+    @inlinable
+    public func unlockCcnBandwidths(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockCcnBandwidthsResponse {
+        try await self.unlockCcnBandwidths(UnlockCcnBandwidthsRequest(), logger: logger, on: eventLoop)
+    }
 }

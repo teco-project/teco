@@ -66,4 +66,20 @@ extension Tdid {
     public func getDidClusterDetail(_ input: GetDidClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterDetailResponse {
         try await self.client.execute(action: "GetDidClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取DID网络详情
+    ///
+    /// 获取DID区块链网络详情
+    @inlinable
+    public func getDidClusterDetail(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidClusterDetailResponse > {
+        self.getDidClusterDetail(GetDidClusterDetailRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DID网络详情
+    ///
+    /// 获取DID区块链网络详情
+    @inlinable
+    public func getDidClusterDetail(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterDetailResponse {
+        try await self.getDidClusterDetail(GetDidClusterDetailRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    }
 }

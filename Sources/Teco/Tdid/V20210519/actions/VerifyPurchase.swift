@@ -42,4 +42,16 @@ extension Tdid {
     public func verifyPurchase(_ input: VerifyPurchaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPurchaseResponse {
         try await self.client.execute(action: "VerifyPurchase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 验证购买
+    @inlinable
+    public func verifyPurchase(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyPurchaseResponse > {
+        self.verifyPurchase(VerifyPurchaseRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 验证购买
+    @inlinable
+    public func verifyPurchase(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPurchaseResponse {
+        try await self.verifyPurchase(VerifyPurchaseRequest(), logger: logger, on: eventLoop)
+    }
 }

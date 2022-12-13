@@ -107,4 +107,20 @@ extension Emr {
     public func inquiryPriceRenewInstance(_ input: InquiryPriceRenewInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewInstanceResponse {
         try await self.client.execute(action: "InquiryPriceRenewInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 续费询价
+    ///
+    /// 续费询价。
+    @inlinable
+    public func inquiryPriceRenewInstance(timeSpan: UInt64, resourceIds: [String], placement: Placement, payMode: Int64, timeUnit: String? = nil, currency: String? = nil, modifyPayMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceRenewInstanceResponse > {
+        self.inquiryPriceRenewInstance(InquiryPriceRenewInstanceRequest(timeSpan: timeSpan, resourceIds: resourceIds, placement: placement, payMode: payMode, timeUnit: timeUnit, currency: currency, modifyPayMode: modifyPayMode), logger: logger, on: eventLoop)
+    }
+    
+    /// 续费询价
+    ///
+    /// 续费询价。
+    @inlinable
+    public func inquiryPriceRenewInstance(timeSpan: UInt64, resourceIds: [String], placement: Placement, payMode: Int64, timeUnit: String? = nil, currency: String? = nil, modifyPayMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewInstanceResponse {
+        try await self.inquiryPriceRenewInstance(InquiryPriceRenewInstanceRequest(timeSpan: timeSpan, resourceIds: resourceIds, placement: placement, payMode: payMode, timeUnit: timeUnit, currency: currency, modifyPayMode: modifyPayMode), logger: logger, on: eventLoop)
+    }
 }

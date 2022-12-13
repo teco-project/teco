@@ -55,4 +55,16 @@ extension Iotexplorer {
     public func createTopicRule(_ input: CreateTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicRuleResponse {
         try await self.client.execute(action: "CreateTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建规则
+    @inlinable
+    public func createTopicRule(ruleName: String, topicRulePayload: TopicRulePayload, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicRuleResponse > {
+        self.createTopicRule(CreateTopicRuleRequest(ruleName: ruleName, topicRulePayload: topicRulePayload), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建规则
+    @inlinable
+    public func createTopicRule(ruleName: String, topicRulePayload: TopicRulePayload, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicRuleResponse {
+        try await self.createTopicRule(CreateTopicRuleRequest(ruleName: ruleName, topicRulePayload: topicRulePayload), logger: logger, on: eventLoop)
+    }
 }

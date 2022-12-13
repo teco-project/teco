@@ -62,4 +62,20 @@ extension As {
     public func describeAccountLimits(_ input: DescribeAccountLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountLimitsResponse {
         try await self.client.execute(action: "DescribeAccountLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询用户账号的资源限制
+    ///
+    /// 本接口（DescribeAccountLimits）用于查询用户账户在弹性伸缩中的资源限制。
+    @inlinable
+    public func describeAccountLimits(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountLimitsResponse > {
+        self.describeAccountLimits(DescribeAccountLimitsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户账号的资源限制
+    ///
+    /// 本接口（DescribeAccountLimits）用于查询用户账户在弹性伸缩中的资源限制。
+    @inlinable
+    public func describeAccountLimits(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountLimitsResponse {
+        try await self.describeAccountLimits(DescribeAccountLimitsRequest(), logger: logger, on: eventLoop)
+    }
 }

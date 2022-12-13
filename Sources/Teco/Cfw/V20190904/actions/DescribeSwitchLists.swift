@@ -107,4 +107,16 @@ extension Cfw {
     public func describeSwitchLists(_ input: DescribeSwitchListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSwitchListsResponse {
         try await self.client.execute(action: "DescribeSwitchLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 防火墙开关列表
+    @inlinable
+    public func describeSwitchLists(status: Int64? = nil, type: String? = nil, area: String? = nil, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSwitchListsResponse > {
+        self.describeSwitchLists(DescribeSwitchListsRequest(status: status, type: type, area: area, searchValue: searchValue, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
+    
+    /// 防火墙开关列表
+    @inlinable
+    public func describeSwitchLists(status: Int64? = nil, type: String? = nil, area: String? = nil, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSwitchListsResponse {
+        try await self.describeSwitchLists(DescribeSwitchListsRequest(status: status, type: type, area: area, searchValue: searchValue, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    }
 }

@@ -64,4 +64,16 @@ extension Dayu {
     public func modifyNewL4Rule(_ input: ModifyNewL4RuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNewL4RuleResponse {
         try await self.client.execute(action: "ModifyNewL4Rule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改4层转发规则
+    @inlinable
+    public func modifyNewL4Rule(business: String, id: String, rule: L4RuleEntry, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNewL4RuleResponse > {
+        self.modifyNewL4Rule(ModifyNewL4RuleRequest(business: business, id: id, rule: rule), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改4层转发规则
+    @inlinable
+    public func modifyNewL4Rule(business: String, id: String, rule: L4RuleEntry, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNewL4RuleResponse {
+        try await self.modifyNewL4Rule(ModifyNewL4RuleRequest(business: business, id: id, rule: rule), logger: logger, on: eventLoop)
+    }
 }

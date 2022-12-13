@@ -54,4 +54,16 @@ extension Live {
     public func describeLiveCert(_ input: DescribeLiveCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCertResponse {
         try await self.client.execute(action: "DescribeLiveCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取证书信息
+    @inlinable
+    public func describeLiveCert(certId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveCertResponse > {
+        self.describeLiveCert(DescribeLiveCertRequest(certId: certId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取证书信息
+    @inlinable
+    public func describeLiveCert(certId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCertResponse {
+        try await self.describeLiveCert(DescribeLiveCertRequest(certId: certId), logger: logger, on: eventLoop)
+    }
 }

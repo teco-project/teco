@@ -59,4 +59,16 @@ extension Dayu {
     public func describeDDoSPolicy(_ input: DescribeDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSPolicyResponse {
         try await self.client.execute(action: "DescribeDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取DDoS高级策略
+    @inlinable
+    public func describeDDoSPolicy(business: String, id: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSPolicyResponse > {
+        self.describeDDoSPolicy(DescribeDDoSPolicyRequest(business: business, id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS高级策略
+    @inlinable
+    public func describeDDoSPolicy(business: String, id: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSPolicyResponse {
+        try await self.describeDDoSPolicy(DescribeDDoSPolicyRequest(business: business, id: id), logger: logger, on: eventLoop)
+    }
 }

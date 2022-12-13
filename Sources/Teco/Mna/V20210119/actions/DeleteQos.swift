@@ -62,4 +62,20 @@ extension Mna {
     public func deleteQos(_ input: DeleteQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteQosResponse {
         try await self.client.execute(action: "DeleteQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 停止Qos加速过程
+    ///
+    /// 移动网络停止Qos加速过程
+    @inlinable
+    public func deleteQos(sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteQosResponse > {
+        self.deleteQos(DeleteQosRequest(sessionId: sessionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 停止Qos加速过程
+    ///
+    /// 移动网络停止Qos加速过程
+    @inlinable
+    public func deleteQos(sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteQosResponse {
+        try await self.deleteQos(DeleteQosRequest(sessionId: sessionId), logger: logger, on: eventLoop)
+    }
 }

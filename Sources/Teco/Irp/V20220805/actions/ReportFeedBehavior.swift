@@ -59,4 +59,20 @@ extension Irp {
     public func reportFeedBehavior(_ input: ReportFeedBehaviorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedBehaviorResponse {
         try await self.client.execute(action: "ReportFeedBehavior", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 上报信息流行为数据
+    ///
+    /// 上报信息流场景内的行为数据，随着数据的积累，模型的效果会逐渐稳定。
+    @inlinable
+    public func reportFeedBehavior(instanceId: String, feedBehaviorList: [FeedBehaviorInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportFeedBehaviorResponse > {
+        self.reportFeedBehavior(ReportFeedBehaviorRequest(instanceId: instanceId, feedBehaviorList: feedBehaviorList), logger: logger, on: eventLoop)
+    }
+    
+    /// 上报信息流行为数据
+    ///
+    /// 上报信息流场景内的行为数据，随着数据的积累，模型的效果会逐渐稳定。
+    @inlinable
+    public func reportFeedBehavior(instanceId: String, feedBehaviorList: [FeedBehaviorInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedBehaviorResponse {
+        try await self.reportFeedBehavior(ReportFeedBehaviorRequest(instanceId: instanceId, feedBehaviorList: feedBehaviorList), logger: logger, on: eventLoop)
+    }
 }

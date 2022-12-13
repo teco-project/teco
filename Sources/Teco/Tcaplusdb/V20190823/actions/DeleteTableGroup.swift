@@ -59,4 +59,16 @@ extension Tcaplusdb {
     public func deleteTableGroup(_ input: DeleteTableGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableGroupResponse {
         try await self.client.execute(action: "DeleteTableGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除表格组
+    @inlinable
+    public func deleteTableGroup(clusterId: String, tableGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTableGroupResponse > {
+        self.deleteTableGroup(DeleteTableGroupRequest(clusterId: clusterId, tableGroupId: tableGroupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除表格组
+    @inlinable
+    public func deleteTableGroup(clusterId: String, tableGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableGroupResponse {
+        try await self.deleteTableGroup(DeleteTableGroupRequest(clusterId: clusterId, tableGroupId: tableGroupId), logger: logger, on: eventLoop)
+    }
 }

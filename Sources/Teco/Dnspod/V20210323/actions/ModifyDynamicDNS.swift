@@ -89,4 +89,16 @@ extension Dnspod {
     public func modifyDynamicDNS(_ input: ModifyDynamicDNSRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDynamicDNSResponse {
         try await self.client.execute(action: "ModifyDynamicDNS", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新动态 DNS 记录
+    @inlinable
+    public func modifyDynamicDNS(domain: String, recordId: UInt64, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, ttl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDynamicDNSResponse > {
+        self.modifyDynamicDNS(ModifyDynamicDNSRequest(domain: domain, recordId: recordId, recordLine: recordLine, value: value, domainId: domainId, subDomain: subDomain, recordLineId: recordLineId, ttl: ttl), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新动态 DNS 记录
+    @inlinable
+    public func modifyDynamicDNS(domain: String, recordId: UInt64, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, ttl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDynamicDNSResponse {
+        try await self.modifyDynamicDNS(ModifyDynamicDNSRequest(domain: domain, recordId: recordId, recordLine: recordLine, value: value, domainId: domainId, subDomain: subDomain, recordLineId: recordLineId, ttl: ttl), logger: logger, on: eventLoop)
+    }
 }

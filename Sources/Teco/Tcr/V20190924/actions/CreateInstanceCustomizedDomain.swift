@@ -60,4 +60,16 @@ extension Tcr {
     public func createInstanceCustomizedDomain(_ input: CreateInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceCustomizedDomainResponse {
         try await self.client.execute(action: "CreateInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建自定义域名
+    @inlinable
+    public func createInstanceCustomizedDomain(registryId: String, domainName: String, certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceCustomizedDomainResponse > {
+        self.createInstanceCustomizedDomain(CreateInstanceCustomizedDomainRequest(registryId: registryId, domainName: domainName, certificateId: certificateId), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建自定义域名
+    @inlinable
+    public func createInstanceCustomizedDomain(registryId: String, domainName: String, certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceCustomizedDomainResponse {
+        try await self.createInstanceCustomizedDomain(CreateInstanceCustomizedDomainRequest(registryId: registryId, domainName: domainName, certificateId: certificateId), logger: logger, on: eventLoop)
+    }
 }

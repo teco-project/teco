@@ -54,4 +54,16 @@ extension Ame {
     public func describeKTVSuggestions(_ input: DescribeKTVSuggestionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSuggestionsResponse {
         try await self.client.execute(action: "DescribeKTVSuggestions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取直播互动曲库联想词
+    @inlinable
+    public func describeKTVSuggestions(keyWord: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVSuggestionsResponse > {
+        self.describeKTVSuggestions(DescribeKTVSuggestionsRequest(keyWord: keyWord), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取直播互动曲库联想词
+    @inlinable
+    public func describeKTVSuggestions(keyWord: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSuggestionsResponse {
+        try await self.describeKTVSuggestions(DescribeKTVSuggestionsRequest(keyWord: keyWord), logger: logger, on: eventLoop)
+    }
 }

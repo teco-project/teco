@@ -50,4 +50,16 @@ extension Yunjing {
     public func deleteAttackLogs(_ input: DeleteAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackLogsResponse {
         try await self.client.execute(action: "DeleteAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除网络攻击日志
+    @inlinable
+    public func deleteAttackLogs(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAttackLogsResponse > {
+        self.deleteAttackLogs(DeleteAttackLogsRequest(ids: ids), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除网络攻击日志
+    @inlinable
+    public func deleteAttackLogs(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackLogsResponse {
+        try await self.deleteAttackLogs(DeleteAttackLogsRequest(ids: ids), logger: logger, on: eventLoop)
+    }
 }

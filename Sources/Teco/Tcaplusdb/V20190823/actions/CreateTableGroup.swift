@@ -73,4 +73,20 @@ extension Tcaplusdb {
     public func createTableGroup(_ input: CreateTableGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTableGroupResponse {
         try await self.client.execute(action: "CreateTableGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 新建表格组
+    ///
+    /// 在TcaplusDB集群下创建表格组
+    @inlinable
+    public func createTableGroup(clusterId: String, tableGroupName: String, tableGroupId: String? = nil, resourceTags: [TagInfoUnit]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTableGroupResponse > {
+        self.createTableGroup(CreateTableGroupRequest(clusterId: clusterId, tableGroupName: tableGroupName, tableGroupId: tableGroupId, resourceTags: resourceTags), logger: logger, on: eventLoop)
+    }
+    
+    /// 新建表格组
+    ///
+    /// 在TcaplusDB集群下创建表格组
+    @inlinable
+    public func createTableGroup(clusterId: String, tableGroupName: String, tableGroupId: String? = nil, resourceTags: [TagInfoUnit]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTableGroupResponse {
+        try await self.createTableGroup(CreateTableGroupRequest(clusterId: clusterId, tableGroupName: tableGroupName, tableGroupId: tableGroupId, resourceTags: resourceTags), logger: logger, on: eventLoop)
+    }
 }

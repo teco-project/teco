@@ -26,7 +26,7 @@ extension Cme {
         /// 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
         public let `operator`: String?
         
-        public init (platform: String, owner: Entity, `operator`: String? = nil) {
+        public init (platform: String, owner: Entity, operator: String? = nil) {
             self.platform = platform
             self.owner = owner
             self.`operator` = `operator`
@@ -67,5 +67,21 @@ extension Cme {
     @inlinable
     public func describeClass(_ input: DescribeClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassResponse {
         try await self.client.execute(action: "DescribeClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 获取分类列表
+    ///
+    /// 获取指定归属者下所有的分类信息。
+    @inlinable
+    public func describeClass(platform: String, owner: Entity, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClassResponse > {
+        self.describeClass(DescribeClassRequest(platform: platform, owner: owner, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取分类列表
+    ///
+    /// 获取指定归属者下所有的分类信息。
+    @inlinable
+    public func describeClass(platform: String, owner: Entity, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassResponse {
+        try await self.describeClass(DescribeClassRequest(platform: platform, owner: owner, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

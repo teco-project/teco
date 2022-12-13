@@ -58,4 +58,20 @@ extension Cls {
     public func describePartitions(_ input: DescribePartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePartitionsResponse {
         try await self.client.execute(action: "DescribePartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取分区列表
+    ///
+    /// 本接口用于获取主题分区列表。
+    @inlinable
+    public func describePartitions(topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePartitionsResponse > {
+        self.describePartitions(DescribePartitionsRequest(topicId: topicId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取分区列表
+    ///
+    /// 本接口用于获取主题分区列表。
+    @inlinable
+    public func describePartitions(topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePartitionsResponse {
+        try await self.describePartitions(DescribePartitionsRequest(topicId: topicId), logger: logger, on: eventLoop)
+    }
 }

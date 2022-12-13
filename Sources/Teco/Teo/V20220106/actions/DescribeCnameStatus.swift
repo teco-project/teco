@@ -59,4 +59,16 @@ extension Teo {
     public func describeCnameStatus(_ input: DescribeCnameStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCnameStatusResponse {
         try await self.client.execute(action: "DescribeCnameStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询域名 CNAME 状态
+    @inlinable
+    public func describeCnameStatus(zoneId: String, names: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCnameStatusResponse > {
+        self.describeCnameStatus(DescribeCnameStatusRequest(zoneId: zoneId, names: names), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询域名 CNAME 状态
+    @inlinable
+    public func describeCnameStatus(zoneId: String, names: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCnameStatusResponse {
+        try await self.describeCnameStatus(DescribeCnameStatusRequest(zoneId: zoneId, names: names), logger: logger, on: eventLoop)
+    }
 }

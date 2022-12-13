@@ -160,4 +160,32 @@ extension Cdn {
     public func listTopData(_ input: ListTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopDataResponse {
         try await self.client.execute(action: "ListTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// TOP 数据查询
+    ///
+    /// ListTopData 通过入参 Metric 和 Filter 组合不同，可以查询以下排序数据：
+    /// + 依据总流量、总请求数对访问 URL 排序，从大至小返回 TOP 1000 URL
+    /// + 依据总流量、总请求数对客户端省份排序，从大至小返回省份列表
+    /// + 依据总流量、总请求数对客户端运营商排序，从大至小返回运营商列表
+    /// + 依据总流量、峰值带宽、总请求数、平均命中率、2XX/3XX/4XX/5XX 状态码对域名排序，从大至小返回域名列表
+    /// + 依据总回源流量、回源峰值带宽、总回源请求数、平均回源失败率、2XX/3XX/4XX/5XX 回源状态码对域名排序，从大至小返回域名列表
+    /// 注意：仅支持 90 天内数据查询
+    @inlinable
+    public func listTopData(startTime: Date, endTime: Date, metric: String, filter: String, domains: [String]? = nil, project: Int64? = nil, detail: Bool? = nil, code: String? = nil, area: String? = nil, areaType: String? = nil, product: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopDataResponse > {
+        self.listTopData(ListTopDataRequest(startTime: startTime, endTime: endTime, metric: metric, filter: filter, domains: domains, project: project, detail: detail, code: code, area: area, areaType: areaType, product: product, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// TOP 数据查询
+    ///
+    /// ListTopData 通过入参 Metric 和 Filter 组合不同，可以查询以下排序数据：
+    /// + 依据总流量、总请求数对访问 URL 排序，从大至小返回 TOP 1000 URL
+    /// + 依据总流量、总请求数对客户端省份排序，从大至小返回省份列表
+    /// + 依据总流量、总请求数对客户端运营商排序，从大至小返回运营商列表
+    /// + 依据总流量、峰值带宽、总请求数、平均命中率、2XX/3XX/4XX/5XX 状态码对域名排序，从大至小返回域名列表
+    /// + 依据总回源流量、回源峰值带宽、总回源请求数、平均回源失败率、2XX/3XX/4XX/5XX 回源状态码对域名排序，从大至小返回域名列表
+    /// 注意：仅支持 90 天内数据查询
+    @inlinable
+    public func listTopData(startTime: Date, endTime: Date, metric: String, filter: String, domains: [String]? = nil, project: Int64? = nil, detail: Bool? = nil, code: String? = nil, area: String? = nil, areaType: String? = nil, product: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopDataResponse {
+        try await self.listTopData(ListTopDataRequest(startTime: startTime, endTime: endTime, metric: metric, filter: filter, domains: domains, project: project, detail: detail, code: code, area: area, areaType: areaType, product: product, limit: limit), logger: logger, on: eventLoop)
+    }
 }

@@ -86,4 +86,20 @@ extension Cynosdb {
     public func createAuditLogFile(_ input: CreateAuditLogFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditLogFileResponse {
         try await self.client.execute(action: "CreateAuditLogFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建审计日志文件
+    ///
+    /// 本接口(CreateAuditLogFile)用于创建云数据库实例的审计日志文件。
+    @inlinable
+    public func createAuditLogFile(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAuditLogFileResponse > {
+        self.createAuditLogFile(CreateAuditLogFileRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建审计日志文件
+    ///
+    /// 本接口(CreateAuditLogFile)用于创建云数据库实例的审计日志文件。
+    @inlinable
+    public func createAuditLogFile(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditLogFileResponse {
+        try await self.createAuditLogFile(CreateAuditLogFileRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter), logger: logger, on: eventLoop)
+    }
 }

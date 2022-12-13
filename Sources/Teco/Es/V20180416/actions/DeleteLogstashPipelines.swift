@@ -59,4 +59,20 @@ extension Es {
     public func deleteLogstashPipelines(_ input: DeleteLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogstashPipelinesResponse {
         try await self.client.execute(action: "DeleteLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除Logstash管道
+    ///
+    /// 用于批量删除Logstash管道
+    @inlinable
+    public func deleteLogstashPipelines(instanceId: String, pipelineIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLogstashPipelinesResponse > {
+        self.deleteLogstashPipelines(DeleteLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Logstash管道
+    ///
+    /// 用于批量删除Logstash管道
+    @inlinable
+    public func deleteLogstashPipelines(instanceId: String, pipelineIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogstashPipelinesResponse {
+        try await self.deleteLogstashPipelines(DeleteLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), logger: logger, on: eventLoop)
+    }
 }

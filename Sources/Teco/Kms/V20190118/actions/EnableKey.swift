@@ -54,4 +54,20 @@ extension Kms {
     public func enableKey(_ input: EnableKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeyResponse {
         try await self.client.execute(action: "EnableKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 启用主密钥
+    ///
+    /// 用于启用一个指定的CMK。
+    @inlinable
+    public func enableKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableKeyResponse > {
+        self.enableKey(EnableKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 启用主密钥
+    ///
+    /// 用于启用一个指定的CMK。
+    @inlinable
+    public func enableKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeyResponse {
+        try await self.enableKey(EnableKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
+    }
 }

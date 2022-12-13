@@ -62,4 +62,20 @@ extension Bsca {
     public func matchKBPURLList(_ input: MatchKBPURLListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MatchKBPURLListResponse {
         try await self.client.execute(action: "MatchKBPURLList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 匹配知识库组件列表
+    ///
+    /// 本接口(MatchKBPURLList)用于在知识库中匹配与特征对应的开源组件列表。
+    @inlinable
+    public func matchKBPURLList(sha1: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MatchKBPURLListResponse > {
+        self.matchKBPURLList(MatchKBPURLListRequest(sha1: sha1), logger: logger, on: eventLoop)
+    }
+    
+    /// 匹配知识库组件列表
+    ///
+    /// 本接口(MatchKBPURLList)用于在知识库中匹配与特征对应的开源组件列表。
+    @inlinable
+    public func matchKBPURLList(sha1: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MatchKBPURLListResponse {
+        try await self.matchKBPURLList(MatchKBPURLListRequest(sha1: sha1), logger: logger, on: eventLoop)
+    }
 }

@@ -80,4 +80,16 @@ extension Tcb {
     public func describeCloudBaseRunVersionSnapshot(_ input: DescribeCloudBaseRunVersionSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunVersionSnapshotResponse {
         try await self.client.execute(action: "DescribeCloudBaseRunVersionSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询版本历史
+    @inlinable
+    public func describeCloudBaseRunVersionSnapshot(serverName: String, versionName: String, envId: String, snapshotName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunVersionSnapshotResponse > {
+        self.describeCloudBaseRunVersionSnapshot(DescribeCloudBaseRunVersionSnapshotRequest(serverName: serverName, versionName: versionName, envId: envId, snapshotName: snapshotName, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询版本历史
+    @inlinable
+    public func describeCloudBaseRunVersionSnapshot(serverName: String, versionName: String, envId: String, snapshotName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunVersionSnapshotResponse {
+        try await self.describeCloudBaseRunVersionSnapshot(DescribeCloudBaseRunVersionSnapshotRequest(serverName: serverName, versionName: versionName, envId: envId, snapshotName: snapshotName, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

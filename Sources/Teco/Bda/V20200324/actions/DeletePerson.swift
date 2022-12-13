@@ -54,4 +54,20 @@ extension Bda {
     public func deletePerson(_ input: DeletePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonResponse {
         try await self.client.execute(action: "DeletePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除人员
+    ///
+    /// 删除人员。
+    @inlinable
+    public func deletePerson(personId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePersonResponse > {
+        self.deletePerson(DeletePersonRequest(personId: personId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除人员
+    ///
+    /// 删除人员。
+    @inlinable
+    public func deletePerson(personId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonResponse {
+        try await self.deletePerson(DeletePersonRequest(personId: personId), logger: logger, on: eventLoop)
+    }
 }

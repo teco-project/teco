@@ -68,4 +68,20 @@ extension Bmlb {
     public func deleteL7Domains(_ input: DeleteL7DomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteL7DomainsResponse {
         try await self.client.execute(action: "DeleteL7Domains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除黑石负载均衡七层转发域名
+    ///
+    /// 删除黑石负载均衡七层转发域名。
+    @inlinable
+    public func deleteL7Domains(loadBalancerId: String, listenerId: String, domainIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteL7DomainsResponse > {
+        self.deleteL7Domains(DeleteL7DomainsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainIds: domainIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除黑石负载均衡七层转发域名
+    ///
+    /// 删除黑石负载均衡七层转发域名。
+    @inlinable
+    public func deleteL7Domains(loadBalancerId: String, listenerId: String, domainIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteL7DomainsResponse {
+        try await self.deleteL7Domains(DeleteL7DomainsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainIds: domainIds), logger: logger, on: eventLoop)
+    }
 }

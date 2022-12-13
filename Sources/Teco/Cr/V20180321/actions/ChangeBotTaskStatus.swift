@@ -71,4 +71,16 @@ extension Cr {
     public func changeBotTaskStatus(_ input: ChangeBotTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotTaskStatusResponse {
         try await self.client.execute(action: "ChangeBotTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新机器人任务状态
+    @inlinable
+    public func changeBotTaskStatus(module: String, operation: String, status: String, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeBotTaskStatusResponse > {
+        self.changeBotTaskStatus(ChangeBotTaskStatusRequest(module: module, operation: operation, status: status, botId: botId, botName: botName), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新机器人任务状态
+    @inlinable
+    public func changeBotTaskStatus(module: String, operation: String, status: String, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotTaskStatusResponse {
+        try await self.changeBotTaskStatus(ChangeBotTaskStatusRequest(module: module, operation: operation, status: status, botId: botId, botName: botName), logger: logger, on: eventLoop)
+    }
 }

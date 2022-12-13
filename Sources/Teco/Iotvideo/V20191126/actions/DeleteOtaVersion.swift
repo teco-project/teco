@@ -26,7 +26,7 @@ extension Iotvideo {
         /// 操作人
         public let `operator`: String?
         
-        public init (productId: String, otaVersion: String, `operator`: String? = nil) {
+        public init (productId: String, otaVersion: String, operator: String? = nil) {
             self.productId = productId
             self.otaVersion = otaVersion
             self.`operator` = `operator`
@@ -63,5 +63,21 @@ extension Iotvideo {
     @inlinable
     public func deleteOtaVersion(_ input: DeleteOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOtaVersionResponse {
         try await self.client.execute(action: "DeleteOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 删除固件版本信息
+    ///
+    /// 本接口（DeleteOtaVersion）用于删除固件版本信息。
+    @inlinable
+    public func deleteOtaVersion(productId: String, otaVersion: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOtaVersionResponse > {
+        self.deleteOtaVersion(DeleteOtaVersionRequest(productId: productId, otaVersion: otaVersion, operator: `operator`), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除固件版本信息
+    ///
+    /// 本接口（DeleteOtaVersion）用于删除固件版本信息。
+    @inlinable
+    public func deleteOtaVersion(productId: String, otaVersion: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOtaVersionResponse {
+        try await self.deleteOtaVersion(DeleteOtaVersionRequest(productId: productId, otaVersion: otaVersion, operator: `operator`), logger: logger, on: eventLoop)
     }
 }

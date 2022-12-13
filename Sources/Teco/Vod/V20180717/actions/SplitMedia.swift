@@ -83,4 +83,20 @@ extension Vod {
     public func splitMedia(_ input: SplitMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SplitMediaResponse {
         try await self.client.execute(action: "SplitMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 视频拆条
+    ///
+    /// 对点播视频进行拆条，生成多个新的点播视频。
+    @inlinable
+    public func splitMedia(fileId: String, segments: [SplitMediaTaskConfig], subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SplitMediaResponse > {
+        self.splitMedia(SplitMediaRequest(fileId: fileId, segments: segments, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority), logger: logger, on: eventLoop)
+    }
+    
+    /// 视频拆条
+    ///
+    /// 对点播视频进行拆条，生成多个新的点播视频。
+    @inlinable
+    public func splitMedia(fileId: String, segments: [SplitMediaTaskConfig], subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SplitMediaResponse {
+        try await self.splitMedia(SplitMediaRequest(fileId: fileId, segments: segments, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority), logger: logger, on: eventLoop)
+    }
 }

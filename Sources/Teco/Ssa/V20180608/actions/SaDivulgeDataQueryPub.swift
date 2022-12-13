@@ -109,4 +109,16 @@ extension Ssa {
     public func saDivulgeDataQueryPub(_ input: SaDivulgeDataQueryPubRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaDivulgeDataQueryPubResponse {
         try await self.client.execute(action: "SaDivulgeDataQueryPub", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询【通用字段】【泄露监测数据列表】
+    @inlinable
+    public func saDivulgeDataQueryPub(queryKey: String, eventName: String, divulgeSoure: String, asset: String, ruleName: String, ruleId: String, level: String, status: String, startTime: String, endTime: String, offset: String, limit: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SaDivulgeDataQueryPubResponse > {
+        self.saDivulgeDataQueryPub(SaDivulgeDataQueryPubRequest(queryKey: queryKey, eventName: eventName, divulgeSoure: divulgeSoure, asset: asset, ruleName: ruleName, ruleId: ruleId, level: level, status: status, startTime: startTime, endTime: endTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询【通用字段】【泄露监测数据列表】
+    @inlinable
+    public func saDivulgeDataQueryPub(queryKey: String, eventName: String, divulgeSoure: String, asset: String, ruleName: String, ruleId: String, level: String, status: String, startTime: String, endTime: String, offset: String, limit: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaDivulgeDataQueryPubResponse {
+        try await self.saDivulgeDataQueryPub(SaDivulgeDataQueryPubRequest(queryKey: queryKey, eventName: eventName, divulgeSoure: divulgeSoure, asset: asset, ruleName: ruleName, ruleId: ruleId, level: level, status: status, startTime: startTime, endTime: endTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    }
 }

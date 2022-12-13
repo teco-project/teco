@@ -69,4 +69,16 @@ extension Dayu {
     public func modifyCCFrequencyRulesStatus(_ input: ModifyCCFrequencyRulesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCFrequencyRulesStatusResponse {
         try await self.client.execute(action: "ModifyCCFrequencyRulesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开启或关闭CC防护的访问频率控制规则
+    @inlinable
+    public func modifyCCFrequencyRulesStatus(business: String, id: String, ruleId: String, method: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCFrequencyRulesStatusResponse > {
+        self.modifyCCFrequencyRulesStatus(ModifyCCFrequencyRulesStatusRequest(business: business, id: id, ruleId: ruleId, method: method), logger: logger, on: eventLoop)
+    }
+    
+    /// 开启或关闭CC防护的访问频率控制规则
+    @inlinable
+    public func modifyCCFrequencyRulesStatus(business: String, id: String, ruleId: String, method: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCFrequencyRulesStatusResponse {
+        try await self.modifyCCFrequencyRulesStatus(ModifyCCFrequencyRulesStatusRequest(business: business, id: id, ruleId: ruleId, method: method), logger: logger, on: eventLoop)
+    }
 }

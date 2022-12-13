@@ -94,4 +94,20 @@ extension Mariadb {
     public func describeUpgradePrice(_ input: DescribeUpgradePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpgradePriceResponse {
         try await self.client.execute(action: "DescribeUpgradePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 变配实例询价
+    ///
+    /// 本接口（DescribeUpgradePrice）用于在扩容云数据库实例时，查询变配的价格。
+    @inlinable
+    public func describeUpgradePrice(instanceId: String, memory: Int64, storage: Int64, nodeCount: Int64? = nil, amountUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUpgradePriceResponse > {
+        self.describeUpgradePrice(DescribeUpgradePriceRequest(instanceId: instanceId, memory: memory, storage: storage, nodeCount: nodeCount, amountUnit: amountUnit), logger: logger, on: eventLoop)
+    }
+    
+    /// 变配实例询价
+    ///
+    /// 本接口（DescribeUpgradePrice）用于在扩容云数据库实例时，查询变配的价格。
+    @inlinable
+    public func describeUpgradePrice(instanceId: String, memory: Int64, storage: Int64, nodeCount: Int64? = nil, amountUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpgradePriceResponse {
+        try await self.describeUpgradePrice(DescribeUpgradePriceRequest(instanceId: instanceId, memory: memory, storage: storage, nodeCount: nodeCount, amountUnit: amountUnit), logger: logger, on: eventLoop)
+    }
 }

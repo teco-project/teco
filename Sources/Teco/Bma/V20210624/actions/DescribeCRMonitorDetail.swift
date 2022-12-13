@@ -85,4 +85,20 @@ extension Bma {
     public func describeCRMonitorDetail(_ input: DescribeCRMonitorDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRMonitorDetailResponse {
         try await self.client.execute(action: "DescribeCRMonitorDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询作品监测详情
+    ///
+    /// 版权保护-查询作品监测详情接口
+    @inlinable
+    public func describeCRMonitorDetail(workId: Int64, pageSize: Int64? = nil, pageNumber: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCRMonitorDetailResponse > {
+        self.describeCRMonitorDetail(DescribeCRMonitorDetailRequest(workId: workId, pageSize: pageSize, pageNumber: pageNumber, filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询作品监测详情
+    ///
+    /// 版权保护-查询作品监测详情接口
+    @inlinable
+    public func describeCRMonitorDetail(workId: Int64, pageSize: Int64? = nil, pageNumber: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRMonitorDetailResponse {
+        try await self.describeCRMonitorDetail(DescribeCRMonitorDetailRequest(workId: workId, pageSize: pageSize, pageNumber: pageNumber, filters: filters), logger: logger, on: eventLoop)
+    }
 }

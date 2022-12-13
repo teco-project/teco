@@ -142,4 +142,24 @@ extension Iai {
     public func createPerson(_ input: CreatePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {
         try await self.client.execute(action: "CreatePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建人员
+    ///
+    /// 创建人员，添加人脸、姓名、性别及其他相关信息。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func createPerson(groupId: String, personName: String, personId: String, gender: Int64? = nil, personExDescriptionInfos: [PersonExDescriptionInfo]? = nil, image: String? = nil, url: String? = nil, uniquePersonControl: UInt64? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePersonResponse > {
+        self.createPerson(CreatePersonRequest(groupId: groupId, personName: personName, personId: personId, gender: gender, personExDescriptionInfos: personExDescriptionInfos, image: image, url: url, uniquePersonControl: uniquePersonControl, qualityControl: qualityControl, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建人员
+    ///
+    /// 创建人员，添加人脸、姓名、性别及其他相关信息。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func createPerson(groupId: String, personName: String, personId: String, gender: Int64? = nil, personExDescriptionInfos: [PersonExDescriptionInfo]? = nil, image: String? = nil, url: String? = nil, uniquePersonControl: UInt64? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {
+        try await self.createPerson(CreatePersonRequest(groupId: groupId, personName: personName, personId: personId, gender: gender, personExDescriptionInfos: personExDescriptionInfos, image: image, url: url, uniquePersonControl: uniquePersonControl, qualityControl: qualityControl, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    }
 }

@@ -50,4 +50,16 @@ extension Yunjing {
     public func deleteReverseShellRules(_ input: DeleteReverseShellRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellRulesResponse {
         try await self.client.execute(action: "DeleteReverseShellRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除反弹Shell规则
+    @inlinable
+    public func deleteReverseShellRules(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReverseShellRulesResponse > {
+        self.deleteReverseShellRules(DeleteReverseShellRulesRequest(ids: ids), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除反弹Shell规则
+    @inlinable
+    public func deleteReverseShellRules(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellRulesResponse {
+        try await self.deleteReverseShellRules(DeleteReverseShellRulesRequest(ids: ids), logger: logger, on: eventLoop)
+    }
 }

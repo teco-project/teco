@@ -71,4 +71,22 @@ extension Gse {
     public func joinGameServerSession(_ input: JoinGameServerSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> JoinGameServerSessionResponse {
         try await self.client.execute(action: "JoinGameServerSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 加入游戏服务器会话
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（JoinGameServerSession）用于加入游戏服务器会话。
+    @inlinable
+    public func joinGameServerSession(gameServerSessionId: String, playerId: String, playerData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < JoinGameServerSessionResponse > {
+        self.joinGameServerSession(JoinGameServerSessionRequest(gameServerSessionId: gameServerSessionId, playerId: playerId, playerData: playerData), logger: logger, on: eventLoop)
+    }
+    
+    /// 加入游戏服务器会话
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（JoinGameServerSession）用于加入游戏服务器会话。
+    @inlinable
+    public func joinGameServerSession(gameServerSessionId: String, playerId: String, playerData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> JoinGameServerSessionResponse {
+        try await self.joinGameServerSession(JoinGameServerSessionRequest(gameServerSessionId: gameServerSessionId, playerId: playerId, playerData: playerData), logger: logger, on: eventLoop)
+    }
 }

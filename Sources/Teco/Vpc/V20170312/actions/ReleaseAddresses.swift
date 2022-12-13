@@ -62,4 +62,24 @@ extension Vpc {
     public func releaseAddresses(_ input: ReleaseAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseAddressesResponse {
         try await self.client.execute(action: "ReleaseAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 释放弹性公网IP
+    ///
+    /// 本接口 (ReleaseAddresses) 用于释放一个或多个[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）。
+    /// * 该操作不可逆，释放后 EIP 关联的 IP 地址将不再属于您的名下。
+    /// * 只有状态为 UNBIND 的 EIP 才能进行释放操作。
+    @inlinable
+    public func releaseAddresses(addressIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseAddressesResponse > {
+        self.releaseAddresses(ReleaseAddressesRequest(addressIds: addressIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 释放弹性公网IP
+    ///
+    /// 本接口 (ReleaseAddresses) 用于释放一个或多个[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）。
+    /// * 该操作不可逆，释放后 EIP 关联的 IP 地址将不再属于您的名下。
+    /// * 只有状态为 UNBIND 的 EIP 才能进行释放操作。
+    @inlinable
+    public func releaseAddresses(addressIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseAddressesResponse {
+        try await self.releaseAddresses(ReleaseAddressesRequest(addressIds: addressIds), logger: logger, on: eventLoop)
+    }
 }

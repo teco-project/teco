@@ -55,4 +55,16 @@ extension Antiddos {
     public func createProtocolBlockConfig(_ input: CreateProtocolBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtocolBlockConfigResponse {
         try await self.client.execute(action: "CreateProtocolBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 设置DDoS防护的协议封禁配置
+    @inlinable
+    public func createProtocolBlockConfig(instanceId: String, protocolBlockConfig: ProtocolBlockConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProtocolBlockConfigResponse > {
+        self.createProtocolBlockConfig(CreateProtocolBlockConfigRequest(instanceId: instanceId, protocolBlockConfig: protocolBlockConfig), logger: logger, on: eventLoop)
+    }
+    
+    /// 设置DDoS防护的协议封禁配置
+    @inlinable
+    public func createProtocolBlockConfig(instanceId: String, protocolBlockConfig: ProtocolBlockConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtocolBlockConfigResponse {
+        try await self.createProtocolBlockConfig(CreateProtocolBlockConfigRequest(instanceId: instanceId, protocolBlockConfig: protocolBlockConfig), logger: logger, on: eventLoop)
+    }
 }

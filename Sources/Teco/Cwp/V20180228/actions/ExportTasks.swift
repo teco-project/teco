@@ -62,4 +62,20 @@ extension Cwp {
     public func exportTasks(_ input: ExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportTasksResponse {
         try await self.client.execute(action: "ExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 异步导出任务
+    ///
+    /// 用于异步导出数据量大的日志文件
+    @inlinable
+    public func exportTasks(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportTasksResponse > {
+        self.exportTasks(ExportTasksRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 异步导出任务
+    ///
+    /// 用于异步导出数据量大的日志文件
+    @inlinable
+    public func exportTasks(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportTasksResponse {
+        try await self.exportTasks(ExportTasksRequest(taskId: taskId), logger: logger, on: eventLoop)
+    }
 }

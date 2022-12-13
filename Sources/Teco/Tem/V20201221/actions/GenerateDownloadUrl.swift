@@ -70,4 +70,16 @@ extension Tem {
     public func generateDownloadUrl(_ input: GenerateDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateDownloadUrlResponse {
         try await self.client.execute(action: "GenerateDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 生成包预签名下载链接
+    @inlinable
+    public func generateDownloadUrl(serviceId: String, pkgName: String, deployVersion: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateDownloadUrlResponse > {
+        self.generateDownloadUrl(GenerateDownloadUrlRequest(serviceId: serviceId, pkgName: pkgName, deployVersion: deployVersion, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    }
+    
+    /// 生成包预签名下载链接
+    @inlinable
+    public func generateDownloadUrl(serviceId: String, pkgName: String, deployVersion: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateDownloadUrlResponse {
+        try await self.generateDownloadUrl(GenerateDownloadUrlRequest(serviceId: serviceId, pkgName: pkgName, deployVersion: deployVersion, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    }
 }

@@ -69,4 +69,20 @@ extension Gme {
     public func updateScanRooms(_ input: UpdateScanRoomsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScanRoomsResponse {
         try await self.client.execute(action: "UpdateScanRooms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新送检房间号
+    ///
+    /// 更新自定义送检房间号
+    @inlinable
+    public func updateScanRooms(bizId: UInt64, roomIdString: String? = nil, roomIdRegex: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateScanRoomsResponse > {
+        self.updateScanRooms(UpdateScanRoomsRequest(bizId: bizId, roomIdString: roomIdString, roomIdRegex: roomIdRegex), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新送检房间号
+    ///
+    /// 更新自定义送检房间号
+    @inlinable
+    public func updateScanRooms(bizId: UInt64, roomIdString: String? = nil, roomIdRegex: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScanRoomsResponse {
+        try await self.updateScanRooms(UpdateScanRoomsRequest(bizId: bizId, roomIdString: roomIdString, roomIdRegex: roomIdRegex), logger: logger, on: eventLoop)
+    }
 }

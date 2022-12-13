@@ -42,4 +42,16 @@ extension Iotexplorer {
     public func modifyPositionFence(_ input: ModifyPositionFenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPositionFenceResponse {
         try await self.client.execute(action: "ModifyPositionFence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新围栏
+    @inlinable
+    public func modifyPositionFence(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPositionFenceResponse > {
+        self.modifyPositionFence(ModifyPositionFenceRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新围栏
+    @inlinable
+    public func modifyPositionFence(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPositionFenceResponse {
+        try await self.modifyPositionFence(ModifyPositionFenceRequest(), logger: logger, on: eventLoop)
+    }
 }

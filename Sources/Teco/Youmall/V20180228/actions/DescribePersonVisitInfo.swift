@@ -112,4 +112,20 @@ extension Youmall {
     public func describePersonVisitInfo(_ input: DescribePersonVisitInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonVisitInfoResponse {
         try await self.client.execute(action: "DescribePersonVisitInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取顾客到访信息列表
+    ///
+    /// 获取门店指定时间范围内的所有用户到访信息记录，支持的时间范围：过去365天，含当天。
+    @inlinable
+    public func describePersonVisitInfo(companyId: String, shopId: UInt64, offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, pictureExpires: UInt64? = nil, startDateTime: Date? = nil, endDateTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonVisitInfoResponse > {
+        self.describePersonVisitInfo(DescribePersonVisitInfoRequest(companyId: companyId, shopId: shopId, offset: offset, limit: limit, startDate: startDate, endDate: endDate, pictureExpires: pictureExpires, startDateTime: startDateTime, endDateTime: endDateTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取顾客到访信息列表
+    ///
+    /// 获取门店指定时间范围内的所有用户到访信息记录，支持的时间范围：过去365天，含当天。
+    @inlinable
+    public func describePersonVisitInfo(companyId: String, shopId: UInt64, offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, pictureExpires: UInt64? = nil, startDateTime: Date? = nil, endDateTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonVisitInfoResponse {
+        try await self.describePersonVisitInfo(DescribePersonVisitInfoRequest(companyId: companyId, shopId: shopId, offset: offset, limit: limit, startDate: startDate, endDate: endDate, pictureExpires: pictureExpires, startDateTime: startDateTime, endDateTime: endDateTime), logger: logger, on: eventLoop)
+    }
 }

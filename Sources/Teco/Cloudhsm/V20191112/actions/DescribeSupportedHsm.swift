@@ -55,4 +55,16 @@ extension Cloudhsm {
     public func describeSupportedHsm(_ input: DescribeSupportedHsmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedHsmResponse {
         try await self.client.execute(action: "DescribeSupportedHsm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取当前地域所支持的设备列表
+    @inlinable
+    public func describeSupportedHsm(hsmType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSupportedHsmResponse > {
+        self.describeSupportedHsm(DescribeSupportedHsmRequest(hsmType: hsmType), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取当前地域所支持的设备列表
+    @inlinable
+    public func describeSupportedHsm(hsmType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedHsmResponse {
+        try await self.describeSupportedHsm(DescribeSupportedHsmRequest(hsmType: hsmType), logger: logger, on: eventLoop)
+    }
 }

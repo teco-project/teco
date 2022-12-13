@@ -59,4 +59,20 @@ extension Vod {
     public func deleteHeadTailTemplate(_ input: DeleteHeadTailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHeadTailTemplateResponse {
         try await self.client.execute(action: "DeleteHeadTailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除片头片尾模板
+    ///
+    /// 删除片头片尾模板。
+    @inlinable
+    public func deleteHeadTailTemplate(definition: Int64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteHeadTailTemplateResponse > {
+        self.deleteHeadTailTemplate(DeleteHeadTailTemplateRequest(definition: definition, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除片头片尾模板
+    ///
+    /// 删除片头片尾模板。
+    @inlinable
+    public func deleteHeadTailTemplate(definition: Int64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHeadTailTemplateResponse {
+        try await self.deleteHeadTailTemplate(DeleteHeadTailTemplateRequest(definition: definition, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

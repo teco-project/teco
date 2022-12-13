@@ -56,4 +56,20 @@ extension Vpc {
     public func inquirePriceCreateDirectConnectGateway(_ input: InquirePriceCreateDirectConnectGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDirectConnectGatewayResponse {
         try await self.client.execute(action: "InquirePriceCreateDirectConnectGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建专线网关询价
+    ///
+    /// 本接口（DescribePriceCreateDirectConnectGateway）用于创建专线网关询价。
+    @inlinable
+    public func inquirePriceCreateDirectConnectGateway(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceCreateDirectConnectGatewayResponse > {
+        self.inquirePriceCreateDirectConnectGateway(InquirePriceCreateDirectConnectGatewayRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建专线网关询价
+    ///
+    /// 本接口（DescribePriceCreateDirectConnectGateway）用于创建专线网关询价。
+    @inlinable
+    public func inquirePriceCreateDirectConnectGateway(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDirectConnectGatewayResponse {
+        try await self.inquirePriceCreateDirectConnectGateway(InquirePriceCreateDirectConnectGatewayRequest(), logger: logger, on: eventLoop)
+    }
 }

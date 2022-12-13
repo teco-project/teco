@@ -59,4 +59,20 @@ extension Batch {
     public func terminateComputeNodes(_ input: TerminateComputeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateComputeNodesResponse {
         try await self.client.execute(action: "TerminateComputeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 批量销毁计算节点
+    ///
+    /// 用于批量销毁计算节点，不允许重复销毁同一个节点。
+    @inlinable
+    public func terminateComputeNodes(envId: String, computeNodeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateComputeNodesResponse > {
+        self.terminateComputeNodes(TerminateComputeNodesRequest(envId: envId, computeNodeIds: computeNodeIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 批量销毁计算节点
+    ///
+    /// 用于批量销毁计算节点，不允许重复销毁同一个节点。
+    @inlinable
+    public func terminateComputeNodes(envId: String, computeNodeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateComputeNodesResponse {
+        try await self.terminateComputeNodes(TerminateComputeNodesRequest(envId: envId, computeNodeIds: computeNodeIds), logger: logger, on: eventLoop)
+    }
 }

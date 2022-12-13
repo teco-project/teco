@@ -128,4 +128,20 @@ extension Cpdp {
     public func checkAcct(_ input: CheckAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAcctResponse {
         try await self.client.execute(action: "CheckAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 聚鑫-提现银行卡验证
+    ///
+    /// 商户绑定提现银行卡的验证接口
+    @inlinable
+    public func checkAcct(midasAppId: String, subAppId: String, bindType: Int64, settleAcctNo: String, midasSecretId: String, midasSignature: String, checkCode: String? = nil, currencyType: String? = nil, currencyUnit: Int64? = nil, currencyAmt: String? = nil, encryptType: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckAcctResponse > {
+        self.checkAcct(CheckAcctRequest(midasAppId: midasAppId, subAppId: subAppId, bindType: bindType, settleAcctNo: settleAcctNo, midasSecretId: midasSecretId, midasSignature: midasSignature, checkCode: checkCode, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, encryptType: encryptType, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-提现银行卡验证
+    ///
+    /// 商户绑定提现银行卡的验证接口
+    @inlinable
+    public func checkAcct(midasAppId: String, subAppId: String, bindType: Int64, settleAcctNo: String, midasSecretId: String, midasSignature: String, checkCode: String? = nil, currencyType: String? = nil, currencyUnit: Int64? = nil, currencyAmt: String? = nil, encryptType: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAcctResponse {
+        try await self.checkAcct(CheckAcctRequest(midasAppId: midasAppId, subAppId: subAppId, bindType: bindType, settleAcctNo: settleAcctNo, midasSecretId: midasSecretId, midasSignature: midasSignature, checkCode: checkCode, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, encryptType: encryptType, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    }
 }

@@ -101,4 +101,20 @@ extension Dayu {
     public func describleL7Rules(_ input: DescribleL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleL7RulesResponse {
         try await self.client.execute(action: "DescribleL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取L7转发规则
+    ///
+    /// 获取七层转发规则
+    @inlinable
+    public func describleL7Rules(business: String, id: String, ruleIdList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, domain: String? = nil, protocolList: [String]? = nil, statusList: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribleL7RulesResponse > {
+        self.describleL7Rules(DescribleL7RulesRequest(business: business, id: id, ruleIdList: ruleIdList, limit: limit, offset: offset, domain: domain, protocolList: protocolList, statusList: statusList), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取L7转发规则
+    ///
+    /// 获取七层转发规则
+    @inlinable
+    public func describleL7Rules(business: String, id: String, ruleIdList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, domain: String? = nil, protocolList: [String]? = nil, statusList: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleL7RulesResponse {
+        try await self.describleL7Rules(DescribleL7RulesRequest(business: business, id: id, ruleIdList: ruleIdList, limit: limit, offset: offset, domain: domain, protocolList: protocolList, statusList: statusList), logger: logger, on: eventLoop)
+    }
 }

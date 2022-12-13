@@ -84,4 +84,20 @@ extension Dbbrain {
     public func describeMailProfile(_ input: DescribeMailProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMailProfileResponse {
         try await self.client.execute(action: "DescribeMailProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取邮件配置
+    ///
+    /// 获取发送邮件的配置， 包括数据库巡检的邮件配置以及定期生成健康报告的邮件发送配置。Region统一选择广州。
+    @inlinable
+    public func describeMailProfile(profileType: String, product: String, offset: Int64, limit: Int64, profileName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMailProfileResponse > {
+        self.describeMailProfile(DescribeMailProfileRequest(profileType: profileType, product: product, offset: offset, limit: limit, profileName: profileName), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取邮件配置
+    ///
+    /// 获取发送邮件的配置， 包括数据库巡检的邮件配置以及定期生成健康报告的邮件发送配置。Region统一选择广州。
+    @inlinable
+    public func describeMailProfile(profileType: String, product: String, offset: Int64, limit: Int64, profileName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMailProfileResponse {
+        try await self.describeMailProfile(DescribeMailProfileRequest(profileType: profileType, product: product, offset: offset, limit: limit, profileName: profileName), logger: logger, on: eventLoop)
+    }
 }

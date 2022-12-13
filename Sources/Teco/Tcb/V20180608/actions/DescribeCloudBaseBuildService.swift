@@ -105,4 +105,20 @@ extension Tcb {
     public func describeCloudBaseBuildService(_ input: DescribeCloudBaseBuildServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseBuildServiceResponse {
         try await self.client.execute(action: "DescribeCloudBaseBuildService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取云托管代码上传和下载url
+    ///
+    /// 获取云托管代码上传url
+    @inlinable
+    public func describeCloudBaseBuildService(envId: String, serviceName: String, ciBusiness: String? = nil, serviceVersion: String? = nil, suffix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseBuildServiceResponse > {
+        self.describeCloudBaseBuildService(DescribeCloudBaseBuildServiceRequest(envId: envId, serviceName: serviceName, ciBusiness: ciBusiness, serviceVersion: serviceVersion, suffix: suffix), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取云托管代码上传和下载url
+    ///
+    /// 获取云托管代码上传url
+    @inlinable
+    public func describeCloudBaseBuildService(envId: String, serviceName: String, ciBusiness: String? = nil, serviceVersion: String? = nil, suffix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseBuildServiceResponse {
+        try await self.describeCloudBaseBuildService(DescribeCloudBaseBuildServiceRequest(envId: envId, serviceName: serviceName, ciBusiness: ciBusiness, serviceVersion: serviceVersion, suffix: suffix), logger: logger, on: eventLoop)
+    }
 }

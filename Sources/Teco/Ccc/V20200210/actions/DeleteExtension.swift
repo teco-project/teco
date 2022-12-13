@@ -55,4 +55,16 @@ extension Ccc {
     public func deleteExtension(_ input: DeleteExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExtensionResponse {
         try await self.client.execute(action: "DeleteExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除话机账号
+    @inlinable
+    public func deleteExtension(sdkAppId: UInt64, extensionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteExtensionResponse > {
+        self.deleteExtension(DeleteExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除话机账号
+    @inlinable
+    public func deleteExtension(sdkAppId: UInt64, extensionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExtensionResponse {
+        try await self.deleteExtension(DeleteExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId), logger: logger, on: eventLoop)
+    }
 }

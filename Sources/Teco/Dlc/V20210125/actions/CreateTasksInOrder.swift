@@ -72,4 +72,20 @@ extension Dlc {
     public func createTasksInOrder(_ input: CreateTasksInOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTasksInOrderResponse {
         try await self.client.execute(action: "CreateTasksInOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 按顺序创建任务
+    ///
+    /// 按顺序创建任务（已经废弃，后期不再维护，请使用接口CreateTasks）
+    @inlinable
+    public func createTasksInOrder(databaseName: String, tasks: TasksInfo, datasourceConnectionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTasksInOrderResponse > {
+        self.createTasksInOrder(CreateTasksInOrderRequest(databaseName: databaseName, tasks: tasks, datasourceConnectionName: datasourceConnectionName), logger: logger, on: eventLoop)
+    }
+    
+    /// 按顺序创建任务
+    ///
+    /// 按顺序创建任务（已经废弃，后期不再维护，请使用接口CreateTasks）
+    @inlinable
+    public func createTasksInOrder(databaseName: String, tasks: TasksInfo, datasourceConnectionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTasksInOrderResponse {
+        try await self.createTasksInOrder(CreateTasksInOrderRequest(databaseName: databaseName, tasks: tasks, datasourceConnectionName: datasourceConnectionName), logger: logger, on: eventLoop)
+    }
 }

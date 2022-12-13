@@ -62,4 +62,20 @@ extension Redis {
     public func allocateWanAddress(_ input: AllocateWanAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateWanAddressResponse {
         try await self.client.execute(action: "AllocateWanAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 开通外网接口
+    ///
+    /// 开通外网
+    @inlinable
+    public func allocateWanAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AllocateWanAddressResponse > {
+        self.allocateWanAddress(AllocateWanAddressRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
+    
+    /// 开通外网接口
+    ///
+    /// 开通外网
+    @inlinable
+    public func allocateWanAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateWanAddressResponse {
+        try await self.allocateWanAddress(AllocateWanAddressRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    }
 }

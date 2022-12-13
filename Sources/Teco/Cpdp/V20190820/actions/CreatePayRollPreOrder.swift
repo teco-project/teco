@@ -106,4 +106,16 @@ extension Cpdp {
     public func createPayRollPreOrder(_ input: CreatePayRollPreOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayRollPreOrderResponse {
         try await self.client.execute(action: "CreatePayRollPreOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 务工卡-核身预下单
+    @inlinable
+    public func createPayRollPreOrder(openId: String, subMerchantId: String, authNumber: String, projectName: String, companyName: String, wechatAppId: String? = nil, wechatSubAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePayRollPreOrderResponse > {
+        self.createPayRollPreOrder(CreatePayRollPreOrderRequest(openId: openId, subMerchantId: subMerchantId, authNumber: authNumber, projectName: projectName, companyName: companyName, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 务工卡-核身预下单
+    @inlinable
+    public func createPayRollPreOrder(openId: String, subMerchantId: String, authNumber: String, projectName: String, companyName: String, wechatAppId: String? = nil, wechatSubAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayRollPreOrderResponse {
+        try await self.createPayRollPreOrder(CreatePayRollPreOrderRequest(openId: openId, subMerchantId: subMerchantId, authNumber: authNumber, projectName: projectName, companyName: companyName, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId), logger: logger, on: eventLoop)
+    }
 }

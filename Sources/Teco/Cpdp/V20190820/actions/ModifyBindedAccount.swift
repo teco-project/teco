@@ -83,4 +83,16 @@ extension Cpdp {
     public func modifyBindedAccount(_ input: ModifyBindedAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindedAccountResponse {
         try await self.client.execute(action: "ModifyBindedAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 灵云-重新绑定账号
+    @inlinable
+    public func modifyBindedAccount(anchorId: String, transferType: Int64, accountNo: String, phoneNum: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBindedAccountResponse > {
+        self.modifyBindedAccount(ModifyBindedAccountRequest(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum), logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云-重新绑定账号
+    @inlinable
+    public func modifyBindedAccount(anchorId: String, transferType: Int64, accountNo: String, phoneNum: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindedAccountResponse {
+        try await self.modifyBindedAccount(ModifyBindedAccountRequest(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum), logger: logger, on: eventLoop)
+    }
 }

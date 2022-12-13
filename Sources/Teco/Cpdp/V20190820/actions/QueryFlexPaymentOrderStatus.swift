@@ -77,4 +77,16 @@ extension Cpdp {
     public func queryFlexPaymentOrderStatus(_ input: QueryFlexPaymentOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPaymentOrderStatusResponse {
         try await self.client.execute(action: "QueryFlexPaymentOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 灵云V2-查询付款订单状态
+    @inlinable
+    public func queryFlexPaymentOrderStatus(outOrderId: String? = nil, orderId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFlexPaymentOrderStatusResponse > {
+        self.queryFlexPaymentOrderStatus(QueryFlexPaymentOrderStatusRequest(outOrderId: outOrderId, orderId: orderId, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云V2-查询付款订单状态
+    @inlinable
+    public func queryFlexPaymentOrderStatus(outOrderId: String? = nil, orderId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPaymentOrderStatusResponse {
+        try await self.queryFlexPaymentOrderStatus(QueryFlexPaymentOrderStatusRequest(outOrderId: outOrderId, orderId: orderId, environment: environment), logger: logger, on: eventLoop)
+    }
 }

@@ -89,4 +89,16 @@ extension Ckafka {
     public func createAcl(_ input: CreateAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAclResponse {
         try await self.client.execute(action: "CreateAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 添加 ACL 策略
+    @inlinable
+    public func createAcl(instanceId: String, resourceType: Int64, operation: Int64, permissionType: Int64, resourceName: String? = nil, host: String? = nil, principal: String? = nil, resourceNameList: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAclResponse > {
+        self.createAcl(CreateAclRequest(instanceId: instanceId, resourceType: resourceType, operation: operation, permissionType: permissionType, resourceName: resourceName, host: host, principal: principal, resourceNameList: resourceNameList), logger: logger, on: eventLoop)
+    }
+    
+    /// 添加 ACL 策略
+    @inlinable
+    public func createAcl(instanceId: String, resourceType: Int64, operation: Int64, permissionType: Int64, resourceName: String? = nil, host: String? = nil, principal: String? = nil, resourceNameList: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAclResponse {
+        try await self.createAcl(CreateAclRequest(instanceId: instanceId, resourceType: resourceType, operation: operation, permissionType: permissionType, resourceName: resourceName, host: host, principal: principal, resourceNameList: resourceNameList), logger: logger, on: eventLoop)
+    }
 }

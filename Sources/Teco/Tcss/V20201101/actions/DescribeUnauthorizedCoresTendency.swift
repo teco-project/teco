@@ -46,4 +46,16 @@ extension Tcss {
     public func describeUnauthorizedCoresTendency(_ input: DescribeUnauthorizedCoresTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnauthorizedCoresTendencyResponse {
         try await self.client.execute(action: "DescribeUnauthorizedCoresTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询当天未授权核数趋势
+    @inlinable
+    public func describeUnauthorizedCoresTendency(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnauthorizedCoresTendencyResponse > {
+        self.describeUnauthorizedCoresTendency(DescribeUnauthorizedCoresTendencyRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询当天未授权核数趋势
+    @inlinable
+    public func describeUnauthorizedCoresTendency(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnauthorizedCoresTendencyResponse {
+        try await self.describeUnauthorizedCoresTendency(DescribeUnauthorizedCoresTendencyRequest(), logger: logger, on: eventLoop)
+    }
 }

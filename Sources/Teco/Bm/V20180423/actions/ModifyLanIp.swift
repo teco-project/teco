@@ -74,4 +74,16 @@ extension Bm {
     public func modifyLanIp(_ input: ModifyLanIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLanIpResponse {
         try await self.client.execute(action: "ModifyLanIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改物理机内网IP（不重装系统）
+    @inlinable
+    public func modifyLanIp(instanceId: String, vpcId: String, subnetId: String, lanIp: String? = nil, rebootDevice: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLanIpResponse > {
+        self.modifyLanIp(ModifyLanIpRequest(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, lanIp: lanIp, rebootDevice: rebootDevice), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改物理机内网IP（不重装系统）
+    @inlinable
+    public func modifyLanIp(instanceId: String, vpcId: String, subnetId: String, lanIp: String? = nil, rebootDevice: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLanIpResponse {
+        try await self.modifyLanIp(ModifyLanIpRequest(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, lanIp: lanIp, rebootDevice: rebootDevice), logger: logger, on: eventLoop)
+    }
 }

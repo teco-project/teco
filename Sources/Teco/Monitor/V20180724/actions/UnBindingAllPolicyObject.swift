@@ -60,4 +60,16 @@ extension Monitor {
     public func unBindingAllPolicyObject(_ input: UnBindingAllPolicyObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindingAllPolicyObjectResponse {
         try await self.client.execute(action: "UnBindingAllPolicyObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除全部的关联对象
+    @inlinable
+    public func unBindingAllPolicyObject(module: String, groupId: Int64, policyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindingAllPolicyObjectResponse > {
+        self.unBindingAllPolicyObject(UnBindingAllPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除全部的关联对象
+    @inlinable
+    public func unBindingAllPolicyObject(module: String, groupId: Int64, policyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindingAllPolicyObjectResponse {
+        try await self.unBindingAllPolicyObject(UnBindingAllPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId), logger: logger, on: eventLoop)
+    }
 }

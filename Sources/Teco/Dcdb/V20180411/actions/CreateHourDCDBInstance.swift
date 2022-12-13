@@ -171,4 +171,16 @@ extension Dcdb {
     public func createHourDCDBInstance(_ input: CreateHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHourDCDBInstanceResponse {
         try await self.client.execute(action: "CreateHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建DCDB后付费实例
+    @inlinable
+    public func createHourDCDBInstance(shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64, shardCount: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, shardCpu: Int64? = nil, dbVersionId: String? = nil, zones: [String]? = nil, securityGroupId: String? = nil, instanceName: String? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, securityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHourDCDBInstanceResponse > {
+        self.createHourDCDBInstance(CreateHourDCDBInstanceRequest(shardMemory: shardMemory, shardStorage: shardStorage, shardNodeCount: shardNodeCount, shardCount: shardCount, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, shardCpu: shardCpu, dbVersionId: dbVersionId, zones: zones, securityGroupId: securityGroupId, instanceName: instanceName, ipv6Flag: ipv6Flag, resourceTags: resourceTags, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, initParams: initParams, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建DCDB后付费实例
+    @inlinable
+    public func createHourDCDBInstance(shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64, shardCount: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, shardCpu: Int64? = nil, dbVersionId: String? = nil, zones: [String]? = nil, securityGroupId: String? = nil, instanceName: String? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, securityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHourDCDBInstanceResponse {
+        try await self.createHourDCDBInstance(CreateHourDCDBInstanceRequest(shardMemory: shardMemory, shardStorage: shardStorage, shardNodeCount: shardNodeCount, shardCount: shardCount, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, shardCpu: shardCpu, dbVersionId: dbVersionId, zones: zones, securityGroupId: securityGroupId, instanceName: instanceName, ipv6Flag: ipv6Flag, resourceTags: resourceTags, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, initParams: initParams, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    }
 }

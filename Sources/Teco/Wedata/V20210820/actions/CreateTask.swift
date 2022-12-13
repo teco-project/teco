@@ -81,4 +81,22 @@ extension Wedata {
     public func createTask(_ input: CreateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {
         try await self.client.execute(action: "CreateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 创建任务
+    @inlinable
+    public func createTask(projectId: String, workflowId: String, taskName: String, taskType: Int64, taskExt: [TaskExtInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskResponse > {
+        self.createTask(CreateTaskRequest(projectId: projectId, workflowId: workflowId, taskName: taskName, taskType: taskType, taskExt: taskExt), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 创建任务
+    @inlinable
+    public func createTask(projectId: String, workflowId: String, taskName: String, taskType: Int64, taskExt: [TaskExtInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {
+        try await self.createTask(CreateTaskRequest(projectId: projectId, workflowId: workflowId, taskName: taskName, taskType: taskType, taskExt: taskExt), logger: logger, on: eventLoop)
+    }
 }

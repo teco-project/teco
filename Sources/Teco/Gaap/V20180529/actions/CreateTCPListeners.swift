@@ -123,4 +123,20 @@ extension Gaap {
     public func createTCPListeners(_ input: CreateTCPListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTCPListenersResponse {
         try await self.client.execute(action: "CreateTCPListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建TCP监听器
+    ///
+    /// 该接口（CreateTCPListeners）用于批量创建单通道或者通道组的TCP协议类型的监听器。
+    @inlinable
+    public func createTCPListeners(listenerName: String, ports: [UInt64], scheduler: String, healthCheck: UInt64, realServerType: String, proxyId: String? = nil, groupId: String? = nil, delayLoop: UInt64? = nil, connectTimeout: UInt64? = nil, realServerPorts: [UInt64]? = nil, clientIPMethod: Int64? = nil, failoverSwitch: Int64? = nil, healthyThreshold: UInt64? = nil, unhealthyThreshold: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTCPListenersResponse > {
+        self.createTCPListeners(CreateTCPListenersRequest(listenerName: listenerName, ports: ports, scheduler: scheduler, healthCheck: healthCheck, realServerType: realServerType, proxyId: proxyId, groupId: groupId, delayLoop: delayLoop, connectTimeout: connectTimeout, realServerPorts: realServerPorts, clientIPMethod: clientIPMethod, failoverSwitch: failoverSwitch, healthyThreshold: healthyThreshold, unhealthyThreshold: unhealthyThreshold), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建TCP监听器
+    ///
+    /// 该接口（CreateTCPListeners）用于批量创建单通道或者通道组的TCP协议类型的监听器。
+    @inlinable
+    public func createTCPListeners(listenerName: String, ports: [UInt64], scheduler: String, healthCheck: UInt64, realServerType: String, proxyId: String? = nil, groupId: String? = nil, delayLoop: UInt64? = nil, connectTimeout: UInt64? = nil, realServerPorts: [UInt64]? = nil, clientIPMethod: Int64? = nil, failoverSwitch: Int64? = nil, healthyThreshold: UInt64? = nil, unhealthyThreshold: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTCPListenersResponse {
+        try await self.createTCPListeners(CreateTCPListenersRequest(listenerName: listenerName, ports: ports, scheduler: scheduler, healthCheck: healthCheck, realServerType: realServerType, proxyId: proxyId, groupId: groupId, delayLoop: delayLoop, connectTimeout: connectTimeout, realServerPorts: realServerPorts, clientIPMethod: clientIPMethod, failoverSwitch: failoverSwitch, healthyThreshold: healthyThreshold, unhealthyThreshold: unhealthyThreshold), logger: logger, on: eventLoop)
+    }
 }

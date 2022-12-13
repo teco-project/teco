@@ -77,4 +77,16 @@ extension Cpdp {
     public func queryFlexPayeeAccountInfo(_ input: QueryFlexPayeeAccountInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountInfoResponse {
         try await self.client.execute(action: "QueryFlexPayeeAccountInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 灵云V2-收款用户账户信息查询
+    @inlinable
+    public func queryFlexPayeeAccountInfo(payeeId: String? = nil, outUserId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFlexPayeeAccountInfoResponse > {
+        self.queryFlexPayeeAccountInfo(QueryFlexPayeeAccountInfoRequest(payeeId: payeeId, outUserId: outUserId, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云V2-收款用户账户信息查询
+    @inlinable
+    public func queryFlexPayeeAccountInfo(payeeId: String? = nil, outUserId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountInfoResponse {
+        try await self.queryFlexPayeeAccountInfo(QueryFlexPayeeAccountInfoRequest(payeeId: payeeId, outUserId: outUserId, environment: environment), logger: logger, on: eventLoop)
+    }
 }

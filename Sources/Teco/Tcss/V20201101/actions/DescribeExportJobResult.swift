@@ -69,4 +69,16 @@ extension Tcss {
     public func describeExportJobResult(_ input: DescribeExportJobResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportJobResultResponse {
         try await self.client.execute(action: "DescribeExportJobResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询导出任务的结果
+    @inlinable
+    public func describeExportJobResult(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExportJobResultResponse > {
+        self.describeExportJobResult(DescribeExportJobResultRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询导出任务的结果
+    @inlinable
+    public func describeExportJobResult(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportJobResultResponse {
+        try await self.describeExportJobResult(DescribeExportJobResultRequest(jobId: jobId), logger: logger, on: eventLoop)
+    }
 }

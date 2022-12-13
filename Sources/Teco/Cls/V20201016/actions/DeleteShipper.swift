@@ -50,4 +50,16 @@ extension Cls {
     public func deleteShipper(_ input: DeleteShipperRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShipperResponse {
         try await self.client.execute(action: "DeleteShipper", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除投递规则
+    @inlinable
+    public func deleteShipper(shipperId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteShipperResponse > {
+        self.deleteShipper(DeleteShipperRequest(shipperId: shipperId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除投递规则
+    @inlinable
+    public func deleteShipper(shipperId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShipperResponse {
+        try await self.deleteShipper(DeleteShipperRequest(shipperId: shipperId), logger: logger, on: eventLoop)
+    }
 }

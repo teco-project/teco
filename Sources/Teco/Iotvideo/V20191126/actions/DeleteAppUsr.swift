@@ -54,4 +54,20 @@ extension Iotvideo {
     public func deleteAppUsr(_ input: DeleteAppUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAppUsrResponse {
         try await self.client.execute(action: "DeleteAppUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除终端用户
+    ///
+    /// 本接口（DeleteAppUsr）用于删除终端用户。
+    @inlinable
+    public func deleteAppUsr(accessId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAppUsrResponse > {
+        self.deleteAppUsr(DeleteAppUsrRequest(accessId: accessId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除终端用户
+    ///
+    /// 本接口（DeleteAppUsr）用于删除终端用户。
+    @inlinable
+    public func deleteAppUsr(accessId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAppUsrResponse {
+        try await self.deleteAppUsr(DeleteAppUsrRequest(accessId: accessId), logger: logger, on: eventLoop)
+    }
 }

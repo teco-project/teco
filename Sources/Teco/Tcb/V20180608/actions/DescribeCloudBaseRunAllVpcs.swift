@@ -59,4 +59,20 @@ extension Tcb {
     public func describeCloudBaseRunAllVpcs(_ input: DescribeCloudBaseRunAllVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunAllVpcsResponse {
         try await self.client.execute(action: "DescribeCloudBaseRunAllVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查看环境下的所有vpc
+    ///
+    /// 查询环境下所有的vpc列表
+    @inlinable
+    public func describeCloudBaseRunAllVpcs(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunAllVpcsResponse > {
+        self.describeCloudBaseRunAllVpcs(DescribeCloudBaseRunAllVpcsRequest(envId: envId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查看环境下的所有vpc
+    ///
+    /// 查询环境下所有的vpc列表
+    @inlinable
+    public func describeCloudBaseRunAllVpcs(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunAllVpcsResponse {
+        try await self.describeCloudBaseRunAllVpcs(DescribeCloudBaseRunAllVpcsRequest(envId: envId), logger: logger, on: eventLoop)
+    }
 }

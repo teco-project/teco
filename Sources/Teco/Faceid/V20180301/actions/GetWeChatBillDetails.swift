@@ -79,4 +79,20 @@ extension Faceid {
     public func getWeChatBillDetails(_ input: GetWeChatBillDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetWeChatBillDetailsResponse {
         try await self.client.execute(action: "GetWeChatBillDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询账单明细（微信渠道）
+    ///
+    /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
+    @inlinable
+    public func getWeChatBillDetails(date: Date, cursor: UInt64, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetWeChatBillDetailsResponse > {
+        self.getWeChatBillDetails(GetWeChatBillDetailsRequest(date: date, cursor: cursor, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账单明细（微信渠道）
+    ///
+    /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
+    @inlinable
+    public func getWeChatBillDetails(date: Date, cursor: UInt64, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetWeChatBillDetailsResponse {
+        try await self.getWeChatBillDetails(GetWeChatBillDetailsRequest(date: date, cursor: cursor, ruleId: ruleId), logger: logger, on: eventLoop)
+    }
 }

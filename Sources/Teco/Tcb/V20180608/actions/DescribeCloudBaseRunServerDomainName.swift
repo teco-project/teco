@@ -77,4 +77,16 @@ extension Tcb {
     public func describeCloudBaseRunServerDomainName(_ input: DescribeCloudBaseRunServerDomainNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunServerDomainNameResponse {
         try await self.client.execute(action: "DescribeCloudBaseRunServerDomainName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询微信云托管服务域名
+    @inlinable
+    public func describeCloudBaseRunServerDomainName(serverName: String, userEnvId: String, userUin: String, externalId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunServerDomainNameResponse > {
+        self.describeCloudBaseRunServerDomainName(DescribeCloudBaseRunServerDomainNameRequest(serverName: serverName, userEnvId: userEnvId, userUin: userUin, externalId: externalId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询微信云托管服务域名
+    @inlinable
+    public func describeCloudBaseRunServerDomainName(serverName: String, userEnvId: String, userUin: String, externalId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunServerDomainNameResponse {
+        try await self.describeCloudBaseRunServerDomainName(DescribeCloudBaseRunServerDomainNameRequest(serverName: serverName, userEnvId: userEnvId, userUin: userUin, externalId: externalId), logger: logger, on: eventLoop)
+    }
 }

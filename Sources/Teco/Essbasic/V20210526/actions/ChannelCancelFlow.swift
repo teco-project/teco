@@ -36,7 +36,7 @@ extension Essbasic {
         /// 3 保留身份信息+企业名称+经办人名称：展示为【发起方xxxx公司-经办人姓名】
         public let cancelMessageFormat: Int64?
         
-        public init (flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, `operator`: UserInfo? = nil, cancelMessageFormat: Int64? = nil) {
+        public init (flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, operator: UserInfo? = nil, cancelMessageFormat: Int64? = nil) {
             self.flowId = flowId
             self.agent = agent
             self.cancelMessage = cancelMessage
@@ -81,5 +81,25 @@ extension Essbasic {
     @inlinable
     public func channelCancelFlow(_ input: ChannelCancelFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCancelFlowResponse {
         try await self.client.execute(action: "ChannelCancelFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    }
+    
+    /// 渠道版撤销签署流程
+    ///
+    /// 渠道版撤销签署流程接口，可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
+    /// 注意:
+    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
+    @inlinable
+    public func channelCancelFlow(flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, operator: UserInfo? = nil, cancelMessageFormat: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCancelFlowResponse > {
+        self.channelCancelFlow(ChannelCancelFlowRequest(flowId: flowId, agent: agent, cancelMessage: cancelMessage, operator: `operator`, cancelMessageFormat: cancelMessageFormat), logger: logger, on: eventLoop)
+    }
+    
+    /// 渠道版撤销签署流程
+    ///
+    /// 渠道版撤销签署流程接口，可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
+    /// 注意:
+    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
+    @inlinable
+    public func channelCancelFlow(flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, operator: UserInfo? = nil, cancelMessageFormat: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCancelFlowResponse {
+        try await self.channelCancelFlow(ChannelCancelFlowRequest(flowId: flowId, agent: agent, cancelMessage: cancelMessage, operator: `operator`, cancelMessageFormat: cancelMessageFormat), logger: logger, on: eventLoop)
     }
 }

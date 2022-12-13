@@ -93,4 +93,30 @@ extension Tiia {
     public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
         try await self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建图片库
+    ///
+    /// 本接口用于创建一个空的图片库，图片库主要用于存储在创建图片时提取的图片特征数据，如果图片库已存在则返回错误。不同的图片库类型对应不同的图像搜索服务类型，根据输入参数GroupType区分。
+    /// | 服务类型 | GroupType入参 |功能描述 |
+    /// |  :----------  | :----- |:-----------------  |
+    /// | 相同图像搜索<div style="width: 70pt"> | 4 |在自建图片库中搜索相同原图或高相似图，并给出相似度打分，可支持裁剪、翻转、调色、加水印等二次编辑后的图片搜索。适用于图片版权保护、原图查询等场景。|
+    /// | 商品图像搜索<div style="width: 70pt"> | 5 |在自建图库中搜索同款商品，并给出相似度打分。对于服饰类商品可支持识别服饰类别、属性等信息。适用于商品分类、检索、推荐等电商场景。|
+    /// | 相似图像搜索<div style="width: 70pt"> | 6 |在自建图库中搜索相似的图案、logo、纹理等图像元素或主体，并给出相似度打分。|
+    @inlinable
+    public func createGroup(groupId: String, groupName: String, maxCapacity: UInt64, brief: String? = nil, maxQps: UInt64? = nil, groupType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGroupResponse > {
+        self.createGroup(CreateGroupRequest(groupId: groupId, groupName: groupName, maxCapacity: maxCapacity, brief: brief, maxQps: maxQps, groupType: groupType), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建图片库
+    ///
+    /// 本接口用于创建一个空的图片库，图片库主要用于存储在创建图片时提取的图片特征数据，如果图片库已存在则返回错误。不同的图片库类型对应不同的图像搜索服务类型，根据输入参数GroupType区分。
+    /// | 服务类型 | GroupType入参 |功能描述 |
+    /// |  :----------  | :----- |:-----------------  |
+    /// | 相同图像搜索<div style="width: 70pt"> | 4 |在自建图片库中搜索相同原图或高相似图，并给出相似度打分，可支持裁剪、翻转、调色、加水印等二次编辑后的图片搜索。适用于图片版权保护、原图查询等场景。|
+    /// | 商品图像搜索<div style="width: 70pt"> | 5 |在自建图库中搜索同款商品，并给出相似度打分。对于服饰类商品可支持识别服饰类别、属性等信息。适用于商品分类、检索、推荐等电商场景。|
+    /// | 相似图像搜索<div style="width: 70pt"> | 6 |在自建图库中搜索相似的图案、logo、纹理等图像元素或主体，并给出相似度打分。|
+    @inlinable
+    public func createGroup(groupId: String, groupName: String, maxCapacity: UInt64, brief: String? = nil, maxQps: UInt64? = nil, groupType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
+        try await self.createGroup(CreateGroupRequest(groupId: groupId, groupName: groupName, maxCapacity: maxCapacity, brief: brief, maxQps: maxQps, groupType: groupType), logger: logger, on: eventLoop)
+    }
 }

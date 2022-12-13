@@ -64,4 +64,16 @@ extension Afc {
     public func getAntiFraudVip(_ input: GetAntiFraudVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAntiFraudVipResponse {
         try await self.client.execute(action: "GetAntiFraudVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 反欺诈VIP评分接口
+    @inlinable
+    public func getAntiFraudVip(businessSecurityData: AntiFraudVipFilter? = nil, businessCryptoData: AntiFraudVipCryptoFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAntiFraudVipResponse > {
+        self.getAntiFraudVip(GetAntiFraudVipRequest(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData), logger: logger, on: eventLoop)
+    }
+    
+    /// 反欺诈VIP评分接口
+    @inlinable
+    public func getAntiFraudVip(businessSecurityData: AntiFraudVipFilter? = nil, businessCryptoData: AntiFraudVipCryptoFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAntiFraudVipResponse {
+        try await self.getAntiFraudVip(GetAntiFraudVipRequest(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData), logger: logger, on: eventLoop)
+    }
 }

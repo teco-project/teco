@@ -70,4 +70,16 @@ extension Tione {
     public func describeModelAccelerateTask(_ input: DescribeModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelAccelerateTaskResponse {
         try await self.client.execute(action: "DescribeModelAccelerateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询模型优化任务详情
+    @inlinable
+    public func describeModelAccelerateTask(modelAccTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelAccelerateTaskResponse > {
+        self.describeModelAccelerateTask(DescribeModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询模型优化任务详情
+    @inlinable
+    public func describeModelAccelerateTask(modelAccTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelAccelerateTaskResponse {
+        try await self.describeModelAccelerateTask(DescribeModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId), logger: logger, on: eventLoop)
+    }
 }

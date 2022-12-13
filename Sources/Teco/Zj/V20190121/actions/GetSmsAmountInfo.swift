@@ -54,4 +54,16 @@ extension Zj {
     public func getSmsAmountInfo(_ input: GetSmsAmountInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSmsAmountInfoResponse {
         try await self.client.execute(action: "GetSmsAmountInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取账号短信额度配置信息
+    @inlinable
+    public func getSmsAmountInfo(license: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSmsAmountInfoResponse > {
+        self.getSmsAmountInfo(GetSmsAmountInfoRequest(license: license), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取账号短信额度配置信息
+    @inlinable
+    public func getSmsAmountInfo(license: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSmsAmountInfoResponse {
+        try await self.getSmsAmountInfo(GetSmsAmountInfoRequest(license: license), logger: logger, on: eventLoop)
+    }
 }

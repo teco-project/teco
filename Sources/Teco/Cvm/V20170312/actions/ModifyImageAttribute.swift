@@ -66,4 +66,22 @@ extension Cvm {
     public func modifyImageAttribute(_ input: ModifyImageAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAttributeResponse {
         try await self.client.execute(action: "ModifyImageAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改镜像属性
+    ///
+    /// 本接口（ModifyImageAttribute）用于修改镜像属性。
+    /// * 已分享的镜像无法修改属性。
+    @inlinable
+    public func modifyImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyImageAttributeResponse > {
+        self.modifyImageAttribute(ModifyImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改镜像属性
+    ///
+    /// 本接口（ModifyImageAttribute）用于修改镜像属性。
+    /// * 已分享的镜像无法修改属性。
+    @inlinable
+    public func modifyImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAttributeResponse {
+        try await self.modifyImageAttribute(ModifyImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), logger: logger, on: eventLoop)
+    }
 }

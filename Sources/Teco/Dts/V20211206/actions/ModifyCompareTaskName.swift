@@ -60,4 +60,16 @@ extension Dts {
     public func modifyCompareTaskName(_ input: ModifyCompareTaskNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompareTaskNameResponse {
         try await self.client.execute(action: "ModifyCompareTaskName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改一致性校验任务名称
+    @inlinable
+    public func modifyCompareTaskName(jobId: String, compareTaskId: String, taskName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCompareTaskNameResponse > {
+        self.modifyCompareTaskName(ModifyCompareTaskNameRequest(jobId: jobId, compareTaskId: compareTaskId, taskName: taskName), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改一致性校验任务名称
+    @inlinable
+    public func modifyCompareTaskName(jobId: String, compareTaskId: String, taskName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompareTaskNameResponse {
+        try await self.modifyCompareTaskName(ModifyCompareTaskNameRequest(jobId: jobId, compareTaskId: compareTaskId, taskName: taskName), logger: logger, on: eventLoop)
+    }
 }

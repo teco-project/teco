@@ -68,4 +68,20 @@ extension Gme {
     public func updateScanUsers(_ input: UpdateScanUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScanUsersResponse {
         try await self.client.execute(action: "UpdateScanUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新送检用户号
+    ///
+    /// 更新自定义送检用户号
+    @inlinable
+    public func updateScanUsers(bizId: UInt64, userIdString: String? = nil, userIdRegex: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateScanUsersResponse > {
+        self.updateScanUsers(UpdateScanUsersRequest(bizId: bizId, userIdString: userIdString, userIdRegex: userIdRegex), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新送检用户号
+    ///
+    /// 更新自定义送检用户号
+    @inlinable
+    public func updateScanUsers(bizId: UInt64, userIdString: String? = nil, userIdRegex: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScanUsersResponse {
+        try await self.updateScanUsers(UpdateScanUsersRequest(bizId: bizId, userIdString: userIdString, userIdRegex: userIdRegex), logger: logger, on: eventLoop)
+    }
 }

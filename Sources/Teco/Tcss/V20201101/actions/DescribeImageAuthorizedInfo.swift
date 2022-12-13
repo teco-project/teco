@@ -66,4 +66,20 @@ extension Tcss {
     public func describeImageAuthorizedInfo(_ input: DescribeImageAuthorizedInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAuthorizedInfoResponse {
         try await self.client.execute(action: "DescribeImageAuthorizedInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询镜像授权信息
+    ///
+    /// DescribeImageAuthorizedInfo  查询镜像授权信息
+    @inlinable
+    public func describeImageAuthorizedInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageAuthorizedInfoResponse > {
+        self.describeImageAuthorizedInfo(DescribeImageAuthorizedInfoRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像授权信息
+    ///
+    /// DescribeImageAuthorizedInfo  查询镜像授权信息
+    @inlinable
+    public func describeImageAuthorizedInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAuthorizedInfoResponse {
+        try await self.describeImageAuthorizedInfo(DescribeImageAuthorizedInfoRequest(), logger: logger, on: eventLoop)
+    }
 }

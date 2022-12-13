@@ -83,4 +83,20 @@ extension Ssa {
     public func describeSocAlertList(_ input: DescribeSocAlertListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocAlertListResponse {
         try await self.client.execute(action: "DescribeSocAlertList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 告警列表
+    ///
+    /// 拉取告警列表
+    @inlinable
+    public func describeSocAlertList(pageSize: Int64, pageIndex: Int64, scenes: Int64, filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, exportFlag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSocAlertListResponse > {
+        self.describeSocAlertList(DescribeSocAlertListRequest(pageSize: pageSize, pageIndex: pageIndex, scenes: scenes, filter: filter, sorter: sorter, exportFlag: exportFlag), logger: logger, on: eventLoop)
+    }
+    
+    /// 告警列表
+    ///
+    /// 拉取告警列表
+    @inlinable
+    public func describeSocAlertList(pageSize: Int64, pageIndex: Int64, scenes: Int64, filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, exportFlag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocAlertListResponse {
+        try await self.describeSocAlertList(DescribeSocAlertListRequest(pageSize: pageSize, pageIndex: pageIndex, scenes: scenes, filter: filter, sorter: sorter, exportFlag: exportFlag), logger: logger, on: eventLoop)
+    }
 }

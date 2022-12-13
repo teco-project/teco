@@ -54,4 +54,16 @@ extension Yunjing {
     public func describeTagMachines(_ input: DescribeTagMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagMachinesResponse {
         try await self.client.execute(action: "DescribeTagMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取指定标签关联的服务器信息
+    @inlinable
+    public func describeTagMachines(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagMachinesResponse > {
+        self.describeTagMachines(DescribeTagMachinesRequest(id: id), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定标签关联的服务器信息
+    @inlinable
+    public func describeTagMachines(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagMachinesResponse {
+        try await self.describeTagMachines(DescribeTagMachinesRequest(id: id), logger: logger, on: eventLoop)
+    }
 }

@@ -54,4 +54,20 @@ extension Bda {
     public func deleteGroup(_ input: DeleteGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGroupResponse {
         try await self.client.execute(action: "DeleteGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除人体库
+    ///
+    /// 删除该人体库及包含的所有的人员。
+    @inlinable
+    public func deleteGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteGroupResponse > {
+        self.deleteGroup(DeleteGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除人体库
+    ///
+    /// 删除该人体库及包含的所有的人员。
+    @inlinable
+    public func deleteGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGroupResponse {
+        try await self.deleteGroup(DeleteGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    }
 }

@@ -62,4 +62,20 @@ extension Smh {
     public func describeOfficialOverview(_ input: DescribeOfficialOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfficialOverviewResponse {
         try await self.client.execute(action: "DescribeOfficialOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询官方实例概览数据
+    ///
+    /// 查询官方云盘实例概览数据
+    @inlinable
+    public func describeOfficialOverview(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOfficialOverviewResponse > {
+        self.describeOfficialOverview(DescribeOfficialOverviewRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询官方实例概览数据
+    ///
+    /// 查询官方云盘实例概览数据
+    @inlinable
+    public func describeOfficialOverview(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfficialOverviewResponse {
+        try await self.describeOfficialOverview(DescribeOfficialOverviewRequest(), logger: logger, on: eventLoop)
+    }
 }

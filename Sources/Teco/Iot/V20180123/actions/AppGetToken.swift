@@ -64,4 +64,16 @@ extension Iot {
     public func appGetToken(_ input: AppGetTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetTokenResponse {
         try await self.client.execute(action: "AppGetToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取用户token
+    @inlinable
+    public func appGetToken(userName: String, password: String, expire: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppGetTokenResponse > {
+        self.appGetToken(AppGetTokenRequest(userName: userName, password: password, expire: expire), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户token
+    @inlinable
+    public func appGetToken(userName: String, password: String, expire: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetTokenResponse {
+        try await self.appGetToken(AppGetTokenRequest(userName: userName, password: password, expire: expire), logger: logger, on: eventLoop)
+    }
 }

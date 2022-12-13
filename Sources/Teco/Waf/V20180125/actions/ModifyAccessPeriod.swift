@@ -59,4 +59,20 @@ extension Waf {
     public func modifyAccessPeriod(_ input: ModifyAccessPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessPeriodResponse {
         try await self.client.execute(action: "ModifyAccessPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改访问日志保存期限
+    ///
+    /// 本接口用于修改访问日志保存期限
+    @inlinable
+    public func modifyAccessPeriod(period: Int64, topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccessPeriodResponse > {
+        self.modifyAccessPeriod(ModifyAccessPeriodRequest(period: period, topicId: topicId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改访问日志保存期限
+    ///
+    /// 本接口用于修改访问日志保存期限
+    @inlinable
+    public func modifyAccessPeriod(period: Int64, topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessPeriodResponse {
+        try await self.modifyAccessPeriod(ModifyAccessPeriodRequest(period: period, topicId: topicId), logger: logger, on: eventLoop)
+    }
 }

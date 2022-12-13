@@ -78,4 +78,20 @@ extension Redis {
     public func switchInstanceVip(_ input: SwitchInstanceVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchInstanceVipResponse {
         try await self.client.execute(action: "SwitchInstanceVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 交换实例VIP
+    ///
+    /// 在通过DTS支持跨可用区灾备的场景中，通过该接口交换实例VIP完成实例灾备切换。交换VIP后目标实例可写，源和目标实例VIP互换，同时源与目标实例间DTS同步任务断开
+    @inlinable
+    public func switchInstanceVip(srcInstanceId: String, dstInstanceId: String, timeDelay: Int64? = nil, forceSwitch: Int64? = nil, switchTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchInstanceVipResponse > {
+        self.switchInstanceVip(SwitchInstanceVipRequest(srcInstanceId: srcInstanceId, dstInstanceId: dstInstanceId, timeDelay: timeDelay, forceSwitch: forceSwitch, switchTime: switchTime), logger: logger, on: eventLoop)
+    }
+    
+    /// 交换实例VIP
+    ///
+    /// 在通过DTS支持跨可用区灾备的场景中，通过该接口交换实例VIP完成实例灾备切换。交换VIP后目标实例可写，源和目标实例VIP互换，同时源与目标实例间DTS同步任务断开
+    @inlinable
+    public func switchInstanceVip(srcInstanceId: String, dstInstanceId: String, timeDelay: Int64? = nil, forceSwitch: Int64? = nil, switchTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchInstanceVipResponse {
+        try await self.switchInstanceVip(SwitchInstanceVipRequest(srcInstanceId: srcInstanceId, dstInstanceId: dstInstanceId, timeDelay: timeDelay, forceSwitch: forceSwitch, switchTime: switchTime), logger: logger, on: eventLoop)
+    }
 }

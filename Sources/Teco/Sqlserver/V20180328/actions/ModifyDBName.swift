@@ -68,4 +68,20 @@ extension Sqlserver {
     public func modifyDBName(_ input: ModifyDBNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBNameResponse {
         try await self.client.execute(action: "ModifyDBName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 更新数据库名
+    ///
+    /// 本接口（ModifyDBName）用于更新数据库名。
+    @inlinable
+    public func modifyDBName(instanceId: String, oldDBName: String, newDBName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBNameResponse > {
+        self.modifyDBName(ModifyDBNameRequest(instanceId: instanceId, oldDBName: oldDBName, newDBName: newDBName), logger: logger, on: eventLoop)
+    }
+    
+    /// 更新数据库名
+    ///
+    /// 本接口（ModifyDBName）用于更新数据库名。
+    @inlinable
+    public func modifyDBName(instanceId: String, oldDBName: String, newDBName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBNameResponse {
+        try await self.modifyDBName(ModifyDBNameRequest(instanceId: instanceId, oldDBName: oldDBName, newDBName: newDBName), logger: logger, on: eventLoop)
+    }
 }

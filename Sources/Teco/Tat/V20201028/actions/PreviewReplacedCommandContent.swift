@@ -74,4 +74,20 @@ extension Tat {
     public func previewReplacedCommandContent(_ input: PreviewReplacedCommandContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PreviewReplacedCommandContentResponse {
         try await self.client.execute(action: "PreviewReplacedCommandContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 命令预览
+    ///
+    /// 此接口用于预览自定义参数替换后的命令内容。不会触发真实执行。
+    @inlinable
+    public func previewReplacedCommandContent(parameters: String? = nil, commandId: String? = nil, content: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PreviewReplacedCommandContentResponse > {
+        self.previewReplacedCommandContent(PreviewReplacedCommandContentRequest(parameters: parameters, commandId: commandId, content: content), logger: logger, on: eventLoop)
+    }
+    
+    /// 命令预览
+    ///
+    /// 此接口用于预览自定义参数替换后的命令内容。不会触发真实执行。
+    @inlinable
+    public func previewReplacedCommandContent(parameters: String? = nil, commandId: String? = nil, content: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PreviewReplacedCommandContentResponse {
+        try await self.previewReplacedCommandContent(PreviewReplacedCommandContentRequest(parameters: parameters, commandId: commandId, content: content), logger: logger, on: eventLoop)
+    }
 }

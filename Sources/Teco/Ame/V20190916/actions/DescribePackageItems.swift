@@ -69,4 +69,20 @@ extension Ame {
     public func describePackageItems(_ input: DescribePackageItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackageItemsResponse {
         try await self.client.execute(action: "DescribePackageItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取曲库包已核销歌曲列表
+    ///
+    /// 获取曲库包下已核销歌曲列表接口
+    @inlinable
+    public func describePackageItems(orderId: String, offset: UInt64? = nil, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePackageItemsResponse > {
+        self.describePackageItems(DescribePackageItemsRequest(orderId: orderId, offset: offset, length: length), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取曲库包已核销歌曲列表
+    ///
+    /// 获取曲库包下已核销歌曲列表接口
+    @inlinable
+    public func describePackageItems(orderId: String, offset: UInt64? = nil, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackageItemsResponse {
+        try await self.describePackageItems(DescribePackageItemsRequest(orderId: orderId, offset: offset, length: length), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,16 @@ extension Pts {
     public func deleteJobs(_ input: DeleteJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteJobsResponse {
         try await self.client.execute(action: "DeleteJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 删除任务
+    @inlinable
+    public func deleteJobs(jobIds: [String], projectId: String, scenarioIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteJobsResponse > {
+        self.deleteJobs(DeleteJobsRequest(jobIds: jobIds, projectId: projectId, scenarioIds: scenarioIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 删除任务
+    @inlinable
+    public func deleteJobs(jobIds: [String], projectId: String, scenarioIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteJobsResponse {
+        try await self.deleteJobs(DeleteJobsRequest(jobIds: jobIds, projectId: projectId, scenarioIds: scenarioIds), logger: logger, on: eventLoop)
+    }
 }

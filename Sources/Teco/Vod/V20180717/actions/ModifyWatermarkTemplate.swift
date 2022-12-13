@@ -113,4 +113,20 @@ extension Vod {
     public func modifyWatermarkTemplate(_ input: ModifyWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWatermarkTemplateResponse {
         try await self.client.execute(action: "ModifyWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改水印模板
+    ///
+    /// 修改用户自定义水印模板，水印类型不允许修改。
+    @inlinable
+    public func modifyWatermarkTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, imageTemplate: ImageWatermarkInputForUpdate? = nil, textTemplate: TextWatermarkTemplateInputForUpdate? = nil, svgTemplate: SvgWatermarkInputForUpdate? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWatermarkTemplateResponse > {
+        self.modifyWatermarkTemplate(ModifyWatermarkTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, coordinateOrigin: coordinateOrigin, xPos: xPos, yPos: yPos, imageTemplate: imageTemplate, textTemplate: textTemplate, svgTemplate: svgTemplate), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改水印模板
+    ///
+    /// 修改用户自定义水印模板，水印类型不允许修改。
+    @inlinable
+    public func modifyWatermarkTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, imageTemplate: ImageWatermarkInputForUpdate? = nil, textTemplate: TextWatermarkTemplateInputForUpdate? = nil, svgTemplate: SvgWatermarkInputForUpdate? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWatermarkTemplateResponse {
+        try await self.modifyWatermarkTemplate(ModifyWatermarkTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, coordinateOrigin: coordinateOrigin, xPos: xPos, yPos: yPos, imageTemplate: imageTemplate, textTemplate: textTemplate, svgTemplate: svgTemplate), logger: logger, on: eventLoop)
+    }
 }

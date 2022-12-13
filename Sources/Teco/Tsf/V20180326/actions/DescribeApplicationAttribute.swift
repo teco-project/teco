@@ -58,4 +58,20 @@ extension Tsf {
     public func describeApplicationAttribute(_ input: DescribeApplicationAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationAttributeResponse {
         try await self.client.execute(action: "DescribeApplicationAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取应用列表其它字段
+    ///
+    /// 获取应用列表其它字段，如实例数量信息等
+    @inlinable
+    public func describeApplicationAttribute(applicationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationAttributeResponse > {
+        self.describeApplicationAttribute(DescribeApplicationAttributeRequest(applicationId: applicationId), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用列表其它字段
+    ///
+    /// 获取应用列表其它字段，如实例数量信息等
+    @inlinable
+    public func describeApplicationAttribute(applicationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationAttributeResponse {
+        try await self.describeApplicationAttribute(DescribeApplicationAttributeRequest(applicationId: applicationId), logger: logger, on: eventLoop)
+    }
 }

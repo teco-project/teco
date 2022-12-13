@@ -50,4 +50,16 @@ extension Tci {
     public func describeLibraries(_ input: DescribeLibrariesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLibrariesResponse {
         try await self.client.execute(action: "DescribeLibraries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取人员库列表
+    @inlinable
+    public func describeLibraries(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLibrariesResponse > {
+        self.describeLibraries(DescribeLibrariesRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取人员库列表
+    @inlinable
+    public func describeLibraries(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLibrariesResponse {
+        try await self.describeLibraries(DescribeLibrariesRequest(), logger: logger, on: eventLoop)
+    }
 }

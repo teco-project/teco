@@ -68,4 +68,20 @@ extension Domain {
     public func describeDomainPriceList(_ input: DescribeDomainPriceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainPriceListResponse {
         try await self.client.execute(action: "DescribeDomainPriceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 域名价格列表
+    ///
+    /// 按照域名后缀获取对应的价格列表
+    @inlinable
+    public func describeDomainPriceList(tldList: [String]? = nil, year: [Int64]? = nil, operation: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainPriceListResponse > {
+        self.describeDomainPriceList(DescribeDomainPriceListRequest(tldList: tldList, year: year, operation: operation), logger: logger, on: eventLoop)
+    }
+    
+    /// 域名价格列表
+    ///
+    /// 按照域名后缀获取对应的价格列表
+    @inlinable
+    public func describeDomainPriceList(tldList: [String]? = nil, year: [Int64]? = nil, operation: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainPriceListResponse {
+        try await self.describeDomainPriceList(DescribeDomainPriceListRequest(tldList: tldList, year: year, operation: operation), logger: logger, on: eventLoop)
+    }
 }

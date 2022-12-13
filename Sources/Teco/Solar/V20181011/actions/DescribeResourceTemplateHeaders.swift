@@ -63,4 +63,20 @@ extension Solar {
     public func describeResourceTemplateHeaders(_ input: DescribeResourceTemplateHeadersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTemplateHeadersResponse {
         try await self.client.execute(action: "DescribeResourceTemplateHeaders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 素材查询服务号模板标题的列表
+    ///
+    /// 素材查询服务号模板的列表（样例）
+    @inlinable
+    public func describeResourceTemplateHeaders(wxAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceTemplateHeadersResponse > {
+        self.describeResourceTemplateHeaders(DescribeResourceTemplateHeadersRequest(wxAppId: wxAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 素材查询服务号模板标题的列表
+    ///
+    /// 素材查询服务号模板的列表（样例）
+    @inlinable
+    public func describeResourceTemplateHeaders(wxAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTemplateHeadersResponse {
+        try await self.describeResourceTemplateHeaders(DescribeResourceTemplateHeadersRequest(wxAppId: wxAppId), logger: logger, on: eventLoop)
+    }
 }

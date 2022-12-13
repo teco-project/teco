@@ -64,4 +64,20 @@ extension Vod {
     public func modifyClass(_ input: ModifyClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClassResponse {
         try await self.client.execute(action: "ModifyClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改分类
+    ///
+    /// 修改媒体分类属性。
+    @inlinable
+    public func modifyClass(classId: UInt64, className: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClassResponse > {
+        self.modifyClass(ModifyClassRequest(classId: classId, className: className, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改分类
+    ///
+    /// 修改媒体分类属性。
+    @inlinable
+    public func modifyClass(classId: UInt64, className: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClassResponse {
+        try await self.modifyClass(ModifyClassRequest(classId: classId, className: className, subAppId: subAppId), logger: logger, on: eventLoop)
+    }
 }

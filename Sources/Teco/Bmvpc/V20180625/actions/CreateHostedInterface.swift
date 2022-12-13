@@ -78,4 +78,26 @@ extension Bmvpc {
     public func createHostedInterface(_ input: CreateHostedInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostedInterfaceResponse {
         try await self.client.execute(action: "CreateHostedInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 黑石托管机器加入子网
+    ///
+    /// 本接口（CreateHostedInterface）用于黑石托管机器加入带VLANID不为5的子网。
+    /// 1) 不能加入vlanId 为5的子网，只能加入VLANID范围为2000-2999的子网。
+    /// 2) 每台托管机器最多可以加入20个子网。
+    /// 3) 每次调用最多能支持传入10台托管机器。
+    @inlinable
+    public func createHostedInterface(instanceIds: [String], vpcId: String, subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHostedInterfaceResponse > {
+        self.createHostedInterface(CreateHostedInterfaceRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    }
+    
+    /// 黑石托管机器加入子网
+    ///
+    /// 本接口（CreateHostedInterface）用于黑石托管机器加入带VLANID不为5的子网。
+    /// 1) 不能加入vlanId 为5的子网，只能加入VLANID范围为2000-2999的子网。
+    /// 2) 每台托管机器最多可以加入20个子网。
+    /// 3) 每次调用最多能支持传入10台托管机器。
+    @inlinable
+    public func createHostedInterface(instanceIds: [String], vpcId: String, subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostedInterfaceResponse {
+        try await self.createHostedInterface(CreateHostedInterfaceRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    }
 }

@@ -115,4 +115,20 @@ extension Domain {
     public func checkDomain(_ input: CheckDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDomainResponse {
         try await self.client.execute(action: "CheckDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 域名注册查询
+    ///
+    /// 检查域名是否可以注册。
+    @inlinable
+    public func checkDomain(domainName: String, period: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckDomainResponse > {
+        self.checkDomain(CheckDomainRequest(domainName: domainName, period: period), logger: logger, on: eventLoop)
+    }
+    
+    /// 域名注册查询
+    ///
+    /// 检查域名是否可以注册。
+    @inlinable
+    public func checkDomain(domainName: String, period: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDomainResponse {
+        try await self.checkDomain(CheckDomainRequest(domainName: domainName, period: period), logger: logger, on: eventLoop)
+    }
 }

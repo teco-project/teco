@@ -63,4 +63,20 @@ extension Tci {
     public func checkFacePhoto(_ input: CheckFacePhotoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckFacePhotoResponse {
         try await self.client.execute(action: "CheckFacePhoto", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 检查人脸图片
+    ///
+    /// 检查人脸图片是否合法
+    @inlinable
+    public func checkFacePhoto(fileContent: String, fileType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckFacePhotoResponse > {
+        self.checkFacePhoto(CheckFacePhotoRequest(fileContent: fileContent, fileType: fileType), logger: logger, on: eventLoop)
+    }
+    
+    /// 检查人脸图片
+    ///
+    /// 检查人脸图片是否合法
+    @inlinable
+    public func checkFacePhoto(fileContent: String, fileType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckFacePhotoResponse {
+        try await self.checkFacePhoto(CheckFacePhotoRequest(fileContent: fileContent, fileType: fileType), logger: logger, on: eventLoop)
+    }
 }

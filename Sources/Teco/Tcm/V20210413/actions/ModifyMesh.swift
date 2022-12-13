@@ -65,4 +65,16 @@ extension Tcm {
     public func modifyMesh(_ input: ModifyMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMeshResponse {
         try await self.client.execute(action: "ModifyMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 修改网格
+    @inlinable
+    public func modifyMesh(meshId: String, displayName: String? = nil, config: MeshConfig? = nil, clusterList: [Cluster]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMeshResponse > {
+        self.modifyMesh(ModifyMeshRequest(meshId: meshId, displayName: displayName, config: config, clusterList: clusterList), logger: logger, on: eventLoop)
+    }
+    
+    /// 修改网格
+    @inlinable
+    public func modifyMesh(meshId: String, displayName: String? = nil, config: MeshConfig? = nil, clusterList: [Cluster]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMeshResponse {
+        try await self.modifyMesh(ModifyMeshRequest(meshId: meshId, displayName: displayName, config: config, clusterList: clusterList), logger: logger, on: eventLoop)
+    }
 }

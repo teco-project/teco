@@ -93,4 +93,20 @@ extension Dbbrain {
     public func createDBDiagReportTask(_ input: CreateDBDiagReportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBDiagReportTaskResponse {
         try await self.client.execute(action: "CreateDBDiagReportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 创建健康报告生成任务
+    ///
+    /// 创建健康报告，并可以选择是否发送邮件。
+    @inlinable
+    public func createDBDiagReportTask(instanceId: String, startTime: Date, endTime: Date, sendMailFlag: Int64, contactPerson: [Int64]? = nil, contactGroup: [Int64]? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBDiagReportTaskResponse > {
+        self.createDBDiagReportTask(CreateDBDiagReportTaskRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, sendMailFlag: sendMailFlag, contactPerson: contactPerson, contactGroup: contactGroup, product: product), logger: logger, on: eventLoop)
+    }
+    
+    /// 创建健康报告生成任务
+    ///
+    /// 创建健康报告，并可以选择是否发送邮件。
+    @inlinable
+    public func createDBDiagReportTask(instanceId: String, startTime: Date, endTime: Date, sendMailFlag: Int64, contactPerson: [Int64]? = nil, contactGroup: [Int64]? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBDiagReportTaskResponse {
+        try await self.createDBDiagReportTask(CreateDBDiagReportTaskRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, sendMailFlag: sendMailFlag, contactPerson: contactPerson, contactGroup: contactGroup, product: product), logger: logger, on: eventLoop)
+    }
 }

@@ -60,4 +60,20 @@ extension Batch {
     public func describeAvailableCvmInstanceTypes(_ input: DescribeAvailableCvmInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableCvmInstanceTypesResponse {
         try await self.client.execute(action: "DescribeAvailableCvmInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取批量计算可用的CVM机型配置信息
+    ///
+    /// 查看可用的CVM机型配置信息
+    @inlinable
+    public func describeAvailableCvmInstanceTypes(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableCvmInstanceTypesResponse > {
+        self.describeAvailableCvmInstanceTypes(DescribeAvailableCvmInstanceTypesRequest(filters: filters), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取批量计算可用的CVM机型配置信息
+    ///
+    /// 查看可用的CVM机型配置信息
+    @inlinable
+    public func describeAvailableCvmInstanceTypes(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableCvmInstanceTypesResponse {
+        try await self.describeAvailableCvmInstanceTypes(DescribeAvailableCvmInstanceTypesRequest(filters: filters), logger: logger, on: eventLoop)
+    }
 }

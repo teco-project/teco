@@ -54,4 +54,20 @@ extension Tke {
     public func restartEKSContainerInstances(_ input: RestartEKSContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartEKSContainerInstancesResponse {
         try await self.client.execute(action: "RestartEKSContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 重启容器实例
+    ///
+    /// 重启弹性容器实例，支持批量操作
+    @inlinable
+    public func restartEKSContainerInstances(eksCiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartEKSContainerInstancesResponse > {
+        self.restartEKSContainerInstances(RestartEKSContainerInstancesRequest(eksCiIds: eksCiIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 重启容器实例
+    ///
+    /// 重启弹性容器实例，支持批量操作
+    @inlinable
+    public func restartEKSContainerInstances(eksCiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartEKSContainerInstancesResponse {
+        try await self.restartEKSContainerInstances(RestartEKSContainerInstancesRequest(eksCiIds: eksCiIds), logger: logger, on: eventLoop)
+    }
 }

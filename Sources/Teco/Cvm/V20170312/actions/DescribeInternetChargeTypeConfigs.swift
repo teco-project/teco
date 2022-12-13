@@ -50,4 +50,20 @@ extension Cvm {
     public func describeInternetChargeTypeConfigs(_ input: DescribeInternetChargeTypeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetChargeTypeConfigsResponse {
         try await self.client.execute(action: "DescribeInternetChargeTypeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 查询网络计费类型
+    ///
+    /// 本接口（DescribeInternetChargeTypeConfigs）用于查询网络的计费类型。
+    @inlinable
+    public func describeInternetChargeTypeConfigs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternetChargeTypeConfigsResponse > {
+        self.describeInternetChargeTypeConfigs(DescribeInternetChargeTypeConfigsRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网络计费类型
+    ///
+    /// 本接口（DescribeInternetChargeTypeConfigs）用于查询网络的计费类型。
+    @inlinable
+    public func describeInternetChargeTypeConfigs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetChargeTypeConfigsResponse {
+        try await self.describeInternetChargeTypeConfigs(DescribeInternetChargeTypeConfigsRequest(), logger: logger, on: eventLoop)
+    }
 }

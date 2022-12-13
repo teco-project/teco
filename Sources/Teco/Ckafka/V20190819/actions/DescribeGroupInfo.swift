@@ -60,4 +60,16 @@ extension Ckafka {
     public func describeGroupInfo(_ input: DescribeGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupInfoResponse {
         try await self.client.execute(action: "DescribeGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 获取消费分组信息
+    @inlinable
+    public func describeGroupInfo(instanceId: String, groupList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupInfoResponse > {
+        self.describeGroupInfo(DescribeGroupInfoRequest(instanceId: instanceId, groupList: groupList), logger: logger, on: eventLoop)
+    }
+    
+    /// 获取消费分组信息
+    @inlinable
+    public func describeGroupInfo(instanceId: String, groupList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupInfoResponse {
+        try await self.describeGroupInfo(DescribeGroupInfoRequest(instanceId: instanceId, groupList: groupList), logger: logger, on: eventLoop)
+    }
 }

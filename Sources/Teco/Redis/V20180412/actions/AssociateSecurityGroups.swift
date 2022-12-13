@@ -64,4 +64,20 @@ extension Redis {
     public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
         try await self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 绑定安全组
+    ///
+    /// 本接口 (AssociateSecurityGroups) 用于安全组批量绑定多个指定实例。
+    @inlinable
+    public func associateSecurityGroups(product: String, securityGroupId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateSecurityGroupsResponse > {
+        self.associateSecurityGroups(AssociateSecurityGroupsRequest(product: product, securityGroupId: securityGroupId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定安全组
+    ///
+    /// 本接口 (AssociateSecurityGroups) 用于安全组批量绑定多个指定实例。
+    @inlinable
+    public func associateSecurityGroups(product: String, securityGroupId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
+        try await self.associateSecurityGroups(AssociateSecurityGroupsRequest(product: product, securityGroupId: securityGroupId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    }
 }

@@ -70,4 +70,20 @@ extension Cwp {
     public func describeAvailableExpertServiceDetail(_ input: DescribeAvailableExpertServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableExpertServiceDetailResponse {
         try await self.client.execute(action: "DescribeAvailableExpertServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 可用订单详情
+    ///
+    /// 专家服务-可用订单详情
+    @inlinable
+    public func describeAvailableExpertServiceDetail(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableExpertServiceDetailResponse > {
+        self.describeAvailableExpertServiceDetail(DescribeAvailableExpertServiceDetailRequest(), logger: logger, on: eventLoop)
+    }
+    
+    /// 可用订单详情
+    ///
+    /// 专家服务-可用订单详情
+    @inlinable
+    public func describeAvailableExpertServiceDetail(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableExpertServiceDetailResponse {
+        try await self.describeAvailableExpertServiceDetail(DescribeAvailableExpertServiceDetailRequest(), logger: logger, on: eventLoop)
+    }
 }

@@ -69,4 +69,20 @@ extension Cdn {
     public func createEdgePackTask(_ input: CreateEdgePackTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgePackTaskResponse {
         try await self.client.execute(action: "CreateEdgePackTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 动态打包任务提交
+    ///
+    /// 动态打包任务提交接口
+    @inlinable
+    public func createEdgePackTask(cosBucket: String, cosUriFrom: String, blockID: UInt64? = nil, cosUriTo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgePackTaskResponse > {
+        self.createEdgePackTask(CreateEdgePackTaskRequest(cosBucket: cosBucket, cosUriFrom: cosUriFrom, blockID: blockID, cosUriTo: cosUriTo), logger: logger, on: eventLoop)
+    }
+    
+    /// 动态打包任务提交
+    ///
+    /// 动态打包任务提交接口
+    @inlinable
+    public func createEdgePackTask(cosBucket: String, cosUriFrom: String, blockID: UInt64? = nil, cosUriTo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgePackTaskResponse {
+        try await self.createEdgePackTask(CreateEdgePackTaskRequest(cosBucket: cosBucket, cosUriFrom: cosUriFrom, blockID: blockID, cosUriTo: cosUriTo), logger: logger, on: eventLoop)
+    }
 }

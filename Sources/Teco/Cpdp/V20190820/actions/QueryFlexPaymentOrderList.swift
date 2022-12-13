@@ -87,4 +87,16 @@ extension Cpdp {
     public func queryFlexPaymentOrderList(_ input: QueryFlexPaymentOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPaymentOrderListResponse {
         try await self.client.execute(action: "QueryFlexPaymentOrderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 灵云V2-查询付款订单列表
+    @inlinable
+    public func queryFlexPaymentOrderList(startTime: String, endTime: String, pageNumber: Paging, payeeId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFlexPaymentOrderListResponse > {
+        self.queryFlexPaymentOrderList(QueryFlexPaymentOrderListRequest(startTime: startTime, endTime: endTime, pageNumber: pageNumber, payeeId: payeeId, environment: environment), logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云V2-查询付款订单列表
+    @inlinable
+    public func queryFlexPaymentOrderList(startTime: String, endTime: String, pageNumber: Paging, payeeId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPaymentOrderListResponse {
+        try await self.queryFlexPaymentOrderList(QueryFlexPaymentOrderListRequest(startTime: startTime, endTime: endTime, pageNumber: pageNumber, payeeId: payeeId, environment: environment), logger: logger, on: eventLoop)
+    }
 }

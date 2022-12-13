@@ -58,4 +58,16 @@ extension Cloudhsm {
     public func describeHSMBySubnetId(_ input: DescribeHSMBySubnetIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHSMBySubnetIdResponse {
         try await self.client.execute(action: "DescribeHSMBySubnetId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
+    
+    /// 通过SubnetId获取Hsm资源数
+    @inlinable
+    public func describeHSMBySubnetId(subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHSMBySubnetIdResponse > {
+        self.describeHSMBySubnetId(DescribeHSMBySubnetIdRequest(subnetId: subnetId), logger: logger, on: eventLoop)
+    }
+    
+    /// 通过SubnetId获取Hsm资源数
+    @inlinable
+    public func describeHSMBySubnetId(subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHSMBySubnetIdResponse {
+        try await self.describeHSMBySubnetId(DescribeHSMBySubnetIdRequest(subnetId: subnetId), logger: logger, on: eventLoop)
+    }
 }
