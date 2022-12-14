@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Tke {
     /// app所支持的chart
@@ -631,11 +632,21 @@ extension Tke {
         
         /// 最后一次探测到该状态的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let lastProbeTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var lastProbeTime: Date?
         
         /// 最后一次转换到该过程的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let lastTransitionTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var lastTransitionTime: Date?
         
         /// 转换到该过程的简明原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2943,7 +2954,12 @@ extension Tke {
         
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let createdTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdTime: Date?
         
         /// 应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。

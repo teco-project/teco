@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Partners {
     /// 已审核代客信息
@@ -105,8 +106,12 @@ extension Partners {
         public let clientRemark: String
         
         /// 支付时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let payTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var payTime: Date
         
         /// 云产品名称
         public let goodsType: String
@@ -501,8 +506,12 @@ extension Partners {
         public let salesName: String
         
         /// 业务员创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         enum CodingKeys: String, CodingKey {
             case uin = "Uin"
@@ -627,11 +636,21 @@ extension Partners {
         
         /// 申请时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let applyTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var applyTime: Date?
         
         /// 解绑/撤销时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let actionTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var actionTime: Date?
         
         enum CodingKeys: String, CodingKey {
             case uin = "Uin"

@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Cr {
     /// DescribeCreditResult请求参数结构体
@@ -35,8 +36,12 @@ extension Cr {
         public let caseId: String
         
         /// 请求日期，格式为YYYY-MM-DD
-        // FIXME: Codable support not implemented for date yet.
-        public let requestDate: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var requestDate: Date
         
         public init (module: String, operation: String, instId: String, productId: String, caseId: String, requestDate: Date) {
             self.module = module
@@ -68,7 +73,12 @@ extension Cr {
         
         /// 开始振铃时间，ResultCode为NON或DAD时才有此字段。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ringStartTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var ringStartTime: Date?
         
         /// 振铃时长
         public let ringDuration: Int64

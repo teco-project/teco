@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Cbs {
     /// 描述一个实例已挂载和可挂载数据盘的数量。
@@ -78,7 +79,12 @@ extension Cbs {
         public let isPermanent: Bool?
         
         /// 定期快照下次触发的时间。
-        public let nextTriggerTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var nextTriggerTime: Date?
         
         /// 定期快照策略名称。
         public let autoSnapshotPolicyName: String?
@@ -90,7 +96,12 @@ extension Cbs {
         public let policy: [Policy]?
         
         /// 定期快照策略的创建时间。
-        public let createTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date?
         
         /// 使用该定期快照策略创建出来的快照保留天数。
         public let retentionDays: UInt64?
@@ -147,8 +158,12 @@ extension Cbs {
         public let diskType: String
         
         /// 独享集群到期时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let expiredTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var expiredTime: Date
         
         enum CodingKeys: String, CodingKey {
             case cageId = "CageId"
@@ -251,7 +266,12 @@ extension Cbs {
         public let isReturnable: Bool?
         
         /// 云硬盘的到期时间。
-        public let deadlineTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var deadlineTime: Date?
         
         /// 云盘是否挂载到云主机上。取值范围：<br><li>false:表示未挂载<br><li>true:表示已挂载。
         public let attached: Bool?
@@ -294,7 +314,12 @@ extension Cbs {
         public let shareable: Bool
         
         /// 云硬盘的创建时间。
-        public let createTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date?
         
         /// 销毁云盘时删除关联的非永久保留快照。0 表示非永久快照不随云盘销毁而销毁，1表示非永久快照随云盘销毁而销毁，默认取0。快照是否永久保留可以通过DescribeSnapshots接口返回的快照详情的IsPermanent字段来判断，true表示永久快照，false表示非永久快照。
         public let deleteSnapshot: Int64
@@ -371,8 +396,12 @@ extension Cbs {
         public let percent: UInt64
         
         /// 云硬盘备份点的创建时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createTime: Date
         
         /// 云盘是否为加密盘。取值范围：<br><li>false:表示非加密盘<br><li>true:表示加密盘。
         public let encrypt: Bool
@@ -399,7 +428,12 @@ extension Cbs {
         public let renewFlag: String?
         
         /// 需要将云盘的到期时间与挂载的子机对齐时，可传入该参数。该参数表示子机当前的到期时间，此时Period如果传入，则表示子机需要续费的时长，云盘会自动按对齐到子机续费后的到期时间续费，示例取值：2018-03-30 20:15:03。
-        public let curInstanceDeadline: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var curInstanceDeadline: Date?
         
         public init (period: UInt64, renewFlag: String? = nil, curInstanceDeadline: Date? = nil) {
             self.period = period
@@ -709,8 +743,12 @@ extension Cbs {
     /// 快照分享信息集合
     public struct SharePermission: TCOutputModel {
         /// 快照分享的时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createdTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createdTime: Date
         
         /// 分享的账号Id
         public let accountId: String
@@ -739,7 +777,12 @@ extension Cbs {
         public let snapshotName: String?
         
         /// 快照到期时间。如果快照为永久保留，此字段为空。
-        public let deadlineTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var deadlineTime: Date?
         
         /// 快照创建进度百分比，快照创建成功后此字段恒为100。
         public let percent: UInt64?
@@ -766,7 +809,12 @@ extension Cbs {
         public let encrypt: Bool?
         
         /// 快照的创建时间。
-        public let createTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date?
         
         /// 快照关联的镜像个数。
         public let imageCount: UInt64
@@ -778,8 +826,12 @@ extension Cbs {
         public let snapshotId: String
         
         /// 快照开始共享的时间。
-        // FIXME: Codable support not implemented for date yet.
-        public let timeStartShare: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var timeStartShare: Date
         
         /// 快照绑定的标签列表。
         public let tags: [Tag]

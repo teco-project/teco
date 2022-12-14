@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Ecm {
     /// 描述 EIP 信息
@@ -191,7 +192,12 @@ extension Ecm {
         
         /// 后端服务被绑定的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let registeredTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var registeredTime: Date?
         
         /// 弹性网卡唯一ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -417,11 +423,20 @@ extension Ecm {
         public let shareable: Bool
         
         /// 云硬盘的创建时间。
-        public let createTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date?
         
         /// 云硬盘的到期时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let deadlineTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var deadlineTime: Date
         
         /// 云盘的挂载类型。取值范围：<br><li>PF: PF挂载<br><li>VF: VF挂载
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -475,7 +490,12 @@ extension Ecm {
         public let renewFlag: String?
         
         /// 需要将云盘的到期时间与挂载的子机对齐时，可传入该参数。该参数表示子机当前的到期时间，此时Period如果传入，则表示子机需要续费的时长，云盘会自动按对齐到子机续费后的到期时间续费，示例取值：2018-03-30 20:15:03。
-        public let curInstanceDeadline: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var curInstanceDeadline: Date?
         
         public init (period: UInt64, renewFlag: String? = nil, curInstanceDeadline: Date? = nil) {
             self.period = period
@@ -1330,7 +1350,12 @@ extension Ecm {
         
         /// 创建时间。按照ISO8601标准表示，并且使用UTC时间。格式为：YYYY-MM-DDThh:mm:ssZ。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let createdTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdTime: Date?
         
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
@@ -1490,11 +1515,21 @@ extension Ecm {
         
         /// 负载均衡实例的创建时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let createTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date?
         
         /// 负载均衡实例的上次状态转换时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let statusTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var statusTime: Date?
         
         /// 私有网络的 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2837,7 +2872,12 @@ extension Ecm {
         public let encrypt: Bool?
         
         /// 快照的创建时间。
-        public let createTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date?
         
         /// 快照关联的镜像个数。
         public let imageCount: UInt64

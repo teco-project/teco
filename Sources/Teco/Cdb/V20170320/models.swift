@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Cdb {
     /// 数据库账号信息
@@ -48,16 +49,28 @@ extension Cdb {
         public let user: String
         
         /// 账号信息修改时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let modifyTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var modifyTime: Date
         
         /// 修改密码的时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let modifyPasswordTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var modifyPasswordTime: Date
         
         /// 该值已废弃
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         /// 用户最大可用实例连接数
         public let maxUserConnections: Int64
@@ -568,8 +581,12 @@ extension Cdb {
         public let size: Int64
         
         /// 文件存储时间，时间格式：2016-03-17 02:10:37
-        // FIXME: Codable support not implemented for datetime yet.
-        public let date: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var date: Date
         
         /// 下载地址
         public let intranetUrl: String
@@ -987,8 +1004,12 @@ extension Cdb {
     /// 云数据库切换记录
     public struct DBSwitchInfo: TCOutputModel {
         /// 切换时间，格式为：2017-09-03 01:34:31
-        // FIXME: Codable support not implemented for datetime yet.
-        public let switchTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var switchTime: Date
         
         /// 切换类型，可能的返回值为：TRANSFER - 数据迁移；MASTER2SLAVE - 主备切换；RECOVERY - 主从恢复
         public let switchType: String
@@ -1256,8 +1277,12 @@ extension Cdb {
         public let process: Int64
         
         /// 任务创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         /// 文件大小
         public let fileSize: String
@@ -1378,8 +1403,12 @@ extension Cdb {
         public let region: String
         
         /// 实例到期时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let deadlineTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var deadlineTime: Date
         
         /// 可用区部署方式。可能的值为：0 - 单可用区；1 - 多可用区
         public let deployMode: Int64
@@ -2717,8 +2746,12 @@ extension Cdb {
     /// sql文件信息
     public struct SqlFileInfo: TCOutputModel {
         /// 上传时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let uploadTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var uploadTime: Date
         
         /// 上传进度
         public let uploadInfo: UploadInfo

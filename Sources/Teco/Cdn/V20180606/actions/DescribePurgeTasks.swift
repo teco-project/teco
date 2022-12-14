@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Cdn {
     /// DescribePurgeTasks请求参数结构体
@@ -25,10 +26,20 @@ extension Cdn {
         public let purgeType: String?
         
         /// 根据时间区间查询时，填充开始时间，如 2018-08-08 00:00:00
-        public let startTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var startTime: Date?
         
         /// 根据时间区间查询时，填充结束时间，如 2018-08-08 23:59:59
-        public let endTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var endTime: Date?
         
         /// 根据任务 ID 查询时，填充任务 ID
         /// 查询时任务 ID 与起始时间必须填充一项

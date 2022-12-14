@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Ape {
     /// 授权人信息
@@ -58,15 +59,23 @@ extension Ape {
         public let orderId: String
         
         /// 订单创建时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let orderCreateTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var orderCreateTime: Date
         
         /// 下载Id
         public let downloadId: String
         
         /// 下载时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let downloadTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var downloadTime: Date
         
         /// 图片购买类型，单张/会员
         public let consumeType: Int64

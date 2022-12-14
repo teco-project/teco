@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Gse {
     /// DescribeFleetStatisticFlows请求参数结构体
@@ -23,10 +24,20 @@ extension Gse {
         public let fleetId: String?
         
         /// 查询开始时间，时间格式：YYYY-MM-DD hh:mm:ss
-        public let beginTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var beginTime: Date?
         
         /// 查询结束时间，时间格式：YYYY-MM-DD hh:mm:ss
-        public let endTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var endTime: Date?
         
         /// 结果返回最大数量，最小值0，最大值100
         public let limit: UInt64?

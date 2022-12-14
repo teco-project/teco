@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Iot {
     /// 规则引擎转发动作
@@ -62,12 +63,20 @@ extension Iot {
         public let region: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         /// 更新时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let updateTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var updateTime: Date
         
         enum CodingKeys: String, CodingKey {
             case deviceId = "DeviceId"
@@ -98,12 +107,20 @@ extension Iot {
         public let region: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         /// 更新时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let updateTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var updateTime: Date
         
         /// 设备信息（json）
         public let deviceInfo: String
@@ -136,12 +153,20 @@ extension Iot {
         public let nickName: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for date yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var createTime: Date
         
         /// 修改时间
-        // FIXME: Codable support not implemented for date yet.
-        public let updateTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var updateTime: Date
         
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
@@ -310,12 +335,20 @@ extension Iot {
         public let deviceSecret: String
         
         /// 更新时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let updateTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var updateTime: Date
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         /// 设备信息（json）
         public let deviceInfo: String
@@ -342,8 +375,12 @@ extension Iot {
         public let deviceSecret: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
@@ -400,8 +437,12 @@ extension Iot {
     /// 设备统计数据
     public struct DeviceStatData: TCOutputModel {
         /// 时间点
-        // FIXME: Codable support not implemented for datetime yet.
-        public let datetime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var datetime: Date
         
         /// 在线设备数
         public let deviceOnline: UInt64
@@ -430,11 +471,21 @@ extension Iot {
         
         /// 首次上线时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let firstOnline: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var firstOnline: Date?
         
         /// 最后上线时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let lastOnline: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var lastOnline: Date?
         
         /// 上线次数
         public let onlineTimes: UInt64
@@ -539,12 +590,20 @@ extension Iot {
         public let message: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         /// 更新时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let updateTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var updateTime: Date
         
         /// 数据模版
         public let dataTemplate: [DataTemplate]
@@ -631,8 +690,12 @@ extension Iot {
         public let message: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         /// 通信方式
         public let commProtocol: String
@@ -688,12 +751,20 @@ extension Iot {
         public let deleted: UInt64
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         /// 更新时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let updateTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var updateTime: Date
         
         /// 消息顺序
         public let msgOrder: UInt64
@@ -818,12 +889,20 @@ extension Iot {
         public let path: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         /// 更新时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let updateTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var updateTime: Date
         
         enum CodingKeys: String, CodingKey {
             case topicId = "TopicId"

@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Tat {
     /// 自动化助手客户端信息
@@ -26,8 +27,12 @@ extension Tat {
         public let version: String
         
         /// 上次心跳时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let lastHeartbeatTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var lastHeartbeatTime: Date
         
         /// Agent状态，取值范围：
         /// <li> Online：在线
@@ -72,12 +77,20 @@ extension Tat {
         public let timeout: UInt64
         
         /// 命令创建时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createdTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdTime: Date
         
         /// 命令更新时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let updatedTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updatedTime: Date
         
         /// 是否启用自定义参数功能。
         public let enableParameter: Bool
@@ -204,20 +217,36 @@ extension Tat {
         public let description: String
         
         /// 执行活动开始时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let startTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var startTime: Date
         
         /// 执行活动结束时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let endTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var endTime: Date
         
         /// 执行活动创建时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createdTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdTime: Date
         
         /// 执行活动更新时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let updatedTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updatedTime: Date
         
         /// 自定义参数取值。
         public let parameters: String
@@ -310,20 +339,36 @@ extension Tat {
         public let taskResult: TaskResult
         
         /// 执行任务开始时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let startTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var startTime: Date
         
         /// 执行任务结束时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let endTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var endTime: Date
         
         /// 创建时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createdTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdTime: Date
         
         /// 更新时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let updatedTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updatedTime: Date
         
         /// 执行任务所执行的命令详情。
         public let commandDocument: CommandDocument
@@ -413,12 +458,20 @@ extension Tat {
         public let scheduleSettings: ScheduleSettings?
         
         /// 创建时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createdTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdTime: Date
         
         /// 修改时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let updatedTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updatedTime: Date
         
         enum CodingKeys: String, CodingKey {
             case invokerId = "InvokerId"
@@ -441,8 +494,12 @@ extension Tat {
         public let invokerId: String
         
         /// 执行时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let invokeTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var invokeTime: Date
         
         /// 执行原因。
         public let reason: String
@@ -491,7 +548,12 @@ extension Tat {
         public let recurrence: String?
         
         /// 执行器下次执行时间。Policy 为 ONCE 时，需要指定此字段。
-        public let invokeTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var invokeTime: Date?
         
         public init (policy: String, recurrence: String? = nil, invokeTime: Date? = nil) {
             self.policy = policy
@@ -534,12 +596,20 @@ extension Tat {
         public let output: String
         
         /// 命令执行开始时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let execStartTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var execStartTime: Date
         
         /// 命令执行结束时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let execEndTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var execEndTime: Date
         
         /// 命令最终输出被截断的字节数。
         public let dropped: UInt64

@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Apigateway {
     /// CreateService请求参数结构体
@@ -99,8 +100,12 @@ extension Apigateway {
         public let innerSubDomain: String
         
         /// 服务创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createdTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdTime: Date
         
         /// 网络类型列表，INNER为内网访问，OUTER为外网访问。
         public let netTypes: [String]

@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Partners {
     /// DescribeAgentSelfPayDeals请求参数结构体
@@ -29,10 +30,20 @@ extension Partners {
         public let limit: UInt64
         
         /// 下单时间范围起始点(不传时会默认查15天内订单，传值时需要传15天内的起始时间)
-        public let creatTimeRangeStart: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var creatTimeRangeStart: Date?
         
         /// 下单时间范围终止点
-        public let creatTimeRangeEnd: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var creatTimeRangeEnd: Date?
         
         /// 0:下单时间降序；其他：下单时间升序
         public let order: UInt64?

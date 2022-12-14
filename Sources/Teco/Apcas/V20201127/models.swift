@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Apcas {
     /// 调用明细结构体
@@ -26,8 +27,12 @@ extension Apcas {
         public let validAmount: UInt64
         
         /// 调用时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let date: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var date: Date
         
         enum CodingKeys: String, CodingKey {
             case dataType = "DataType"
@@ -53,8 +58,12 @@ extension Apcas {
     /// 调用量统计item
     public struct CallStatItem: TCOutputModel {
         /// 当前统计量的时间段
-        // FIXME: Codable support not implemented for datetime yet.
-        public let date: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var date: Date
         
         /// 当前时间段的调用量
         public let amount: UInt64

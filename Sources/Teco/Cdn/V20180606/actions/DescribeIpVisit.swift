@@ -15,19 +15,28 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Cdn {
     /// DescribeIpVisit请求参数结构体
     public struct DescribeIpVisitRequest: TCRequestModel {
         /// 查询起始时间，如：2018-09-04 10:40:10，返回结果大于等于指定时间
         /// 根据指定时间粒度不同，会进行向前归整，如 2018-09-04 10:40:10 在按 5 分钟的时间粒度查询时，返回的第一个数据对应时间点为 2018-09-04 10:40:00
-        // FIXME: Codable support not implemented for datetime yet.
-        public let startTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var startTime: Date
         
         /// 查询结束时间，如：2018-09-04 10:40:10，返回结果小于等于指定时间
         /// 根据指定时间粒度不同，会进行向前归整，如 2018-09-04 10:40:10 在按 5 分钟的时间粒度查询时，返回的最后一个数据对应时间点为 2018-09-04 10:40:00
-        // FIXME: Codable support not implemented for datetime yet.
-        public let endTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var endTime: Date
         
         /// 指定查询域名列表，最多可一次性查询 30 个加速域名明细
         public let domains: [String]?

@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Cdn {
     /// ListTopData请求参数结构体
@@ -23,15 +24,23 @@ extension Cdn {
         /// 仅支持按天粒度的数据查询，取入参中的天信息作为起始日期
         /// 返回大于等于起始日期当天 00:00:00 点产生的数据，如 StartTime为2018-09-04 10:40:00，返回数据的起始时间为2018-09-04 00:00:00
         /// 仅支持 90 天内数据查询
-        // FIXME: Codable support not implemented for datetime yet.
-        public let startTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var startTime: Date
         
         /// 查询结束日期：yyyy-MM-dd HH:mm:ss
         /// 仅支持按天粒度的数据查询，取入参中的天信息作为结束日期
         /// 返回小于等于结束日期当天 23:59:59 产生的数据，如EndTime为2018-09-05 22:40:00，返回数据的结束时间为2018-09-05 23:59:59
         /// EndTime 需要大于等于 StartTime
-        // FIXME: Codable support not implemented for datetime yet.
-        public let endTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var endTime: Date
         
         /// 排序对象，支持以下几种形式：
         /// url：访问 URL 排序（无参数的URL），支持的 Filter 为 flux、request

@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Chdfs {
     /// 权限组
@@ -29,8 +30,12 @@ extension Chdfs {
         public let description: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createTime: Date
         
         enum CodingKeys: String, CodingKey {
             case accessGroupId = "AccessGroupId"
@@ -55,7 +60,12 @@ extension Chdfs {
         public let priority: UInt64?
         
         /// 创建时间
-        public let createTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createTime: Date?
         
         public init (accessRuleId: UInt64? = nil, address: String? = nil, accessMode: UInt64? = nil, priority: UInt64? = nil, createTime: Date? = nil) {
             self.accessRuleId = accessRuleId
@@ -92,8 +102,12 @@ extension Chdfs {
         public let fileSystemId: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createTime: Date
         
         /// 文件系统块大小（byte）
         public let blockSize: UInt64
@@ -154,7 +168,12 @@ extension Chdfs {
         public let status: UInt64?
         
         /// 创建时间
-        public let createTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createTime: Date?
         
         public init (lifeCycleRuleId: UInt64? = nil, lifeCycleRuleName: String? = nil, path: String? = nil, transitions: [Transition]? = nil, status: UInt64? = nil, createTime: Date? = nil) {
             self.lifeCycleRuleId = lifeCycleRuleId
@@ -196,8 +215,12 @@ extension Chdfs {
         public let status: UInt64
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createTime: Date
         
         /// VPC网络类型
         public let vpcType: UInt64
@@ -232,7 +255,12 @@ extension Chdfs {
         public let status: UInt64?
         
         /// 创建时间
-        public let createTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createTime: Date?
         
         public init (restoreTaskId: UInt64? = nil, filePath: String? = nil, type: UInt64? = nil, days: UInt64? = nil, status: UInt64? = nil, createTime: Date? = nil) {
             self.restoreTaskId = restoreTaskId

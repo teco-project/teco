@@ -15,13 +15,18 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Ses {
     /// GetSendEmailStatus请求参数结构体
     public struct GetSendEmailStatusRequest: TCRequestModel {
         /// 发送的日期，必填。仅支持查询某个日期，不支持范围查询。
-        // FIXME: Codable support not implemented for date yet.
-        public let requestDate: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var requestDate: Date
         
         /// 偏移量。默认为0
         public let offset: UInt64

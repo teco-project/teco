@@ -15,17 +15,26 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Youmall {
     /// 客户到场信息
     public struct ArrivedMallInfo: TCOutputModel {
         /// 到场时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let arrivedTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var arrivedTime: Date
         
         /// 出场时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let leaveTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var leaveTime: Date
         
         /// 停留时间，秒
         public let staySecond: UInt64
@@ -82,8 +91,12 @@ extension Youmall {
     /// 客户天轨迹
     public struct DailyTracePoint: TCOutputModel {
         /// 轨迹日期
-        // FIXME: Codable support not implemented for date yet.
-        public let traceDate: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var traceDate: Date
         
         /// 轨迹点序列
         public let tracePointSet: [PersonTracePoint]
@@ -287,8 +300,12 @@ extension Youmall {
         public let cady: Float
         
         /// 抓拍时间点
-        // FIXME: Codable support not implemented for datetime yet.
-        public let capTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var capTime: Date
         
         /// 抓拍图片
         public let capPic: String
@@ -374,8 +391,12 @@ extension Youmall {
         public let age: UInt64
         
         /// 首次到场时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let firstArrivedTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var firstArrivedTime: Date
         
         /// 来访次数
         public let arrivedCount: UInt64
@@ -436,8 +457,12 @@ extension Youmall {
         public let traceEventType: UInt64
         
         /// 轨迹事件发生时间点
-        // FIXME: Codable support not implemented for datetime yet.
-        public let traceEventTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var traceEventTime: Date
         
         /// 抓拍图片
         public let capPic: String
@@ -545,8 +570,12 @@ extension Youmall {
     /// 门店客流量列表信息
     public struct ShopDayTrafficInfo: TCOutputModel {
         /// 日期
-        // FIXME: Codable support not implemented for date yet.
-        public let date: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var date: Date
         
         /// 客流量
         public let dayTrafficTotalCount: UInt64
@@ -564,8 +593,12 @@ extension Youmall {
     /// 分时客流量信息
     public struct ShopHourTrafficInfo: TCOutputModel {
         /// 日期，格式yyyy-MM-dd
-        // FIXME: Codable support not implemented for date yet.
-        public let date: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var date: Date
         
         /// 分时客流详细信息
         public let hourTrafficInfoDetailSet: [HourTrafficInfoDetail]
@@ -695,8 +728,12 @@ extension Youmall {
     /// 门店区域客流信息
     public struct ZoneTrafficInfo: TCOutputModel {
         /// 日期
-        // FIXME: Codable support not implemented for date yet.
-        public let date: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var date: Date
         
         /// 门店区域客流详细信息
         public let zoneTrafficInfoDetailSet: [ZoneTrafficInfoDetail]

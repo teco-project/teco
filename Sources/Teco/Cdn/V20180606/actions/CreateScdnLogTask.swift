@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Cdn {
     /// CreateScdnLogTask请求参数结构体
@@ -27,12 +28,20 @@ extension Cdn {
         public let mode: String
         
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let startTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var startTime: Date
         
         /// 查询结束时间，如：2018-09-04 10:40:00，返回结果小于等于指定时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let endTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var endTime: Date
         
         /// 指定域名查询, 不填默认查询全部域名
         public let domain: String?

@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Teo {
     /// 加速类型
@@ -352,12 +353,20 @@ extension Teo {
         public let forbidMode: Int64
         
         /// 别称域名创建时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createdOn: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdOn: Date
         
         /// 别称域名修改时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let modifiedOn: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var modifiedOn: Date
         
         enum CodingKeys: String, CodingKey {
             case aliasName = "AliasName"
@@ -440,8 +449,12 @@ extension Teo {
         public let ipv6: Ipv6
         
         /// 更新时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let updateTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updateTime: Date
         
         /// 规则列表。
         public let applicationProxyRules: [ApplicationProxyRule]
@@ -1842,11 +1855,21 @@ extension Teo {
         
         /// 证书过期时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let expireTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var expireTime: Date?
         
         /// 证书生效时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let effectiveTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var effectiveTime: Date?
         
         /// 证书公用名。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2032,8 +2055,12 @@ extension Teo {
     /// Dns统计曲线数据项
     public struct DnsData: TCOutputModel {
         /// 时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let time: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var time: Date
         
         /// 数值。
         public let value: UInt64
@@ -2078,12 +2105,20 @@ extension Teo {
         public let priority: Int64
         
         /// 创建时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createdOn: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdOn: Date
         
         /// 修改时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let modifiedOn: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var modifiedOn: Date
         
         /// 域名锁定状态。
         public let locked: Bool
@@ -2270,7 +2305,12 @@ extension Teo {
         
         /// 更新时间，如果为null，默认由底层按当前时间生成。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let updateTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updateTime: Date?
         
         /// 匹配条件。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2765,7 +2805,12 @@ extension Teo {
         public let ruleID: Int64?
         
         /// 更新时间。仅出参使用。
-        public let updateTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updateTime: Date?
         
         /// 规则启用状态，当返回为null时，为启用。取值有：
         /// <li> on：启用；</li>
@@ -2918,8 +2963,12 @@ extension Teo {
         public let backupOriginGroupId: String
         
         /// 更新时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let updateTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updateTime: Date
         
         /// 回源类型，取值有：
         /// <li>normal：主备回源；</li>
@@ -3208,8 +3257,12 @@ extension Teo {
         public let originRecords: [OriginRecord]
         
         /// 源站组更新时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let updateTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updateTime: Date
         
         /// 当OriginType=self时，表示回源Host。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3657,12 +3710,20 @@ extension Teo {
         public let action: String
         
         /// 更新时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let effectiveTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var effectiveTime: Date
         
         /// 失效时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let expireTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var expireTime: Date
         
         /// 规则id。
         public let ruleId: Int64
@@ -3852,16 +3913,28 @@ extension Teo {
         public let payMode: Int64
         
         /// 创建时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createTime: Date
         
         /// 生效时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let enableTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var enableTime: Date
         
         /// 失效时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let expireTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var expireTime: Date
         
         /// 套餐状态，取值有：
         /// <li>normal：正常；</li>
@@ -4646,11 +4719,21 @@ extension Teo {
         
         /// 证书过期时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let expireTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var expireTime: Date?
         
         /// 证书部署时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let deployTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var deployTime: Date?
         
         /// 签名算法。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -5010,8 +5093,12 @@ extension Teo {
         public let tls: Bool
         
         /// 任务创建时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createdOn: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdOn: Date
         
         /// 任务状态，取值有：
         /// <li> 200：任务完成;</li>
@@ -5157,12 +5244,20 @@ extension Teo {
         public let type: String
         
         /// 任务创建时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createTime: Date
         
         /// 任务完成时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let updateTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updateTime: Date
         
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
@@ -5710,12 +5805,20 @@ extension Teo {
         public let resources: [Resource]
         
         /// 站点创建时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createdOn: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdOn: Date
         
         /// 站点修改时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let modifiedOn: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var modifiedOn: Date
         
         /// 站点接入地域，取值有：
         /// <li> global：全球；</li>

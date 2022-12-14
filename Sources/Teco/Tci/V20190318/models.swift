@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Tci {
     /// 当前音频的统计结果
@@ -1071,8 +1072,12 @@ extension Tci {
     /// 人员库描述
     public struct Library: TCInputModel {
         /// 人员库创建时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createTime: Date
         
         /// 人员库唯一标识符
         public let libraryId: String
@@ -1084,7 +1089,12 @@ extension Tci {
         public let personCount: Int64?
         
         /// 人员库修改时间
-        public let updateTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updateTime: Date?
         
         public init (createTime: Date, libraryId: String, libraryName: String, personCount: Int64? = nil, updateTime: Date? = nil) {
             self.createTime = createTime
@@ -1234,7 +1244,12 @@ extension Tci {
         public let personName: String
         
         /// 创建时间
-        public let createTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createTime: Date?
         
         /// 工作号码
         public let jobNumber: String?
@@ -1252,7 +1267,12 @@ extension Tci {
         public let studentNumber: String?
         
         /// 修改时间
-        public let updateTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updateTime: Date?
         
         public init (libraryId: String, personId: String, personName: String, createTime: Date? = nil, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, updateTime: Date? = nil) {
             self.libraryId = libraryId

@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Tione {
     /// DescribeCodeRepository请求参数结构体
@@ -34,12 +35,20 @@ extension Tione {
     /// DescribeCodeRepository返回参数结构体
     public struct DescribeCodeRepositoryResponse: TCResponseModel {
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let creationTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var creationTime: Date
         
         /// 更新时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let lastModifiedTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var lastModifiedTime: Date
         
         /// 存储库名称
         public let codeRepositoryName: String

@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Bm {
     /// DescribeDevices请求参数结构体
@@ -44,10 +45,20 @@ extension Bm {
         public let vagueIp: String?
         
         /// 设备到期时间查询的起始时间
-        public let deadlineStartTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var deadlineStartTime: Date?
         
         /// 设备到期时间查询的结束时间
-        public let deadlineEndTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var deadlineEndTime: Date?
         
         /// 自动续费标志 0:不自动续费，1:自动续费
         public let autoRenewFlag: UInt64?

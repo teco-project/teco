@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Tcaplusdb {
     /// ModifyClusterPassword请求参数结构体
@@ -26,8 +27,12 @@ extension Tcaplusdb {
         public let oldPassword: String
         
         /// 集群旧密码预期失效时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let oldPasswordExpireTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var oldPasswordExpireTime: Date
         
         /// 集群新密码，密码必须是a-zA-Z0-9的字符,且必须包含数字和大小写字母
         public let newPassword: String

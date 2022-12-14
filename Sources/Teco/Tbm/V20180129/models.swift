@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Tbm {
     /// 用户年龄画像
@@ -53,8 +54,12 @@ extension Tbm {
         public let fromSite: String
         
         /// 文章发表日期
-        // FIXME: Codable support not implemented for datetime yet.
-        public let pubTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var pubTime: Date
         
         /// 文章标识
         public let flag: UInt64
@@ -87,8 +92,12 @@ extension Tbm {
     /// 用户好评差评个数信息
     public struct Comment: TCOutputModel {
         /// 评论的日期
-        // FIXME: Codable support not implemented for date yet.
-        public let date: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var date: Date
         
         /// 差评的个数
         public let negCommentCount: UInt64
@@ -109,8 +118,12 @@ extension Tbm {
         public let comment: String
         
         /// 评论的时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let date: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var date: Date
         
         enum CodingKeys: String, CodingKey {
             case comment = "Comment"
@@ -121,8 +134,12 @@ extension Tbm {
     /// 按日期的统计数据
     public struct DateCount: TCOutputModel {
         /// 统计日期
-        // FIXME: Codable support not implemented for date yet.
-        public let date: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var date: Date
         
         /// 统计值
         public let count: UInt64
@@ -163,8 +180,12 @@ extension Tbm {
         public let industryId: String
         
         /// 报道发表时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let pubTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var pubTime: Date
         
         /// 报道来源
         public let fromSite: String

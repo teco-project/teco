@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Monitor {
     /// 告警事件
@@ -2144,8 +2145,12 @@ extension Monitor {
         public let notes: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createAt: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createAt: Date
         
         /// 实例 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2195,12 +2200,20 @@ extension Monitor {
         public let receivers: [String]
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createdAt: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdAt: Date
         
         /// 更新时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let updatedAt: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updatedAt: Date
         
         /// 告警渠道的所有生效组织
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2240,8 +2253,12 @@ extension Monitor {
         public let internalUrl: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createdAt: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createdAt: Date
         
         /// 运行状态（1:正在创建；2:运行中；3:异常；4:重启中；5:停机中； 6:已停机； 7: 已删除）
         public let instanceStatus: Int64
@@ -2339,12 +2356,20 @@ extension Monitor {
         public let receivers: [String]
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createdAt: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdAt: Date
         
         /// 更新时间
-        // FIXME: Codable support not implemented for date yet.
-        public let updatedAt: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var updatedAt: Date
         
         /// 默认生效组织，已废弃，请使用 OrganizationIds
         public let orgId: String

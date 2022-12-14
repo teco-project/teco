@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Cbs {
     /// ModifySnapshotAttribute请求参数结构体
@@ -29,7 +30,12 @@ extension Cbs {
         public let isPermanent: Bool?
         
         /// 快照的到期时间；设置好快照将会被同时设置为非永久保留方式；超过到期时间后快照将会被自动删除。
-        public let deadline: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var deadline: Date?
         
         public init (snapshotId: String, snapshotName: String? = nil, isPermanent: Bool? = nil, deadline: Date? = nil) {
             self.snapshotId = snapshotId

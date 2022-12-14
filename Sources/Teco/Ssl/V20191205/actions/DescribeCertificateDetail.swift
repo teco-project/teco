@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Ssl {
     /// DescribeCertificateDetail请求参数结构体
@@ -83,11 +84,21 @@ extension Ssl {
         
         /// 证书生效时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let certBeginTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var certBeginTime: Date?
         
         /// 证书失效时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let certEndTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var certEndTime: Date?
         
         /// 证书有效期：单位（月）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -95,7 +106,12 @@ extension Ssl {
         
         /// 申请时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let insertTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var insertTime: Date?
         
         /// 订单 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。

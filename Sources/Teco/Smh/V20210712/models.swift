@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Smh {
     /// 官方云盘实例信息
@@ -27,12 +28,21 @@ extension Smh {
         public let domain: String?
         
         /// 生效时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let effectiveTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var effectiveTime: Date
         
         /// 过期时间。如果为按量计费或永久有效实例，该属性为 null。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let expireTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var expireTime: Date?
         
         /// 用户数量。如果为按量计费或不限制用户数量实例，该属性为 null。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -88,8 +98,12 @@ extension Smh {
         public let bucketRegion: String
         
         /// 媒体库创建时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let creationTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var creationTime: Date
         
         /// 媒体库配置项
         public let libraryExtension: LibraryExtension
@@ -260,12 +274,21 @@ extension Smh {
         public let usedPercentage: String
         
         /// 生效时间，即流量资源包的订购时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let effectiveTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var effectiveTime: Date
         
         /// 过期时间，即所抵扣的实例的过期时间。如果流量资源包所抵扣的实例为按量计费或永久有效实例，该属性为 null。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let expireTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var expireTime: Date?
         
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"

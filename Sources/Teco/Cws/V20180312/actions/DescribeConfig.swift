@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Cws {
     /// DescribeConfig请求参数结构体
@@ -32,12 +33,20 @@ extension Cws {
         public let id: UInt64
         
         /// 记录创建时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createdAt: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdAt: Date
         
         /// 记录更新新建。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let updatedAt: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updatedAt: Date
         
         /// 云用户appid。
         public let appid: UInt64

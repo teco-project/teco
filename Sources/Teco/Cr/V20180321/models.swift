@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Cr {
     /// 黑名单申请信息
@@ -35,11 +36,21 @@ extension Cr {
         
         /// 黑名单生效截止日期，格式为YYYY-MM-DD，不填默认为永久。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let blackValidDate: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var blackValidDate: Date?
         
         /// 黑名单加入日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let blackAddDate: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var blackAddDate: Date?
         
         /// 0-生效 1-失效
         public let blackStatus: String?
@@ -118,8 +129,12 @@ extension Cr {
     /// 作业信息
     public struct CallInfo: TCOutputModel {
         /// 业务日期
-        // FIXME: Codable support not implemented for date yet.
-        public let bizDate: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var bizDate: Date
         
         /// 状态 WAIT：待执行；DOING：执行中；ERROR：执行错误；DONE：已完成；
         public let status: String
@@ -262,15 +277,23 @@ extension Cr {
         public let botName: String
         
         /// 任务日期
-        // FIXME: Codable support not implemented for date yet.
-        public let bizDate: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var bizDate: Date
         
         /// 被叫号码
         public let calledPhone: String
         
         /// 开始通话时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let callStartTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var callStartTime: Date
         
         /// 通话时长
         public let duration: Int64
@@ -312,7 +335,12 @@ extension Cr {
         public let blackDescription: String
         
         /// 黑名单生效截止日期，格式为YYYY-MM-DD，不填默认为永久。
-        public let blackValidDate: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var blackValidDate: Date?
         
         public init (blackType: String, operationType: String, blackValue: String, blackDescription: String, blackValidDate: Date? = nil) {
             self.blackType = blackType
@@ -337,12 +365,20 @@ extension Cr {
         public let accountNum: String
         
         /// 外呼日期。
-        // FIXME: Codable support not implemented for date yet.
-        public let bizDate: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var bizDate: Date
         
         /// 开始呼叫时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let callStartTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var callStartTime: Date
         
         /// 主叫号码。
         public let callerPhone: String

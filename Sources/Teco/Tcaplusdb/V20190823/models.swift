@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Tcaplusdb {
     /// 审批申请单
@@ -180,8 +181,12 @@ extension Tcaplusdb {
         public let subnetId: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createdTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createdTime: Date
         
         /// 集群密码
         public let password: String
@@ -990,12 +995,20 @@ extension Tcaplusdb {
         public let snapshotName: String
         
         /// 快照时间点
-        // FIXME: Codable support not implemented for datetime yet.
-        public let snapshotTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var snapshotTime: Date
         
         /// 快照过期时间点
-        // FIXME: Codable support not implemented for datetime yet.
-        public let snapshotDeadTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var snapshotDeadTime: Date
         
         public init (tableGroupId: String, tableName: String, snapshotName: String, snapshotTime: Date, snapshotDeadTime: Date) {
             self.tableGroupId = tableGroupId
@@ -1026,7 +1039,12 @@ extension Tcaplusdb {
         public let snapshotName: String
         
         /// 快照过期时间点
-        public let snapshotDeadTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var snapshotDeadTime: Date?
         
         public init (tableGroupId: String, tableName: String, snapshotName: String, snapshotDeadTime: Date? = nil) {
             self.tableGroupId = tableGroupId
@@ -1067,15 +1085,30 @@ extension Tcaplusdb {
         
         /// 快照的时间点
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let snapshotTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var snapshotTime: Date?
         
         /// 快照的过期时间点
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let snapshotDeadTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var snapshotDeadTime: Date?
         
         /// 快照创建时间点
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let snapshotCreateTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var snapshotCreateTime: Date?
         
         /// 快照大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1177,8 +1210,12 @@ extension Tcaplusdb {
         public let tableGroupName: String
         
         /// 表格组创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createdTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createdTime: Date
         
         /// 表格组包含的表格数量
         public let tableCount: UInt64
@@ -1577,12 +1614,20 @@ extension Tcaplusdb {
         public let progress: Int64
         
         /// 任务创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let startTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var startTime: Date
         
         /// 任务最后更新时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let updateTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var updateTime: Date
         
         /// 操作者
         public let `operator`: String

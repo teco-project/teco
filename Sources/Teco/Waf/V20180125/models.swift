@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Waf {
     /// DescribeAccessIndex
@@ -230,7 +231,12 @@ extension Waf {
         public let denyTimeThreshold: Int64
         
         /// 最后更新时间
-        public let lastUpdateTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var lastUpdateTime: Date?
         
         public init (attackTags: [String], attackThreshold: Int64, defenseStatus: Int64, timeThreshold: Int64, denyTimeThreshold: Int64, lastUpdateTime: Date? = nil) {
             self.attackTags = attackTags
@@ -695,16 +701,28 @@ extension Waf {
         public let url: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         /// 最后更新修改时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let modifyTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var modifyTime: Date
         
         /// 过期时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let expireTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var expireTime: Date
         
         /// 下载任务需下载的日志总条数
         public let totalCount: UInt64
@@ -1248,7 +1266,12 @@ extension Waf {
         public let tags: [String]?
         
         /// 最后更新时间
-        public let lastUpdateTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var lastUpdateTime: Date?
         
         public init (defenseStatus: Int64, tags: [String]? = nil, lastUpdateTime: Date? = nil) {
             self.defenseStatus = defenseStatus

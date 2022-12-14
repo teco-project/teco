@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Clb {
     /// 目标组关联到的规则
@@ -2449,7 +2450,12 @@ extension Clb {
         
         /// 后端服务被绑定的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let registeredTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var registeredTime: Date?
         
         /// 弹性网卡唯一ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2490,12 +2496,20 @@ extension Clb {
         public let port: UInt64?
         
         /// 目标组的创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createdTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createdTime: Date
         
         /// 目标组的修改时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let updatedTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var updatedTime: Date
         
         /// 关联到的规则数组
         /// 注意：此字段可能返回 null，表示取不到有效值。

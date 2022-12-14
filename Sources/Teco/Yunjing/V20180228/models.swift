@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Yunjing {
     /// 帐号列表信息数据。
@@ -43,12 +44,20 @@ extension Yunjing {
         public let privilege: String
         
         /// 帐号创建时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let accountCreateTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var accountCreateTime: Date
         
         /// 帐号最后登录时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let lastLoginTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var lastLoginTime: Date
         
         enum CodingKeys: String, CodingKey {
             case id = "Id"
@@ -96,8 +105,12 @@ extension Yunjing {
         public let vulLevel: String
         
         /// 最后扫描时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let lastScanTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var lastScanTime: Date
         
         /// 漏洞描述。
         public let description: String
@@ -267,8 +280,12 @@ extension Yunjing {
         public let count: UInt64
         
         /// 发生时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         /// 主机名称。
         public let machineName: String
@@ -353,8 +370,12 @@ extension Yunjing {
         public let componentName: String
         
         /// 组件检测更新时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let modifyTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var modifyTime: Date
         
         enum CodingKeys: String, CodingKey {
             case id = "Id"
@@ -505,8 +526,12 @@ extension Yunjing {
         public let modifyType: String
         
         /// 变更时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let modifyTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var modifyTime: Date
         
         enum CodingKeys: String, CodingKey {
             case id = "Id"
@@ -531,8 +556,12 @@ extension Yunjing {
         public let machineName: String
         
         /// 最后检测时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let lastScanTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var lastScanTime: Date
         
         /// 漏洞状态。
         /// <li>UN_OPERATED ：待处理</li>
@@ -586,12 +615,20 @@ extension Yunjing {
         public let isGlobal: Bool
         
         /// 创建白名单时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         /// 修改白名单时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let modifyTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var modifyTime: Date
         
         /// 机器名
         public let machineName: String
@@ -808,12 +845,20 @@ extension Yunjing {
         public let reference: String
         
         /// 发现时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         /// 记录合并时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let mergeTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var mergeTime: Date
         
         /// 进程MD5
         /// 值。
@@ -867,12 +912,20 @@ extension Yunjing {
         public let machineName: String
         
         /// 木马文件创建时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let fileCreateTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var fileCreateTime: Date
         
         /// 木马文件修改时间。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let modifyTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var modifyTime: Date
         
         /// 云镜客户端唯一标识UUID。
         public let uuid: String
@@ -922,8 +975,12 @@ extension Yunjing {
         public let machineName: String
         
         /// 登录时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let loginTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var loginTime: Date
         
         /// 云镜客户端唯一标识Uuid。
         public let uuid: String
@@ -967,12 +1024,20 @@ extension Yunjing {
         public let pid: UInt64
         
         /// 记录创建时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         /// 记录更新时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let modifyTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var modifyTime: Date
         
         enum CodingKeys: String, CodingKey {
             case id = "Id"
@@ -1214,8 +1279,12 @@ extension Yunjing {
         public let fullPath: String
         
         /// 创建时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         enum CodingKeys: String, CodingKey {
             case id = "Id"
@@ -1406,8 +1475,12 @@ extension Yunjing {
         public let uuid: String
         
         /// 安全事件发生事件。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let eventTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var eventTime: Date
         
         /// 安全事件类型。
         /// <li>MALWARE：木马事件</li>
@@ -1439,8 +1512,12 @@ extension Yunjing {
     /// 安全趋势统计数据。
     public struct SecurityTrend: TCOutputModel {
         /// 事件时间。
-        // FIXME: Codable support not implemented for date yet.
-        public let date: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var date: Date
         
         /// 事件数量。
         public let eventNum: UInt64
@@ -1545,8 +1622,12 @@ extension Yunjing {
         public let vulLevel: String
         
         /// 最后扫描时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let lastScanTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var lastScanTime: Date
         
         /// 受影响机器数量
         public let impactedHostNum: UInt64
@@ -1569,12 +1650,20 @@ extension Yunjing {
     /// 周报列表。
     public struct WeeklyReport: TCOutputModel {
         /// 周报开始时间。
-        // FIXME: Codable support not implemented for date yet.
-        public let beginDate: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var beginDate: Date
         
         /// 周报结束时间。
-        // FIXME: Codable support not implemented for date yet.
-        public let endDate: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var endDate: Date
         
         enum CodingKeys: String, CodingKey {
             case beginDate = "BeginDate"
@@ -1597,8 +1686,12 @@ extension Yunjing {
         public let count: UInt64
         
         /// 攻击时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let attackTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var attackTime: Date
         
         enum CodingKeys: String, CodingKey {
             case machineIp = "MachineIp"
@@ -1621,8 +1714,12 @@ extension Yunjing {
         public let md5: String
         
         /// 木马发现时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let findTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var findTime: Date
         
         /// 当前木马状态。
         /// <li>UN_OPERATED：未处理</li>
@@ -1662,8 +1759,12 @@ extension Yunjing {
         public let city: UInt64
         
         /// 登录时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let loginTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var loginTime: Date
         
         enum CodingKeys: String, CodingKey {
             case machineIp = "MachineIp"
@@ -1700,8 +1801,12 @@ extension Yunjing {
         public let vulStatus: String
         
         /// 最后扫描时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let lastScanTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var lastScanTime: Date
         
         enum CodingKeys: String, CodingKey {
             case machineIp = "MachineIp"

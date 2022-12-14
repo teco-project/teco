@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Dnspod {
     /// 批量添加的记录
@@ -595,12 +596,20 @@ extension Dnspod {
         public let gradeTitle: String
         
         /// 域名创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createdOn: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createdOn: Date
         
         /// 最后操作时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let updatedOn: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var updatedOn: Date
         
         /// 腾讯云账户Uin
         public let uin: String
@@ -691,12 +700,20 @@ extension Dnspod {
         public let isVip: String
         
         /// 付费套餐开通时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let vipStartAt: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var vipStartAt: Date
         
         /// 付费套餐到期时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let vipEndAt: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var vipEndAt: Date
         
         /// 域名是否开通VIP自动续费，是：YES，否：NO，默认：DEFAULT
         public let vipAutoRenew: String
@@ -705,12 +722,20 @@ extension Dnspod {
         public let recordCount: UInt64
         
         /// 域名添加时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createdOn: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createdOn: Date
         
         /// 域名更新时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let updatedOn: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var updatedOn: Date
         
         /// 域名所属账号
         public let owner: String
@@ -846,8 +871,12 @@ extension Dnspod {
         public let lockCode: String
         
         /// 域名自动解锁日期
-        // FIXME: Codable support not implemented for date yet.
-        public let lockEnd: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var lockEnd: Date
         
         enum CodingKeys: String, CodingKey {
             case domainId = "DomainId"
@@ -996,8 +1025,12 @@ extension Dnspod {
         public let remark: String?
         
         /// 记录最后更新时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let updatedOn: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var updatedOn: Date
         
         /// 域名 ID 。
         public let domainId: UInt64
@@ -1032,8 +1065,12 @@ extension Dnspod {
         public let status: String
         
         /// 更新时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let updatedOn: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var updatedOn: Date
         
         /// 主机名
         public let name: String

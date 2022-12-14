@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Cam {
     /// 访问密钥列表
@@ -26,8 +27,12 @@ extension Cam {
         public let status: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         enum CodingKeys: String, CodingKey {
             case accessKeyId = "AccessKeyId"
@@ -48,8 +53,12 @@ extension Cam {
         public let status: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date
         
         enum CodingKeys: String, CodingKey {
             case accessKeyId = "AccessKeyId"
@@ -99,7 +108,12 @@ extension Cam {
         
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let addTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var addTime: Date?
         
         /// 创建来源，1 通过控制台创建, 2 通过策略语法创建。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -700,7 +714,12 @@ extension Cam {
         
         /// 最后访问日期(有1天延迟)
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let lastUsedDate: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var lastUsedDate: Date?
         
         enum CodingKeys: String, CodingKey {
             case secretId = "SecretId"
@@ -718,7 +737,12 @@ extension Cam {
         
         /// 策略创建时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let addTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var addTime: Date?
         
         /// 策略类型。1 表示自定义策略，2 表示预设策略。
         public let type: UInt64
@@ -763,7 +787,12 @@ extension Cam {
         
         /// 最后编辑时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let updateTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var updateTime: Date?
         
         enum CodingKeys: String, CodingKey {
             case policyId = "PolicyId"
@@ -812,7 +841,12 @@ extension Cam {
         
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let createTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date?
         
         /// 昵称
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -848,7 +882,12 @@ extension Cam {
         
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let createTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date?
         
         /// 用户类型(2:子用户;3:企业微信子用户;4:协作者;5:消息接收人)
         public let userType: UInt64
@@ -904,7 +943,12 @@ extension Cam {
         
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let createTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date?
         
         enum CodingKeys: String, CodingKey {
             case uin = "Uin"

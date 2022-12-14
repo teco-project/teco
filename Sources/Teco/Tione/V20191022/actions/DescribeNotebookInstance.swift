@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Tione {
     /// DescribeNotebookInstance请求参数结构体
@@ -67,11 +68,21 @@ extension Tione {
         
         /// Notebook实例创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let creationTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var creationTime: Date?
         
         /// Notebook实例最近修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let lastModifiedTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var lastModifiedTime: Date?
         
         /// Notebook实例日志链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -114,7 +125,12 @@ extension Tione {
         
         /// 实例运行截止时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let deadline: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var deadline: Date?
         
         /// 自动停止配置
         /// 注意：此字段可能返回 null，表示取不到有效值。

@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Sqlserver {
     /// RollbackInstance请求参数结构体
@@ -29,8 +30,12 @@ extension Sqlserver {
         public let dBs: [String]
         
         /// 回档目标时间点
-        // FIXME: Codable support not implemented for datetime yet.
-        public let time: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var time: Date
         
         /// 备份恢复到的同一个APPID下的实例ID，不填则恢复到原实例ID
         public let targetInstanceId: String?

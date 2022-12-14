@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Bmlb {
     /// 待与四层监听器绑定的物理机主机、虚拟机或半托管主机信息。目前一个四层监听器下面最多允许绑定255个主机端口。
@@ -724,7 +725,12 @@ extension Bmlb {
         public let status: Int64?
         
         /// 创建时间戳。
-        public let addTimestamp: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var addTimestamp: Date?
         
         /// 转发后端服务器调度类型。
         public let balanceMode: String?
@@ -820,7 +826,12 @@ extension Bmlb {
         public let status: Int64?
         
         /// 创建时间戳。
-        public let addTimestamp: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var addTimestamp: Date?
         
         /// 是否开启自定义健康检查：1（开启）、0（关闭）。默认值0，表示关闭。（该字段在健康检查开启的情况下才生效）
         public let customHealthSwitch: Int64?
@@ -979,8 +990,12 @@ extension Bmlb {
         public let certCaId: String
         
         /// 添加时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let addTimestamp: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var addTimestamp: Date
         
         /// 负载均衡名ID。
         public let loadBalancerId: String
@@ -1062,7 +1077,12 @@ extension Bmlb {
         public let status: Int64?
         
         /// 创建时间戳。
-        public let addTimestamp: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var addTimestamp: Date?
         
         /// https转发类型。0：https。1：spdy。2：http2。3：spdy+http2。
         public let forwardProtocol: Int64?
@@ -1131,7 +1151,12 @@ extension Bmlb {
         public let status: Int64?
         
         /// 创建时间戳。
-        public let addTimestamp: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var addTimestamp: Date?
         
         /// 返回的转发规则列表。
         public let ruleSet: [L7ListenerInfoRule]?
@@ -1255,7 +1280,12 @@ extension Bmlb {
         public let status: Int64?
         
         /// 创建时间戳。
-        public let addTimestamp: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var addTimestamp: Date?
         
         /// 该转发路径所绑定的主机列表。
         public let backendSet: [L7ListenerInfoBackend]?
@@ -1307,7 +1337,12 @@ extension Bmlb {
         public let status: Int64?
         
         /// 创建时间戳。
-        public let addTimestamp: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var addTimestamp: Date?
         
         /// 该转发域名下面的转发路径列表。
         public let locationSet: [L7ListenerInfoLocation]?
@@ -1341,7 +1376,12 @@ extension Bmlb {
         public let status: Int64?
         
         /// 创建时间戳。
-        public let addTimestamp: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var addTimestamp: Date?
         
         /// 该转发域名下面的转发路径列表。
         public let locationSet: [L7RulesLocation]?
@@ -1402,7 +1442,12 @@ extension Bmlb {
         public let status: Int64?
         
         /// 创建时间戳。
-        public let addTimestamp: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var addTimestamp: Date?
         
         public init (url: String? = nil, locationId: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, httpCheckPath: String? = nil, httpCheckDomain: String? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, httpCodes: [UInt64]? = nil, balanceMode: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil) {
             self.url = url
@@ -1476,10 +1521,20 @@ extension Bmlb {
         public let latestPayMode: String?
         
         /// 无
-        public let createTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date?
         
         /// 无
-        public let statusTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var statusTime: Date?
         
         /// 私有网络名称。
         public let vpcName: String?
@@ -1755,7 +1810,12 @@ extension Bmlb {
         public let httpCodes: [Int64]?
         
         /// 创建时间。
-        public let createTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createTime: Date?
         
         /// 流量镜像所在私有网络的Cidr。
         public let vpcCidrBlock: String?
@@ -1831,8 +1891,12 @@ extension Bmlb {
         public let certCaId: String
         
         /// 添加时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let addTimestamp: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var addTimestamp: Date
         
         /// 负载均衡ID。
         public let loadBalancerId: String

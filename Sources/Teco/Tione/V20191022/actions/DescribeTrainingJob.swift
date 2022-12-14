@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Tione {
     /// DescribeTrainingJob请求参数结构体
@@ -65,16 +66,30 @@ extension Tione {
         public let failureReason: String?
         
         /// 最近修改时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let lastModifiedTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var lastModifiedTime: Date
         
         /// 任务开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let trainingStartTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var trainingStartTime: Date?
         
         /// 任务完成时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let trainingEndTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var trainingEndTime: Date?
         
         /// 模型输出配置
         /// 注意：此字段可能返回 null，表示取不到有效值。

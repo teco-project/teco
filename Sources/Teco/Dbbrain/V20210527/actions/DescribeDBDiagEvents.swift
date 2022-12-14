@@ -15,17 +15,26 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Dbbrain {
     /// DescribeDBDiagEvents请求参数结构体
     public struct DescribeDBDiagEventsRequest: TCRequestModel {
         /// 开始时间，如“2021-05-27 00:00:00”，支持的最早查询时间为当前时间的前30天。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let startTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var startTime: Date
         
         /// 结束时间，如“2021-05-27 01:00:00”，结束时间与开始时间的间隔最大可为7天。
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let endTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var endTime: Date
         
         /// 风险等级列表，取值按影响程度从高至低分别为：1 - 致命、2 -严重、3 - 告警、4 - 提示、5 -健康。
         public let severities: [Int64]?

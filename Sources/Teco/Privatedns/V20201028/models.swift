@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Privatedns {
     /// 私有域解析账号Vpc信息
@@ -114,8 +115,12 @@ extension Privatedns {
     /// 日志详情
     public struct AuditLogInfo: TCOutputModel {
         /// 时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let date: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var date: Date
         
         /// 操作人uin
         public let operatorUin: String
@@ -133,8 +138,12 @@ extension Privatedns {
     /// 时间统计值
     public struct DatePoint: TCOutputModel {
         /// 时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let date: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var date: Date
         
         /// 值
         public let value: Int64
@@ -241,12 +250,20 @@ extension Privatedns {
         public let domain: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createdOn: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createdOn: Date
         
         /// 修改时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let updatedOn: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var updatedOn: Date
         
         /// 记录数
         public let recordCount: Int64
@@ -348,12 +365,20 @@ extension Privatedns {
         public let weight: Int64?
         
         /// 记录创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let createdOn: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var createdOn: Date
         
         /// 记录更新时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let updatedOn: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var updatedOn: Date
         
         /// 附加信息
         /// 注意：此字段可能返回 null，表示取不到有效值。

@@ -15,13 +15,18 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Vpc {
     /// DescribeGatewayFlowMonitorDetail请求参数结构体
     public struct DescribeGatewayFlowMonitorDetailRequest: TCRequestModel {
         /// 时间点。表示要查询这分钟内的明细。如：`2019-02-28 18:15:20`，将查询 `18:15` 这一分钟内的明细。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let timePoint: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var timePoint: Date
         
         /// VPN网关实例ID，形如：`vpn-ltjahce6`。
         public let vpnId: String?

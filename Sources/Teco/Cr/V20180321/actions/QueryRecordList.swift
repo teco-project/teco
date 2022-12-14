@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Cr {
     /// QueryRecordList请求参数结构体
@@ -41,10 +42,20 @@ extension Cr {
         public let calledPhone: String?
         
         /// 开始日期
-        public let startBizDate: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var startBizDate: Date?
         
         /// 结束日期
-        public let endBizDate: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var endBizDate: Date?
         
         public init (module: String, operation: String, offset: Int64, limit: Int64, botId: String? = nil, botName: String? = nil, calledPhone: String? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil) {
             self.module = module

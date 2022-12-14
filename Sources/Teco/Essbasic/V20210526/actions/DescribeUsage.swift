@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Essbasic {
     /// DescribeUsage请求参数结构体
@@ -23,13 +24,21 @@ extension Essbasic {
         public let agent: Agent
         
         /// 开始时间，例如：2021-03-21
-        // FIXME: Codable support not implemented for date yet.
-        public let startDate: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var startDate: Date
         
         /// 结束时间，例如：2021-06-21；
         /// 开始时间到结束时间的区间长度小于等于90天。
-        // FIXME: Codable support not implemented for date yet.
-        public let endDate: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var endDate: Date
         
         /// 是否汇总数据，默认不汇总。
         /// 不汇总：返回在统计区间内渠道下所有企业的每日明细，即每个企业N条数据，N为统计天数；

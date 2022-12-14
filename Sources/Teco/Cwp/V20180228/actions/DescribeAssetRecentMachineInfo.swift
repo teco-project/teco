@@ -15,17 +15,26 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Cwp {
     /// DescribeAssetRecentMachineInfo请求参数结构体
     public struct DescribeAssetRecentMachineInfoRequest: TCRequestModel {
         /// 开始时间，如：2020-09-22
-        // FIXME: Codable support not implemented for date yet.
-        public let beginDate: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var beginDate: Date
         
         /// 结束时间，如：2020-09-22
-        // FIXME: Codable support not implemented for date yet.
-        public let endDate: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var endDate: Date
         
         public init (beginDate: Date, endDate: Date) {
             self.beginDate = beginDate

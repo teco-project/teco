@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Gme {
     /// DescribeApplicationData请求参数结构体
@@ -23,12 +24,20 @@ extension Gme {
         public let bizId: UInt64
         
         /// 数据开始时间，格式为 年-月-日，如: 2018-07-13
-        // FIXME: Codable support not implemented for date yet.
-        public let startDate: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var startDate: Date
         
         /// 数据结束时间，格式为 年-月-日，如: 2018-07-13
-        // FIXME: Codable support not implemented for date yet.
-        public let endDate: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var endDate: Date
         
         public init (bizId: UInt64, startDate: Date, endDate: Date) {
             self.bizId = bizId

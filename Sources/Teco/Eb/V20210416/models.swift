@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Eb {
     /// APIGWParams描述
@@ -99,8 +100,12 @@ extension Eb {
         public let status: String
         
         /// 更新时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let modTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var modTime: Date
         
         /// 使能开关
         public let enable: Bool
@@ -109,8 +114,12 @@ extension Eb {
         public let description: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let addTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var addTime: Date
         
         /// 连接器ID
         public let connectionId: String
@@ -278,15 +287,23 @@ extension Eb {
     /// 事件集信息
     public struct EventBus: TCOutputModel {
         /// 更新时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let modTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var modTime: Date
         
         /// 事件集描述，不限字符类型，200字符描述以内
         public let description: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let addTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var addTime: Date
         
         /// 事件集名称，只能包含字母、数字、下划线、连字符，以字母开头，以数字或字母结尾，2~60个字符
         public let eventBusName: String
@@ -402,8 +419,12 @@ extension Eb {
         public let status: String
         
         /// 修改时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let modTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var modTime: Date
         
         /// 使能开关
         public let enable: Bool
@@ -415,8 +436,12 @@ extension Eb {
         public let ruleId: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let addTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var addTime: Date
         
         /// 事件集ID
         public let eventBusId: String

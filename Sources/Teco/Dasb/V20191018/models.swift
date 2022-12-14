@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Dasb {
     /// 访问权限
@@ -90,13 +91,21 @@ extension Dasb {
         
         /// 访问权限生效时间，如:"2021-09-22T00:00:00+00:00"
         /// 生效、失效时间不填则访问权限长期有效
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let validateFrom: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var validateFrom: Date
         
         /// 访问权限失效时间，如:"2021-09-23T00:00:00+00:00"
         /// 生效、失效时间不填则访问权限长期有效
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let validateTo: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var validateTo: Date
         
         /// 访问权限状态，1 - 已生效，2 - 未生效，3 - 已过期
         public let status: UInt64
@@ -281,8 +290,12 @@ extension Dasb {
         public let renewFlag: UInt64
         
         /// 过期时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let expireTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var expireTime: Date
         
         /// 资源状态，0 - 未初始化，1 - 正常，2 - 隔离，3 - 销毁，4 - 初始化失败，5 - 初始化中
         public let status: UInt64
@@ -294,8 +307,12 @@ extension Dasb {
         public let pid: UInt64
         
         /// 资源创建时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createTime: Date
         
         /// 商品码, p_cds_dasb
         public let productCode: String
@@ -418,11 +435,21 @@ extension Dasb {
         
         /// 用户生效时间，如:"2021-09-22T00:00:00+00:00"
         /// 生效、失效时间不填则用户长期有效
-        public let validateFrom: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var validateFrom: Date?
         
         /// 用户失效时间，如:"2021-09-22T00:00:00+00:00"
         /// 生效、失效时间不填则用户长期有效
-        public let validateTo: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var validateTo: Date?
         
         /// 所属用户组列表
         public let groupSet: [Group]?

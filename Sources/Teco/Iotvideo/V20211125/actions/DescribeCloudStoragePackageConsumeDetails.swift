@@ -15,17 +15,26 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Iotvideo {
     /// DescribeCloudStoragePackageConsumeDetails请求参数结构体
     public struct DescribeCloudStoragePackageConsumeDetailsRequest: TCRequestModel {
         /// 开始日期
-        // FIXME: Codable support not implemented for date yet.
-        public let startDate: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var startDate: Date
         
         /// 结束日期
-        // FIXME: Codable support not implemented for date yet.
-        public let endDate: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var endDate: Date
         
         public init (startDate: Date, endDate: Date) {
             self.startDate = startDate

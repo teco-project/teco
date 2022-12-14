@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Gme {
     /// 年龄语音识别子任务
@@ -73,8 +74,12 @@ extension Gme {
         public let voiceFilterStatisticsItem: VoiceFilterStatisticsItem?
         
         /// 统计时间
-        // FIXME: Codable support not implemented for date yet.
-        public let date: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var date: Date
         
         /// 录音转文本用量统计数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -637,8 +642,12 @@ extension Gme {
     /// 用量数据单元
     public struct StatisticsItem: TCOutputModel {
         /// 日期，格式为年-月-日，如2018-07-13
-        // FIXME: Codable support not implemented for date yet.
-        public let statDate: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var statDate: Date
         
         /// 统计值
         public let data: UInt64

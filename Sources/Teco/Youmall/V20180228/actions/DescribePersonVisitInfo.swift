@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Youmall {
     /// DescribePersonVisitInfo请求参数结构体
@@ -32,19 +33,39 @@ extension Youmall {
         public let limit: UInt64
         
         /// 开始日期，格式yyyy-MM-dd，已废弃，请使用StartDateTime
-        public let startDate: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var startDate: Date?
         
         /// 结束日期，格式yyyy-MM-dd，已废弃，请使用EndDateTime
-        public let endDate: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCDateEncoding public var endDate: Date?
         
         /// 图片url过期时间：在当前时间+PictureExpires秒后，图片url无法继续正常访问；单位s；默认值1*24*60*60（1天）
         public let pictureExpires: UInt64?
         
         /// 开始时间，格式yyyy-MM-dd HH:mm:ss
-        public let startDateTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var startDateTime: Date?
         
         /// 结束时间，格式yyyy-MM-dd HH:mm:ss
-        public let endDateTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var endDateTime: Date?
         
         public init (companyId: String, shopId: UInt64, offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, pictureExpires: UInt64? = nil, startDateTime: Date? = nil, endDateTime: Date? = nil) {
             self.companyId = companyId

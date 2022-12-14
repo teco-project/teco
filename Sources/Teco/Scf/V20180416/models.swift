@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Scf {
     /// HTTP域名相关信息
@@ -54,11 +55,21 @@ extension Scf {
         
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let addTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var addTime: Date?
         
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let modTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var modTime: Date?
         
         public init (functionVersion: String, name: String, routingConfig: RoutingConfig, description: String? = nil, addTime: Date? = nil, modTime: Date? = nil) {
             self.functionVersion = functionVersion
@@ -493,8 +504,12 @@ extension Scf {
         public let requestId: String
         
         /// 函数开始执行时的时间点
-        // FIXME: Codable support not implemented for datetime yet.
-        public let startTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var startTime: Date
         
         /// 函数执行结果，如果是 0 表示执行成功，其他值表示失败
         public let retCode: Int64
@@ -551,11 +566,21 @@ extension Scf {
         
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let addTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var addTime: Date?
         
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let modTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var modTime: Date?
         
         /// 版本状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -770,12 +795,20 @@ extension Scf {
     /// 命名空间
     public struct Namespace: TCOutputModel {
         /// 命名空间创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let modTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var modTime: Date
         
         /// 命名空间修改时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let addTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var addTime: Date
         
         /// 命名空间描述
         public let description: String
@@ -1106,8 +1139,12 @@ extension Scf {
     /// 触发器类型
     public struct Trigger: TCOutputModel {
         /// 触发器最后修改时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let modTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var modTime: Date
         
         /// 触发器类型
         public let type: String
@@ -1119,8 +1156,12 @@ extension Scf {
         public let triggerName: String
         
         /// 触发器创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let addTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var addTime: Date
         
         /// 使能开关
         public let enable: Int64
@@ -1267,12 +1308,20 @@ extension Scf {
         public let customArgument: String?
         
         /// 触发器创建时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let addTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var addTime: Date
         
         /// 触发器最后修改时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let modTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var modTime: Date
         
         /// 触发器最小资源ID
         public let resourceId: String

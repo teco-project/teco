@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Pts {
     /// 聚合函数
@@ -369,7 +370,12 @@ extension Pts {
         
         /// 结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let endTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var endTime: Date?
         
         /// 中止原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -385,11 +391,21 @@ extension Pts {
         
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let createdAt: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdAt: Date?
         
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let updatedAt: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updatedAt: Date?
         
         /// 执行频率类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -552,8 +568,12 @@ extension Pts {
         public let type: String
         
         /// 更新时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let updatedAt: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updatedAt: Date
         
         /// 文件行数
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -589,7 +609,12 @@ extension Pts {
         
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let createdAt: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdAt: Date?
         
         /// 项目 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -651,7 +676,12 @@ extension Pts {
         
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let updatedAt: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updatedAt: Date?
         
         /// 文件 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -811,11 +841,21 @@ extension Pts {
         
         /// 任务的开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let startTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var startTime: Date?
         
         /// 任务的结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let endTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var endTime: Date?
         
         /// 任务的最大VU数
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -923,7 +963,12 @@ extension Pts {
         
         /// 任务的创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let createdAt: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdAt: Date?
         
         /// 项目ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1273,10 +1318,20 @@ extension Pts {
         public let status: Int64?
         
         /// 创建时间
-        public let createdAt: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdAt: Date?
         
         /// 修改时间
-        public let updatedAt: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updatedAt: Date?
         
         /// App ID
         public let appId: Int64
@@ -1317,7 +1372,12 @@ extension Pts {
         
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let updatedAt: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updatedAt: Date?
         
         /// 文件 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1380,10 +1440,20 @@ extension Pts {
         public let regionShortName: String?
         
         /// 创建时间
-        public let createdAt: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdAt: Date?
         
         /// 更新时间
-        public let updatedAt: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updatedAt: Date?
         
         public init (region: String, regionId: Int64, area: String? = nil, regionName: String? = nil, regionState: Int64? = nil, regionShortName: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
             self.region = region
@@ -1849,7 +1919,12 @@ extension Pts {
         
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let updatedAt: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updatedAt: Date?
         
         /// base64编码后的文件内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1980,7 +2055,12 @@ extension Pts {
         
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let updatedAt: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updatedAt: Date?
         
         /// 文件字节数
         /// 注意：此字段可能返回 null，表示取不到有效值。

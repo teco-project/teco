@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Bmlb {
     /// DescribeCertDetail请求参数结构体
@@ -52,16 +53,28 @@ extension Bmlb {
         public let certSubjectDomain: [String]
         
         /// 证书上传时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let certUploadTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var certUploadTime: Date
         
         /// 证书生效时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let certBeginTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var certBeginTime: Date
         
         /// 证书失效时间。
-        // FIXME: Codable support not implemented for datetime yet.
-        public let certEndTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var certEndTime: Date
         
         /// 该证书关联的黑石负载均衡对象列表。
         public let certLoadBalancerSet: [CertDetailLoadBalancer]

@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Ssa {
     /// 聚合类型
@@ -638,8 +639,12 @@ extension Ssa {
         public let result: Int64
         
         /// 更新时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let updatetime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var updatetime: Date
         
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -801,7 +806,12 @@ extension Ssa {
         
         /// 最近一次检测时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let lastCheckTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var lastCheckTime: Date?
         
         /// 资产组类型
         public let assetType: String
@@ -988,7 +998,12 @@ extension Ssa {
         
         /// 最近更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let time: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var time: Date?
         
         /// 资产标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1049,7 +1064,12 @@ extension Ssa {
         
         /// 最近一次检查时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let lastCheckTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var lastCheckTime: Date?
         
         /// 初始未检测状态0, 已通过为1，未通过为2
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1117,7 +1137,12 @@ extension Ssa {
         
         /// 最近一次检查时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let lastCheckTime: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var lastCheckTime: Date?
         
         /// 初始未检测状态0, 已通过为1，未通过为2
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1208,7 +1233,12 @@ extension Ssa {
         
         /// 事件发生时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let time: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var time: Date?
         
         /// 目的端口
         /// 注意：此字段可能返回 null，表示取不到有效值。

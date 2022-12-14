@@ -15,15 +15,26 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Memcached {
     /// 实例详细信息列表
     public struct InstanceListInfo: TCInputModel {
         /// 实例修改时间
-        public let modTimeStamp: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var modTimeStamp: Date?
         
         /// 实例隔离时间
-        public let isolateTimeStamp: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var isolateTimeStamp: Date?
         
         /// 实例是否设置自动续费标识，1：设置自动续费；0：未设置自动续费
         public let autoRenewFlag: Int64?
@@ -60,7 +71,12 @@ extension Memcached {
         public let projectId: Int64?
         
         /// 实例创建时间
-        public let addTimeStamp: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var addTimeStamp: Date?
         
         /// 区域ID
         public let zoneId: Int64?
@@ -75,7 +91,12 @@ extension Memcached {
         public let instanceName: String?
         
         /// 实例截止时间
-        public let deadlineTimeStamp: Date?
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var deadlineTimeStamp: Date?
         
         /// vpc网络id 如：vpc-fk33jsf43kgv
         public let uniqVpcId: String?

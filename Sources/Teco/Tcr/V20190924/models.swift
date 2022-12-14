@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Tcr {
     /// 内网接入信息
@@ -445,12 +446,20 @@ extension Tcr {
         public let remark: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createdAt: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdAt: Date
         
         /// 更新时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let updatedAt: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var updatedAt: Date
         
         /// id
         public let id: Int64
@@ -485,8 +494,12 @@ extension Tcr {
         public let publicDomain: String
         
         /// 实例创建时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createdAt: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdAt: Date
         
         /// 地域名称
         public let regionName: String
@@ -1237,8 +1250,12 @@ extension Tcr {
         public let enabled: Bool
         
         /// 令牌创建时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let createdAt: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var createdAt: Date
         
         /// 令牌过期时间戳
         public let expiredAt: Int64
@@ -1259,8 +1276,12 @@ extension Tcr {
         public let name: String
         
         /// 创建时间
-        // FIXME: Codable support not implemented for datetime_iso yet.
-        public let creationTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampISO8601Encoding public var creationTime: Date
         
         /// 访问级别
         public let `public`: Bool

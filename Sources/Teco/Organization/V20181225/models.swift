@@ -15,6 +15,7 @@
 // DO NOT EDIT.
 
 @_exported import struct Foundation.Date
+import TecoDateHelpers
 
 extension Organization {
     /// 企业组织邀请
@@ -47,12 +48,20 @@ extension Organization {
         public let orgType: UInt64
         
         /// 邀请时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let inviteTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var inviteTime: Date
         
         /// 过期时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let expireTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var expireTime: Date
         
         enum CodingKeys: String, CodingKey {
             case id = "Id"
@@ -81,8 +90,12 @@ extension Organization {
         public let remark: String
         
         /// 加入时间
-        // FIXME: Codable support not implemented for datetime yet.
-        public let joinTime: Date
+        ///
+        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
+        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
+        ///
+        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        @TCTimestampEncoding public var joinTime: Date
         
         enum CodingKeys: String, CodingKey {
             case uin = "Uin"
